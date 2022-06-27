@@ -26,7 +26,7 @@ You may work with custom properties in your OpenAPI spec. To expose custom prope
 
 ## Partials
 
-Partials are snippets of html that layouts can reference. Partials have access to all the same data that its layout does, and can even call other partials.  Breaking your code into partials can help organize large pages, as well as allow different layouts share common page elements.
+Partials are snippets of HTML that layouts can reference. Partials have access to all the same data that its layout does, and can even call other partials.  Breaking your code into partials can help organize large pages, as well as allow different layouts share common page elements.
 
 ### content/index.txt
 
@@ -333,7 +333,7 @@ Objects:
 Terminology / Definitions:
 
 - `list` - Also referred to commonly as an array (`[1, 2, 3]`) in Lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
-- `table` - Also commonly known as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
+- `table` - Also commonly known as an object or HashMap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
 
 ### l(key, fallback)
 
@@ -960,7 +960,7 @@ Template:
 
 #### page.body
 
-Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
+Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to HTML.
 
 ##### Return Type
 
