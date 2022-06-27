@@ -447,6 +447,8 @@ X-Kong-Proxy-Latency: 1
 Via: kong/1.2.1
 ```
 
+
+Requests to `/bar` are also rate limited:
 ```sh
 curl -I $PROXY_IP/bar
 ```
