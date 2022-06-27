@@ -13,7 +13,7 @@ Both categories measure trends by comparing metrics across fixed comparable time
 
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
 
-* **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval. Succesful requests contain all requests that returned a 1xx-3xx status code. Failed requests contain all requests that returned a 4xx-5xx status code.
+* **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval. Successful requests contain all requests that returned a 1xx-3xx status code. Failed requests contain all requests that returned a 4xx-5xx status code.
 
 * **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval.
 
