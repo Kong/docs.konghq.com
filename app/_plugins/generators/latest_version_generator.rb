@@ -19,7 +19,8 @@ module LatestVersion
 
       # Load config file
       site.pages.each do |page|
-        parts = Pathname(remove_generated_prefix(page.path)).each_filename.to_a
+        page_path = remove_generated_prefix(page.path)
+        parts = Pathname(page_path).each_filename.to_a
 
         products_with_latest.each do |product|
           # Reset values for every new page
@@ -49,7 +50,7 @@ module LatestVersion
             page.content,
             page.data,
             @page_index["#{product_name}/#{release_path}/"],
-            page.path
+            page_path
           )
           site.pages << page
         end
@@ -80,7 +81,7 @@ module LatestVersion
       @data = data.clone
       @data['is_latest'] = true
       @data['version-index'] = page_index
-      @data['edit_link'] = "app/#{path}"
+      @data['edit_link'] = "app/#{path}" unless @data['edit_link']
 
       @data['alias'] = [@dir.sub('latest/', '')] if @dir.end_with?('/latest/')
     end
