@@ -251,7 +251,7 @@ Each configuration item is made up of a few parts:
       - `:stub`: Replaces namespace with value of `headmatter.stub` in each contents headmatter.
 - `layout`
     - **required**: true
-      - **type**: `boolean`
+      - **type**: `string`
       - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
 
 ### content/_posts/post1.md
