@@ -4,7 +4,8 @@ publisher: Kong Inc.
 version: 3.0.x
 desc: Send metrics to StatsD with more flexible options
 description: |
-  Log [metrics](#metrics) for a Service or Route to a StatsD server.
+  Log [metrics](#metrics) for a Service, route
+  to a StatsD server.
   It can also be used to log metrics on [Collectd](https://collectd.org/)
   daemon by enabling its
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
@@ -55,17 +56,17 @@ params:
       default: '`127.0.0.1`'
       value_in_examples: 127.0.0.1
       datatype: string
-      description: The IP address or hostname of StatsD server to send data to.
+      description: The IP address or hostname of the StatsD server.
     - name: port
       required: true
       default: '`8125`'
       value_in_examples: 8125
       datatype: integer
-      description: The port of StatsD server to send data to.
+      description: The port of the StatsD server.
     - name: metrics
       required: true
-      default: All metrics are logged
-      datatype: Array of record elements
+      default: All metrics are logged.
+      datatype: Array of record elements.
       description: |
         List of Metrics to be logged. Available values are described under [Metrics](#metrics).
     - name: prefix
@@ -92,30 +93,30 @@ params:
       description: Use TCP instead of UDP.
     - name: allow_status_codes
       required: true
-      default: All responses are passed to log metrics
+      default: All responses are passed to log metrics.
       value_in_examples:
         - 200-205
         - 400-499
-      datatype: array of string elements
+      datatype: array of string elements.
       description: List of status code ranges that are allowed to be logged in metrics.
     - name: consumer_identifier_default
       required: true
       default: 'custom_id'
       datatype: string
-      description: The default consumer identifier of metrics. This will take effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
+      description: The default consumer identifier for metrics. This will take effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
     - name: service_identifier_default
       required: true
       default: 'service_name_or_host' 
       datatype: string
-      description: The default service identifier of metrics. This will take effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
+      description: The default service identifier for metrics. This will take effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
     - name: workspace_identifier_default
       required: true
       default: 'workspace_id' 
       datatype: string
-      description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.   
+      description: The default workspace identifier for metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.   
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
-    configures the greatest datagram size the plugin can combine. It should be less than
+    configures the greatest datagram size the plugin can combine, this should be less than
     65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
 ---
 
@@ -123,30 +124,30 @@ params:
 
 Metric                     | Description | Namespace
 ---                        | ---         | ---
-`request_count`            | the request count | kong.service.\<service_identifier>.request.count
-`request_size`             | the request's body size in bytes | kong.service.\<service_identifier>.request.size
-`response_size`            | the response's body size in bytes | kong.service.\<service_identifier>.response.size
-`latency`                  | the time interval in milliseconds between the request and response | kong.service.\<service_identifier>.latency
-`status_count`             | tracks each status code returned in a response | kong.service.\<service_identifier>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
-`unique_users`             | tracks unique users who made a requests to the underlying Service/Route | kong.service.\<service_identifier>.user.uniques
-`request_per_user`         | tracks the request count per Consumer | kong.service.\<service_identifier>.user.\<consumer_id>.request.count
-`upstream_latency`         | tracks the time in milliseconds it took for the final Service to process the request | kong.service.\<service_identifier>.upstream_latency
-`kong_latency`             | tracks the internal Kong latency in milliseconds that it took to run all the Plugins | kong.service.\<service_identifier>.kong_latency
-`status_count_per_user`    | tracks the status code for per Consumer per Service | kong.\<service_name>.user.\<customer_id>.request.status.\<status> and kong.\<service_name>.user.\<customer_id>.request.status.total
-`status_count_per_workspace`         | the status code per Workspace | kong.service.\<service_identifier>.workspace.\<workspace_identifier>.status.\<status>
-`status_count_per_user_per_route`    | the status code per Consumer per Route | kong.route.\<route_id>.user.\<customer_id>.status.\<status>
-`shdict_usage`             | the usage of shared dict, sent once every minute |kong.node.\<node_hostname>.shdict.\<shdict_name>.free_space and kong.node.\<node_hostname>.shdict.\<shdict_name>.capacity
+`request_count`            | The request count. | kong.service.\<service_identifier>.request.count
+`request_size`             | The request's body size in bytes. | kong.service.\<service_identifier>.request.size
+`response_size`            | The response's body size in bytes. | kong.service.\<service_identifier>.response.size
+`latency`                  | The time interval in milliseconds between the request and response. | kong.service.\<service_identifier>.latency
+`status_count`             | Tracks each status code returned in a response. | kong.service.\<service_identifier>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
+`unique_users`             | Tracks unique users who made a requests to the underlying service/route. | kong.service.\<service_identifier>.user.uniques
+`request_per_user`         | Tracks the request count per consumer. | kong.service.\<service_identifier>.user.\<consumer_id>.request.count
+`upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | kong.service.\<service_identifier>.upstream_latency
+`kong_latency`             | Tracks the internal Kong latency that it took to run all of the plugins, in milliseconds.| kong.service.\<service_identifier>.kong_latency
+`status_count_per_user`    | Tracks the status code per consumer per service. | kong.\<service_name>.user.\<customer_id>.request.status.\<status> and kong.\<service_name>.user.\<customer_id>.request.status.total
+`status_count_per_workspace`         | the status code per workspace. | kong.service.\<service_identifier>.workspace.\<workspace_identifier>.status.\<status>
+`status_count_per_user_per_route`    | the status code per consumer per Route. | kong.route.\<route_id>.user.\<customer_id>.status.\<status>
+`shdict_usage`             | the usage of a shared dict, sent once every minute. |kong.node.\<node_hostname>.shdict.\<shdict_name>.free_space and kong.node.\<node_hostname>.shdict.\<shdict_name>.capacity
 
 If a request URI doesn't match any Routes, the following metrics will be sent instead:
 
 Metric                     | Description | Namespace
 ---                        | ---         | ---
-`request_count`            | the request count | kong.global.unmatched.request.count
-`request_size`             | the request's body size in bytes | kong.global.unmatched.request.size
-`response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
-`latency`                  | the time interval between the request started and response received from the upstream server | kong.global.unmatched.latency
-`status_count`             | the status count | kong.global.unmatched.status.\<status>.count
-`kong_latency`             | the internal Kong latency in milliseconds that it took to run all the plugins | kong.global.unmatched.kong_latency
+`request_count`            | The request count. | kong.global.unmatched.request.count
+`request_size`             | The request's body size in bytes. | kong.global.unmatched.request.size
+`response_size`            | The response's body size in bytes. | kong.global.unmatched.response.size
+`latency`                  | The time interval between when the request started and the response was received from the upstream server. | kong.global.unmatched.latency
+`status_count`             | The status count. | kong.global.unmatched.status.\<status>.count
+`kong_latency`             | The internal Kong latency that it took to run all of the plugins, in milliseconds. | kong.global.unmatched.kong_latency
 
 ### Metric Fields
 
