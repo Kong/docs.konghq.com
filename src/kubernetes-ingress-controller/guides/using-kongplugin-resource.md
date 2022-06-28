@@ -26,19 +26,20 @@ If everything is setup correctly, making a request to Kong should return
 curl -i $PROXY_IP
 ```
 
-Expected output:
+In this document, expected output will follow each command:
 
 ```sh
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
-Server: kong/1.2.1
+X-Kong-Response-Latency: 1
+Server: kong/2.8.1
 
 {"message":"no Route matched with those values"}
 ```
 
-This is expected as Kong does not yet know how to proxy the request.
+This message is expected as Kong does not yet know how to proxy the request.
 
 ## Installing sample services
 
@@ -100,7 +101,7 @@ spec:
 ```
 
 ```sh
-ingress.extensions/demo created
+ingress.networking.k8s.io/demo created
 ```
 
 Let's test these endpoints. First the `/foo` route:
@@ -118,8 +119,8 @@ Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+X-Kong-Proxy-Latency: 0
+Via: kong/2.8.1
 ```
 
 Next the `/bar` route:
@@ -134,18 +135,12 @@ Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
 Server: echoserver
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 0
+Via: kong/2.8.1
 
-Hostname: echo-d778ffcd8-n9bss
-
-Pod Information:
-    node name:  gke-harry-k8s-dev-default-pool-bb23a167-8pgh
-    pod name:  echo-d778ffcd8-n9bss
-    pod namespace:  default
-    pod IP:  10.60.0.4
-<-- clipped -- >
+Hostname: echo-5fc5b5bc84-n7lhg
+...
 ```
 
 Let's add another Ingress resource which proxies requests to `/baz` to httpbin
@@ -175,10 +170,10 @@ spec:
 ```
 
 ```sh
-ingress.extensions/demo-2 created
+ingress.networking.k8s.io/demo-2 created
 ```
 
-We will use this path later.
+We will use this Ingress path later.
 
 ## Configuring plugins on Ingress resource
 
@@ -211,7 +206,7 @@ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/plugins":
 ```
 
 ```sh
-ingress.extensions/demo patched
+ingress.networking.k8s.io/demo patched
 ```
 
 Here, we are asking the {{site.kic_product_name}} to execute the response-transformer
@@ -226,15 +221,15 @@ curl -i $PROXY_IP/foo/status/200
 ```sh
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
-Content-Length: 9593
+Content-Length: 0
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 0
+Via: kong/2.8.1
 ```
 
 Then on `/bar`:
@@ -249,9 +244,9 @@ Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
 Server: echoserver
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 0
+Via: kong/2.8.1
 ```
 
 As can be seen in the output, the `demo` header is injected by Kong when
@@ -272,9 +267,9 @@ Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 3
+X-Kong-Upstream-Latency: 13
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 Here, we have successfully setup a plugin which is executed only when a
@@ -323,8 +318,9 @@ HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key realm="kong"
-Content-Length: 41
-Server: kong/1.2.1
+Content-Length: 45
+X-Kong-Response-Latency: 1
+Server: kong/2.8.1
 ```
 
 `/foo` also requires authentication:
@@ -338,9 +334,10 @@ HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key realm="kong"
-Content-Length: 41
+Content-Length: 45
 demo:  injected-by-kong
-Server: kong/1.2.1
+X-Kong-Response-Latency: 1
+Server: kong/2.8.1
 ```
 
 You can also see how the `demo` header was injected only for `/foo`,
@@ -368,7 +365,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 Then use the API key with `/foo`:
@@ -385,15 +382,16 @@ Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 3
+X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 0
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 ## Configure a global plugin
 
-Now, we will protect our Kubernetes cluster.
-For this, we will be configuring a rate-limiting plugin, which
+Instead of applying plugins to specific services or ingress routes,
+we can apply plugins to protect the entire gateway.
+To show this, we will be configuring a rate-limiting plugin, which
 will throttle requests coming from the same client.
 
 This must be a cluster-level `KongClusterPlugin` resource, as `KongPlugin`
@@ -436,15 +434,18 @@ HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
+X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 5
+RateLimit-Remaining: 4
+RateLimit-Reset: 46
+RateLimit-Limit: 5
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-RateLimit-Limit-minute: 5
-X-RateLimit-Remaining-minute: 4
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 3
+X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 
@@ -457,13 +458,16 @@ curl -I $PROXY_IP/bar
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
+X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 5
+RateLimit-Remaining: 4
+RateLimit-Reset: 11
+RateLimit-Limit: 5
 Server: echoserver
-X-RateLimit-Limit-minute: 5
-X-RateLimit-Remaining-minute: 4
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 2
+X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 ## Configure a plugin for a specific consumer
@@ -521,21 +525,23 @@ will be rate-limited differently:
 curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
 ```
 
-
 ```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
+X-RateLimit-Remaining-Minute: 9
+X-RateLimit-Limit-Minute: 10
+RateLimit-Remaining: 9
+RateLimit-Reset: 42
+RateLimit-Limit: 10
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-RateLimit-Limit-minute: 10
-X-RateLimit-Remaining-minute: 9
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 3
+X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 And a regular unauthenticated request
@@ -548,13 +554,16 @@ curl -I $PROXY_IP/bar
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
+X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 5
+RateLimit-Remaining: 4
+RateLimit-Reset: 11
+RateLimit-Limit: 5
 Server: echoserver
-X-RateLimit-Limit-minute: 5
-X-RateLimit-Remaining-minute: 4
 demo:  injected-by-kong
-X-Kong-Upstream-Latency: 2
+X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/2.8.1
 ```
 
 This guide demonstrates how you can use the {{site.kic_product_name}} to
