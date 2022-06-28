@@ -70,7 +70,7 @@ Connections that have been previously revoked can also be re-approved by followi
 
 ### Delete an Application's Connection to a Service {#delete-app-connection}
 
-Delete an application's connection to a Service. A request to register the deleted application
+Delete an application's connection to a service. A developer must request to register the deleted application again.
 must be made again by a developer.
 
 1. Click {% konnect_icon connections %} **Connections**, then open the **Applications** tab.
