@@ -35,7 +35,7 @@ gPRC endpoint, GraphQL endpoint, and others.
 version. Each Service version can only have one implementation.
 
 A {{site.konnect_short_name}} service isn't associated with any specific runtime group, but every
-Service version is. When you create a version of the Service, you must select a
+service version is. When you create a version of the service, you must select a
 group for the version to run on.
 
 {:.note}
@@ -50,7 +50,7 @@ specifying its protocol, host, port, and path individually.
 
 ### {{site.base_gateway}} implementations
 
-When configuring a {{site.base_gateway}} implementation of a Service, you'll
+When configuring a {{site.base_gateway}} implementation of a service, you'll
 need to specify a Route. Routes determine how (and if) requests get sent to
 their Services after they reach the API gateway. A single Service version
 can have only one implementation, but potentially many Routes.
@@ -81,7 +81,7 @@ Applies to a specific Service version.
 ## {{site.base_gateway}} plugins
 
 Plugins can be configured to run in a variety of contexts,
-ranging from a specific Service version or Route to all Service versions. Plugins
+ranging from a specific service version or route to all service versions. Plugins
 can execute actions inside {{site.konnect_product_name}} before or after a request
 has been proxied to the upstream API, as well as on any incoming responses.
 

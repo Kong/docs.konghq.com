@@ -7,7 +7,7 @@ content_type: reference
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
 deployment are also accessible through Service Hub or the Runtime Manager.
 
-## Kong plugins in {{site.konnect_short_name}}
+## Kong plugins in {{site.konnect_saas}}
 
 ### Plugin configuration
 

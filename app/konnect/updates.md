@@ -86,7 +86,7 @@ plugin to activate only on specific headers or query parameters
 : When you enable application registration on a Service,
 {{site.konnect_saas}} enables two plugins automatically: ACL, and one of Key
 Authentication or OIDC. These plugins cannot be edited or deleted directly. To
-help differentiate the {{site.konnect_short_name}}-managed plugins and avoid breaking your Service,
+help differentiate the {{site.konnect_short_name}}-managed plugins and avoid breaking your service,
 {{site.konnect_short_name}} now adds two metadata tags for declarative configuration:
 `konnect-managed-plugin` and `konnect-app-registration`.
 See the Dev Portal doc section on

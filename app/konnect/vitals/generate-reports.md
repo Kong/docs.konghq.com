@@ -16,7 +16,7 @@ It does not show data points for individual Service versions.
 ## View custom reports
 
 To access all custom reports, open {% konnect_icon vitals %}
-**Vitals** from the left side menu in {{site.konnect_short_name}}, then **Reports**.
+**Vitals** from the left-side menu in {{site.konnect_short_name}}, then **Reports**.
 This brings you to a list of all custom reports in the organization.
 
 Click on any report in the table to view it. From the report's details page, you
@@ -113,7 +113,7 @@ Metric | Report type | Description
 -------|------------|------------
 Total traffic | Service, Route, Application | Total number of API calls within the selected time frame.
 Total traffic by status code | Service, Route, Application | Number of API calls grouped by status code.
-Total traffic by service | Route, Application | Number of API calls filtered by Service(s) or Service versions, and grouped by Service.
+Total traffic by service | Route, Application | Number of API calls filtered by services or service versions, and grouped by service.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
 Total traffic by application | Service, Route | Number of API calls grouped by Application.
 

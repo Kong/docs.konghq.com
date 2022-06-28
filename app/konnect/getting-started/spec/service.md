@@ -8,7 +8,7 @@ it through the Service Hub to the Dev Portal.
 
 The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} services
 and share them with your developers. Developers can use the Dev Portal to
-locate, access, consume, and register applications against the Services.
+locate, access, consume, and register applications against the services.
 
 This topic walks you through importing an API spec into a {{site.konnect_short_name}} service,
 and adding a description.

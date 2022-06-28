@@ -6,10 +6,10 @@ no_version: true
 An implementation is a Gateway Service. By implementing a {{site.konnect_short_name}} Service
 version, you create a Gateway Service in the version's runtime group.
 
-## Implement a Service version ({{site.base_gateway}}) {#implement-service-version}
+## Implement a service version ({{site.base_gateway}}) {#implement-service-version}
 
-Expose the Service version by pointing it to an upstream service and creating
-a Route for the proxy. Traffic travelling through this proxy Route can use any
+Expose the service version by pointing it to an upstream service and creating
+a route for the proxy. Traffic traveling through this proxy route can use any
 runtime instance in the runtime group that the Service version belongs to.
 
 {:.note}

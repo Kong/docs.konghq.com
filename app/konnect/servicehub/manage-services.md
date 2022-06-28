@@ -4,10 +4,10 @@ no_version: true
 ---
 
 Through the [Service Hub](https://cloud.konghq.com/servicehub/), you can
-create and manage all {{site.konnect_short_name}} Services, Service versions, and Service
+create and manage all {{site.konnect_short_name}} services, service versions, and service
 implementations in one place.
 
-Access all {{site.konnect_short_name}} Service configuration through the {% konnect_icon servicehub %}
+Access all {{site.konnect_short_name}} service configuration through the {% konnect_icon servicehub %}
 **Service Hub**.
 
 ## Add a Service to the catalog

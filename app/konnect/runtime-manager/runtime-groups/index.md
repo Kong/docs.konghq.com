@@ -125,6 +125,6 @@ Column | Description
 -------|-------------
 Host | The hostname of the instance.
 Type | The runtime instance type. Currently, only {{site.base_gateway}} is supported.
-Last Ping | The last time that this instance received a configuration update from the {{site.konnect_short_name}} control plane. was used to proxy a Service.
+Last Ping | The last time that this instance received a configuration update from the {{site.konnect_short_name}} control plane to proxy a service.
 Version | The {{site.base_gateway}} version that this instance is running.
 ID | The UUID of the instance.
