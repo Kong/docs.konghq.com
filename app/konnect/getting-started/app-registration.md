@@ -16,9 +16,9 @@ legal agreements API.
 * If you're following the {{site.konnect_short_name}} API spec guide,
 make sure you have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/spec/service/).
 
-* To use app registration, Dev Portal must be protected by
-some sort of authentication. That means you can't have a public portal for this step.
-If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/spec/publish/).
+  * To use app registration, Dev Portal must be protected by
+  some sort of authentication. That means you can't have a public portal for this step.
+  If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/spec/publish/).
 
 * You must have a {{site.konnect_short_name}} service in the default runtime group.
 Application registration is not supported for custom runtime groups.
@@ -101,3 +101,9 @@ In this topic, you:
 * Enabled application registration for the service `example_service`.
 * From the Dev Portal, created an application and registered it against the `example_service`.
 * Generated an API key for the application and made a call using this key.
+
+For next steps, check out some of the other things you can do in
+{{site.konnect_saas}}:
+* Enable plugins on a [Service](/konnect/servicehub/enable-service-plugin/) or a
+[Route](/konnect/servicehub/enable-route-plugin/)
+* [Manage your teams and roles](/konnect/org-management/teams-and-roles/)

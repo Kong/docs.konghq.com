@@ -27,26 +27,12 @@
           url: /getting-started/configure-service
         - text: Implement and Test the Service
           url: /getting-started/implement-service
+    - text: Get Started with the Dev Portal
+      items:
         - text: Publish to Dev Portal
           url: /getting-started/publish-service
-    - text: Get Started with an API Spec
-      items:
-        - text: Import an API Spec into Konnect
-          url: /getting-started/spec/service
-        - text: Implement the Service Version with Kong Gateway
-          url: /getting-started/spec/implement
-        - text: Publish to Dev Portal
-          url: /getting-started/spec/publish
         - text: Register Applications
-          url: /getting-started/spec/app-registration
-      # - text: Protect your Services
-      #   url: /getting-started/spec/protect-services
-      # - text: Improve Performance
-      #   url: /getting-started/spec/performance
-      # - text: Secure Services
-      #   url: /getting-started/spec/secure-services
-      # - text: Set Up Intelligent Load Balancing
-      #   url: /getting-started/spec/load-balancing
+          url: /getting-started/app-registration
     - text: Import Kong Gateway Entities into Konnect Cloud
       url: /getting-started/import
 
