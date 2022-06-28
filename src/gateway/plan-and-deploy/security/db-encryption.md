@@ -109,6 +109,29 @@ The exported keyring should be stored in a safe location for disaster recovery
 purposes. It is not designed to be modified or decrypted before being used during
 a disaster recovery process.
 
+### Restore the Keyring
+
+Because the keyring material is encrypted with a randomly-generated symmetric key and only stored in memory,
+restarting the Kong Process can cause the keyring to be lost or corrupted.
+The Keyring can be restored by importing the exported keyring.
+
+A recommended method for recovering a keyring is to use the Recovery mode, you should set the `keyring_recovery_public_key`
+Kong configuration value to the public key of the recovery key pair.
+(You can also follow the [Generate a Management RSA Key Pair guide](#generate-a-management-rsa-key-pair) to generate a keypair for this purpose.)
+
+The keyring material is then encrypted with the public RSA key defined via the `keyring_recovery_public_key`
+Kong configuration value in the database. You can use this recovery key to decrypt the Keyring material in the database.
+
+This will restore the Keyring material to the cluster automatically without manual backup.
+
+```bash
+$ curl -X POST localhost:8001/keyring/recover -d "recovery_private_key=$(cat recovery_priv.key)"
+{
+  "id": "500pIquV",
+  "key": "3I23Ben5m7qKcCA/PK7rnsNeD3kI4IPtA6ki7YjAgKA="
+}
+```
+
 ### Exercise the Encryption Routines
 
 Create a Consumer with a basic-auth credential. At this point, the `password` field of the basic-auth credential will be symmetrically encrypted before it is written to the database (in addition to being hashed by the basic-auth plugin, which is done by the plugin regardless of whether keyring encryption is enabled):
