@@ -3,6 +3,41 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+## 2.8.1.2
+**Release Date** 2022/06/28
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue in hybrid mode where, if a service was set to `enabled: false` and that service had a route with an enabled plugin, any new data planes would receive empty configuration.
+* Fixed a timer leak that occurred when `worker_consistency` was set to `eventual` in `kong.conf`.
+The issue caused timers to be exhausted and failed to start any other timers used by Kong Gateway, showing the error `too many pending timers`.
+
+#### Kong Manager and Dev Portal
+
+* Fixed an issue where Kong Manager did not display all Dev Portal developers in the organization.
+* Fixed an issue with displaying developer role assignment in Kong Manager.
+When viewing a role under the Permissions tab in the Dev Portal section, the list of developers wouldn't update when a new developer was added.
+Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees.
+* Fixed empty string handling in Kong Manager. Previously, Kong Manager was handling empty strings as `""` instead of a null value.
+* Improved Kong Manager styling, fixing an issue where content didn't fit on object detail pages.
+* Fixed an issue with unclickable Kong Manager links and buttons in Safari.
+
+#### Plugins
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting)(`rate-limiting`) and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting)(`response-ratelimiting`)
+  * Fixed a PostgreSQL deadlock issue that occurred when the `cluster` policy was used with two or more metrics (for example, `second` and `day`.)
+
+* [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
+  * Log output is now restricted to the workspace the plugin is running in. Previously,
+  the plugin could log requests from outside of its workspace.
+
+* [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  * Fixed an issue where `204` responses were not handled correctly and you would see the following error:
+`"No examples exist in API specification for this resource"`.
+  * `204` response specs now support empty content elements.
+
 ## 2.8.1.1
 **Release Date** 2022/05/27
 
