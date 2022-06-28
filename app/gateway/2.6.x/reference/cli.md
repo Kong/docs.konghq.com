@@ -137,7 +137,9 @@ The available commands are:
   finish                                Finish running any pending migrations
                                         after 'up'.
   list                                  List executed migrations.
-  reset                                 Reset the database.
+  reset                                 Reset the database. 
+                                        The `reset` command erases all of the data 
+                                        in Kong's database and deletes all of the schemas.
   migrate-community-to-enterprise       Migrates Kong Community entities to
                                         Kong Enterprise in the default
                                         workspace.
