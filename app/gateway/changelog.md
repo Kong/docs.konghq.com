@@ -28,7 +28,7 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
 
 #### Plugins
 
-* [Rate Limiting](/hub/kong-inc/rate-limiting)(`rate-limiting`) and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting)(`response-ratelimiting`)
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`) and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting) (`response-ratelimiting`)
   * Fixed a PostgreSQL deadlock issue that occurred when the `cluster` policy was used with two or more metrics (for example, `second` and `day`.)
 
 * [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
