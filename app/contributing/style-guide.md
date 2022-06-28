@@ -3,6 +3,8 @@ title: Style guide
 no_version: true
 ---
 
+<!-- vale off -->
+
 ## Content best practices
 
 |Best practice                      | ✅&nbsp; Do                                     | ❌&nbsp; Don't                                     |
@@ -27,8 +29,10 @@ no_version: true
 |Use descriptive headings           |Improve Vitals performance with InfluxDB       |Overview                                           |
 |                                   |Query frequency and precision                  |Query behavior                                     |
 |---                                |---                                            |---                                                |
-|Use sentence case for headings     |Understanding traffic flow in Kong Gateway     |Understanding Traffic Flow in Kong Gateway         |
+|Use sentence case for headings     |Understanding traffic flow in {{site.base_gateway}}     |Understanding Traffic Flow in {{site.base_gateway}}         |
 |---                                |---                                            |---                                                |
+
+<!-- vale on -->
 
 ## Formatting standards
 
@@ -52,10 +56,10 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 ✅ &nbsp; Do use punctuation when constructing lists that contain full sentences:
 
 {:.note .no-icon}
->In DB-less mode, you configure Kong Gateway declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
+>In DB-less mode, you configure {{site.base_gateway}} declaratively. Therefore, the Admin API is mostly read-only. The only tasks it can perform are all related to handling the declarative configuration, including:
 >
->- Setting a target's health status in the load balancer. 
->- Validating configurations against schemas. 
+>- Setting a target's health status in the load balancer.
+>- Validating configurations against schemas.
 >- Uploading the declarative configuration using the `/config` endpoint.
 
 ❌ &nbsp; Don't use punctuation when creating ordered and unordered lists that are extensions of a sentence:
@@ -67,23 +71,50 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 >- Traffic reliability
 >- Global observability across all traffic
 
-### Placeholder values
+## Placeholder and example values
 
-- Use single curly braces, all caps text, and underscores between words.
+The type of placeholder you use depends on context:
 
-    For example: `{EXAMPLE_VALUE}`
+* **Generic placeholder values:** In most situations (such as plugin parameters, YAML examples, or Kong configuration), use all caps text and underscores between words.
 
-    In codeblocks, use [editable placeholders](/contributing/markdown-rules/#placeholders)
-    where you want a user to enter their own value.
+    For example: `service: SERVICE_NAME`
+
+* **URLs:**
+    * For guides with examples that are intended to be runnable as-is, use `localhost` as the domain name.
+
+        For example: `curl -i -X https://localhost:8001/services`
+
+        If you are following a guide where {{site.base_gateway}} is running on `localhost`, this example can be copied and pasted straight into a terminal.
+        It should work with no changes.
+
+    * For situations where you need a generic domain name and the examples are illustrative only (not intended to be runnable as-is), use `example` or `example.com`.
+
+        For example: `user@example.com` or `https://example.okta.admin.com`
 
 ## Capitalization guidelines
 
-Follow the user interface (UI). If a term is capitalized in the UI, it should be
-capitalized in the documentation.
+Follow the user interface (UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
+
+Don't capitalize the following terms:
+
+- application
+- certificate
+- consumer
+- control plane
+- database
+- data plane
+- developer
+- hybrid mode
+- plugin
+- route
+- service
+- service mesh
+- target
+- upstream
 
 ### Kong-specific terms
 
-See [Word Choice](/contributing/word-choice).
+For product, application, and component names, see [Word Choice](/contributing/word-choice).
 
 ## Code formatting
 
@@ -92,9 +123,9 @@ See [Word Choice](/contributing/word-choice).
 - For long commands, split the code block into separate lines with `\`
 to avoid horizontal scrolling.
 - Never have more than one command in a block/example.
-- Set a language for codeblocks, for example, bash, to enable syntax highlighting.
+- Set a language for code blocks, for example, bash, to enable syntax highlighting.
     - [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
-    - If using HTML tags to create a codeblock for editable placeholders,
+    - If using HTML tags to create a code block for editable placeholders,
     see [guidelines for editable placeholders](/contributing/markdown-rules/#editable-placeholders-in-codeblocks)
 - Do **NOT** use the command prompt marker ($) in code snippets.
 
@@ -103,30 +134,35 @@ to avoid horizontal scrolling.
 - Enclose sample code with single backticks.<br/>
   For example: \`sudo yum install /path/to/package.rpm`
 
-## Images
+## Screenshots
 
-- Add files to the corresponding product folder by navigating in the repo from **app > assets > images > docs**.
-- When naming/titling image files, use lowercase letters and dashes only.
-- Use SVGs whenever possible, otherwise use PNGs.
+You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. 
+
+Screenshots are used to support documentation and do not _replace_ documentation. In some cases, using wireframes in place of screenshots is easier to maintain. Otherwise, all screenshots must follow these guidelines. 
+
+- Screenshots must be taken with browser developer tools. 
+- Resolution should be set to **1500x843.75**.
+- Screenshots of UI elements should include only the relevant **panel**. Panels are a container within a UI window which contain multiple related elements.
+- Mouse should not be visible.
+- Emphasis can be added by creating a **square** border around the point of interest. The border must use the color `#0788ad` from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
+- In situations that require it a `1px` black border can be used.
+- **Do not** use GIFs.
 - Limit image file size to ~2MB.
-- Compress and resize images before adding them to the site.
-- Do not use shadows.
-- Borders can be added to screenshots only `-1px` black.
-- Add an `alt` attribute and detailed description of the image.
-- **Do not** use GIFs, as they are not accessible and reduce page performance.
+- Add files to the corresponding product folder by navigating in the repo from **app > _assets > images > docs**.
+- Use lowercase letters and dashes when naming an image file.
 
 ### Icons
 
 When deciding which icon to use for a doc, use the following guidelines:
 
-1. Is there a unicode version?
+1. Is there a Unicode version?
 
-   We use unicode for common icons such as ✅ &nbsp; and ❌&nbsp;. You can copy and paste a
-   unicode icon directly into markdown.
+   We use Unicode for common icons such as ✅&nbsp; and ❌&nbsp;. You can copy and paste a
+   Unicode icon directly into markdown.
 
 2. Is there a Font Awesome icon?
 
-   We also use a free version of Font Awesome to supplement unicode icons.
+   We also use the free version of Font Awesome to supplement Unicode icons.
    Check out [their catalog](https://fontawesome.com/v5/search?m=free) to find
    an icon code, then see our [icon usage instructions](/contributing/markdown-rules/#icons).
 
@@ -135,7 +171,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 
    For custom icons, we have to import them manually. This includes all of the
    icons used in docs navigation and all icons that are used for UI labels in
-   Konnect and Kong's UIs. If you find one, see our
+   {{site.konnect_short_name}} and Kong's UIs. If you find one, see our
    [icon usage instructions](/contributing/markdown-rules/#icons).
 
 4. If the answer to all of the above is "no", you can
@@ -146,11 +182,6 @@ When deciding which icon to use for a doc, use the following guidelines:
 - Don't use link titles like "Read more" and "Click here". Instead, write descriptive titles that properly detail what content is accessible by clicking the link.
 - If the linked content is a larger area like a panel, add a `title` attribute that describes the linked content to the `a` tag.
 
-## Reference style guides
+## Reference style guide
 
-- [Valero Style Guide](https://velero.io/docs/v1.5/style-guide/#inline-code-formatting)
-- [Splunk Style Guide](https://docs.splunk.com/Documentation/StyleGuide/current/StyleGuide/Howtouse)
-- [Microsoft Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/)
-- [Barrie Byron’s admirably curated list of style guides](https://docs.google.com/document/d/1wAVt65UpgBJ4e_tzPCVnPHwOqYYtENuRkojDSq-7nK0/edit)
-- [Google Developers Guide](https://developers.google.com/style)
-- [Kubernetes](https://kubernetes.io/docs/contribute/style/style-guide/)
+Follow Kong's style guide whenever possible. However, we recommend using the [Google developer style guide](https://developers.google.com/style/) for style and formatting cases that our guide doesn't cover.
