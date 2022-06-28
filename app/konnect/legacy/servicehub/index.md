@@ -2,7 +2,7 @@
 title: ServiceHub Overview
 no_version: true
 ---
-
+<!-- vale off -->
 ServiceHub is a {{site.konnect_saas}} functionality module that
 lets you catalog all of your services in a single system of record. This
 catalog represents the single source of truth of your organization’s service
@@ -44,7 +44,7 @@ specifying its protocol, host, port, and path individually.
 **See more:**
 * [Get started with Service management](/konnect/legacy/servicehub/manage-services)
 
-### Kong Gateway implementations
+### {{site.base_gateway}} implementations
 
 When configuring a {{site.base_gateway}} implementation of a Service, you'll
 need to specify a Route. Routes determine how (and if) requests get sent to
@@ -74,7 +74,7 @@ Applies to a specific Service version.
 * [Upload Service Documentation to the Dev Portal](/konnect/legacy/servicehub/dev-portal/service-documentation)
 * [Publish a Service to the Dev Portal](/konnect/legacy/servicehub/dev-portal/publish)
 
-## Kong Gateway plugins
+## {{site.base_gateway}} plugins
 
 Plugins can be configured to run in a variety of contexts,
 ranging from a specific Service version or Route to all Service versions. Plugins

@@ -5,7 +5,7 @@ content_type: how-to
 ---
 
 Create, update, and delete runtime groups through the
-[Runtime Manager](https://cloud.konghq.com/runtime-manager) in Konnect.
+[Runtime Manager](https://cloud.konghq.com/runtime-manager) in {{site.konnect_short_name}}.
 
 You can find the list of all runtime groups in the Runtime Manager. If you don't
 have an Enterprise account, the Runtime Manager will only ever have one
@@ -19,7 +19,7 @@ in the group.
 ## Create a runtime group
 {:.badge .enterprise}
 
-1. In Konnect, open {% konnect_icon runtimes %} **Runtime Manager** from the left side
+1. In {{site.konnect_short_name}}, open {% konnect_icon runtimes %} **Runtime Manager** from the left side
  menu.
 
 1. Click **Create Runtime Group**.
@@ -28,25 +28,24 @@ in the group.
 
     Each runtime group in the organization must have a unique name.
 
-<!--
+
 1. Add any labels in `key:value` pair format.
 
     For example, you might set `location:us-west`, where `location` is the key
     and the `us-west` is the value.
 
-    These labels are completely custom. Set anything that you need. -->
+    These labels are completely custom. Set anything that you need.
 
 1. Click **Create**.
 
-<!--
 ## Edit a runtime group
 
-1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+1. In {{site.konnect_short_name}}, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
 **Runtime Manager** from the left side menu.
 
 1. Click the action menu icon on the far right of a row and select **Edit**.
 
-1. Edit the group details, then click **Update**. -->
+1. Edit the group details, then click **Update**.
 
 ## Delete a runtime group
 {:.badge .enterprise}
@@ -95,7 +94,7 @@ can use decK to accomplish this:
       ...
     ```
 
-1. In Konnect, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
+1. In {{site.konnect_short_name}}, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
 **Runtime Manager** from the left side menu.
 
 1. Click the action menu icon on the far right of a row and select **Delete**.

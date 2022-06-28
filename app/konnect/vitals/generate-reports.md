@@ -16,7 +16,7 @@ It does not show data points for individual Service versions.
 ## View custom reports
 
 To access all custom reports, open {% konnect_icon vitals %}
-**Vitals** from the left side menu in Konnect, then **Reports**.
+**Vitals** from the left-side menu in {{site.konnect_short_name}}, then **Reports**.
 This brings you to a list of all custom reports in the organization.
 
 Click on any report in the table to view it. From the report's details page, you
@@ -24,7 +24,7 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 ## Create a custom report
 
-1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
+1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Click the button to **Add New Report**.
 1. Name the report and optionally add a description.
@@ -50,7 +50,7 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
    * **Service report**: Generate a report based on Services catalogued in Service Hub.
    * **Route report**: Generate a report based on Routes.
-   * **Application report**: Generate a report based on Applications registered on your Developer Portal.
+   * **Application report**: Generate a report based on Applications registered on your Dev Portal.
 
    Depending on the report type you choose, the available metrics and entities
    will change.
@@ -69,18 +69,18 @@ and click it again to show the item. The graph resets on a refresh.
 
 You can export any custom report in CSV format.
 
-1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
+1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Click on a report row to open the report's page.
 1. Click the **Actions** dropdown and select **Export Report**.
 
-  Konnect generates a CSV file download with all the data in the report.
+  {{site.konnect_short_name}} generates a CSV file download with all the data in the report.
 
 ## Edit a custom report
 
 You can edit a report in one of the following ways:
 
-1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
+1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Either:
    * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
@@ -96,7 +96,7 @@ You can edit a report in one of the following ways:
 
 You can delete a report in one of the following ways:
 
-1. From the left-side menu in Konnect, open {% konnect_icon vitals %}
+1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
 **Vitals**, then **Reports**.
 1. Either:
    * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
@@ -113,7 +113,7 @@ Metric | Report type | Description
 -------|------------|------------
 Total traffic | Service, Route, Application | Total number of API calls within the selected time frame.
 Total traffic by status code | Service, Route, Application | Number of API calls grouped by status code.
-Total traffic by service | Route, Application | Number of API calls filted by Service(s) or Service versions, and grouped by Service.
+Total traffic by service | Route, Application | Number of API calls filtered by services or service versions, and grouped by service.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
 Total traffic by application | Service, Route | Number of API calls grouped by Application.
 

@@ -9,7 +9,7 @@ or enable an external authenticator to manage
 {{site.konnect_saas}} authentication and authorization from your own identity
 provider.
 
-## Native authentication through Konnect Cloud
+## Native authentication through {{site.konnect_short_name}}
 
 The default authentication option in {{site.konnect_saas}} is basic
 authentication. You don't have to do anything special to set it up.
@@ -30,4 +30,4 @@ organization
 
 * Set up [Okta integration](/konnect/org-management/okta-idp)
 * View {{site.konnect_saas}} [teams and roles](/konnect/org-management/teams-and-roles)
-* [Map Okta groups to Konnect teams](/konnect/org-management/okta-idp/#map-roles-to-groups)
+* [Map Okta groups to {{site.konnect_short_name}} teams](/konnect/org-management/okta-idp/#map-roles-to-groups)

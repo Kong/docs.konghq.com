@@ -2,6 +2,8 @@
 title: Deployment Overview
 no_version: true
 ---
+<!-- vale off -->
+
 ## Architecture
 
 The {{site.konnect_product_name}} platform provides a cloud control plane (CP),

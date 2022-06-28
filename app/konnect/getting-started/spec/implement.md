@@ -3,22 +3,22 @@ title: Implement a Service Version with Kong Gateway
 no_version: true
 ---
 
-Your Service is now shared with developers, and they can access the API spec
-documentation. Next, you can let your developers interact with the Konnect
-Service directly by building applications that can consume the Service.
+Your service is now shared with developers, and they can access the API spec
+documentation. Next, you can let your developers interact with the {{site.konnect_short_name}}
+service directly by building applications that can consume the service.
 
-To do this, first you need to implement the Service to expose it to clients.
+To do this, first you need to implement the service to expose it to clients.
 
 ## Prerequisites
 
 If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [imported API docs into Konnect](/konnect/getting-started/spec/service/).
+make sure you have [imported API docs into {{site.konnect_short_name}}](/konnect/getting-started/spec/service/).
 
 ## Implement a Service Version
 
 {% include_cached /md/konnect/implement-service.md %}
 
-## Set up a Kong Gateway instance
+## Set up a {{site.base_gateway}} instance
 
 {% include_cached /md/konnect/docker-runtime.md %}
 
@@ -47,4 +47,4 @@ request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, [publish your Konnect Service to a Dev Portal instance](/konnect/getting-started/spec/publish/).
+Next, [publish your {{site.konnect_short_name}} service to a Dev Portal instance](/konnect/getting-started/spec/publish/).

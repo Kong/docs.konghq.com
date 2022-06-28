@@ -2,7 +2,7 @@
 title: Konnect Cloud Updates
 no_version: true
 ---
-
+<!-- vale off -->
 The updates contained in this topic apply to {{site.konnect_saas}},
 an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
@@ -237,7 +237,7 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/legacy/runtime-manager/#kong-gateway).
+: To use {{site.base_gateway}} 2.3, [re-provision a new runtime](/konnect/legacy/runtime-manager/#kong-gateway).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
@@ -245,9 +245,9 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 **Advanced** option when configuring a new runtime to get started.
 
 : See the runtime configuration guides for more information:
-* [Kong Gateway runtime on Docker](/konnect/legacy/runtime-manager/gateway-runtime-docker/)
-* [Kong Gateway runtime on Kubernetes](/konnect/legacy/runtime-manager/gateway-runtime-kubernetes/)
-* [Kong Gateway runtime without a container](/konnect/legacy/runtime-manager/gateway-runtime-conf/)
+* [{{site.base_gateway}} runtime on Docker](/konnect/legacy/runtime-manager/gateway-runtime-docker/)
+* [{{site.base_gateway}} runtime on Kubernetes](/konnect/legacy/runtime-manager/gateway-runtime-kubernetes/)
+* [{{site.base_gateway}} runtime without a container](/konnect/legacy/runtime-manager/gateway-runtime-conf/)
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available

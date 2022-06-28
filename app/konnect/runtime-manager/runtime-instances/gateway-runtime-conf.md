@@ -34,9 +34,9 @@ and follow the instructions in Steps 1 and 2 **only** to download and install
     database.
 
 2. Return to {{site.konnect_short_name}} and copy the
-codeblock in the **Step 2. Configuration Parameters** section.
+code block in the **Step 2. Configuration Parameters** section.
 
-    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+    ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
 3. Open your instance's `kong.conf` file. Add the parameters you just copied
 to the file.
@@ -69,7 +69,7 @@ to the file.
     $ kong restart
     ```
 
-6. In Konnect, click **Done** to go to the Runtime Instances overview, where
+6. In {{site.konnect_short_name}}, click **Done** to go to the Runtime Instances overview, where
 you will see a new entry for your instance.
 
 ## Access services using the proxy URL

@@ -2,7 +2,7 @@
 title: Manage Plugins through Shared Config
 no_version: true
 ---
-
+<!-- vale off -->
 You can manage global and consumer-scoped plugins from the Shared Config page.
 
 **Global plugins** are plugins that apply to all services, routes, and consumers

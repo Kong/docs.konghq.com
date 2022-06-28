@@ -3,7 +3,7 @@ title: Set Up SSO with Okta
 no_version: true
 badge: enterprise
 ---
-
+<!-- vale off -->
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
 up single sign-on (SSO) access to {{site.konnect_short_name}} through
 [Okta](https://developer.okta.com/docs/guides/) with
@@ -64,7 +64,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
     **Sign-out redirect URIs** fields, enter: `https://konnect.konghq.com/login`
-    1. In the Assigments section, for **Controlled access**, choose your
+    1. In the Assignments section, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
 

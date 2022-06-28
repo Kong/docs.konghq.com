@@ -41,7 +41,7 @@ were rejected due to rate limiting, failed authentication, and so on.
   graphed over time, as well as the ratio of code classes to total requests.
 
 **Time frame selector**
-: Controls the timeframe of data visualized, which indirectly controls the
+: Controls the time frame of data visualized, which indirectly controls the
 granularity of the data. For example, the “5M” selection displays 5 minutes in
 1-second resolution data, while longer time frames display minute, hour, or
 days resolution data.

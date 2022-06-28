@@ -86,8 +86,8 @@ plugin to activate only on specific headers or query parameters
 : When you enable application registration on a Service,
 {{site.konnect_saas}} enables two plugins automatically: ACL, and one of Key
 Authentication or OIDC. These plugins cannot be edited or deleted directly. To
-help differentiate the Konnect-managed plugins and avoid breaking your Service,
-Konnect now adds two metadata tags for declarative configuration:
+help differentiate the {{site.konnect_short_name}}-managed plugins and avoid breaking your service,
+{{site.konnect_short_name}} now adds two metadata tags for declarative configuration:
 `konnect-managed-plugin` and `konnect-app-registration`.
 See the Dev Portal doc section on
 [{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
@@ -125,7 +125,7 @@ newly introduced in this release, [start up a new runtime](/konnect/runtime-mana
 : The following plugins are now available:
 
 : * **Free tier**
-    * [Serverless Functions (Pre- and post-plugins)](/hub/kong-inc/serverless-functions/)
+    * [Serverless Functions](/hub/kong-inc/serverless-functions/)
     * [Datadog](/hub/kong-inc/datadog/)
     * [Zipkin](/hub/kong-inc/zipkin/)
     * [Request Size Limiting](/hub/kong-inc/request-size-limiting/)
@@ -251,7 +251,7 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [reprovision a new runtime](/konnect/runtime-manager/#kong-gateway).
+: To use {{site.base_gateway}} 2.3, [re-provision a new runtime](/konnect/runtime-manager/#kong-gateway).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
@@ -259,9 +259,9 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 **Advanced** option when configuring a new runtime to get started.
 
 : See the runtime configuration guides for more information:
-* [Kong Gateway runtime on Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/)
-* [Kong Gateway runtime on Kubernetes](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes/)
-* [Kong Gateway runtime without a container](/konnect/runtime-manager/runtime-instances/gateway-runtime-conf/)
+* [{{site.base_gateway}} runtime on Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/)
+* [{{site.base_gateway}} runtime on Kubernetes](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes/)
+* [{{site.base_gateway}} runtime without a container](/konnect/runtime-manager/runtime-instances/gateway-runtime-conf/)
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available

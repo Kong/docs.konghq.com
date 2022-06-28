@@ -3,7 +3,7 @@ title: Manage Proxy Configuration
 no_version: true
 ---
 
-Through a runtime group, you can configure the following Kong Gateway objects:
+Through a runtime group, you can configure the following {{site.base_gateway}} objects:
 * Gateway services
 * Routes
 * Consumers
@@ -12,9 +12,9 @@ Through a runtime group, you can configure the following Kong Gateway objects:
 * Certificates
 * SNIs
 
-## Configure a Kong Gateway object
+## Configure a {{site.base_gateway}} object
 
-1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
+1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon runtimes %}
 **Runtime Manager**.
 
 2. Select an object to configure from the menu, then click **+ Add {Object Name}**.
@@ -26,7 +26,7 @@ Through a runtime group, you can configure the following Kong Gateway objects:
 
 5. Click **Create**.
 
-## Update or delete a Kong Gateway object
+## Update or delete a {{site.base_gateway}} object
 
 1. Open {% konnect_icon runtimes %} **Runtime Manager**, then select an object to
 configure from the menu.
@@ -45,7 +45,7 @@ but lets you control whether the plugin is active or not.
 
 ### Configure a plugin
 
-1. From the left navigation menu in Konnect, open {% konnect_icon runtimes %}
+1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon runtimes %}
 **Runtime Manager**.
 
 2. Select **Plugins** from the menu, then click **+ Install Plugin**.

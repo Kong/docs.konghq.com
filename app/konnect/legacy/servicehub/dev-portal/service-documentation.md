@@ -2,7 +2,7 @@
 title: Dev Portal Service Documentation
 no_version: true
 ---
-
+<!-- vale off -->
 Upload documentation for your Services through ServiceHub to display it
 on the Dev Portal.
 

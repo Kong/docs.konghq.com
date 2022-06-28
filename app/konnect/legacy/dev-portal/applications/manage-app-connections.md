@@ -2,7 +2,7 @@
 title: Manage Application Service Connections
 no_version: true
 ---
-
+<!-- vale off -->
 Revoke, reinstate, or delete an application's connection to a Service. When a developer
 [registers a request](/konnect/legacy/dev-portal/applications/dev-reg-app-service) to access a Service for an
 application, and the request is approved either [automatically](/konnect/legacy/dev-portal/access-and-approval/auto-approve-devs-apps)

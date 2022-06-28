@@ -22,10 +22,10 @@ runtime instances.
 ## Prerequisites
 
 * You have the **Organization Admin** role in
-{{site.konnect_saas}}. If you created this Konnect organization, your account
+{{site.konnect_saas}}. If you created this {{site.konnect_short_name}} organization, your account
 is part of the organization admin team by default.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
-  zshell). Platform-specific tools and permissions:
+  zsh). Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/).
@@ -40,4 +40,4 @@ In this step, you ran a script which set up a Docker container with a
 {{site.base_gateway}} instance, adding your first runtime to the Runtime
 Manager.
 
-Next, [set up a your first Konnect Service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).
+Next, [set up a your first {{site.konnect_short_name}} service through {{site.konnect_saas}}](/konnect/getting-started/configure-service).

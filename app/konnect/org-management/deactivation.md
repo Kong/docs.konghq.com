@@ -18,7 +18,7 @@ request deactivation through [Kong Support](https://support.konghq.com/).
 ## What happens if an organization is deactivated?
 
 If your organization account is deactivated, you can no longer log into the
-organization, either through the Konnect UI or the API, and the following happens:
+organization, either through the {{site.konnect_short_name}} UI or the API, and the following happens:
 
 * All billing stops immediately, and all {{site.konnect_saas}} subscriptions
 are removed.

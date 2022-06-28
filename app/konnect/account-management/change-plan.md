@@ -22,13 +22,13 @@ with options to change or cancel it.
 2. On the **Plus** tile, click **Upgrade**.
 3. Enter your billing details.
 
-    You are not billed at signup. Users are billed monthly on the
+    You are not billed at sign-up. Users are billed monthly on the
     subscription date, and charges are calculated three (3) days before the
     billing date.
 
 4. Click **Subscribe** to save and return to the **Billing and Usage** overview.
 
-    Your plan should now display as Konnect Plus.
+    Your plan should now display as {{site.konnect_short_name}} Plus.
 
 ### Upgrade from any plan to Enterprise
 
@@ -56,7 +56,7 @@ overview.
     With a downgrade, your monthly charges are prorated and you are billed
     on your actual usage.
 
-    Your plan should now display as Konnect Free.
+    Your plan should now display as {{site.konnect_short_name}} Free.
 
 ### Downgrade from Enterprise to Plus
 

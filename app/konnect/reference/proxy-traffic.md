@@ -6,7 +6,7 @@ no_version: true
 Use the proxy URL to access a Service. By default, the URL takes the
 format `http://<DNSorIP>:8000`.
 
-## Kong Gateway runtimes
+## {{site.base_gateway}} runtimes
 
 If you configure a {{site.base_gateway}} runtime using the
 [Docker quick setup](/konnect/getting-started/configure-runtime) option,

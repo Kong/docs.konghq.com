@@ -2,8 +2,8 @@
 title: Enable Public Dev Portal
 no_version: true
 ---
-
-When Public Portal is enabled, anyone can access your Dev Portal without a 
+<!-- vale off -->
+When Public Portal is enabled, anyone can access your Dev Portal without a
 login. Developers will not need to register and new Application registrations will not be possible.
 
 Note that the Register options are not available in a public-facing portal.

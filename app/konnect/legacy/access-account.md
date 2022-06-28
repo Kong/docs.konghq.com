@@ -2,7 +2,7 @@
 title: Accessing a Kong Konnect Cloud Account
 no_version: true
 ---
-
+<!-- vale off -->
 Sign up for {{site.konnect_short_name}} to receive a 30 day free
 trial of {{site.konnect_short_name}} Plus. After 30 days, you can choose to
 downgrade to the free version, or continue with a paid Plus subscription.

@@ -88,7 +88,7 @@ API specifications, or specs, can be uploaded and attached to a specific Version
 
 4. Click a specific Version from the list.
 
-5. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the sepc.
+5. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the spec.
 
     Deleted files are permanently removed from the Dev Portal.
 

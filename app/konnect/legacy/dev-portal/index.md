@@ -2,7 +2,7 @@
 title: Dev Portal Overview
 no_version: true
 ---
-
+<!-- vale off -->
 The Dev Portal is an API Catalog that allows Admin roles to
 document and manage Application registration for your Services. Admin roles publish Services through Konnect, and Developers use those Services.
 

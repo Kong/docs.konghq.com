@@ -3,7 +3,7 @@ title: Runtime Groups
 no_version: true
 ---
 
-Konnect manages runtime configuration in runtime groups. Each runtime group acts
+{{site.konnect_short_name}} manages runtime configuration in runtime groups. Each runtime group acts
 as a separate control plane and can manage runtime configurations independently
 of any other group. You can find a list of all runtime groups in your organization
 on the [Runtime Manager overview](https://cloud.konghq.com/runtime-manager/).
@@ -12,18 +12,18 @@ on the [Runtime Manager overview](https://cloud.konghq.com/runtime-manager/).
 sharing the same configuration and behavior space.
 
 * A **runtime instance** is a single data plane node with a single instance of
-a runtime, such as Kong Gateway. Runtime instances service traffic for the runtime
+a runtime, such as {{site.base_gateway}}. Runtime instances service traffic for the runtime
 group. All runtime instances in one runtime group
-must be of the same type. Currently, only Kong Gateway runtime types are supported.
+must be of the same type. Currently, only {{site.base_gateway}} runtime types are supported.
 
 Every organization has one default runtime group. With an Enterprise subscription,
-you can configure nine additional custom runtime groups, for a total of 10 by default, in the same Konnect
+you can configure nine additional custom runtime groups, for a total of 10 by default, in the same {{site.konnect_short_name}}
 account to manage runtime instances and their configuration in any groupings
 you want.
 
 ## Default runtime group
 
-The default runtime group is the foundational group in Konnect. Every
+The default runtime group is the foundational group in {{site.konnect_short_name}}. Every
 organization starts with one default group.
 
 This group can't be renamed or deleted, and its status as the default
@@ -111,7 +111,7 @@ Column | Description
 -------|-------------
 Name | The name of the runtime group. This group name must be unique in the organization.
 ID | A unique ID for the group. This ID is automatically generated when a group is created.
-Type | Types of runtimes that this group contains. Currently, the only supported runtime type is Kong Gateway.
+Type | Types of runtimes that this group contains. Currently, the only supported runtime type is {{site.base_gateway}}.
 
 <!--
 Labels | A list of labels on the runtime group in the form of key:value pairs. -->
@@ -124,7 +124,7 @@ You can sort the table by the `Last Ping` column.
 Column | Description
 -------|-------------
 Host | The hostname of the instance.
-Type | The runtime instance type. Currently, only Kong Gateway is supported.
-Last Ping | The last time that this instance received a configuration update from the Konnect control plane. was used to proxy a Service.
-Version | The Kong Gateway version that this instance is running.
+Type | The runtime instance type. Currently, only {{site.base_gateway}} is supported.
+Last Ping | The last time that this instance received a configuration update from the {{site.konnect_short_name}} control plane to proxy a service.
+Version | The {{site.base_gateway}} version that this instance is running.
 ID | The UUID of the instance.

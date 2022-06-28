@@ -3,6 +3,8 @@ title: Change to a Different Plan
 no_version: true
 ---
 
+<!-- vale off -->
+
 You can change a Free or Plus subscription at any time from {{site.konnect_saas}}.
 
 If you downgrade from Plus in the middle of a cycle, your plan immediately
@@ -24,7 +26,7 @@ You have organization admin access.
 2. On the **Plus** tile, click **Upgrade**.
 3. Enter your billing details.
 
-    You are not billed at signup. Users are billed monthly on the
+    You are not billed at sign-up. Users are billed monthly on the
     subscription date, and charges are calculated three (3) days before the
     billing date.
 
@@ -55,7 +57,7 @@ There is no self-serve upgrade option for Enterprise plans.
 2. Click **Confirm Downgrade** to save and return to the **Billing and Usage**
 overview.
 
-    With a downgrade, your monthly charges are prorated and you are billed 
+    With a downgrade, your monthly charges are prorated and you are billed
     on your actual usage.
 
     Your plan should now display as Konnect Free.

@@ -7,7 +7,7 @@ When a developer [registers an application with a Service](/konnect/dev-portal/a
 the requests must be approved by an admin if
 [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),
-developers must register their applications with a Service. This guide explains different options available to you from the **Applications Tab** within the **Requests** page in the Developer Portal. 
+developers must register their applications with a Service. This guide explains different options available to you from the **Applications Tab** within the **Requests** page in the Dev Portal. 
 
 ## Requests Page Applications Tab
 

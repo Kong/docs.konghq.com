@@ -17,7 +17,7 @@ automatically-created users, adjust user permissions through Okta, or
 
 ### Create a team
 
-1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
+1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
  **Organization** link.
 2. Click **+ New Team**.
 3. Enter a team name and description. Both fields are required.
@@ -31,7 +31,7 @@ configuration page.
 You can edit the roles for any custom team. Any changes made to a team's roles
 are automatically applied to all team members.
 
-1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
+1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
  **Organization** link.
 2. Choose a team from the list.
 
@@ -54,7 +54,7 @@ all entities of the selected type.
 
 Edit team membership for any team, custom or predefined.
 
-1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
+1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
  **Organization** link.
 2. Choose a team from the list.
 3. On the **Members** tab, click **+ New Member**.
@@ -71,7 +71,7 @@ unassigned from the team.
 {:.warning}
 > **Warning:** Deleting a team is irreversible.
 
-1. From the left navigation menu in Konnect, open the {% konnect_icon organizations %}
+1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
  **Organization** link.
 
 1. Choose a team from the list, open the action menu on the right of the row,

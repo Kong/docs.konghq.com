@@ -2,6 +2,7 @@
 title: Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
+<!-- vale off -->
 Using `kong.conf`, set up a [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)
 through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager) and
@@ -39,7 +40,7 @@ and follow the instructions in Steps 1 and 2 **only** to download and install
     </div>
 
 2. Return to {{site.konnect_short_name}} and copy the
-codeblock in the **Step 2. Configuration Parameters** section.
+code block in the **Step 2. Configuration Parameters** section.
 
     ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 

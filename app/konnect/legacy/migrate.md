@@ -2,7 +2,7 @@
 title: Migrate from Kong Gateway to Konnect Cloud
 no_version: true
 ---
-
+<!-- vale off -->
 You can migrate any edition of self-managed {{site.base_gateway}} to
 {{site.konnect_saas}}.
 
@@ -26,7 +26,7 @@ You cannot migrate [unsupported plugins](/konnect/legacy/manage-plugins/#plugin-
 
 Migrate object configurations with decK.
 
-### Export and convert Kong Gateway object configuration
+### Export and convert {{site.base_gateway}} object configuration
 
 1. Export configuration from {{site.base_gateway}} with [`deck dump`](/deck/latest/reference/deck_dump):
 

@@ -2,7 +2,7 @@
 title: Implement and Test a Service
 no_version: true
 ---
-
+<!-- vale off -->
 Create a Service implementation to expose your Service to clients.
 
 When you create an implementation, you also specify the Route to it. This Route,

@@ -2,7 +2,7 @@
 title: Manage Application Registration Requests
 no_version: true
 ---
-
+<!-- vale off -->
 When a developer [registers an application with a Service](/konnect/legacy/dev-portal/applications/dev-reg-app-service),
 the requests must be approved by an admin if
 [auto approve](/konnect/legacy/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When

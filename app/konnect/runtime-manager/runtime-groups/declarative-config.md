@@ -22,7 +22,7 @@ group.
 
 Use any `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
 parameters using a decK configuration file (`~/.deck.yaml` by default) to target
-`https://cloud.konghq.com`. If you don't pass any Konnect parameters to decK,
+`https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,
 decK looks for a local {{site.base_gateway}} instance instead.
 
 Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck).
@@ -94,7 +94,7 @@ _konnect:
   runtime_group_name: default
 ```
 
-You can specify a different file name or location, or export the
+You can specify a different filename or location, or export the
 configuration in JSON format:
 
 ```sh

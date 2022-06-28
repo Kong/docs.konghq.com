@@ -23,7 +23,7 @@ runtime instances.
 ### Prerequisites
 
 * The quick setup script requires Docker and a Unix shell (for example, bash or
-zshell).
+zsh).
 * Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
@@ -64,7 +64,7 @@ Tools and permissions:
 ### Generate certificates
 {% include /md/konnect/runtime-certs.md %}
 
-### Start Kong Gateway
+### Start {{site.base_gateway}}
 
 Use the following `docker run` command sample as a guide to compile your actual values:
 
@@ -110,12 +110,12 @@ docker run -d --name kong-dp `
 1. Replace the values in `KONG_CLUSTER_CERT` and
 `KONG_CLUSTER_CERT_KEY` with the paths to your certificate and key files.
 
-2. Check the **Linux** or **Kubernetes** tabs in the Konnect UI to find the values for
+2. Check the **Linux** or **Kubernetes** tabs in the {{site.konnect_short_name}} UI to find the values for
         `KONG_CLUSTER_CONTROL_PLANE`, `KONG_CLUSTER_SERVER_NAME`,
         `KONG_CLUSTER_TELEMETRY_ENDPOINT`, and `KONG_CLUSTER_TELEMETRY_SERVER_NAME`,
         then substitute them in the example below.
 
-    ![Konnect Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+    ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
     See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
@@ -130,7 +130,7 @@ docker run -d --name kong-dp `
 
 4. Run the `docker run` command with your substituted values.
 
-6. In Konnect, click **Done** to go to the Runtime Instances overview, where you will
+6. In {{site.konnect_short_name}}, click **Done** to go to the Runtime Instances overview, where you will
 see a new entry for your instance.
 
 

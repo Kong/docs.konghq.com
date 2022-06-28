@@ -3,7 +3,7 @@ title: Enable Application Registration for a Service
 no_version: true
 toc: true
 ---
-
+<!-- vale off -->
 When application registration is enabled for a Service, developers must
 [register an application](/konnect/legacy/dev-portal/applications/dev-reg-app-service)
 in order to access a Service.

@@ -2,7 +2,7 @@
 title: Configuring a Service
 no_version: true
 ---
-
+<!-- vale off -->
 Using the [ServiceHub](/konnect/legacy/servicehub), you can create, manage, and
 implement Services. Each Service consists of at least one
 Service version, and each Service version can have one implementation.

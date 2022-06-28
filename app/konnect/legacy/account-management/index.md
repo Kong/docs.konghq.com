@@ -2,6 +2,7 @@
 title: Konnect Plans, Billing, and Usage
 no_version: true
 ---
+<!-- vale off -->
 
 {{site.konnect_product_name}} has [three plans](/konnect-platform/plans) to
 choose from: Free, Plus, and Enterprise. When you first sign up, you get

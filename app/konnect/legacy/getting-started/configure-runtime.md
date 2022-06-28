@@ -2,7 +2,7 @@
 title: Configure a Runtime
 no_version: true
 ---
-
+<!-- vale off -->
 Set up your first runtime through the
 [{{site.konnect_short_name}} Runtime Manager](/konnect/legacy/runtime-manager).
 
@@ -26,7 +26,7 @@ runtime instances.
 {{site.konnect_saas}}. If you created this account, the account has
 organization admin permissions by default.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
-  zshell). Platform-specific tools and permissions:
+  zsh). Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/).
@@ -42,7 +42,7 @@ organization admin permissions by default.
 
 2. Click **Copy Script**.
 
-    You can expand the codeblock by clicking **Show** to see the entire script.
+    You can expand the code block by clicking **Show** to see the entire script.
 
 4. Replace the placeholder for `<your-password>` with your own
 {{site.konnect_saas}} password.

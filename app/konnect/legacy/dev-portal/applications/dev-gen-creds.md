@@ -3,7 +3,7 @@ title: Generate Credentials for an Application
 no_version: true
 toc: true
 ---
-
+<!-- vale off -->
 A credential, or API key, identifies and authenticates the developer application making a request. Use the API key either in the request URL as a query parameter, or in the request header.
 
 You can permanently delete any credential at any time. See [Delete a credential](#delete-a-credential).

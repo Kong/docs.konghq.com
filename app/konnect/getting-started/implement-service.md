@@ -3,7 +3,7 @@ title: Implement and Test a Service
 no_version: true
 ---
 
-Create a Service implementation to expose your Konnect Service to clients.
+Create a Service implementation to expose your {{site.konnect_short_name}} Service to clients.
 
 When you create an implementation, you also specify the Route to it. This Route,
 combined with the proxy URL for the Service, will lead to the endpoint

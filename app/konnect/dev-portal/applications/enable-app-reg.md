@@ -77,7 +77,7 @@ Service. Now, click the **Versions** button and select the desired version.
    | `Consumer claims` |  Name of the claim that is used to find a consumer. Required. |
    | `Auth method` | The supported authentication method or methods you want to enable. This field should contain only the authentication methods that you need to use; otherwise, you unnecessarily widen the attack surface. Separate multiple entries with a comma. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. Required. |
    | `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If enabled, the plugin strips the credential from the request (in the header, query string, or request body that contains the key) before proxying it. Default: disabled. Optional.|
-   | `Auto Approve` | Automatically approve developer registration requests for an application. A Konnect admin does not need to [manually approve](/konnect/dev-portal/access-and-approval/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
+   | `Auto Approve` | Automatically approve developer registration requests for an application. A {{site.konnect_short_name}} admin does not need to [manually approve](/konnect/dev-portal/access-and-approval/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).

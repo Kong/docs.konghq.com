@@ -16,23 +16,23 @@ can either be global or scoped.
 
 ### Gateway Services
 
-The **Gateway Service** configuration page lists all {{site.base_gateway}} Services
+The **Gateway Service** configuration page lists all {{site.base_gateway}} services
 in the runtime group. Service entities are abstractions of each of your own
 upstream services, such as a data transformation microservice, or a billing API.
 
-Gateway Services can be exposed in Service Hub, or managed though Runtime Manager
+Gateway services can be exposed in Service Hub, or managed though Runtime Manager
 only:
-* When you create a [Konnect Service implementation](/konnect/servicehub/manage-services)
-through the Service Hub, it automatically creates a Gateway Service.
-* You can also create a Gateway Service directly through Runtime Manager. This
-Service won't be connected to any Service Hub implementation.
+* When you create a [{{site.konnect_short_name}} service implementation](/konnect/servicehub/manage-services)
+through the Service Hub, it automatically creates a Gateway service.
+* You can also create a Gateway service directly through Runtime Manager. This
+service won't be connected to any Service Hub implementation.
 
-To see if a Gateway Service is connected to the Service Hub, open its
+To see if a Gateway service is connected to the Service Hub, open its
 detail page from **Runtime Manager** > **Gateway Services**. If it's attached to an
 implementation, you should see a tag in the following format: `_KonnectService:{SERVICE_NAME}`.
 
-Learn more about [Services in Konnect](/konnect/servicehub) or
-check out the [Service object API reference](/gateway/latest/admin-api/#service-object)
+Learn more about [services in {{site.konnect_short_name}}](/konnect/servicehub) or
+check out the [service object API reference](/gateway/latest/admin-api/#service-object)
 for all configuration options.
 
 ### Routes
@@ -67,7 +67,7 @@ _consumer-scoped_ plugins through the Runtime Manager.
 [route](/konnect/servicehub/enable-route-plugin) plugins must be managed
 through the Service Hub.
 
-Learn more about [using plugins in Konnect](/konnect/servicehub/plugins),
+Learn more about [using plugins in {{site.konnect_short_name}}](/konnect/servicehub/plugins),
 check out the [plugin object API reference](/gateway/latest/admin-api/#plugin-object),
 or see all available plugins on the [Plugin Hub](/hub) for specific configuration
 options for each plugin.

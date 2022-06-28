@@ -2,7 +2,7 @@
 title: Ports and Network Requirements
 no_version: true
 ---
-
+<!-- vale off -->
 ## Konnect Cloud ports
 
 The {{site.konnect_saas}} control plane uses the following port:
@@ -30,4 +30,4 @@ The {{site.konnect_saas}} control plane uses the following hostnames:
 
 You can find your specific instance hostnames through Runtime manager.
 Start configuring a new runtime, choose the Linux or Kubernetes tab, and note
-the hostnames in the codeblock.
+the hostnames in the code block.
