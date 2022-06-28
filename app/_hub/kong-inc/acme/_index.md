@@ -162,15 +162,15 @@ To configure a storage type other than `kong`, refer to [lua-resty-acme](https:/
 
 ## Workflow
 
-A `http-01` challenge workflow between the Kong Gateway and the ACME server is described below:
+A `http-01` challenge workflow between the {{site.base_gateway}} and the ACME server is described below:
 
 1. The client sends a proxy or Admin API request that triggers certificate generation for `mydomain.com`.
-2. The Kong Gateway sends a request to the ACME server to start the validation process.
-3. The ACME server returns a challenge response detail to the Kong Gateway.
-4. `mydomain.com` is publicly resolvable to the Kong Gateway that serves the challenge response.
+2. The {{site.base_gateway}} sends a request to the ACME server to start the validation process.
+3. The ACME server returns a challenge response detail to the {{site.base_gateway}}.
+4. `mydomain.com` is publicly resolvable to the {{site.base_gateway}} that serves the challenge response.
 5. The ACME server checks if the previous challenge has a response at `mydomain.com`.
-6. The Kong Gateway checks the challenge status and if passed, downloads the certificate from the ACME server.
-7. The Kong Gateway uses the new certificate to serve TLS requests.
+6. The {{site.base_gateway}} checks the challenge status and if passed, downloads the certificate from the ACME server.
+7. The {{site.base_gateway}} uses the new certificate to serve TLS requests.
 
 
 ## Using the plugin
@@ -310,7 +310,7 @@ Attribute | Description
 
 ### Update certificate
 
-Apply or renew the certificate and return the result. Unlike `POST`, `PATCH` runs the process in the background. 
+Apply or renew the certificate and return the result. Unlike `POST`, `PATCH` runs the process in the background.
 
 **Endpoint**
 
@@ -326,7 +326,7 @@ Attribute | Description
 ### Get ACME certificates
 
 List the certificates being created by the ACME plugin. You can use this endpoint to monitor certificate existence and expiry.
- 
+
 **Endpoint**
 <div class="endpoint get">/acme/certificates</div>
 
@@ -397,7 +397,7 @@ External storage in Hybrid Mode works in following flow:
 
 1. The client send a proxy or Admin API request that triggers certificate generation for `mydomain.com`.
 2. The Kong Control Plane or Data Plane requests the ACME server to start the validation process.
-3. The ACME server returns a challenge response detail to the Kong Gateway.
+3. The ACME server returns a challenge response detail to the {{site.base_gateway}}.
 4. The Kong Control Plane or Data Plane stores the challenge response detail in external storage.
 5. `mydomain.com` is publicly resolvable to the Kong Data Plane that reads and serves the challenge response from external storage.
 6. The ACME server checks if the previous challenge has a response at `mydomain.com`.
@@ -481,11 +481,11 @@ own certificate.
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.4.0)
+### {{site.base_gateway}} 2.8.x (plugin version 0.4.0)
 
 * Added the `rsa_key_size` configuration parameter.
 
-### Kong Gateway 2.7.x (plugin version 0.3.0)
+### {{site.base_gateway}} 2.7.x (plugin version 0.3.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `account_email`, `eab_kid`, and `eab_hmac_kid` parameter values will be
