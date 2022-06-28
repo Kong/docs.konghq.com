@@ -5,7 +5,7 @@ no_version: true
 
 Using the [Service Hub](/konnect/servicehub), you can create, manage, and
 implement {{site.konnect_short_name}} services. Each service consists of at least one
-Service version, and each Service version can have one implementation.
+service version, and each service version can have one implementation.
 
 ![{{site.konnect_short_name}} service diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
 

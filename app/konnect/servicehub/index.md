@@ -51,7 +51,7 @@ specifying its protocol, host, port, and path individually.
 ### {{site.base_gateway}} implementations
 
 When configuring a {{site.base_gateway}} implementation of a service, you'll
-need to specify a Route. Routes determine how (and if) requests get sent to
+need to specify a route. Routes determine how (and if) requests get sent to
 their Services after they reach the API gateway. A single Service version
 can have only one implementation, but potentially many Routes.
 
