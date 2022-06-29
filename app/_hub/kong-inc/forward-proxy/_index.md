@@ -9,6 +9,7 @@ description: |
    upstream. This is useful in environments where Kong sits in an organization's
    internal network, the upstream API is available via the public internet, and
    the organization proxies all outbound traffic through a forward proxy server.
+   Please note that this plugin can not be used with an [upstream](/gateway/latest/get-started/comprehensive/load-balancing/).
 enterprise: true
 type: plugin
 categories:
