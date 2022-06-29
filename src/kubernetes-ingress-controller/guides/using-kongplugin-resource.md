@@ -2,7 +2,7 @@
 title: Using KongPlugin resource
 ---
 
-This guide will cover how to use the {{site.kic_product_name}} 
+This guide walks you through using the {{site.kic_product_name}} 
 `KongPlugin` Custom Resource to control proxied requests, including
 restricting paths and transforming requests.
 
