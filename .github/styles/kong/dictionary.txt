@@ -71,6 +71,7 @@ loopback
 lua
 Luarocks
 ngrok
+md
 minikube
 Mockbin
 Moesif
@@ -118,6 +119,7 @@ Bagdi
 subcommand
 sudo
 Syslog
+tbl
 tcpdump
 transcoder
 ttl
@@ -139,6 +141,7 @@ websocket
 websockets
 wireframe
 wireframes
+workspace
 yaml
 yml
 Zipkin

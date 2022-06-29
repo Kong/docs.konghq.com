@@ -557,9 +557,8 @@ Template:
   - [`portal.specs_by_tag`](#portalspecs_by_tag)
   - [`portal.developer_meta_fields`](#portaldeveloper_meta_fields)
 
-<!--vale off-->
-You can access the current workspace's portal config directly on the `portal` object like so:
-<!--vale on-->
+You can access the current workspace portal config directly on the `portal` object like so:
+
 ```lua
 portal[config_key] or portal.config_key
 ```
@@ -1302,6 +1301,7 @@ Table containing useful string helper methods.
 {% endraw %}
 
 #### Methods
+<!--vale off-->
 ##### str.[byte](https://www.gammon.com.au/scripts/doc.php?lua=string.byte)
 ##### str.[char](https://www.gammon.com.au/scripts/doc.php?lua=string.char)
 ##### str.[dump](https://www.gammon.com.au/scripts/doc.php?lua=string.dump)
@@ -1347,10 +1347,10 @@ Table containing useful string helper methods.
 ##### str.[title](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#title)
 ##### str.[shorten](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#shorten)
 ##### str.[quote_string](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#quote_string)
-
-<!--vale off-->
-### tbl
 <!--vale on-->
+
+### tbl
+
 Table containing useful table helper methods
 
 #### Usage
@@ -1367,6 +1367,7 @@ Table containing useful table helper methods
 {% endraw %}
 
 #### Methods
+<!--vale off-->
 ##### tbl.[getn](https://www.gammon.com.au/scripts/doc.php?lua=table.getn)
 ##### tbl.[setn](https://www.gammon.com.au/scripts/doc.php?lua=table.setn)
 ##### tbl.[maxn](https://www.gammon.com.au/scripts/doc.php?lua=table.maxn)
@@ -1412,3 +1413,4 @@ Table containing useful table helper methods
 ##### tbl.[merge](https://stevedonovan.github.io/Penlight/api/libraries/pl.tablex.html#merge)
 ##### tbl.[difference](https://stevedonovan.github.io/Penlight/api/libraries/pl.tablex.html#difference)
 ##### tbl.[zip](https://stevedonovan.github.io/Penlight/api/libraries/pl.tablex.html#zip)
+<!--vale on-->
