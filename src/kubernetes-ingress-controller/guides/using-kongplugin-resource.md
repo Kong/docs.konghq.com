@@ -19,14 +19,14 @@ set to contain the IP address or URL pointing to Kong.
 If you've not done so, please follow one of the
 [deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
-If everything is setup correctly, making a request to Kong should return
+If everything is set up correctly, making a request to Kong should return
 `HTTP 404 Not Found`.
 
 ```sh
 curl -i $PROXY_IP
 ```
 
-In this document, expected output will follow each command:
+In this document, the expected output follows each command:
 
 ```sh
 HTTP/1.1 404 Not Found
@@ -43,7 +43,7 @@ This message is expected as Kong does not yet know how to proxy the request.
 
 ## Installing sample services
 
-We will start by installing two services. First an httpbin service:
+Start by installing two services. First, install an `httpbin` service:
 
 ```sh
 kubectl apply -f https://bit.ly/k8s-httpbin
@@ -54,7 +54,7 @@ service/httpbin created
 deployment.apps/httpbin created
 ```
 
-And then an echo service:
+And then an `echo` service:
 
 ```sh
 kubectl apply -f https://bit.ly/echo-service
@@ -272,7 +272,7 @@ X-Kong-Proxy-Latency: 1
 Via: kong/2.8.1
 ```
 
-Here, we have successfully setup a plugin which is executed only when a
+Here, we have successfully set up a plugin which is executed only when a
 request matches a specific `Ingress` rule.
 
 ## Configuring plugins on Service resource
@@ -391,8 +391,7 @@ Via: kong/2.8.1
 
 Instead of applying plugins to specific services or ingress routes,
 we can apply plugins to protect the entire gateway.
-To show this, we will be configuring a rate-limiting plugin, which
-will throttle requests coming from the same client.
+To test this, let's configure a rate-limiting plugin to throttle requests coming from the same client.
 
 This must be a cluster-level `KongClusterPlugin` resource, as `KongPlugin`
 resources cannot be applied globally, to preserve Kubernetes RBAC guarantees
@@ -423,7 +422,7 @@ kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
 With this plugin (please note the `global` label), every request through
-the {{site.kic_product_name}} will be rate-limited:
+the {{site.kic_product_name}} is rate-limited:
 
 ```sh
 curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
@@ -519,7 +518,7 @@ kongconsumer.configuration.konghq.com/harry configured
 Note the annotation being added to the `KongConsumer` resource.
 
 Now, if the request is made as the `harry` consumer, the client
-will be rate-limited differently:
+is rate-limited differently:
 
 ```sh
 curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
@@ -544,7 +543,7 @@ X-Kong-Proxy-Latency: 1
 Via: kong/2.8.1
 ```
 
-And a regular unauthenticated request
+And a regular unauthenticated request:
 
 ```sh
 curl -I $PROXY_IP/bar
