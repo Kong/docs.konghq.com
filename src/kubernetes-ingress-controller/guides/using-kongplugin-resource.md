@@ -2,10 +2,9 @@
 title: Using KongPlugin resource
 ---
 
-In this guide, we will learn how to use KongPlugin resource to configure
-plugins in Kong to modify requests for a specific request path.
-The guide will cover configuring a plugin for a specific service, a set of Ingress rules
-and for a specific user of the API.
+This guide will cover how to use the {{site.kic_product_name}} 
+`KongPlugin` Custom Resource to control proxied requests, including
+restricting paths and transforming requests.
 
 ## Installation
 
@@ -565,6 +564,8 @@ X-Kong-Proxy-Latency: 1
 Via: kong/2.8.1
 ```
 
-This guide demonstrates how you can use the {{site.kic_product_name}} to
-impose restrictions and transformations
-on various levels using Kubernetes style APIs.
+There is a lot more you can do with Kong Plugins, check the [Plugin Hub](/hub) for
+more information.
+
+Next, you might want to learn more about Ingress with the 
+[KongIngress resource guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource/).
