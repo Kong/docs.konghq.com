@@ -564,8 +564,9 @@ X-Kong-Proxy-Latency: 1
 Via: kong/2.8.1
 ```
 
-There is a lot more you can do with Kong Plugins, check the [Plugin Hub](/hub) for
-more information.
+## Next steps
+
+There's a lot more you can do with Kong plugins. Check the [Plugin Hub](/hub) to see all of the available plugins and how to use them.
 
 Next, you might want to learn more about Ingress with the 
 [KongIngress resource guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource/).
