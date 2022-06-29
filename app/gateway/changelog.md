@@ -14,17 +14,17 @@ no_version: true
 
 * Fixed an issue in hybrid mode where, if a service was set to `enabled: false` and that service had a route with an enabled plugin, any new data planes would receive empty configuration.
 * Fixed a timer leak that occurred when `worker_consistency` was set to `eventual` in `kong.conf`.
-The issue caused timers to be exhausted and failed to start any other timers used by Kong Gateway, showing the error `too many pending timers`.
+This issue caused timers to be exhausted and failed to start any other timers used by Kong Gateway, resulting in a `too many pending timers` error.
 
 #### Kong Manager and Dev Portal
 
 * Fixed an issue where Kong Manager did not display all Dev Portal developers in the organization.
-* Fixed an issue with displaying developer role assignment in Kong Manager.
+* Fixed an issue that prevented developer role assignments from displaying in Kong Manager.
 When viewing a role under the Permissions tab in the Dev Portal section, the list of developers wouldn't update when a new developer was added.
 Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees.
 * Fixed empty string handling in Kong Manager. Previously, Kong Manager was handling empty strings as `""` instead of a null value.
-* Improved Kong Manager styling, fixing an issue where content didn't fit on object detail pages.
-* Fixed an issue with unclickable Kong Manager links and buttons in Safari.
+* Improved Kong Manager styling by fixing an issue where content didn't fit on object detail pages.
+* Fixed an issue that sometimes prevented clicking Kong Manager links and buttons in Safari.
 
 #### Plugins
 
