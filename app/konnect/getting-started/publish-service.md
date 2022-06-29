@@ -1,5 +1,5 @@
 ---
-title: Set Up and Access Dev Portal
+title: Publish and Consume Services
 no_version: true
 ---
 
@@ -11,6 +11,10 @@ This guide walks you through setting up a sample API spec and description for
 the {{site.konnect_short_name}} service and publishing the service to the Dev
 Portal. You'll also have a chance to check out the Dev Portal live, and test
 out some customization options.
+
+## Prerequisites
+
+You have [configured a {{site.konnect_short_name}} service](/konnect/getting-started/configure-service) with at least one version.
 
 ## Upload a description
 

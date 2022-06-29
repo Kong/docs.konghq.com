@@ -120,9 +120,9 @@ you can shut them down now.
 
 See the following docs to set up any additional things you may need:
 
-* **Dev Portal files:** You can migrate API specs and markdown Service descriptions
+* **Dev Portal files:** You can migrate API specs and markdown service descriptions
 into Service Hub using the {{site.konnect_saas}} GUI. Each {{site.konnect_short_name}} service accepts
-one markdown description file, and each Service version accepts one API spec.
+one markdown description file, and each service version accepts one API spec.
 See [Dev Portal Service Documentation](/konnect/servicehub/service-documentation).
 
 * **Dev Portal applications and developers:** If you have developers or
@@ -134,7 +134,7 @@ location.
     App registration in {{site.konnect_saas}} works through a different
     mechanism than in self-managed {{site.base_gateway}}. Enable app
     registration on each service that requires it.
-    * [Publish Services to the Dev Portal](/konnect/servicehub/service-documentation/#publishing):
+    * [Publish services to the Dev Portal](/konnect/servicehub/service-documentation/#publishing):
     The Dev Portal is automatically enabled on a {{site.konnect_saas}} org
     (Plus or Enterprise tier). Publish your services to the Dev Portal.
 * [**Prepare custom plugins for migration**](/konnect/servicehub/plugins/#custom-plugins):

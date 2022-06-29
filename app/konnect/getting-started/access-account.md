@@ -40,7 +40,7 @@ You can recover a forgotten password from the {{site.konnect_short_name}}
 landing page.
 
 1. Access {{site.konnect_product_name}} at
-[https://cloud.konghq.com/](https://cloud.konghq.com/).
+[cloud.konghq.com/](https://cloud.konghq.com/).
 
 2. Click **Forgot your password?**
 

@@ -13,15 +13,14 @@ legal agreements API.
 
 ## Prerequisites
 
-* If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/).
+* You have a {{site.konnect_short_name}} service with at least one version in the `default` runtime group.
+Application registration is not supported for custom runtime groups.
+
+* You have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/).
 
   * To use app registration, Dev Portal must be protected by
   some sort of authentication. That means you can't have a public portal for this step.
   If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/publish-service/).
-
-* You must have a {{site.konnect_short_name}} service in the default runtime group.
-Application registration is not supported for custom runtime groups.
 
 ## Enable app registration
 
