@@ -2,14 +2,14 @@
 title: Configure a Plugin on a Service
 no_version: true
 ---
-Enable, update, disable, or delete a plugin for a Service version.
+Enable, update, disable, or delete a plugin for a service version.
 
 ## Enable a plugin
 
 1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**Service Hub**.
+[**Service Hub**](https://cloud.konghq.com/servicehub).
 
-2. Open a Service version.
+2. Open a service version.
 
 2. From the **Plugins** section, click **+ Add plugin**.
 
@@ -30,14 +30,16 @@ Enable, update, disable, or delete a plugin for a Service version.
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. Open a Service version overview, then find the **Plugins** section.
+1. From the {% konnect_icon servicehub %}
+[**Service Hub**](https://cloud.konghq.com/servicehub), open a service version, then find the **Plugins** section.
 
 2. In the **Enabled** column, click the toggle for the plugin you want to
 disable.
 
 ## Update a plugin
 
-1. Open a Service version overview, then find the **Plugins**
+1. {% konnect_icon servicehub %}
+[**Service Hub**](https://cloud.konghq.com/servicehub), open a service version, then find the **Plugins**
 section.
 
 2. Select a plugin.
@@ -50,7 +52,8 @@ adjust any values and click **Save**.
 Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
-1. Open a Service version overview, then find the **Plugins**
+1. {% konnect_icon servicehub %}
+[**Service Hub**](https://cloud.konghq.com/servicehub), open a service version, then find the **Plugins**
 section.
 
 2. Select a plugin.

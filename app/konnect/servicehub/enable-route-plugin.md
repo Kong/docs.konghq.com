@@ -2,37 +2,42 @@
 title: Configure a Plugin on a Route
 no_version: true
 ---
-Enable, update, disable, or delete a plugin for a Route.
+Enable, update, disable, or delete a plugin for a route.
 
 ## Enable a plugin
 
 1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**Service Hub**.
+[**Service Hub**](https://cloud.konghq.com/servicehub).
 
-2. Select a Service version.
+1. Select a service version.
 
-3. Find the **Routes** section and select a Route.
+1. Find the **Routes** section and select a route.
 
-4. From the **Plugins** section, click **+ Add plugin**.
+    {:.note}
+    > If you don't see the **Routes** section, create an
+    [implementation](/konnect/servicehub/service-implementations) first.
 
-5. Find and select a plugin.
+1. From the **Plugins** section, click **Add plugin**.
 
-6. Enter the plugin configuration details. These will differ for every plugin.
+1. Find and select a plugin.
+
+1. Enter the plugin configuration details. These will differ for every plugin.
 
     See the [Plugin Hub](/hub) for parameter descriptions.
 
-7. Click **Create** to save.
+1. Click **Create** to save.
 
 ## Update or disable a plugin
 
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. Return to the overview page for your Route.
+1. From the {% konnect_icon servicehub %}
+[**Service Hub**](https://cloud.konghq.com/servicehub), return to the overview page for your route.
 
-2. Find the **Plugins** section and select a plugin.
+1. Find the **Plugins** section and select a plugin.
 
-4. Click **Plugin actions** > **Edit**. On the configuration page:
+1. Click **Plugin actions** > **Edit**. On the configuration page:
 
     * To update, adjust any values, then click **Save**.
 
@@ -50,8 +55,9 @@ plugin at any time.
 Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
-1. Return to the overview page for your Route.
+1. From the {% konnect_icon servicehub %}
+[**Service Hub**](https://cloud.konghq.com/servicehub), return to the overview page for your route.
 
-2. Find the **Plugins** section and select a plugin.
+1. Find the **Plugins** section and select a plugin.
 
-3. Click **Plugin actions** > **Delete**, then confirm deletion in the dialog.
+1. Click **Plugin actions** > **Delete**, then confirm deletion in the dialog.
