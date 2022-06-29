@@ -5,7 +5,7 @@ no_version: true
 
 The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} services
 and share them with your developers. Developers can use the Dev Portal to
-locate, access, consume, and register applications against the Services.
+locate, access, consume, and register applications against the services.
 
 This guide walks you through setting up a sample API spec and description for
 the {{site.konnect_short_name}} service and publishing the service to the Dev
@@ -65,14 +65,14 @@ use the [sample Vitals spec](/konnect/vitalsSpec.yaml) for testing.
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.
 
-## Publish a Service
+## Publish a service
 
 1. Return to the overview page for the `example_service`.
 
 1. In the top right corner, click on the **Service actions** dropdown and select
 **Publish to Portal**.
 
-    By default, this publishes all of the Service's version specs to a private
+    By default, this publishes all of the service's version specs to a private
     Dev Portal site.
 
 ## View the published content on Dev Portal
@@ -108,8 +108,8 @@ You can't use your {{site.konnect_short_name}} credentials to log in here.
 
 1. As an admin, return to {{site.konnect_short_name}} and approve the account:
 
-    1. From the left side menu, click **Connections**. This opens the Requests
-    page and the Developers tab, which displays the pending developer request.
+    1. From the left side menu, click {% konnect_icon connections %} **Connections**.
+    This opens the Requests page and the Developers tab, which displays the pending developer request.
 
     2. In the row for developer request you want to approve, click the icon and choose
        **Approve** from the context menu.
@@ -171,9 +171,9 @@ Let's change up a couple of things:
 ## Summary and next steps
 
 In this topic, you:
-* Uploaded documentation to describe your Service
-* Published the Service to the Dev Portal
-* Logged into the Portal to check out the Service documentation live
+* Uploaded documentation to describe your service
+* Published the service to the Dev Portal
+* Logged into the Portal to check out the service documentation live
 * Customized the Dev Portal
 
-Next, [register an application against the Service](/konnect/getting-started/spec/app-registration).
+Next, [register an application against the service](/konnect/getting-started/app-registration).

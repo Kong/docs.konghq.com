@@ -8,17 +8,17 @@ register applications against {{site.konnect_short_name}} services. Your applica
 consume those services using application-level authentication.
 
 For example, the application can represent a mobile banking app and the
-Services registered to the application can be a billing API, a users API, and a
+services registered to the application can be a billing API, a users API, and a
 legal agreements API.
 
 ## Prerequisites
 
 * If you're following the {{site.konnect_short_name}} API spec guide,
-make sure you have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/spec/service/).
+make sure you have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/)).
 
   * To use app registration, Dev Portal must be protected by
   some sort of authentication. That means you can't have a public portal for this step.
-  If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/spec/publish/).
+  If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/publish-service/).
 
 * You must have a {{site.konnect_short_name}} service in the default runtime group.
 Application registration is not supported for custom runtime groups.
@@ -48,7 +48,7 @@ open a version of the `example_service`.
 
 ## Create an application
 
-Link an application to a published Service.
+Link an application to a published service.
 
 1. Log into the {{site.konnect_short_name}} Dev Portal.
 
@@ -66,16 +66,16 @@ reference ID, and description. The reference ID must be unique.
 
 ## Register the application
 
-1. Open the **Catalog** from the top menu and click on a Service tile.
+1. From your Dev Portal account, open the **Catalog** from the top menu and click on a service tile.
 
-3. Choose the version of the Service you want to use and click **Register**.
+1. Choose the version of the service you want to use and click **Register**.
 
     If you don't see the registration button, that means this version doesn't
     have application registration enabled.
 
-4. Select the application you want to register from the list.
+1. Select the application you want to register from the list.
 
-5. Click **Request Access**.
+1. Click **Request Access**.
 
     This opens the application's details page. If auto approval is enabled,
     the service appears with the status `Approved`.
@@ -104,6 +104,6 @@ In this topic, you:
 
 For next steps, check out some of the other things you can do in
 {{site.konnect_saas}}:
-* Enable plugins on a [Service](/konnect/servicehub/enable-service-plugin/) or a
-[Route](/konnect/servicehub/enable-route-plugin/)
+* Enable plugins on a [service](/konnect/servicehub/enable-service-plugin/) or a
+[route](/konnect/servicehub/enable-route-plugin/)
 * [Manage your teams and roles](/konnect/org-management/teams-and-roles/)

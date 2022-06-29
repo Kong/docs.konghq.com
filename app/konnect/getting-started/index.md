@@ -54,7 +54,7 @@ Use the Service Hub to manage your API documentation, then publish it to the Dev
 
 1. **Register an application**
 
-    Expose your Service to developers and register an application
-    against the Service.
+    Expose your service to developers and register an application
+    against the service.
 
     [Expose service and register an application &gt;](/konnect/getting-started/app-registration/)

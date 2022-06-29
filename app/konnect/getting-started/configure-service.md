@@ -19,11 +19,11 @@ requester as responses.
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have [configured a runtime](/konnect/getting-started/configure-runtime).
 
-## Create a Service
+## Create a service
 
 {% include_cached /md/konnect/create-service.md %}
 
-## Create a Service version
+## Create a service version
 
 {% include_cached /md/konnect/service-version.md %}
 
