@@ -21,11 +21,11 @@ run `make dev` on your Kong repository to install all Lua dependencies.
 Three "drivers" are implemented depending on different environments, accuracy
 requirements, and setup complexity.
 
-| Driver   | Test between git commits | Test between binary releases | Flamegraph | Test unreleased version |
-|----------|--------------------------|------------------------------|------------|-------------------------|
-| local    | yes                      |                              | yes        | yes                     |
-| docker   | yes                      | yes                          |            |                         |
-|terraform | yes                      | yes                          | yes        |                         |
+| Driver   | Test between git commits | Test between binary releases | Flame Graph | Test unreleased version    |
+|----------|--------------------------|------------------------------|------------|----------------------------|
+| local    | yes                      |                              | yes        | yes                        |
+| docker   | yes                      | yes                          |            | yes (use_daily_image = true) |
+|terraform | yes                      | yes                          | yes        | yes (use_daily_image = true) |
 
 - **local** Driver reuses users' local environment. It's faster to run,
 but the RPS and latency number may be influenced by other local programs and thus inaccurate.
@@ -57,9 +57,9 @@ The following code snippet demonstrates a basic workflow for defining a workload
 ```lua
 local perf = require("spec.helpers.perf")
 
-perf.use_driver("docker")
+perf.use_defaults()
 
-local versions = { "git:master", "2.4.0" }
+local versions = { "git:master", "3.0.0" }
 
 for _, version in ipairs(versions) do
   describe("perf test for Kong " .. version .. " #simple #no_plugins", function()
@@ -171,9 +171,21 @@ Latency Avg: 15.52ms    Max: 1040.00ms
 ```
 
 With samples in [spec/04-perf](https://github.com/Kong/kong/tree/master/spec/04-perf), the RPS and latency
-results, Kong error logs and FlameGraph files are saved to `output` directory under current directory.
+results, Kong error logs, charts and Flame Graph files are saved to the `output` directory in the current directory.
 
 ## API
+
+### perf.use_defaults()
+
+*syntax: perf.use_defaults()*
+
+Use default parameters. This function sets the following:
+- Looks up `PERF_TEST_DRIVER` envrionment variable and invokes `perf.use_driver`.
+- Invokes `perf.set_log_level` and sets level to `"debug"`.
+- Set retry count to 3.
+- Looks up `PERF_TEST_METAL_PROJECT_ID` and `PERF_TEST_METAL_AUTH_TOKEN` envrionment variables
+and pass to the terraform driver if it's selected.
+- Looks up `PERF_TEST_USE_DAILY_IMAGE` envrionment variable and passes the variable to driver options.
 
 ### perf.use_driver
 
@@ -182,7 +194,13 @@ results, Kong error logs and FlameGraph files are saved to `output` directory un
 Uses driver name, which must be one of "local", "docker"  or  "terraform". Additional
 parameters for the driver can be specified in options as a Lua table. Throws error if any.
 
-Only the terraform driver expects an options parameter, which contains following keys:
+The Docker and Terraform driver expect an options parameter to contain the following keys :
+
+- **use_daily_image**: a boolean to decide whether to use daily image or not; useful when testing
+unreleased commits on master branch; downloading Enterprise daily images requires a valid Docker
+login.
+
+The Terraform driver expects options to contain the following optional keys:
 
 - **provider** The service provider name, right now only "equinix-metal".
 - **tfvars** Terraform variables as a Lua table; for `equinix-metal` provider,
@@ -193,7 +211,8 @@ Only the terraform driver expects an options parameter, which contains following
 *syntax: perf.set_log_level(level)*
 
 Sets the log level; expect one of `"debug"`, `"info"`, `"notice"`, `"warn"`, `"error"` and
-`"crit"`. The default log level is `"info"`.
+`"crit"`. The default log level is `"info"` unless `perf.use_defaults` is called and set
+to `"debug"`.
 
 ### perf.set_retry_count
 
@@ -218,6 +237,12 @@ in integration tests to setup entities in Kong. DB-less mode is currently not im
 Starts upstream (Nginx/OpenResty) with given `nginx_conf_blob`. Returns the upstream
 URI accessible from Kong's view. Throws error if any.
 
+### perf.start_upstreams
+
+*syntax: upstream_uris = perf.start_upstreams(nginx_conf_blob, port_count)*
+
+Like `perf.start_upstream`, but starts the upstream Nginx with the given configuration and multiple ports.
+
 ### perf.start_kong
 
 *syntax: perf.start_kong(version, kong_configs?)*
@@ -229,11 +254,23 @@ To select a git hash or tag, use `"git:<hash>"` as version. Otherwise, the frame
 will treat the `version` as a release version and will download binary packages from
 Kong's distribution website.
 
+With the Docker driver, this function can be called multiple times to spawn multiple Kong
+instances.
+
+### perf.start_hybrid_kong
+
+*syntax: perf.start_hybrid_kong(version, kong_configs?)*
+
+Starts a hybrid mode cluster that consists of one control plane
+and one data plane. Only the Docker driver supports this function. Kong configurations necessary
+to bring up hybrid mode like `role` or `cluster_control_plane` do not need to be set
+in `kong_configs`; the test framework will set them up automatically.
+
 ### perf.stop_kong
 
 *syntax: perf.stop_kong()*
 
-Stops Kong. Throws error if any.
+Stops all Kong instances. Throws error if any.
 
 ### perf.teardown
 
@@ -266,6 +303,14 @@ Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua t
 - **duration** Number of performance tests duration in seconds; defaults to 10. 
 - **script** Content of `wrk` script as string; defaults to nil.
 
+### perf.get_admin_uri
+
+*syntax: perf.get_admin_uri()*
+
+Return the Admin API URL. The URL may only be accessible from
+the load generator and not publically available. When multiple Kong instances are started, this function
+returns the first available Kong instance that exposes the admin port.
+
 ### perf.wait_result
 
 *syntax: result = perf.start_load(options?)*
@@ -292,6 +337,29 @@ Generates a FlameGraph with title and saves to path. Throws error if any.
 *syntax: perf.save_error_log(path)*
 
 Saves Kong error log to path. Throws error if any.
+
+### perf.enable_charts
+
+*syntax: perf.enable_charts(on?)*
+
+Enable charts generation, throws error if any.
+
+Charts are enabled by default; the data of charts are fed by `perf.combine_results`.
+The generated charts are `SVG` files and saved under `output` directory.
+
+### perf.save_pgdump
+
+*syntax: perf.save_pgdump(path)*
+
+After setting up Kong using Blueprint, saves the PostgreSQL database dump to a path. Throws error if any.
+
+### perf.load_pgdump
+
+*syntax: perf.load_pgdump(path, dont_patch_service?)*
+
+Loads the pgdump from the path and replaces the Kong database with the loaded data; this function
+will also patch a services address to the upstream unless `dont_patch_service` is set to false,
+it must be called after `perf.start_upstream`. Throws error if any.
 
 ## Customization
 
