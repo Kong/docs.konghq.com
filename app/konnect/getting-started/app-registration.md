@@ -24,8 +24,8 @@ Application registration is not supported for custom runtime groups.
 
 ## Enable app registration
 
-1. From the {% konnect_icon servicehub %} [Service Hub](https://cloud.konghq.com/servicehub/),
-open a version of the `example_service`.
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub/),
+open a service version.
 
 1. From the **Actions** dropdown menu, select **Enable app registration**.
 
@@ -51,7 +51,10 @@ Link an application to a published service.
 
 1. Log into the {{site.konnect_short_name}} Dev Portal.
 
-    You can always find your Dev Portal URL under the [Dev Portal menu](https://cloud.konghq.com/portal/published-services).
+    You can always find your Dev Portal URL under the [Dev Portal menu](https://cloud.konghq.com/portal).
+
+    Remember, the Dev Portal doesn't share credentials with your {{site.konnect_short_name}}
+    account.
 
 1. In the {{site.konnect_short_name}} Dev Portal, click **My Apps** from the
 dropdown menu in the upper right.
@@ -97,9 +100,9 @@ reference ID, and description. The reference ID must be unique.
 ## Summary and next steps
 
 In this topic, you:
-* Enabled application registration for the service `example_service`.
-* From the Dev Portal, created an application and registered it against the `example_service`.
-* Generated an API key for the application and made a call using this key.
+* Enabled application registration for the a service
+* Created an application through the Dev Portal and registered it against your service
+* Generated an API key for the application and made a call using this key
 
 For next steps, check out some of the other things you can do in
 {{site.konnect_saas}}:

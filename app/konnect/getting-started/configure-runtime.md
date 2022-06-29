@@ -34,7 +34,7 @@ is part of the organization admin team by default.
 
 {{site.base_gateway}} data planes proxy service traffic.
 
-1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
+1. From the left navigation menu, open {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager).
 
 1. Select the `default` runtime group.
 

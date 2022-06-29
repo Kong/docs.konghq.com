@@ -17,7 +17,9 @@ make sure you have
 
 ## Implement a service version
 
-1. On the **example_service** overview, in the Versions section, click **v1**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service, then pick a version.
+
+    For example, use `example_service` with a version named `v1`.
 
 1. Click **New Implementation**.
 

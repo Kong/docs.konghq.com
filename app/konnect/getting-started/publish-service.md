@@ -46,8 +46,8 @@ descriptions.
 
     ```
 
-1. In {{site.konnect_short_name}}, find the **Service Document** section on your service's overview
-page and click **Upload Document**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service.
+Find the **Service Document** section on your service's overview page and click **Upload Document**.
 
 1. Locate the `.md` file and click **Open**.
 
@@ -59,7 +59,9 @@ Every version can have one OpenAPI spec associated with it, in JSON or YAML form
 If you brought your own spec, use it in the following steps. Otherwise, you can
 use the [sample Vitals spec](/konnect/vitalsSpec.yaml) for testing.
 
-1. On the service version page, find the the **Version Spec** section and click **Upload Spec**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service, then pick a version.
+
+1. Find the the **Version Spec** section and click **Upload Spec**.
 
 1. Select a spec file to upload.
 
@@ -71,7 +73,7 @@ published to the Dev Portal.
 
 ## Publish a service
 
-1. Return to the overview page for the `example_service`.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), return to your service's overview page.
 
 1. In the top right corner, click on the **Service actions** dropdown and select
 **Publish to Portal**.
@@ -96,9 +98,8 @@ You can't use your {{site.konnect_short_name}} credentials to log in here.
 {% navtab Private Dev Portal %}
 
 1. Access the Dev Portal in one of the following ways:
-    * From [{{site.konnect_short_name}}](https://cloud.konghq.com/) menu,
-    go to {% konnect_icon dev-portal %} **Dev Portal**. From there, click the
-    **Portal URL**.
+    * Open {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal) from the left side menu.
+      From there, click the **Portal URL**.
     * Directly visit the default Dev Portal URL:
 
     ```
@@ -124,12 +125,12 @@ You can't use your {{site.konnect_short_name}} credentials to log in here.
 1. Check your email for a confirmation link. Click the link, then log
 into the Dev Portal.
 
-1. Open the `example_service` to check it out.
+1. Open the service you published to check it out.
 
 {% endnavtab %}
 {% navtab Public Dev Portal %}
 
-1. Open {% konnect_icon dev-portal %} **Dev Portal** from the left side menu,
+1. Open {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal) from the left side menu,
 then click **Settings**.
 
 1. In the **Public Portal** pane, toggle the switch to **Enabled**.
@@ -144,7 +145,7 @@ then click **Settings**.
     ```
     https://{ORG_NAME}.portal.cloud.konghq.com/
     ```
-1. Open the `example_service` to check it out.
+1. Open the service you published to check it out.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -156,7 +157,7 @@ You can customize the Dev Portal to make it your own.
 Let's change up a couple of things:
 
 1. Return to {{site.konnect_short_name}}. From the left side menu, open {% konnect_icon dev-portal %}
-**Dev Portal**, then **Appearance**.
+**Dev Portal**, then [**Appearance**](https://cloud.konghq.com/portal/portal-appearance).
 
 1. Try out a couple of customization options - whatever you like.
 

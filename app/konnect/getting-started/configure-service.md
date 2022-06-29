@@ -21,7 +21,7 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 ## Create a service
 
-1. From the left navigation menu, open {% konnect_icon servicehub %} **Service Hub**.
+1. From the left navigation menu, open {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub).
 
 1. Click **New service**.
 
