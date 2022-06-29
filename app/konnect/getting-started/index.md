@@ -45,7 +45,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 Ready to share your API with developers?
 Use the Service Hub to manage your API documentation, then publish it to the Dev Portal:
 
-1. **Upload your spec to Konnect and publish to Dev Portal**
+1. **Upload your spec to {{site.konnect_short_name}} and publish to Dev Portal**
 
     Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the service.
     Then, publish your service documentation to the Dev Portal and preview it from the developer perspective.

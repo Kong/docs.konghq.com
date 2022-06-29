@@ -17,7 +17,7 @@ out some customization options.
 You can provide extended descriptions of your {{site.konnect_short_name}} services with a Markdown (`.md`) file.
 The contents of this file will be displayed as the introduction to your API in the Dev Portal.
 
-Konnect supports
+{{site.konnect_short_name}} supports
 [GitHub-Flavored Markdown](https://github.github.com/gfm/) (GFM) for API
 descriptions.
 
@@ -42,7 +42,7 @@ descriptions.
 
     ```
 
-1. In Konnect, find the **Service Document** section on your service's overview
+1. In {{site.konnect_short_name}}, find the **Service Document** section on your service's overview
 page and click **Upload Document**.
 
 1. Locate the `.md` file and click **Open**.
@@ -86,7 +86,7 @@ will not be available.
 
 {:.note}
 > **Note:** The Dev Portal is a separate site that requires its own credentials.
-You can't use your Konnect credentials to log in here.
+You can't use your {{site.konnect_short_name}} credentials to log in here.
 
 {% navtabs %}
 {% navtab Private Dev Portal %}
@@ -103,10 +103,10 @@ You can't use your Konnect credentials to log in here.
 
 1. Click **Sign Up** and fill out the form to create a developer account.
 
-    Remember, the Dev Portal does not share credentials with your Konnect
+    Remember, the Dev Portal does not share credentials with your {{site.konnect_short_name}}
     account.
 
-1. As an admin, return to Konnect and approve the account:
+1. As an admin, return to {{site.konnect_short_name}} and approve the account:
 
     1. From the left side menu, click **Connections**. This opens the Requests
     page and the Developers tab, which displays the pending developer request.
@@ -117,7 +117,7 @@ You can't use your Konnect credentials to log in here.
        The status is updated from **Pending** to **Approved**. The developer
        transfers from the pending Requests page Developers tab to the Developers page.
 
-1. Check your email for a confimation link. Click the link, then log
+1. Check your email for a confirmation link. Click the link, then log
 into the Dev Portal.
 
 1. Open the `example_service` to check it out.
