@@ -10,7 +10,7 @@ Kong Portal is built on top of the `lua-resty-template` templating library, whic
 
 You may use the following tags in templates:
 {% raw %}
-* `{{expression}}`, writes result of expression - html escaped
+* `{{expression}}`, writes result of expression - HTML escaped
 * `{*expression*}`, writes result of expression
 * `{% lua code %}`, executes Lua code
 * `{(path-to-partial)}`, include `partial` file by path, you may also supply context for the file `{(partials/header.html, { message = "Hello, World" } )}`
@@ -232,7 +232,7 @@ collections:
 {% endraw %}
 
 Above you can see a `collections` object was declared, which is made up of individual collection configurations. In this example, you are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If you created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
-
+<!--vale off-->
 Each configuration item is made up of a few parts:
 - `output`
   - **required**: false
@@ -253,7 +253,7 @@ Each configuration item is made up of a few parts:
     - **required**: true
       - **type**: `string`
       - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
-
+<!--vale on-->
 ### content/_posts/post1.md
 
 {% raw %}
@@ -310,7 +310,7 @@ From `<kong_portal_gui_url>/blog/posts/post2`:
 ## Kong Template Helpers - Lua API
 Kong Template Helpers are a collection of objects that give access to your portal data at the time of render and provide powerful integrations into Kong.
 
-Globals:
+Global:
 
 - [`l`](#lkey-fallback) - Locale helper, first version, gets values from the currently active page.
 - [`each`](#eachlist_or_table) - Commonly used helper to iterate over lists or tables.
@@ -459,7 +459,7 @@ Template (Table):
 
 ### print(any)
 
-Returns stringified output of input value.
+Returns the output of an input value as a string.
 
 #### Return Type
 
@@ -489,7 +489,7 @@ string
 
 #### Usage
 
-Template (string as arg):
+Template (string as an argument):
 
 {% raw %}
 ```lua
@@ -497,7 +497,7 @@ Template (string as arg):
 ```
 {% endraw %}
 
-Template (content val as arg):
+Template (content val as an argument):
 
 {% raw %}
 ```lua
@@ -557,9 +557,9 @@ Template:
   - [`portal.specs_by_tag`](#portalspecs_by_tag)
   - [`portal.developer_meta_fields`](#portaldeveloper_meta_fields)
 
-
+<!--vale off-->
 You can access the current workspace's portal config directly on the `portal` object like so:
-
+<!--vale on-->
 ```lua
 portal[config_key] or portal.config_key
 ```
@@ -1348,9 +1348,9 @@ Table containing useful string helper methods.
 ##### str.[shorten](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#shorten)
 ##### str.[quote_string](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#quote_string)
 
-
+<!--vale off-->
 ### tbl
-
+<!--vale on-->
 Table containing useful table helper methods
 
 #### Usage
