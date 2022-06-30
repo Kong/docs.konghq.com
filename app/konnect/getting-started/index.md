@@ -7,6 +7,10 @@ no_version: true
 
 New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
+1. **Create a {{site.konnect_short_name}} account**:
+
+    [Create an account &gt;](/konnect/getting-started/access-account)
+
 1.  **Set up a runtime connection**:
 
     Set up a runtime and connect it to your account. Your first runtime
