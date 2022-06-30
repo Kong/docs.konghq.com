@@ -10,7 +10,7 @@ Kong Portal is built on top of the `lua-resty-template` templating library, whic
 
 You may use the following tags in templates:
 {% raw %}
-* `{{expression}}`, writes result of expression - html escaped
+* `{{expression}}`, writes result of expression - HTML escaped
 * `{*expression*}`, writes result of expression
 * `{% lua code %}`, executes Lua code
 * `{(path-to-partial)}`, include `partial` file by path, you may also supply context for the file `{(partials/header.html, { message = "Hello, World" } )}`
@@ -26,7 +26,7 @@ You may work with custom properties in your OpenAPI spec. To expose custom prope
 
 ## Partials
 
-Partials are snippets of html that layouts can reference. Partials have access to all the same data that its layout does, and can even call other partials.  Breaking your code into partials can help organize large pages, as well as allow different layouts share common page elements.
+Partials are snippets of HTML that layouts can reference. Partials have access to all the same data that its layout does, and can even call other partials.  Breaking your code into partials can help organize large pages, as well as allow different layouts share common page elements.
 
 ### content/index.txt
 
@@ -232,7 +232,7 @@ collections:
 {% endraw %}
 
 Above you can see a `collections` object was declared, which is made up of individual collection configurations. In this example, you are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If you created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
-
+<!--vale off-->
 Each configuration item is made up of a few parts:
 - `output`
   - **required**: false
@@ -251,9 +251,9 @@ Each configuration item is made up of a few parts:
       - `:stub`: Replaces namespace with value of `headmatter.stub` in each contents headmatter.
 - `layout`
     - **required**: true
-      - **type**: `boolean`
+      - **type**: `string`
       - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
-
+<!--vale on-->
 ### content/_posts/post1.md
 
 {% raw %}
@@ -310,7 +310,7 @@ From `<kong_portal_gui_url>/blog/posts/post2`:
 ## Kong Template Helpers - Lua API
 Kong Template Helpers are a collection of objects that give access to your portal data at the time of render and provide powerful integrations into Kong.
 
-Globals:
+Global:
 
 - [`l`](#lkey-fallback) - Locale helper, first version, gets values from the currently active page.
 - [`each`](#eachlist_or_table) - Commonly used helper to iterate over lists or tables.
@@ -333,7 +333,7 @@ Objects:
 Terminology / Definitions:
 
 - `list` - Also referred to commonly as an array (`[1, 2, 3]`) in Lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
-- `table` - Also commonly known as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
+- `table` - Also commonly known as an object or HashMap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
 
 ### l(key, fallback)
 
@@ -459,7 +459,7 @@ Template (Table):
 
 ### print(any)
 
-Returns stringified output of input value.
+Returns the output of an input value as a string.
 
 #### Return Type
 
@@ -489,7 +489,7 @@ string
 
 #### Usage
 
-Template (string as arg):
+Template (string as an argument):
 
 {% raw %}
 ```lua
@@ -497,7 +497,7 @@ Template (string as arg):
 ```
 {% endraw %}
 
-Template (content val as arg):
+Template (content val as an argument):
 
 {% raw %}
 ```lua
@@ -557,8 +557,7 @@ Template:
   - [`portal.specs_by_tag`](#portalspecs_by_tag)
   - [`portal.developer_meta_fields`](#portaldeveloper_meta_fields)
 
-
-You can access the current workspace's portal config directly on the `portal` object like so:
+You can access the current workspace portal config directly on the `portal` object like so:
 
 ```lua
 portal[config_key] or portal.config_key
@@ -960,7 +959,7 @@ Template:
 
 #### page.body
 
-Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
+Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to HTML.
 
 ##### Return Type
 
@@ -1302,6 +1301,7 @@ Table containing useful string helper methods.
 {% endraw %}
 
 #### Methods
+<!--vale off-->
 ##### str.[byte](https://www.gammon.com.au/scripts/doc.php?lua=string.byte)
 ##### str.[char](https://www.gammon.com.au/scripts/doc.php?lua=string.char)
 ##### str.[dump](https://www.gammon.com.au/scripts/doc.php?lua=string.dump)
@@ -1347,7 +1347,7 @@ Table containing useful string helper methods.
 ##### str.[title](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#title)
 ##### str.[shorten](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#shorten)
 ##### str.[quote_string](https://stevedonovan.github.io/Penlight/api/libraries/pl.stringx.html#quote_string)
-
+<!--vale on-->
 
 ### tbl
 
@@ -1367,6 +1367,7 @@ Table containing useful table helper methods
 {% endraw %}
 
 #### Methods
+<!--vale off-->
 ##### tbl.[getn](https://www.gammon.com.au/scripts/doc.php?lua=table.getn)
 ##### tbl.[setn](https://www.gammon.com.au/scripts/doc.php?lua=table.setn)
 ##### tbl.[maxn](https://www.gammon.com.au/scripts/doc.php?lua=table.maxn)
@@ -1412,3 +1413,4 @@ Table containing useful table helper methods
 ##### tbl.[merge](https://stevedonovan.github.io/Penlight/api/libraries/pl.tablex.html#merge)
 ##### tbl.[difference](https://stevedonovan.github.io/Penlight/api/libraries/pl.tablex.html#difference)
 ##### tbl.[zip](https://stevedonovan.github.io/Penlight/api/libraries/pl.tablex.html#zip)
+<!--vale on-->
