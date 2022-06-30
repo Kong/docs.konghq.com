@@ -124,7 +124,7 @@ grouped by status code.
 
 1. Customize your graph:
     * **Time frame:** Select a time frame from the dropdown, ranging from the
-    last 5 minutes to the last 30 days.
+    last five minutes to the last 30 days.
     * **Time format:** The default time format depends on your local system time.
     Set to UTC for Coordinated Universal Time.
     * **Display type:** Choose the first icon
