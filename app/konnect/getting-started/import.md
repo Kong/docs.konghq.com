@@ -26,8 +26,9 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 ## Import entity configuration
 
 Use deck to import entity configurations into a runtime group.
+
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
-If you want to target the `konnect.konghq.com` environment instead, use the [`--konnect-addr`](/deck/latest/guide/konnect/#target-a-konnect-api) flag.
+If you want to target the `konnect.konghq.com` environment instead, use the [`--konnect-addr`](/deck/latest/guides/konnect/#target-a-konnect-api) flag.
 
 1. Make sure that decK can connect to your {{site.konnect_short_name}} account:
 
