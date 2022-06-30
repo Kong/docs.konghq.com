@@ -70,7 +70,7 @@ Let's check out the service you just created.
 
 1. Open the runtime group that you chose for your service version.
 
-1. Open **Gateway Services** from the submenu, then click on the `example_gateway_service`.
+1. Open **Gateway Services** from the sub-menu, then click on the `example_gateway_service`.
 
 1. Take a look at the tags to see the connected {{site.konnect_short_name}} service: `_KonnectService:example_service`
 
