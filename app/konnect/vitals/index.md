@@ -39,7 +39,7 @@ Last three hours | Data is aggregated in one minute increments.
 Last 6 hours | Data is aggregated in ten minute increments.
 Last 12 hours| Data is aggregated in ten minute increments. 
 Last 24 hours| Data is aggregated in ten minute increments. 
-Last 7 days | Data is aggregated in one hour increments. 
+Last seven days | Data is aggregated in one hour increments. 
 Last 30 days | Data is aggregated in one hour increments.
 
 {:.important}
