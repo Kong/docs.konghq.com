@@ -61,7 +61,7 @@ is part of the organization admin team by default.
 
 Once the script has finished running, the runtime instances table will include
 a new entry for your instance and the tag in the **Sync Status** column should
-say **Connected**.
+say **In Sync**.
 
 The default proxy URL for this runtime is `http://localhost:8000`. Take
 note of this URL, as you'll need it later to access a service
