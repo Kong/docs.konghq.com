@@ -26,20 +26,24 @@ make sure you have
 1. In the **Create Implementation** dialog, in step 1, create a new service
 implementation to associate with your service version.
 
-    1. In the **Name** field, enter a unique name for the Gateway service.
+    1. Enter a unique name for the Gateway service, or
+    specify a Gateway service that doesn't yet have a version connected to it.
 
-        You can't use a Gateway service that already exists in this runtime
-        group.
+      For the purpose of this example, enter `example_gateway_service`.
 
-    1. Click the **Add using URL** radio button. This is the default.
+      The name can be any string containing letters, numbers, or the following
+      characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+
+      For example, you can use `example_service`, `ExampleService`, `Example-Service`.
+      However, `Example Service` is invalid.
 
     1. In the URL field, enter `http://mockbin.org`.
 
-    1. Use the defaults for the **6 Advanced Fields**.
+    1. Use the defaults for the remaining fields.
 
     1. Click **Next**.
 
-1. In step 2, **Add a Route** to add a route to your service implementation.
+1. Add a route to your service implementation.
 
     For this example, enter the following:
 
@@ -51,10 +55,27 @@ implementation to associate with your service version.
 
 1. Click **Create**.
 
-    The **v1** service version overview displays.
+    The `v1` service version overview displays.
 
     If you want to view the configuration, edit or delete the implementation,
     or delete the version, click the **Version actions** menu.
+
+## Check the Gateway service
+
+Every time you create a service implementation, {{site.konnect_short_name}} creates or connects to
+a parallel {{site.base_gateway}} service to proxy requests based on your configuration.
+Let's check out the service you just created.
+
+1. From the main menu, open the {% konnect_icon runtimes %} **Runtime Manager**.
+
+1. Open the runtime group that you chose for your service version.
+
+1. Open **Gateway Services** from the submenu, then click on the `example_gateway_service`.
+
+1. Take a look at the tags to see the connected {{site.konnect_short_name}} service: `_KonnectService:example_service`
+
+You can manage your Gateway service from here, or from the Service Hub, through the service implementation.
+All changes will be reflected in both locations.
 
 ## Verify the implementation
 

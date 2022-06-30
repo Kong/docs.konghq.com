@@ -25,15 +25,18 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 1. Click **New service**.
 
-1. Enter a **Display name**. For this example, enter `example_service`.
+1. Enter a display name. For this example, enter `example_service`.
 
-    A display name can be any string containing letters, numbers, or the following
-    characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces in version names.
+    A display name can be any string containing letters, numbers, spaces, or the following
+    characters: `.`, `-`, `_`, `~`, or `:`. Spaces are equal to the `-` character.
 
-    For example, you can use `service_name`, `ServiceName`, or `Service-name`.
-    However, `Service Name` is invalid.
+    For example, you can use `example_service`, `ExampleService`, `Example-Service`, or `Example Service`.
+    `Example-Service` and `Example Service` would be considered the same name.
 
-1. (Optional) Enter a **Description**.
+    The display name you create generates a service name. {{site.konnect_short_name}}
+    uses the service name for internal metadata.
+
+1. (Optional) Enter a description.
 
     This description is used in {{site.konnect_short_name}} and on the Dev Portal.
 
@@ -48,10 +51,9 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 Let's set up the first version of your API service.
 
-1. On your service's overview page, click **Service actions** >
-**Add new version**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open the `example_service` service and click **Service actions** > **Add new version**.
 
-1. Enter a **Version Name**. For this example, enter `v1`.
+1. Enter a version name. For this example, enter `v1`.
 
     A version name can be any string containing letters, numbers, or characters;
     for example, `1.0.0`, `v1`, or `version#1`. A service can have multiple
@@ -72,10 +74,10 @@ Let's set up the first version of your API service.
     Different versions of the same service can run in different runtime groups.
     The version name is unique within a group:
 
-    * If you create multiple versions in the **same group**, they must have unique names.
-    * If you create multiple versions in **different groups**, the versions can have the same name.
+    * If you create multiple versions in the _same group_, they must have unique names.
+    * If you create multiple versions in _different groups_, the versions can have the same name.
 
-1. Click **Create** to save.
+1. Click **Save**.
 
 ## Summary and next steps
 
