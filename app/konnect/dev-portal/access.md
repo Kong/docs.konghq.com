@@ -1,6 +1,7 @@
 ---
 title: Access the Dev Portal
 no_version: true
+content-type: reference
 ---
 
 Access the Dev Portal to view any [published services](/konnect/servicehub/service-documentation)

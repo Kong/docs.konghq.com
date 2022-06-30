@@ -10,16 +10,18 @@ need to manually approve Developer and Application requests. You can enable auto
 If auto approve is not enabled for Developers or Applications, admins will need to approve new Developers and Applications manually. For more information on manual approval, see [Manage Developer Access](/konnect/dev-portal/access-and-approval/manage-devs/) and [Manage Application Registration Requests](/konnect/dev-portal/access-and-approval/manage-app-reg-requests/).
 
 {:.note}
-> If auto approve is enabled through the Portal for Applications, it overrides the Service setting.
+> If auto approve is enabled through Dev Portal for applications, it overrides the service setting.
 
 ## Enable or disable auto approve
 
 Auto approve is disabled by default. You can enable and disable approvals at any time. If there are any pending requests when auto approve is enabled, those requests must be manually approved.
 
-1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %}
- **Dev Portal** from the left side menu, then click **Settings**.
+To enable or disable auto approve, follow these steps: 
 
-1. Toggle to enable or disable auto approve for one or both options:
+1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %}
+ **Dev Portal**, then click **Settings**.
+
+1. Toggle to enable or disable auto approve for the following options:
       * Auto Approve Developers
       * Auto Approve Applications
 
