@@ -1330,7 +1330,7 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        Pass extra arguments from the client to the OpenID-Connect Plugin. If arguments exist, the client can pass them using:
+        Pass extra arguments from the client to the OpenID-Connect plugin. If arguments exist, the client can pass them using:
         - Request Body 
         - Query parameters
         
