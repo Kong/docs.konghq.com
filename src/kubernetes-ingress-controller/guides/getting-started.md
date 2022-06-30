@@ -17,17 +17,18 @@ If you've not done so, please follow one of the
 If everything is setup correctly, making a request to Kong should return back
 a HTTP 404 Not Found.
 
-```bash
-$ curl -i $PROXY_IP
+```sh
+curl -i $PROXY_IP
 ```
-Expected output:
+
+In this document, the expected output follows each command:
 ```text
 HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
-Server: kong/1.1.2
+X-Kong-Response-Latency: 0
+Server: kong/2.8.1
 
 {"message":"no Route matched with those values"}
 ```
@@ -39,10 +40,10 @@ This is expected since Kong doesn't know how to proxy the request yet.
 Setup an echo-server application to demonstrate how
 to use the {{site.kic_product_name}}:
 
-```bash
-$ kubectl apply -f https://bit.ly/echo-service
+```sh
+kubectl apply -f https://bit.ly/echo-service
 ```
-Expected output:
+
 ```text
 service/echo created
 deployment.apps/echo created
@@ -55,8 +56,8 @@ pod and details from the HTTP request.
 
 Create an Ingress rule to proxy the echo-server created previously:
 
-```bash
-$ echo "
+```sh
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -75,29 +76,26 @@ spec:
               number: 80
 " | kubectl apply -f -
 ```
-Expected output:
+
 ```text
-ingress.extensions/demo created
+ingress.networking.k8s.io/demo created
 ```
 
 Test the Ingress rule:
 
-```bash
-$ curl -i $PROXY_IP/foo
+```sh
+curl -i $PROXY_IP/foo
 ```
-Expected output:
+
 ```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-Date: Fri, 21 Jun 2019 17:12:49 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 1
-Via: kong/1.1.2
-
-
+Via: kong/2.8.1
 
 Hostname: echo-758859bbfb-txt52
 
@@ -106,7 +104,7 @@ Pod Information:
         pod name:       echo-758859bbfb-txt52
         pod namespace:  default
         pod IP: 172.17.0.14
-<-- clipped -->
+...
 ```
 
 If everything is deployed correctly, you should see the above response.
@@ -117,8 +115,8 @@ inside Kubernetes.
 
 Setup a KongPlugin resource:
 
-```bash
-$ echo "
+```sh
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -128,15 +126,15 @@ config:
 plugin: correlation-id
 " | kubectl apply -f -
 ```
-Expected output:
+
 ```text
 kongplugin.configuration.konghq.com/request-id created
 ```
 
 Create a new Ingress resource which uses this plugin:
 
-```bash
-$ echo "
+```sh
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -158,9 +156,9 @@ spec:
               number: 80
 " | kubectl apply -f -
 ```
-Expected output:
+
 ```text
-ingress.extensions/demo-example-com created
+ingress.networking.k8s.io/demo-example-com created
 ```
 
 The above resource directs Kong to execute the request-id plugin whenever
@@ -168,22 +166,19 @@ a request is proxied matching any rule defined in the resource.
 
 Send a request to Kong:
 
-```bash
-$ curl -i -H "Host: example.com" $PROXY_IP/bar/sample
+```sh
+curl -i -H "Host: example.com" $PROXY_IP/bar/sample
 ```
-Expected output:
+
 ```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-Date: Fri, 21 Jun 2019 18:09:02 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
-Via: kong/1.1.2
-
-
+Via: kong/2.8.1
 
 Hostname: echo-758859bbfb-cnfmx
 
@@ -233,8 +228,8 @@ service, no matter which Ingress path it came from.
 
 Create a KongPlugin resource:
 
-```bash
-$ echo "
+```sh
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -246,7 +241,7 @@ config:
 plugin: rate-limiting
 " | kubectl apply -f -
 ```
-Expected output:
+
 ```text
 kongplugin.configuration.konghq.com/rl-by-ip created
 ```
@@ -254,46 +249,54 @@ kongplugin.configuration.konghq.com/rl-by-ip created
 Next, apply the `konghq.com/plugins` annotation on the Kubernetes Service
 that needs rate-limiting:
 
-```bash
+```sh
 kubectl patch svc echo \
   -p '{"metadata":{"annotations":{"konghq.com/plugins": "rl-by-ip\n"}}}'
+```
+
+```text
+service/echo patched
 ```
 
 Now, any request sent to this service will be protected by a rate-limit
 enforced by Kong:
 
-```bash
-$ curl -I $PROXY_IP/foo
-```
-Expected output:
-```text
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Connection: keep-alive
-Date: Fri, 21 Jun 2019 18:25:49 GMT
-Server: echoserver
-X-RateLimit-Limit-minute: 5
-X-RateLimit-Remaining-minute: 2
-X-Kong-Upstream-Latency: 0
-X-Kong-Proxy-Latency: 4
-Via: kong/1.1.2
+```sh
+curl -I $PROXY_IP/foo
 ```
 
-```bash
-$ curl -I -H "Host: example.com" $PROXY_IP/bar/sample
-```
-Expected output:
 ```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Connection: keep-alive
-Date: Fri, 21 Jun 2019 18:28:30 GMT
+RateLimit-Remaining: 4
+RateLimit-Reset: 1
+X-RateLimit-Limit-Minute: 5
+X-RateLimit-Remaining-Minute: 4
+RateLimit-Limit: 5
 Server: echoserver
-X-RateLimit-Limit-minute: 5
-X-RateLimit-Remaining-minute: 4
-X-Kong-Upstream-Latency: 1
+X-Kong-Upstream-Latency: 4
 X-Kong-Proxy-Latency: 2
-Via: kong/1.1.2
+Via: kong/2.8.1
+```
+
+```sh
+curl -I -H "Host: example.com" $PROXY_IP/bar/sample
+```
+
+```text
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=UTF-8
+Connection: keep-alive
+RateLimit-Remaining: 4
+RateLimit-Reset: 60
+X-RateLimit-Limit-Minute: 5
+X-RateLimit-Remaining-Minute: 4
+RateLimit-Limit: 5
+Server: echoserver
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 1
+Via: kong/2.8.1
 ```
 
 ## Result
@@ -306,3 +309,9 @@ HTTP requests with /foo -> Kong enforces rate-limit -> echo server
 HTTP requests with /bar -> Kong enforces rate-limit +   -> echo-server
    on example.com          injects my-request-id header
 ```
+
+## Next steps
+
+* To learn how to secure proxied routes, check out the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configure-acl-plugin/)
+* The [External Services Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster
+
