@@ -9,9 +9,11 @@ as your cloud-hosted control plane, you can use [decK](/deck/) to import your
 {{site.base_gateway}} entity configuration into a runtime group in your
 {{site.konnect_short_name}} organization.
 
+You can also use this guide to migrate from `konnect.konghq.com` to `cloud.konghq.com`.
+
 Afterward, you must manually move over:
 * Dev Portal files, developer accounts, and applications
-* Convert RBAC roles and permissions into {{site.konnect_short_name}} teams
+* Convert roles and permissions into {{site.konnect_short_name}} teams
 * Certificates
 * Custom plugins
 
@@ -24,6 +26,8 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 ## Import entity configuration
 
 Use deck to import entity configurations into a runtime group.
+When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
+If you want to target the `konnect.konghq.com` environment instead, use the [`--konnect-addr`](/deck/latest/guide/konnect/#target-a-konnect-api) flag.
 
 1. Make sure that decK can connect to your {{site.konnect_short_name}} account:
 
@@ -58,11 +62,33 @@ Use deck to import entity configurations into a runtime group.
     The following steps all use a `.deck.yaml` file to store the
     {{site.konnect_short_name}} credentials instead of flags.
 
-1. Export configuration from {{site.base_gateway}} with [`deck dump`](/deck/latest/reference/deck_dump):
+1. Export configuration:
 
-    ```bash
-    deck dump
-    ```
+{% capture export_config %}
+{% navtabs %}
+{% navtab From Kong Gateway %}
+
+Run [`deck dump`](/deck/latest/reference/deck_dump):
+
+```sh
+deck dump
+```
+{% endnavtab %}
+{% navtab From konnect.konghq.com %}
+
+Run [`deck dump`](/deck/latest/reference/deck_dump) and point decK at the `konnect.konghq.com` environment:
+
+```sh
+deck dump \
+  --konnect-addr https://konnect.konghq.com \
+  --konnect-email {YOUR_EMAIL} \
+  --konnect-password {YOUR_PASSWORD}
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ export_config | indent | replace: " </code>", "</code>" }}
 
     This command outputs {{site.base_gateway}}'s object configuration into
     `kong.yaml` by default. You can also set `--output-file /path/{FILENAME}.yaml`
