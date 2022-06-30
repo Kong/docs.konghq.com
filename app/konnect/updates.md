@@ -2,6 +2,7 @@
 title: Konnect Cloud Updates
 no_version: true
 ---
+<!-- vale off-->
 
 The updates contained in this topic apply to {{site.konnect_saas}},
 an application that lets you manage configuration for multiple runtimes
