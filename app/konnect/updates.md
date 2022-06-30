@@ -8,6 +8,92 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
+## Date TBA
+
+**New site (domain? environment?) for Konnect**
+: Konnect is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) domain.
+`konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+
+: You can continue using your `konnect.konghq.com` account, or create a new one and [manually migrate configuration to the new account](/konnect/getting-started/import).
+In the upcoming months, Kong will be migrating all accounts to the `cloud.konghq.com` environment.
+
+: The minimum supported Kong Gateway version in this environment is 2.5.0.1.
+
+**Runtime groups**
+: Konnect now manages all runtime configuration through runtime groups, which provide the ability to have multiple control planes in one Konnect organization.
+Each runtime group acts as a separate control plane and can manage runtime configurations independently of any other group.
+
+: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [Konnect UI](/konnect/runtime-manager/runtime-groups/manage) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config).
+
+**Teams and roles**
+: You can now manage Konnect authorization with [teams and roles](/konnect/org-management/teams-and-roles). You can use {{site.konnect_short_name}}'s [predefined teams](/konnect/org-management/teams-and-roles/teams-reference) for a standard set of roles, or [create custom teams](/konnect/org-management/teams-and-roles/manage) with any roles you choose. Invite users and add them to these teams to manage user access.
+
+**Konnect UI/UX redesign**
+: The Konnect UI now has reworked navigation, refreshed colors and styles, and a focus on consistent interactions throughout the application.
+
+: Navigation redesign details:
+  * Services is renamed to Service Hub
+  * Runtimes is renamed to Runtime Manager
+  * Shared Config is now part of Runtime Manager
+  * Dev Portal settings have moved from the general settings page to the Dev Portal section
+  * Refreshed iconography for the main menu
+
+**Dev Portal SSO**
+
+: You can now configure custom identity providers (IdPs) for the Dev Portal.
+: See the [SSO documentation](/konnect/dev-portal/customization/#single-sign-on) for more information.
+
+**Koko?**
+: (What can we say about the changes to the CP?)
+
+**Vitals metrics and dashboards**
+: The Vitals overview dashboard now provides metrics for services cataloged by Service Hub within a selected time interval.
+You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views. Each graph is filterable by timeframe.
+
+: In the Service Hub, graphs for services and routes now show data up to the last 30 days.
+
+**Vitals custom reports** <span class="badge alpha"></span>
+
+: Through the Vitals menu, you can create custom reports to track API calls based on services, routes, or applications.
+
+: See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
+
+**Labels**
+: You can now use labels for categorizing runtime groups.
+Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of Konnect entities.
+: Learn about using labels in the [runtime group documentation](/konnect/runtime-manager/runtime-groups/manage).
+
+**Tags for Konnect services**
+: You can now connect Konnect services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
+
+**Service sharing**
+: You can [share Konnect services](/konnect/servicehub/manage-services/#share-a-service) with users and teams through the Service Hub.
+
+**Certificate changes for runtime instances**
+: The validity period for runtime instance certificates has been extended from six months ten years.
+
+: Additionally, Konnect doesn't require CA certificates for runtime instances anymore.
+
+**Custom plugin requirements have changed**
+: Some custom plugin limitations have changed or been removed.
+See the latest requirements in the [plugin doc](/konnect/servicehub/plugins).
+
+: Custom plugins can't be added directly through the {{site.konnect_saas}} application.
+If you have a custom plugin you want to use in Konnect, contact [Kong Support](https://support.konghq.com/).
+
+**Refactored documentation**
+: The Konnect documentation has been refactored to match the new Konnect navigation, and generally reworked to provide a better experience for Konnect users.
+
+**Known issues/limitations**
+: The `cloud.konghq.com` environment has the following restrictions:
+  * Dev Portal and application registration can only be used with the default runtime group.
+  * The following plugins are not supported:
+    * OAuth2 Authentication
+    * OAuth2 Introspection
+    * Apache OpenWhisk
+    * Vault Auth
+  * What else?
+
 ## March 2022
 
 ### 2021.03.07
