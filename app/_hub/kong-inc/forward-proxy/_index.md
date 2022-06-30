@@ -9,7 +9,10 @@ description: |
    upstream. This is useful in environments where Kong sits in an organization's
    internal network, the upstream API is available via the public internet, and
    the organization proxies all outbound traffic through a forward proxy server.
-   Please note that this plugin can not be used with an [upstream](/gateway/latest/get-started/comprehensive/load-balancing/).
+   Please note that this plugin can not be used with an [Upstream](/gateway/latest
+   /get-started/comprehensive/load-balancing/). As a workaround for load balancing,
+   you'll configure the host field in Service to a domain name so that you can
+   use a DNS-based load balancing technique.
 enterprise: true
 type: plugin
 categories:
