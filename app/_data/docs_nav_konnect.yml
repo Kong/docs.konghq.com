@@ -21,14 +21,12 @@
       url: /getting-started
     - text: Access a Konnect Account
       url: /getting-started/access-account
-    - text: Quickstart guide
-      items:
-        - text: Set up a Runtime
-          url: /getting-started/configure-runtime
-        - text: Configure a Service
-          url: /getting-started/configure-service
-        - text: Implement and Test the Service
-          url: /getting-started/implement-service
+    - text: Set up a Runtime
+      url: /getting-started/configure-runtime
+    - text: Configure a Service
+      url: /getting-started/configure-service
+    - text: Implement and Test the Service
+      url: /getting-started/implement-service
     - text: Get Started with the Dev Portal
       items:
         - text: Publish and Consume Services
