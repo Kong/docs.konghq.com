@@ -1329,7 +1329,16 @@ params:
       required: false
       default: null
       datatype: array of string elements
-      description: Extra post arguments passed from the client to the token endpoint.
+      description: |
+        Pass extra arguments from the client to the OpenID-Connect plugin. If arguments exist, the client can pass them using:
+        - Request Body 
+        - Query parameters
+        
+        This parameter can be used with `scope` values, like this: 
+
+        `config.token_post_args_client=scope` 
+
+        In this case, the token would take the `scope` value from the query parameter or from the request body and send it to the token endpoint.
     - group: Token Endpoint Response Headers
       description: Parameters for an uncommon use case of sending certain token endpoint headers to the downstream client.
     - name: token_headers_replay
@@ -1968,7 +1977,7 @@ Let's patch the plugin that we created in the [Kong configuration](#kong-configu
 
 1. We want to only use the authorization code flow and the session authentication.
 2. We want to set the response mode to `form_post` so that authorization codes won't get logged to the access logs.
-3. We want to preserve the original request query arguments over the authorization code flow redirections.
+3. We want to preserve the original request query arguments over the authorization code flow redirection.
 3. We want to redirect the client to original request url after the authorization code flow so that
    the `POST` request (because of `form_post`) is turned to the `GET` request, and the browser address bar is updated
    with the original request query arguments.
@@ -3285,7 +3294,7 @@ http --session=john :8000
 HTTP/1.1 200 OK
 ```
 
-Logout, and follow the redirections:
+Logout, and follow the redirect:
 
 ```bash
 http --session=john --follow -a john: post :8000/logout
@@ -3372,7 +3381,7 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 2.2.1)
+### {{site.base_gateway}} 2.8.x (plugin version 2.2.1)
 
 * Added the `session_redis_username` and `session_redis_password` configuration
 parameters.
@@ -3389,7 +3398,7 @@ referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
-### Kong Gateway 2.7.x (plugin version 2.2.0)
+### {{site.base_gateway}} 2.7.x (plugin version 2.2.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.client_id`, `config.client_secret`, `config.session_auth`, and
