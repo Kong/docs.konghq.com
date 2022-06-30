@@ -18,7 +18,7 @@ Application registration is not supported for custom runtime groups.
 
 * You have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/).
 
-  * To use app registration, Dev Portal must be protected by
+  * To use app registration, the Dev Portal must be protected by
   some sort of authentication. That means you can't have a public portal for this step.
   If you set your Dev Portal to public, [disable the setting and create a developer account](/konnect/getting-started/publish-service/).
 

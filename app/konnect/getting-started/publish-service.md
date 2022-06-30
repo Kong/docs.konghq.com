@@ -178,7 +178,7 @@ Let's change up a couple of things:
 In this topic, you:
 * Uploaded documentation to describe your service
 * Published the service to the Dev Portal
-* Logged into the Portal to check out the service documentation live
+* Logged into the Dev Portal to check out the service documentation live
 * Customized the Dev Portal
 
 Next, [register an application against the service](/konnect/getting-started/app-registration).
