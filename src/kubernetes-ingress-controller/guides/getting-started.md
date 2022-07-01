@@ -312,6 +312,6 @@ HTTP requests with /bar -> Kong enforces rate-limit +   -> echo-server
 
 ## Next steps
 
-* To learn how to secure proxied routes, check out the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configure-acl-plugin/)
+* To learn how to secure proxied routes, see the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configure-acl-plugin/).
 * The [External Services Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster
 
