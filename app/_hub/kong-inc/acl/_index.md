@@ -117,7 +117,7 @@ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
     --data "tags[]=tag2"
 ```
 
-`CONSUMER`: The `username` property of the Consumer entity to associate the credentials to.
+`CONSUMER`: The `username` property of the consumer entity to associate the credentials with.
 
 form parameter        | default| description
 ---                   | ---    | ---
