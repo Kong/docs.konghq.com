@@ -13,7 +13,7 @@ Role-Based Access Control (RBAC) lets you restrict access to resources and actio
 
 ### AccessRole
 
-AccessRole defines a role that is assigned separately to users.
+`AccessRole` defines a role that is assigned separately to users.
 It is global-scoped, which means it is not bound to a mesh.
 
 {% navtabs %}
@@ -74,7 +74,7 @@ spec:
 
 ### AccessRoleBinding
 
-AccessRoleBinding assigns a set of AccessRoles to a set of subjects (users and groups).
+`AccessRoleBinding` assigns a set of `AccessRoles` to a set of subjects (users and groups).
 It is global-scoped, which means it is not bound to a mesh.
 
 {% navtabs %}
@@ -141,7 +141,8 @@ spec:
 
 This way {{site.mesh_product_name}} operators can execute any action.
 
-_Note: this role is precreated on the start of the control plane._
+{:.note}
+> **Note**: This role is automatically created on the start of the control plane.
 
 ### Service owner
 
@@ -222,7 +223,7 @@ This way a service owners can:
   that matches backend service that connects to other services. This changes the configuration of data plane proxy that implements `backend` service.
 * Modify connection policies that matches any service that consumes backend service.
   This changes the configuration of data plane proxies that are connecting to backend, but the configuration only affects connections to backend service.
-  It's useful because the service owner of backend has the best knowledge what (Timeouts, HealthCheck) should be applied when communicating with their service.
+  It's useful because the service owner of backend has the best knowledge what (`Timeout`, `HealthCheck`) should be applied when communicating with their service.
 * Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
 
 ### Observability operator
@@ -266,7 +267,7 @@ This way an observability operator can:
 
 ### Single Mesh operator
 
-{{site.mesh_product_name}} lets us segment the deployment into many logical Service Meshes configured by Mesh object.
+{{site.mesh_product_name}} lets us segment the deployment into many logical service meshes configured by Mesh object.
 We may want to give an access to one specific Mesh and all objects connected with this Mesh.
 
 {% navtabs %}
@@ -311,7 +312,7 @@ Kubernetes provides their own RBAC system, but it's not sufficient to cover use 
 * You cannot restrict an access based on the content of the policy
 
 {{site.mesh_product_name}} RBAC works on top of Kubernetes RBAC.
-For example, to restrict the access for a user to modify TrafficPermission for backend service, they need to be able to create TrafficPermission in the first place.
+For example, to restrict the access for a user to modify `TrafficPermission` for backend service, they need to be able to create `TrafficPermission` in the first place.
 
 The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and groups.
 {{site.mesh_product_name}} RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
@@ -319,12 +320,12 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 ## Default
 
-{{site.mesh_product_name}} creates an `admin` AccessRole that allows every action.
+{{site.mesh_product_name}} creates an `admin` `AccessRole` that allows every action.
 
-In a standalone deployment, the `default` AccessRoleBinding assigns this role to every authenticated and unauthenticated user.
+In a standalone deployment, the `default` `AccessRoleBinding` assigns this role to every authenticated and unauthenticated user.
 
-In a multizone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
-However, on the zone control plane, the `default` AccessRoleBinding is restricted to the `admin` AccessRole only.
+In a multi-zone deployment, the `default` `AccessRoleBinding` on the global control plane assigns this role to every authenticated and unauthenticated user.
+However, on the zone control plane, the `default` `AccessRoleBinding` is restricted to the `admin` `AccessRole` only.
 
 {% navtabs %}
 {% navtab Universal %}
@@ -375,7 +376,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-To restrict access to `admin` only, change the default AccessRole policy:
+To restrict access to `admin` only, change the default `AccessRole` policy:
 
 {% navtabs %}
 {% navtab Universal %}
@@ -406,21 +407,22 @@ spec:
   roles:
   - admin
 ```
-`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage Kuma resources -- for example, to remove Dataplane objects when a namespace is removed.
+`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage Kuma resources -- for example, to remove data plane objects when a namespace is removed.
 {% endnavtab %}
 {% endnavtabs %}
 
 ## Example
 
-Here are the steps to create a new user and restrict the access only to TrafficPermission for backend service.
+Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
 
 {% navtabs %}
 {% navtab Universal %}
 
-**NOTE** By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
+{:.note}
+> **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
 In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
 
-1.  Extract admin token and configure kumactl with admin
+1.  Extract admin token and configure kumactl with admin:
 
     ```sh
     $ export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
@@ -432,7 +434,7 @@ In order for this example to work you must either run the control plane with `KU
     --auth-conf token=$ADMIN_TOKEN
     ```
 
-1.  Configure backend-owner
+1.  Configure backend-owner:
 
     ```sh
     $ export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
@@ -445,7 +447,7 @@ In order for this example to work you must either run the control plane with `KU
     $ kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
+1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     $ echo "type: AccessRoleBinding
@@ -457,7 +459,7 @@ In order for this example to work you must either run the control plane with `KU
     - admin" | kumactl apply -f -
     ```
 
-1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify TrafficPermission for backend
+1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
 
     ```sh
     $ echo '
@@ -482,7 +484,7 @@ In order for this example to work you must either run the control plane with `KU
     - backend-owner' | kumactl apply -f -
     ```
 
-1.  Change the user and test RBAC
+1.  Change the user and test RBAC:
 
     ```sh
     $ kumactl config control-planes switch --name cp-backend-owner
@@ -516,7 +518,7 @@ In order for this example to work you must either run the control plane with `KU
 {% endnavtab %}
 {% navtab Kubernetes %}
 
-1.  Create a backend-owner Kubernetes user and configure kubectl
+1.  Create a backend-owner Kubernetes user and configure kubectl:
 
     ```sh
     $ mkdir -p /tmp/k8s-certs
@@ -541,7 +543,7 @@ In order for this example to work you must either run the control plane with `KU
     $ kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
-1.  Create Kubernetes RBAC to allow backend-owner to manage all TrafficPermission
+1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
 
     ```sh
     $ echo "
@@ -579,7 +581,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kubectl apply -f -
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default
+1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     $ echo "
@@ -593,12 +595,14 @@ In order for this example to work you must either run the control plane with `KU
         name: mesh-system:admin
       - type: Group
         name: system:masters
+      - type: Group
+        name: system:serviceaccounts:kube-system
       roles:
       - admin
     " | kubectl apply -f -
     ```
 
-1.  Create an AccessRole to grant permissions to user `backend-owner` to modify TrafficPermission only for the backend service:
+1.  Create an `AccessRole` to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
 
     ```sh
     $ echo "
@@ -669,6 +673,6 @@ In order for this example to work you must either run the control plane with `KU
 {% endnavtab %}
 {% endnavtabs %}
 
-## Multizone
+## Multi-zone
 
-In a multizone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
+In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
