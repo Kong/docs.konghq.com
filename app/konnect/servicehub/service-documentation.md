@@ -88,7 +88,7 @@ Publish a service and its API specs to the Dev Portal. Publishing a service make
 
 ### Unpublish a service {#unpublish}
 
-Unpublish a service to remove it from the Dev Portal. Unpublishing is not permanent, and you can republish again at any time.
+Unpublish a service to remove it from the Dev Portal. Removing a service from the Dev Portal is not permanent, and you can republish again at any time.
 
 1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
