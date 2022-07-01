@@ -15,7 +15,7 @@ If you've not done so, please follow one of the
 [deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return back
-a HTTP 404 Not Found.
+a HTTP `404 Not Found` status code.
 
 ```sh
 curl -i $PROXY_IP
