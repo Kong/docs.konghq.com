@@ -6,7 +6,7 @@ content_type: how-to
 ---
 
 In the Service Hub, the Service, Service version, and Route graphs provide dynamic
-graphs with up to 12 hours of data. To view data beyond this time frame, export
+graphs with up to 30 days of data. To view data beyond this time frame, export
 the data into a comma-separated values (CSV) file.
 
 You can generate and export a CSV file for:
@@ -125,7 +125,7 @@ grouped by status code.
 
 1. Customize your graph:
     * **Time frame:** Select a time frame from the dropdown, ranging from the
-    last 5 minutes to the last 12 hours.
+    last five minutes to the last 30 days.
     * **Time format:** The default time format depends on your local system time.
     Set to UTC for Coordinated Universal Time.
     * **Display type:** Choose the first icon

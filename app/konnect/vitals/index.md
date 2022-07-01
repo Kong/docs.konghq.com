@@ -1,5 +1,5 @@
 ---
-title: Monitoring Health with Vitals
+title: Introduction to Monitoring Health with Vitals
 no_version: true
 ---
 
@@ -18,16 +18,32 @@ historical data for the following lengths of time:
 
 In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
 [activity graphs](/konnect/vitals/analyze/) for Services, Service versions, or
-Routes for the past 12 hours.
+Routes for the past 30 days.
 For Services, these graphs display request counts. For Service versions and
 Routes, the graphs show requests broken down by status codes.
 
-To see historical data for a greater range than 12 hours or customize the
+To see historical data for a range greater than 30 days, or to customize the
 entities in a report, you can:
 * [Export historical data in CSV format](/konnect/vitals/analyze/) for any
 individual Service, Service version, or Route.
 * [Create a custom report](/konnect/vitals/generate-reports/) for any number of
 Services, Routes, or Applications, filtered by time frame and grouped by metric.
+
+## Time intervals
+
+Interval | Description  
+------|----------|
+Last 15 minutes | Data is aggregated in ten second increments.
+Last hour| Data is aggregated in one minute increments.
+Last three hours | Data is aggregated in one minute increments.
+Last six hours | Data is aggregated in ten minute increments.
+Last 12 hours| Data is aggregated in ten minute increments. 
+Last 24 hours| Data is aggregated in ten minute increments. 
+Last seven days | Data is aggregated in one hour increments. 
+Last 30 days | Data is aggregated in one hour increments.
+
+{:.important}
+> Free tier users can only select intervals up to 24 hours.
 
 ## Terms
 
