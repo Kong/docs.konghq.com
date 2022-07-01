@@ -52,6 +52,9 @@ Learn more about these properties in [Session Security in Kong Manager](/gateway
 Set a password for the Super Admin. This environment variable must
 be present in the environment where database migrations will run.
 
+{:.important}
+> **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password.
+
 ```
 $ export KONG_PASSWORD=<password-only-you-know>
 ```
