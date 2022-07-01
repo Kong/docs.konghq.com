@@ -141,7 +141,8 @@ spec:
 
 This way {{site.mesh_product_name}} operators can execute any action.
 
-_Note: this role is precreated on the start of the control plane._
+{:.note}
+> **Note**: This role is automatically created on the start of the control plane.
 
 ### Service owner
 
@@ -323,7 +324,7 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 In a standalone deployment, the `default` AccessRoleBinding assigns this role to every authenticated and unauthenticated user.
 
-In a multizone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
+In a multi-zone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
 However, on the zone control plane, the `default` AccessRoleBinding is restricted to the `admin` AccessRole only.
 
 {% navtabs %}
@@ -417,7 +418,8 @@ Here are the steps to create a new user and restrict the access only to TrafficP
 {% navtabs %}
 {% navtab Universal %}
 
-**NOTE** By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
+{:.note}
+> **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
 In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
 
 1.  Extract admin token and configure kumactl with admin
@@ -671,6 +673,6 @@ In order for this example to work you must either run the control plane with `KU
 {% endnavtab %}
 {% endnavtabs %}
 
-## Multizone
+## Multi-zone
 
-In a multizone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
+In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
