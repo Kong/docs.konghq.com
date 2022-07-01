@@ -112,7 +112,9 @@ associate a group to a Consumer using the following request:
 
 ```bash
 curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
-    --data "group=group1, tags={'tag1', 'tag2'}"
+    --data "group=group1" \
+    --data "tags[]=tag1" \
+    --data "tags[]=tag2"
 ```
 
 `CONSUMER`: The `username` property of the Consumer entity to associate the credentials to.
