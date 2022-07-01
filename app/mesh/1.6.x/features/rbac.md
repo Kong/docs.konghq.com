@@ -593,6 +593,8 @@ In order for this example to work you must either run the control plane with `KU
         name: mesh-system:admin
       - type: Group
         name: system:masters
+      - type: Group
+        name: system:serviceaccounts:kube-system
       roles:
       - admin
     " | kubectl apply -f -
