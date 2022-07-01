@@ -33,7 +33,7 @@ For more information on how to configure {{site.base_gateway}} to connect to you
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
 and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
-If you are using Postgres, provision a database and a user before starting {{site.base_gateway}}, for example:
+If you are using PostgreSQL, provision a database and a user before starting {{site.base_gateway}}, for example:
 
 ```sql
 CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
@@ -80,6 +80,10 @@ declarative_config = {PATH_TO_KONG.CONF_FILE}
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
+
+{:.important}
+> **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
+
 Run migrations to prepare the Kong database, using the following command:
 
 ```
