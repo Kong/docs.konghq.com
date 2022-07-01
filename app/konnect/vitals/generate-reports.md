@@ -5,13 +5,13 @@ alpha: true
 content_type: how-to
 ---
 
-Create custom reports to track API calls based on Services, Routes, or
-Applications.
+Create custom reports to track API calls based on services, routes, or
+applications.
 
 {:.note}
-> **Note:** If you select multiple Service versions in a report, the report
-shows the sum of requests for all selected versions broken down by Service.
-It does not show data points for individual Service versions.
+> **Note:** If you select multiple service versions in a report, the report
+shows the sum of requests for all selected versions broken down by service.
+It does not show data points for individual service versions.
 
 ## View custom reports
 
@@ -48,9 +48,9 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 1. Choose a report type.
 
-   * **Service report**: Generate a report based on Services catalogued in Service Hub.
-   * **Route report**: Generate a report based on Routes.
-   * **Application report**: Generate a report based on Applications registered on your Dev Portal.
+   * **Service report**: Generate a report based on services cataloged in Service Hub.
+   * **Route report**: Generate a report based on routes.
+   * **Application report**: Generate a report based on applications registered on your Dev Portal.
 
    Depending on the report type you choose, the available metrics and entities
    will change.
@@ -115,11 +115,11 @@ Each metric depends on a time frame and a primary entity (report type).
 
 Metric | Report type | Description
 -------|------------|------------
-Total traffic | Service, Route, Application | Total number of API calls within the selected time frame.
-Total traffic by status code | Service, Route, Application | Number of API calls grouped by status code.
-Total traffic by service | Route, Application | Number of API calls filtered by services or service versions, and grouped by service.
-Total traffic by route | Service, Application | Number of API calls grouped by Route.
-Total traffic by application | Service, Route | Number of API calls grouped by Application.
+Total traffic | Service, route, application | Total number of API calls within the selected time frame.
+Total traffic by status code | Service, route, application | Number of API calls grouped by status code.
+Total traffic by service | Route, application | Number of API calls filtered by services or service versions, and grouped by service.
+Total traffic by route | Service, application | Number of API calls grouped by route.
+Total traffic by application | Service, route | Number of API calls grouped by application.
 
 ## Route entity format
 
@@ -141,4 +141,4 @@ Where `DA58B` are the first five characters of its UUID.
 
 ## See also
 [Export historical data in CSV format](/konnect/vitals/analyze/) through the
-Service Hub for any individual Service, Service version, or Route.
+Service Hub for any individual service, service version, or route.
