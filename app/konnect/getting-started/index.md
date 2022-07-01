@@ -7,6 +7,10 @@ no_version: true
 
 New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
+1. **Create a {{site.konnect_short_name}} account**:
+
+    [Create an account &gt;](/konnect/getting-started/access-account)
+
 1.  **Set up a runtime connection**:
 
     Set up a runtime and connect it to your account. Your first runtime
@@ -40,44 +44,21 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
     [Implement the service &gt;](/konnect/getting-started/implement-service)
 
+## Share APIs and enable development
 
-4. **Publish the service to Dev Portal**
+Ready to share your API with developers?
+Use the Service Hub to manage your API documentation, then publish it to the Dev Portal:
 
-    Set up a sample API spec and description for the {{site.konnect_short_name}}
-    service and publish the service to the Dev Portal.
+1. **Upload your spec to {{site.konnect_short_name}} and publish to Dev Portal**
 
-    [Publish the service &gt;](/konnect/getting-started/publish-service)
+    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the service.
+    Then, publish your service documentation to the Dev Portal and preview it from the developer perspective.
 
-## Get started with an API spec
+    [Import docs and publish a service &gt;](/konnect/getting-started/publish-service/)
 
-Have an OpenAPI spec and want to share your API with developers? Get started by
-using Service Hub to publish and manage your spec:
+1. **Register an application**
 
-1. **Upload your docs to {{site.konnect_short_name}}**
+    Expose your service to developers and register an application
+    against the service.
 
-    Through the Service Hub, you can create and version {{site.konnect_short_name}} services to manage
-    API documentation. Upload a markdown file to describe your Service, and
-    add an OpenAPI spec for any version of the Service.
-
-    [Create a Service and import docs &gt;](/konnect/getting-started/spec/service/)
-
-2. **Implement the Service**
-
-    Attach the Service to an upstream application
-    and define a route to expose the Service for application registration.
-
-    [Implement the Service &gt;](/konnect/getting-started/spec/service/)
-
-3. **Publish to the Dev Portal**
-
-    Publish your Service documentation to the Dev Portal and preview it from
-    the developer perspective.
-
-    [Publish the docs &gt;](/konnect/getting-started/spec/service/)
-
-4. **Register an application**
-
-    Expose your Service to developers and register an application
-    against the Service.
-
-    [Expose service and register an application &gt;](/konnect/getting-started/spec/service/)
+    [Expose service and register an application &gt;](/konnect/getting-started/app-registration/)
