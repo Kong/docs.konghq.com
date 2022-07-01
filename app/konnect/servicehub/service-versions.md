@@ -27,9 +27,9 @@ ready to move to it.
 
 ## Create a service version
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
-1. Click **Service actions** > **Add new version**.
+1. Click the **Service actions** drop-down menu and select **Add new version**.
 
 1. Enter a version name.
 
@@ -52,19 +52,17 @@ ready to move to it.
     Different versions of the same service can run in different runtime groups.
     The version name is unique within a group:
 
-    * If you create multiple versions in the **same group**, they must have unique names.
-    * If you create multiple versions in **different groups**, the versions can have the same name.
+    * If you create multiple versions in the _same group_, they must have unique names.
+    * If you create multiple versions in _different groups_, the versions can have the same name.
 
 1. Click **Create** to save.
 
 ## Delete a service version
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a service from the list.
+Deleting a service version permanently removes it and its implementation, routes, and plugins from the Service Hub.
 
-1. Navigate to **Versions**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-1. Click on the version you want to delete, and you'll be taken to the version detail page.
+1. Click the **Version actions** drop-down menu and select **Delete**.
 
-1. Click on the **Version actions** dropdown menu.
-
-1. Click **Delete** to permanently delete the service version.
+1. Confirm to permanently delete the service version.

@@ -17,7 +17,7 @@ runtime instance in the runtime group that the service version belongs to.
 {{site.base_gateway}} runtime.
 
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a service version.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
 1. Click **New Implementation**.
 
@@ -26,8 +26,11 @@ details for the upstream service.
 
     1. Enter a name for the Gateway service.
 
-        This name must be unique to the runtime group. You can't use an
-        existing Gateway service here.
+        The name can be any string containing letters, numbers, or the following
+        characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+
+        For example, you can use `example_service`, `ExampleService`, `Example-Service`.
+        However, `Example Service` is invalid.
 
     1. Enter a URL in the default **Add using URL** field, or switch to
     **Add using Protocol, Host and Path** and enter each piece separately.
@@ -66,7 +69,7 @@ details for the upstream service.
     The service version overview displays.
 
     If you want to view the configuration, edit or delete the implementation,
-    or delete the version, click the **Version actions** menu.
+    or delete the version, click the **Version actions** drop-down menu.
 
     You can find the linked Gateway service in the Runtime Manager.
 
@@ -78,7 +81,7 @@ first one.
 
 All routes are created in the same runtime group as their parent service version.
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a service version.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
 1. In the **Routes** section, click **Add route**.
 

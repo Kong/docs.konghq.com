@@ -25,7 +25,7 @@ Enable, update, disable, or delete a plugin for a route.
 
     See the [Plugin Hub](/hub) for parameter descriptions.
 
-1. Click **Create** to save.
+1. Click **Save**.
 
 ## Update or disable a plugin
 
@@ -35,9 +35,9 @@ plugin at any time.
 1. From the {% konnect_icon servicehub %}
 [**Service Hub**](https://cloud.konghq.com/servicehub), return to the overview page for your route.
 
-1. Find the **Plugins** section and select a plugin.
+1. From the **Plugins** section, select a plugin.
 
-1. Click **Plugin actions** > **Edit**. On the configuration page:
+1. Click the **Plugin actions** drop-down menu and select **Edit**. On the configuration page:
 
     * To update, adjust any values, then click **Save**.
 
@@ -60,4 +60,4 @@ Deleting a plugin completely removes it and its configuration from
 
 1. Find the **Plugins** section and select a plugin.
 
-1. Click **Plugin actions** > **Delete**, then confirm deletion in the dialog.
+1. Click the **Plugin actions** drop-down menu and select **Delete**, then confirm deletion in the dialog.

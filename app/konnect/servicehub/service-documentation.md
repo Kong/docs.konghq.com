@@ -14,51 +14,45 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
 
 ### Upload a service description
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
-2. Select a service to open its overview.
+1. In the **Service Document** section, click **Upload Document**.
 
-3. In the **Service Document** section, click **Upload Document**.
-
-3. Select a `.md` file to upload.
+1. Select a `.md` file to upload.
 
 ### Update a service description
 
 You can upload a new document to replace an existing service document.
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
-2. Select a service to open its overview.
+1. In the **Service Document** section, click the {% konnect_icon markdown %} **file icon**, then **Replace**.
 
-3. In the **Service Document** section, click the **file icon**, then **Replace**. Select a new `.md` file to upload.
+1. Select a new `.md` file to upload.
 
 ### Delete a service description
 
-You can delete an existing document from the Dev Portal. Deleting a service description will permanently remove it from the Dev Portal.
+You can delete an existing document from the Dev Portal. Deleting a service description permanently removes it from the Dev Portal and the Service Hub.
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
-2. Select a service to open its overview.
+1. In the **Service Document** section, click the {% konnect_icon cogwheel %} icon, then **Delete**.
 
-3. In the **Service Document** section, click the {% konnect_icon cogwheel %} icon, then **Delete**. Click **Delete** again to confirm.
+1. Confirm to permanently delete the service description file.
 
 ## API specification
 
-API specifications, or specs, can be uploaded and attached to a specific version within your Dev Portal. You can have different API specs that correspond to different versions. {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
+API specifications, or specs, can be uploaded and attached to a specific version within your Dev Portal.
+You can have different API specs that correspond to different versions.
+{{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
 ### Upload a version spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-2. Click a service to open the service overview.
+1. In the **Version Spec** section, click **Upload Spec**.
 
-3. From the left navigation bar, click **Versions**.
-
-4. Click a specific version from the list.
-
-5. In the **Version Spec** section, click **Upload Spec**.
-
-6. Click **Upload Spec** to upload your Open API specification file.
+1. Click **Upload Spec** to upload your OpenAPI specification file.
 
     The spec must be in YAML or JSON format. You
     can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec to test this functionality.
@@ -68,27 +62,17 @@ API specifications, or specs, can be uploaded and attached to a specific version
 
 ### Update a version spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-2. Click a service to open the service overview.
-
-3. From the left navigation bar, click **Versions**.
-
-4. Click a specific version from the list.
-
-5. In the **Version Spec** section, click the spec, then click **Replace**. Choose a new spec to replace the existing one. The published documentation for the service is automatically updated in the Dev Portal.
+1. In the **Version Spec** section, click the spec, then click **Replace**.
+Choose a new spec to replace the existing one.
+The published documentation for the service is automatically updated in the Dev Portal.
 
 ### Delete a version spec
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-2. Click a service to open the service overview.
-
-3. From the left navigation bar, click **Versions**.
-
-4. Click a specific version from the list.
-
-5. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the spec.
+1. In the **Version Spec** section, click the {% konnect_icon cogwheel %} icon, then **Delete** to remove the spec.
 
     Deleted files are permanently removed from the Dev Portal.
 
@@ -96,15 +80,16 @@ API specifications, or specs, can be uploaded and attached to a specific version
 
 ### Publish a service {#publish}
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %} **Service Hub** page and select a service.
+Publish a service and its API specs to the Dev Portal. Publishing a service makes it available to developers in your organization.
 
-2. Click on the **Service actions** dropdown menu and select **Publish to portal**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
-    This publishes a service's API specs to the Dev Portal.
+1. Click the **Service actions** drop-down menu and select **Publish to portal**.
 
 ### Unpublish a service {#unpublish}
 
-1. In the left navigation menu, open the {% konnect_icon servicehub %}
-**Service Hub** and select a service.
+Unpublish a service to remove it from the Dev Portal. Unpublishing is not permanent, and you can republish again at any time.
 
-2. Click on the **Service actions** dropdown and select **Unpublish from portal**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+
+1. Click the **Service actions** drop-down menu and select **Unpublish from portal**.

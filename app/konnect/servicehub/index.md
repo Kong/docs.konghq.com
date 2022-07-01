@@ -13,11 +13,11 @@ entire architecture.
 
 ## Services in the Service Hub catalog
 
-Each entry in the Service Hub is called a **{{site.konnect_short_name}} service**, or **service**
+Each entry in the Service Hub is called a _{{site.konnect_short_name}} service_, or _service_
 for short. This is the abstraction of one of your own upstream services.
 
 A service in the Service Hub breaks down into multiple
-configuration **versions**, and can be **implemented** to route to any
+configuration _versions_, and can be _implemented_ to route to any
 endpoint you like.
 
 ![{{site.konnect_short_name}} service diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
