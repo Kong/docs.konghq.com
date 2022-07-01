@@ -99,16 +99,16 @@ params:
 
 Before you use the ACL plugin, configure your Service or
 Route with an [authentication plugin](/hub/#authentication)
-so that the plugin can identify the client Consumer making the request.
+so that the plugin can identify the client consumer making the request.
 
-#### Associate Consumers to an ACL
+#### Associate consumers with an ACL
 
 {% navtabs %}
 {% navtab With a database %}
 
 After you have added an authentication plugin to a Service or a Route, and you have
-created your [Consumers](/gateway/latest/admin-api/#consumer-object), you can now
-associate a group to a Consumer using the following request:
+created your [consumers](/gateway/latest/admin-api/#consumer-object), you can now
+associate a group to a consumer using the following request:
 
 ```bash
 curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
@@ -141,16 +141,16 @@ acls:
 {% endnavtab %}
 {% endnavtabs %}
 
-You can have more than one group associated to a Consumer.
+You can have more than one group associated to a consumer.
 
 #### Upstream Headers
 
 When a consumer has been validated, the plugin appends a `X-Consumer-Groups`
 header to the request before proxying it to the Upstream service, so that you can
-identify the groups associated with the Consumer. The value of the header is a
-comma-separated list of groups that belong to the Consumer, like `admin, pro_user`.
+identify the groups associated with the consumer. The value of the header is a
+comma-separated list of groups that belong to the consumer, like `admin, pro_user`.
 
-This header will not be injected in the request to the Upstream service if
+This header will not be injected in the request to the upstream service if
 the `hide_groups_header` config flag is set to `true`.
 
 #### Return ACLs
@@ -185,9 +185,9 @@ curl -X GET http://{HOST}:8001/acls
 }
 ```
 
-#### Retrieve ACLs by Consumer
+#### Retrieve ACLs by consumer
 
-Retrieves ACLs by Consumer. 
+Retrieves ACLs by consumer. 
 
 ```bash
 curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
@@ -205,11 +205,11 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
 }
 ```
 
-`CONSUMER`: The `username` or `id` of the Consumer.
+`CONSUMER`: The `username` or `id` of the consumer.
 
 #### Retrieve ACL by ID
 
-Retrieves ACL by ID if the ACL belongs to the specified Consumer. 
+Retrieves ACL by ID if the ACL belongs to the specified consumer. 
 
 ```bash
 curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
@@ -222,13 +222,13 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 }
 ```
 
-`CONSUMER`: The `username` property of the Consumer entity.
+`CONSUMER`: The `username` property of the consumer entity.
 
 `ID`: The `id` property of the ACL.  
 
-#### Retrieve the Consumer associated with an ACL
+#### Retrieve the consumer associated with an ACL
 
-Retrieves a Consumer associated with an ACL
+Retrieves a consumer associated with an ACL
 using the following request:
 
 ```bash
@@ -243,16 +243,16 @@ curl -X GET http://{HOST}:8001/acls/{ID}/consumer
 
 `ID`: The `id` property of the ACL.
 
-#### Upsert an ACL group name
+#### Update and insert an ACL group name
 
-Upserts the group name of the ACL by passing a new group name. 
+Update and insert the group name of the ACL by passing a new group name. 
 
 ```bash
 curl -X PUT http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
   --data "group=newgroupname"
 ```
 
-`CONSUMER`: The `username` property of the Consumer entity.
+`CONSUMER`: The `username` property of the consumer entity.
 
 `ID`: The `id` property of the ACL.  
 
@@ -266,9 +266,9 @@ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
 
 ```
 
-`CONSUMER`: The `username` property of the Consumer entity.
+`CONSUMER`: The `username` property of the consumer entity.
 
-#### Remove an ACL group for a Consumer
+#### Remove an ACL group for a consumer
 
 Deletes an ACL group by ID or group name.
 
