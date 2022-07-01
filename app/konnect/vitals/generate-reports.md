@@ -57,6 +57,10 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 1. Choose a [metric](#metrics) to group the data by.
 1. Choose the entities to focus on in your report.
+
+    Note that route entity names are composed of multiple elements.
+    See [route entity format](#route-entity-format) for the breakdown.
+
 1. Click **Create**.
 
 The report details page opens. Here you can:
@@ -116,6 +120,24 @@ Total traffic by status code | Service, Route, Application | Number of API calls
 Total traffic by service | Route, Application | Number of API calls filtered by services or service versions, and grouped by service.
 Total traffic by route | Service, Application | Number of API calls grouped by Route.
 Total traffic by application | Service, Route | Number of API calls grouped by Application.
+
+## Route entity format
+
+In custom reports, the route entity name is composed of the following elements:
+
+```
+KONNECT_SERVICE_NAME.VERSION.ROUTE_NAME|FIRST_FIVE_UUID_CHARS
+```
+
+For example, for a route entity named `example_service.v1.example_route`:
+* `example_service` is the {{site.konnect_short_name}} service name
+* `v1` is the service version
+* `example_route` is the route name
+
+Or, if your route doesn't have a name, it might look like this:
+`example_service.v1.DA58B`
+
+Where `DA58B` are the first five characters of its UUID.
 
 ## See also
 [Export historical data in CSV format](/konnect/vitals/analyze/) through the
