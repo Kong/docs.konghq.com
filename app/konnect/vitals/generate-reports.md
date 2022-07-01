@@ -126,13 +126,14 @@ Total traffic by application | Service, route | Number of API calls grouped by a
 In custom reports, the route entity name is composed of the following elements:
 
 ```
-KONNECT_SERVICE_NAME.VERSION.ROUTE_NAME|FIRST_FIVE_UUID_CHARS
+KONNECT_SERVICE_NAME.VERSION.ROUTE_NAME|FIRST_FIVE_UUID_CHARS (RUNTIME GROUP)
 ```
 
-For example, for a route entity named `example_service.v1.example_route`:
+For example, for a route entity named `example_service.v1.example_route` with the badge `default`:
 * `example_service` is the {{site.konnect_short_name}} service name
 * `v1` is the service version
 * `example_route` is the route name
+* `default` is the runtime group name
 
 Or, if your route doesn't have a name, it might look like this:
 `example_service.v1.DA58B`
