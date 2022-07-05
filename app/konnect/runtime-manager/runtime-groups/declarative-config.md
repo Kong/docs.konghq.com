@@ -17,9 +17,6 @@ separately.
 group.
 * Migrate configuration from one group to another.
 
-{:.note}
-> **Note:** To work with runtime groups, you need [decK v1.12.0 or later](/deck/).
-
 Use any `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
 parameters using a decK configuration file (`~/.deck.yaml` by default) to target
 `https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,
