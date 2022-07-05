@@ -4,6 +4,12 @@ no_version: true
 content_type: how-to
 ---
 
+You can customize the {{site.konnect_short_name}} Dev Portal in the following ways:
+* [Appearance](#appearance)
+* [Custom URL](#custom-dev-portal-url)
+* [Access](/konnect/dev-portal/access/)
+* [Single-sign on](#single-sign-on)
+
 
 ## Appearance
 
