@@ -17,11 +17,13 @@ automatically-created users, adjust user permissions through Okta, or
 
 ### Create a team
 
-1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
- **Organization** link.
-2. Click **+ New Team**.
-3. Enter a team name and description. Both fields are required.
-4. Click **Save**.
+1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
+
+1. Click **New Team**.
+
+1. Enter a team name and description. Both fields are required.
+
+1. Click **Save**.
 
 By default, your new team has no roles applied. Customize the roles through the team's
 configuration page.
@@ -31,34 +33,35 @@ configuration page.
 You can edit the roles for any custom team. Any changes made to a team's roles
 are automatically applied to all team members.
 
-1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
- **Organization** link.
-2. Choose a team from the list.
+1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
+
+1. Choose a team from the list.
 
     Teams with the `Predefined` label can't be edited or deleted.
 
-3. Choose an entity tab, then click **+ Add role(s)**.
+1. Open either the Services or Runtime Groups tab, then click **Add role(s)**.
 
-4. Enter the UUID of the element you want to assign, or enter `*` to target
-all entities of the selected type.
+1. Click the instance field to choose an instance of the entity you want to assign, or choose `*` to target all entities of the selected type.
 
-5. Select one or more roles from the list.
+1. Select one or more roles from the list.
 
     Hover over the `i` icon next to the role to see its description,
     or see the [roles reference](/konnect/org-management/teams-and-roles/roles-reference).
 
-6. Click **Save**.
+1. Click **Save**.
 
 
 ### Add or remove team members
 
 Edit team membership for any team, custom or predefined.
 
-1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
- **Organization** link.
-2. Choose a team from the list.
-3. On the **Members** tab, click **+ New Member**.
-4. Select a user in the organization and click **Save**.
+1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
+
+1. Choose a team from the list.
+
+1. On the **Members** tab, click **Add Member(s)**.
+
+1. Select a user in the organization and click **Save**.
 
 The user gains all roles attributed to the team.
 
@@ -68,14 +71,16 @@ Deleting a team completely removes it and its configuration from
 {{site.konnect_short_name}}. If the team has any team members, they will be
 unassigned from the team.
 
+You can't delete predefined teams.
+
 {:.warning}
 > **Warning:** Deleting a team is irreversible.
 
-1. From the left navigation menu in {{site.konnect_short_name}}, open the {% konnect_icon organizations %}
- **Organization** link.
+1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
 
-1. Choose a team from the list, open the action menu on the right of the row,
-and click **Delete**.
+1. Choose a team from the list.
+
+1. Click the **Team actions** drop-down and click **Delete**.
 
 1. Confirm deletion in the dialog.
 
