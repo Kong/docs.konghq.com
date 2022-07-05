@@ -56,6 +56,7 @@ Access all {{site.konnect_short_name}} service configuration through the {% konn
   * **Service description**: Click **Edit** next to the description, make your edits, then click the checkmark to save.
   * **Labels**: Click **Edit** next to the labels, make your edits, then click **Save**.
 
+<!-- SHARING IS NOT YET AVAILABLE
 ## Share a service
 
 If you have a Service Admin or Organization Admin role, you can share any
@@ -72,6 +73,7 @@ For more information, see [Manage Teams, Roles, and Users](/konnect/org-manageme
 1. Select a role to grant to the user or team.
 
 1. Click **Share service** to save.
+-->
 
 ## Delete a service
 
