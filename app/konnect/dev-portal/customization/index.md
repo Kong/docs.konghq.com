@@ -23,41 +23,119 @@ For details on the requirements for each customizable option, hover over the inf
 
 ## Custom Dev Portal URL
 
-Every Dev Portal instance has an auto-generated default Dev Portal URL, so that users can access the Dev Portal from both the default URL and the custom URL. The {{site.konnect_short_name}} Dev Portal generates an SSL certificate for your custom domain automatically.
+All Dev Portals come with a default Dev Portal URL like `https://mycompany1234.us.portal.konghq.com` generated 
+when portal is first created. We provide a way to add a custom domain you own (e.g. `portal.example.com`)
+and make the Dev Portal securely accessible using both the default URL and your custom URL.
 
-### Top-level domains
-
-{{site.konnect_short_name}} offers support for the following top-level domains: 
-
-- `*.io`
-- `*.com`
-- `*.tech`
-- `*.net`
-- `*.dev`
+To make the process of adding a custom domain to your Dev Portal as easy as possible, we handle SSL certificate
+generation and any required HTTP rewrites for you automatically.
 
 ### Prerequisites
 
-* A domain and access to configure domain's CNAME
-* Your organization's auto-generated default Dev Portal URL. For example, `https://kong121212.portal.konnect.konghq.com/`.
+* A domain and access to configure the domain's DNS `CNAME` records
+* Your organization's auto-generated default Dev Portal URL. For example, `https://mycompany1234.us.portal.konghq.com/`.
 
-### Direct your CNAME to the default Dev Portal URL
+### Step 1: Configure DNS
 
-From your domain registrar's DNS records settings options, point your CNAME to your Dev Portal's default URL.
+Go to your DNS provider configuration and add a canonical name (CNAME) record to the domain you want to use.
 
-### Add a custom Dev Portal domain
+The record should look like the following:
+
+| Type  | Name   | Value                                                                                      |
+|:------|--------|--------------------------------------------------------------------------------------------|
+| CNAME | portal | (Auto-generated default Dev Portal URL, e.g. `https://mycompany1234.us.portal.konghq.com`) |
+
+### Step 2: Update Portal URL settings
 
 To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps: 
 
 1. Open the **Portal URL** tab.
 
-2. Enter the full domain, including any applicable subdomain. 
-   
-   Don't include a path. It's not necessary to include the URL protocol (for example, `https://`) in the **Custom Portal URL** field.
+3. Enter the FQDN (full domain including a subdomain, if applicable, e.g. `portal.example.com`) into the **Custom Portal URL** field.
+   Don't include a path or protocol (e.g. `https://`).
 
-3. Test your custom URL. You'll see the custom URL listed in the Dev Portal under the default Dev Portal URL. An SSL certificate will be generated automatically.
+4. Click **Save Custom Domain**
 
-   {:.note}
-   > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
+5. Confirm your action in the displayed modal by clicking **Confirm**. This will begin the domain verification process.
+
+### Step 3: Test your Custom URL
+
+After the DNS verification process is complete, {{site.konnect_short_name}} will attempt to automatically generate 
+an SSL certificate for your Custom Domain. This process can take several hours.
+
+Note that if you open the Custom URL in a browser **before** the certificate generation process is finished,
+you may see an SSL Certificate Error screen. This is an expected browser behavior.
+
+{:.note}
+> **Note:** If this process takes more than 24 hours, 
+> please [check if the new DNS record is correctly applied.](./#checking-dns-records).
+> and contact [Kong Support](https://support.konghq.com) if the issue persist
+
+### Domain Name Restrictions
+
+Most of the Top Level Domains for Custom URLs are supported in {{site.konnect_short_name}}.
+However, due to our SSL Certificate Authority restrictions, we can't generate SSL certificates 
+for some specific domains, and thus we don't support custom domains using:
+
+* TLDs containing a brand name (`.aws`, `.microsoft`, `.ebay`, and so on...)
+* subdomains of well-known hosting providers (`.amazonaws.com`, `.azurewebsites.net`, and so on...)
+* TLDs restricted by US Export laws
+  * `.af` Afghanistan
+  * `.by` The Republic of Belarus
+  * `.cu` Cuba
+  * `.er` Eritrea
+  * `.gn` Guinea
+  * `.ir` Islamic Republic of Iran
+  * `.kp` Democratic People's Republic of Korea
+  * `.lr` Liberia
+  * `.ru` The Russian Federation
+  * `.ss` South Sudan
+  * `.su` Soviet Union
+  * `.sy` Syrian Arab Republic
+  * `.zw` Zimbabwe
+
+Please [Contact Support](https://support.konghq.com) if you have any questions.
+
+### Checking DNS records
+
+DNS Propagation can take some time, and depending on a selected DNS server. It can give mixed results 
+when changes are still synchronizing worldwide. You can query your domain's DNS server to see if the changes applied
+for the Custom URL setup are correct using a DNS lookup tool like
+[`dig`](https://linux.die.net/man/1/dig){:target="_blank"}.
+
+#### Troubleshooting DNS using `dig`
+
+Run the following command - replace `<CUSTOM_DOMAIN>` with the custom domain 
+you're using and `<CUSTOM_DOMAIN_DNS>` with the DNS server for this custom domain.
+
+```shell
+$ dig +nocmd @<CUSTOM_DOMAIN_DNS> cname <CUSTOM_DOMAIN> +noall +answer
+```
+
+The command should output a result like this:
+```text
+portal.example.com.	172	IN	CNAME	mycompany1234.us.portal.konghq.com.
+```
+where `portal.example.com` is your Custom Domain and `mycompany1234.us.portal.konghq.com` is the default auto-generated 
+URL for your Dev Portal.
+
+If there's no output or the values don't seem correct, please check them in your Custom Domain DNS configuration
+and contact your DNS provider if necessary.
+
+You might need to reset your Dev Portal Custom Domain if you have to fix your DNS records.
+In order to do so, [Delete your Custom URL](./#deleting-a-custom-url) and [Setup Portal URL](./#step-2-update-portal-url-settings) again.
+
+### Deleting a Custom URL
+
+Delete a Custom Portal URL through your organization's {{site.konnect_short_name}} Admin UI.
+
+1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
+
+2. Open the **Portal URL** tab.
+
+3. Click **Delete Custom Domain**
+
+4. Confirm your action in the displayed modal by clicking **Delete**
 
 ## Single Sign-On
 {:.badge .enterprise}
