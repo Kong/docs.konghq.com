@@ -118,6 +118,7 @@ stdin
 stdout
 Bagdi
 subcommand
+substring
 sudo
 Syslog
 tbl
