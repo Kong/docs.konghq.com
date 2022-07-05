@@ -61,18 +61,13 @@ sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
 {% endnavtabs_ee %}
 {% endnavtab %}
 {% navtab rpm %}
-{% navtabs_ee codeblock %}
-{% navtab Kong Gateway %}
-```bash
-rpm -iv kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
+
+{:.important}
+> The `rpm` method is only available for open-source packages. For the `kong-enterprise-edition` package, use `yum`.
+
 ```bash
 rpm -iv kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
 ```
-{% endnavtab %}
-{% endnavtabs_ee %}
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
