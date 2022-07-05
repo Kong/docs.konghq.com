@@ -28,7 +28,7 @@ we recommend running the script again to create a new data plane with renewed
 certificates.
 
 1. Stop the data plane container.
-2. Open [Runtime Manager](https://konnect.konghq.com/runtime-manager/) and click **Configure New Runtime**.
+2. Open {% konnect_icon runtimes %} [Runtime Manager](https://cloud.konghq.com/runtime-manager/) and click **Configure New Runtime**.
 3. Run the script again to
 [create a new data plane](/konnect/legacy/runtime-manager/gateway-runtime-docker/#quick-setup) with
 updated certificates.
