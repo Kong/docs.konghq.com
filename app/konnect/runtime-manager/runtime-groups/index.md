@@ -16,10 +16,11 @@ a runtime, such as {{site.base_gateway}}. Runtime instances service traffic for 
 group. All runtime instances in one runtime group
 must be of the same type. Currently, only {{site.base_gateway}} runtime types are supported.
 
-Every organization has one default runtime group. With an Enterprise subscription,
-you can configure nine additional custom runtime groups, for a total of 10 by default, in the same {{site.konnect_short_name}}
-account to manage runtime instances and their configuration in any groupings
-you want.
+Every organization has one default runtime group.
+
+With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional 
+custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to 
+manage runtime instances and their configuration in any groupings you want.
 
 ## Default runtime group
 
