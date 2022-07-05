@@ -83,7 +83,7 @@ Read more about the following related topics:
 - [Admin API Reference][API]
 - [Clustering Reference][cluster]
 
-Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community/)
+Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community)
 for help!
 
 [key-auth]: /plugins/key-authentication

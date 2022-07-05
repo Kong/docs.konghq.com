@@ -11,7 +11,7 @@ This how-to guide walks through the steps of how to configure Kong and
 Prometheus to collect metrics from the {{site.kic_product_name}}.
 
 > Note: This guide was originally posted on Kong Inc's blog:
-[https://konghq.com/blog/observability-kubernetes-kong/](https://konghq.com/blog/observability-kubernetes-kong/)
+[https://konghq.com/blog/observability-kubernetes-kong/](https://konghq.com/blog/observability-kubernetes-kong)
 
 ## Prerequisites
 

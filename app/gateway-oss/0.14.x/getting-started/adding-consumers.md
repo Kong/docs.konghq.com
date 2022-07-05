@@ -5,7 +5,7 @@ title: Adding Consumers
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!</li>
+    <li>Make sure you've <a href="https://konghq.com/install">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
     <li>Also, make sure you've <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
   </ol>
@@ -90,7 +90,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 - [Admin API Reference][API]
 - [Clustering Reference][cluster]
 
-Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community/)
+Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community)
 for help!
 
 [key-auth]: /plugins/key-authentication

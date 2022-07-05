@@ -110,7 +110,7 @@ For fault tolerance, we recommend that PostgreSQL RDS instances are created with
 
 ## Installation
 
-Refer to the existing generic documentation on [installing Kong](https://konghq.com/install/).
+Refer to the existing generic documentation on [installing Kong](https://konghq.com/install).
 
 Additional directions on installing Kong Enterprise on AWS Linux can be found [here](https://docs.konghq.com/enterprise/0.34-x/installation/amazon-linux/).
 
@@ -189,7 +189,7 @@ The following table list the AWS resources used by Kong and states if they are r
 
 The open source version of Kong is free to use, fork, develop, and contribute back to the community. We welcome our community members to participate in our [discussion forums](https://discuss.konghq.com/) to keep abreast of developments in Kong.
 
-Kong Enterprise is priced variably based on the size of the enterprise deployment. To learn more, [schedule a Kong Enterprise demo](https://konghq.com/request-demo/).
+Kong Enterprise is priced variably based on the size of the enterprise deployment. To learn more, [schedule a Kong Enterprise demo](https://konghq.com/request-demo).
 
 ### Contacting Support
 

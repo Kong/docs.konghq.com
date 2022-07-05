@@ -4573,7 +4573,7 @@ repository will allow you to do both easily.
   replaced by the new `nginx_http_upstream_keepalive` property. Its behavior is
   almost identical, but the notable difference is that the latter leverages the
   [injected Nginx
-  directives](https://konghq.com/blog/kong-ce-nginx-injected-directives/)
+  directives](https://konghq.com/blog/kong-ce-nginx-injected-directives)
   feature added in Kong 0.14.0.
   In future releases, we will gradually increase support for injected Nginx
   directives. We have high hopes that this will remove the occasional need for
@@ -4617,7 +4617,7 @@ repository will allow you to do both easily.
 #### Configuration
 
 - A new section in the `kong.conf` file describes [injected Nginx
-  directives](https://konghq.com/blog/kong-ce-nginx-injected-directives/)
+  directives](https://konghq.com/blog/kong-ce-nginx-injected-directives)
   (added to Kong 0.14.0) and specifies a few default ones.
   In future releases, we will gradually increase support for injected Nginx
   directives. We have high hopes that this will remove the occasional need for

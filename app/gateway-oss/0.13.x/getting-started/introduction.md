@@ -5,7 +5,7 @@ title: Welcome to Kong
 ## Introduction
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've <a href="https://konghq.com/install">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 This guide is going to take you through a quick introduction on how to use Kong and perform basic operations such as:

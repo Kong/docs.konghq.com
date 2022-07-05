@@ -19,7 +19,7 @@ license for Kong Gateway (Enterprise), open a
 
 {{site.base_gateway}} requires a license file.
 You receive this file from Kong when you sign up for an Enterprise subscription.
-[Contact Kong](https://konghq.com/get-started/) for more information.
+[Contact Kong](https://konghq.com/get-started) for more information.
 
 If you have purchased a subscription but haven't received a license file,
 contact your sales representative.

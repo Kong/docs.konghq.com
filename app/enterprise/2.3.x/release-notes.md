@@ -26,9 +26,9 @@ required for Enterprise features, such as the
 [Dev Portal](/enterprise/{{page.kong_version}}/developer-portal), and others.
 
 Learn more:
-* [Kong subscriptions](https://konghq.com/subscriptions/)
+* [Kong subscriptions](https://konghq.com/subscriptions)
 * [Learn about free and enterprise modes](/enterprise/{{page.kong_version}}/deployment/licensing/)
-* [Install Kong Gateway](https://konghq.com/install/)
+* [Install Kong Gateway](https://konghq.com/install)
 
 ### Name changes
 

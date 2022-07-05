@@ -9,7 +9,7 @@ This page also includes the equivalent commands for OpenShift.
 In DB-less mode on Kubernetes, the config is stored in etcd, the Kubernetes native data store. For more information, see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/plan-and-deploy/kubernetes-deployment-options).
 
 The {{site.base_gateway}} software is governed by the
-[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
+[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).
 {{site.ce_product_name}} is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
