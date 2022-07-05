@@ -79,7 +79,7 @@ rpm -iv kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
-    Installing directly using `rpm` is suitable for RedHat's [Universal Base Image](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant. You will need to install Kong's dependencies separately via `microdnf`.
+    Installing directly using `rpm` is suitable for Red Hat's [Universal Base Image](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant. You will need to install Kong's dependencies separately via `microdnf`.
 
 {% endnavtab %}
 {% navtab YUM repository %}
