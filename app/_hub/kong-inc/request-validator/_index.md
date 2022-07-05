@@ -346,7 +346,7 @@ In this example, use the plugin to validate a request's path parameter.
     ```
     curl -i -X POST http://kong:8001/services \
       --data name=httpbin \
-      --data url=http://httpbin.org/anything
+      --data url=http://httpbin.org
 
     HTTP/1.1 201 Created
     ..
