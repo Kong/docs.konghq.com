@@ -18,15 +18,16 @@ with options to change or cancel it.
 
 ### Upgrade from Free to Plus
 
-1. From the **Billing and Usage** page, click **Change Plan**.
-2. On the **Plus** tile, click **Upgrade**.
-3. Enter your billing details.
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. On the Billing and Usage page, click **Change Plan**.
+1. On the **Plus** tile, click **Upgrade**.
+1. Enter your billing details.
 
     You are not billed at sign-up. Users are billed monthly on the
     subscription date, and charges are calculated three (3) days before the
     billing date.
 
-4. Click **Subscribe** to save and return to the **Billing and Usage** overview.
+1. Click **Subscribe** to save and return to the **Billing and Usage** overview.
 
     Your plan should now display as {{site.konnect_short_name}} Plus.
 
@@ -34,11 +35,13 @@ with options to change or cancel it.
 
 There is no self-serve upgrade option for Enterprise plans.
 
-1. From the **Billing and Usage** page, click **Change Plan**.
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
-2. On the **Enterprise** tile, click **Contact Sales**.
+1. On the Billing and Usage page, click **Change Plan**.
 
-3. Fill in the contact form and click **Contact Sales** to send it.
+1. On the **Enterprise** tile, click **Contact Sales**.
+
+1. Fill in the contact form and click **Contact Sales** to send it.
 
     A sales representative from Kong will contact you to discuss your use case,
     walk you through any demos you need, and work with you to create a plan that
@@ -49,8 +52,9 @@ There is no self-serve upgrade option for Enterprise plans.
 
 ### Downgrade from Plus to Free
 
-1. From the **Billing and Usage** page, click **Cancel Plan**.
-2. Click **Confirm Downgrade** to save and return to the **Billing and Usage**
+1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. On the Billing and Usage page, click **Cancel Plan**.
+1. Click **Confirm Downgrade** to save and return to the **Billing and Usage**
 overview.
 
     With a downgrade, your monthly charges are prorated and you are billed
