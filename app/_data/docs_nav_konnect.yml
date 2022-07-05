@@ -156,11 +156,13 @@
         - text: Manage Payment Methods and Invoices
           url: /account-management/billing
     - text: Authentication and Authorization
-      url: /org-management/auth
       items:
+        - text: Overview
+          url: /org-management/auth
         - text: Teams and Roles
-          url: /org-management/teams-and-roles
           items:
+            - text: Overview
+              url: /org-management/teams-and-roles
             - text: Manage Teams and Roles
               url: /org-management/teams-and-roles/manage
             - text: Teams Reference
