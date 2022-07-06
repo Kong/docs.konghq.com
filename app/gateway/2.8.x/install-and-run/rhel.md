@@ -40,9 +40,13 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --
 
 {{ download_package | indent | replace: " </code>", "</code>" }}
 
-2. Install the package:
+2. Install the package using `yum` or `rpm`.
+
+    If you use the `rpm` install method, the packages _only_ contain {{site.base_gateway}}. They don't include any dependencies.
 
 {% capture install_package %}
+{% navtabs %}
+{% navtab yum %}
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
@@ -55,9 +59,22 @@ sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
+{% endnavtab %}
+{% navtab rpm %}
+
+{:.important}
+> The `rpm` method is only available for open-source packages. For the `kong-enterprise-edition` package, use `yum`.
+
+```bash
+rpm -iv kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
+```
+{% endnavtab %}
+{% endnavtabs %}
 {% endcapture %}
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
+
+    Installing directly using `rpm` is suitable for Red Hat's [Universal Base Image](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant. You will need to install Kong's dependencies separately via `microdnf`.
 
 {% endnavtab %}
 {% navtab YUM repository %}
@@ -71,7 +88,7 @@ Install the YUM repository from the command line.
 
 2. Install Kong:
 {% capture install_from_repo %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
@@ -82,7 +99,7 @@ sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index
 sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_from_repo | indent | replace: " </code>", "</code>" }}
