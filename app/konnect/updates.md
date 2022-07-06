@@ -104,12 +104,14 @@ If you have a custom plugin you want to use in {{site.konnect_short_name}}, cont
 
 **Known issues/limitations**
 : The `cloud.konghq.com` environment has the following restrictions:
-  * Dev Portal and application registration can only be used with the default runtime group.
+  * Application registration through Dev Portal can only be used with the default runtime group. This restriction will be removed in a future update to {{site.konnect_short_name}}.
   * The following plugins are not supported:
     * OAuth2 Authentication
-    * OAuth2 Introspection
     * Apache OpenWhisk
     * Vault Auth
+    * DeGraphQL
+    * GraphQL Rate Limiting Advanced
+    * Key Authentication Encrypted
   * decK does not support authenticating against Runtime Groups when single sign-on (SSO) is enabled.
 
 ## March 2022
