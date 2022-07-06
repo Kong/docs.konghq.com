@@ -3,6 +3,8 @@ title: Konnect Cloud Updates
 no_version: true
 ---
 
+<!-- vale off -->
+
 The updates contained in this topic apply to {{site.konnect_saas}},
 an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
@@ -80,7 +82,7 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 
 **Vitals metrics and dashboards**
 : The Vitals overview dashboard now provides metrics for services cataloged by Service Hub within a selected time interval.
-You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views. Each graph is filterable by timeframe.
+You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views. Each graph is filterable by time frame.
 
 : In the Service Hub, graphs for services and routes now show data up to the last 30 days.
 
