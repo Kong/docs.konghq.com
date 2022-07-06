@@ -2,35 +2,62 @@
 title: Konnect Cloud Updates
 no_version: true
 ---
-<!-- vale off-->
 
 The updates contained in this topic apply to {{site.konnect_saas}},
 an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
-## Date TBA
+## July 2022
 
-**New site (domain? environment?) for Konnect**
-: Konnect is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) domain.
-`konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+### date TBA
 
-: You can continue using your `konnect.konghq.com` account, or create a new one and [manually migrate configuration to the new account](/konnect/getting-started/import).
-In the upcoming months, Kong will be migrating all accounts to the `cloud.konghq.com` environment.
+**New environment for {{site.konnect_short_name}}**
+: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
 
-: The minimum supported Kong Gateway version in this environment is 2.5.0.1.
+: Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
+
+: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import).
+
+: The minimum supported {{site.base_gateway}} version in this environment is 2.5.0.1.
 
 **Runtime groups**
-: Konnect now manages all runtime configuration through runtime groups, which provide the ability to have multiple control planes in one Konnect organization.
-Each runtime group acts as a separate control plane and can manage runtime configurations independently of any other group.
+: {{site.konnect_short_name}} now manages all runtime configuration through runtime groups, which provide the ability to securely isolate configuration for sets of runtime instances. Essentially,  this gives you multiple SaaS-managed control planes in one {{site.konnect_short_name}} organization.
 
-: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [Konnect UI](/konnect/runtime-manager/runtime-groups/manage) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config).
+: Every organization starts with one `default` runtime group. Additional custom runtime groups are an Enterprise-only feature.
+
+: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config).
+
+: With runtime groups come a few other changes to runtime management for all organizations:
+  * Improvements with certificate rotation and management:
+    * When setting up runtime instances through the {{site.konnect_short_name}} UI, certificates are generated in the browser and pushed to the {{site.konnect_short_name}} API.
+    * {{site.konnect_short_name}} doesn't require CA certificates for runtime instances anymore.
+    * The validity period for runtime instance certificates has been extended from six months ten years.
+  * Reworked Gateway configuration UI:
+    * The Shared Config menu is now part of Runtime Manager. Manage your Gateway services, routes, plugins, upstreams, SNIs, and certificates through a runtime group, alongside all of the runtime instances in that group.
+  * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage).
+  Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of {{site.konnect_short_name}} entities.
 
 **Teams and roles**
-: You can now manage Konnect authorization with [teams and roles](/konnect/org-management/teams-and-roles). You can use {{site.konnect_short_name}}'s [predefined teams](/konnect/org-management/teams-and-roles/teams-reference) for a standard set of roles, or [create custom teams](/konnect/org-management/teams-and-roles/manage) with any roles you choose. Invite users and add them to these teams to manage user access.
+: You can now manage {{site.konnect_short_name}} authorization with [teams and roles](/konnect/org-management/teams-and-roles).
+Existing RBAC roles have been converted to [predefined teams](/konnect/org-management/teams-and-roles/teams-reference), which are available for all {{site.konnect_short_name}} organizations.
 
-**Konnect UI/UX redesign**
-: The Konnect UI now has reworked navigation, refreshed colors and styles, and a focus on consistent interactions throughout the application.
+: Invite users and add them to these teams to manage user access. You can also assign individual roles per user.
+
+: With a {{site.konnect_short_name}}t Enterprise subscription, you can also [create custom teams](/konnect/org-management/teams-and-roles/manage) and assign per-entity permissions for each team.
+
+**Declarative configuration management support with decK**
+: As of [decK 1.12](https://github.com/Kong/deck/releases), standard decK commands such as `diff`, `sync`, and `dump` support {{site.konnect_short_name}} runtime groups.
+: Learn how to use decK with {{site.konnect_short_name}}:
+  * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect)
+  * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
+  * [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config)
+
+**Tags for {{site.konnect_short_name}} services**
+: You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
+
+**{{site.konnect_short_name}} UI/UX redesign**
+: The {{site.konnect_short_name}} UI now has reworked navigation, refreshed colors and styles, and a focus on consistent interactions throughout the application.
 
 : Navigation redesign details:
   * Services is renamed to Service Hub
@@ -39,13 +66,17 @@ Each runtime group acts as a separate control plane and can manage runtime confi
   * Dev Portal settings have moved from the general settings page to the Dev Portal section
   * Refreshed iconography for the main menu
 
-**Dev Portal SSO**
+**Dev Portal default theme**
+: The Dev Portal now comes with a new default theme: "Mint Rocket".
 
+**Dev Portal SSO support with your own IdP**
 : You can now configure custom identity providers (IdPs) for the Dev Portal.
 : See the [SSO documentation](/konnect/dev-portal/customization/#single-sign-on) for more information.
 
-**Koko?**
-: (What can we say about the changes to the CP?)
+**Simplified custom Dev Portal URL setup**
+: SSL certificate generation for custom URLs is now handled by {{site.konnect_short_name}}.
+
+: To set up a custom URL, enter your desired custom portal URL in the Dev Portal settings (for example, `portal.example.com`) and set up a CNAME record to the {{site.konnect_short_name}} organization's Dev Portal domain. See the [Dev Portal customization doc](/konnect/dev-portal/customization) for more information.
 
 **Vitals metrics and dashboards**
 : The Vitals overview dashboard now provides metrics for services cataloged by Service Hub within a selected time interval.
@@ -59,31 +90,15 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 
 : See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
 
-**Labels**
-: You can now use labels for categorizing runtime groups.
-Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of Konnect entities.
-: Learn about using labels in the [runtime group documentation](/konnect/runtime-manager/runtime-groups/manage).
-
-**Tags for Konnect services**
-: You can now connect Konnect services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
-
-**Service sharing**
-: You can [share Konnect services](/konnect/servicehub/manage-services/#share-a-service) with users and teams through the Service Hub.
-
-**Certificate changes for runtime instances**
-: The validity period for runtime instance certificates has been extended from six months ten years.
-
-: Additionally, Konnect doesn't require CA certificates for runtime instances anymore.
-
 **Custom plugin requirements have changed**
 : Some custom plugin limitations have changed or been removed.
 See the latest requirements in the [plugin doc](/konnect/servicehub/plugins).
 
 : Custom plugins can't be added directly through the {{site.konnect_saas}} application.
-If you have a custom plugin you want to use in Konnect, contact [Kong Support](https://support.konghq.com/).
+If you have a custom plugin you want to use in {{site.konnect_short_name}}, contact [Kong Support](https://support.konghq.com/).
 
 **Refactored documentation**
-: The Konnect documentation has been refactored to match the new Konnect navigation, and generally reworked to provide a better experience for Konnect users.
+: The {{site.konnect_short_name}} documentation has been refactored to match the new {{site.konnect_short_name}} navigation, and generally reworked to provide a better experience for {{site.konnect_short_name}} users.
 
 **Known issues/limitations**
 : The `cloud.konghq.com` environment has the following restrictions:
@@ -93,7 +108,7 @@ If you have a custom plugin you want to use in Konnect, contact [Kong Support](h
     * OAuth2 Introspection
     * Apache OpenWhisk
     * Vault Auth
-  * What else?
+  * decK does not support authenticating against Runtime Groups when single sign-on (SSO) is enabled.
 
 ## March 2022
 
