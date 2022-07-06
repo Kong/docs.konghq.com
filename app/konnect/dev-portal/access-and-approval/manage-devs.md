@@ -34,9 +34,9 @@ is now visible in the **Developers** page and is no longer shown in the **Reques
 
 You can to reject a developer's request to register to the Dev Portal. Rejecting a developer will prevent them from accessing the Dev Portal. You can reject an registration request from the **Developers** tab. 
 
-To reject a developer's registration request, follow these steps: 
+To reject a developer's registration request, from the **Developers** tab follow these steps: 
 
-1.  From the **Developers** tab, find the request you want to reject.
+1.  Find the request you want to reject.
 
 2.  In the row for developer request you want to reject, click the {% konnect_icon cogwheel %} icon and choose
    **Reject** from the context menu.
@@ -56,7 +56,7 @@ If a rejected request is deleted, the developer can re-register with the same em
 You can delete a developer's access request. This action cannot be undone. A developer
 whose request was deleted will have to submit another request.
 
-To delete an access request from the **Developers** tab:
+To delete an access request from the **Developers** tab follow these steps: 
 
 1. Find the developer request you want to delete.
 
@@ -72,9 +72,10 @@ violations of your organization's policies or other nefarious reasons.
 A developer who has been revoked can be
 [approved again](#approve-revoked-dev-access) at any time. You can also
 [delete a developer](#delete-dev) entirely from the {{site.konnect_short_name}} Portal.
-To revoke a developer follow these steps:
 
-1. From the **Developers** page, find the developer whose status you want to change.
+To revoke a developer's access, from the **Developers** page follow these steps:
+
+1. Find the developer whose status you want to change.
 2. Click the {% konnect_icon cogwheel %} icon and choose **Revoke** from the
    context menu.
 

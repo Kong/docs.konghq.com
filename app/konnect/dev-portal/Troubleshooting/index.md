@@ -3,7 +3,7 @@ title: Troubleshooting
 no_version: true
 ---
 
-This document contains commonly asked questions. 
+This document contains frequently asked questions. 
 
 
 ## How to find the Dev Portal URL {#locate}
@@ -11,7 +11,7 @@ This document contains commonly asked questions.
 Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.com/). If you don't have admin access and want to register as a developer, ask your {{site.konnect_short_name}} admin for the Dev Portal URL.
 
 {:.note}
-> **Note**: If you are an admin planning to create applications and register Services, you must also [Register as a Developer](#register-as-a-developer).
+> **Note**: If you are an admin planning to create applications and register services, you must also [Register as a Developer](#register-as-a-developer).
 
 1. As an admin, log in to [cloud.konghq.com](https://cloud.konghq.com/). 
 
@@ -20,7 +20,7 @@ Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.co
 3. Under the title heading **Published Services**, see the **Portal URL** link.
 
 
-## Application registration is not enabled for this Service
+## Application registration is not enabled for this service
 
 You may encounter the following error in the Register dialog:
 
@@ -28,14 +28,14 @@ You may encounter the following error in the Register dialog:
 Application registration is not enabled for this Service. 
 ```
 
-To resolve the error, [enable application registration for the Service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.
+To resolve the error, [enable application registration for the service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.
 
 
 ## How to differentiate between registration plugins in decK {#deck}
 
 If using a [declarative configuration](/konnect/runtime-manager/runtime-groups/declarative-config)
-file to manage your Service, these plugins appear in the file. **Do not**
-delete or edit them through declarative configuration, as it will break your Service.
+file to manage your service, these plugins appear in the file. **Do not**
+delete or edit them through declarative configuration, as it will break your service.
 
 To help differentiate the application registration plugins,
 {{site.konnect_short_name}} automatically adds two metadata tags:

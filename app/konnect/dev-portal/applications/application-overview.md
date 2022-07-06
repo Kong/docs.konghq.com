@@ -2,6 +2,7 @@
 title: Applications Overview
 no_version: true
 toc: true
+content-type: explanation
 ---
 
 Multiple services can be registered to a single application. In the {{site.konnect_short_name}} Dev Portal, services registered to an application will be listed in the **Application Detail** page, available by clicking  **My Apps** from the dropdown menu beneath a developer's login email in the Dev Portal.

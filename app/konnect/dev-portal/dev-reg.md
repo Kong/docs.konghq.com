@@ -10,7 +10,9 @@ Developer registrations can be manually approved by {{site.konnect_short_name}} 
 
 ## Register as a Developer {#register}
 
-All Developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. To register as a Developer navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
+All Developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
+
+To register as a developer navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
 
 1. Click **Sign Up**.
 

@@ -4,47 +4,43 @@ no_version: true
 content-type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service Version.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
 When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and your choice of [Key Authentication](/hub/kong-inc/key-auth)
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
-{{site.konnect_saas}}. Once enabled, you can [disable application registration](#disable)
+{{site.konnect_saas}}.
 at any time.
-
-This guide explains how to configure the two supported authentication plugins:
-- [Key Authentication](#konnect-key-auth-flow)
-- [OpenID Connect](#oidc-flow)
-
 
 ## Prerequisites
 
-- The services have been created, versioned, and published to the
-  {{site.konnect_short_name}} Dev Portal so that they appear in the catalog.
+- A service that is versioned, and published to the
+  {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
 - The service version must have an [implementation](/konnect/servicehub/service-implementations)
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
-  - Set up your application, claims, and scopes in your OpenID identity provider as
-    appropriate for your requirements. Refer to your IdP/OP provider's documentation for instructions.
+  - Set up your application, claims, and scopes in your OpenID identity provider. Refer to your IdP/OP provider's documentation for instructions.
 
   - Edit the **Reference ID** field in the Dev Portal
-    [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
+    [Update application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** Please refer to the [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config) for declarative configuration instructions. 
+> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, please read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
 
-## Enable app registration with key authentication {#konnect-key-auth-flow}
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub** and select a
-service. Now, click the **Versions** button and select a version.
+## Enable app registration with key authentication {#key-auth-flow}
+
+To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
+service, and follow these steps: 
+
+1. Click **Versions** to select a version.
 
 2. Click **Version actions** > **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
 
-4. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application
-  registrations for the selected service.
+4. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests.
 
 5. Click **Enable**.
 
@@ -53,8 +49,11 @@ service. Now, click the **Versions** button and select a version.
 
 ## Enable App Registration with OpenID Connect {#oidc-flow}
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub** and select a
-service. Now, click the **Versions** button and select the desired version.
+To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
+service, and follow these steps: 
+
+
+1. Click **Versions** to select a version.
 
 2. Click **Version actions** > **Enable app registration**.
 
@@ -63,43 +62,41 @@ service. Now, click the **Versions** button and select the desired version.
    Refer to the [configuration parameters section](#openid-config-params) for information
    about each field.
 
-
 4. Click **Enable**.
 
-    With app registration enabled, all versions of this service now include
-    read-only entries for the `acl` and `oidc` plugins.
+    All versions of this service now include
+    read-only entries for the  `acl` and `oidc` plugins.
 
 ###  OpenID Connect Configuration Parameters {#openid-config-params}
 
-   | Form Parameter | Description                                                                       |
-   |:---------------|:----------------------------------------------------------------------------------|
-   | `Issuer` | The issuer URL from which the OpenID Connect configuration can be discovered. For example: `https://dev-1234567.okta.com/oauth2/default`. Required. |
-   | `Scopes` | The scopes to be requested from your OP (OpenID Provider). Enter one or more scopes separated by spaces, such as `open_id` `myscope1`. Optional. |
-   | `Consumer claims` |  Name of the claim that is used to find a consumer. Required. |
-   | `Auth method` | The supported authentication method or methods you want to enable. This field should contain only the authentication methods that you need to use; otherwise, you unnecessarily widen the attack surface. Separate multiple entries with a comma. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. Required. |
-   | `Hide Credentials` | Whether to show or hide the credential from the Upstream service. If enabled, the plugin strips the credential from the request (in the header, query string, or request body that contains the key) before proxying it. Default: disabled. Optional.|
-   | `Auto Approve` | Automatically approve developer registration requests for an application. A {{site.konnect_short_name}} admin does not need to [manually approve](/konnect/dev-portal/access-and-approval/manage-app-reg-requests/) application registration requests. Default: disabled. Optional. |
+   | Form Parameter | Description                                                                       |Required |
+   |:---------------|:----------------------------------------------------------------------------------|--|
+   | `Issuer` | The issuer URL from which the OpenID Connect configuration can be discovered. For example: `https://dev-1234567.okta.com/oauth2/default`.  |**True** |
+   | `Scopes` | The scopes to be requested from the OpenID Provider. Enter one or more scopes separated by spaces, for example: `open_id` `myscope1`.  | **False**
+   | `Consumer claims` |  Name of the claim that is used to find a consumer. | **True**
+   | `Auth method` | The supported authentication method(s) you want to enable. This field should contain only the authentication methods that you need to use. Individual entries must be separated by commas. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. | **True**
+   | `Hide Credentials` |**Default: disabled** Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
+   | `Auto Approve` | **Default: disabled** Automatically approve developer application requests for an application.| **False**
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
 
-## Disable App Registration for a Service {#disable}
+## Disable application registration for a service {#disable}
 
-To disable or delete a plugin that was enabled by app registration,
-you must disable app registration itself. You can't use the toggle in the
-Plugins pane on a service version, as the toggle is unavailable for
-{{site.konnect_short_name}}-managed plugins.
+Disabling application registration will remove all plugins that were initially enabled through application registration for this service.
+To remove a plugin by disabling application registration, follow these steps: 
+
+1. Click a service to open theh **Service** menu. 
+
+2. From the **Service** menu, select **Version** to display all of the registered versions.
+
+3. Click the version you intend to disable.
+
+4. Click **Version actions** > **Disable app registration**.
+
+5. Click **Disable** from the pop-up modal. 
+
 
 You can
 [re-enable application registration](/konnect/dev-portal/applications/enable-app-reg)
 at any time.
-
-### Disable app registration
-
-1. From the {{site.konnect_short_name}} menu, click **Services** and select a service.
-
-1. From the **Service** menu, select **Version** to display all of the registered versions.
-
-1. Click the Version you intend to disable.
-
-1. Click **Version actions** > **Disable app registration**.

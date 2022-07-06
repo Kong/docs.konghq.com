@@ -4,20 +4,14 @@ no_version: true
 content_type: how-to
 ---
 
-You can customize the {{site.konnect_short_name}} Dev Portal in the following ways:
-* [Appearance](#appearance)
-* [Custom URL](#add-a-custom-dev-portal-domain)
-* [Access](/konnect/dev-portal/access/)
-* [Single-sign on](#single-sign-on)
-
 
 ## Appearance
 
-The Dev Portal can be customized by those with Admin roles via the Appearance
-settings in the {{site.konnect_short_name}} Admin UI. To access the Appearance
+The Dev Portal can be customized by those with admin roles via the **Appearance
+settings** in the {{site.konnect_short_name}} admin UI. To access the Appearance
 settings, click {% konnect_icon dev-portal %} **Dev Portal**, then **Appearance**.
 
-Here, you have the ability to modify the following:
+From the **Appearance** menu you have the ability to modify the following options:
 
 * Logos: default logo and favicon
 * Home Page Header: welcome message, primary header, and header image
@@ -29,7 +23,7 @@ For details on the requirements for each customizable option, hover over the inf
 
 ## Custom Dev Portal URL
 
-All Dev Portals have an auto-generated default Dev Portal URL. You can add a custom domain. When set up properly, users can access the Dev Portal from both the default URL and the custom URL. The {{site.konnect_short_name}} Kong Dev Portal generates an SSL certificate for your custom domain automatically.
+Every Dev Portal instance has an auto-generated default Dev Portal URL, so that users can access the Dev Portal from both the default URL and the custom URL. The {{site.konnect_short_name}} Dev Portal generates an SSL certificate for your custom domain automatically.
 
 ### Top-level domains
 
@@ -52,15 +46,15 @@ From your domain registrar's DNS records settings options, point your CNAME to y
 
 ### Add a custom Dev Portal domain
 
-Add a custom Dev Portal domain through your organization's {{site.konnect_short_name}} Admin UI.
+To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**, then follow these steps: 
 
-1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
+1. Open the **Portal URL** tab.
 
-2. Open the **Portal URL** tab.
+2. Enter the full domain, including any applicable subdomain. 
+   
+   Don't include a path. It's not necessary to include the URL protocol, for example, `https://` into the **Custom Portal URL** field.
 
-3. Enter the full domain, including subdomain (if applicable). Don't include a path. It's not necessary to include the URL protocol, for example, `https://` into the **Custom Portal URL** field.
-
-4. Test to see if your custom URL works. You'll see the custom URL listed in your Dev Portal under your default Dev Portal URL. Your SSL certificate will be generated automatically.
+3. Test to see if the custom URL is accessible. You'll see the custom URL listed in the Dev Portal under the default Dev Portal URL. An SSL certificate will be generated automatically.
 
    {:.note}
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
@@ -68,20 +62,20 @@ Add a custom Dev Portal domain through your organization's {{site.konnect_short_
 ## Single Sign-On
 {:.badge .enterprise}
 
-A {{site.konnect_short_name}} Admin can configure Single Sign-On (SSO) for the Dev Portal via the Identity settings in the {{site.konnect_short_name}} Admin interface.
+A {{site.konnect_short_name}} admin can configure Single Sign-On (SSO) for the Dev Portal via the identity settings in the {{site.konnect_short_name}} admin interface.
 
-1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
+To configure single sign-on, Open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps: 
 
-2. Open the **Identity** tab.
+1. Open the **Identity** tab.
 
    {:.note}
       > **Note:** Copy the callback URL and enter it in your OIDC Provider
 
-3. Enter the full domain, including the subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). For example,  `https://accounts.google.com` for Google IdP.
+2. Enter the full domain, including the subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). For example,  `https://accounts.google.com` for Google IdP.
 
-4. Enter the unique identifier provided by the IdP into the **Client ID** field.
+3. Enter the unique identifier provided by the IdP into the **Client ID** field.
 
-5. Enter the secret used to verify ownership of your IdP client into the **Client Secret** field.
+4. Enter the secret used to verify ownership of your IdP client into the **Client Secret** field.
 
 ### Configuration Requirements
 

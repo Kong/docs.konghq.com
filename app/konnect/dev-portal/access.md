@@ -8,34 +8,28 @@ Access the Dev Portal to view any [published services](/konnect/servicehub/servi
 and [register applications against services](/konnect/dev-portal/applications/dev-reg-app-service).
 
 ## Access the Dev Portal
- 
-The default {{site.konnect_short_name}} Portal URL is shown when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview page. Your Dev Portal URL will look like this: 
+
+You can access the Dev Portal using the Dev Portal URL. The URL is displayed  when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview page.
+The Dev Portal URL will look like this: 
     
     https://example.us.portal.konghq.com/
 
 ## View a service in the Dev Portal {#url}
 
-The Dev Portal page contains a list of services that are published on the Dev Portal. To view a service in the Dev Portal:
+The Dev Portal page contains a list of services that are published on the Dev Portal. 
 
-1. Click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. 
+To view a service in the Dev Portal click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists every published service that is being managed by {{site.konnect_short_name}}. To view the service in the Dev Portal:  
 
-2. Find a service, click the **more information** icon, then select **View in portal**.
+* Find a service, click the **more information** icon, then select **View in portal**.
 
-    * You can also click **{{site.konnect_short_name}} Portal URL** from this page.
-
-    {:.note}
-    >**Note**: You can also visit the default URL for your Dev Portal at `https://<org-name>.us.portal.konghq.com/`
-
-The Dev Portal is accessible by a default URL. For instructions on customizing the URL of your Dev Portal, see our [Customization Reference](/konnect/dev-portal/customization/).
 
 ## Enable or disable public access for a Dev Portal {#access}
 
-1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %}
-**Dev Portal**, then click **Settings**.
+By default the Dev Portal is not accessible. To toggle public access to a Dev Portal instance open {% konnect_icon dev-portal %}, then click **Settings**, then follow these steps: 
 
-2. Toggle access for **Public Portal**
+1. Toggle access for **Public Portal**
 
-3. Click **Save**.
+2. Click **Save**.
 
 ## See also
 
