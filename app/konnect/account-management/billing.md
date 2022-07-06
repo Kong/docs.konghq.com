@@ -17,7 +17,7 @@ To manage payment methods and invoices an Enterprise account, contact your sales
 
 Modify payment methods for a {{site.konnect_short_name}} Plus plan.
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. Open {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
 1. On the Billing and Usage page, click **Go to billing portal**.
 
@@ -40,7 +40,7 @@ Modify payment methods for a {{site.konnect_short_name}} Plus plan.
 
 Make payments for a {{site.konnect_short_name}} Plus plan.
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. Open {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
 1. From the Billing and Usage page, click **Go to billing portal**.
 
@@ -56,7 +56,7 @@ to set up a new card.
 
 Access billing history for a {{site.konnect_short_name}} Plus plan from the billing portal.
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. Open {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
 1. From the Billing and Usage page, click **Go to billing portal**.
 

@@ -17,7 +17,7 @@ automatically-created users, adjust user permissions through Okta, or
 
 ### Create a team
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
+1. Open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) to go to the **Teams** page.
 
 1. Click **New Team**.
 
@@ -33,13 +33,11 @@ configuration page.
 You can edit the roles for any custom team. Any changes made to a team's roles
 are automatically applied to all team members.
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
-
-1. Choose a team from the list.
+1. Open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) to go to the **Teams** page, then choose a team from the list.
 
     Teams with the `Predefined` label can't be edited or deleted.
 
-1. Open either the Services or Runtime Groups tab, then click **Add role(s)**.
+1. Open either the **Services** or **Runtime Groups** tab, then click **Add role(s)**.
 
 1. Click the instance field to choose an instance of the entity you want to assign, or choose `*` to target all entities of the selected type.
 
@@ -54,16 +52,13 @@ are automatically applied to all team members.
 ### Add or remove team members
 
 Edit team membership for any team, custom or predefined.
+Team members gain all roles attributed to the team.
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
-
-1. Choose a team from the list.
+1. Open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) to go to the **Teams** page, then choose a team from the list.
 
 1. On the **Members** tab, click **Add Member(s)**.
 
 1. Select a user in the organization and click **Save**.
-
-The user gains all roles attributed to the team.
 
 ### Delete a team
 
@@ -76,11 +71,9 @@ You can't delete predefined teams.
 {:.warning}
 > **Warning:** Deleting a team is irreversible.
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/).
+1. Open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) to go to the **Teams** page, then choose a team from the list.
 
-1. Choose a team from the list.
-
-1. Click the **Team actions** drop-down and click **Delete**.
+1. From the **Team actions** drop-down, select **Delete**.
 
 1. Confirm deletion in the dialog.
 

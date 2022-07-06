@@ -18,9 +18,12 @@ with options to change or cancel it.
 
 ### Upgrade from Free to Plus
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. Open the {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+
 1. On the Billing and Usage page, click **Change Plan**.
+
 1. On the **Plus** tile, click **Upgrade**.
+
 1. Enter your billing details.
 
     You are not billed at sign-up. Users are billed monthly on the
@@ -35,7 +38,7 @@ with options to change or cancel it.
 
 There is no self-serve upgrade option for Enterprise plans.
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. Open the {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
 1. On the Billing and Usage page, click **Change Plan**.
 
@@ -52,8 +55,10 @@ There is no self-serve upgrade option for Enterprise plans.
 
 ### Downgrade from Plus to Free
 
-1. From the {{site.konnect_short_name}} menu, click {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+1. Open the {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
+
 1. On the Billing and Usage page, click **Cancel Plan**.
+
 1. Click **Confirm Downgrade** to save and return to the **Billing and Usage**
 overview.
 

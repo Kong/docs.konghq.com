@@ -26,7 +26,7 @@ automatically-created users, adjust user permissions through Okta, or
 ## Add a user to the organization
 
 ### Invite a user
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), then the **Users** page.
+1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
 1. Select **Invite User**.
 1. Enter the user’s name and email.
 1. Assign the user to one or more teams.
@@ -34,9 +34,7 @@ automatically-created users, adjust user permissions through Okta, or
     For team descriptions, hover over the information (`i`) icon next to the team name,
     or see the [predefined teams references](/konnect/org-management/teams-and-roles/teams-reference).
 
-1. Click **Save**.
-
-    An email invitation is sent to the user.
+1. Click **Save** to send an email invitation to the user.
 
 ### Accept invite and create account
 
@@ -51,18 +49,18 @@ assigned to this account.
 
 ## Manage team assignment
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), then click **Users**.
+1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
 
 1. Select a user row to drill down to their assigned teams and roles.
 
-1. Click the **User Actions** dropdown, then select **Add or remove teams** to change the user's team membership.
+1. From the **User Actions** drop-down menu, select **Add or remove teams** to change the user's team membership.
 
 1. Check or uncheck any teams, then click **Ok** to save.
 
 
 ## Manage individual user roles
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), then click **Users**.
+1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
 
 1. Select a user row to drill down to their assigned teams and roles.
 
@@ -77,8 +75,8 @@ assigned to this account.
 
 ## Remove user from organization
 
-1. In {{site.konnect_saas}}, open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), then click **Users**.
+1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
 
-1. Click the **User Actions** drop-down menu, then click **Delete**.
+1. Click the **User Actions** drop-down menu, then select **Delete**.
 
 1. Confirm deletion to permanently remove this user from the organization.

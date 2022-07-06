@@ -98,7 +98,7 @@ claims to extract that information.
     Name | `groups`
     Include in token type | ID token, Always
     Value type | Groups
-    Filter | Select **Matches regex** from the dropdown, then enter `.*` in the field
+    Filter | Select **Matches regex** from the drop-down, then enter `.*` in the field
     Include in | Choose **The following scopes** and select `openid`
 
     This claim tells Okta to reference a subset of Okta groups.
