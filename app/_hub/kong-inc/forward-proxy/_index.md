@@ -9,6 +9,9 @@ description: |
    upstream. This is useful in environments where Kong sits in an organization's
    internal network, the upstream API is available via the public internet, and
    the organization proxies all outbound traffic through a forward proxy server.
+   Please note that this plugin can't be used with an [upstream](/gateway/latest/get-started/comprehensive/load-balancing). As a workaround for load balancing,
+   configure the host field in service to a domain name so that you can
+   use a DNS-based load balancing technique.
 enterprise: true
 type: plugin
 categories:
@@ -163,7 +166,7 @@ params:
 ---
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 1.2.0)
+### {{site.base_gateway}} 2.8.x (plugin version 1.2.0)
 
 * Added `http_proxy_host`, `http_proxy_port`, `https_proxy_host`, and
 `https_proxy_port` configuration parameters for mTLS support.
@@ -181,6 +184,6 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 version labelled as `1.0.x`. It is now updated to align with the
 plugin's actual version, `1.1.x`.
 
-### Kong Gateway 2.7.x (plugin version 1.1.0)
+### {{site.base_gateway}} 2.7.x (plugin version 1.1.0)
 
 * Added `auth_username` and `auth_password` parameters for proxy authentication.
