@@ -21,20 +21,20 @@ services.
 
 : You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import).
 
-: The minimum supported {{site.base_gateway}} version in this environment is 2.5.0.1.
+: The minimum supported {{site.base_gateway}} version for this environment is 2.5.0.1.
 
 **Runtime groups**
-: {{site.konnect_short_name}} now manages all runtime configuration through runtime groups, which provide the ability to securely isolate configuration for sets of runtime instances. Essentially,  this gives you multiple SaaS-managed control planes in one {{site.konnect_short_name}} organization.
+: {{site.konnect_short_name}} now manages all runtime configuration through runtime groups, which provide the ability to securely isolate configuration for sets of runtime instances. Essentially, this gives you access to multiple SaaS-managed control planes in one {{site.konnect_short_name}} organization.
 
-: Every organization starts with one `default` runtime group. Additional custom runtime groups are an Enterprise-only feature.
+: Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
 : Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
-  * Improvements with certificate rotation and management:
+  * Certificate rotation and management:
     * When setting up runtime instances through the {{site.konnect_short_name}} UI, certificates are generated in the browser and pushed to the {{site.konnect_short_name}} API.
-    * {{site.konnect_short_name}} doesn't require CA certificates for runtime instances anymore.
-    * The validity period for runtime instance certificates has been extended from six months ten years.
+    * {{site.konnect_short_name}} no longer requires CA certificates for runtime instances.
+    * The validity period for runtime instance certificates has been extended from six months to ten years.
   * Reworked Gateway configuration UI:
     * The Shared Config menu is now part of Runtime Manager. Manage your Gateway services, routes, plugins, upstreams, SNIs, and certificates through a runtime group, alongside all of the runtime instances in that group.
   * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage).
@@ -44,9 +44,9 @@ services.
 : You can now manage {{site.konnect_short_name}} authorization with [teams and roles](/konnect/org-management/teams-and-roles).
 Existing RBAC roles have been converted to [predefined teams](/konnect/org-management/teams-and-roles/teams-reference), which are available for all {{site.konnect_short_name}} organizations.
 
-: Invite users and add them to these teams to manage user access. You can also assign individual roles per user.
+: To manage user access, invite users to {{site.konnect_short_name}} and add them to teams, or assign individual roles to a user. 
 
-: With a {{site.konnect_short_name}}t Enterprise subscription, you can also [create custom teams](/konnect/org-management/teams-and-roles/manage) and assign per-entity permissions for each team.
+: With a {{site.konnect_short_name}} Enterprise subscription, you can also [create custom teams](/konnect/org-management/teams-and-roles/manage) and assign per-entity permissions for each team.
 
 **Declarative configuration management support with decK**
 : As of [decK 1.12](https://github.com/Kong/deck/releases), standard decK commands such as `diff`, `sync`, and `dump` support {{site.konnect_short_name}} runtime groups.
@@ -78,7 +78,7 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 **Simplified custom Dev Portal URL setup**
 : SSL certificate generation for custom URLs is now handled by {{site.konnect_short_name}}.
 
-: To set up a custom URL, enter your desired custom portal URL in the Dev Portal settings (for example, `portal.example.com`) and set up a CNAME record to the {{site.konnect_short_name}} organization's Dev Portal domain. See the [Dev Portal customization doc](/konnect/dev-portal/customization) for more information.
+: To set up a custom URL, see the [Dev Portal customization documentation](/konnect/dev-portal/customization) for more information.
 
 **Vitals metrics and dashboards**
 : The Vitals overview dashboard now provides metrics for services cataloged by Service Hub within a selected time interval.
@@ -88,13 +88,13 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 
 **Vitals custom reports** <span class="badge alpha"></span>
 
-: Through the Vitals menu, you can create custom reports to track API calls based on services, routes, or applications.
+: Through the Vitals menu, you can create custom reports to track API requests for services, routes, and applications.
 
 : See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
 
 **Custom plugin requirements have changed**
 : Some custom plugin limitations have changed or been removed.
-See the latest requirements in the [plugin doc](/konnect/servicehub/plugins).
+See the latest requirements in the [plugin documentation](/konnect/servicehub/plugins).
 
 : Custom plugins can't be added directly through the {{site.konnect_saas}} application.
 If you have a custom plugin you want to use in {{site.konnect_short_name}}, contact [Kong Support](https://support.konghq.com/).
