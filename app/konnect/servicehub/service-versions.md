@@ -27,9 +27,9 @@ ready to move to it.
 
 ## Create a service version
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
-1. Click the **Service actions** drop-down menu and select **Add new version**.
+1. From the **Service actions** drop-down menu, select **Add new version**.
 
 1. Enter a version name.
 
@@ -63,6 +63,6 @@ Deleting a service version permanently removes it and its implementation, routes
 
 1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-1. Click the **Version actions** drop-down menu and select **Delete**.
+1. From the **Version actions** drop-down menu, select **Delete**.
 
 1. Confirm to permanently delete the service version.

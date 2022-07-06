@@ -14,7 +14,7 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
 
 ### Upload a service description
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
 1. In the **Service Document** section, click **Upload Document**.
 
@@ -24,7 +24,7 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
 
 You can upload a new document to replace an existing service document.
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
 1. In the **Service Document** section, click the {% konnect_icon markdown %} **file icon**, then **Replace**.
 
@@ -34,7 +34,7 @@ You can upload a new document to replace an existing service document.
 
 You can delete an existing document from the Dev Portal. Deleting a service description permanently removes it from the Dev Portal and the Service Hub.
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
 1. In the **Service Document** section, click the {% konnect_icon cogwheel %} icon, then **Delete**.
 
@@ -52,7 +52,7 @@ You can have different API specs that correspond to different versions.
 
 1. In the **Version Spec** section, click **Upload Spec**.
 
-1. Click **Upload Spec** to upload your OpenAPI specification file.
+1. Click **Upload Spec** again to upload your OpenAPI specification file.
 
     The spec must be in YAML or JSON format. You
     can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec to test this functionality.
@@ -66,7 +66,8 @@ You can have different API specs that correspond to different versions.
 
 1. In the **Version Spec** section, click the spec, then click **Replace**.
 Choose a new spec to replace the existing one.
-The published documentation for the service is automatically updated in the Dev Portal.
+
+    The published documentation for the service is automatically updated in the Dev Portal.
 
 ### Delete a version spec
 

@@ -12,7 +12,7 @@ Access all {{site.konnect_short_name}} service configuration through the {% konn
 
 ## Add a service to the catalog
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), click **New service**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), click the **New service** button.
 
 1. Enter a display name.
 
@@ -25,16 +25,13 @@ Access all {{site.konnect_short_name}} service configuration through the {% konn
     The display name you create generates a service name. {{site.konnect_short_name}}
     uses the service name for internal metadata.
 
-1. (Optional) Enter a description.
+1. Optional: Enter a description.
 
 1. Click **Create**.
 
-    A new service is created and {{site.konnect_short_name}} automatically
-    redirects to the service's overview page.
-
 ## Add labels to a service
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
 1. In the header next to **Labels**, click **Edit**.
 
@@ -49,7 +46,7 @@ Access all {{site.konnect_short_name}} service configuration through the {% konn
 
 ## Update a service
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
 1. Edit any of the following:
   * **Service display name**: Click on the name to reveal a text box, then click outside of the text box to save.
@@ -79,8 +76,8 @@ For more information, see [Manage Teams, Roles, and Users](/konnect/org-manageme
 
 Deleting a service permanently removes it and all of its service versions, implementations, routes, and plugins from the Service Hub.
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
-1. Click the **Service actions** drop-down menu and select **Delete service**.
+1. From the **Service actions** drop-down menu, select **Delete service**.
 
 1. Confirm that you want to permanently delete this service.

@@ -4,20 +4,19 @@ no_version: true
 ---
 Enable, update, disable, or delete a plugin for a route.
 
+You can find the a route's overview page through the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub): open any service version, then open a route.
+
 ## Enable a plugin
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-[**Service Hub**](https://cloud.konghq.com/servicehub).
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-1. Select a service version.
-
-1. Find the **Routes** section and select a route.
+1. From the **Routes** section, select a route.
 
     {:.note}
     > If you don't see the **Routes** section, create an
     [implementation](/konnect/servicehub/service-implementations) first.
 
-1. From the **Plugins** section, click **Add plugin**.
+1. From the **Plugins** section of the route page, click **Add plugin**.
 
 1. Find and select a plugin.
 
@@ -32,12 +31,9 @@ Enable, update, disable, or delete a plugin for a route.
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. From the {% konnect_icon servicehub %}
-[**Service Hub**](https://cloud.konghq.com/servicehub), return to the overview page for your route.
+1. From a route page, find the **Plugins** section, then select a plugin.
 
-1. From the **Plugins** section, select a plugin.
-
-1. Click the **Plugin actions** drop-down menu and select **Edit**. On the configuration page:
+1. From the **Plugin actions** drop-down menu, select **Edit**. On the configuration page:
 
     * To update, adjust any values, then click **Save**.
 
@@ -55,9 +51,6 @@ plugin at any time.
 Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
-1. From the {% konnect_icon servicehub %}
-[**Service Hub**](https://cloud.konghq.com/servicehub), return to the overview page for your route.
-
-1. Find the **Plugins** section and select a plugin.
+1. From a route page, find the **Plugins** section, then select a plugin.
 
 1. Click the **Plugin actions** drop-down menu and select **Delete**, then confirm deletion in the dialog.

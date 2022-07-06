@@ -35,7 +35,7 @@ details for the upstream service.
     1. Enter a URL in the default **Add using URL** field, or switch to
     **Add using Protocol, Host and Path** and enter each piece separately.
 
-    1. (Optional) Expand to **View 6 Advanced Fields** and further customize your
+    1. Optional: Expand to **View 6 Advanced Fields** and further customize your
     implementation.
 
         See the [Service Object](/gateway/latest/admin-api/#service-object)
@@ -58,7 +58,7 @@ details for the upstream service.
     1. For **Path(s)**, click **Add Path** and enter a path in the format
     `/<path>`.
 
-    1. (Optional) Click **View 4 Advanced Fields** to see all options.
+    1. Optional: Click **View 4 Advanced Fields** to see all options.
     You can accept the defaults, or further customize your route.
 
         See the [Route Object](/gateway/latest/admin-api/#route-object)
@@ -66,10 +66,8 @@ details for the upstream service.
 
     1. Click **Create**.
 
-    The service version overview displays.
-
     If you want to view the configuration, edit or delete the implementation,
-    or delete the version, click the **Version actions** drop-down menu.
+    or delete the version, click the **Version actions** drop-down menu from the version overview.
 
     You can find the linked Gateway service in the Runtime Manager.
 
