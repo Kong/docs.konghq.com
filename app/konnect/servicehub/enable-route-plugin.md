@@ -4,7 +4,7 @@ no_version: true
 ---
 Enable, update, disable, or delete a plugin for a route.
 
-You can find the a route's overview page through the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub): open any service version, then open a route.
+You can find a route's overview page through the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub): open any service version, then open a route.
 
 ## Enable a plugin
 
