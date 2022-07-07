@@ -72,9 +72,9 @@ to automatically secure your APIs with a variety of authorization providers.
 Use [Vitals](/konnect/vitals) to gain deep insights
 into service, route, and application usage and health monitoring data. Keep your finger
 on the pulse of the health of your API products with custom reports and contextual dashboards.
-In addition, you can enhance these monitoring and analytics capabilities with
-Gateway plugins that enable monitoring metrics to be streamed to
-third-party analytics providers such as Datadog and Prometheus.
+In addition, you can enhance the native monitoring and analytics capabilities with
+Gateway plugins that enable streaming monitoring metrics to
+third-party analytics providers, such as Datadog and Prometheus.
 
 [Learn more about monitoring and analytics &rarr;](/konnect/vitals)
 
