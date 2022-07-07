@@ -12,10 +12,6 @@ You can find a route's overview page through the {% konnect_icon servicehub %} [
 
 1. From the **Routes** section, select a route.
 
-    {:.note}
-    > If you don't see the **Routes** section, create an
-    [implementation](/konnect/servicehub/service-implementations) first.
-
 1. From the **Plugins** section of the route page, click **Add plugin**.
 
 1. Find and select a plugin.
@@ -26,31 +22,30 @@ You can find a route's overview page through the {% konnect_icon servicehub %} [
 
 1. Click **Save**.
 
+{:.note}
+> If you don't see the **Routes** section, create an
+[implementation](/konnect/servicehub/service-implementations) first.
+
 ## Update or disable a plugin
 
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. From a route page, find the **Plugins** section, then select a plugin.
+From a route page, find the **Plugins** section, then select a plugin.
+From this page, you can update or disable a plugin:
 
-1. From the **Plugin actions** drop-down menu, select **Edit**. On the configuration page:
+* From the **Plugin actions** drop-down menu, select **Edit**.
 
-    * To update, adjust any values, then click **Save**.
+  * To update, adjust any values, then click **Save**.
 
-    * To disable the plugin, switch the toggle at the top of the page. The
-    toggle should now display:
+  * To disable the plugin, switch the toggle to `This plugin is Disabled`, then click **Save**.
 
-        ```
-        This plugin is Disabled.
-        ```
-
-        Click **Update** to save changes.
-
-## Update or disable a plugin
+## Delete a plugin
 
 Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
-1. From a route page, find the **Plugins** section, then select a plugin.
+From a route page, find the **Plugins** section, then select a plugin.
+From this page, you can delete the plugin:
 
-1. Click the **Plugin actions** drop-down menu and select **Delete**, then confirm deletion in the dialog.
+* From the **Plugin actions** drop-down menu, select **Delete**, then confirm deletion in the dialog.

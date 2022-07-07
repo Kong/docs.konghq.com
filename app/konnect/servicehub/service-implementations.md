@@ -17,7 +17,8 @@ runtime instance in the runtime group that the service version belongs to.
 {{site.base_gateway}} runtime.
 
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
+Add an implementation from this page:
 
 1. Click **New Implementation**.
 
@@ -79,7 +80,8 @@ first one.
 
 All routes are created in the same runtime group as their parent service version.
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
+Add a route from this page:
 
 1. In the **Routes** section, click **Add route**.
 
