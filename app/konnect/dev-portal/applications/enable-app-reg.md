@@ -75,8 +75,8 @@ service, and follow these steps:
    | `Scopes` | The scopes to be requested from the OpenID Provider. Enter one or more scopes separated by spaces, for example: `open_id` `myscope1`.  | **False**
    | `Consumer claims` |  Name of the claim that is used to find a consumer. | **True**
    | `Auth method` | The supported authentication method(s) you want to enable. This field should contain only the authentication methods that you need to use. Individual entries must be separated by commas. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. | **True**
-   | `Hide Credentials` |**Default: disabled** Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
-   | `Auto Approve` | **Default: disabled** Automatically approve developer application requests for an application.| **False**
+   | `Hide Credentials` |**Default: disabled**<br>  Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
+   | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).

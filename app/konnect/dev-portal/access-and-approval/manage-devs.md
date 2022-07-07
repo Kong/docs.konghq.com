@@ -53,8 +53,7 @@ If a rejected request is deleted, the developer can re-register with the same em
 
 ### Delete access request {#delete-dev-reg}
 
-You can delete a developer's access request. This action cannot be undone. A developer
-whose request was deleted will have to submit another request.
+You can delete a developer's access request. This action cannot be undone. 
 
 To delete an access request from the **Developers** tab, follow these steps: 
 
@@ -62,6 +61,10 @@ To delete an access request from the **Developers** tab, follow these steps:
 
 2. In the row for developer request you want to delete, click the {% konnect_icon cogwheel %} icon and choose
    **Delete** from the context menu.
+
+{:.important}
+> **Important:** Deleting an access request does not prevent a user from submitting another access request.
+To prevent a user from submitting requests, you must [revoke](#revoke-dev-access) access.
 
 ### Revoke a developer's access {#revoke-dev-access}
 
