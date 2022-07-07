@@ -3,13 +3,13 @@ title: Compatibility
 no_version: true
 ---
 
-## Supported Browsers
+## Supported browsers
 
 |                                  | IE | Edge | Firefox | Chrome | Safari |
 |----------------------------------|:--:|:----:|:-------:|:------:|:------:|
 | {{site.konnect_saas}} |  <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |  <i class="fa fa-check"></i> |  <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
-## Runtime Compatibility
+## Runtime compatibility
 
 {:.note}
 > **Note:** Currently, the only supported runtime type in
