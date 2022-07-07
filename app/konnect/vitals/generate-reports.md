@@ -58,7 +58,7 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 1. Choose a [metric](#metrics) to group the data by.
 1. Choose the entities to focus on in your report.
 
-    Note that route entity names are composed of multiple elements.
+    Route entity names are composed of multiple elements.
     See [route entity format](#route-entity-format) for the breakdown.
 
 1. Click **Create**.
@@ -117,7 +117,7 @@ Metric | Report type | Description
 -------|------------|------------
 Total traffic | Service, route, application | Total number of API calls within the selected time frame.
 Total traffic by status code | Service, route, application | Number of API calls grouped by status code.
-Total traffic by service | Route, application | Number of API calls filtered by services or service versions, and grouped by service.
+Total traffic by service | Route, application | Number of API calls filtered by services or service versions and grouped by service.
 Total traffic by route | Service, application | Number of API calls grouped by route.
 Total traffic by application | Service, route | Number of API calls grouped by application.
 
