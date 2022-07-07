@@ -70,12 +70,12 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 
 ## Version Support for Kong Mesh
 
-| Version  | Released Date | End of Full Support | End of Sunset Support |
-|:--------:|:-------------:|:-------------------:|:---------------------:|
-|  1.8.x   |  2022-06-15   |     2023-06-14      |      2024-06-14       |
-|  1.7.x   |  2022-04-11   |     2023-04-10      |      2024-04-10       |
-|  1.6.x   |  2022-02-24   |     2023-02-23      |      2024-02-23       |
-|  1.5.x   |  2021-11-23   |     2022-11-22      |      2023-11-22       |
+| Version  | Released Date | End of Full Support |
+|:--------:|:-------------:|:-------------------:|
+|  1.8.x   |  2022-06-15   |     2023-06-14      |
+|  1.7.x   |  2022-04-11   |     2023-04-10      |
+|  1.6.x   |  2022-02-24   |     2023-02-23      |
+|  1.5.x   |  2021-11-23   |     2022-11-22      |
 
 > *Table 2: Version Support for Kong Mesh*
 
