@@ -4,7 +4,7 @@ no_version: true
 content-type: how-to
 ---
 
-When a developer [registers an application with a Service](/konnect/dev-portal/applications/dev-reg-app-service),
+When a developer [registers an application with a service](/konnect/dev-portal/applications/dev-reg-app-service),
 the requests must be approved by an admin if
 [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),
@@ -12,8 +12,7 @@ developers must register their applications with a service. This guide explains 
 
 ## Approve a Request {#approve-app-reg}
 
-The **Applications** tab is for managing developer's requests to register an application with a service, any pending application requests are
-displayed here.
+The **Applications** tab lists all pending developer requests to register an application with a service. Manage registration requests from this tab.
 This is how you approve an application registration request from the **Applications** tab:
 
 * In the row for an application request you want to approve, click the {% konnect_icon cogwheel %} icon and select
@@ -56,15 +55,13 @@ This is how to delete an application registration request, from the **Applicatio
 * In the row for the application registration request you want to delete, click the {% konnect_icon cogwheel %} icon and select
    **Delete** from the context menu.
 
-   The request is deleted from the **Applications** tab. The pending request is also
-   deleted from the **Services** pane of an application in the {{site.konnect_short_name}} Dev Portal.
+The request is deleted from the **Applications** tab. The pending request is also
+deleted from the **Services** pane of an application in the {{site.konnect_short_name}} Dev Portal.
 
- 
-   Any pending application requests are displayed
-   in the Requests page Applications tab.
+ Any pending application requests are displayed in the Requests page Applications tab.
 
 
-## Application Registration Status {#status}
+## Application registration status {#status}
 
 The following status conditions reflect the current state of a registration request:
 

@@ -20,7 +20,7 @@ The Dev Portal lives at a separate URL from {{site.konnect_short_name}} and requ
 
 ## Developer self service
 
-Dev Portals are created for Developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through Service Hub, they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
+Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through Service Hub, they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
 
 For more information on this topic, we offer several pieces of documentation depending on your use case.
 

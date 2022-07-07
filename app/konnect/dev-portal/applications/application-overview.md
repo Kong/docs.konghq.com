@@ -5,7 +5,7 @@ toc: true
 content-type: explanation
 ---
 
-Multiple services can be registered to a single application. In the {{site.konnect_short_name}} Dev Portal, services registered to an application will be listed in the **Application Detail** page, available by clicking  **My Apps** from the dropdown menu beneath a developer's login email in the Dev Portal.
+Multiple services can be registered to a single application. In the {{site.konnect_short_name}} Dev Portal, services registered to an application are listed in an application's detail page. You can find all applications in your account by clicking  **My Apps** from the dropdown menu beneath your login email in the Dev Portal.
 
 The purpose of registering services to an application is to consume those services using application-level authentication. Grouping authentication enables direct access to multiple services. The application can host multiple credentials or API keys. For more information about application credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
 
@@ -13,7 +13,7 @@ In [cloud.konghq.com](https://cloud.konghq.com), admins can access a list of the
 
 Once a developer is [granted access](/konnect/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal, they can create, edit, and delete applications. These modifications are all managed on the **My Apps** page. **My Apps** allows you to view all of your registered applications. Clicking on individual applications from this page opens a detailed overview of an application.
 
-You can perform the following actions from the application details page:
+You can perform the following actions from an application's details page:
 
 - [Edit](#edit-an-application) the name, reference ID, and description of an application.
 - [Generate or delete credentials](/konnect/dev-portal/applications/dev-gen-creds/).

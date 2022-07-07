@@ -3,7 +3,7 @@ title: Register or Unregister an Application to a Service
 no_version: true
 content-type: reference
 ---
-Dev Portal users can request to use {{site.konnect_short_name}} services with their application by submitting an registration request. All registration requests go through an approval process. A {{site.konnect_short_name}} admin can manually approve requests, or enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) and have all application requests be automatically approved. 
+Dev Portal users can request to use {{site.konnect_short_name}} services with their application by submitting an application registration request. All registration requests go through an approval process. A {{site.konnect_short_name}} admin can manually approve requests, or enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) and have all application requests be automatically approved. 
 
 ## Register an application
 
@@ -32,4 +32,4 @@ To unregister an application, navigate to the **My Apps** section of the Dev Por
 
 1. Select the application you want to unregister.
 
-2. In the **Services** pane, click the {% konnect_icon cogwheel %} icon for the service and choose **Unregister**.
+2. In the **Services** pane, click the {% konnect_icon cogwheel %} icon for the service, then select **Unregister**.

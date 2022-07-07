@@ -8,25 +8,25 @@ To grant developers access to [register an application](/konnect/dev-portal/appl
 When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and your choice of [Key Authentication](/hub/kong-inc/key-auth)
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
 {{site.konnect_saas}}.
-at any time.
 
 ## Prerequisites
 
-- A service that is versioned, and published to the
+- A service that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
-- The service version must have an [implementation](/konnect/servicehub/service-implementations)
+- The service version must be in the `default` runtime group.
+- The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
   - Set up your application, claims, and scopes in your OpenID identity provider. Refer to your IdP/OP provider's documentation for instructions.
 
   - Edit the **Reference ID** field in the Dev Portal
-    [Update application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
+    [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, please read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
+> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
 
 
 ## Enable app registration with key authentication {#key-auth-flow}
@@ -36,7 +36,7 @@ service, and follow these steps:
 
 1. Click **Versions** to select a version.
 
-2. Click **Version actions** > **Enable app registration**.
+2. From the **Version actions** drop-down menu, select **Enable app registration**.
 
 3. Select `key-auth` from the **Auth Type** list.
 
@@ -47,7 +47,7 @@ service, and follow these steps:
     All versions of this service now include
     read-only entries for the `acl` and `key-auth` plugins.
 
-## Enable App Registration with OpenID Connect {#oidc-flow}
+## Enable app registration with OpenID Connect {#oidc-flow}
 
 To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
 service, and follow these steps: 
@@ -55,7 +55,7 @@ service, and follow these steps:
 
 1. Click **Versions** to select a version.
 
-2. Click **Version actions** > **Enable app registration**.
+2. From the **Version actions** drop-down menu, select **Enable app registration**.
 
 3. Select `openid-connect` from the **Auth Type** list.
 
@@ -67,7 +67,7 @@ service, and follow these steps:
     All versions of this service now include
     read-only entries for the  `acl` and `oidc` plugins.
 
-###  OpenID Connect Configuration Parameters {#openid-config-params}
+###  OpenID Connect configuration parameters {#openid-config-params}
 
    | Form Parameter | Description                                                                       |Required |
    |:---------------|:----------------------------------------------------------------------------------|--|
@@ -83,16 +83,16 @@ service, and follow these steps:
 
 ## Disable application registration for a service {#disable}
 
-Disabling application registration will remove all plugins that were initially enabled through application registration for this service.
+Disabling application registration removes all plugins that were initially enabled through application registration for this service.
 To remove a plugin by disabling application registration, follow these steps: 
 
-1. Click a service to open theh **Service** menu. 
+1. Click a service to open the **Service** menu. 
 
 2. From the **Service** menu, select **Version** to display all of the registered versions.
 
 3. Click the version you intend to disable.
 
-4. Click **Version actions** > **Disable app registration**.
+4. From the **Version actions** drop-down menu, select **Disable app registration**.
 
 5. Click **Disable** from the pop-up modal. 
 

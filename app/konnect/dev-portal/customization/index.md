@@ -8,7 +8,7 @@ content_type: how-to
 ## Appearance
 
 The Dev Portal can be customized by those with admin roles via the **Appearance
-settings** in the {{site.konnect_short_name}} admin UI. To access the Appearance
+settings** in the {{site.konnect_short_name}} admin UI. To access the appearance
 settings, click {% konnect_icon dev-portal %} **Dev Portal**, then **Appearance**.
 
 From the **Appearance** menu you have the ability to modify the following options:
@@ -46,15 +46,15 @@ From your domain registrar's DNS records settings options, point your CNAME to y
 
 ### Add a custom Dev Portal domain
 
-To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**, then follow these steps: 
+To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps: 
 
 1. Open the **Portal URL** tab.
 
 2. Enter the full domain, including any applicable subdomain. 
    
-   Don't include a path. It's not necessary to include the URL protocol, for example, `https://` into the **Custom Portal URL** field.
+   Don't include a path. It's not necessary to include the URL protocol (for example, `https://`) in the **Custom Portal URL** field.
 
-3. Test to see if the custom URL is accessible. You'll see the custom URL listed in the Dev Portal under the default Dev Portal URL. An SSL certificate will be generated automatically.
+3. Test your custom URL. You'll see the custom URL listed in the Dev Portal under the default Dev Portal URL. An SSL certificate will be generated automatically.
 
    {:.note}
    > **Note:** DNS propagation can take a few hours. If after a few hours you can't access the Dev Portal from the custom URL, contact your domain registrar.
@@ -62,16 +62,16 @@ To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Port
 ## Single Sign-On
 {:.badge .enterprise}
 
-A {{site.konnect_short_name}} admin can configure Single Sign-On (SSO) for the Dev Portal via the identity settings in the {{site.konnect_short_name}} admin interface.
+A {{site.konnect_short_name}} admin can configure single sign-on (SSO) for the Dev Portal via the identity settings in the {{site.konnect_short_name}} admin interface.
 
-To configure single sign-on, Open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps: 
+To configure single sign-on, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps: 
 
 1. Open the **Identity** tab.
 
    {:.note}
-      > **Note:** Copy the callback URL and enter it in your OIDC Provider
+1. Copy the callback URL and enter it in your identity provider.
 
-2. Enter the full domain, including the subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). For example,  `https://accounts.google.com` for Google IdP.
+2. Enter the full domain, including the subdomain and protocol, into the  **Provider URL** field (also known as **Issuer**). For example, `https://accounts.google.com` for Google IdP.
 
 3. Enter the unique identifier provided by the IdP into the **Client ID** field.
 

@@ -8,7 +8,7 @@ content-type: how-to
 
 ## Create an application
 
-To create a new application, log in to the Dev Portal and click **My Apps**. From the **My Apps** page follow these instructions: 
+To create a new application, log in to the Dev Portal and click **My Apps**. From the **My Apps** page, follow these instructions: 
 
 1. Click the **New App** button.
 
@@ -38,7 +38,7 @@ You can edit the **application name**, **reference ID**, and **description**. A 
 
 ## Delete an Application
 
-To permanently delete a an application from the Dev Portal follow these steps:
+To permanently delete an application from the Dev Portal, follow these steps:
 
 1. From the **My Apps** page, click the {% konnect_icon cogwheel %} icon next to an application, then click **Delete**.
 

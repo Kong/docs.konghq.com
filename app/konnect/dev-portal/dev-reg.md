@@ -10,31 +10,31 @@ Developer registrations can be manually approved by {{site.konnect_short_name}} 
 
 ## Register as a Developer {#register}
 
-All Developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
+All developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
 
-To register as a developer navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
+To register as a developer, navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
 
 1. Click **Sign Up**.
 
 2. Fill out the registration form, then click **Create Account**.
 
-3. A registration link will be sent to the email address you registered, click the verification link in the the registration email. 
+3. A registration link will be sent to the email address you registered. Click the verification link in the the registration email. 
 
 4. Create a password for your account.
 
 If your admin has enabled auto-approve, you can log into the Dev Portal immediately after setting a password. For more information on auto-approving registration, read the [set up auto-approval for developer access as an admin](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) documentation.
 
-If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. To learn more about about the manual approval process read the [manually approve developer access as an admin](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg) documentation.
+If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. To learn more about about the manual approval process, read the [manual approval](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg) documentation.
 
 ## Login/Register with SSO {#sso}
 {:.badge .enterprise}
-The {{site.konnect_short_name}} Dev Portal supports single sign-on (SSO) login and registration. The {{site.konnect_short_name}} admin must configure SSO before it's available on the Dev Portal. For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} Admin, review the [enable single sign-on instructions](/konnect/dev-portal/customization/#single-sign-on/). 
+The {{site.konnect_short_name}} Dev Portal supports single sign-on (SSO) login and registration. The {{site.konnect_short_name}} admin must configure SSO before it's available on the Dev Portal. For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} admin, review the [single sign-on setup instructions](/konnect/dev-portal/customization/#single-sign-on/). 
 
-To login to the Dev Portal using SSO, navigate to the Dev Portal and follow these steps: 
+To log in to the Dev Portal using SSO, navigate to the Dev Portal and follow these steps: 
 
 1. From the login form, click **Login with SSO**.
 
-2. After you are redirected to the Identity Provider (IdP), log in using your IdP's credentials.
+2. After you are redirected to the identity provider (IdP), log in using your IdP's credentials.
 
 3. You will be automatically logged in and redirected to the {{site.konnect_short_name}} catalog.
 

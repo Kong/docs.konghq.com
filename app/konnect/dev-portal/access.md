@@ -9,8 +9,8 @@ and [register applications against services](/konnect/dev-portal/applications/de
 
 ## Access the Dev Portal
 
-You can access the Dev Portal using the Dev Portal URL. The URL is displayed  when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview page.
-The Dev Portal URL will look like this: 
+You can access the Dev Portal using the Dev Portal URL. The URL is displayed when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview page.
+The Dev Portal URL looks like this: 
     
     https://example.us.portal.konghq.com/
 
@@ -18,7 +18,9 @@ The Dev Portal URL will look like this:
 
 The Dev Portal page contains a list of services that are published on the Dev Portal. 
 
-To view a service in the Dev Portal click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists every published service that is being managed by {{site.konnect_short_name}}. To view the service in the Dev Portal:  
+To find a service in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists every published service that is being managed by {{site.konnect_short_name}}. 
+
+To open a published service in the Dev Portal:  
 
 * Find a service, click the **more information** icon, then select **View in portal**.
 

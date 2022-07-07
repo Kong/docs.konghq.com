@@ -3,7 +3,7 @@ title: Manage Developer Access
 no_version: true
 content-type: reference
 ---
-**Connections** is used to manage Dev Portal registration requests, and Dev Portal developer accounts.
+{% konnect_icon connections %} **Connections** manages Dev Portal registration requests and developer accounts.
 The **Connections** section contains three pages to help you manage different aspects of the Dev Portal:
 * The **Requests** page has options to manage developer and application registration requests.
 * The **Developers** page has options to manage access to your Dev Portal for individual developers.
@@ -18,9 +18,9 @@ The **Requests** page is available by clicking {% konnect_icon connections %} **
 
 ### Approve access request {#approve-dev-reg}
 
-After developers register for the Dev Portal their applications must be manually approved. All pending developer requests are displayed in the **Developers** tab within the **Requests** section. The number of pending requests is displayed in the Developers tab. If there are no pending requests, a `No Developer Requests` message is displayed.
+When auto-approve is not enabled, developers registering for the Dev Portal must be manually approved. All pending developer requests are displayed in the **Developers** tab within the **Requests** section. The number of pending requests is displayed in the Developers tab. If there are no pending requests, a `No Developer Requests` message is displayed.
 
-To approve a developers registration application from the **Developers** page, follow these steps:
+From the **Developers** page, approve a developer's registration request:
 
 1. Find the developer request you want to approve.
 
@@ -56,7 +56,7 @@ If a rejected request is deleted, the developer can re-register with the same em
 You can delete a developer's access request. This action cannot be undone. A developer
 whose request was deleted will have to submit another request.
 
-To delete an access request from the **Developers** tab follow these steps: 
+To delete an access request from the **Developers** tab, follow these steps: 
 
 1. Find the developer request you want to delete.
 
@@ -73,7 +73,7 @@ A developer who has been revoked can be
 [approved again](#approve-revoked-dev-access) at any time. You can also
 [delete a developer](#delete-dev) entirely from the {{site.konnect_short_name}} Portal.
 
-To revoke a developer's access, from the **Developers** page follow these steps:
+To revoke a developer's access, from the **Developers** page, follow these steps:
 
 1. Find the developer whose status you want to change.
 2. Click the {% konnect_icon cogwheel %} icon and choose **Revoke** from the
