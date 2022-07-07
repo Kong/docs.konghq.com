@@ -49,8 +49,8 @@ collaborate and manage their own set of runtimes and services without
 the risk of impacting other teams and projects. Runtime Manager instantly
 provisions hosted {{site.base_gateway}} control planes and supports securely
 attaching {{site.base_gateway}} data planes from your cloud or hybrid environments.
-Increase security of your APIs with out-of-the-box enterprise and community plugins,
-including Open ID Connect, Open Policy Agent, mutual TLS and more.
+
+Through the Runtime Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
 [Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager)
 
