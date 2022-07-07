@@ -32,10 +32,10 @@ preferred network environment.
 ### Service Hub
 
 [Service Hub](/konnect/servicehub) makes internal APIs discoverable, 
-consumable, and resuable for internal development teams. Service Hub 
-enables the cataloging of all your services into a single system of record.
-This catalog represents the single source of truth for your organization’s 
-service inventory. By leveraging Service Hub, your application developers 
+consumable, and reusable for internal development teams. Catalog
+all your services through the Service Hub to create a single source of 
+truth for your organization’s service inventory. By leveraging Service Hub, 
+your application developers 
 can search, discover, and consume existing services to accelerate their 
 time-to-market, while enabling a more consistent end-user experience
 across the organization’s applications.
