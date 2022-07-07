@@ -28,7 +28,7 @@ You may encounter the following error in the Register dialog:
 Application registration is not enabled for this Service. 
 ```
 
-To resolve the error, [enable application registration for the service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the role permissions to do so.
+To resolve the error, [enable application registration for the service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the access to do so.
 
 
 ## How to differentiate between registration plugins in decK {#deck}
