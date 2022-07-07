@@ -69,7 +69,7 @@ to automatically secure your APIs with a variety of authorization providers.
 
 ### Monitoring and analytics in {{site.konnect_short_name}}
 
-Use [Vitals](/konnect/vitals) to provide deep insights
+Use [Vitals](/konnect/vitals) to gain deep insights
 into service, route, and application usage and health monitoring data. Keep your finger
 on the pulse of the health of your API products with custom reports and contextual dashboards.
 In addition, you can enhance these monitoring and analytics capabilities with
