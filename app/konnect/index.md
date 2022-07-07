@@ -54,6 +54,8 @@ including Open ID Connect, Open Policy Agent, mutual TLS and more.
 
 [Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager)
 
+[Check out Konnect-compatible plugins &rarr;](/konnect/hub)
+
 ### Dev Portal
 
 [Dev Portal](/konnect/dev-portal) offers a self-service developer experience
