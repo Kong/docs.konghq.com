@@ -114,6 +114,7 @@ serverless
 snis
 Splunk
 ssl
+sso
 stderr
 stdin
 stdout

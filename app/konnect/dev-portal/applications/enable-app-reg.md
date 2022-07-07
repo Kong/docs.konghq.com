@@ -59,7 +59,7 @@ service, and follow these steps:
 
 3. Select `openid-connect` from the **Auth Type** list.
 
-   Refer to the [configuration parameters section](#openid-config-params) for information
+   Refer to the [configuration parameters section](#openid-config-parameters) for information
    about each field.
 
 4. Click **Enable**.
@@ -67,7 +67,7 @@ service, and follow these steps:
     All versions of this service now include
     read-only entries for the  `acl` and `oidc` plugins.
 
-###  OpenID Connect configuration parameters {#openid-config-params}
+###  OpenID Connect configuration parameters {#openid-config-parameters}
 
    | Form Parameter | Description                                                                       |Required |
    |:---------------|:----------------------------------------------------------------------------------|--|
