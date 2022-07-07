@@ -27,7 +27,7 @@ details for the upstream service.
     1. Enter a name for the Gateway service.
 
         The name can be any string containing letters, numbers, or the following
-        characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+        characters: `.`, `-`, `_`, `~`, `:`. Do not use spaces.
 
         For example, you can use `example_service`, `ExampleService`, `Example-Service`.
         However, `Example Service` is invalid.

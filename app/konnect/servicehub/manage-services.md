@@ -17,7 +17,7 @@ Access all {{site.konnect_short_name}} service configuration through the {% konn
 1. Enter a display name.
 
     A display name can be any string containing letters, numbers, spaces, or the following
-    characters: `.`, `-`, `_`, `~`, or `:`. Spaces are equal to the `-` character.
+    characters: `.`, `-`, `_`, `~`, `:`. Spaces are equal to the `-` character.
 
     For example, you can use `example_service`, `ExampleService`, `Example-Service`, or `Example Service`.
     `Example-Service` and `Example Service` would be considered the same name.
@@ -40,7 +40,7 @@ Access all {{site.konnect_short_name}} service configuration through the {% konn
     For example, you might set `location:us-west`, where `location` is the key
     and the `us-west` is the value.
 
-    These labels are completely custom. Set anything that you need.
+    These labels are customizable, you can set them to any value.
 
 1. Click **Save**.
 

@@ -52,7 +52,7 @@ ready to move to it.
     Different versions of the same service can run in different runtime groups.
     The version name is unique within a group:
 
-    * If you create multiple versions in the _same group_, they must have unique names.
+    * If you create multiple versions in the _same group_, the versions must have unique names.
     * If you create multiple versions in _different groups_, the versions can have the same name.
 
 1. Click **Create** to save.

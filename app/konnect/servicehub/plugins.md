@@ -24,7 +24,7 @@ or consumer. You can configure plugins on
 through the Runtime Manager.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
-routes, and consumers in a runtime group &ndash; set it up through the
+routes, and consumers in a runtime group, using the
 [Runtime Manager](/konnect/runtime-manager/gateway-config).
 
 ### Application registration

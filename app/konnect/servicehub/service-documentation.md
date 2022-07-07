@@ -3,7 +3,7 @@ title: Dev Portal Service Documentation
 no_version: true
 ---
 
-A core function of the Dev Portal is publishing service descriptions and API specs. Developers can use the spec and corresponding descriptions to access, consume, and register new applications against your services.
+A core function of the Dev Portal is publishing service descriptions and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your services.
 
 Through Service Hub, you can also publish any service in your catalog and its
 documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
@@ -43,7 +43,7 @@ You can delete an existing document from the Dev Portal. Deleting a service desc
 ## API specification
 
 API specifications, or specs, can be uploaded and attached to a specific version within your Dev Portal.
-You can have different API specs that correspond to different versions.
+You can have different API specs that correspond to different service versions.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
 ### Upload a version spec
@@ -89,7 +89,7 @@ Publish a service and its API specs to the Dev Portal. Publishing a service make
 
 ### Unpublish a service {#unpublish}
 
-Unpublish a service to remove it from the Dev Portal. Removing a service from the Dev Portal is not permanent, and you can republish again at any time.
+Unpublish a service to remove it from the Dev Portal. Removing a service from the Dev Portal is not permanent, and you can republish it at any time.
 
 1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 

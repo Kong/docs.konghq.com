@@ -20,9 +20,9 @@ You can find the a route's overview page through the {% konnect_icon servicehub 
 
 1. Find and select a plugin.
 
-1. Enter the plugin configuration details. These will differ for every plugin.
+1. Enter the plugin configuration details.
 
-    See the [Plugin Hub](/hub) for parameter descriptions.
+    Configuration details are different for every plugin, see the [Plugin Hub](/hub) for parameter descriptions.
 
 1. Click **Save**.
 
