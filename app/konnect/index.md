@@ -4,12 +4,13 @@ subtitle: The SaaS API Platform
 no_version: true
 ---
 
-{{site.konnect_short_name}} lets you build modern applications better, faster
-and more securely. {{site.konnect_short_name}} is the only API lifecycle 
+{{site.konnect_short_name}} is an API lifecycle 
 management platform designed from the ground up for the cloud native era 
-and delivered as a service. The management plane is hosted in the cloud by 
-Kong, while the runtime engine: Kong Gateway — the fastest and most adopted
-API gateway — is managed by you within your preferred network environment. 
+and delivered as a service. This platform lets you build modern applications 
+better, faster, and more securely. The management plane is hosted 
+in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's 
+lightweight, fast, and flexible API gateway  — is managed by you within your 
+preferred network environment. 
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
 
