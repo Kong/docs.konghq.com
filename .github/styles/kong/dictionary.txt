@@ -136,6 +136,7 @@ unregister
 unregistering
 upstream
 upstreams
+usr
 uri
 uris
 url
