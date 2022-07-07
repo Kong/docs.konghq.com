@@ -100,7 +100,7 @@ See the latest requirements in the [plugin documentation](/konnect/servicehub/pl
 If you have a custom plugin you want to use in {{site.konnect_short_name}}, contact [Kong Support](https://support.konghq.com/).
 
 **Refactored documentation**
-: The {{site.konnect_short_name}} documentation has been refactored to match the new {{site.konnect_short_name}} navigation, and generally reworked to provide a better experience for {{site.konnect_short_name}} users.
+: The {{site.konnect_short_name}} documentation has been refactored to match the new {{site.konnect_short_name}} navigation, and generally reworked to provide a better experience for {{site.konnect_short_name}} users. Let us know what you think via [team-docs@konghq.com](mailto:team-docs@konghq.com)! 
 
 **Known issues/limitations**
 : The `cloud.konghq.com` environment has the following restrictions:
