@@ -59,8 +59,8 @@ Through the Runtime Manager, increase the security of your APIs with out-of-the-
 ### Dev Portal
 
 Streamline developer onboarding with the [Dev Portal](/konnect/dev-portal), which offers a self-service developer experience
-to discover, register, and consume published services from your Serivce Hub catalog.
-This customizeable experience can be used to match your own unique branding and
+to discover, register, and consume published services from your Service Hub catalog.
+This customizable experience can be used to match your own unique branding and
 highlights the documentation and interactive API specifications of your services.
 Enable application registration to automatically secure your APIs with a
  variety of authorization providers.
