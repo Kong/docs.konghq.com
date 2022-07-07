@@ -47,8 +47,8 @@ across the organization’s applications.
 [Runtime Manager](/konnect/runtime-manager) empowers your teams to securely
 collaborate and manage their own set of runtimes and services without 
 the risk of impacting other teams and projects. Runtime Manager instantly
-provisions hosted Kong Gateway control planes and supports securely
-attaching Kong Gateway dataplanes from your cloud or hybrid environments.
+provisions hosted {{site.base_gateway}} control planes and supports securely
+attaching {{site.base_gateway}} data planes from your cloud or hybrid environments.
 Increase security of your APIs with out-of-the-box enterprise and community plugins,
 including Open ID Connect, Open Policy Agent, mutual TLS and more.
 
