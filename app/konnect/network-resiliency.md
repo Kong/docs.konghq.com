@@ -72,7 +72,7 @@ or try to apply older changes.
 
 ### How long can data plane nodes remain disconnected from the control plane?
 
-In theory, indefinitely. A data plane node will keep pinging the
+A data plane node will keep pinging the
 control plane forever, until the connection is re-established or the data plane
 is stopped.
 
@@ -90,7 +90,7 @@ up empty.
 
 ### Can I restart a data plane node if the control plane is down or disconnected?
 
-Yes. If you restart a data plane, it uses cached configuration to continue
+Yes. If you restart a data plane, it uses a cached configuration to continue
 functioning the same as before the restart.
 
 ### Can I create a new data plane node when the connection is down?
