@@ -62,8 +62,8 @@ Streamline developer onboarding with the [Dev Portal](/konnect/dev-portal), whic
 to discover, register, and consume published services from your Serivce Hub catalog.
 This customizeable experience can be used to match your own unique branding and
 highlights the documentation and interactive API specifications of your services.
-Streamline developer onboarding with Dev Portal and enable application registration
-to automatically secure your APIs with a variety of authorization providers.
+Enable application registration to automatically secure your APIs with a
+ variety of authorization providers.
 
 [Learn more about the Dev Portal &rarr;](/konnect/dev-portal)
 
