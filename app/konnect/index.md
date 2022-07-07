@@ -14,7 +14,7 @@ preferred network environment.
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
 
-* Offering a single management plane to deploy and manage your APIs and microservices in any environment — cloud, on-premises, Kubernetes and virtual machines. 
+* Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines. 
  
 * Instantly applying authentication, API security, and traffic control policies consistently across all your services using powerful enterprise and community plugins.
 
