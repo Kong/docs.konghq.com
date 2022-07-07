@@ -1,85 +1,65 @@
 ---
 title: Manage Application Service Connections
 no_version: true
+content-type: reference
 ---
 
 When a developer
-[registration](/konnect/dev-portal/applications/dev-reg-app-service) request is approved, it creates an application connection between the
-developer, their applications, and the associated Service Versions. In {{site.konnect_saas}} you can revoke, reinstate, or delete an application's connection to a Service. Functionality is managed from the **Applications** page.
+[registration](/konnect/dev-portal/applications/dev-reg-app-service) request is approved, it creates a connection between
+the developer, their applications, and any associated service versions. In {{site.konnect_short_name}}, you can revoke, reinstate, or delete a connection to a service. This functionality is managed from the **Applications** page within the {% konnect_icon connections %} **Connections** section. 
 
-## Applications Page
+## Applications section
 
-The Applications page shows existing applications that have been approved to access a {{site.konnect_short_name}} service.
+The Applications section shows existing applications that have been approved to access a {{site.konnect_short_name}} service.
 
-To access the Applications page, from the {{site.konnect_product_name}} navigation menu, click {% konnect_icon connections %} **Connections**, then open the **Applications** tab.
+To access the **Applications** section, from the {{site.konnect_product_name}} navigation menu, click {% konnect_icon connections %} **Connections**, then open the **Applications** section.
 
-Use the Applications page to:
+Use the **Applications** section to:
 
-- Search by name for an existing application.
-- Sort any column header in ascending or descending order.
+- Search for existing applications.
 - View details of an application, such as its name, developer, creation date, and description.
-- Access application connection details for an application. Click a row to open the
-  [application connection details](#app-connection-service-details) page.
+- Access connection details for an application. 
 
-## Application Connection Details Page {#app-connection-service-details}
+To access an application's details page, open the **Applications** section and click on an application. This details page displays traffic and service connection information for a specific application. From this page you can:
 
-The application details page shows all of its connections to a Service.
+## Revoke an application's connection to a service {#revoke-app-connection}
 
-To access the Applications page, from the {{site.konnect_short_name}} navigation menu,
-click {% konnect_icon connections %} **Connections**, then open the **Applications** tab and click on an application row.
-
-
-Use the connection details page to:
-
-- View details of an application, such as the current connection status and available versions of a Service.
-- [Revoke access](#revoke-app-connection) for an application connection to a Service.
-- [Reinstate access](#approve-revoked-service-connection) for a revoked application connection to a Service.
-- [Delete an application connection](#delete-app-connection) to a Service.
-
-## Approve a Revoked Connection {#approve-revoked-service-connection}
-
-1. Click {% konnect_icon connections %} **Connections**, then open the **Applications** tab.
-
-2. Click on an application row.
-
-3. In the row for a Service whose connection status you want to change, click the
-icon and choose **Approve** from the context menu.
-
-Connections that have been previously revoked can also be re-approved by following the same steps.
-
-## Revoke an Application's Connection to a Service {#revoke-app-connection}
-
-
- A connection that has been revoked can be
+A connection that has been revoked can be
 [approved again](#approve-revoked-service-connection) at any time. You can also
-[delete](#delete-app-connection) a connection.
+[delete](#delete-app-connection) a connection. 
+To revoke a connection, follow these steps: 
 
-1. Click {% konnect_icon connections %} **Connections**, then open the **Applications** tab.
-
-   The Applications page is displayed.
-
-2. Click on an application row.
-
-   The Connections details for an application are displayed.
-
-3. In the row for the Service whose application connection status you want to revoke, click the icon and
-   choose **Revoke** from the context menu.
-
-   The status is updated to **Revoked**.
+1. Navigate to the application's details page, by clicking on a specific application from the **Applications** section. 
 
 
-### Delete an Application's Connection to a Service {#delete-app-connection}
+2. From the **Connections** panel, find a connection that has been rejected, click the context menu, then select **Revoke**.
 
-Delete an application's connection to a service. A developer must request to register the deleted application again.
+The status updates from **Approved** to **Revoked**.
 
-1. Click {% konnect_icon connections %} **Connections**, then open the **Applications** tab.
+## Approve a revoked connection {#approve-revoked-service-connection}
 
-2. Click on an application row.
+Revoking access to a connection ends the connection between an application and its associated service. This action _can_ be undone.
+To approve a revoked connection, follow these steps: 
 
-3. In the row for application connection you want to delete, click the icon and choose **Delete** from the
-   context menu.
+1. Navigate to an application's details page, by clicking on a specific application from the **Applications** section. 
 
-## Application Connection Statuses
+2. From the **Connections** panel, find a connection that has been rejected, click the
+context menu, then select **Approve**. 
+
+This status updates from **revoked** to **approved**.
+
+## Delete connection {#delete-app-connection}
+
+When an a connection to a service is deleted, if a developer wants to reconnect to the service, they must submit a new application registration request. 
+To delete a connection from an application, follow these steps: 
+
+1. Navigate to the application's details page, by clicking on a specific application from the **Applications** section. 
+
+2. From the **Connections** panel, find the connection that you want to delete, click the context menu, then select **Delete** 
+
+The connection will be removed from the applications page. 
+
+## Application connection statuses
 
 The following status conditions reflect the current state of an application's connection to a Service:
 

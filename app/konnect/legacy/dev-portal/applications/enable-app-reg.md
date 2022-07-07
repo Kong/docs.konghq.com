@@ -50,7 +50,7 @@ permissions.
     [Update Application](/konnect/legacy/dev-portal/applications/dev-apps#edit-my-app)
     dialog to match to your third-party OAuth2 claim.
 
-## Enable App Registration for the Key Authentication Flow {#konnect-key-auth-flow}
+## Enable app registration for the key authentication flow {#key-auth-flow}
 
 1. From the {{site.konnect_short_name}} menu, click **Services** and select a
 Service.
