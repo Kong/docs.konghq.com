@@ -54,7 +54,7 @@ Through the Runtime Manager, increase the security of your APIs with out-of-the-
 
 [Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager)
 
-[Check out Konnect-compatible plugins &rarr;](/konnect/hub)
+[Check out {{site.konnect_short_name}}-compatible plugins &rarr;](/hub)
 
 ### Dev Portal
 
