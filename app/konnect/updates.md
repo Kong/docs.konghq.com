@@ -93,6 +93,7 @@ See the Dev Portal doc section on
 [{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
 for more information.
 
+
 ## August 2021
 ### 2021.08.31
 **{{site.base_gateway}} 2.5.0.1 support**
