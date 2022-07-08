@@ -51,7 +51,7 @@ assigned to this account.
 
 1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
 
-1. Select a user row to drill down to their assigned teams and roles.
+1. Select a user row to view their assigned teams and roles.
 
 1. From the **User Actions** drop-down menu, select **Add or remove teams** to change the user's team membership.
 
@@ -62,7 +62,7 @@ assigned to this account.
 
 1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
 
-1. Select a user row to drill down to their assigned teams and roles.
+1. Select a user row to view their assigned teams and roles.
 
 1. Select either the **Services** or **Runtime Groups** tab.
 

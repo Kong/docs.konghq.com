@@ -52,7 +52,7 @@ are automatically applied to all team members.
 ### Add or remove team members
 
 Edit team membership for any team, custom or predefined.
-Team members gain all roles attributed to the team.
+Team members inherit all roles attributed to the team.
 
 1. Open {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) to go to the **Teams** page, then choose a team from the list.
 
@@ -62,7 +62,7 @@ Team members gain all roles attributed to the team.
 
 ### Delete a team
 
-Deleting a team completely removes it and its configuration from
+Deleting a team removes it and its configuration from
 {{site.konnect_short_name}}. If the team has any team members, they will be
 unassigned from the team.
 

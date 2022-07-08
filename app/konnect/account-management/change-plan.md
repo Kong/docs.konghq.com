@@ -27,7 +27,7 @@ with options to change or cancel it.
 1. Enter your billing details.
 
     You are not billed at sign-up. Users are billed monthly on the
-    subscription date, and charges are calculated three (3) days before the
+    subscription date, and charges are calculated three days before the
     billing date.
 
 1. Click **Subscribe** to save and return to the **Billing and Usage** overview.
