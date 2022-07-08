@@ -463,12 +463,12 @@ In this example, use the plugin to validate a request's path parameter.
     }
     ```
 
-4. In these step examples, validation makes sure that `status_code` is a number and that the body contains a parameter called `name`
+4. In these step examples, validation ensures that `status_code` is a number and the body contains a parameter called `name`.
 
    A proxy request with a non-numerical status code is blocked:
 
     ```
-    curl --request POST \
+    curl -i -X POST \
     --url http://localhost:8000/status/abc \
     --header 'Content-Type: application/json' \
     --data '{ "name": "foo" }'
@@ -481,7 +481,7 @@ In this example, use the plugin to validate a request's path parameter.
     A proxy request with a numeric status code is allowed:
 
     ```
-    curl --request POST \
+    curl -i -X POST \
     --url http://localhost:8000/status/123 \
     --header 'Content-Type: application/json' \
     --data '{ "name": "foo" }'
