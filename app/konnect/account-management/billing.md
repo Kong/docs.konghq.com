@@ -34,7 +34,7 @@ Modify payment methods for a {{site.konnect_short_name}} Plus plan.
         {:.note}
         > **Note**: If you have an active plan, you must have at least one
         payment method configured. You can't delete the default payment method
-        unless you're on a Free plan.
+        unless you're using the Free tier.
 
 ## Pay an invoice
 
