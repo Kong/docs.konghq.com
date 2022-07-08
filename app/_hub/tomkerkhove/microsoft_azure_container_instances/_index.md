@@ -106,6 +106,7 @@ Running Kong on Azure Container Instances is super easy:
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" \
                                                   KONG_PG_USER="<username>" \
                                                   KONG_PG_PASSWORD="<password>" \
+                                                  KONG_PG_SSL="on" \
                           --command-line "kong migrations bootstrap"
     ```
     In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql){:target="_blank"}{:rel="noopener noreferrer"}.
@@ -128,6 +129,7 @@ Running Kong on Azure Container Instances is super easy:
                                                   KONG_ADMIN_ACCESS_LOG="/dev/stdout" \
                                                   KONG_PROXY_ERROR_LOG="/dev/stderr" \
                                                   KONG_ADMIN_ERROR_LOG="/dev/stderr" \
+                                                  KONG_PG_SSL="on" \
                                                   KONG_ADMIN_LISTEN="0.0.0.0:8001, 0.0.0.0:8444 ssl"
     ```
 
@@ -139,6 +141,6 @@ Running Kong on Azure Container Instances is super easy:
 
 1. **Use Kong**
 
-    That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
+    That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io:8000` and the Admin API is available at `<dns-label>.westeurope.azurecontainer.io:8001`.
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/gateway/latest/get-started/quickstart){:target="_blank"}{:rel="noopener noreferrer"}.
