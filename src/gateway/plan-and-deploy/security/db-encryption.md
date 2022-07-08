@@ -22,7 +22,7 @@ $ openssl genrsa -out key.pem 2048
 $ openssl rsa -in key.pem -pubout -out cert.pem
 ```
 
-This key pair will be provided to Kong in order to faciliate recovering, exporting and re-importing the keyring. The public `cert.pem` and private `key.pem` should be stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs is outside the scope of this documentation.
+This key pair will be provided to Kong in order to facilitate recovering, exporting, and re-importing the keyring. The public `cert.pem` and private `key.pem` should be stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs are outside the scope of this documentation.
 
 ### Configure Kong for database encryption
 
@@ -43,7 +43,7 @@ export KONG_KEYRING_RECOVERY_PUBLIC_KEY=/path/to/generated/cert.pem
 ```
 
 All nodes in the Kong cluster should share the same `keyring_enabled` and `keyring_strategy` configuration values.
-The generated private key `key.pem` is not required in Kong configuration and is not required to start Kong; please refer to [Disaster recovery](#disaster-recovery) for more information on how to use private keys in keyring management.
+The generated private key `key.pem` is not required to configure Kong, or to start Kong. Please refer to the [disaster recovery](#disaster-recovery) section for more information on how to use private keys in keyring management.
 
 ### Start Kong
 
@@ -202,10 +202,10 @@ When the Kong node restarts, it sends a broadcast request for the keyring, but a
 
 ## Disaster Recovery
 
-`cluster` strategy supports the two disaster recovery strategies.
+`cluster` strategy supports two disaster recovery strategies.
 
 ### Automatic backup and manual recovery
-To use automatic backup of keyring materials, one need to configure `keyring_recovery_public_key`:
+To use automatic backups for keyring materials, configure `keyring_recovery_public_key`:
 
 ```
 keyring_recovery_public_key = /path/to/generated/cert.pem
@@ -219,8 +219,8 @@ export KONG_KEYRING_RECOVERY_PUBLIC_KEY=/path/to/generated/cert.pem
 
 #### Recover the Keyring
 
-The keyring material is then encrypted with the public RSA key defined via the `keyring_recovery_public_key`
-Kong configuration value in the database. The corresponding private key can be used to decrypt the Keyring material in the database:
+The keyring material is then encrypted with the public RSA key defined with the `keyring_recovery_public_key`
+Kong configuration value in the database. The corresponding private key can be used to decrypt the keyring material in the database:
 
 ```bash
 $ curl -X POST localhost:8001/keyring/recover -F recovery_private_key=@/path/to/generated/key.pem
@@ -235,7 +235,7 @@ $ curl -X POST localhost:8001/keyring/recover -F recovery_private_key=@/path/to/
 }
 ```
 
-The response contains a list of keys that were successfully recovered and that could not be recovered. Kong error log will contain the detailed reason on why those keys could not be recovered.
+The response contains a list of keys that were successfully recovered and that could not be recovered. The Kong error log will contain the detailed reason why the keys could not be recovered.
 
 ### Manual export and manual import
 
@@ -255,21 +255,21 @@ export KONG_KEYRING_PRIVATE_KEY=/path/to/generated/key.pem
 
 Not every node needs to be provided the management RSA key pair, as that key pair is only used for backup and recovery processes. It does not need to be present for regular database read/write operations.
 
-Note that the user under which Kong worker processes run must have read access to the public and private keys in order to be able to perform keyring export and import operations. This user is defined by the `nginx_user` Kong configuration option. We recommend restricting access to these files as tightly as possible. For example:
+The user that the Kong worker process is running under must have read access to the public and private keys in order to be able to import and export keyrings. This user is defined with the `nginx_user` Kong configuration option. We recommend restricting access to these files, for example:
 
 ```bash
 $ chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
 $ chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
 ```
 
-When testing, you can also set `keyring_blob_path` in kong.conf or `KONG_KEYRING_BLOB_PATH`
+When testing, you can set `keyring_blob_path` in kong.conf or `KONG_KEYRING_BLOB_PATH`
 using environmental variables to specify a path to dump known keys. The dumped keys are
 encrypted with the public RSA key defined in the `keyring_public_key` Kong configuration
-value, and are automatically loaded during Kong start.
+value, and are automatically loaded when Kong starts.
 
 #### Export the Keyring
 
-Before going further, export the keyring. The exported material can be re-imported to the cluster in the event of an outage, or to restore a previously-deleted key:
+Export the keyring. The exported material can be re-imported to the cluster in the event of an outage or to restore a previously-deleted key:
 
 ```bash
 $ curl -XPOST -s localhost:8001/keyring/export | jq
@@ -279,8 +279,8 @@ $ curl -XPOST -s localhost:8001/keyring/export | jq
 
 ```
 
-The response generated is an opaque blob containing the keyring, encrypted with
-a randomly-generated symmetric key. This random key is encrypted with the public
+The response generated is an opaque blob containing the keyring. This blob is encrypted with
+a randomly-generated symmetric key, which is encrypted with the public
 RSA key defined via the `keyring_public_key` Kong configuration value.
 
 The exported keyring should be stored in a safe location for disaster recovery
@@ -372,4 +372,4 @@ Kong reads the keyring material from Vault when the Kong process starts. Any cha
 
 ### Keyring on hybrid mode
 
-Because Keyring encrypts the data in the database, it means it doesn't encrypt data on Kong data plane nodes that run without a database and get data from the control plane. However, one can turn on `declarative_config_encryption_mode` in Kong configuration or use Secrets Management to securely store sensitive data on the data plane nodes.
+Because Keyring encrypts the data in the database, it means it doesn't encrypt data on Kong data plane nodes that run without a database and get data from the control plane. However, one can turn on `declarative_config_encryption_mode` within the Kong configuration, or use secrets management to securely store sensitive data on the data plane nodes.
