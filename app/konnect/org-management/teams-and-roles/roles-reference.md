@@ -29,7 +29,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Admin | Owner of an existing runtime group. The owners have all write access related to a runtime group, the group's runtime instances, and its configuration. |
 | Creator | Access to create a new runtime group in Runtime Manager. The creator becomes the owner of the runtime group they create, gaining admin access to the new runtime group. <br><br>This role does not grant access to _existing_ runtime groups, their runtime instances, or their configurations. See the runtime group `Admin` or `Deployer` roles. |
 | Certificate Admin | Access to configure certificates for an existing runtime group. |
-| Deployer | Access to deploy a Service to the runtime group. Must also have the `Deployer` role for the Service being deployed.  |
+| Deployer | Access to deploy a service to the runtime group. Must also have the Deployer role for the service being deployed.  |
 | Viewer | Read-only access to all the configurations of a runtime group and its runtime instances. |
 | Upstream Admin | Access to configure upstreams for an existing runtime group. |
 
