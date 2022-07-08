@@ -131,7 +131,7 @@
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
-konnect/reference/proxy-traffic/                    /konnect/
+/konnect/reference/proxy-traffic/                   /konnect/
 /konnect/access-account/                            /konnect/getting-started/access-account/
 /konnect/org-management/users-and-roles             /konnect/org-management/teams-and-roles
 /konnect/deployment/license-management              /konnect/account-management/
