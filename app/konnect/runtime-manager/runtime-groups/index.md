@@ -18,9 +18,12 @@ must be of the same type. Currently, only {{site.base_gateway}} runtime types ar
 
 Every organization has one default runtime group.
 
-With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional 
-custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to 
+With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional
+custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to
 manage runtime instances and their configuration in any groupings you want.
+
+![runtime groups](/assets/images/docs/konnect/konnect-runtime-groups-example.svg)
+> _**Figure 1:** Example runtime group configuration with three runtime groups: the default group, a development group, and a production group. {{site.konnect_short_name}} is the SaaS-managed global management plane that controls all of the groups, while the runtime groups contain self-managed runtime instances._
 
 ## Default runtime group
 
@@ -62,8 +65,8 @@ would be available for application registration.
 ## Multiple runtime groups
 {:.badge .enterprise}
 
-In addition to the default runtime group, you can also configure two additional
-custom groups. Splitting runtime instances and configuration into multiple
+In addition to the default runtime group, you can also configure custom groups.
+Splitting runtime instances and configuration into multiple
 runtime groups provides multiple specialized environments in one account.
 
 Some common use cases for using multiple runtime groups include:
