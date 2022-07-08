@@ -89,9 +89,6 @@ Authentication or OIDC. These plugins cannot be edited or deleted directly. To
 help differentiate the {{site.konnect_short_name}}-managed plugins and avoid breaking your service,
 {{site.konnect_short_name}} now adds two metadata tags for declarative configuration:
 `konnect-managed-plugin` and `konnect-app-registration`.
-See the Dev Portal doc section on
-[{{site.konnect_short_name}}-managed plugins](/konnect/dev-portal/applications/application-overview/#konnect-managed-plugins)
-for more information.
 
 
 ## August 2021
@@ -251,7 +248,7 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [re-provision a new runtime](/konnect/runtime-manager/#kong-gateway).
+: To use {{site.base_gateway}} 2.3, [re-provision a new runtime](/konnect/runtime-manager/#runtime-instances).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
