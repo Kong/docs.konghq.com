@@ -47,7 +47,7 @@ On your runtime instance's system, create a namespace and pull down the `kong` H
 
 ## Configure the runtime
 
-Next, configure a {{site.base_gateway}} instance using the certificate, the
+Configure a {{site.base_gateway}} instance using the certificate, the
 private key, and the remaining configuration details on the
 runtime instance configuration page.
 
@@ -71,7 +71,7 @@ $ kubectl create secret tls kong-cluster-cert -n kong \
 
 
 2. Return to {{site.konnect_short_name}} and copy the
-code block in the **Step 2. Configuration Parameters** section.
+code block in the **Configuration Parameters** section.
 
     ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
 
@@ -129,7 +129,7 @@ see a new entry for your instance.
 ### Troubleshooting
 
 If you configured everything above but don't see your runtime instance in the
-list, check the logs from your deployment:
+list, check your deployment logs:
 
 ```bash
 $ kubectl logs deployment/my-kong-kong -n kong

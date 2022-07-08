@@ -3,21 +3,21 @@ title: Kong Gateway Configuration in Konnect
 no_version: true
 ---
 
-You can manage any {{site.base_gateway}} Services, Routes, consumer-scoped
+You can manage any {{site.base_gateway}} services, routes, consumer-scoped
 configuration, and global configuration from within a runtime group.
 
 A **global** object is a set of configurations that apply to, or can be used
 by, all objects in a runtime group. For example, if you set up a Proxy Caching
 plugin in the default runtime group and set it to `Global`,
-the plugin configuration will apply to all Services in the group.
+the plugin configuration will apply to all services in the group.
 
 Consumers, SNIs, upstreams, and certificates are all global. Plugins
 can either be global or scoped.
 
-### Gateway Services
+### Gateway services
 
 The **Gateway Service** configuration page lists all {{site.base_gateway}} services
-in the runtime group. Service entities are abstractions of each of your own
+in the runtime group. service entities are abstractions of each of your own
 upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway services can be exposed in Service Hub, or managed though Runtime Manager
@@ -37,12 +37,12 @@ for all configuration options.
 
 ### Routes
 
-The **Routes** configuration page lists all Routes in the runtime group, including
-Routes created through the Service Hub. A Route defines rules to match client
-requests, and is associated with a Gateway Service. You can edit any
-Routes in the runtime group from here.
+The **Routes** configuration page lists all routes in the runtime group, including
+routes created through the Service Hub. A route defines rules to match client
+requests, and is associated with a Gateway service. You can edit any
+routes in the runtime group from here.
 
-See the [Route object API reference](/gateway/latest/admin-api/#route-object)
+See the [route object API reference](/gateway/latest/admin-api/#route-object)
 for all configuration options.
 
 ### Consumers

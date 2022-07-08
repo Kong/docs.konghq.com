@@ -1,6 +1,7 @@
 ---
 title: Troubleshoot Runtime Instances
 no_version: true
+content-type: how-to
 ---
 
 ## Out of sync runtime instance
@@ -27,7 +28,7 @@ directory for {{site.base_gateway}} logs is [`/usr/local/kong/logs`](/gateway/la
     * Runtime instance failed to receive a ping response from the control plane.
 
     You may have an issue on the host network where the instance resides.
-    Diagnose and resolve the issue, then restart the instance and check
+    diagnose and resolve the issue, then restart the instance and check
     the sync status in the Runtime Manager.
 
 * If the logs show a license issue, contact [Kong Support](https://support.konghq.com/).

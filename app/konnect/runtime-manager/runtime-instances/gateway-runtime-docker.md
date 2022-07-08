@@ -10,9 +10,9 @@ configure your instance to accept configuration from
 instances associated with the {{site.konnect_saas}} account.
 
 You have the following options when configuring a new runtime instance with Docker:
-* Use the [quick setup](#quick-setup) script, which generates a data plane container
+* Use the quick setup script, which generates a data plane container
 running on `localhost`.
-* Use the [advanced setup](#advanced-setup) to customize your installation.
+* Use the advanced setup to customize your installation.
 
 {:.note}
 > **Note:** Kong does not host runtimes. You must install and host your own
@@ -22,8 +22,8 @@ runtime instances.
 
 ### Prerequisites
 
-* The quick setup script requires Docker and a Unix shell (for example, bash or
-zsh).
+* The quick setup script requires Docker and a Unix shell
+
 * Platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
@@ -32,7 +32,7 @@ zsh).
 
 ### Run the quick setup script
 
-1. From the left navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
+1. Open the {% konnect_icon runtimes %} **Runtime Manager**.
 
 2. Select a runtime group.
 
