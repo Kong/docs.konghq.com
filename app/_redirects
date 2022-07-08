@@ -139,6 +139,9 @@ konnect/reference/proxy-traffic/                    /konnect/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
 /konnect/migrate/                                   /konnect/getting-started/migrate/
 /konnect/getting-started/declarative-config/        /konnect/runtime-manager/runtime-groups/declarative-config/
+/konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
+/konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
+/konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
 /konnect/servicehub/dev-portal/service-documentation/   /konnect/servicehub/service-documentation/
 /konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
 /konnect/servicehub/plugins/enable-service-plugin/   /konnect/servicehub/enable-service-plugin/
