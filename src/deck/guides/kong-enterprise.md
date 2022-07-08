@@ -20,7 +20,7 @@ or any entities related to Dev Portal.
 
 ## RBAC
 
-Should you have authentication and RBAC configured for Kong's Admin API, provide the
+If you have authentication and RBAC configured for Kong's Admin API, provide the
 RBAC token to decK so that decK can authenticate itself against the Admin API.
 
 Use the `--headers` flag to pass the RBAC token to decK. For example, you can pass the token as a string:
