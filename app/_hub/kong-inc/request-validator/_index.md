@@ -416,7 +416,7 @@ In this example, use the plugin to validate a request's path parameter.
     {
       "created_at": 1563483059,
       "config": {
-        "body_schema": "{\"name\":{\"type\": \"string\", \"required\": false}}",
+        "body_schema": "{\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}",
         "parameter_schema": [
           {
             "style": "simple",
@@ -447,7 +447,7 @@ In this example, use the plugin to validate a request's path parameter.
     {
       "name": "request-validator",
       "config": {
-        "body_schema": "{\"name\":{\"type\": \"string\", \"required\": false}}",
+        "body_schema": "{\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}",
         "version": "draft4",
         "parameter_schema": [
           {
@@ -463,12 +463,15 @@ In this example, use the plugin to validate a request's path parameter.
     }
     ```
 
-4. In these step examples, validation makes sure that `status_code` is a number.
+4. In these step examples, validation ensures that `status_code` is a number and the body contains a parameter called `name`.
 
    A proxy request with a non-numerical status code is blocked:
 
     ```
-    curl -i -X GET http://kong:8000/status/abc
+    curl -i -X POST \
+    --url http://localhost:8000/status/abc \
+    --header 'Content-Type: application/json' \
+    --data '{ "name": "foo" }'
     HTTP/1.1 400 Bad Request
     ...
 
@@ -478,7 +481,10 @@ In this example, use the plugin to validate a request's path parameter.
     A proxy request with a numeric status code is allowed:
 
     ```
-    curl -i -X GET http://kong:8000/status/200
+    curl -i -X POST \
+    --url http://localhost:8000/status/123 \
+    --header 'Content-Type: application/json' \
+    --data '{ "name": "foo" }'
     HTTP/1.1 200 OK
     X-Kong-Upstream-Latency: 163
     X-Kong-Proxy-Latency: 37
