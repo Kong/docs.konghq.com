@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for your interest in contributing to Kong Docs!
+        Thank you for your interest in contributing to the Kong Docs!
 
         Before submitting a new issue:
         * Please read the [Kong Docs contributing guidelines](https://docs.konghq.com/contributing/).
@@ -16,7 +16,7 @@ body:
     id: link
     attributes:
       label: Where is the problem?
-      description: Link to the affected page(s)
+      description: Provide a link to the affected page(s).
       placeholder: e.g. https://docs.konghq.com/hub/kong-inc/basic-auth
     validations:
       required: true
@@ -27,7 +27,7 @@ body:
       description: Tell us what the problem is.
       placeholder: |
           "I wanted information about this feature, but couldn't find it in the docs!"
-          "The instructions for {X} didn't work as documented."
+          "The documentation for {X} didn't work as expected."
     validations:
       required: true
   - type: textarea
@@ -36,7 +36,7 @@ body:
       label: What did you expect to happen?
       description: Tell us what you think should have happened.
       placeholder: |
-          "This feature should have been documented with {X}, {Y}, and {Z} details."
+          "This feature should have been documented with the following details: {X}, {Y}, and {Z}."
     validations:
       required: true
   - type: checkboxes
