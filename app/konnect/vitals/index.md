@@ -3,8 +3,8 @@ title: Introduction to Monitoring Health with Vitals
 no_version: true
 ---
 
-You can monitor the health and performance of any Service, Service version,
-Route, or Application managed by {{site.konnect_saas}}.
+You can monitor the health and performance of any service, service version,
+route, or application managed by {{site.konnect_saas}}.
 
 Vitals provides traffic reports to help you track the performance and
 behavior of your APIs and runtimes. Use these reports to quickly access key
@@ -17,17 +17,27 @@ historical data for the following lengths of time:
 * **Enterprise:** 1 year
 
 In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
-[activity graphs](/konnect/vitals/analyze/) for Services, Service versions, or
-Routes for the past 30 days.
-For Services, these graphs display request counts. For Service versions and
-Routes, the graphs show requests broken down by status codes.
+[activity graphs](/konnect/vitals/analyze/) for services, service versions, or
+routes for the past 30 days.
+For services, these graphs display request counts. For service versions and
+routes, the graphs show requests broken down by status codes.
 
-To see historical data for a range greater than 30 days, or to customize the
-entities in a report, you can:
-* [Export historical data in CSV format](/konnect/vitals/analyze/) for any
-individual Service, Service version, or Route.
-* [Create a custom report](/konnect/vitals/generate-reports/) for any number of
-Services, Routes, or Applications, filtered by time frame and grouped by metric.
+![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png)
+
+> Figure 1: Graph showing throughput for a service with interval filter options.
+
+For greater insights into your service usage, access {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals) <span class="badge plus"></span>.
+
+From Vitals, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
+* View the [Vitals dashboard](/konnect/vitals/overview-dashboard) to track traffic and errors by error code across all services in your organization.
+* [Export historical data in CSV format](/konnect/vitals/analyze/) for any individual service, service version, or route.
+* [Create a custom report](/konnect/vitals/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
+
+![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
+> Figure 2: Graph showing successful and failed requests over the past three hours.
+
+ ![errors vitals graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
+> Figure 3: Graph showing errors by 4xx and 5xx error codes received over the past three hours.
 
 ## Time intervals
 
@@ -37,9 +47,9 @@ Last 15 minutes | Data is aggregated in ten second increments.
 Last hour| Data is aggregated in one minute increments.
 Last three hours | Data is aggregated in one minute increments.
 Last six hours | Data is aggregated in ten minute increments.
-Last 12 hours| Data is aggregated in ten minute increments. 
-Last 24 hours| Data is aggregated in ten minute increments. 
-Last seven days | Data is aggregated in one hour increments. 
+Last 12 hours| Data is aggregated in ten minute increments.
+Last 24 hours| Data is aggregated in ten minute increments.
+Last seven days | Data is aggregated in one hour increments.
 Last 30 days | Data is aggregated in one hour increments.
 
 {:.important}
@@ -63,5 +73,5 @@ granularity of the data. For example, the “5M” selection displays 5 minutes 
 days resolution data.
 
 **Traffic metrics**
-: Provide insight into which of your Services and Service versions are being
+: Provide insight into which of your services and service versions are being
 used and how they are responding.
