@@ -57,7 +57,7 @@ When encryption is enabled on a Kong node, it checks the status of the cluster k
 
 For all other nodes, the generated key will be automatically distributed within a few seconds.
 
-Note that encryption keys are held _only_ in memory, and do not persist past a restart of the Kong process (e.g., running `kong restart`). Because of this limitation, you must [recover](#recover-the-keyring) or [import](#import-the-keyring) the keyring following its initialization. Otherwise, if all Kong nodes in a cluster restart simultaneously, any sensitive fields written with the keyring become unrecoverable. Key material still persists after a soft reload of Kong (i.e., `kong reload`).
+Note that encryption keys are held _only_ in memory, and do not persist past a restart of the Kong process (e.g., running `kong restart`). Because of this limitation, you must [recover](#recover-the-keyring) or [import](#import-the-keyring) the keyring following initialization. Otherwise, if all Kong nodes in a cluster restart simultaneously, any sensitive fields written with the keyring become unrecoverable. Key material still persists after a soft reload of Kong (i.e., `kong reload`).
 
 ### Verify the Cluster Keyring
 
