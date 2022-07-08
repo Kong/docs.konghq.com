@@ -10,55 +10,72 @@ implementations in one place.
 Access all {{site.konnect_short_name}} service configuration through the {% konnect_icon servicehub %}
 **Service Hub**.
 
-## Add a Service to the catalog
+## Add a service to the catalog
 
-1. In the {% konnect_icon servicehub %} Service Hub, click **+ New service**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), click the **New service** button.
 
-1. Enter a **Display name**.
+1. Enter a display name.
 
-    A display name can be any string containing letters, numbers, or the following
-    characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces in display names.
+    A display name can be any string containing letters, numbers, spaces, or the following
+    characters: `.`, `-`, `_`, `~`, `:`. Spaces are equal to the `-` character.
 
-    For example, you can use `service_name`, `ServiceName`, or `Service-name`.
-    However, `Service Name` is invalid.
+    For example, you can use `example_service`, `ExampleService`, `Example-Service`, or `Example Service`.
+    `Example-Service` and `Example Service` would be considered the same name.
 
-1. (Optional) Enter a **Description**.
+    The display name you create generates a service name. {{site.konnect_short_name}}
+    uses the service name for internal metadata.
+
+1. Optional: Enter a description.
 
 1. Click **Create**.
 
-    A new Service is created and {{site.konnect_short_name}} automatically
-    redirects to the Service's overview page.
+## Add labels to a service
 
-## Update a Service
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then follow these steps:
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
+1. In the header next to **Labels**, click **Edit**.
 
-1. Edit the Service name and description directly on this page: click on either
-element to reveal a text box, enter the new text, then click outside of the text
-box to save.
+1. Click **Add label** and add any labels in `key:value` pair format.
 
-## Share a Service
+    For example, you might set `location:us-west`, where `location` is the key
+    and the `us-west` is the value.
+
+    These labels are customizable, you can set them to any value.
+
+1. Click **Save**.
+
+## Update a service
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service to edit.
+
+Edit any of the following:
+* **Service display name**: Click on the name to reveal a text box, then click outside of the text box to save.
+* **Service description**: Click **Edit** next to the description, make your edits, then click the checkmark to save.
+* **Labels**: Click **Edit** next to the labels, make your edits, then click **Save**.
+
+<!-- SHARING IS NOT YET AVAILABLE
+## Share a service
 
 If you have a Service Admin or Organization Admin role, you can share any
-Service that you have access to.
+service that you have access to.
 
 For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-and-roles/#entity-and-role-sharing).
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
 
 1. Click **Share service**.
 
-1. Select a user or team to share the Service with.
+1. Select a user or team to share the service with.
 
 1. Select a role to grant to the user or team.
 
 1. Click **Share service** to save.
+-->
 
-## Delete a Service
+## Delete a service
 
-1. In the {% konnect_icon servicehub %} Service Hub, select a Service from the list.
+Deleting a service permanently removes it and all of its service versions, implementations, routes, and plugins from the Service Hub.
 
-1. In the top right of the overview page, click the **Service actions** menu and select
-**Delete service**.
+Delete a service through the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub):
 
-1. In the dialog that appears, confirm that you want to delete this service.
+* Open a service. From the **Service actions** drop-down menu, select **Delete service**, then confirm deletion in the dialog.

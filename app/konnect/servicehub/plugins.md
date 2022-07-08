@@ -4,15 +4,17 @@ no_version: true
 content_type: reference
 ---
 
-Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode
-deployment are also accessible through Service Hub or the Runtime Manager.
+Plugins lets you extend {{site.konnect_short_name}} functionality. You can
+find a full list of all Kong plugins on the [Plugin Hub](/hub).
 
 ## Kong plugins in {{site.konnect_saas}}
 
 ### Plugin configuration
 
-You can configure a plugin in {{site.konnect_saas}} by scoping it to an object,
-or applying it globally.
+Manage {{site.konnect_short_name}} plugins through the Service Hub or
+the Runtime Manager.
+
+You can scope a plugin to an object, or apply it globally.
 
 * A **scoped** plugin applies configuration only to a specific service, route,
 or consumer. You can configure plugins on
@@ -22,10 +24,10 @@ or consumer. You can configure plugins on
 through the Runtime Manager.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
-routes, and consumers in a runtime group &ndash; set it up through the
+routes, and consumers in a runtime group, using the
 [Runtime Manager](/konnect/runtime-manager/gateway-config).
 
-### Functionality differences from self-managed {{site.base_gateway}}
+### Application registration
 
 Application registration is built into the Service Hub.
 [Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg)
@@ -41,9 +43,11 @@ per individual data plane.
 
 The following plugins are not available with {{site.konnect_saas}}:
 * OAuth2 Authentication
-* OAuth2 Introspection
 * Apache OpenWhisk
 * Vault Auth
+* DeGraphQL
+* GraphQL Rate Limiting Advanced
+* Key Authentication Encrypted
 
 See the [plugin compatibility chart](/konnect-platform/compatibility/plugins)
 for a full comparison of plans and network configurations that each plugin

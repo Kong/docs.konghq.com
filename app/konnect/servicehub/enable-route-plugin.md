@@ -2,56 +2,50 @@
 title: Configure a Plugin on a Route
 no_version: true
 ---
-Enable, update, disable, or delete a plugin for a Route.
+Enable, update, disable, or delete a plugin for a route.
+
+You can find a route's overview page through the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub): open any service version, then open a route.
 
 ## Enable a plugin
 
-1. From the left navigation menu, open the {% konnect_icon servicehub %}
-**Service Hub**.
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 
-2. Select a Service version.
+1. From the **Routes** section, select a route.
 
-3. Find the **Routes** section and select a Route.
+1. From the **Plugins** section of the route page, click **Add plugin**.
 
-4. From the **Plugins** section, click **+ Add plugin**.
+1. Find and select a plugin.
 
-5. Find and select a plugin.
+1. Enter the plugin configuration details.
 
-6. Enter the plugin configuration details. These will differ for every plugin.
+    Configuration details are different for every plugin, see the [Plugin Hub](/hub) for parameter descriptions.
 
-    See the [Plugin Hub](/hub) for parameter descriptions.
+1. Click **Save**.
 
-7. Click **Create** to save.
+{:.note}
+> If you don't see the **Routes** section, create an
+[implementation](/konnect/servicehub/service-implementations) first.
 
 ## Update or disable a plugin
 
 Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
-1. Return to the overview page for your Route.
+From a route page, find the **Plugins** section, then select a plugin.
+From this page, you can update or disable a plugin:
 
-2. Find the **Plugins** section and select a plugin.
+* From the **Plugin actions** drop-down menu, select **Edit**.
 
-4. Click **Plugin actions** > **Edit**. On the configuration page:
+  * To update, adjust any values, then click **Save**.
 
-    * To update, adjust any values, then click **Save**.
+  * To disable the plugin, switch the toggle to `This plugin is Disabled`, then click **Save**.
 
-    * To disable the plugin, switch the toggle at the top of the page. The
-    toggle should now display:
-
-        ```
-        This plugin is Disabled.
-        ```
-
-        Click **Update** to save changes.
-
-## Update or disable a plugin
+## Delete a plugin
 
 Deleting a plugin completely removes it and its configuration from
 {{site.konnect_short_name}}.
 
-1. Return to the overview page for your Route.
+From a route page, find the **Plugins** section, then select a plugin.
+From this page, you can delete the plugin:
 
-2. Find the **Plugins** section and select a plugin.
-
-3. Click **Plugin actions** > **Delete**, then confirm deletion in the dialog.
+* From the **Plugin actions** drop-down menu, select **Delete**, then confirm deletion in the dialog.
