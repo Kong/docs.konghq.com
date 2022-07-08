@@ -27,7 +27,7 @@ body:
       description: Tell us what the problem is.
       placeholder: |
           "I wanted information about this feature, but couldn't find it in the docs!"
-          "The instructions for {X} didn't work as documented."
+          "The documentation for {X} didn't work as documented."
     validations:
       required: true
   - type: textarea
