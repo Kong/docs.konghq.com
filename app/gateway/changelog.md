@@ -15,6 +15,7 @@ no_version: true
 * Fixed an issue in hybrid mode where, if a service was set to `enabled: false` and that service had a route with an enabled plugin, any new data planes would receive empty configuration.
 * Fixed a timer leak that occurred when `worker_consistency` was set to `eventual` in `kong.conf`.
 This issue caused timers to be exhausted and failed to start any other timers used by Kong Gateway, resulting in a `too many pending timers` error.
+* Fixed memory leaks coming from `lua-resty-lock`.
 
 #### Kong Manager and Dev Portal
 
