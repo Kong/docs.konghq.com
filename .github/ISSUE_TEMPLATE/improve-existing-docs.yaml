@@ -16,7 +16,7 @@ body:
     id: link
     attributes:
       label: Where is the problem?
-      description: Provide a link to the affected page(s).
+      description: Provide a link for the affected page(s).
       placeholder: e.g. https://docs.konghq.com/hub/kong-inc/basic-auth
     validations:
       required: true
