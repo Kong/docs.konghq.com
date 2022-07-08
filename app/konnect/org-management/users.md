@@ -26,13 +26,15 @@ automatically-created users, adjust user permissions through Okta, or
 ## Add a user to the organization
 
 ### Invite a user
-1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
+
+Invite a user from the {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) > **Users** page:
+
 1. Select **Invite User**.
 1. Enter the user’s name and email.
 1. Assign the user to one or more teams.
 
     For team descriptions, hover over the information (`i`) icon next to the team name,
-    or see the [predefined teams references](/konnect/org-management/teams-and-roles/teams-reference).
+    or see the [predefined teams reference](/konnect/org-management/teams-and-roles/teams-reference).
 
 1. Click **Save** to send an email invitation to the user.
 
@@ -49,7 +51,7 @@ assigned to this account.
 
 ## Manage team assignment
 
-1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
+Assign a user to a team from the {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) > **Users** page:
 
 1. Select a user row to view their assigned teams and roles.
 
@@ -60,11 +62,11 @@ assigned to this account.
 
 ## Manage individual user roles
 
-1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
+Assign roles to a user from the {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) > **Users** page:
 
 1. Select a user row to view their assigned teams and roles.
 
-1. Select either the **Services** or **Runtime Groups** tab.
+1. Open one of the entity tabs: **Services** or **Runtime Groups**.
 
 1. To add or remove role(s) from the selected user, click **Add role(s)**.
 
@@ -75,7 +77,7 @@ assigned to this account.
 
 ## Remove user from organization
 
-1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/), open the **Users** page.
+Remove a user from your organization from the {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization/) > **Users** page:
 
 1. Click the **User Actions** drop-down menu, then select **Delete**.
 
