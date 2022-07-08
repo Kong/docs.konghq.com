@@ -126,7 +126,7 @@ HTTP 201 Created
 
 | Attribute                 | Description    |
 | ---------                 | -----------    |
-| `recovery_private_key`    | Private key.   |
+| `recovery_private_key`    | The content of the private key.   |
 
 **Response**
 
