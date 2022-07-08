@@ -9,7 +9,7 @@ graphs with up to 30 days of data. To view data beyond this time frame, export
 the data into a comma-separated values (CSV) file.
 
 ![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png)
-> Figure 1: Graph showing throughput for a service with interval filter options.
+> _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
 You can generate and export a CSV file for:
 

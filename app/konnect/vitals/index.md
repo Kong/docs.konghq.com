@@ -24,7 +24,7 @@ routes, the graphs show requests broken down by status codes.
 
 ![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png)
 
-> Figure 1: Graph showing throughput for a service with interval filter options.
+> _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
 For greater insights into your service usage, access {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals) <span class="badge plus"></span>.
 
@@ -34,10 +34,10 @@ From Vitals, you can view dashboards, access historical data for a range greater
 * [Create a custom report](/konnect/vitals/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 ![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
-> Figure 2: Graph showing successful and failed requests over the past three hours.
+> _**Figure 2:** Graph showing successful and failed requests over the past three hours._
 
  ![errors vitals graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
-> Figure 3: Graph showing errors by 4xx and 5xx error codes received over the past three hours.
+> _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
 ## Time intervals
 

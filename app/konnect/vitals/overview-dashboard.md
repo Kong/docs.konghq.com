@@ -17,12 +17,12 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 * **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval. Successful requests contain all requests that returned a **1xx-3xx** status code. Failed requests contain all requests that returned a **4xx-5xx** status code.
 
     ![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
-    > Figure 1: Graph showing successful and failed requests over the past three hours.
+    > _**Figure 1:** Graph showing successful and failed requests over the past three hours._
 
 * **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
     ![errors vitals graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
-    > Figure 2: Graph showing errors by 4xx and 5xx error codes received over the past three hours.
+    > _**Figure 2:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
 
