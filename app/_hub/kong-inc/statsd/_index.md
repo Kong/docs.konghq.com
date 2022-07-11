@@ -132,7 +132,10 @@ params:
       required: false
       default: false 
       datatype: boolean
-      description: Indicate whether to add "servcie." prefix before \<service_identifier> in metric name. For example, if set to `true`, then `kong.<service_identifier>.request.count` will be `kong.service.<service_identifier>.request.count`
+      description: | 
+      Indicate whether to add `service.` prefix before `<service_identifier>` in metric name. 
+      
+      For example, if set to `true`, then `kong.<service_identifier>.request.count` will be `kong.service.<service_identifier>.request.count`.
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
