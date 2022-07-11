@@ -117,7 +117,7 @@ params:
       required: true
       default: 'custom_id'
       datatype: string
-      description: The default consumer identifier of metrics. This will take effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
+      description: The default consumer identifier of metrics. This takes effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
     - name: service_identifier_default
       required: true
       default: 'service_name_or_host' 
