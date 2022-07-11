@@ -1,5 +1,5 @@
 ---
-title: Set Up SSO with Okta
+title: (Legacy) Set Up SSO with Okta
 no_version: true
 badge: enterprise
 ---

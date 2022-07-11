@@ -1,5 +1,5 @@
 ---
-title: Konnect Plans, Billing, and Usage
+title: (Legacy) Konnect Plans, Billing, and Usage
 no_version: true
 ---
 <!-- vale off -->

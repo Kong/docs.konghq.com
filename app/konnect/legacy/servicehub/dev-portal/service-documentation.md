@@ -1,5 +1,5 @@
 ---
-title: Dev Portal Service Documentation
+title: (Legacy) Dev Portal Service Documentation
 no_version: true
 ---
 <!-- vale off -->

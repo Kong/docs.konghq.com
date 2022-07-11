@@ -1,5 +1,5 @@
 ---
-title: Manage Payment Methods and Invoices
+title: (Legacy) Manage Payment Methods and Invoices
 no_version: true
 ---
 

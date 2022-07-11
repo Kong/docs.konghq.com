@@ -1,5 +1,5 @@
 ---
-title: Enable Public Dev Portal
+title: (Legacy) Enable Public Dev Portal
 no_version: true
 ---
 <!-- vale off -->

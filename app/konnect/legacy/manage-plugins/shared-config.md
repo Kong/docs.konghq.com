@@ -1,5 +1,5 @@
 ---
-title: Manage Plugins through Shared Config
+title: (Legacy) Manage Plugins through Shared Config
 no_version: true
 ---
 <!-- vale off -->

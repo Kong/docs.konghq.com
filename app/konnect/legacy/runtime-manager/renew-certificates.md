@@ -1,5 +1,5 @@
 ---
-title: Renew certificates for a runtime
+title: (Legacy) Renew certificates for a runtime
 no_version: true
 ---
 <!-- vale off -->

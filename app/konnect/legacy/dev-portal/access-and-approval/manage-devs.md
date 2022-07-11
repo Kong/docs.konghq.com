@@ -1,5 +1,5 @@
 ---
-title: Manage Developer Access
+title: (Legacy) Manage Developer Access
 no_version: true
 ---
 <!-- vale off -->

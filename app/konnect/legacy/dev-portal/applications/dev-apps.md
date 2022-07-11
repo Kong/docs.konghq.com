@@ -1,5 +1,5 @@
 ---
-title: Create, Edit, and Delete an Application
+title: (Legacy) Create, Edit, and Delete an Application
 no_version: true
 toc: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: License Management in Konnect Cloud
+title: (Legacy) License Management in Konnect Cloud
 no_version: true
 ---
 <!-- vale off -->

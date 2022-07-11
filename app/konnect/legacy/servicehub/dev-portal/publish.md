@@ -1,5 +1,5 @@
 ---
-title: Publish a Service to the Dev Portal
+title: (Legacy) Publish a Service to the Dev Portal
 no_version: true
 ---
 <!-- vale off -->

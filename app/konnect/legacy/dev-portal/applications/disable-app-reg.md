@@ -1,5 +1,5 @@
 ---
-title: Disable App Registration for a Service
+title: (Legacy) Disable App Registration for a Service
 no_version: true
 ---
 <!-- vale off -->

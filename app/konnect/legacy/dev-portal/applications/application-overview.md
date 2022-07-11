@@ -1,5 +1,5 @@
 ---
-title: Application Overview
+title: (Legacy) Application Overview
 no_version: true
 toc: true
 ---

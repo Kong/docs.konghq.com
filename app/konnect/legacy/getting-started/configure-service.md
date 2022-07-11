@@ -1,5 +1,5 @@
 ---
-title: Configuring a Service
+title: (Legacy) Configuring a Service
 no_version: true
 ---
 <!-- vale off -->

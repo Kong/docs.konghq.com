@@ -1,5 +1,5 @@
 ---
-title: Configure a Plugin on a Service
+title: (Legacy) Configure a Plugin on a Service
 no_version: true
 ---
 <!-- vale off -->

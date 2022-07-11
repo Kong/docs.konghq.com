@@ -1,5 +1,5 @@
 ---
-title: Runtime Configuration Parameters
+title: (Legacy) Runtime Configuration Parameters
 no_version: true
 ---
 <!-- vale off -->

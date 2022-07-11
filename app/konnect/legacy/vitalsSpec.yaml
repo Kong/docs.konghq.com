@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: Vitals API
   version: 1.3.0
-  title: Vitals API
+  title: (Legacy) Vitals API
 basePath: /
 tags:
   - name: health

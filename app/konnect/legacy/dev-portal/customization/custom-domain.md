@@ -1,5 +1,5 @@
 ---
-title: Add a Custom Domain
+title: (Legacy) Add a Custom Domain
 no_version: true
 ---
 <!-- vale off -->

@@ -1,5 +1,5 @@
 ---
-title: Developer Registration
+title: (Legacy) Developer Registration
 no_version: true
 ---
 <!-- vale off -->

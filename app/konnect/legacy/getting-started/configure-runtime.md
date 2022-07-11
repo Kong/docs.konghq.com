@@ -1,5 +1,5 @@
 ---
-title: Configure a Runtime
+title: (Legacy) Configure a Runtime
 no_version: true
 ---
 <!-- vale off -->

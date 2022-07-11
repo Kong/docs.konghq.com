@@ -1,5 +1,5 @@
 ---
-title: Export Vitals Data into a Report
+title: (Legacy) Export Vitals Data into a Report
 no_version: true
 ---
 <!-- vale off -->

@@ -1,5 +1,5 @@
 ---
-title: Manage Application Registration Requests
+title: (Legacy) Manage Application Registration Requests
 no_version: true
 ---
 <!-- vale off -->

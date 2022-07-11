@@ -1,5 +1,5 @@
 ---
-title: Account and Organization Deactivation
+title: (Legacy) Account and Organization Deactivation
 no_version: true
 ---
 <!-- vale off -->

@@ -1,5 +1,5 @@
 ---
-title: Manage Konnect Cloud with decK
+title: (Legacy) Manage Konnect Cloud with decK
 no_version: true
 ---
 <!-- vale off -->

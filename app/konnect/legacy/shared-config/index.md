@@ -1,5 +1,5 @@
 ---
-title: Shared Config
+title: (Legacy) Shared Config
 no_version: true
 ---
 <!-- vale off -->

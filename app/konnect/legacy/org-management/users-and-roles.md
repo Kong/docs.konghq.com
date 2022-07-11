@@ -1,5 +1,5 @@
 ---
-title: Manage Users and Roles
+title: (Legacy) Manage Users and Roles
 no_version: true
 ---
 <!-- vale off -->

@@ -1,5 +1,5 @@
 ---
-title: Authentication and Authorization
+title: (Legacy) Authentication and Authorization
 no_version: true
 ---
 <!-- vale off -->

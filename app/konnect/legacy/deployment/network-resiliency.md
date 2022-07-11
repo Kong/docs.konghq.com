@@ -1,5 +1,5 @@
 ---
-title: Network Resiliency and Availability
+title: (Legacy) Network Resiliency and Availability
 no_version: true
 ---
 <!-- vale off -->

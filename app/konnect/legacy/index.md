@@ -1,6 +1,6 @@
 ---
-title: Kong Konnect Cloud
-subtitle: Kong's hosted control plane
+title: (Legacy) Kong Konnect Cloud
+subtitle: (Legacy) Kong's hosted control plane
 no_version: true
 ---
 <!-- vale off -->
