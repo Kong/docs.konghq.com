@@ -157,7 +157,7 @@ Metric                     | Description | Namespace
 `status_count_per_user_per_route`    | the status code per Consumer per Route | kong.route.\<route_id>.user.\<consumer_identifier>.status.\<status>
 `shdict_usage`             | the usage of shared dict, sent once every minute |kong.node.\<node_hostname>.shdict.\<shdict_name>.free_space and kong.node.\<node_hostname>.shdict.\<shdict_name>.capacity
 
-If a request URI doesn't match any Routes, the following metrics will be sent instead:
+If a request URI doesn't match any Routes, the following metrics are sent instead:
 
 Metric                     | Description | Namespace
 ---                        | ---         | ---
