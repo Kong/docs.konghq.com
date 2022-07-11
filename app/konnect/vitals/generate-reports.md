@@ -3,6 +3,7 @@ title: Generate Reports
 no_version: true
 alpha: true
 content_type: how-to
+badge: plus
 ---
 
 Create custom reports to track API calls based on services, routes, or
@@ -24,9 +25,9 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 ## Create a custom report
 
-1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
-**Vitals**, then **Reports**.
-1. Click the button to **Add New Report**.
+To set up a new report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then follow these steps:
+
+1. Click the **Add New Report** button.
 1. Name the report and optionally add a description.
 
     The name and description fields each have a 255 character limit.
@@ -73,41 +74,34 @@ and click it again to show the item. The graph resets on a refresh.
 
 You can export any custom report in CSV format.
 
-1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
-**Vitals**, then **Reports**.
+To export a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then follow these steps:
+
 1. Click on a report row to open the report's page.
-1. Click the **Actions** dropdown and select **Export Report**.
+1. From the **Actions** dropdown, select **Export Report**.
 
   {{site.konnect_short_name}} generates a CSV file download with all the data in the report.
 
 ## Edit a custom report
 
-You can edit a report in one of the following ways:
+To edit a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
 
-1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
-**Vitals**, then **Reports**.
-1. Either:
-   * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-   settings icon for a report row and select **Edit**.
-   * Click on a report row to open the report. In the **Actions** dropdown menu,
-   select **Edit Report**.
-1. Make your changes and click **Update**.
+* Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+settings icon for a report row and select **Edit**.
+* Click on a report row to open the report. In the **Actions** dropdown menu,
+select **Edit Report**.
 
-  The report page opens. You may have to refresh the page to see the updated
-  report.
+Make your changes and click **Update**.
+
+You may have to refresh the page to see the updated report.
 
 ## Delete a custom report
 
-You can delete a report in one of the following ways:
+To delete a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
 
-1. From the left-side menu in {{site.konnect_short_name}}, open {% konnect_icon vitals %}
-**Vitals**, then **Reports**.
-1. Either:
-   * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-   settings icon for a report row and select **Delete**.
-   * Click on a report row to open the report. In the **Actions** dropdown menu,
-   select **Delete Report**.
-1. Confirm deletion in the dialog.
+* Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+settings icon for a report row, select **Delete**, then confirm deletion in the dialog.
+* Click on a report row to open the report. From the **Actions** dropdown menu,
+select **Delete Report**, then confirm deletion in the dialog.
 
 ## Metrics
 
