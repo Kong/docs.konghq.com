@@ -4,7 +4,7 @@ no_version: true
 content-type: how-to
 ---
 
-Through a runtime group, you can configure the following [{{site.base_gateway}} objects](/konnect/runtime-manager/manage-proxy-config):
+Through a runtime group, you can configure the following [{{site.base_gateway}} objects](/konnect/runtime-manager/gateway-config):
 * Gateway services
 * Routes
 * Consumers
