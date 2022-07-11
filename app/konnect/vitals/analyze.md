@@ -33,7 +33,7 @@ service's versions.
 
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 On the service's detail page, the **Throughput** graph displays all API calls
-that have been made against any versions of the service for the given time frame.
+that have been made across every version for the given time frame.
 
 From the **Throughput** graph, you can:
 
