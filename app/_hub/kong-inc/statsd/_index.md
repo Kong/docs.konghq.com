@@ -122,7 +122,7 @@ params:
       required: true
       default: 'service_name_or_host' 
       datatype: string
-      description: The default service identifier of metrics. This will take effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
+      description: The default service identifier of metrics. This takes effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
     - name: workspace_identifier_default
       required: true
       default: 'workspace_id' 
