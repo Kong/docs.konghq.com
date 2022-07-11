@@ -131,13 +131,13 @@
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
-/konnect/reference/proxy-traffic/                   /konnect/
+/konnect/reference/proxy-traffic                    /konnect/
 /konnect/access-account/                            /konnect/getting-started/access-account/
 /konnect/org-management/users-and-roles             /konnect/org-management/teams-and-roles
 /konnect/deployment/license-management              /konnect/account-management/
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
-/konnect/migrate/                                   /konnect/getting-started/migrate/
+/konnect/migrate/                                   /konnect/getting-started/import/
 /konnect/getting-started/declarative-config/        /konnect/runtime-manager/runtime-groups/declarative-config/
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
