@@ -174,9 +174,9 @@ The plugin can be configured with any combination of [Metrics](#metrics), with e
 
 Field         | Description                                             | Datatype | Allowed values
 ---           | ---                                                     | ---        ---
-`name`          | StatsD metric's name. Required.                       | String   | [Metrics](#metrics)          
-`stat_type`     | Determines what sort of event a metric represents. Required.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
-`sample_rate`<br>*conditional*   | Sampling rate. Required.              | Number        | `number`                 
+`name` <br>*required*         | StatsD metric's name.                      | String   | [Metrics](#metrics)          
+`stat_type`  <br>*required*     | Determines what sort of event a metric represents.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
+`sample_rate`<br>*required* <br>*conditional*   | Sampling rate.              | Number        | `number`                 
 `consumer_identifier`<br>*conditional* | Authenticated user detail.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`, `null`
 `service_identifier`<br>*conditional* | Service detail.  | String   |  One of the following options: `service_id`, `service_name`, `service_host`, `service_name_or_host`, `null`
 `workspace_identifier`<br>*conditional* | Workspace detail.  | String | One of the following options:`workspace_id`, `workspace_name`, `null`
