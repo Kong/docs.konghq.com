@@ -14,7 +14,10 @@ Both categories measure trends by comparing metrics across fixed comparable time
 
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
 
-* **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval. Successful requests contain all requests that returned a **1xx-3xx** status code. Failed requests contain all requests that returned a **4xx-5xx** status code.
+* **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval.
+    * Successful requests contain all requests that returned a **1xx-3xx** status code.
+    * Failed requests contain all requests that returned a **4xx-5xx** status code.
+    * Custom 6xx status codes are not tracked.
 
     ![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
     > _**Figure 1:** Graph showing successful and failed requests over the past three hours._
