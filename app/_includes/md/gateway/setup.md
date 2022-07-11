@@ -11,19 +11,19 @@ This configuration file is used for setting {{site.base_gateway}}’s configurat
 {{site.base_gateway}} offers two options for storing the configuration properties for all of
 {{site.base_gateway}}'s configured entities, a database or a yaml declarative configuration file.
 Before starting {{site.base_gateway}} you must update the `kong.conf.default` configuration property file with a reference
-to your datastore.
+to your data store.
 
 To alter the default properties listed in the `kong.conf.default` file and configure {{site.base_gateway}},
 make a copy of the file, rename it (for example `kong.conf`), make your updates, and save it to the same location.
 
-For more information on how to configure {{site.base_gateway}} to connect to your datastore, see the Datastore section of the
+For more information on how to configure {{site.base_gateway}} to connect to your data store, see the Data store section of the
 [Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
 
 ### Using a database
 
 First, you must configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
 
-For more information on how to configure {{site.base_gateway}} to connect to your database, see the Datastore section of the
+For more information on how to configure {{site.base_gateway}} to connect to your database, see the Data store section of the
 [Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
 
 
@@ -31,9 +31,9 @@ For more information on how to configure {{site.base_gateway}} to connect to you
 
 
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
-and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
+and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its data store.
 
-If you are using Postgres, provision a database and a user before starting {{site.base_gateway}}, for example:
+If you are using PostgreSQL, provision a database and a user before starting {{site.base_gateway}}, for example:
 
 ```sql
 CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
@@ -80,13 +80,17 @@ declarative_config = {PATH_TO_KONG.CONF_FILE}
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
+
+{:.important}
+> **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
+
 Run migrations to prepare the Kong database, using the following command:
 
 ```
 KONG_PASSWORD={PASSWORD} kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
 ```
 
-## Start Kong Gateway
+## Start {{site.base_gateway}}
 
 {% include_cached /md/gateway/root-user-note.md kong_version=page.kong_version %}
 

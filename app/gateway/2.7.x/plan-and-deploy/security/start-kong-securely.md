@@ -41,7 +41,7 @@ admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":fal
 admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
 ```
 
-⚠️**Important:** the Sessions Plugin requries a secret and is configured securely by default.
+⚠️**Important:** the Sessions Plugin requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.
@@ -51,6 +51,9 @@ Learn more about these properties in [Session Security in Kong Manager](/gateway
 
 Set a password for the Super Admin. This environment variable must
 be present in the environment where database migrations will run.
+
+{:.important}
+> **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
 ```
 $ export KONG_PASSWORD=<password-only-you-know>
@@ -70,7 +73,7 @@ To add additional Super Admins it is necessary to
 
 ## Step 2
 
-Issue the following command to prepare your datastore by running the Kong migrations:
+Issue the following command to prepare your data store by running the Kong migrations:
 
 ```
 $ kong migrations bootstrap [-c /path/to/kong.conf]
