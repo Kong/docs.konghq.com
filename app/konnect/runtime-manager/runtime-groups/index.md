@@ -22,7 +22,7 @@ With an [Enterprise subscription](https://konghq.com/pricing/), you can configur
 custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to
 manage runtime instances and their configuration in any groupings you want.
 
-![runtime groups](/assets/images/docs/konnect/konnect-runtime-groups-example.svg)
+![runtime groups](/assets/images/docs/konnect/konnect-runtime-groups-example.png)
 > _**Figure 1:** Example runtime group configuration with three runtime groups: the default group, a development group, and a production group. {{site.konnect_short_name}} is the SaaS-managed global management plane that controls all of the groups, while the runtime groups contain self-managed runtime instances._
 
 ## Default runtime group
