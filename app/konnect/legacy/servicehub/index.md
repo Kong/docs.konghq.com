@@ -1,5 +1,5 @@
 ---
-title: ServiceHub Overview
+title: (Legacy) ServiceHub Overview
 no_version: true
 ---
 <!-- vale off -->

@@ -1,5 +1,5 @@
 ---
-title: Proxy Traffic
+title: (Legacy) Proxy Traffic
 no_version: true
 ---
 <!-- vale off -->

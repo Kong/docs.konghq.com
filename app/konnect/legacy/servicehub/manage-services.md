@@ -1,5 +1,5 @@
 ---
-title: Manage Services through ServiceHub
+title: (Legacy) Manage Services through ServiceHub
 no_version: true
 ---
 <!-- vale off -->

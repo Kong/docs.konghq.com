@@ -1,5 +1,5 @@
 ---
-title: Migrate from Kong Gateway to Konnect Cloud
+title: (Legacy) Migrate from Kong Gateway to Konnect Cloud
 no_version: true
 ---
 <!-- vale off -->

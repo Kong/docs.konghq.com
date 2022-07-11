@@ -1,5 +1,5 @@
 ---
-title: Manage Application Service Connections
+title: (Legacy) Manage Application Service Connections
 no_version: true
 ---
 <!-- vale off -->

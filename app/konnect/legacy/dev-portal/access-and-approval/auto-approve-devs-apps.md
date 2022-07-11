@@ -1,5 +1,5 @@
 ---
-title: Auto Approve Developer and Application Registrations
+title: (Legacy) Auto Approve Developer and Application Registrations
 no_version: true
 ---
 <!-- vale off -->

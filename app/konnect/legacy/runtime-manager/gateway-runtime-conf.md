@@ -1,5 +1,5 @@
 ---
-title: Set up a Kong Gateway Runtime on Linux
+title: (Legacy) Set up a Kong Gateway Runtime on Linux
 no_version: true
 ---
 <!-- vale off -->

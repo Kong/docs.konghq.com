@@ -1,5 +1,5 @@
 ---
-title: Configure a Plugin on a Route
+title: (Legacy) Configure a Plugin on a Route
 no_version: true
 ---
 <!-- vale off -->

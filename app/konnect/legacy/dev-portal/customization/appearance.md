@@ -1,5 +1,5 @@
 ---
-title: Appearance
+title: (Legacy) Appearance
 no_version: true
 ---
 <!-- vale off -->

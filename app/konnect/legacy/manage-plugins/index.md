@@ -1,5 +1,5 @@
 ---
-title: Manage Plugins
+title: (Legacy) Manage Plugins
 no_version: true
 ---
 <!-- vale off -->

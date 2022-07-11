@@ -1,5 +1,5 @@
 ---
-title: Get started with Konnect Cloud
+title: (Legacy) Get started with Konnect Cloud
 no_version: true
 ---
 <!-- vale off -->

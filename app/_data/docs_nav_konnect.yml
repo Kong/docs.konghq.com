@@ -130,7 +130,7 @@
     - text: Customize Dev Portal
       url: /dev-portal/customization/
     - text: Troubleshoot
-      url: /dev-portal/troubleshooting
+      url: /dev-portal/troubleshoot
 
 - title: Analyze
   icon: /assets/images/icons/konnect/icn-vitals-nav.svg

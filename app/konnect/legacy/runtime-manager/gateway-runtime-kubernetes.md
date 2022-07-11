@@ -1,5 +1,5 @@
 ---
-title: Set up a Kong Gateway Runtime on Kubernetes
+title: (Legacy) Set up a Kong Gateway Runtime on Kubernetes
 no_version: true
 ---
 <!-- vale off -->

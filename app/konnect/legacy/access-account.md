@@ -1,5 +1,5 @@
 ---
-title: Accessing a Kong Konnect Cloud Account
+title: (Legacy) Accessing a Kong Konnect Cloud Account
 no_version: true
 ---
 <!-- vale off -->

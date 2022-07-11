@@ -1,5 +1,5 @@
 ---
-title: Konnect Cloud Updates
+title: (Legacy) Konnect Cloud Updates
 no_version: true
 ---
 <!-- vale off -->

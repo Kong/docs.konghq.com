@@ -1,5 +1,5 @@
 ---
-title: Enable Application Registration for a Service
+title: (Legacy) Enable Application Registration for a Service
 no_version: true
 toc: true
 ---

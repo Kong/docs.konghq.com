@@ -1,5 +1,5 @@
 ---
-title: Monitoring Health with Vitals
+title: (Legacy) Monitoring Health with Vitals
 no_version: true
 ---
 <!-- vale off -->

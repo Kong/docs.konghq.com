@@ -4,7 +4,7 @@ no_version: true
 content-type: how-to
 ---
 
-Through a runtime group, you can configure the following {{site.base_gateway}} objects:
+Through a runtime group, you can configure the following [{{site.base_gateway}} objects](/konnect/runtime-manager/gateway-config):
 * Gateway services
 * Routes
 * Consumers
@@ -16,7 +16,7 @@ Through a runtime group, you can configure the following {{site.base_gateway}} o
 ## Configure a {{site.base_gateway}} object
 
 1. Open the {% konnect_icon runtimes %}
-**Runtime Manager**, and select a runtime group. 
+**Runtime Manager**, and select a runtime group.
 
 2. Select an object to configure from the menu.
 
@@ -32,18 +32,18 @@ Through a runtime group, you can configure the following {{site.base_gateway}} o
 ## Update or delete a {{site.base_gateway}} object
 
 1. Open the {% konnect_icon runtimes %}
-**Runtime Manager**, and select a runtime group. 
+**Runtime Manager**, and select a runtime group.
 
 2. Select an object to configure from the menu.
 
-3. Click the object that you want to update or delete. 
+3. Click the object that you want to update or delete.
 
 4. Select **Actions** > **Delete** or **Actions** > **Edit**
 
     * If editing, adjust any values in the configuration, then click **Save**.
     * If deleting, confirm deletion in the dialog.
 
-If you do not select a specific object to edit or delete, the runtime group will be selected by default. 
+If you do not select a specific object to edit or delete, the runtime group will be selected by default.
 
 ## Manage global or consumer-scoped plugins
 
@@ -53,11 +53,11 @@ but lets you control whether the plugin is active or not.
 ### Configure a plugin
 
 1. Open the {% konnect_icon runtimes %}
-**Runtime Manager**, and select a runtime group. 
+**Runtime Manager**, and select a runtime group.
 
 2. Select the **Plugins** object from the menu, then click **+ Install Plugin**.
 
-3. Optional: If a plugin is already installed click **Add Plugin**. 
+3. Optional: If a plugin is already installed click **Add Plugin**.
 
 3. Find and select a plugin.
 
@@ -81,7 +81,7 @@ Disabling a plugin leaves its configuration intact, and you can re-enable the
 plugin at any time.
 
 1. Open the {% konnect_icon runtimes %}
-**Runtime Manager**, and select a runtime group. 
+**Runtime Manager**, and select a runtime group.
 
 2. Select the **Plugins** object from the menu.
 

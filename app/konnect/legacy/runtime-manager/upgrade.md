@@ -1,5 +1,5 @@
 ---
-title: Upgrade a Runtime to a New Version
+title: (Legacy) Upgrade a Runtime to a New Version
 no_version: true
 ---
 <!-- vale off -->

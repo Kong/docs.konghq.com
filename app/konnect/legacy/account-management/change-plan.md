@@ -1,5 +1,5 @@
 ---
-title: Change to a Different Plan
+title: (Legacy) Change to a Different Plan
 no_version: true
 ---
 
