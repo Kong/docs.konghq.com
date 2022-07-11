@@ -181,7 +181,7 @@ Field         | Description                                             | Dataty
 `service_identifier`<br>*conditional* | Service detail.  | String   |  One of the following options: `service_id`, `service_name`, `service_host`, `service_name_or_host`, `null`
 `workspace_identifier`<br>*conditional* | Workspace detail.  | String | One of the following options:`workspace_id`, `workspace_name`, `null`
 
-### Metric Behaviors
+### Metric behaviors
 
 1.  By default, all metrics get logged.
 2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
