@@ -147,26 +147,26 @@ params:
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.<service_identifier>.request.count`
-`request_size`             | the request's body size in bytes | kong.\<service_identifier>.request.size
-`response_size`            | the response's body size in bytes | kong.\<service_identifier>.response.size
-`latency`                  | the time interval in milliseconds between the request and response | kong.\<service_identifier>.latency
+`request_size`             | The request's body size in bytes. | `kong.<service_identifier>.request.size`
+`response_size`            | The response's body size in bytes. | `kong.<service_identifier>.response.size`
+`latency`                  | The time interval in milliseconds between the request and response. | `kong.<service_identifier>.latency`
 `status_count`             | tracks each status code returned in a response | kong.\<service_identifier>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
-`unique_users`             | tracks unique users who made a requests to the underlying Service/Route | kong.\<service_identifier>.user.uniques
+`unique_users`             | Tracks unique users who made requests to the underlying Service or Route. | `kong.<service_identifier>.user.uniques`
 `request_per_user`         | tracks the request count per Consumer | kong.\<service_identifier>.user.\<consumer_identifier>.request.count
-`upstream_latency`         | tracks the time in milliseconds it took for the final Service to process the request | kong.\<service_identifier>.upstream_latency
-`kong_latency`             | tracks the internal Kong latency in milliseconds that it took to run all the Plugins | kong.\<service_identifier>.kong_latency
-`status_count_per_user`    | tracks the status code for per Consumer per Service | kong.\<service_identifier>.user.\<consumer_identifier>.request.status.\<status> and kong.\<service_identifier>.user.\<consumer_identifier>.request.status.total
-`status_count_per_workspace`         | the status code per Workspace | kong.\<service_identifier>.workspace.\<workspace_identifier>.status.\<status>
-`status_count_per_user_per_route`    | the status code per Consumer per Route | kong.route.\<route_id>.user.\<consumer_identifier>.status.\<status>
-`shdict_usage`             | the usage of shared dict, sent once every minute |kong.node.\<node_hostname>.shdict.\<shdict_name>.free_space and kong.node.\<node_hostname>.shdict.\<shdict_name>.capacity
+`upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.<service_identifier>.upstream_latency`
+`kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.<service_identifier>.kong_latency`
+`status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` and `kong.<service_identifier>.user.<consumer_identifier>.request.status.total`
+`status_count_per_workspace`         | The status code per workspace. | `kong.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
+`status_count_per_user_per_route`    | The status code per Consumer per Route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
+`shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
 
 If a request URI doesn't match any Routes, the following metrics are sent instead:
 
 Metric                     | Description | Namespace
 ---                        | ---         | ---
-`request_count`            | the request count | kong.global.unmatched.request.count
-`request_size`             | the request's body size in bytes | kong.global.unmatched.request.size
-`response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
+`request_count`            | The request count. | `kong.global.unmatched.request.count`
+`request_size`             | The request's body size in bytes. | `kong.global.unmatched.request.size`
+`response_size`            | The response's body size in bytes. | `kong.global.unmatched.response.size`
 `latency`                  | The time interval between when the request started and when the response is received from the upstream server. | `kong.global.unmatched.latency`
 `status_count`             | The status count. | `kong.global.unmatched.status.<status>.count`
 `kong_latency`             | The internal Kong latency in milliseconds that it took to run all the plugins. | `kong.global.unmatched.kong_latency`
