@@ -28,7 +28,7 @@ directory for {{site.base_gateway}} logs is [`/usr/local/kong/logs`](/gateway/la
     * Runtime instance failed to receive a ping response from the control plane.
 
     You may have an issue on the host network where the instance resides.
-    diagnose and resolve the issue, then restart the instance and check
+    Diagnose and resolve the issue, then restart the instance and check
     the sync status in the Runtime Manager.
 
 * If the logs show a license issue, contact [Kong Support](https://support.konghq.com/).

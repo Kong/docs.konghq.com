@@ -17,7 +17,7 @@ can either be global or scoped.
 ### Gateway services
 
 The **Gateway Service** configuration page lists all {{site.base_gateway}} services
-in the runtime group. service entities are abstractions of each of your own
+in the runtime group. Service entities are abstractions of each of your own
 upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway services can be exposed in Service Hub, or managed though Runtime Manager
