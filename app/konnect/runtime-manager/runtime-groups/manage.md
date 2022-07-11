@@ -19,8 +19,7 @@ in the group.
 ## Create a runtime group
 {:.badge .enterprise}
 
-1. In {{site.konnect_short_name}}, open {% konnect_icon runtimes %} **Runtime Manager** from the left side
- menu.
+Runtime groups are created from the **Runtime Manager** section of the {{site.konnect_short_name}} manager. 
 
 1. Click **Create Runtime Group**.
 
@@ -41,9 +40,9 @@ in the group.
 ## Edit a runtime group
 
 1. In {{site.konnect_short_name}}, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager** from the left side menu.
+**Runtime Manager**.
 
-1. Click the action menu icon on the far right of a row and select **Edit**.
+1. Click the action menu and select **Edit**.
 
 1. Edit the group details, then click **Update**.
 
@@ -66,8 +65,7 @@ You cannot delete the default runtime group.
 certain that you want to delete the group, and that all entities and runtime
 instances in the have been accounted for.
 
-1. Back up your configuration before deleting the runtime group. You
-can use decK to accomplish this:
+1. Use decK to back up your configuration before deleting the runtime group:
 
     ```sh
     deck dump \
@@ -78,7 +76,7 @@ can use decK to accomplish this:
     ```
 
     This command generates a state file for the runtime group's entity
-    configuration. It looks something like this:
+    configuration that looks like this:
 
     ```yaml
     _format_version: "1.1"
@@ -95,8 +93,8 @@ can use decK to accomplish this:
     ```
 
 1. In {{site.konnect_short_name}}, open ![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-**Runtime Manager** from the left side menu.
+**Runtime Manager**.
 
-1. Click the action menu icon on the far right of a row and select **Delete**.
+1. Click the action menu icon and select **Delete**.
 
 1. Enter the group name, then confirm that you want to delete it.

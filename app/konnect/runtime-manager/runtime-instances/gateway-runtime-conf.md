@@ -19,13 +19,13 @@ runtime instances.
 
 ## Configure the runtime
 
-Next, configure a {{site.base_gateway}} runtime instance using the
+Configure a {{site.base_gateway}} runtime instance using the
 certificate, the private key, and the remaining configuration details on the
-runtime instance configuration page.
+runtime instance configuration page: 
 
 1. Find the documentation for
 [your platform](/gateway/latest/install-and-run),
-and follow the instructions in Steps 1 and 2 **only** to download and install
+and follow the instructions in steps 1 and 2 **only** to download and install
 {{site.base_gateway}} {{site.data.kong_latest_ee.version}}.
 
     {:.important}
@@ -41,7 +41,7 @@ code block in the **Step 2. Configuration Parameters** section.
 3. Open your instance's `kong.conf` file. Add the parameters you just copied
 to the file.
 
-    The result should look something like this, replacing placeholder values
+    The result should look like this, replacing placeholder values
     with your own from {{site.konnect_short_name}}:
 
     ```sh

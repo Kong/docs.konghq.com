@@ -18,9 +18,12 @@ must be of the same type. Currently, only {{site.base_gateway}} runtime types ar
 
 Every organization has one default runtime group.
 
-With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional 
-custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to 
+With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional
+custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to
 manage runtime instances and their configuration in any groupings you want.
+
+![runtime groups](/assets/images/docs/konnect/konnect-runtime-groups-example.png)
+> _**Figure 1:** Example runtime group configuration with three runtime groups: the default group, a development group, and a production group. {{site.konnect_short_name}} is the SaaS-managed global management plane that controls all of the groups, while the runtime groups contain self-managed runtime instances._
 
 ## Default runtime group
 
@@ -34,36 +37,36 @@ group can't be changed.
 
 When publishing documentation from the Service Hub to the Dev Portal, you can
 publish API specs from any version -- no matter which runtime group the version
-is in. However, application registration is only supported for Service versions
+is in. However, application registration is only supported for service versions
 running in the default runtime group.
 
-So, if you want a Service version to be available for application registration,
+So, if you want a service version to be available for application registration,
 create the version in the *default* runtime group. This means that you can have a
-mix of Service versions running in different groups for different purposes.
+mix of service versions running in different groups for different purposes.
 
 For example, you might have:
 
-* The latest version of a Service published to the Dev Portal with the latest
+* The latest version of a service published to the Dev Portal with the latest
 spec, running in the *default* group with application registration enabled.
 
-* A previous version of the Service published to the Dev Portal,
+* A previous version of the service published to the Dev Portal,
 running in the *default* group, but with application registration disabled.
 Any app with existing credentials can continue using them, but the version is
 not available for new registrations.
 
-* Another previous version of the Service, published to the Dev Portal, and
+* Another previous version of the service, published to the Dev Portal, and
 running in a *custom* runtime group. This version would only have the documentation
 available, and developers would not have access to application registration for
 this version.
 
-Out of these three scenarios, only the Service version in the first scenario
+Out of these three scenarios, only the service version in the first scenario
 would be available for application registration.
 
 ## Multiple runtime groups
 {:.badge .enterprise}
 
-In addition to the default runtime group, you can also configure two additional
-custom groups. Splitting runtime instances and configuration into multiple
+In addition to the default runtime group, you can also configure custom groups.
+Splitting runtime instances and configuration into multiple
 runtime groups provides multiple specialized environments in one account.
 
 Some common use cases for using multiple runtime groups include:
@@ -88,7 +91,7 @@ entity-specific permissions.
 
 For each runtime group, you can spin up runtime instances and configure
 the following {{site.base_gateway}} objects:
-* Gateway Services
+* Gateway services
 * Routes
 * Consumers
 * Plugins
@@ -100,7 +103,7 @@ When there are multiple runtime groups, any object configuration only
 applies to the runtime group that it was created in. Consumers and
 their authentication mechanisms don't carry over to other runtime groups.
 
-[Manage global entities &rarr;](/konnect/runtime-manager/gateway-config)
+[{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/runtime-manager/gateway-config)
 
 ## References
 

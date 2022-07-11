@@ -1,6 +1,7 @@
 ---
 title: Troubleshoot Runtime Instances
 no_version: true
+content-type: how-to
 ---
 
 ## Out of sync runtime instance

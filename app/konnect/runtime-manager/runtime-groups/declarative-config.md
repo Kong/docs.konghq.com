@@ -13,14 +13,11 @@ In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/runtime-mana
 and all of their configurations:
 * Create state files for different runtime groups and manage each group
 separately.
-* Manage Gateway Services, routes, consumers, plugins, and upstreams for each
+* Manage Gateway services, routes, consumers, plugins, and upstreams for each
 group.
 * Migrate configuration from one group to another.
 
-{:.note}
-> **Note:** To work with runtime groups, you need [decK v1.12.0 or later](/deck/).
-
-Use any `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
+Use a `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
 parameters using a decK configuration file (`~/.deck.yaml` by default) to target
 `https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,
 decK looks for a local {{site.base_gateway}} instance instead.
@@ -178,8 +175,7 @@ For this example, let's add a new service.
       Deleted: 0
     ```
 
-1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtime Manager** from
-the left side menu, then select your runtime group > **Gateway Services**.
+1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtime Manager**, select your runtime group, and select **Gateway Services**.
 
     You should see a new service named `MyService` in the runtime group.
 
@@ -251,9 +247,8 @@ header:
   -H 'apikey: {API_KEY}'
  ```
 
-If successful, you should see the homepage for `mockbin.org`. On your Service
-Version overview page, you’ll see a record for status code 200. This might
-take a few moments.
+If successful, you should see the homepage for `mockbin.org`. On the Service
+Version overview page, you’ll see a record for status code `200`.
 
 If you try to access the route without a key, you'll get an authorization error:
 

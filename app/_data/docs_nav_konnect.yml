@@ -91,7 +91,7 @@
       items:
         - text: Overview
           url: /runtime-manager/gateway-config
-        - text: Manage Proxy Configuration
+        - text: Runtime Configuration
           url: /runtime-manager/manage-proxy-config
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
