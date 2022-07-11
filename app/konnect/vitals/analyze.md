@@ -32,12 +32,12 @@ You can view traffic health and performance of an individual service, including 
 service's versions.
 
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
-On the service's detail page, the **Throughput** graph displays any API calls
+On the service's detail page, the **Throughput** graph displays all API calls
 that have been made against any versions of the service for the given time frame.
 
 From the **Throughput** graph, you can:
 
-* Hover over an area of the graph to view details of an event, including
+* Hover over an area of the graph to view event details, including
 version information and time the event occurred.
 
 * Select a time frame to display. By default, the graph displays the last six hours of events.
@@ -46,7 +46,7 @@ All time frames on this graph are dynamic.
 
 If you choose 5m, the graph displays all events that occurred in the last five
 minutes; if you choose 6h, the graph displays all events from the last six
-hours, and so on.
+hours.
 
 ### Export service history
 
@@ -81,8 +81,8 @@ class and count.
 All time frames on this graph are dynamic.
 
 If you choose 5m, the graph displays all events that occurred in the last five
-minutes; if you choose 6h, the graph displays all events from the last six
-hours, and so on.
+minutes. If you choose 6h, the graph displays all events from the last six
+hours.
 
 ### Export service version history
 
@@ -95,7 +95,7 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 1. On the **Traffic by Status Code** graph, click the **Export** button.
 1. Select the time frame to include in the report. To customize the time frame,
 click **Custom** and select a date range.
-1. Click **Export** to generate and download CSV file.
+1. Click **Export** to generate and download a CSV file.
 
 ## Analyze routes
 
