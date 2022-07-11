@@ -150,9 +150,9 @@ Metric                     | Description | Namespace
 `request_size`             | The request's body size in bytes. | `kong.<service_identifier>.request.size`
 `response_size`            | The response's body size in bytes. | `kong.<service_identifier>.response.size`
 `latency`                  | The time interval in milliseconds between the request and response. | `kong.<service_identifier>.latency`
-`status_count`             | tracks each status code returned in a response | kong.\<service_identifier>.request.status.\<status>.count and kong.\<service_name>.request.status.\<status>.total
+`status_count`             | Tracks each status code returned in a response. | `kong.<service_identifier>.request.status.<status>.count` and `kong.<service_name>.request.status.<status>.total`
 `unique_users`             | Tracks unique users who made requests to the underlying Service or Route. | `kong.<service_identifier>.user.uniques`
-`request_per_user`         | tracks the request count per Consumer | kong.\<service_identifier>.user.\<consumer_identifier>.request.count
+`request_per_user`         | Tracks the request count per Consumer. | `kong.<service_identifier>.user.<consumer_identifier>.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.<service_identifier>.upstream_latency`
 `kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.<service_identifier>.kong_latency`
 `status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` and `kong.<service_identifier>.user.<consumer_identifier>.request.status.total`
