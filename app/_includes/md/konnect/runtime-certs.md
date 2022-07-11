@@ -1,5 +1,5 @@
 <!-- Shared between Konnect gateway runtime config topics: Docker, Kubernetes, and kong.conf -->
-1. In Konnect, select {% konnect_icon runtimes %}
+1. In {{site.konnect_short_name}}, select {% konnect_icon runtimes %}
 **Runtime Manager**.
 
 1. Select a runtime group.
