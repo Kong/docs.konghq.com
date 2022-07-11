@@ -166,7 +166,7 @@ Metric                     | Description | Namespace
 `response_size`            | the response's body size in bytes | kong.global.unmatched.response.size
 `latency`                  | the time interval between the request started and response received from the upstream server | kong.global.unmatched.latency
 `status_count`             | the status count | kong.global.unmatched.status.\<status>.count
-`kong_latency`             | the internal Kong latency in milliseconds that it took to run all the plugins | kong.global.unmatched.kong_latency
+`kong_latency`             | The internal Kong latency in milliseconds that it took to run all the plugins. | `kong.global.unmatched.kong_latency`
 
 ### Metric Fields
 
