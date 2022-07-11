@@ -12,7 +12,7 @@ services.
 
 ## July 2022
 
-### date TBA
+### 2022.07.12
 
 **New environment for {{site.konnect_short_name}}**
 : {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
