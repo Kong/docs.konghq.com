@@ -88,9 +88,9 @@ kong_version_compatibility: # required
 
 Running Kong on Azure Container Instances is super easy:
 
-1. **Provision a datastore**
+1. **Provision a data store**
 
-    Provision the datastore that you want to use:
+    Provision the data store that you want to use:
     1. [Running Cassandra on Azure with Azure Cosmos DB](/hub/tomkerkhove/microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db){:target="_blank"}{:rel="noopener noreferrer"}
     1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql){:target="_blank"}{:rel="noopener noreferrer"}
 
