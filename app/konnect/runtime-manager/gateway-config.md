@@ -22,14 +22,14 @@ upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway services can be exposed in Service Hub, or managed though Runtime Manager
 only:
-* When you create a [{{site.konnect_short_name}} service implementation](/konnect/servicehub/manage-services)
+* When you create a [{{site.konnect_short_name}} service implementation](/konnect/servicehub/service-implementations)
 through the Service Hub, it automatically creates a Gateway service.
 * You can also create a Gateway service directly through Runtime Manager. This
-service won't be connected to any Service Hub implementation.
+service won't be connected to any Service Hub implementation by default, unless you add a tag to link it.
 
 To see if a Gateway service is connected to the Service Hub, open its
-detail page from **Runtime Manager** > **Gateway Services**. If it's attached to an
-implementation, you should see a tag in the following format: `_KonnectService:{SERVICE_NAME}`.
+detail page from {% konnect_icon runtimes %} **Runtime Manager** > **Gateway Services**. If it's attached to an
+implementation, you should see a tag in the following format: [`_KonnectService:{SERVICE_NAME}`](/deck/latest/guides/konnect/#konnect-service-tags).
 
 Learn more about [services in {{site.konnect_short_name}}](/konnect/servicehub) or
 check out the [service object API reference](/gateway/latest/admin-api/#service-object)
