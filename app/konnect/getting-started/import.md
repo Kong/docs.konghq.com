@@ -134,7 +134,7 @@ Turn any self-managed nodes into cloud data plane nodes by registering them
 through the Runtime Manager and adjusting their configurations, or power down
 the old instances and create new data plane nodes through {{site.konnect_saas}}.
 
-1. Follow the [runtime setup guide](/konnect/runtime-manager/#kong-gateway) for
+1. Follow the [runtime setup guide](/konnect/runtime-manager/#runtime-instances) for
 your preferred deployment type.
 
 2. Once you have created or converted the data plane nodes, `kong stop` your
