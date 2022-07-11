@@ -143,7 +143,7 @@ params:
 
 Metric                     | Description | Namespace
 ---                        | ---         | ---
-`request_count`            | the request count | kong.\<service_identifier>.request.count
+`request_count`            | The number of requests. | `kong.<service_identifier>.request.count`
 `request_size`             | the request's body size in bytes | kong.\<service_identifier>.request.size
 `response_size`            | the response's body size in bytes | kong.\<service_identifier>.response.size
 `latency`                  | the time interval in milliseconds between the request and response | kong.\<service_identifier>.latency
