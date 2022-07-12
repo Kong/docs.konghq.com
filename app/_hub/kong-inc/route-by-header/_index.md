@@ -20,6 +20,7 @@ params:
   route_id: true
   consumer_id: true
   dbless_compatible: 'yes'
+  konnect_examples: false
   config:
     - name: rules
       required: false
