@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
+require 'yaml'
 module CanonicalUrl
   class Generator < Jekyll::Generator # rubocop:disable Metrics/ClassLength
     priority :low
     def generate(site)
+      # We need to keep track of renamed pages in some cases
+      # Usually when we rework the IA between major releases but want to keep
+      # the SEO juice for a given page
+      @moved_pages = YAML.load_file("#{__dir__}/../../moved_urls.yml")
+
       # Generate the all_pages entres for the Plugin Hub
       all_pages = generate_plugin_hub(site)
 
@@ -108,6 +114,11 @@ module CanonicalUrl
         url = page.url.gsub(url_segments[1], 'VERSION')
         urls_to_check << url
 
+        # If a page has been renamed between versions, then we need to check
+        # for the new URL in later versions too
+        moved_url = resolve_moved_url(url)
+        urls_to_check << moved_url if moved_url
+
         # As before, legacy endpoints might match newer /gateway/ URLs so
         # we also need to check for the path under the /gateway/ docs too
         legacy_gateway_endpoints = ['/gateway-oss/', '/enterprise/']
@@ -117,11 +128,18 @@ module CanonicalUrl
 
         # There will usually only be one URL to check, but gateway-oss
         # and enterprise URLs will contain two here, so we have to loop
+        latest_version = to_version('0.0.x')
+        canonical_url = nil
+
         urls_to_check.each do |u|
           # Otherwise look up the URL and link to the latest version
           matching_url = all_pages[u]
-          page.data['canonical_url'] = matching_url['url'] if matching_url
+          next unless matching_url && matching_url['version'] > latest_version
+
+          latest_version = matching_url['version']
+          canonical_url = matching_url['url']
         end
+        page.data['canonical_url'] = canonical_url if canonical_url
 
         # If a page has a canonical URL and is not the /latest/ page,
         # we don't want it in the sitemap or indexable by Google
@@ -136,6 +154,17 @@ module CanonicalUrl
         # If this is the case, we may get hit by duplicate content penalties.
         page.data['seo_noindex'] = true if page.data['canonical_url'] && url_segments[1] != 'latest'
       end
+    end
+
+    def resolve_moved_url(url)
+      resolved_url = nil
+      loop do
+        url = @moved_pages[url]
+        break unless url
+
+        resolved_url = url
+      end
+      resolved_url
     end
 
     def versioned_page?(url_segments)
