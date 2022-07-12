@@ -157,7 +157,7 @@ metadata:
   annotations:
 spec:
   ingressClassName: kong
-  backend:
+  defaultBackend:
     service:
       name: fallback-svc
       port:
