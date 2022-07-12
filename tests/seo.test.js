@@ -40,6 +40,11 @@ test.describe("Canonical links", () => {
       src: "/hub/",
       href: "/hub/",
     },
+    {
+      title: "page using moved_urls.yml to track renamed files",
+      src: "/gateway-oss/2.5.x/configuration/",
+      href: "/gateway/latest/reference/configuration/",
+    },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
       await page.goto(t.src);
