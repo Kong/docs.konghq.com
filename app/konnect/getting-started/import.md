@@ -98,11 +98,11 @@ deck dump \
 
 1. Open the file. If you have any of the following in your configuration, remove it:
 
-    * Any `_workspace` entries: There are no workspaces in Konnect. For a similar
+    * Any `_workspace` entries: There are no workspaces in {{site.konnect_short_name}}. For a similar
     concept, see [runtime groups](/konnect/runtime-manager/runtime-groups).
 
     * Configuration for the Portal App Registration plugin: App registration is
-    [supported in Konnect](/konnect/dev-portal/applications/application-overview),
+    [supported in {{site.konnect_short_name}}](/konnect/dev-portal/applications/application-overview),
     but not through a plugin, and decK does not manage it.
 
     * Any other unsupported plugins:
