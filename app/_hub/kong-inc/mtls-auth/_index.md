@@ -170,7 +170,7 @@ requested **Route** or **Service**.
 
 ### Client Certificate request
 Client certificates are requested in the `ssl_certificate_by_lua` phase where Kong does not
-have access to `route` and `workspace` information. Due to this information gap, Kong will ask for
+have access to `route` and `workspace` information. Due to this information gap, by deafult Kong will ask for
 the client certificate on every handshake if the `mtls-auth` plugin is configured on any Route or Service.
 In most cases, the failure of the client to present a client certificate is not going to affect subsequent
 proxying if that Route or Service does not have the `mtls-auth` plugin applied. The exception is where
@@ -178,7 +178,7 @@ the client is a desktop browser, which will prompt the end user to choose the cl
 lead to user experience issues rather than proxy behavior problems. To improve this situation,
 Kong builds an in-memory map of SNIs from the configured Kong Routes that should present a client
 certificate. To limit client certificate requests during handshake while ensuring the client
-certificate is requested when needed, the in-memory map is dependent on all the Routes in
+certificate is requested when needed, the in-memory map is dependent on the Routes in
 Kong having the SNIs attribute set. When any routes do not have SNIs set, Kong must request
 the client certificate during every TLS handshake:
 
@@ -189,8 +189,7 @@ the client certificate during every TLS handshake:
   and one or more Routes *do not* have SNIs set.
 - On specific requests only when the plugin is applied at the Route level and all Routes have SNIs set.
 
-The result is all Routes must have SNIs if you want to restrict the handshake request
-for client certificates to specific requests.
+In a nutshell, SNIs needs to be set for all routes that mtls-auth was meant to be effective.
 
 ### Adding certificate authorities
 
