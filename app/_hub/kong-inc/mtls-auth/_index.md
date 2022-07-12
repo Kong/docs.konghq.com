@@ -170,7 +170,7 @@ requested **Route** or **Service**.
 
 ### Client Certificate request
 Client certificates are requested in the `ssl_certificate_by_lua` phase where Kong does not
-have access to `route` and `workspace` information. Due to this information gap, by deafult Kong will ask for
+have access to `route` and `workspace` information. Due to this information gap, by default Kong will ask for
 the client certificate on every handshake if the `mtls-auth` plugin is configured on any Route or Service.
 In most cases, the failure of the client to present a client certificate is not going to affect subsequent
 proxying if that Route or Service does not have the `mtls-auth` plugin applied. The exception is where
@@ -213,7 +213,7 @@ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 
 {% navtab Konnect Cloud %}
 
-Go through the Konnect Manager:
+Go through the Runtime Manager:
 1. From the Dashboard, select **Shared Config** in the left navigation
 2. Select **Certificates**
 3. Click **New Certificate**
@@ -222,7 +222,7 @@ Go through the Konnect Manager:
 You will now see your certificate listed in the **Certificates** tab.
 
 To add a certificate via curl, you are required to have:
-1. Konnect ID
+1. {{site.konnect_short_name}} ID
 2. A generated access cookie
 
 ```bash
@@ -339,7 +339,7 @@ filter.
 
 ## Changelog
 
-### Kong Gateway 2.8.1.1
+### {{site.base_gateway}} 2.8.1.1
 
 * Introduced certificate revocation list (CRL) and OCSP server support with the
 following parameters: `http_proxy_host`, `http_proxy_port`, `https_proxy_host`,
