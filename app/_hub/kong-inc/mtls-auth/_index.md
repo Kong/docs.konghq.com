@@ -4,7 +4,7 @@ publisher: Kong Inc.
 version: 1.5.x
 desc: Secure routes and services with client certificate and mutual TLS authentication
 description: |
-  Add mutual TLS authentication based on client-supplied or server-supplied certificate, and on the configured trusted CA list. Automatically maps certificates to **Consumers** based on the common name field.
+  Add mutual TLS authentication based on client-supplied or server-supplied certificate, and on the configured trusted CA list. Automatically maps certificates to consumers based on the common name field.
 enterprise: true
 plus: true
 type: plugin
@@ -41,10 +41,10 @@ params:
       required: false
       datatype: string
       description: |
-        An optional string (consumer UUID) value to use as an "anonymous" **Consumer** if authentication fails.
-        If the request is left empty (which it is by default), it will fail with an authentication failure of either
+        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails.
+        If the request is left empty (which it is by default), it fails with an authentication failure of either
         `HTTP 495` if the client presented a certificate that is not acceptable, or `HTTP 496` if the client failed
-        to present certificate as requested. Please note that this value must refer to the **Consumer** `id`
+        to present certificate as requested. Please note that this value must refer to the consumer `id`
         attribute, which is internal to Kong, and **not** its `custom_id`.
     - name: consumer_by
       required: false
@@ -85,11 +85,11 @@ params:
         As a workaround, manually set the value to `SKIP`.
 
         Controls client certificate revocation check behavior. Valid values are `SKIP`, `IGNORE_CA_ERROR`, or `STRICT`.
-        If set to `SKIP`, no revocation check will be performed. If set to `IGNORE_CA_ERROR`, the plugin will respect
-        the revocation status when either OCSP or CRL URL is set, and will not fail on network issues. If set to `STRICT`,
-        the plugin will only treat the certificate as valid when it's able to verify the revocation status, and a missing
-        OCSP or CRL URL in the certificate or a failure to connect to the server will result in a revoked status.
-        If both OCSP and CRL URL are set, the plugin always checks OCSP first, and will only check the CRL URL if
+        If set to `SKIP`, no revocation check is performed. If set to `IGNORE_CA_ERROR`, the plugin respects
+        the revocation status when either OCSP or CRL URL is set, and doesn't fail on network issues. If set to `STRICT`,
+        the plugin only treats the certificate as valid when it's able to verify the revocation status, and a missing
+        OCSP or CRL URL in the certificate or a failure to connect to the server results in a revoked status.
+        If both OCSP and CRL URL are set, the plugin always checks OCSP first, and only checks the CRL URL if
         it can't communicate with the OCSP server.
     - name: http_timeout
       default: '30000'
@@ -155,41 +155,41 @@ params:
 
 ## Usage
 
-In order to authenticate the **Consumer**, it must provide a valid certificate and
+In order to authenticate the consumer, it must provide a valid certificate and
 complete mutual TLS handshake with Kong.
 
-The plugin will validate the certificate provided against the configured CA list based on the
-requested **Route** or **Service**.
+The plugin validates the certificate provided against the configured CA list based on the
+requested route or service.
 - If the certificate is not trusted or has expired, the response will be
   `HTTP 401 TLS certificate failed verification`.
-- If **Consumer** did not present a valid certificate (this includes requests not
+- If consumer did not present a valid certificate (this includes requests not
   sent to the HTTPS port), then the response will be `HTTP 401 No required TLS certificate was sent`.
   The exception is if the `config.anonymous` option was configured on the plugin, in which
-  case the anonymous **Consumer** will be used and the request will be allowed to proceed.
+  case the anonymous consumer is used and the request is allowed to proceed.
 
 
-### Client Certificate request
+### Client certificate request
 Client certificates are requested in the `ssl_certificate_by_lua` phase where Kong does not
-have access to `route` and `workspace` information. Due to this information gap, by default Kong will ask for
-the client certificate on every handshake if the `mtls-auth` plugin is configured on any Route or Service.
+have access to `route` and `workspace` information. Due to this information gap, Kong asks for
+the client certificate by default on every handshake if the `mtls-auth` plugin is configured on any route or service.
 In most cases, the failure of the client to present a client certificate is not going to affect subsequent
-proxying if that Route or Service does not have the `mtls-auth` plugin applied. The exception is where
-the client is a desktop browser, which will prompt the end user to choose the client cert to send and
+proxying if that route or service does not have the `mtls-auth` plugin applied. The exception is where
+the client is a desktop browser, which prompts the end user to choose the client cert to send and
 lead to user experience issues rather than proxy behavior problems. To improve this situation,
-Kong builds an in-memory map of SNIs from the configured Kong Routes that should present a client
+Kong builds an in-memory map of SNIs from the configured Kong routes that should present a client
 certificate. To limit client certificate requests during handshake while ensuring the client
-certificate is requested when needed, the in-memory map is dependent on the Routes in
+certificate is requested when needed, the in-memory map is dependent on the routes in
 Kong having the SNIs attribute set. When any routes do not have SNIs set, Kong must request
 the client certificate during every TLS handshake:
 
 - On every request irrespective of Workspace when the plugin is enabled in global Workspace scope.
-- On every request irrespective of Workspace when the plugin is applied at the Service level
-  and one or more of the Routes *do not* have SNIs set.
-- On every request irrespective of Workspace when the plugin is applied at the Route level
-  and one or more Routes *do not* have SNIs set.
-- On specific requests only when the plugin is applied at the Route level and all Routes have SNIs set.
+- On every request irrespective of Workspace when the plugin is applied at the service level
+  and one or more of the routes *do not* have SNIs set.
+- On every request irrespective of Workspace when the plugin is applied at the route level
+  and one or more routes *do not* have SNIs set.
+- On specific requests only when the plugin is applied at the route level and all routes have SNIs set.
 
-In a nutshell, SNIs needs to be set for all routes that mtls-auth was meant to be effective.
+SNIs must be set for all routes that mtls-auth was meant to be effective.
 
 ### Adding certificate authorities
 
@@ -219,11 +219,11 @@ Go through the Runtime Manager:
 3. Click **New Certificate**
 4. Copy and paste your certificate information and select **Create**
 
-You will now see your certificate listed in the **Certificates** tab.
+You can view your certificate listed in the **Certificates** tab.
 
-To add a certificate via curl, you are required to have:
-1. {{site.konnect_short_name}} ID
-2. A generated access cookie
+To add a certificate via curl, you need:
+* {{site.konnect_short_name}} ID
+* A generated access cookie
 
 ```bash
 curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates -F cert=@testCACert.pem --cookie '[generated access cookie]'
@@ -232,15 +232,16 @@ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certifi
 {% endnavtabs %}
 The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
 
-### Create manual mappings between certificate and Consumer object
+### Create manual mappings between certificate and consumer object
 
-Sometimes, you might not want to use automatic Consumer lookup, or you have certificates
-that contain a field value not directly associated with **Consumer** objects. In those
-situations, you may manually assign one or more subject names to the **Consumer** object for
-identifying the correct Consumer.
+Sometimes, you might not want to use automatic consumer lookup, or you have certificates
+that contain a field value not directly associated with consumer objects. In those
+situations, you may manually assign one or more subject names to the consumer object for
+identifying the correct consumer.
 
-> **Note:** Subject names refer to the certificate's Subject Alternative Names (SAN) or
-Common Name (CN). CN will only be used if the SAN extension does not exist.
+{:.note}
+> **Note**: Subject names refer to the certificate's Subject Alternative Names (SAN) or
+Common Name (CN). CN is only used if the SAN extension does not exist.
 
 {% navtabs %}
 {% navtab Kong Admin API %}
@@ -253,7 +254,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
 ```
 
 Where `{consumer}` is the `id` or `username` property of the
-[Consumer](/gateway/latest/admin-api/#consumer-object) entity to associate the
+[consumer](/gateway/latest/admin-api/#consumer-object) entity to associate the
 credentials to.
 
 Once created, you'll see a `201` success message:
@@ -271,8 +272,7 @@ HTTP/1.1 201 Created
 {% endnavtab %}
 {% navtab Declarative (YAML) %}
 
-To create a subject name mapping using declarative configuration, you will need
-to generate a UUID for each `mtls_auth_credentials` mapping. You can use any
+To create a subject name mapping using declarative configuration, you must generate a UUID for each `mtls_auth_credentials` mapping. You can use any
 UUID generator to do this. Here are some common ones, depending on your OS:
 * [Linux](https://man7.org/linux/man-pages/man1/uuidgen.1.html)
 * [MacOS](https://www.unix.com/man-page/mojave/1/uuidgen/)
@@ -297,30 +297,31 @@ consumers:
 
 Form Parameter                            | Default | Description
 ---                                       | ---     | ---
-`id`<br>*required for declarative config* |  none   | UUID of the Consumer-mapping. Required if adding mapping using declarative configuration, otherwise generated automatically by Kong's Admin API.
+`id`<br>*required for declarative config* |  none   | UUID of the consumer-mapping. Required if adding mapping using declarative configuration, otherwise generated automatically by Kong's Admin API.
 `subject_name`<br>*required*              |  none   | The Subject Alternative Name (SAN) or Common Name (CN) that should be mapped to `consumer` (in order of lookup).
-`ca_certificate`<br>*optional*            |  none   | **If using the Kong Admin API:** UUID of the Certificate Authority (CA). <br><br> **If using declarative configuration:** Full PEM-encoded CA certificate. <br><br>The provided CA UUID or full certificate has to be verifiable by the issuing certificate authority for the mapping to succeed. This is to help distinguish multiple certificates with the same subject name that are issued under different CAs. <br><br>If empty, the subject name will match certificates issued by any CA under the corresponding `config.ca_certificates`.
+`ca_certificate`<br>*optional*            |  none   | **If using the Kong Admin API:** UUID of the Certificate Authority (CA). <br><br> **If using declarative configuration:** Full PEM-encoded CA certificate. <br><br>The provided CA UUID or full certificate has to be verifiable by the issuing certificate authority for the mapping to succeed. This is to help distinguish multiple certificates with the same subject name that are issued under different CAs. <br><br>If empty, the subject name matches certificates issued by any CA under the corresponding `config.ca_certificates`.
 
 ### Matching behaviors
 
-After a client certificate has been verified as valid, the **Consumer** object is determined in the following order, unless `skip_consumer_lookup` is set to `true`:
+After a client certificate has been verified as valid, the consumer object is determined in the following order, unless `skip_consumer_lookup` is set to `true`:
 
 1. Manual mappings with `subject_name` matching the certificate's SAN or CN (in that order) and `ca_certificate = <issuing authority of the client certificate>`
 2. Manual mappings with `subject_name` matching the certificate's SAN or CN (in that order) and `ca_certificate = NULL`
-3. If `config.consumer_by` is not null, Consumer with `username` and/or `id` matching the certificate's SAN or CN (in that order)
+3. If `config.consumer_by` is not null, consumer with `username` and/or `id` matching the certificate's SAN or CN (in that order)
 4. The `config.anonymous` consumer (if set)
 
+{:.note}
 > **Note**: Matching stops as soon as the first successful match is found.
 
-When a client has been authenticated, the plugin will append headers to the request before proxying it to the upstream service so that you can identify the **Consumer** in your code:
+When a client has been authenticated, the plugin appends headers to the request before proxying it to the upstream service so that you can identify the consumer in your code:
 
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
+* `X-Consumer-ID`, the ID of the consumer on Kong
+* `X-Consumer-Custom-ID`, the `custom_id` of the consumer (if set)
+* `X-Consumer-Username`, the `username` of the consumer (if set)
 * `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer` will be set to `true` if authentication failed and the 'anonymous' **Consumer** was set instead.
+* `X-Anonymous-Consumer` is set to `true` if authentication failed and the 'anonymous' consumer was set instead.
 
-When `skip_consumer_lookup` is set to `true`, consumer lookup will be skipped and instead of appending aforementioned headers, plugin will append following two headers
+When `skip_consumer_lookup` is set to `true`, consumer lookup is skipped and instead of appending aforementioned headers, the plugin appends the following two headers
 
 * `X-Client-Cert-Dn`, distinguished name of the client certificate
 * `X-Client-Cert-San`, SAN of the client certificate
