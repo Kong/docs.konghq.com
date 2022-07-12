@@ -1,6 +1,7 @@
 ---
 title: Manage Payment Methods and Invoices
 no_version: true
+content_type: how-to
 ---
 
 Access the billing portal from the {{site.konnect_saas}}
@@ -9,16 +10,20 @@ Access the billing portal from the {{site.konnect_saas}}
 From the billing portal, you can manage credit cards associated with the account,
 view and pay an invoice, and check the payment history of the account.
 
-## Prerequisites
-You have organization admin access.
+Self-service payment management is not available for Enterprise accounts.
+To manage payment methods and invoices an Enterprise account, contact your sales representative.
 
 ## Modify a payment method
 
-1. From the **Billing and Usage** page, click **Go to billing portal**.
+Modify payment methods for a {{site.konnect_short_name}} Plus plan.
 
-2. In the **Payment Methods** section, you can:
+1. Open {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
-    * Click **+ Add a payment method** to set up a new card.
+1. On the Billing and Usage page, click **Go to billing portal**.
+
+1. In the Payment Methods section, you can:
+
+    * Click **Add a payment method** to set up a new card.
 
     * Change the default payment method: Click the `...` menu next to its
     row, then click **Make default**.
@@ -26,20 +31,20 @@ You have organization admin access.
     * Delete a payment method: Click the `...` menu next to a card's row, then
     click **Delete**.
 
-        <div class="alert alert-ee">
-        <b>Note:</b> If you have an active plan, you must have at least one
+        {:.note}
+        > **Note**: If you have an active plan, you must have at least one
         payment method configured. You can't delete the default payment method
-        unless you're on a Free plan.
-        </div>        
+        unless you're using the Free tier.
 
 ## Pay an invoice
 
-Access the billing portal from your the **Billing and Usage** page.
+Make payments for a {{site.konnect_short_name}} Plus plan.
 
+1. Open {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
-1. From the **Billing and Usage** page, click **Go to billing portal**.
+1. From the Billing and Usage page, click **Go to billing portal**.
 
-2. If there is no payment method registered, click **+ Add a payment method**
+2. If there is no payment method registered, click **Add a payment method**
 to set up a new card.
 
 3. Save the card to return to the billing portal.
@@ -49,15 +54,15 @@ to set up a new card.
 
 ## View billing history
 
-Access billing history from the billing portal.
+Access billing history for a {{site.konnect_short_name}} Plus plan from the billing portal.
 
-1. From the **Billing and Usage** page, click **Go to billing portal**.
+1. Open {{site.konnect_short_name}} {% konnect_icon cogwheel %} [**Settings**](https://cloud.konghq.com/settings/billing-settings).
 
-2. Scroll down to **Billing History**.
+1. From the Billing and Usage page, click **Go to billing portal**.
 
-3. Click the icon next to the billing period you'd like to view.
+1. In the Billing History section, click the icon next to the billing period you'd like to view.
 
     The invoice opens in a new tab.
 
-4. Click **Download invoice** or **Download receipt** to save either file as a
+1. Click **Download invoice** or **Download receipt** to save either file as a
 PDF to your computer.

@@ -2,34 +2,27 @@
 title: Generate Credentials for an Application
 no_version: true
 toc: true
+content-type: reference
 ---
 
-A credential, or API key, identifies and authenticates the developer application making a request. Use the API key either in the request URL as a query parameter, or in the request header.
-
-You can permanently delete any credential at any time. See [Delete a credential](#delete-a-credential).
+The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. From the Dev Portal, a user can generate API credentials to use with their applications. 
 
 ## Generate a credential
 
-A credential, or API key, generated in the {{site.konnect_short_name}} Dev Portal is a 32-character string associated with an Application. An Application can have multiple credentials.
+A credential, or API key, generated in the {{site.konnect_short_name}} Dev Portal is a 32-character string associated with an application. An application can have multiple credentials.
+To generate an API key from the Dev Portal, navigate to the **My Apps** page, then follow these steps: 
 
-1. In the Dev Portal, click **My Apps** from the dropdown menu under your login email.
+1. Click the application that you want to generate a credential for.
 
-2. Click the Application for which you want to generate a credential.
-
-3. In the **Authentication** pane, click **Generate Credential**.
-
-4. Test the generated credential by making a call to the service the
-   [Application is registered with](/konnect/dev-portal/applications/dev-reg-app-service)
-   using your `key-auth` credential:
-
-   ```
-   {PROXY_URL_OR_PROXY_IP}/{ROUTE}?apikey={APIKEY}
-   ```
+2. In the **Authentication** pane, click **Generate Credential**.
 
 ## Delete a credential
 
-You can permanently delete a credential. Note that the credential cannot be restored.
+You can permanently delete an API key. Once deleted, the credential cannot be restored. 
+To delete an existing credential from the {{site.konnect_short_name}} Dev Portal, navigate to the **My Apps** section of the Dev Portal, then follow these steps: 
 
-1. Navigate to an application's details page.
+1. Select the application that you want to delete a credential for.
 
-2. In the **Authentication** pane, click the cog icon of the credential you want to permanently delete and click **Delete**.
+2. From the **Authentication** pane, click the icon of the credential you want to permanently delete, then click **Delete**.
+
+

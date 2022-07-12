@@ -1,51 +1,48 @@
 ---
-title: Create, Edit, and Delete an Application
+title: Create, Edit, and Delete Applications
 no_version: true
 toc: true
+content-type: how-to
 ---
 
-After a Developer is [granted access by an admin](/konnect/dev-portal/access-and-approval/manage-devs/) to the {{site.konnect_short_name}} Dev Portal, they will be able to create, edit, and delete applications.
 
-For more information about registering for a {{site.konnect_short_name}} Dev Portal as a Developer, see [Developer Registration](/konnect/dev-portal/access-and-approval/dev-reg/).
+## Create an application
 
-{:.note}
-> **Note**: The following is all done through the Dev Portal, not through [konnect.konghq.com](https://konnect.konghq.com). As an admin, find the Dev Portal URL via **Dev Portal** > **Published Services**.
+To create a new application, log in to the Dev Portal and click **My Apps**. From the **My Apps** page, follow these instructions: 
 
-## Create an Application
+1. Click the **New App** button.
 
-Developers can create an application and link it to a Service.
+2. Fill out the **Create New Application** form with your application name, reference ID, and description.
 
-1. In the {{site.konnect_short_name}} Dev Portal, click **My Apps** from the dropdown menu in the upper right corner under your login email.
-
-2. On the **My Apps** page, click the **New App** button.
-
-3. Fill out the **Create New Application** form with your application name, reference ID, and description. Note that the Reference ID must be unique. If your organization is using the
+   {:.note}
+   > Note that the Reference ID must be unique. If your organization is using the
    [OIDC](/konnect/dev-portal/applications/enable-app-reg#oidc-flow)
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
-4. Click **Create** to save and see your new application's detail page.    
+3. Click **Create** to save your application. You will automatically be sent to the new application's details page. 
 
-## View Application Details
-
-Access and modify applications from an application's details page. Find a list of your current applications on the **My Apps** page, accessible through the dropdown menu in the top right corner under your login email.
-
-You can do the following through the application details page:
-
-- [Edit](#edit-an-application) the name, reference ID, and description of an application.
-- [Generate or delete credentials](/konnect/dev-portal/access-and-approval/dev-gen-creds).
-- View a catalog of Services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service), if no Services are registered yet.
-- View the status of an application registration to a Service.
+From the **Application Page** you can [generate credentials](/konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
 
 ## Edit an Application
 
-Edit the name, reference ID, and description of your application by going to **My Apps** in the dropdown menu under your login email, selecting your application, and clicking **Edit**.
+Once an application is created, you can edit the name, reference ID, or description from the edit menu.
+To edit an application, navigate to the **My Apps** page of the Dev Portal by clicking **My Apps** in the dropdown under your login name, then follow these instructions: 
+
+1. Select the specific application you want to edit. 
+
+2. Use the **Edit** button to open the **Update Application** form. 
+
+3. When you are satisfied with your changes, click **Update**. 
+
+You can edit the **application name**, **reference ID**, and **description**. A reference ID must be unique across all of the registered applications. 
 
 ## Delete an Application
 
-You can permanently delete an Application from the Dev Portal:
+To permanently delete an application from the Dev Portal, follow these steps:
 
-- On the **My Apps** page in the dropdown menu under your login email, click the cog icon next to an application and click **Delete**.
+1. From the **My Apps** page, click the {% konnect_icon cogwheel %} icon next to an application, then click **Delete**.
 
-- Confirm deletion in the pop-up modal.
+2. Confirm deletion from the pop-up modal.
 
-You can also delete an application from the application details page. See [Edit an Application](#edit-an-application). 
+{:.note}
+> **Note:** Deleting an application can't be undone. 

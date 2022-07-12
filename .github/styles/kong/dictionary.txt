@@ -28,9 +28,11 @@ dbless
 declaratively
 degraphql
 denylist
+deployer
 dev
 etcd
 Fargate
+favicon
 Github
 Goroutine
 Grafana
@@ -84,7 +86,10 @@ navtabs
 Netlify
 Nginx
 observability
+oc
 Okta
+onboard
+onboarding
 opa
 outbounds
 passthrough
@@ -113,6 +118,7 @@ serverless
 snis
 Splunk
 ssl
+sso
 stderr
 stdin
 stdout
@@ -130,9 +136,14 @@ uncheck
 uncomment
 Unicode
 unix
+unpublish
+unregister
+unregistering
 upstream
 upstreams
+usr
 uri
+uris
 url
 urls
 uuid

@@ -7,6 +7,10 @@ no_version: true
 
 New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
+1. **Create a {{site.konnect_short_name}} account**:
+
+    [Create an account &gt;](/konnect/getting-started/access-account)
+
 1.  **Set up a runtime connection**:
 
     Set up a runtime and connect it to your account. Your first runtime
@@ -21,9 +25,9 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 2.  **Create a service**:
 
-    Catalog a new service using the {{site.konnect_short_name}} ServiceHub.
+    Catalog a new service using the {{site.konnect_short_name}} Service Hub.
 
-    Using ServiceHub, you can catalog, manage, and track every service in your
+    Using Service Hub, you can catalog, manage, and track every service in your
     entire architecture. In this step, you create the first version of a service,
     adding the first entry to your catalog.
 
@@ -40,11 +44,21 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
     [Implement the service &gt;](/konnect/getting-started/implement-service)
 
-## Get started with declarative config
+## Share APIs and enable development
 
-You can manage entities in your {{site.konnect_saas}} org using configuration
-files instead of the GUI or admin API commands. With decK, Kong's declarative
-configuration management tool, you can create, update,
-compare, and synchronize configuration as part of an automation pipeline.
+Ready to share your API with developers?
+Use the Service Hub to manage your API documentation, then publish it to the Dev Portal:
 
-[Manage configuration with decK &gt;](/konnect/getting-started/declarative-config)
+1. **Upload your spec to {{site.konnect_short_name}} and publish to Dev Portal**
+
+    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the service.
+    Then, publish your service documentation to the Dev Portal and preview it from the developer perspective.
+
+    [Import docs and publish a service &gt;](/konnect/getting-started/publish-service/)
+
+1. **Register an application**
+
+    Expose your service to developers and register an application
+    against the service.
+
+    [Expose service and register an application &gt;](/konnect/getting-started/app-registration/)

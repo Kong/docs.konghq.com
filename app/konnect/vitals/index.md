@@ -1,88 +1,61 @@
 ---
-title: Monitoring Health with Vitals
+title: Introduction to Monitoring Health with Vitals
 no_version: true
 ---
 
-Use {{site.konnect_short_name}} Vitals (Vitals) to monitor the health and
-performance of a Service managed by {{site.konnect_product_name}}
-({{site.konnect_short_name}}). Vitals uses visual API analytics to see exactly
-how your APIs and runtimes are performing. Quickly access key statistics,
-monitor vital signs, and pinpoint anomalies in real time.
+You can monitor the health and performance of any service, service version,
+route, or application managed by {{site.konnect_saas}}.
 
-Vitals charts are available from:
-* Any Service's overview page, which displays request count, failed requests by
-status codes, and includes all versions of the Service filtered by timeframe.
-You can also export a report of a Service's
-performance data.
-* Any Service version or Route page, which display status codes filtered by
-timeframe. You can also export a report of version peformance data.
+Vitals provides traffic reports to help you track the performance and
+behavior of your APIs and runtimes. Use these reports to quickly access key
+statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-<div class="alert alert-ee blue">
-<b>Note:</b> The activity graphs in the ServiceHub only show the past 12 hours
-of activity. To see historical data for a greater range,
-<a href="/konnect/vitals/generate-reports">generate a report</a>.
-</div>
+Depending on your {{site.konnect_saas}} subscription tier, Vitals retains
+historical data for the following lengths of time:
+* **Free:** 24 hours
+* **Plus:** 6 months
+* **Enterprise:** 1 year
 
-{{site.konnect_saas}} has Vitals enabled by default.
+In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
+[activity graphs](/konnect/vitals/analyze/) for services, service versions, or
+routes for the past 30 days.
+For services, these graphs display request counts. For service versions and
+routes, the graphs show requests broken down by status codes.
 
-## View Vitals performance for a Service
+![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png)
 
-To view traffic health and performance of a Service, including across all of a
-Service's versions:
+> _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
-1. From the ServiceHub, select a **Service**.
+For greater insights into your service usage, access {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals) <span class="badge plus"></span>.
 
-2. In the **Traffic** section, the Vitals graph displays any events that have
-occurred for all of the versions of the Service. Hover over an area of the
-graph to view details of an event, including version information and time the
-event occurred.
+From Vitals, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
+* View the [Vitals dashboard](/konnect/vitals/overview-dashboard) to track traffic and errors by error code across all services in your organization.
+* [Export historical data in CSV format](/konnect/vitals/analyze/) for any individual service, service version, or route.
+* [Create a custom report](/konnect/vitals/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
-3. Select a timeframe to display. By default, the graph displays the last
-6 hours of events.
+![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
+> _**Figure 2:** Graph showing successful and failed requests over the past three hours._
 
-![Konnect Vitals Services View](/assets/images/docs/konnect/konnect-vitals-services.png)
+ ![errors vitals graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
+> _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
+## Time intervals
 
-## View Vitals performance for a Service version
+Interval | Description  
+------|----------|
+Last 15 minutes | Data is aggregated in ten second increments.
+Last hour| Data is aggregated in one minute increments.
+Last three hours | Data is aggregated in one minute increments.
+Last six hours | Data is aggregated in ten minute increments.
+Last 12 hours| Data is aggregated in ten minute increments.
+Last 24 hours| Data is aggregated in ten minute increments.
+Last seven days | Data is aggregated in one hour increments.
+Last 30 days | Data is aggregated in one hour increments.
 
-To view traffic health and performance for a Service version:
+{:.important}
+> Free tier users can only select intervals up to 24 hours.
 
-1. From the ServiceHub, select a **Service version**.
-
-2. In the **Status Codes** section, events display in a graph for the selected
-version. Hover over an area of the graph to view details, including status code
-class and count.
-
-3. Select a timeframe to display. By default, the graph displays the last 6
-hours of events.
-
-![Konnect Vitals Service Version Status Codes](/assets/images/docs/konnect/konnect-vitals-status-codes.png)
-
-For more information about status codes, see
-[Vitals Status Codes](/gateway/latest/vitals/vitals-metrics/#status-codes).
-
-
-## View Vitals performance for a Route
-
-To view traffic health and performance for a Route:
-
-1. From the ServiceHub, select a **Service version**.
-
-2. In the **Routes** section, click on a Route.
-
-4. In the **Status Codes** section, events display in a graph for the selected
-route. Hover over an area of the graph to view details, including status code
-class and count.
-
-5. To customize the view, select a timeframe, Coordinated Universal Time (UTC),
-and list view or graph view. By default, the graphs display data for the last 6
-hours.
-
-For more information about status codes, see
-[Vitals Status Codes](/gateway/latest/vitals/vitals-metrics/#status-codes).
-
-
-## Vitals terms
+## Terms
 
 **Request Count**
 : Displays a count of all proxy requests received. This includes requests that
@@ -93,20 +66,12 @@ were rejected due to rate limiting, failed authentication, and so on.
   4xx, 5xx). The Status Codes view contains the counts of status code classes
   graphed over time, as well as the ratio of code classes to total requests.
 
-**Timeframe selector**
-: Controls the timeframe of data visualized, which indirectly controls the
+**Time frame selector**
+: Controls the time frame of data visualized, which indirectly controls the
 granularity of the data. For example, the “5M” selection displays 5 minutes in
 1-second resolution data, while longer time frames display minute, hour, or
 days resolution data.
 
 **Traffic metrics**
-: Provide insight into which of your Services and Service versions are being
+: Provide insight into which of your services and service versions are being
 used and how they are responding.
-
-
-## Summary and Next Steps
-
-In this topic, you viewed the health and monitoring information for
-Services, Service versions, and Routes.
-
-Next, learn how to [export a report](/konnect/vitals/generate-reports) of Vitals performance information.
