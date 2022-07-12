@@ -13,6 +13,7 @@ You can also use this guide to migrate from `konnect.konghq.com` to `cloud.kongh
 
 Afterward, you must manually move over:
 * Dev Portal files, developer accounts, and applications
+* Application registrations
 * Convert roles and permissions into {{site.konnect_short_name}} teams
 * Certificates
 * Custom plugins
@@ -94,6 +95,23 @@ deck dump \
     This command outputs {{site.base_gateway}}'s object configuration into
     `kong.yaml` by default. You can also set `--output-file /path/{FILENAME}.yaml`
     to set a custom filename or location.
+
+1. Open the file. If you have any of the following in your configuration, remove it:
+
+    * Any `_workspace` entries: There are no workspaces in Konnect. For a similar
+    concept, see [runtime groups](/konnect/runtime-manager/runtime-groups).
+
+    * Configuration for the Portal App Registration plugin: App registration is
+    [supported in Konnect](/konnect/dev-portal/applications/application-overview),
+    but not through a plugin, and decK does not manage it.
+
+    * Any other unsupported plugins:
+        * OAuth2 Authentication
+        * Apache OpenWhisk
+        * Vault Auth
+        * DeGraphQL
+        * GraphQL Rate Limiting Advanced
+        * Key Authentication Encrypted
 
 1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff)
 command, pointing to the runtime group that you want to target:

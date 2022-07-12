@@ -210,3 +210,26 @@ To:
 _konnect:
   runtime_group_name: staging
 ```
+
+### ACL, Key Auth, or OpenID Connect plugins and app registration
+
+You may run into one of the following scenarios with the ACL, Key Authentication, or OpenID Connect (OIDC) plugins:
+* The plugins are visible in the Service Hub UI, but don't appear in the output from a `deck dump` or `deck diff`.
+* When trying to set up one of the plugins on a {{site.konnect_short_name}} service version with app registration enabled, you run into the following error:
+
+    ```
+    {Create} plugin key-auth for service example_service failed: HTTP status 400
+    ```
+
+This is intentional. When you have application registration enabled, decK doesn't manage these plugins, and doesn't let you create duplicates of the plugin entries.
+
+When setting up app registration, {{site.konnect_short_name}} enables two plugins automatically: ACL, and either Key Authentication or OIDC, depending on your choice of authentication.
+These plugins run in the background to support application registration for the service version.
+They are managed entirely by {{site.konnect_short_name}}, so you can't manage these plugins directly.
+
+[Manage application registration](/konnect/dev-portal/applications/enable-app-reg) through the Service Hub to avoid any issues.
+
+## See also
+
+* [Import {{site.base_gateway}} entities into {{site.konnect_saas}}](/konnect/getting-started/import)
+* [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config)
