@@ -35,9 +35,9 @@ To add a custom URL to Dev Portal, you need:
 In your DNS configuration, create a CNAME record for the domain you want to use using the automatically generated Dev Portal URL.
 The record will look like this:
 
-| Type  | Name   | Value                                                                                      |
-|:------|--------|--------------------------------------------------------------------------------------------|
-| CNAME | portal | `https://example.us.portal.konghq.com`|
+| Type  | Name   | Value                                  |
+|:------|--------|----------------------------------------|
+| CNAME | portal | `https://example.us.portal.konghq.com` |
 
 ### Update Dev Portal URL settings {#update-portal}
 
@@ -45,15 +45,21 @@ To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Port
 
 1. Open the **Portal URL** tab.
 
-3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable,into the **Custom Portal URL** field.
+3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable, into the **Custom Portal URL** field.
    Don't include a path or protocol (e.g. `https://`).
 
 4. Click **Save Custom Domain**.
 
 5. Click **Confirm** to begin the domain verification process.
 
+### Supported TLDs
 
+The Custom URL feature currently supports domain names with the following Top Level Domains (TLDs):
+`.io`, `.com`, `.tech`, `.net`, `.dev`, `.org`, `.edu`, `.gov`, `.fr`, `.se`, `.us`, `.au`, `.uk`, `.cloud`, `.site`.
 
+If you'd like to use a domain outside this list, please [contact support](https://support.konghq.com).
+
+{% comment %}
 ### Domain name restrictions
 
 Because of SSL certificate authority restrictions, {{site.konnect_short_name}} can't generate SSL certificates
@@ -77,6 +83,7 @@ for the following domains:
   * `.zw` Zimbabwe
 
 If you have any questions, [contact Support](https://support.konghq.com).
+{% endcomment %}
 
 ### Delete a custom URL {#delete-url}
 
