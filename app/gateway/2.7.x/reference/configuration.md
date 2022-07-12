@@ -139,6 +139,20 @@ block:
 output_buffers 4 64k;
 ```
 
+If you want to add the same directive multiple times, you can specify it like the following example:
+
+```bash
+export "KONG_NGINX_MAIN_ENV=HTTP_SSO_ENDPOINT;env PROXY_SSO_ENDPOINT"
+export HTTP_SSO_ENDPOINT=http://example.com
+export PROXY_SSO_ENDPOINT=http://example.com
+```
+
+This results in Kong injecting this line:
+
+```
+env HTTP_SSO_ENDPOINT;env PROXY_SSO_ENDPOINT;
+```
+
 As always, be mindful of your shell's quoting rules specifying values
 containing spaces.
 
