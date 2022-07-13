@@ -15,6 +15,10 @@ module SingleSource
         # Assume that the whole file should be treated as generated
         assume_generated = data['assume_generated'].nil? ? true : data['assume_generated']
         version = version_for_release(data['product'], data['release'])
+
+        # If there is an 'unlisted' section, add that in to 'items' to be rendered
+        data['items'] = data['items'] + data['unlisted'] if data['unlisted']
+
         create_pages(data['items'], site, data['product'], data['release'], version, assume_generated, f)
       end
     end
