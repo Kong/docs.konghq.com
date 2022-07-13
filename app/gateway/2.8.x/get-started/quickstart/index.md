@@ -45,7 +45,6 @@ For a comprehensive list of installation options, see our [Install page](/gatewa
      -e "KONG_PG_HOST=kong-database" \
      -e "KONG_PG_USER=kong" \
      -e "KONG_PG_PASSWORD=kong" \
-     -e "KONG_PG_HOST=kong-database" \
      kong:latest kong migrations bootstrap
    ```
 
@@ -58,7 +57,6 @@ For a comprehensive list of installation options, see our [Install page](/gatewa
         -e "KONG_PG_HOST=kong-database" \
         -e "KONG_PG_USER=kong" \
         -e "KONG_PG_PASSWORD=kong" \
-        -e "KONG_PG_HOST=kong-database" \
         -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
         -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
         -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
