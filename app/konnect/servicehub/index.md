@@ -13,7 +13,7 @@ entire architecture.
 
 ## Services in the Service Hub catalog
 
-Each entry in the Service Hub is called a _{{site.konnect_short_name}} service_, or _service_
+Each entry in the Service Hub is called a _{{site.konnect_short_name}} service_, or _service_.
 A {{site.konnect_short_name}} service is an abstraction of an upstream service.
 
 A service in the Service Hub breaks down into multiple
@@ -31,8 +31,7 @@ service with a unique configuration. A service can have many versions,
 and each version can have different configurations, set up for a RESTful API,
 gPRC endpoint, GraphQL endpoint, and others.
 
-* **Service implementation**: A runnable service version.
-version. Each service version can only have one implementation.
+* **Service implementation**: A runnable service version. Each service version can only have one implementation.
 
 A {{site.konnect_short_name}} service isn't associated with any specific runtime group, but every
 service version is. When you create a version of the service, you must select a
