@@ -189,7 +189,7 @@ the client certificate during every TLS handshake:
   and one or more routes *do not* have SNIs set.
 - On specific requests only when the plugin is applied at the route level and all routes have SNIs set.
 
-SNIs must be set for all routes that mtls-auth was meant to be effective.
+SNIs must be set for all routes that mutual TLS authentication uses.
 
 ### Adding certificate authorities
 
