@@ -213,9 +213,9 @@ _konnect:
 
 ### ACL, Key Auth, or OpenID Connect plugins and app registration
 
-You may run into one of the following scenarios with the ACL, Key Authentication, or OpenID Connect (OIDC) plugins:
+You may encounter one of the following scenarios with the ACL, Key Authentication, or OpenID Connect (OIDC) plugins:
 * The plugins are visible in the Service Hub UI, but don't appear in the output from a `deck dump` or `deck diff`.
-* When trying to set up one of the plugins on a {{site.konnect_short_name}} service version with app registration enabled, you run into the following error:
+* When trying to set up one of the plugins on a {{site.konnect_short_name}} service version with app registration enabled, you see the following error:
 
     ```
     {Create} plugin key-auth for service example_service failed: HTTP status 400
