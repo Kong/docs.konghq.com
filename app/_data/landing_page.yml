@@ -1,16 +1,16 @@
 features:
   - title: Key features
     items:
-      - name: ServiceHub
-        description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every service across your entire architecture.
+      - name: Service Hub
+        description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
         icon: /assets/images/landing-page/service-hub.svg
         links:
           - text: Cloud
             icon: /assets/images/icons/icn-cloud-blue.svg
             url: /konnect/servicehub
 
-      - name: Developer Portal
-        description: Publish services to individual Developer Portals to provide a bespoke experience to developers within and outside your organization.
+      - name: Dev Portal
+        description: Streamline developer onboarding with a self-service developer experience, letting developers discover, register, and consume published services.
         icon: /assets/images/landing-page/dev-portal.svg
         links:
           - text: Cloud
@@ -21,7 +21,7 @@ features:
             url: /gateway/latest/developer-portal/
 
       - name: Vitals
-        description: View granular analytics with Vitals to monitor the health of environments, clusters, and individual services through the ServiceHub interface.
+        description: View granular analytics with Vitals to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
         icon: /assets/images/landing-page/analytics.svg
         links:
           - text: Cloud
@@ -32,7 +32,7 @@ features:
             url: /gateway/latest/vitals/overview
 
       - name: Runtime Manager
-        description: Provision and manage Kong Gateway runtimes in your environment and platform of choice.
+        description: Provision and manage Kong Gateway runtimes and services in your environment and platform of choice.
         icon: /assets/images/landing-page/runtime.svg
         links:
           - text: Cloud
