@@ -3,7 +3,7 @@ title: Start Kong Gateway
 ---
 
 In this section, you'll learn how to install and manage your {{site.base_gateway}} instance. First, you'll start {{site.base_gateway}} to gain access to its Admin
-API, where you'll manage entities including Services, Routes, and Consumers.
+API, where you'll manage entities including services, routes, and consumers.
 
 ## Start {{site.base_gateway}} using Docker with a database
 
