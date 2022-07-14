@@ -28,10 +28,10 @@ Install {{site.base_gateway}} on Debian from the command line.
 1. Download the Kong package:
 
 {% capture download_package %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-debian-$(lsb_release -cs)/pool/all/k/kong-enterprise-edition/kong_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-debian-$(lsb_release -cs)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -39,7 +39,7 @@ curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-ver
 curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-2.x-debian-$(lsb_release -cs)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ download_package | indent | replace: " </code>", "</code>" }}
@@ -47,7 +47,7 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{
 2. Install the package:
 
 {% capture install_package %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 sudo dpkg -i kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb
@@ -58,7 +58,7 @@ sudo dpkg -i kong-enterprise-edition-{{page.kong_versions[page.version-index].ee
 sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
@@ -80,7 +80,7 @@ Install the APT repository from the command line.
 3. Install Kong:
 
 {% capture install_from_repo %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
@@ -91,7 +91,7 @@ apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].
 apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_from_repo | indent | replace: " </code>", "</code>" }}

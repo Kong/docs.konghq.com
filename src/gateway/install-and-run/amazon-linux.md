@@ -19,12 +19,12 @@ You can install {{site.base_gateway}} by downloading an installation package or 
 {% navtabs %}
 {% navtab Package %}
 
-Install {{site.base_gateway}} on Debian from the command line.
+Install {{site.base_gateway}} on Amazon Linux from the command line.
 
 1. Download the Kong package:
 
 {% capture download_package %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm"
@@ -35,7 +35,7 @@ curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-ver
 curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm"
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ download_package | indent | replace: " </code>", "</code>" }}
@@ -43,7 +43,7 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rp
 2. Install the package:
 
 {% capture install_package %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm
@@ -54,7 +54,7 @@ sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index
 sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
@@ -72,7 +72,7 @@ Install the YUM repository from the command line.
 2. Install Kong:
 
 {% capture install_from_repo %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
 sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
@@ -83,7 +83,7 @@ sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index
 sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_from_repo | indent | replace: " </code>", "</code>" }}

@@ -77,7 +77,7 @@ communicate with each other:
 1. Prepare the Kong database:
 
 {% capture migrations %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```sh
 docker run --rm --network=kong-net \
@@ -97,7 +97,7 @@ docker run --rm --network=kong-net \
 kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migrations bootstrap
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 {{ migrations | indent | replace: " </code>", "</code>" }}
 
@@ -137,7 +137,7 @@ export the license key to a variable:
 
 1. Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```sh
 docker run -d --name kong-gateway \
@@ -184,7 +184,7 @@ docker run -d --name kong-gateway \
  kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
  ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 {{ start_container | indent | replace: " </code>", "</code>" }}
 
@@ -326,7 +326,7 @@ export the license key to a variable:
 run the following command to start a container with {{site.base_gateway}}:
 
 {% capture start_container %}
-{% navtabs codeblock %}
+{% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```sh
 docker run -d --name kong-dbless \
@@ -371,7 +371,7 @@ docker run -d --name kong-dbless \
  kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
  ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtabs_ee %}
 {% endcapture %}
 {{ start_container | indent | replace: " </code>", "</code>" }}
 
