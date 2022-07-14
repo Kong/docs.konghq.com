@@ -8,6 +8,7 @@
 title: PDK
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 The Plugin Development Kit (PDK) is set of Lua functions and variables
@@ -161,7 +162,3 @@ Instance of Kong's database caching object, from the `kong.cache` module.
 
  **Note:** Usage of this module is currently reserved to the core or to
  advanced users.
-
-
-
-

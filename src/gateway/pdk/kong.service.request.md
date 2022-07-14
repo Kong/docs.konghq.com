@@ -8,6 +8,7 @@
 title: kong.service.request
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Module for manipulating the request sent to the Service.
@@ -476,5 +477,3 @@ if not ok then
   -- do something with error
 end
 ```
-
-

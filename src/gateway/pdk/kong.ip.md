@@ -8,6 +8,7 @@
 title: kong.ip
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Trusted IPs module.
@@ -53,5 +54,3 @@ if kong.ip.is_trusted("1.1.1.1") then
   kong.log("The IP is trusted")
 end
 ```
-
-

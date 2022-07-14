@@ -8,6 +8,7 @@
 title: kong.ctx
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Contextual data for the current request.
@@ -107,5 +108,3 @@ function plugin_handler:log(conf)
   kong.log(value) -- "hello world"
 end
 ```
-
-
