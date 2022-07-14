@@ -1,7 +1,6 @@
 ---
 name: StatsD
 publisher: Kong Inc.
-version: 3.0.x
 desc: Send metrics to StatsD
 description: |
   Log [metrics](#metrics) for a Service or Route to a StatsD server.
@@ -14,41 +13,10 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
+
   enterprise_edition:
     compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+
 params:
   name: statsd
   service_id: true
@@ -93,6 +61,7 @@ params:
       default: '`false`'
       datatype: boolean
       description: Include the `hostname` in the `prefix` for each metric name.
+      minimum_version: "3.0.x"
     - name: udp_packet_size
       required: true
       default: '`0` (not combined)'
@@ -105,6 +74,7 @@ params:
       default: '`false`'
       datatype: boolean
       description: Use TCP instead of UDP.
+      minimum_version: "3.0.x"
     - name: allow_status_codes
       required: true
       default: All responses are passed to log metrics
@@ -113,29 +83,34 @@ params:
         - 400-499
       datatype: array of string elements
       description: List of status code ranges that are allowed to be logged in metrics.
+      minimum_version: "3.0.x"
     - name: consumer_identifier_default
       required: true
       default: 'custom_id'
       datatype: string
       description: The default consumer identifier of metrics. This takes effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
+      minimum_version: "3.0.x"
     - name: service_identifier_default
       required: true
-      default: 'service_name_or_host' 
+      default: 'service_name_or_host'
       datatype: string
       description: The default service identifier of metrics. This takes effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
+      minimum_version: "3.0.x"
     - name: workspace_identifier_default
       required: true
-      default: 'workspace_id' 
+      default: 'workspace_id'
       datatype: string
-      description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.   
+      description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
+      minimum_version: "3.0.x"   
     - name: service_prefix_in_metric
       required: false
-      default: false 
+      default: false
       datatype: boolean
-      description: | 
-        Indicate whether to add `service.` prefix before `<service_identifier>` in metric name. 
-      
+      description: |
+        Indicate whether to add `service.` prefix before `<service_identifier>` in metric name.
+
         For example, if set to `true`, then `kong.<service_identifier>.request.count` will be `kong.service.<service_identifier>.request.count`.
+      minimum_version: "3.0.x"
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
@@ -156,9 +131,11 @@ Metric                     | Description | Namespace
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.<service_identifier>.upstream_latency`
 `kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.<service_identifier>.kong_latency`
 `status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` and `kong.<service_identifier>.user.<consumer_identifier>.request.status.total`
+{% if_plugin_version gte:3.0.x %}
 `status_count_per_workspace`         | The status code per workspace. | `kong.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
 `status_count_per_user_per_route`    | The status code per Consumer per Route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
+{% endif_plugin_version %}
 
 If a request URI doesn't match any Routes, the following metrics are sent instead:
 
@@ -181,21 +158,41 @@ Field         | Description                                             | Dataty
 `stat_type`  <br>*required*     | Determines what sort of event a metric represents.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
 `sample_rate`<br>*required* <br>*conditional*   | Sampling rate.              | Number        | `number`                 
 `consumer_identifier`<br>*conditional* | Authenticated user detail.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`, `null`
+{% if_plugin_version gte:3.0.x %}
 `service_identifier`<br>*conditional* | Service detail.  | String   |  One of the following options: `service_id`, `service_name`, `service_host`, `service_name_or_host`, `null`
 `workspace_identifier`<br>*conditional* | Workspace detail.  | String | One of the following options:`workspace_id`, `workspace_name`, `null`
+{% endif_plugin_version %}
 
 ### Metric behaviors
 
 1.  By default, all metrics get logged.
 2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
 3.  `unique_users` metric only works with `stat_type` as `set`.
+{% if_plugin_version lte:2.8.x %}
+4.  `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
+5.  `status_count_per_user`, `request_per_user` and `unique_users` must have `customer_identifier` defined.
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.0.x %}
 4.  `status_count`, `status_count_per_user`, `status_count_per_user_per_route` and `request_per_user` work only with `stat_type` as `counter`.
 5.  `shdict_usage` work only with `stat_type` as `gauge`.
 6.  `status_count_per_user`, `request_per_user`, `unique_users` and `status_count_per_user_per_route` must have `customer_identifier` defined.
 7.  All metrics can optionally configure `service_identifier`; by default it's set to `service_name_or_host`.
 8.  `status_count_per_workspace` must have `workspace_identifier` defined.
+{% endif_plugin_version %}
 
 
 ## Kong Process Errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+---
+{% if_plugin_version gte:3.0.x %}
+## Changelog
+
+### {{site.base_gateway}} 3.0.x
+
+* Merged features of the StatsD Advanced plugin into the StatsD plugin. The StatsD plugin now includes the following:
+  * New parameters for StatsD: `hostname_in_prefix`, `udp_packet_size`, `ues_tcp`, `allow_status_codes`, `consumer_identifier_default`, `service_identifier_default`, `workspace_identifier_default`, `service_prefix_in_metric`.
+  * New metrics: `status_count_per_workspace`, `status_count_per_user_per_route`, `shdict_usage`
+  * New metric fields: `service_identifier`, `workspace_identifier`
+{% endif_plugin_version %}
