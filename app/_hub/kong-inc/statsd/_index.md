@@ -12,10 +12,10 @@ categories:
   - logging
 kong_version_compatibility:
   community_edition:
-    compatible:
+    compatible: true
 
   enterprise_edition:
-    compatible:
+    compatible: true
 
 params:
   name: statsd
