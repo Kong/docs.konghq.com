@@ -7,7 +7,7 @@ To enable Enterprise features, {{site.base_gateway}} requires a license file.
 You will receive this file from Kong when you sign up for a
 {{site.konnect_product_name}} Enterprise subscription.
 
-[Contact Kong](https://konghq.com/get-started/) for more information.
+[Contact Kong](https://konghq.com/get-started) for more information.
 
 <div class="alert alert-ee blue">
 <b>Note:</b> The free mode does not require a license. See
