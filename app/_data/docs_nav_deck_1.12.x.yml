@@ -50,6 +50,8 @@ items:
         url: /guides/defaults
       - text: Using environment variables with decK
         url: /guides/environment-variables
+      - text: Managing decK with Docker
+        url: /guides/manage-with-docker
 
   - title: decK CLI Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
