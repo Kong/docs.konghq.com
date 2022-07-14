@@ -6,7 +6,7 @@ This page explains how to install {{site.base_gateway}} with {{site.kic_product_
 
 This page also includes the equivalent commands for OpenShift.
 
-Note that in DB-less mode on Kubernetes, config is stored in etcd, the Kubernetes native datastore. For more information see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/plan-and-deploy/kubernetes-deployment-options).
+In DB-less mode on Kubernetes, the config is stored in etcd, the Kubernetes native data store. For more information, see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/plan-and-deploy/kubernetes-deployment-options).
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).
@@ -83,13 +83,22 @@ oc new-project kong
     oc get pods -n kong
     ```
 
-1.  To make HTTP requests, you need the IP address of the load balancer. Get the LoadBalancer address and store it in a local PROXY_IP environment variable:
+1.  To make HTTP requests, you need the IP address of the load balancer. Get the `loadBalancer` address and store it in a local `PROXY_IP` environment variable:
+
+    {:.note}
+    > **Note:** Some cluster providers only provide a DNS name for load balancers. In this case, specify `.hostname` instead of `.ip`.
 
     ```sh
     export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
     ```
 
-1.  Check that the value of $PROXY_IP is the value of the external host:
+1.  Verify that the value of `$PROXY_IP` matches the value of the external host:
+
+    ```sh
+    echo $PROXY_IP
+    ```
+
+    This should match the `EXTERNAL_IP` value of the `kong-proxy` service returned by the Kubernetes API:
 
     ```sh
     kubectl get service kong-proxy -n kong
@@ -101,8 +110,16 @@ oc new-project kong
     oc get service kong-proxy -n kong
     ```
 
-    {:.note}
-    > **Note:** Some cluster providers provide only a DNS name for load balancers. In this case, specify `.hostname` instead of `.ip`.
+1. Invoke a test request:
+    ```sh
+    curl $PROXY_IP
+    ```
+
+    This should return the following response from Gateway:
+
+    ```sh
+    {"message":"no Route matched with those values"}
+    ```
 
 ## Next steps
 
