@@ -8,6 +8,7 @@
 title: kong.cluster
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Cluster-level utilities.
@@ -47,5 +48,3 @@ end
 
 -- use id here
 ```
-
-
