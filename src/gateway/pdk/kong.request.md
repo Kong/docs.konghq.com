@@ -8,6 +8,7 @@
 title: kong.request
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Client request module.
@@ -671,5 +672,3 @@ local body, err, mimetype = kong.request.get_body()
 body.name -- "John Doe"
 body.age  -- "42"
 ```
-
-

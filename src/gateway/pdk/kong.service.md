@@ -8,6 +8,7 @@
 title: kong.service
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 The service module contains a set of functions to manipulate the connection
@@ -244,5 +245,3 @@ if not ok then
   -- do something with error
 end
 ```
-
-

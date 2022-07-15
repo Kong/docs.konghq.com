@@ -8,6 +8,7 @@
 title: kong.vault
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 This module can be used to resolve, parse, and verify vault references.

@@ -8,6 +8,7 @@
 title: kong.router
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Router module.
@@ -65,5 +66,3 @@ else
   -- routed by a route without a service
 end
 ```
-
-

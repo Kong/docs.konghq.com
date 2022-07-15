@@ -8,6 +8,7 @@
 title: kong.response
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Client response module.
@@ -625,5 +626,3 @@ return kong.response.error(403, "Access Forbidden")
 
 return kong.response.error(403)
 ```
-
-

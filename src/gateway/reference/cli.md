@@ -5,6 +5,7 @@
 #  the files in https://github.com/Kong/kong/tree/master/autodoc/cli
 #
 title: CLI Reference
+source_url: https://github.com/Kong/kong/tree/master/autodoc/cli
 ---
 
 The provided CLI (*Command Line Interface*) allows you to start, stop, and
@@ -132,6 +133,8 @@ The available commands are:
   list                              List executed migrations.
 
   reset                             Reset the database.
+                                    The `reset` command erases all of the data
+                                    in Kong's database and deletes all of the schemas.
 
   migrate-community-to-enterprise       Migrates Kong Community entities to
                                         Kong Enterprise in the default

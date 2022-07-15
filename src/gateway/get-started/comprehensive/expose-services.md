@@ -71,14 +71,14 @@ The service is created, and the page automatically redirects back to the
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/services \
+curl -i -X POST http://<kong-admin-host>:8001/services \
   --data name=example_service \
   --data url='http://mockbin.org'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http POST :8001/services \
+http POST http://<kong-admin-host>:8001/services \
   name=example_service \
   url='http://mockbin.org'
 ```
@@ -99,7 +99,7 @@ curl -i http://<admin-hostname>:8001/services/example_service
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8001/services/example_service
+http http://<kong-admin-host>:8001/services/example_service
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -288,17 +288,16 @@ A `201` message indicates the Route was created successfully.
 
 ## Verify the Route is forwarding requests to the Service
 
+By default, {{site.base_gateway}} handles proxy requests on port `8000`. The proxy is often referred to as the data plane.
+
 {% navtabs %}
 {% navtab Using a Web Browser %}
 
-By default, {{site.base_gateway}} handles proxy requests on port `:8000`.
-
-From a web browser, enter `http://<admin-hostname>:8000/mock`.
+From a web browser, navigate to `http://<kong-gateway-host>:8000/mock/request`.
 
 {% endnavtab %}
-{% navtab Using the Admin API %}
 
-Using the Admin API, issue the following:
+{% navtab Using the Admin API %}
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
@@ -309,7 +308,7 @@ curl -i -X GET http://<admin-hostname>:8000/mock/request
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request
+http http://<admin-hostname>:8000/mock/request
 ```
 {% endnavtab %}
 {% endnavtabs %}
