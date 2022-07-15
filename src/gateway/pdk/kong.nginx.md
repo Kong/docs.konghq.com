@@ -8,6 +8,7 @@
 title: kong.nginx
 pdk: true
 toc: true
+source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 Nginx information module.
@@ -37,5 +38,3 @@ Returns the current Nginx subsystem this function is called from.  Can be
 ``` lua
 kong.nginx.get_subsystem() -- "http"
 ```
-
-
