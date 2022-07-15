@@ -1729,6 +1729,18 @@ The declarative configuration as a string
 
 ---
 
+#### declarative_config_encryption_mode
+{:.badge .enterprise}
+
+Set encryption of the declarative config mapped file on filesystem. This configuration
+is valid in database-less deployment and also the Data plane in the Hybrid mode deployment.
+
+Accepted values are `off`, `aes-256-gcm`, `chacha20-poly1305`.
+
+**Default:** `off`
+
+---
+
 
 ### Datastore Cache section
 
