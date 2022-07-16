@@ -64,7 +64,7 @@ Next, we will configure Knative to use `kong` as the Ingress class:
 $ kubectl patch configmap/config-network \
   --namespace knative-serving \
     --type merge \
-      --patch '{"data":{"ingress.class":"kong"}}'
+      --patch '{"data":{"ingress-class":"kong"}}'
 ```
 
 ## Setup Knative domain
