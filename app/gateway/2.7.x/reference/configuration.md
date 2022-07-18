@@ -757,6 +757,15 @@ node to which telemetry updates will be posted in `host:port` format.
 
 ---
 
+#### cluster_telemetry_server_name
+{:.badge .enterprise}
+
+The SNI (Server Name Indication extension) to use for Vitals telemetry data.
+
+**Default:** none
+
+---
+
 #### data_plane_config_cache_mode
 {:.badge .enterprise}
 
