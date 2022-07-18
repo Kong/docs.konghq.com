@@ -11,14 +11,13 @@ description: |
   [Application Registration](/gateway/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
 
   {:.note}
-  > **Note**: This plugin is for application registration in self-managed Kong
+  > **Note**: This plugin is for application registration in _self-managed_ Kong
   > Gateway instances.
   > <br>
   > <br>
-  > In Konnect, the functionality is built into the ServiceHub,
-  > so you don't need to set up this plugin.
-  > See the [Konnect Application Overview](/konnect/dev-portal/applications/application-overview/)
-  > for more information.
+  > In Konnect, the functionality is built into the Service Hub, so you don't need this plugin. See the following documentation:
+  * [Learn about app registration in Konnect](/konnect/dev-portal/applications/application-overview/)
+  * [Enable app registration](/konnect/dev-portal/applications/enable-app-reg)
 
   The Application Registration plugin is used in tandem with supported Kong Gateway authorization
   plugins, depending on your configured Dev

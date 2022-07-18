@@ -205,15 +205,18 @@ plugins:
 {% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 
-1. In Konnect Cloud, select the service on the ServiceHub page.
-2. Scroll down to **Versions** and select the version.
-3. Scroll down to **Plugins** and click **New Plugin**.
-4. Find and select the **{{ include.name }}** plugin.{% unless
+You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then set up the plugin:
+
+1. In the **Plugins** section, click **Add Plugin**.
+2. Find and select the **{{ include.name }}** plugin.{% unless
   config_required_fields_gui == empty %}
-5. Enter the following [parameters](#parameters), updating the default
-or sample values as needed:
+3. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-6. Click **Create**.
+4. Click **Create**.
 
 {% endnavtab %}
 {% endunless %}
@@ -338,16 +341,20 @@ plugins:
 {% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 
-1. In Konnect Cloud, select the service from the ServiceHub page.
-2. Scroll down to **Versions** and select the version.
-3. Select the route.
-4. Scroll down to **Plugins** and click **Add Plugin**.
-5. Find and select the **{{ include.name }}** plugin.{% unless
-    config_required_fields_gui == empty %}
-6. Enter the following [parameters](#parameters), updating the default
-or sample values as needed:
+You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then set up the plugin:
+
+1. Select a route.
+2. In the **Plugins** section, click **Add Plugin**.
+3. Find and select the **{{ include.name }}** plugin.{% unless
+  config_required_fields_gui == empty %}
+4. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-7. Click **Create**.
+5. Click **Create**.
+
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
