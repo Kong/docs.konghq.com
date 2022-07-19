@@ -166,7 +166,6 @@ $ echo "apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
-  namespace: cert-manager
 spec:
   acme:
     email: user@example.com #please change this
