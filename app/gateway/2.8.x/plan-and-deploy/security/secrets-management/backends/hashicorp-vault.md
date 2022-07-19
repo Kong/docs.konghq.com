@@ -10,12 +10,12 @@ badge: enterprise
 ## Environment variables
 
 ```bash
-export KONG_VAULTS_HCV_PROTOCOL=<protocol(http|https)>
-export KONG_VAULTS_HCV_HOST=<hostname>
-export KONG_VAULTS_HCV_PORT=<portnumber>
-export KONG_VAULTS_HCV_MOUNT=<mountpoint>
-export KONG_VAULTS_HCV_KV=<v1|v2>
-export KONG_VAULTS_HCV_TOKEN=<tokenstring>
+export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
+export KONG_VAULT_HCV_HOST=<hostname>
+export KONG_VAULT_HCV_PORT=<portnumber>
+export KONG_VAULT_HCV_MOUNT=<mountpoint>
+export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_TOKEN=<tokenstring>
 ```
 
 You can also store this information in an entity.
