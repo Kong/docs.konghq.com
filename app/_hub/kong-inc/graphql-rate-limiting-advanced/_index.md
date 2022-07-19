@@ -560,7 +560,7 @@ curl -i -X POST --url http://kong:8001/services/example/plugins \
   --data 'config.sync_rate=10'
 ```
 
-### Decorate gql schema for costs
+### Decorate GraphQL schema for costs
 
 Cost decoration schema looks like:
 
@@ -699,7 +699,7 @@ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 ## Changelog
 
 {% if_plugin_version gte:2.8.x %}
-### Kong Gateway 2.8.x
+### {{site.base_gateway}} 2.8.x
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
@@ -715,14 +715,14 @@ plugin's actual versions, `0.1.x` and `0.2.x`.
 
 {% if_plugin_version gte:2.5.x %}
 
-### Kong Gateway 2.5.x
+### {{site.base_gateway}} 2.5.x
 
 * Added the `redis.keepalive_pool`, `redis.keepalive_pool_size`, and `redis.keepalive_backlog` configuration parameters.
  These options relate to [Openresty’s Lua INGINX module’s](https://github.com/openresty/lua-nginx-module/#tcpsockconnect) `tcp:connect` options.
 
 {% endif_plugin_version %}
 
-### Kong Gateway 2.2.x
+### {{site.base_gateway}} 2.2.x
 
 * Added Redis TLS support with the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name` configuration parameters.
 
