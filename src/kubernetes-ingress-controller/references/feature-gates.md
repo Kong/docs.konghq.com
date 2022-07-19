@@ -1,4 +1,6 @@
-# Feature Gates
+---
+title: Feature Gates
+---
 
 Upstream [Kubernetes][k8s] includes [Feature Gates][gates] to enable or disable features with flags and track the maturity of a feature using [Feature Stages][stages]. Here in the Kubernetes Ingress Controller (KIC) we use the same definitions of `Feature Gates` and `Feature Stages` from upstream Kubernetes, but with our own list of features.
 
@@ -25,20 +27,20 @@ Please read the [Important Notes](#important-notes) section before using any `Al
 - The `Since` and `Until` rows in below tables refer to [KIC Releases][releases]
 - For `GA` features the documentation exists in the main [Kong Documentation][kong-docs], see the [API reference][api-ref] and [Guides][kic-guides]
 
-An additional **warning** for end-users who are reading this documentation and trying to enable `Alpha` or `Beta` features: it is **very important** to understand that features that are currently in an `Alpha` or `Beta` state may **become `Deprecated` at any time** and **may be removed as part of the next consecutive minor release**. This is especially true for `Alpha` maturity features. In other words, **until a feature becomes GA there are no guarantees that it's going to continue being available**. To avoid disruption to your services engage with the community and read the [CHANGELOG](/CHANGELOG.md) carefully to track progress. Alternatively **do not use features until they have reached a GA status**.
+An additional **warning** for end-users who are reading this documentation and trying to enable `Alpha` or `Beta` features: it is **very important** to understand that features that are currently in an `Alpha` or `Beta` state may **become `Deprecated` at any time** and **may be removed as part of the next consecutive minor release**. This is especially true for `Alpha` maturity features. In other words, **until a feature becomes GA there are no guarantees that it's going to continue being available**. To avoid disruption to your services engage with the community and read the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md) carefully to track progress. Alternatively **do not use features until they have reached a GA status**.
 
 [k8s-keps]:https://github.com/kubernetes/enhancements
 [kic-keps]:https://github.com/Kong/kubernetes-ingress-controller/tree/main/keps
 [releases]:https://github.com/Kong/kubernetes-ingress-controller/releases
 [kong-docs]:https://github.com/Kong/docs.konghq.com
-[api-ref]:https://docs.konghq.com/kubernetes-ingress-controller/latest/references/custom-resources/
-[kic-guides]:https://docs.konghq.com/kubernetes-ingress-controller/latest/guides/overview/
+[api-ref]: /kubernetes-ingress-controller/latest/references/custom-resources/
+[kic-guides]: /kubernetes-ingress-controller/latest/guides/overview/
 
 ### Documentation
 
-If you're looking for documentation for `Alpha` maturity features you can find feature preview documentation [here in this repo](/FEATURE_PREVIEW_DOCUMENTATION.md).
+If you're looking for documentation for `Alpha` maturity features you can find feature preview documentation the [kubernetes-ingress-controller repository](https://github.com/Kong/kubernetes-ingress-controller/blob/main/FEATURE_PREVIEW_DOCUMENTATION.md)..
 
-Once a feature graduates from `Alpha` to `Beta` maturity these preview docs will be moved to the main [Kong Documentation][kong-docs].
+Once a feature graduates from `Alpha` to `Beta` maturity these preview docs will be moved to the main [Kong documentation][kong-docs].
 
 [kong-docs]:https://github.com/kong/docs.konghq.com
 
@@ -49,8 +51,8 @@ Once a feature graduates from `Alpha` to `Beta` maturity these preview docs will
 
 Features that reach GA and over time become stable will be removed from this table, they can be found in the main [KIC CRD Documentation][specs] and [Guides][guides].
 
-[specs]:https://docs.konghq.com/kubernetes-ingress-controller/latest/references/custom-resources/
-[guides]:https://docs.konghq.com/kubernetes-ingress-controller/latest/guides/overview/
+[specs]: /kubernetes-ingress-controller/latest/references/custom-resources/
+[guides]: /kubernetes-ingress-controller/latest/guides/overview/
 
 ### Feature gates for Alpha or Beta features
 
