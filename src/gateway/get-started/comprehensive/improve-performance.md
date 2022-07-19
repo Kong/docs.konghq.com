@@ -18,37 +18,9 @@ Use proxy caching so that Upstream services are not bogged down with repeated re
 
 ## Set up the Proxy Caching plugin
 
-{% navtabs %}
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-
-2. Go to **API Gateway** and click **Plugins**.
-
-3. Click **New Plugin**.
-
-4. Scroll down to the Traffic Control section and find the **Proxy Caching** plugin.
-
-5. Click **Enable**.
-
-6. Select to apply the plugin as **Global**. This means that proxy caching applies to all requests.
-
-7. Scroll down and complete only the following fields with the parameters listed.
-    1. config.cache_ttl: `30`
-    2. config.content_type: `application/json; charset=utf-8`
-    3. config.strategy: `memory`
-
-    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-
-8. Click **Create**.
-{% endnavtab %}
-{% navtab Using the Admin API %}
-
 Call the Admin API on port `8001` and configure plugins to enable in-memory caching globally, with a timeout of 30 seconds for Content-Type `application/json`.
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
+
 ```sh
 curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=proxy-cache \
@@ -56,72 +28,6 @@ curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data config.cache_ttl=30 \
   --data config.strategy=memory
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http -f :8001/plugins \
-  name=proxy-cache \
-  config.strategy=memory \
-  config.cache_ttl=30 \
-  config.content_type="application/json; charset=utf-8"
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
-
-{% endnavtab %}
-{% navtab Using decK (YAML) %}
-
-1. In the `plugins` section of your `kong.yaml` file, add the `proxy-cache`
-plugin with a timeout of 30 seconds for Content-Type
-`application/json; charset=utf-8`.
-
-    ``` yaml
-    plugins:
-    - name: proxy-cache
-      config:
-        content_type:
-        - "application/json; charset=utf-8"
-        cache_ttl: 30
-        strategy: memory
-    ```
-
-    Your file should now look like this:
-
-    ``` yaml
-    _format_version: "1.1"
-    services:
-    - host: mockbin.org
-      name: example_service
-      port: 80
-      protocol: http
-      routes:
-      - name: mocking
-        paths:
-        - /mock
-        strip_path: true
-    plugins:
-    - name: rate-limiting
-      config:
-        minute: 5
-        policy: local
-    - name: proxy-cache
-      config:
-        content_type:
-        - "application/json; charset=utf-8"
-        cache_ttl: 30
-        strategy: memory
-    ```
-
-2. Sync the configuration:
-
-    ```bash
-    deck sync
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
-
 
 ## Validate Proxy Caching
 
@@ -130,20 +36,10 @@ step.
 
 Access the */mock* route using the Admin API and note the response headers:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
+
 ```sh
 curl -i -X GET http://<admin-hostname>:8000/mock/request
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8000/mock/request
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In particular, pay close attention to the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`:
 ```
@@ -159,9 +55,9 @@ X-Kong-Upstream-Latency: 37
 
 Next, access the */mock* route one more time.
 
-This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means Kong Gateway is responding to the request directly from cache instead of proxying the request to the Upstream service.
+This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means {{site.base_gateway}} is responding to the request directly from cache instead of proxying the request to the Upstream service.
 
-Further, notice the minimal latency in the response, which allows Kong Gateway to deliver the best performance:
+Further, notice the minimal latency in the response, which allows {{site.base_gateway}} to deliver the best performance:
 
 ```
 HTTP/1.1 200 OK
@@ -175,20 +71,10 @@ X-Kong-Upstream-Latency: 1
 
 To test more rapidly, the cache can be deleted by calling the Admin API:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
+
 ```sh
 curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http delete :8001/proxy-cache
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 ## Summary and Next Steps
 

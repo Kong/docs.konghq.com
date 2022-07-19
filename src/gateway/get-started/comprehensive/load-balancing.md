@@ -1,5 +1,5 @@
 ---
-title: Set Up Intelligent Load Balancing
+title: Configure Load Balancing
 ---
 
 In this topic, you’ll learn about configuring upstream services, and create multiple targets for load balancing.
@@ -24,68 +24,23 @@ In the following example, you’ll use an application deployed across two differ
 
 In this section, you will create an Upstream named `example_upstream` and add two targets to it.
 
-{% navtabs %}
-{% navtab Using Kong Manager %}
-
-1. Access your Kong Manager instance and your **default** workspace.
-2. Go to **API Gateway** > **Upstreams**.
-3. Click **New Upstream**.
-4. For this example, enter `example_upstream` in the **Name** field.
-5. Scroll down and click **Create**.
-6. On the Upstreams page, find the new upstream service and click **View**.
-7. Scroll down and click **New Target**.
-8. In the target field, specify `httpbin.org` with port `80`, and click **Create**.
-9. Create another target, this time for `mockbin.org` with port `80`. Click **Create**.
-10. Open the **Services** page.
-11. Find your `example_service` and click **Edit**.
-12. Change the **Host** field to `example_upstream`, then click **Update**.
-{% endnavtab %}
-{% navtab Using the Admin API %}
-
 Call the Admin API on port `8001` and create an Upstream named `example_upstream`:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -X POST http://<admin-hostname>:8001/upstreams \
   --data name=example_upstream
 ```
-{% endnavtab %}
-{% navtab HTTPie %}    
-```sh
-http POST :8001/upstreams \
-  name=example_upstream
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
-
 Update the service you created previously to point to this upstream:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -X PATCH http://<admin-hostname>:8001/services/example_service \
   --data host='example_upstream'
 ```
-{% endnavtab %}
-{% navtab HTTPie %}    
-```sh
-http PATCH :8001/services/example_service \
-  host='example_upstream'
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 Add two targets to the upstream, each with port 80: `mockbin.org:80` and
 `httpbin.org:80`:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
+
 ```sh
 curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
   --data target='mockbin.org:80'
@@ -93,101 +48,13 @@ curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
 curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
   --data target='httpbin.org:80'
 ```
-{% endnavtab %}
-{% navtab HTTPie %}    
-```sh
-http POST :8001/upstreams/example_upstream/targets \
-  target=mockbin.org:80
-http POST :8001/upstreams/example_upstream/targets \
-  target=httpbin.org:80
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
-
-{% endnavtab %}
-
-{% navtab Using decK (YAML) %}
-1. In your `kong.yaml` file, create an Upstream with two targets, each with port
-80: `mockbin.org:80` and `httpbin.org:80`.
-
-    ``` yaml
-    upstreams:
-    - name: example_upstream
-      targets:
-        - target: httpbin.org:80
-          weight: 100
-        - target: mockbin.org:80
-          weight: 100
-    ```
-
-2. Update the service you created previously, pointing the `host` to this
-Upstream:
-
-    ``` yaml
-    services:
-      host: example_upstream
-      name: example_service
-      port: 80
-      protocol: http
-    ```
-
-    After these updates, your file should now look like this:
-
-    ``` yaml
-    _format_version: "1.1"
-    services:
-    - host: example_upstream
-      name: example_service
-      port: 80
-      protocol: http
-      routes:
-      - name: mocking
-        paths:
-        - /mock
-        strip_path: true
-        plugins:
-        - name: key-auth
-          enabled: false
-    consumers:
-    - custom_id: consumer
-      username: consumer
-      keyauth_credentials:
-      - key: apikey
-    upstreams:
-    - name: example_upstream
-      targets:
-        - target: httpbin.org:80
-          weight: 100
-        - target: mockbin.org:80
-          weight: 100
-    plugins:
-    - name: rate-limiting
-      config:
-        minute: 5
-        policy: local
-    - name: proxy-cache
-      config:
-        content_type:
-        - "application/json; charset=utf-8"
-        cache_ttl: 30
-        strategy: memory
-    ```
-
-3. Sync the configuration:
-
-    ``` bash
-    deck sync
-    ```
-{% endnavtab %}
-{% endnavtabs %}
 
 You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that Upstream.
 
 ## Validate the Upstream Services
 
 1. With the Upstream configured, validate that it’s working by visiting the route `http://<admin-hostname>:8000/mock` using a web browser or CLI.
-2. Continue hitting the endpoint and the site should change from `httpbin` to `mockbin`.
+2. Continue pinging the endpoint and the site should change from `httpbin` to `mockbin`.
 
 ## Summary and next steps
 
