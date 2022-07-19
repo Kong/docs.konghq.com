@@ -5,7 +5,7 @@ badge: enterprise
 
 ## Configuration
 
-[Hashicorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
+[HashiCorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
 
 ## Environment variables
 
@@ -83,7 +83,7 @@ Result:
 
 ## Examples
 
-For example, let's say you've configured a Hashicorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
+For example, let's say you've configured a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
 
 ```text
 vault kv put secret/hello foo=world
