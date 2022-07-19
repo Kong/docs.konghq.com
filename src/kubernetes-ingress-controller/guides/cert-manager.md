@@ -168,7 +168,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: user@example.com #please change this
+    email: user@example.com #please change this/this is an optional, but recommended setting
     privateKeySecretRef:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
