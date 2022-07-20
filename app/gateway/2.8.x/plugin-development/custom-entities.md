@@ -6,13 +6,13 @@ chapter: 6
 
 While not all plugins need it, your plugin might need to store more than
 its configuration in the database. In that case, Kong provides you with
-an abstraction on top of its primary datastores which allows you to store
+an abstraction on top of its primary data stores, which allows you to store
 custom entities.
 
 As explained in the [previous chapter]({{page.book.previous}}), Kong interacts
 with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
-to to provide an abstraction for your own entities.
+to provide an abstraction for your own entities.
 
 ## Modules
 
@@ -34,7 +34,7 @@ entity will be stored.
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 
-If your plugin is intended to support both Cassandra and Postgres, then both
+If your plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
@@ -87,7 +87,7 @@ return {
 
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
 
-While Kong's core migrations support both Postgres and Cassandra, custom plugins
+While Kong's core migrations support both PostgreSQL and Cassandra, custom plugins
 can choose to support either both of them or just one.
 
 A migration file is a Lua file which returns a table with the following structure:
@@ -164,13 +164,13 @@ return {
 }
 ```
 
-If a plugin only supports Postgres or Cassandra, only the section for one strategy is
+If a plugin only supports PostgreSQL or Cassandra, only the section for one strategy is
 needed. Each strategy section has two parts, `up` and `teardown`.
 
 * `up` is an optional string of raw SQL/CQL statements. Those statements will be executed
   when `kong migrations up` is executed.
 * `teardown` is an optional Lua function, which takes a `connector` parameter. Such connector
-  can invoke the `query` method to execute SQL/CQL queries. Teardown is triggered by
+  can invoke the `query` method to execute SQL/CQL queries. Tear-down is triggered by
   `kong migrations finish`
 
 It is recommended that all the non-destructive operations, such as creation of new tables and
@@ -183,17 +183,17 @@ as reentrant as possible. `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
 reason, it is expected that the first attempt at fixing the problem will be simply
 re-running the migrations.
 
-While Postgres does, Cassandra does not support constraints such as "NOT
+While PostgreSQL does, Cassandra does not support constraints such as "NOT
 NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when
 you define your model's schema. Bear in mind that this schema will be the same
-for both Postgres and Cassandra, hence, you might trade-off a pure SQL schema
+for both PostgreSQL and Cassandra, hence, you might trade-off a pure SQL schema
 for one that works with Cassandra too.
 
 **IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will
-enforce it for Cassandra, but for Postgres you must set this constraint in
+enforce it for Cassandra, but for PostgreSQL you must set this constraint in
 the migrations.
 
-To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).
+To see a real-life example, take a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).
 
 
 ## Define a schema
@@ -313,8 +313,8 @@ Here is a description of some top-level properties:
   <td><code>boolean</code> (optional)</td>
   <td>
     Whether to auto-generate admin api for the entity or not. By default the admin api is generated for all
-   daos, including custom ones. If you want to create a fully customized admin api for the dao or
-    want to disable auto-generation for the dao altogether, set this option to <code>false</code>.
+   DAOs, including custom ones. If you want to create a fully customized admin api for the DAO or
+    want to disable auto-generation for the DAO altogether, set this option to <code>false</code>.
   </td>
 </tr>
 <tr>
@@ -346,7 +346,7 @@ Here is a description of some top-level properties:
   <td><code>table</code></td>
   <td>
     Each field definition is a table with a single key, which is the field's name. The table value is
-    a subtable containing the field's <em>attributes</em>, some of which will be explained below.
+    a sub-table containing the field's <em>attributes</em>, some of which will be explained below.
   </td>
 </tr>
 </tbody>
@@ -662,16 +662,16 @@ end
 ## Cache custom entities
 
 Sometimes custom entities are required on every request/response, which in turn
-triggers a query on the datastore every time. This is very inefficient because
-querying the datastore adds latency and slows the request/response down, and
-the resulting increased load on the datastore could affect the datastore
+triggers a query on the data store every time. This is very inefficient because
+querying the data store adds latency and slows the request/response down, and
+the resulting increased load on the data store could affect the data store
 performance itself and, in turn, other Kong nodes.
 
 When a custom entity is required on every request/response it is good practice
 to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 
 The next chapter will focus on caching custom entities, and invalidating them
-when they change in the datastore: [Caching custom entities]({{page.book.next}}).
+when they change in the data store: [Caching custom entities]({{page.book.next}}).
 
 ---
 
