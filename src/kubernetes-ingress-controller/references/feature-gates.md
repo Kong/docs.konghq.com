@@ -46,9 +46,6 @@ Once a feature graduates from `Alpha` to `Beta` maturity these preview docs will
 
 ### Feature gates for graduated or deprecated features
 
-| Feature                    | Default | Stage      | Since | Until |
-|----------------------------|---------|------------|-------|-------|
-
 Features that reach GA and over time become stable will be removed from this table, they can be found in the main [KIC CRD Documentation][specs] and [Guides][guides].
 
 [specs]: /kubernetes-ingress-controller/latest/references/custom-resources/
