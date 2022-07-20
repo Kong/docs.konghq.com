@@ -2,7 +2,6 @@
 name: ACME
 publisher: Kong Inc.
 version: 0.4.x
-source_url: 'https://github.com/Kong/kong-plugin-acme'
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
   This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
