@@ -14,7 +14,7 @@
 # releases: # Fill in the Gateway version that this plugin is being added in.
 #   - 3.0.x
 #
-# 3. Add an icon for the plugin to app/_assets/images/icons/hub.
+# 3. Add a 64x64px icon for the plugin to app/_assets/images/icons/hub.
 # The name of the file must be in the following format: <publisher>_<plugin-directory-name>.png
 # For example, for the rate limiting plugin the icon name is kong-inc_rate-limiting.png
 # If your plugin doesn't have an icon yet, you can duplicate the default_icon.png file.
