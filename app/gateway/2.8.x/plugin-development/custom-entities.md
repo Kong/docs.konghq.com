@@ -324,7 +324,7 @@ Here is a description of some top-level properties:
     When <code>generate_admin_api</code> is enabled the admin api auto-generator uses the <code>name</code>
     to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the
     collection urls differently from the <code>name</code>. E.g. with DAO <code>keyauth_credentials</code>
-    we actually wanted the auto-generator to generate endpoints for this dao with alternate and more
+    we actually wanted the auto-generator to generate endpoints for this DAO with alternate and more
     url-friendly name <code>key-auths</code>, e.g. <code>http://&lt;KONG_ADMIN&gt;/key-auths</code> instead of
     <code>http://&lt;KONG_ADMIN&gt;/keyauth_credentials</code>).
   </td>
@@ -334,7 +334,7 @@ Here is a description of some top-level properties:
   <td><code>boolean</code> (optional)</td>
   <td>
     Similar to <code>admin_api_name</code> the <code>admin_api_nested_name</code> specifies the name for
-    a dao that admin api auto-generator creates in nested contexts. You only need to use this parameter
+    a DAO that admin api auto-generator creates in nested contexts. You only need to use this parameter
     if you are not happy with <code>name</code> or <code>admin_api_name</code>. Kong for legacy reasons
     have urls like <code>http://&lt;KONG_ADMIN&gt;/consumers/john/key-auth</code> where <code>key-auth</code>
     does not follow plural form of <code>http://&lt;KONG_ADMIN&gt;/key-auths</code>. <code>admin_api_nested_name</code>
