@@ -19,6 +19,8 @@ configs
 conntrack
 cors
 Curity
+DAO
+DAOs
 Datadog
 datagram
 datagrams
@@ -105,6 +107,7 @@ Protobuf
 proxied
 proxying
 redis
+reentrant
 referenceable
 repo
 routable
@@ -139,6 +142,7 @@ unix
 unpublish
 unregister
 unregistering
+upsert
 upstream
 upstreams
 usr
