@@ -6,7 +6,7 @@ no_version: true
 <!-- vale off -->
 
 ## 2.8.1.3
-**Release Date** TBD
+**Release Date** 2022/07/25
 
 ### Features
 
