@@ -95,7 +95,7 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 |  2.4.x |  2022-06-15   |     2023-06-15      |      2024-06-15       |
 |  2.5.x |  2022-07-11   |     2023-07-11      |      2024-07-11       |
 
-> *Table 3: Version Support for Kong Ingess Controller*
+> *Table 3: Version Support for Kong Ingress Controller*
 
 ## Additional Terms
 1. The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
