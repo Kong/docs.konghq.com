@@ -6,22 +6,22 @@ badge: enterprise
 
 ## Configuration
 
-[GCP Secrets Manager](https://cloud.google.com/secret-manager/) can be configured in multiple ways. The current version of Kong Gateway's implementation supports
+[GCP Secrets Manager](https://cloud.google.com/secret-manager/) can be configured in multiple ways. The current version of {{site.base_gateway}}'s implementation supports
 configuring via environment variables. 
 
 ```bash
-export GCP_SERVICE_ACCOUNT=<service_account>
+export GCP_SERVICE_ACCOUNT=SERVICE_ACCOUNT
 ```
 
 {:.note}
-> **Note**: This vault also works with [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on your GKE clusters. 
-> For that the service account should be attached to pod,
-> above environment variable ie. `GCP_SERVICE_ACCOUNT` does need in that case.
+> **Note**: The GCP Secrets Manager vault also works with [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on your GKE clusters. 
+> To use that, the service account should be attached to the pod,
+> above the environment variable. `GCP_SERVICE_ACCOUNT` is not needed in this case. 
 
 
 ## Examples
 
-For example, let's use an GCP Secrets Manager Secret with the name `my-secret-name`.
+To use a GCP Secret manager secret with the name `my-secret-name`.
 
 In this object, you have multiple key=value pairs.
 

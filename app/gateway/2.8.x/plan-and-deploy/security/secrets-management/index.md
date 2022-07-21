@@ -10,7 +10,7 @@ with APIs serviced by the gateway.
 
 Some of the most common types of secrets used by {{site.base_gateway}} include:
 
-* Datastore usernames and passwords, used with PostgreSQL and Redis
+* Data store usernames and passwords, used with PostgreSQL and Redis
 * Private X.509 certificates
 * API keys
 * Sensitive plugin configuration fields, generally used for authentication
@@ -52,7 +52,7 @@ documentation for each plugin to identify the referenceable fields:
 * Environment variables
 * AWS Secrets Manager
 * GCP Secrets Manager
-* Hashicorp Vault
+* HashiCorp Vault
 
 See the [backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
 for more information about each option.
