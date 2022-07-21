@@ -11,7 +11,6 @@ swap:
   codeblock: code block
   dbless: DB-less
   file name: filename
-  hashicorp: HashiCorp
   # '(?:kubernetes|k8s)': Kubernetes
   kong gateway: "{{site.base_gateway}}"
   Konnect: "{{site.konnect_short_name}}"
