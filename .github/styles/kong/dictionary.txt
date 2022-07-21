@@ -39,6 +39,7 @@ Grafana
 grpc
 grpcs
 hardcoded
+hashicorp
 hostname
 hostnames
 http
