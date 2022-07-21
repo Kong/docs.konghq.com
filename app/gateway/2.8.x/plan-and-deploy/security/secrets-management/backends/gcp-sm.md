@@ -5,25 +5,27 @@ badge: enterprise
 ---
 
 ## Configuration
+The current version of {{site.base_gateway}}'s implementation supports configuring [GCP Secrets Manager](https://cloud.google.com/secret-manager/) in two ways: 
 
-[GCP Secrets Manager](https://cloud.google.com/secret-manager/) can be configured in multiple ways. The current version of {{site.base_gateway}}'s implementation supports
-configuring via environment variables. 
+* Environment variables
+* Workload Identity 
+
+To configure using environment export the GCP service account variable: 
 
 ```bash
 export GCP_SERVICE_ACCOUNT=SERVICE_ACCOUNT
 ```
+{{site.base_gateway}} will automatically authenticate with the GCP API and grant you access. 
+
+To use GCP Secrets Manager with [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on a GKE cluster, update your pod spec so that the service account is attached to the pod. For configuration information, read the Workload Identity configuration [documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#authenticating_to).
 
 {:.note}
-> **Note**: The GCP Secrets Manager vault also works with [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on your GKE clusters. 
-> To use that, the service account should be attached to the pod,
-> above the environment variable. `GCP_SERVICE_ACCOUNT` is not needed in this case. 
-
+> With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` is not necessary. 
 
 ## Examples
 
-To use a GCP Secret manager secret with the name `my-secret-name`.
+To use a GCP Secret Manager [secret](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets) with the name `my-secret-name`. Create a JSON object in GCP that contains multiple key:value pairs:
 
-In this object, you have multiple key=value pairs.
 
 ```json
 {
@@ -32,7 +34,7 @@ In this object, you have multiple key=value pairs.
 }
 ```
 
-Access these secrets from `my-secret-name` like this:
+You can now reference the secret's individual resources like this: 
 
 ```bash
 {vault://gcp/my-secret-name/foo}
@@ -41,7 +43,7 @@ Access these secrets from `my-secret-name` like this:
 
 ## Entity
 
-The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
+The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity. You will need to provide {{site.base_gateway}} with the GCP Secrets Manager `project_id` in the request: 
 
 {% navtabs codeblock %}
 {% navtab cURL %}
