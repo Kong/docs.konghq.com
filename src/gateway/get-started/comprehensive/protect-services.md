@@ -18,11 +18,9 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 ## Set up Rate Limiting
 
 {:.note}
-> **Note:** This section sets up the basic Rate Limiting plugin. If you have a {{site.base_gateway}} instance, see instructions for **Using Kong Manager** to set up Rate Limiting Advanced with sliding window support instead.
 
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
 
-<!-- codeblock tabs -->
 
 ```sh
 curl -i -X POST http://<admin-hostname>:8001/plugins \
@@ -31,7 +29,6 @@ curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data config.policy=local
 ```
 
-<!-- end codeblock tabs -->
 
 
 ## Validate Rate Limiting
