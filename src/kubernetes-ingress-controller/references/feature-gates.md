@@ -2,9 +2,9 @@
 title: Feature Gates
 ---
 
-Upstream [Kubernetes][k8s] includes [feature gates][gates] to enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the Kubernetes Ingress Controller (KIC) we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
+Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the Kubernetes Ingress Controller (KIC), we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
 
-Using feature gates enables contributors to add and manage new (and potentially experimental) functionality to the KIC in a controlled manner: the features will be "hidden" until generally available (GA) and the progress and maturity of features on their path to GA will be documented. Feature gates also create a clear path for deprecating features.
+Using feature gates enables contributors to add and manage new (and potentially experimental) functionality to the KIC in a controlled manner. The features will be "hidden" until generally available (GA) and the progress and maturity of features on their path to GA will be documented. Feature gates also create a clear path for deprecating features.
 
 See below for current features and their statuses, and follow the links to the relevant feature documentation:
 
@@ -15,7 +15,7 @@ See below for current features and their statuses, and follow the links to the r
 
 ## Feature gates for alpha and beta features
 
-Features that reach GA and become stable will be removed from this table, they can be found in the main [KIC CRD documentation][specs] and [guides][guides]. This table is an overview of features at various maturity levels:
+Features that reach GA and become stable are removed from this table, but they can be found in the main [KIC CRD documentation][specs] and [guides][guides]. This table is an overview of features at various maturity levels:
 
 
 | Feature                | Default | Stage | Since | Until |
@@ -29,16 +29,16 @@ Features that reach GA and become stable will be removed from this table, they c
 
 - The **since** and **until** rows in the table refer to [KIC Releases][releases].
 - For `GA` features the documentation exists in the main [Kong documentation][kong-docs], see the [API reference][specs] and [guides][kic-guides].
-- Most features will be planned using [Kubernetes Enhancement Proposals (KEP)][k8s-keps]: If you're interested in developing features familiarize yourself with our [KEPs][kic-keps].
-- Features that are currently in alpha or beta states may become deprecated at any time. Deprecated features will be removed during the next minor release. 
-- Until a feature becomes GA there are no guarantees that it's going to continue being available, for more information read the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
+- Most features will be planned using [Kubernetes Enhancement Proposals (KEP)][k8s-keps]. If you're interested in developing features, familiarize yourself with our [KEPs][kic-keps].
+- Features that are currently in alpha or beta states may become deprecated at any time. Deprecated features are removed during the next minor release. 
+- Until a feature becomes GA, there are no guarantees that it's going to continue being available. For more information, see the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
 
 {:.important}
 >**Important:** To avoid disruption to your services consider not using features until they have reached GA status. 
 
 ### Documentation
 
-If you're looking for documentation for alpha maturity features you can find feature preview documentation ini the [kubernetes-ingress-controller repository](https://github.com/Kong/kubernetes-ingress-controller/blob/main/FEATURE_PREVIEW_DOCUMENTATION.md)..
+You can find feature preview documentation for alpha maturity features in the [kubernetes-ingress-controller repository](https://github.com/Kong/kubernetes-ingress-controller/blob/main/FEATURE_PREVIEW_DOCUMENTATION.md)..
 
 Once a feature graduates from alpha to beta maturity the preview docs will be moved to the main [Kong documentation][kong-docs].
 
