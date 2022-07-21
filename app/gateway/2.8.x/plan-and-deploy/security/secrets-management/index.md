@@ -51,6 +51,7 @@ documentation for each plugin to identify the referenceable fields:
 {{site.base_gateway}} supports the following vault backends:
 * Environment variables
 * AWS Secrets Manager
+* GCP Secrets Manager
 * Hashicorp Vault
 
 See the [backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
