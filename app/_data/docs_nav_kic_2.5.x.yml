@@ -132,3 +132,5 @@ items:
         url: /troubleshooting
       - text: Prometheus Metrics
         url: /references/prometheus
+      - text: Feature Gates
+        url: /references/feature-gates
