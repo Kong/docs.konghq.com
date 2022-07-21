@@ -28,7 +28,6 @@ Features that reach GA and become stable are removed from this table, but they c
 ### Feature gates details
 
 - The **since** and **until** rows in the table refer to [KIC Releases][releases].
-- For `GA` features the documentation exists in the main [Kong documentation][kong-docs], see the [API reference][specs] and [guides][kic-guides].
 - Most features will be planned using [Kubernetes Enhancement Proposals (KEP)][k8s-keps]. If you're interested in developing features, familiarize yourself with our [KEPs][kic-keps].
 - Features that are currently in alpha or beta states may become deprecated at any time. Deprecated features are removed during the next minor release. 
 - Until a feature becomes GA, there are no guarantees that it's going to continue being available. For more information, see the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
@@ -40,7 +39,6 @@ Features that reach GA and become stable are removed from this table, but they c
 
 You can find feature preview documentation for alpha maturity features in the [kubernetes-ingress-controller repository](https://github.com/Kong/kubernetes-ingress-controller/blob/main/FEATURE_PREVIEW_DOCUMENTATION.md)..
 
-Once a feature graduates from alpha to beta maturity the preview docs will be moved to the main [Kong documentation][kong-docs].
 
 [k8s]:https://kubernetes.io
 [gates]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/
