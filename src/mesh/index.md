@@ -286,7 +286,7 @@ Allows you to natively support Microsoft Windows workloads in service meshes, al
 <td>
 UBI Federal Distributions
 {% info_tooltip %}
-This enterprise capability provides officially supported distributions based on the Red Hat Universal Base Images (UBI).
+Provides officially supported distributions based on the Red Hat Universal Base Images (UBI).
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
