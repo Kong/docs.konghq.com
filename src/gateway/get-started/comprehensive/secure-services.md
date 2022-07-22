@@ -142,10 +142,6 @@ curl -X PATCH http://localhost:8001/routes/mocking/plugins/{<plugin-id>} \
   --data enabled=false
 ```
 
-```sh
-http -f patch :8001/routes/mocking/plugins/{<plugin-id>} \
-  enabled=false
-```
 ## Summary and next steps
 
 In this topic, you:

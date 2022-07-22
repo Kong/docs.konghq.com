@@ -33,27 +33,18 @@ curl -i -X POST http://localhost:8001/plugins \
 
 ## Validate Rate Limiting
 
-To validate rate limiting, access the API six (6) times from the CLI to confirm the requests are rate limited.
+To validate rate limiting, send a request to the API six (6) times from the CLI to confirm the requests are rate limited.
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i -X GET http://localhost:8000/mock/request
 ```
-{% endnavtab %}
 
-{% navtab Web Browser %}
+Or with follow these instructions from your web browser:
 
 1. Enter `localhost:8000/mock` and refresh your browser six times.
     After the sixth request, you’ll receive an error message.
 2. Wait at least 30 seconds and try again.
     The service will be accessible until the sixth access attempt within a 30-second window.
-
-{% endnavtab %}
-{% endnavtabs %}
-
-<!-- end codeblock tabs -->
 
 
 After the 6th request, you should receive a 429 "API rate limit exceeded" error:
