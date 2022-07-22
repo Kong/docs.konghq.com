@@ -189,7 +189,7 @@ By default, FIPS-140 compliant encryption is automatically enabled in Kong Mesh 
 <td>
 Embedded OPA Agent
 {% info_tooltip %}
-Kong Mesh ships with an embedded OPA agent in the data plane proxy sidecars, without requiring the user to run an additional dedicated sidecar for the OPA agenet, therefore simplifying the rollout of OPA across the entire organization with lower operational costs.
+Kong Mesh ships with an embedded OPA agent in the data plane proxy sidecars, without requiring the user to run an additional dedicated sidecar for the OPA AgeNet. This simplifies the roll out of OPA across the entire organization and lowers operational costs.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
