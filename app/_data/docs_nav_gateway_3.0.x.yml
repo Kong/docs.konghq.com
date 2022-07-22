@@ -66,21 +66,21 @@ items:
       - text: Comprehensive Guide
         url: /get-started/comprehensive
         items:
-          - text: Prepare to Administer
+          - text: Configure Services and Routes
             url: /get-started/comprehensive/prepare
           - text: Expose your Services
             url: /get-started/comprehensive/expose-services
-          - text: Protect your Services
+          - text: Configure Rate Limiting
             url: /get-started/comprehensive/protect-services
-          - text: Improve Performance
+          - text: Configure Proxy Caching
             url: /get-started/comprehensive/improve-performance
-          - text: Secure Services
+          - text: Configure Key Authentication
             url: /get-started/comprehensive/secure-services
-          - text: Set Up Intelligent Load Balancing
+          - text: Configure Load Balancing
             url: /get-started/comprehensive/load-balancing
-          - text: Manage Administrative Teams
+          - text: Workspaces and Teams
             url: /get-started/comprehensive/manage-teams
-          - text: Publish, Locate, and Consume Services
+          - text: Publish and Consume Services
             url: /get-started/comprehensive/dev-portal
 
   - title: Plan and Deploy

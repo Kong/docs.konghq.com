@@ -96,6 +96,7 @@ opa
 outbounds
 passthrough
 PayPal
+petstore
 plaintext
 PowerShell
 prepend

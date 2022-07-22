@@ -1,5 +1,5 @@
 ---
-title: Publish, Locate, and Consume Services
+title: Publish and Consume Services
 badge: enterprise
 ---
 
@@ -11,37 +11,11 @@ Make sure the Dev Portal is on. You should have enabled it during [installation]
 
 ## Enable the Dev Portal for a Workspace
 
-{% navtabs %}
-{% navtab Using Kong Manager %}
-
-1. In Kong Manager, open the Workspaces tab and open your workspace (for example, SecureWorkspace).
-
-2. Scroll down in the sidebar, then click the **Overview** link under the Dev Portal section.
-
-3. Click **Enable Developer Portal** and refresh the browser page.
-
-{% endnavtab %}
-{% navtab Using the Admin API %}
-
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
   --data config.portal=true
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
-  config.portal=true
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
-{% endnavtab %}
-{% endnavtabs %}
 This will expose the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace.`
 
 After the Dev Portal is enabled for the Workspace, a few new links appear in the left navigation menu. It may take a few seconds for the Settings page to populate.
