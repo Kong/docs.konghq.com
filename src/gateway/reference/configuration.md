@@ -7,6 +7,7 @@
 title: Configuration Reference for Kong Gateway
 source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
+<!-- vale off -->
 
 ## Configuration loading
 
@@ -740,6 +741,14 @@ which configuration updates will be fetched, in `host:port` format.
 
 To be used by data plane nodes only: telemetry address of the control plane
 node to which telemetry updates will be posted in `host:port` format.
+
+**Default:** none
+
+---
+#### cluster_telemetry_server_name
+{:.badge .enterprise}
+
+The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
 **Default:** none
 
