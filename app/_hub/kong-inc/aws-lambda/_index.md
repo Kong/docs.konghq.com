@@ -268,17 +268,17 @@ from the instance running Kong.
 
 For example, if you're running Kong on an EC2 instance, the IAM role that attached
 to the EC2 will be used, and Kong will fetch the credential from the
-[EC2 Instance Metadata service(IMDSv1)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html);
- if you're running Kong in an ECS container, the task IAM role will be used, and Kong will fetch the credentials from
+[EC2 Instance Metadata service(IMDSv1)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
+If you're running Kong in an ECS container, the task IAM role will be used, and Kong will fetch the credentials from
 the [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
-Note that the plugin will firstly try to fetch from ECS metadata to get the role, and if no ECS metadata related environment
-variables is available, the plugin falls back on EC2 metadata.
+Note that the plugin will first try to fetch from ECS metadata to get the role, and if no ECS metadata related environment
+variables are available, the plugin falls back on EC2 metadata.
 
 If you also provide the `aws_assume_role_arn` option, the plugin will try to perform
 an additional [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-action(which requires the Kong process to make HTTPS request to AWS STS service API) after
-configuring AWS access key/secret or fetching credentials automatically from EC2/ECS IAM roles,
-and if succeeded, the plugin will fetch a temporary security credentials which represents
+action, which requires the Kong process to make HTTPS request to AWS STS service API, after
+configuring AWS access key/secret or fetching credentials automatically from EC2/ECS IAM roles.
+If it succeeds, the plugin will fetch a temporary security credentials that represents
 that the plugin now have the access permission configured in the target assumed role.
 
 ### AWS Region as Environment Variable
