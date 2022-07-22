@@ -85,7 +85,7 @@ every cloud and environment.
 <td>Multi-Zone Security
 
 {% info_tooltip %}
-This enterprise capability allows the user to secure multi-zone deployments with a JWT-based authentication that makes sure that only approved zones can join the cluster.
+Allows you to secure multi-zone deployments with a JWT-based authentication that ensures only approved zones can join the cluster.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -117,7 +117,7 @@ This enterprise capability allows the user to secure multi-zone deployments with
 HashiCorp Vault CA
 
 {% info_tooltip %}
-This enterprise capability allows us to enable HashiCorp Vault as an additional 3rd-party backend for out mTLS CAs that are being used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+Allows you to enable HashiCorp Vault as an additional third-party backend for mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -127,7 +127,7 @@ This enterprise capability allows us to enable HashiCorp Vault as an additional 
 <td>
 AWS Certificate Manager CA
 {% info_tooltip %}
-This enterprise capability allows us to enable AWS Certificate Manager as an additional 3rd-party backend for out mTLS CAs that are being used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+Allows you to enable AWS Certificate Manager as an additional third-party backend for the mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -137,7 +137,7 @@ This enterprise capability allows us to enable AWS Certificate Manager as an add
 <td>
 Kubernetes cert-manager CA
 {% info_tooltip %}
-This enterprise capability allows us to enable Kubernetes cert-manager as an additional 3rd-party backend for out mTLS CAs that are being used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+Allows you to enable Kubernetes cert-manager as an additional third-party backend for the mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -147,7 +147,7 @@ This enterprise capability allows us to enable Kubernetes cert-manager as an add
 <td>
 GUI Dashboard for TLS and CA
 {% info_tooltip %}
-This enterprise capability provides us with addional visual reports that visualize the status of the rotation of our data plane proxy certificates, and the rotation of the CAs themselves, in a zero-trust service mesh.
+Provides you with additional visual reports that display the rotation status of the data plane proxy certificates and the rotation of the CAs themselves, in a zero-trust service mesh.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -162,7 +162,7 @@ This enterprise capability provides us with addional visual reports that visuali
 <td>
 CA Automatic Rotation
 {% info_tooltip %}
-This enterprise capability provides automatic rotation across different CAs with no downtime, in addition to providing automatic rotation and certificate lifecycle management to the data plane proxy mTLS certificates. This feature combined with the GUI Dashboard for TLS and CA provides a complete solution for managing the entire lifecycle of zero-trust service meshes.
+Provides automatic rotation across different CAs with no downtime in addition to providing automatic rotation and certificate lifecycle management to the data plane proxy mTLS certificates. This feature combined with the GUI Dashboard for TLS and CA provides a complete solution for managing the entire lifecycle of zero-trust service meshes.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -276,7 +276,7 @@ This enterprise capability allows us to natively support AWS ECS workloads with 
 <td>
 Windows Distributions
 {% info_tooltip %}
-This enterprise capability allows us to natively support Microsoft Windows workloads into our service meshes, allowing to us further expand the reach of Kong Mesh across every workload in the organization.
+Allows you to natively support Microsoft Windows workloads in service meshes, allowing you to further expand the reach of Kong Mesh across every workload in your organization.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -286,7 +286,7 @@ This enterprise capability allows us to natively support Microsoft Windows workl
 <td>
 UBI Federal Distributions
 {% info_tooltip %}
-This enterprise capability provides officially supported distributions based on the Red Hat Universal Base Images (UBI).
+Provides officially supported distributions based on the Red Hat Universal Base Images (UBI).
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -303,7 +303,7 @@ This enterprise capability provides officially supported distributions based on 
 <td>
 Enterprise Support and SLA
 {% info_tooltip %}
-With Kong Mesh we provide 24/7/265 enterprise support with different SLAs, powered by Kong's global customer success and technical support team across all world regions, and access to a vast network of partners for local language support as well. A must to have for enterprise mission-critical deployments.
+With Kong Mesh, we provide 24/7/365 enterprise support with different SLAs, powered by Kong's global customer success and technical support team across all world regions. This also provides access to a vast network of partners for local language support as well. This is recommended for enterprise mission-critical deployments.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
@@ -313,7 +313,7 @@ With Kong Mesh we provide 24/7/265 enterprise support with different SLAs, power
 <td>
 Customer Success Packages
 {% info_tooltip %}
-With Kong Mesh we provide access to our implementation and training programs to accelerate the rollout of a service mesh across every team, and to properly train and educate the organization on how to effectively drive business outcomes with the product.
+With Kong Mesh, we provide access to our implementation and training programs to accelerate the roll out of a service mesh across every team, and to properly train and educate the organization on how to effectively drive business outcomes with the product.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
