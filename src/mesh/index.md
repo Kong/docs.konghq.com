@@ -117,7 +117,7 @@ Allows you to secure multi-zone deployments with a JWT-based authentication that
 HashiCorp Vault CA
 
 {% info_tooltip %}
-This enterprise capability allows us to enable HashiCorp Vault as an additional 3rd-party backend for out mTLS CAs that are being used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+Allows you to enable HashiCorp Vault as an additional third-party backend for mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
