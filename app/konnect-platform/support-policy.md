@@ -98,5 +98,5 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 > *Table 3: Version Support for Kong Ingress Controller*
 
 ## Additional Terms
-1. The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
+- The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
 2. The above applies to Kong standard software builds only.
