@@ -147,7 +147,7 @@ Allows you to enable Kubernetes cert-manager as an additional third-party backen
 <td>
 GUI Dashboard for TLS and CA
 {% info_tooltip %}
-This enterprise capability provides us with addional visual reports that visualize the status of the rotation of our data plane proxy certificates, and the rotation of the CAs themselves, in a zero-trust service mesh.
+Provides you with additional visual reports that display the rotation status of the data plane proxy certificates and the rotation of the CAs themselves, in a zero-trust service mesh.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
