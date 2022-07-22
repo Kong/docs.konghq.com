@@ -44,7 +44,7 @@ Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs th
 
 Customers with platinum or higher subscriptions may request fixes outside of the above and Kong will assess them at its sole discretion.
 
-## Version Support for Kong Gateway (Enterprise)
+## Version Support for {{site.base_gateway}} (Enterprise)
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
@@ -79,7 +79,7 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 
 > *Table 2: Version Support for Kong Mesh*
 
-## Version Support for Kong Gateway (Enterprise)
+## Version Support for {{site.base_gateway}} (Enterprise)
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
