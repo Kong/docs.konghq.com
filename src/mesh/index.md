@@ -137,7 +137,7 @@ Allows you to enable AWS Certificate Manager as an additional third-party backen
 <td>
 Kubernetes cert-manager CA
 {% info_tooltip %}
-This enterprise capability allows us to enable Kubernetes cert-manager as an additional 3rd-party backend for out mTLS CAs that are being used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+Allows you to enable Kubernetes cert-manager as an additional third-party backend for the mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
