@@ -276,7 +276,7 @@ This enterprise capability allows us to natively support AWS ECS workloads with 
 <td>
 Windows Distributions
 {% info_tooltip %}
-This enterprise capability allows us to natively support Microsoft Windows workloads into our service meshes, allowing to us further expand the reach of Kong Mesh across every workload in the organization.
+Allows you to natively support Microsoft Windows workloads in service meshes, allowing you to further expand the reach of Kong Mesh across every workload in your organization.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
