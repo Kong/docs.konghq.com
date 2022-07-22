@@ -313,7 +313,7 @@ With Kong Mesh, we provide 24/7/365 enterprise support with different SLAs, powe
 <td>
 Customer Success Packages
 {% info_tooltip %}
-With Kong Mesh we provide access to our implementation and training programs to accelerate the rollout of a service mesh across every team, and to properly train and educate the organization on how to effectively drive business outcomes with the product.
+With Kong Mesh, we provide access to our implementation and training programs to accelerate the roll out of a service mesh across every team, and to properly train and educate the organization on how to effectively drive business outcomes with the product.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
