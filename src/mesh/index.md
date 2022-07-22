@@ -246,7 +246,7 @@ Allows you to store and fetch auditing logs for operations that were performed o
 <td>
 Kubernetes Operator
 {% info_tooltip %}
-This enterprise capability allows us to enormously simplify the operational cost of running Kong Mesh on Kubernetes by providing a native Kubernetes operator to fully manage the deployment, upgrades and rollouts of a cluster on Kubernetes.
+Allows you to simplify the operational cost of running Kong Mesh on Kubernetes by providing a native Kubernetes operator to fully manage the deployment, upgrades, and roll outs of a cluster on Kubernetes.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
