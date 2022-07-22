@@ -85,7 +85,7 @@ every cloud and environment.
 <td>Multi-Zone Security
 
 {% info_tooltip %}
-This enterprise capability allows the user to secure multi-zone deployments with a JWT-based authentication that makes sure that only approved zones can join the cluster.
+Allows you to secure multi-zone deployments with a JWT-based authentication that ensures only approved zones can join the cluster.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
