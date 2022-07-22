@@ -215,7 +215,7 @@ This exposes a native OPA policy resource that can be used to store and automati
 <td>
 Roles and permissions (RBAC)
 {% info_tooltip %}
-This enterprise capability allows us to manage complex RBAC rules to allow - or deny - access to Kong Mesh policies and functions in a sophisticated and fine grained way. Works across multi-zone and multi-mesh natively.
+Allows you to manage complex RBAC rules to allow or deny access to Kong Mesh policies and functions in a sophisticated and fine grained way. This works across multi-zone and multi-mesh natively.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
