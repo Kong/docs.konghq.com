@@ -199,7 +199,7 @@ Kong Mesh ships with an embedded OPA agent in the data plane proxy sidecars, wit
 <td>
 Native OPA Policy
 {% info_tooltip %}
-This enterprise capability exposes a native OPA policy resource that can be used to store and automatically propagate OPA policies across a multi-zone deployment natively with Kong Mesh. We also support the ability to connect to a 3rd-party OPA store like Styra.
+This exposes a native OPA policy resource that can be used to store and automatically propagate OPA policies across a multi-zone deployment natively with Kong Mesh. We also support the ability to connect to a third-party OPA store like Styra.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
