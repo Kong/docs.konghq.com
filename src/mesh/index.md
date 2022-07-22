@@ -162,7 +162,7 @@ Provides you with additional visual reports that display the rotation status of 
 <td>
 CA Automatic Rotation
 {% info_tooltip %}
-This enterprise capability provides automatic rotation across different CAs with no downtime, in addition to providing automatic rotation and certificate lifecycle management to the data plane proxy mTLS certificates. This feature combined with the GUI Dashboard for TLS and CA provides a complete solution for managing the entire lifecycle of zero-trust service meshes.
+Provides automatic rotation across different CAs with no downtime in addition to providing automatic rotation and certificate lifecycle management to the data plane proxy mTLS certificates. This feature combined with the GUI Dashboard for TLS and CA provides a complete solution for managing the entire lifecycle of zero-trust service meshes.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
