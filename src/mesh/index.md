@@ -225,7 +225,7 @@ Allows you to manage complex RBAC rules to allow or deny access to Kong Mesh pol
 <td>
 Audit Logs
 {% info_tooltip %}
-This enterprise capability allows us to store and fetch auditing logs for operations that have been performed on the cluster and - when used with RBAC - allows us to have full visibility into how the system is being governed and configured by the users.
+Allows you to store and fetch auditing logs for operations that were performed on the cluster. When used with RBAC, it allows us to have full visibility into how the system is being governed and configured by the users.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
