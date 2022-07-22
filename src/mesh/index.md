@@ -266,7 +266,7 @@ Allows you to simplify the operational cost of running Kong Mesh on Kubernetes b
 <td>
 Native AWS ECS Controller
 {% info_tooltip %}
-This enterprise capability allows us to natively support AWS ECS workloads with a built-in controller that automatically integrates ECS workloads within one or more service meshes powered by Kong Mesh, simplifying the expansion of service mesh in the cloud.
+Allows you to natively support AWS ECS workloads with a built-in controller that automatically integrates ECS workloads within one or more service meshes powered by Kong Mesh. This simplifies the expansion of service mesh in the cloud.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
