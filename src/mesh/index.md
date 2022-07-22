@@ -323,7 +323,7 @@ With Kong Mesh, we provide access to our implementation and training programs to
 <td>
 Envoy Support
 {% info_tooltip %}
-With Kong Mesh we provide access to the Envoy contributors at Kong to further expand the capabilities of the underlying data plane proxy technology (Envoy) with features that are not currently available in upstream Envoy, in order to remove road blocks and cater to unique enterprise requirements and use-cases.
+With Kong Mesh, we provide access to the Envoy contributors at Kong to further expand the capabilities of the underlying data plane proxy technology (Envoy) with features that are not currently available in upstream Envoy. This can be used to remove road blocks and cater to unique enterprise requirements and use-cases.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
