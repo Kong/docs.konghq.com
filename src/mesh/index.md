@@ -303,7 +303,7 @@ Provides officially supported distributions based on the Red Hat Universal Base 
 <td>
 Enterprise Support and SLA
 {% info_tooltip %}
-With Kong Mesh we provide 24/7/265 enterprise support with different SLAs, powered by Kong's global customer success and technical support team across all world regions, and access to a vast network of partners for local language support as well. A must to have for enterprise mission-critical deployments.
+With Kong Mesh, we provide 24/7/365 enterprise support with different SLAs, powered by Kong's global customer success and technical support team across all world regions. This also provides access to a vast network of partners for local language support as well. This is recommended for enterprise mission-critical deployments.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
