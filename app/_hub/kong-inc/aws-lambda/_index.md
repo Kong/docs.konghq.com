@@ -271,7 +271,7 @@ to the EC2 will be used, and Kong will fetch the credential from the
 [EC2 Instance Metadata service(IMDSv1)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html);
  if you're running Kong in an ECS container, the task IAM role will be used, and Kong will fetch the credentials from
 the [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
-Note that the plugin will firstly tring to fetch from ECS metadata to get the role, and if no ECS metadata related environment
+Note that the plugin will firstly try to fetch from ECS metadata to get the role, and if no ECS metadata related environment
 variables is available, the plugin falls back on EC2 metadata.
 
 If you also provide the `aws_assume_role_arn` option, the plugin will try to perform
@@ -407,12 +407,12 @@ Have fun leveraging the power of AWS Lambda in Kong!
 > See the Kong GitHub repository for the
 [full plugin changelog](https://github.com/Kong/kong/blob/master/kong/plugins/aws-lambda/CHANGELOG.md).
 
-### Kong Gateway 2.8.x (plugin version 3.6.3)
+### {{site.base_gateway}} 2.8.x (plugin version 3.6.3)
 
 * The `proxy_scheme` configuration parameter is deprecated and planned to be
 removed in 3.x.x.
 
-### Kong Gateway 2.7.x (plugin version 3.6.0)
+### {{site.base_gateway}} 2.7.x (plugin version 3.6.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.aws_key` and `config.aws_secret` parameter values will be encrypted.
