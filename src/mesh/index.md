@@ -179,7 +179,7 @@ Provides automatic rotation across different CAs with no downtime in addition to
 FIPS-140 Encryption
 
 {% info_tooltip %}
-Kong Mesh ships with FIPS-140 compliant encryption automatically enabled by default on the Envoy-based data plane proxies, requiring no additional steps from the user other than just running Kong Mesh itself.
+By default, FIPS-140 compliant encryption is automatically enabled in Kong Mesh on the Envoy-based data plane proxies. This doesn't require any additional steps other than running Kong Mesh itself.
 {% endinfo_tooltip %}
 </td>
 <td><i class="fa fa-times"></i></td>
