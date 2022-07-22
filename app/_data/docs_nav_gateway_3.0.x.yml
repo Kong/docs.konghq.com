@@ -80,7 +80,7 @@ items:
             url: /get-started/comprehensive/load-balancing
           - text: Workspaces and Teams
             url: /get-started/comprehensive/manage-teams
-          - text: Publish, Locate, and Consume Services
+          - text: Publish and Consume Services
             url: /get-started/comprehensive/dev-portal
 
   - title: Plan and Deploy

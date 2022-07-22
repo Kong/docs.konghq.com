@@ -27,7 +27,7 @@ At a high level, securing {{site.base_gateway}} administration is a two-step pro
 1. Turn on RBAC.
 2. Create a workspace and an admin for segregated administration.
 
-At this point in the Getting Started Guide, you have been interacting with your environment as the built-in Super Admin, `kong_admin`. The password for this `kong_admin` user was “seeded” during the installation process using the KONG_PASSWORD environment variable. After RBAC is enabled, you will need to authenticate to the Admin API using the proper credentials.
+At this point in the Getting Started Guide, you have been interacting with your environment as the built-in Super Admin, `kong_admin`. The password for this `kong_admin` user was “seeded” during the installation process using the KONG_PASSWORD environment variable. After RBAC is enabled, you must authenticate to the Admin API using the proper credentials.
 
 In the following sections, you will need the `kong_admin` account’s password to log in to {{site.base_gateway}}, and the `kong_admin_uri` needs to be configured to avoid getting CORS errors.
 
@@ -41,7 +41,7 @@ Create a new workspace called SecureWorkspace, substituting the `kong_admin`
 account’s password in place of `<super-user-token>`:
 
 ```sh
-curl -X POST http://<admin-hostname>:8001/workspaces \
+curl -X POST http://localhost:8001/workspaces \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=SecureWorkspace'
 ```
@@ -72,7 +72,7 @@ Create a new user named `secureworkspaceadmin` with the RBAC token
 
 
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/users \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=secureworkspaceadmin' \
   --data 'user_token=secureadmintoken'
@@ -81,7 +81,7 @@ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
 Create a blank role in the workspace and name it `admin`:
 
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/roles \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=admin' \
 ```
@@ -90,7 +90,7 @@ Give the `admin` role permissions to do everything on all endpoints in the
 workspace:
 
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'endpoint=*'
   --data 'workspace=SecureWorkspace' \
@@ -100,7 +100,7 @@ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpo
 Grant the `admin` role to `secureworkspaceadmin`:
 
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'role=admin'
 ```
@@ -109,9 +109,8 @@ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworks
 
 1. Try to access the `default` workspace using `secureworkspaceadmin`'s user token.
 
-    *Using cURL:*
     ```sh
-    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://localhost:8001/default/rbac/users
     ```
 
     You should get a `403 Forbidden` error message:
@@ -124,7 +123,7 @@ curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworks
 
     *Using cURL:*
     ```sh
-    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://localhost:8001/SecureWorkspace/rbac/users
     ```
 
     This time, you should get a `200 OK` success message and a list of users.

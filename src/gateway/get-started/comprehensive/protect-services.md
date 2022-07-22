@@ -23,7 +23,7 @@ Call the Admin API on port `8001` and configure plugins to enable a limit of fiv
 
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=rate-limiting \
   --data config.minute=5 \
   --data config.policy=local
@@ -39,16 +39,16 @@ To validate rate limiting, access the API six (6) times from the CLI to confirm 
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/request
 ```
 {% endnavtab %}
 
 {% navtab Web Browser %}
 
-1. Enter `<admin-hostname>:8000/mock` and refresh your browser six times.
-    After the 6th request, you’ll receive an error message.
+1. Enter `localhost:8000/mock` and refresh your browser six times.
+    After the sixth request, you’ll receive an error message.
 2. Wait at least 30 seconds and try again.
-    The service will be accessible until the sixth (6th) access attempt within a 30-second window.
+    The service will be accessible until the sixth access attempt within a 30-second window.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -68,7 +68,7 @@ After the 6th request, you should receive a 429 "API rate limit exceeded" error:
 
 In this section:
 
-* If using the Admin API or decK, you enabled the Rate Limiting plugin,
+* When you used the Admin API or decK, you enabled the Rate Limiting plugin,
 setting the rate limit to 5 times per minute.
 
 Next, head on to learn about [proxy caching](/gateway/{{page.kong_version}}/get-started/comprehensive/improve-performance).

@@ -28,7 +28,7 @@ View the current configuration by issuing the following command in a terminal
 window:
 
 ```bash
-curl -i -X GET http://<admin-hostname>:8001
+curl -i -X GET http://localhost:8001
 ```
 
 ## (Optional) Verify Control Plane and Data Plane connection
@@ -41,7 +41,7 @@ data planes using the Cluster Status CLI.
 Run the following from a control plane:
 
 ```bash
-curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://localhost:8001/clustering/data-planes
 ```
 
 The output shows all of the connected data plane instances in the cluster:

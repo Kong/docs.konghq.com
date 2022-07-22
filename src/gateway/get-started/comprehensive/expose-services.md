@@ -47,7 +47,7 @@ configuration, including adding Services and Routes, is done through requests to
 the Admin API.
 
 ```sh
-curl -i -X POST http://<kong-admin-host>:8001/services \
+curl -i -X POST http://localhost:8001/services \
   --data name=example_service \
   --data url='http://mockbin.org'
 ```
@@ -57,7 +57,7 @@ If the service is created successfully, you'll get a 201 success message.
 Verify the service’s endpoint:
 
 ```sh
-curl -i http://<admin-hostname>:8001/services/example_service
+curl -i http://localhost:8001/services/example_service
 ```
 
 ## Add a Route
@@ -70,7 +70,7 @@ path that clients need to request. Note at least one of the hosts, paths, or
 methods must be set for the Route to be matched to the service.
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
+curl -i -X POST http://localhost:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
 ```
@@ -82,7 +82,7 @@ A `201` message indicates the Route was created successfully.
 By default, {{site.base_gateway}} handles proxy requests on port `8000`. The proxy is often referred to as the data plane.
 
 ```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/request
 ```
 ## Summary and next steps
 

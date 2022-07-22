@@ -37,14 +37,14 @@ created:
 
 
 ```sh
-curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+curl -X POST http://localhost:8001/routes/mocking/plugins \
   --data name=key-auth
 ```
 
 Try to access the service again:
 
 ```sh
-curl -i http://<admin-hostname>:8000/mock
+curl -i http://localhost:8000/mock
 ```
 
 
@@ -73,7 +73,7 @@ The following creates a new consumer called **consumer**:
 
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username=consumer \
   --data custom_id=consumer
 ```
@@ -85,7 +85,7 @@ created above. For this example, set the key to `apikey`.
 
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+curl -i -X POST http://localhost:8001/consumers/consumer/key-auth \
   --data key=apikey
 ```
 
@@ -114,7 +114,7 @@ You now have a consumer with an API key provisioned to access the route.
 To validate the Key Authentication plugin, access the *mocking* route again, using the header `apikey` with a key value of `apikey`.
 
 ```sh
-curl -i http://<admin-hostname>:8000/mock/request \
+curl -i http://localhost:8000/mock/request \
   -H 'apikey:apikey'
 ```
 You should get an `HTTP/1.1 200 OK` message in response.
@@ -126,7 +126,7 @@ If you are following this getting started guide topic by topic, you will need to
 Find the plugin ID and copy it:
 
 ```sh
-curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
+curl -X GET http://localhost:8001/routes/mocking/plugins/
 ```
 
 
@@ -138,7 +138,7 @@ Output:
 Disable the plugin:
 
 ```sh
-curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
+curl -X PATCH http://localhost:8001/routes/mocking/plugins/{<plugin-id>} \
   --data enabled=false
 ```
 

@@ -22,7 +22,7 @@ Call the Admin API on port `8001` and configure plugins to enable in-memory cach
 
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=proxy-cache \
   --data config.content_type="application/json; charset=utf-8" \
   --data config.cache_ttl=30 \
@@ -38,7 +38,7 @@ Access the */mock* route using the Admin API and note the response headers:
 
 
 ```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/request
 ```
 
 In particular, pay close attention to the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`:
@@ -73,7 +73,7 @@ To test more rapidly, the cache can be deleted by calling the Admin API:
 
 
 ```sh
-curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
+curl -i -X DELETE http://localhost:8001/proxy-cache
 ```
 
 ## Summary and Next Steps
