@@ -43,6 +43,8 @@ Edit team roles from the {% konnect_icon organizations %} [**Organization**](htt
 
 1. Click **Add role(s)**.
 
+1. Select the region you want to add from the **Region** drop-down menu. Members assigned to this role can only access {{site.konnect_short_name}} objects in the selected region. 
+
 1. Click the instance field to choose an instance of the entity you want to assign, or choose `*` to target all entities of the selected type.
 
 1. Select one or more roles from the list.
