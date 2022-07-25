@@ -11,10 +11,34 @@ items:
       - text: Version Support Policy
         url: /konnect-platform/support-policy
         absolute_url: true
-      - text: Changelog
+      - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
-
+      - text: Understanding Kong
+        items:
+          - text: Key Concepts
+            items: 
+              - text: Services
+                url: /gateway/understanding-kong/key-concepts/services
+              - text: Routes
+                url: /gateway/understanding-kong/key-concepts/routes
+              - text: Upstreams
+                url: /gateway/understanding-kong/key-concepts/upstreams
+              - text: Plugins
+                url: /gateway/understanding-kong/key-concepts/plugins
+          - text: Routing in Kong
+            url: /gateway/reference/proxy #Need to move file
+          - text: Load Balancing
+            url: /gateway/reference/loadbalancing #need to move file
+          - text: Health Checks and Circuit Breakers
+            url: /gateway/reference/health-checks-circuit-breakers #move file
+          - text: Manage Kong Gateway with decK
+            url: /gateway/understanding-kong/manage-gateway-with-deck
+          - text: Kong Performance Testing
+            url: /gateway/understanding-kong/kong-performance-testing
+          - text: Glossary
+            url: /gateway/understanding-kong/glossary 
+            
   - title: Install and Run
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
