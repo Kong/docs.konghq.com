@@ -279,7 +279,7 @@ an additional [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/A
 action, which requires the Kong process to make HTTPS request to AWS STS service API, after
 configuring AWS access key/secret or fetching credentials automatically from EC2/ECS IAM roles.
 If it succeeds, the plugin will fetch a temporary security credentials that represents
-that the plugin now have the access permission configured in the target assumed role.
+that the plugin now has the access permission configured in the target assumed role.
 
 ### AWS Region as Environment Variable
 
