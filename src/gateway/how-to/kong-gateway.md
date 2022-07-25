@@ -64,7 +64,7 @@ export KONG_ADMIN=$(docker port how-to-kong-gateway 8001/tcp)
 export KONG_PROXY=$(docker port how-to-kong-gateway 8000/tcp)
 ```
 
-Test the [Kong Admin API](/gateway/latest/admin-api/) with the following:
+Test the [Kong Admin API](/gateway/admin-api/) with the following:
 
 ```sh
 curl $KONG_ADMIN

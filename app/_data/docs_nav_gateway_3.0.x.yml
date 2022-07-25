@@ -399,7 +399,6 @@ items:
         - text: kong.vault
           url: /plugin-development/pdk/kong.vault
       - text: Plugins in Other Languages
-<<<<<<< HEAD
         items:
           - text: Go
             url: /plugin-development/other/go
@@ -538,8 +537,7 @@ items:
         url: /reference/rate-limit
       - text: Performance Testing Framework Reference
         url: /reference/performance-testing-framework
-=======
         url: /reference/external-plugins
 unlisted:
   - url: /how-to/kong-gateway
->>>>>>> e6733aa3a7 (Adds how-to kong gateway to how-to section of docs)
+  - url: /how-to/request-transformations
