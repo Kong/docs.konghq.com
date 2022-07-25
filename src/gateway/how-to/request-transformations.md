@@ -9,14 +9,14 @@ and will eventually begin to require a new field in the JSON body of the request
 Eventually your client applications will need to upgrade their requests to support this new value, 
 but how could you provide a default value for your services in the meantime?
 
-[Kong Gateway](/) supports a [Plugin](https://docs.konghq.com/hub/) 
-architecture including a [Request Transfomer Plugin](https://docs.konghq.com/hub/kong-inc/request-transformer/) 
+[Kong Gateway](/gateway/{{page.kong_version}}/) supports a [Plugin](/hub/) 
+architecture including a [Request Transfomer Plugin](/hub/kong-inc/request-transformer/) 
 that can modify incoming requests before proxying them to your upstream service. 
 This can all be accomplished using a no-code solution and managed with no downtime using 
 Kong's dynamic administrative capabilities.
 
 This guide will show you how to configure the Request Transformer plugin using 
-the [Kong Admin API](/admin-api/) to modify incoming 
+the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/) to modify incoming 
 requests with a static constant value. Then we will test the feature with a mock 
 request verfying the transformation process.
 
@@ -26,10 +26,10 @@ The guide assumes the following:
 
 * You have a Kong Gateway available for testing and is reachable on `localhost`. 
 If you would like help running a local gateway using Docker, see this companion 
-[Kong Gateway in minutes](/how-to/kong-gateway/) guide. If your gateway is available on 
+[Kong Gateway in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway/) guide. If your gateway is available on 
 a different host, adjust the commands in this guide appropriately.
 * You have a service named `mock` installed on your gateway. You can adjust the 
-commands to use a different service or use the [Kong Gateway in minutes](/how-to/kong-gateway) guide to 
+commands to use a different service or use the [Kong Gateway in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway) guide to 
 run a gateway with a `mock` service.
 * You have [`curl`](https://curl.se/) installed on your system, which is used to send 
 requests to the gateway. Most systems come with `curl` pre-installed.
@@ -41,7 +41,7 @@ the gateway. If you do not have `jq` or do not wish to install it, you can modif
 ### Steps
 
 There are a large number of Kong plugins, many of which need to 
-be [custom installed](/gateway/plugin-development/distribution/) 
+be [custom installed](/gateway/{{page.kong_version}}/plugin-development/distribution/) 
 prior to utilization. Fortunately, Kong ships prepackaged with a number of useful plugins including
 the Request Transformer.
 
@@ -111,5 +111,5 @@ Which should return the following, indicating `new-field` has been added to the 
 [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) 
 plugin.
 * If no standard plugin is available to satisfy your use case, the 
-[Plugin Development Guide](/gateway/plugin-development/) 
+[Plugin Development Guide](/gateway/{{page.kong_version}}/plugin-development/) 
 can help you with developing your own plugin.
