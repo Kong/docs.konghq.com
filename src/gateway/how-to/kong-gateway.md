@@ -3,7 +3,7 @@ title: "Run Kong Gateway in minutes"
 description: "A how-to guide for quickly starting a Kong Gateway"
 ---
 
-In order to explore the capabilities of [Kong Gateway](/gateway), 
+In order to explore the capabilities of [{{site.base_gateway}}](/gateway), 
 you'll need one to experiment with. This guide helps you quickly deploy Kong 
 using [Docker](https://docs.docker.com/get-started/overview/) which is the 
 easiest way to get started. This guide's purpose is not to provide a production like deployment
@@ -22,7 +22,7 @@ In order to get started quickly, you'll download and run a bash script which con
 commands to run Kong, it's supporting database, and an example service to work with.
 Then you'll interact with the gateway using `curl` to ensure it has been started properly.
 
-Run the following command to start Kong Gateway using Docker:
+Run the following command to start {{site.base_gateway}} using Docker:
 
 ```sh
 curl -Ls spurgeon.dev/how-to-kong | sh -s
@@ -31,7 +31,7 @@ curl -Ls spurgeon.dev/how-to-kong | sh -s
 {:.note}
 > **Note:** The script creates a log file in the current directory named `how-to-kong.log`
 
-Docker is now downloading and running the Kong Gateway and supporting database. Additionally,
+Docker is now downloading and running the {{site.base_gateway}} and supporting database. Additionally,
 the script bootstraps the database and installs a [mock service](https://mockbin.org/) to experiment with.
 Depending on your internet download speeds, this command should complete relatively quickly, and once you have the images cached locally, subsequent usage of this guide will complete much faster.
 
@@ -49,7 +49,7 @@ Kong Admin API endpoint  = localhost:55247
 ```
 
 Docker is assigning available network ports on the host machine, assigning them to the gateway services, and forwarding 
-network traffice to the gateway. You can see all the ports the gateway is listening on and the related host ports 
+network traffic to the gateway. You can see all the ports the gateway is listening on and the related host ports 
 with this docker command:
 
 ```sh
@@ -70,7 +70,7 @@ Test the [Kong Admin API](/gateway/admin-api/) with the following:
 curl $KONG_ADMIN
 ```
 
-You should see a large JSON reponse from the gateway.
+You should see a large JSON response from the gateway.
 
 Test that the gateway is proxying data by making a mock request on the gateway's data plane endpoint:
 
@@ -82,12 +82,12 @@ You should see a JSON response from the mock service with various information.
  
 ### What's next?
 
-You now have a Kong gateway running locally. Kong has a tremendous amount of capabilities
+You now have a {{site.base_gateway}} running locally. Kong has a tremendous amount of capabilities
 to help you manage, configure and route requests to your APIs.
 
 * To follow a more detailed step-by-step guide to starting Kong, see the 
 [Kong Getting Started guide](/gateway/get-started/quickstart/).
 * The [Admin API documentation](/gateway/admin-api/) 
-provides more details on managing a Kong Gateway.
+provides more details on managing a {{site.base_gateway}}.
 * Learn about modifying incoming JSON requests with no code by using the 
 [request-transformer plugin](/how-to/request-transformations).
