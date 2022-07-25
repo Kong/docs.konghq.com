@@ -47,6 +47,10 @@ If two roles provide access to the same entity, the role with more access
 takes effect. For example, if you have the Service Admin and Service Deployer
 roles on the same service, the Service Admin role takes precedence.
 
+### Geographic region assignment
+
+Teams and roles can be assigned to a specific geographic region in {{site.konnect_short_name}}. Those teams and roles can only access {{site.konnect_short_name}} objects, such as services, that are also located in the same region they are assigned to. 
+
 <!-- (SHARING IS NOT YET AVAILABLE)
 ### Entity and role sharing
 

@@ -36,6 +36,7 @@ This page provides an overview of your current plan, including:
 * An estimated cost for the month (not available for trial accounts)
 * The total count of all services, services published to Dev Portal, and API calls for
 the current month
+* The number of regions (contact a sales representative to add regions)
 
 For Free and Plus plans, you can:
 * [Modify or cancel your plan](/konnect/account-management/change-plan)
