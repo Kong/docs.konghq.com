@@ -234,6 +234,7 @@ plugins:
 {% endnavtab %}
 {% endnavtabs %}
 
+---
 
 > Why is the default client limit smaller than the default upstream limit?
 
@@ -247,16 +248,18 @@ in general it is wise to maintain a lower limit for client messages.
 
 ## How limits are applied
 
-_Note_: Limits are evaluated based on the message payload length and not the
+**Note:** Limits are evaluated based on the message payload length and not the
 entire length of the WebSocket frame (header + payload).
 
 ### Standalone data frames (`text` and `binary`)
 
-For limits of 125 bytes and lower, the message is fully unserialized before
-checking the message length.
+For limits of 125 bytes and lower, the message is fully read and unserialized
+before checking the message length.
 
 For limits of 125 bytes and higher, the message length is checked from the
-frame header _before_ the entire message is read from the socket buffer.
+frame header _before_ the entire message is read from the socket buffer,
+allowing Kong to close the connection without having to read and unserialize
+the entire message in memory.
 
 ### Continuation data frames
 
@@ -274,8 +277,8 @@ Example (assume `client_max_payload = 1024`)
  |Client|                                       |Kong|
  '------'                                       '----'
     |                                             |
-    |     text(fin=false, len=500, msg=[...])     | # buffer += 500 (500)
-    |>------------------------------------------->|
+    |     text(fin=false, len=500, msg=[...])     |
+    |>------------------------------------------->| # buffer += 500 (500)
     |                                             |
     |                                             |
     |   continue(fin=false, len=500, msg=[...])   |
@@ -285,7 +288,7 @@ Example (assume `client_max_payload = 1024`)
     |   continue(fin=false, len=500, msg=[...])   |
     |>------------------------------------------->| # buffer += 500 (1500)
     |                                             | # buffer >= 1024 (limit exceeded!)
-    |                                             | # buffer >= 1024 (limit exceeded!)
+    |                                             |
     | close(status=1009, msg="Payload Too Large") |
     |<-------------------------------------------<|
  .------.                                       .----.
