@@ -2,32 +2,27 @@
 title: Tracing
 ---
 
+In this section, we will describe the tracing capabilities of Kong.
+
 ## Core instrumentations
 
-| OT Category               | Kong Components             | Name                                 | Span data                           | Notes                                                   |
-| ------------------------- | --------------------------- | ------------------------------------ | ----------------------------------- | ------------------------------------------------------- |
-| Database                  | Storage                     | DB query                             | SQL                                 | database spec                                           |
-| Redis                     | Redis call                  | database spec                        |                                     |                                                         |
-| Redis cluster             | Redis call                  | extra support for resty.rediscluster |                                     |                                                         |
-| LMDB                      | Transactions                | database spec                        |                                     |                                                         |
-| HTTP                      | Core                        | HTTP Server Request / Consumer       | Nginx server request                | http spec                                               |
-| Balancer Retry / Upstream | Nginx balancer retries data | http spec                            |                                     |                                                         |
-| Core / Plugins            | HTTP Client Request         | HTTP client request                  | http spec, resty.http, e.g. plugins |                                                         |
-| RPC                       | Core                        | gRPC                                 | gRPC call                           | rpc spec                                                |
-| Messaging                 | Stream                      | Pub                                  | OpenResty pub/sub                   | messaging spec                                          |
-| Sub                       | OpenResty pub/sub           |                                      |                                     |                                                         |
-| Kafka                     |                             | messaging spec                       |                                     |                                                         |
-| FAAS                      | Plugins                     | AWS Lambda                           | remote call                         | faas spec                                               |
-| Azure functions           |                             |                                      |                                     |                                                         |
-| Exceptions                | Errors                      | OpenResty errors                     |                                     | Capture runtime errors (logs can be linked by trace_id) |
-| Networking                | Core                        | DNS query                            | host, success                       | general spec                                            |
-| Plugins                   | LDAP                        | LDAP operations                      | ldap spec                           |                                                         |
-| LDAP Enhanced             | LDAP operations             | ldap spec                            |                                     |                                                         |
-| OpenID Connect            |                             |                                      |                                     |                                                         |
-| GraphQL                   | GraphQL query               |                                      |                                     |                                                         |
-| Vault                     | Vault query                 |                                      |                                     |                                                         |
-| Kong Internal             | Core                        | Router                               | Execution time                      |                                                         |
-| Plugin execution          | Plugin name, execution time | start/end time only                  |                                     |                                                         |
+**Note**
+Only works for the plugins that are built on top of Kong's tracing API.
+e.g. OpenTelemetry plugin.
+
+Kong provides a set of core instrumentations for tracing, these can be configured in the `opentelemetry_tracing` configuration.
+
+- `off`: do not enable instrumentations.
+- `request`: only enable request-level instrumentations.
+- `all`: enable all the following instrumentations.
+- `db_query`: trace database query, including Postgres and Cassandra.
+- `dns_query`: trace DNS query.
+- `router`: trace router execution, including router rebuilding.
+- `http_client`: trace OpenResty HTTP client requests.
+- `balancer`: trace balancer retries.
+- `plugin_rewrite`: trace plugins iterator execution with rewrite phase.
+- `plugin_access`: trace plugins iterator execution with access phase.
+- `plugin_header_filter`: trace plugins iterator execution with header_filter phase.
 
 ## Propagation
 
@@ -40,3 +35,5 @@ The tracing API support to propagate the following headers:
 
 The tracing API will detect the propagation format from the headers, and will use the appropriate format to propagate the span context.
 If no appropriate format is found, then will fallback to the default format, which can be specified.
+
+The propagation api works for both the OpenTelemetry plugin and the Zipkin plugin.
