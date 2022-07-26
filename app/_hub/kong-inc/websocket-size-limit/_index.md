@@ -194,7 +194,7 @@ plugins:
 {% endnavtabs %}
 
 
-#### Raising the default limits
+### Raising the default limits
 
 Kong applies some default limits to incoming messages for all WebSocket
 services:
@@ -204,9 +204,9 @@ services:
 | client   | `1048576` (`1MiB`)   |
 | upstream | `16777216` (`16MiB`) |
 
-This plugin can be used to increase the limit beyond the default.
+This plugin can be used to increase the limit beyond the default. This example
+increases the client limit to 2 MiB, up from the default of 1 MiB:
 
-#### Raise the client limit from the default (1MiB) to 2 MiB
 
 {% navtabs %}
 {% navtab With a database %}
@@ -250,7 +250,7 @@ in general it is wise to maintain a lower limit for client messages.
 _Note_: Limits are evaluated based on the message payload length and not the
 entire length of the WebSocket frame (header + payload).
 
-### `text` and `binary` frames
+### Standalone data frames (`text` and `binary`)
 
 For limits of 125 bytes and lower, the message is fully unserialized before
 checking the message length.
@@ -258,7 +258,7 @@ checking the message length.
 For limits of 125 bytes and higher, the message length is checked from the
 frame header _before_ the entire message is read from the socket buffer.
 
-### `continuation` frames
+### Continuation data frames
 
 Kong aggregates `continuation` frames, buffering them in-memory before forwarding
 them to their final destination. In addition to evaluating limits on an
@@ -275,25 +275,33 @@ Example (assume `client_max_payload = 1024`)
  '------'                                       '----'
     |                                             |
     |     text(fin=false, len=500, msg=[...])     | # buffer += 500 (500)
-    |-------------------------------------------->|
+    |>------------------------------------------->|
+    |                                             |
     |                                             |
     |   continue(fin=false, len=500, msg=[...])   |
-    |-------------------------------------------->| # buffer += 500 (1000)
+    |>------------------------------------------->| # buffer += 500 (1000)
+    |                                             |
     |                                             |
     |   continue(fin=false, len=500, msg=[...])   |
-    |-------------------------------------------->| # buffer += 500 (1500)
-    |                                             | # buffer >= 1024
+    |>------------------------------------------->| # buffer += 500 (1500)
+    |                                             | # buffer >= 1024 (limit exceeded!)
+    |                                             | # buffer >= 1024 (limit exceeded!)
     | close(status=1009, msg="Payload Too Large") |
-    |<--------------------------------------------|
+    |<-------------------------------------------<|
  .------.                                       .----.
  |Client|                                       |Kong|
  '------'                                       '----'
 ```
 
-### control frames
+### For control frames
 
 All control frames (`ping`, `pong`, and `close`) have a max payload size of
 `125` bytes, as per the WebSocket
 [specification](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5). Kong
 does not enforce any limits on control frames (even when set to a value lower
 than `125`).
+
+
+## See also
+
+* [The complete WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc6455)
