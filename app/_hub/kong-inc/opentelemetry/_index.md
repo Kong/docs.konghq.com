@@ -33,7 +33,8 @@ params:
     - name: headers
       required: false
       datatype: map
-      value_in_examples: '`{ "X-Auth-Token": "secret-token" }`'
+      value_in_examples:
+        - X-Auth-Token:secret-token
       description: |
         The custom headers to be added in the HTTP request sent to OTLP server.
         It's useful to add the authentication headers (token) for the APM backend.
