@@ -29,70 +29,30 @@
 name: Websocket Size Limit
 publisher: Kong Inc.
 
-categories: # (required) Uncomment ONE that applies.
-  #- authentication
-  #- security
-  #- traffic-control
-  #- serverless
-  #- analytics-monitoring
-  #- transformations
-  #- logging
-  #- deployment
-# Array format only; if your plugin applies to multiple categories,
-# uncomment the most applicable category.
+categories:
+  - traffic-control
 
-type: # (required) String, one of:
-  # plugin          | extensions of the core platform
-  # integration     | extensions of the Kong Admin API
+type: plugin
 
-desc: # (required) 1-liner description; max 80 chars
-description: #|
-  # (required) extended description.
-  # Use YAML pipe notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
-  #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
+desc: Block incoming WebSocket messages greater than a specified size
+description: |
+  Allows operators to specify a maximum size for incoming WebSocket messages.
+  Client and Upstream limits can have separate limits. Limits are applied to
+  both text and binary frames as well as aggregated size of continuation frames.
 
-#support_url:
-  # (Optional) A specific URL of your own for this extension.
-  # Defaults to the url setting in your publisher profile.
-
-#source_url:
-  # (Optional) If your extension is open source, provide a link to your code.
-
-#license_type:
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
-
-#license_url:
-  # (Optional) Link to your custom license.
-
-#privacy_policy:
-  # (Optional) If you have a custom privacy policy, place it here
-
-#privacy_policy_url:
-  # (Optional) Link to a remote privacy policy
-
-#terms_of_service:
-  # (Optional) Text describing your terms of service.
-
-#terms_of_service_url:
-  # (Optional) Link to your online TOS.
+  When an incoming message exceeds the limit:
+    1. A close frame with status code `1009` is sent to the sender
+    2. A close frame with status code `1001` is sent to the peer
+    3. Both sides of the connection are closed
 
 # COMPATIBILITY
 # Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
 # 'enterprise_edition' (Kong Gateway Enterprise) and set `compatible: true`.
 
-kong_version_compatibility: # required
-  #community_edition: # optional
-    #compatible: true
-  #enterprise_edition: # optional
-    #compatible: true
+kong_version_compatibility:
+  enterprise_edition:
+    compatible:
+      - 3.0.x
 
 cloud: # (Kong Inc plugins only) Boolean
   # Specifies if your plugin is available in Konnect.
@@ -102,112 +62,238 @@ cloud: # (Kong Inc plugins only) Boolean
 # Set the subscription tiers that your plugin is restricted to.
 # If your plugin is free/open-source, set `false` for both the enterprise and plus tiers.
 
-enterprise: # (Kong Inc plugins only) Boolean
-  # Specifies if your plugin is an Enterprise-tier plugin.
-  # Set true if only available in Enterprise, or false if available in other tiers.
+enterprise: true
 
-plus: # (Kong Inc and Konnect only) Boolean
-  # Specifies if your plugin is a Plus-tier plugin in Konnect.
-  # Set true if the plugin is available in the Plus and Enterprise tiers, or false if available for free/in open-source.
+plus: true
 
+params:
+  name: websocket-size-limit
+  service_id: true
+  route_id: true
+  consumer_id: false
+  dbless_compatible: 'yes'
+  protocols: ["ws", "wss"]
+  config:
+    - name: client_max_payload
+      required: semi
+      value_in_examples: '''1024'''
+      datatype: integer
+      default: null
+      encrypted: false
+      description: |
+        Maximum size (in bytes) of client-originated WebSocket messages. Must
+        be greater than `0` and less than `33554432` (32 MiB)
+      extra: |
+        At least one of `client_max_payload` and `upstream_max_payload` is
+        required.
+    - name: upstream_max_payload
+      required: semi
+      value_in_examples: '''16384'''
+      datatype: integer
+      default: null
+      encrypted: false
+      description: |
+        Maximum size (in bytes) of upstream-originated WebSocket messages. Must
+        be greater than `0` and less than `33554432` (32 MiB)
+      extra: |
+        At least one of `client_max_payload` and `upstream_max_payload` is
+        required.
 
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your plugin is an extension of the core platform, ALL of the following
-# lines must be completed.
-# If NOT defined as a 'plugin' in line 32, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
-params: # Metadata about your plugin
-  name: # Name of the plugin in Kong (may differ from name: above)
-  service_id: # Boolean
-    # Specifies whether this plugin can be applied to a Service.
-    # Affects generation of examples and config table.
-  consumer_id: # Boolean
-    # Specifies whether this plugin can be applied to a Consumer.
-    # Affects generation of examples and config table.
-  route_id: # Boolean
-    # Specifies whether this plugin can be applied to a Route.
-    # Affects generation of examples and config table.
-  protocols:
-    # List of protocols this plugin is compatible with, in array format.
-    # Valid values: "http", "https", "tcp", "tls"
-    # Example: ["http", "https"]
-  dbless_compatible:
-    # Degree of compatibility with DB-less mode. Three values allowed:
-    # 'yes', 'no' or 'partially'.
-  dbless_explanation:
-    # Optional free-text explanation, usually containing details about the degree of
-    # compatibility with DB-less.
-  yaml_examples: # Boolean
-    # Enables or disables autogenerated examples in declarative YAML
-    # format. Default is `true`; set to `false` to disable only declarative
-    # YAML examples.
-  k8s_examples: # Boolean
-    # Enables or disables autogenerated examples in Kubernetes YAML
-    # format. Default is `true`; set to `false` to disable only K8s examples.
-  konnect_examples: # Boolean
-    # Enables or disables autogenerated examples for the Konnect UI
-    # Default is `true`; set to `false` to disable only Konnect UI examples.
-  manager_examples: # Boolean
-    # Enables or disables autogenerated examples for the Kong Manager UI
-    # Default is `true`; set to `false` to disable only Kong Manager UI examples.
-  examples: # Boolean
-    # Enables or disables all autogenerated examples (cURL, YAML, and
-    # Kubernetes). Default is `true`; set to `false` to disable ALL
-    # autogenerated examples.
-
-  config: # Configuration settings for your plugin
-    - name: # Parameter name
-      required: # String - set required status
-        # options are 'yes', 'no', or 'semi'
-        # 'semi' means dependent on other settings
-      default: # Any type - the default value (non-required settings only)
-      datatype: # Specify the type of the value: e.g., string, array, boolean, etc.
-      encrypted: # Boolean - specify whether this value can be keyring-encrypted in Kong Enterprise
-      value_in_examples:
-        # If the field is to appear in examples, this is the value to use.
-        # A required field with no value_in_examples entry will resort to
-        # the one in default.
-        # If providing an array, use the following format: [ "value1", "value2" ].
-      minimum_version:
-        # Set the first major Kong Gateway version that this parameter appears in.
-        # For example: "2.1.0"
-      maximum_version:
-        # Optional field.
-        # If this parameter has been deprecated and removed from the plugin,
-        # set the last major Kong Gateway version that this value appears in.
-        # For example: "2.8.0"
-      description:
-        # Explain what this setting does.
-        # Use YAML's pipe (|) notation for longer entries.
-
-  #  - name: # add additional setting blocks as needed, each demarcated by -
-  extra:
-    # This is for additional remarks about your configuration.
-###############################################################################
-# END YAML DATA
-# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
-#
-# The remainder of this file is for free-form description, instruction, and
-# reference matter.
-# If you include headers, your headers MUST start at Level 2 (parsing to
-# h2 tag in HTML). Heading Level 2 is represented by ## notation
-# preceding the header text. Subsequent headings,
-# if you choose to use them, must be properly nested (eg. heading level 2 may
-# be followed by another heading level 2, or by heading level 3, but must NOT be
-# followed by heading level 4)
-###############################################################################
-# BEGIN MARKDOWN CONTENT
 ---
 
-## Usage
-<!-- Any information that the user needs to know about using this plugin:
-examples, limitations, use cases, etc. -->
+## Usage Examples
 
-## Changelog
+Limits can be applied to client messages, upstream messages, or both.
 
-<!-- Add a changelog entry in the following format for every change to the plugin:
-### Kong Gateway <version number>
-* Added X parameter for doing XYZ.
-* Removed the deprecated Z parameter.
--->
+### Limit client messages to 4 KiB
+
+{% navtabs %}
+{% navtab With a database %}
+
+Use a request like this:
+
+``` bash
+curl -i -X POST http://kong:8001/services/{service}/plugins \
+  --data "name=websocket-size-limit" \
+  --data "config.client_max_payload=4096"
+```
+{% endnavtab %}
+
+{% navtab Without a database %}
+
+Add the following entry to the `plugins:` section in the declarative configuration file:
+
+``` yaml
+plugins:
+- name: websocket-size-limit
+  service: {service}
+  config:
+    client_max_payload: 4096
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+
+### Limit upstream messages to 1 MiB
+
+{% navtabs %}
+{% navtab With a database %}
+
+Use a request like this:
+
+``` bash
+curl -i -X POST http://kong:8001/services/{service}/plugins \
+  --data "name=websocket-size-limit" \
+  --data "config.upstream_max_payload=1048576"
+```
+{% endnavtab %}
+
+{% navtab Without a database %}
+
+Add the following entry to the `plugins:` section in the declarative configuration file:
+
+``` yaml
+plugins:
+- name: websocket-size-limit
+  service: {service}
+  config:
+    upstream_max_payload: 1048576
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+
+### Limit both client and upstream messages
+
+{% navtabs %}
+{% navtab With a database %}
+
+Use a request like this:
+
+``` bash
+curl -i -X POST http://kong:8001/services/{service}/plugins \
+  --data "name=websocket-size-limit" \
+  --data "config.client_max_payload=4096" \
+  --data "config.upstream_max_payload=1048576"
+```
+{% endnavtab %}
+
+{% navtab Without a database %}
+
+Add the following entry to the `plugins:` section in the declarative configuration file:
+
+``` yaml
+plugins:
+- name: websocket-size-limit
+  service: {service}
+  config:
+    client_max_payload: 4096
+    upstream_max_payload: 1048576
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+
+#### Raising the default limits
+
+Kong applies some default limits to incoming messages for all WebSocket
+services:
+
+| Sender   | Default Limit        |
+|----------|----------------------|
+| client   | `1048576` (`1MiB`)   |
+| upstream | `16777216` (`16MiB`) |
+
+This plugin can be used to increase the limit beyond the default.
+
+#### Raise the client limit from the default (1MiB) to 2 MiB
+
+{% navtabs %}
+{% navtab With a database %}
+
+Use a request like this:
+
+``` bash
+curl -i -X POST http://kong:8001/services/{service}/plugins \
+  --data "name=websocket-size-limit" \
+  --data "config.client_max_payload=2097152"
+```
+{% endnavtab %}
+
+{% navtab Without a database %}
+
+Add the following entry to the `plugins:` section in the declarative configuration file:
+
+``` yaml
+plugins:
+- name: websocket-size-limit
+  service: {service}
+  config:
+    client_max_payload: 2097152
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+
+> Why is the default client limit smaller than the default upstream limit?
+
+Proxying client-originated messages is much more computationally expensive than
+upstream messages due to the client-to-server masking [required by the WebSocket
+specification](https://datatracker.ietf.org/doc/html/rfc6455#section-5.3), so
+in general it is wise to maintain a lower limit for client messages.
+
+
+## Under the hood
+
+## How limits are applied
+
+_Note_: Limits are evaluated based on the message payload length and not the
+entire length of the WebSocket frame (header + payload).
+
+### `text` and `binary` frames
+
+For limits of 125 bytes and lower, the message is fully unserialized before
+checking the message length.
+
+For limits of 125 bytes and higher, the message length is checked from the
+frame header _before_ the entire message is read from the socket buffer.
+
+### `continuation` frames
+
+Kong aggregates `continuation` frames, buffering them in-memory before forwarding
+them to their final destination. In addition to evaluating limits on an
+individual frame basis (just like singular `text` and `binary` frames), Kong
+also tracks the running size of all the frames that are buffered for
+aggregation. If an incoming `continuation` frame causes the total buffer size to
+exceed the limit, the message is rejected, and the connection is closed.
+
+Example (assume `client_max_payload = 1024`)
+
+```
+ .------.                                       .----.
+ |Client|                                       |Kong|
+ '------'                                       '----'
+    |                                             |
+    |     text(fin=false, len=500, msg=[...])     | # buffer += 500 (500)
+    |-------------------------------------------->|
+    |                                             |
+    |   continue(fin=false, len=500, msg=[...])   |
+    |-------------------------------------------->| # buffer += 500 (1000)
+    |                                             |
+    |   continue(fin=false, len=500, msg=[...])   |
+    |-------------------------------------------->| # buffer += 500 (1500)
+    |                                             | # buffer >= 1024
+    | close(status=1009, msg="Payload Too Large") |
+    |<--------------------------------------------|
+ .------.                                       .----.
+ |Client|                                       |Kong|
+ '------'                                       '----'
+```
+
+### control frames
+
+All control frames (`ping`, `pong`, and `close`) have a max payload size of
+`125` bytes, as per the WebSocket
+[specification](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5). Kong
+does not enforce any limits on control frames (even when set to a value lower
+than `125`).
