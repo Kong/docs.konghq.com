@@ -400,6 +400,20 @@ Loads the pgdump from the path and replaces the Kong database with the loaded da
 will also patch a services address to the upstream unless `dont_patch_service` is set to false,
 it must be called after `perf.start_upstream`. Throws error if any.
 
+## Charts
+
+Charts are not rendered by default, there's a reference implementation to draw graphs on all JSON
+data stored in `output` directory. Use the following commands to draw graph:
+
+```python
+cwd=$(pwd)
+cd spec/helpers/perf/charts/
+pip install -r requirements.txt
+for i in $(ls ${cwd}/output/*.data.json); do
+  python ./charts.py $i -o "${cwd}/output/"
+done
+```
+
 ## Customization
 
 ### Add new test suite
