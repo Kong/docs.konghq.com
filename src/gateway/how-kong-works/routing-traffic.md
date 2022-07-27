@@ -1253,7 +1253,7 @@ section above for instructions on setting this up.
 ## Proxy WebSocket traffic
 
 {{site.base_gateway}} supports WebSocket traffic thanks to the underlying Nginx implementation.
-When you wish to establish a WebSocket connection between a client and your
+When you want to establish a WebSocket connection between a client and your
 upstream services *through* {{site.base_gateway}}, you must establish a WebSocket handshake.
 This is done via the HTTP Upgrade mechanism. This is what your client request
 made to {{site.base_gateway}} would look like:
@@ -1268,6 +1268,8 @@ Upgrade: WebSocket
 This makes {{site.base_gateway}} forward the `Connection` and `Upgrade` headers to your
 upstream service, instead of dismissing them due to the hop-by-hop nature of a
 standard HTTP proxy.
+
+If you are using either of the [WebSocket Size Limit](pluginlink) or the [WebSocket Validator](pluginlink) plugins, this may slow the performance of the proxy WebSocket traffic.
 
 ### WebSocket and TLS
 
