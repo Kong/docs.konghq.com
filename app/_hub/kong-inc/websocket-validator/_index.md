@@ -166,7 +166,7 @@ Add the following entry to the `plugins:` section in the declarative configurati
 ``` yaml
 plugins:
 - name: websocket-validator
-  service: {service}
+  service: SERVICE
   config:
     client:
       text:

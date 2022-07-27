@@ -90,7 +90,7 @@ Add the following entry to the `plugins:` section in the declarative configurati
 ``` yaml
 plugins:
 - name: websocket-size-limit
-  service: {service}
+  service: SERVICE
   config:
     client_max_payload: 4096
 ```
@@ -119,7 +119,7 @@ Add the following entry to the `plugins:` section in the declarative configurati
 ``` yaml
 plugins:
 - name: websocket-size-limit
-  service: {service}
+  service: SERVICE
   config:
     upstream_max_payload: 1048576
 ```
@@ -149,7 +149,7 @@ Add the following entry to the `plugins:` section in the declarative configurati
 ``` yaml
 plugins:
 - name: websocket-size-limit
-  service: {service}
+  service: SERVICE
   config:
     client_max_payload: 4096
     upstream_max_payload: 1048576
@@ -191,7 +191,7 @@ Add the following entry to the `plugins:` section in the declarative configurati
 ``` yaml
 plugins:
 - name: websocket-size-limit
-  service: {service}
+  service: SERVICE
   config:
     client_max_payload: 2097152
 ```
