@@ -195,11 +195,11 @@ Use default parameters. This function sets the following:
 - Looks up `PERF_TEST_DRIVER` envrionment variable and invokes `perf.use_driver`.
 - Looks up `PERF_TEST_TERRAFORM_PROVIDER` if `PERF_TEST_DRIVER` is `terraform`.
   - If `equinix-metal` is selected, looks up `PERF_TEST_METAL_PROJECT_ID` and `PERF_TEST_METAL_AUTH_TOKEN` envrionment variables
-and pass to the terraform driver.
+to pass to the Terraform driver.
   - If `digitalocean` is selected, looks up `PERF_TEST_DIGITALOCEAN_TOKEN` envrionment variables
-and pass to the terraform driver.
+to pass to the Terraform driver.
   - If `aws-ec2` is selected, looks up `PERF_TEST_AWS_ACCESS_KEY` and `PERF_TEST_AWS_SECRET_KEY` envrionment variables
-and pass to the terraform driver.
+to pass to the Terraform driver.
 - Invokes `perf.set_log_level` and sets level to `"debug"`.
 - Set retry count to 3.
 - Looks up `PERF_TEST_USE_DAILY_IMAGE` envrionment variable and passes the variable to driver options.
@@ -221,9 +221,9 @@ The Terraform driver expects options to contain the following optional keys:
 
 - **provider** The service provider name, right now only "equinix-metal".
 - **tfvars** Terraform variables as a Lua table.
-  - For `equinix-metal` provider, `packet_project_id` and `packet_auth_token` is required; `metal_plan`, `metal_region` and `metal_os` is optional.
-  - For `digitalocean` provider, `digitalocean_token` is required; `do_project_name`, `do_size`, `do_region` and `do_os` is optional.
-  - For `aws-ec2` provider, `aws_access_key` and `aws_secret_key` is required; `aws_region`, `ec2_instance_type` and `ec2_os` is optional.
+  - For the `equinix-metal` provider, `packet_project_id` and `packet_auth_token` are required. `metal_plan`, `metal_region`, and `metal_os` are optional.
+  - For the `digitalocean` provider, `digitalocean_token` is required. `do_project_name`, `do_size`, `do_region`, and `do_os` are optional.
+  - For the `aws-ec2` provider, `aws_access_key` and `aws_secret_key` are required. `aws_region`, `ec2_instance_type`, and `ec2_os` are optional.
 
 ### perf.set_log_level
 
@@ -243,7 +243,7 @@ Sets retry time for each “driver" operation. By default every operation is ret
 
 *syntax: helpers = perf.setup()*
 
-Prepares base environment except for Kong and returns the `spec.helpers` module. Throws error if any.
+Prepares base environment, except for {{site.base_gateway}}, and returns the `spec.helpers` module. Throws error, if any.
 
 The framework sets up some environment variables before importing `spec.helpers` modules.
 The returned helper is just a normal `spec.helpers` module. Users can use the same pattern
@@ -253,11 +253,11 @@ in integration tests to setup entities in Kong. DB-less mode is currently not im
 
 *syntax: helpers = perf.setup_kong(version)*
 
-Prepares base environment and installs Kong with `version, then returns the `spec.helpers` module.
-Throws error if any. Calling this function also invokes `perf.setup()`.
+Prepares base environment and installs {{site.base_gateway}} with `version`, then returns the `spec.helpers` module.
+Throws error, if any. Calling this function also invokes `perf.setup()`.
 
-To select a git hash or tag, use `"git:<hash>"` as version. Otherwise, the framework
-will treat the `version` as a release version and will download binary packages from
+To select a git hash or tag, use `"git:<hash>"` as the version. Otherwise, the framework
+treats the `version` as a release version and downloads binary packages from
 Kong's distribution website.
 
 The framework sets up some environment variables before importing `spec.helpers` modules.
@@ -269,21 +269,21 @@ in integration tests to setup entities in Kong. DB-less mode is currently not im
 *syntax: upstream_uri = perf.start_worker(nginx_conf_blob, port_count?)*
 
 Starts upstream (Nginx/OpenResty) with given `nginx_conf_blob`. Returns the upstream
-URI accessible from Kong's view. Throws error if any.
+URI accessible from {{site.base_gateway}}'s view. Throws an error, if any.
 
-If `port_count` is set and larger than 1, the framework will start upstreams with multiple ports
-and return them in a table.
+If `port_count` is set and larger than one, the framework starts upstreams with multiple ports
+and returns them in a table.
 
 ### perf.start_kong
 
 *syntax: perf.start_kong(kong_configs?, driver_configs?)*
 
-Starts Kong with given configurations in `kong_configs` as a Lua table.
-Throws error if any.
+Starts {{site.base_gateway}} with the configurations in `kong_configs` as a Lua table.
+Throws an error, if any.
 
 `driver_configs` is a Lua table that may contain following keys:
-- `name`: a string to distinguish different Kong instances; not required if only one Kong instance is started. It can be used as DNS name to access one Kong instance from another.
-- `ports`: a table to setup exposed port, only honored by `docker` driver.
+- `name`: A string that distinguishes different {{site.base_gateway}} instances. It's not required if only one {{site.base_gateway}} instance is started. It can be used as DNS name to access one {{site.base_gateway}} instance over another.
+- `ports`: A table to setup exposed ports. This is only honored by the `docker` driver.
 ### perf.stop_kong
 
 *syntax: perf.stop_kong()*
@@ -309,7 +309,7 @@ This function blocks test execution until the `SystemTap` module is fully prepar
 kernel. It should be called before `perf.start_load`.
 
 `driver_configs` is a Lua table that contains the following keys:
-- `name`: a string to distinguish different Kong instances to probe one.
+- `name`: A string to distinguish different {{site.base_gateway}} instances to probe one.
 
 ### perf.start_load
 
@@ -323,18 +323,18 @@ Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua t
 - **threads** Request thread count; defaults to 5. 
 - **duration** Number of performance tests duration in seconds; defaults to 10. 
 - **script** Content of `wrk` script as string; defaults to nil.
-- **wrk2** Boolean to use `wrk2` instead of `wrk`; defaults to false.
-- **rate** Number of requests per second to send; required if using `wrk2`, invalid if using `wrk`.
-- **kong_name** The `name` specified by `driver_confs` when starting Kong, to send load to; when not specified, the framework picks the first Kong instance that exposes proxy port.
+- **wrk2** Boolean to use `wrk2` instead of `wrk`. Defaults to false.
+- **rate** Number of requests per second to send. This is required if using `wrk2` but invalid if using `wrk`.
+- **kong_name** The `name` specified by `driver_confs` when starting {{site.base_gateway}} to send load to. When this is unspecified, the framework picks the first {{site.base_gateway}} instance that exposes the proxy port.
 
 ### perf.get_admin_uri
 
 *syntax: perf.get_admin_uri(kong_name?)*
 
 Return the Admin API URL. The URL may only be accessible from
-the load generator and not publically available. the framework picks the first
-Kong instance that exposes admin port. `kong_name` be be set to choose the Kong
-instance with matching `name` specified by `driver_confs` when starting Kong. 
+the load generator and not publicly available. The framework picks the first
+{{site.base_gateway}} instance that exposes the admin port. `kong_name` must be set to choose the {{site.base_gateway}}
+instance with matching `name` specified by `driver_confs` when starting {{site.base_gateway}}. 
 ### perf.wait_result
 
 *syntax: result = perf.wait_result(options?)*
@@ -348,11 +348,11 @@ Currently, this function waits indefinitely, or until both `wrk` and Stap++ proc
 *syntax: combined_result = perf.combine_results(results, suite?)*
 
 Calculates multiple results returned by `perf.wait_result` and returns their average and min/max.
-Throws error if any. `suite` is a string to identify the test suite to be shown in the charts and will
-be used as the X-axis labels; if the suite is not specified, the framework will use the test name.
+Throws an error, if any. The `suite` string identifies the test suite to display in the charts and
+is used as the X-axis labels. If the suite is not specified, the framework will use the test name.
 
-If results in a same file is corelated, user can set `suite` to a number and add following options
-to draw a line chart with trend line
+If results in the same file are correlated, the user can set `suite` to a number and add the following options
+to draw a line chart with a trend line:
 
 ```lua
 local charts = require "spec.helpers.perf.charts"
@@ -363,7 +363,7 @@ charts.options({
 ```
 
 Otherwise, the chart will treat results in same test file as independent tests
-and draw a bar chart.
+and draws a bar chart.
 
 ### perf.generate_flamegraph
 
@@ -384,7 +384,7 @@ Saves Kong error log to path. Throws error if any.
 Enable charts generation, throws error if any.
 
 Charts are enabled by default; the data of charts are fed by `perf.combine_results`.
-The generated JSON results for creating charts are stored under `output` drectory.
+The generated JSON results for creating charts are stored under the `output` directory.
 
 ### perf.save_pgdump
 
@@ -402,8 +402,8 @@ it must be called after `perf.start_upstream`. Throws error if any.
 
 ## Charts
 
-Charts are not rendered by default, there's a reference implementation to draw graphs on all JSON
-data stored in `output` directory. Use the following commands to draw graph:
+Charts are not rendered by default. There's a reference implementation to draw graphs on all JSON
+data stored in the `output` directory. Use the following commands to draw graphs:
 
 ```shell
 cwd=$(pwd)
