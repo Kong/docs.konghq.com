@@ -190,16 +190,16 @@ Here's an example sequence for this configuration:
  |Client|                               |Kong|                          |Upstream|
  '------'                               '----'                          '--------'
     |                                     |                                 |
-    |   text(`{ "name": "Alex" }`)     |                                 |
+    |     text(`{ "name": "Alex" }`)      |                                 |
     |>----------------------------------->|                                 |
     |                                     |                                 |
-    |                                     |  text(`{ "name": "Alex" }`)  |
+    |                                     |    text(`{ "name": "Alex" }`)   |
     |                                     |>------------------------------->|
     |                                     |                                 |
-    |    text(`{ "name": "Kiran" }`)        |                                 |
+    |     text(`{ "name": "Kiran" }`)     |                                 |
     |>----------------------------------->|                                 |
     |                                     |                                 |
-    |                                     |    text(`{ "name": "Kiran" }`)    |
+    |                                     |   text(`{ "name": "Kiran" }`)   |
     |                                     |>------------------------------->|
     |                                     |                                 |
     |  text(`{ "missing_name": true }`)   |                                 |
