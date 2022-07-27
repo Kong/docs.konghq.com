@@ -217,12 +217,12 @@ entire length of the WebSocket frame (header + payload).
 
 ### Standalone data frames (`text` and `binary`)
 
-For limits of 125 bytes and lower, the message is fully read and unserialized
+For limits of 125 bytes and lower, the message is fully read and deserialized
 before checking the message length.
 
 For limits of 125 bytes and higher, the message length is checked from the
 frame header _before_ the entire message is read from the socket buffer,
-allowing Kong to close the connection without having to read and unserialize
+allowing Kong to close the connection without having to read and deserialize
 the entire message in memory.
 
 ### Continuation data frames
