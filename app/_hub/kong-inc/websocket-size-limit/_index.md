@@ -1,5 +1,5 @@
 ---
-name: Websocket Size Limit
+name: WebSocket Size Limit
 publisher: Kong Inc.
 
 categories:
