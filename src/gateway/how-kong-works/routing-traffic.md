@@ -1278,13 +1278,12 @@ There are two methods for proxying WebSocket traffic in {{site.base_gateway}}:
 
 #### HTTP(S) Services and Routes
 
-Services and routes using the `http` and https` protocols are fully capable of
+Services and routes using the `http` and `https` protocols are fully capable of
 handling WebSocket connections with no special configuration. With this method,
 WebSocket sessions behave identically to regular HTTP requests, and all of the
 request/response data is treated as an opaque stream of bytes.
 
 ```yaml
----
 services:
   - name: my-http-websocket-service
     protocol: http
@@ -1301,16 +1300,15 @@ services:
 #### WS(S) Services And Routes
 {:.badge .enterprise}
 
-In addition to HTTP services and routes, {{site.ee_gateway_name}} offers
-`ws` (WebSocket-over-http) and `wss` (WebSocket-over-https) protocols for
-services and routes. In contrast to `http`/`https`, `ws` and `wss` services
-have full control over the underlying WebSocket connection, meaning they can
-use WebSocket plugins and the [WebSocket PDK](LINK_TO_PDK) to perform business
-logic on a per-message basis (message validation, accounting, rate-limiting,
-etc).
+In addition to HTTP services and routes, {{site.ee_product_name}} includes
+the `ws` (WebSocket-over-http) and `wss` (WebSocket-over-https) options for
+service `protocol` and route `protocols`. In contrast to `http`/`https`, `ws`
+and `wss` services have full control over the underlying WebSocket connection,
+meaning they can use WebSocket plugins and the [WebSocket PDK](LINK_TO_PDK) to
+perform business logic on a per-message basis (message validation, accounting,
+rate-limiting, etc).
 
 ```yaml
----
 services:
   - name: my-dedicated-websocket-service
     protocol: ws
@@ -1318,27 +1316,28 @@ services:
     port: 80
     path: /
     routes:
-      - name: my-dedicate-websocket-route
+      - name: my-dedicated-websocket-route
         protocols:
           - ws
           - wss
 ```
 
 {:.note}
-> _On performance:_
+> _A note about performance:_
 >
 > Decoding and encoding WebSocket messages comes with a non-zero amount of
 > performance overhead when compared to the protocol-agnostic behavior of
-> http/https services. If your API does not need the extra capabilities
-> provided by a ws/wss service, it is generally recommended to use an http/https
+> `http(s)` services. If your API does not need the extra capabilities
+> provided by a `ws(s)` service, it is generally recommended to use an `http(s)`
 > service instead.
 
 ### WebSocket and TLS
 
 Regardless of which service/route protocols are in use (`http(s)` or `ws(s)`),
-{{site.base_gateway}} will accept `ws` and `wss` connections on its respective
-`http` and `https` ports. To enforce TLS connections from clients, set the
-`protocols` property of the [Route][route-entity] to `https` or `wss` only.
+{{site.base_gateway}} will accept plain and TLS WebSocket connections on its
+respective `http` and `https` ports. To enforce TLS connections from clients,
+set the `protocols` property of the [route][route-entity] to `https` or `wss`
+only.
 
 When setting up the [service][service-entity] to point to your upstream
 WebSocket service, you should carefully pick the protocol you want to use
