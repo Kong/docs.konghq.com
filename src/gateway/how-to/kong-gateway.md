@@ -25,11 +25,11 @@ Then you'll interact with the gateway using `curl` to ensure it has been started
 Run the following command to start {{site.base_gateway}} using Docker:
 
 ```sh
-curl -Ls spurgeon.dev/how-to-kong | sh -s
+curl -Ls get.konghq.com/quickstart | sh -s
 ```
 
 {:.note}
-> **Note:** The script creates a log file in the current directory named `how-to-kong.log`
+> **Note:** The script creates a log file in the current directory named `kong-quickstart.log`
 
 Docker is now downloading and running the {{site.base_gateway}} and supporting database. Additionally,
 the script bootstraps the database and installs a [mock service](https://mockbin.org/) to experiment with.
@@ -53,21 +53,21 @@ network traffic to the gateway. You can see all the ports the gateway is listeni
 with this docker command:
 
 ```sh
-docker port how-to-kong-gateway
+docker port kong-quickstart-gateway
 ```
 
-To make things easier you can export the Kong connection values to environment variables
+To make things easier, the script will create a file with connection values you can source into your environment
 for use in future commands:
 
 ```sh
-export KONG_ADMIN=$(docker port how-to-kong-gateway 8001/tcp)
-export KONG_PROXY=$(docker port how-to-kong-gateway 8000/tcp)
+source kong.env
 ```
 
-Test the [Kong Admin API](/gateway/admin-api/) with the following:
+After you have sourced the environment variable file, 
+test the [Kong Admin API](/gateway/admin-api/) with the following:
 
 ```sh
-curl $KONG_ADMIN
+curl $KONG_ADMIN_API
 ```
 
 You should see a large JSON response from the gateway.
