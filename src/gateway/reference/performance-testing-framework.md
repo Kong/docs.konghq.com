@@ -3,7 +3,7 @@ title: Performance Testing Framework
 badge: oss
 ---
 
-The Kong Gateway codebase includes a performance testing framework. It allows Kong developers and users to evaluate the performance of Kong itself as well as 
+The {{site.base_gateway}} codebase includes a performance testing framework. It allows Kong developers and users to evaluate the performance of Kong itself as well as 
 bundled or custom plugins, and plot frame graphs to debug performance bottlenecks.
 The framework collects RPS (request per second) and latencies of Kong processing the request
 to represent performance metrics under different workloads.
@@ -23,8 +23,8 @@ requirements, and setup complexity.
 
 | Driver   | Test between git commits | Test between binary releases | Flame Graph | Test unreleased version    |
 |----------|--------------------------|------------------------------|------------|----------------------------|
-| docker   | yes                      | yes                          |            | yes (use_daily_image = true) |
-|terraform | yes                      | yes                          | yes        | yes (use_daily_image = true) |
+| docker   | yes                      | yes                          |            | yes (`use_daily_image` = true) |
+|terraform | yes                      | yes                          | yes        | yes (`use_daily_image` = true) |
 
 Using either of the driver requires Lua development dependencies of Kong being installed.
 
@@ -38,7 +38,7 @@ but it requires Terraform knowledge to operate and setup.
     * Requires the [Terraform](https://www.terraform.io/downloads.html) binary be installed.
     * Requires git binary if testing between git commits. When testing between git commits,
     the framework assumes the current directory is Kong's repo. It will stash your working
-    directory and unstash after test is finished. When using the docker or terraform driver,
+    directory and remove the stash after the test is finished. When using the docker or Terraform driver,
     the framework derives the base version of each commit and uses the matching Docker image or
     Kong binary package and puts local source code inside.
 
@@ -192,17 +192,17 @@ results, Kong error logs, charts and Flame Graph files are saved to the `output`
 *syntax: perf.use_defaults()*
 
 Use default parameters. This function sets the following:
-- Looks up `PERF_TEST_DRIVER` envrionment variable and invokes `perf.use_driver`.
+- Looks up `PERF_TEST_DRIVER` environment variable and invokes `perf.use_driver`.
 - Looks up `PERF_TEST_TERRAFORM_PROVIDER` if `PERF_TEST_DRIVER` is `terraform`.
-  - If `equinix-metal` is selected, looks up `PERF_TEST_METAL_PROJECT_ID` and `PERF_TEST_METAL_AUTH_TOKEN` envrionment variables
+  - If `equinix-metal` is selected, looks up `PERF_TEST_METAL_PROJECT_ID` and `PERF_TEST_METAL_AUTH_TOKEN` environment variables
 to pass to the Terraform driver.
-  - If `digitalocean` is selected, looks up `PERF_TEST_DIGITALOCEAN_TOKEN` envrionment variables
+  - If `digitalocean` is selected, looks up `PERF_TEST_DIGITALOCEAN_TOKEN` environment variables
 to pass to the Terraform driver.
-  - If `aws-ec2` is selected, looks up `PERF_TEST_AWS_ACCESS_KEY` and `PERF_TEST_AWS_SECRET_KEY` envrionment variables
+  - If `aws-ec2` is selected, looks up `PERF_TEST_AWS_ACCESS_KEY` and `PERF_TEST_AWS_SECRET_KEY` environment variables
 to pass to the Terraform driver.
 - Invokes `perf.set_log_level` and sets level to `"debug"`.
 - Set retry count to 3.
-- Looks up `PERF_TEST_USE_DAILY_IMAGE` envrionment variable and passes the variable to driver options.
+- Looks up `PERF_TEST_USE_DAILY_IMAGE` environment variable and passes the variable to driver options.
 
 ### perf.use_driver
 
@@ -266,7 +266,7 @@ in integration tests to setup entities in Kong. DB-less mode is currently not im
 
 ### perf.start_worker
 
-*syntax: upstream_uri = perf.start_worker(nginx_conf_blob, port_count?)*
+*syntax: `upstream_uri` = perf.start_worker(`nginx_conf_blob`, `port_count`?)*
 
 Starts upstream (Nginx/OpenResty) with given `nginx_conf_blob`. Returns the upstream
 URI accessible from {{site.base_gateway}}'s view. Throws an error, if any.
@@ -276,7 +276,7 @@ and returns them in a table.
 
 ### perf.start_kong
 
-*syntax: perf.start_kong(kong_configs?, driver_configs?)*
+*syntax: perf.start_kong(`kong_configs`?, `driver_configs`?)*
 
 Starts {{site.base_gateway}} with the configurations in `kong_configs` as a Lua table.
 Throws an error, if any.
@@ -299,11 +299,11 @@ all infrastructure, while by default it does cleanup only to speed up successive
 
 ### perf.start_stapxx
 
-*syntax: perf.start_stapxx(stapxx_file_name, arg?, driver_configs?)*
+*syntax: perf.start_stapxx(`stapxx_file_name`, `arg`?, `driver_configs`?)*
 
 Starts the Stap++ script with `stapxx_file_name` exists in
 [available stapxx scripts](https://github.com/Kong/stapxx/tree/kong/samples)
-and additional CLI args. Throws error if any.
+and additional CLI arguments. Throws error if any.
 
 This function blocks test execution until the `SystemTap` module is fully prepared and inserted into the
 kernel. It should be called before `perf.start_load`.
@@ -345,7 +345,7 @@ Currently, this function waits indefinitely, or until both `wrk` and Stap++ proc
 
 ### perf.combine_results
 
-*syntax: combined_result = perf.combine_results(results, suite?)*
+*syntax: `combined_result` = perf.combine_results(results, suite?)*
 
 Calculates multiple results returned by `perf.wait_result` and returns their average and min/max.
 Throws an error, if any. The `suite` string identifies the test suite to display in the charts and
@@ -394,7 +394,7 @@ After setting up Kong using Blueprint, saves the PostgreSQL database dump to a p
 
 ### perf.load_pgdump
 
-*syntax: perf.load_pgdump(path, dont_patch_service?)*
+*syntax: perf.load_pgdump(path, `dont_patch_service`)*
 
 Loads the pgdump from the path and replaces the Kong database with the loaded data; this function
 will also patch a services address to the upstream unless `dont_patch_service` is set to false,
@@ -438,6 +438,6 @@ An SSH key to login into both instances exists or will be created in
 The following are terraform output variables:
 
 - **kong-ip** Kong node public IP.
-- **kong-internal-ip** Kong node internal IP (if unavailable, provide kong-ip).
+- **kong-internal-ip** Kong node internal IP (if unavailable, provide `kong-ip`).
 - **worker-ip** Worker node public IP.
-- **worker-internal-ip** Worker node internal IP (if unavailable, provide worker-ip).
+- **worker-internal-ip** Worker node internal IP (if unavailable, provide `worker-ip`).
