@@ -39,6 +39,7 @@ params:
   protocols: ["ws", "wss"]
   dbless_compatible: 'yes'
   config:
+
     - name: client.text.schema
       required: semi
       default: null
@@ -47,7 +48,8 @@ params:
       value_in_examples: '''{ "type": "object" }'''
       description: |
         Schema used to validate client-originated text frames. The semantics of
-        this field depend on the validation type set by `client.text.type`.
+        this field depend on the validation type set by `config.client.text.type`.
+
     - name: client.text.type
       required: semi
       default: null
@@ -55,7 +57,10 @@ params:
       encrypted: false
       value_in_examples: '''draft4'''
       description: |
-        The validation type to use. Currently only `"draft4"` is supported.
+        The corresponding validation library for `config.client.text.schema`.
+        Currently only `draft4` is supported.
+
+
     - name: client.binary.schema
       required: semi
       default: null
@@ -64,7 +69,8 @@ params:
       value_in_examples: null
       description: |
         Schema used to validate client-originated binary frames. The semantics of
-        this field depend on the validation type set by `client.binary.type`.
+        this field depend on the validation type set by `config.client.binary.type`.
+
     - name: client.binary.type
       required: semi
       default: null
@@ -72,7 +78,10 @@ params:
       encrypted: false
       value_in_examples: null
       description: |
-        The validation type to use. Currently only `"draft4"` is supported.
+        The corresponding validation library for `config.client.binary.schema`.
+        Currently only `draft4` is supported.
+
+
     - name: upstream.text.schema
       required: semi
       default: null
@@ -81,7 +90,8 @@ params:
       value_in_examples: null
       description: |
         Schema used to validate upstream-originated text frames. The semantics of
-        this field depend on the validation type set by `upstream.text.type`.
+        this field depend on the validation type set by `config.upstream.text.type`.
+
     - name: upstream.text.type
       required: semi
       default: null
@@ -89,7 +99,10 @@ params:
       encrypted: false
       value_in_examples: null
       description: |
-        The validation type to use. Currently only `"draft4"` is supported.
+        The corresponding validation library for `config.upstream.text.schema`.
+        Currently only `draft4` is supported.
+
+
     - name: upstream.binary.schema
       required: semi
       default: null
@@ -98,7 +111,8 @@ params:
       value_in_examples: null
       description: |
         Schema used to validate upstream-originated binary frames. The semantics of
-        this field depend on the validation type set by `upstream.binary.type`.
+        this field depend on the validation type set by `config.upstream.binary.type`.
+
     - name: upstream.binary.type
       required: semi
       default: null
@@ -106,13 +120,14 @@ params:
       encrypted: false
       value_in_examples: null
       description: |
-        The validation type to use. Currently only `"draft4"` is supported.
+        The corresponding validation library for `config.upstream.binary.schema`.
+        Currently only `draft4` is supported.
   extra: |
-    At least one message validation schema must be defined:
-      * `config.client.text`
-      * `config.client.binary`
-      * `config.upstream.text`
-      * `config.upstream.binary`
+    At least one complete message validation configuration must be defined:
+      * `config.client.text.type` + `config.client.text.schema`
+      * `config.client.binary.type` + `config.client.binary.schema`
+      * `config.upstream.text.type` + `config.upstream.text.schema`
+      * `config.upstream.binary.type` + `config.upstream.binary.schema`
 
 ---
 
@@ -161,8 +176,13 @@ plugins:
             "required": [ "name" ]
           }
 ```
+
 {% endnavtab %}
 {% endnavtabs %}
+
+
+Example sequence for this configuration:
+
 
 ```
  .------.                               .----.                          .--------.
