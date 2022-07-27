@@ -128,7 +128,7 @@ docker run --name jaeger \
 
 The `4318` port is the OTLP/HTTP port, and the `4317` port is the OTLP/GRPC port which OpenTelemetry plugin not supported yet.
 
-### Set up a OpenTelemetry Collector 
+### Set up a OpenTelemetry Collector
 
 This section is required if you are using an incompatible OpenTelemetry APM vendor.
 
@@ -263,7 +263,7 @@ The following is an example for adding a custom span using {{site.base_gateway}}
 
 ## Troubleshooting
 
-The OpenTelemetry spans are printed to the console when the log level is set to `debug` in the OpenTelemetry Collector configuration file.
+The OpenTelemetry spans are printed to the console when the log level is set to `debug` in the Kong configuration file.
 
 An example of debug logs output:
 
@@ -280,4 +280,6 @@ Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.2
 ## Known issues
 
 - Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
-- May have impact on the performance of the Kong.
+- May impact the performance of {{site.base_gateway}}.
+  It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
+  via Kong configuration file when using the OpenTelemetry plugin.
