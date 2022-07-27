@@ -44,7 +44,7 @@ params:
       default: null
       datatype: string
       encrypted: false
-      value_in_examples: null
+      value_in_examples: '''{ "type": "object" }'''
       description: |
         Schema used to validate client-originated text frames. The semantics of
         this field depend on the validation type set by `client.text.type`.
@@ -53,7 +53,7 @@ params:
       default: null
       datatype: string
       encrypted: false
-      value_in_examples: null
+      value_in_examples: '''draft4'''
       description: |
         The validation type to use. Currently only `"draft4"` is supported.
     - name: client.binary.schema
@@ -107,7 +107,89 @@ params:
       value_in_examples: null
       description: |
         The validation type to use. Currently only `"draft4"` is supported.
+  extra: |
+    At least one message validation schema must be defined:
+      * `config.client.text`
+      * `config.client.binary`
+      * `config.upstream.text`
+      * `config.upstream.binary`
 
 ---
 
 ## Usage
+
+**NOTE:** Currently, the only supported validation type is [JSON schema
+draft4](https://json-schema.org/specification-links.html#draft-4), so all
+examples will use this.
+
+### Validate client text frames
+
+This example validates that client text frames:
+
+* Are valid JSON
+* Are a JSON object (`{}`)
+* Have a `name` attribute (of any type)
+
+
+{% navtabs %}
+{% navtab With a database %}
+
+
+``` bash
+curl -i -X POST http://kong:8001/services/{service}/plugins \
+  --data "name=websocket-validator" \
+  --data "config.client.text.type=draft4" \
+  --data 'config.client.text.schema={ "type": "object", "required": ["name"] }'
+```
+{% endnavtab %}
+
+{% navtab Without a database %}
+
+Add the following entry to the `plugins:` section in the declarative configuration file:
+
+``` yaml
+plugins:
+- name: websocket-validator
+  service: {service}
+  config:
+    client:
+      text:
+        type: draft4
+        schema: |
+          {
+            "type": "object",
+            "required": [ "name" ]
+          }
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+```
+ .------.                               .----.                          .--------.
+ |Client|                               |Kong|                          |Upstream|
+ '------'                               '----'                          '--------'
+    |                                     |                                 |
+    |   text(`{ "name": "Michael" }`)     |                                 |
+    |>----------------------------------->|                                 |
+    |                                     |                                 |
+    |                                     |  text(`{ "name": "Michael" }`)  |
+    |                                     |>------------------------------->|
+    |                                     |                                 |
+    |    text(`{ "name": "Bob" }`)        |                                 |
+    |>----------------------------------->|                                 |
+    |                                     |                                 |
+    |                                     |    text(`{ "name": "Bob" }`)    |
+    |                                     |>------------------------------->|
+    |                                     |                                 |
+    |  text(`{ "missing_name": true }`)   |                                 |
+    |>----------------------------------->|                                 |
+    |                                     |                                 |
+    |         close(status=1007)          |                                 |
+    |<-----------------------------------<|                                 |
+    |                                     |                                 |
+    |                                     |             close()             |
+    |                                     |>------------------------------->|
+ .------.                               .----.                          .--------.
+ |Client|                               |Kong|                          |Upstream|
+ '------'                               '----'                          '--------'
+```
