@@ -28,7 +28,7 @@ params:
       value_in_examples: 'http://opentelemetry.collector:4318/v1/traces'
       datatype: string
       description: |
-        The full HTTP(S) endpoint that {{site.base_gateway}} should send OpenTelemetry spans to.
+        The full HTTP(S) endpoint that Kong Gateway should send OpenTelemetry spans to.
         The endpoint must be a [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) endpoint.
     - name: headers
       required: false
@@ -43,12 +43,12 @@ params:
       datatype: map
       description: |
         The attributes specified on this property are added to the OpenTelemetry resource object.
-        {{site.company_name}} follows the OpenTelemetry specification for [Semantic Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/README.md#service).
+        Kong follows the OpenTelemetry specification for [Semantic Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/README.md#service).
 
         The following attributes are automatically added to the resource object:
         - `service.name`: The name of the service. This is `kong` by default.
-        - `service.version`: The version of {{site.base_gateway}}.
-        - `service.instance.id`: The node id of {{site.base_gateway}}.
+        - `service.version`: The version of Kong Gateway.
+        - `service.instance.id`: The node id of Kong Gateway.
 
         The default values for the above attributes can be overridden by specifying them in this property. For example,
         to override the default value of `service.name` to `my-service`, you can specify `{ "service.name": "my-service" }`.
@@ -99,7 +99,7 @@ There are two ways to set up an OpenTelemetry backend:
 
 ### Set up {{site.base_gateway}}
 
-Enable the OpenTelemetry tracing capability in Kong's configuration:
+Enable the OpenTelemetry tracing capability in {{site.base_gateway}}'s configuration:
 
 - `opentelemetry_tracing = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#opentelemetry_tracing).
 - `opentelemetry_tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
@@ -126,7 +126,7 @@ docker run --name jaeger \
 
 * The `COLLECTOR_OTLP_ENABLED` environment variable must be set to `true` to enable the OpenTelemetry Collector.
 
-The `4318` port is the OTLP/HTTP port, and the `4317` port is the OTLP/GRPC port which OpenTelemetry plugin not supported yet.
+* The `4318` port is the OTLP/HTTP port and the `4317` port is the OTLP/GRPC port that isn't supported by the OpenTelemetry plugin yet.
 
 ### Set up a OpenTelemetry Collector
 
@@ -220,7 +220,7 @@ If no appropriate format is found, the plugin will fallback to the default forma
 
 ### OTLP exporter
 
-The OpenTelemetry plugin implemented the [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) exporter, which uses Protobuf payloads encoded in binary format and send via HTTP/1.1.
+The OpenTelemetry plugin implements the [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) exporter, which uses Protobuf payloads encoded in binary format and is sent via HTTP/1.1.
 
 `connect_timeout`, `read_timeout`, and `write_timeout` are used to set the timeouts for the HTTP request.
 
