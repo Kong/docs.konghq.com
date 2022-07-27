@@ -1276,7 +1276,8 @@ There are two methods for proxying WebSocket traffic in {{site.base_gateway}}:
 * HTTP(S) services and routes
 * WS(S) services and routes
 
-#### HTTP(S) Services and Routes
+{% navtabs %}
+{% navtab HTTP(S) Services and Routes %}
 
 Services and routes using the `http` and `https` protocols are fully capable of
 handling WebSocket connections with no special configuration. With this method,
@@ -1297,7 +1298,10 @@ services:
           - https
 ```
 
-#### WS(S) Services And Routes
+{% endnavtab %}
+
+{% navtab WS(S) Services and Routes %}
+
 {:.badge .enterprise}
 
 In addition to HTTP services and routes, {{site.ee_product_name}} includes
@@ -1321,6 +1325,10 @@ services:
           - ws
           - wss
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
+
 
 {:.note}
 > _A note about performance:_
