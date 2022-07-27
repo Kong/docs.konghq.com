@@ -10,8 +10,8 @@ type: plugin
 desc: Block incoming WebSocket messages greater than a specified size
 description: |
   Allows operators to specify a maximum size for incoming WebSocket messages.
-  Client and Upstream limits can have separate limits. Limits are applied to
-  both text and binary frames as well as aggregated size of continuation frames.
+
+  Separate limits can be applied to clients and upstreams.
 
   When an incoming message exceeds the limit:
     1. A close frame with status code `1009` is sent to the sender
