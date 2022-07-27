@@ -201,6 +201,6 @@ Please refer to the [OpenTelemetry plugin](/hub/kong-inc/opentelemetry) to see h
 
 ## References
 
-- [Tracing PDK](/pdk/kong.tracing)
-- [Measuring your plugin](/plugin-development/telemetry)
+- [Tracing PDK](/gateway/{{page.kong_version}}/pdk/kong.tracing)
+- [Measuring your plugin](/gateway/{{page.kong_version}}/plugin-development/telemetry)
 - [OpenTelemetry plugin](/hub/kong-inc/opentelemetry)
