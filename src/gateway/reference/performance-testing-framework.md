@@ -405,7 +405,7 @@ it must be called after `perf.start_upstream`. Throws error if any.
 Charts are not rendered by default, there's a reference implementation to draw graphs on all JSON
 data stored in `output` directory. Use the following commands to draw graph:
 
-```python
+```shell
 cwd=$(pwd)
 cd spec/helpers/perf/charts/
 pip install -r requirements.txt
