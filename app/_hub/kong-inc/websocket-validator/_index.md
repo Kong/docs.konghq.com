@@ -1,5 +1,5 @@
 ---
-name: Websocket Validator
+name: WebSocket Validator
 publisher: Kong Inc.
 
 categories:
@@ -58,7 +58,7 @@ params:
       value_in_examples: '''draft4'''
       description: |
         The corresponding validation library for `config.client.text.schema`.
-        Currently only `draft4` is supported.
+        Currently, only `draft4` is supported.
 
 
     - name: client.binary.schema
@@ -79,7 +79,7 @@ params:
       value_in_examples: null
       description: |
         The corresponding validation library for `config.client.binary.schema`.
-        Currently only `draft4` is supported.
+        Currently, only `draft4` is supported.
 
 
     - name: upstream.text.schema
@@ -100,7 +100,7 @@ params:
       value_in_examples: null
       description: |
         The corresponding validation library for `config.upstream.text.schema`.
-        Currently only `draft4` is supported.
+        Currently, only `draft4` is supported.
 
 
     - name: upstream.binary.schema
@@ -121,19 +121,20 @@ params:
       value_in_examples: null
       description: |
         The corresponding validation library for `config.upstream.binary.schema`.
-        Currently only `draft4` is supported.
+        Currently, only `draft4` is supported.
   extra: |
-    At least one complete message validation configuration must be defined:
-      * `config.client.text.type` + `config.client.text.schema`
-      * `config.client.binary.type` + `config.client.binary.schema`
-      * `config.upstream.text.type` + `config.upstream.text.schema`
-      * `config.upstream.binary.type` + `config.upstream.binary.schema`
+    At least one of the following complete message validation configurations must be defined:
+      * `config.client.text.type` and `config.client.text.schema`
+      * `config.client.binary.type` and `config.client.binary.schema`
+      * `config.upstream.text.type` and `config.upstream.text.schema`
+      * `config.upstream.binary.type` and `config.upstream.binary.schema`
 
 ---
 
 ## Usage
 
-**NOTE:** Currently, the only supported validation type is [JSON schema
+{:.note}
+> **Note**: Currently, the only supported validation type is [JSON schema
 draft4](https://json-schema.org/specification-links.html#draft-4), so all
 examples will use this.
 
@@ -151,7 +152,7 @@ This example validates that client text frames:
 
 
 ``` bash
-curl -i -X POST http://kong:8001/services/{service}/plugins \
+curl -i -X POST http://HOSTNAME:8001/services/SERVICE/plugins \
   --data "name=websocket-validator" \
   --data "config.client.text.type=draft4" \
   --data 'config.client.text.schema={ "type": "object", "required": ["name"] }'
@@ -181,7 +182,7 @@ plugins:
 {% endnavtabs %}
 
 
-Example sequence for this configuration:
+Here's an example sequence for this configuration:
 
 
 ```
@@ -189,16 +190,16 @@ Example sequence for this configuration:
  |Client|                               |Kong|                          |Upstream|
  '------'                               '----'                          '--------'
     |                                     |                                 |
-    |   text(`{ "name": "Michael" }`)     |                                 |
+    |   text(`{ "name": "Alex" }`)     |                                 |
     |>----------------------------------->|                                 |
     |                                     |                                 |
-    |                                     |  text(`{ "name": "Michael" }`)  |
+    |                                     |  text(`{ "name": "Alex" }`)  |
     |                                     |>------------------------------->|
     |                                     |                                 |
-    |    text(`{ "name": "Bob" }`)        |                                 |
+    |    text(`{ "name": "Kiran" }`)        |                                 |
     |>----------------------------------->|                                 |
     |                                     |                                 |
-    |                                     |    text(`{ "name": "Bob" }`)    |
+    |                                     |    text(`{ "name": "Kiran" }`)    |
     |                                     |>------------------------------->|
     |                                     |                                 |
     |  text(`{ "missing_name": true }`)   |                                 |

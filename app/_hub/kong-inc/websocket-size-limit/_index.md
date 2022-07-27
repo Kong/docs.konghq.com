@@ -48,7 +48,7 @@ params:
         Maximum size (in bytes) of client-originated WebSocket messages. Must
         be greater than `0` and less than `33554432` (32 MiB)
       extra: |
-        At least one of `client_max_payload` and `upstream_max_payload` is
+        Either `client_max_payload` or `upstream_max_payload` is
         required.
     - name: upstream_max_payload
       required: semi
@@ -60,12 +60,12 @@ params:
         Maximum size (in bytes) of upstream-originated WebSocket messages. Must
         be greater than `0` and less than `33554432` (32 MiB)
       extra: |
-        At least one of `client_max_payload` and `upstream_max_payload` is
+        Either `client_max_payload` or `upstream_max_payload` is
         required.
 
 ---
 
-## Usage Examples
+## Usage
 
 Limits can be applied to client messages, upstream messages, or both.
 
@@ -77,7 +77,7 @@ Limits can be applied to client messages, upstream messages, or both.
 Use a request like this:
 
 ``` bash
-curl -i -X POST http://kong:8001/services/{service}/plugins \
+curl -i -X POST http://HOSTNAME:8001/services/SERVICE/plugins \
   --data "name=websocket-size-limit" \
   --data "config.client_max_payload=4096"
 ```
@@ -106,7 +106,7 @@ plugins:
 Use a request like this:
 
 ``` bash
-curl -i -X POST http://kong:8001/services/{service}/plugins \
+curl -i -X POST http://HOSTNAME:8001/services/SERVICE/plugins \
   --data "name=websocket-size-limit" \
   --data "config.upstream_max_payload=1048576"
 ```
@@ -135,7 +135,7 @@ plugins:
 Use a request like this:
 
 ``` bash
-curl -i -X POST http://kong:8001/services/{service}/plugins \
+curl -i -X POST http://HOSTNAME:8001/services/SERVICE/plugins \
   --data "name=websocket-size-limit" \
   --data "config.client_max_payload=4096" \
   --data "config.upstream_max_payload=1048576"
@@ -160,7 +160,7 @@ plugins:
 
 ### Raising the default limits
 
-Kong applies some default limits to incoming messages for all WebSocket
+{{site.base_gateway}} applies the following default limits to incoming messages for all WebSocket
 services:
 
 | Sender   | Default Limit        |
@@ -178,7 +178,7 @@ increases the client limit to 2 MiB, up from the default of 1 MiB:
 Use a request like this:
 
 ``` bash
-curl -i -X POST http://kong:8001/services/{service}/plugins \
+curl -i -X POST http://HOSTNAME:8001/services/SERVICE/plugins \
   --data "name=websocket-size-limit" \
   --data "config.client_max_payload=2097152"
 ```
@@ -200,41 +200,40 @@ plugins:
 
 ---
 
-> Why is the default client limit smaller than the default upstream limit?
-
-Proxying client-originated messages is much more computationally expensive than
-upstream messages due to the client-to-server masking [required by the WebSocket
+The default client limit is smaller than the default upstream limit because proxying client-originated messages is much more computationally expensive than
+upstream messages. This is due to the client-to-server masking [required by the WebSocket
 specification](https://datatracker.ietf.org/doc/html/rfc6455#section-5.3), so
 in general it is wise to maintain a lower limit for client messages.
 
 
-## Under the hood
+## How the plugin works
 
 ## How limits are applied
 
-**Note:** Limits are evaluated based on the message payload length and not the
-entire length of the WebSocket frame (header + payload).
+{:.note}
+> **Note**: Limits are evaluated based on the message payload length and not the
+entire length of the WebSocket frame (header and payload).
 
 ### Standalone data frames (`text` and `binary`)
 
-For limits of 125 bytes and lower, the message length is checked after reading
+For limits of 125 bytes or less, the message length is checked after reading
 and decoding the entire message into memory.
 
-For limits of 125 bytes and higher, the message length is checked from the
+For limits of 125 bytes or more, the message length is checked from the
 frame header _before_ the entire message is read from the socket buffer,
-allowing Kong to close the connection without having to read (and potentially
-un-mask) the entire message into memory.
+allowing {{site.base_gateway}} to close the connection without having to read, and potentially
+unmask, the entire message into memory.
 
 ### Continuation data frames
 
-Kong aggregates `continuation` frames, buffering them in-memory before forwarding
+{{site.base_gateway}} aggregates `continuation` frames, buffering them in-memory before forwarding
 them to their final destination. In addition to evaluating limits on an
-individual frame basis (just like singular `text` and `binary` frames), Kong
+individual frame basis, like singular `text` and `binary` frames, {{site.base_gateway}}
 also tracks the running size of all the frames that are buffered for
 aggregation. If an incoming `continuation` frame causes the total buffer size to
 exceed the limit, the message is rejected, and the connection is closed.
 
-Example (assume `client_max_payload = 1024`)
+For example, assuming `client_max_payload = 1024`:
 
 ```
  .------.                                       .----.
@@ -264,9 +263,9 @@ Example (assume `client_max_payload = 1024`)
 
 All control frames (`ping`, `pong`, and `close`) have a max payload size of
 `125` bytes, as per the WebSocket
-[specification](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5). Kong
-does not enforce any limits on control frames (even when set to a value lower
-than `125`).
+[specification](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5). {{site.base_gateway}}
+does not enforce any limits on control frames, even when they're set to a value lower
+than `125`.
 
 
 ## See also
