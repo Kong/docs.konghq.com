@@ -51,6 +51,7 @@ https
 inbounds
 ini
 inso
+instrumentations
 io
 iptables
 Istio
@@ -80,6 +81,7 @@ Luarocks
 ngrok
 npm
 md
+middleware
 minikube
 Mockbin
 Moesif
