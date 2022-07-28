@@ -94,7 +94,7 @@ The OpenTelemetry plugin is fully compatible with the OpenTelemetry specificatio
 There are two ways to set up an OpenTelemetry backend:
 * Using a OpenTelemetry compatible backend directly, like Jaeger (v1.35.0+)
    All the vendors supported by OpenTelemetry are listed in the [OpenTelemetry's Vendor support](https://opentelemetry.io/vendors/).
-2. Using the OpenTelemetry Collector, which is middleware that can be used to proxy OpenTelemetry spans to a compatible backend.
+* Using the OpenTelemetry Collector, which is middleware that can be used to proxy OpenTelemetry spans to a compatible backend.
    You can view all the available OpenTelemetry Collector exporters at [open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter).
 
 ### Set up {{site.base_gateway}}
