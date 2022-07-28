@@ -14,6 +14,8 @@ blockquote
 blockquotes
 body_filter
 boolean
+client_payload
+client_status
 CloudFormation
 cncf
 cncf's
@@ -226,6 +228,8 @@ unregister
 unregistering
 upsert
 upstream
+upstream_payload
+upstream_status
 upstreams
 upstream's
 upvalue

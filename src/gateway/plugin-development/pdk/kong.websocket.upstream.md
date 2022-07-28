@@ -28,14 +28,14 @@ Retrieve the current frame.
  This returns the payload, type, and status code (for close frames) of
  the in-flight frame/message.
 
- This function is useful in contexts like the pre/post-function plugins
+ This function is useful in contexts like the pre-function or post-function plugins
  where execution is sandboxed, and the caller no access to these
  variables in the plugin handler scope.
 
 
 **Phases**
 
-* ws_upstream_frame
+* `ws_upstream_frame`
 
 **Returns**
 
@@ -68,7 +68,7 @@ Set the current frame's payload.
 
 **Phases**
 
-* ws_upstream_frame
+* `ws_upstream_frame`
 
 **Parameters**
 
