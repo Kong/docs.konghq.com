@@ -27,6 +27,10 @@ test using `docker` driver.
 PERF_TEST_USE_DAILY_IMAGE=true PERF_TEST_VERSIONS=git:master,git:perf/your-other-branch bin/busted -o gtest spec/04-perf/01-rps/01-simple_spec.lua
 ```
 
+User can also run the performance test framework inside a Kong container from scratch, from other development tools
+like [gojira](https://github.com/kong/gojira) or [pongo](https://github.com/kong/kong-pongo), if they don't have development environment.
+Note to use the `docker` driver inside a container, the Docker daemon socket `/var/run/docker.sock` needs to be mounted inside the container.
+
 ### Terraform managed instances
 
 By default, terraform doesn't teardown instances after each test in `lazy_teardown`; this allows user
