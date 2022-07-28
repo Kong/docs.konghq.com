@@ -1351,7 +1351,7 @@ WebSocket service, you should carefully pick the protocol you want to use
 between {{site.base_gateway}} and the upstream.
 
 If you want to use TLS, your upstream WebSocket service must be defined using
-the `https` (or `wss`) protocol in the service `protocol` property, and the
+the `https` (or `wss`) protocol in the service `protocol` property and the
 proper port (usually 443). To connect without TLS, then the `http` (or `ws`)
 protocol and port (usually 80) should be used in `protocol` instead.
 
