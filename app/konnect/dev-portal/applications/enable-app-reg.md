@@ -4,10 +4,14 @@ no_version: true
 content-type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version. 
 When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and your choice of [Key Authentication](/hub/kong-inc/key-auth)
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
 {{site.konnect_saas}}.
+
+Enabling an application registration is specific to the geographic region. 
+You must enable application registration in each region that you want to allow developers to register with.
+Each region has their own API keys and specifications for application registration in their respective region.
 
 ## Prerequisites
 

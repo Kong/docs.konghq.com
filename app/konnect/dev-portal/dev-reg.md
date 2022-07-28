@@ -12,15 +12,17 @@ Developer registrations can be manually approved by {{site.konnect_short_name}} 
 
 All developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
 
-To register as a developer, navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
+To register as a developer, follow these steps: 
 
-1. Click **Sign Up**.
+1. Navigate to the {{site.konnect_short_name}} Dev Portal.
 
-2. Fill out the registration form, then click **Create Account**.
+2. Click **Sign Up**.
 
-3. A registration link will be sent to the email address you registered. Click the verification link in the the registration email. 
+3. Fill out the registration form, then click **Create Account**.
 
-4. Create a password for your account.
+4. A registration link will be sent to the email address you registered. Click the verification link in the the registration email. 
+
+5. Create a password for your account.
 
 If your admin has enabled auto-approve, you can log into the Dev Portal immediately after setting a password. For more information on auto-approving registration, read the [set up auto-approval for developer access as an admin](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) documentation.
 

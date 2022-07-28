@@ -14,6 +14,8 @@ The Dev Portal URL looks like this:
     
     https://example.us.portal.konghq.com/
 
+If you have an enterprise {{site.konnect_short_name}} account with multiple geographic regions, the Dev Portal URL varies based on the region. 
+ 
 ## View a service in the Dev Portal {#url}
 
 The Dev Portal page contains a list of services that are published on the Dev Portal. 
