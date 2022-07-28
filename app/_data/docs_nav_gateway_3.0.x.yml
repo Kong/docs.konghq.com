@@ -65,14 +65,16 @@ items:
         items:
           - text: Overview
             url: /kong-production/deployment-topologies/overview
-          - text: Traditional
-            url: /kong-production/deployment-topologies/traditional
           - text: Hybrid Mode
             items:
             - text: Overview
               url: /kong-production/deployment-topologies/hybrid-mode/
             - text: Deploy Kong Gateway in Hybrid mode
               url: /kong-production/deployment-topologies/hybrid-mode/hybrid-mode-setup
+          - text: DB-less Deployment
+            url: /kong-production/deployment-topologies/db-less-and-declarative-config
+          - text: Traditional
+            url: /kong-production/deployment-topologies/traditional     
       - text: Installation Options
         items: 
           - text: Kubernetes
