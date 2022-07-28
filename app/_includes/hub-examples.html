@@ -30,8 +30,11 @@ endcapture %}
   for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
   if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
-  for value in field.value_in_examples %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{%
+  for value in field.value_in_examples %} \{%
+    if field.datatype == "map" %}{% assign mapValues = value | split: ":" %}
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] | replace: "'", "" }}'{% else %}"config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] }}"{% endif %}{%
+    else %}
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{% endif %}{%
   endfor %}{%
   else %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ field.value_in_examples | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ field.value_in_examples }}"{% endif %}{%
