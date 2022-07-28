@@ -1330,12 +1330,11 @@ services:
 
 
 {:.note}
-> _A note about performance:_
->
+> **Note**:
 > Decoding and encoding WebSocket messages comes with a non-zero amount of
-> performance overhead when compared to the protocol-agnostic behavior of
+> performance overhead when compared with the protocol-agnostic behavior of
 > `http(s)` services. If your API does not need the extra capabilities
-> provided by a `ws(s)` service, it is generally recommended to use an `http(s)`
+> provided by a `ws(s)` service, it's recommended that you use an `http(s)`
 > service instead.
 
 ### WebSocket and TLS
