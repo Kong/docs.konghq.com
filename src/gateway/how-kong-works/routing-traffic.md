@@ -1300,7 +1300,7 @@ services:
 
 {% endnavtab %}
 
-{% navtab WS(S) Services and Routes %}
+{% navtab WS(S) services and routes %}
 {:.badge .enterprise}
 
 In addition to HTTP services and routes, {{site.ee_product_name}} includes
