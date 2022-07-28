@@ -6,6 +6,7 @@
 #  or its associated files
 #
 title: kong.websocket.upstream
+content_type: reference
 pdk: true
 toc: true
 ---
