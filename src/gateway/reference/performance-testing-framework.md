@@ -16,6 +16,52 @@ The framework uses [busted](https://olivinelabs.com/busted/) and some
 Lua development dependencies of Kong. To set up the environment,
 run `make dev` on your Kong repository to install all Lua dependencies.
 
+## Usage
+
+### Basic usage
+
+Install Lua development dependencies of Kong being installed and invoke each test file with `busted`. The following runs the simple RPS and latency
+test using `docker` driver.
+
+```shell
+PERF_TEST_USE_DAILY_IMAGE=true PERF_TEST_VERSIONS=git:master,git:perf/your-other-branch bin/busted -o gtest spec/04-perf/01-rps/01-simple_spec.lua
+```
+
+### Terraform managed instances
+
+By default, terraform doesn't teardown instances after each test in `lazy_teardown`; this allows user
+to run multiple tests consecutively without rebuilding the infrastructure each time.
+
+This behaviour can be changed by setting `PERF_TEST_TEARDOWN_ALL` environment variable to true. User can
+also manually teardown the infrastructure by running:
+
+```
+PERF_TEST_TEARDOWN_ALL=1 PERF_TEST_DRIVER=terraform PERF_TEST_TERRAFORM_PROVIDER=your-provider bin/busted -o gtest -t single spec/04-perf/99-teardown/
+```
+
+### AWS
+
+When using `terraform` driver and `aws-ec2` as provider, AWS credentials can be provided by environment variables.
+It's common to pass `AWS_PROFILE` to point a stored AWS credentials profile, or `AWS_ACCESS_KEY_ID` and
+`AWS_SECRET_ACCESS_KEY` to use credential directly. Please refer to the
+[Terraform AWS provider document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration)
+for further information.
+
+### Charts
+
+Charts are not rendered by default. There's a reference implementation to draw graphs on all JSON
+data stored in the `output` directory. Use the following commands to draw graphs:
+
+```shell
+cwd=$(pwd)
+cd spec/helpers/perf/charts/
+pip install -r requirements.txt
+for i in $(ls ${cwd}/output/*.data.json); do
+  python ./charts.py $i -o "${cwd}/output/"
+done
+```
+
+
 ## Drivers
 
 Three "drivers" are implemented depending on different environments, accuracy
@@ -193,13 +239,8 @@ results, Kong error logs, charts and Flame Graph files are saved to the `output`
 
 Use default parameters. This function sets the following:
 - Looks up `PERF_TEST_DRIVER` environment variable and invokes `perf.use_driver`.
-- Looks up `PERF_TEST_TERRAFORM_PROVIDER` if `PERF_TEST_DRIVER` is `terraform`.
-  - If `equinix-metal` is selected, looks up `PERF_TEST_METAL_PROJECT_ID` and `PERF_TEST_METAL_AUTH_TOKEN` environment variables
-to pass to the Terraform driver.
-  - If `digitalocean` is selected, looks up `PERF_TEST_DIGITALOCEAN_TOKEN` environment variables
-to pass to the Terraform driver.
-  - If `aws-ec2` is selected, looks up `PERF_TEST_AWS_ACCESS_KEY` and `PERF_TEST_AWS_SECRET_KEY` environment variables
-to pass to the Terraform driver.
+- Looks up `PERF_TEST_TERRAFORM_PROVIDER` if `PERF_TEST_DRIVER` is `terraform`; please see `perf.use_driver` for 
+environment variables that can be passed to each provider.
 - Invokes `perf.set_log_level` and sets level to `"debug"`.
 - Set retry count to 3.
 - Looks up `PERF_TEST_USE_DAILY_IMAGE` environment variable and passes the variable to driver options.
@@ -220,10 +261,22 @@ login.
 The Terraform driver expects options to contain the following optional keys:
 
 - **provider** The service provider name, right now only "equinix-metal".
-- **tfvars** Terraform variables as a Lua table.
-  - For the `equinix-metal` provider, `packet_project_id` and `packet_auth_token` are required. `metal_plan`, `metal_region`, and `metal_os` are optional.
-  - For the `digitalocean` provider, `digitalocean_token` is required. `do_project_name`, `do_size`, `do_region`, and `do_os` are optional.
-  - For the `aws-ec2` provider, `aws_access_key` and `aws_secret_key` are required. `aws_region`, `ec2_instance_type`, and `ec2_os` are optional.
+- **tfvars** Terraform variables as a Lua table as follows; environment variables are only used if `perf.use_defaults()` is called.
+
+|Provider   |  tfvars key | environment variable key  |  description  | default |
+|---|---|---|---|---|
+|equinix-metal | metal_project_id | PERF_TEST_METAL_PROJECT_ID  | The project ID that instances belong to.  | <required> |
+|^^   |  metal_auth_token | PERF_TEST_METAL_AUTH_TOKEN  | Equinix authentication token.  | <required> |
+|^^   |  metal_plan | PERF_TEST_METAL_PLAN  | Instance size. | `"c3.small.x86"`  |
+|^^   |  metal_os | PERF_TEST_METAL_OS | Operating system image name. | `"ubuntu_20_04"`  |
+| digitalocean | do_project_name | PERF_TEST_DIGITALOCEAN_PROJECT_NAME | The project name that instances belong to; will create one if not exist. | `"Benchmark"` |
+|^^   | do_token  | PERF_TEST_DIGITALOCEAN_TOKEN  |  Digitalocean authentication token. | <required> |
+|^^   | do_size  |  PERF_TEST_DIGITALOCEAN_SIZE | Droplet size.  | `"s-1vcpu-1gb"` |
+|^^   | do_region  | PERF_TEST_DIGITALOCEAN_REGION  | Region to deploy droplet.  |  `"sfo3"`  |
+|^^   | do_os  | PERF_TEST_DIGITALOCEAN_OS  | Operation system image name.  |  `"ubuntu-20-04-x64"` |
+|aws-ec2   |  aws_region | PERF_TEST_AWS_REGION  | AWS region to deploy EC2 instances.  | `"us-east-2"`  |
+|^^   | ec2_instance_type  | PERF_TEST_EC2_INSTANCE_TYPE  | EC2 instance type.  | `"c4.4xlarge"`  |
+|^^   | ec2_os  | PERF_TEST_EC2_OS  | Operation system image pattern.  | `"ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"`  |
 
 ### perf.set_log_level
 
@@ -400,20 +453,6 @@ Loads the pgdump from the path and replaces the Kong database with the loaded da
 will also patch a services address to the upstream unless `dont_patch_service` is set to false,
 it must be called after `perf.start_upstream`. Throws error if any.
 
-## Charts
-
-Charts are not rendered by default. There's a reference implementation to draw graphs on all JSON
-data stored in the `output` directory. Use the following commands to draw graphs:
-
-```shell
-cwd=$(pwd)
-cd spec/helpers/perf/charts/
-pip install -r requirements.txt
-for i in $(ls ${cwd}/output/*.data.json); do
-  python ./charts.py $i -o "${cwd}/output/"
-done
-```
-
 ## Customization
 
 ### Add new test suite
@@ -428,12 +467,13 @@ it's supported by Terraform. The following contracts are made between the framew
 
 The terraform files are stored in `spec/fixtures/perf/terraform/<provider>`.
 
-Two instances are provisioned, one for running Kong and another for running an upstream
-and load (worker). A firewall allows bidirectional traffic between the two instances
+Three instances are provisioned, one for running Kong, one for running PostgreSQL
+database and another for running an upstream and load (worker).
+A firewall allows bidirectional traffic between the three instances
 and from the public internet. Both instances run Ubuntu 20.04/focal.
 
 An SSH key to login into both instances exists or will be created in
-`spec/fixtures/perf/terraform/<provider>/id_rsa`. The logged-in user has root privilege.
+`spec/fixtures/perf/terraform/<provider>/id_rsa`. The logged-in user has root privilege or sudo privilege.
 
 The following are terraform output variables:
 
@@ -441,3 +481,5 @@ The following are terraform output variables:
 - **kong-internal-ip** Kong node internal IP (if unavailable, provide `kong-ip`).
 - **worker-ip** Worker node public IP.
 - **worker-internal-ip** Worker node internal IP (if unavailable, provide `worker-ip`).
+- **db-ip** Database node public IP.
+- **db-internal-ip** Database node internal IP (if unavailable, provide `db-ip`).
