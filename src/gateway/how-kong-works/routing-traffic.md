@@ -1269,7 +1269,7 @@ This makes {{site.base_gateway}} forward the `Connection` and `Upgrade` headers 
 upstream service, instead of dismissing them due to the hop-by-hop nature of a
 standard HTTP proxy.
 
-### WebSocket Proxy Modes
+### WebSocket proxy modes
 
 There are two methods for proxying WebSocket traffic in {{site.base_gateway}}:
 
