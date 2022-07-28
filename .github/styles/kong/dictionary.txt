@@ -27,17 +27,21 @@ datagram
 datagrams
 dataplane
 dataplanes
+db-ip
 dbless
 declaratively
 degraphql
 denylist
 deployer
 dev
+digitalocean
+Equinix
 etcd
 Fargate
 favicon
 flamegraph
 Github
+gojira
 Goroutine
 Grafana
 grpc
@@ -68,6 +72,7 @@ kiali
 Knative
 kong
 Kong/kong
+kong-ip
 kong_name
 Konnect
 kubectl
@@ -109,6 +114,7 @@ perf
 petstore
 pgdump
 plaintext
+Pongo
 PowerShell
 prepend
 prepends
@@ -182,6 +188,7 @@ websocket
 websockets
 wireframe
 wireframes
+worker-ip
 workspace
 yaml
 yml

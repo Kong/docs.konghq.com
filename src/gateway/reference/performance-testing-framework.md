@@ -269,18 +269,18 @@ The Terraform driver expects options to contain the following optional keys:
 
 |Provider   |  tfvars key | environment variable key  |  description  | default |
 |---|---|---|---|---|
-|equinix-metal | metal_project_id | PERF_TEST_METAL_PROJECT_ID  | The project ID that instances belong to.  | <required> |
-|^^   |  metal_auth_token | PERF_TEST_METAL_AUTH_TOKEN  | Equinix authentication token.  | <required> |
-|^^   |  metal_plan | PERF_TEST_METAL_PLAN  | Instance size. | `"c3.small.x86"`  |
-|^^   |  metal_os | PERF_TEST_METAL_OS | Operating system image name. | `"ubuntu_20_04"`  |
-| digitalocean | do_project_name | PERF_TEST_DIGITALOCEAN_PROJECT_NAME | The project name that instances belong to; will create one if not exist. | `"Benchmark"` |
-|^^   | do_token  | PERF_TEST_DIGITALOCEAN_TOKEN  |  Digitalocean authentication token. | <required> |
-|^^   | do_size  |  PERF_TEST_DIGITALOCEAN_SIZE | Droplet size.  | `"s-1vcpu-1gb"` |
-|^^   | do_region  | PERF_TEST_DIGITALOCEAN_REGION  | Region to deploy droplet.  |  `"sfo3"`  |
-|^^   | do_os  | PERF_TEST_DIGITALOCEAN_OS  | Operation system image name.  |  `"ubuntu-20-04-x64"` |
-|aws-ec2   |  aws_region | PERF_TEST_AWS_REGION  | AWS region to deploy EC2 instances.  | `"us-east-2"`  |
-|^^   | ec2_instance_type  | PERF_TEST_EC2_INSTANCE_TYPE  | EC2 instance type.  | `"c4.4xlarge"`  |
-|^^   | ec2_os  | PERF_TEST_EC2_OS  | Operation system image pattern.  | `"ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"`  |
+|equinix-metal | `metal_project_id` | PERF_TEST_METAL_PROJECT_ID  | The project ID that instances belong to.  | <required> |
+|equinix-metal   |  `metal_auth_token` | PERF_TEST_METAL_AUTH_TOKEN  | Equinix authentication token.  | <required> |
+|equinix-metal   |  `metal_plan` | PERF_TEST_METAL_PLAN  | Instance size. | `"c3.small.x86"`  |
+|equinix-metal   |  `metal_os` | PERF_TEST_METAL_OS | Operating system image name. | `"ubuntu_20_04"`  |
+| digitalocean | `do_project_name` | PERF_TEST_DIGITALOCEAN_PROJECT_NAME | The project name that instances belong to; will create one if not exist. | `"Benchmark"` |
+|digitalocean   | `do_token`  | PERF_TEST_DIGITALOCEAN_TOKEN  |  DigitalOcean authentication token. | <required> |
+|digitalocean   | `do_size`  |  PERF_TEST_DIGITALOCEAN_SIZE | Droplet size.  | `"s-1vcpu-1gb"` |
+|digitalocean   | `do_region`  | PERF_TEST_DIGITALOCEAN_REGION  | Region to deploy droplet.  |  `"sfo3"`  |
+|digitalocean   | `do_os`  | PERF_TEST_DIGITALOCEAN_OS  | Operation system image name.  |  `"ubuntu-20-04-x64"` |
+|aws-ec2   |  `aws_region` | PERF_TEST_AWS_REGION  | AWS region to deploy EC2 instances.  | `"us-east-2"`  |
+|aws-ec2   | `ec2_instance_type`  | PERF_TEST_EC2_INSTANCE_TYPE  | EC2 instance type.  | `"c4.4xlarge"`  |
+|aws-ec2   | `ec2_os`  | PERF_TEST_EC2_OS  | Operation system image pattern.  | `"ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"`  |
 
 ### perf.set_log_level
 
