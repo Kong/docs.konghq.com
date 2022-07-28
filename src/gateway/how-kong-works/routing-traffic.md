@@ -1277,7 +1277,7 @@ There are two methods for proxying WebSocket traffic in {{site.base_gateway}}:
 * WS(S) services and routes
 
 {% navtabs %}
-{% navtab HTTP(S) Services and Routes %}
+{% navtab HTTP(S) services and routes %}
 
 Services and routes using the `http` and `https` protocols are fully capable of
 handling WebSocket connections with no special configuration. With this method,
