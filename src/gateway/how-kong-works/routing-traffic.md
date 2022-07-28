@@ -1306,8 +1306,8 @@ services:
 In addition to HTTP services and routes, {{site.ee_product_name}} includes
 the `ws` (WebSocket-over-http) and `wss` (WebSocket-over-https) options for
 service `protocol` and route `protocols`. In contrast to `http`/`https`, `ws`
-and `wss` services have full control over the underlying WebSocket connection,
-meaning they can use WebSocket plugins and the [WebSocket PDK](LINK_TO_PDK) to
+and `wss` services have full control over the underlying WebSocket connection.
+This means they can use WebSocket plugins and the [WebSocket PDK](/pdk/kong.websocket.client/) to
 perform business logic on a per-message basis (message validation, accounting,
 rate-limiting, etc).
 
