@@ -48,7 +48,7 @@ or using a vault entity
 
 #### Secret ID
 
-The `secret-id` is used as an identifier in case the vault uses a nested datasructure.
+The `secret-id` is used as an identifier in case the vault uses a nested datastructure.
 
 #### Secret Key
 

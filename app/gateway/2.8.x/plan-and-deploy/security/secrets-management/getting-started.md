@@ -3,7 +3,7 @@ title: Get Started with Secrets Management
 ---
 
 Secrets are generally confidential values that should not appear in plain text in the application. There are several products that help you
-store, retrieve, and rotate these secrets securely. {{site.base_gateway}} offers a mechanism to set up references to these secrets which makes your Kong Gateway
+store, retrieve, and rotate these secrets securely. {{site.base_gateway}} offers a mechanism to set up references to these secrets which makes your {{site.base_gateway}}
 installation more secure.
 
 ## Getting started
