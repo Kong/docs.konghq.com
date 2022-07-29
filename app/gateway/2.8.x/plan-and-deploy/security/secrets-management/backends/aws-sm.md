@@ -31,7 +31,7 @@ Access these secrets from `my-secret-name` like this:
 
 ```bash
 {vault://aws/my-secret-name/foo}
-{vault://aws/my-secret-name/snap}
+{vault://aws/my-secret-name/snip}
 ```
 
 ## Entity
@@ -82,7 +82,7 @@ environment variable.
 
 ```bash
 {vault://my-aws-sm-vault/my-secret-name/foo}
-{vault://my-aws-sm-vault/my-secret-name/snap}
+{vault://my-aws-sm-vault/my-secret-name/snip}
 ```
 
 ## Advanced Examples
@@ -98,5 +98,5 @@ This lets you source secrets from different regions:
 
 ```bash
 {vault://aws-eu-central-vault/my-secret-name/foo}
-{vault://aws-us-west-vault/my-secret-name/snap}
+{vault://aws-us-west-vault/my-secret-name/snip}
 ```
