@@ -49,7 +49,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-gcp-sm-vault  \
+curl -i -X PUT http://<hostname>:8001/vaultsa/my-gcp-sm-vault  \
   --data name=gcp \
   --data description="Storing secrets in GCP Secrets Manager" \
   --data config.project_id="my_project_id"
@@ -59,9 +59,9 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-gcp-sm-vault  \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-gco-sm-vault name="gcp" \
+http PUT :8001/vaults-beta/my-gcp-sm-vault name="gcp" \
   description="Storing secrets in GCP Secrets Manager" \
-  config.region="my_project_id" \
+  config.project_id="my_project_id" \
   -f 
 ```
 
