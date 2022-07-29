@@ -1,9 +1,6 @@
 ---
 title: Supported Vault Backends
-beta: true
 ---
-
-Secrets rotation is not supported for the beta version.
 
 The following Vault implementations are supported:
 

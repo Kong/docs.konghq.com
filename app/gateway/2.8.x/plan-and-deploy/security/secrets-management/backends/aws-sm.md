@@ -1,6 +1,5 @@
 ---
 title: AWS Secrets Manager
-beta: true
 badge: enterprise
 ---
 
@@ -43,7 +42,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-aws-sm-vault  \
+curl -i -X PUT http://<hostname>:8001/vaults/my-aws-sm-vault  \
   --data name=aws \
   --data description="Storing secrets in AWS Secrets Manager" \
   --data config.region="us-east-1"
@@ -53,10 +52,9 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-aws-sm-vault  \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-aws-sm-vault name="aws" \
+http -f PUT :8001/vaults/my-aws-sm-vault name="aws" \
   description="Storing secrets in AWS Secrets Manager" \
-  config.region="us-east-1" \
-  -f 
+  config.region="us-east-1"
 ```
 
 {% endnavtab %}
@@ -92,8 +90,8 @@ environment variable.
 You can create multiple entities, which lets you have secrets in different regions:
 
 ```bash
-http PUT :8001/vaults-beta/aws-eu-central-vault name=aws config.region="eu-central-1" -f 
-http PUT :8001/vaults-beta/aws-us-west-vault name=aws config.region="us-west-1" -f 
+http -f PUT :8001/vaults/aws-eu-central-vault name=aws config.region="eu-central-1"
+http -f PUT :8001/vaults/aws-us-west-vault name=aws config.region="us-west-1"
 ```
 
 This lets you source secrets from different regions:
