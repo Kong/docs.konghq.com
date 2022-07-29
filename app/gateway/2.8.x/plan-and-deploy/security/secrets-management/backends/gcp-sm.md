@@ -1,55 +1,73 @@
 ---
 title: GCP Secrets Manager
-beta: true
 badge: enterprise
 ---
 
 ## Configuration
-The current version of {{site.base_gateway}}'s implementation supports configuring [GCP Secrets Manager](https://cloud.google.com/secret-manager/) in two ways: 
+
+The current version of {{site.base_gateway}}'s implementation supports
+configuring
+[GCP Secrets Manager](https://cloud.google.com/secret-manager/) in two
+ways:
 
 * Environment variables
-* Workload Identity 
+* Workload Identity
 
-To configure using environment export the GCP service account variable: 
+To configure GCP secrets manager, the `GCP_SERVICE_ACCOUNT`
+environment variable must be set to the JSON document referring to the
+[credentials for your service account](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
 
 ```bash
-export GCP_SERVICE_ACCOUNT=SERVICE_ACCOUNT
+export GCP_SERVICE_ACCOUNT=$(cat gcp-my-project-c61f2411f321.json)
 ```
-{{site.base_gateway}} will automatically authenticate with the GCP API and grant you access. 
 
-To use GCP Secrets Manager with [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on a GKE cluster, update your pod spec so that the service account is attached to the pod. For configuration information, read the Workload Identity configuration [documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#authenticating_to).
+{{site.base_gateway}} will use the key to automatically authenticate
+with the GCP API and grant you access.
+
+To use GCP Secrets Manager with
+[Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)
+on a GKE cluster, update your pod spec so that the service account is
+attached to the pod. For configuration information, read the Workload
+Identity configuration
+[documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#authenticating_to).
 
 {:.note}
-> With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` is not necessary. 
+> With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` is not necessary.
 
 ## Examples
 
-To use a GCP Secret Manager [secret](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets) with the name `my-secret-name`. Create a JSON object in GCP that contains multiple key:value pairs:
-
+To use a GCP Secret Manager
+[secret](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
+with the name `my-secret-name`, create a JSON object in GCP that
+contains one or more properties:
 
 ```json
 {
   "foo": "bar",
-  "snip": "snap",
+  "snip": "snap"
 }
 ```
 
-You can now reference the secret's individual resources like this: 
+You can now reference the secret's individual resources like this:
 
 ```bash
-{vault://gcp/my-secret-name/foo}
-{vault://gcp/my-secret-name/snap}
+{vault://gcp/my-secret-name/foo?project_id=my_project_id}
+{vault://gcp/my-secret-name/snip?project_id=my_project_id}
 ```
+
+Note that both the provider (`gcp`) as well as the GCP project ID
+(`my_project_id`) need to be specified.
 
 ## Entity
 
-The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity. You will need to provide {{site.base_gateway}} with the GCP Secrets Manager `project_id` in the request: 
+Once the database has been initialized, a Vault entity can be created
+that encapsulates the provider and the GCP project ID:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaultsa/my-gcp-sm-vault  \
+curl -i -X PUT http://<hostname>:8001/vaults/my-gcp-sm-vault \
   --data name=gcp \
   --data description="Storing secrets in GCP Secrets Manager" \
   --data config.project_id="my_project_id"
@@ -59,10 +77,10 @@ curl -i -X PUT http://HOSTNAME:8001/vaultsa/my-gcp-sm-vault  \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-gcp-sm-vault name="gcp" \
+http -f PUT http://<hostname>:8001/vaults/my-gcp-sm-vault \
+  name="gcp" \
   description="Storing secrets in GCP Secrets Manager" \
-  config.project_id="my_project_id" \
-  -f 
+  config.project_id="my_project_id"
 ```
 
 {% endnavtab %}
@@ -74,7 +92,7 @@ Result:
 
 {
     "config": {
-        "project_id": "project-last-hope"
+        "project_id": "my_project_id"
     },
     "created_at": 1657874961,
     "description": "Storing secrets in GCP Secrets Manager",
@@ -86,11 +104,13 @@ Result:
 }
 ```
 
-With the Vault entity in place, you can now reference the secrets. This allows you to drop the `KONG_VAULT_GCP_PROJECT_ID`
-environment variable.
+With the Vault entity in place, you can reference the GCP secrets
+through it:
 
 ```bash
 {vault://my-gcp-sm-vault/my-secret-name/foo}
-{vault://my-gcp-sm-vault/my-secret-name/snap}
+{vault://my-gcp-sm-vault/my-secret-name/snip}
 ```
 
+The `GCP_PROJECT_ID` environment variable is no longer needed once the
+Vault entity has been created.

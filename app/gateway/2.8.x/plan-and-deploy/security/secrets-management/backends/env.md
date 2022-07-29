@@ -1,6 +1,5 @@
 ---
 title: Environment Variables Vault
-beta: true
 badge: free
 ---
 
@@ -46,7 +45,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-env-vault \
+curl -i -X PUT http://<hostname>:8001/vaults/my-env-vault \
         --data name=env \
         --data description="Store secrets in environment variables"
 ```
@@ -55,10 +54,9 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-env-vault \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-env-vault \
+http -f PUT :8001/vaults/my-env-vault \
   name="env" \
-  description="Store secrets in environment variables" \
-  -f 
+  description="Store secrets in environment variables"
 ```
 
 {% endnavtab %}

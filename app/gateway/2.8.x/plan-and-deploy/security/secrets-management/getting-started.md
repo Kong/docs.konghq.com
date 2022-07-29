@@ -1,10 +1,6 @@
 ---
 title: Get Started with Secrets Management
-beta: true
 ---
-
-This feature is currently in beta state and isn't fully supported. APIs are subject to change.
-
 
 Secrets are generally confidential values that should not appear in plain text in the application. There are several products that help you
 store, retrieve, and rotate these secrets securely. Kong Gateway offers a mechanism to set up references to these secrets which makes your Kong Gateway
@@ -13,9 +9,9 @@ installation more secure.
 ## Getting started
 
 {:.note}
-> This feature isn't enabled by default in this version of Kong.
+> This feature isn't enabled by default in this version of {{site.base_gateway}}.
 ><br>
-> Start Kong Gateway with `KONG_VAULTS=bundled`.
+> Start {{site.base_gateway}} with `KONG_VAULTS=bundled KONG_VAULTS_USE_NEW_STYLE_API=on`.
 
 The following example uses the most basic form of secrets management: storing secrets in environment variables. In this example, you will replace a plaintext password to your Postgres database with a reference to an environment variable.
 

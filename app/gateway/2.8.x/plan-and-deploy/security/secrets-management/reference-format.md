@@ -1,6 +1,5 @@
 ---
 title: Reference Format
-beta: true
 ---
 
 ## Reference Format
