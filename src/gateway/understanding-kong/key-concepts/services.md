@@ -11,4 +11,4 @@ When configuring access to your API, you start by specifying a service.
 
 ## Next steps
 
-Next, go on to learn about [routes](gateway/latest/understanding-kong/key-concepts/routes).
+Next, go on to learn about [routes](/gateway/latest/understanding-kong/key-concepts/routes/).
