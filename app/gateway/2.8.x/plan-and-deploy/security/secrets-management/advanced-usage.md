@@ -78,7 +78,7 @@ Create a Vault entity:
 {% navtab cURL %}
 
 ```bash
-$ curl -i -X PUT http://<hostname>:8001/vaults/my-env-vault-1  \
+$ curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
         --data name=env \
         --data description='ENV vault for secrets' \
         --data config.prefix=SECRET_

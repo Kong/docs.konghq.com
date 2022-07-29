@@ -42,7 +42,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults/my-aws-sm-vault  \
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-aws-sm-vault  \
   --data name=aws \
   --data description="Storing secrets in AWS Secrets Manager" \
   --data config.region="us-east-1"

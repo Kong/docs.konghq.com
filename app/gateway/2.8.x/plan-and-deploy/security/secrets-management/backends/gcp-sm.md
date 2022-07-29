@@ -13,7 +13,7 @@ ways:
 * Environment variables
 * Workload Identity
 
-To configure GCP secrets manager, the `GCP_SERVICE_ACCOUNT`
+To configure GCP Secrets Manager, the `GCP_SERVICE_ACCOUNT`
 environment variable must be set to the JSON document referring to the
 [credentials for your service account](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
 
@@ -21,18 +21,18 @@ environment variable must be set to the JSON document referring to the
 export GCP_SERVICE_ACCOUNT=$(cat gcp-my-project-c61f2411f321.json)
 ```
 
-{{site.base_gateway}} will use the key to automatically authenticate
+{{site.base_gateway}} uses the key to automatically authenticate
 with the GCP API and grant you access.
 
 To use GCP Secrets Manager with
 [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)
 on a GKE cluster, update your pod spec so that the service account is
-attached to the pod. For configuration information, read the Workload
+attached to the pod. For configuration information, read the [Workload
 Identity configuration
-[documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#authenticating_to).
+documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#authenticating_to).
 
 {:.note}
-> With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` is not necessary.
+> With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` isn't necessary.
 
 ## Examples
 
@@ -60,14 +60,14 @@ Note that both the provider (`gcp`) as well as the GCP project ID
 
 ## Entity
 
-Once the database has been initialized, a Vault entity can be created
+Once the database is initialized, a Vault entity can be created
 that encapsulates the provider and the GCP project ID:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults/my-gcp-sm-vault \
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
   --data name=gcp \
   --data description="Storing secrets in GCP Secrets Manager" \
   --data config.project_id="my_project_id"
@@ -77,7 +77,7 @@ curl -i -X PUT http://<hostname>:8001/vaults/my-gcp-sm-vault \
 {% navtab HTTPie %}
 
 ```bash
-http -f PUT http://<hostname>:8001/vaults/my-gcp-sm-vault \
+http -f PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
   name="gcp" \
   description="Storing secrets in GCP Secrets Manager" \
   config.project_id="my_project_id"
@@ -112,5 +112,4 @@ through it:
 {vault://my-gcp-sm-vault/my-secret-name/snip}
 ```
 
-When using the Vault entity, the GCP project ID no longer needs to be
-specified to access the secrets.
+When you use the Vault entity, you no longer need to specify the GCP project ID to access the secrets.
