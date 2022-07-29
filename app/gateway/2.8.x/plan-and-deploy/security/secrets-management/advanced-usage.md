@@ -22,7 +22,7 @@ refer to respective [vault backend documentation](/gateway/{{page.kong_version}}
 
 You can configure your vault backend with `KONG_VAULT_<vault-backend>_<config_opt>` environment variables.
 
-For example, Kong Gateway might look for an environment variable that matches `KONG_VAULT_ENV_PREFIX`:
+For example, {{site.base_gateway}} might look for an environment variable that matches `KONG_VAULT_ENV_PREFIX`:
 
 ```bash
 export KONG_VAULT_ENV_PREFIX=SECURE_
@@ -52,7 +52,7 @@ For more information, see the section on the [Vaults entity](#vaults-entity).
 ```text
 Usage: kong vault COMMAND [OPTIONS]
 
-Vault utilities for Kong.
+Vault utilities for {{site.base_gateway}}.
 
 Example usage:
  TEST=hello kong vault get env/test

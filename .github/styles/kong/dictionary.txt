@@ -98,6 +98,8 @@ outbounds
 passthrough
 PayPal
 plaintext
+Postgres
+PostgreSQL
 PowerShell
 prepend
 prepends

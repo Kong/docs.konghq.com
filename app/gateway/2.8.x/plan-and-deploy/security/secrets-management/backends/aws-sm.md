@@ -5,7 +5,7 @@ badge: enterprise
 
 ## Configuration
 
-[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) can be configured in multiple ways. The current version of Kong Gateway's implementation only supports
+[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) can be configured in multiple ways. The current version of {{site.base_gateway}} implementation only supports
 configuring via environment variables.
 
 ```bash
