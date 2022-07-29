@@ -112,5 +112,5 @@ through it:
 {vault://my-gcp-sm-vault/my-secret-name/snip}
 ```
 
-The `GCP_PROJECT_ID` environment variable is no longer needed once the
-Vault entity has been created.
+When using the Vault entity, the GCP project ID no longer needs to be
+specified to access the secrets.
