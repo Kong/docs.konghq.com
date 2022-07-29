@@ -3,7 +3,7 @@ title: Get Started with Secrets Management
 ---
 
 Secrets are generally confidential values that should not appear in plain text in the application. There are several products that help you
-store, retrieve, and rotate these secrets securely. Kong Gateway offers a mechanism to set up references to these secrets which makes your Kong Gateway
+store, retrieve, and rotate these secrets securely. {{site.base_gateway}} offers a mechanism to set up references to these secrets which makes your Kong Gateway
 installation more secure.
 
 ## Getting started
@@ -27,7 +27,7 @@ Define your environment variable and assign a secret value to it:
 export MY_SECRET_POSTGRES_PASSWORD="opensesame"
 ```
 
-Next, set up a `reference` to this environment variable so that Kong Gateway can find this secret. We use a Uniform Resource Locator (URL) format for this.
+Next, set up a `reference` to this environment variable so that {{site.base_gateway}} can find this secret. We use a Uniform Resource Locator (URL) format for this.
 
 In this case, the reference would look like this:
 
@@ -61,7 +61,7 @@ the kong.conf has a key called "pg_password". Replace the original value with
 pg_password={vault://env/my-secret-postgres-password}
 ```
 
-Upon startup, Kong will try to detect and transparently resolve references.
+Upon startup, {{site.base_gateway}} will try to detect and transparently resolve references.
 
 {:.note}
 >For quick debug/testing you can use the new [CLI for vaults](/gateway/2.8.x/plan-and-deploy/security/secrets-management/advanced-usage/#vaults-cli)
