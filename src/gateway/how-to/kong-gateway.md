@@ -78,7 +78,7 @@ information about the request made, including headers, timestamps, and IP addres
  
 ### What's next?
 
-You now have a {{site.base_gateway}} running locally. Kong has a tremendous amount of capabilities
+You now have a {{site.base_gateway}} instance running locally. Kong offers a tremendous amount of capabilities
 to help you manage, configure and route requests to your APIs.
 
 * To follow a more detailed step-by-step guide to starting Kong, see the 
