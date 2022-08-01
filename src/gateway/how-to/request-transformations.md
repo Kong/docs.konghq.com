@@ -77,7 +77,7 @@ The Request Transformer can perform more complex
 transformations, see the 
 [full documentation](/hub/kong-inc/request-transformer/) for more detail.
 
-Next, we can use the `mock` service's `/requests` endpoint to test the behavior of the plugin.
+Next, use the `mock` service's `/requests` endpoint to test the behavior of the plugin.
 The `/requests` API will echo back valuable information from the request we make to it including
 headers and the request body we send.
 
