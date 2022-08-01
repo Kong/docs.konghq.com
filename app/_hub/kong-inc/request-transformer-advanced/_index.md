@@ -306,7 +306,7 @@ Now send a request with a user id in the route path:
 curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-You should notice in the reponse that the `x-user-id` header has been added with a value of `foo`.
+You should notice in the response that the `x-user-id` header has been added with a value of `foo`.
 
 ## Order of Execution
 
