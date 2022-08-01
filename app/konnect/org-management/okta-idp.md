@@ -53,25 +53,25 @@ back to Okta for details
 Create a new application in Okta to manage {{site.konnect_saas}} account integration.
 
 1. Sign in to your [Okta admin account](https://admin.okta.com/).
-1. From the left menu, select **Applications**, then **Create App Integration**.
+1. In the sidebar, select **Applications > Applications**, then click **Create App Integration**.
 1. Select the application type:
 
-    1. Under **Sign-in method**, select **OIDC - OpenID Connect**.
-    1. Under **Application Type**, select **Web Application**.
+    1. For the **Sign-in method**, select **OIDC - OpenID Connect**.
+    1. For the **Application Type**, select **Web Application**.
+    1. Click **Next**.
 
-1. Select **Next**. Configure the application:
-    1. Create a unique name for your application.
-    1. Under **Grant Type**, select **Authorization Code**.
-    1. In both the **Sign-in redirect URIs** and
-    **Sign-out redirect URIs** fields, enter: `https://cloud.konghq.com/login`
-    1. In the Assignments section, for **Controlled access**, choose your
+1. Configure the application:
+    1. In the **App integration name** box, enter a unique name for your application.
+    1. For the **Grant type**, ensure the **Authorization Code** checkbox is selected.
+    1. For both the **Sign-in redirect URIs** and
+    **Sign-out redirect URIs** boxes, enter: `https://cloud.konghq.com/login`
+    1. In the **Assignments** pane, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
 
-1. Save your settings to generate connection details.
+1. Click **Save**.
 
-    Leave this page open. You'll need the details here to configure your {{site.konnect_short_name}}
-    Cloud account.
+    Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
 ### Set up claims in Okta
 
@@ -81,15 +81,15 @@ claims to extract that information.
 
 1. Open your Okta account in a new browser tab.
 
-1. From the left menu, select **Security > API**.
+1. In the sidebar, select **Security > API**.
 
 1. Select the authorization server that you want to configure.
 
-1. Go to the Claims tab.
+1. Click the **Claims** tab.
 
     You need to configure two claims: `groups` and `login_email`.
 
-1. In the **Claim type** menu, select **ID**, then select **Add Claim**.
+1. Click **ID**, then click **Add Claim**.
 
 1. Configure a `Groups` claim by filling in the following fields:
 
@@ -109,11 +109,14 @@ claims to extract that information.
     > If the authorization server is pulling in additional groups from
     third-party applications (for example, Google groups), the `groups` claim
     cannot find them. An Okta administrator needs to duplicate those groups and
-    re-create them directly in Okta. They can do this by exporting the group in
-    question in CSV format, then importing the CSV file to populate the new group.
+    re-create them directly in Okta. They can do this by exporting the group in CSV format, then importing the CSV file to populate the new group.
 
-1. Select **Create** to save. Add another claim, this time for user login
-information:
+1. Click **Create**. 
+
+1. Click **Add Claim** to add another claim for user login
+information.
+
+1. Configure a `login_email` claim by filling in the following fields::
 
     Field | Value
     ---|---
@@ -125,7 +128,7 @@ information:
 
     This claim uses emails to map users to {{site.konnect_short_name}} login instances.
 
-1. Select **Create** to save the second claim.
+1. Click **Create**.
 
 If you have problems setting up these claims, refer to the Okta documentation
 for troubleshooting:
@@ -134,17 +137,28 @@ for troubleshooting:
 
 ### Test claims and find groups for mapping
 
-1. Open the **Token Preview** tab.
+1. In the sidebar of your Okta account, select **Security > API**.
 
-2. Select your client, set **Grant Type** to Authorization Code, and choose an
-Okta user to test the claim with.
+1. Select the authorization server that you want to configure.
 
-3. Set the scope to `openid`, then select **Preview Token**.
+1. Click the **Token Preview** tab.
 
-4. In the generated preview, check to make sure that `groups` and `login_email`
+1. Enter your client in the **OAuth/OIDC client** box. This is the name you created previously for your Okta application.
+
+1. In the **Grant Type** menu, select **Authorization Code**.
+
+1. In the **User** menu, select an Okta user to test the claim with.
+
+1. In the **Scope** box, enter `openid`.
+
+1. Click **Preview Token**.
+
+<!--need to do Applications>Assignments to add the user to the application-->
+
+1. In the generated preview, check to make sure that `groups` and `login_email`
 values are present.
 
-5. From the list of groups in the preview, identify groups that you want to use in
+1. From the list of groups in the preview, identify groups that you want to use in
 {{site.konnect_short_name}}. Take note of these groups.
 
 ## Set up {{site.konnect_short_name}}
