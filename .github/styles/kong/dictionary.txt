@@ -107,6 +107,7 @@ Prometheus
 Protobuf
 proxied
 proxying
+querystring
 redis
 reentrant
 referenceable
@@ -116,6 +117,7 @@ runtime
 runtimes
 deduplication
 deduplicate
+sandboxed
 sandboxing
 serializer
 serverless

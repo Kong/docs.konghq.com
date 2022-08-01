@@ -202,10 +202,10 @@ params:
 
 ## Template as Value
 
-You can use any of the the current request headers, query params, and captured
+You can use any of the the current request headers, query parameters, and captured
 URI groups as templates to populate supported config fields.
 
-| Request Param | Template
+| Request Parameter | Template
 | ------------- | -----------
 | header        | `$(headers.<header-name>)` or `$(headers["<header-name>"])`)
 | querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
@@ -220,8 +220,8 @@ $('$(something_that_needs_to_escaped)')
 
 {:.note}
 > **Note**: The plugin creates a non-mutable table of request headers,
-querystrings, and captured URIs before transformation. So any update or removal
- of params used in the template does not affect the rendered value of template.
+query strings, and captured URIs before transformation. So any update or removal
+ of parameters used in the template does not affect the rendered value of template.
 
 ### Advanced templates
 
@@ -353,7 +353,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | --------- | -----------
 | h1: v1 | h1: v1, h2: v1
 
-Add a querystring and a header:
+Add a query string and a header:
 
 ```bash
 curl -X POST http://localhost:8001/services/mockbin/plugins \
@@ -368,7 +368,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | h1: v1 | h1: v1, h2: v1
 | h3: v1 | h1: v1, h2: v1, h3: v1
 
-| Incoming Request Querystring | Upstream Proxied Querystring
+| Incoming Request Query String | Upstream Proxied Query String
 | --------- | -----------
 | ?q1=v1 | ?q1=v1&q2=v1
 |        | ?q1=v2&q2=v1
@@ -391,7 +391,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | p1=v1&p2=v1 | p2=v1
 | p2=v1 | p2=v1
 
-Add multiple headers and querystring parameters if not already set:
+Add multiple headers and query string parameters if not already set:
 
 ```bash
 curl -X POST http://localhost:8001/services/mockbin/plugins \
@@ -405,7 +405,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | h1: v1 | h1: v1, h2: v1
 | h3: v1 |  h1: v1, h2: v1, h3: v1
 
-| Incoming Request Querystring | Upstream Proxied Querystring
+| Incoming Request Query String | Upstream Proxied Query String
 | --------- | -----------
 | ?q1=v1 | ?q1=v1&q2=v1
 |        | ?q1=v2&q2=v1
