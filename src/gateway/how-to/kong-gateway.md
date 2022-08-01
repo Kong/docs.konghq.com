@@ -78,13 +78,12 @@ information about the request made, including headers, timestamps, and IP addres
 
 ### Cleanup
 
-You can use the shell script to stop and remove the {{site.base_gateway}} and database containers with the 
-following command:
+Once you are done working with {{site.base_gateway}}, you can use the shell script to stop and 
+remove the gateway and database containers with the following command:
 
 ```sh
 curl -Ls get.konghq.com/quickstart | sh -s -- -d
 ```
-
 
 ### What's next?
 
