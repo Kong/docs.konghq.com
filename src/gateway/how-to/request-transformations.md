@@ -90,7 +90,7 @@ curl -s -XPOST $KONG_PROXY/mock/requests \
 The JSON response contains the `postData` value which includes the 
 JSON body sent to the service. 
 
-Here is a command to use `jq` to fully extract just the request body echoed back from the `mock` service.
+You can use `jq` to fully extract the request body returned back from the `mock` service.
 
 ```sh
 curl -s -XPOST $KONG_PROXY/mock/requests \
