@@ -5,10 +5,7 @@ description: "A how-to guide for quickly starting a Kong Gateway"
 
 In order to explore the capabilities of [{{site.base_gateway}}](/gateway), 
 you'll need one to experiment with. This guide helps you quickly deploy Kong 
-using [Docker](https://docs.docker.com/get-started/overview/) which is the 
-easiest way to get started. This guide's purpose is not to provide a production like deployment
-or explanation of deployment steps, rather to quickly get you a running gateway and an 
-example [service](/gateway/admin-api/#service-object) as quickly as possible.
+using [Docker](https://docs.docker.com/get-started/overview/). This guide's purpose is not to provide a production-like deployment or an explanation of deployment steps but rather to quickly get you a running {{site.base_gateway}} instance and an example [service](/gateway/admin-api/#service-object) as quickly as possible.
 
 ### Prerequisites
 
