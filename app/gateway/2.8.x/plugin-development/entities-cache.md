@@ -64,7 +64,7 @@ This module exposes the following functions:
 
 Function name                                 | Description
 ----------------------------------------------|---------------------------
-`value, err = cache:get(key, opts?, cb, ...)` | Retrieves the value from the cache. If the cache does not have value (miss), invokes `cb` in protected mode. `cb` must return one (and only one) value that will be cached. It *can* throw errors, as those will be caught and properly logged by Kong, at the `ngx.ERR` level. This function **does** cache negative results (`nil`). As such, one must rely on its second argument `err` when checking for errors.
+`value, err = cache:get(key, opts?, cb, ...)` | Retrieves the value from the cache. If the cache does not have value (miss), invokes `cb` in protected mode. `cb` must return one (and only one) value that will be cached. It *can* throw errors, as those will be caught and properly logged by Kong, at the `ngx.ERR` level. This function **does** cache negative results (`nil`). As such, one must rely on its second argument `err` when checking for errors. `...` being the vararg to pass to the `cb` function.
 `ttl, err, value = cache:probe(key)`          | Checks if a value is cached. If it is, returns its remaining ttl. It not, returns `nil`. The value being cached can also be a negative caching. The third return value is the value being cached itself.
 `cache:invalidate_local(key)`                 | Evicts a value from the node's cache.
 `cache:invalidate(key)`                       | Evicts a value from the node's cache **and** propagates the eviction events to all other nodes in the cluster.
