@@ -1,7 +1,6 @@
 ---
 name: Azure Functions
 publisher: Kong Inc.
-version: 1.0.0
 source_url: 'https://github.com/Kong/kong-plugin-azure-functions'
 desc: Invoke and manage Azure functions from Kong
 description: |
@@ -129,7 +128,7 @@ To demonstrate the plugin, set up the [Azure Functions "hello world" function](h
 1. In this example, we'll consider the following placeholder settings. Insert your own values
     for the placeholders in the code examples:
 
-    - `<appname>` for the functions appname
+    - `<appname>` for the function's app name
     - `<functionname>` for the function name
     - `<apikey>` for the api key
 
@@ -211,9 +210,13 @@ HTTP/1.1 200 OK
 
 ---
 
+{% if_plugin_version gte:2.7.x %}
+
 ## Changelog
 
-### 1.0.1
+### {{site.base_gateway}} 2.7.x
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.apikey` and `config.clientid` parameter values will be encrypted.
+
+{% endif_plugin_version %}

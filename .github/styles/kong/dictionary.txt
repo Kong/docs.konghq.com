@@ -50,6 +50,7 @@ HTTPie
 https
 inbounds
 ini
+inso
 io
 iptables
 Istio
@@ -77,6 +78,7 @@ loopback
 lua
 Luarocks
 ngrok
+npm
 md
 minikube
 Mockbin
@@ -129,6 +131,7 @@ stderr
 stdin
 stdout
 Styra
+subtree
 Bagdi
 subcommand
 substring
@@ -143,6 +146,7 @@ uncheck
 uncomment
 Unicode
 unix
+unprocessable
 unpublish
 unregister
 unregistering

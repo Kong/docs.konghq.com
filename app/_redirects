@@ -126,6 +126,8 @@
 /enterprise/2.6.x/plugins/*            /gateway/2.6.x/configuration/auth/:splat
 /enterprise/2.7.x/plugins/*            /gateway/2.7.x/configuration/auth/:splat
 /enterprise/latest/plugins/*           /gateway/latest/configuration/auth/:splat
+/hub/kong-inc/kubernetes-sidecar-injector        /mesh/
+/hub/kong-inc/ee-openid-connect-rp/              /hub/kong-inc/openid-connect/
 
 
 # KONNECT
