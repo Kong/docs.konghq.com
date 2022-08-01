@@ -18,8 +18,7 @@ This guide assumes each of the following tools are installed locally.
 
 ### Steps 
 
-In order to get started quickly, you'll download and run a bash script which contains 
-commands to run Kong, it's supporting database, and an example service to work with.
+In order to get started, you'll download and execute a bash script that automatically installs Kong, its supporting database, and an example service.
 Then you'll interact with the gateway using `curl` to ensure it has been started properly.
 
 Run the following command to start {{site.base_gateway}} using Docker:
