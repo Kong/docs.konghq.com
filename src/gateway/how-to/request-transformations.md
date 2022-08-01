@@ -17,7 +17,7 @@ Kong's dynamic administrative capabilities.
 
 This guide will show you how to configure the Request Transformer plugin using 
 the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/) to modify incoming 
-requests with a static constant value. Then we will test the feature with a mock 
+requests with a static constant value. Then you will test the feature with a mock 
 request verifying the transformation process.
 
 ### Prerequisites
