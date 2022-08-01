@@ -70,7 +70,7 @@ curl -i -X POST http://localhost:8001/services/mock/plugins \
   --data "config.add.body=new-field:defaultValue"
 ```
 
-The result of that command should be a successful `201 Created` HTTP response code with a 
+If successful the API will return a `201 Created` HTTP response code with a 
 JSON body including information about the new plugin instance.
 
 The Request Transformer provides the ability to perform much more complex
