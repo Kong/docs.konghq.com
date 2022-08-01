@@ -73,7 +73,7 @@ curl -i -X POST $KONG_ADMIN_API/services/mock/plugins \
 If successful the API will return a `201 Created` HTTP response code with a 
 JSON body including information about the new plugin instance.
 
-The Request Transformer provides the ability to perform much more complex
+The Request Transformer can perform more complex
 transformations, see the 
 [full documentation](/hub/kong-inc/request-transformer/) for more detail.
 
