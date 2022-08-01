@@ -24,10 +24,14 @@ request to verify the transformation process.
 
 The guide assumes the following:
 
-* You have a {{site.base_gateway}} instance available for testing that is reachable on `localhost`. 
-If you would like help running a local gateway using Docker, see this companion 
-[{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway/) guide. If your gateway is available on 
-a different host, adjust the commands in this guide appropriately.
+* You have a {{site.base_gateway}} instance available for testing with connection information
+stored in the following environment variables:
+    * `KONG_PROXY` contains the URL to the {{site.base_gateway}} proxy endpoint
+    * `KONG_ADMIN_API` contains the URL to the {{site.base_gateway}} admin API endpoint
+
+  If you would like to quickly setup a local {{site.base_gateway}} using Docker and setting up these variables, 
+use this companion [{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway/) guide. 
+If your gateway is available on a different host and port, adjust the commands in this guide appropriately.
 * You have a service named `mock` installed on your gateway. You can adjust the 
 commands to use a different service or use the [{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway) guide to 
 run a gateway with a `mock` service.
