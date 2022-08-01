@@ -129,7 +129,7 @@ items:
             url: /kong-production/networking/dns-considerations
           - text: Network and Firewall
             url: /kong-production/networking/network
-      - text: Kong.conf Configuration File
+      - text: Kong Configuration File
         url: /kong-production/kong-conf
       - text: Embedding Kong in Open Resty
         url: /kong-production/kong-openresty
