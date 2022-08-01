@@ -73,7 +73,8 @@ Test that the gateway is proxying data by making a mock request on the gateway's
 curl $KONG_PROXY/mock/requests
 ```
 
-You should see a JSON response from the mock service with various information.
+If everything is working correctly, you will see a JSON response from the mock service with various 
+information about the request made, including headers, timestamps, and IP addresses.
  
 ### What's next?
 
