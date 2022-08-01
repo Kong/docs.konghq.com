@@ -99,7 +99,7 @@ curl -s -XPOST $KONG_PROXY/mock/requests \
 	jq -r '.postData.text'
 ```
 
-Which should return the following, indicating `new-field` has been added to the sent request body.
+This command will output the following text, indicating `new-field` has been added to the request body.
 
 ```txt
 {"existing-field":"Kong FTW!","new-field":"defaultValue"}
