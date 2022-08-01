@@ -79,7 +79,7 @@ transformations, see the
 
 Next, use the `mock` service's `/requests` endpoint to test the behavior of the plugin.
 The `/requests` API will echo back valuable information from the request we make to it including
-headers and the request body we send.
+headers and the request body.
 
 ```sh
 curl -s -XPOST $KONG_PROXY/mock/requests \
