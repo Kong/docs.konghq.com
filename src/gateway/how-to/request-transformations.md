@@ -42,7 +42,7 @@ the gateway. If you do not have `jq` or do not wish to install it, you can modif
 
 There are a large number of Kong plugins, many of which need to 
 be [custom installed](/gateway/{{page.kong_version}}/plugin-development/distribution/) 
-prior to utilization. Fortunately, Kong ships prepackaged with a number of useful plugins including
+prior to utilization. Kong ships prepackaged with a number of useful plugins including
 the Request Transformer.
 
 First verify the Request Transformer plugin is available on your gateway by querying the Admin API and using `jq` to filter the response looking at the plugins available on the server.
