@@ -1,6 +1,7 @@
 ---
 title: GCP Secrets Manager
 badge: enterprise
+content-type: how-to
 ---
 
 ## Configuration

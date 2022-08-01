@@ -1,6 +1,7 @@
 ---
 title: Environment Variables Vault
 badge: free
+content-type: how-to
 ---
 
 ## Configuration
@@ -13,7 +14,7 @@ There is no prior configuration needed.
 Define a secret in a environment variable:
 
 ```bash
-export MY_SECRET_VALUE=opensesame
+export MY_SECRET_VALUE=EXAMPLE_VALUE
 ```
 
 We can now reference this secret
