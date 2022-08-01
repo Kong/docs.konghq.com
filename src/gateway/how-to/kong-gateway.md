@@ -15,7 +15,7 @@ This guide assumes each of the following tools are installed locally.
 
 ### Steps 
 
-In order to get started, you'll download and execute a bash script that automatically installs Kong, its supporting database, and an example service.
+In order to get started, you'll download and execute a shell script that automatically installs Kong, its supporting database, and an example service.
 Then you'll interact with the gateway using `curl` to ensure it has been started properly.
 
 Run the following command to start {{site.base_gateway}} using Docker:
@@ -75,7 +75,17 @@ curl $KONG_PROXY/mock/requests
 
 If everything is working correctly, you will see a JSON response from the mock service with various 
 information about the request made, including headers, timestamps, and IP addresses.
- 
+
+### Cleanup
+
+You can use the shell script to stop and remove the {{site.base_gateway}} and database containers with the 
+following command:
+
+```sh
+curl -Ls get.konghq.com/quickstart | sh -s -- -d
+```
+
+
 ### What's next?
 
 You now have a {{site.base_gateway}} instance running locally. Kong offers a tremendous amount of capabilities
@@ -87,3 +97,4 @@ to help you manage, configure and route requests to your APIs.
 provides more details on managing a {{site.base_gateway}}.
 * Learn about modifying incoming JSON requests with no code by using the 
 [request-transformer plugin](/how-to/request-transformations).
+
