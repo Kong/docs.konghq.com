@@ -43,9 +43,9 @@ Kong Data Plane endpoint = localhost:55248
 Kong Admin API endpoint  = localhost:55247
 ```
 
-Docker is assigning available network ports on the host machine, assigning them to the gateway services, and forwarding 
-network traffic to the gateway. You can see all the ports the gateway is listening on and the related host ports 
-with this docker command:
+Docker assigns available network ports on the host machine, to {{site.base_gateway}} services, and forwards 
+network traffic to {{site.base_gateway}}. You can see all the ports that {{site.base_gateway}} is listening on and the related host ports 
+using this Docker command:
 
 ```sh
 docker port kong-quickstart-gateway
