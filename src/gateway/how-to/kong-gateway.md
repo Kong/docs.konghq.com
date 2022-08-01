@@ -65,7 +65,7 @@ test the [Kong Admin API](/gateway/admin-api/) with the following:
 curl $KONG_ADMIN_API
 ```
 
-You should see a large JSON response from the gateway.
+You will see a large JSON response from the gateway.
 
 Test that the gateway is proxying data by making a mock request on the gateway's data plane endpoint:
 
