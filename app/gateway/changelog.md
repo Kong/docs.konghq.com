@@ -3,7 +3,7 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
-<<<<<<< HEAD
+
 <!-- vale off -->
 
 ## 2.8.1.2
@@ -41,7 +41,6 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
   * Fixed an issue where `204` responses were not handled correctly and you would see the following error:
 `"No examples exist in API specification for this resource"`.
   * `204` response specs now support empty content elements.
-=======
 ## 3.0.0.0
 **Release Date** TBD
 
@@ -71,8 +70,7 @@ images or packages, and Kong will not test package installation on Ubuntu 16.04.
 
     If you need to install Kong Gateway on Ubuntu 16.04, see the documentation for
     [previous versions](/gateway/2.8.x/install-and-run/ubuntu/).
->>>>>>> e077d05fc0 ([DOCU-2329] Linux OS support and deprecation (#4000))
-
+[DOCU-2329] Linux OS support and deprecation (#4000))
 ## 2.8.1.1
 **Release Date** 2022/05/27
 
