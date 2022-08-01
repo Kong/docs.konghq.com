@@ -61,7 +61,7 @@ params:
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
 
-        **Note:** This value must refer to the Consumer `id` attribute that is internal to {{site.base_gateway}}, and **not** its `custom_id`.
+        **Note:** This value must refer to the Consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
     - name: run_on_preflight
       required: true
       default: '`true`'
