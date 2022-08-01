@@ -48,7 +48,7 @@ the Request Transformer.
 First verify the Request Transformer plugin is available on your gateway by querying the Admin API and using `jq` to filter the response looking at the plugins available on the server.
 
 ```sh
-curl -s http://localhost:8001 | \
+curl -s $KONG_ADMIN_API | \
   jq -r '.plugins.available_on_server."request-transformer"'
 ```
 
