@@ -20,10 +20,6 @@ description: |
 
   This plugin can mock `200`, `201`, and `204` responses.
 
-  {:.note}
-  > To use this plugin in Konnect Cloud,
-  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
-  v2.4.1.1.
 enterprise: true
 plus: true
 type: plugin
@@ -103,6 +99,7 @@ params:
       value_in_examples: true
       description: |
         Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
+      minimum_version: "2.7.x"
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
@@ -912,3 +909,14 @@ ensure you set the actual URL for your service so that the response can be recei
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
 * [OpenAPI2Kong npm package](https://www.npmjs.com/package/openapi-2-kong)
+
+---
+
+{% if_plugin_version gte:2.7.x %}
+## Changelog
+
+### {{site.base_gateway}} 2.7.x
+
+* Added the `random_examples` parameter.
+Use this setting to randomly select one example from a set of mocked responses.
+{% endif_plugin_version %}

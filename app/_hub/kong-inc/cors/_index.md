@@ -1,7 +1,6 @@
 ---
 name: CORS
 publisher: Kong Inc.
-version: 1.0.0
 desc: Allow developers to make requests from the browser
 description: |
   Easily add __cross-origin resource sharing *(CORS)*__ to a Service and a Route

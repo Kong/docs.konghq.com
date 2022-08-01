@@ -1,7 +1,6 @@
 ---
 name: Exit Transformer
 publisher: Kong Inc.
-version: 1.5.x
 desc: Customize Kong exit responses sent downstream
 description: |
   Transform and customize Kong response exit messages using Lua functions.
