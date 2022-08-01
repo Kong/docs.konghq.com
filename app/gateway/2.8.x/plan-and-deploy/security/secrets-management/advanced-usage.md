@@ -68,7 +68,7 @@ Options:
 ## Vaults Entity
 
 {:.warning}
-> Kong Manager has currently no supports for configuring vault entities.
+> Kong Manager currently doesn't support configuring vault entities.
 
 The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
