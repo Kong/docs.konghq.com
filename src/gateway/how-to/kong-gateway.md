@@ -13,7 +13,7 @@ example [service](/gateway/admin-api/#service-object) as quickly as possible.
 ### Prerequisites
 
 This guide assumes each of the following tools are installed locally. 
-* [Docker](https://docs.docker.com/get-docker/) is used to run Kong and the supporting database locally. This guide has been tested with version `20.10.17`.
+* [Docker](https://docs.docker.com/get-docker/) is used to run Kong and the supporting database locally. 
 * [curl](https://curl.se/) is used to send requests to the gateway. Most systems come with `curl` pre-installed.
 
 ### Steps 
