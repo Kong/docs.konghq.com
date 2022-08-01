@@ -87,7 +87,7 @@ curl -s -XPOST $KONG_PROXY/mock/requests \
 	-d '{"existing-field": "abc123"}'
 ```
 
-What you should notice in the JSON response is the `postData` value which includes the 
+The JSON response contains the `postData` value which includes the 
 JSON body sent to the service. 
 
 Here is a command to use `jq` to fully extract just the request body echoed back from the `mock` service.
