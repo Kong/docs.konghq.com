@@ -65,7 +65,7 @@ In this example, we are instructing the plugin to add a field named `new-field` 
 give it a static value of `defaultValue`. 
 
 ```sh
-curl -i -X POST http://localhost:8001/services/mock/plugins \
+curl -i -X POST $KONG_ADMIN_API/services/mock/plugins \
   --data "name=request-transformer" \
   --data "config.add.body=new-field:defaultValue"
 ```
@@ -82,7 +82,7 @@ The `/requests` API will echo back valuable information from the request we make
 headers and the request body we send.
 
 ```sh
-curl -s -XPOST http://localhost:8000/mock/requests \
+curl -s -XPOST $KONG_PROXY/mock/requests \
 	-H 'Content-Type: application/json' \
 	-d '{"existing-field": "abc123"}'
 ```
@@ -93,7 +93,7 @@ JSON body sent to the service.
 Here is a command to use `jq` to fully extract just the request body echoed back from the `mock` service.
 
 ```sh
-curl -s -XPOST http://localhost:8000/mock/requests \
+curl -s -XPOST $KONG_PROXY/mock/requests \
 	-H 'Content-Type: application/json' \
 	-d '{"existing-field": "Kong FTW!"}' | \
 	jq -r '.postData.text'
