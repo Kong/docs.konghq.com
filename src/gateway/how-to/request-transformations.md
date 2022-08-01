@@ -24,7 +24,7 @@ request to verify the transformation process.
 
 The guide assumes the following:
 
-* You have a {{site.base_gateway}} available for testing and is reachable on `localhost`. 
+* You have a {{site.base_gateway}} instance available for testing that is reachable on `localhost`. 
 If you would like help running a local gateway using Docker, see this companion 
 [{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway/) guide. If your gateway is available on 
 a different host, adjust the commands in this guide appropriately.
