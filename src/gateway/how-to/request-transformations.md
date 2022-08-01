@@ -59,7 +59,7 @@ true
 
 Now, assign a new instance of the Request Transformer plugin to
 the mock service by sending a `POST` request to the Admin API.
-In this command, the `config.add.body` value instructions the plugin to add a new
+In this command, the `config.add.body` value instructs the plugin to add a new
 field to the body of incoming requests before forwarding to the `mock` service.
 In this example, we are adding a field named `new-field`, and giving it a static value of
 `defaultValue`. 
