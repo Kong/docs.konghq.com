@@ -58,16 +58,12 @@ for more information about each option.
 
 ## Notes on the GA release of the Secrets Management feature
 
-With the GA release of the Secrets Management feature in
-{{site.base_gateway}}, the endpoints for secrets management in the
-Admin API have been moved from the previous `/vaults-beta` prefix to
-`/vaults`.
-
-In this version, this feature isn't enabled by default due to
-conflicts with previous releases of {{site.base_gateway}}.  To enable
-it, start {{site.base_gateway}} with `KONG_VAULTS=bundled
-KONG_VAULTS_USE_NEW_STYLE_API=on` if running Kong in a container, or with
-`vaults=bundled` and `vaults_use_new_style_api=on`set in `kong.conf`.
+In the GA release of the Secrets Management feature in
+{{site.base_gateway}}, this feature is enabled by default.
+Due to conflicts with previous releases of {{site.base_gateway}},
+the endpoints for secrets management in the
+Admin API will be moved from the previous `/vaults-beta` prefix to
+`/vaults` with `vaults_use_new_style_api=on` set in `kong.conf`.
 
 ## Get started
 
