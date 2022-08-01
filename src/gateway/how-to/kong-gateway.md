@@ -30,9 +30,8 @@ curl -Ls get.konghq.com/quickstart | sh -s
 {:.note}
 > **Note:** The script creates a log file in the current directory named `kong-quickstart.log`
 
-Docker is now downloading and running the {{site.base_gateway}} and supporting database. Additionally,
-the script bootstraps the database and installs a [mock service](https://mockbin.org/) to experiment with.
-Depending on your internet download speeds, this command should complete relatively quickly, and once you have the images cached locally, subsequent usage of this guide will complete much faster.
+Docker will download and run {{site.base_gateway}} and the supporting database. Additionally,
+the script bootstraps the database and installs a [mock service](https://mockbin.org/).
 
 Once Kong is available, you will see:
 
