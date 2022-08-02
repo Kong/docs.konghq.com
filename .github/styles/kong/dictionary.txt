@@ -117,6 +117,7 @@ redis
 reentrant
 referenceable
 repo
+Resty
 routable
 runtime
 runtimes
@@ -130,6 +131,7 @@ snis
 Splunk
 ssl
 sso
+statsd
 stderr
 stdin
 stdout

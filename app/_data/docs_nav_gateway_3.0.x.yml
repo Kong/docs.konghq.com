@@ -35,7 +35,7 @@ items:
           - text: Manage Kong Gateway with decK
             url: /understanding-kong/manange-kong-with-deck
           - text: Kong Performance Testing
-            url: /reference/performance-testing-framework
+            url: /understanding-kong/kong-performance-testing
           - text: Glossary
             url: /understanding-kong/glossary
 
@@ -329,9 +329,9 @@ items:
                 url: /kong-manager/authentication/rbac/add-role
               - text: Add a User
                 url: /kong-manager/authentication/rbac/add-user
-              - text: Add a Admin
+              - text: Add an Admin
                 url: /kong-manager/authentication/rbac/add-admin
-          - text: Mapping Ldap Service Directory groups to Roles
+          - text: Mapping LDAP Service Directory groups to Roles
             url: /kong-manager/authentication/service-directory-mapping
       - text: Networking
         url: /kong-manager/networking
@@ -340,7 +340,7 @@ items:
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
-      - text: Introduction
+      - text: Overview
         url: /plugin-development/
       - text: File structure
         url: /plugin-development/file-structure
@@ -502,25 +502,25 @@ items:
       - text: Admins
         url: /admin-api/admins/reference
         items:
-          - text: API Reference
+          - text: Admins API Reference
             url: /admin-api/admins/reference
-          - text: Examples
+          - text: Admins Examples
             url: /admin-api/admins/examples
       - text: Developers
         url: /admin-api/developers/reference
       - text: Consumer Groups
         url: /admin-api/consumer-groups/reference
         items:
-          - text: API Reference
+          - text: Consumer Groups API Reference
             url: /admin-api/consumer-groups/reference
-          - text: Examples
+          - text: Consumer Groups Examples
             url: /admin-api/consumer-groups/examples
       - text: Event Hooks
         url: /admin-api/event-hooks/reference
         items:
           - text: Event Hooks Reference
             url: /admin-api/event-hooks/reference
-          - text: Examples
+          - text: Event Hooks Examples
             url: /admin-api/event-hooks/examples
       - text: Securing the Admin API
         url: /admin-api/secure-admin-api
@@ -534,6 +534,6 @@ items:
       - text: CLI Reference
         url: /reference/cli
       - text: Rate Limiting Library
-        url: /kong-plugins/rate-limiting/algorithms/rate-limiting
+        url: /reference/rate-limit
       - text: Performance Testing Framework Reference
         url: /reference/performance-testing-framework

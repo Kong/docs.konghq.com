@@ -1,5 +1,5 @@
 ---
-title: Services and Routes
+title: Proxy Caching
 
 ---
 
