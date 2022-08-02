@@ -52,7 +52,7 @@ docker port kong-quickstart-gateway
 ```
 
 To make things easier, the script will create a file with connection values you can source into your environment
-for use in future commands:
+that you can use throughout the rest of the guide. Load the values into your current environment: 
 
 ```sh
 source kong.env
