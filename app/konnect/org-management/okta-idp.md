@@ -85,9 +85,7 @@ claims to extract that information.
 
 1. Select the authorization server that you want to configure.
 
-1. Click the **Claims** tab.
-
-    You need to configure two claims: `groups` and `login_email`.
+1. Click the **Claims** tab to configure the `groups` claim.
 
 1. Click **ID**, then click **Add Claim**.
 
@@ -110,23 +108,6 @@ claims to extract that information.
     third-party applications (for example, Google groups), the `groups` claim
     cannot find them. An Okta administrator needs to duplicate those groups and
     re-create them directly in Okta. They can do this by exporting the group in CSV format, then importing the CSV file to populate the new group.
-
-1. Click **Create**. 
-
-1. Click **Add Claim** to add another claim for user login
-information.
-
-1. Configure a `login_email` claim by filling in the following fields::
-
-    Field | Value
-    ---|---
-    Name | `login_email`
-    Include in token type | ID token, Always
-    Value type | Expression
-    Value | `user.login`
-    Include in | Choose **The following scopes** and select `openid`
-
-    This claim uses emails to map users to {{site.konnect_short_name}} login instances.
 
 1. Click **Create**.
 
@@ -155,8 +136,8 @@ for troubleshooting:
 
 <!--need to do Applications>Assignments to add the user to the application-->
 
-1. In the generated preview, check to make sure that `groups` and `login_email`
-values are present.
+1. In the generated preview, check to make sure that the `groups`
+value is present.
 
 1. From the list of groups in the preview, identify groups that you want to use in
 {{site.konnect_short_name}}. Take note of these groups.
@@ -283,7 +264,7 @@ provider to Okta.
 1. {{site.konnect_short_name}} generates a login URI based on the Organization
 Login Path you set earlier. Copy this URI.
 
-   You can now manage your org's user permissions entirely from the Okta
+   You can now manage your organization's user permissions entirely from the Okta
    application.
 
 ## Log in through Okta to test the integration
