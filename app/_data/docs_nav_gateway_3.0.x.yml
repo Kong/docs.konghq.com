@@ -16,6 +16,12 @@ items:
         absolute_url: true
       - text: Understanding Kong
         items:
+          - text: Guides
+            items:
+              - text: Run Kong Gateway in Minutes
+                url: /understanding-kong/how-to/kong-gateway
+              - text: Request Transformations
+                url: /understanding-kong/how-to/request-transformations
           - text: Key Concepts
             items: 
               - text: Services
@@ -38,8 +44,7 @@ items:
             url: /understanding-kong/kong-performance-testing
           - text: Glossary
             url: /understanding-kong/glossary
-
-            
+         
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
@@ -57,7 +62,6 @@ items:
         url: /get-started/load-balancing
       - text: Workspaces and Teams
         url: /get-started/manage-teams
-
   - title: Kong in Production
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     items:
@@ -537,7 +541,3 @@ items:
         url: /reference/rate-limit
       - text: Performance Testing Framework Reference
         url: /reference/performance-testing-framework
-        url: /reference/external-plugins
-unlisted:
-  - url: /how-to/kong-gateway
-  - url: /how-to/request-transformations
