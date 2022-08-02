@@ -85,9 +85,8 @@ claims to extract that information.
 
 1. Select the authorization server that you want to configure.
 
-1. Go to the Claims tab.
+1. Go to the Claims tab to configure the `groups` claim.
 
-    Configure the claim: `groups`.
 
 1. In the **Claim type** menu, select **ID**, then select **Add Claim**.
 
@@ -114,7 +113,7 @@ claims to extract that information.
 
 1. Select **Create** to save.
 
-If you have problems setting up these claims, refer to the Okta documentation
+If you have problems setting up this claim, refer to the Okta documentation
 for troubleshooting:
 * [Adding a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/add-groups-claim-custom-as/)
 * [Adding a custom claim](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-custom-claim/)
