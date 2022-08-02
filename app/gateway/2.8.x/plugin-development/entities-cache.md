@@ -7,26 +7,26 @@ chapter: 7
 Your plugin may need to frequently access custom entities (explained in the
 [previous chapter]({{page.book.previous}})) on every request and/or response.
 Usually, loading them once and caching them in-memory dramatically improves
-the performance while making sure the datastore is not stressed with an
+the performance while making sure the data store is not stressed with an
 increased load.
 
 Think of an api-key authentication plugin that needs to validate the api-key on
-every request, thus loading the custom credential object from the datastore on
+every request, thus loading the custom credential object from the data store on
 every request. When the client provides an api-key along with the request,
-normally you would query the datastore to check if that key exists, and then
+normally you would query the data store to check if that key exists, and then
 either block the request or retrieve the Consumer ID to identify the user. This
 would happen on every request, and it would be very inefficient:
 
-* Querying the datastore adds latency on every request, making the request
+* Querying the data store adds latency on every request, making the request
   processing slower.
-* The datastore would also be affected by an increase of load, potentially
+* The data store would also be affected by an increase of load, potentially
   crashing or slowing down, which in turn would affect every Kong
   node.
 
-To avoid querying the datastore every time, we can cache custom entities
+To avoid querying the data store every time, we can cache custom entities
 in-memory on the node, so that frequent entity lookups don't trigger a
-datastore query every time (only the first time), but happen in-memory, which
-is much faster and reliable that querying it from the datastore (especially
+data store query every time (only the first time), but happen in-memory, which
+is much faster and reliable that querying it from the data store (especially
 under heavy load).
 
 ## Modules
@@ -151,11 +151,11 @@ Give that file a look in order to see how an official plugin uses the cache.
 
 ### Update or delete a custom entity
 
-Every time a cached custom entity is updated or deleted in the datastore (i.e.
+Every time a cached custom entity is updated or deleted in the data store (i.e.
 using the Admin API), it creates an inconsistency between the data in the
-datastore, and the data cached in the Kong nodes' memory. To avoid this
+data store, and the data cached in the Kong nodes' memory. To avoid this
 inconsistency, we need to evict the cached entity from the in-memory store and
-force Kong to request it again from the datastore. We refer to this process as
+force Kong to request it again from the data store. We refer to this process as
 cache invalidation.
 
 
@@ -236,13 +236,13 @@ Where the arguments must be the attributes specified in your schema's
 `cache_key` property, in the order they were specified. This function then
 computes a string value `cache_key` that is ensured to be unique.
 
-For example, if we were to generate the cache_key of an API key:
+For example, if we were to generate the `cache_key` of an API key:
 
 ```lua
 local cache_key = kong.db.keyauth_credentials:cache_key("abcd")
 ```
 
-This would produce a cache_key for the API key `"abcd"` (retrieved from one
+This would produce a `cache_key` for the API key `"abcd"` (retrieved from one
 of the query's arguments) that we can the use to retrieve the key from the
 cache (or fetch from the database if the cache is a miss):
 
@@ -269,18 +269,18 @@ cache invalidation will be an automatic process: every CRUD operation that
 affects this API key will be make Kong generate the affected `cache_key`, and
 broadcast it to all of the other nodes on the cluster so they can evict
 that particular value from their cache, and fetch the fresh value from the
-datastore on the next request.
+data store on the next request.
 
 When a parent entity is receiving a CRUD operation (e.g. the Consumer owning
 this API key, as per our schema's `consumer_id` attribute), Kong performs the
 cache invalidation mechanism for both the parent and the child entity.
 
 **Note**: Be aware of the negative caching that Kong provides. In the above
-example, if there is no API key in the datastore for a given key, the cache
+example, if there is no API key in the data store for a given key, the cache
 module will store the miss just as if it was a hit. This means that a
 "Create" event (one that would create an API key with this given key) is also
 propagated by Kong so that all nodes that stored the miss can evict it, and
-properly fetch the newly created API key from the datastore.
+properly fetch the newly created API key from the data store.
 
 See the [Clustering Guide](/gateway/{{page.kong_version}}/reference/clustering/) to ensure
 that you have properly configured your cluster for such invalidation events.

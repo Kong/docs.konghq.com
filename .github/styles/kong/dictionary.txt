@@ -31,6 +31,8 @@ declaratively
 degraphql
 denylist
 deployer
+deserialize
+deserialized
 dev
 etcd
 Fargate
@@ -50,6 +52,8 @@ HTTPie
 https
 inbounds
 ini
+invalidation
+invalidations
 io
 iptables
 Istio
@@ -73,6 +77,8 @@ kumactl
 kustomization
 Kustomize
 Loggly
+lookup
+lookups
 loopback
 lua
 Luarocks
@@ -119,6 +125,7 @@ deduplication
 deduplicate
 sandboxed
 sandboxing
+schema's
 serializer
 serverless
 snis
@@ -158,6 +165,7 @@ uuid
 Valero
 validator
 validators
+vararg
 websocket
 websockets
 wireframe
