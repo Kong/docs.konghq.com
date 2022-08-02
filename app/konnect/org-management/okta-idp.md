@@ -257,41 +257,23 @@ in Okta to locate the Okta groups you want to map.
 
 1. Click **Save**.
 
-## Test and apply configuration
+## Test and apply the configuration
 
-1. Select **Test Configuration** to make sure the configuration details are
-valid. <!--I don't know where this is in the UI-->
+{:.important}
+> **Important:** Keep built-in authentication enabled while you are testing Okta authentication. Only disable built-in authentication after successfully testing Okta authentication.
 
-    You must test configuration before saving. If you have filled out all
-    required fields but the **Save** button remains greyed out, run the test
-    first to enable saving.
+You can test the Okta configuration by navigating to the login URI based on the Organization Login Path you set earlier. For example: `cloud.konghq.com/login/examplepath`. You will see the Okta sign in window if your configuration is set up correctly.
 
-    When you test the configuration, {{site.konnect_short_name}} runs a connection check. If the
-    connection test succeeds, the page reloads and prints the message
-    `Configuration tested successfully`.
-
-    Any subsequent changes to the configuration require a test before saving.
-
-1. Save your changes, then confirm that you want to change your identity
-provider to Okta.
-
-    {:.warning}
-    > **Warning:** This change is irreversible. Once you switch to Okta, you
-    cannot revert to using native {{site.konnect_short_name}} authentication.
-
-1. {{site.konnect_short_name}} generates a login URI based on the Organization
-Login Path you set earlier. Copy this URI.
-
-   You can now manage your organization's user permissions entirely from the Okta
-   application.
+You can now manage your organization's user permissions entirely from the Okta
+application.
 
 ## Log in through Okta to test the integration
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
     If you ever need to find the path again, you can always find it under
     ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-     **Settings > Identity Management**, then copy **Organization Login URI**
-     from this page.
+     **Settings > Auth Settings**, then copy the **Organization Login URI**
+     and append it to `cloud.konghq.com/login/`.
 
 1. Paste the URI into a browser address bar. An Okta login page should appear.
 
@@ -308,7 +290,7 @@ admin account.
 1. In the left menu, select **Organization**.
 
     You should see a list of users in this org, including a new entry for the
-    previous user and the team that they were assigned.
+    previous user and the team that they were assigned to.
 
 ## (Optional) Enable {{site.konnect_saas}} as a dashboard app in Okta
 
