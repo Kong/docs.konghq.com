@@ -43,7 +43,7 @@ Kong Data Plane endpoint = localhost:55248
 Kong Admin API endpoint  = localhost:55247
 ```
 
-Docker assigns available network ports on the host machine, to {{site.base_gateway}} services, and forwards 
+Docker assigns available network ports on the host machine to {{site.base_gateway}} services and forwards 
 network traffic to {{site.base_gateway}}. You can see all the ports that {{site.base_gateway}} is listening on and the related host ports 
 using this Docker command:
 
@@ -58,7 +58,7 @@ that you can use throughout the rest of the guide. Load the values into your cur
 source kong.env
 ```
 
-After you have sourced the environment variable file, 
+After you have sourced the `kong.env` environment variable file, 
 test the [Kong Admin API](/gateway/admin-api/) with the following:
 
 ```sh
@@ -67,7 +67,7 @@ curl $KONG_ADMIN_API
 
 You will see a large JSON response from the gateway.
 
-Test that the gateway is proxying data by making a mock request on the gateway's data plane endpoint:
+Test that {{site.base_gateway}} is proxying data by making a mock request to the gateway's data plane endpoint:
 
 ```sh
 curl $KONG_PROXY/mock/requests
