@@ -87,7 +87,7 @@ claims to extract that information.
 
 1. Go to the Claims tab.
 
-    You need to configure two claims: `groups` and `login_email`.
+    Configure the claim: `groups`.
 
 1. In the **Claim type** menu, select **ID**, then select **Add Claim**.
 
@@ -112,20 +112,7 @@ claims to extract that information.
     re-create them directly in Okta. They can do this by exporting the group in
     question in CSV format, then importing the CSV file to populate the new group.
 
-1. Select **Create** to save. Add another claim, this time for user login
-information:
-
-    Field | Value
-    ---|---
-    Name | `login_email`
-    Include in token type | ID token, Always
-    Value type | Expression
-    Value | `user.login`
-    Include in | Choose **The following scopes** and select `openid`
-
-    This claim uses emails to map users to {{site.konnect_short_name}} login instances.
-
-1. Select **Create** to save the second claim.
+1. Select **Create** to save.
 
 If you have problems setting up these claims, refer to the Okta documentation
 for troubleshooting:
@@ -141,8 +128,8 @@ Okta user to test the claim with.
 
 3. Set the scope to `openid`, then select **Preview Token**.
 
-4. In the generated preview, check to make sure that `groups` and `login_email`
-values are present.
+4. In the generated preview, check to make sure that the `groups`
+value is present.
 
 5. From the list of groups in the preview, identify groups that you want to use in
 {{site.konnect_short_name}}. Take note of these groups.
@@ -269,7 +256,7 @@ provider to Okta.
 1. {{site.konnect_short_name}} generates a login URI based on the Organization
 Login Path you set earlier. Copy this URI.
 
-   You can now manage your org's user permissions entirely from the Okta
+   You can now manage your organization's user permissions entirely from the Okta
    application.
 
 ## Log in through Okta to test the integration
