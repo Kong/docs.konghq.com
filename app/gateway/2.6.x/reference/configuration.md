@@ -97,7 +97,7 @@ Nginx directives to this file directly via your Kong configuration.
 
 ### Injecting individual Nginx directives
 
-Any entry added to your `kong.conf` file that is prefixed by the following 
+Any entry added to your `kong.conf` file that is prefixed by the following
 supported namespaces will be converted into an equivalent Nginx
 directive by removing the prefix and added to the appropriate section of the
 Nginx configuration:
@@ -722,7 +722,7 @@ If `cluster_mtls` is set to `shared`, this setting is ignored and
 **Default:** none
 
 ---
-
+<!-- vale off -->
 #### cluster_control_plane
 
 To be used by data plane nodes only: address of the control plane node from
@@ -2626,7 +2626,6 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
-- `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
 
 **Default:** `127.0.0.1:8003`
 
