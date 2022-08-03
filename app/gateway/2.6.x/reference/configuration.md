@@ -722,7 +722,7 @@ If `cluster_mtls` is set to `shared`, this setting is ignored and
 **Default:** none
 
 ---
-
+<!-- vale off -->
 #### cluster_control_plane
 
 To be used by data plane nodes only: address of the control plane node from

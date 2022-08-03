@@ -746,7 +746,7 @@ which configuration updates will be fetched, in `host:port` format.
 **Default:** none
 
 ---
-
+<!-- vale off -->
 #### cluster_telemetry_endpoint
 {:.badge .enterprise}
 

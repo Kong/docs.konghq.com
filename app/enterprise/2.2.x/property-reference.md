@@ -6,7 +6,7 @@
 #
 title: Configuration Reference for Kong Gateway (Enterprise)
 ---
-
+<!-- vale off -->
 ## Configuration loading
 
 Kong comes with a default configuration file that can be found at

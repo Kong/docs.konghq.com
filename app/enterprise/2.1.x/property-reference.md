@@ -6,7 +6,7 @@
 #
 title: Configuration Property Reference for Kong Enterprise
 ---
-
+<!-- vale off -->
 ## Configuration loading
 
 Kong comes with a default configuration file that can be found at
