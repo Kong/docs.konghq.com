@@ -13,20 +13,14 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
 1. Click **New registration** to register a new application:
 
-    ![Register an application](/assets/images/docs/konnect/azure/app-registration.png)
+1. Name the application.
 
-2. Name the application.
+1. Select **Accounts in this organizational directory only** for the **Supported account type**. 
 
-3. Select **Accounts in this organizational directory only** for the **Supported account type**. 
-
-4. Select **web** as the application type, enter the Dev Portal redirect URI and click **Register**.
+1. Select **Web** and enter the Dev Portal [Redirect URI](/konnect/dev-portal/access/). 
     
-5. Save the application ID for later.
+1. Save the application ID for later.
 
-   ![Add certificate](/assets/images/docs/konnect/azure/add-certificate.png)
-
-{:.note}
->**Note:** You can find the Dev Portal redirect URI from the Dev Portal menu. For more information read [Access the Dev Portal](/konnect/dev-portal/access/).
 
 ## Configure the Azure application
 
@@ -35,15 +29,11 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
     * Save the secret value for configuring {{site.konnect_short_name}}.
 
 
-3. Click **Overview** in the sidebar, then click the **Endpoints** tab.
+1. Click **Overview** in the sidebar, then click the **Endpoints** tab.
 
-4. Copy the **OpenID Connect metadata document** URL and open it in your browser:
+1. Copy the **OpenID Connect metadata document** URL and open it in your browser:
 
-    ![Endpoints](/assets/images/docs/konnect/azure/endpoints.png)
-
-5.  Your browser will display a large JSON blob object. In the object, find and save the `issuer` value.
-
-    ![Issuer](/assets/images/docs/konnect/azure/issuer.png)
+1.  Your browser will display a large JSON blob object. In the object, find and save the `issuer` value.
     
     The `issuer` value will be used as the provider URL when configuring SSO in {{site.konnect_short_name}}.
 
@@ -57,20 +47,16 @@ Group claims automatically add or remove users from group memberships. To config
     1. Select each checkbox in the **Select group types to include in Access, ID, and SAML tokens** section. 
     1. Select **Group ID** for each section in **Customize token properties by type**.
     1. Click **Add**. 
-    
+
     ![Group claim](/assets/images/docs/konnect/azure/group-claim.png)
 
-2. Click **+ Add optional claim**, select **ID** as the token type, and **email** as the claim.
+1. Click **Add optional claim**, select **ID** as the token type, and **email** as the claim.
 
-    ![Optional claim](/assets/images/docs/konnect/azure/optional-claim.png)
-
-3. Click **Add**.
+1. Click **Add**.
 
 ## Configure SSO in {{site.konnect_short_name}}
 
 From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from Azure.
-
-![Configure IDP](/assets/images/docs/konnect/azure/configure-idp.png)
 
 This table maps the {{site.konnect_short_name}} values to the corresponding Azure values. 
 
@@ -79,3 +65,5 @@ This table maps the {{site.konnect_short_name}} values to the corresponding Azur
 | Provider URL      | The value stored in the `issuer` variable. |
 | Client ID   | Your Azure application ID.        |
 |Client Secret | Azure client secret.|
+
+You can test your configuration by navigating to the Dev Portal and using your Azure credentials to log in. 
