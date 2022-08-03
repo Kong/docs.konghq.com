@@ -1,5 +1,6 @@
 ---
-title: Tracing
+title: Tracing Reference
+content-type: reference
 ---
 
 In this section, we will describe the tracing capabilities of Kong.
@@ -15,14 +16,14 @@ Kong provides a set of core instrumentations for tracing, these can be configure
 - `off`: do not enable instrumentations.
 - `request`: only enable request-level instrumentations.
 - `all`: enable all the following instrumentations.
-- `db_query`: trace database query, including Postgres and Cassandra.
+- `db_query`: trace database query, including PostgresSQL and Cassandra.
 - `dns_query`: trace DNS query.
 - `router`: trace router execution, including router rebuilding.
 - `http_client`: trace OpenResty HTTP client requests.
 - `balancer`: trace balancer retries.
 - `plugin_rewrite`: trace plugins iterator execution with rewrite phase.
 - `plugin_access`: trace plugins iterator execution with access phase.
-- `plugin_header_filter`: trace plugins iterator execution with header_filter phase.
+- `plugin_header_filter`: trace plugins iterator execution with `header_filter` phase.
 
 ## Propagation
 

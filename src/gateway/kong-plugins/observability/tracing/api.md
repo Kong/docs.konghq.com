@@ -1,6 +1,6 @@
 ---
-title: How to Write a Custom Trace Exporter
-content-type: how-to
+title: Tracing API Referenece
+content-type: Reference
 ---
 
 ## Before you start
@@ -91,7 +91,7 @@ To avoid overheads, the active span is manually set by calling the `set_active_s
 When you finish a span, the active span becomes the parent of the finished span.
 
 
-To setor get the active span, you can use the following example code:
+To set or get the active span, you can use the following example code:
 
 ```lua
 local tracer = kong.tracing
@@ -203,5 +203,5 @@ Please refer to the [OpenTelemetry plugin](/hub/kong-inc/opentelemetry) to see h
 ## References
 
 - [Tracing PDK](/gateway/{{page.kong_version}}/pdk/kong.tracing)
-- [Measuring your plugin](/gateway/{{page.kong_version}}/plugin-development/telemetry)
+- [Measuring your plugin](/gateway/plugin-development/telemetry)
 - [OpenTelemetry plugin](/hub/kong-inc/opentelemetry)

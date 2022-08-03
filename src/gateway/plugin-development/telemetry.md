@@ -18,4 +18,4 @@ and the API is in the `kong.tracing` namespace.
 ### Reference
 
 - [Tracing PDK](/pdk/kong.tracing)
-- [Tracing Framework](/observability/tracing-framework)
+- [Tracing Framework](/gateway/plugin-development/observability/tracing-framework)
