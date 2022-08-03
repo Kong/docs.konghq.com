@@ -20,7 +20,7 @@ If you have an enterprise {{site.konnect_short_name}} account with multiple geog
 
 The Dev Portal page contains a list of services that are published on the Dev Portal. 
 
-To find a service in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists every published service that is being managed by {{site.konnect_short_name}}. 
+To find a service in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists region-specific published services that are managed by {{site.konnect_short_name}}. 
 
 To open a published service in the Dev Portal:  
 
