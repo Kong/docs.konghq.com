@@ -1,12 +1,13 @@
 product: gateway
 release: 3.0.x
 generate: true
+assume_generated: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview of Kong Gateway
-        url: /gateway/
+        url: /gateway/3.0.x/
         absolute_url: true
       - text: Version Support Policy
         url: /konnect-platform/support-policy
@@ -16,6 +17,12 @@ items:
         absolute_url: true
       - text: Understanding Kong
         items:
+          - text: Guides
+            items:
+              - text: Run Kong Gateway in Minutes
+                url: /understanding-kong/how-to/kong-gateway
+              - text: Request Transformations
+                url: /understanding-kong/how-to/request-transformations
           - text: Key Concepts
             items: 
               - text: Services
@@ -38,11 +45,12 @@ items:
             url: /understanding-kong/kong-performance-testing
           - text: Glossary
             url: /understanding-kong/glossary
-
-            
+         
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
+      - text: Overview
+        url: /get-started/
       - text: Get Kong with Docker
         url: /get-started/get-kong-with-docker
       - text: Configure Services and Routes
@@ -57,7 +65,6 @@ items:
         url: /get-started/load-balancing
       - text: Workspaces and Teams
         url: /get-started/manage-teams
-
   - title: Kong in Production
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     items:
