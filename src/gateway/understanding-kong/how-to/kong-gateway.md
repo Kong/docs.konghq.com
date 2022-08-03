@@ -36,7 +36,7 @@ Once Kong is available, you will see:
 ✔ Kong is ready!
 ```
 
-Importantly, the script outputs connectivity details for your new gateway, which should look similar to the following:
+The script outputs connectivity details for your new gateway, which should look similar to the following:
 
 ```text
 Kong Data Plane endpoint = localhost:55248
