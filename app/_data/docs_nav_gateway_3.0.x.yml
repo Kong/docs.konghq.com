@@ -1,12 +1,13 @@
 product: gateway
 release: 3.0.x
 generate: true
+assume_generated: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview of Kong Gateway
-        url: /gateway/
+        url: /gateway/3.0.x/
         absolute_url: true
       - text: Version Support Policy
         url: /konnect-platform/support-policy
@@ -48,6 +49,8 @@ items:
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
+      - text: Overview
+        url: /get-started/
       - text: Get Kong with Docker
         url: /get-started/get-kong-with-docker
       - text: Configure Services and Routes

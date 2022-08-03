@@ -1,11 +1,11 @@
 ---
-title: "Run Kong Gateway in minutes"
-description: "A how-to guide for quickly starting a Kong Gateway"
+title: Run Kong Gateway in minutes
+description: A how-to guide for quickly starting a Kong Gateway
 ---
 
-In order to explore the capabilities of [{{site.base_gateway}}](/gateway), 
+In order to explore the capabilities of [{{site.base_gateway}}](/gateway/latest/), 
 you'll need one to experiment with. This guide helps you quickly deploy Kong 
-using [Docker](https://docs.docker.com/get-started/overview/). This guide's purpose is not to provide a production-like deployment or an explanation of deployment steps but rather to quickly get you a running {{site.base_gateway}} instance and an example [service](/gateway/admin-api/#service-object) as quickly as possible.
+using [Docker](https://docs.docker.com/get-started/overview/). This guide's purpose is not to provide a production-like deployment or an explanation of deployment steps but rather to quickly get you a running {{site.base_gateway}} instance and an example [service](/gateway/latest/admin-api/#service-object) as quickly as possible.
 
 ### Prerequisites
 
@@ -59,7 +59,7 @@ source kong.env
 ```
 
 After you have sourced the `kong.env` environment variable file, 
-test the [Kong Admin API](/gateway/admin-api/) with the following:
+test the [Kong Admin API](/gateway/latest/admin-api/) with the following:
 
 ```sh
 curl $KONG_ADMIN_API
@@ -92,9 +92,9 @@ You now have a {{site.base_gateway}} instance running locally. Kong offers a tre
 to help you manage, configure and route requests to your APIs.
 
 * To follow a more detailed step-by-step guide to starting Kong, see the 
-[Kong Getting Started guide](/gateway/get-started/quickstart/).
-* The [Admin API documentation](/gateway/admin-api/) 
+[Kong Getting Started guide](/gateway/latest/get-started/).
+* The [Admin API documentation](/gateway/latest/admin-api/) 
 provides more details on managing a {{site.base_gateway}}.
 * Learn about modifying incoming JSON requests with no code by using the 
-[request-transformer plugin](/how-to/request-transformations).
+[request-transformer plugin](/gateway/latest/understanding-kong/how-to/request-transformations).
 
