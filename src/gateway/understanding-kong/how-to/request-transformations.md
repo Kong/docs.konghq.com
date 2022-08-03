@@ -22,19 +22,12 @@ request to verify the transformation process.
 
 ### Prerequisites
 
-The guide assumes the following:
-
-* You have a {{site.base_gateway}} instance available for testing with connection information
-stored in the following environment variables:
-    * `KONG_PROXY` contains the URL to the {{site.base_gateway}} proxy endpoint
-    * `KONG_ADMIN_API` contains the URL to the {{site.base_gateway}} admin API endpoint
-
-  If you would like to quickly setup a local {{site.base_gateway}} using Docker and setting up these variables, 
-use this companion [{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway/) guide. 
-If your gateway is available on a different host and port, adjust the commands in this guide appropriately.
-* You have a service named `mock` installed on your gateway. You can adjust the 
-commands to use a different service or use the [{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway) guide to 
-run a gateway with a `mock` service.
+* This document is best used after following the companion 
+[{{site.base_gateway}} in minutes](/gateway/{{page.kong_version}}/how-to/kong-gateway/) guide, which
+walks you through running a local {{site.base_gateway}} in Docker, setting up
+a mock [Service](gateway/{{page.kong_version}}/admin-api/#service-object), and the necessary connection details. 
+If you'd like to use an existing {{site.base_gateway}} or a different service, you will need to adjust the 
+commands in this guide as necessary.
 * You have [`curl`](https://curl.se/) installed on your system, which is used to send 
 requests to the gateway. Most systems come with `curl` pre-installed.
 * This guide uses the [`jq`](https://stedolan.github.io/jq/) command line JSON processing tool. While
@@ -47,7 +40,7 @@ the gateway. If you do not have `jq` or do not wish to install it, you can modif
 There are a large number of Kong plugins, many of which need to 
 be [custom installed](/gateway/{{page.kong_version}}/plugin-development/distribution/) 
 prior to utilization. Kong ships prepackaged with a number of useful plugins including
-the Request Transformer.
+the Request Transformer you will use in this guide.
 
 First verify the Request Transformer plugin is available on your gateway by querying the Admin API and using `jq` to filter the response looking at the plugins available on the server.
 
@@ -77,12 +70,12 @@ curl -i -X POST $KONG_ADMIN_API/services/mock/plugins \
 If successful the API will return a `201 Created` HTTP response code with a 
 JSON body including information about the new plugin instance.
 
-The Request Transformer can perform more complex
-transformations, see the 
-[full documentation](/hub/kong-inc/request-transformer/) for more detail.
+{:.note}
+> **Note:** The Request Transformer can perform more complex transformations than 
+shown here, see the [full documentation](/hub/kong-inc/request-transformer/) for the details.
 
 Next, use the `mock` service's `/requests` endpoint to test the behavior of the plugin.
-The `/requests` API will echo back valuable information from the request we make to it including
+The `/requests` API will echo back helpful information from the request we send it, including
 headers and the request body.
 
 ```sh
@@ -91,10 +84,9 @@ curl -s -XPOST $KONG_PROXY/mock/requests \
 	-d '{"existing-field": "abc123"}'
 ```
 
-The JSON response contains the `postData` value which includes the 
-JSON body sent to the service. 
-
-You can use `jq` to fully extract the request body returned back from the `mock` service.
+The JSON response wil contain the `postData` field which includes the 
+JSON body sent to the service. You can use `jq` to fully extract the request body 
+returned from the `mock` service, as follows:
 
 ```sh
 curl -s -XPOST $KONG_PROXY/mock/requests \
@@ -103,7 +95,7 @@ curl -s -XPOST $KONG_PROXY/mock/requests \
 	jq -r '.postData.text'
 ```
 
-This command will output the following text, indicating `new-field` has been added to the request body.
+This will output the following text indicating `new-field` has been added to the request body.
 
 ```txt
 {"existing-field":"Kong FTW!","new-field":"defaultValue"}
