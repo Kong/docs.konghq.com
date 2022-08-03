@@ -22,7 +22,7 @@ curl -sX POST localhost:8001/consumers \
 
 # {"created_at":1517528259000,"username":"medvezhonok","id":"b3c95318-a932-4bb2-9d74-1298a3ffc87c"}
 
-curl -sX POST kong-admin:8001/consumers \
+curl -sX POST localhost:8001/consumers \
   -H "Content-Type: application/json" \
   --data '{"username": "ezhik"}'
 
