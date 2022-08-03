@@ -443,6 +443,16 @@ items:
                 url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               - text: Configuring Fixed bucket
                 url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
+      - text: Observability
+        items:
+          - text: Tracing
+            items: 
+              - text: Overview
+                url: /kong-plugins/observability/tracing/
+              - text: How to Write a Custom Trace Exporter
+                url: /kong-plugins/observability/tracing/write-custom-trace-exporter
+              - text: Tracing API reference
+                url: /kong-plugins/observability/tracing/api
       - text: GraphQL
         url: /kong-plugins/graphql-quickstart
       - text: gRPC

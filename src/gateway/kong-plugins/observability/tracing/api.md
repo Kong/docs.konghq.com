@@ -1,28 +1,28 @@
 ---
-title: Tracing API
+title: How to Write a Custom Trace Exporter
+content-type: how-to
 ---
 
 ## Before you start
 
-Kong bundled the tracing framework since version 3.0.0, the tracing API is a part of the Kong core,
-and the API is in the `kong.tracing` namespace.
+In Gateway version 3.0.0, the tracing API became part of the Kong core application.
+The API is in the `kong.tracing` namespace.
 
-To make the tracing API standardized and available to all plugins,
-we follow the [OpenTelemetry API specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md).
-This specification defines the API that should be used to instrument your module.
-If you already have the experience of using the OpenTelemetry API, it should be much easier to start.
+The tracing API follows the [OpenTelemetry API specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md).
+This specification defines how to use the API as an instrument to your module. 
+If you are familiar with the OpenTelemetry API, the tracing API will be familiar. 
 
-With the tracing API, you can instrument your module with the following:
+With the tracing API, you can set the instrumentation of your module with the following operations:
 - [Span](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span)
 - [Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/span-general.md)
 
 ## Create a tracer
 
-Kong internally uses a global tracer instance to instrument the core modules and plugins.
+Kong uses a global tracer internally to instrument the core modules and plugins.
 
-By default, the tracer is a [NoopTracer](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#get-a-tracer) which does nothing to avoid any overhead. The tracer is first initialized when `opentelemetry_tracing` configuration enabled.
+By default, the tracer is a [NoopTracer](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#get-a-tracer). The tracer is first initialized when `opentelemetry_tracing` configuration is enabled.
 
-You can either create a new tracer manually, or use the global tracer instance.
+You can create a new tracer manually, or use the global tracer instance: 
 
 ```lua
 local tracer
@@ -36,7 +36,7 @@ tracer = kong.tracing
 
 ### Sampling traces
 
-The tracer can be configured to sample traces.
+The sampling rate of a tracer can be configured: 
 
 ```lua
 local tracer = kong.tracing.new("custom-tracer", {
@@ -45,11 +45,11 @@ local tracer = kong.tracing.new("custom-tracer", {
 })
 ```
 
-By default, the sampling rate is 1.0, meaning that all traces are sampled.
+The default sampling rate is `1.0`, which samples all traces.
 
 ## Create a span
 
-A Span represents a single operation within a trace. Spans can be nested to form a trace tree. Each trace contains a root span, which typically describes the entire operation and, optionally, one or more sub-spans for its sub-operations.
+A span represents a single operation within a trace. Spans can be nested to form trace trees. Each trace contains a root span, which typically describes the entire operation and, optionally, one or more sub-spans for its sub-operations.
 
 ```lua
 local tracer = kong.tracing
@@ -73,24 +73,25 @@ local span = tracer:start_span("my-span", {
 })
 ```
 
-Please make sure to ends the span when you are done.
+Make sure to ends the span when you are done:
 
 ```lua
 span:finish() -- ends the span
 ```
 
-**Note:** The span table will be cleared and put into the table pool after the span is finished,
+{:.Note}
+>**Note:** The span table will be cleared and put into the table pool after the span is finished,
 do not use it after the span is finished.
 
-## Get/Set the active span
+## Get or set the active span
 
 The active span is the span that is currently being executed.
 
 To avoid overheads, the active span is manually set by calling the `set_active_span` method.
-However, When you finish a span, the active span becomes the parent of the finished span.
+When you finish a span, the active span becomes the parent of the finished span.
 
 
-To set/get the active span, you can use the following:
+To setor get the active span, you can use the following example code:
 
 ```lua
 local tracer = kong.tracing
