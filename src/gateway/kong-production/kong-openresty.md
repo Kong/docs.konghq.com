@@ -1,9 +1,9 @@
 ---
-title: Embedding Kong in OpenResty
+title: Embed Kong in OpenResty
 content-type: how-to
 ---
 
-## Embedding Kong in OpenResty
+## Embed Kong in OpenResty
 
 If you are running your own OpenResty servers, you can embed Kong
 by including the Kong Nginx sub-configuration using the `include` directive.
