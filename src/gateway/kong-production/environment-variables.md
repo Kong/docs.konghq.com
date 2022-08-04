@@ -5,7 +5,7 @@ content-type: how-to
 
 ## Environment variables
 
-Kong can be fully configured with environment variables. When loading properties from `kong.conf`, Kong will check existing
+{{site.base_gateway}} can be fully configured with environment variables. When loading properties from `kong.conf`, {{site.base_gateway}} will check existing
 environment variables. 
 
 To override a setting using an environment variable, declare an environment

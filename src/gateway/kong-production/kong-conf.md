@@ -47,7 +47,7 @@ Boolean values can be specified as `on`/`off` or `true`/`false`:
 ```
 
 {:.note}
-> Kong will use the default settings for any value in `kong.conf` that is commented out.
+> {{site.base_gateway}} will use the default settings for any value in `kong.conf` that is commented out.
 
 ## Verify configuration
 To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/latest/kong-production/environment-variables) you have
@@ -81,7 +81,7 @@ kong start --conf /path/to/kong.conf
 
 ### Debug mode
 
-You can use the [Kong CLI](/gateway/latest/reference/cli/) in debug-mode to output configuration properties in the shell:
+You can use the [{{site.base_gateway}} CLI](/gateway/latest/reference/cli/) in debug-mode to output configuration properties in the shell:
 
 ```bash
 kong start -c /etc/kong.conf --vv
