@@ -29,7 +29,7 @@ For any license questions, contact your sales representative.
 
 When you create a {{site.konnect_saas}} account, you select a geographic region for your instance. Regions are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are region-specific. Only authentication is shared between {{site.konnect_short_name}} regions.
 
-Only Enterprise plans can have more than one region.
+Only Enterprise plans can select more than one region.
 
 ## Manage and view plan billing and usage
 
