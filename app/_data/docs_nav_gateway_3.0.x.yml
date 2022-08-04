@@ -138,6 +138,8 @@ items:
             url: /kong-production/networking/network
       - text: Kong Configuration File
         url: /kong-production/kong-conf
+      - text: Configuration Environment Variables
+        url: /kong-production/environment-variables
       - text: Embedding Kong in Open Resty
         url: /kong-production/kong-openresty
       - text: Serving a website and API's from Kong
