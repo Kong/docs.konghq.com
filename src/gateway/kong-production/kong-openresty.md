@@ -5,10 +5,10 @@ content-type: how-to
 
 ## Embed Kong in OpenResty
 
-If you are running your own OpenResty servers, you can embed Kong
-by including the Kong Nginx sub-configuration using the `include` directive.
+If you are running your own OpenResty servers, you can embed {{site.base_gateway}}
+by including the {{site.base_gateway}} Nginx sub-configuration using the `include` directive.
 If you have an existing Nginx configuration, you can include the
-Kong-specific portion of the configuration which is output by Kong in a separate
+{{site.base_gateway}}-specific portion of the configuration which is output by {{site.base_gateway}} in a separate
 `nginx-kong.conf` file:
 
 ```
