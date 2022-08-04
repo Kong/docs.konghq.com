@@ -284,8 +284,8 @@ Starting with version 2.0 of the plugin, the provided Lua environment is sandbox
 #### Upvalues
 
 Prior to version 0.3 of the plugin, the provided Lua code would run as the
-function. From version 0.3 onwards also a function can be returned, to allow
-for upvalues.
+function. Since version 0.3 functions can be returned, to allow
+the use of upvalues.
 
 So the older version would do this (still works with 0.3 and above):
 
