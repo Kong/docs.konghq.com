@@ -12,6 +12,8 @@ installation more secure.
 > This feature isn't enabled by default in this version of {{site.base_gateway}}.
 ><br>
 > Start {{site.base_gateway}} with `KONG_VAULTS=bundled KONG_VAULTS_USE_NEW_STYLE_API=on`.
+><br>
+> When running in Hybrid or DBLess mode, Secrets Management is only supported in {{site.base_gateway}} version 2.8.1.3 and greater.
 
 The following example uses the most basic form of secrets management: storing secrets in environment variables. In this example, you will replace a plaintext password to your Postgres database with a reference to an environment variable.
 
