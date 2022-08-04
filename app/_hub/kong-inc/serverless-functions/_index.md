@@ -11,9 +11,9 @@ description: |
   different priority in the plugin chain.
 
   - `pre-function`
-    - Runs before other plugins run during each phase. The `pre-function` plugin can only run globally. It can't be applied to individual services, routes, or consumers.
+    - Runs before other plugins run during each phase. The `pre-function` plugin can be applied to individual services, routes, or globally.
   - `post-function`
-    - Runs after other plugins in each phase. The `post-function` plugin can be applied to individual services, routes, consumers, or globally.
+    - Runs after other plugins in each phase. The `post-function` plugin can be applied to individual services, routes, or globally.
 
   <div class="alert alert-ee red">
     <strong>Warning: </strong>The pre-function and post-function serverless plugin
