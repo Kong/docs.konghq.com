@@ -23,7 +23,7 @@ authentication.
 
 ## Set up SSO in {{site.konnect_short_name}}
 
-1. In [{{site.konnect_saas}}](https://cloud.konghq.com), click ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+1. In [{{site.konnect_saas}}](https://cloud.konghq.com), click {% konnect_icon cogwheel %}
 **Settings**, and then **Auth Settings**.
 
 1. Click **Configure provider** for **OIDC**.
@@ -58,7 +58,7 @@ the **Logout user from identity provider** checkbox.
 {:.important}
 > **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
-You can test the SSO configuration by navigating to the login URI based on the Organization Login Path you set earlier. For example: `cloud.konghq.com/login/examplepath`. You will see the IdP sign in window if your configuration is set up correctly.
+You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `cloud.konghq.com/login/examplepath`. If your configuration is set up correctly, you will see the IdP sign-in window.
 
 You can now manage your organization's user permissions entirely from the IdP
 application.
