@@ -95,7 +95,7 @@ using the Kong Admin API.
 > Server-side sorting and filtering large quantities of entities will also cause increased CPU usage in both Kong CP and database.
 
 
-[Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager) is
+[Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) is
 the graphical user interface (GUI) for {{site.base_gateway}}. It uses the Kong
 Admin API under the hood to administer and control {{site.base_gateway}}.
 
@@ -111,12 +111,12 @@ object-level health using intuitive, customizable dashboards
 ### Kong Dev Portal
 {:.badge .enterprise}
 
-[Kong Dev Portal](/gateway/{{page.kong_version}}/developer-portal) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
+[Kong Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/developer-portal/) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
 
 ### Kong Vitals
 {:.badge .enterprise}
 
-[Kong Vitals](/gateway/{{page.kong_version}}/vitals) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
+[Kong Vitals](/gateway/{{page.kong_version}}/kong-enterprise/vitals/) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
 
 ### Kubernetes
 
