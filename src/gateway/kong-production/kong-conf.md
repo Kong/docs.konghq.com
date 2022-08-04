@@ -64,7 +64,7 @@ configuration at /etc/kong/kong.conf is valid
 
 ## Set custom path
 
-By default, Kong looks for `kong.conf` in two
+By default, {{site.base_gateway}} looks for `kong.conf` in two
 default locations:
 
 ```
