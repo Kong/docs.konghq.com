@@ -186,10 +186,10 @@ params:
 
 ## Template as a Value
 
-You can use any of the current request headers, query params, and captured URI
+You can use any of the current request headers, query parameters, and captured URI
 groups as templates to populate supported configuration fields.
 
-| Request Param | Template
+| Request Parameter | Template
 | ------------- | -----------
 | header        | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`)
 | querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
@@ -203,8 +203,8 @@ $('$(something_that_needs_to_escaped)')
 ```
 
 {:.note}
-> **Note:** The plugin creates a non-mutable table of request headers, querystrings, and captured URIs
-before transformation. Therefore, any update or removal of params used in a template
+> **Note:** The plugin creates a non-mutable table of request headers, query strings, and captured URIs
+before transformation. Therefore, any update or removal of parameters used in a template
 does not affect the rendered value of a template.
 
 ### Advanced templates
@@ -290,7 +290,7 @@ Now send a request with a user id in the route path:
 curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-You should notice in the reponse that the `x-user-id` header has been added with a value of `foo`.
+You should notice in the response that the `x-user-id` header has been added with a value of `foo`.
 
 ## Order of execution
 

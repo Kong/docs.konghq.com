@@ -4,6 +4,27 @@ no_search: true
 no_version: true
 ---
 
+## 1.8.1
+
+> Released on **2022/07/19**
+
+Built on top of [Kuma 1.7.1](https://github.com/kumahq/kuma/releases/tag/1.7.1)
+
+### Changes
+
+- Check both old and new spec on Update
+
+## 1.7.2
+
+> Released on **2022/07/19**
+
+Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
+
+### Changes
+
+- Check both old and new spec on Update
+
+
 ## 1.8.0
 
 > Released on **2022/06/13**

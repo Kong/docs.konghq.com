@@ -20,14 +20,12 @@
     </li>
     {% if include.no_version == true %}
       {% if include.url contains '/konnect/servicehub' %}
-      <li class="breadcrumb-item">ServiceHub</li>
+      <li class="breadcrumb-item">Service Hub</li>
         {% for crumb in crumbs offset: 3 %}
           {% unless forloop.last %}
             <li class="breadcrumb-item">
               {% assign crumb_limit = forloop.index | plus: 3 %}
-              <!-- <a href="{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"> -->
               {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
-              <!-- </a> -->
             </li>
           {% endunless %}
         {% endfor %}

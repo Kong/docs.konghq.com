@@ -166,10 +166,9 @@ $ echo "apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
-  namespace: cert-manager
 spec:
   acme:
-    email: user@example.com #please change this
+    email: user@example.com #please change this/this is an optional, but recommended setting
     privateKeySecretRef:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -202,7 +201,6 @@ kind: Ingress
 metadata:
   name: demo-example-com
   annotations:
-    kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: kong
@@ -227,9 +225,6 @@ ingress.extensions/demo-example-com configured
 
 Things to note here:
 
-- The annotation `kubernetes.io/tls-acme`  is set to `true`, informing
-  cert-manager that it should provision a certificate for hosts in this
-  Ingress using ACME protocol.
 - `certmanager.k8s.io/cluster-issuer` is set to `letsencrypt-prod`, directing
   cert-manager to use Let's Encrypt's production server to provision a TLS
   certificate.

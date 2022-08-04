@@ -177,7 +177,7 @@
   lua_doc: true
 -
   release: "2.8.x"
-  ee-version: "2.8.1.1"
+  ee-version: "2.8.1.2"
   ce-version: "2.8.1"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -288,7 +288,7 @@
   edition: "mesh"
 -
   release: "1.8.x"
-  version: "1.8.0"
+  version: "1.8.1"
   edition: "mesh"
 -
   release: "1.0.x"
@@ -325,4 +325,8 @@
 -
   release: "2.4.x"
   version: "2.4.0"
+  edition: "kubernetes-ingress-controller"
+-
+  release: "2.5.x"
+  version: "2.5.0"
   edition: "kubernetes-ingress-controller"

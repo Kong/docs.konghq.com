@@ -1,5 +1,5 @@
 ---
-title: Manage Services through ServiceHub
+title: Manage Services through Service Hub
 no_version: true
 ---
 

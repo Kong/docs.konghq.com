@@ -1,4 +1,4 @@
-
+AgeNet
 Alertmanager
 allowlist
 anonymized
@@ -19,6 +19,8 @@ configs
 conntrack
 cors
 Curity
+DAO
+DAOs
 Datadog
 datagram
 datagrams
@@ -39,6 +41,7 @@ Grafana
 grpc
 grpcs
 hardcoded
+hashicorp
 hostname
 hostnames
 http
@@ -48,6 +51,7 @@ https
 inbounds
 ini
 inso
+instrumentations
 io
 iptables
 Istio
@@ -77,6 +81,7 @@ Luarocks
 ngrok
 npm
 md
+middleware
 minikube
 Mockbin
 Moesif
@@ -107,15 +112,19 @@ Prometheus
 Protobuf
 proxied
 proxying
+querystring
 reachability
 redis
+reentrant
 referenceable
 repo
+Resty
 routable
 runtime
 runtimes
 deduplication
 deduplicate
+sandboxed
 sandboxing
 serializer
 serverless
@@ -123,9 +132,11 @@ snis
 Splunk
 ssl
 sso
+statsd
 stderr
 stdin
 stdout
+Styra
 subtree
 Bagdi
 subcommand
@@ -145,6 +156,7 @@ unprocessable
 unpublish
 unregister
 unregistering
+upsert
 upstream
 upstreams
 usr
