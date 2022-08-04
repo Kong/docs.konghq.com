@@ -64,7 +64,7 @@ curl -s example.com:8000/user-agent?apikey=nonsense
 We'll now add a Key Auth credential for one consumer, and a Basic Auth credential for another.
 
 ```bash
-curl -sX POST loclhost:8001/consumers/medvezhonok/basic-auth \
+curl -sX POST localhost:8001/consumers/medvezhonok/basic-auth \
   -H "Content-Type: application/json" \
   --data '{"username": "medvezhonok", "password": "hunter2"}'
 
