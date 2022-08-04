@@ -1,5 +1,5 @@
 ---
-title: Kong Configuration Environment Variables
+title: Kong Gateway Environment Variables
 content-type: how-to
 ---
 
