@@ -2,9 +2,9 @@
 name: Prometheus
 publisher: Kong Inc.
 version: 3.0.0
-desc: Expose metrics related to Kong and proxied Upstream services in Prometheus exposition format
+desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |
-  Expose metrics related to Kong and proxied Upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
+  Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
 type: plugin
 categories:
   - analytics-monitoring
@@ -109,24 +109,24 @@ Following metrics are disabled by default as it may create high cardinality of m
 cause performance issues:
 
 When `status_code_metrics` is set to true:
-- **Status codes**: HTTP status codes returned by Upstream services.
+- **Status codes**: HTTP status codes returned by upstream services.
   These are available per service, across all services, and per route per consumer.
 
 When `lantency_metrics` is set to to true:
-- **Latencies Histograms**: Latency in ms, as measured at Kong:
-   - **Request**: Total time taken by Kong and Upstream services to serve
+- **Latencies Histograms**: Latency (in ms), as measured at Kong:
+   - **Request**: Total time taken by Kong and upstream services to serve
      requests.
    - **Kong**: Time taken for Kong to route a request and run all configured
      plugins.
-   - **Upstream**: Time taken by the Upstream service to respond to requests.
+   - **Upstream**: Time taken by the upstream service to respond to requests.
 
 When `bandwidth_metrics` is set to true:
 - **Bandwidth**: Total Bandwidth (egress/ingress) flowing through Kong.
   This metric is available per service and as a sum across all services.
 
 When `upstream_health_metrics` is set to true:
-- **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of Targets
-  belonging to a given Upstream as well as their subsystem (`http` or `stream`).
+- **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
+  belonging to a given upstream as well as their subsystem (`http` or `stream`).
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
@@ -256,8 +256,8 @@ allow access to the `/metrics` endpoint to Prometheus:
 
 ### 3.0.x
 
-* Disable high cardinality metrics by default.
-* Decreases performance penalty to proxy traffic when collecting metrics.
+* High cardinality metrics are now disabled by default.
+* Decreased performance penalty to proxy traffic when collecting metrics.
 
 ### 1.6.x
 
