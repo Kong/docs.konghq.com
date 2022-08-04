@@ -4,8 +4,8 @@ content-type: how-to
 ---
 
 
-Kong comes with a default configuration file `kong.conf`. If you installed Kong using an official package, this file can be found at:
-`/etc/kong/kong.conf.default`. The Kong configuration file is a YAML file that can be used to configure individual properties of your Kong instance. This guide will explain how to configure Kong using the `kong.conf` file.
+{{site.base_gateway}} comes with a default configuration file `kong.conf`. If you installed {{site.base_gateway}} using an official package, this file can be found at:
+`/etc/kong/kong.conf.default`. The {{site.base_gateway}} configuration file is a YAML file that can be used to configure individual properties of your Kong instance. This guide will explain how to configure {{site.base_gateway}} using the `kong.conf` file.
 
 
 ## Configure Kong
