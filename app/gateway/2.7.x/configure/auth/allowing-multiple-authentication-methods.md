@@ -22,7 +22,7 @@ curl -sX POST localhost:8001/consumers \
 
 # {"created_at":1517528259000,"username":"medvezhonok","id":"b3c95318-a932-4bb2-9d74-1298a3ffc87c"}
 
-curl -sX POST kong-admin:8001/consumers \
+curl -sX POST localhost:8001/consumers \
   -H "Content-Type: application/json" \
   --data '{"username": "ezhik"}'
 
@@ -52,11 +52,11 @@ If using [OpenID Connect](/hub/kong-inc/openid-connect), you must also set `conf
 At this point unauthenticated requests and requests with invalid credentials are still allowed. The anonymous consumer is allowed, and will be applied to any request that does not pass a set of credentials associated with some other consumer.
 
 ```bash
-curl -s example.com:8000/user-agent
+curl -s localhost:8000/user-agent
 
 # {"user-agent": "curl/7.58.0"}
 
-curl -s example.com:8000/user-agent?apikey=nonsense
+curl -s localhost:8000/user-agent?apikey=nonsense
 
 # {"user-agent": "curl/7.58.0"}
 ```
@@ -90,19 +90,19 @@ curl -sX POST localhost:8001/consumers/d955c0cb-1a6e-4152-9440-414ebb8fee8a/plug
 Requests with missing or invalid credentials are now rejected, whereas authorized requests using either authentication method are allowed.
 
 ```bash
-curl -s example.com:8000/user-agent?apikey=nonsense
+curl -s localhost:8000/user-agent?apikey=nonsense
 
 # {"error": "Authentication required"}
 
-curl -s example.com:8000/user-agent
+curl -s localhost:8000/user-agent
 
 # {"error": "Authentication required"}
 
-curl -s example.com:8000/user-agent?apikey=hunter3
+curl -s localhost:8000/user-agent?apikey=hunter3
 
 # {"user-agent": "curl/7.58.0"}
 
-curl -s example.com:8000/user-agent -u medvezhonok:hunter2
+curl -s localhost:8000/user-agent -u medvezhonok:hunter2
 
 # {"user-agent": "curl/7.58.0"}
 ```
