@@ -407,6 +407,8 @@ items:
           url: /plugin-development/pdk/kong.vault
       - text: Plugins in Other Languages
         items:
+          - text: overview
+            url: /plugin-development/other/external-plugins
           - text: Go
             url: /plugin-development/other/go
           - text: Javascript

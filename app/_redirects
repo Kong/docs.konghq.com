@@ -696,3 +696,12 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+
+
+
+# 3.0 redirects
+# incomplete
+#/gateway/latest#/pdk/      /gateway/latest/plugin-development/pdk/
+# /gateway/latest/reference/external-plugins    /gateway/latest/plugin-development/other/external-plugins/external-plugins
+
+# /gateway/latest/install-and-run    /gateway/latest/get-started/

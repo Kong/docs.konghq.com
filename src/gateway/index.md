@@ -35,9 +35,9 @@ into the request lifecycle, all with a few lines of code.
 Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
 Gateway deployments. You can also create your own custom plugins. For more
 information, see the
-[plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
-the [PDK reference](/gateway/{{page.kong_version}}/pdk), and the guide on
-[creating plugins with other languages](/gateway/{{page.kong_version}}/reference/external-plugins).
+[plugin development guide](/gateway/{{page.kong_version}}/plugin-development/),
+the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and the guide on
+[creating plugins with other languages](/gateway/{{page.kong_version}}/plugin-development/other/external-plugins).
 
 ## Packages and modes
 
@@ -134,7 +134,7 @@ Kong also provides API lifecycle management tools that you can use with {{site.b
 [Insomnia](https://docs.insomnia.rest) enables spec-first development for all REST and GraphQL services. With Insomnia, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Insomnia to increase development velocity, reduce deployment risk, and increase collaboration.
 
 ### decK
-[decK](/deck) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
+[decK](/deck/latest/) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
 This means that a developer can define the desired state of {{site.base_gateway}} or
 {{site.konnect_short_name}} &ndash; services, routes, plugins, and more &ndash; and let decK handle
 implementation without needing to execute each step manually, as you would with
@@ -143,14 +143,12 @@ the Kong Admin API.
 
 ## Get started with {{site.base_gateway}}
 
-[Download and install {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run).
+[Download and install {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/get-kong-with-docker).
 To test it out, you can choose either the open-source package, or
 run {{site.base_gateway}} in free mode and also try out Kong Manager.
 
-After installation, get started with one of our introductory guides:
-* **[Quickstart](/gateway/{{page.kong_version}}/get-started/quickstart)**: An introduction to
-{{site.base_gateway}}, common objects, and basic Admin API commands.
-* **[Getting started guide](/gateway/{{page.kong_version}}/get-started/comprehensive)**:
+After installation, get started with our introductory guides:
+* **[Getting started guide](/gateway/{{page.kong_version}}/get-started/)**:
 The complete {{site.base_gateway}}
 getting started guide provides in-depth examples, explanations, and step-by-step
 instructions, and explores Kong's many available tools for managing the gateway.
