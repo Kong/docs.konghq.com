@@ -8,9 +8,9 @@ content-type: how-to
 `/etc/kong/kong.conf.default`. The {{site.base_gateway}} configuration file is a YAML file that can be used to configure individual properties of your Kong instance. This guide will explain how to configure {{site.base_gateway}} using the `kong.conf` file.
 
 
-## Configure Kong
+## Configure {{site.base_gateway}}
 
-To configure Kong, make a copy of the default configuration file: 
+To configure {{site.base_gateway}}, make a copy of the default configuration file: 
 
 ```bash
 cp /etc/kong/kong.conf.default /etc/kong/kong.conf
