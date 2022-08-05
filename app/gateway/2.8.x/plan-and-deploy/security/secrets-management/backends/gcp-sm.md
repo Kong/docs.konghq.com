@@ -90,7 +90,6 @@ http -f PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
 Result:
 
 ```json
-
 {
     "config": {
         "project_id": "my_project_id"
