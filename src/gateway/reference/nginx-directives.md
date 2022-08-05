@@ -5,18 +5,18 @@ content-type: reference
 
 ### Injecting individual Nginx directives
 
-Entries in `kong.conf` that are prefixed by `nginx_http_`,
-`nginx_proxy_` or `nginx_admin_` will be converted into an Nginx
+Entries in `kong.conf` that are prefixed with `nginx_http_`,
+`nginx_proxy_` or `nginx_admin_` are converted to Nginx
 directives.
 
-- Entries prefixed with `nginx_http_` will be injected to the overall `http`
+- Entries prefixed with `nginx_http_` will be injected into the overall `http`
 block directive.
 
-- Entries prefixed with `nginx_proxy_` will be injected to the `server` block
-directive handling Kong's proxy ports.
+- Entries prefixed with `nginx_proxy_` will be injected into the `server` block
+directive handling {{site.base_gateway}}'s proxy ports.
 
-- Entries prefixed with `nginx_admin_` will be injected to the `server` block
-directive handling Kong's Admin API ports.
+- Entries prefixed with `nginx_admin_` will be injected into the `server` block
+directive handling {{site.base_gateway}}'s Admin API ports.
 
 For example, if you add the following line to your `kong.conf` file:
 
@@ -24,7 +24,7 @@ For example, if you add the following line to your `kong.conf` file:
 nginx_proxy_large_client_header_buffers=16 128k
 ```
 
-It will add the following directive to the proxy `server` block of Kong's
+It adds the following directive to the proxy `server` block of {{site.base_gateway}}'s
 Nginx configuration:
 
 ```
@@ -39,7 +39,7 @@ example, if you declare an environment variable like this:
 export KONG_NGINX_HTTP_OUTPUT_BUFFERS="4 64k"
 ```
 
-This will result in the following Nginx directive being added to the `http`
+This results in the following Nginx directive being added to the `http`
 block:
 
 ```
@@ -54,7 +54,7 @@ For a list of Nginx directives, see the [Nginx directives index](https://nginx.o
 ### Including files via injected Nginx directives
 
 Complex configurations may require adding new `server` blocks to an Nginx configuration.
-You can inject `include` directives into an Nginx configuration, that point to Nginx settings files. 
+You can inject `include` directives into an Nginx configuration that point to Nginx settings files. 
 
 For example, if you create a file called `my-server.kong.conf` with
 the following contents:
@@ -96,11 +96,11 @@ HTTP/1.1 200 OK
 If you use a relative path in an `nginx_http_include` property, that
 path will be interpreted relative to the value of the `prefix` property of
 your `kong.conf` file (or the value of the `-p` flag of `kong start` if you
-used it to override the prefix when starting Kong).
+used it to override the prefix when starting {{site.base_gateway}}).
 
-## Custom Nginx templates & embedding Kong
+## Custom Nginx templates and embedding {{site.base_gateway}}
 
-You can use of custom Nginx
+You can use custom Nginx
 configuration templates directly in two cases: 
 
 - You need to modify {{site.base_gateway}}'s default
@@ -108,7 +108,7 @@ Nginx configuration. Specifically values that are not adjustable in `kong.conf`,
 Nginx configuration and launch {{site.base_gateway}} using your customized template.
 
 - You need to embed {{site.base_gateway}} in an already running OpenResty instance, you
-can reuse Kong's generated configuration and include it in your existing
+can reuse {{site.base_gateway}}'s generated configuration and include it in your existing
 configuration.
 
 ### Custom Nginx templates
