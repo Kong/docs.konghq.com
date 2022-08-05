@@ -187,7 +187,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
       {% if page.type == "plugin" and page.params %}
         <h2 id="configuration">Configuration Reference</h2>
 
-        {% if page.params.dbless_compatible == "yes" %}
+        {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}
           <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
         {% elsif page.params.dbless_compatible == "partially" %}
           <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
