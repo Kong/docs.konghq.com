@@ -5,6 +5,49 @@ no_version: true
 
 <!-- vale off -->
 
+## 2.8.1.3
+**Release Date** 2022/08/05
+
+### Features
+
+#### Enterprise
+
+* Added GCP integration support for the secrets manager. GCP is now available as a vault backend.
+
+#### Plugins
+
+* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+   * Added support for cross-account lambda function invocation based on AWS roles.
+
+### Fixes
+
+#### Enterprise
+* Fixed an issue with excessive log file disk utilization on control planes.
+* Fixed an issue with keyring encryption, where keyring was not decrypting keys after a soft reload.
+* The router now detects static route collisions inside the current workspace, as well as with other workspaces.
+* When using a custom plugin in a hybrid mode deployment, the control plane now detects compatibility issues and stops sending the plugin configuration to data planes that can't use it. The control plane continues sending the custom plugin configuration to compatible data planes.
+* Optimized the Kong PDK function `kong.response.get_source()`.
+
+#### Kong Manager
+* Fixed an issue with admin creation.
+Previously, when an admin was created with no roles, the admin would have access to the first workspace listed alphabetically.
+
+#### Plugins
+
+* [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  * Fixed an issue where the plugin didn't accept empty values in examples.
+
+* [ACME](/hub/kong-inc/acme) (`acme`)
+  * The `domains` plugin parameter can now be left empty.
+  When `domains` is empty, all TLDs are allowed.
+  Previously, the parameter was labelled as optional, but leaving it empty meant that the plugin retrieved no certificates at all.
+
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Fixed an issue with nested array parsing.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed an issue with `cluster` strategy timestamp precision in Cassandra.
+
 ## 2.8.1.2
 **Release Date** 2022/07/15
 
