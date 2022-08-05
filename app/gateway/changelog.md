@@ -27,6 +27,7 @@ no_version: true
 * The router now detects static route collisions inside the current workspace, as well as with other workspaces.
 * When using a custom plugin in a hybrid mode deployment, the control plane now detects compatibility issues and stops sending the plugin configuration to data planes that can't use it. The control plane continues sending the custom plugin configuration to compatible data planes.
 * Optimized the Kong PDK function `kong.response.get_source()`.
+* Fixed client certificate updating issue that the certificate in core_cache should be invalidation when updating, and the corresponding cache item for the new certificate should be used.
 
 #### Kong Manager
 * Fixed an issue with admin creation.
