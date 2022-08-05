@@ -28,7 +28,7 @@ PERF_TEST_USE_DAILY_IMAGE=true PERF_TEST_VERSIONS=git:master,git:perf/your-other
 ```
 
 User can also run the performance test framework inside a Kong container from scratch, from other development tools
-like [gojira](https://github.com/kong/gojira) or [pongo](https://github.com/kong/kong-pongo), if they don't have development environment.
+like [gojira](https://github.com/kong/gojira) or [Pongo](https://github.com/kong/kong-pongo), if they don't have development environment.
 Note to use the `docker` driver inside a container, the Docker daemon socket `/var/run/docker.sock` needs to be mounted inside the container.
 
 ### Terraform managed instances
