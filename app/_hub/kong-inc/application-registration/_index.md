@@ -56,6 +56,7 @@ kong_version_compatibility:
       - 2.1.x
 params:
   name: application-registration
+  global: false
   service_id: true
   consumer_id: false
   route_id: false
