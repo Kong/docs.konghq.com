@@ -155,7 +155,7 @@ test.describe("sidenav versions", () => {
       const link = page.locator(
         `a:text("${t.link_text}")`
       );
-      href = await link.getAttribute("href");
+      const href = await link.getAttribute("href");
       await expect(href).toEqual(t.expected_url)
     });
   });
