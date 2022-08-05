@@ -258,6 +258,22 @@ allow access to the `/metrics` endpoint to Prometheus:
 
 * High cardinality metrics are now disabled by default.
 * Decreased performance penalty to proxy traffic when collecting metrics.
+* The following metric names were adjusted to add units to standardize where possible:
+  * `http_status` to `http_requests_total`
+  * `latency` to `kong_request_latency_ms`/`kong_upstream_latency_ms`/`kong_kong_latency_ms`
+  * `kong_bandwidh` to `kong_bandwidth_bytes`
+  * `nginx_http_current_connections`/`nginx_stream_current_connections` to `nginx_hconnections_total`
+  * Removed: `http_consumer_status`
+* New metric: `session_duration_ms` for monitoring stream connections
+* New metric: `node_info` is a single gauge set to 1 that outputs the node's ID and {{site.base_gateway}} version
+* Latency was split into four different metrics: `kong_latency_ms`, `upstream_latency_ms`, `request_latency_ms` (HTTP), and `session_duration_ms` (stream). Buckets details follow:
+  * Kong Latency and Upstream Latency can operate at orders of different magnitudes. Separate these buckets to reduce memory overhead.
+* `request_count` and `consumer_status` were merged into `http_requests_total`. If the `per_consumer` config is set to false, the `consumer` label will be empty.  If the `per_consumer` config is true, the `consumer` label will be filled.
+* `http_requests_total` has a new label [`source`](/gateway/latest/plugin-development/pdk/kong.response/#kongresponseget_source/). It can be set to `exit`, `error`, or `service`.
+* All Memory metrics have a new label, `node_id`.
+* `nginx_http_current_connections` merged with `nginx_stream_current_connection` to `nginx_current_connections`
+* Plugin version bumped to 3.0.0
+* The `node_id` label was added to memory metrics.
 
 ### 1.6.x
 
