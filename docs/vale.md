@@ -15,7 +15,7 @@ Docs
 │ │       └── dictionary.txt
 │ └── workflows
 │     └── linting.yml
-└── vale.ini
+└── .vale.ini
 ```
 
 <!-- vale on -->
