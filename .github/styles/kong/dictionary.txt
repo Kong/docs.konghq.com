@@ -96,6 +96,7 @@ Mockbin
 Moesif
 MongoDB
 nameserver
+nameservers
 namespace
 namespaces
 namespaced

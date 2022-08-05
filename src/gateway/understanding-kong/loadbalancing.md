@@ -14,7 +14,7 @@ is done outside of Kong, and Kong only receives updates from the DNS server.
 Every Service that has been defined with a `host` containing a hostname
 (instead of an IP address) will automatically use DNS-based load balancing
 if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your DNS hostfile.
+resolve to an `upstream` name or a name in your DNS hosts file.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
