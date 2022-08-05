@@ -64,6 +64,11 @@ Note that both the provider (`gcp`) as well as the GCP project ID
 Once the database is initialized, a Vault entity can be created
 that encapsulates the provider and the GCP project ID:
 
+{:.important}
+> **API Endpoint update**
+>
+> If you're using 2.8.2 or below, or have not set `vaults_use_new_style_api=on` in `kong.conf` you will need to replace `/vaults/` with `/vaults-beta/` in the examples below.
+
 {% navtabs codeblock %}
 {% navtab cURL %}
 
