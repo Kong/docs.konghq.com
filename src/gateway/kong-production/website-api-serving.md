@@ -5,7 +5,7 @@ content-type: how-to
 
 ## How to serve both a website and APIs using {{site.base_gateway}}
 
-A common use case for API providers is to make Kong serve both a website
+A common use case for API providers is to make {{site.base_gateway}} serve both a website
 and the APIs over port: `80` or `443` in
 production. For example, `https://example.net` (Website) and
 `https://example.net/api/v1` (API).
@@ -72,6 +72,6 @@ Then start Nginx:
 
 ## More Information
 
-* [Embedding Kong in Open resty](/gateway/latest/kong-production/kong-openresty)
+* [Embedding Kong in OpenResty](/gateway/latest/kong-production/kong-openresty)
 * [Setting environment variables](/gateway/latest/kong-production/environment-variables)
 * [How to use `kong.conf`](/gateway/latest/kong-production/kong-conf)
