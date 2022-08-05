@@ -76,7 +76,7 @@ requirements, and setup complexity.
 | docker   | yes                      | yes                          |            | yes (`use_daily_image` = true) |
 |terraform | yes                      | yes                          | yes        | yes (`use_daily_image` = true) |
 
-Using either of the driver requires Lua development dependencies of Kong being installed.
+You must install the following Lua development dependencies to use either of the drivers:
 
 - **docker** Driver is solely based on Docker images. It's the most convenient driver to setup
 as it requires less dependencies. But it may also be influenced by other local programs
@@ -419,7 +419,7 @@ charts.options({
 })
 ```
 
-Otherwise, the chart will treat results in same test file as independent tests
+If this option is not set, the chart treats results in same test file as independent tests
 and draws a bar chart.
 
 ### perf.generate_flamegraph
