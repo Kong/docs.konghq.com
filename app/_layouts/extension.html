@@ -35,6 +35,9 @@ breadcrumbs:
     {% if page.params.service_id %}
       <tr>
         <td><code>service.name</code> or <code>service.id</code>
+        {% if page.params.global == false %}
+        <br><i>required</i>
+        {% endif %}
           <br><br><strong>Type: </strong>string</td>
         <td>The name or ID of the service the plugin targets.
           <br><br>Set one of these parameters if adding the plugin to a service through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
