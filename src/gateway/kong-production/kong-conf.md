@@ -93,3 +93,10 @@ kong start -c /etc/kong.conf --vv
 2016/08/11 14:53:36 [debug] log_level = "notice"
 [...]
 ```
+
+
+## More Information
+
+* [Embedding Kong in Open resty](/gateway/latest/kong-production/kong-openresty)
+* [Setting environment variables](/gateway/latest/kong-production/environment-variables)
+* [How to serve an API and a website with Kong](/gateway/latest/kong-production/website-api-serving)

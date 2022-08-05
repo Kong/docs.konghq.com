@@ -30,3 +30,10 @@ nginx -p /usr/local/openresty -c my_nginx.conf
 ```
 
 Kong will be running in that instance as configured in `nginx-kong.conf`.
+
+
+## More Information
+
+* [Setting environment variables](/gateway/latest/kong-production/environment-variables)
+* [How to use `kong.conf`](/gateway/latest/kong-production/kong-conf)
+* [How to serve an API and a website with Kong](/gateway/latest/kong-production/website-api-serving)

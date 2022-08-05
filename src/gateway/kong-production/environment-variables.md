@@ -22,3 +22,10 @@ set `KONG_LOG_LEVEL` as an environment variable:
 ```bash
 export KONG_LOG_LEVEL=error
 ```
+
+
+## More Information
+
+* [Embedding Kong in Open resty](/gateway/latest/kong-production/kong-openresty)
+* [How to use `kong.conf`](/gateway/latest/kong-production/kong-conf)
+* [How to serve an API and a website with Kong](/gateway/latest/kong-production/website-api-serving)
