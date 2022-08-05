@@ -1,4 +1,3 @@
-AgeNet
 Alertmanager
 allowlist
 anonymized
@@ -106,6 +105,8 @@ outbounds
 passthrough
 PayPal
 plaintext
+Postgres
+PostgreSQL
 PowerShell
 prepend
 prepends

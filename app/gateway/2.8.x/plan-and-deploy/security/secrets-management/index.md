@@ -1,6 +1,5 @@
 ---
 title: Secrets Management
-beta: true
 ---
 
 A secret is any sensitive piece of information required for API gateway
@@ -10,7 +9,7 @@ with APIs serviced by the gateway.
 
 Some of the most common types of secrets used by {{site.base_gateway}} include:
 
-* Datastore usernames and passwords, used with PostgreSQL and Redis
+* Data store usernames and passwords, used with PostgreSQL and Redis
 * Private X.509 certificates
 * API keys
 * Sensitive plugin configuration fields, generally used for authentication
@@ -51,29 +50,24 @@ documentation for each plugin to identify the referenceable fields:
 {{site.base_gateway}} supports the following vault backends:
 * Environment variables
 * AWS Secrets Manager
-* Hashicorp Vault
+* GCP Secrets Manager
+* HashiCorp Vault
 
 See the [backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
 for more information about each option.
 
-## Beta limitations
+## Notes on the GA release of the Secrets Management feature
 
-This feature is currently in beta. This means it has limited support from
-Kong and the functionality may change in the future.
-
-**Do not** implement this feature in a product environment.
-
-* The beta of this feature only supports `get`. There is no `set` or secrets
-rotation support in the beta.
-* In this version, this feature isn't enabled by default. To test it out, start
-{{site.base_gateway}} with `KONG_VAULTS=bundled` if running Kong in a container,
-or with `vaults=bundled` set in `kong.conf`.
-* The API endpoint is suffixed with `-beta` to avoid any possible conflicts. This
-endpoint will change once the beta is over.
+In the GA release of the Secrets Management feature in
+{{site.base_gateway}}, this feature is enabled by default.
+Due to conflicts with previous releases of {{site.base_gateway}},
+the endpoints for secrets management in the
+Admin API will be moved from the previous `/vaults-beta` prefix to
+`/vaults` with `vaults_use_new_style_api=on` set in `kong.conf`.
 
 ## Get started
 
-To test out secrets management, see the following topics:
+For further information on secrets management, see the following topics:
 * [Get started with secrets management](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/getting-started/)
 * [Backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
 * [Reference format](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/reference-format/)

@@ -1,6 +1,5 @@
 ---
 title: Advanced Secrets Configuration
-beta: true
 ---
 
 
@@ -23,7 +22,7 @@ refer to respective [vault backend documentation](/gateway/{{page.kong_version}}
 
 You can configure your vault backend with `KONG_VAULT_<vault-backend>_<config_opt>` environment variables.
 
-For example, Kong Gateway might look for an environment variable that matches `KONG_VAULT_ENV_PREFIX`:
+For example, {{site.base_gateway}} might look for an environment variable that matches `KONG_VAULT_ENV_PREFIX`:
 
 ```bash
 export KONG_VAULT_ENV_PREFIX=SECURE_
@@ -33,14 +32,11 @@ export KONG_VAULT_ENV_PREFIX=SECURE_
 
 You can configure your vault backend using the `vaults` entity.
 
-For the beta release of this feature, the endpoint is `/vaults-beta`.
-
 ```bash
-http PUT :8001/vaults-beta/my-env-vault \
+http -f PUT :8001/vaults/my-env-vault \
   name=env \
   description="ENV vault for secrets" \
-  config.prefix=SECURE_ \
-  -f
+  config.prefix=SECURE_
 ```
 
 This lets you drop the configuration from environment variables and query arguments and use the entity name in the reference.
@@ -53,13 +49,10 @@ For more information, see the section on the [Vaults entity](#vaults-entity).
 
 ## Vaults CLI
 
-{:.warning}
-> **Beta warning:** In the beta release, only the `kong vault get` command is supported.
-
 ```text
 Usage: kong vault COMMAND [OPTIONS]
 
-Vault utilities for Kong.
+Vault utilities for {{site.base_gateway}}.
 
 Example usage:
  TEST=hello kong vault get env/test
@@ -75,10 +68,7 @@ Options:
 ## Vaults Entity
 
 {:.warning}
-> **Beta warning:**
-> <br>
-> The API endpoint is suffixed with `-beta` to avoid any possible conflicts. This will be
-> changed in the future. Kong Manager has currently no supports for configuring vault entities.
+> Kong Manager currently doesn't support configuring vault entities.
 
 The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
@@ -88,7 +78,7 @@ Create a Vault entity:
 {% navtab cURL %}
 
 ```bash
-$ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-env-vault-1  \
+$ curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
         --data name=env \
         --data description='ENV vault for secrets' \
         --data config.prefix=SECRET_
@@ -98,11 +88,10 @@ $ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-env-vault-1  \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-env-vault-1 \
+http -f PUT :8001/vaults/my-env-vault-1 \
   name=env \
   description="ENV vault for secrets" \
-  config.prefix=SECRET_  \
-  -f
+  config.prefix=SECRET_
 ```
 
 {% endnavtab %}
