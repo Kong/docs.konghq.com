@@ -11,9 +11,9 @@ description: |
   different priority in the plugin chain.
 
   - `pre-function`
-    - Runs before other plugins run during each phase. The `pre-function` plugin can only run globally. It can't be applied to individual services, routes, or consumers.
+    - Runs before other plugins run during each phase. The `pre-function` plugin can be applied to individual services, routes, or globally.
   - `post-function`
-    - Runs after other plugins in each phase. The `post-function` plugin can be applied to individual services, routes, consumers, or globally.
+    - Runs after other plugins in each phase. The `post-function` plugin can be applied to individual services, routes, or globally.
 
   <div class="alert alert-ee red">
     <strong>Warning: </strong>The pre-function and post-function serverless plugin
@@ -284,8 +284,8 @@ Starting with version 2.0 of the plugin, the provided Lua environment is sandbox
 #### Upvalues
 
 Prior to version 0.3 of the plugin, the provided Lua code would run as the
-function. From version 0.3 onwards also a function can be returned, to allow
-for upvalues.
+function. Since version 0.3 functions can be returned, to allow
+the use of upvalues.
 
 So the older version would do this (still works with 0.3 and above):
 

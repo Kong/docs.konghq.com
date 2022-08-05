@@ -90,6 +90,7 @@ ngrok
 npm
 md
 middleware
+minifier
 minikube
 Mockbin
 Moesif
@@ -106,6 +107,7 @@ oc
 Okta
 onboard
 onboarding
+onwards
 opa
 outbounds
 passthrough
@@ -174,6 +176,8 @@ unregistering
 upsert
 upstream
 upstreams
+upvalue
+upvalues
 use_daily_image
 usr
 uri
