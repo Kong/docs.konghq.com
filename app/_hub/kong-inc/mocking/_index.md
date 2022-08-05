@@ -45,8 +45,6 @@ params:
   protocols:
     - http
     - https
-    - grpc
-    - grpcs
   dbless_compatible: 'yes'
   dbless_explanation: |
     Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
