@@ -5,9 +5,9 @@ content_type: explanation
 
 In {{site.base_gateway}}, a service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on. 
 
-The main attribute of a service is its URL, where Kong should proxy traffic to. You can specify the URL with a single string, or by specifying its protocol, host, port, and path individually. 
+The main attribute of a service is its URL. You can specify the URL with a single string, or by specifying its protocol, host, port, and path individually. 
 
-Service entities are abstractions of each of your own upstream services. Examples of Services would be a data transformation microservice, a billing API, etc.
+Service entities are abstractions of each of your own upstream services. Examples of services would be a data transformation microservice or a billing API.
 
 ## Service configuration
 
@@ -20,7 +20,7 @@ You can configure a service in {{site.base_gateway}} using the following methods
 
 ## Service and route interaction
 
-Services, in conjunction with [routes](/gateway/latest/understanding-kong/key-concepts/routes/), let you expose your services to clients with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the clients by using routes. Since the client always calls the route, changes to the services(like versioning) don't impact how clients make the call.  Routes also allow the same service to be used by multiple clients and apply different policies based on the route used. 
+Services, in conjunction with [routes](/gateway/latest/understanding-kong/key-concepts/routes/), let you expose your services to clients with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the clients by using routes. Since the client always calls the route, changes to the services(like versioning) don't impact how clients make the call. Routes also allow the same service to be used by multiple clients and apply different policies based on the route used. 
 
 For example, if you have an external client and an internal client that need to access the `hwservice` service, but the external client should be limited in how often it can query the service to assure no denial of service. If a rate limit policy is configured for the service when the internal client calls the service, the internal client is limited as well. Routes solve this problem. 
 
