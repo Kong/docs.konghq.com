@@ -36,6 +36,17 @@ HTTP 200 OK
 }
 ```
 
+The `status` field in the response indicates if the admin has accepted their invitation:
+
+| Code | Status     |
+|------|------------|
+| 0    | Approved   |
+| 1    | Pending    |
+| 2    | Rejected   |
+| 3    | Revoked    |
+| 4    | Invited    |
+| 5    | Unverified |
+
 ## Invite an Admin
 **Endpoint**
 
