@@ -83,6 +83,7 @@ loopback
 lua
 Luarocks
 ngrok
+npm
 md
 minifier
 minikube
