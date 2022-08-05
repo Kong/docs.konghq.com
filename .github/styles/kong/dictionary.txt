@@ -95,6 +95,7 @@ minikube
 Mockbin
 Moesif
 MongoDB
+nameserver
 namespace
 namespaces
 namespaced
