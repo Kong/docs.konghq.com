@@ -7,7 +7,7 @@ Using the [ring-balancer](/gateway/latest/understanding-kong/loadbalancing/#ring
 a service. Switching target infrastructure only requires a `PATCH` request on a
 service to change its `host` value.
 
-Set up the "Blue" environment, running version one of the address service:
+Set up the "blue" environment, running version one of the address service:
 
 ```bash
 # create an upstream
@@ -55,7 +55,7 @@ $ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "weight=100"
 ```
 
-To activate the Blue/Green switch, we now only need to update the service:
+To activate the blue/green switch, we now only need to update the service:
 
 ```bash
 # Switch the Service from Blue to Green upstream, v1 -> v2
