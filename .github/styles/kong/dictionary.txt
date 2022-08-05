@@ -98,6 +98,7 @@ Okta
 onboard
 onboarding
 opa
+openresty
 outbounds
 passthrough
 PayPal
