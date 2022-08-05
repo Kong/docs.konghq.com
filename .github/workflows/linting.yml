@@ -4,7 +4,8 @@ on:
     types: [synchronize, ready_for_review, opened]
 
 jobs:
-  linting:
+  rubocop:
+    name: Rubocop
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -30,3 +31,14 @@ jobs:
       - name: Rubocop
         run: |
           bundle exec rubocop app
+  vale:
+    name: Vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: errata-ai/vale-action@v1
+        with:
+          # path where vale checks checking only modified files.
+          files: __onlyModified
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

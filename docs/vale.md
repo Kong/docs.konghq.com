@@ -14,16 +14,16 @@ Docs
 │ │       ├── Terms.yml
 │ │       └── dictionary.txt
 │ └── workflows
-│     └── vale_linter.yml
+│     └── linting.yml
 └── vale.ini
 ```
 
 <!-- vale on -->
-- `vale.ini`: This is the main configuration file for Vale. For information on how this file works, [the official documentation](https://docs.errata.ai/vale/config) contains detailed information about this file.  
-- `spelling.yml`: This file contains the rules for enforcing spelling. It inherits `dictionary.txt` and sets the `level` value to `error`. This setting will cause a build to fail. 
-- `dictionary.txt`: This file is where you can add words that should be ignored by the dictionary. This file is case **in-sensitive**, and ordered alphabetically in ascending order. 
-- `Terms.yml`: This file is used for specific cases where the word may be spelled correctly, but incorrectly capitalized in the case of a company or product name. 
-- `vale_linter.yml`: This file contains the GHA workflow. 
+- `vale.ini`: This is the main configuration file for Vale. For information on how this file works, [the official documentation](https://docs.errata.ai/vale/config) contains detailed information about this file.
+- `spelling.yml`: This file contains the rules for enforcing spelling. It inherits `dictionary.txt` and sets the `level` value to `error`. This setting will cause a build to fail.
+- `dictionary.txt`: This file is where you can add words that should be ignored by the dictionary. This file is case **in-sensitive**, and ordered alphabetically in ascending order.
+- `Terms.yml`: This file is used for specific cases where the word may be spelled correctly, but incorrectly capitalized in the case of a company or product name.
+- `linting.yml`: This file contains the GHA workflow.
 
 The `vale.ini` configuration file considers anything within the `.github/styles/kong` as part of the `Kong` style. Any new rule written within the Kong style directory will be automatically accessible to Vale. 
 At this time we only use Vale to enforce: 
