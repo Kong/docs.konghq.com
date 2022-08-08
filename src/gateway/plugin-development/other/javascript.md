@@ -3,7 +3,7 @@ title: Plugins in Other Languages Javascript
 content-type: explanation
 ---
 
-{{site.base_gateway}} support for the JavaScript language is provided by [kong-js-pdk](https://github.com/Kong/kong-js-pdk).
+{{site.base_gateway}} support for the JavaScript language is provided by the [JavaScript PDK](https://github.com/Kong/kong-js-pdk).
 The library provides a plugin server that provides a runtime for JavaScript bindings for {{site.base_gateway}}.
 
 TypeScript is also supported in the following ways:
