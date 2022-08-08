@@ -11,8 +11,8 @@ description: |
   This plugin must be used in conjunction with the TLS Metadata Headers plugin.
 
 enterprise: true
-plus: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
-cloud: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
+plus: false # need to update this once we verify that this plugin is in Konnect post-3.0 update
+cloud: false # need to update this once we verify that this plugin is in Konnect post-3.0 update
 type: plugin
 categories:
   - security
@@ -30,7 +30,7 @@ params:
     - grpcs
     - tls
   dbless_compatible: 'yes'
-  konnect_examples: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
+  konnect_examples: false # need to update this once we verify that this plugin is in Konnect post-3.0 update
   config:
     - name: tls_client_certificate
       required: false
