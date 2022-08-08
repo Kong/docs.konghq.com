@@ -152,6 +152,14 @@ items:
             url: /kong-production/monitoring/prometheus
           - text: How to monitor with Statsd
             url: /kong-production/monitoring/statsd
+      - text: Tracing
+        items: 
+          - text: Overview
+            url: /kong-production/tracing/
+          - text: How to Write a Custom Trace Exporter
+            url: /kong-production/tracing/write-custom-trace-exporter
+          - text: Tracing API reference
+            url: /kong-production/tracing/api
       - text: Resource Sizing Guidelines
         url: /kong-production/sizing-guidelines
       - text: Kong security update process
@@ -369,7 +377,7 @@ items:
         url: /plugin-development/tests
       - text: (un)Installing your plugin
         url: /plugin-development/distribution
-      - text: Plugin Developmen Kit
+      - text: Plugin Development Kit
         items:
         - text: Overview
           url: /plugin-development/pdk/
@@ -452,6 +460,7 @@ items:
                 url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               - text: Configuring Fixed bucket
                 url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
+      
       - text: GraphQL
         url: /kong-plugins/graphql-quickstart
       - text: gRPC
