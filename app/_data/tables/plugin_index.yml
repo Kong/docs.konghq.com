@@ -169,6 +169,14 @@
       notes: --
       url: /hub/kong-inc/opa
 
+    - name: TLS Metadata Headers
+      free: No
+      plus: No
+      enterprise: Yes
+      network_config_opts: Self-managed classic, DB-less, and hybrid
+      notes: --
+      url: /hub/kong-inc/tls-metadata-headers
+
 - category:
   name: Traffic Control
   plugins:
