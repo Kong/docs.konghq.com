@@ -30,12 +30,3 @@ The `span_processor` function should be called in the `log` phase of the plugin.
 ## Full example
 
 Refer to [Github](https://github.com/Kong/kong/tree/master/spec/fixtures/custom_plugins/kong/plugins/tcp-trace-exporter) to see the example of a custom trace exporter.
-
-
-
-## More Information
-
-For more information about plugin development and the tracing framework, read the following docs:
-
-- [Documentation of tracing framework](/gateway/plugin-development/observability/tracing-framework)
-- [Plugin Development](/gateway/plugin-development/plugin-development)
