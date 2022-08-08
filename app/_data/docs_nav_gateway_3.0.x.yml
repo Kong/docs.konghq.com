@@ -415,6 +415,8 @@ items:
             url: /plugin-development/other/javascript
           - text: Python
             url: /plugin-development/other/python
+          - text: Running Plugins in Containers
+            url: /plugin-development/other/plugins-kubernetes
   - title: Kong Plugins
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
