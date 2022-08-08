@@ -14,7 +14,7 @@ is done outside of Kong, and Kong only receives updates from the DNS server.
 Every Service that has been defined with a `host` containing a hostname
 (instead of an IP address) will automatically use DNS-based load balancing
 if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your DNS hostsfile.
+resolve to an `upstream` name or a name in your DNS hosts file.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
@@ -61,7 +61,7 @@ This order is configurable through the [`dns_order` configuration property][dns-
 
 - Whenever the DNS record is refreshed a list is generated to handle the
 weighting properly. Try to keep the weights as multiples of each other to keep
-the algorithm performant, e.g., 2 weights of 17 and 31 would result in a structure
+the algorithm performance, e.g., 2 weights of 17 and 31 would result in a structure
 with 527 entries, whereas weights 16 and 32 (or their smallest relative
 counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
@@ -104,7 +104,7 @@ Configuring the ring-balancer is done through the `upstream` and `target`
 entities.
 
   - `target`: an IP address or hostname with a port number where a backend
-    service resides, eg. "192.168.100.12:80". Each target gets an additional
+    service resides, e.g. "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
 
@@ -139,7 +139,7 @@ upstreams is available in the `upstream` section of the
 
 ### Target
 
-A target is an ip address/hostname with a port that identifies an instance of
+A target is an IP address/hostname with a port that identifies an instance of
 a backend service. Each upstream can have many targets.
 Detailed information on adding and manipulating targets is available in the
 `target` section of the [Admin API reference][target-object-reference].
@@ -152,14 +152,14 @@ A `target` can also have a hostname instead of an IP address. In that case
 the name will be resolved and all entries found will individually be added to
 the ring balancer, e.g., adding `api.host.com:123` with `weight=100`. The
 name 'api.host.com' resolves to an A record with 2 IP addresses. Then both
-ip addresses will be added as target, each getting `weight=100` and port 123.
+IP addresses will be added as target, each getting `weight=100` and port 123.
 __NOTE__: the weight is used for the individual entries, not for the whole!
 
 Would it resolve to an SRV record, then also the `port` and `weight` fields
 from the DNS record would be picked up, and would overrule the given port `123`
 and `weight=100`.
 
-The balancer will honor the DNS record's `ttl` setting and requery and update
+The balancer will honor the DNS record's `ttl` setting, and queries and updates
 the balancer when it expires.
 
 __Exception__: When a DNS record has `ttl=0`, the hostname will be added
@@ -196,8 +196,7 @@ Supported hashing attributes are:
   present in the request, it will be set by the response. Hence, the `hash_fallback`
   setting is invalid if `cookie` is the primary hashing mechanism.
 
-The `consistent-hashing` algorithm is based on _Consistent Hashing_ (or the
-_Ketama Principle_), which ensures that when the balancer gets modified by
+The `consistent-hashing` algorithm is based on _Consistent Hashing_, which ensures that when the balancer gets modified by
 a change in its targets (adding, removing, failing, or changing weights), only
 the minimum number of hashing losses occur. This maximizes upstream cache hits.
 
@@ -226,82 +225,11 @@ entities only by their IP address, and never by name.
 - When picking your hash input make sure the input has enough variance to get
 to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
 So for example, if your system has thousands of users, but only a few consumers, defined
-per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
+per platform (e.g. 3 consumers: Web, iOS and Android) then picking the `consumer`
 hash input will not suffice, using the remote IP address by setting the hash to
 `ip` would provide more variance in the input and hence a better distribution
 in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in
 call center), `cookie` will provide a better distribution than `ip`.
-
-# Blue-Green Deployments
-
-Using the ring-balancer a [blue-green deployment][blue-green-canary] can be easily orchestrated for
-a Service. Switching target infrastructure only requires a `PATCH` request on a
-Service, to change its `host` value.
-
-Set up the "Blue" environment, running version 1 of the address service:
-
-```bash
-# create an upstream
-$ curl -X POST http://kong:8001/upstreams \
-    --data "name=address.v1.service"
-
-# add two targets to the upstream
-$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
-    --data "target=192.168.34.15:80"
-    --data "weight=100"
-$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
-    --data "target=192.168.34.16:80"
-    --data "weight=50"
-
-# create a Service targeting the Blue upstream
-$ curl -X POST http://kong:8001/services/ \
-    --data "name=address-service" \
-    --data "host=address.v1.service" \
-    --data "path=/address"
-
-# finally, add a Route as an entry-point into the Service
-$ curl -X POST http://kong:8001/services/address-service/routes/ \
-    --data "hosts[]=address.mydomain.com"
-```
-
-Requests with host header set to `address.mydomain.com` will now be proxied
-by Kong to the two defined targets; 2/3 of the requests will go to
-`http://192.168.34.15:80/address` (`weight=100`), and 1/3 will go to
-`http://192.168.34.16:80/address` (`weight=50`).
-
-Before deploying version 2 of the address service, set up the "Green"
-environment:
-
-```bash
-# create a new Green upstream for address service v2
-$ curl -X POST http://kong:8001/upstreams \
-    --data "name=address.v2.service"
-
-# add targets to the upstream
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
-    --data "target=192.168.34.17:80"
-    --data "weight=100"
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
-    --data "target=192.168.34.18:80"
-    --data "weight=100"
-```
-
-To activate the Blue/Green switch, we now only need to update the Service:
-
-```bash
-# Switch the Service from Blue to Green upstream, v1 -> v2
-$ curl -X PATCH http://kong:8001/services/address-service \
-    --data "host=address.v2.service"
-```
-
-Incoming requests with host header set to `address.mydomain.com` will now be
-proxied by Kong to the new targets; 1/2 of the requests will go to
-`http://192.168.34.17:80/address` (`weight=100`), and the other 1/2 will go to
-`http://192.168.34.18:80/address` (`weight=100`).
-
-As always, the changes through the Kong Admin API are dynamic and will take
-effect immediately. No reload or restart is required, and no in progress
-requests will be dropped.
 
 # Canary Releases
 
