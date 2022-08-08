@@ -4,6 +4,17 @@ no_search: true
 no_version: true
 ---
 
+## 1.8.2
+
+> Released on **2022/08/08**
+
+Built on top of [Kuma 1.7.1](https://github.com/kumahq/kuma/releases/tag/1.7.1)
+
+### Changes
+
+- Fix RBAC: all tags specified in when section are required in policies.
+- Fix RBAC: "*" value in tag specified in when section means that the tag is required, but can have any value.
+
 ## 1.8.1
 
 > Released on **2022/07/19**
