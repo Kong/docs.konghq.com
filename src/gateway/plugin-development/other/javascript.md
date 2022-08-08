@@ -2,8 +2,6 @@
 title: Plugins in Other Languages Javascript
 content-type: explanation
 ---
-`
-## Developing JavaScript plugins
 
 {{site.base_gateway}} support for the JavaScript language is provided by [kong-js-pdk](https://github.com/Kong/kong-js-pdk).
 The library provides a plugin server that provides a runtime for JavaScript bindings for {{site.base_gateway}}.
@@ -16,7 +14,7 @@ when developing plugins in TypeScript.
 
 ## Install
 
-[kong-js-pdk] can be installed using `npm`. To install the plugin server binary globally:
+[JavaScript PDK](https://github.com/Kong/kong-js-pdk) can be installed using `npm`. To install the plugin server binary globally:
 
 ```
 npm install kong-pdk -g
@@ -41,7 +39,7 @@ module.exports = {
 * The `Schema` defines the configuration schema of the plugin.
 * `Version` and `Priority` variables set to the version number and priority of execution.
 
-**Note**: [this repository](https://github.com/Kong/kong-js-pdk/tree/master/examples) contains examples of plugins built with JavaScript.
+**Note**: [This repository](https://github.com/Kong/kong-js-pdk/tree/master/examples) contains examples of plugins built with JavaScript.
 
 ## Phase handlers
 
@@ -150,7 +148,7 @@ npm test
 contains examples of writing tests with `jest`.
 
 ## More Information
-[PDK Reference](/gateway/latest/plugin-development/pdk/)
-[Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
-[Develop plugins with Python](/gateway/latest/plugin-development/other/python)
-[Develop plugins with Go](/gateway/latest/plugin-development/other/go)
+* [PDK Reference](/gateway/latest/plugin-development/pdk/)
+* [Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
+* [Develop plugins with Python](/gateway/latest/plugin-development/other/python)
+* [Develop plugins with Go](/gateway/latest/plugin-development/other/go)

@@ -36,7 +36,7 @@ class Plugin(object):
 * The variables `version` and `priority` that define the version number and priority of execution respectively.
 
 {:.note}
->**Note**: [This repository](https://github.com/Kong/kong-python-pdk/tree/master/examples) contains example Python plugins and an[API reference](https://kong.github.io/kong-python-pdk/py-modindex.html).
+>**Note**: [This repository](https://github.com/Kong/kong-python-pdk/tree/master/examples) contains example Python plugins and an [API reference](https://kong.github.io/kong-python-pdk/py-modindex.html).
 
 ## Phase handlers
 
@@ -126,7 +126,7 @@ If your workload is CPU intensive, consider the multi-processing model by by pas
 
 
 ## More Information
-[PDK Reference](/gateway/latest/plugin-development/pdk/)
-[Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
-[Develop plugins with Go](/gateway/latest/plugin-development/other/go)
-[Develop plugins with JavaScript](/gateway/latest/plugin-development/other/javascript)
+* [PDK Reference](/gateway/latest/plugin-development/pdk/)
+* [Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
+* [Develop plugins with Go](/gateway/latest/plugin-development/other/go)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/other/javascript)

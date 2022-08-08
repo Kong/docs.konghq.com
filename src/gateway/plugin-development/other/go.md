@@ -23,7 +23,7 @@ To write a {{site.base_gateway}} plugin in Go, you need to:
 
 ## Configuration
 
-### Struct
+### `Struct`
 The plugin you write needs a way to handle incoming configuration data from the data store or the Admin API. 
 You can use a `struct` to create a schema of the incoming data.
 
@@ -34,8 +34,8 @@ type MyConfig struct {
 }
 ```
 Because this plugin will be processing configuration data, you are going to want to control encoding using the `encoding/json` package.
-In Go fields that start with a capital letter can be exported, making them accessible to outside of the current package, including by the `encoding/json` package.
-If you want the fields to have a different name in the data store, add tags to the fields in your struct.
+Go fields that start with a capital letter can be exported, making them accessible outside of the current package, including by the `encoding/json` package.
+If you want the fields to have a different name in the data store, add tags to the fields in your `struct`.
 
 ```go
 type MyConfig struct {
@@ -125,7 +125,7 @@ const Priority = 1
 ## Example configuration
 
 To load plugins using the `kong.conf` [configuration file](/gateway/latest/kong-production/kong-conf), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
-Below are two examples of loading plugins within `kong.conf`.
+Here are two examples of loading plugins within `kong.conf`:
 
 ```
 pluginserver_names = my-plugin,other-one
@@ -149,9 +149,9 @@ pluginserver_my_plugin_query_cmd = /usr/local/bin/my-plugin -dump
 pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 ```
 
-## More Information
+## More information
 
-[PDK Reference](/gateway/latest/plugin-development/pdk/)
-[Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
-[Develop plugins with Python](/gateway/latest/plugin-development/other/python)
-[Develop plugins with JavaScript](/gateway/latest/plugin-development/other/javascript)
+* [PDK Reference](/gateway/latest/plugin-development/pdk/)
+* [Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
+* [Develop plugins with Python](/gateway/latest/plugin-development/other/python)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/other/javascript)
