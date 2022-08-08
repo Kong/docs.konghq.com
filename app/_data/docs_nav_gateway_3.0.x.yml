@@ -302,58 +302,57 @@ items:
       - text: Keyring and Data Encryption
         url: /kong-enterprise/db-encryption
   - title: Kong Manager
-    icon: /assets/images/icons/documentation/icn-references-color.svg
-    items: 
+    icon: /assets/images/icons/documentation/icn-manager-color.svg
+    items:
       - text: Overview
-        url: /kong-manager/
-      - text: Enable Kong Manager
-        url: /kong-manager/enable-km
-      - text: Get Started with Kong Manager
-        items:
-          - text: Services and Routes
-            url: /kong-manager/get-started/services-routes
-          - text: Rate Limiting
-            url: /kong-manager/get-started/rate-limiting
-          - text: Proxy Caching
-            url: /kong-manager/get-started/proxy-caching
-          - text: Authentication with Consumers
-            url: /kong-manager/get-started/authentication
-          - text: Load Balancing
-            url: /kong-manager/get-started/load-balancing
+        url: /kong-manager/overview
+      - text: Networking Configuration
+        url: /kong-manager/configuration
+      - text: Securing Kong Manager
+        url: /kong-manager/security
       - text: Authentication
         items:
-          - text: Overview
-            url: /kong-manager/authentication/
           - text: Create a Super Admin
             url: /kong-manager/authentication/super-admin
-          - text: Workspaces and Teams
-            url: /kong-manager/authentication/workspaces
-          - text: Reset passwords and RBAC Tokens
-            url: /kong-manager/authentication/reset-password
           - text: Basic Auth
             url: /kong-manager/authentication/basic
           - text: LDAP
             url: /kong-manager/authentication/ldap
+          - text: LDAP Service Directory Mapping
+            url: /kong-manager/authentication/ldap-service-directory-mapping
           - text: OIDC
+            url: /kong-manager/authentication/oidc
+          - text: OIDC Authenticated Group Mapping
             url: /kong-manager/authentication/oidc-mapping
           - text: Sessions
             url: /kong-manager/authentication/sessions
-          - text: Role Based Access Control
-            items:
-              - text: Overview
-                url: /kong-manager/authentication/rbac/
-              - text: Add a Role
-                url: /kong-manager/authentication/rbac/add-role
-              - text: Add a User
-                url: /kong-manager/authentication/rbac/add-user
-              - text: Add an Admin
-                url: /kong-manager/authentication/rbac/add-admin
-          - text: Mapping LDAP Service Directory groups to Roles
-            url: /kong-manager/authentication/service-directory-mapping
-      - text: Networking
-        url: /kong-manager/networking
-      - text: Sending email
-        url: /kong-manager/email
+      - text: Reset Passwords and RBAC Tokens
+        url: /kong-manager/reset-password
+      - text: Configuring to Send Email
+        url: /kong-manager/configuring-to-send-email
+      - text: Workspace
+        items: 
+          - text: Workspaces in Kong Manager
+            url: /kong-manager/workspaces/workspaces
+          - text: Add a Workspace
+            url: /kong-manager/workspaces/add-workspace
+      - text: RBAC
+        items:
+        - text: RBAC in Kong Manager
+          url: /kong-manager/rbac
+        - text: Create a New Role
+          url: /kong-manager/rbac/new-role
+        - text: Create an RBAC User
+          url: /kong-manager/rbac/add-user
+        - text: Add a Role and Permissions
+          url: /kong-manager/rbac/add-role
+      - text: Admins
+        items:
+        - text: Invite an Admin
+          url: /kong-manager/admins/invite
+        - text: Add an Admin
+          url: /kong-manager/admins/add-admin
+
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
