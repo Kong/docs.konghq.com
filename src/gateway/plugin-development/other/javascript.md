@@ -8,7 +8,7 @@ The library provides a plugin server that provides a runtime for JavaScript bind
 
 TypeScript is also supported in the following ways:
 
-- [kong-js-pdk] includes type definitions for PDK functions that allow type checking
+- The PDK includes type definitions for PDK functions that allow type checking
 when developing plugins in TypeScript.
 - Plugins written in TypeScript can be loaded directly to {{site.base_gateway}} and transpiled.
 
