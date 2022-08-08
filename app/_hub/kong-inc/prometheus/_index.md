@@ -39,8 +39,8 @@ params:
       description: |
         A boolean value that determines if per-consumer metrics should be
         collected.
-        If enabled, `kong_http_requests_total`, and `kong_bandwidth_bytes`
-        metrics will fill in the consumer label when available.
+        If enabled, the `kong_http_requests_total` and `kong_bandwidth_bytes`
+        metrics fill in the consumer label when available.
     - name: status_code_metrics
       required: false
       datatype: boolean
@@ -219,10 +219,10 @@ kong_nginx_connections_total{node_id="849373c5-45c1-4c1d-b595-fdeaea6daed8",subs
 # HELP kong_nginx_metric_errors_total Number of nginx-lua-prometheus errors
 # TYPE kong_nginx_metric_errors_total counter
 kong_nginx_metric_errors_total 0
-# HELP kong_nginx_requests_total Number of requests total
+# HELP kong_nginx_requests_total Total number of requests
 # TYPE kong_nginx_requests_total gauge
 kong_nginx_requests_total{node_id="849373c5-45c1-4c1d-b595-fdeaea6daed8",subsystem="http"} 296
-# HELP kong_nginx_timers Number of nginx timers
+# HELP kong_nginx_timers Number of Nginx timers
 # TYPE kong_nginx_timers gauge
 kong_nginx_timers{state="pending"} 1
 kong_nginx_timers{state="running"} 39
