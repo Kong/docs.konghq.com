@@ -20,23 +20,20 @@ run `make dev` on your Kong repository to install all Lua dependencies.
 
 ### Basic usage
 
-Install Lua development dependencies of Kong being installed and invoke each test file with `busted`. The following runs the simple RPS and latency
-test using `docker` driver.
+Install Lua development dependencies of Kong being installed and invoke each test file with `busted`. The following runs the RPS and latency
+test using the `docker` driver.
 
 ```shell
 PERF_TEST_USE_DAILY_IMAGE=true PERF_TEST_VERSIONS=git:master,git:perf/your-other-branch bin/busted -o gtest spec/04-perf/01-rps/01-simple_spec.lua
 ```
 
-User can also run the performance test framework inside a Kong container from scratch, from other development tools
-like [gojira](https://github.com/kong/gojira) or [Pongo](https://github.com/kong/kong-pongo), if they don't have development environment.
-Note to use the `docker` driver inside a container, the Docker daemon socket `/var/run/docker.sock` needs to be mounted inside the container.
 
 ### Terraform managed instances
 
 By default, terraform doesn't teardown instances after each test in `lazy_teardown`; this allows user
 to run multiple tests consecutively without rebuilding the infrastructure each time.
 
-This behaviour can be changed by setting `PERF_TEST_TEARDOWN_ALL` environment variable to true. User can
+This behavior can be changed by setting the `PERF_TEST_TEARDOWN_ALL` environment variable to true. Users can
 also manually teardown the infrastructure by running:
 
 ```
@@ -45,9 +42,9 @@ PERF_TEST_TEARDOWN_ALL=1 PERF_TEST_DRIVER=terraform PERF_TEST_TERRAFORM_PROVIDER
 
 ### AWS
 
-When using `terraform` driver and `aws-ec2` as provider, AWS credentials can be provided by environment variables.
-It's common to pass `AWS_PROFILE` to point a stored AWS credentials profile, or `AWS_ACCESS_KEY_ID` and
-`AWS_SECRET_ACCESS_KEY` to use credential directly. Please refer to the
+When using the `terraform` driver and `aws-ec2` as the provider, AWS credentials can be provided using environment variables.
+It's common to pass the `AWS_PROFILE` variable to point to a stored AWS credentials profile, or `AWS_ACCESS_KEY_ID` and
+`AWS_SECRET_ACCESS_KEY` to use credentials directly. See the
 [Terraform AWS provider document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration)
 for further information.
 
@@ -73,28 +70,28 @@ requirements, and setup complexity.
 
 | Driver   | Test between git commits | Test between binary releases | Flame Graph | Test unreleased version    |
 |----------|--------------------------|------------------------------|------------|----------------------------|
-| docker   | yes                      | yes                          |            | yes (`use_daily_image` = true) |
-|terraform | yes                      | yes                          | yes        | yes (`use_daily_image` = true) |
+| Docker   | yes                      | yes                          |            | yes (`use_daily_image` = true) |
+|Terraform | yes                      | yes                          | yes        | yes (`use_daily_image` = true) |
 
 You must install the following Lua development dependencies to use either of the drivers:
 
-- **docker** Driver is solely based on Docker images. It's the most convenient driver to setup
-as it requires less dependencies. But it may also be influenced by other local programs
-and Docker network performance. And it doesn't support FlameGraph generation.
+- **Docker** Driver is based on Docker images.
+It requires fewer dependencies.
+And it doesn't support FlameGraph generation.
 
-- **terraform** Driver runs in remote VM or bare metal machine. It's most accurate,
+- **terraform** Driver runs in a remote VM or on a bare metal machine. It's most accurate,
 but it requires Terraform knowledge to operate and setup.
 
     * Requires the [Terraform](https://www.terraform.io/downloads.html) binary be installed.
     * Requires git binary if testing between git commits. When testing between git commits,
     the framework assumes the current directory is Kong's repo. It will stash your working
-    directory and remove the stash after the test is finished. When using the docker or Terraform driver,
+    directory and remove the stash after the test is finished. When using the Docker or Terraform driver,
     the framework derives the base version of each commit and uses the matching Docker image or
-    Kong binary package and puts local source code inside.
+    Kong binary package and puts the local source code inside.
 
 ## Workflow
 
-Like Kong's integration tests, the performance test is written in Lua. Several
+Multiple
 test cases can share the same Lua file.
 
 The following code snippet demonstrates a basic workflow for defining a workload and load testing Kong.
@@ -174,7 +171,7 @@ for _, version in ipairs(versions) do
 end
 ```
 
-The test can be run as a normal busted-based test. Run it with `bin/busted path/to/this_file_spec.lua`.
+The test can be run as a normal Busted test, using `bin/busted path/to/this_file_spec.lua`.
 
 More examples can be found in the [spec/04-perf](https://github.com/Kong/kong/tree/master/spec/04-perf) folder in the Kong
 repository.
