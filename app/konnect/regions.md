@@ -30,5 +30,3 @@ The following objects are region-specific and are not shared between regions:
 * [Application registration](/konnect/dev-portal/applications/enable-app-reg/)
 * [Dev Portal](/konnect/dev-portal/access/)
 * [Certain teams and roles](/konnect/org-management/teams-and-roles/)
-
-## API?
