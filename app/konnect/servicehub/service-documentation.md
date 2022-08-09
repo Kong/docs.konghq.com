@@ -9,7 +9,7 @@ Through Service Hub, you can also publish any service in your catalog and its
 documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. 
 
 {:.note}
-> **Note**: You can only publish services in your geographic region to the Dev Portal in your region. If you want to publish services to a Dev Portal in another region, switch to the new region in the top-right of {{site.konnect_product_name}}.
+> **Note**: You can only publish services in your [geographic region](/konnect/regions) to the Dev Portal in your region. If you want to publish services to a Dev Portal in another region, switch to the new region in the top-right of {{site.konnect_product_name}}.
 
 Once the service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 

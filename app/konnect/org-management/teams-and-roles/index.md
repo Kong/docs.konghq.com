@@ -49,7 +49,7 @@ roles on the same service, the Service Admin role takes precedence.
 
 ### Geographic region assignment
 
-Teams and roles can be assigned to a specific geographic region in {{site.konnect_short_name}}. Those teams and roles only access {{site.konnect_short_name}} objects, such as services, that are also located in the same region they are assigned to. 
+Teams and roles can be assigned to a specific [geographic region](/konnect/regions) in {{site.konnect_short_name}}. Those teams and roles only access {{site.konnect_short_name}} objects, such as services, that are also located in the same region they are assigned to. 
 
 <!-- (SHARING IS NOT YET AVAILABLE)
 ### Entity and role sharing
