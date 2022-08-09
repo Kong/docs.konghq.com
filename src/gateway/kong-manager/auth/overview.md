@@ -1,6 +1,5 @@
 ---
-title: Securing Kong Manager
-badge: enterprise
+title: Authentication and Authorization in Kong Manager
 ---
 
 Kong Manager enables users with Admin accounts to access Kong entities such
@@ -9,7 +8,7 @@ as Services, Plugins, and Consumers.
 The following document summarizes Kong Manager's controls for *authentication*
 and *authorization*.
 
-## Configuring Authentication
+## Configuring authentication
 
 {{site.base_gateway}} comes packaged with Authentication Plugins that can be used
 to secure Kong Manager. Unlike enabling a Plugin on an entity or cluster,
@@ -39,7 +38,7 @@ Learn more about these properties in
 [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security),
 and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
 
-## Access Control with Roles and Workspaces
+## Access control with roles and workspaces
 
 An Admin belongs to a Workspace and should have at least one Role
 with a set of Permissions. If an Admin is in a Workspace *without*
