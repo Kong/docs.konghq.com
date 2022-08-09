@@ -24,7 +24,7 @@ items:
               - text: Request Transformations
                 url: /understanding-kong/how-to/request-transformations
           - text: Key Concepts
-            items: 
+            items:
               - text: Services
                 url: /understanding-kong/key-concepts/services
               - text: Routes
@@ -45,7 +45,7 @@ items:
             url: /understanding-kong/kong-performance-testing
           - text: Glossary
             url: /understanding-kong/glossary
-         
+
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
@@ -81,9 +81,9 @@ items:
           - text: DB-less Deployment
             url: /kong-production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
-            url: /kong-production/deployment-topologies/traditional     
+            url: /kong-production/deployment-topologies/traditional
       - text: Installation Options
-        items: 
+        items:
           - text: Kubernetes
             url: /kong-production/install-options/kubernetes
           - text: Helm
@@ -153,7 +153,7 @@ items:
           - text: How to monitor with Statsd
             url: /kong-production/monitoring/statsd
       - text: Tracing
-        items: 
+        items:
           - text: Overview
             url: /kong-production/tracing/
           - text: How to Write a Custom Trace Exporter
@@ -180,7 +180,7 @@ items:
         url: /kong-production/migrate-ce-to-ke
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-references-color.svg
-    items: 
+    items:
       - text: Overview
         url: /kong-enterprise/
       - text: Kong Vitals
@@ -218,12 +218,12 @@ items:
           - text: Reference Format
             url: /kong-enterprise/secrets-management/reference-format
       - text: Dynamic Plugin Ordering
-        items: 
+        items:
           - text: Overview
             url: /kong-enterprise/plugin-ordering/
           - text: Get Started with Dynamic Plugin Ordering
             url: /kong-enterprise/plugin-ordering/get-started
-      - text: Kong Dev Portal      
+      - text: Kong Dev Portal
         items:
           - text: Overview
             url: /kong-enterprise/developer-portal/
@@ -296,7 +296,7 @@ items:
           - text: Helpers CLI
             url: /kong-enterprise/developer-portal/cli
           - text: Portal API
-            url: /kong-enterprise/developer-portal/portal-api         
+            url: /kong-enterprise/developer-portal/portal-api
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption
@@ -306,52 +306,62 @@ items:
     items:
       - text: Overview
         url: /kong-manager/overview
-      - text: Networking Configuration
-        url: /kong-manager/configuration
-      - text: Securing Kong Manager
-        url: /kong-manager/security
-      - text: Authentication
+      - text: Enable Kong Manager
+        url: /kong-manager/enable
+      - text: Get Started with Kong Manager
         items:
+          - text: Services and Routes
+            url: /kong-manager/get-started/services-and-routes
+          - text: Rate Limiting
+            url: /kong-manager/get-started/rate-limiting
+          - text: Proxy Caching
+            url: /kong-manager/get-started/proxy-caching
+          - text: Authentication with Consumers
+            url: /kong-manager/get-started/consumers
+          - text: Load Balancing
+            url: /kong-manager/get-started/load-balancing
+      - text: Authentication and Authorization
+        items:
+          - text: Overview
+            url: /kong-manager/auth/overview
           - text: Create a Super Admin
-            url: /kong-manager/authentication/super-admin
+            url: /kong-manager/auth/super-admin
+          - text: Workspaces and Teams
+            url: /kong-manager/auth/workspaces-and-teams
+          - text: Reset Passwords and RBAC Tokens
+            url: /kong-manager/auth/reset-password
           - text: Basic Auth
-            url: /kong-manager/authentication/basic
+            url: /kong-manager/auth/basic
           - text: LDAP
-            url: /kong-manager/authentication/ldap
-          - text: LDAP Service Directory Mapping
-            url: /kong-manager/authentication/ldap-service-directory-mapping
+            items:
+              - text: Configure LDAP
+                url: /kong-manager/auth/ldap/configure-ldap
+              - text: LDAP Service Directory Mapping
+                url: /kong-manager/auth/ldap/ldap-service-directory-mapping
           - text: OIDC
-            url: /kong-manager/authentication/oidc
-          - text: OIDC Authenticated Group Mapping
-            url: /kong-manager/authentication/oidc-mapping
+            items:
+              - text: Configure OIDC
+                url: /kong-manager/auth/oidc/configure-oidc
+              - text: OIDC Authenticated Group Mapping
+                url: /kong-manager/auth/oidc/oidc-mapping
           - text: Sessions
-            url: /kong-manager/authentication/sessions
-      - text: Reset Passwords and RBAC Tokens
-        url: /kong-manager/reset-password
-      - text: Configuring to Send Email
+            url: /kong-manager/auth/sessions
+          - text: RBAC
+            items:
+            - text: RBAC in Kong Manager
+              url: /kong-manager/auth/rbac
+            - text: Add a Role and Permissions
+              url: /kong-manager/auth/rbac/add-role
+            - text: Create a User
+              url: /kong-manager/auth/rbac/add-user
+            - text: Create an Admin
+              url: /kong-manager/auth/rbac/add-admin
+      - text: Networking Configuration
+        url: /kong-manager/networking
+      - text: Workspaces
+        url: /kong-manager/workspaces
+      - text: Sending Email
         url: /kong-manager/configuring-to-send-email
-      - text: Workspace
-        items: 
-          - text: Workspaces in Kong Manager
-            url: /kong-manager/workspaces/workspaces
-          - text: Add a Workspace
-            url: /kong-manager/workspaces/add-workspace
-      - text: RBAC
-        items:
-        - text: RBAC in Kong Manager
-          url: /kong-manager/rbac
-        - text: Create a New Role
-          url: /kong-manager/rbac/new-role
-        - text: Create an RBAC User
-          url: /kong-manager/rbac/add-user
-        - text: Add a Role and Permissions
-          url: /kong-manager/rbac/add-role
-      - text: Admins
-        items:
-        - text: Invite an Admin
-          url: /kong-manager/admins/invite
-        - text: Add an Admin
-          url: /kong-manager/admins/add-admin
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -461,7 +471,7 @@ items:
                 url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               - text: Configuring Fixed bucket
                 url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
-      
+
       - text: GraphQL
         url: /kong-plugins/graphql-quickstart
       - text: gRPC
@@ -472,7 +482,7 @@ items:
       - text: Introduction to the Kong Admin API
         url: /admin-api/
       - text: Information Routes
-        url: /admin-api/#information-routes      
+        url: /admin-api/#information-routes
       - text: Health Routes
         url: /admin-api/#health-routes
       - text: Tags
