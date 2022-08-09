@@ -1,6 +1,6 @@
 ---
-title: plugins
-
+title: Plugins
+concept_type: explanation
 ---
 
-## PLACEHOLDER plugins
+{% include_cached /md/about-plugins.md %}

@@ -1,6 +1,6 @@
 ---
-title: Overview Kong PLugins
-
+title: About Kong Plugins
+content_type: explanation
 ---
 
-## place holder
+{% include_cached /md/about-plugins.md %}
