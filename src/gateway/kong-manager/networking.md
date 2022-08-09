@@ -1,16 +1,16 @@
 ---
-title: Networking Configuration
+title: Networking Configuration for Kong Manager
 badge: enterprise
 ---
 
-## Default Configuration
+## Default configuration
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/kong-production/networking/default-ports) of the same host that serves
+on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/plan-and-deploy/default-ports) of the same host that serves
 Kong Manager.
 
-## Custom Configuration
+## Custom configuration
 
 Common configurations to enable are
 
