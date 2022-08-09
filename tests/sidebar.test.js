@@ -74,7 +74,7 @@ test.describe("Outdated version documentation", () => {
     await expect(await s.count()).toBe(1);
     await expect(await s.getAttribute("href")).toEqual(
       expect.stringMatching(
-        new RegExp(`^/gateway/latest/install-and-run/rhel/$`)
+        new RegExp(`^/gateway/latest/kong-production/install-options/linux/rhel/$`)
       )
     );
   });
@@ -106,7 +106,7 @@ test.describe("Sidebar section count", () => {
     {
       title: "Gateway Single Sourced",
       path: "/gateway/latest/",
-      count: 8,
+      count: 9,
     },
     {
       title: "decK",
@@ -127,8 +127,8 @@ test.describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/latest/",
-      link_text: "Installation Options",
-      expected_url: "/gateway/latest/install-and-run/",
+      link_text: "Supported Distributions",
+      expected_url: "/gateway/latest/kong-production/install-options/linux/os-support",
     },
     {
       title: "Versioned root page links to the correct version",
@@ -139,8 +139,8 @@ test.describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Installation Options",
-      expected_url: "/gateway/latest/install-and-run/",
+      link_text: "Supported Distributions",
+      expected_url: "/gateway/latest/kong-production/install-options/linux/os-support",
     },
     {
       title: "Versioned sub page links to the correct version",
