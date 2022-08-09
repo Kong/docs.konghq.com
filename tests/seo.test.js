@@ -16,8 +16,8 @@ test.describe("Canonical links", () => {
     {
       title:
         "contains a canonical link pointing to itself if it's the latest version",
-      src: "/gateway/latest/install-and-run/docker/",
-      href: "/gateway/latest/install-and-run/docker/",
+      src: "/gateway/latest/kong-production/install-options/helm/",
+      href: "/gateway/latest/kong-production/install-options/helm/",
     },
     {
       title:
@@ -153,7 +153,7 @@ test.describe("sitemap includes", () => {
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
     "/deck/latest/",
-    "/gateway/latest/install-and-run/docker/",
+    "/gateway/latest/kong-production/install-options/helm/",
     "/mesh/latest/installation/ecs/",
     "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
     "/deck/latest/installation/",
