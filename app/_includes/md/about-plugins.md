@@ -37,7 +37,7 @@ for a comparison.
 : A custom plugin developed, maintained, and supported by an external developer,
 not by Kong. Kong does not test these plugins, or update their version
 compatibility. If you need more information or need to have a third-party plugin
-updated, contact the maintainer through the Support link in a plugin
+updated, contact the maintainer by clicking [Report an issue](https://github.com/Kong/docs.konghq.com/issues) in the plugin
 documentation's sidebar.
 
 **Service**
@@ -93,8 +93,8 @@ of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
 To start creating your own plugins, check out the PDK documentation:
-* [Plugin Development Guide](/gateway/latest/plugin-development) and the
-[Plugin Development Kit reference](/gateway/latest/pdk)
+* [Plugin Development Guide](/gateway/latest/plugin-development)
+* [Plugin Development Kit reference](/gateway/latest/pdk)
 * [Other Language Support](/gateway/latest/reference/external-plugins)
 
 ## Contributing custom plugins
