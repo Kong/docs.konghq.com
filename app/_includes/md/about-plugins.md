@@ -103,3 +103,8 @@ If you are interested in sharing your custom plugin with other Kong users, you
 must also submit plugin reference documentation to the Kong Plugin Hub. See the
 [contribution guidelines](/contributing/)
 for adding documentation.
+
+## Other key concepts
+
+* For more information about available plugins, see the [Plugin Hub](/hub/).
+* [Stages of software availability](/konnect-platform/key-concepts/)
