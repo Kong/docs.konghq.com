@@ -52,7 +52,7 @@ services.
 or an external service.
 
 **Credential**
-: A unique string associated with a Consumer; also referred to as an API key.
+: The API key. A unique string associated with a consumer. 
 
 **Upstream**
 : The Kong entity that refers to your own API/service sitting behind Kong,
