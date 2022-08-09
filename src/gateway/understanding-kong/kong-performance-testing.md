@@ -30,7 +30,7 @@ PERF_TEST_USE_DAILY_IMAGE=true PERF_TEST_VERSIONS=git:master,git:perf/your-other
 
 ### Terraform managed instances
 
-By default, terraform doesn't teardown instances after each test in `lazy_teardown`; this allows user
+By default, Terraform doesn't teardown instances after each test in `lazy_teardown`, allowing users
 to run multiple tests consecutively without rebuilding the infrastructure each time.
 
 This behavior can be changed by setting the `PERF_TEST_TEARDOWN_ALL` environment variable to true. Users can
