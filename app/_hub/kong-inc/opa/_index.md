@@ -90,7 +90,9 @@ Create an `example.rego` file with the following content:
 ```rego
 package example
 
-default allow = false
+default allowBoolean = false
+default allowDetailed = false
+
 
 allowBoolean {
   header_present
