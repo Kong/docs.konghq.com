@@ -84,13 +84,13 @@ params:
       datatype: boolean
       default: false
       description: |
-        If set to true, the plain request body in the current request is included as input to OPA.
+        If set to true, the current requests' request body is included as input to OPA.
     - name: include_parsed_json_body_in_opa_input
       required: false
       datatype: boolean
       default: false
       description: |
-        If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be json decoded and the decoded struct is included as input to OPA.
+        If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be JSON decoded and the decoded struct is included as input to OPA.
 ---
 
 ## Usage
@@ -154,7 +154,7 @@ curl -XPUT localhost:8181/v1/policies/example --data-binary @example.rego
 The above command uses OPA's default port 8181. It could be different for your
 setup.
 
-### Set up Kong Gateway
+### Set up {{site.base_gateway}}
 
 Set up a Route and Service in {{site.base_gateway}} and then enable the plugin:
 
