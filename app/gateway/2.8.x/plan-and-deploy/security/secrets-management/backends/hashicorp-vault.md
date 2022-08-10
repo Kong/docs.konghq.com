@@ -5,17 +5,17 @@ badge: enterprise
 
 ## Configuration
 
-[Hashicorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
+[HashiCorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
 
 ## Environment variables
 
 ```bash
-export KONG_VAULTS_HCV_PROTOCOL=<protocol(http|https)>
-export KONG_VAULTS_HCV_HOST=<hostname>
-export KONG_VAULTS_HCV_PORT=<portnumber>
-export KONG_VAULTS_HCV_MOUNT=<mountpoint>
-export KONG_VAULTS_HCV_KV=<v1|v2>
-export KONG_VAULTS_HCV_TOKEN=<tokenstring>
+export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
+export KONG_VAULT_HCV_HOST=<hostname>
+export KONG_VAULT_HCV_PORT=<portnumber>
+export KONG_VAULT_HCV_MOUNT=<mountpoint>
+export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_TOKEN=<tokenstring>
 ```
 
 You can also store this information in an entity.
@@ -83,7 +83,7 @@ Result:
 
 ## Examples
 
-For example, let's say you've configured a Hashicorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
+For example, let's say you've configured a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
 
 ```text
 vault kv put secret/hello foo=world

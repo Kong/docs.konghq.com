@@ -82,8 +82,18 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Multi-Zone Security</td>
+<td>Multi-Zone Security
+
+{% info_tooltip %}
+Allows you to secure multi-zone deployments with a JWT-based authentication that ensures only approved zones can join the cluster.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
+<td><i class="fa fa-check"></i></td>
+</tr>
+<tr>
+<td>Multi-Mesh Support</td>
+<td><i class="fa fa-check"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 
@@ -103,22 +113,43 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>HashiCorp Vault CA</td>
+<td>
+HashiCorp Vault CA
+
+{% info_tooltip %}
+Allows you to enable HashiCorp Vault as an additional third-party backend for mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>AWS Certificate Manager CA</td>
+<td>
+AWS Certificate Manager CA
+{% info_tooltip %}
+Allows you to enable AWS Certificate Manager as an additional third-party backend for the mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Kubernetes cert-manager CA</td>
+<td>
+Kubernetes cert-manager CA
+{% info_tooltip %}
+Allows you to enable Kubernetes cert-manager as an additional third-party backend for the mTLS CAs that are used to setup zero-trust security, without storing the CAs in Kong Mesh proper.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>GUI Dashboard for TLS and CA</td>
+<td>
+GUI Dashboard for TLS and CA
+{% info_tooltip %}
+Provides you with additional visual reports that display the rotation status of the data plane proxy certificates and the rotation of the CAs themselves, in a zero-trust service mesh.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -128,7 +159,12 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>CA Automatic Rotation</td>
+<td>
+CA Automatic Rotation
+{% info_tooltip %}
+Provides automatic rotation across different CAs with no downtime in addition to providing automatic rotation and certificate lifecycle management to the data plane proxy mTLS certificates. This feature combined with the GUI Dashboard for TLS and CA provides a complete solution for managing the entire lifecycle of zero-trust service meshes.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -139,17 +175,33 @@ every cloud and environment.
 <td class="no-mobile"></td>
 </tr>
 <tr>
-<td>FIPS-140 Encryption</td>
+<td>
+FIPS-140 Encryption
+
+{% info_tooltip %}
+By default, FIPS-140 compliant encryption is automatically enabled in Kong Mesh on the Envoy-based data plane proxies. This doesn't require any additional steps other than running Kong Mesh itself.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Embedded OPA Agent</td>
+<td>
+Embedded OPA Agent
+{% info_tooltip %}
+Kong Mesh ships with an embedded OPA agent in the data plane proxy sidecars, without requiring the user to run an additional dedicated sidecar for the OPA agent. This simplifies the roll out of OPA across the entire organization and lowers operational costs.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Native OPA Policy</td>
+<td>
+Native OPA Policy
+{% info_tooltip %}
+This exposes a native OPA policy resource that can be used to store and automatically propagate OPA policies across a multi-zone deployment natively with Kong Mesh. We also support the ability to connect to a third-party OPA store like Styra.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -160,12 +212,22 @@ every cloud and environment.
 <td class="no-mobile"></td>
 </tr>
 <tr>
-<td>Roles and permissions (RBAC)</td>
+<td>
+Roles and permissions (RBAC)
+{% info_tooltip %}
+Allows you to manage complex RBAC rules to allow or deny access to Kong Mesh policies and functions in a sophisticated and fine grained way. This works across multi-zone and multi-mesh natively.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Audit Logs</td>
+<td>
+Audit Logs
+{% info_tooltip %}
+Allows you to store and fetch auditing logs for operations that were performed on the cluster. When used with RBAC, it allows us to have full visibility into how the system is being governed and configured by the users.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -181,7 +243,12 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Kubernetes Operator</td>
+<td>
+Kubernetes Operator
+{% info_tooltip %}
+Allows you to simplify the operational cost of running Kong Mesh on Kubernetes by providing a native Kubernetes operator to fully manage the deployment, upgrades, and roll outs of a cluster on Kubernetes.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -196,17 +263,32 @@ every cloud and environment.
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Native AWS ECS Controller</td>
+<td>
+Native AWS ECS Controller
+{% info_tooltip %}
+Allows you to natively support AWS ECS workloads with a built-in controller that automatically integrates ECS workloads within one or more service meshes powered by Kong Mesh. This simplifies the expansion of service mesh in the cloud.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Windows Distributions</td>
+<td>
+Windows Distributions
+{% info_tooltip %}
+Allows you to natively support Microsoft Windows workloads in service meshes, allowing you to further expand the reach of Kong Mesh across every workload in your organization.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>UBI Federal Distributions</td>
+<td>
+UBI Federal Distributions
+{% info_tooltip %}
+Provides officially supported distributions based on the Red Hat Universal Base Images (UBI).
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
@@ -218,21 +300,35 @@ every cloud and environment.
 <td class="no-mobile"></td>
 </tr>
 <tr>
-<td>Enterprise Support and SLA</td>
+<td>
+Enterprise Support and SLA
+{% info_tooltip %}
+With Kong Mesh, we provide 24/7/365 enterprise support with different SLAs, powered by Kong's global customer success and technical support team across all world regions. This also provides access to a vast network of partners for local language support as well. This is recommended for enterprise mission-critical deployments.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Customer Success Packages</td>
+<td>
+Customer Success Packages
+{% info_tooltip %}
+With Kong Mesh, we provide access to our implementation and training programs to accelerate the roll out of a service mesh across every team, and to properly train and educate the organization on how to effectively drive business outcomes with the product.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
 <tr>
-<td>Envoy Support</td>
+<td>
+Envoy Support
+{% info_tooltip %}
+With Kong Mesh, we provide access to the Envoy contributors at Kong to further expand the capabilities of the underlying data plane proxy technology (Envoy) with features that are not currently available in upstream Envoy. This can be used to remove road blocks and cater to unique enterprise requirements and use-cases.
+{% endinfo_tooltip %}
+</td>
 <td><i class="fa fa-times"></i></td>
 <td><i class="fa fa-check"></i></td>
 </tr>
-
 </tbody>
 </table>
 

@@ -7,7 +7,7 @@
 title: Configuration Reference for Kong Gateway
 source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
-
+<!-- vale off -->
 ## Configuration loading
 
 Kong comes with a default configuration file that can be found at
@@ -97,19 +97,30 @@ Nginx directives to this file directly via your Kong configuration.
 
 ### Injecting individual Nginx directives
 
-Any entry added to your `kong.conf` file that is prefixed by `nginx_http_`,
-`nginx_proxy_` or `nginx_admin_` will be converted into an equivalent Nginx
+Any entry added to your `kong.conf` file that is prefixed by the following 
+supported namespaces will be converted into an equivalent Nginx
 directive by removing the prefix and added to the appropriate section of the
 Nginx configuration:
 
-- Entries prefixed with `nginx_http_` will be injected to the overall `http`
-block directive.
-
-- Entries prefixed with `nginx_proxy_` will be injected to the `server` block
-directive handling Kong's proxy ports.
-
-- Entries prefixed with `nginx_admin_` will be injected to the `server` block
-directive handling Kong's Admin API ports.
+- `nginx_main_<directive>`: Injects `<directive>` in Kong's configuration
+   `main` context.
+- `nginx_events_<directive>`: Injects `<directive>` in Kong's `events {}`
+    block.
+- `nginx_http_<directive>`: Injects `<directive>` in Kong's `http {}` block.
+- `nginx_proxy_<directive>`: Injects `<directive>` in Kong's proxy
+   `server {}` block.
+- `nginx_upstream_<directive>`: Injects `<directive>` in Kong's proxy
+   `upstream {}` block.
+- `nginx_admin_<directive>`: Injects `<directive>` in Kong's Admin API
+   `server {}` block.
+- `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
+   `server {}` block  (only effective if `status_listen` is enabled).
+- `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
+   `stream {}` block (only effective if `stream_listen` is enabled).
+- `nginx_sproxy_<directive>`: Injects `<directive>` in Kong's stream module
+   `server {}` block (only effective if `stream_listen` is enabled).
+- `nginx_supstream_<directive>`: Injects `<directive>` in Kong's stream
+   module `upstream {}` block.
 
 For example, if you add the following line to your `kong.conf` file:
 
@@ -139,13 +150,27 @@ block:
 output_buffers 4 64k;
 ```
 
+If you want to add the same directive multiple times, you can specify it like the following example:
+
+```bash
+export "KONG_NGINX_MAIN_ENV=HTTP_SSO_ENDPOINT;env PROXY_SSO_ENDPOINT"
+export HTTP_SSO_ENDPOINT=http://example.com
+export PROXY_SSO_ENDPOINT=http://example.com
+```
+
+This results in Kong injecting this line:
+
+```
+env HTTP_SSO_ENDPOINT;env PROXY_SSO_ENDPOINT;
+```
+
 As always, be mindful of your shell's quoting rules specifying values
 containing spaces.
 
 For more details on the Nginx configuration file structure and block
-directives, see https://nginx.org/en/docs/beginners_guide.html#conf_structure.
+directives, see [Nginx reference](https://nginx.org/en/docs/beginners_guide.html#conf_structure).
 
-For a list of Nginx directives, see https://nginx.org/en/docs/dirindex.html.
+For a list of Nginx directives, see the [Nginx directives index](https://nginx.org/en/docs/dirindex.html).
 Note however that some directives are dependent of specific Nginx modules,
 some of which may not be included with the official builds of Kong.
 
@@ -712,6 +737,15 @@ which configuration updates will be fetched, in `host:port` format.
 
 To be used by data plane nodes only: telemetry address of the control plane
 node to which telemetry updates will be posted in `host:port` format.
+
+**Default:** none
+
+---
+
+#### cluster_telemetry_server_name
+{:.badge .enterprise}
+
+The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
 **Default:** none
 

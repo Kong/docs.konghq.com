@@ -3,6 +3,44 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+
+<!-- vale off -->
+
+## 2.8.1.2
+**Release Date** 2022/07/15
+
+### Fixes
+
+#### Enterprise
+
+* Fixed an issue in hybrid mode where, if a service was set to `enabled: false` and that service had a route with an enabled plugin, any new data planes would receive empty configuration.
+* Fixed a timer leak that occurred when `worker_consistency` was set to `eventual` in `kong.conf`.
+This issue caused timers to be exhausted and failed to start any other timers used by Kong Gateway, resulting in a `too many pending timers` error.
+* Fixed memory leaks coming from `lua-resty-lock`.
+
+#### Kong Manager and Dev Portal
+
+* Fixed an issue where Kong Manager did not display all Dev Portal developers in the organization.
+* Fixed an issue that prevented developer role assignments from displaying in Kong Manager.
+When viewing a role under the Permissions tab in the Dev Portal section, the list of developers wouldn't update when a new developer was added.
+Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees.
+* Fixed empty string handling in Kong Manager. Previously, Kong Manager was handling empty strings as `""` instead of a null value.
+* Improved Kong Manager styling by fixing an issue where content didn't fit on object detail pages.
+* Fixed an issue that sometimes prevented clicking Kong Manager links and buttons in Safari.
+
+#### Plugins
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting) (`rate-limiting`) and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting) (`response-ratelimiting`)
+  * Fixed a PostgreSQL deadlock issue that occurred when the `cluster` policy was used with two or more metrics (for example, `second` and `day`.)
+
+* [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
+  * Log output is now restricted to the workspace the plugin is running in. Previously,
+  the plugin could log requests from outside of its workspace.
+
+* [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  * Fixed an issue where `204` responses were not handled correctly and you would see the following error:
+`"No examples exist in API specification for this resource"`.
+  * `204` response specs now support empty content elements.
 ## 3.0.0.0
 **Release Date** TBD
 
@@ -32,7 +70,7 @@ images or packages, and Kong will not test package installation on Ubuntu 16.04.
 
     If you need to install Kong Gateway on Ubuntu 16.04, see the documentation for
     [previous versions](/gateway/2.8.x/install-and-run/ubuntu/).
-
+[DOCU-2329] Linux OS support and deprecation (#4000))
 ## 2.8.1.1
 **Release Date** 2022/05/27
 
@@ -115,7 +153,7 @@ in the organization.
   * Support the # character in RBAC tokens on the RBAC edit page
   * Performing an action on an upstream target no longer leads to a 404 error
 * Developer Portal
-  * Information about the current session is now bound to an nginx worker thread. This prevents data leaks when a worker is handling multiple reqests at the same time
+  * Information about the current session is now bound to an nginx worker thread. This prevents data leaks when a worker is handling multiple requests at the same time
 * Keys are no longer rotated unexpectedly when a node restarts
 * Add cache when performing RBAC token verification
 * The log message "plugins iterator was changed while rebuilding it" was incorrectly logged as an `error`. This release converts it to the `info` log level.
@@ -183,7 +221,7 @@ making your environment more secure.
 
   The beta includes `get` support for the following vault implementations:
   * [AWS Secrets Manager](/gateway/latest/plan-and-deploy/security/secrets-management/backends/aws-sm)
-  * [Hashicorp Vault](/gateway/latest/plan-and-deploy/security/secrets-management/backends/hashicorp-vault)
+  * [HashiCorp Vault](/gateway/latest/plan-and-deploy/security/secrets-management/backends/hashicorp-vault)
   * [Environment variable](/gateway/latest/plan-and-deploy/security/secrets-management/backends/env)
 
   As part of this support, some plugins have certain fields marked as
@@ -1678,7 +1716,7 @@ Developers now correctly propagate to their associated Consumers.
 
 #### Plugins
 - [Azure Functions](/hub/kong-inc/azure-functions) (`azure-functions`)
-  This relese updates the `lua-resty-http` dependency to v0.16.1, which means the plugin no longer
+  This release updates the `lua-resty-http` dependency to v0.16.1, which means the plugin no longer
   uses the deprecated functions.
 
 
@@ -2276,7 +2314,7 @@ from portals created in Kong Gateway v2.4.1.2.
   hybrid mode control planes. This new feature can be configured in the `kong.conf` file. See
   [`cluster_oscp`](/enterprise/2.4.x/property-reference/#cluster_ocsp) in the Configuration Reference for
   more information. [6887](https://github.com/Kong/kong/pull/6887)
-- Postgres `ssl_version` configuration now defaults to `any`. If `ssl_version` is not explicitly set,
+- PostgreSQL `ssl_version` configuration now defaults to `any`. If `ssl_version` is not explicitly set,
   the `any` option ensures that `luasec` will negotiate the most secure protocol available.
 
 #### Enterprise
@@ -2348,7 +2386,7 @@ section of the Hybrid Mode Overview for more information.
 - Schema validations now log more descriptive error messages when types are invalid.
   [6593](https://github.com/Kong/kong/pull/6593)
 - Kong now ignores tags in Cassandra when filtering by multiple entities, which is the
-  expected behavior and the one already existent when using Postgres databases.
+  expected behavior and the one already existent when using PostgreSQL databases.
   See [Tags](/enterprise/2.4.x/admin-api/#tags) in the Admin API
   documentation for more information. [6931](https://github.com/Kong/kong/pull/6931)
 - Users can proxy websockets through Kong when using Chrome or Firefox. `HTTP Connection`
@@ -2392,7 +2430,7 @@ section of the Hybrid Mode Overview for more information.
 - Fixed an issue where control plane nodes would needlessly invalidate and send new configurations
   to data plane nodes. [7112](https://github.com/Kong/kong/pull/7112)
 - Kong now ensures HTTP code `405` is handled by Kong's error page. [6933](https://github.com/Kong/kong/pull/6933)
-- Kong now ensures errors in plugins `init_worker` do not break Kong's worker intialization.
+- Kong now ensures errors in plugins `init_worker` do not break Kong's worker initialization.
   [7099](https://github.com/Kong/kong/pull/7099)
 - Fixed an issue where two subsequent TLS keep-alive requests would lead to incorrect
   plugin execution. [7102](https://github.com/Kong/kong/pull/7102)
@@ -2469,12 +2507,12 @@ Kong now ensures targets with a weight of 0 are displayed in the Admin API.
 ### Deprecated
 - The BasePlugin class was deprecated in Kong v2.4.x and will be removed in v3.0.x. Plugins
   that extend `base_plugin.lua` will continue to work until v3.0.x but should be updated to the
-  newer, simplier [pattern](/enterprise/2.4.x/plugin-development/custom-logic).
+  newer, simpler [pattern](/enterprise/2.4.x/plugin-development/custom-logic).
 
 ### Known issues
 The [mTLS Authentication](/hub/kong-inc/mtls-auth) plugin is incompatible with Kong Gateway v2.4.1.0.
 When making a call using the mTLS Authentication plugin, instead of a successful connection, users
-recieve an error and the call is aborted. This error is caused by an update to the way Kong handles
+receive an error and the call is aborted. This error is caused by an update to the way Kong handles
 keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 
 ## 2.4.0.0 (beta)
@@ -2503,7 +2541,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
   hybrid mode control planes. This new feature can be configured in the `kong.conf` file. See
   [`cluster_oscp`](/gateway-oss/2.4.x/configuration/#cluster_ocsp) in the Configuration Reference for
   more information. [6887](https://github.com/Kong/kong/pull/6887)
-- Postgres `ssl_version` configuration now defaults to `any`. If `ssl_version` is not explicitly set,
+- PostgreSQL `ssl_version` configuration now defaults to `any`. If `ssl_version` is not explicitly set,
   the `any` option ensures that `luasec` will negotiate the most secure protocol available.
 
 #### PDK
@@ -2565,7 +2603,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
 - Schema validations now log more descriptive error messages when types are invalid.
   [6593](https://github.com/Kong/kong/pull/6593)
 - Kong now ignores tags in Cassandra when filtering by multiple entities, which is the
-  expected behavior and the one already existent when using Postgres databases.
+  expected behavior and the one already existent when using PostgreSQL databases.
   See [Tags](https://docs.konghq.com/enterprise/2.3.x/admin-api/#tags) in the Admin API
   documentation for more information. [6931](https://github.com/Kong/kong/pull/6931)
 - Users can proxy websockets through Kong when using Chrome or Firefox. `HTTP Connection`
@@ -2576,7 +2614,7 @@ keep-alive connections. [7102](https://github.com/Kong/kong/pull/7102)
   or Chrome. [6929](https://github.com/Kong/kong/pull/6929)
 - Kong now accepts fully-qualified domain names ending in dots to be compliant with RFC internet standards.
   [6864](https://github.com/Kong/kong/pull/6864)
-- Kong has removed unnecessary load from DNS servers by resolving an issue occuring when
+- Kong has removed unnecessary load from DNS servers by resolving an issue occurring when
   using upstreams for load balancing. When caching services, Kong does not warmup upstream
   names used as service hosts entries when warming up DNS entries, as they are not real DNS
   entries. [6891](https://github.com/Kong/kong/pull/6891)
@@ -2688,7 +2726,7 @@ from portals created in Kong Gateway v2.3.3.3.
   [OAuth 2.0 Authentication](/hub/kong-inc/oauth2) plugin is upgraded to v2.2.0 and the
   [OpenID Connect](/hub/kong-inc/openid-connect) plugin is downgraded from v1.9.0 to v1.8.4.
 
-- When using the [Mutual TLS Authenication](/hub/kong-inc/mtls-auth) plugin with a service
+- When using the [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) plugin with a service
   that was configured for mutual TLS, the Kong Gateway was not sending the client certificate
   to the upstream. With this fix, Kong Gateway now avoids patching a plugin's handler if it is
   not defined and supports client certificates in `buffered_proxying` mode.
@@ -2763,12 +2801,12 @@ least-connection algorithm in the case where an upstream target becomes inaccess
 - Buffered responses are disabled on connection upgrades.
 - Schema validations now log more descriptive error messages when types are invalid.
 - Kong now ignores tags in Cassandra when filtering by multiple entities, which is the expected
-behavior and the one already existent when using Postgres databases
+behavior and the one already existent when using PostgreSQL databases
 - Kong accepts fully-qualified domain names ending in dots.
 - Now Kong does not leave plugin servers alive after exiting and does not try to start
 them in the unsupported stream subsystem.
 - Changed default values and validation rules for plugins that were not well-adjusted
-for dbless or hybrid modes.
+for DB-less or hybrid modes.
 - Topological sort now prioritizes core, avoiding problems when plugin entities use
 core entities but don't explicitly depend on them.
 
@@ -2822,8 +2860,8 @@ Contact your Kong sales representative for more information.
 - In hybrid mode, the control plane now propagates its license to the connected data planes in the cluster. Data planes do not require individual licenses.
 - The Kong Gateway installation packages now reside under https://bintray.com/kong/ and do not require a login. Search for “gateway” to list all available packages.
 - Added details to the error message of the entity type and number of entities that are preventing a Workspace from being deleted if the Workspace is not empty.
-- mTLS connections to Postres are now supported.
-- Postgres connection using scram-sha256 authentication are now supported.
+- mTLS connections to PostgreSQL are now supported.
+- PostgreSQL connection using scram-sha256 authentication are now supported.
 
 #### Core
 - Kong checks version compatibility between the control plane and any data planes to ensure
@@ -2869,7 +2907,7 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
 - The [LDAP Authentication Advanced](https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`) plugin has two new features:
   - added config `log_search_results` that allows displaying all of the LDAP search results received from the LDAP server.
   - additional debug log statements added for authenticated groups.
-- [Rate Limiting Advanced](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) plusing has added a jitter (random delay) for the Retry-After header.
+- [Rate Limiting Advanced](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) plugin has added a jitter (random delay) for the Retry-After header.
 - [Mutual TLS Authentication](https://docs.konghq.com/hub/kong-inc/mtls-auth/)(`mtls-auth`) plugin has added support for tags in the DAO and now ensures the existence of any provided CAs when creating the plugin entry.
 - [Response Transformer Advanced](https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`) has json paths for nested elements and arrays and transform gzipped content.
 - Collector (`collector`, used for Immunity) plugin supports hybrid mode and has removed the `log_bodies` configuration option.
@@ -2921,7 +2959,7 @@ being shown in the logs.
   number of successes and failures to 255, respecting the limits imposed by
   `lua-resty-healthcheck`.
 - Certificates for database connections now are loaded in the right order
-  avoiding failures to connect to Postgres databases.
+  avoiding failures to connect to PostgreSQL databases.
 - Fixed Lua `validate_function` in sandbox module.
 - Mark boolean fields with default values as required.
 
@@ -3064,7 +3102,7 @@ being shown in the logs.
   number of successes and failures to 255, respecting the limits imposed by
   `lua-resty-healthcheck`.
 - Certificates for database connections now are loaded in the right order
-  avoiding failures to connect to Postgres databases.
+  avoiding failures to connect to PostgreSQL databases.
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
@@ -3147,7 +3185,7 @@ request's URI before matching against the Router.
 
 #### Enterprise
 - Kong now display errors to better identify the issue when `validate_key` fails.
-- Kong now uses the correct workspace ID when selecting SNI in dbless/hybrid mode.
+- Kong now uses the correct workspace ID when selecting SNI in DB-less/hybrid mode.
 - Fixed verification when using combined certificates.
 - Corrected healthchecker thresholds.
 
@@ -3166,7 +3204,7 @@ specs.
   - Fixed a circular dependency issue with `redirect` function.
   - Added `config.disable_session` to be able to disable session creation with specified
     authentication methods.
-  - Changeed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
+  - Changed `Cache-Control="no-store"` instead of `Cache-Control="no-cache, no-store"`,
     and only set `Pragma="no-cache"` with HTTP 1.0 (and below).
   - Fixed `/openid-connect/jwks` to not expose private keys (this bug was introduced
     in v1.6.0 (Kong Enterprise v2.1.3.1) and affects all versions up to v1.8.3 (Kong Enterprise v2.3.2)).
@@ -3322,7 +3360,7 @@ systems.
   - Added issuer cache warmup on node start.
 - **Encryption support:** The Redis strategy now supports TLS connections.
   Introduced the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name`
-  parameters for confguring TLS connections. Applies to the following plugins:
+  parameters for configuring TLS connections. Applies to the following plugins:
   - Rate Limiting Advanced (`rate-limiting-advanced`)
   - Proxy Caching Advanced (`proxy-cache-advanced`)
 
@@ -3720,7 +3758,7 @@ specs.
 
 #### Plugins
 
-* [Exit Transfomer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
+* [Exit Transformer](/hub/kong-inc/exit-transformer/) (`exit-transformer`)
   * Fix error getting route.
 * [Mutual TLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
   * Ensure that the basic serializer generates the `request.tls.client_verify`
@@ -3781,7 +3819,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x, 2.1.0, 2.1.1, 2.1.2, and 2.1.3.
 * Workspaces code has been refactored for performance. The feature should work the same for most users.
-* TLS version may be specified when using TLS to connect to a Postgres database.
+* TLS version may be specified when using TLS to connect to a PostgreSQL database.
 
 #### Kong Manager
 * Open ID Connect (`openid-connect`) can now be used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/) using `config.authenticated_groups_claim`.
@@ -3800,7 +3838,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * Added `config.roles_required` and `config.roles_claim`.
   * Added `DELETE :8001/openid-connect/issuers` endpoint (for cache clearing).
   * Added `DELETE :8001/openid-connect/jwks` endpoint (for rotating the jwks).
-  * Added Admin API for DBless (it is a single node only).
+  * Added Admin API for DB-less (it is a single node only).
   * Added support for `x5t` key lookups.
   * Added support for same `x5t` but different `alg` lookups.
   * Changed that `config.authenticated_groups_claim` is considered even on successful consumer mapping so that it enables dynamic groups, while using consumer mapping. This feature is used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/).
@@ -3848,10 +3886,10 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 * [gRPC Gateway](/hub/kong-inc/grpc-gateway/) documentation is improved.
 
 * [Kong JWT Signer](/hub/kong-inc/jwt-signer/)
-  * Changed Postgres column type for keys in `jwt_signer_jwks` table from JSONB to JSONB[] for a better hybrid compatibility.
-  * Changed Postgres column type for previous in `jwt_signer_jwks` table from JSONB to JSONB[] for a better hybrid compatibility.
+  * Changed PostgreSQL column type for keys in `jwt_signer_jwks` table from JSONB to JSONB[] for a better hybrid compatibility.
+  * Changed PostgreSQL column type for previous in `jwt_signer_jwks` table from JSONB to JSONB[] for a better hybrid compatibility.
   * Changed JWKS URIs to return application/jwk-set+json instead of application/json.
-  * Remove `run_on` field for 2.1.0.0 compatability.
+  * Remove `run_on` field for 2.1.0.0 compatibility.
 
 * [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * Return a 500 when there's an error.
@@ -3912,7 +3950,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 #### Kong Gateway
 * Inherited changes from OSS Kong in releases 2.0.x and 2.1.0.
 * Workspaces code has been refactored for performance. The feature should work the same for most users.
-* TLS version may be specified when using TLS to connect to a Postgres database.
+* TLS version may be specified when using TLS to connect to a PostgreSQL database.
 
 #### Kong Manager
 * Open ID Connect (`openid-connect`) can now be used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/) using `config.authenticated_groups_claim`.
@@ -3932,7 +3970,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
   * Added `config.roles_required` and `config.roles_claim`.
   * Added `DELETE :8001/openid-connect/issuers` endpoint (for cache clearing).
   * Added `DELETE :8001/openid-connect/jwks` endpoint (for rotating the jwks).
-  * Added Admin API for DBless (it is a single node only).
+  * Added Admin API for DB-less (it is a single node only).
   * Added support for `x5t` key lookups.
   * Added support for same `x5t` but different `alg` lookups.
   * Changed that `config.authenticated_groups_claim` is considered even on successful consumer mapping so that it enables dynamic groups, while using consumer mapping. This feature is used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/).
@@ -4021,8 +4059,8 @@ This release includes internal updates that do not affect product functionality.
 ### Fixes
 
 #### Enterprise
-- In Kong Manager, users could recieve an emtpy set of roles from an API response, even when valid RBAC
-  roles existed in the databse because of a filtering issue with portal and default roles on a paginated set.
+- In Kong Manager, users could receive an empty set of roles from an API response, even when valid RBAC
+  roles existed in the database because of a filtering issue with portal and default roles on a paginated set.
   With this fix, if valid RBAC roles exist in the database an API request returns with those valid roles.
 
 ## 1.5.0.10
@@ -4179,7 +4217,7 @@ specs.
 ### Fixes
 
 #### Kong Gateway
-* Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
+* Upgraded PostgreSQL driver to support selecting the TLS version when connecting to Postgres.
 * Fixed issue causing incorrect `service_count` for license report endpoint.
 
 #### Kong Manager
@@ -4404,7 +4442,7 @@ specs.
   * Includes a Datadog tracer for Amazon Linux 2 at /usr/local/kong/lib/libdd_opentracing_plugin.so
   * Includes a Jaeger tracer for Docker Alpine at /usr/local/kong/lib/libjaegertracing.so
 * Provides a default logrotate configuration file
-* Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server
+* Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled PostgreSQL server
 * Adds support for regular expressions when using `audit_log_ignore_paths`
 * Allows the Kong Enterprise systemd service to be reloaded with systemctl reload kong-enterprise-edition
 
@@ -4465,7 +4503,7 @@ specs.
 
 * Kong Enterprise now officially supports RHEL 8
 * Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
-* (Alpha feature) Kong Enterprise can now perform encryption-at-rest for sensitive fields within the data store (Postgres or Cassandra).
+* (Alpha feature) Kong Enterprise can now perform encryption-at-rest for sensitive fields within the data store (PostgreSQL or Cassandra).
 
 #### Kong Developer Portal
 
@@ -4581,7 +4619,7 @@ repository will allow you to do both easily.
 
 #### Core
 
-- Bugfixes in the router *may, in some edge-cases*, result in
+- Bug fixes in the router *may, in some edge-cases*, result in
   different Routes being matched. It was reported to us that the router behaved
   incorrectly in some cases when configuring wildcard Hosts and regex paths
   (e.g. [#3094](https://github.com/Kong/kong/issues/3094)). It may be so that
@@ -4653,7 +4691,7 @@ repository will allow you to do both easily.
   directives. We have high hopes that this will remove the occasional need for
   custom Nginx configuration templates.
   [#4382](https://github.com/Kong/kong/pull/4382)
-- New configuration properties allow for controling the behavior of
+- New configuration properties allow for controlling the behavior of
   upstream keepalive connections. `nginx_http_upstream_keepalive_requests` and
   `nginx_http_upstream_keepalive_timeout` respectively control the maximum
   number of proxied requests and idle timeout of an upstream connection.
@@ -4873,9 +4911,9 @@ repository will allow you to do both easily.
 - Routing by header
 
 - Request Size Limiting - enhanced units on size limit
-- Request Transformer Advanced - Support for filtering JSON body with new configration `config.whitelist.body`
+- Request Transformer Advanced - Support for filtering JSON body with new configuration `config.whitelist.body`
 - Response Transformer Advanced:
-    - Support for filtering JSON body with new configration config.whitelist.body, Support arbitrary transformations via Lua functions
+    - Support for filtering JSON body with new configuration config.whitelist.body, Support arbitrary transformations via Lua functions
     - Fixes a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
 
 - Route Transformer Advanced - New
@@ -4892,7 +4930,7 @@ repository will allow you to do both easily.
       - To every route irrespective of workspace when plugin applied at route level but SNIs not set on route
       - To specific route only when plugin applied at route level and it has SNIs set
     - skip_consumer_lookup config to skip consumer lookup if request has trusted client certificate.
-    - authenticated_group_by config to block/allow validated certificate using ACL plugi
+    - authenticated_group_by config to block/allow validated certificate using ACL plugin
 - Key-Auth keys now support a ttl property and can expire
 - AWS Lambda plugin supports IAM roles
 - Session plugin can now store authenticated groups from other authentication plugins. 
@@ -4989,7 +5027,7 @@ attempting to fetch headers during the ssl_cert phase.
     - Add support for PS512 signing and key generation
     - Add support for EdDSA signing, key generation and verification
     - Update lua-resty-nettle dependency to 1.0
-    - Change verification JWT header's typ claim by adding support for at+jwtthat for example IdentityServer4
+    - Change verification JWT header's typ claim by adding support for at+jwt that for example IdentityServer4
     is using by default.
     - Change issuer verification bit more permissive (e.g. the difference in ending slash (present or absent)
     does not make the verification to fail)
@@ -5028,8 +5066,8 @@ attempting to fetch headers during the ssl_cert phase.
   - Fixes an issue where user can rename a workspace with `PUT` request
 - **Migrations**
   - Fixes an issue where migration from 0.35-x to 0.36-x making plugin `protocols`
-  field mandtory durin `PATCH` request.
-  - Fixes an issue where unique fields of entites are not migrated properly when
+  field mandatory during `PATCH` request.
+  - Fixes an issue where unique fields of entities are not migrated properly when
   migrating from Kong CE to EE using CLI `kong migrations migrate-community-to-enterprise`
 - **Vitals**
   - Fixes an issue where Kong fails to remove old stats table when they are not part of public
@@ -5113,7 +5151,7 @@ attempting to fetch headers during the ssl_cert phase.
   concurrent queries to the database, and `pg_semaphore_timeout` allows for
   tuning the timeout when acquiring access to a database connection. The
   default behavior remains the same, with no concurrency limitation.
-- New option in `kong.conf`: `pg_schema` to specify Postgres schema
+- New option in `kong.conf`: `pg_schema` to specify PostgreSQL schema
   to be used
 - The Stream subsystem now supports Nginx directive injections
   - `nginx_stream_*` (or `KONG_NGINX_STREAM_*` environment variables)
@@ -5399,7 +5437,7 @@ environment variable is set is fixed.
 #### Plugins
 - `rate-limiting-advanced` schema validation rules prevented use of
 Redis Sentinel (`config.strategy=redis` and
-`config.redis.sentinel_addresses`) for counters datastore. Validation
+`config.redis.sentinel_addresses`) for counters data store. Validation
 rule is fixed.
 
 #### Core
@@ -5650,14 +5688,14 @@ the theme name to files inserted on a workspace.
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.34** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **PostgreSQL 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with PostgreSQL 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 
 ### Changes
 - **Kong Manager**
-  - Email addresses are stored in lower-case. These addresses must be case-insensitively unique. In previous versions, you could store mixed case email addresses. A migration for Postgres converts all existing email addresses to lower case. Cassandra users should review the email address of their admins and developers and update them to lower-case if necessary. Use the Kong Manager or the Admin API to make these updates.
+  - Email addresses are stored in lower-case. These addresses must be case-insensitively unique. In previous versions, you could store mixed case email addresses. A migration for PostgreSQL converts all existing email addresses to lower case. Cassandra users should review the email address of their admins and developers and update them to lower-case if necessary. Use the Kong Manager or the Admin API to make these updates.
 - **Plugins**
   - **Forward Proxy**
     - Do not do a DNS request to the original upstream that would be discarded anyway as proxy will manage the resolving of the configured host.
@@ -5675,7 +5713,7 @@ the theme name to files inserted on a workspace.
     - Script which allows dev portal developers to `push`, `pull`, and `watch` the most up to date template files to and from kong to their local machine.
   - default portal theme:
     - Directory containing the most up to date version of the default portal template files that ship with Kong EE each release.
-  - Bugfixes, updates, and template features will be pushed here regularly and independently of the EE release cycle.
+  - Bug fixes, updates, and template features will be pushed here regularly and independently of the EE release cycle.
   - Dev Portal now caches static JS assets
 - **Plugins**
   - **OpenID Connect**
@@ -5709,7 +5747,7 @@ the theme name to files inserted on a workspace.
     same name as an existing RBAC user
   - Roll back if a POST to /admins fails
 - **Dev Portal**
-  - KONG_PORTAL_AUTH_CONF param values can now handle escaped
+  - KONG_PORTAL_AUTH_CONF parameter values can now handle escaped
     characters such as #
   - ACL plugin credential management no longer accessible from Dev
     Portal client
@@ -5758,7 +5796,7 @@ the theme name to files inserted on a workspace.
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.34** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **PostgreSQL 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with PostgreSQL 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
@@ -5887,7 +5925,7 @@ the theme name to files inserted on a workspace.
   - **DAO**
     - Allow self-signed certificates in Cassandra connections
     - check for schema consensus in Cassandra migration
-    - Ensure ScyllaDB compatibility in Cassandra migraton
+    - Ensure ScyllaDB compatibility in Cassandra migration
   - **Config**
     - IPv6 addresses in listen configuration directives are correctly parsed
   - **Certificates & SNIs**
@@ -5923,7 +5961,7 @@ the theme name to files inserted on a workspace.
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.33** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **PostgreSQL 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with PostgreSQL 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
@@ -6204,7 +6242,7 @@ the theme name to files inserted on a workspace.
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.33** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **PostgreSQL 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with PostgreSQL 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
@@ -6232,7 +6270,7 @@ the theme name to files inserted on a workspace.
       - Cassandra
         - Fix Cassandra unique violation check on update
     - **Migrations**
-      - Remove dependency on "public" schema or "pg_default" tablespaces in Postgres - such a dependency would cause migrations to fail if such tablespaces weren't being used
+      - Remove dependency on "public" schema or "pg_default" tablespaces in PostgreSQL - such a dependency would cause migrations to fail if such tablespaces weren't being used
     - **Healthchecks**
       - Fix Host header in active healthchecks
       - Fix for connection timeouts on passive healthchecks
@@ -6275,10 +6313,10 @@ the theme name to files inserted on a workspace.
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.33** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **PostgreSQL 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with PostgreSQL 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
-      - **Vitals** requires Postgres 9.5+
+      - **Vitals** requires PostgreSQL 9.5+
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
@@ -6377,10 +6415,10 @@ the theme name to files inserted on a workspace.
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.32** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise will not start with Postgres 9.4 or prior
+  - Support for **PostgreSQL 9.4 has been removed** - starting with 0.32, Kong Enterprise will not start with PostgreSQL 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
-      - **Vitals** requires Postgres 9.5+
+      - **Vitals** requires PostgreSQL 9.5+
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: The `latest` tag in Kong Enterprise Docker repository changed from CentOS to Alpine - which might result in breakage if additional packages are assumed to be in the image, as the Alpine image only contains a minimal set of packages installed
@@ -6500,13 +6538,13 @@ the theme name to files inserted on a workspace.
       - Fix internal management of healthcheck counters, which corrects detection of state flapping
   - **DNS**: a number of fixes and improvements were made to Kong's DNS client library, including:
       - The ring-balancer now supports `targets` resolving to an SRV record without port information (`port=0`)
-      - IPv6 nameservers with a scope in their address (eg. `nameserver fe80::1%wlan0`) will now be skipped instead of throwing errors
+      - IPv6 nameservers with a scope in their address (For example, `nameserver fe80::1%wlan0`) will now be skipped instead of throwing errors
 - **Rate Limiting Advanced**
   - Fix `failed to upsert counters` error
   - Fix issue where an attempt to acquire a lock would result in an error
   - Mitigate issue where lock acquisitions would lead to RL counters being lost
 - **Proxy Cache**
-  - Fix issue where proxy-cache would shortcircuit requests that resulted in a cache hit, not allowing subsequent plugins - e.g., logging plugins - to run
+  - Fix issue where proxy-cache would short-circuit requests that resulted in a cache hit, not allowing subsequent plugins - e.g., logging plugins - to run
   - Fix issue where PATCH requests would result in a 500 response
   - Fix issue where Proxy Cache would overwrite X-RateLimit headers
 - **Request Transformer**
@@ -6614,7 +6652,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 
 - Requires migration - Dev Portal
   - Not-production-ready feature preview of:
-    - "Public only" Portal - no authentication (eg. the portal is fully accessible to anyone who can access it)
+    - "Public only" Portal - no authentication (the portal is fully accessible to anyone who can access it)
     - Authenticated Portal - Developers must log in, and then they can see what they are entitled to see
 <hr/>
 

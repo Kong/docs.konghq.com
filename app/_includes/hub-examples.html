@@ -1,13 +1,7 @@
 <!-- Generate Konnect and Kong Manager examples -->
 {% capture config_required_fields_gui %}{%
   for field in include.params.config %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
-    if field.required == true and field.value_in_examples == nil %}{%
-      if field.default == "`false`" or field.default == "`true`" %}
-    * Config.{{ titlecase | rstrip }}: {{ field.default | replace: "`false`", "clear checkbox" | replace: "`true`", "select checkbox" }}{%
-      else %}
-    * Config.{{ titlecase | rstrip }}: `{{ field.default | smartify }}`{%
-      endif %}{%
-    elsif field.required == true and field.value_in_examples != nil %}{%
+    if field.required == true and field.value_in_examples != nil %}{%
       if field.value_in_examples == false or field.value_in_examples == true %}
     * Config.{{ titlecase | rstrip }}: {{ field.value_in_examples | replace: false, "clear checkbox" | replace: true, "select checkbox" }}{%
       else %}{%
@@ -36,14 +30,15 @@ endcapture %}
   for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
   if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
-  for value in field.value_in_examples %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{%
+  for value in field.value_in_examples %} \{%
+    if field.datatype == "map" %}{% assign mapValues = value | split: ":" %}
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] | replace: "'", "" }}'{% else %}"config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] }}"{% endif %}{%
+    else %}
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{% endif %}{%
   endfor %}{%
   else %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ field.value_in_examples | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ field.value_in_examples }}"{% endif %}{%
   endif %}{%
-  elsif field.required == true %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
   endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
 
@@ -73,8 +68,6 @@ endcapture %}
     else %}
     {{ field.name }}: {{ field.value_in_examples }}{%
     endif %}{%
-  elsif field.required == true %}
-    {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
   endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
 
@@ -104,8 +97,6 @@ if field.value_in_examples != nil %}{%
   else %}
   {{ field.name }}: {{ field.value_in_examples }}{%
   endif %}{%
-elsif field.required == true %}
-  {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
 endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
 
@@ -125,12 +116,11 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-curl -X POST http://{HOST}:8001/services/{SERVICE}/plugins \
+curl -X POST http://localhost:8001/services/SERVICE_NAME|SERVICE_ID/plugins \
     --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
-`SERVICE` is the `id` or `name` of the service that this plugin
-configuration will target.
+Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that this plugin configuration will target.
 
 {% endnavtab %}
 {% unless include.params.k8s_examples == false %}
@@ -143,44 +133,43 @@ resource:
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: <{{include.params.name}}-example>
+  name: {{include.params.name}}-example
 {% if config_required_fields_k8s == 'config: ' %}config:
-  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_k8s }}{% endif %}
 plugin: {{include.params.name}}
 ```
 
 Next, apply the KongPlugin resource to a
-[Service](/gateway/latest/admin-api/#service-object) by annotating the
-Service as follows:
+[service](/gateway/latest/admin-api/#service-object) by annotating the
+service as follows:
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: {SERVICE}
+  name: SERVICE_NAME|SERVICE_ID
   labels:
-    app: {SERVICE}
+    app: SERVICE_NAME|SERVICE_ID
   annotations:
-    konghq.com/plugins: <{{include.params.name}}-example>
+    konghq.com/plugins: {{include.params.name}}-example
 spec:
   ports:
   - port: 80
     targetPort: 80
     protocol: TCP
-    name: {SERVICE}
+    name: SERVICE_NAME|SERVICE_ID
   selector:
-    app: {SERVICE}
+    app: SERVICE_NAME|SERVICE_ID
   ```
 
-`{SERVICE}` is the `id` or `name` of the service that this plugin
-    configuration will target.
+Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that this plugin configuration will target.
 
-<div class="alert alert-ee blue">
+<blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
-</div>
+</blockquote>
 
 {% endnavtab %}
 {% endunless %}
@@ -192,50 +181,55 @@ Add this section to your declarative configuration file:
 ``` yaml
 plugins:
 - name: {{include.params.name}}
-  service: {SERVICE}
+  service: SERVICE_NAME|SERVICE_ID
   {% if config_required_fields_yaml == 'config: ' %}config:
-    <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 
-`SERVICE` is the `id` or `name` of the service that this plugin
-  configuration will target.
+Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that this plugin configuration will target.
 
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 
-1. In Konnect Cloud, select the service on the ServiceHub page.
-2. Scroll down to **Versions** and select the version.
-3. Scroll down to **Plugins** and click **New Plugin**.
-4. Find and select the **{{ include.name }}** plugin.{% unless
+You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then set up the plugin:
+
+1. In the **Plugins** section, click **Add Plugin**.
+2. Find and select the **{{ include.name }}** plugin.{% unless
   config_required_fields_gui == empty %}
-5. Enter the following [parameters](#parameters), updating the default
-or sample values as needed:
+3. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-6. Click **Create**.
+4. Click **Create**.
 
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
 
-1. In Kong Manager, select the workspace.
-2. From the Dashboard, scroll down to **Services** and click **View** for the
-service row.
-3. Scroll down to plugins and click **Add Plugin**.
-4. Find and select the **{{ include.name }}** plugin.
+You can configure this plugin through the Kong Manager UI.
 
-    <div class="alert alert-ee blue">
+1. In Kong Manager, select the workspace.
+2. From the **Services** section, click **View** for the
+service row.
+3. From the plugin section, click **Add Plugin**.
+4. Find and select the **{{ include.name }}** plugin.{%
+    if page.enterprise == true or page.plus == true %}
+    <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
-    </div>
-
+    </blockquote>{% endif %}
 5. If the option is available, select **Scoped**.
 6. Add the service name and ID to the **Service** field if it
-is not already prefilled.{% unless
+is not already pre-filled.{% unless
     config_required_fields_gui == empty %}
-8. Enter the following [parameters](#parameters), updating the default or sample values as needed:
+8. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
 9. Click **Create**.
 {% endnavtab %}
@@ -260,12 +254,11 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-$ curl -X POST http://{HOST}:8001/routes/{ROUTE}/plugins \
+$ curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
     --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
-`ROUTE` is the `id` or `name` of the route that this plugin configuration
-  will target.
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
 
 {% endnavtab %}
 {% unless include.params.k8s_examples == false %}
@@ -278,23 +271,23 @@ resource:
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: <{{include.params.name}}-example>
+  name: {{include.params.name}}-example
 {% if config_required_fields_k8s == 'config: ' %}config:
-  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_k8s }}{% endif %}
 plugin: {{include.params.name}}
 ```
 
-Then, apply it to an ingress ([Route or Routes](/gateway/latest/admin-api/#route-object))
+Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route-object))
 by annotating the ingress as follows:
 
 ``` yaml
 apiVersion: networking/v1beta1
 kind: Ingress
 metadata:
-  name: {ROUTE}
+  name: ROUTE_NAME|ROUTE_ID
   annotations:
     kubernetes.io/ingress.class: kong
-    konghq.com/plugins: <{{include.params.name}}-example>
+    konghq.com/plugins: {{include.params.name}}-example
 spec:
   rules:
   - host: examplehostname.com
@@ -306,15 +299,14 @@ spec:
           servicePort: 80
   ```
 
-`ROUTE` is the `id` or `name` of the route that this plugin configuration
-  will target.
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
 
-<div class="alert alert-ee blue">
+<blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
   and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
-</div>
+</blockquote>
 
 {% endnavtab %}
 {% endunless %}
@@ -326,51 +318,57 @@ Add this section to your declarative configuration file:
 ```yaml
 plugins:
 - name: {{include.params.name}}
-  route: <route>
+  route: ROUTE_NAME
   {% if config_required_fields_yaml == 'config: ' %}config:
-    <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 
-`ROUTE` is the `id` or `name` of the route that this plugin configuration
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration
   will target.
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.konnect_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 
-1. In Konnect Cloud, select the service from the ServiceHub page.
-2. Scroll down to **Versions** and select the version.
-3. Select the route.
-4. Scroll down to **Plugins** and click **Add Plugin**.
-5. Find and select the **{{ include.name }}** plugin.{% unless
-    config_required_fields_gui == empty %}
-6. Enter the following [parameters](#parameters), updating the default
-or sample values as needed:
+You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then set up the plugin:
+
+1. Select a route.
+2. In the **Plugins** section, click **Add Plugin**.
+3. Find and select the **{{ include.name }}** plugin.{% unless
+  config_required_fields_gui == empty %}
+4. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-7. Click **Create**.
+5. Click **Create**.
+
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
 
-1. In Kong Manager, select the workspace.
-2. From the Dashboard, select **Routes** in the left navigation.
-3. Click **View** for the route row.
-4. Scroll down to plugins and click **Add Plugin**.
-5. Find and select the **{{ include.name }}** plugin.
+You can configure this plugin through the Kong Manager UI.
 
-    <div class="alert alert-ee blue">
+1. In Kong Manager, select the workspace.
+2. Open **Routes** from the menu, then click **View** for the
+route row.
+3. From the plugin section, click **Add Plugin**.
+4. Find and select the **{{ include.name }}** plugin.{%
+    if page.enterprise == true or page.plus == true %}
+    <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
-    </div>
-
-6. If the option is available, select **Scoped**.
-7. Add the Route ID if it is not already prefilled.{% unless
+    </blockquote>{% endif %}
+5. If the option is available, select **Scoped**.
+6. Add the route ID if it is not already prefilled.{% unless
   config_required_fields_gui == empty %}
-8. Enter the following [parameters](#parameters), updating the default
-or sample values as needed:
+7. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-9. Click **Create**.
+8. Click **Create**.
 {% endnavtab %}
 {% endunless %}
 {% endnavtabs %}
@@ -393,12 +391,11 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-$ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/plugins \
+$ curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
     --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
-`CONSUMER` is the `id` or `username` of the consumer that this plugin
-  configuration will target.
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
 {% if include.params.service_id and include.params.route_id %}
 You can combine `consumer.id`, `service.id`, or `route.id`
@@ -417,9 +414,9 @@ resource:
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: <{{include.params.name}}-example>
+  name: {{include.params.name}}-example
 {% if config_required_fields_k8s == 'config: ' %}config:
-  <optional_parameter>: <value>{% else %}{{ config_required_fields_k8s }}{% endif %}
+  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_k8s }}{% endif %}
 plugin: {{include.params.name}}
 ```
 
@@ -430,21 +427,20 @@ annotating the KongConsumer resource as follows:
 apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
-  name: {CONSUMER}
+  name: CONSUMER_NAME|CONSUMER_ID
   annotations:
-    konghq.com/plugins: <{{include.params.name}}-example>
+    konghq.com/plugins: {{include.params.name}}-example
     kubernetes.io/ingress.class: kong
   ```
 
-`CONSUMER` is the `id` or `username` of the consumer that this plugin
-  configuration will target.
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
-<div class="alert alert-ee blue">
+<blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
-  and can be applied to any Service, Consumer, or Route in the namespace. If you
+  and can be applied to any service, consumer, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
-</div>
+</blockquote>
 
 {% endnavtab %}
 {% endunless %}
@@ -456,35 +452,37 @@ Add this section to your declarative configuration file:
 ``` yaml
 plugins:
 - name: {{include.params.name}}
-  consumer: {CONSUMER}
+  consumer: CONSUMER_NAME|CONSUMER_ID
   {% if config_required_fields_yaml == 'config: ' %}config:
-    <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 
-`CONSUMER` is the `id` or `username` of the consumer that this plugin
-  configuration will target.
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
 
-1. In Kong Manager, select the workspace.
-2. From the Dashboard, scroll down to **Consumers** and click **View** for the consumer row.
-3. Select the **Plugins** tab.
-4. Click **Add Plugin**.
-5. Find and select the **{{ include.name }}** plugin.
+You can configure this plugin through the Kong Manager UI.
 
-    <div class="alert alert-ee blue">
+1. In Kong Manager, select the workspace.
+2. From the **Consumers** section, click **View** for the consumer row.
+3. Select the **Plugins** tab, then click **Add Plugin**.
+4. Find and select the **{{ include.name }}** plugin.{%
+    if page.enterprise == true or page.plus == true %}
+    <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
-    </div>
-
-6. If the option is available, select **Global**.{% unless
+    </blockquote>{% endif %}
+5. If the option is available, select **Scoped**.
+6. Add the consumer ID if it is not already prefilled.{% unless
     config_required_fields_gui == empty %}
-7. Enter the following [parameters](#parameters), updating the default or sample values as needed:
+7. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-8. Click **Create**.
+7. Click **Create**.
 {% endnavtab %}
 {% endunless %}
 {% endnavtabs %}
@@ -509,7 +507,7 @@ the <code>{{include.params.name}}</code> plugin globally.
 Make the following request:
 
 ```bash
-$ curl -X POST http://{HOST}:8001/plugins/ \
+$ curl -X POST http://localhost:8001/plugins/ \
     --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
@@ -546,29 +544,31 @@ configuration file:
 plugins:
 - name: {{include.params.name}}
   {% if config_required_fields_yaml == 'config: ' %}config:
-    <optional_parameter>: <value>{% else %}{{ config_required_fields_yaml }}{% endif %}
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ config_required_fields_yaml }}{% endif %}
 ```
 {% endnavtab %}
 {% endunless %}
 {% unless include.params.manager_examples == false or include.publisher != "Kong Inc." %}
 {% navtab Kong Manager %}
 
+
+You can configure this plugin through the Kong Manager UI.
+
 1. In Kong Manager, select the workspace.
-2. From the Dashboard, select **Plugins** in the left navigation.
-3. Click **New Plugin**.
-4. Find and select the **{{ include.name }}** plugin.
-
-    <div class="alert alert-ee blue">
+2. Open **Plugins** from the menu, then click **New Plugin**.
+3. Find and select the **{{ include.name }}** plugin.{%
+    if page.enterprise == true or page.plus == true %}
+    <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="">{{site.base_gateway}} tiers</a>.
-    </div>
-
-5. If the option is available, set the plugin scope to **Global**.{% unless
+    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
+    </blockquote>{% endif %}
+4. If the option is available, set the plugin scope to **Global**.{% unless
     config_required_fields_gui == empty %}
-6. Enter the following [parameters](#parameters), updating the
-default/sample values as needed:
+5. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
     {{ config_required_fields_gui }}{% endunless %}
-7. Click **Create**.
+6. Click **Create**.
 
 {% endnavtab %}
 {% endunless %}

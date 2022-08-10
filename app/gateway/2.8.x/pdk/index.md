@@ -62,7 +62,7 @@ A number representing the major version of the current PDK (e.g.
 **Usage**
 
 ``` lua
-if kong.pdk_version_num < 2 then
+if kong.pdk_major_version < 2 then
   -- PDK is below version 2
 end
 ```

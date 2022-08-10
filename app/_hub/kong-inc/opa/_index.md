@@ -74,12 +74,25 @@ params:
       default: false
       description: |
         If set to true, the Kong Gateway Consumer object in use for the current request (if any) is included as input to OPA.
+    - name: include_body_in_opa_input
+      required: false
+      datatype: boolean
+      default: false
+      description: |
+        If set to true, the current requests' request body is included as input to OPA.
+    - name: include_parsed_json_body_in_opa_input
+      required: false
+      datatype: boolean
+      default: false
+      description: |
+        If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be JSON decoded and the decoded struct is included as input to OPA.
     - name: ssl_verify
       required: true
       datatype: boolean
       default: true
       description: |
        If set to true, the OPA certificate will be verified according to the CA certificates specified in [lua_ssl_trusted_certificate](https://docs.konghq.com/gateway/latest/reference/configuration).
+
 ---
 
 ## Usage
@@ -96,7 +109,9 @@ Create an `example.rego` file with the following content:
 ```rego
 package example
 
-default allow = false
+default allowBoolean = false
+default allowDetailed = false
+
 
 allowBoolean {
   header_present
