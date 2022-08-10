@@ -1,6 +1,6 @@
 ---
 title: Canary Deployments
-
+content-type: reference
 ---
 
 Using the [ring-balancer](/gateway/latest/understanding-kong/loadbalancing/#ring-balancer), target weights can be adjusted granularly, allowing
