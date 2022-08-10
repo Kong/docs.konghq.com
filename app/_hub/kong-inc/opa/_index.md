@@ -74,7 +74,7 @@ params:
       default: false
       description: |
         If set to true, the Kong Gateway Consumer object in use for the current request (if any) is included as input to OPA.
-    - name: https_verify
+    - name: ssl_verify
       required: true
       datatype: boolean
       default: true
