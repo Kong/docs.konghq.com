@@ -3,8 +3,27 @@ title: Upstreams
 concept_type: explanation
 ---
 
-An upstream refers to your upstream API/service sitting behind {{site.base_gateway}} that client requests are forwarded to. In {{site.base_gateway}}, an upstream object represents a virtual hostname and can be used to health check, circuit break, and load balance incoming requests over multiple services (targets).
+An upstream refers to your upstream API/service sitting behind {{site.base_gateway}} that client requests are forwarded to. 
+In {{site.base_gateway}}, an upstream object represents a virtual hostname and can be used to health check, circuit break, and load balance incoming requests over multiple services (targets).
 
-## Next steps
+## Upstream and service interaction
 
-Next, go on to learn about [plugins](/gateway/latest/understanding-kong/key-concepts/plugins/).
+You can configure a [service](/gateway/understanding-kong/key-concepts/services/) to point to an upstream instead of a host. 
+For example, if you have a service called `example_service` and an upstream called `example_upstream`, you can point `example_service` to `example_upstream` instead of specifying a host. 
+The `example_upstream` upstream can then point both `httpbin.org` and `mockbin.org`. 
+In a real environment, the upstream points to the same service running on multiple systems.
+
+This setup allows you to [load balance](/gateway/loadbalancing/) between upstream targets. 
+For example, if an application is deployed across two different servers or upstream targets, {{site.base_gateway}} needs to load balance across both servers. 
+This is so that if one of the servers (like `httpbin.org` in the previous example) is unavailable, it automatically detects the problem and routes all traffic to the working server (`mockbin.org`). 
+
+
+## Upstream configuration
+
+You can add upstreams to a service in {{site.base_gateway}} using the following methods:
+
+* Using Kong Manager
+* Using the Admin API
+* Using decK (YAML)
+
+For more information about how to configure upstreams, see [Configure Load Balancing](/gateway/get-started/load-balancing/). 
