@@ -31,6 +31,8 @@ no_version: true
 #### Kong Manager
 * Fixed an issue with admin creation.
 Previously, when an admin was created with no roles, the admin would have access to the first workspace listed alphabetically.
+* Fixed several issues with SNI listing.
+Previously, the SNI list was empty after sorting by the SSL certificate ID field. In 2.8.1.1, the SSL certificate ID field in the SNI list was empty.
 
 #### Plugins
 
