@@ -3,53 +3,52 @@ title: RBAC in Kong Manager
 badge: enterprise
 ---
 
-In addition to authenticating Admins and segmenting Workspaces,
+In addition to authenticating admins and segmenting workspaces,
 {{site.base_gateway}} has the ability to enforce Role-Based Access Control
-(RBAC) for all resources with the use of Roles assigned to Admins.
+(RBAC) for all resources with the use of roles assigned to admins.
 
-As the Super Admin (or any Role with read and write
+As the super admin (or any role with read and write
 access to the `/admins` and `/rbac` endpoints), it is possible to
 create new Roles and customize Permissions.
 
-In Kong Manager, RBAC affects how Admins are able to navigate
+In Kong Manager, RBAC affects how admins are able to navigate
 through the application.
 
-### Default Roles
+### Default roles
 
-Kong includes Role-Based Access Control (RBAC). Every Admin using Kong Manager
-will need an assigned Role based on the resources they have Permission to access.
+Kong includes Role-Based Access Control (RBAC). Every admin using Kong Manager
+needs an assigned role based on the resources they have permission to access.
 
-When a Super Admin starts Kong for the first time, the `default` Workspace will
-include three default Roles: `read-only`, `admin`, and `super-admin`. The three
-Roles have Permissions related to every Workspace in the cluster.
+When a super admin starts Kong for the first time, the `default` workspace
+includes three default roles: `read-only`, `admin`, and `super-admin`. The three
+roles have permissions related to every workspace in the cluster.
 
-Similarly, if a Role is confined to certain Workspaces, the Admin assigned to it
-will not be able to see either the overview or links to other Workspaces.
+Similarly, if a role is confined to certain workspaces, the admin assigned to it
+will not be able to see either the overview or links to other workspaces.
 
-If a Role does not have Permission to access entire endpoints,
-the Admin assigned to the Role will not be able to see the related navigation links.
+If a role does not have permission to access entire endpoints,
+the admin assigned to the role will not be able to see the related navigation links.
 
 {:.important}
-> Important: Although a default Admin has full permissions with every
-endpoint in Kong, only a Super Admin has the ability to assign and modify RBAC Permissions. An Admin is not able to modify their own Permissions or delimit a Super Admin's Permissions.
+> Important: Although a default admin has full permissions with every
+endpoint in Kong, only a super admin has the ability to assign and modify RBAC permissions.
+An admin is not able to modify their own permissions or delimit a super admin's permissions.
 
-### RBAC in Workspaces
+### RBAC in workspaces
 
-RBAC Roles and Permissions will be specific to a Workspace if they are assigned
-from within one. For example, if there are two Workspaces, Payments and
-Deliveries, an Admin created in Payments will not have access to any
+If RBAC roles and permissions are assigned from within a workspace, they are specific to that workspace.
+For example, if there are two workspaces, Payments and
+Deliveries, an admin created in Payments doesn't have access to any
 endpoints in Deliveries.
 
-When a Super Admin creates a new Workspace, there are three default Roles that
-mirror the cluster-level Roles, and a fourth unique to each Workspace:
+When a super admin creates a new workspace, there are three default roles that
+mirror the cluster-level roles, and a fourth unique to each workspace:
 `workspace-read-only`, `workspace-admin`, `workspace-super-admin`, and
 `workspace-portal-admin`.
 
-These roles can be viewed in the Teams tab under Roles
-
-![Default Roles in New Workspaces](https://doc-assets.konghq.com/1.3/manager/teams/kong-manager-default-roles.png)
+These roles can be viewed in the **Teams** > **Roles** tab in Kong Manager.
 
 {:.important}
-> Important: Any Role assigned in the Default Workspace will have
-Permissions applied to all subsequently created Workspaces. A Super Admin
-in `default` has RBAC Permissions across all Workspaces.
+> Important: Any role assigned in the `default` workspace will have
+permissions applied to all subsequently created workspaces. A super admin
+in `default` has RBAC Permissions across all workspaces.

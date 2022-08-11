@@ -39,3 +39,9 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
     ```
 
 3. Access Kong Manager on port `8002`.
+
+## Next steps
+
+* [Get started with managing {{site.base_gateway}} in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/get-started/services-and-routes)
+* [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/overview)
+* [Set up role-based access control to {{site.base_gateway}} resources](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/)
