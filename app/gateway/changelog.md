@@ -69,6 +69,7 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
 * Fixed empty string handling in Kong Manager. Previously, Kong Manager was handling empty strings as `""` instead of a null value.
 * Improved Kong Manager styling by fixing an issue where content didn't fit on object detail pages.
 * Fixed an issue that sometimes prevented clicking Kong Manager links and buttons in Safari.
+* Fixed an issue where users were being navigated to the object detail page after clicking on the "Copy ID" button in the object list.
 
 #### Plugins
 
