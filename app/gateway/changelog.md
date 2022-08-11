@@ -69,7 +69,7 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
 * Fixed empty string handling in Kong Manager. Previously, Kong Manager was handling empty strings as `""` instead of a null value.
 * Improved Kong Manager styling by fixing an issue where content didn't fit on object detail pages.
 * Fixed an issue that sometimes prevented clicking Kong Manager links and buttons in Safari.
-* Fixed an issue where users were being navigated to the object detail page after clicking on the "Copy ID" button in the object list.
+* Fixed an issue where users were being navigated to the object detail page after clicking on the "Copy ID" button from the object list.
 
 #### Plugins
 
@@ -126,7 +126,7 @@ during the initialization of the [keyring module](/gateway/latest/plan-and-deplo
 * Fixed an issue where Kong Manager did not display all RBAC users and Consumers
 in the organization.
 
-* Fixed an issue where some areas in a row of a list are not clickable.
+* Fixed an issue where some areas in a row of a list were not clickable.
 
 #### Plugins
 
