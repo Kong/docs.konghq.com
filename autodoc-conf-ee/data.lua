@@ -10,6 +10,8 @@ data.header = [[
 title: Configuration Reference for Kong Gateway
 source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
+
+## Properties reference
 ]]
 
 

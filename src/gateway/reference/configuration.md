@@ -9,6 +9,8 @@ source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
 <!-- vale off -->
 
+## Properties reference
+
 ### General section
 
 #### prefix
