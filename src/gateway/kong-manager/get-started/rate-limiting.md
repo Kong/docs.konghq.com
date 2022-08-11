@@ -17,11 +17,11 @@ On the Workspaces tab in Kong Manager:
 
 1. Open the **default** workspace.
 
-2. From the menu, open **Plugins**, then click **New Plugin**.
+2. From the menu, open **Plugins**, then click **Install Plugin**.
 
-4. Find the **Rate Limiting** plugin, then click **Enable**.
+3. Find the **Rate Limiting** plugin, then click **Enable**.
 
-5. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every service and route in the workspace.
+4. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every service and route in the workspace.
 
     If you switched it to **Scoped**, the rate limiting would apply the plugin to only one service, route, or consumer.
 
@@ -29,13 +29,14 @@ On the Workspaces tab in Kong Manager:
     You can also toggle the **This plugin is Enabled** button at the top of the form to configure the plugin without enabling it.
     For this example, keep the plugin enabled.
 
-6. Scroll down and complete only the following fields with the following parameters.
+5. Complete only the following fields with the following parameters.
     1. config.limit: `5`
     2. config.sync_rate: `-1`
+    3. config.window_size: `30`
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
 
-7. Click **Create**.
+6. Click **Install**.
 
 ## Validate rate limiting
 

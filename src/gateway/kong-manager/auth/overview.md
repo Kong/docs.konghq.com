@@ -1,5 +1,6 @@
 ---
 title: Authentication and Authorization in Kong Manager
+badge: enterprise
 ---
 
 Kong Manager enables users with admin accounts to access Kong entities such
@@ -50,7 +51,7 @@ By creating separate
  an organization with multiple teams can segment its Kong cluster so that
  different teams don't have access to each other's Kong entities.
 
-{{site.base_gateway}} implements 
+{{site.base_gateway}} implements
 [Role-Based Access Control (RBAC)](/gateway/{{page.kong_version}}/kong-manager/rbac/).
 Admins are assigned roles that have clearly defined permissions. A
 super admin has the ability to:

@@ -1,6 +1,7 @@
 ---
 title: Kong Manager
 toc: false
+badge: free
 ---
 
 Kong Manager is the graphical user interface (GUI) for Kong Gateway. It uses the Kong Admin API under the hood to administer and control Kong Gateway.

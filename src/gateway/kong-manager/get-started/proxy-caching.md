@@ -19,20 +19,20 @@ On the Workspaces tab in Kong Manager:
 
 1. Open the **default** workspace.
 
-2. From the menu, open **Plugins**, then click **New Plugin**.
+2. From the menu, open **Plugins**, then click **Install Plugin**.
 
-4. Find the **Proxy Caching** plugin, then click **Enable**.
+3. Find the **Proxy Caching** plugin, then click **Enable**.
 
-6. Select to apply the plugin as **Global**. This means that proxy caching applies to all requests.
+4. Select to apply the plugin as **Global**. This means that proxy caching applies to all requests.
 
-7. Scroll down and complete only the following fields with the parameters listed.
+5. Scroll down and complete only the following fields with the parameters listed.
     1. config.cache_ttl: `30`
-    2. config.content_type: `application/json; charset=utf-8`
+    2. config.content_type: `application/json` and `charset=utf-8`
     3. config.strategy: `memory`
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
 
-8. Click **Create**.
+6. Click **Install**.
 
 ## Validate Proxy Caching
 

@@ -1,40 +1,55 @@
 ---
 title: Load balancing in Kong Manager
+badge: free
 ---
 
 This tutorial walks you through setting up load balancing across targets in Kong Manager.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/improve-performance/).
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/load-balancing/).
+
+## Prerequisites
+
+You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable).
 
 ## Set up upstreams and targets
 
 In this tutorial, you will create an upstream named `example_upstream` and add two targets to it.
 
-1. Access your Kong Manager instance and your **default** workspace.
-2. Go to **API Gateway** > **Upstreams**.
-3. Click **New Upstream**.
-4. For this example, enter `example_upstream` in the **Name** field.
-5. Scroll down and click **Create**.
-6. On the Upstreams page, find the new upstream service and click **View**.
-7. Scroll down and click **New Target**.
-8. In the target field, specify `httpbin.org` with port `80`, and click **Create**.
-9. Create another target, this time for `mockbin.org` with port `80`. Click **Create**.
-10. Open the **Services** page.
-11. Find your `example_service` and click **Edit**.
-12. Change the **Host** field to `example_upstream`, then click **Update**.
+On the Workspaces tab in Kong Manager:
 
-You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that Upstream.
+1. Open the **default** workspace.
+
+2. From the menu, open **Upstreams**, then click **New Upstream**.
+
+3. For this example, enter `example_upstream` in the **Name** field, then click **Create**.
+
+4. Click on your new upstream to open its detail page.
+
+5. From the submenu, open **Targets**, then click **New Target**.
+
+6. In the target field, set the value `httpbin.org:80`, and click **Create**.
+
+7. Create another target, this time for `mockbin.org:80`.
+
+8. Open the **Services** page.
+
+9. Open your `example_service`, then click **Edit**.
+
+10. Change the **Host** field to `example_upstream`, then click **Update**.
+
+You now have an upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that upstream.
 
 ## Validate the upstream services
 
-1. With the upstream configured, validate that it’s working by visiting the route `http://<admin-hostname>:8000/mock` using a web browser or CLI.
+Let's test that {{site.base_gateway}} is load balancing traffic across the two targets.
+
+1. With the upstream configured, validate that it’s working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
+
 2. Refresh the page a few times. The site should change back and forth from `httpbin` to `mockbin`.
 
-## Summary and next steps
+## Next steps
 
-In this topic, you:
-
-* Created an upstream object named `example_upstream` and pointed the service `example_service` to it.
-* Added two targets, `httpbin.org` and `mockbin.org`, with equal weight to the upstream.
-
-If you have a {{site.konnect_product_name}} subscription, go on to [Managing Administrative Teams](/gateway/{{page.kong_version}}/get-started/comprehensive/manage-teams).
+Next, check out some guides on what else you can do in Kong Manager:
+* [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/overview)
+* [Manage workspaces and teams with role-based access control (RBAC)](/gateway/{{page.kong_version}}/kong-manager/auth/workspaces-and-teams)
+* [Create custom workspaces](/gateway/{{page.kong_version}}/kong-manager/workspaces)

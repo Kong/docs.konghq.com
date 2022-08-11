@@ -1,8 +1,9 @@
 ---
 title: Access Control with Workspaces and Teams
+badge: enterprise
 ---
 
-In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}}.
+In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}} with Kong Manager.
 
 ## Overview of workspaces and teams
 
@@ -13,9 +14,6 @@ Many organizations have strict security requirements. For example, organizations
 {{site.base_gateway}} does all of this through **Role-Based Access Control (RBAC)**. All administrators can be given specific roles, whether you are using Kong Manager or the Admin API, which control and limit the scope of administrative privileges within specific workspaces.
 
 In this example, you’ll start by creating a simple workspace called `SecureWorkspace`. Then, you’ll create an administrator for that workspace, with rights to administer only the objects in the SecureWorkspace and nothing else.
-
-> **Note:** The steps in this topic cannot be performed using declarative
-configuration.
 
 ## Securing your Gateway installation
 
@@ -49,22 +47,24 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 1. Access your Kong Manager instance.
 2. On the workspaces tab, click on **New Workspace**.
-3. Create a workspace named `SecureWorkspace` and select a color for the workspace avatar.
+3. Create a workspace named `SecureWorkspace` and select a color or image for the workspace avatar.
 
-    **Note:** Each workspace name should be unique, regardless of letter case. For example, naming one workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
+    Each workspace name should be unique, regardless of letter case. For example, naming one workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
 
-    **WARNING:** Do not give a workspace the same name as any of these major routes in Kong Manager:
-
+    {:.important}
+    > Do not give a workspace the same name as any of these major routes in Kong Manager:
+    >
     |---------|-----------|--------------|---------------|
     | Admins  | APIs      | Certificates | Consumers     |
     | Plugins | Portal    | Routes       | Services      |
     | SNIs    | Upstreams | Vitals       | PermalinkStep |
 
-4. Click **Create New workspace**.
-5. On the new workspace, click **Teams**.
+4. Click **Create New Workspace**.
+5. In the new workspace, click **Teams**.
 6. From the Teams page, click the **Roles** tab to view the default roles that come with {{site.base_gateway}}.
-7. Next to SecureWorkspace, click **View** to see its assigned roles.
-8. There are different roles available for the SecureWorkspace. By default, each new workspace has the following roles and privileges:
+7. Select SecureWorkspace to see its assigned roles.
+
+    By default, each new workspace has the following roles and privileges:
 
     | Role                     | Description                                                                                  |
     |--------------------------|----------------------------------------------------------------------------------------------|
@@ -81,7 +81,6 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 * You can also create custom roles by clicking on the **Add Role** button and specifying the endpoints that the administrator with the role will be able to interact with.
 
-
 ## Create an admin
 
 Next, create an admin for the SecureWorkspace, granting them permissions to manage only that workspace.
@@ -92,7 +91,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 2. Enter the new administrator’s **Email** address, **Username**, and **Custom Id**.
 3. Ensure that **Enable RBAC Token** is enabled.
 
-    **Note:** This setting lets the admin use the Admin API as well as Kong Manager. If you don’t want this user to access the Admin API, uncheck this box.
+    This setting lets the admin use the Admin API as well as Kong Manager.
+    If you don’t want this user to access the Admin API, uncheck this box.
 
 4. Click **Add/Edit Roles**.
 5. In the Workspace Access dialog, select the **SecureWorkspace**.
@@ -105,23 +105,27 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
 7. Click **Invite Admin** to send the invite.
 
-    At this point in the getting started guide, you likely haven’t set up SMTP yet, so no email will be sent. Instead, you’ll later generate a registration link for the new administrator manually.
+    At this point in the guide, you likely haven’t set up [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email) yet, so no email will be sent.
+
+    Instead, you can generate a registration link for the new administrator manually.
 
 ### Register the admin
 
-1. Back on the **Teams** page, click **View** for the administrator you just created.
+1. Back on the **Teams** page, click the administrator you just created.
 2. Click the **Generate registration link** button.
 
     Using this link, the new administrator can go to a web browser and paste it in to initiate his/her account and create an initial password. Again, normally, this would happen through SMTP, and the user would get this link through an email.
 
 3. Click the **copy icon** to copy the registration link, then save it.
-4. Email or SMS the registration link to the new administrator &mdash; or use it yourself to test the login in the following steps.
+
+4. Send the registration link to the new administrator, or use it yourself to test the login in the following steps.
+
 5. Open a different browser or an incognito tab in the current browser so your existing login session is ignored.
-6. Enter the registration link you copied previously into the new browser to log in with the new administrator (secureworkspaceadmin).
+6. Enter the registration link you copied previously into the new browser to log in with the new administrator.
 
     If the registration link has expired, you can generate a new one by logging in with your `kong_admin` administrator and generating a new link.
 
-7. Enter a new password for your new administrator (save this in a secure place) and click on the **Register** button.
+7. Enter a new password for your new administrator (save this in a secure place) and click the **Register** button.
 
     If everything went well, you should see an “Account Setup Success” message.
 
@@ -135,13 +139,3 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 3. You can also verify that this user’s administration rights are limited. As this user, if you open the Teams tab and try to add new administrators, Admin API users (RBAC users), Groups, or Roles, you won’t have the permissions to do so.
 
 That's it! You are now controlling access to {{site.base_gateway}} administration with RBAC.
-
-## Summary and next steps
-
-In this topic, you:
-
-* Enabled RBAC.
-* Created a workspace named `SecureWorkspace`.
-* Created an admin named `secureworkspaceadmin` and granted them permissions to manage to everything in the `SecureWorkspace`.
-
-Next, set up the [Dev Portal](/gateway/{{page.kong_version}}/get-started/comprehensive/dev-portal).

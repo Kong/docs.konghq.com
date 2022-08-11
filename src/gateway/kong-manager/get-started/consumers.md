@@ -1,23 +1,29 @@
 ---
 title: Authentication with Consumers
+badge: free
 ---
 
 In this example, you’re going to enable the **Key Authentication plugin**, then create a consumer that uses key authentication. API key authentication is one of the most popular ways to conduct API authentication and can be implemented to create and delete access keys as required.
 
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/secure-services/).
+
 ## Set up the Key Authentication Plugin
 
-1. Access your Kong Manager instance and your **default** workspace.
-2. Go to the **Routes** page and select the **mocking** route you created.
-3. Click **View**.
-4. On the Scroll down and select the **Plugins** tab, then click **Add a Plugin**.
-5. In the Authentication section, find the **Key Authentication** plugin and click **Enable**.
-6. In the **Create new key-auth plugin** dialog, the plugin fields are automatically scoped to the route because the plugin is selected from the mocking Routes page.
+On the Workspaces tab in Kong Manager:
+
+1. Open the **default** workspace.
+
+2. From the menu, open **Routes** and select the **mocking** route you created.
+
+4. From the submenu, select the **Plugins** tab, then click **Install Plugin**.
+
+5. Find the **Key Authentication** plugin and click **Enable**.
+
+6. On the **Install plugin: key-auth** page, the plugin fields are automatically scoped to the route because the plugin is selected from the mocking Routes page.
 
     For this example, this means that you can use all of the default values.
 
 7. Click **Create**.
-
-    Once the plugin is enabled on the route, **key-auth** displays under the Plugins section on the route’s overview page.
 
 Now, if you try to access the route without providing an API key, the request will fail, and you’ll see the message `"No API key found in request".`
 
@@ -26,13 +32,22 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 
 ## Set up Consumers and Credentials
 
-1. In Kong Manager, go to **API Gateway** > **Consumers**.
-2. Click **New Consumer**.
-3. Enter the **Username** and **Custom ID**. For this example, use `consumer` for each field.
+On the Workspaces tab in Kong Manager:
+
+1. Open the **default** workspace.
+
+2. From the menu, open **Consumers**, then click **New Consumer**.
+
+3. Enter a **Username** and **Custom ID**. For this example, you can use `consumer` for each field.
+
 4. Click **Create**.
-5. On the Consumers page, find your new consumer and click **View**.
-6. Scroll down the page and click the **Credentials** tab.
+
+5. On the Consumers page, open your new consumer.
+
+6. Open **Credentials** from the submenu.
+
 7. Click **New Key Auth Credential**.
+
 8. Set the key to **apikey** and click **Create**.
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
@@ -40,16 +55,11 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 ## Validate Key Authentication
 
 To validate the Key Authentication plugin, access your route through your browser by appending `?apikey=apikey` to the url:
+
 ```
-http://<admin-hostname>:8000/mock?apikey=apikey
+http://localhost:8000/mock?apikey=apikey
 ```
 
-## Summary and next steps
+## Next steps
 
-In this topic, you:
-
-* Enabled the Key Authentication plugin.
-* Created a new consumer named `consumer`.
-* Gave the consumer an API key of `apikey` so that it could access the `/mock` route with authentication.
-
-Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing).
+Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.kong_version}}/kong-manager/get-started/load-balancing).

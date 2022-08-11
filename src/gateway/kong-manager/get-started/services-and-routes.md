@@ -24,9 +24,9 @@ On the Workspaces tab in Kong Manager:
     This example uses the default workspace, but you can also create a new
     workspace, or use an existing workspace.
 
-2. From the **Services** section, click **Add a Service**.
+2. From the **Services** section, click **New Service**.
 
-3. In the **Create Service** dialog, enter the name `example_service` and the
+3. In the **Create service** dialog, enter the name `example_service` and the
 URL `http://mockbin.org`.
 
 4. Click **Create**.
@@ -39,24 +39,23 @@ The service is created, and the page automatically redirects back to the
 For the service to be accessible through the API gateway, you need to add a
 route to it.
 
-1. From the `example_service` overview page, find the Routes section
-and click **Add Route**.  
+1. From the `example_service` overview page, open **Routes** from the submenu
+and click **New Route**.  
 
-
-2. On the **Create Route** page, the **Service** field is auto-populated with
+2. On the **Create route** page, the **Service** field is auto-populated with
     the service name and ID number. This field is required.
 
     If the Service field is not automatically populated, click
     **Services** in the left navigation pane. Find your Service, click the
-    clipboard icon next to the id field, then go back to the Create Route
+    clipboard icon next to the ID field, then go back to the Create Route
     page and paste it into the Service field.
 
-2. Enter a name for the route, and at least one of the following fields: Host,
+3. Enter a name for the route, and at least one of the following fields: Host,
 Methods, or Paths. For this example, use the following:
       1. For **Name**, enter `mocking`.
       2. For **Path(s)**, click **Add Path** and enter `/mock`.
 
-3. Click **Create**.
+4. Click **Create**.
 
 Kong automatically redirects you to the `example_service` overview page.
 The new route appears under the Routes section.
