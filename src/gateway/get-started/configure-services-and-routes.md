@@ -3,7 +3,9 @@ title: Configure Services and Routes
 content-type: tutorial
 ---
 
-The Kong API Gateway provides a mechanism govern to all of your APIs from a central point of management. Additionally, the Kong API Gateway enables APIs to stay lean and focus on the business logic, by abstracting other requirements like observability, security and many other services away from the API code. At the core a {{site.base_gateway}} is a tool to manage **Services** and **Routes**. You can interface with {{site.base_gateway}} through the [Admin API](/gateway/latest/admin-api), [kong.conf](/gateway/latest/kong-production/kong-conf), or [{{site.konnect_short_name}}](/konnect/). {{site.base_gateway}} offers [plugins](/hub/) and the ability to write [custom plugins](/gateway/latest/plugin-development/) to support your use case. This tutorial is the first part in a series of tutorials designed to help you understand {{site.base_gateway}}. 
+The Kong API Gateway provides a mechanism govern to all of your APIs from a central point of management. Additionally, the Kong API Gateway enables APIs to stay lean, by abstracting other requirements like observability, and security away from the API code.
+
+At its core, {{site.base_gateway}} is a tool to manage **services** and **routes**. You can interface with {{site.base_gateway}} through the [Admin API](/gateway/latest/admin-api), [kong.conf](/gateway/latest/kong-production/kong-conf), or [{{site.konnect_short_name}}](/konnect/). {{site.base_gateway}} offers [plugins](/hub/) and the ability to write [custom plugins](/gateway/latest/plugin-development/) to support your use case. This tutorial is the first part in a series of tutorials designed to help you understand {{site.base_gateway}}. 
 
 Get Started with {{site.base_gateway}}:
 
@@ -22,8 +24,8 @@ If you do not have {{site.base_gateway}} installed, you can quickly install it u
 
 ## What is a service
 
-In {{site.base_gateway}} a service is a container object. Services can store collections of objects like routes and plugin configurations, and policies. Services can serve as abstractions of upstream applications that are managed by {{site.base_gateway}}. 
-Every service must have a *name* and a *URL*. The name is used to refer to the server, and the URL points to an upstream application that you want to serve using {{site.base_gateway}}.
+In {{site.base_gateway}} a service serves as an abstraction of an existing upstream application. Services can store collections of objects like plugin configurations, and policies, and they can be associated with routes.Every service must have a *name* and a *URL*. The name is used to refer to the server, and the URL points to an upstream application that you want to serve using {{site.base_gateway}}.
+
 ![Services and routes](/assets/images/docs/getting-started-guide/route-and-service.png)
 
 A service can be configured to interact with multiple upstream applications, including multiple of the same upstream application. 
@@ -35,7 +37,7 @@ A route is a path to a resource within an upstream application. Routes are added
 A basic route should have a name, path or paths, and reference an existing service. 
 
 You can also configure routes with:
-* Protocols
+* Protocols: The protocol used to communicate with the upstream application. 
 * Hosts: Lists of domains that match a route
 * Methods: HTTP methods that match a route
 * Headers: Lists of values that are expected in the header of a request
@@ -79,7 +81,7 @@ You can verify the service's endpoint:
 curl -i http://localhost:8001/services/example_service
 ```
 
-The response body will contain information about your service: 
+The response body contains information about your service: 
 
 ```sh
 {
@@ -103,6 +105,7 @@ The response body will contain information about your service:
 	"tags": null
 }
 ```
+Every attribute that is returned within the response body is configurable. Descriptions of each field is availble in the [API documentation](/gateway/latest/admin-api/#request-body)
 
 When you send the initial **POST** request {{site.base_gateway}}, any field that wasn't discretely configured in the request is automatically given a value based on the existing [kong.conf](/gateway/latest/kong-production/kong-conf) configuration file. Existing services can be updated at any time.
 
@@ -143,7 +146,7 @@ The response body displays the updated change:
 
 ### Add a route
 
-With an active service you can configure a route to point to that service. The router is what helps {{site.base_gateway}} forward requests to upstream services. Now you will configure a route `/mock` for the service `example_service`. This route will have a specific path that users will use to send requests.
+You can configure a route to point to an active service. The router helps {{site.base_gateway}} forward requests to upstream services. Now, you will configure the `/mock` route for the `example_service` service. This route has a specific path that users will use to send requests. 
 A route is configured by sending a **POST** request to the [route object](/gateway/latest/admin-api/#route-object):
 
 ```sh
