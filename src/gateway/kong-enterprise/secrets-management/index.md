@@ -27,6 +27,12 @@ you can reference each secret with a `vault` reference. For example:
 
 In this way, secrets management becomes centralized.
 
+This feature is enabled by default.
+Due to conflicts with previous releases of {{site.base_gateway}},
+the endpoints for secrets management in the
+Admin API have changed from the previous `/vaults-beta` prefix to
+`/vaults` with `vaults_use_new_style_api=on` set in `kong.conf`.
+
 ## Referenceable values
 
 The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)
@@ -53,28 +59,13 @@ documentation for each plugin to identify the referenceable fields:
 * AWS Secrets Manager
 * Hashicorp Vault
 
-See the [backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
+See the [backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
 for more information about each option.
-
-## Beta limitations
-
-This feature is currently in beta. This means it has limited support from
-Kong and the functionality may change in the future.
-
-**Do not** implement this feature in a product environment.
-
-* The beta of this feature only supports `get`. There is no `set` or secrets
-rotation support in the beta.
-* In this version, this feature isn't enabled by default. To test it out, start
-{{site.base_gateway}} with `KONG_VAULTS=bundled` if running Kong in a container,
-or with `vaults=bundled` set in `kong.conf`.
-* The API endpoint is suffixed with `-beta` to avoid any possible conflicts. This
-endpoint will change once the beta is over.
 
 ## Get started
 
 To test out secrets management, see the following topics:
-* [Get started with secrets management](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/getting-started/)
-* [Backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
-* [Reference format](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/reference-format/)
-* [Advanced usage](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/advanced-usage/)
+* [Get started with secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started/)
+* [Backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
+* [Reference format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/)
+* [Advanced usage](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/)
