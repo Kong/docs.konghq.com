@@ -9,10 +9,6 @@ installation more secure.
 ## Getting started
 
 {:.note}
-> This feature isn't enabled by default in this version of {{site.base_gateway}}.
-><br>
-> Start {{site.base_gateway}} with `KONG_VAULTS=bundled KONG_VAULTS_USE_NEW_STYLE_API=on`.
-><br>
 > When running {{site.base_gateway}} in hybrid or DB-less mode, secrets management is only supported in {{site.base_gateway}} 2.8.1.3 or later.
 
 The following example uses the most basic form of secrets management: storing secrets in environment variables. In this example, you will replace a plaintext password to your Postgres database with a reference to an environment variable.
@@ -29,7 +25,7 @@ Define your environment variable and assign a secret value to it:
 export MY_SECRET_POSTGRES_PASSWORD="opensesame"
 ```
 
-Next, set up a `reference` to this environment variable so that {{site.base_gateway}} can find this secret. We use a Uniform Resource Locator (URL) format for this.
+Next, set up a reference to this environment variable so that {{site.base_gateway}} can find this secret. We use a Uniform Resource Locator (URL) format for this.
 
 In this case, the reference would look like this:
 
@@ -49,23 +45,26 @@ Note that the reference is wrapped in curly braces.
 
 You can specify configuration options using environment variables or by directly updating the `kong.conf` configuration file.
 
-* Environment variable
+#### Environment variable
+
+Set the `KONG_PG_PASSWORD` environment variable to the following, adjusting `my-secret-postgres-password` to your own password object name:
 
 ```bash
 KONG_PG_PASSWORD={vault://env/my-secret-postgres-password}
 ```
 
-* Configuration file
+#### Configuration file
 
-the kong.conf has a key called "pg_password". Replace the original value with
+The `kong.conf` file contains the property `pg_password`.
+Replace the original value with the following, adjusting `my-secret-postgres-password` to your own password object name:
 
 ```bash
 pg_password={vault://env/my-secret-postgres-password}
 ```
 
-Upon startup, {{site.base_gateway}} will try to detect and transparently resolve references.
+Upon startup, {{site.base_gateway}} tries to detect and transparently resolve references.
 
 {:.note}
->For quick debug/testing you can use the new [CLI for vaults](/gateway/2.8.x/plan-and-deploy/security/secrets-management/advanced-usage/#vaults-cli)
+> For quick debugging or testing, you can use the [CLI for vaults](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/advanced-usage/#vaults-cli).
 
 See the [Advanced Usage](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/advanced-usage) documentation for more information on the configuration options for each vault backend.
