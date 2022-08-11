@@ -10,7 +10,7 @@ with APIs serviced by the gateway.
 
 Some of the most common types of secrets used by {{site.base_gateway}} include:
 
-* Datastore usernames and passwords, used with PostgreSQL and Redis
+* Data store usernames and passwords, used with PostgreSQL and Redis
 * Private X.509 certificates
 * API keys
 * Sensitive plugin configuration fields, generally used for authentication

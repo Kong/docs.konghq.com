@@ -6,17 +6,18 @@ beta: true
 This feature is currently in beta state and isn't fully supported. APIs are subject to change.
 
 
-Secrets are generally confidential values that should not appear in plain text in the application. There are several products that help you
-store, retrieve, and rotate these secrets securely. Kong Gateway offers a mechanism to set up references to these secrets which makes your Kong Gateway
-installation more secure.
+Secrets are generally confidential values that should not appear in plain text in the application. 
+There are several products that help you store, retrieve, and rotate these secrets securely.
+{{site.base_gateway}} offers a mechanism to set up references to these secrets which makes your {{site.base_gateway}} installation more secure.
 
 ## Getting started
 
-The following example uses the most basic form of secrets management: storing secrets in environment variables. In this example, you will replace a plaintext password to your Postgres database with a reference to an environment variable.
+The following example uses the most basic form of secrets management: storing secrets in environment variables.
+In this example, you will replace a plaintext password to your PostgreSQL database with a reference to an environment variable.
 
 You can also store secrets in a secure vault backend. For a list of supported vault backend implementations, see the [Backends Overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends).
 
-In this example we'll replace our plaintext password to our Postgres database with a reference. To do so, please define your environment variable and assign a secret value to it.
+In this example we'll replace our plaintext password to our PostgreSQL database with a reference. To do so, define your environment variable and assign a secret value to it.
 
 ### Define a reference
 
