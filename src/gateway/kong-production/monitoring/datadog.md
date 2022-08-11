@@ -3,13 +3,20 @@ title: Collect Metrics with Datadog
 content_type: how-to
 ---
 
-# Datadog Agent v6 and Kong Prometheus-plugin
+You can use {{site.base_gateway}} and [the Prometheus plugin](/hub/kong-inc/prometheus/) to collect metrics in Datadog. 
 
-Using Datadog Agent 6, customers of Kong can connect Datadog straight to our Prometheus endpoint.
+## Prerequisites
 
-After enabling Prometheus metrics on Kong, create a Datadog Agent openmetrics.d configuration at `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`. This should be enough to tell the agent to begin scraping metrics from Kong.
+* [Datadog Agent v6 or later](https://docs.datadoghq.com/agent/)
+* [Enable the Prometheus plugin in {{site.base_gateway}}](/hub/kong-inc/prometheus/#example-config)
 
-Below is an example configuration for pulling all of our `kong_` prefixed metrics.
+## Connect the Prometheus plugin to Datadog
+
+Using Datadog Agent 6, you can connect Datadog to the Prometheus endpoint to start collecting metrics.
+
+After enabling the Prometheus plugin for {{site.base_gateway}}, create a [Datadog Agent openmetrics.d](https://docs.datadoghq.com/integrations/openmetrics/) configuration at `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`. This tells the Agent to begin scraping metrics from {{site.base_gateway}}.
+
+The following is an example configuration for pulling all the `kong_` prefixed metrics:
 
 ```
 instances:
@@ -19,4 +26,4 @@ instances:
       - kong_*
 ```
 
-Find more details regarding the Datadog Agent from the [Datadog Official Docs](https://www.datadoghq.com/blog/monitor-prometheus-metrics/).
+For more information about collecting metrics using Prometheus and the Datadog Agent, see [Prometheus and OpenMetrics metrics collection from a host](https://docs.datadoghq.com/integrations/guide/prometheus-host-collection/#pagetitle).
