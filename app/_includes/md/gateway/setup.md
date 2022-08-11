@@ -184,46 +184,6 @@ $ scp license.json /etc/kong/license.json
 {% endnavtab %}
 {% endnavtabs %}
 
-### Enable and configure Kong Manager
-{:.badge .free}
-
-If you're running {{site.base_gateway}} with a database (either in traditional
-or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
-(GUI), Kong Manager.
-
-1. Update the `admin_gui_url` property
-   in the `kong.conf` configuration file to the DNS, or IP address, of your system. For example:
-
-    ```
-    admin_gui_url = http://localhost:8002
-    ```
-
-    This setting needs to resolve to a network path that will reach the operating system (OS) host.
-
-2. Update the Admin API setting in the `kong.conf` file to listen on the needed network interfaces on the OS host.
-   A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
-
-    {% include_cached /md/admin-listen.md desc='long' %}
-
-    Example configuration:
-
-    ```conf
-    admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
-    ```
-
-    You may also list network interfaces separately as in this configuration example:
-
-    ```conf
-    admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
-    ```
-
-3. Restart {{site.base_gateway}} for the setting to take effect, using the following command:
-
-    ```bash
-    kong restart -c {PATH_TO_KONG.CONF_FILE}
-    ```
-
-5. Access Kong Manager on port `8002`.
 
 ### Enable Dev Portal
 {:.badge .enterprise}
