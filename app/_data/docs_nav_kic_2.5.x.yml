@@ -33,6 +33,8 @@ items:
         url: /concepts/security
       - text: Ingress Resource API Versions
         url: /concepts/ingress-versions
+      - text: Gateway API
+        url: /concepts/gateway-api
   - title: Deployment
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /deployment/overview

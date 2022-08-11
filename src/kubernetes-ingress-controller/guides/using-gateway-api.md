@@ -103,9 +103,11 @@ spec:
   listeners:
   - name: proxy
     port: 80
+    hostname: kong.example
     protocol: HTTP
   - name: proxy-ssl
     port: 443
+    hostname: kong.example
     protocol: HTTPS
 " | kubectl apply -f -
 ```
@@ -113,6 +115,19 @@ spec:
 ```
 gateway.gateway.networking.k8s.io/kong created
 ```
+{% if_version gte: 2.5.x %}
+
+This configuration does not load any certificates, and will use a default
+self-signed certificate for HTTPS requests. If you have a [TLS
+Secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets)
+you wish to use, you can add it with:
+
+```
+kubectl patch --type=json gateway kong -p='[{"op":"add","path":"/spec/listeners/1/tls","value":{"certificateRefs":[{"group":"","kind":"Secret","name":"example-cert-secret"}]}}]'
+```
+
+Change `example-cert-secret` to the name of your Secret.
+{% endif_version %}
 
 Because KIC and Kong instances are installed independent of their Gateway
 resource, we set the `konghq.com/gateway-unmanaged` annotation to the
@@ -158,6 +173,8 @@ spec:
   - group: gateway.networking.k8s.io
     kind: Gateway
     name: kong
+  hostnames:
+  - kong.example
   rules:
   - backendRefs:
     - group: ""
@@ -176,7 +193,7 @@ After creating an HTTPRoute, accessing `/echo` forwards a request to the
 echo service:
 
 ```bash
-$ curl -i $PROXY_IP/echo
+$ curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
 ```
 
 ```
@@ -209,8 +226,14 @@ Gateway APIs are supported. In particular:
 {% endif_version %}
 - queryParam matches matches are not supported.
 {% if_version gte: 2.4.x %}
+{% if_version lte: 2.5.x %}
 - Gateway Listener configuration does not support TLSConfig. You can't
   load certificates for HTTPRoutes and TLSRoutes via Gateway
   configuration, and must either accept the default Kong certificate or add
   certificates and SNI resources manually via the admin API in DB-backed mode.
+{% endif_version %}
+{% endif_version %}
+{% if_version gte: 2.5.x %}
+- Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
+- Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
 {% endif_version %}
