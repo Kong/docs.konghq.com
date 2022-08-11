@@ -5,27 +5,23 @@ content-type: reference
 
 ## Theme files
 ### Themes directory structure
-The theme directory contains different instances of portal themes, each one of which determines the look and feel of the Dev Portal via HTML/CSS/JavaScript.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`. Setting `theme.name` to `best-theme` causes the portal to load theme files under `themes/best-theme/**`.
+Theme files allow you to determine the look and feel of the Dev Portal using HTML, CSS, and JavaScript. The theme directory contains different instances of portal themes. The theme that is used during rendering is determined by configuring the `theme.name` in the `portal.conf.yaml` file. For example, if you set `theme.name` to `best-theme`, the Dev Portal loads theme files in `themes/best-theme/**`.
 
-A theme file is composed of a few different directory:
-- **assets/**
-  - The assets directory contains static assets that layouts/partials will reference at time of render. Includes CSS, JS, font, and image files.
-- **layouts/**
-  - The layouts directory contains HTML page templates that `content` reference via the `layout` attribute in `headmatter`.
-- **partials/**
-  - The partials directory contains HTML partials to be referenced by layouts. Can be compared to how layouts and partials interacted in the legacy portal.
-- **theme.conf.yaml**
-  - This config file sets color and font defaults available to templates for reference as CSS variables. It also determines what options are available in the Kong Manager Appearance page.
+A theme file is composed of the following directories:
+- **assets/**: Contains static assets that layouts and partials reference during rendering. Includes CSS, JS, font, and image files.
+- **layouts/**: Contains HTML page templates that `content` references via the `layout` attribute in `headmatter`
+- **partials/**: Contains HTML partials that are referenced by layouts.
+- **theme.conf.yaml**: Sets the color and font defaults that are available to templates as CSS variables. It also determines which options are available on the Kong Manager appearance page.
 
-### Theme assets
+## Theme assets
 
-#### Path
+### Path
 - **format:** `theme/*/assets/**/*`
 
-#### Description
-The asset directory contains CSS/JavaScript/fonts/images for your templates to reference.
+### Description
+The asset directory contains CSS, JavaScript, fonts, and images for your templates to reference.
 
-To access asset files from your templates, keep in mind that Kong assumes a path from the root of your selected theme.
+To access asset files from your templates, keep in mind that {{site.base_gateway}} assumes a path from the root of your selected theme.
 
 | Asset Path | HREF Element |
 |--------------------------|---------------------------|
@@ -33,18 +29,19 @@ To access asset files from your templates, keep in mind that Kong assumes a path
 | `themes/light-theme/assets/js/my-script.js` | `<script src="assets/js/my-script.js"></script>` |
 | `themes/light-theme/assets/styles/my-styles.css` | `<link href="assets/styles/normalize.min.css" rel="stylesheet" />` |
 
->Note: Image files uploaded to the `theme/*/assets/` directory should either be a `svg` text string or `base64` encoded, `base64` images will be decoded when served.
+{:.note}
+> **Note:** Image files uploaded to the `theme/*/assets/` directory should either be a `svg` text string or `base64` encoded. `base64` images are decoded when served.
 
-### Theme layouts
+## Theme layouts
 
-#### Path
+### Path
 - **format:** `theme/*/layouts/**/*`
 - **file extensions:** `.html`
 
-#### Description
-Layouts act as the HTML skeleton of the page you want to render. Each file within the layouts directory must have an `html` file type. They can exist as vanilla `html`, or can reference partials and parent layouts via the portals templating syntax. Layouts also have access to the `headmatter` and `body` attributes set in `content`.
+### Description
+Layouts act as the HTML skeleton of the page you want to render. Each file in the layouts directory must have an `html` file type. They can exist as vanilla `html` or reference partials and parent layouts via the portals templating syntax. Layouts also have access to the `headmatter` and `body` attributes set in `content`.
 
-This example shows what a typical layout could look like.
+This example shows what a typical layout can look like:
 
 {% raw %}
 ```html
@@ -63,16 +60,16 @@ This example shows what a typical layout could look like.
 ```
 {% endraw %}
 
-To learn more about the templating syntax used in this example, check out our [templating guide](/gateway/{{page.kong_version}}/developer-portal/working-with-templates).
+To learn more about the templating syntax used in this example, see the [template guide](/gateway/{{page.kong_version}}/kong-enterprise/developer-portal/working-with-templates/).
 
-### Theme partials
+## Theme partials
 
-#### Path
+### Path
 - **format:** `theme/*/partials/**/*`
 - **file extensions:** `.html`
 
-#### Description
-Partials are very similar to layouts: they share the same syntax, can call other partials within themselves, and have access to the same data/helpers at time of render. The thing that differentiates partials from layouts it that layouts call on partials to build the page, but partials cannot call on layouts.
+### Description
+Partials are very similar to layouts: they share the same syntax, can call other partials within themselves, and have access to the same data/helpers during rendering. Partials are differentiated from layouts in that layouts call on partials to build the page, but partials cannot call on layouts.
 
 This example shows the `header.html` partial referenced from previous example:
 
@@ -91,11 +88,11 @@ This example shows the `header.html` partial referenced from previous example:
 ```
 {% endraw %}
 
-### Theme configuration file
+## Theme configuration file
 
-#### Path
+### Path
 - **format:** `theme/*/theme.conf.yaml`
 - **file extensions:** `.yaml`
 
-#### Description
-The theme configuration file determines color/font/image values a theme makes available for templates/CSS at the time of render. It is required in the root of every theme. There can only be one theme configuration file, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.
+### Description
+The theme configuration file determines color, font, and image values that a theme makes available to templates and CSS during rendering. It is required in the root of every theme. There can only be one theme configuration file. It must be named `theme.conf.yaml` and it must be a direct child of the themes root directory.
