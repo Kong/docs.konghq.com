@@ -105,7 +105,7 @@ The response body contains information about your service:
 	"tags": null
 }
 ```
-Every attribute that is returned within the response body is configurable. Descriptions of each field is availble in the [API documentation](/gateway/latest/admin-api/#request-body)
+Every attribute that is returned within the response body is configurable. Descriptions of each field is available in the [API documentation](/gateway/latest/admin-api/#request-body)
 
 When you send the initial **POST** request {{site.base_gateway}}, any field that wasn't discretely configured in the request is automatically given a value based on the existing [kong.conf](/gateway/latest/kong-production/kong-conf) configuration file. Existing services can be updated at any time.
 
@@ -199,7 +199,7 @@ In this example, use the `id` field from the service output and the name of the 
 	],
 ```
 
-You can also use the [routes endpoint](/gateway/latest/admin-api/route) to query for all configured routes in {{site.base_gateway}}:
+You can also use the [routes object](/gateway/latest/admin-api/#route-object) to query for all configured routes in {{site.base_gateway}}:
 
 ```sh
 curl -i -X GET http://localhost:8001/routes
