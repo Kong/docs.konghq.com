@@ -8,7 +8,7 @@ admin interface. Worker events are integrated into Kong Gateway to communicate w
 For example, when an entity is created, the Kong Gateway fires an event with information about the entity. Parts
 of the Kong Gateway codebase can subscribe to these events, then process the events using callbacks.
 
-In Kong Gateway, these callbacks can be defined using one fo the following "handlers":
+In Kong Gateway, these callbacks can be defined using one of the following "handlers":
 
 - **webhook:** Makes a JSON POST request to a provided URL with the event data as a payload.
   Useful for building a middle tier integration (your own webhook that receives Kong hooks).
