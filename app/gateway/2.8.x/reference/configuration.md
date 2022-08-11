@@ -531,7 +531,7 @@ enabled.
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.vaults.{name}.*`.
 
-**Default:** `off`
+**Default:** `bundled`
 
 ---
 
