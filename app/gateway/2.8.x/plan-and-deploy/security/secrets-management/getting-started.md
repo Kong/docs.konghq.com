@@ -11,11 +11,11 @@ installation more secure.
 {:.note}
 > When running {{site.base_gateway}} in hybrid or DB-less mode, secrets management is only supported in {{site.base_gateway}} 2.8.1.3 or later.
 
-The following example uses the most basic form of secrets management: storing secrets in environment variables. In this example, you will replace a plaintext password to your Postgres database with a reference to an environment variable.
+The following example uses the most basic form of secrets management: storing secrets in environment variables. In this example, you will replace a plaintext password to your PostgreSQL database with a reference to an environment variable.
 
 You can also store secrets in a secure vault backend. For a list of supported vault backend implementations, see the [Backends Overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends).
 
-In this example we'll replace our plaintext password to our Postgres database with a reference. To do so, please define your environment variable and assign a secret value to it.
+In this example we'll replace our plaintext password to our PostgreSQL database with a reference. To do so, please define your environment variable and assign a secret value to it.
 
 ### Define a reference
 
