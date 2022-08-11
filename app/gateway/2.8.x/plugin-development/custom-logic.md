@@ -93,7 +93,7 @@ available when kong is initializing each worker.
 A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
-{{site.base_gateway}} can process HTTP and stream traffic. Some phases are executed 
+{{site.base_gateway}} can process HTTP and stream traffic. Some phases are executed
 only when processing HTTP traffic, others when processing stream,
 and some (like `init_worker` and `log`) are invoked by both kinds of traffic.
 
@@ -294,17 +294,17 @@ zipkin                      | 100000
 bot-detection               | 2500
 cors                        | 2000
 session                     | 1900
-jwt                         | 1005
-oauth2                      | 1004
-key-auth                    | 1003
-ldap-auth                   | 1002
-basic-auth                  | 1001
-hmac-auth                   | 1000
+jwt                         | 1450
+oauth2                      | 1400
+hmac-auth                   | 1300
+key-auth                    | 1250
+ldap-auth                   | 1200
+basic-auth                  | 1100
 grpc-gateway                | 998
 ip-restriction              | 990
 request-size-limiting       | 951
 acl                         | 950
-rate-limiting               | 901
+rate-limiting               | 910
 response-ratelimiting       | 900
 request-transformer         | 801
 response-transformer        | 800
@@ -339,49 +339,49 @@ zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
 cors                        | 2000
-route-by-header             | 2000
 session                     | 1900
 oauth2-introspection        | 1700
-acme                        | 1007
-mtls-auth                   | 1006
-jwt                         | 1005
-degraphql                   | 1005
-oauth2                      | 1004
-vault-auth                  | 1003
-key-auth                    | 1003
-key-auth-enc                | 1003
-ldap-auth                   | 1002
-ldap-auth-advanced          | 1002
-basic-auth                  | 1001
-openid-connect              | 1000
-hmac-auth                   | 1000
+acme                        | 1750
+mtls-auth                   | 1600
+jwt                         | 1450
+degraphql                   | 1500
+oauth2                      | 1400
+vault-auth                  | 1350
+hmac-auth                   | 1300
+key-auth                    | 1250
+key-auth-enc                | 1250
+ldap-auth                   | 1200
+ldap-auth-advanced          | 1200
+basic-auth                  | 1100
+openid-connect              | 1050
+jwt-signer                  | 1020
 request-validator           | 999
-jwt-signer                  | 999
 grpc-gateway                | 998
 application-registration    | 995
 ip-restriction              | 990
 request-size-limiting       | 951
 acl                         | 950
 opa                         | 920
-rate-limiting-advanced      | 902
+rate-limiting               | 910
+rate-limiting-advanced      | 910
 graphql-rate-limiting-advanced | 902
-rate-limiting               | 901
 response-ratelimiting       | 900
+route-by-header             | 850
 jq                          | 811
 request-transformer-advanced | 802
 request-transformer         | 801
 response-transformer-advanced | 800
-route-transformer-advanced  | 800
 response-transformer        | 800
+route-transformer-advanced  | 780
 kafka-upstream              | 751
 aws-lambda                  | 750
 azure-functions             | 749
-graphql-proxy-cache-advanced | 100
 proxy-cache-advanced        | 100
 proxy-cache                 | 100
+graphql-proxy-cache-advanced | 99
 forward-proxy               | 50
+canary                      | 20
 prometheus                  | 13
-canary                      | 13
 http-log                    | 12
 statsd                      | 11
 statsd-advanced             | 11
