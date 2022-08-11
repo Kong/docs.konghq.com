@@ -7,13 +7,13 @@ The Kong API Gateway provides a mechanism govern to all of your APIs from a cent
 
 At its core, {{site.base_gateway}} is a tool to manage **services** and **routes**. You can interface with {{site.base_gateway}} through the [Admin API](/gateway/latest/admin-api), [kong.conf](/gateway/latest/kong-production/kong-conf), or [{{site.konnect_short_name}}](/konnect/). {{site.base_gateway}} offers [plugins](/hub/) and the ability to write [custom plugins](/gateway/latest/plugin-development/) to support your use case. This tutorial is the first part in a series of tutorials designed to help you understand {{site.base_gateway}}. 
 
-Get Started with {{site.base_gateway}}:
+Get started with {{site.base_gateway}}:
 
-* [How to Install Kong](/gateway/latest/get-started/get-kong-with-docker)
-* [Configure Rate Limiting](/gateway/latest/get-started/protect-services)
-* [Configure Key Authentication](/gateway/latest/get-started/secure-services)
-* [Configure Load-balancing](/gateway/latest/get-started/load-balancing)
-* [Workspaces and Teams](/gateway/latest/get-started/manage-teams)
+* [How to install kong](/gateway/latest/get-started/get-kong-with-docker)
+* [Configure rate limiting](/gateway/latest/get-started/protect-services)
+* [Configure key authentication](/gateway/latest/get-started/secure-services)
+* [Configure load-balancing](/gateway/latest/get-started/load-balancing)
+* [Workspaces and teams](/gateway/latest/get-started/manage-teams)
 
 
 ## Prerequisites
