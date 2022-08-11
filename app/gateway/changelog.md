@@ -125,6 +125,8 @@ during the initialization of the [keyring module](/gateway/latest/plan-and-deplo
 * Fixed an issue where Kong Manager did not display all RBAC users and Consumers
 in the organization.
 
+* Fixed an issue where some areas in a row of a list are not clickable.
+
 #### Plugins
 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
