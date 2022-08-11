@@ -152,6 +152,8 @@ items:
             url: /kong-production/monitoring/prometheus
           - text: How to monitor with Statsd
             url: /kong-production/monitoring/statsd
+          - text: Collect Metrics with Datadog
+            url: /kong-production/monitoring/datadog
       - text: Tracing
         items: 
           - text: Overview
