@@ -56,14 +56,17 @@ documentation for each plugin to identify the referenceable fields:
 See the [backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
 for more information about each option.
 
-## Notes on the GA release of the Secrets Management feature
+## Beta and general availability phases
 
-In the GA release of the Secrets Management feature in
-{{site.base_gateway}}, this feature is enabled by default.
+As of 2.8.1.3, this feature is enabled by default.
 Due to conflicts with previous releases of {{site.base_gateway}},
 the endpoints for secrets management in the
-Admin API will be moved from the previous `/vaults-beta` prefix to
+Admin API have changed from the previous `/vaults-beta` prefix to
 `/vaults` with `vaults_use_new_style_api=on` set in `kong.conf`.
+
+If you are running a {{site.base_gateway}} 2.8.x version before 2.8.1.3:
+* Set `vaults=bundled` in your `kong-conf` file to enable secrets management
+* Use the `/vaults-beta` Admin API endpoints
 
 ## Get started
 
