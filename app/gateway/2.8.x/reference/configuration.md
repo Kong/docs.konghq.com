@@ -525,8 +525,7 @@ adjusted by the `log_level` property.
 
 #### vaults
 
-Comma-separated list of vaults this node should load. By default, no vaults are
-enabled.
+Comma-separated list of vaults this node should load. Vaults are `bundled` by default.
 
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.vaults.{name}.*`.
