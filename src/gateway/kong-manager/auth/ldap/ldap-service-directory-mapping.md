@@ -60,7 +60,7 @@ The **Sessions plugin** requires a **secret** and is configured securely by defa
 
 ## Configure LDAP Authentication for Kong Manager
 
-Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables are defined below:
+Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables defined below:
 
 ```
 admin_gui_auth_conf = {
@@ -84,27 +84,21 @@ admin_gui_auth_conf = {
 }
 ```
 
-* `attribute`:`<ENTER_YOUR_ATTRIBUTE_HERE>`: The attribute used to identify LDAP users
-    * For example, to map LDAP users to admins by their username, `attribute":"uid`
-* `bind_dn`:`<ENTER_YOUR_BIND_DN_HERE>`: LDAP Bind DN (Distinguished Name)
-    * Used to perform LDAP search of user. This `bind_dn` should have permissions to search for the user being authenticated.
-    * For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
-* `base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: LDAP Base DN (Distinguished Name)
-    * For example, `ou=scientists,dc=ldap,dc=com`
-* `ldap_host`:`<ENTER_YOUR_LDAP_HOST_HERE>`: LDAP host domain.
-    * For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`
-* `ldap_port`: The default LDAP port is 389. 636 is the port required for SSL LDAP and AD.
-   If `ldaps` is configured, you must use port 636. For more complex Active Directory (AD) environments,
-   instead of Domain Controller and port 389, consider using a Global Catalog host and port, which is port 3268 by default.    
-* `ldap_password`:`<ENTER_YOUR_LDAP_PASSWORD_HERE>`: LDAP password
-    * *Important*: As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
-* `group_base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: Sets a distinguished name for the entry where LDAP searches for groups begin. The default is the value from `conf.base_dn`.
-* `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: Sets the attribute holding the name of a group, typically called `name` (in Active Directory) or `cn` (in OpenLDAP). The default is the value from `conf.attribute`.
-* `group_member_attribute`:`<ENTER_YOUR_GROUP_MEMBER_ATTRIBUTE_HERE>`: Sets the attribute holding the members of the LDAP group. The default is `memberOf`.
+Attribute | Description
+----------|-------------
+`attribute` | The attribute used to identify LDAP users. <br> For example, to map LDAP users to admins by their username, set `uid`.
+`bind_dn` | LDAP Bind DN (Distinguished Name). Used to perform LDAP search for the user. This `bind_dn` should have permissions to search for the user being authenticated. <br> For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`.
+`base_dn` | LDAP Base DN (Distinguished Name). <br> For example, `ou=scientists,dc=ldap,dc=com`.
+`ldap_host`| LDAP host domain. <br> For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`.
+`ldap_port`| The default LDAP port is 389. 636 is the port required for SSL LDAP and AD. If `ldaps` is configured, you must use port 636. For more complex Active Directory (AD) environments, instead of Domain Controller and port 389, consider using a Global Catalog host and port, which is port 3268 by default.    
+`ldap_password` | LDAP password. <br> As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
+`group_base_dn` | Sets a distinguished name for the entry where LDAP searches for groups begin. <br> The default is the value from `conf.base_dn`.
+`group_name_attribute` | Sets the attribute holding the name of a group, typically called `name` (in Active Directory) or `cn` (in OpenLDAP). <br> The default is the value from `conf.attribute`.
+`group_member_attribute` | Sets the attribute holding the members of the LDAP group. <br> The default is `memberOf`.
 
 ## Define roles with permissions
 
-Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's Teams > [Admins tab](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-user/). You must manually define which Kong Roles correspond to each of the service directory's groups using either of the following:
+Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's [Teams page](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-user/). You must manually define which Kong roles correspond to each of the service directory's groups using either of the following:
 
 * In Kong Manager's directory mapping section. Find it under **Teams** > **Groups** tab.
 * With the Admin API's directory mapping endpoints.
@@ -126,29 +120,29 @@ The groups in the service directory are then automatically matched to the associ
 
 ### Example
 
-1. Wayne Enterprises maps the service directory group, `T1-Mgmt`, to the Kong role super-admin.
-2. Wayne Enterprises maps a service directory user, named `bruce-wayne`, to a Kong admin account with the same name, `bruce-wayne`.
-3. The user, `bruce-wayne`, is assigned to the group `T1-Mgmt` in the LDAP Directory.
+1. Example Corp maps the service directory group, `T1-Mgmt`, to the Kong role super-admin.
+2. Example Corp maps a service directory user, named `example-user`, to a Kong admin account with the same name, `example-user`.
+3. The user, `example-user`, is assigned to the group `T1-Mgmt` in the LDAP Directory.
 
 
-When `bruce-wayne` logs in as an admin to Kong Manager, they will automatically have the role of super-admin as a result of the mapping.
+When `example-user` logs in as an admin to Kong Manager, they will automatically have the role of super-admin as a result of the mapping.
 
-If Wayne Enterprises decides to revoke `bruce-wayne`'s privileges by removing their assignment to `T1-Mgmt`, they will no longer have the super-admin role when they attempt to log in.
+If Example Corp decides to revoke `example-user`'s privileges by removing their assignment to `T1-Mgmt`, they will no longer have the super-admin role when they attempt to log in.
 
 ## Set up a directory user as the first super admin
 
 Setting up a directory user as the first super admin is recommended by Kong.
 
-The example shows an attribute configured with a unique identifier (UID), and the directory user you want to make the super admin has a distinguished name (DN) entry of `UID=bruce-wayne`:
+The example shows an attribute configured with a unique identifier (UID), and the directory user you want to make the super admin has a distinguished name (DN) entry of `UID=example-user`:
 
 ```sh
 curl -i -X PATCH https://localhost:8001/admins/kong_admin \
   --header 'Kong-Admin-Token: <RBAC_TOKEN>' \
   --header 'Content-Type: application/json' \
-  --data '{"username":"bruce-wayne"}'
+  --data '{"username":"example-user"}'
 ```
 
-This user will be able to log in, but until you map a group belonging to `bruce-wayne` to a role, the user will only use the directory for authentication. Once you map the super-admin role to a group that `bruce-wayne` is in, then you can delete the super-admin role from the `bruce-wayne` admin. The group you pick needs to be “super” in your directory, otherwise as other admins log in with a generic group, for example the “employee” group, they will also become super-admins.
+This user will be able to log in, but until you map a group belonging to `example-user` to a role, the user will only use the directory for authentication. Once you map the super-admin role to a group that `example-user` is in, then you can delete the super-admin role from the `example-user` admin. The group you pick needs to be “super” in your directory, otherwise as other admins log in with a generic group, for example the “employee” group, they will also become super-admins.
 
 {:.important}
 > **Important**: If you delete the super-admin role from your only admin, and have not yet mapped the super-admin role to a group that admin belongs to, then you will not be able to log in to Kong Manager.

@@ -6,10 +6,11 @@ badge: enterprise
 {{site.base_gateway}} offers the ability to bind authentication for Kong
 Manager **Admins** to an organization's OpenID Connect Identity
 Provider using the
-**[OpenID Connect Plugin](/hub/kong-inc/openid-connect/)**.
+[OpenID Connect Plugin](/hub/kong-inc/openid-connect/).
 
-**Note**: by using the configuration below, it is unnecessary to
-manually enable the **Plugin**; the configuration alone will enable
+{:.note}
+> **Note**: By using the configuration below, it is unnecessary to
+manually enable the **Plugin**. The configuration alone will enable
 **OIDC** for Kong Manager.
 
 ## Set up RBAC with OIDC
@@ -17,7 +18,7 @@ manually enable the **Plugin**; the configuration alone will enable
 The following is an example using Google as the IdP and serving Kong Manager
 from its default URL, `http://127.0.0.1:8002`.
 
-(The `admin_gui_auth_config` value must be valid JSON.)
+The `admin_gui_auth_config` value must be valid JSON.
 
 ```
 enforce_rbac = on
@@ -41,7 +42,7 @@ admin_gui_auth_conf={                                      \
 }
 ```
 
-The **Sessions Plugin** requires a secret and is configured securely by default.
+The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.

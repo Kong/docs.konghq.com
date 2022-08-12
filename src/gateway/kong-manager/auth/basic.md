@@ -14,7 +14,7 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 ```
 
 Kong Manager uses the Sessions plugin in the background.
-This plugin requires a secret and is configured securely by default.
+This plugin (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
@@ -34,9 +34,9 @@ Learn more about these properties in [Session Security in Kong Manager](/gateway
 
     * If you created a **Super Admin** via database migration, log in to Kong
     Manager with the username `kong_admin` and the password
-    set in the environment variable.
+    set in the [environment variable](/gateway/{{page.kong_version}}/kong-production/running-kong/start-kong-securely/).
 
-    * If you created a Super Admin via the Kong Manager "Organization" tab
+    * If you created a Super Admin via the Kong Manager **Teams** tab
     as described in
     [How to Create a Super Admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin),
     log in with the credentials you created after accepting the email

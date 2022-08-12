@@ -27,8 +27,7 @@ In addition to the authentication plugins above, the
 is required when RBAC is enabled. It sends HTTP cookies to authenticate
 client requests and maintain session information.
 
-The Sessions plugin requires a secret and is configured
-securely by default.
+The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager,

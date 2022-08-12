@@ -16,9 +16,8 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Prerequisites
 
-* `enforce_rbac = on`
-* `admin_gui_auth = basic-auth`
-* SMTP is configured to send emails
+* RBAC is [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable) with `admin_gui_auth=basic-auth`
+* [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email) is configured to send emails
 
 ### Steps
 
