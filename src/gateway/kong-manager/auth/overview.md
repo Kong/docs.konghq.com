@@ -42,24 +42,29 @@ and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/aut
 
 ## Access control with roles and workspaces
 
-An admin belongs to a workspace and should have at least one role
-with a set of permissions. If an admin is in a workspace *without*
-a role, they will not have the ability to see or interact with anything.
+Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator doesn’t cause an outage. {{site.base_gateway}} provides a number of security capabilities to help customers secure the administration environment.
 
-By creating separate
-[workspaces](/gateway/{{page.kong_version}}/kong-manager/workspaces/workspaces/),
- an organization with multiple teams can segment its Kong cluster so that
- different teams don't have access to each other's Kong entities.
+[Workspaces](/gateway/{{page.kong_version}}/kong-manager/workspaces/) enable an organization to segment objects and admins into namespaces. The segmentation allows **teams** of admins sharing the same {{site.base_gateway}} cluster to adopt **roles** for interacting with specific objects. For example, one team (Team A) may be responsible for managing a particular service, whereas another team (Team B) may be responsible for managing another service. Teams should only have the roles they need to perform the administrative tasks within their specific workspaces.
 
-{{site.base_gateway}} implements
-[Role-Based Access Control (RBAC)](/gateway/{{page.kong_version}}/kong-manager/rbac/).
-Admins are assigned roles that have clearly defined permissions. A
-super admin has the ability to:
+{{site.base_gateway}} does all of this through [Role-Based Access Control (RBAC)](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/). All administrators can be given specific roles, whether you are using Kong Manager or the Admin API, which control and limit the scope of administrative privileges within specific workspaces.
 
-* Further customize permissions
-* Create entirely new roles
-* Invite or deactivate admins
-* Assign or revoke their roles
+User types in Kong Manager:
+* [Admins](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-admin): An admin belongs to a workspace and should have at least one role with a set of permissions.
+If an admin is in a workspace *without* a role, they can't see or interact with anything.
+Admins can manage entities inside workspaces, including users and their roles.
 
+* [Super admins](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin): Specialized admins with the ability to:
+  * Manage all workspaces
+  * Further customize permissions
+  * Create entirely new roles
+  * Invite or deactivate admins
+  * Assign or revoke admin roles
+
+* [RBAC users](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-user):
+RBAC users without administrator permissions.
+They have access to manage {{site.base_gateway}}, but can't adjust teams, groups, or
+user permissions.
+
+Admins are assigned roles that have clearly defined permissions.
 In Kong Manager, limiting permissions also restricts the visibility of the
 application interface and navigation.

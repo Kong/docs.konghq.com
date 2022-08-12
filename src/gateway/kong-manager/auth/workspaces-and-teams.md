@@ -5,16 +5,6 @@ badge: enterprise
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}} with Kong Manager.
 
-## Overview of workspaces and teams
-
-Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator doesn’t cause an outage. {{site.base_gateway}} provides a number of security capabilities to help customers secure the administration environment.
-
-**Workspaces** enable an organization to segment objects and admins into namespaces. The segmentation allows teams of admins sharing the same {{site.base_gateway}} cluster to adopt **roles** for interacting with specific objects. For example, one team (Team A) may be responsible for managing a particular service, whereas another team (Team B) may be responsible for managing another service. Teams should only have the roles they need to perform the administrative tasks within their specific workspaces.
-
-{{site.base_gateway}} does all of this through **Role-Based Access Control (RBAC)**. All administrators can be given specific roles, whether you are using Kong Manager or the Admin API, which control and limit the scope of administrative privileges within specific workspaces.
-
-In this example, you’ll start by creating a simple workspace called `SecureWorkspace`. Then, you’ll create an administrator for that workspace, with rights to administer only the objects in the SecureWorkspace and nothing else.
-
 ## Securing your Gateway installation
 
 At a high level, securing {{site.base_gateway}} administration is a two-step process:
@@ -31,6 +21,8 @@ In the following sections, you will need the `kong_admin` account’s password t
 or a user that has `/admins` and `/rbac` read and write access.
 
 ## Create a workspace
+
+For this example, start by creating a simple workspace called `SecureWorkspace`.
 
 ### Log into Kong Manager
 
