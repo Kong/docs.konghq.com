@@ -33,26 +33,22 @@ or a user that has `/admins` and `/rbac` read and write access.
 
 3. Using the dropdown menu, select which **Workspace** the new user has access to.
 
-    > Note: The **Default Workspace** is global, meaning the RBAC user with access to default has access to entities across all other Workspaces. This workspace assignment is useful for administrative and auditing accounts, but not for members of specific teams.
+    {:.note}
+    > **Note:** The **Default Workspace** is global, meaning the RBAC user with access to default has access to entities across all other Workspaces. This workspace assignment is useful for administrative and auditing accounts, but not for members of specific teams.
 
 4. Click the **Add New User** button to the right of the dropdown menu to open the registration form.
 
 5. Fill out the **Add New User** registration form.
 
     * The name of the RBAC user must be globally unique, even if two users are in different workspaces, and it can't have the same name as an admin account.
-
         These naming conventions are important if using OIDC, LDAP, or another external method of identity and access management.
-
     * The RBAC user account is enabled by default. If you want the RBAC User account to start in a disabled state and enable it later, uncheck the **Enabled** box.
 
 6. Click the **Add/Edit Roles** button. Select the role (or roles) desired for the new RBAC User.
 
     * If the RBAC user has no roles assigned, it will not have permission to access any objects.
-
     * An RBAC user’s role assignments may be altered later if needed.
-
     * The roles can only belong to one workspace, as selected in Step 3.
-
     * To provide an RBAC user with access to objects in multiple workspaces, see Step 3.
 
 7. Click **Create User** to complete the user registration.

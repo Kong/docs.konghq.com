@@ -18,26 +18,21 @@ You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{
 On the Workspaces tab in Kong Manager:
 
 1. Open the **default** workspace.
-
 2. From the menu, open **Plugins**, then click **Install Plugin**.
-
 3. Find the **Proxy Caching** plugin, then click **Enable**.
-
 4. Select to apply the plugin as **Global**. This means that proxy caching applies to all requests.
-
 5. Scroll down and complete only the following fields with the parameters listed.
     1. config.cache_ttl: `30`
     2. config.content_type: `application/json` and `charset=utf-8`
     3. config.strategy: `memory`
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-
 6. Click **Install**.
 
-## Validate Proxy Caching
+<!-- ## Validate Proxy Caching
 
-figure out how to validate in the browser
+figure out how to validate in the browser -->
 
 ## Next Steps
 
-Next, you’ll learn about [securing services](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services) through Kong Manager.
+Next, you’ll learn about [securing services](/gateway/{{page.kong_version}}/kong-manager/get-started/consumers) through Kong Manager.

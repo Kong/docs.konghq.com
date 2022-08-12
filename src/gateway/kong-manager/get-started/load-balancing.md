@@ -18,23 +18,14 @@ In this tutorial, you will create an upstream named `example_upstream` and add t
 On the Workspaces tab in Kong Manager:
 
 1. Open the **default** workspace.
-
 2. From the menu, open **Upstreams**, then click **New Upstream**.
-
 3. For this example, enter `example_upstream` in the **Name** field, then click **Create**.
-
 4. Click on your new upstream to open its detail page.
-
 5. From the sub-menu, open **Targets**, then click **New Target**.
-
 6. In the target field, set the value `httpbin.org:80`, and click **Create**.
-
 7. Create another target, this time for `mockbin.org:80`.
-
 8. Open the **Services** page.
-
 9. Open your `example_service`, then click **Edit**.
-
 10. Change the **Host** field to `example_upstream`, then click **Update**.
 
 You now have an upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that upstream.

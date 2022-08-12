@@ -49,7 +49,7 @@ Learn more about these properties in [Session Security in Kong Manager](/gateway
 
 Replace the entries surrounded by `<>` with values that are valid for your IdP.
 For example, Google credentials can be found here:
-https://console.cloud.google.com/projectselector/apis/credentials
+[https://console.cloud.google.com/projectselector/apis/credentials](https://console.cloud.google.com/projectselector/apis/credentials)
 
 ## Create an admin
 

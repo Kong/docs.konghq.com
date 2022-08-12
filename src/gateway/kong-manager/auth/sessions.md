@@ -3,8 +3,6 @@ title: Sessions in Kong Manager
 badge: enterprise
 ---
 
-## How does the Sessions Plugin work in Kong Manager?
-
 When a user logs in to Kong Manager with their credentials, the Sessions Plugin
 will create a session cookie. The cookie is used for all subsequent requests and
 is valid to authenticate the user. The session has a limited duration and renews
@@ -17,7 +15,7 @@ the Admin API and Kong Manager. Even if an attacker were to obtain a stale
 cookie, it would not benefit them since the cookie is encrypted. The encrypted
 session data may be stored either in Kong or the cookie itself.
 
-## Configuration to Use the Sessions Plugin with Kong Manager
+## Configuration the Sessions plugin for Kong Manager
 
 To enable sessions authentication, configure the following:
 
@@ -60,7 +58,7 @@ admin_gui_session_conf = {
 For detailed descriptions of each configuration property, learn more in the
 [Session Plugin documentation](/hub/kong-inc/session).
 
-## Session Security
+## Session security
 
 The Session configuration is secure by default, so the cookie uses the
 [Secure, HttpOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies),
@@ -75,7 +73,7 @@ The following properties must be altered depending on the protocol and domains i
 > **Important:** Sessions are not invalidated when a user logs out if `"storage": "cookie"` (the default) is used. In that case, the cookie is deleted client-side. Only when session data is stored server-side with `"storage": "kong"` set is the session actively invalidated.
 
 
-## Example Configurations
+## Example configurations
 
 If using HTTPS and hosting Kong Manager and the Admin API from the same domain,
 the following configuration could be used for Basic Auth:

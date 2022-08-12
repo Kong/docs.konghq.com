@@ -20,12 +20,12 @@ if needed.
 
 Kong Manager currently supports the following authentication plugins:
 
-* [Basic Auth](/gateway/{{page.kong_version}}/kong-manager/authentication/basic/)
-* [OIDC](/gateway/{{page.kong_version}}/kong-manager/authentication/oidc-mapping/)
-* [LDAP](/gateway/{{page.kong_version}}/kong-manager/authentication/ldap/)
+* [Basic Auth](/gateway/{{page.kong_version}}/kong-manager/auth/basic/)
+* [OIDC](/gateway/{{page.kong_version}}/kong-manager/auth/oidc/oidc-mapping/)
+* [LDAP](/gateway/{{page.kong_version}}/kong-manager/auth/ldap/)
 
 In addition to the authentication plugins above, the
-[Sessions plugin](/gateway/{{page.kong_version}}/kong-manager/authentication/sessions/)
+[Sessions plugin](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/)
 is required when RBAC is enabled. It sends HTTP cookies to authenticate
 client requests and maintain session information.
 
@@ -37,8 +37,8 @@ securely by default.
 `cookie_samesite` must be set to `off`.
 
 Learn more about these properties in
-[Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security),
-and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
+[Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security),
+and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
 
 ## Access control with roles and workspaces
 

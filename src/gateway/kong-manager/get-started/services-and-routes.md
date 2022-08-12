@@ -41,7 +41,6 @@ route to it.
 
 1. From the `example_service` overview page, open **Routes** from the sub-menu
 and click **New Route**.  
-
 2. On the **Create route** page, the **Service** field is auto-populated with
     the service name and ID number. This field is required.
 
@@ -49,12 +48,10 @@ and click **New Route**.
     **Services** in the left navigation pane. Find your Service, click the
     clipboard icon next to the ID field, then go back to the Create Route
     page and paste it into the Service field.
-
 3. Enter a name for the route, and at least one of the following fields: Host,
 Methods, or Paths. For this example, use the following:
       1. For **Name**, enter `mocking`.
       2. For **Path(s)**, click **Add Path** and enter `/mock`.
-
 4. Click **Create**.
 
 Kong automatically redirects you to the `example_service` overview page.

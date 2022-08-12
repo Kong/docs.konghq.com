@@ -12,17 +12,12 @@ If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting
 On the Workspaces tab in Kong Manager:
 
 1. Open the **default** workspace.
-
 2. From the menu, open **Routes** and select the **mocking** route you created.
-
 4. From the sub-menu, select the **Plugins** tab, then click **Install Plugin**.
-
 5. Find the **Key Authentication** plugin and click **Enable**.
-
 6. On the **Install plugin: key-auth** page, the plugin fields are automatically scoped to the route because the plugin is selected from the mocking Routes page.
 
     For this example, this means that you can use all of the default values.
-
 7. Click **Create**.
 
 Now, if you try to access the route without providing an API key, the request will fail, and you’ll see the message `"No API key found in request".`
@@ -35,22 +30,15 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 On the Workspaces tab in Kong Manager:
 
 1. Open the **default** workspace.
-
 2. From the menu, open **Consumers**, then click **New Consumer**.
-
 3. Enter a **Username** and **Custom ID**. For this example, you can use `consumer` for each field.
-
 4. Click **Create**.
-
 5. On the Consumers page, open your new consumer.
-
 6. Open **Credentials** from the sub-menu.
-
 7. Click **New Key Auth Credential**.
-
 8. Set the key to `apikey` and click **Create**.
 
-  The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
+The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 
 ## Validate Key Authentication
 

@@ -25,37 +25,28 @@ for specific entities.
 ## Prerequisites
 
 * [`enforce_rbac = on`](/gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac)
-* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely)
-* Logged in to Kong Manager as a **Super Admin**
+* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/kong-in-production/start-kong-securely)
+* You are logged in to Kong Manager as a [**super admin**](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
 
 ## Add a role and permissions
 
-1. On the **Admins** page, to create a new **Role**, click the
-**Add Role** button at the top right of the list of **Roles**.
+1. From the **Admins** page, click the
+**Add Role** button.
 
 1. On the **Add Role** form, name the **Role** according to the
 **Permissions** you want to grant.
 
-    ![New Role naming](https://konghq.com/wp-content/uploads/2018/11/km-new-role.png)
+    It may be helpful for future reference to include
+    a brief comment describing the reason for the permissions or
+    a summary of the role.
 
-    **Note:** It may be helpful for future reference to include
-    a brief comment describing the reason for the **Permissions** or
-    a summary of the **Role**.
-
-1. Click the **Add Permissions** button and fill out the form. Add the endpoint **Permissions** by marking the appropriate checkbox.
-
-    ![New Role permissions](https://konghq.com/wp-content/uploads/2018/11/km-perms.png)
+1. Click the **Add Permissions** button and fill out the form.
+Add the endpoint permissions by marking the appropriate checkbox.
 
 1. Click **Add Permission to Role** to see the permissions listed on the form.
-
-    ![New Role permissions list](https://konghq.com/wp-content/uploads/2018/11/km-perms-list.png)
 
 1. To forbid access to certain endpoints, click **Add Permission**
 again and use the **negative** checkbox.
 
-    ![Negative permissions](https://konghq.com/wp-content/uploads/2018/11/km-negative-perms.png)
-
-1. Submit the form and see the new **Role** appear on the
-**Admins** page.
-
-    ![Roles list](https://konghq.com/wp-content/uploads/2018/11/km-roles-list.png)
+1. Submit the form to see the new roles appear on the
+admins page.

@@ -105,11 +105,11 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
 7. Click **Invite Admin** to send the invite.
 
-    At this point in the guide, you likely haven’t set up [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email) yet, so no email will be sent.
+    If you have [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email) set up, Kong Manager sends an email with a registration link.
 
-    Instead, you can generate a registration link for the new administrator manually.
+    If you don't have SMTP enabled, you can generate a registration link for the new administrator manually.
 
-### Register the admin
+### Register the admin manually
 
 1. Back on the **Teams** page, click the administrator you just created.
 2. Click the **Generate registration link** button.
