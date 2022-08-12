@@ -60,27 +60,27 @@ the Identity Provider upon successful login.
 $ http POST :8001/admins username="<admin_email>" email="<admin_email>" Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-For example, if a user has a Google email address, **hal9000@sky.net**:
+For example, if a user has a Google email address, **example_user@example.com**:
 
 ```bash
-$ http POST :8001/admins username="hal9000@sky.net" email="hal9000@sky.net" Kong-Admin-Token:<RBAC_TOKEN>
+$ http POST :8001/admins username="example_user@example_com" email="example_user@example.com" Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-**Note:** The **email** entered for the **Admin** in the request is used to
-ensure the **Admin** receives an email invitation, whereas **username** is the
-attribute that the **Plugin** uses with the IdP.
+**Note:** The email entered for the admin in the request is used to
+ensure the admin receives an email invitation, whereas username is the
+attribute that the plugin uses with the IdP.
 
 ## Assign a role to the admin
 
-Assign the new **Admin** at least one **Role** so they can log in and access
+Assign the new admin at least one role so they can log in and access
 Kong entities.
 
 ```bash
 $ http POST :8001/admins/<admin_email>/roles roles="<role-name>" Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-For example, if we wanted to grant **hal9000@sky.net** the **Role** of **Super Admin**:
+For example, if we wanted to grant `example_user@example.com` the role of super admin:
 
 ```bash
-$ http POST :8001/admins/hal9000@sky.net/roles roles="super-admin" Kong-Admin-Token:<RBAC_TOKEN>
+$ http POST :8001/admins/example_user@example.com/roles roles="super-admin" Kong-Admin-Token:<RBAC_TOKEN>
 ```
