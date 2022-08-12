@@ -561,3 +561,5 @@ items:
         url: /reference/rate-limit
       - text: Performance Testing Framework Reference
         url: /reference/performance-testing-framework
+      - text: Router Operators
+        url: /reference/router-operators
