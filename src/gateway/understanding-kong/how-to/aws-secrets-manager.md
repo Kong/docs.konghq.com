@@ -68,7 +68,7 @@ username and password you will use to authorize {{site.base_gateway}} with the d
 > **Note:** A production deployment could use [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) 
 which supports direct integration with AWS Secrets Manager.
 
-Next, create a username and password for the {{site.base_gateway}} database and store 
+Create a username and password for {{site.base_gateway}}'s database, and store 
 them in environment variables to use in this guide:
 
 ```sh
@@ -131,8 +131,8 @@ docker run --rm \
   kong/kong-gateway:latest kong migrations bootstrap
 ```
 
-Now you'll launch the {{site.base_gateway}} service configured to use referenceable values for the
-database username and password. In order to authorize the {{site.base_gateway}} to connect to AWS Secrets Manager,
+Now you'll launch {{site.base_gateway}} configured to use referenceable values for the
+database username and password. In order to authorize {{site.base_gateway}} to connect to AWS Secrets Manager,
 you need to provide IAM security credentials via environment variables. 
 
 You specify the database credentials in the standard `KONG_PG_*` configuration values, 
