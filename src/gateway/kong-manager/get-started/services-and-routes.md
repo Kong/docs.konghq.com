@@ -45,9 +45,9 @@ and click **New Route**.
     the service name and ID number. This field is required.
 
     If the Service field is not automatically populated, click
-    **Services** in the left navigation pane. Find your Service, click the
-    clipboard icon next to the ID field, then go back to the Create Route
-    page and paste it into the Service field.
+    **Services** in the left navigation pane. Find your service, click the
+    clipboard icon next to the ID field, then go back to the **Create Route**
+    page and paste it into the **Service field**.
 3. Enter a name for the route, and at least one of the following fields: Host,
 Methods, or Paths. For this example, use the following:
       1. For **Name**, enter `mocking`.

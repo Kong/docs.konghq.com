@@ -23,7 +23,7 @@ On the Workspaces tab in Kong Manager:
     If you switched it to **Scoped**, the rate limiting would apply the plugin to only one service, route, or consumer.
 
     By default, the plugin is automatically enabled when the form is submitted.
-    You can also toggle the **This plugin is Enabled** button at the top of the form to configure the plugin without enabling it.
+    You can also toggle the **This plugin is Enabled** button to configure the plugin without enabling it.
     For this example, keep the plugin enabled.
 5. Complete only the following fields with the following parameters.
     1. config.limit: `5`

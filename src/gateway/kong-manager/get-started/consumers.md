@@ -15,7 +15,7 @@ On the Workspaces tab in Kong Manager:
 2. From the menu, open **Routes** and select the **mocking** route you created.
 4. From the sub-menu, select the **Plugins** tab, then click **Install Plugin**.
 5. Find the **Key Authentication** plugin and click **Enable**.
-6. On the **Install plugin: key-auth** page, the plugin fields are automatically scoped to the route because the plugin is selected from the mocking Routes page.
+6. On the **Install plugin: key-auth** page, the plugin fields are automatically scoped to the route because the plugin is selected from the mocking route's page.
 
     For this example, this means that you can use all of the default values.
 7. Click **Create**.

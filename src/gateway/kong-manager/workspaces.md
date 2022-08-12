@@ -36,7 +36,7 @@ This guide describes how to create workspaces in Kong
 Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
-button at the top right to see the **Create Workspace** form. Name and choose a
+button to see the **Create Workspace** form. Name and choose a
 color / icon for the new Workspace.
 
     Each workspace name should be unique,
@@ -67,7 +67,7 @@ navigate to the new Workspace's dashboard.
 
 1. In the workspace you want to edit, navigate to the **Dashboard** page.
 
-1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
+1. Click the **Settings** button. This button takes you to the **Edit Workspace** page.
 
 1. Here, you can edit the workspace name, avatar, and avatar background color.
 
@@ -87,7 +87,7 @@ Using Kong Manager, complete the following:
 all files from a folder will remove the folder.
 1. Turn off the Dev Portal. Go to Dev Portal **Settings** > **Advanced** > **Turn Off**.
 1. Remove all roles from the workspace:
-     1. Go to **Teams** in the top navigation.
+     1. Go to the **Teams** tab.
      1. Navigate to the **Roles** tab.
      1. Click **View** on the workspace you want to delete.
      1. Go to each role entry and click **Edit**.
@@ -147,9 +147,9 @@ Kong Admin API. If not, see the previous section to [wipe workspace data](#wipe-
 
 1. In the workspace you want to delete, navigate to the **Dashboard** page.
 
-1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
+1. Click the **Settings** button to open the **Edit Workspace** page.
 
-1. Click **Delete** in the bottom right corner.
+1. Click **Delete**.
 
     The deletion will fail if you have any data in your workspace.
 
@@ -181,12 +181,12 @@ able to see the related navigation links.
 
 To set up access:
 1. Open Kong Manager.
-2. On the left sidebar, click the **Admins** link in the
+2. Click the **Admins** link in the
 **Security** section.
 
   If the sidebar is collapsed, hover over
-  the **security badge icon** at the bottom and click the
-  **Admins** link.
+  the **security badge icon** and click
+  **Admins**.
 
 The Admins page displays a list of current admins and
 roles. Four default roles specific to the new
