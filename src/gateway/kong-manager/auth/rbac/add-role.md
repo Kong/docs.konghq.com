@@ -4,19 +4,19 @@ badge: enterprise
 ---
 
 Roles make it easy to logically group and apply the same
-set of Permissions to Admins. Permissions may be
+set of permissions to admins. Permissions may be
 customized in detail, down to individual actions and endpoints.
 
-{{site.base_gateway}} includes default Roles for standard
-use cases, e.g. inviting additional Super Admins,
-inviting Admins that may only `read` endpoints.
+{{site.base_gateway}} includes default roles for standard
+use cases, e.g. inviting additional super admins,
+inviting admins that may only `read` endpoints.
 
-This guide describes how to create a custom Role in Kong
+This guide describes how to create a custom role in Kong
 Manager for a unique use case. As an alternative, if a
-Super Admin wants to create a Role with the Admin API,
+super admin wants to create a role with the Admin API,
 it is possible to do so using
 [`/rbac/roles`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role).
-To add Permissions to the new Role, use
+To add permissions to the new role, use
 [`/rbac/roles/{name_or_id}/endpoints`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role-endpoint-permission)
 for endpoints or
 [`/rbac/roles/{name_or_id}/entities`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role-entity-permission)

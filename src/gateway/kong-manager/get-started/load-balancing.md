@@ -25,7 +25,7 @@ On the Workspaces tab in Kong Manager:
 
 4. Click on your new upstream to open its detail page.
 
-5. From the submenu, open **Targets**, then click **New Target**.
+5. From the sub-menu, open **Targets**, then click **New Target**.
 
 6. In the target field, set the value `httpbin.org:80`, and click **Create**.
 

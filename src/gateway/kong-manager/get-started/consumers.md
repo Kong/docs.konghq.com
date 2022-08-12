@@ -15,7 +15,7 @@ On the Workspaces tab in Kong Manager:
 
 2. From the menu, open **Routes** and select the **mocking** route you created.
 
-4. From the submenu, select the **Plugins** tab, then click **Install Plugin**.
+4. From the sub-menu, select the **Plugins** tab, then click **Install Plugin**.
 
 5. Find the **Key Authentication** plugin and click **Enable**.
 
@@ -44,11 +44,11 @@ On the Workspaces tab in Kong Manager:
 
 5. On the Consumers page, open your new consumer.
 
-6. Open **Credentials** from the submenu.
+6. Open **Credentials** from the sub-menu.
 
 7. Click **New Key Auth Credential**.
 
-8. Set the key to **apikey** and click **Create**.
+8. Set the key to `apikey` and click **Create**.
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 

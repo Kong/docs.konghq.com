@@ -39,7 +39,7 @@ The service is created, and the page automatically redirects back to the
 For the service to be accessible through the API gateway, you need to add a
 route to it.
 
-1. From the `example_service` overview page, open **Routes** from the submenu
+1. From the `example_service` overview page, open **Routes** from the sub-menu
 and click **New Route**.  
 
 2. On the **Create route** page, the **Service** field is auto-populated with
