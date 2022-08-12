@@ -3,10 +3,11 @@ title: Configuration Reference for Kong Gateway
 content-type: reference
 ---
 
-With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific languaged called ATC. ATC can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators: 
+With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific languaged called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators: 
 
 
 ## String
+
 | Operator | Name | Return Type | 
 | --- | ----------- | --- | 
 | == | Equals | Boolean|
@@ -39,9 +40,13 @@ With the release of version 3.0, {{site.base_gateway}} now ships with a new rout
 | `||` | Or | Boolean|
 | ! | Not | Boolean|
 
-"protocols": ["http", "https"],
-"methods": ["GET", "POST"],
-"hosts": ["example.com", "foo.test"],
-"paths": ["/foo", "/bar"],
-"headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
+## Available Fields
 
+
+* net.protocol - The protocol used to communicate with the upstream application. 
+* tls.sni - Server name indication.
+* http.method -  HTTP methods that match a route.
+* http.host -  Lists of domains that match a route.
+* http.path - Returns or sets the path.
+* http.raw_path - Returns or sets the escaped path.
+* http.headers.* - Lists of values that are expected in the header of a request.
