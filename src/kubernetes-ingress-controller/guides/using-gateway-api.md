@@ -1,7 +1,13 @@
 ---
 title: Using Gateway API
-alpha: true
 ---
+
+{% if_version gte: 2.6.x %}
+This guide is considered `beta` maturity: it is not intended for use in production systems.
+{% endif_version %}
+{% if_version lte: 2.5.x %}
+This guide is considered `alpha` maturity: it is not intended for use in production systems.
+{% endif_version %}
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
 configuring networking in Kubernetes. It expands on Ingress to configure
@@ -9,24 +15,24 @@ additional types of routes (TCP, UDP, and TLS in addition to HTTP/HTTPS),
 support backends other than Service, and manage the proxies that implement
 routes.
 
-Gateway API and Kong's implementation of Gateway API are both in alpha stage and
-under active development. Features and implementation specifics will change
-before their initial general availability release.
-
-## Enable the feature
+## Setup
 
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
-first [install them](https://gateway-api.sigs.k8s.io/v1alpha2/guides/getting-started/#installing-gateway-api-crds-manually).
+first [install them][gwinst].
+{% if_version lte: 2.5.x %}
 
 The default controller configuration disables Gateway API handling. To enable
 it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
 `values.yaml`, or set `CONTROLLER_FEATURE_GATES=Gateway=true` if not using Helm.
 Note that you must restart Pods with this flag set _after_ installing the
 Gateway API CRDs.
+{% endif_version %}
 
 If using Helm, you must use chart version 2.7 or higher. Older versions do not
 include the ServiceAccount permissions necessary for KIC to read Gateway API
 resources.
+
+[gwinst]:https://gateway-api.sigs.k8s.io/guides/getting-started/#installing-gateway-api
 
 ## Testing connectivity to Kong
 
@@ -74,9 +80,9 @@ by all Gateways of a given type.
 
 Add a GatewayClass:
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
-apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: GatewayClass
 metadata:
   name: kong
@@ -84,13 +90,26 @@ spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
 ```
+{% endif_version %}
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: GatewayClass
+metadata:
+  name: kong
+spec:
+  controllerName: konghq.com/kic-gateway-controller
+" | kubectl apply -f -
+```
+{% endif_version %}
 
 ```
 gatewayclass.gateway.networking.k8s.io/kong created
 ```
 
-Add a Gateway: 
+Add a Gateway:
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: Gateway
@@ -109,6 +128,27 @@ spec:
     protocol: HTTPS
 " | kubectl apply -f -
 ```
+{% endif_version %}
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    konghq.com/gateway-unmanaged: kong/kong-proxy
+  name: kong
+spec:
+  gatewayClassName: kong
+  listeners:
+  - name: proxy
+    port: 80
+    protocol: HTTP
+  - name: proxy-ssl
+    port: 443
+    protocol: HTTPS
+" | kubectl apply -f -
+```
+{% endif_version %}
 
 ```
 gateway.gateway.networking.k8s.io/kong created
@@ -148,6 +188,7 @@ HTTPRoute resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
 requests to.
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
@@ -171,6 +212,32 @@ spec:
         value: /echo
 " | kubectl apply -f -
 ```
+{% endif_version %}
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: echo
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: kong
+  rules:
+  - backendRefs:
+    - group: ""
+      kind: Service
+      name: echo
+      port: 80
+      weight: 1
+    matches:
+    - path:
+        type: PathPrefix
+        value: /echo
+" | kubectl apply -f -
+```
+{% endif_version %}
 
 After creating an HTTPRoute, accessing `/echo` forwards a request to the
 echo service:
@@ -196,10 +263,9 @@ Hostname: echo-758859bbfb-cnfmx
 ...
 ```
 
-## Alpha limitations
+## Limitations
 
-The KIC Gateway API alpha is a work in progress, and not all features of
-Gateway APIs are supported. In particular:
+Some notable features or options are not currently supported:
 
 {% if_version lte: 2.3.x %}
 - HTTPRoute is the only supported route type. TCPRoute, UDPRoute, and TLSRoute
