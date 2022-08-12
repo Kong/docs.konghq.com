@@ -1,6 +1,6 @@
-
+---
 title: "Securing Kong Gateway database credentials with AWS Secrets Manager"
-description: "How-to keep your Kong Gateway database credentials secure using AWS SecretsManager and Kong vault integrations."
+description: "How-to keep your {{site.base_gateway}} database credentials secure using AWS SecretsManager and Kong vault integrations."
 ---
 
 Application secrets include sensitive data like passwords, keys, certifications, tokens, and other items
