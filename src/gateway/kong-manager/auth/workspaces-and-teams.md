@@ -22,13 +22,13 @@ At a high level, securing {{site.base_gateway}} administration is a two-step pro
 1. Turn on RBAC.
 2. Create a workspace and an admin for segregated administration.
 
-At this point in the Getting Started Guide, you have been interacting with your environment as the built-in Super Admin, `kong_admin`. The password for this `kong_admin` user was “seeded” during the installation process using the KONG_PASSWORD environment variable. After RBAC is enabled, you will need to authenticate to the Kong Manager and the {{site.base_gateway}} Admin API using the proper credentials.
-
 In the following sections, you will need the `kong_admin` account’s password to log in to {{site.base_gateway}}, and the `kong_admin_uri` needs to be configured to avoid getting CORS errors.
 
-## Turn on RBAC
+## Prerequisites
 
-{% include_cached /md/enterprise/turn-on-rbac.md %}
+* RBAC is [enabled](src/gateway/kong-manager/auth/rbac/enable)
+* You are [logged in as the super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access.
 
 ## Create a workspace
 

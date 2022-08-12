@@ -22,7 +22,7 @@ If creating a *personal account* for {{site.base_gateway}}, then admin may be pr
 ## Prerequisites
 
 * Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely).
-* [Logged in as the super admin](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely)
+* You are [logged in as the super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
 or a user that has `/admins` and `/rbac` read and write access.
 
 ## Add an RBAC user in Kong Manager
