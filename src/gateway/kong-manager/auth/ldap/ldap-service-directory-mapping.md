@@ -5,7 +5,7 @@ badge: enterprise
 
 Service directory mapping allows organizations to use their LDAP Directory for authentication and authorization in {{site.base_gateway}}.
 
-After starting {{site.base_gateway}} with the desired configuration, you can create new Admins whose usernames match those in your LDAP directory. Those users will then be able to accept invitations to join Kong Manager and log in with their LDAP credentials.
+After starting {{site.base_gateway}} with the desired configuration, you can create new admins whose usernames match those in your LDAP directory. Those users will then be able to accept invitations to join Kong Manager and log in with their LDAP credentials.
 
 How service directory mapping works in Kong:
 * Roles are created in {{site.base_gateway}} using the Admin API or Kong Manager.
@@ -22,11 +22,11 @@ For example, if a user's group changes in the service directory, their Kong admi
 
 ## Configure service directory mapping
 
-Configure service directory mapping to use your LDAP Directory for authentication and authorization.
+Configure service directory mapping to use your LDAP directory for authentication and authorization.
 
 ## Start {{site.base_gateway}}
 
-From a terminal window, enter:
+From the shell, enter:
 
 ```
 $ kong start [-c /path/to/kong/conf]
@@ -41,7 +41,7 @@ admin_gui_auth = ldap-auth-advanced
 enforce_rbac = on
 ```
 
-When enabling LDAP Authentication in this step, you are enabling and configuring the LDAP Authentication Advanced plugin for Kong Manager.
+When enabling LDAP authentication in this step, you are enabling and configuring the LDAP Authentication Advanced plugin for Kong Manager.
 No other configuration for the plugin is needed.
 
 ## Configure the Sessions plugin
@@ -49,7 +49,7 @@ No other configuration for the plugin is needed.
 Configure the Sessions plugin for Kong Manager:
 
 ```
-admin_gui_session_conf = { "secret":"set-your-string-here" }
+admin_gui_session_conf = { "secret":"example-secret-string" }
 ```
 
 The **Sessions plugin** requires a **secret** and is configured securely by default:
@@ -106,14 +106,14 @@ admin_gui_auth_conf = {
 
 Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's Teams > [Admins tab](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-user/). You must manually define which Kong Roles correspond to each of the service directory's groups using either of the following:
 
-* In Kong Manager's directory mapping section. Find it under Teams > Groups tab.
+* In Kong Manager's directory mapping section. Find it under **Teams** > **Groups** tab.
 * With the Admin API's directory mapping endpoints.
 
 {{site.base_gateway}} will not write to the service directory. For example, a {{site.base_gateway}} admin cannot create users or groups in the directory. You must create users and groups independently before mapping them to {{site.base_gateway}}.
 
 ## User-admin mapping
 
-To map a service directory user to a Kong admin, you must configure the admin's username as the value of the user's name from their LDAP Distinguished Name (DN) corresponding the attribute configured in `admin_gui_auth_conf`. Create an admin account in [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-admin) or use the [Admin API](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
+To map a service directory user to a Kong admin, map the admin's username to the **name** value corresponding to the attribute configured in `admin_gui_auth_conf`. Create an admin account in [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-admin) or use the [Admin API](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 
 For instructions on how to pair the bootstrapped super admin with a directory user, see [Set up a directory user as the first super admin](#set-up-a-directory-user-as-the-first-super-admin).
 
