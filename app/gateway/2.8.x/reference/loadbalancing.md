@@ -14,7 +14,7 @@ is done outside of Kong, and Kong only receives updates from the DNS server.
 Every Service that has been defined with a `host` containing a hostname
 (instead of an IP address) will automatically use DNS-based load balancing
 if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your DNS hostsfile.
+resolve to an `upstream` name or a name in your DNS hosts file.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
@@ -72,25 +72,25 @@ indicating there are more entries unsent.
 DNS clients, including Kong's, will then make a second request over TCP to retrieve the full
 list of entries.
 
-- Some nameservers by default do not respond with the truncate flag, but trim the response
+- Some name servers by default do not respond with the truncate flag, but trim the response
 to be under 512 byte UDP size.
    - Consul is an example. Consul, in its default configuration, returns up to the first
 three entries only, and does not set the truncate flag to indicate there are remaining entries unsent.
 Consul includes an option to enable the truncate flag. Please refer to [Consul documentation](https://www.consul.io/docs/agent/options.html#enable_truncate)
 for more information.
 
-- If a deployed nameserver does not provide the truncate flag, the pool
+- If a deployed name server does not provide the truncate flag, the pool
 of upstream instances might be loaded inconsistently. The Kong node is effectively
-unaware of some of the instances, due to the limited information provided by the nameserver.
-To mitigate this, use a different nameserver, use IP addresses instead of names, or make sure
+unaware of some of the instances, due to the limited information provided by the name server.
+To mitigate this, use a different name server, use IP addresses instead of names, or make sure
 you use enough Kong nodes to still keep all upstream services in use.
 
-- When the nameserver returns a `3 name error`, then that is a valid response
+- When the name server returns a `3 name error`, then that is a valid response
 for Kong. If this is unexpected, first validate the correct name is being
-queried for, and second check your nameserver configuration.
+queried for, and second check your name server configuration.
 
 - The initial pick of an IP address from a DNS record (A or SRV) is not
-randomized. So when using records with a `ttl` of 0, the nameserver is
+randomized. So when using records with a `ttl` of 0, the name server is
 expected to randomize the record entries.
 
 ## Ring-balancer
@@ -104,7 +104,7 @@ Configuring the ring-balancer is done through the `upstream` and `target`
 entities.
 
   - `target`: an IP address or hostname with a port number where a backend
-    service resides, eg. "192.168.100.12:80". Each target gets an additional
+    service resides, for example "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
 
@@ -139,7 +139,7 @@ upstreams is available in the `upstream` section of the
 
 ### Target
 
-A target is an ip address/hostname with a port that identifies an instance of
+A target is an IP address/hostname with a port that identifies an instance of
 a backend service. Each upstream can have many targets.
 Detailed information on adding and manipulating targets is available in the
 `target` section of the [Admin API reference][target-object-reference].
@@ -152,7 +152,7 @@ A `target` can also have a hostname instead of an IP address. In that case
 the name will be resolved and all entries found will individually be added to
 the ring balancer, e.g., adding `api.host.com:123` with `weight=100`. The
 name 'api.host.com' resolves to an A record with 2 IP addresses. Then both
-ip addresses will be added as target, each getting `weight=100` and port 123.
+IP addresses will be added as target, each getting `weight=100` and port 123.
 __NOTE__: the weight is used for the individual entries, not for the whole!
 
 Would it resolve to an SRV record, then also the `port` and `weight` fields
@@ -164,7 +164,7 @@ the balancer when it expires.
 
 __Exception__: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
-to this target it will query the nameserver again.
+to this target it will query the name server again.
 
 ### Balancing algorithms
 
@@ -219,14 +219,14 @@ must be build in a deterministic way.
 - Do not use hostnames in the balancer as the
 balancers might/will slowly diverge because the DNS ttl has only second precision
 and renewal is determined by when a name is actually requested. On top of this is
-the issue with some nameservers not returning all entries, which exacerbates
+the issue with some name servers not returning all entries, which exacerbates
 this problem. So when using the hashing approach in a Kong cluster, add `target`
 entities only by their IP address, and never by name.
 
 - When picking your hash input make sure the input has enough variance to get
 to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
 So for example, if your system has thousands of users, but only a few consumers, defined
-per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
+per platform for example, 3 consumers: Web, iOS and Android) then picking the `consumer`
 hash input will not suffice, using the remote IP address by setting the hash to
 `ip` would provide more variance in the input and hence a better distribution
 in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in

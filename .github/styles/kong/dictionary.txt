@@ -105,6 +105,7 @@ opa
 outbounds
 passthrough
 PayPal
+performant
 plaintext
 Postgres
 PostgreSQL
@@ -122,6 +123,7 @@ redis
 reentrant
 referenceable
 repo
+requery
 routable
 runtime
 runtimes
