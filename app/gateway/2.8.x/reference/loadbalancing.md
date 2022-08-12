@@ -197,7 +197,7 @@ Supported hashing attributes are:
   setting is invalid if `cookie` is the primary hashing mechanism.
 
 The `consistent-hashing` algorithm is based on _Consistent Hashing_ (or the
-_Ketama Principle_), which ensures that when the balancer gets modified by
+`Ketama Principle`), which ensures that when the balancer gets modified by
 a change in its targets (adding, removing, failing, or changing weights), only
 the minimum number of hashing losses occur. This maximizes upstream cache hits.
 
