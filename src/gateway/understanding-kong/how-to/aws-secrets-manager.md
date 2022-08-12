@@ -1,4 +1,4 @@
----
+
 title: "Securing Kong Gateway database credentials with AWS Secrets Manager"
 description: "How-to keep your Kong Gateway database credentials secure using AWS SecretsManager and Kong vault integrations."
 ---
@@ -10,9 +10,9 @@ that allows you to store secrets in various secure backend systems helping you p
 exposure.
 
 Traditionally, {{site.base_gateway}} is configured with static credentials for connecting 
-to it's external datastore. This guide will show you how to configure {{site.base_gateway}} to use 
+to it's external database. This guide will show you how to configure {{site.base_gateway}} to use 
 [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html) to 
-read datastore credentials securely instead of using traditional file or environment variable based solutions.
+read database credentials securely instead of using traditional file or environment variable based solutions.
 
 For this guide you are going to run the PostgreSQL and {{site.base_gateway}} services locally 
 on Docker. You will create a secret in the AWS Secrets Manager and deploy {{site.base_gateway}} using a vault reference
@@ -31,11 +31,11 @@ to read the value securely.
   * `secretsmanager:CreateSecret`
   * `secretsmanager:PutSecretValue`
 
-  Additonally, {{site.base_gateway}} will connect to Secrets Manager and retrieve the secret value, 
+  Additionally, {{site.base_gateway}} will connect to Secrets Manager and retrieve the secret value, 
   this requires the `secretsmanager:GetSecretValue` permission.
 
   You must be able to configure the gateway environment with the well known 
-  [AWS CLI envrionment variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+  [AWS CLI environment variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
   as this is the method {{site.base_gateway}} uses to connect to the Secrets Manager service.
 
 * [Docker](https://docs.docker.com/get-docker/) will be used to run {{site.base_gateway}} and the supporting database.
@@ -65,7 +65,7 @@ The username and password used above are the PostgreSQL master credentials, *not
 username and password you will use to authorize {{site.base_gateway}} with the database.
 
 {:.note}
-> **Note:** A production deployment could utilize [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) 
+> **Note:** A production deployment could use [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) 
 which supports direct integration with AWS Secrets Manager.
 
 Next, create a username and password for the {{site.base_gateway}} database and store 
@@ -131,13 +131,13 @@ docker run --rm \
   kong/kong-gateway:latest kong migrations bootstrap
 ```
 
-Now you'll launch the {{site.base_gateway}} service configured to use referencable values for the
+Now you'll launch the {{site.base_gateway}} service configured to use referenceable values for the
 database username and password. In order to authorize the {{site.base_gateway}} to connect to AWS Secrets Manager,
 you need to provide IAM security credentials via environment variables. 
 
 You specify the database credentials in the standard `KONG_PG_*` configuration values, 
 but instead of providing a static value you use a 
-[referencable value](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/reference-format/).
+[referenceable value](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/reference-format/).
 
 In this example, the reference format contains `aws` as the backend vault type, `kong-gateway-database` matches 
 the name of the secret created earlier, and `pg_password` are the JSON field name you want to reference 
