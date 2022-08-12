@@ -14,7 +14,7 @@ You can use {{site.base_gateway}} and [the Prometheus plugin](/hub/kong-inc/prom
 
 Using Datadog Agent 6, you can connect Datadog to the Prometheus endpoint to start collecting metrics.
 
-After enabling the Prometheus plugin for {{site.base_gateway}}, create a [Datadog Agent openmetrics.d](https://docs.datadoghq.com/integrations/openmetrics/) configuration at `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`. This tells the Agent to begin scraping metrics from {{site.base_gateway}}.
+After enabling the Prometheus plugin for {{site.base_gateway}}, create a [Datadog Agent openmetrics.d](https://docs.datadoghq.com/integrations/openmetrics/) configuration at `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`. This tells the agent to begin scraping metrics from {{site.base_gateway}}.
 
 The following is an example configuration for pulling all the `kong_` prefixed metrics:
 
