@@ -126,8 +126,8 @@ docker run --rm \
   --network=kong-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-database" \
-  -e "KONG_PG_USER" \
-  -e "KONG_PG_PASSWORD" \
+  -e "KONG_PG_USER=$KONG_PG_USER" \
+  -e "KONG_PG_PASSWORD=$KONG_PG_PASSWORD" \
   kong/kong-gateway:latest kong migrations bootstrap
 ```
 
