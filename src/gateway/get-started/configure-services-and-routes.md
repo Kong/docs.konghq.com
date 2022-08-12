@@ -3,7 +3,7 @@ title: Configure Services and Routes
 content-type: tutorial
 ---
 
-The Kong API Gateway provides a mechanism govern to all of your APIs from a central point of management. Additionally, the Kong API Gateway enables APIs to stay lean, by abstracting other requirements like observability, and security away from the API code.
+The Kong API Gateway provides a mechanism to govern all of your APIs from a central point of management. Additionally, the Kong API Gateway enables APIs to stay lean, by abstracting other requirements like observability, and security away from the API code.
 
 At its core, {{site.base_gateway}} is a tool to manage **services** and **routes**. You can interface with {{site.base_gateway}} through the [Admin API](/gateway/latest/admin-api), [kong.conf](/gateway/latest/kong-production/kong-conf), or [{{site.konnect_short_name}}](/konnect/). {{site.base_gateway}} offers [plugins](/hub/) and the ability to write [custom plugins](/gateway/latest/plugin-development/) to support your use case. This tutorial is the first part in a series of tutorials designed to help you understand {{site.base_gateway}}. 
 
@@ -24,7 +24,7 @@ If you do not have {{site.base_gateway}} installed, you can quickly install it u
 
 ## What is a service
 
-In {{site.base_gateway}} a service serves as an abstraction of an existing upstream application. Services can store collections of objects like plugin configurations, and policies, and they can be associated with routes.Every service must have a *name* and a *URL*. The name is used to refer to the server, and the URL points to an upstream application that you want to serve using {{site.base_gateway}}.
+In {{site.base_gateway}} a service serves as an abstraction of an existing upstream application. Services can store collections of objects like plugin configurations, and policies, and they can be associated with routes. Every service must have a *name* and a *URL*. The name is used to refer to the server, and the URL points to an upstream application that you want to serve using {{site.base_gateway}}.
 
 ![Services and routes](/assets/images/docs/getting-started-guide/route-and-service.png)
 
@@ -49,7 +49,7 @@ You can also configure routes with:
 
 In this tutorial, you will complete the following steps:
 
-* Create a service pointing to the [Mockbin](https://mockbin.org/) API. The Mockbin API generates custom endpoints to test, mock, and track HTTP requests & responses between libraries, sockets and APIs.
+* Create a service pointing to the [Mockbin](https://mockbin.org/) API. The Mockbin API generates custom endpoints to test, mock, and track HTTP requests and responses between libraries, sockets, and APIs.
 * Create a route with a specific path for requests. 
 * Use the service you created to return your request as a response. This will help you understand how {{site.base_gateway}} proxies API requests. 
 
