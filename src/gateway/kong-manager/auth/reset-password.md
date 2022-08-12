@@ -22,7 +22,7 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Steps
 
-1. At the login page, click **Forgot Password** beneath the login field.
+1. At the login page, click **Forgot Password**.
 2. Enter the email address associated with the account.
 3. Click the link from the email.
 4. Reset the password. Note that you will need to provide it again immediately after the reset is complete.
@@ -56,4 +56,4 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 1. Open the dropdown from your **account name**, then select **Profile**.
 2. In the **Reset RBAC Token** section, click **Reset Token** and confirm the reset.
 3. Type in a new token and click **Reset**.
-4. To copy the token, click the **Copy** button at the right.
+4. To copy the token, click the **Copy** button.

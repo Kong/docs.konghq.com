@@ -9,7 +9,7 @@ In addition to authenticating admins and segmenting workspaces,
 
 As the super admin (or any role with read and write
 access to the `/admins` and `/rbac` endpoints), it is possible to
-create new Roles and customize Permissions.
+create new roles and customize permissions.
 
 In Kong Manager, RBAC affects how admins are able to navigate
 through the application.
@@ -30,7 +30,7 @@ If a role does not have permission to access entire endpoints,
 the admin assigned to the role will not be able to see the related navigation links.
 
 {:.important}
-> Important: Although a default admin has full permissions with every
+> Important: Although a default admin has full permissions to every
 endpoint in Kong, only a super admin has the ability to assign and modify RBAC permissions.
 An admin is not able to modify their own permissions or delimit a super admin's permissions.
 

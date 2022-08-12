@@ -29,7 +29,7 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
 1. Go to Kong Manager, or reload the page if you already have it open to see a login screen.
 2. Log in to Kong Manager with the built-in Super Admin account, `kong_admin`, and its password.
 
-    Remember, this is the initial KONG_PASSWORD you used when you ran migrations during installation.
+    Remember, this is the initial `KONG_PASSWORD` you used when you ran migrations during installation.
 
 3. If you have logged in successfully, then you can start administering your {{site.base_gateway}} cluster.
 
@@ -69,7 +69,7 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
 
 * **Be careful:** Granting access to the **default** workspace gives access to all workspaces in the organization.
 
-* The **default** workspace only has three roles: *workspace-admin*, *workspace-super admin*, and *workspace-read-only*. Every other workspace will have the four roles mentioned above.
+* The **default** workspace only has three roles: *workspace-admin*, *workspace-super-admin*, and *workspace-read-only*. Every other workspace will have the four roles mentioned above.
 
 * You can also create custom roles by clicking on the **Add Role** button and specifying the endpoints that the administrator with the role will be able to interact with.
 
@@ -80,7 +80,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 ### Invite a new admin
 
 1. From the **Teams** > **Admins** tab, click **Invite Admin**.
-2. Enter the new administrator’s **Email** address, **Username**, and **Custom Id**.
+2. Enter the new administrator’s **Email address** , **Username**, and **Custom Id**.
 3. Ensure that **Enable RBAC Token** is enabled.
 
     This setting lets the admin use the Admin API as well as Kong Manager.

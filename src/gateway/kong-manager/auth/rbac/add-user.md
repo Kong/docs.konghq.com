@@ -27,7 +27,7 @@ or a user that has `/admins` and `/rbac` read and write access.
 
 ## Add an RBAC user in Kong Manager
 
-1. From the dashboard, click the **Teams** tab in the top navigation menu.
+1. From the dashboard, click the **Teams** tab.
 
 2. On the **Teams** page, click the **RBAC Users** tab.
 
@@ -36,13 +36,13 @@ or a user that has `/admins` and `/rbac` read and write access.
     {:.note}
     > **Note:** The **Default Workspace** is global, meaning the RBAC user with access to default has access to entities across all other Workspaces. This workspace assignment is useful for administrative and auditing accounts, but not for members of specific teams.
 
-4. Click the **Add New User** button to the right of the dropdown menu to open the registration form.
+4. Click the **Add New User** button to open the registration form.
 
 5. Fill out the **Add New User** registration form.
 
     * The name of the RBAC user must be globally unique, even if two users are in different workspaces, and it can't have the same name as an admin account.
         These naming conventions are important if using OIDC, LDAP, or another external method of identity and access management.
-    * The RBAC user account is enabled by default. If you want the RBAC User account to start in a disabled state and enable it later, uncheck the **Enabled** box.
+    * The RBAC user account is enabled by default. If you want the RBAC user account to start in a disabled state and enable it later, uncheck the **Enabled** box.
 
 6. Click the **Add/Edit Roles** button. Select the role (or roles) desired for the new RBAC User.
 

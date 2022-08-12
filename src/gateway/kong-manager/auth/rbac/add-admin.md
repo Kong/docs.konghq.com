@@ -42,7 +42,7 @@ Once they accept the invitation, the user will be listed in the main **Admins** 
     If SMTP is not enabled or the invitation email fails to send,
     the super admin can copy and provide a registration link directly.
 
-5. The newly invited admin will have the ability to set a password. If the admin ever forgets the password, they can  reset it through a recovery email.
+5. The newly invited admin will have the ability to set a password. If the admin ever forgets the password, they can reset it through a recovery email.
 
 ## Copy and send a registration link
 

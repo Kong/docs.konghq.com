@@ -6,8 +6,6 @@ badge: enterprise
 Kong Manager enables users with admin accounts to access Kong entities such
 as services, plugins, and consumers.
 
-The following document summarizes Kong Manager's controls for *authentication*
-and *authorization*.
 
 ## Configuring authentication
 
