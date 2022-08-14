@@ -22,6 +22,17 @@ Kubernetes, then you can set up the admission webhook using a single command:
 ```bash
 curl -sL https://bit.ly/install-kong-admission-webhook | bash
 ```
+The output is similar to the following:
+```
+Generating a 2048 bit RSA private key
+.......+++
+.......................................................................+++
+writing new private key to '/var/folders/h2/chkzcfsn4sl3nn99tk5551tc0000gp/T/tmp.SX3eOgD0/tls.key'
+-----
+secret/kong-validation-webhook created
+deployment.apps/ingress-kong patched
+validatingwebhookconfiguration.admissionregistration.k8s.io/kong-validations created
+```
 
 This script takes all the following commands and packs them together.
 You need `kubectl` and `openssl` installed on your workstation for this to
@@ -47,10 +58,14 @@ in the default case is `kong-validation-webhook.kong.svc`.
 Use `openssl` to generate a self-signed certificate:
 
 ```bash
-$ openssl req -x509 -newkey rsa:2048 -keyout tls.key -out tls.crt -days 365  \
+openssl req -x509 -newkey rsa:2048 -keyout tls.key -out tls.crt -days 365  \
     -nodes -subj "/CN=kong-validation-webhook.kong.svc" \
     -extensions EXT -config <( \
    printf "[dn]\nCN=kong-validation-webhook.kong.svc\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:kong-validation-webhook.kong.svc\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```
+
+The output is similar to the following:
+```
 Generating a 2048 bit RSA private key
 ..........................................................+++
 .............+++
@@ -73,8 +88,11 @@ Here, we assume that the PEM-encoded certificate is stored in a file named
 `tls.crt` and private key is stored in `tls.key`.
 
 ```bash
-$ kubectl create secret tls kong-validation-webhook -n kong \
+kubectl create secret tls kong-validation-webhook -n kong \
     --key tls.key --cert tls.crt
+```
+The output is similar to the following:
+```
 secret/kong-validation-webhook created
 ```
 
@@ -86,8 +104,11 @@ Execute the following command to patch the {{site.kic_product_name}} deployment
 to mount the certificate and key pair and also enable the admission controller:
 
 ```bash
-$ kubectl patch deploy -n kong ingress-kong \
+kubectl patch deploy -n kong ingress-kong \
     -p '{"spec":{"template":{"spec":{"containers":[{"name":"ingress-controller","env":[{"name":"CONTROLLER_ADMISSION_WEBHOOK_LISTEN","value":":8080"}],"volumeMounts":[{"name":"validation-webhook","mountPath":"/admission-webhook"}]}],"volumes":[{"secret":{"secretName":"kong-validation-webhook"},"name":"validation-webhook"}]}}}}'
+```
+The output is similar to the following:
+```
 deployment.extensions/ingress-kong patched
 ```
 
@@ -99,7 +120,7 @@ as part of the Validation Webhook configuration
 as the API-server already trusts the internal CA.
 
 ```bash
-$ echo "apiVersion: admissionregistration.k8s.io/v1
+echo "apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   name: kong-validations
@@ -137,9 +158,12 @@ webhooks:
     service:
       namespace: kong
       name: kong-validation-webhook
-    caBundle: $(cat tls.crt  | base64 -w 0) " | kubectl apply -f -
+    caBundle: $(cat tls.crt  | base64) " | kubectl apply -f -
 ```
-
+The output is similar to the following:
+```
+validatingwebhookconfiguration.admissionregistration.k8s.io/kong-validations configured
+```
 ## Verify if it works
 
 ### Verify duplicate KongConsumers
@@ -147,26 +171,32 @@ webhooks:
 Create a KongConsumer with username as `harry`:
 
 ```bash
-$ echo "apiVersion: configuration.konghq.com/v1
+echo "apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: harry
   annotations:
     kubernetes.io/ingress.class: kong
 username: harry" | kubectl apply -f -
+```
+The output is similar to the following:
+```
 kongconsumer.configuration.konghq.com/harry created
 ```
 
 Now, create another KongConsumer with the same username:
 
 ```bash
-$ echo "apiVersion: configuration.konghq.com/v1
+echo "apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: harry2
   annotations:
     kubernetes.io/ingress.class: kong
 username: harry" | kubectl apply -f -
+```
+The output is similar to the following:
+```
 Error from server: error when creating "STDIN": admission webhook "validations.kong.konghq.com" denied the request: consumer already exists
 ```
 
@@ -182,7 +212,7 @@ If you remove the `foo: bar` configuration line, the plugin will be
 created successfully.
 
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -192,6 +222,9 @@ config:
   header_name: my-request-id
 plugin: correlation-id
 " | kubectl apply -f -
+```
+The output is similar to the following:
+```
 Error from server: error when creating "STDIN": admission webhook "validations.kong.konghq.com" denied the request: 400 Bad Request {"fields":{"config":{"foo":"unknown field"}},"name":"schema violation","code":2,"message":"schema violation (config.foo: unknown field)"}
 ```
 
@@ -201,15 +234,21 @@ With 0.7 and above versions of the controller, validations also take place
 for incorrect secret types and wrong parameters to the secrets:
 
 ```bash
-$ kubectl create secret generic some-credential \
+kubectl create secret generic some-credential \
   --from-literal=kongCredType=basic-auth \
   --from-literal=username=foo
+```
+The output is similar to the following:
+```
 Error from server: admission webhook "validations.kong.konghq.com" denied the request: missing required field(s): password
 ```
 
 ```bash
-$ kubectl create secret generic some-credential \
+kubectl create secret generic some-credential \
   --from-literal=kongCredType=wrong-auth \
   --from-literal=sdfkey=my-sooper-secret-key
+```
+The output is similar to the following:
+```
 Error from server: admission webhook "validations.kong.konghq.com" denied the request: invalid credential type: wrong-auth
 ```
