@@ -10,7 +10,7 @@ that allows you to store secrets in various secure backend systems helping you p
 exposure.
 
 Traditionally, {{site.base_gateway}} is configured with static credentials for connecting 
-to it's external database. This guide will show you how to configure {{site.base_gateway}} to use 
+to its external database. This guide will show you how to configure {{site.base_gateway}} to use 
 [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html) to 
 read database credentials securely instead of using traditional file or environment variable based solutions.
 
@@ -135,12 +135,14 @@ Now you'll launch {{site.base_gateway}} configured to use referenceable values f
 database username and password. In order to authorize {{site.base_gateway}} to connect to AWS Secrets Manager,
 you need to provide IAM security credentials via environment variables. 
 
-You specify the database credentials in the standard `KONG_PG_*` configuration values, 
+You specify the database credentials using the standard `KONG_` 
+[environment variable names](/gateway/{{page.kong_version}}/reference/configuration/#environment-variables), 
 but instead of providing a static value you use a 
 [referenceable value](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/reference-format/).
 
-In this example, the reference format contains `aws` as the backend vault type, `kong-gateway-database` matches 
-the name of the secret created earlier, and `pg_password` are the JSON field name you want to reference 
+The format looks like this: `{vault://aws/kong-gateway-database/pg_user}`. In this example, 
+the reference format contains `aws` as the backend vault type, `kong-gateway-database` matches 
+the name of the secret created earlier, and `pg_user` is the JSON field name you want to reference 
 within the secret value.
 
 See the full 
