@@ -207,7 +207,7 @@ Gateway APIs are supported. In particular:
 - HTTPRoute does not yet support multiple backendRefs. You cannot distribute
   requests across multiple Services.
 {% endif_version %}
-- queryParam matches matches are not supported.
+- queryParam matches are not supported.
 {% if_version gte: 2.4.x %}
 - Gateway Listener configuration does not support TLSConfig. You can't
   load certificates for HTTPRoutes and TLSRoutes via Gateway

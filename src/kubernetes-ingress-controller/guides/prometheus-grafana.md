@@ -280,7 +280,7 @@ You could configure Prometheus to alert based on the following query:
 histogram_quantile(0.95, sum(rate(kong_latency_bucket{type="request"}[1m])) by (le,service)) > 20
 ```
 
-The query calculates the 95th percentile of the the total request
+The query calculates the 95th percentile of the total request
 latency (or duration) for all of your services and alerts you if it is more
 than 20 milliseconds.
 The “type” label in this query is “request”, which tracks the latency
