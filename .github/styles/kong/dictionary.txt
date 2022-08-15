@@ -11,6 +11,7 @@ Bintray
 Bitnami
 blockquote
 blockquotes
+body_filter
 boolean
 CloudFormation
 Cognito
@@ -21,6 +22,7 @@ cors
 Curity
 DAO
 DAOs
+datadog
 Datadog
 datagram
 datagrams
@@ -51,6 +53,7 @@ grpc
 grpcs
 hardcoded
 hashicorp
+header_filter
 hostname
 hostnames
 http
@@ -85,11 +88,13 @@ Kuma
 kumactl
 kustomization
 Kustomize
+loggly
 Loggly
 lookup
 lookups
 loopback
 lua
+Lua's
 Luarocks
 ngrok
 npm
@@ -127,7 +132,9 @@ PowerShell
 prepend
 prepends
 prepended
+preread
 profiler
+prometheus
 Prometheus
 Protobuf
 proxied
@@ -152,6 +159,7 @@ serverless
 snis
 Splunk
 ssl
+ssl_certificate
 sso
 Stap
 stapxx
@@ -165,8 +173,10 @@ Bagdi
 subcommand
 substring
 sudo
+syslog
 Syslog
 tbl
+tcp
 tcpdump
 teardown
 tfvars
@@ -207,5 +217,6 @@ worker-ip
 workspace
 yaml
 yml
+zipkin
 Zipkin
 zsh
