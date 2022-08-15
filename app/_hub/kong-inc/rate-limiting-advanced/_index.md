@@ -491,7 +491,7 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 1.6.1)
+### {{site.base_gateway}} 2.8.x (plugin version 1.6.1)
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
@@ -500,6 +500,6 @@ configuration fields are now marked as referenceable, which means they can be se
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
-### Kong Gateway 2.7.x (plugin version 1.6.0)
+### {{site.base_gateway}} 2.7.x (plugin version 1.6.0)
 
 * Added the `enforce_consumer_groups` and `consumer_groups` configuration parameters.
