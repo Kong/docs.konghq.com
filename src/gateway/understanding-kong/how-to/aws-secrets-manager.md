@@ -12,10 +12,10 @@ exposure.
 Traditionally, {{site.base_gateway}} is configured with static credentials for connecting 
 to its external database. This guide will show you how to configure {{site.base_gateway}} to use 
 [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html) to 
-read database credentials securely instead of using traditional file or environment variable based solutions.
+read database credentials securely instead the conventional file or environment variable based solutions.
 
-For this guide you are going to run the PostgreSQL and {{site.base_gateway}} services locally 
-on Docker. You will create a secret in the AWS Secrets Manager and deploy {{site.base_gateway}} using a vault reference
+For this guide you are going to run the PostgreSQL and {{site.base_gateway}} locally on Docker. 
+You will create a secret in the AWS Secrets Manager and deploy {{site.base_gateway}} using a vault reference
 to read the value securely.
 
 ### Prerequisites
