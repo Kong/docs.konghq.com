@@ -20,7 +20,7 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 ## Region management
 
-When you create a {{site.konnect_saas}} account, you select a geographic region for your instance. Regions are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are region-specific. Only authentication is shared between {{site.konnect_short_name}} regions.
+When you create a {{site.konnect_saas}} account, you select a geographic region for your instance. Regions are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are region-specific. Only authentication, billing, and usage is shared between {{site.konnect_short_name}} regions.
 
 The following objects are region-specific and are not shared between regions:
 
