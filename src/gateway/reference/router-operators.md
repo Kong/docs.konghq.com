@@ -6,6 +6,20 @@ content-type: reference
 With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific languaged called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators: 
 
 
+## Available Fields
+
+| Field | Description |
+| --- | ----------- | 
+| net.protocol | The protocol used to communicate with the upstream application.  |
+| tls.sni  | Server name indication. | 
+| http.method | HTTP methods that match a route. |
+| tls.sni  | Server name indication. | 
+| http.method | HTTP methods that match a route. | 
+| http.host  | Lists of domains that match a route. | 
+| http.path | Returns or sets the path. | 
+| http.raw_path| Returns or sets the escaped path. | 
+| http.headers.* |  Lists of values that are expected in the header of a request. | 
+
 ## String
 
 | Operator | Name | Return Type | 
@@ -21,6 +35,8 @@ With the release of version 3.0, {{site.base_gateway}} now ships with a new rout
 
 ## Integer
 
+| Operator | Name | Return Type | 
+| --- | ----------- | --- | 
 | == | Equals | Boolean|
 | != | Not equals| Boolean|
 | > | Greater than | Boolean|
@@ -30,23 +46,23 @@ With the release of version 3.0, {{site.base_gateway}} now ships with a new rout
 
 ## IP 
 
+| Operator | Name | Return Type | 
+| --- | ----------- | --- | 
 | == | Equals | Boolean|
 | != | Not equals | Boolean|
 | in | Contains | Boolean|
 
 ## Boolean
 
+| Operator | Name | Return Type | 
+| --- | ----------- | --- | 
 | && | And | Boolean|
 | `||` | Or | Boolean|
 | ! | Not | Boolean|
 
-## Available Fields
 
 
-* net.protocol - The protocol used to communicate with the upstream application. 
-* tls.sni - Server name indication.
-* http.method -  HTTP methods that match a route.
-* http.host -  Lists of domains that match a route.
-* http.path - Returns or sets the path.
-* http.raw_path - Returns or sets the escaped path.
-* http.headers.* - Lists of values that are expected in the header of a request.
+## More Information
+
+[Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
+[How to configure routes with Expressions](gateway/latest/understanding-kong/how-to/router-atc/)

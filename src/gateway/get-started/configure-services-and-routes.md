@@ -149,11 +149,26 @@ The response body displays the updated change:
 You can configure a route to point to an active service. The router helps {{site.base_gateway}} forward requests to upstream services. Now, you will configure the `/mock` route for the `example_service` service. This route has a specific path that users will use to send requests. 
 A route is configured by sending a **POST** request to the [route object](/gateway/latest/admin-api/#route-object):
 
+{% if_version eq:3.0.x %}
 ```sh
 curl -i -X POST http://localhost:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
 ```
+{% endif_version %}
+
+
+{% if_version gte:3.1.x %}
+```sh
+curl --request POST \
+  --url http://localhost:8001/services/example-service/routes \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'atc=http.path == "/mock"'
+  --data name=mocking
+```
+{% endif_version %}
+
+
 
 If the route was successfully created, the API returns a `201` response code and a response body like this:
 
