@@ -20,45 +20,33 @@ For example, if a user's group changes in the service directory, their Kong admi
 * Kong Manager access
 * A local LDAP directory
 
-## Configure service directory mapping
+## Enable LDAP authentication
 
 Configure service directory mapping to use your LDAP directory for authentication and authorization.
 
-## Start {{site.base_gateway}}
+1. Start {{site.base_gateway}}. From the shell, enter:
 
-From the shell, enter:
+    ```
+    kong start [-c /path/to/kong/conf]
+    ```
 
-```
-$ kong start [-c /path/to/kong/conf]
-```
+2. To enable LDAP Authentication and enforce RBAC for Kong Manager, configure Kong through [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration) with the following properties:
 
-## Enable LDAP Authentication and enforce RBAC
+    ```
+    enforce_rbac = on
+    admin_gui_auth = ldap-auth-advanced
+    admin_gui_session_conf = { "secret":"set-your-string-here" }
+    ```
 
-To enable LDAP Authentication and enforce RBAC for Kong Manager, configure Kong with the following properties:
+    Kong Manager also uses the Sessions plugin in the background.
+    This plugin (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 
-```
-admin_gui_auth = ldap-auth-advanced
-enforce_rbac = on
-```
+    * Under all circumstances, the `secret` must be manually set to a string.
+    * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
+    * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.
+    Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
 
-When enabling LDAP authentication in this step, you are enabling and configuring the LDAP Authentication Advanced plugin for Kong Manager.
-No other configuration for the plugin is needed.
-
-## Configure the Sessions plugin
-
-Configure the Sessions plugin for Kong Manager:
-
-```
-admin_gui_session_conf = { "secret":"example-secret-string" }
-```
-
-The **Sessions plugin** requires a **secret** and is configured securely by default:
-
-* Under all circumstances, the secret must be manually set to a string.
-* If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
-* If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions), and see [example configurations](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
-
-## Configure LDAP Authentication for Kong Manager
+## Configure LDAP authentication
 
 Configure LDAP authentication for Kong Manager with the following properties. Note the attribute variables defined below:
 
