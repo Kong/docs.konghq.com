@@ -9,7 +9,7 @@ If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting
 
 ## Set up the Key Authentication Plugin
 
-On the Workspaces tab in Kong Manager:
+From the **Workspaces** tab in Kong Manager:
 
 1. Open the **default** workspace.
 2. From the menu, open **Routes** and select the **mocking** route you created.

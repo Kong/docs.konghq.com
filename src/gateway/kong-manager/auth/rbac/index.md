@@ -14,7 +14,7 @@ create new roles and customize permissions.
 In Kong Manager, RBAC affects how admins are able to navigate
 through the application.
 
-### Default roles
+## Default roles
 
 Kong includes Role-Based Access Control (RBAC). Every admin using Kong Manager
 needs an assigned role based on the resources they have permission to access.
@@ -34,7 +34,7 @@ the admin assigned to the role will not be able to see the related navigation li
 endpoint in Kong, only a super admin has the ability to assign and modify RBAC permissions.
 An admin is not able to modify their own permissions or delimit a super admin's permissions.
 
-### RBAC in workspaces
+## RBAC in workspaces
 
 If RBAC roles and permissions are assigned from within a workspace, they are specific to that workspace.
 For example, if there are two workspaces, Payments and

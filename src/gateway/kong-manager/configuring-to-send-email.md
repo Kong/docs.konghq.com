@@ -4,10 +4,10 @@ badge: enterprise
 ---
 
 A **Super Admin** can invite other **Admins** to register in Kong Manager, and **Admins**
-can reset their passwords using "Forgot Password" functionality. Both of these
+can reset their passwords using the "Forgot Password" functionality. Both of these
 workflows use email to communicate with the user.
 
-Emails from Kong Manager require the following configuration:
+Emails from Kong Manager require the following configuration through `kong.conf`:
 
 * [`admin_emails_from`](/gateway/{{page.kong_version}}/reference/configuration/#admin_emails_from)
 * [`admin_emails_reply_to`](/gateway/{{page.kong_version}}/reference/configuration/#admin_emails_reply_to)
@@ -15,7 +15,7 @@ Emails from Kong Manager require the following configuration:
 
 Kong does not check for the validity of email
 addresses set in the configuration. If the SMTP settings are
-configured incorrectly, e.g., if they point to a non-existent
+configured incorrectly, for example if they point to a non-existent
 email address, Kong Manager will _not_ display an error message.
 
 For additional information about SMTP, refer to the

@@ -16,7 +16,7 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Prerequisites
 
-* RBAC is [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable) with `admin_gui_auth=basic-auth`
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable) with [basic authentication](/gateway/{{page.kong_version}}/kong-manager/auth/basic)
 * [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email) is configured to send emails
 
 ### Steps
@@ -31,10 +31,9 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Prerequisites
 
-* `enforce_rbac = on`
-* `admin_gui_auth = basic-auth`
-* [`admin_gui_session_conf` is configured](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/).
-* Already logged in to Kong Manager
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable) with [basic authentication](/gateway/{{page.kong_version}}/kong-manager/auth/basic)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access
 
 ### Steps
 
@@ -45,10 +44,9 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Prerequisites
 
-* `enforce_rbac = on`
-* [`admin_gui_auth` is set](/gateway/{{page.kong_version}}/configure/auth/kong-manager/).
-* [`admin_gui_session_conf` is configured](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/).
-* Already logged in to Kong Manager
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access
 
 ### Steps
 

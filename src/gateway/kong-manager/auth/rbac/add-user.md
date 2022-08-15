@@ -15,15 +15,15 @@ An RBAC user has the ability to access the {{site.base_gateway}} Admin API. The 
 
 An [admin](/gateway/{{page.kong_version}}/configure/auth/kong-manager/), like an RBAC user, has the ability to access the {{site.base_gateway}} Admin API. The admin also has the ability log in to Kong Manager. Like an RBAC user, an admin’s role determines the types of actions it can perform, except that they also have the ability to benefit from Kong Manager’s interface and visualizations.
 
-If creating a *service account* for {{site.base_gateway}}, e.g., for a machine as part of an automated process, then an RBAC user is adequate.
+If creating a *service account* for {{site.base_gateway}}, e.g., for a machine as part of an automated process, then an RBAC User is adequate.
 
 If creating a *personal account* for {{site.base_gateway}}, then admin may be preferable since it also has access to Kong Manager.
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely).
-* You are [logged in as the super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
-or a user that has `/admins` and `/rbac` read and write access.
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access
 
 ## Add an RBAC user in Kong Manager
 
@@ -34,7 +34,7 @@ or a user that has `/admins` and `/rbac` read and write access.
 3. Using the dropdown menu, select which **Workspace** the new user has access to.
 
     {:.note}
-    > **Note:** The **Default Workspace** is global, meaning the RBAC user with access to default has access to entities across all other workspaces. This workspace assignment is useful for administrative and auditing accounts, but not for members of specific teams.
+    > **Note:** The **Default Workspace** is global, meaning the RBAC user with access to default has access to entities across all other Workspaces. This workspace assignment is useful for administrative and auditing accounts, but not for members of specific teams.
 
 4. Click the **Add New User** button to open the registration form.
 

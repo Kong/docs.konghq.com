@@ -13,6 +13,12 @@ invite an admin with the Admin API, it is possible to
 do so using
 [`/admins`](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 
+## Prerequisites
+
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access
+
 ## Invite an admin
 
 1. Navigate to the **Teams** page in Kong Manager.

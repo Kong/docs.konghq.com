@@ -12,9 +12,9 @@ delimit the types of actions and entities available to an admin.
 
 ## Prerequisites
 
-* [`enforce_rbac = on`](/gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac)
-* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/kong-production/running-kong/start-kong-securely)
-* Logged in to Kong Manager as a **Super Admin**
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
+* You are logged into Kong Manager as a [super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access
 
 ## Default workspace
 

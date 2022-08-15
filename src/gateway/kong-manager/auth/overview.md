@@ -10,17 +10,20 @@ as services, plugins, and consumers.
 ## Configuring authentication
 
 {{site.base_gateway}} comes packaged with authentication plugins that can be used
-to secure Kong Manager. Unlike enabling a plugin on an entity or cluster,
-enabling an authentication plugin for *only* Kong Manager requires turning
-on `enforce_rbac`, setting `admin_gui_auth` to the desired type,
-configuring `admin_gui_session_conf`, and optionally configuring `admin_gui_auth_conf`
-if needed.
+to secure Kong Manager.
+To enable to an authentication plugin for *only* Kong Manager, you need to set the following properties in [`kong.conf`](/gateway/{{page.kong_version}}/kong-production/kong-conf/):
+* Set `enforce_rbac` to `on`
+* Set `admin_gui_auth` to the desired authentication type (for example, `basic-auth`)
+* Configure `admin_gui_session_conf` with a session secret
+* Optionally configure `admin_gui_auth_conf` with custom configuration for your authentication type
+
+The configuration details depend on your authentication type.
 
 Kong Manager currently supports the following authentication plugins:
 
 * [Basic Auth](/gateway/{{page.kong_version}}/kong-manager/auth/basic/)
-* [OIDC](/gateway/{{page.kong_version}}/kong-manager/auth/oidc/oidc-mapping/)
-* [LDAP](/gateway/{{page.kong_version}}/kong-manager/auth/ldap/)
+* [OIDC](/gateway/{{page.kong_version}}/kong-manager/auth/oidc/mapping/)
+* [LDAP](/gateway/{{page.kong_version}}/kong-manager/auth/ldap/configure/)
 
 In addition to the authentication plugins above, the
 [Sessions plugin](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/)

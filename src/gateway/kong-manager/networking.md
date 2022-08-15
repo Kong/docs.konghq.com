@@ -7,34 +7,34 @@ badge: enterprise
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/plan-and-deploy/default-ports) of the same host that serves
-Kong Manager.
+on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/plan-and-deploy/default-ports) of the same host that serves Kong Manager.
 
 ## Custom configuration
 
-Common configurations to enable are
+Here are some common configuration scenarios for Kong Manager.
 
-* Serving Kong Manager from a dedicated Kong node
+### Serving Kong Manager from a dedicated Kong node
 
-  When Kong Manager is on a dedicated Kong node, it must make
-  external calls to the Admin API. Set [`admin_api_uri`] to the
-  location of your Admin API.
+When Kong Manager is on a dedicated Kong node, it must make
+external calls to the Admin API. Set [`admin_api_uri`] to the
+location of your Admin API.
 
-* Securing Kong Manager through a **Kong Authentication Plugin**
+### Securing Kong Manager through an authentication plugin
 
-  When Kong Manager is **secured through an Authentication Plugin**
-  and _not_ on a dedicated node, it makes calls to the Admin API on
-  the same host. By default, the Admin API listens on ports 8001 and
-  8444 on localhost. Change [`admin_listen`] if necessary, or set
-  [`admin_api_uri`].
+When Kong Manager is secured through an authentication plugin
+and is _not_ on a dedicated node, it makes calls to the Admin API on
+the same host. By default, the Admin API listens on ports 8001 and
+8444 on localhost. Change [`admin_listen`] if necessary, or set
+[`admin_api_uri`].
 
 {% include_cached /md/admin-listen.md desc='short' %}
 
-* Securing Kong Manager and serving it from a dedicated node
+### Securing Kong Manager and serving it from a dedicated node
 
-  When Kong Manager is **secured and served from a dedicated node**,
-  set [`admin_api_uri`] to the location of the Admin API.
+When Kong Manager is **secured and served from a dedicated node**,
+set [`admin_api_uri`] to the location of the Admin API.
 
+### Connecting to the Admin API
 The table below summarizes which properties to set (or defaults to
 verify) when configuring Kong Manager connectivity to the Admin API.
 
@@ -42,6 +42,8 @@ verify) when configuring Kong Manager connectivity to the Admin API.
 |------------------------|--------------|---------------|---------------------------------------------------|
 | yes                    | [`admin_listen`] | [`admin_api_uri`] | [`admin_gui_auth`], [`enforce_rbac`], [`admin_gui_auth_conf`], [`admin_gui_session_conf`] |
 | no                     | [`admin_listen`] | [`admin_api_uri`] | n/a                                               |
+
+### Enable authentication
 
 To enable authentication, configure the following properties:
 

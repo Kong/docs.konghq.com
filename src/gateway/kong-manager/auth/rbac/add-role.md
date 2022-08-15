@@ -24,9 +24,9 @@ for specific entities.
 
 ## Prerequisites
 
-* [`enforce_rbac = on`](/gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac)
-* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/kong-in-production/start-kong-securely)
-* You are logged in to Kong Manager as a [**super admin**](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+or a user that has `/admins` and `/rbac` read and write access
 
 ## Add a role and permissions
 
