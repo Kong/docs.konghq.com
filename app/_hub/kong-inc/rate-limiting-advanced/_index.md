@@ -465,10 +465,9 @@ selected header was not sent by the client or the configured service was not fou
 
 ### Fallback from Redis
 
-When the `redis` strategy is used and a Kong node gets disconnected from Redis (Redis server down,
-connection to Redis broken, etc), the `rate-limiting-advanced` plugin will fall back to `local`.
-Kong will keep the local counters for rate limiting and sync back to Redis once connection is reestablished.
-Kong will still rate limit but the Kong nodes won't be able to sync the counters and users will likely be able
+When the `redis` strategy is used and a {{site.base_gateway}} node is disconnected from Redis, the `rate-limiting-advanced` plugin will fall back to `local`. This can happen when the Redis server is down or the connection to Redis broken.
+{{site.base_gateway}} keeps the local counters for rate limiting and syncs with Redis once the connection is re-established.
+{{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
 
 ## Rate limiting for consumer groups
