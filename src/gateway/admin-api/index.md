@@ -3995,7 +3995,7 @@ of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4039,7 +4039,7 @@ To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4074,7 +4074,7 @@ of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4114,7 +4114,7 @@ To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
 {:.indent}
 Attributes | Description
