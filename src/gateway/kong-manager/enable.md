@@ -7,7 +7,8 @@ If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
 
-## Docker
+{% navtabs %}
+{% navtab Docker %}
 
 1. Set the [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url) property in the `kong.conf` configuration file to the DNS, or IP address, of your system, then restart Kong for the setting to take effect. For example:
 
@@ -20,8 +21,8 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 
 2. Access Kong Manager on port `8002`.
 
-
-## Linux
+{% endnavtab %}
+{% navtab Linux (kong.conf) %}
 
 1. Update the [`admin_gui_url`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url) property
   in the `kong.conf` configuration file to the DNS, or IP address, of your system. For example:
@@ -39,6 +40,9 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
     ```
 
 3. Access Kong Manager on port `8002`.
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Next steps
 
