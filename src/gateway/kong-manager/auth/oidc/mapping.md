@@ -122,7 +122,7 @@ environment variables and reload the {{site.base_gateway}} configuration.
    Provide your own values for all fields indicated by curly braces (`{}`):
 
 ```sh
-$ echo "
+echo "
   KONG_ENFORCE_RBAC=on \
   KONG_ADMIN_GUI_AUTH=openid-connect \
   KONG_ADMIN_GUI_AUTH_CONF='{
@@ -187,7 +187,7 @@ properties to the file.
 3. Restart {{site.base_gateway}} to apply the file.
 
     ```sh
-    $ kong restart -c /path/to/kong.conf
+    kong restart -c /path/to/kong.conf
     ```
 
 {% endnavtab %}

@@ -4,14 +4,14 @@ badge: enterprise
 ---
 
 {{site.base_gateway}} offers the ability to bind authentication for Kong
-Manager **Admins** to an organization's OpenID Connect Identity
+Manager admins  to an organization's OpenID Connect Identity
 Provider using the
 [OpenID Connect Plugin](/hub/kong-inc/openid-connect/).
 
 {:.note}
 > **Note**: By using the configuration below, it is unnecessary to
-manually enable the **Plugin**. The configuration alone will enable
-**OIDC** for Kong Manager.
+manually enable the plugin. The configuration alone will enable
+OIDC for Kong Manager.
 
 ## Set up RBAC with OIDC
 
@@ -54,34 +54,45 @@ For example, Google credentials can be found here:
 
 ## Create an admin
 
-Create an **Admin** that has a **username** matching the **email** returned from
-the identity provider upon successful login.
+Create an admin that has a username matching the email returned from
+the identity provider upon successful login:
 
 ```bash
-$ http POST :8001/admins username="<admin_email>" email="<admin_email>" Kong-Admin-Token:<RBAC_TOKEN>
+curl -i -X POST http://localhost:8001/admins \
+  --data username="<admin_email>" \
+  --data email="<admin_email>" \
+  --header Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-For example, if a user has a Google email address, **example_user@example.com**:
+For example, if a user has the email address `example_user@example.com`:
 
 ```bash
-$ http POST :8001/admins username="example_user@example_com" email="example_user@example.com" Kong-Admin-Token:<RBAC_TOKEN>
+curl -i -X POST http://localhost:8001/admins \
+  --data username="example_user@example_com" \
+  --data email="example_user@example.com" \
+  --header Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-**Note:** The email entered for the admin in the request is used to
+{:.note}
+> **Note:** The email entered for the admin in the request is used to
 ensure the admin receives an email invitation, whereas username is the
 attribute that the plugin uses with the IdP.
 
 ## Assign a role to the admin
 
 Assign the new admin at least one role so they can log in and access
-Kong entities.
+Kong entities:
 
 ```bash
-$ http POST :8001/admins/<admin_email>/roles roles="<role-name>" Kong-Admin-Token:<RBAC_TOKEN>
+curl -i -X POST http://localhost:8001/admins/<admin_email>/roles \
+  --data roles="<role-name>" \
+  --header Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-For example, if we wanted to grant `example_user@example.com` the role of super admin:
+For example, to grant `example_user@example.com` the role of super admin:
 
 ```bash
-$ http POST :8001/admins/example_user@example.com/roles roles="super-admin" Kong-Admin-Token:<RBAC_TOKEN>
+curl -i -X POST http://localhost:8001/admins/example_user@example.com/roles \
+  --data roles="super-admin" \
+  --header Kong-Admin-Token:<RBAC_TOKEN>
 ```
