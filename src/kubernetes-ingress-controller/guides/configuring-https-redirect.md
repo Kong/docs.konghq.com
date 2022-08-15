@@ -145,7 +145,7 @@ configured TLS properties for it, then the flag won't
 be necessary.
 
 If you have a domain that you control but don't have TLS/SSL certificates
-for it, please check out out
+for it, please check out
 [Using cert-manager with Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/cert-manager) guide which can get TLS
 certificates setup for you automatically. And it's free, thanks to
 Let's Encrypt!
