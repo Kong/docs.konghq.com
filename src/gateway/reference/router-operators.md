@@ -3,7 +3,7 @@ title: Configuration Reference for Kong Gateway
 content-type: reference
 ---
 
-With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific languaged called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators: 
+With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators: 
 
 
 ## Available Fields
