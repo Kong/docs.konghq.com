@@ -164,7 +164,7 @@ return CustomHandler
 ```
 
 Note that in the example above we are using Lua's `:` shorthand syntax for
-functions taking `self` as a first parameter. An equivalent unshortened version
+functions taking `self` as a first parameter. An equivalent non-shorthand version
 of the `access` function would be:
 
 ``` lua
