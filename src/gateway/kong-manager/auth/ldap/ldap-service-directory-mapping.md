@@ -60,7 +60,7 @@ The **Sessions plugin** requires a **secret** and is configured securely by defa
 
 ## Configure LDAP Authentication for Kong Manager
 
-Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables defined below:
+Configure LDAP authentication for Kong Manager with the following properties. Note the attribute variables defined below:
 
 ```
 admin_gui_auth_conf = {

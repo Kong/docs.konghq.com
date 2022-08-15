@@ -55,7 +55,7 @@ For example, Google credentials can be found here:
 ## Create an admin
 
 Create an **Admin** that has a **username** matching the **email** returned from
-the Identity Provider upon successful login.
+the identity provider upon successful login.
 
 ```bash
 $ http POST :8001/admins username="<admin_email>" email="<admin_email>" Kong-Admin-Token:<RBAC_TOKEN>

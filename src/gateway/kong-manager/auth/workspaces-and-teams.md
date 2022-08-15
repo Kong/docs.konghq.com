@@ -67,7 +67,7 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
 
 **Notes:**
 
-* **Be careful:** Granting access to the **default** workspace gives access to all workspaces in the organization.
+* **Caution** Granting access to the **default** workspace gives access to all workspaces in the organization.
 
 * The **default** workspace only has three roles: *workspace-admin*, *workspace-super-admin*, and *workspace-read-only*. Every other workspace will have the four roles mentioned above.
 
@@ -90,7 +90,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 5. In the Workspace Access dialog, select the **SecureWorkspace**.
 6. Select the **workspace-admin** role, which makes this user the workspace administrator for the SecureWorkspace.
 
-    When you are done adding roles, you are redirected back to the Invite Admin dialog.
+    When you are done adding roles, you are redirected back to the **Invite Admin** dialog.
 
     {:.important}
     > **Important:** Before you move on, make sure the **Enable RBAC Token** checkbox is checked. The RBAC token is what allows the new admin to send a token to the Admin API to configure the system programmatically.
@@ -112,8 +112,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
 4. Send the registration link to the new administrator, or use it yourself to test the login in the following steps.
 
-5. Open a different browser or an incognito tab in the current browser so your existing login session is ignored.
-6. Enter the registration link you copied previously into the new browser to log in with the new administrator.
+5. Open a different browser or an incognito tab in the current browser.
+6. Enter the registration link you copied previously into the browser to log in with the new administrator.
 
     If the registration link has expired, you can generate a new one by logging in with your `kong_admin` administrator and generating a new link.
 
@@ -128,6 +128,6 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
     Once you log in, you’ll notice that you can only see the SecureWorkspace.
 
-3. You can also verify that this user’s administration rights are limited. As this user, if you open the Teams tab and try to add new administrators, Admin API users (RBAC users), Groups, or Roles, you won’t have the permissions to do so.
+3. You can also verify that this user’s administration rights are limited. As this user, if you open the Teams tab and try to add new administrators, Admin API users (RBAC users), groups, or roles, you won’t have the permissions to do so.
 
-That's it! You are now controlling access to {{site.base_gateway}} administration with RBAC.
+You are now controlling access to {{site.base_gateway}} administration with RBAC.

@@ -5,7 +5,7 @@ badge: free
 
 This tutorial walks you through setting up load balancing across targets in Kong Manager.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/load-balancing/).
+For Admin API instructions, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/load-balancing/).
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{
 
 In this tutorial, you will create an upstream named `example_upstream` and add two targets to it.
 
-On the Workspaces tab in Kong Manager:
+From the **Workspaces** tab in Kong Manager:
 
 1. Open the **default** workspace.
 2. From the menu, open **Upstreams**, then click **New Upstream**.
@@ -32,9 +32,9 @@ You now have an upstream with two targets, `httpbin.org` and `mockbin.org`, and 
 
 ## Validate the upstream services
 
-Let's test that {{site.base_gateway}} is load balancing traffic across the two targets.
+To test that {{site.base_gateway}} is load balancing traffic across the two targets: 
 
-1. With the upstream configured, validate that it’s working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
+1. With the upstream configured, validate that it’s working by visiting the route `http://localhost:8000/mock` using a web browser or the shell.
 
 2. Refresh the page a few times. The site should change back and forth from `httpbin` to `mockbin`.
 

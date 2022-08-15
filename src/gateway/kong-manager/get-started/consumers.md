@@ -27,7 +27,7 @@ Before Kong proxies requests for this route, it needs an API key. For this examp
 
 ## Set up Consumers and Credentials
 
-On the Workspaces tab in Kong Manager:
+From the **Workspaces** tab in Kong Manager:
 
 1. Open the **default** workspace.
 2. From the menu, open **Consumers**, then click **New Consumer**.

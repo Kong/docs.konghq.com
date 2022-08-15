@@ -15,7 +15,7 @@ You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{
 
 ## Set up the Proxy Caching plugin
 
-On the Workspaces tab in Kong Manager:
+From the **Workspaces** tab in Kong Manager:
 
 1. Open the **default** workspace.
 2. From the menu, open **Plugins**, then click **Install Plugin**.

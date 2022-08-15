@@ -34,7 +34,7 @@ URL `http://mockbin.org`.
 The service is created, and the page automatically redirects back to the
 `example_service` overview page.
 
-## Add a Route
+## Add a route
 
 For the service to be accessible through the API gateway, you need to add a
 route to it.

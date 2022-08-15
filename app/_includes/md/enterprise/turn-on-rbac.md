@@ -43,7 +43,7 @@ KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cooki
 kong reload exit" | docker exec -i {KONG_CONTAINER_ID} /bin/sh
 ```
 
-This turns RBAC, tells {{site.base_gateway}} to use basic authentication (username/password), and tells the Sessions plugin how to create a session cookie.
+This turns RBAC on, tells {{site.base_gateway}} to use basic authentication (username/password), and tells the Sessions plugin how to create a session cookie.
 
 The cookie is used for all subsequent requests to authenticate the user, until it expires. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
 
