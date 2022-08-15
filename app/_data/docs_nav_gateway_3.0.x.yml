@@ -335,15 +335,15 @@ items:
           - text: LDAP
             items:
               - text: Configure LDAP
-                url: /kong-manager/auth/ldap/configure-ldap
+                url: /kong-manager/auth/ldap/configure
               - text: LDAP Service Directory Mapping
-                url: /kong-manager/auth/ldap/ldap-service-directory-mapping
+                url: /kong-manager/auth/ldap/service-directory-mapping
           - text: OIDC
             items:
               - text: Configure OIDC
-                url: /kong-manager/auth/oidc/configure-oidc
+                url: /kong-manager/auth/oidc/configure
               - text: OIDC Authenticated Group Mapping
-                url: /kong-manager/auth/oidc/oidc-mapping
+                url: /kong-manager/auth/oidc/mapping
           - text: Sessions
             url: /kong-manager/auth/sessions
           - text: RBAC
