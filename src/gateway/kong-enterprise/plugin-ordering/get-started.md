@@ -30,6 +30,7 @@ curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=rate-limiting \
   --data config.minute=5 \
   --data config.policy=local \
+  --data config.limit_by=ip \
   --data ordering.before.access=key-auth
 ```
 {% endnavtab %}
@@ -39,6 +40,7 @@ http -f post :8001/plugins \
   name=rate-limiting \
   config.minute=5 \
   config.policy=local \
+  config.limit_by=ip \
   ordering.before.access=key-auth
 ```
 {% endnavtab %}
@@ -57,6 +59,7 @@ http -f post :8001/plugins \
       config:
         minute: 5
         policy: local
+        limit_by: ip
       ordering:
         before:
           access:
@@ -82,6 +85,7 @@ http -f post :8001/plugins \
       config:
         minute: 5
         policy: local
+        limit_by: ip
       ordering:
         before:
           access:
@@ -138,7 +142,7 @@ curl -i -X POST http://<admin-hostname>:8001/plugins \
 ```sh
 http -f post :8001/plugins \
   name=basic-auth \
-  ordering.before.access=key-auth
+  ordering.after.access=request-transformer
 ```
 {% endnavtab %}
 {% endnavtabs %}
