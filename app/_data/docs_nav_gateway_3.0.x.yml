@@ -25,6 +25,8 @@ items:
                 url: /understanding-kong/how-to/request-transformations
               - text: Securing the Database with AWS Secrets Manager
                 url: /understanding-kong/how-to/aws-secrets-manager
+              - text: Configure Routes with Expressions
+                url: /understanding-kong/how-to/router-atc
           - text: Key Concepts
             items:
               - text: Services
@@ -561,3 +563,5 @@ items:
         url: /reference/rate-limit
       - text: Performance Testing Framework Reference
         url: /reference/performance-testing-framework
+      - text: Router Operators
+        url: /reference/router-operators
