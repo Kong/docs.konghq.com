@@ -8,18 +8,20 @@ With the release of version 3.0, {{site.base_gateway}} now ships with a new rout
 
 ## Prerequisite
 
-* Edit [kong.conf](/gateway/latest/kong-production/kong-conf) to contain the line `router_flavor = atc` and restart {{site.base_gateway}}.
+Edit [kong.conf](/gateway/latest/kong-production/kong-conf) to contain the line `router_flavor = atc` and restart {{site.base_gateway}}.
 
 ## Create routes with Expressions
 
-To create a new router object using expressions send a `POST` request to the [services endpoint](/gateway/latest/admin-api/#update-route) like this: 
+To create a new router object using expressions, send a `POST` request to the [services endpoint](/gateway/latest/admin-api/#update-route) like this: 
 ```sh
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
   --form  atc='http.path == "/mock"
 ```
 
-In this example you associated a new route object with the path `/mock` to the existing service `example-service`. The expressions DSL allows you to create complex router objects using operators and fields. 
+In this example, you associated a new route object with the path `/mock` to the existing service `example-service`. 
+
+The expressions DSL allows you to create complex router objects using operators and fields. 
 
 ```sh
 curl --request POST \
@@ -35,7 +37,7 @@ AND
 "paths": ["/mock"]
 ```
 
-You can use non-expressions related attributes within the same `POST` request:
+You can use attributes that are unrelated to expressions within the same `POST` request:
 
 ```sh
 curl --request POST \
@@ -53,7 +55,7 @@ This would define a router object with the following attributes:
 "name": "mocking",
 
 ```
-The list of available attributes is available in the [reference documentation](/gateway/latest/admin-api/#request-body). 
+You can view the list of available attributes in the [reference documentation](/gateway/latest/admin-api/#request-body). 
 
 
 
@@ -74,7 +76,7 @@ curl --request POST \
          http.headers.x_another_header == "example_header" && (http.headers.x_my_header == "example" || http.headers.x_my_header == "example2")'
 ```
 
-This request returns a `200` with the following values: 
+This request returns a `200` status code with the following values: 
 
 ```sh
 "protocols": ["http", "https"],
@@ -84,10 +86,10 @@ This request returns a `200` with the following values:
 "headers": {"x-another-header":["example_header"], "x-my-header":["example", "example2"]},
 ```
 
-For a list of all available operators refer to the [reference documentation](/gateway/latest/reference/router-operators.
+For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-operators/).
 
 
 ## More information
 
-[Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-[Expressions Reference](/gateway/latest/reference/router-operators)
+* [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
+* [Expressions Reference](/gateway/latest/reference/router-operators)

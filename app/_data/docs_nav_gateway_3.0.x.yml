@@ -26,6 +26,7 @@ items:
               - text: Securing the Database with AWS Secrets Manager
                 url: /understanding-kong/how-to/aws-secrets-manager
               - text: How to create routes with the ATC
+              - text: Configure Routes with Expressions
                 url: /understanding-kong/how-to/router-atc
           - text: Key Concepts
             items:

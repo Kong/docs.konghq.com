@@ -1,23 +1,21 @@
 ---
-title: Configuration Reference for Kong Gateway
+title: Router Operator Reference for Kong Gateway
 content-type: reference
 ---
 
 With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators: 
 
 
-## Available Fields
+## Available fields
 
 | Field | Description |
 | --- | ----------- | 
 | net.protocol | The protocol used to communicate with the upstream application.  |
 | tls.sni  | Server name indication. | 
 | http.method | HTTP methods that match a route. |
-| tls.sni  | Server name indication. | 
-| http.method | HTTP methods that match a route. | 
 | http.host  | Lists of domains that match a route. | 
 | http.path | Returns or sets the path. | 
-| http.raw_path| Returns or sets the escaped path. | 
+| http.raw_path | Returns or sets the escaped path. | 
 | http.headers.* |  Lists of values that are expected in the header of a request. | 
 
 ## String
@@ -62,7 +60,7 @@ With the release of version 3.0, {{site.base_gateway}} now ships with a new rout
 
 
 
-## More Information
+## More information
 
-[Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-[How to configure routes with Expressions](gateway/latest/understanding-kong/how-to/router-atc/)
+* [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
+* [How to configure routes with Expressions](gateway/latest/understanding-kong/how-to/router-atc/)
