@@ -3,8 +3,8 @@ title: Upstreams
 concept_type: explanation
 ---
 
-An upstream refers to your upstream API/service sitting behind {{site.base_gateway}} that client requests are forwarded to. 
-In {{site.base_gateway}}, an upstream object represents a virtual hostname and can be used to health check, circuit break, and load balance incoming requests over multiple services (targets).
+Upstream refers to an API, application, or micro-service that {{site.base_gateway}} forwards requests to.
+In {{site.base_gateway}}, an upstream object represents a virtual hostname and can be used to health check, circuit break, and load balance incoming requests over multiple services.
 
 ## Upstream and service interaction
 
