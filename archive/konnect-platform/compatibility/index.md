@@ -1,8 +1,9 @@
 ---
 title: Kong Platform Compatibility
 no_version: true
-redirect_to: /konnect-platform/
 ---
+
+<!-- WIP project page for a total compatibility matrix -->
 
 Provided below are compatibility tables for Kong products. Select a Kong product
 and version (if applicable) to see technologies that have been tested for
