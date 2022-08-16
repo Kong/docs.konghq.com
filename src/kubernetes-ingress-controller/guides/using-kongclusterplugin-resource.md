@@ -42,8 +42,7 @@ This is expected as Kong does not yet know how to proxy the request.
 ## Installing sample services
 
 We will start by installing two services,
-
-an httpbin service and it's corresponding namespace.
+an `httpbin` service and it's corresponding namespace:
 
 ```bash
 kubectl create namespace httpbin
@@ -57,7 +56,7 @@ service/httpbin created
 deployment.apps/httpbin created
 ```
 
-And next an echo service and it's corresponding namespace.
+Next, add an `echo` service and it's corresponding namespace:
 
 ```bash
 kubectl create namespace echo
@@ -76,7 +75,7 @@ deployment.apps/echo created
 Let's expose these services outside the Kubernetes cluster
 by defining Ingress rules.
 
-First the httpbin-app
+First, expose the `httpbin-app`:
 
 ```bash
 echo "
@@ -107,7 +106,7 @@ The output is similar to the following:
 ingress.networking.k8s.io/httpbin-app created
 ```
 
-Next the echo-app
+Next, expose the `echo-app`:
 
 ```
 echo "
