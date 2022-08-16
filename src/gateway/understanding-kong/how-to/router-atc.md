@@ -1,14 +1,14 @@
 ---
-title: Configure Routes with Expressions
+title: How to Configure Routes using Expressions
 content-type: how-to
 ---
 
 
-With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This how-to guide will walk through switching to the new router, and configuring routes with the new expressive domain specific language, expressions. For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-operators).
+Expressions can describe routes or paths as patterns using regular expressions. This how-to guide will walk through switching to the new router, and configuring routes with the new expressive domain specific language, expressions. For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-operators).
 
 ## Prerequisite
 
-Edit [kong.conf](/gateway/latest/kong-production/kong-conf) to contain the line `router_flavor = atc` and restart {{site.base_gateway}}.
+Edit [kong.conf](/gateway/latest/kong-production/kong-conf) to contain the line `router_flavor = expressions` and restart {{site.base_gateway}}.
 
 ## Create routes with Expressions
 
@@ -19,9 +19,7 @@ curl --request POST \
   --form  atc='http.path == "/mock"
 ```
 
-In this example, you associated a new route object with the path `/mock` to the existing service `example-service`. 
-
-The expressions DSL allows you to create complex router objects using operators and fields. 
+In this example, you associated a new route object with the path `/mock` to the existing service `example-service`. The Expressions DSL also allows you to create complex router objects using operators.  
 
 ```sh
 curl --request POST \
