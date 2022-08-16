@@ -5,8 +5,10 @@
       url: /gateway/
       absolute_url: true
     - text: Version Support Policy
-      url: /konnect-platform/support-policy
+      url: /gateway/latest/support-policy
       absolute_url: true
+    - text: Stages of Software Availability
+      url: /availability-stages
     - text: Changelog
       url: /gateway/changelog
       absolute_url: true

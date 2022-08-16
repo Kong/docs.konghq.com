@@ -3,15 +3,13 @@ title: Plugin Compatibility
 no_version: true
 ---
 
-## Introduction
-
 Each [subscription tier](https://konghq.com/pricing) gives you
 access to a subset of plugins:
 * **Free tier:** Open-source Kong plugins
 * **Plus tier:** Open-source and Plus-specific plugins
 * **Enterprise tier:** All Kong plugins
 
-### Network configuration options
+## Network configuration options
 
 {{site.konnect_short_name}} can be configured in the following ways:
 
@@ -65,23 +63,23 @@ see [{{site.ee_product_name}} for Kubernetes Deployment Options](/gateway/latest
         </td>
         <td style="text-align: center">
           {% if plugin.free == true %}
-          ✅&nbsp;
+          <i class="fa fa-check"></i>
           {% elsif plugin.free == false %}
-          ❌&nbsp;
+          <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
           {% if plugin.plus == true %}
-          ✅&nbsp;
+          <i class="fa fa-check"></i>
           {% elsif plugin.plus == false %}
-          ❌&nbsp;
+          <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
           {% if plugin.enterprise == true %}
-          ✅&nbsp;
+          <i class="fa fa-check"></i>
           {% elsif plugin.enterprise == false %}
-          ❌&nbsp;
+          <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td>

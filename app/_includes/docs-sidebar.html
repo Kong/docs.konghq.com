@@ -15,7 +15,6 @@
         <span>
           {% if include.edition == 'enterprise' %}{{site.ee_product_name}}
           {% elsif include.edition == 'konnect' %}{{site.konnect_saas}}
-          {% elsif include.edition == 'konnect-platform' %}{{site.konnect_product_name}} Platform
           {% elsif include.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
@@ -52,10 +51,6 @@
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
-        </li>
-        <hr>
-        <li role="menuitem" tabindex="-1" {% if include.edition == 'konnect_platform' %} class="active"{% endif %}>
-          <a href="/konnect-platform/" {% if include.edition == 'konnect_platform' %}class="active"{% endif %}>Kong Konnect Platform</a>
         </li>
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'contributing' %} class="active"{% endif %}>

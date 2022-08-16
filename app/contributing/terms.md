@@ -32,7 +32,6 @@ Service package, version, implementation
 
 ## Product and component names
 
-* Kong Konnect platform (Konnect)
 * Konnect SaaS
 * Kong Mesh (Mesh, service mesh)
 * Kong for Kubernetes; Kong on Kubernetes Enterprise
