@@ -238,13 +238,13 @@ http :8001/config config=@kong.yml
 The `/config` endpoint replaces the entire set of entities in memory
 with the ones specified in the given file.
 
-Or another way you can start Kong in DB-less mode is with a 
+Or another way you can start Kong in DB-less mode is with a
 declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG_STRING`
-environment variable. 
+environment variable.
 
 ```
-export KONG_DATABASE=off 
-export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}' 
+export KONG_DATABASE=off
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}'
 kong start
 ```
 
@@ -288,4 +288,4 @@ Not all Kong plugins are compatible with DB-less mode since some of them
 by design require a central database coordination or dynamic creation of
 entities.
 
-For current plugin compatibility, see [Plugin compatibility](/konnect-platform/compatibility/plugins/).  
+For current plugin compatibility, see [Plugin compatibility](/hub/plugins/compatibility).  

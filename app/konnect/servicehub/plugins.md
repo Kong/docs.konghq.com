@@ -49,7 +49,7 @@ The following plugins are not available with {{site.konnect_saas}}:
 * GraphQL Rate Limiting Advanced
 * Key Authentication Encrypted
 
-See the [plugin compatibility chart](/konnect-platform/compatibility/plugins)
+See the [plugin compatibility chart](/hub/plugins/compatibility)
 for a full comparison of plans and network configurations that each plugin
 supports.
 
