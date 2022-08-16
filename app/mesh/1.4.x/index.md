@@ -142,5 +142,5 @@ standalone and multi-zone deployment modes in the Kuma documentation.
 Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
-For the latest version support information for  {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy).
+For the latest version support information for
+{{site.mesh_product_name}}, see our [version support policy](/mesh/latest/support-policy).
