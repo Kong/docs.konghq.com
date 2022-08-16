@@ -25,9 +25,6 @@
       "selectors_key": "changelog"
     },
     {
-      "url": "https://docs.konghq.com/konnect-platform/"
-    },
-    {
       "url": "https://docs.konghq.com/hub/",
       "selectors_key": "hub"
     }

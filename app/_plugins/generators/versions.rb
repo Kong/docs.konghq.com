@@ -48,7 +48,6 @@ module Jekyll
       site.data['kong_versions_deck'] = deck_versions
       site.data['kong_versions_mesh'] = mesh_versions
       site.data['kong_versions_konnect'] = konnect_versions
-      site.data['kong_versions_konnect_platform'] = konnect_platform_versions
       site.data['kong_versions_kic'] = kic_versions
       site.data['kong_versions_contributing'] = contributing_versions
       site.data['kong_versions_gateway'] = gateway_versions
