@@ -9,11 +9,11 @@ A single service can have many routes. Once a route is matched, {{site.base_gate
 
 ## Route and service interaction
 
-Routes, in conjunction with [services](/gateway/understanding-kong/key-concepts/routes/), let you expose your services to clients with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the clients by using routes. Since the client always calls the route, changes to the services(like versioning) don't impact how clients make the call. Routes also allow the same service to be used by multiple clients and apply different policies based on the route used.
+Routes, in conjunction with [services](/gateway/understanding-kong/key-concepts/routes/), let you expose your services to clients with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the clients by using routes. Since the client always uses the route to make a request, changes to the services, like versioning don't impact how clients make the request. Routes also allow the same service to be used by multiple clients and apply different policies based on the route used.
 
 For example, if you have an external client and an internal client that need to access the hwservice service, but the external client should be limited in how often it can query the service to assure no denial of service. If a rate limit policy is configured for the service when the internal client calls the service, the internal client is limited as well. Routes solve this problem.
 
-In the example above, two routes can be created, say /external and /internal, and both routes can point to hwservice. A policy can be configured to limit how often the /external route is used and the route can be communicated to the external client for use. When the external client tries to access the service via {{site.base_gateway}} using /external, they are rate limited. But when the internal client accesses the service via {{site.base_gateway}} using /internal, the internal client will not be limited.
+In the example above, two routes can be created, say `/external` and `/internal`, and both routes can point to `example_service`. A policy can be configured to limit how often the `/external` route is used and the route can be communicated to the external client for use. When the external client tries to access the service via {{site.base_gateway}} using `/external`, they are rate limited. But when the internal client accesses the service using {{site.base_gateway}} using `/internal`, the internal client will not be limited.
 
 ## Route configuration
 Before you can start making requests against a service, you must add a route to it.
