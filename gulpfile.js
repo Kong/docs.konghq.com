@@ -20,7 +20,10 @@ var paths = {
 
 // Sources
 var sources = {
-  content: "app/**/*.{markdown,md,html,txt,yml,yaml}",
+  content: [
+    "app/**/*.{markdown,md,html,txt,yml,yaml}",
+    "src/**/*.{markdown,md,html,txt,yml,yaml}"
+  ],
   styles: paths.assets + "stylesheets/**/*",
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
