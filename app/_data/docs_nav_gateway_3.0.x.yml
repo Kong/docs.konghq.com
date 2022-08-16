@@ -23,8 +23,10 @@ items:
                 url: /understanding-kong/how-to/kong-gateway
               - text: Request Transformations
                 url: /understanding-kong/how-to/request-transformations
+              - text: Securing the Database with AWS Secrets Manager
+                url: /understanding-kong/how-to/aws-secrets-manager
           - text: Key Concepts
-            items: 
+            items:
               - text: Services
                 url: /understanding-kong/key-concepts/services
               - text: Routes
@@ -45,7 +47,7 @@ items:
             url: /understanding-kong/kong-performance-testing
           - text: Glossary
             url: /understanding-kong/glossary
-         
+
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
@@ -81,9 +83,9 @@ items:
           - text: DB-less Deployment
             url: /kong-production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
-            url: /kong-production/deployment-topologies/traditional     
+            url: /kong-production/deployment-topologies/traditional
       - text: Installation Options
-        items: 
+        items:
           - text: Kubernetes
             url: /kong-production/install-options/kubernetes
           - text: Helm
@@ -155,7 +157,7 @@ items:
           - text: Collect Metrics with Datadog
             url: /kong-production/monitoring/datadog
       - text: Tracing
-        items: 
+        items:
           - text: Overview
             url: /kong-production/tracing/
           - text: How to Write a Custom Trace Exporter
@@ -182,7 +184,7 @@ items:
         url: /kong-production/migrate-ce-to-ke
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-references-color.svg
-    items: 
+    items:
       - text: Overview
         url: /kong-enterprise/
       - text: Kong Vitals
@@ -220,12 +222,12 @@ items:
           - text: Reference Format
             url: /kong-enterprise/secrets-management/reference-format
       - text: Dynamic Plugin Ordering
-        items: 
+        items:
           - text: Overview
             url: /kong-enterprise/plugin-ordering/
           - text: Get Started with Dynamic Plugin Ordering
             url: /kong-enterprise/plugin-ordering/get-started
-      - text: Kong Dev Portal      
+      - text: Kong Dev Portal
         items:
           - text: Overview
             url: /kong-enterprise/developer-portal/
@@ -298,14 +300,14 @@ items:
           - text: Helpers CLI
             url: /kong-enterprise/developer-portal/cli
           - text: Portal API
-            url: /kong-enterprise/developer-portal/portal-api         
+            url: /kong-enterprise/developer-portal/portal-api
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption
         url: /kong-enterprise/db-encryption
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-references-color.svg
-    items: 
+    items:
       - text: Overview
         url: /kong-manager/
       - text: Enable Kong Manager
@@ -464,7 +466,7 @@ items:
                 url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               - text: Configuring Fixed bucket
                 url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
-      
+
       - text: GraphQL
         url: /kong-plugins/graphql-quickstart
       - text: gRPC
@@ -475,7 +477,7 @@ items:
       - text: Introduction to the Kong Admin API
         url: /admin-api/
       - text: Information Routes
-        url: /admin-api/#information-routes      
+        url: /admin-api/#information-routes
       - text: Health Routes
         url: /admin-api/#health-routes
       - text: Tags
