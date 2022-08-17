@@ -1,7 +1,6 @@
 ---
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
-version: 2.8.x
 desc: 'Secure Kong clusters, Routes, and Services with username and password protection'
 description: |
   Add LDAP Bind Authentication with username and password protection. The plugin
@@ -21,11 +20,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible: null
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: ldap-auth-advanced
   service_id: true
@@ -64,8 +61,8 @@ params:
         The password to the LDAP server.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
     - name: start_tls
       required: true
       default: '`false`'
@@ -181,8 +178,8 @@ params:
         should have permissions to search for the user being authenticated.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
     - name: group_base_dn
       required: null
       default: matches `conf.base_dn`
@@ -215,6 +212,16 @@ params:
         Displays all the LDAP search results received from the LDAP
         server for debugging purposes. Not recommended to be enabled in
         a production environment.
+      minimum_version: "2.3.x"
+    - name: groups_required
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        The groups (`groups_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases.
+        - When `["group1 group2"]` are in the same array indices, both `group1` AND `group2` need to be present in access token (or introspection results).
+        - When `["group1", "group2"]` are in different array indices, either `group1` OR `group2` need to be present in access token (or introspection results).
+      minimum_version: "3.0.x"
 ---
 
 ## Usage
@@ -282,6 +289,8 @@ $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 
 ## Notes
 
+{% if_plugin_version lte:2.8.x %}
+
 `config.group_base_dn` and `config.base_dn` do not accept an array and
 it has to fully match the full DN the group is in - it won’t work if it
 is specified a more generic DN, therefore it needs to be specific. For
@@ -289,15 +298,21 @@ example, considering a case where there are nested `"OU's"`. If a
 top-level DN such as `"ou=dev,o=company"` is specified instead of
 `"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.
 
+{% endif_plugin_version %}
+
 Referrals are not supported in the plugin. A workaround is
 to hit the LDAP Global Catalog instead, which is usually listening on a
 different port than the default `389`. That way, referrals don't get sent
 back to the plugin.
 
+{% if_plugin_version lte:2.8.x %}
+
 The plugin doesn’t authenticate users (allow/deny requests) based on group
 membership. For example:
 - If the user is a member of an LDAP group, the request is allowed.
 - if the user is not a member of an LDAP group, the request is still allowed.
+
+{% endif_plugin_version %}
 
 The plugin obtains LDAP groups and sets them in a header, `x-authenticated-groups`,
 to the request before proxying to the upstream. This is useful for Kong Manager role
@@ -307,14 +322,38 @@ mapping.
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 1.3.0)
+{% if_plugin_version gte:3.0.x %}
+
+### {{site.base_gateway}} 3.0.x
+* Added the `groups_required` parameter.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.8.x %}
+
+### {{site.base_gateway}} 2.8.x
 
 * The `ldap_password` and `bind_dn` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
-### Kong Gateway 2.7.x (plugin version 1.2.0)
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.7.x %}
+
+### {{site.base_gateway}} 2.7.x
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.ldap_password` parameter value will be encrypted.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.3.x %}
+
+### {{site.base_gateway}} 2.3.x
+
+* Added the parameter `log_search_results`, which lets the plugin display all the LDAP search results received from the LDAP server.
+* Added new debug log statements for authenticated groups.
+
+{% endif_plugin_version %}
