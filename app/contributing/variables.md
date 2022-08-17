@@ -3,12 +3,12 @@ title: Using Variables
 no_version: true
 ---
 
-Use variable in content text, links, and in codeblocks.
+Use variable in content text, links, and in code blocks.
 
 Do not use in:
 * Page front matter: This is an important note for plugins in particular, as
 much of the page content is generated out of a plugin’s front matter.
-* Auto-generated docs (eg Admin API).
+* Auto-generated docs (for example, Admin API).
 * Page titles or headings.
 
 ## Product names
