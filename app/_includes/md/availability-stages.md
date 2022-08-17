@@ -1,12 +1,10 @@
 
 ## Tech preview
-A feature that is in tech preview might have limited to no documentation, is not guaranteed to be made available as GA in the future. Some products or projects may also call this stage *alpha*.
+A feature that is in tech preview might have limited to no documentation, no support, and is not guaranteed to be made available as GA in the future. Some products or projects may also call this stage *alpha*.
 
 **A tech preview feature or version should not be deployed in a production environment**.
-Interfaces for features in tech preview could change in backwards-incompatible ways.
 
-Tech previews features are experimental.
-Do not count on the feature becoming a formal product, and expect it to change heavily if it does.
+Tech preview features are experimental. Interfaces for features in tech preview could change in backwards-incompatible ways. Do not count on the feature becoming a formal product, and expect it to change heavily if it does.
 
 ## Beta
 A beta designation in Kong software means the functionality of a feature or release version is of high quality and can be deployed in a non-production environment.
