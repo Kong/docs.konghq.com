@@ -259,8 +259,6 @@
 -
   edition: "konnect"
 -
-  edition: "konnect-platform"
--
   edition: "contributing"
 -
   release: "1.1.x"

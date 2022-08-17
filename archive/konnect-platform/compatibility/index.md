@@ -1,8 +1,10 @@
 ---
 title: Kong Platform Compatibility
 no_version: true
-redirect_to: /konnect-platform/
 ---
+<!-- vale off -->
+
+<!-- WIP project page for a total compatibility matrix -->
 
 Provided below are compatibility tables for Kong products. Select a Kong product
 and version (if applicable) to see technologies that have been tested for
@@ -129,3 +131,5 @@ for more information about Kong's support for {{site.base_gateway}} and our
 
 {% endfor %}
 {% endfor %}
+
+<!-- vale on -->

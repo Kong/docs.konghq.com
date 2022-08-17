@@ -5,6 +5,11 @@
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
 /konnect-platform/plans/              https://konghq.com/pricing/
+/konnect-platform/get-started/        /konnect/getting-started/
+/konnect-platform/compatibility/plugins/  /hub/plugins/compatibility/
+/konnect-platform/key-concepts/           /konnect/availability-stages/
+/konnect-platform/support-policy/         /gateway/latest/support-policy/
+/konnect-platform/                        /konnect/
 
 # DECK
 /deck/overview/                       /deck/
@@ -91,7 +96,6 @@
 # PLUGINS
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
-/hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
 /enterprise/latest/plugins/statsd-advanced/ /hub/kong-inc/statsd-advanced/
 /hub/kong-inc/basic-auth/1.0-x.html         /hub/kong-inc/basic-auth/2.1-x.html
 /hub/kong-inc/basic-authentication/         /hub/kong-inc/basic-auth/
@@ -671,12 +675,12 @@
 
 # GENERAL REDIRECTS TO /GATEWAY/
 /enterprise/changelog      /gateway/changelog
-/enterprise/2.6.x/introduction/key-concepts     /konnect-platform/key-concepts
-/enterprise/2.7.x/introduction/key-concepts     /konnect-platform/key-concepts
-/enterprise/latest/introduction/key-concepts    /konnect-platform/key-concepts
-/enterprise/2.6.x/introduction/support-policy   /konnect-platform/support-policy
-/enterprise/2.7.x/introduction/support-policy   /konnect-platform/support-policy
-/enterprise/latest/introduction/support-policy  /konnect-platform/support-policy
+/enterprise/2.6.x/introduction/key-concepts     /gateway/latest/availability-stages/
+/enterprise/2.7.x/introduction/key-concepts     /gateway/latest/availability-stages/
+/enterprise/latest/introduction/key-concepts    /gateway/latest/availability-stages/
+/enterprise/2.6.x/introduction/support-policy   /gateway/latest/support-policy/
+/enterprise/2.7.x/introduction/support-policy   /gateway/latest/support-policy/
+/enterprise/latest/introduction/support-policy  /gateway/latest/support-policy/
 /latest/*                  /
 /latest                    /
 /2.6.x/*                   /gateway/2.6.x/

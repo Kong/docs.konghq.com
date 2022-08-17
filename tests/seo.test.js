@@ -123,10 +123,6 @@ test.describe("unversioned content", () => {
       src: "/konnect/",
     },
     {
-      title: "konnect-platform",
-      src: "/konnect-platform/",
-    },
-    {
       title: "contributing",
       src: "/contributing/",
     },
@@ -148,7 +144,6 @@ test.describe("unversioned content", () => {
 test.describe("sitemap includes", () => {
   [
     "/konnect/",
-    "/konnect-platform/",
     "/gateway/latest/",
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
@@ -176,7 +171,6 @@ test.describe("sitemap does not include", () => {
     "/gateway/2.6.x/configure/auth/kong-manager/oidc/",
     "/mesh/1.6.x/",
     "/mesh/1.1.x/overview/",
-    "/konnect-platform/compatibility/",
     "/deck/",
     "/gateway/",
   ].forEach((t) => {

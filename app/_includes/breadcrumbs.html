@@ -7,7 +7,6 @@
     </li>
     <li class="breadcrumb-item">
       {% if include.edition == 'enterprise' %}<a href="/enterprise/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
-      {% elsif include.edition == 'konnect-platform' %}<a href="/konnect-platform/">Overview</a>
       {% elsif include.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_saas}}</a>
       {% elsif include.edition == 'mesh' %}<a href="/mesh/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}">{{site.mesh_product_name}}</a>
       {% elsif include.edition == 'deck' %}<a href="/deck/">decK</a>

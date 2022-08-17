@@ -10,8 +10,9 @@ items:
         url: /gateway/3.0.x/
         absolute_url: true
       - text: Version Support Policy
-        url: /konnect-platform/support-policy
-        absolute_url: true
+        url: /support-policy
+      - text: Stages of Software Availability
+        url: /availability-stages
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true

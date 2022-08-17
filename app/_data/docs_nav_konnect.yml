@@ -11,6 +11,8 @@
       url: /network
     - text: Compatibility
       url: /compatibility
+    - text: Stages of Software Availability
+      url: /availability-stages
     - text: Release Notes
       url: /updates
 

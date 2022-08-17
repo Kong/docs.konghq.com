@@ -165,12 +165,12 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
     {% endif %}
       {% if page.alpha %}
       <blockquote class="warning no-icon">
-        This plugin is released as a <a href="/konnect-platform/key-concepts/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
+        This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
       </blockquote>
       {% endif %}
       {% if page.beta %}
       <blockquote class="warning no-icon">
-        This plugin is released as <a href="/konnect-platform/key-concepts/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
+        This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
       </blockquote>
       {% endif %}
 
@@ -333,7 +333,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         <tr>
           <td>DB-less compatible?</td>
           <td>
-            <a href="/konnect-platform/compatibility/plugins">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
+            <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
               if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
               if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
           </td>
