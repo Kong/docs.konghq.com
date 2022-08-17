@@ -3,60 +3,94 @@ title: Router Operator Reference for Kong Gateway
 content-type: reference
 ---
 
-With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. This document serves as a reference for all of the available operators. If you want to learn how to configure routes using Expressions read [How to configure routes using Expressions](gateway/latest/understanding-kong/how-to/router-atc/).
+With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as
+combinations of logical operations called "predicates". This document serves as a reference for all of the available operators and fields.
+If you want to learn how to configure routes using Expressions read [How to configure routes using Expressions](gateway/latest/understanding-kong/how-to/router-atc/).
 
+
+## General design
+
+Kong router Expressions are designed as combinations of simple comparisons called "predicates". All predicates have one of the following form:
+
+```
+field op value
+transformation(field) op value
+```
+
+Example:
+
+```
+http.path ^= "/prefix/"
+lower(http.path) ^= "/prefix/"
+```
+
+Note: transformations only works on fields, it will not work on the value side of the predicate. This means you can **not** write:
+
+```
+http.path ^= lower("/preFIX/")
+```
+
+Predicates can be grouped with parenthesis `()` or logical operators `||`, `&&`:
+
+Example:
+
+```
+(http.path ^= "/prefix/" && net.port == 80) || http.method == "POST"
+```
 
 ## Available fields
 
-| Field | Description |
-| --- | ----------- | 
-| `net.protocol` | The protocol used to communicate with the upstream application.  |
-| `tls.sni`  | Server name indication. | 
-| `http.method` | HTTP methods that match a route. |
-| `http.host`  | Lists of domains that match a route. | 
-| `http.path` | Returns or sets the path. | 
-| `http.raw_path` | Returns or sets the escaped path. | 
-| `http.headers.*` |  Lists of values that are expected in the header of a request. | 
+| Field | Description | Type |
+| --- | ----------- | -------|
+| `net.protocol` | The protocol used to communicate with the upstream application. | String |
+| `net.port` | Server end port number. | Int |
+| `tls.sni`  | Server name indication. | String |
+| `http.method` | HTTP methods that match a route. | String |
+| `http.host`  | Lists of domains that match a route. | String |
+| `http.path` | Normalized request path (without query parameters). | String |
+| `http.headers.header_name` | Value of header `Header-Name`. Header names are converted to lower case, and `-` are replaced to `_`. | String |
 
 ## String
 
-| Operator | Name | Return Type | 
-| --- | ----------- | --- | 
-| == | Equals | Boolean|
-| != | Not equals | Boolean|
-| ~ | Regex matching | Boolean|
-| ^= | Prefix matching | Boolean|
-| =^ | Suffix matching | Boolean|
-| in | Contains | Boolean|
-| not in | Does not contain | Boolean|
-| lower() | Lowercase | String|
+| Operator | Meaning |
+| --- | ----------- |
+| == | Equals |
+| != | Not equals |
+| ~ | Regex matching |
+| ^= | Prefix matching |
+| =^ | Suffix matching |
+| in | Contains |
+| not in | Does not contain |
+
+## String transformations
+
+| lower() | Lowercase |
 
 ## Integer
 
-| Operator | Name | Return Type | 
-| --- | ----------- | --- | 
-| == | Equals | Boolean|
-| != | Not equals| Boolean|
-| > | Greater than | Boolean|
-| >= | Greater than or equal | Boolean|
-| < | Less than | Boolean|
-| <= | Less than or equal | Boolean|
+| Operator | Meaning |
+| --- | ----------- |
+| == | Equals |
+| != | Not equals|
+| > | Greater than |
+| >= | Greater than or equal |
+| < | Less than |
+| <= | Less than or equal |
 
-## IP 
+## IP
 
-| Operator | Name | Return Type | 
-| --- | ----------- | --- | 
-| == | Equals | Boolean|
-| != | Not equals | Boolean|
-| in | Contains | Boolean|
+| Operator | Meaning |
+| --- | ----------- |
+| == | Equals |
+| != | Not equals |
+| in | Contains |
 
 ## Boolean
 
-| Operator | Name | Return Type | 
-| --- | ----------- | --- | 
-| && | And | Boolean|
-| `||` | Or | Boolean|
-| ! | Not | Boolean|
+| Operator | Meaning |
+| --- | ----------- |
+| && | Logical And |
+| `||` | Logical Or |
 
 
 
