@@ -22,7 +22,7 @@ both Kubernetes and VMs on any cloud. Built on top of CNCF's
 
 {{site.mesh_product_name}} extends Kuma and Envoy with enterprise features and
 support, while providing native integration with
-[{{site.ee_product_name}}](https://konghq.com/products/kong-enterprise) for a
+[{{site.ee_product_name}}](https://konghq.com/products/api-gateway-platform) for a
 full-stack connectivity platform for all of your services and APIs, across
 every cloud and environment.
 
