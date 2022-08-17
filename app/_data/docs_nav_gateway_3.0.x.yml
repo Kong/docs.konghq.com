@@ -23,6 +23,10 @@ items:
                 url: /understanding-kong/how-to/kong-gateway
               - text: Request Transformations
                 url: /understanding-kong/how-to/request-transformations
+              - text: Securing the Database with AWS Secrets Manager
+                url: /understanding-kong/how-to/aws-secrets-manager
+              - text: Configure Routes with Expressions
+                url: /understanding-kong/how-to/router-atc
           - text: Key Concepts
             items:
               - text: Services
@@ -152,6 +156,8 @@ items:
             url: /kong-production/monitoring/prometheus
           - text: How to monitor with Statsd
             url: /kong-production/monitoring/statsd
+          - text: Collect Metrics with Datadog
+            url: /kong-production/monitoring/datadog
       - text: Tracing
         items:
           - text: Overview
@@ -568,3 +574,5 @@ items:
         url: /reference/rate-limit
       - text: Performance Testing Framework Reference
         url: /reference/performance-testing-framework
+      - text: Router Operators
+        url: /reference/router-operators

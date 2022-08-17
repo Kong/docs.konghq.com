@@ -231,46 +231,7 @@ hash input will not suffice, using the remote IP address by setting the hash to
 in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in
 call center), `cookie` will provide a better distribution than `ip`.
 
-# Canary Releases
-
-Using the ring-balancer, target weights can be adjusted granularly, allowing
-for a smooth, controlled [canary release][blue-green-canary].
-
-Using a very simple 2 target example:
-
-```bash
-# first target at 1000
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
-    --data "target=192.168.34.17:80"
-    --data "weight=1000"
-
-# second target at 0
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
-    --data "target=192.168.34.18:80"
-    --data "weight=0"
-```
-
-By repeating the requests, but altering the weights each time, traffic will
-slowly be routed towards the other target. For example, set it at 10%:
-
-```bash
-# first target at 900
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
-    --data "target=192.168.34.17:80"
-    --data "weight=900"
-
-# second target at 100
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
-    --data "target=192.168.34.18:80"
-    --data "weight=100"
-```
-
-The changes through the Kong Admin API are dynamic and will take
-effect immediately. No reload or restart is required, and no in progress
-requests will be dropped.
-
 [upstream-object-reference]: /gateway/{{page.kong_version}}/admin-api#upstream-object
 [target-object-reference]: /gateway/{{page.kong_version}}/admin-api#target-object
 [dns-order-config]: /gateway/{{page.kong_version}}/reference/configuration/#dns_order
 [real-ip-config]: /gateway/{{page.kong_version}}/reference/configuration/#real_ip_header
-[blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/

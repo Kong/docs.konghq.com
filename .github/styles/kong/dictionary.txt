@@ -1,3 +1,4 @@
+acl
 AgeNet
 Alertmanager
 allowlist
@@ -12,6 +13,7 @@ Bintray
 Bitnami
 blockquote
 blockquotes
+body_filter
 boolean
 CloudFormation
 Cognito
@@ -22,6 +24,7 @@ cors
 Curity
 DAO
 DAOs
+datadog
 Datadog
 datagram
 datagrams
@@ -50,6 +53,7 @@ grpc
 grpcs
 hardcoded
 hashicorp
+header_filter
 hostname
 hostnames
 http
@@ -58,6 +62,7 @@ HTTPie
 https
 inbounds
 ini
+init_worker
 inso
 instrumentations
 io
@@ -84,9 +89,11 @@ Kuma
 kumactl
 kustomization
 Kustomize
+loggly
 Loggly
 loopback
 lua
+Lua's
 Luarocks
 ngrok
 npm
@@ -126,7 +133,9 @@ PowerShell
 prepend
 prepends
 prepended
+preread
 profiler
+prometheus
 Prometheus
 Protobuf
 proxied
@@ -139,6 +148,7 @@ reentrant
 referenceable
 repo
 Resty
+rockspec
 routable
 runtime
 runtimes
@@ -151,6 +161,7 @@ serverless
 snis
 Splunk
 ssl
+ssl_certificate
 sso
 Stap
 stapxx
@@ -164,8 +175,10 @@ Bagdi
 subcommand
 substring
 sudo
+syslog
 Syslog
 tbl
+tcp
 tcpdump
 teardown
 tfvars
@@ -205,5 +218,6 @@ worker-ip
 workspace
 yaml
 yml
+zipkin
 Zipkin
 zsh
