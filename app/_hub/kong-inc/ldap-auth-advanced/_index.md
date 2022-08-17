@@ -61,8 +61,8 @@ params:
         The password to the LDAP server.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
     - name: start_tls
       required: true
       default: '`false`'
@@ -178,8 +178,8 @@ params:
         should have permissions to search for the user being authenticated.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
     - name: group_base_dn
       required: null
       default: matches `conf.base_dn`
@@ -212,6 +212,7 @@ params:
         Displays all the LDAP search results received from the LDAP
         server for debugging purposes. Not recommended to be enabled in
         a production environment.
+      minimum_version: "2.3.x"
     - name: groups_required
       required: false
       default: null
@@ -321,21 +322,38 @@ mapping.
 
 ## Changelog
 
+{% if_plugin_version gte:3.0.x %}
+
 ### Kong Gateway 3.0.x
 * Added the `groups_required` parameter.
 
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.8.x %}
 
 ### Kong Gateway 2.8.x
-> Plugin version: 1.3.0
 
 * The `ldap_password` and `bind_dn` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.7.x %}
 
 ### Kong Gateway 2.7.x
-> Plugin version: 1.2.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.ldap_password` parameter value will be encrypted.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.3.x %}
+
+### Kong Gateway 2.3.x
+
+* Added the parameter `log_search_results`, which lets the plugin display all the LDAP search results received from the LDAP server.
+* Added new debug log statements for authenticated groups.
+
+{% endif_plugin_version %}
