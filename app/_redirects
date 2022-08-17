@@ -1,3 +1,7 @@
+# DEPRECATED OS
+/gateway/3.0.x/install-and-run/centos    /gateway/latest/install-and-run/os-support
+/gateway/latest/install-and-run/centos   /gateway/latest/install-and-run/os-support
+
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
 /konnect-platform/plans/              https://konghq.com/pricing/
@@ -122,6 +126,8 @@
 /enterprise/2.6.x/plugins/*            /gateway/2.6.x/configuration/auth/:splat
 /enterprise/2.7.x/plugins/*            /gateway/2.7.x/configuration/auth/:splat
 /enterprise/latest/plugins/*           /gateway/latest/configuration/auth/:splat
+/hub/kong-inc/kubernetes-sidecar-injector        /mesh/
+/hub/kong-inc/ee-openid-connect-rp/              /hub/kong-inc/openid-connect/
 
 
 # KONNECT

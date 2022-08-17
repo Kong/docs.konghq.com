@@ -157,9 +157,7 @@ params:
       datatype: boolean
       description: |
         If set to true, then uses SSL to connect to Redis.
-
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
+      minimum_version: "2.2.x"
     - name: redis.ssl_verify
       required: false
       default: false
@@ -170,9 +168,7 @@ params:
         [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate)
         to specify the CA (or server) certificate used by your redis server. You may also need to configure
         [lua_ssl_verify_depth](/gateway/latest/reference/configuration/#lua_ssl_verify_depth) accordingly.
-
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
+      minimum_version: "2.2.x"
     - name: redis.server_name
       required: false
       default: null
@@ -180,9 +176,7 @@ params:
       datatype: string
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
-
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
+      minimum_version: "2.2.x"
     - name: redis.timeout
       required: semi
       default: 2000
@@ -202,6 +196,7 @@ params:
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+      minimum_version: "2.8.x"
     - name: redis.password
       required: semi
       default: null
@@ -240,6 +235,7 @@ params:
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+      minimum_version: "2.8.x"
     - name: redis.sentinel_password
       required: semi
       default: null
@@ -285,6 +281,7 @@ params:
         will fail and return `nil`. Queued connect operations resume once the number of
         connections in the pool is less than `keepalive_pool_size`. Note that queued
         connect operations are subject to set timeouts.
+      minimum_version: "2.5.x"
     - name: redis.keepalive_pool
       required: false
       default: generated from string template
@@ -293,6 +290,7 @@ params:
       description: |
         The custom name of the connection pool. If not specified, the connection pool
         name is generated from the string template `"<host>:<port>"` or `"<unix-socket-path>"`.
+      minimum_version: "2.5.x"
     - name: redis.keepalive_pool_size
       required: false
       default: 30
@@ -303,6 +301,7 @@ params:
         server, per worker process. If no `keepalive_pool_size` is specified and no `keepalive_backlog`
         is specified, no pool is created. If no `keepalive_pool_size` is specified and `keepalive_backlog`
         is specified, then the pool uses the default value `30`.
+      minimum_version: "2.5.x"
     - name: window_type
       required: true
       default: sliding
@@ -561,7 +560,7 @@ curl -i -X POST --url http://kong:8001/services/example/plugins \
   --data 'config.sync_rate=10'
 ```
 
-### Decorate gql schema for costs
+### Decorate GraphQL schema for costs
 
 Cost decoration schema looks like:
 
@@ -696,9 +695,11 @@ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 ---
 
+{% if_plugin_version gte:2.2.x %}
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.2.5)
+{% if_plugin_version gte:2.8.x %}
+### {{site.base_gateway}} 2.8.x
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
@@ -710,3 +711,19 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the
 plugin's actual versions, `0.1.x` and `0.2.x`.
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.5.x %}
+
+### {{site.base_gateway}} 2.5.x
+
+* Added the `redis.keepalive_pool`, `redis.keepalive_pool_size`, and `redis.keepalive_backlog` configuration parameters.
+ These options relate to [Openresty’s Lua INGINX module’s](https://github.com/openresty/lua-nginx-module/#tcpsockconnect) `tcp:connect` options.
+
+{% endif_plugin_version %}
+
+### {{site.base_gateway}} 2.2.x
+
+* Added Redis TLS support with the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name` configuration parameters.
+
+{% endif_plugin_version %}

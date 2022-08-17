@@ -1,2 +1,3 @@
 ---
 /gateway-oss/VERSION/configuration/: "/gateway/VERSION/reference/configuration/"
+/gateway/VERSION/install-and-run/rhel/: "/gateway/VERSION/kong-production/install-options/linux/rhel/"

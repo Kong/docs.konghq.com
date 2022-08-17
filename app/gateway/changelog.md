@@ -3,6 +3,7 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+
 <!-- vale off -->
 
 ## 2.8.1.3
@@ -86,7 +87,36 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
   * Fixed an issue where `204` responses were not handled correctly and you would see the following error:
 `"No examples exist in API specification for this resource"`.
   * `204` response specs now support empty content elements.
+## 3.0.0.0
+**Release Date** TBD
 
+### Deprecated
+
+* **Amazon Linux 1**: Support for running Kong Gateway on Amazon Linux 1 is now deprecated, as the
+[Amazon Linux (1) AMI has ended standard support as of December 31, 2020](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life).
+Starting with Kong Gateway 3.0.0.0, Kong is not building new Amazon Linux 1
+images or packages, and Kong will not test package installation on Amazon Linux 1.
+
+    If you need to install Kong Gateway on Amazon Linux 1, see the documentation for
+    [previous versions](/gateway/2.8.x/install-and-run/amazon-linux/).
+
+* **Debian 8**: Support for running Kong Gateway on Debian 8 ("Jessie") is now deprecated, as
+[Debian 8 ("Jessie") has reached End of Life (EOL)](https://www.debian.org/News/2020/20200709).
+Starting with Kong Gateway 3.0.0.0, Kong is not building new Debian 8
+("Jessie") images or packages, and Kong will not test package installation on
+Debian 8 ("Jessie").
+
+    If you need to install Kong Gateway on Debian 8 ("Jessie"), see the documentation for
+    [previous versions](/gateway/2.8.x/install-and-run/debian/).
+
+* **Ubuntu 16.04**: Support for running Kong Gateway on Ubuntu 16.04 ("Xenial") is now deprecated,
+as [Standard Support for Ubuntu 16.04 has ended as of April, 2021](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 3.0.0.0, Kong is not building new Ubuntu 16.04
+images or packages, and Kong will not test package installation on Ubuntu 16.04.
+
+    If you need to install Kong Gateway on Ubuntu 16.04, see the documentation for
+    [previous versions](/gateway/2.8.x/install-and-run/ubuntu/).
+[DOCU-2329] Linux OS support and deprecation (#4000))
 ## 2.8.1.1
 **Release Date** 2022/05/27
 

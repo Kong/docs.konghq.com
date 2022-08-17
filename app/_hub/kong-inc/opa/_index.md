@@ -1,16 +1,11 @@
 ---
 name: OPA
 publisher: Kong Inc.
-version: 0.2.x
 desc: Authorize requests against Open Policy Agent
 description: |
   Forward request to Open Policy Agent and process the request only if the
   authorization policy allows for it.
 
-  {:.note}
-  > To use this plugin in Konnect Cloud,
-  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
-  v2.4.1.1.
 enterprise: true
 plus: true
 type: plugin
