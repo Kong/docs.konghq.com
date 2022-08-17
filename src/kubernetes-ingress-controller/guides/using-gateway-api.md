@@ -13,6 +13,25 @@ Gateway API and Kong's implementation of Gateway API are both in alpha stage and
 under active development. Features and implementation specifics will change
 before their initial general availability release.
 
+{% if_version gte:2.4.x %}
+## Supported Gateway API Resources
+
+Currently, the {{site.kic_product_name}}'s implementation of the Gateway API supports the following resources:
+
+- [`Gateway` and `GatewayClass`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses)
+- [`HTTPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes)
+- [`TCPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes)
+- [`UDPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes)
+- [`TLSRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes)
+{% endif_version %}
+{% if_version gte:2.4.x lte:2.6.x %}
+- [`ReferencePolicy`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies)
+{% endif_version %}
+{% if_version gte:2.6.x %}
+- [`ReferenceGrant`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
+{% endif_version %}
+
+
 ## Enable the feature
 
 The Gateway API CRDs are not yet available by default in Kubernetes. You must

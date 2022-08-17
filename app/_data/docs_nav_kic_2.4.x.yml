@@ -134,3 +134,5 @@ items:
         url: /troubleshooting
       - text: Prometheus Metrics
         url: /references/prometheus
+      - text: Gateway API Support
+        url: /references/gateway-api-support
