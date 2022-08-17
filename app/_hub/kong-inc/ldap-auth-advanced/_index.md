@@ -324,14 +324,14 @@ mapping.
 
 {% if_plugin_version gte:3.0.x %}
 
-### Kong Gateway 3.0.x
+### {{site.base_gateway}} 3.0.x
 * Added the `groups_required` parameter.
 
 {% endif_plugin_version %}
 
 {% if_plugin_version gte:2.8.x %}
 
-### Kong Gateway 2.8.x
+### {{site.base_gateway}} 2.8.x
 
 * The `ldap_password` and `bind_dn` configuration fields are now marked as
 referenceable, which means they can be securely stored as
@@ -342,7 +342,7 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 
 {% if_plugin_version gte:2.7.x %}
 
-### Kong Gateway 2.7.x
+### {{site.base_gateway}} 2.7.x
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.ldap_password` parameter value will be encrypted.
@@ -351,7 +351,7 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 
 {% if_plugin_version gte:2.3.x %}
 
-### Kong Gateway 2.3.x
+### {{site.base_gateway}} 2.3.x
 
 * Added the parameter `log_search_results`, which lets the plugin display all the LDAP search results received from the LDAP server.
 * Added new debug log statements for authenticated groups.
