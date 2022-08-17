@@ -309,58 +309,69 @@ items:
       - text: Keyring and Data Encryption
         url: /kong-enterprise/db-encryption
   - title: Kong Manager
-    icon: /assets/images/icons/documentation/icn-references-color.svg
+    icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
       - text: Overview
-        url: /kong-manager/
+        url: /kong-manager/overview
       - text: Enable Kong Manager
-        url: /kong-manager/enable-km
+        url: /kong-manager/enable
       - text: Get Started with Kong Manager
         items:
           - text: Services and Routes
-            url: /kong-manager/get-started/services-routes
+            url: /kong-manager/get-started/services-and-routes
           - text: Rate Limiting
             url: /kong-manager/get-started/rate-limiting
           - text: Proxy Caching
             url: /kong-manager/get-started/proxy-caching
           - text: Authentication with Consumers
-            url: /kong-manager/get-started/authentication
+            url: /kong-manager/get-started/consumers
           - text: Load Balancing
             url: /kong-manager/get-started/load-balancing
-      - text: Authentication
+      - text: Authentication and Authorization
         items:
           - text: Overview
-            url: /kong-manager/authentication/
+            url: /kong-manager/auth/overview
           - text: Create a Super Admin
-            url: /kong-manager/authentication/super-admin
+            url: /kong-manager/auth/super-admin
           - text: Workspaces and Teams
-            url: /kong-manager/authentication/workspaces
-          - text: Reset passwords and RBAC Tokens
-            url: /kong-manager/authentication/reset-password
+            url: /kong-manager/auth/workspaces-and-teams
+          - text: Reset Passwords and RBAC Tokens
+            url: /kong-manager/auth/reset-password
           - text: Basic Auth
-            url: /kong-manager/authentication/basic
+            url: /kong-manager/auth/basic
           - text: LDAP
-            url: /kong-manager/authentication/ldap
-          - text: OIDC
-            url: /kong-manager/authentication/oidc-mapping
-          - text: Sessions
-            url: /kong-manager/authentication/sessions
-          - text: Role Based Access Control
             items:
-              - text: Overview
-                url: /kong-manager/authentication/rbac/
-              - text: Add a Role
-                url: /kong-manager/authentication/rbac/add-role
-              - text: Add a User
-                url: /kong-manager/authentication/rbac/add-user
-              - text: Add an Admin
-                url: /kong-manager/authentication/rbac/add-admin
-          - text: Mapping LDAP Service Directory groups to Roles
-            url: /kong-manager/authentication/service-directory-mapping
-      - text: Networking
+              - text: Configure LDAP
+                url: /kong-manager/auth/ldap/configure
+              - text: LDAP Service Directory Mapping
+                url: /kong-manager/auth/ldap/service-directory-mapping
+          - text: OIDC
+            items:
+              - text: Configure OIDC
+                url: /kong-manager/auth/oidc/configure
+              - text: OIDC Authenticated Group Mapping
+                url: /kong-manager/auth/oidc/mapping
+          - text: Sessions
+            url: /kong-manager/auth/sessions
+          - text: RBAC
+            items:
+            - text: Overview
+              url: /kong-manager/auth/rbac
+            - text: Enable RBAC
+              url: /kong-manager/auth/rbac/enable
+            - text: Add a Role and Permissions
+              url: /kong-manager/auth/rbac/add-role
+            - text: Create a User
+              url: /kong-manager/auth/rbac/add-user
+            - text: Create an Admin
+              url: /kong-manager/auth/rbac/add-admin
+      - text: Networking Configuration
         url: /kong-manager/networking
-      - text: Sending email
-        url: /kong-manager/email
+      - text: Workspaces
+        url: /kong-manager/workspaces
+      - text: Sending Email
+        url: /kong-manager/configuring-to-send-email
+
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

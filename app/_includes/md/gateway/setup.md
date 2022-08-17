@@ -184,12 +184,19 @@ $ scp license.json /etc/kong/license.json
 {% endnavtab %}
 {% endnavtabs %}
 
-### Enable and configure Kong Manager
+### Enable Kong Manager
 {:.badge .free}
+
+{% if_version gte:3.0.x %}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
+
+See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable) for more information.
+
+{% endif_version %}
+{% if_version lte:2.8.x %}
 
 1. Update the `admin_gui_url` property
    in the `kong.conf` configuration file to the DNS, or IP address, of your system. For example:
@@ -224,6 +231,8 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
     ```
 
 5. Access Kong Manager on port `8002`.
+
+{% endif_version %}
 
 ### Enable Dev Portal
 {:.badge .enterprise}

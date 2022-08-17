@@ -14,7 +14,7 @@ Authentication for Kong Manager.
 ## Enable LDAP
 
 Ensure Kong is configured with the following properties either in the
-configuration file or using environment variables:
+`kong.conf` configuration file or using environment variables:
 
 ```
 admin_gui_auth = ldap-auth-advanced
@@ -38,25 +38,20 @@ admin_gui_auth_conf = {                                       \
 }
 ```
 
-* `"attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>"`: The attribute used to identify LDAP users
-    * For example, to map LDAP users to admins by their username, `"attribute":"uid"`
-* `"bind_dn":"<ENTER_YOUR_BIND_DN_HERE>"`: LDAP Bind DN (Distinguished Name)
-    * Used to perform LDAP search of user. This bind_dn should have permissions to search
-      for the user being authenticated.
-    * For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
-* `"base_dn":"<ENTER_YOUR_BASE_DN_HERE>"`: LDAP Base DN (Distinguished Name)
-    * For example, `ou=scientists,dc=ldap,dc=com`
-* `"ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>"`: LDAP host domain
-    * For example, `"ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com"`
-* `"ldap_password":"<ENTER_YOUR_LDAP_PASSWORD_HERE>"`: LDAP password
-    * *Note*: As with any configuration property, sensitive information may be set as an
-      environment variable instead of being written directly in the configuration file.
+Attribute | Description
+----------|-------------
+`attribute` | The attribute used to identify LDAP users. <br> For example, to map LDAP users to admins by their username, set `uid`.
+`bind_dn` | LDAP Bind DN (Distinguished Name). Used to perform LDAP search for the user. This `bind_dn` should have permissions to search for the user being authenticated. <br> For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`.
+`base_dn` | LDAP Base DN (Distinguished Name). <br> For example, `ou=scientists,dc=ldap,dc=com`.
+`ldap_host`| LDAP host domain. <br> For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`.
+`ldap_port`| The default LDAP port is 389. 636 is the port required for SSL LDAP and AD. If `ldaps` is configured, you must use port 636. For more complex Active Directory (AD) environments, instead of Domain Controller and port 389, consider using a Global Catalog host and port, which is port 3268 by default.    
+`ldap_password` | LDAP password. <br> As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
 
-The **Sessions Plugin** requries a secret and is configured securely by default.
+The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.
-Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
+Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
 
 After starting Kong with the desired configuration, you can create new *Admins*
 whose usernames match those in the AD. Those users will then be able to accept

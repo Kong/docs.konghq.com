@@ -24,12 +24,12 @@ Manager. The mapping removes the task of manually managing access in
 ## Prerequisites
 
 * An IdP with an authorization server and users with groups assigned
-* [{{site.base_gateway}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
+* [{{site.base_gateway}} installed and configured](/gateway/{{page.kong_version}}/get-started)
 * Kong Manager enabled
 * RBAC enabled
 * (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
 
-## Apply OIDC auth mapping to Kong Gateway
+## Apply OIDC auth mapping to {{site.base_gateway}}
 
 ### Review important values
 
@@ -45,7 +45,7 @@ specified {{site.base_gateway}} admin.
 
   This value depends on your IdP -- for example, Okta configures claims for `groups`, and another IdP might configure them as `roles`.
 
-  In the Idp, the group claim value must follow the format `<workspace_name>:<role_name>`.
+  In the IdP, the group claim value must follow the format `<workspace_name>:<role_name>`.
 
   For example, if `"authenticated_groups_claim": ["groups"]` is specified, and in the IdP `groups:["default:super-admin"]` is specified, the administrators specified in `admin_claim` are assigned to the super-admin role in the default {{site.base_gateway}} workspace.
 
@@ -122,7 +122,7 @@ environment variables and reload the {{site.base_gateway}} configuration.
    Provide your own values for all fields indicated by curly braces (`{}`):
 
 ```sh
-$ echo "
+echo "
   KONG_ENFORCE_RBAC=on \
   KONG_ADMIN_GUI_AUTH=openid-connect \
   KONG_ADMIN_GUI_AUTH_CONF='{
@@ -187,7 +187,7 @@ properties to the file.
 3. Restart {{site.base_gateway}} to apply the file.
 
     ```sh
-    $ kong restart -c /path/to/kong.conf
+    kong restart -c /path/to/kong.conf
     ```
 
 {% endnavtab %}
