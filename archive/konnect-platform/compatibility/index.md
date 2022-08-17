@@ -2,6 +2,7 @@
 title: Kong Platform Compatibility
 no_version: true
 ---
+<!-- vale off -->
 
 <!-- WIP project page for a total compatibility matrix -->
 
@@ -130,3 +131,5 @@ for more information about Kong's support for {{site.base_gateway}} and our
 
 {% endfor %}
 {% endfor %}
+
+<!-- vale on -->

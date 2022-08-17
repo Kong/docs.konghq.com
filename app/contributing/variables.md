@@ -14,7 +14,7 @@ much of the page content is generated out of a plugin’s front matter.
 ## Product names
 
 For specific product name definitions and when to use what, see [word choice and naming](/contributing/word-choice).
-
+<!-- vale off-->
 Variable | Output | Definition
 ---------|--------|-----------
 {% raw %}`{{site.base_gateway}}`{% endraw %} | {{site.base_gateway}} | The Kong API Gateway. Use this in most situations, including: <br><br> &#8226; When talking about a feature that is available for both open-source and Enterprise <br> &#8226; When referring to the Enterprise image used in any mode, with a license or without.
@@ -33,6 +33,8 @@ Variable | Output | Definition
 {% raw %}`{{site.links.download}}`{% endraw %} | https://download.konghq.com | Kong's product download site.
 {% raw %}`{{site.links.web}}`{% endraw %} | https://docs.konghq.com | Kong Docs website.
 
+<!-- vale on -->
+
 ## Update or add variables
 
 The product name variables are defined in the site config file, `jekyll.yml`.
@@ -42,6 +44,7 @@ If you need to update the variable text, add, or remove a variable, edit
 
 For a new variable, use the following syntax: `<variable>:<output>`
 
+<!-- vale off -->
 <!--
 ## Versions
 
@@ -86,3 +89,5 @@ E.g., if you want to pull the first version of the doc, you would use {{page.kon
 {{page.kong_versions[0].version}}
 
 {{page.kong_versions[1].version}} -->
+
+<!-- vale on -->
