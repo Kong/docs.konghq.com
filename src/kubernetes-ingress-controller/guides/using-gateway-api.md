@@ -13,29 +13,22 @@ Gateway API and Kong's implementation of Gateway API are both in alpha stage and
 under active development. Features and implementation specifics will change
 before their initial general availability release.
 
-{% if_version gte: 2.4.x %}
-## Supported Gateway API Features
+{% if_version gte:2.4.x %}
+## Supported Gateway API Resources
 
-Currently, Kong's implementation of Gateway API supports the following resources
-and features:
+Currently, Kong's implementation of Gateway API supports the following resources:
 
-- `Gateway` and `GatewayClass` resource:
-  - Supports one `Gateway` and one `GatewayClass` to be handled by one KIC deployment.
-  - Supports `allowedRoutes.namespaces` filters in listeners.
-  - Supports referencing of cross-namespace `BackendRefs` if a ReferencePolicy permits them.
-- `HTTPRoute` resource:
-  - Supports multiple `BackendRefs` with a round-robin load-balancing strategy applied by default across the `Endpoints` or the `Services`, 
-  and also now support weights of `BackendRefs` to enable more fine-tuning of the load-balancing between those backend services.
-  - Supports exact, prefix, and regular expression matches of `Path` in route matches.
-  - Supports exact and regular expression of `Headers` in route matches.
-  - Supports `Method` in route matches.
-- `TCPRoute` resource:
-  - Supports multiple `BackendRefs` in `TCPRoute` resources for load balancing.
-- `UDPRoute` resource:
-  - Supports multiple `BackendRefs` in `UDPRoute` resources for load balancing.
-- `TLSRoute` resource:
-  - Supports `TLSRoute`.
-
+- `Gateway` and `GatewayClass` ([gateways and gatewayclasses](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses))
+- `HTTPRoute` ([httproutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes))
+- `TCPRoute` ([tcproutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes))
+- `UDPRoute` ([udproutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes))
+- `TLSRoute` ([tlsroutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes))
+{% endif_version %}
+{% if_version gte:2.4.x lte:2.6.x %}
+- `ReferencePolicy` ([referencepolicies](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies))
+{% endif_version %}
+{% if_version gte:2.6.x %}
+- `ReferenceGrant` ([referencegrants](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants))
 {% endif_version %}
 
 
