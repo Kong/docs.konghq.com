@@ -1,5 +1,6 @@
 ---
-title: Support of Gateway APIs
+title: Gateway API Support
+content_type: reference
 content_type: reference
 ---
 
@@ -35,6 +36,7 @@ services.
 ### Unsupported Core Features
 - Does not support `queryParam` in route matches.
 - Does not support `requestRedirect` in filters.
+
 ## TCPRoutes
 
 The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `BackendRefs` in 
