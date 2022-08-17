@@ -1,6 +1,5 @@
 ---
 title: Version Support Policy
-no_version: true
 badge: enterprise
 content-type: reference
 ---
