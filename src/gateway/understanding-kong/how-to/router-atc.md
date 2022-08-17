@@ -66,7 +66,7 @@ Generally, Expressions are evaluated sequentially until a match could be found. 
 will tends to scale linearly as the number of routes increase. Therefore it is desirable to reduce the number of unique routes by leveraging
 the combination capability of the language.
 
-Keep regex usages to a minimum. Regexes are much more expensive to build and execute, and can not be optimized easily. Leveraging the
+Keep regex usages to a minimum. Regular expressions are much more expensive to build and execute, and can not be optimized easily. Leveraging the
 powerful operators provided by the language instead.
 
 ### Examples

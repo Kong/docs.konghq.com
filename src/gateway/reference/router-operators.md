@@ -47,7 +47,7 @@ Example:
 | `tls.sni`  | Server name indication. | String |
 | `http.method` | HTTP methods that match a route. | String |
 | `http.host`  | Lists of domains that match a route. | String |
-| `http.path` | Normalized request path (without query params). | String |
+| `http.path` | Normalized request path (without query parameters). | String |
 | `http.headers.header_name` | Value of header `Header-Name`. Header names are converted to lower case, and `-` are replaced to `_`. | String |
 
 ## String
