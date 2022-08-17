@@ -16,19 +16,19 @@ before their initial general availability release.
 {% if_version gte:2.4.x %}
 ## Supported Gateway API Resources
 
-Currently, Kong's implementation of Gateway API supports the following resources:
+Currently, the {{site.kic_product_name}}'s implementation of the Gateway API supports the following resources:
 
-- `Gateway` and `GatewayClass` ([gateways and gatewayclasses](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses))
-- `HTTPRoute` ([httproutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes))
-- `TCPRoute` ([tcproutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes))
-- `UDPRoute` ([udproutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes))
-- `TLSRoute` ([tlsroutes](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes))
+- [`Gateway` and `GatewayClass`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses)
+- [`HTTPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes)
+- [`TCPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes)
+- [`UDPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes)
+- [`TLSRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes)
 {% endif_version %}
 {% if_version gte:2.4.x lte:2.6.x %}
-- `ReferencePolicy` ([referencepolicies](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies))
+- [`ReferencePolicy`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies)
 {% endif_version %}
 {% if_version gte:2.6.x %}
-- `ReferenceGrant` ([referencegrants](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants))
+- [`ReferenceGrant`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
 {% endif_version %}
 
 
