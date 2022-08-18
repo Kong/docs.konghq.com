@@ -102,15 +102,6 @@ params:
       datatype: string
       description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
       minimum_version: "3.0.x"   
-    - name: service_prefix_in_metric
-      required: false
-      default: false
-      datatype: boolean
-      description: |
-        Indicate whether to add `service.` prefix before `<service_identifier>` in metric name.
-
-        For example, if set to `true`, then `kong.<service_identifier>.request.count` will be `kong.service.<service_identifier>.request.count`.
-      minimum_version: "3.0.x"
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
@@ -119,6 +110,24 @@ params:
 
 ## Metrics
 
+{% if_plugin_version gte:3.0.x %}
+Metric                     | Description | Namespace
+---                        | ---         | ---
+`request_count`            | The number of requests. | `kong.service.<service_identifier>.request.count`
+`request_size`             | The request's body size in bytes. | `kong.service.<service_identifier>.request.size`
+`response_size`            | The response's body size in bytes. | `kong.service.<service_identifier>.response.size`
+`latency`                  | The time interval in milliseconds between the request and response. | `kong.service.<service_identifier>.latency`
+`status_count`             | Tracks each status code returned in a response. | `kong.service.<service_identifier>.status.<status>`
+`unique_users`             | Tracks unique users who made requests to the underlying Service or Route. | `kong.service.<service_identifier>.user.uniques`
+`request_per_user`         | Tracks the request count per Consumer. | `kong.service.<service_identifier>.user.<consumer_identifier>.request.count`
+`upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.service.<service_identifier>.upstream_latency`
+`kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.service.<service_identifier>.kong_latency`
+`status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`
+`status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
+`status_count_per_user_per_route`    | The status code per Consumer per Route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
+`shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
+{% endif_plugin_version %}
+{% if_plugin_version lte:2.8.x %}
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.<service_identifier>.request.count`
@@ -131,10 +140,6 @@ Metric                     | Description | Namespace
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.<service_identifier>.upstream_latency`
 `kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.<service_identifier>.kong_latency`
 `status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` and `kong.<service_identifier>.user.<consumer_identifier>.request.status.total`
-{% if_plugin_version gte:3.0.x %}
-`status_count_per_workspace`         | The status code per workspace. | `kong.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
-`status_count_per_user_per_route`    | The status code per Consumer per Route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
-`shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
 {% endif_plugin_version %}
 
 If a request URI doesn't match any Routes, the following metrics are sent instead:
@@ -192,7 +197,13 @@ Field         | Description                                             | Dataty
 ### {{site.base_gateway}} 3.0.x
 
 * Merged features of the StatsD Advanced plugin into the StatsD plugin. The StatsD plugin now includes the following:
-  * New parameters for StatsD: `hostname_in_prefix`, `udp_packet_size`, `ues_tcp`, `allow_status_codes`, `consumer_identifier_default`, `service_identifier_default`, `workspace_identifier_default`, `service_prefix_in_metric`.
+  * New parameters for StatsD: `hostname_in_prefix`, `udp_packet_size`, `ues_tcp`, `allow_status_codes`, `consumer_identifier_default`, `service_identifier_default`, `workspace_identifier_default`.
   * New metrics: `status_count_per_workspace`, `status_count_per_user_per_route`, `shdict_usage`
   * New metric fields: `service_identifier`, `workspace_identifier`
+
+* Breaking Changes
+  * The metric name that related with the Service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
+  * The metric `kong.<service_identifier>.request.status.<status>.count` from Metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
+  * The metric `*.status.<status>.total` from Metrics `status_count` and `status_count_per_user` has been removed.
+
 {% endif_plugin_version %}
