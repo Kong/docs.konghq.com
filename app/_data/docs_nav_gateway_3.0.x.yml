@@ -235,6 +235,8 @@ items:
             url: /kong-enterprise/developer-portal/
           - text: Enable the Dev Portal
             url: /kong-enterprise/developer-portal/enable-dev-portal
+          - text: How to Publish an API Spec to the Dev Portal
+            url: /kong-enterprise/developer-portal/publish-spec
           - text: Structure and File Types
             url: /kong-enterprise/developer-portal/structure-and-file-types
           - text: Themes Files
@@ -243,8 +245,6 @@ items:
             url: /kong-enterprise/developer-portal/working-with-templates
           - text: Using the Editor
             url: /kong-enterprise/developer-portal/using-the-editor
-          - text: Publish and Consume Services
-            url: /kong-enterprise/developer-portal/dev-portal
           - text: Access and Approval
             items:
               - text: Basic Auth
