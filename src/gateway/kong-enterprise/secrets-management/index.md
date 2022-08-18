@@ -1,6 +1,5 @@
 ---
 title: Secrets Management
-beta: true
 ---
 
 A secret is any sensitive piece of information required for API gateway
@@ -31,7 +30,7 @@ This feature is enabled by default.
 Due to conflicts with previous releases of {{site.base_gateway}},
 the endpoints for secrets management in the
 Admin API have changed from the previous `/vaults-beta` prefix to
-`/vaults` with `vaults_use_new_style_api=on` set in `kong.conf`.
+`/vaults`.
 
 ## Referenceable values
 
@@ -57,14 +56,15 @@ documentation for each plugin to identify the referenceable fields:
 {{site.base_gateway}} supports the following vault backends:
 * Environment variables
 * AWS Secrets Manager
-* Hashicorp Vault
+* GCP Secrets Manager
+* HashiCorp Vault
 
 See the [backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
 for more information about each option.
 
 ## Get started
 
-To test out secrets management, see the following topics:
+For further information on secrets management, see the following topics:
 * [Get started with secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started/)
 * [Backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
 * [Reference format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/)

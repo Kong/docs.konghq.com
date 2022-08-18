@@ -1,12 +1,8 @@
 ---
 title: Get Started with Secrets Management
-beta: true
 ---
 
-This feature is currently in beta state and isn't fully supported. APIs are subject to change.
-
-
-Secrets are generally confidential values that should not appear in plain text in the application. 
+Secrets are generally confidential values that should not appear in plain text in the application.
 There are several products that help you store, retrieve, and rotate these secrets securely.
 {{site.base_gateway}} offers a mechanism to set up references to these secrets which makes your {{site.base_gateway}} installation more secure.
 
@@ -67,6 +63,6 @@ pg_password={vault://env/my-secret-postgres-password}
 Upon startup, {{site.base_gateway}} tries to detect and transparently resolve references.
 
 {:.note}
-> For quick debugging or testing, you can use the [CLI for vaults](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/advanced-usage/#vaults-cli).
+> For quick debugging or testing, you can use the [CLI for vaults](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/#vaults-cli).
 
 See the [Advanced Usage](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage) documentation for more information on the configuration options for each vault backend.

@@ -214,14 +214,16 @@ items:
             url: /kong-enterprise/secrets-management/advanced-usage
           - text: Backends
             items:
+              - text: Overview
+                url: /kong-enterprise/secrets-management/backends
               - text: Environment Variables
                 url: /kong-enterprise/secrets-management/backends/env
               - text: AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/aws-sm
+              - text: Google Secrets Manager
+                url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
-              - text: Google Secrets Manager
-                url: /kong-enterprise/secrets-management/backends/google-sm
           - text: Reference Format
             url: /kong-enterprise/secrets-management/reference-format
       - text: Dynamic Plugin Ordering
