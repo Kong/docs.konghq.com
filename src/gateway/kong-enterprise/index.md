@@ -49,6 +49,38 @@ This functionality provides transparent, symmetric encryption of sensitive data 
 
 See [Keyring and data encryption](/gateway/{{page.kong_version}}/kong-enterprise/db-encryption/) for more information. 
 
+## Roles-based access control (RBAC)
+
+You can configure {{site.base_gateway}}'s [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/) feature using the
+[Admin API](/gateway/{{page.kong_version}}/admin-api/) or [Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac). RBAC allows you to configure the roles and permissions for admin users to access resources in {{site.base_gateway}}.
+
+There are 4 basic entities involving RBAC.
+
+- **User**: The entity interacting with the system. Can be associated with
+  zero, one or more roles.
+- **Role**: Set of permissions. Has a name and can be associated with zero, one or more permissions.
+- **role_endpoint**: A set of enabled or disabled actions (`read`, `create`, `update`, `delete`) for `endpoint`.
+- **role_entity**: A set of enabled or disabled actions (`read`, `create`, `update`, `delete`) for `entity`.
+
+## Workspaces
+
+[Workspaces](/gateway/{{page.kong_version}}/admin-api/workspaces/examples/) provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces. 
+
+## Consumer groups
+
+You can use [consumer groups](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/) to manage custom rate limiting configuration for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and
+apply them to subsets of consumers, instead of managing each consumer
+individually.
+
+For example, you could define three consumer groups:
+* A "gold tier" with 1000 requests per minute
+* A "silver tier" with 10 requests per second
+* A "bronze tier" with 6 requests per second
+
+## Event hooks
+
+{% include_cached /md/enterprise/event-hooks-intro.md %}
+
 ## More information
 
 See [Plugin Compatibility](/hub/compatibility/plugins/) for more information about Enterprise-only plugins.
