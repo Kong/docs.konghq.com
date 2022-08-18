@@ -3,10 +3,12 @@ title: Using Gateway API
 ---
 
 {% if_version gte: 2.6.x %}
-This guide is considered `beta` maturity: it is not intended for use in production systems.
+{:.note}
+> This guide is considered `beta` maturity. It is not intended for use in production systems.
 {% endif_version %}
 {% if_version lte: 2.5.x %}
-This guide is considered `alpha` maturity: it is not intended for use in production systems.
+{:.note}
+> This guide is considered `alpha` maturity. It is not intended for use in production systems.
 {% endif_version %}
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
