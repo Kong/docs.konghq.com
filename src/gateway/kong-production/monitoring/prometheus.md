@@ -126,5 +126,5 @@ curl -Ls get.konghq.com/quickstart | sh -s -- -d
 provides a guide to using [StatsD](https://github.com/statsd/statsd) for monitoring with the 
 [{{site.base_gateway}} Plugin](/hub/kong-inc/statsd/)
 * See the [Tracing API Reference](/gateway/{{page.kong_version}}/kong-production/tracing/api/) for information
-on {{site.base_gateway}}'s tracing capabilites
+on {{site.base_gateway}}'s tracing capabilities 
 
