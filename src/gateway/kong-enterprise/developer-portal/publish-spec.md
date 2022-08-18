@@ -16,7 +16,7 @@ Dev Portal provides a single source of truth for all developers to locate, acces
 
 4. Click **Create File**.
 
-6. Paste the contents of `vitalsSpec.yaml`.
+6. Paste the contents of your API spec.
 
 7. Click **Save Changes**.
 
