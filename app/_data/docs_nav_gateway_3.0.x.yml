@@ -52,7 +52,7 @@ items:
             url: /understanding-kong/glossary
 
   - title: Get Started with Kong
-    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    icon: /assets/images/icons/documentation/icn-learning.svg
     items:
       - text: Overview
         url: /get-started/
@@ -71,7 +71,7 @@ items:
       - text: Workspaces and Teams
         url: /get-started/manage-teams
   - title: Kong in Production
-    icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
       - text: Deployment Topologies
         items:
@@ -186,7 +186,7 @@ items:
       - text: Migrate from OSS to EE
         url: /kong-production/migrate-ce-to-ke
   - title: Kong Enterprise
-    icon: /assets/images/icons/documentation/icn-references-color.svg
+    icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
       - text: Overview
         url: /kong-enterprise/
@@ -375,7 +375,7 @@ items:
         url: /kong-manager/configuring-to-send-email
 
   - title: Develop Custom Plugins
-    icon: /assets/images/icons/documentation/icn-references-color.svg
+    icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
     items:
       - text: Overview
         url: /plugin-development/
@@ -446,7 +446,7 @@ items:
           - text: Running Plugins in Containers
             url: /plugin-development/other/plugins-kubernetes
   - title: Kong Plugins
-    icon: /assets/images/icons/documentation/icn-references-color.svg
+    icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
     items:
       - text: Overview
         url: /kong-plugins/
@@ -488,7 +488,7 @@ items:
       - text: gRPC
         url: /kong-plugins/grpc
   - title: Admin API
-    icon: /assets/images/icons/documentation/icn-references-color.svg
+    icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:
       - text: Introduction to the Kong Admin API
         url: /admin-api/
