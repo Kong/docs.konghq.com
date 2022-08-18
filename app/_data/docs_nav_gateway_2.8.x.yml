@@ -17,13 +17,8 @@
   items:
     - text: Kubernetes
       url: /install-and-run/kubernetes
-    - text: Helm
-      url: /install-and-run/helm
-      items:
-        - text: Helm Quickstart Enterprise
-          url: /install-and-run/helm-quickstart-enterprise
-        - text: Helm Tutorial
-          url: /install-and-run/helm-tutorial
+    - text: Install Kong Gateway with Helm
+      url: /install-and-run/helm-quickstart-enterprise
     - text: OpenShift with Helm
       url: /install-and-run/openshift
     - text: Docker
