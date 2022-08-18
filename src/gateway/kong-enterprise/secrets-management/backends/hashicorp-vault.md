@@ -5,17 +5,17 @@ badge: enterprise
 
 ## Configuration
 
-[Hashicorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
+[HashiCorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
 
 ## Environment variables
 
 ```bash
-export KONG_VAULTS_HCV_PROTOCOL=<protocol(http|https)>
-export KONG_VAULTS_HCV_HOST=<hostname>
-export KONG_VAULTS_HCV_PORT=<portnumber>
-export KONG_VAULTS_HCV_MOUNT=<mountpoint>
-export KONG_VAULTS_HCV_KV=<v1|v2>
-export KONG_VAULTS_HCV_TOKEN=<tokenstring>
+export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
+export KONG_VAULT_HCV_HOST=<hostname>
+export KONG_VAULT_HCV_PORT=<portnumber>
+export KONG_VAULT_HCV_MOUNT=<mountpoint>
+export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_TOKEN=<tokenstring>
 ```
 
 You can also store this information in an entity.
@@ -29,7 +29,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-hashicorp-vault \
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
   --data name="hcv" \
   --data description="Storing secrets in Hashicorp Vault" \
   --data config.protocol="https" \
@@ -44,7 +44,7 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-hashicorp-vault \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-hashicorp-vault \
+http -f PUT :8001/vaults/my-hashicorp-vault \
   name="hcv" \
   description="Storing secrets in Hashicorp Vault" \
   config.protocol="https" \
@@ -52,8 +52,7 @@ http PUT :8001/vaults-beta/my-hashicorp-vault \
   config.port="8200" \
   config.mount="secret" \
   config.kv="v2" \
-  config.token="<mytoken>" \
-  -f 
+  config.token="<mytoken>"
 ```
 
 {% endnavtab %}
@@ -83,7 +82,7 @@ Result:
 
 ## Examples
 
-For example, let's say you've configured a Hashicorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
+For example, let's say you've configured a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
 
 ```text
 vault kv put secret/hello foo=world

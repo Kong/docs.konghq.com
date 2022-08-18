@@ -1,7 +1,7 @@
 ---
 title: Environment Variables Vault
-beta: true
 badge: free
+content-type: how-to
 ---
 
 ## Configuration
@@ -14,7 +14,7 @@ There is no prior configuration needed.
 Define a secret in a environment variable:
 
 ```bash
-export MY_SECRET_VALUE=opensesame
+export MY_SECRET_VALUE=EXAMPLE_VALUE
 ```
 
 We can now reference this secret
@@ -46,7 +46,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-env-vault \
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault \
         --data name=env \
         --data description="Store secrets in environment variables"
 ```
@@ -55,10 +55,9 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-env-vault \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-env-vault \
+http -f PUT :8001/vaults/my-env-vault \
   name="env" \
-  description="Store secrets in environment variables" \
-  -f 
+  description="Store secrets in environment variables"
 ```
 
 {% endnavtab %}
