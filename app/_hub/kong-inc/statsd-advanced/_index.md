@@ -10,6 +10,9 @@ description: |
   daemon by enabling its
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
+  {:.important}
+  > This plugin has been combined with the open-sourced [StatsD](/hub/kong-inc/statsd/) plugin and has been removed since 3.0.x. 
+
   The StatsD Advanced plugin provides
   features not available in the open-source [StatsD](/hub/kong-inc/statsd/) plugin, such as:
   * Ability to choose status codes to log to metrics.
