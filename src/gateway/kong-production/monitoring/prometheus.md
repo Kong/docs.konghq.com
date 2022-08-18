@@ -15,12 +15,12 @@ Prometheus service. Then you will generate sample requests to {{site.base_gatewa
 observe the collected monitoring data.
 
 ### Prerequisites
-This guide assumes each of the following tools are installed locally. 
-* [Docker](https://docs.docker.com/get-docker/) is used to run Kong, the supporting database, 
+This guide assumes the following tools are installed locally:
+* [Docker](https://docs.docker.com/get-docker/) is used to run {{site.base_gateway}}, the supporting database, 
 and Prometheus locally. 
-* [curl](https://curl.se/) is used to send requests to the gateway. Most systems come with `curl` pre-installed.
+* [curl](https://curl.se/) is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
 
-### Guide
+### Configure Prometheus monitoring
 
 1. Run the following command to start {{site.base_gateway}} using Docker:
 
@@ -34,7 +34,7 @@ and Prometheus locally.
    ✔ Kong is ready!
    ```
 
-   The script has also installed a mock service to make testing easier. You will use this 
+   The script installs a mock service to make testing easier. You will use this 
    service later to generate sample metrics. You can send a sample request with:
 
    ```sh
@@ -74,9 +74,9 @@ will begin to scrape metrics data from {{site.base_gateway}}.
       prom/prometheus:latest
    ```
 
-1. Generate sample traffic to the mock service, which allows you to observe 
-   metrics generated from the StatsD plugin. The following command will generate 60 
-   requests over 1 minute. Run the following in a new terminal:
+1. Generate sample traffic to the mock service. This allows you to observe 
+   metrics generated from the StatsD plugin. The following command generates 60 
+   requests over one minute. Run the following in a new terminal:
 
    ```bash
    for _ in {1..60}; do {curl -s localhost:8000/mock/request; sleep 1; } done
@@ -113,7 +113,7 @@ will begin to scrape metrics data from {{site.base_gateway}}.
 
 ### Cleanup
 
-Once you are done experimenting with Prometheus and {{site.base_gateway}}, use the following
+Once you are done experimenting with Prometheus and {{site.base_gateway}}, you can use the following
 commands to stop and remove the services created in this guide:
 
 ```sh
@@ -121,7 +121,7 @@ docker stop kong-quickstart-prometheus
 curl -Ls get.konghq.com/quickstart | sh -s -- -d
 ```
 
-### More Information
+### More information
 * [How to monitor with StatsD](/gateway/{{page.gateway_version}}/kong-production/monitoring/statsd/) 
 provides a guide to using [StatsD](https://github.com/statsd/statsd) for monitoring with the 
 [{{site.base_gateway}} Plugin](/hub/kong-inc/statsd/)
