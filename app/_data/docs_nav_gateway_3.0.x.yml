@@ -52,7 +52,7 @@ items:
             url: /understanding-kong/glossary
 
   - title: Get Started with Kong
-    icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+    icon: /assets/images/icons/documentation/icn-learning.svg
     items:
       - text: Overview
         url: /get-started/
