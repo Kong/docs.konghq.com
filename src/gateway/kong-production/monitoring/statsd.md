@@ -12,13 +12,13 @@ StatsD service. Then you will generate sample requests to {{site.base_gateway}} 
 observe the collected monitoring data.
 
 ### Prerequisites
-This guide assumes each of the following tools are installed locally. 
-* [Docker](https://docs.docker.com/get-docker/) is used to run Kong, the supporting database, and StatsD locally. 
-* [curl](https://curl.se/) is used to send requests to the gateway. Most systems come with `curl` pre-installed.
+This guide assumes the following tools are installed locally:
+* [Docker](https://docs.docker.com/get-docker/) is used to run {{site.base_gateway}}, the supporting database, and StatsD locally. 
+* [curl](https://curl.se/) is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
 * [Netcat](http://netcat.sourceforge.net/) installed as `nc` on the `PATH`. `nc` is used to send requests 
-  to the StatsD management interface. Many systems come with `nc` pre-installed.
+  to the StatsD management interface. `nc` is pre-installed on many systems.
 
-### Guide
+### Configure StatsD monitoring
 
 1. Run the following command to start {{site.base_gateway}} using Docker:
 
@@ -32,7 +32,7 @@ This guide assumes each of the following tools are installed locally.
    ✔ Kong is ready!
    ```
 
-   The script has also installed a mock service to make testing easier. You will use this 
+   The script also installs a mock service to make testing easier. You will use this 
    service later to generate metrics data. You can send a sample request with:
 
    ```sh
@@ -59,9 +59,9 @@ This guide assumes each of the following tools are installed locally.
 
    You should receive a JSON response with the details of the installed plugin.
 
-1. Generate sample traffic to the mock service. This will allow you to observe 
-   metrics generated from the StatsD plugin. The following command will generate 60 
-   requests over 1 minute. Run the following in a new terminal:
+1. Generate sample traffic to the mock service. This allows you to observe 
+   metrics generated from the StatsD plugin. The following command generates 60 
+   requests over one minute. Run the following in a new terminal:
 
    ```sh
    for _ in {1..60}; do {curl localhost:8000/mock/request; sleep 1; } done
@@ -87,12 +87,12 @@ This guide assumes each of the following tools are installed locally.
    END
    ```
 
-The [Kong Hub StatsD Plugin](/hub/kong-inc/statsd/) 
-contains the full documentation on the plugin usage and configuration
+See the [StatsD plugin](/hub/kong-inc/statsd/) 
+documentation for more information about how to use and configure the plugin.
 
-### Cleanup
+### Remove the test StatsD service 
 
-Once you are done experimenting with StatsD and {{site.base_gateway}}, use the following
+Once you are done experimenting with StatsD and {{site.base_gateway}}, you can use the following
 commands to stop and remove the services created in this guide:
 
 ```sh
@@ -100,9 +100,9 @@ docker stop kong-quickstart-statsd
 curl -Ls get.konghq.com/quickstart | sh -s -- -d
 ```
 
-### More Information
-* [How to monitor with Prometheus](/gateway/{{page.gateway_version}}/kong-production/monitoring/prometheus/) 
-provides a guide to using [Prometheus](https://prometheus.io/docs/introduction/overview/) for monitoring with the 
-[{{site.base_gateway}} Plugin](/hub/kong-inc/prometheus/)
+### More information
+* [How to monitor with Prometheus](/gateway/{{page.kong_version}}/kong-production/monitoring/prometheus/) 
+describes how to use [Prometheus](https://prometheus.io/docs/introduction/overview/) to monitor {{site.base_gateway}} using the  
+[Prometheus plugin](/hub/kong-inc/prometheus/).
 * See the [Tracing API Reference](/gateway/{{page.kong_version}}/kong-production/tracing/api/) for information
-on {{site.base_gateway}}'s tracing capabilites
+about {{site.base_gateway}}'s tracing capabilities.
