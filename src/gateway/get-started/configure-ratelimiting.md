@@ -6,7 +6,7 @@ content-type: tutorial
 
 ## What is rate limiting?
 
-Rate limiting is used to control the rate of requests sent to an upstream service. It can be used to prevent DoS attacks, limit web scraping, and other forms of overuse. Without rate limiting, a user may make request as often as they like, this leads to traffic spikes and it can impact other users of your upstream services. In {{site.base_gateway}} rate limiting allows you to set parameters that limit requests to your upstream service. 
+Rate limiting is used to control the rate of requests sent to an upstream service. It can be used to prevent DoS attacks, limit web scraping, and other forms of overuse. Without rate limiting, a user may make requests as often as they like, this leads to traffic spikes and it can impact other users of your upstream services. In {{site.base_gateway}} rate limiting allows you to set parameters that limit requests to your upstream service. 
 
 
 ## The rate limiting plugin
@@ -14,7 +14,7 @@ Rate limiting is used to control the rate of requests sent to an upstream servic
 {{site.base_gateway}} manages rate limiting through the use of Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting). The rate limiting plugin has an open source and an enterprise version, with the enterprise version giving you access to features like [sliding window algorithm support](https://en.wikipedia.org/wiki/Sliding_window_protocol), and Redis support. 
 
 
-The rate limiting plug-ins limit how often each user can call the API. This protects them from inadvertent or malicious overuse. Without rate limiting, each user may request as often as they like, which can lead to “spikes” of requests that starve other consumers. After rate limiting is enabled, they are limited to a fixed number of requests per second. Kong offers an open source and Enterprise version of the rate limiting plug-in with the Enterprise version providing support for the sliding window algorithm to prevent the API from being overloaded near window boundaries and adds Redis support for greater performance. For this guide we will use the Enterprise version of plug-in.  More details on the advanced rate limiting plug-in can be found here.
+The rate limiting plug-ins limit how often each user can call the API. This protects them from inadvertent or malicious overuse. Without rate limiting, each user may request as often as they like, which can lead to “spikes” of requests that starve other consumers. After rate limiting is enabled, they are limited to a fixed number of requests per second. Kong offers an open source and an Enterprise version of the rate limiting plug-in, with the Enterprise version providing support for the sliding window algorithm to prevent the API from being overloaded near window boundaries, and adds Redis support for greater performance. For this guide we will use the Enterprise version of plug-in.  More details on the advanced rate limiting plug-in can be found here.
 
 
 Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting) lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
@@ -54,7 +54,7 @@ curl -i -X GET http://localhost:8000/mock/request
 {% endnavtab %}
 {% navtab Web browser %}
 
-Or with follow these instructions from your web browser:
+Or you can follow these instructions from your web browser:
 
 1. Enter `localhost:8000/mock` and refresh your browser six times.
     After the sixth request, you’ll receive an error message.
