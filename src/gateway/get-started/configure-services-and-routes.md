@@ -235,5 +235,5 @@ You can use `cURL` or access the URL from your web browser because {{site.base_g
 
 ### Next steps 
 
-The next part of this tutorial walks you through how and why to [configure rate limiting](/gateway/latest/get-started/protect-services/).
+The next tutorial in this series walks you through [rate limiting](/gateway/latest/get-started/configure-ratelimiting/).
 
