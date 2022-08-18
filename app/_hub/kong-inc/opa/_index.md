@@ -91,8 +91,8 @@ params:
       datatype: boolean
       default: true
       description: |
-        If set to true, the OPA certificate will be verified according to the CA certificates specified in [lua_ssl_trusted_certificate](https://docs.konghq.com/gateway/latest/reference/configuration).
-
+        If set to true, the OPA certificate will be verified according to the CA certificates specified in [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate).
+      minimum_version: "3.0.x"
 ---
 
 ## Usage
