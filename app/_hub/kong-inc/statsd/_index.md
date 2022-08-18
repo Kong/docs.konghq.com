@@ -202,7 +202,7 @@ Field         | Description                                             | Dataty
   * New metric fields: `service_identifier`, `workspace_identifier`
 
 * Breaking changes
-  * The metric name that related with the Service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
+  * The metric name that is related to the service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
   * The metric `kong.<service_identifier>.request.status.<status>.count` from metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
   * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
 
