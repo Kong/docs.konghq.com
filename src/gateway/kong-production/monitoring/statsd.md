@@ -7,13 +7,13 @@ content_type: how-to
 and aggreates performance metrics by listening on the network for simple 
 text based statistics data published by applications. 
 
-This guide will help you setup a test {[site.base_gateway} and
+This guide will help you setup a test {{site.base_gateway}} and
 StatsD service. Then you will generate sample requests to {{site.base_gateway}} and
 observe the collected monitoring data.
 
 ### Prerequisites
 This guide assumes each of the following tools are installed locally. 
-* [Docker](https://docs.docker.com/get-docker/) is used to run Kong and the supporting database locally. 
+* [Docker](https://docs.docker.com/get-docker/) is used to run Kong, the supporting database, and StatsD locally. 
 * [curl](https://curl.se/) is used to send requests to the gateway. Most systems come with `curl` pre-installed.
 * [Netcat](http://netcat.sourceforge.net/) installed as `nc` on the `PATH`. `nc` is used to send requests 
   to the StatsD management interface. Many systems come with `nc` pre-installed.
@@ -33,7 +33,7 @@ This guide assumes each of the following tools are installed locally.
    ```
 
    The script has also installed a mock service to make testing easier. You will use this 
-   service later to generate monitoring data. You can send a sample request with:
+   service later to generate metrics data. You can send a sample request with:
 
    ```sh
    curl localhost:8000/mock/requests
