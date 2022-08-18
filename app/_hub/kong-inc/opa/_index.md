@@ -86,6 +86,13 @@ params:
       default: false
       description: |
         If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be JSON decoded and the decoded struct is included as input to OPA.
+    - name: ssl_verify
+      required: true
+      datatype: boolean
+      default: true
+      description: |
+        If set to true, the OPA certificate will be verified according to the CA certificates specified in [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate).
+      minimum_version: "3.0.x"
 ---
 
 ## Usage
