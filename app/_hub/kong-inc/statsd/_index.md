@@ -118,13 +118,13 @@ Metric                     | Description | Namespace
 `response_size`            | The response's body size in bytes. | `kong.service.<service_identifier>.response.size`
 `latency`                  | The time interval in milliseconds between the request and response. | `kong.service.<service_identifier>.latency`
 `status_count`             | Tracks each status code returned in a response. | `kong.service.<service_identifier>.status.<status>`
-`unique_users`             | Tracks unique users who made requests to the underlying Service or Route. | `kong.service.<service_identifier>.user.uniques`
-`request_per_user`         | Tracks the request count per Consumer. | `kong.service.<service_identifier>.user.<consumer_identifier>.request.count`
+`unique_users`             | Tracks unique users who made requests to the underlying Service or route. | `kong.service.<service_identifier>.user.uniques`
+`request_per_user`         | Tracks the request count per consumer. | `kong.service.<service_identifier>.user.<consumer_identifier>.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.service.<service_identifier>.upstream_latency`
 `kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.service.<service_identifier>.kong_latency`
-`status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`
+`status_count_per_user`    | Tracks the status code per consumer per service. | `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`
 `status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
-`status_count_per_user_per_route`    | The status code per Consumer per Route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
+`status_count_per_user_per_route`    | The status code per consumer per route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
 {% endif_plugin_version %}
 {% if_plugin_version lte:2.8.x %}
@@ -201,9 +201,9 @@ Field         | Description                                             | Dataty
   * New metrics: `status_count_per_workspace`, `status_count_per_user_per_route`, `shdict_usage`
   * New metric fields: `service_identifier`, `workspace_identifier`
 
-* Breaking Changes
+* Breaking changes
   * The metric name that related with the Service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
-  * The metric `kong.<service_identifier>.request.status.<status>.count` from Metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
-  * The metric `*.status.<status>.total` from Metrics `status_count` and `status_count_per_user` has been removed.
+  * The metric `kong.<service_identifier>.request.status.<status>.count` from metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
+  * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
 
 {% endif_plugin_version %}
