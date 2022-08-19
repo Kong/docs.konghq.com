@@ -1,33 +1,38 @@
 {% assign crumbs = include.url | split : '/' %}
 
+{% assign version = include.kong_version %}
+{% if include.is_latest %}
+  {% assign version = "latest" %}
+{% endif %}
+
 {% assign offset = 3 %}
 {% if include.no_version == true %}
   {% assign offset = 2 %}
 {% endif %}
 
 {% if include.edition == 'enterprise' %}
-  {% capture product_url %}/enterprise/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}{% endcapture %}
+  {% capture product_url %}/enterprise/{% unless include.no_version == true %}{{version}}/{% endunless %}{% endcapture %}
   {% capture product_title %}{{site.ee_product_name}}{% endcapture %}
 {% elsif include.edition == 'konnect' %}
   {% capture product_url %}/konnect/{% endcapture %}
   {% capture product_title %}{{site.konnect_saas}}{% endcapture %}
 {% elsif include.edition == 'mesh' %}
-  {% capture product_url %}/mesh/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}{% endcapture %}
+  {% capture product_url %}/mesh/{% unless include.no_version == true %}{{version}}/{% endunless %}{% endcapture %}
   {% capture product_title %}{{site.mesh_product_name}}{% endcapture %}
 {% elsif include.edition == 'deck' %}
   {% capture product_url %}/deck/{% endcapture %}
   {% capture product_title %}decK{% endcapture %}
 {% elsif include.edition == 'kubernetes-ingress-controller' %}
-  {% capture product_url %}/kubernetes-ingress-controller/{{include.kong_version}}/{% endcapture %}
+  {% capture product_url %}/kubernetes-ingress-controller/{{version}}/{% endcapture %}
   {% capture product_title %}{{site.kic_product_name}}{% endcapture %}
 {% elsif include.edition == 'gateway-oss' %}
-  {% capture product_url %}/gateway-oss/{{include.kong_version}}/{% endcapture %}
+  {% capture product_url %}/gateway-oss/{{version}}/{% endcapture %}
   {% capture product_title %}{{ site.ce_product_name }}{% endcapture %}
 {% elsif include.edition == 'gateway' %}
-  {% capture product_url %}/gateway/{{include.kong_version}}/{% endcapture %}
+  {% capture product_url %}/gateway/{{version}}/{% endcapture %}
   {% capture product_title %}{{ site.base_gateway }}{% endcapture %}
 {% elsif include.edition == 'getting-started-guide' %}
-  {% capture product_url %}/getting-started-guide/{{include.kong_version}}/overview{% endcapture %}
+  {% capture product_url %}/getting-started-guide/{{version}}/overview{% endcapture %}
   {% capture product_title %}Get Started with Kong Gateway{% endcapture %}
 {% elsif include.edition == 'contributing' %}
   {% capture product_url %}/contributing/{% endcapture %}
