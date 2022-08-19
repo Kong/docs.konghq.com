@@ -30,7 +30,8 @@ With this guide you will deploy a Docker Desktop Kubernetes cluster and then use
 
 Set your kubeconfig context and verify with the following commands.
 
-       kubectl config use-context docker-desktop && kubectl cluster-info
+    kubectl config use-context docker-desktop && kubectl cluster-info
+
 
 {% endnavtab %}
 {% navtab Kind Kubernetes %}
@@ -51,29 +52,29 @@ With this guide you can deploy a Kind Kubernetes cluster and then use Helm to in
 
 A Kind config file is required to build a local cluster listening locally on ports `80` and `443`. Starting from the `bash` command, and ending with the `EOF"` line, highlight and copy this entire text block, then paste it into your terminal.
 
-       bash -c "cat <<EOF > /tmp/kind-config.yaml && kind create cluster --config /tmp/kind-config.yaml
-       apiVersion: kind.x-k8s.io/v1alpha4
-       kind: Cluster
-       name: kong
-       networking:
-         apiServerAddress: "0.0.0.0"
-         apiServerPort: 16443
-       nodes:
-         - role: control-plane
-           extraPortMappings:
-           - listenAddress: "0.0.0.0"
-             protocol: TCP
-             hostPort: 80
-             containerPort: 80
-           - listenAddress: "0.0.0.0"
-             protocol: TCP
-             hostPort: 443
-             containerPort: 443
-       EOF"
+    bash -c "cat <<EOF > /tmp/kind-config.yaml && kind create cluster --config /tmp/kind-config.yaml
+    apiVersion: kind.x-k8s.io/v1alpha4
+    kind: Cluster
+    name: kong
+    networking:
+      apiServerAddress: "0.0.0.0"
+      apiServerPort: 16443
+    nodes:
+      - role: control-plane
+        extraPortMappings:
+        - listenAddress: "0.0.0.0"
+          protocol: TCP
+          hostPort: 80
+          containerPort: 80
+        - listenAddress: "0.0.0.0"
+          protocol: TCP
+          hostPort: 443
+          containerPort: 443
+    EOF"
 
 Set your kubeconfig context and verify with the following commands.
 
-        kubectl config use-context kind-kong && kubectl cluster-info
+    kubectl config use-context kind-kong && kubectl cluster-info
 
 {% endnavtab %}
 {% navtab Kubernetes in the Cloud%}
@@ -95,7 +96,7 @@ This path will guide you through deploying {{site.base_gateway}} to a cloud host
 
 Verify your kubeconfig context is set correctly with the following command.
 
-       kubectl cluster-info
+    kubectl cluster-info
 
 ## Prepare your Kong Helm Chart values.yaml
 We will need to inject your custom Domain Name into the Helm Values file we will configure the {{site.base_gateway}} deployment with.
@@ -137,14 +138,14 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
 {% navtabs %}
 {% navtab Kong Enterprise Free Mode%}
 
-       kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
+    kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
 
 {% endnavtab %}
 {% navtab Kong Enterprise licensed Mode%}
 
    >This command must be run in the directory that contains your `license.json` file.
 
-       kubectl create secret generic kong-enterprise-license --from-file=license=license.json -n kong --dry-run=client -o yaml | kubectl apply -f -
+    kubectl create secret generic kong-enterprise-license --from-file=license=license.json -n kong --dry-run=client -o yaml | kubectl apply -f -
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -313,12 +314,12 @@ You can configure Kong via the Admin API with [decK](https://docs.konghq.com/dec
 {% navtabs codeblock %}
 {% navtab cURL %}
 
-       curl --silent --insecure -X GET https://kong.127-0-0-1.nip.io/api -H 'kong-admin-token:kong'
+    curl --silent --insecure -X GET https://kong.127-0-0-1.nip.io/api -H 'kong-admin-token:kong'
 
 {% endnavtab %}
 {% navtab HTTPie %}
 
-       http --verify=no get https://kong.127-0-0-1.nip.io/api kong-admin-token:kong
+    http --verify=no get https://kong.127-0-0-1.nip.io/api kong-admin-token:kong
 
 {% endnavtab %}
 {% endnavtabs %}
