@@ -23,18 +23,18 @@ curl -i -X POST http://localhost:8001/plugins \
 
 ```
 
-If configuration was successful, you will receive a `201` response code. The request you sent configured Proxy Caching for all `application/json` content, with a time to live (TTL) of 30 seconds. The final option `config.strategy=memory` specifies where the cache will be stored, you can read more about this option in the strategy section of the [Proxy Caching plugin](/hub/kong-inc/proxy-cache/) documentation.Because this request did not specify a route or a service, {{site.base_gateway}} has applied this configuration globally across all services and routes. The Proxy Caching plugin can also be configured at service-level, route-level, or consumer-level. You can read more about the other configurations and how to apply them in the [Proxy Caching plugin](/hub/kong-inc/proxy-cache/) page.
+If configuration was successful, you will receive a `201` response code. The request you sent configured Proxy Caching for all `application/json` content, with a time to live (TTL) of 30 seconds. The final option `config.strategy=memory` specifies where the cache will be stored. You can read more about this option in the strategy section of the [Proxy Caching plugin](/hub/kong-inc/proxy-cache/) documentation. Because this request did not specify a route or a service, {{site.base_gateway}} has applied this configuration globally across all services and routes. The Proxy Caching plugin can also be configured at service-level, route-level, or consumer-level. You can read more about the other configurations and how to apply them in the [Proxy Caching plugin](/hub/kong-inc/proxy-cache/) page.
 
 ## Validate the configuration
 
-You can check that the Proxy Caching plugin is working by checking by sending a `GET` request to the route that was created in the[configure services and routes](/gateway/latest/get-started/configure-services-and-routes) guide and examining the headers. If you did not follow the guide, edit the example to reflect your configuration. Send the following request once: 
+You can check that the Proxy Caching plugin is working by sending a `GET` request to the route that was created in the [configure services and routes](/gateway/latest/get-started/configure-services-and-routes) guide and examining the headers. If you did not follow the guide, edit the example to reflect your configuration. Send the following request once: 
 
 
 ```
 curl -i -X GET http://localhost:8000/mock/request
 ```
 
-Depending on your configuration, the response header will be composed of many different fields. Notice the integer values in the following fields
+Depending on your configuration, the response header will be composed of many different fields. Notice the integer values in the following fields:
 
 * `X-Kong-Proxy-Latency`
 
@@ -58,11 +58,11 @@ In the initial request the value for `config.content_type` was set to "applicati
 
 ## Time to live
 
-Time to live (TTL) governs the refresh rate of cached content, this ensures that people requesting information from your upstream services aren't served old content. A TTL of 30 seconds means that content is refreshed every 30 seconds. TTL rules should vary based on the resource type of the content the upstream service is serving. 
+Time to live (TTL) governs the refresh rate of cached content, which ensures that people requesting information from your upstream services aren't served old content. A TTL of 30 seconds means that content is refreshed every 30 seconds. TTL rules should vary based on the resource type of the content the upstream service is serving. 
 
 * Static files that are rarely updated should have a longer TTL. 
 
-* Dynamic files can use shorter TTL's to account for the complexity in updating. 
+* Dynamic files can use shorter TTLs to account for the complexity in updating. 
 
 Kong can store resource entities in the storage engine longer than the prescribed `cache_ttl` or `Cache-Control`values indicate. This allows {{site.base_gateway}} to maintain a cached copy of a resource past its expiration. This allows clients capable of using max-age and max-stale headers to request stale copies of data if necessary.
 
