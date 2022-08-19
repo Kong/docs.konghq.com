@@ -32,16 +32,20 @@ of {{site.base_gateway}}'s execution life-cycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
 
-| Function name   | Phase             | Description
-|-----------------|-------------------|------------
-| `init_worker`   | [init_worker]     | Executed upon every Nginx worker process's startup.
-| `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
-| `rewrite`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
-| `access`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.
-| `response` | [access] | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
-| `header_filter` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.
-| `body_filter`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `log`           | [log]             | Executed when the last response byte has been sent to the client.
+| Function name       | Phase             | Request Protocol        | Description
+|---------------------|-------------------|-------------------------|------------
+| `init_worker`       | [init_worker]     | *                       | Executed upon every Nginx worker process's startup.
+| `certificate`       | [ssl_certificate] | https, grpcs, wss       | Executed during the SSL certificate serving phase of the SSL handshake.
+| `rewrite`           | [rewrite]         | *                       | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
+| `access`            | [access]          | http(s), grpc(s), ws(s) | Executed for every request from a client and before it is being proxied to the upstream service.
+| `ws_handshake`      | [access]          | ws(s)                   | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `response`          | [access]          | http(s), grpc(s)        | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `header_filter`     | [header_filter]   | http(s), grpc(s)        | Executed when all response headers bytes have been received from the upstream service.
+| `ws_client_frame`   | [content]         | ws(s)                   | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` | [content]         | ws(s)                   | Executed for each WebSocket message received from the upstream/service
+| `body_filter`       | [body_filter]     | http(s), grpc(s)        | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `log`               | [log]             | http(s), grpc(s)        | Executed when the last response byte has been sent to the client.
+| `ws_close`          | [log]             | ws(s)                   | Executed after the WebSocket connection has been terminated
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -79,6 +83,7 @@ considered closed and the `log` function is executed.
 [log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
 [enable_buffering]: /gateway/{{page.kong_version}}/pdk/kong.service.request/#kongservicerequestenable_buffering
+[content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
 
 
 ## handler.lua specifications
@@ -140,13 +145,28 @@ function CustomHandler:rewrite(config)
 end
 
 function CustomHandler:access(config)
-  -- Implement logic for the rewrite phase here (http)
+  -- Implement logic for the access phase here (http)
   kong.log("access")
+end
+
+function CustomHandler:ws_handshake(config)
+  -- Implement logic for the WebSocket handshake here
+  kong.log("ws_handshake")
 end
 
 function CustomHandler:header_filter(config)
   -- Implement logic for the header_filter phase here (http)
   kong.log("header_filter")
+end
+
+function CustomHandler:ws_client_frame(config)
+  -- Implement logic for WebSocket client messages here
+  kong.log("ws_client_frame")
+end
+
+function CustomHandler:ws_upstream_frame(config)
+  -- Implement logic for WebSocket upstream messages here
+  kong.log("ws_upstream_frame")
 end
 
 function CustomHandler:body_filter(config)
@@ -157,6 +177,11 @@ end
 function CustomHandler:log(config)
   -- Implement logic for the log phase here (http/stream)
   kong.log("log")
+end
+
+function CustomHandler:ws_close(config)
+  -- Implement logic for WebSocket post-connection here
+  kong.log("ws_close")
 end
 
 -- return the created table, so that Kong can execute it
@@ -240,6 +265,87 @@ local CustomHandler = {
 You don't need to add a `:new()` method or call any of the `CustomHandler.super.XXX:(self)`
 methods.
 
+## WebSocket Plugin Development {:.badge .enterprise}
+
+<div class="alert alert-warning">
+  <strong>Warning</strong>The WebSocket PDK is under active development and is
+  considered unstable at this time. Backwards-incompatible changes may be made
+  to these functions.
+</div>
+
+### Handler Functions
+
+Requests to services with the `ws` or `wss` protocol take a different path through
+the proxy than regular http requests. Therefore, there are some differences in behavior
+that must be accounted for when developing plugins for them.
+
+The following handlers are _not_ executed for WebSocket services:
+ - `access`
+ - `response`
+ - `header_filter`
+ - `body_filter`
+ - `log`
+
+The following handlers are _unique to_ WebSocket services:
+  - `ws_handshake`
+  - `ws_client_frame`
+  - `ws_upstream_frame`
+  - `ws_close`
+
+The following handlers are executed for both WebSocket _and_ non-Websocket services:
+  - `init_worker`
+  - `certificate` (TLS/SSL requests only)
+  - `rewrite`
+
+Even with these differences, it is possible to develop plugins that support both WebSocket
+and non-WebSocket services. Example:
+
+```lua
+-- handler.lua
+--
+-- I am a plugin that implements both WebSocket and non-WebSocket handlers.
+--
+-- I can be enabled for ws/wss services, http/https/grpc/grpcs services, or
+-- even as global plugin.
+local MultiProtoHandler = {
+  VERSION = "0.1.0",
+  PRIORITY = 1000,
+}
+
+function MultiProtoHandler:access()
+  kong.ctx.plugin.request_type = "non-WebSocket"
+end
+
+function MultiProtoHandler:ws_handshake()
+  kong.ctx.plugin.request_type = "WebSocket"
+end
+
+
+function MultiProtoHandler:log()
+  kong.log("finishing ", kong.ctx.plugin.request_type, " request")
+end
+
+-- the `ws_close` handler for this plugin does not implement any WebSocket-specific
+-- business logic, so it can simply be aliased to the `log` handler
+MultiProtoHandler.ws_close = MultiProtoHandler.log
+
+return MultiProtoHandler
+```
+
+As seen above, the `log` and `ws_close` handlers are parallel to each other. In
+many cases one can simply be aliased to the other without having to write any
+additional code. The `access` and `ws_handshake` handlers are also very similar in
+this regard. The notable difference lies in which PDK functions are/aren't availble
+in each context. For instance, the `kong.request.get_body()` PDK function cannot be
+used in an `access` handler because it is fundamentally incompatible with this kind
+of request.
+
+
+### WebSocket Requests to non-WebSocket Services
+
+When WebSocket traffic is proxied via an http/https service, it is treated as a
+non-WebSocket request. Therefore, the http handlers (`access`, `header_filter`, etc)
+will be executed and _not_ the WebSocket handlers (`ws_handshake`, `ws_close`, etc).
 
 ## Plugin Development Kit
 
