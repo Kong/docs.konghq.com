@@ -49,14 +49,16 @@
       <a href="{{ product_url }}">{{ product_title }}</a>
     </li>
 
+    {% assign breadcrumb_url = product_url %}
     {% for crumb in crumbs offset: offset %}
       {% assign title = crumb | replace:'-',' ' | remove:'.md' | capitalize | strip %}
 
       {% if title == "Servicehub" %}{% assign title = "Service Hub" %}{% endif %}
 
       {% unless forloop.last %}
-      {% capture breadcrumb_url %}{{ product_url }}{{ crumb }}/{% endcapture %}
+      {% capture breadcrumb_url %}{{ breadcrumb_url }}{{ crumb }}/{% endcapture %}
       {% capture breadcrumb_exists %}{% page_exists {{breadcrumb_url}} %}{% endcapture %}
+
         <li class="breadcrumb-item">
           {% if breadcrumb_exists == 'true' %}
           <a href="{{ breadcrumb_url }}">{{ title }}</a>
