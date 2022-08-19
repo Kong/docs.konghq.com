@@ -71,7 +71,18 @@ For example, you could define three consumer groups:
 
 ## Event hooks
 
-{% include_cached /md/enterprise/event-hooks-intro.md %}
+Event hooks are outbound calls from {{site.base_gateway}}. With event hooks, the {{site.base_gateway}} can communicate with target services or resources, letting the target know that an event was triggered. When an event is triggered in the {{site.base_gateway}}, it calls a URL with information about that event. Event hooks add a layer of configuration for subscribing to worker events using the admin interface. Worker events are integrated into {{site.base_gateway}} to communicate within the gateway context. For example, when an entity is created, the {{site.base_gateway}} fires an event with information about the entity. Parts of the {{site.base_gateway}} codebase can subscribe to these events, then process the events using callbacks.
+
+In {{site.base_gateway}}, these callbacks can be defined using one of the following handlers:
+
+* webhook
+* webhook-custom
+* log
+* lambda
+
+You can configure event hooks through the Admin API.
+
+[Learn more about event hooks →](/gateway/{{page.kong_version}}/admin-api/event-hooks/reference/)
 
 ## More information
 
