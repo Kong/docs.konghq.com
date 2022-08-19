@@ -63,7 +63,7 @@ items:
       - text: Configure Rate Limiting
         url: /get-started/configure-ratelimiting
       - text: Configure Proxy Caching
-        url: /get-started/improve-performance
+        url: /get-started/proxy-caching
       - text: Configure Key Authentication
         url: /get-started/secure-services
       - text: Configure Load-Balancing

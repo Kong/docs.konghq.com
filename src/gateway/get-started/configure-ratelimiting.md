@@ -1,5 +1,5 @@
 ---
-title: Protect your Services
+title: Configure Rate Limiting
 content-type: tutorial
 ---
 
