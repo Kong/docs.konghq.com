@@ -50,8 +50,14 @@
       {% if title == "Servicehub" %}{% assign title = "Service Hub" %}{% endif %}
 
       {% unless forloop.last %}
+      {% capture breadcrumb_url %}{{ product_url }}{{ crumb }}/{% endcapture %}
+      {% capture breadcrumb_exists %}{% page_exists {{breadcrumb_url}} %}{% endcapture %}
         <li class="breadcrumb-item">
-          <a href="{{ product_url }}{{ crumb }}">{{ title }}</a>
+          {% if breadcrumb_exists == 'true' %}
+          <a href="{{ breadcrumb_url }}">{{ title }}</a>
+          {% else %}
+          {{ title }}
+          {% endif %}
         </li>
       {% endunless %}
     {% endfor %}
