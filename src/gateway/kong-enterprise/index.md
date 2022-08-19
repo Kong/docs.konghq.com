@@ -61,9 +61,9 @@ This functionality provides transparent, symmetric encryption of sensitive data 
 
 ## Roles-based access control (RBAC)
 
-You can configure {{site.base_gateway}} users, roles, and permissions with role-based access control (RBAC), either through the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/) or with [Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac). RBAC lets you manage access to resources in {{site.base_gateway}}.
+You can configure {{site.base_gateway}} users, roles, and permissions with role-based access control (RBAC), either through the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/) or with [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac). RBAC lets you manage access to resources in {{site.base_gateway}}.
 
-[Manage teams with RBAC &rarr;](/gateway/{{page.kong_version}}/configure/auth/rbac)
+[Manage teams with RBAC &rarr;](/gateway/{{page.kong_version}}/kong-manager/auth/rbac)
 
 ## Workspaces
 
@@ -101,4 +101,4 @@ You can configure event hooks through the Admin API.
 
 ## More information
 
-See [Plugin Compatibility](/hub/compatibility/plugins/) for more information about Enterprise-only plugins.
+See [Plugin Compatibility](/hub/plugins/compatibility/) for more information about Enterprise-only plugins.
