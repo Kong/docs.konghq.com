@@ -9,35 +9,22 @@ text based statistics data published by applications.
 
 This guide will help you setup a test {{site.base_gateway}} and
 StatsD service. Then you will generate sample requests to {{site.base_gateway}} and
-observe the collected monitoring data.
+observe the collected monitoring data. 
 
 ### Prerequisites
-This guide assumes the following tools are installed locally:
-* [Docker](https://docs.docker.com/get-docker/) is used to run {{site.base_gateway}}, the supporting database, and StatsD locally. 
-* [curl](https://curl.se/) is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
-* [Netcat](http://netcat.sourceforge.net/) installed as `nc` on the `PATH`. `nc` is used to send requests 
-  to the StatsD management interface. `nc` is pre-installed on many systems.
-
-### Configure StatsD monitoring
-
-1. Run the following command to start {{site.base_gateway}} using Docker:
-
+* A test {{site.base_gateway}} instance is installed using the following script:
    ```sh
    curl -Ls get.konghq.com/quickstart | sh -s
    ```
+   This script installs the test instance and a mock service that is used in this guide. 
+   {:.note}
+   > **Note:** This guide's instructions use a test {{site.base_gateway}} instance to demonstrate how the StatsD plugin can be used to collect metrics. If you want to use an existing {{site.base_gateway}} instance for this guide, you must modify the connection information in the commands.
+* [Docker](https://docs.docker.com/get-docker/) is installed locally. It is used to run {{site.base_gateway}}, the supporting database, and StatsD locally. 
+* [curl](https://curl.se/) is installed locally. It is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
+* [Netcat](http://netcat.sourceforge.net/) is installed locally as `nc` on the `PATH`. `nc` is used to send requests 
+  to the StatsD management interface. `nc` is pre-installed on many systems.
 
-   You should see the following message when {{site.base_gateway}} is ready:
-
-   ```text
-   ✔ Kong is ready!
-   ```
-
-   The script also installs a mock service to make testing easier. You will use this 
-   service later to generate metrics data. You can send a sample request with:
-
-   ```sh
-   curl localhost:8000/mock/requests
-   ```
+### Configure StatsD monitoring
 
 1. Run a StatsD container to capture monitoring data:
 
