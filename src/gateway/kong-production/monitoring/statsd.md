@@ -12,19 +12,23 @@ StatsD service. Then you will generate sample requests to {{site.base_gateway}} 
 observe the collected monitoring data. 
 
 ### Prerequisites
-* A test {{site.base_gateway}} instance is installed using the following script:
-   ```sh
-   curl -Ls get.konghq.com/quickstart | sh -s -- -m
-   ```
-   The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
-   {:.note}
-   > **Note:** This guide's instructions use a test {{site.base_gateway}} instance to demonstrate how the StatsD plugin can be used to collect metrics. If you want to use an existing {{site.base_gateway}} instance for this guide, you must modify the connection information in the commands.
 * [Docker](https://docs.docker.com/get-docker/) is installed locally. It is used to run {{site.base_gateway}}, the supporting database, and StatsD locally. 
+
+   If you will be using an existing {{site.base_gateway}} instance instead of the test instance, you may need configure Docker to ensure features like network connectivity function correctly.  
 * [curl](https://curl.se/) is installed locally. It is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
 * [Netcat](http://netcat.sourceforge.net/) is installed locally as `nc` on the `PATH`. `nc` is used to send requests 
   to the StatsD management interface. `nc` is pre-installed on many systems.
 
 ### Configure StatsD monitoring
+
+{:.note}
+   > **Note:** This guide's instructions use a test {{site.base_gateway}} instance to demonstrate how the StatsD plugin can be used to collect metrics. If you want to use an existing {{site.base_gateway}} instance for this guide, you must modify the connection information in the commands.
+
+1. Optional: Install {{site.base_gateway}} using the following script:
+   ```sh
+   curl -Ls get.konghq.com/quickstart | sh -s -- -m
+   ```
+   The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
 
 1. Run a StatsD container to capture monitoring data:
 
@@ -77,7 +81,7 @@ observe the collected monitoring data.
 See the [StatsD plugin](/hub/kong-inc/statsd/) 
 documentation for more information about how to use and configure the plugin.
 
-### Remove the test StatsD service 
+### Clean up the test instance 
 
 Once you are done experimenting with StatsD and {{site.base_gateway}}, you can use the following
 commands to stop and remove the services created in this guide:
