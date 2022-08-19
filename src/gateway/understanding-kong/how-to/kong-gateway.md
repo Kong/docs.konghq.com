@@ -21,7 +21,7 @@ Then you'll interact with the gateway using `curl` to ensure it has been started
 Run the following command to start {{site.base_gateway}} using Docker:
 
 ```sh
-curl -Ls get.konghq.com/quickstart | sh -s
+curl -Ls get.konghq.com/quickstart | sh -s -- -m
 ```
 
 {:.note}
