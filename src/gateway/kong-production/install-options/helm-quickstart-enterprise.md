@@ -1,23 +1,24 @@
 ---
-title: How to Install Kong Gateway with Helm
+title: How to Install {{site.base_gateway}} with Helm
 toc: true
 content-type: how-to
 ---
 
-This guide shows you how to deploy {{site.base_gateway}} on your local Kubernetes environment with Helm. These steps are known to work on [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/) and [Kind](https://kind.sigs.k8s.io/).
-Once deployed, Kong will be locally accessible at `https://kong.127-0-0-1.nip.io`. [nip.io](https://nip.io) is used to automatically resolve this domain to localhost. 
+This guide shows you how to build a developer focused {{site.base_gateway}} deployment on Kubernetes with Helm.
 
-The {{site.base_gateway}} software is governed by the
-[Kong Software License Agreement](https://konghq.com/kongsoftwarelicense/).
-{{site.ce_product_name}} is licensed under an
-[Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
+Two options are provided for depoloying to local developerment environments which are tested to work on [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/) and [Kind Kubernetes](https://kind.sigs.k8s.io/). A third and more involved guide is also included which should help you deploy this implementation to a public cloud hosted kubernetes as well.
 
+If deployed locally, Kong services will be published to localhost at the domain name `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to localhost. 
+
+## Choose one of the following 3 tabs to get started. 
 
 {% navtabs %}
 {% navtab Docker Desktop Kubernetes %}
-## Docker Desktop prerequisites
+## Docker Desktop
 
-Docker Desktop Kubernetes, is a tool for running a local Kubernetes cluster in Docker Desktop. In this guide you can deploy a Docker Desktop Kubernetes cluster and then use Helm to install Kong Enterprise Gateway.
+This path will guide you through deploying {{site.base_gateway}} to a local Docker Desktop Kubernetes cluster. Docker Desktop Kubernetes is a tool for running a local Kubernetes cluster in Docker Desktop.
+
+With this guide you will deploy a Docker Desktop Kubernetes cluster and then use Helm to install {{site.base_gateway}}. Please ensure your local system meets the dependencies below before continuing.
 
 ## Dependencies
 
@@ -25,11 +26,20 @@ Docker Desktop Kubernetes, is a tool for running a local Kubernetes cluster in D
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/) v1.19 or later
 - [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/)
 
+## Configure Kubectl
+
+Set your kubeconfig context and verify with the following commands.
+
+    kubectl config use-context docker-desktop && kubectl cluster-info
+
 {% endnavtab %}
 {% navtab Kind Kubernetes %}
 
-## Kind Kubernetes prerequisites
-Kind or Kubernetes-in-Docker, is a tool for running local Kubernetes clusters in Docker Containers. In this guide you can deploy a Kind Kubernetes cluster and then use Helm to install Kong Enterprise Gateway. 
+## Kind Kubernetes
+
+This path will guide you through deploying {{site.base_gateway}} to a local Kind Kubernetes cluster. Kind or "Kubernetes-in-Docker", is a tool for running local Kubernetes clusters in Docker Containers.
+
+With this guide you can deploy a Kind Kubernetes cluster and then use Helm to install {{site.base_gateway}}. Please ensure your local system meets the dependencies below before continuing.
 
 ## Dependencies
 
@@ -61,16 +71,101 @@ To build a local Kind Kubernetes you have to create a YAML file with configurati
           containerPort: 443
     EOF"
 
-Verify that the cluster was installed using `kind get clusters`.  This command returns `kong` if the installation was successful.
+Set your kubeconfig context and verify with the following commands.
+
+    kubectl config use-context kind-kong && kubectl cluster-info
+
+{% endnavtab %}
+{% navtab Kubernetes in the Cloud%}
+
+## Kubernetes in the Cloud
+
+This path will guide you through deploying {{site.base_gateway}} to a Kubernetes cluster you have already built.  Please ensure your local system and your Kubernetes cluster meet the dependency criteria listed below before continuing.
+
+## Dependencies
+
+- [`Helm 3`](https://helm.sh/)
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/) v1.19 or later
+- Domain Name
+- DNS configured with your DNS Provider
+- Public Cloud hosted Kubernetes cluster
+- [Cloud LoadBalancer Support](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/)
+
+## Configure Kubectl
+
+Verify your kubeconfig context is set correctly with the following command.
+
+    kubectl cluster-info
+
+## Prepare your Kong Helm Chart values.yaml
+We will need to inject your custom Domain Name into the Helm Values file we will configure the {{site.base_gateway}} deployment with.
+
+1. Curl down the example values.yaml file.
+
+    ````
+    curl -o ~/quickstart.yaml -L https://bit.ly/KongGatewayHelmValuesAIO
+    ````
+
+2. Replace 'example.com' with your preferred domain name and export as a variable.
+
+    ````
+    export BASE_DOMAIN="example.com"
+    ````
+
+3. Replace the `127-0-0-1.nip.io` base domain in the values file with your preferred domain name.
+
+    ````
+    sed -i "s/127-0-0-1\.nip\.io/$BASE_DOMAIN/g" ~/quickstart.yaml
+    ````
 
 {% endnavtab %}
 {% endnavtabs %}
+
+## Create {{site.base_gateway}} Secrets
+
+Configuring {{site.base_gateway}} requires a namespace and configuration secrets. The secrets contain Kong's enterprise license, admin password, session configurations, and PostgreSQL connection details.
+
+1. Create the Kong namespace for {{site.base_gateway}}:
+
+        kubectl create namespace kong
+
+2. Create Kong config & credential variables:
+
+        kubectl create secret generic kong-config-secret -n kong \
+            --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_samesite":"off","cookie_secure":false}' \
+            --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_samesite":"off","cookie_secure":false}' \
+            --from-literal=pg_host="enterprise-postgresql.kong.svc.cluster.local" \
+            --from-literal=kong_admin_password=kong \
+            --from-literal=password=kong
+
+4. Create Kong Enterprise license secret:
+
+{% navtabs %}
+{% navtab Kong Enterprise Free Mode%}
+
+    kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
+
+{% endnavtab %}
+{% navtab Kong Enterprise licensed Mode%}
+
+   >This command must be run in the directory that contains your `license.json` file.
+
+
+    kubectl create secret generic kong-enterprise-license --from-file=license=license.json -n kong --dry-run=client -o yaml | kubectl apply -f -
+
+{% endnavtab %}
+{% endnavtabs %}
+
+{:.note}
+> Kong can run in two license modes, Enterprise Licensed, or Enterprise Free. If you would like to run all enterprise features, please contact your account manager to request a `license.json` file.
 
 ## Install Cert Manager
 
 Cert Manager provides automation for generating SSL certificates. This Kong deployment will use Cert Manager to provide several required certificates.
 
-With Docker Desktop Kubernetes is enabled, install dependencies:
+We use the [SelfSigned](https://cert-manager.io/docs/configuration/selfsigned/) issuer for this example. You can replace this self signed issuer with your own [CA issuer](https://cert-manager.io/docs/configuration/ca/), [ACME LetsEncrypt issuer](https://cert-manager.io/docs/configuration/external/), or other [external issuers](https://cert-manager.io/docs/configuration/external/) to get valid certificates for {{site.base_gateway}}.
+
+Install Cert Manager and create a basic SelfSigned certificate issuer:
 
 1. Add the Jetstack Cert Manager Helm repository:
 
@@ -117,49 +212,8 @@ With Docker Desktop Kubernetes is enabled, install dependencies:
          ca:
            secretName: quickstart-kong-selfsigned-issuer-ca
        EOF"
- 
-
-## Configure {{site.base_gateway}}
-
-Configuring {{site.base_gateway}} requires a namespace and configuration secrets. The secrets contain Kong's enterprise license, admin password, session configurations, and PostgreSQL connection details.
-
-1. Create the Kong namespace for {{site.base_gateway}}:
-
-        kubectl create namespace kong
-
-2. Create Kong config & credential variables:
-
-        kubectl create secret generic kong-config-secret -n kong \
-            --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_samesite":"off","cookie_secure":false}' \
-            --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_samesite":"off","cookie_secure":false}' \
-            --from-literal=pg_host="enterprise-postgresql.kong.svc.cluster.local" \
-            --from-literal=kong_admin_password=kong \
-            --from-literal=password=kong
-
-4. Create Kong Enterprise license secret:
-
-{% navtabs %}
-{% navtab Kong Enterprise Free Mode%}
-
-    kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
-
-{% endnavtab %}
-{% navtab Kong Enterprise licensed Mode%}
-
-   >This command must be run in the directory that contains your `license.json` file.
-
-
-    kubectl create secret generic kong-enterprise-license --from-file=license=license.json -n kong --dry-run=client -o yaml | kubectl apply -f -
-
-{% endnavtab %}
-{% endnavtabs %}
-
-{:.note}
-> Kong can run in two license modes, Enterprise Licensed, or Enterprise Free. If you would like to run all enterprise features, please contact your account manager to request a `license.json` file.
 
 ## Deploy {{site.base_gateway}}
-
-{{site.base_gateway}} locally accessible at `https://kong.127-0-0-1.nip.io`. This guide uses [nip.io](https://nip.io) to automatically resolve this domain to localhost.
 
 {:.important}
 > The following 3 steps are temporary development steps and will be removed from the guide.
@@ -168,6 +222,8 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
 1. `git clone https://github.com/Kong/charts ~/kong-charts-helm-project`
 2. `cd ~/kong-charts-helm-project/charts/kong`
 3. `helm dependencies update`
+{% navtabs %}
+{% navtab Docker Desktop Kubernetes %}
 
 Once all dependencies are installed and ready, deploy {{site.base_gateway}} to your cluster:
 
@@ -191,8 +247,72 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
     > If you are using Chrome you will receive a "Your Connection is not Private" warning message.  
     > If there is no "Accept risk and continue" option then type `thisisunsafe` while the in the tab to continue.
 
+{% endnavtab %}
+{% navtab Kind Kubernetes %}
 
-You can use the Kong Admin API with Insomnia, HTTPie, or cURL, at [https://kong.127-0-0-1.nip.io/api](https://kong.127-0-0-1.nip.io/api)
+Once all dependencies are installed and ready, deploy {{site.base_gateway}} to your cluster:
+
+1. Add the Kong Helm Repo:
+
+        helm repo add kong https://charts.konghq.com ; helm repo update
+
+2. Install Kong:
+
+        helm install quickstart --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO ./
+
+3. Wait for all pods to be in the `Running` state:
+
+        kubectl get po --namespace kong
+
+4. Once all pods are running, open Kong Manager in your browser at [https://kong.127-0-0-1.nip.io](https://kong.127-0-0-1.nip.io). The [nip.io](https://nip.io) domain is a service that automatically resolves the cluster's domain to localhost.
+
+5. Log in with the Super Admin username and password combination: `kong_admin`:`kong`
+
+    {:.important}
+    > If you are using Chrome you will receive a "Your Connection is not Private" warning message.  
+    > If there is no "Accept risk and continue" option then type `thisisunsafe` while the in the tab to continue.
+
+{% endnavtab %}
+{% navtab Kubernetes in the Cloud%}
+
+Once all dependencies are installed and ready, deploy {{site.base_gateway}} to your cluster:
+
+1. Add the Kong Helm Repo:
+
+        helm repo add kong https://charts.konghq.com ; helm repo update
+
+2. Install Kong:
+
+        helm install quickstart --namespace kong --values ~/quickstart.yaml ./
+
+3. Wait for all pods to be in the `Running` state:
+
+        kubectl get po --namespace kong
+
+4. Once all pods are running, find the Cloud Loadbalancer of your Kong Gateway Dataplane:
+
+        kubectl get svc --namespace kong quickstart-kong-proxy
+
+5. Using your DNS Provider, configure DNS entry to point to the LoadBalancer shown by the last step. A wildcard DNS record is recommended for development environments.
+
+6. Now you should be able to open Kong Manager with the kong subdomain on your domain. For example: [https://kong.example.com](https://kong.example.com)
+
+7. Log in with the Super Admin username and password combination: `kong_admin`:`kong`
+
+    {:.important}
+    > If you are using Chrome you will receive a "Your Connection is not Private" warning message.  
+    > If there is no "Accept risk and continue" option then type `thisisunsafe` while the in the tab to continue.
+
+{% endnavtab %}
+{% endnavtabs %}
+
+## Use {{site.base_gateway}}
+
+With this deployment, your Kong Gateway should now be serving the Kong Manager WebGUI and the Kong Admin API.
+
+For local deploys, Kong Manager will be locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
+
+You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at [https://kong.127-0-0-1.nip.io/api](https://kong.127-0-0-1.nip.io/api)
 
 {% navtabs codeblock %}
 {% navtab cURL %}
