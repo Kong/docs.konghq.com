@@ -458,7 +458,8 @@ Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  De
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen
 
-## WebSocket requests {:.badge .enterprise}
+## WebSocket requests
+{:.badge .enterprise}
 
 This plugin cannot issue new tokens from a WebSocket route, because the request
 will be rejected as an invalid WebSocket handshake. Therefore, to use this

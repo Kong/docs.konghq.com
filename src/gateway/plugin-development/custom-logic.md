@@ -42,10 +42,10 @@ of {{site.base_gateway}}'s execution life-cycle:
 | `response`          | [access]          | http(s), grpc(s)        | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
 | `header_filter`     | [header_filter]   | http(s), grpc(s)        | Executed when all response headers bytes have been received from the upstream service.
 | `ws_client_frame`   | [content]         | ws(s)                   | Executed for each WebSocket message received from the client.
-| `ws_upstream_frame` | [content]         | ws(s)                   | Executed for each WebSocket message received from the upstream/service
+| `ws_upstream_frame` | [content]         | ws(s)                   | Executed for each WebSocket message received from the upstream service.
 | `body_filter`       | [body_filter]     | http(s), grpc(s)        | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
 | `log`               | [log]             | http(s), grpc(s)        | Executed when the last response byte has been sent to the client.
-| `ws_close`          | [log]             | ws(s)                   | Executed after the WebSocket connection has been terminated
+| `ws_close`          | [log]             | ws(s)                   | Executed after the WebSocket connection has been terminated.
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -265,7 +265,8 @@ local CustomHandler = {
 You don't need to add a `:new()` method or call any of the `CustomHandler.super.XXX:(self)`
 methods.
 
-## WebSocket Plugin Development {:.badge .enterprise}
+## WebSocket Plugin Development
+{:.badge .enterprise}
 
 <div class="alert alert-warning">
   <strong>Warning</strong>The WebSocket PDK is under active development and is
