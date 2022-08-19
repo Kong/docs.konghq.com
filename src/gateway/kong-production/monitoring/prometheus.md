@@ -34,7 +34,7 @@ and Prometheus locally.
    ✔ Kong is ready!
    ```
 
-   The `-m` flag instructions the script to install a mock service to make testing easier. 
+   The `-m` flag instructs the script to install a mock service to make testing easier. 
    You will use this service later to generate sample metrics. You can send a sample request with:
 
    ```sh
