@@ -12,7 +12,7 @@ no_version: true
 
 #### Enterprise
 
-* Fixed vulnerabilities [CVE-2022-37434](https://nvd.nist.gov/vuln/detail/CVE-2022-37434) and [CVE-2022-24975](https://nvd.nist.gov/vuln/detail/CVE-2022-24975)
+* Fixed vulnerabilities [CVE-2022-37434](https://nvd.nist.gov/vuln/detail/CVE-2022-37434) and [CVE-2022-24975](https://nvd.nist.gov/vuln/detail/CVE-2022-24975).
 
 * When using secrets management in free mode, only the [environment variable](/gateway/2.8.x/plan-and-deploy/security/secrets-management/backends/env) backend is available. AWS, GCP, and HashiCorp vault backends require an Enterprise license.
 
@@ -26,9 +26,9 @@ The following entities were affected:
 
 #### Plugins
 
-[OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
-* Fixed a caching issue in hybrid mode, where the data plane node would try to retrieve a new JWK from the IdP every time.
-The data plane node now looks for a cached JWK first.
+* [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  * Fixed a caching issue in hybrid mode, where the data plane node would try to retrieve a new JWK from the IdP every time.
+  The data plane node now looks for a cached JWK first.
 
 ### Dependencies
 
