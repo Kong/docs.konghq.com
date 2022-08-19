@@ -14,9 +14,9 @@ observe the collected monitoring data.
 ### Prerequisites
 * A test {{site.base_gateway}} instance is installed using the following script:
    ```sh
-   curl -Ls get.konghq.com/quickstart | sh -s
+   curl -Ls get.konghq.com/quickstart | sh -s -- -m
    ```
-   This script installs the test instance and a mock service that is used in this guide. 
+   The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
    {:.note}
    > **Note:** This guide's instructions use a test {{site.base_gateway}} instance to demonstrate how the StatsD plugin can be used to collect metrics. If you want to use an existing {{site.base_gateway}} instance for this guide, you must modify the connection information in the commands.
 * [Docker](https://docs.docker.com/get-docker/) is installed locally. It is used to run {{site.base_gateway}}, the supporting database, and StatsD locally. 
