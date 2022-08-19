@@ -1,5 +1,5 @@
 ---
-title: How to Install {{site.base_gateway}} with Helm
+title: Install with Helm
 toc: true
 content-type: how-to
 ---
