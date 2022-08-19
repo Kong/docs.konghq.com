@@ -17,7 +17,7 @@
   items:
     - text: Kubernetes
       url: /install-and-run/kubernetes
-    - text: Install Kong Gateway with Helm
+    - text: Kubernetes with Helm
       url: /install-and-run/helm-quickstart-enterprise
     - text: OpenShift with Helm
       url: /install-and-run/openshift
