@@ -961,9 +961,9 @@ properties of a service:
   if provided. Otherwise, the value of the `$request_uri` variable (with
   the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
   will be used.
-  
+
   {:.note}
-  > **Note**: {{site.base_gateway}} returns `"/"` for an empty path, but it doesn't do any other 
+  > **Note**: {{site.base_gateway}} returns `"/"` for an empty path, but it doesn't do any other
   > normalization on the request path.
 
 All the other request headers are forwarded as-is by {{site.base_gateway}}.
@@ -1408,24 +1408,24 @@ on [Kong Hub](https://docs.konghq.com/hub/).
 {{site.base_gateway}} supports proxying a TLS request without terminating or known
 as SNI proxy.
 
-{{site.base_gateway}} uses the connecting 
+{{site.base_gateway}} uses the connecting
 client's TLS SNI extension to find the matching Route and Service and forward the
 complete TLS request upstream, without decrypting the incoming TLS traffic.
 
 In this mode, you need to:
-* Create a route object with the protocol `tls_passthrough`, and the 
+* Create a route object with the protocol `tls_passthrough`, and the
 `snis` field set to one or more SNIs.
-* Set the corresponding service object's protocol to `tcp`. 
-* Send requests to a port that has the `ssl` flag in its `stream_listen` 
+* Set the corresponding service object's protocol to `tcp`.
+* Send requests to a port that has the `ssl` flag in its `stream_listen`
 directive.
 
 Separate SNI and Certificate entities aren't required and won't be used.
 
-Routes are not allowed to match `tls` and `tls_passthrough` protocols at same time. 
-However, the same SNI is allowed to match `tls` and `tls_passthrough` in different 
-routes. 
+Routes are not allowed to match `tls` and `tls_passthrough` protocols at same time.
+However, the same SNI is allowed to match `tls` and `tls_passthrough` in different
+routes.
 
-It's also possible to set route to `tls_passthrough` and service to `tls`. In this 
+It's also possible to set route to `tls_passthrough` and service to `tls`. In this
 mode, the connection to the upstream will be TLS-encrypted twice.
 
 {:.note}
