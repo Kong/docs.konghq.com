@@ -1,56 +1,59 @@
+{% assign crumbs = include.url | split : '/' %}
+
+{% assign offset = 3 %}
+{% if include.no_version == true %}
+  {% assign offset = 2 %}
+{% endif %}
+
+{% if include.edition == 'enterprise' %}
+  {% capture product_url %}/enterprise/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}{% endcapture %}
+  {% capture product_title %}{{site.ee_product_name}}{% endcapture %}
+{% elsif include.edition == 'konnect' %}
+  {% capture product_url %}/konnect/{% endcapture %}
+  {% capture product_title %}{{site.konnect_saas}}{% endcapture %}
+{% elsif include.edition == 'mesh' %}
+  {% capture product_url %}/mesh/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}{% endcapture %}
+  {% capture product_title %}{{site.mesh_product_name}}{% endcapture %}
+{% elsif include.edition == 'deck' %}
+  {% capture product_url %}/deck/{% endcapture %}
+  {% capture product_title %}decK{% endcapture %}
+{% elsif include.edition == 'kubernetes-ingress-controller' %}
+  {% capture product_url %}/kubernetes-ingress-controller/{{include.kong_version}}/{% endcapture %}
+  {% capture product_title %}{{site.kic_product_name}}{% endcapture %}
+{% elsif include.edition == 'gateway-oss' %}
+  {% capture product_url %}/gateway-oss/{{include.kong_version}}/{% endcapture %}
+  {% capture product_title %}{{ site.ce_product_name }}{% endcapture %}
+{% elsif include.edition == 'gateway' %}
+  {% capture product_url %}/gateway/{{include.kong_version}}/{% endcapture %}
+  {% capture product_title %}{{ site.base_gateway }}{% endcapture %}
+{% elsif include.edition == 'getting-started-guide' %}
+  {% capture product_url %}/getting-started-guide/{{include.kong_version}}/overview{% endcapture %}
+  {% capture product_title %}Get Started with Kong Gateway{% endcapture %}
+{% elsif include.edition == 'contributing' %}
+  {% capture product_url %}/contributing/{% endcapture %}
+  {% capture product_title %}Style guide and contribution guidelines{% endcapture %}
+{% endif %}
+
 <div id="breadcrumbs">
-  {% assign crumbs = include.dir | split: '/' %}
   <ul class="breadcrumbs">
-      <i class="sidebar-toggle"></i>
+    <i class="sidebar-toggle"></i>
     <li class="breadcrumb-item">
       <a href="/">Home</a>
     </li>
     <li class="breadcrumb-item">
-      {% if include.edition == 'enterprise' %}<a href="/enterprise/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}">{{site.ee_product_name}}</a>
-      {% elsif include.edition == 'konnect' %}<a href="/konnect/">{{site.konnect_saas}}</a>
-      {% elsif include.edition == 'mesh' %}<a href="/mesh/{% unless include.no_version == true %}{{include.kong_version}}/{% endunless %}">{{site.mesh_product_name}}</a>
-      {% elsif include.edition == 'deck' %}<a href="/deck/">decK</a>
-      {% elsif include.edition == 'kubernetes-ingress-controller' %}<a href="/kubernetes-ingress-controller/{{include.kong_version}}/">{{site.kic_product_name}}</a>
-      {% elsif include.edition == 'gateway-oss' %}<a href="/gateway-oss/{{include.kong_version}}/">{{site.ce_product_name}}</a>
-      {% elsif include.edition == 'gateway' %}<a href="/gateway/{{include.kong_version}}/">{{site.base_gateway}}</a>
-      {% elsif include.edition == 'getting-started-guide' %}<a href="/getting-started-guide/{{include.kong_version}}/overview">Get Started with Kong Gateway</a>
-      {% elsif include.edition == 'contributing' %}<a href="/contributing/">Style guide and contribution guidelines</a>
-      {% endif %}
+      <a href="{{ product_url }}">{{ product_title }}</a>
     </li>
-    {% if include.no_version == true %}
-      {% if include.url contains '/konnect/servicehub' %}
-      <li class="breadcrumb-item">Service Hub</li>
-        {% for crumb in crumbs offset: 3 %}
-          {% unless forloop.last %}
-            <li class="breadcrumb-item">
-              {% assign crumb_limit = forloop.index | plus: 3 %}
-              {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
-            </li>
-          {% endunless %}
-        {% endfor %}
-      {% else %}
-        {% for crumb in crumbs offset: 2 %}
-          {% unless forloop.last %}
-            <li class="breadcrumb-item">
-              {% assign crumb_limit = forloop.index | plus: 2 %}
-              <!-- <a href="{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"> -->
-                {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
-              <!-- </a> -->
-            </li>
-          {% endunless %}
-        {% endfor %}
-      {% endif %}
-    {% else %}
-      {% for crumb in crumbs offset: 3 %}
-        {% unless forloop.last %}
+
+    {% for crumb in crumbs offset: offset %}
+      {% assign title = crumb | replace:'-',' ' | remove:'.md' | capitalize | strip %}
+
+      {% if title == "Servicehub" %}{% assign title = "Service Hub" %}{% endif %}
+
+      {% unless forloop.last %}
         <li class="breadcrumb-item">
-          {% assign crumb_limit = forloop.index | plus: 3 %}
-          <!-- <a href="{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"> -->
-            {{ crumb | replace:'-',' ' | remove:'.md' | capitalize }}
-          <!-- </a> -->
+          <a href="{{ product_url }}{{ crumb }}">{{ title }}</a>
         </li>
-        {% endunless %}
-      {% endfor %}
-    {% endif %}
+      {% endunless %}
+    {% endfor %}
   </ul>
 </div>
