@@ -21,6 +21,7 @@ The following entities were affected:
   * Route lists on service pages
   * Upstreams
   * Certificates
+  * SNIs
   * RBAC roles
 
 #### Plugins
