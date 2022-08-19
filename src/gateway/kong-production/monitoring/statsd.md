@@ -23,7 +23,7 @@ This guide assumes the following tools are installed locally:
 1. Run the following command to start {{site.base_gateway}} using Docker:
 
    ```sh
-   curl -Ls get.konghq.com/quickstart | sh -s
+   curl -Ls get.konghq.com/quickstart | sh -s -- -m
    ```
 
    You should see the following message when {{site.base_gateway}} is ready:
@@ -32,8 +32,8 @@ This guide assumes the following tools are installed locally:
    ✔ Kong is ready!
    ```
 
-   The script also installs a mock service to make testing easier. You will use this 
-   service later to generate metrics data. You can send a sample request with:
+   The `-m` flag instructs the script to install a mock service to make testing easier. 
+   You will use this service later to generate sample metrics. You can send a sample request with:
 
    ```sh
    curl localhost:8000/mock/requests
