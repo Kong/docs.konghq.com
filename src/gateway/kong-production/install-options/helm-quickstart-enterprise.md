@@ -4,13 +4,13 @@ toc: true
 content-type: how-to
 ---
 
-This guide shows you how to build a {{site.base_gateway}} deployment on Kubernetes with Helm.
+This guide demonstrates how to build a simple {{site.base_gateway}} deployment on Kubernetes with Helm.
 
-Two options are provided for deploying to local development environments which are tested to work on [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/) and [Kind Kubernetes](https://kind.sigs.k8s.io/). A third and more involved guide is also included which should help you deploy this implementation to a public cloud hosted kubernetes as well.
+## Choose your Journey
 
-If deployed locally, Kong services will be published to localhost at the domain name `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+Two options are provided for deploying to local development environments which are tested to work on [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/) and [Kind Kubernetes](https://kind.sigs.k8s.io/).
 
-## Choose one of the following 3 tabs to get started. 
+The "Kubernetes in the Cloud" journey is also included which should help you deploy this implementation to a public cloud hosted kubernetes as well.
 
 {% navtabs %}
 {% navtab Docker Desktop Kubernetes %}
@@ -19,6 +19,9 @@ If deployed locally, Kong services will be published to localhost at the domain 
 This path will guide you through deploying {{site.base_gateway}} to a local Docker Desktop Kubernetes cluster. Docker Desktop Kubernetes is a tool for running a local Kubernetes cluster in Docker Desktop.
 
 With this guide you will deploy a Docker Desktop Kubernetes cluster and then use Helm to install {{site.base_gateway}}. Please ensure your local system meets the dependencies below before continuing.
+
+{:.note}
+> Kong services will be published to localhost at the domain name `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Dependencies
 
@@ -41,6 +44,10 @@ Set your kubeconfig context and verify with the following commands.
 This path will guide you through deploying {{site.base_gateway}} to a local Kind Kubernetes cluster. Kind or "Kubernetes-in-Docker", is a tool for running local Kubernetes clusters in Docker containers.
 
 With this guide you can deploy a Kind Kubernetes cluster and then use Helm to install {{site.base_gateway}}. Please ensure your local system meets the dependencies below before continuing.
+
+
+{:.note}
+> Kong services will be published to localhost at the domain name `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Dependencies
 
@@ -82,6 +89,9 @@ Set your kubeconfig context and verify with the following commands.
 ## Kubernetes in the Cloud
 
 This path will guide you through deploying {{site.base_gateway}} to a cloud hosted Kubernetes cluster you have already built. Please ensure your local system and your Kubernetes cluster meet the dependency criteria listed below before continuing.
+
+{:.note}
+> Please note that it is recommended to first try the Docker Desktop or Kind Kubernetes local deploys before proceeding to build on a cloud hosted kubernetes cluster if possible.
 
 ## Dependencies
 
