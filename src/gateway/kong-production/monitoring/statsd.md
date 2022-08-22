@@ -23,7 +23,7 @@ observe the collected monitoring data.
 
    {:.note}
       > This step is optional if you wish to use an existing {{site.base_gateway}} installation. When using an existing
-        {{site.base_gateway}}, you will need to modify the remaining commands as appropriate to account for network
+        {{site.base_gateway}}, you will need to modify the commands to account for network
         connectivity and installed {{site.base_gateway}} services and routes.
 
    ```sh
