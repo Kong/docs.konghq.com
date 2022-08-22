@@ -47,7 +47,7 @@ items:
           - text: Manage Kong Gateway with decK
             url: /understanding-kong/manange-kong-with-deck
           - text: Kong Performance Testing
-            url: /understanding-kong/kong-performance-testing
+            url: /understanding-kong/performance-testing
           - text: Glossary
             url: /understanding-kong/glossary
 
@@ -74,27 +74,27 @@ items:
       - text: Deployment Topologies
         items:
           - text: Overview
-            url: /kong-production/deployment-topologies/
+            url: /production-deployment/deployment-topologies/
           - text: Hybrid Mode
             items:
             - text: Overview
-              url: /kong-production/deployment-topologies/hybrid-mode/
+              url: /production-deployment/deployment-topologies/hybrid-mode/
             - text: Deploy Kong Gateway in Hybrid mode
-              url: /kong-production/deployment-topologies/hybrid-mode/hybrid-mode-setup
+              url: /production-deployment/deployment-topologies/hybrid-mode/setup
           - text: DB-less Deployment
-            url: /kong-production/deployment-topologies/db-less-and-declarative-config
+            url: /production-deployment/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
-            url: /kong-production/deployment-topologies/traditional
+            url: /production-deployment/deployment-topologies/traditional
       - text: Installation Options
         items:
           - text: Overview
             url: /kong-production/install-options/
           - text: Kubernetes
-            url: /kong-production/install-options/kubernetes
-          - text: Install Kong Gateway with Helm
-            url: /kong-production/install-options/helm-quickstart
+            url: /production-deployment/install/kubernetes
+          - text: Helm
+            url: /production-deployment/install/helm
           - text: OpenShift with Helm
-            url: /kong-production/install-options/openshift
+            url: /production-deployment/install/openshift
           - text: Docker
             items:
               - text: Install Kong with Docker
@@ -104,89 +104,91 @@ items:
           - text: Linux
             items:
               - text: Supported Distributions
-                url: /kong-production/install-options/linux/os-support
+                url: /production-deployment/install/linux/os-support
               - text: Amazon Linux
-                url: /kong-production/install-options/linux/amazon-linux
+                url: /production-deployment/install/linux/amazon-linux
               - text: Debian
-                url: /kong-production/install-options/linux/debian
+                url: /production-deployment/install/linux/debian
               - text: Red Hat
-                url: /kong-production/install-options/linux/rhel
+                url: /production-deployment/install/linux/rhel
               - text: Ubuntu
-                url: /kong-production/install-options/linux/ubuntu
+                url: /production-deployment/install/linux/ubuntu
           - text: macOS
-            url: /kong-production/install-options/macos
+            url: /production-deployment/install/macos
       - text: Running Kong
         items:
           - text: Start Kong Gateway Securely
-            url: /kong-production/running-kong/start-kong-securely
+            url: /production-deployment/running-kong/start-securely
           - text: Running Kong as a non-root user
-            url: /kong-production/running-kong/kong-user
+            url: /production-deployment/running-kong/kong-user
           - text: Configure Kong Gateway and SystemD
-            url: /kong-production/running-kong/systemd
+            url: /production-deployment/running-kong/systemd
       - text: Kubernetes
         items:
           - text: Kubernetes Deployment Options
-            url: /kong-production/kubernetes/kubernetes-deployment-options
+            url: /production-deployment/kubernetes/deployment-options
       - text: Licenses
         items:
           - text: Overview
-            url: /kong-production/licenses/
-          - text: Access your license
-            url: /kong-production/licenses/access-license
+            url: /production-deployment/licenses/
+          - text: Download your license
+            url: /production-deployment/licenses/download
           - text: Deploy Enterprise License
-            url: /kong-production/licenses/deploy-license
+            url: /production-deployment/licenses/deploy
           - text: Monitor Licenses usuage
-            url: /kong-production/licenses/report
+            url: /production-deployment/licenses/report
       - text: Networking
         items:
           - text: Default Ports
-            url: /kong-production/networking/default-ports
+            url: /production-deployment/networking/default-ports
           - text: DNS considerations
-            url: /kong-production/networking/dns-considerations
+            url: /production-deployment/networking/dns-considerations
           - text: Network and Firewall
-            url: /kong-production/networking/network
+            url: /production-deployment/networking/firewall
       - text: Kong Configuration File
-        url: /kong-production/kong-conf
+        url: /production-deployment/kong-conf
       - text: Kong Gateway Environment Variables
-        url: /kong-production/environment-variables
+        url: /production-deployment/environment-variables
       - text: Embedding Kong in Open Resty
-        url: /kong-production/kong-openresty
-      - text: Serving a website and API's from Kong
-        url: /kong-production/website-api-serving
+        url: /production-deployment/kong-openresty
+      - text: Serving a Website and API's from Kong
+        url: /production-deployment/website-api-serving
       - text: Monitoring
         items:
           - text: Introduction
-            url: /kong-production/monitoring/
-          - text: How to monitor with Prometheus
-            url: /kong-production/monitoring/prometheus
-          - text: How to monitor with Statsd
-            url: /kong-production/monitoring/statsd
+            url: /production-deployment/monitoring/
+          - text: How to Monitor with Prometheus
+            url: /production-deployment/monitoring/prometheus
+          - text: How to Monitor with Statsd
+            url: /production-deployment/monitoring/statsd
           - text: Collect Metrics with Datadog
-            url: /kong-production/monitoring/datadog
+            url: /production-deployment/monitoring/datadog
       - text: Tracing
         items:
           - text: Overview
-            url: /kong-production/tracing/
+            url: /production-deployment/tracing/
           - text: How to Write a Custom Trace Exporter
-            url: /kong-production/tracing/write-custom-trace-exporter
+            url: /production-deployment/tracing/write-custom-trace-exporter
           - text: Tracing API reference
-            url: /kong-production/tracing/api
+            url: /production-deployment/tracing/api
       - text: Resource Sizing Guidelines
-        url: /kong-production/sizing-guidelines
-      - text: Kong security update process
-        url: /kong-production/kong-security-update-process
-      - text: Blue-green deployments
-        url: /kong-production/blue-green
+        url: /production-deployment/sizing-guidelines
+      - text: Security Update Process
+        url: /production-deployment/security-update-process
+      - text: Blue-Green Deployments
+        url: /production-deployment/blue-green
       - text: Canary Deployments
-        url: /kong-production/canary
+        url: /production-deployment/canary
+      - text: Clustering Reference
+        url: /production-deployment/clustering
       - text: Logging Reference
-        url: /kong-production/logging
+        url: /production-deployment/logging
       - text: Upgrade Kong Gateway
-        url: /kong-production/upgrade-enterprise
+        url: /production-deployment/upgrade-enterprise
       - text: Upgrade Kong Gateway OSS
-        url: /kong-production/upgrade-oss
+        url: /production-deployment/upgrade-oss
       - text: Migrate from OSS to EE
-        url: /kong-production/migrate-ce-to-ke
+        url: /production-deployment/migrate-ce-to-ke
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
@@ -197,15 +199,15 @@ items:
           - text: Overview
             url: /kong-enterprise/vitals/
           - text: Metrics
-            url: /kong-enterprise/vitals/vitals-metrics
+            url: /kong-enterprise/vitals/metrics
           - text: Reports
-            url: /kong-enterprise/vitals/vitals-reports
+            url: /kong-enterprise/vitals/reports
           - text: Vitals with InfluxDB
-            url: /kong-enterprise/vitals/vitals-influx-strategy
+            url: /kong-enterprise/vitals/influx-strategy
           - text: Vitals with Prometheus
-            url: /kong-enterprise/vitals/vitals-prometheus-strategy
+            url: /kong-enterprise/vitals/prometheus-strategy
           - text: Estimate Vitals Storage in PostgreSQL
-            url: /kong-enterprise/vitals/vitals-estimates
+            url: /kong-enterprise/vitals/estimates
       - text: Secrets Management
         items:
           - text: Overview
@@ -234,12 +236,12 @@ items:
             url: /kong-enterprise/plugin-ordering/
           - text: Get Started with Dynamic Plugin Ordering
             url: /kong-enterprise/plugin-ordering/get-started
-      - text: Kong Dev Portal
+      - text: Dev Portal
         items:
           - text: Overview
             url: /kong-enterprise/developer-portal/
           - text: Enable the Dev Portal
-            url: /kong-enterprise/developer-portal/enable-dev-portal
+            url: /kong-enterprise/developer-portal/enable
           - text: Publish an API Spec to the Dev Portal
             url: /kong-enterprise/developer-portal/publish-spec
           - text: Structure and File Types
@@ -278,7 +280,7 @@ items:
                 items:
                   - text: External OAuth2 Support
                     url: /kong-enterprise/developer-portal/authentication/3rd-party-oauth
-                  - text: Set up Okta and Kong for external Oauth
+                  - text: Set up Okta and Kong for External Oauth
                     url: /kong-enterprise/developer-portal/authentication/okta-config
                   - text: Set up Azure AD and Kong for External Authentication
                     url: /kong-enterprise/developer-portal/authentication/azure-oidc-config
@@ -286,8 +288,8 @@ items:
                 url: /kong-enterprise/developer-portal/applications/managing-applications
           - text: Customize Dev Portal
             items:
-              - text: Easy Theme editing
-                url: /kong-enterprise/developer-portal/customize/easy-theme-editing
+              - text: Theme Editing
+                url: /kong-enterprise/developer-portal/customize/theme-editing
               - text: Migrating Templates Between Workspaces
                 url: /kong-enterprise/developer-portal/customize/migrating-templates
               - text: Markdown Rendering Module
@@ -316,7 +318,7 @@ items:
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
       - text: Overview
-        url: /kong-manager/overview
+        url: /kong-manager/
       - text: Enable Kong Manager
         url: /kong-manager/enable
       - text: Get Started with Kong Manager
@@ -334,7 +336,7 @@ items:
       - text: Authentication and Authorization
         items:
           - text: Overview
-            url: /kong-manager/auth/overview
+            url: /kong-manager/auth/
           - text: Create a Super Admin
             url: /kong-manager/auth/super-admin
           - text: Workspaces and Teams
@@ -381,23 +383,23 @@ items:
     items:
       - text: Overview
         url: /plugin-development/
-      - text: File structure
+      - text: File Structure
         url: /plugin-development/file-structure
-      - text: Implementing custom logic
+      - text: Implementing Custom Logic
         url: /plugin-development/custom-logic
-      - text: Plugin configuration
-        url: /plugin-development/plugin-configuration
-      - text: Accessing the datastore
+      - text: Plugin Configuration
+        url: /plugin-development/configuration
+      - text: Accessing the Data Store
         url: /plugin-development/access-the-datastore
-      - text: Storing custom entities
+      - text: Storing Custom Entities
         url: /plugin-development/custom-entities
-      - text: Caching custom entities
+      - text: Caching Custom Entities
         url: /plugin-development/entities-cache
       - text: Extending the Admin API
         url: /plugin-development/admin-api
-      - text: Writing tests
+      - text: Writing Tests
         url: /plugin-development/tests
-      - text: (un)Installing your plugin
+      - text: (un)Installing your Plugin
         url: /plugin-development/distribution
       - text: Plugin Development Kit
         items:
@@ -431,10 +433,8 @@ items:
           url: /plugin-development/pdk/kong.service.request
         - text: kong.service.response
           url: /plugin-development/pdk/kong.service.response
-
         - text: kong.table
           url: /plugin-development/pdk/kong.table
-
         - text: kong.vault
           url: /plugin-development/pdk/kong.vault
       - text: Plugins in Other Languages
@@ -459,19 +459,19 @@ items:
               - text: Open ID Connect Plugin
                 items:
                   - text: Overview
-                    url: /kong-plugins/authentication/oidc/oidc-use-case
+                    url: /kong-plugins/authentication/oidc/use-cases
                   - text: OpenID Connect with Curity
-                    url: /kong-plugins/authentication/oidc/oidc-curity
+                    url: /kong-plugins/authentication/oidc/curity
                   - text: OpenID Connect with Azure AD
-                    url: /kong-plugins/authentication/oidc/oidc-azuread
+                    url: /kong-plugins/authentication/oidc/azuread
                   - text: OpenID Connect with Google
-                    url: /kong-plugins/authentication/oidc/oidc-google
+                    url: /kong-plugins/authentication/oidc/google
                   - text: OpenID Connect with Okta
-                    url: /kong-plugins/authentication/oidc/oidc-okta
+                    url: /kong-plugins/authentication/oidc/okta
                   - text: OpenID Connect with Auth0
-                    url: /kong-plugins/authentication/oidc/oidc-auth0
+                    url: /kong-plugins/authentication/oidc/auth0
                   - text: OpenID Connect with Cognito
-                    url: /kong-plugins/authentication/oidc/oidc-cognito
+                    url: /kong-plugins/authentication/oidc/cognito
               - text: Authentication Reference
                 url: /kong-plugins/authentication/auth-reference
       - text: Rate-limiting
@@ -551,7 +551,6 @@ items:
       - text: Developers
         url: /admin-api/developers/reference
       - text: Consumer Groups
-        url: /admin-api/consumer-groups/reference
         items:
           - text: Consumer Groups API Reference
             url: /admin-api/consumer-groups/reference
@@ -565,19 +564,19 @@ items:
           - text: Event Hooks Examples
             url: /admin-api/event-hooks/examples
       - text: Securing the Admin API
-        url: /admin-api/secure-admin-api
+        url: /admin-api/secure
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
-      - text: Configuration
+      - text: Kong.conf Configuration File
         url: /reference/configuration
       - text: Kong Gateway Nginx Directives
         url: /reference/nginx-directives
-      - text: CLI Reference
+      - text: CLI
         url: /reference/cli
       - text: Rate Limiting Library
         url: /reference/rate-limit
-      - text: Performance Testing Framework Reference
+      - text: Performance Testing Framework
         url: /reference/performance-testing-framework
       - text: Router Operators
         url: /reference/router-operators
