@@ -1,13 +1,13 @@
 ---
 name: Request Transformer Advanced
 publisher: Kong Inc.
-version: 2.1.x
-desc: 'Use powerful regular expressions, variables, and templates to transform API requests'
+desc: Use powerful regular expressions, variables, and templates to transform API requests
 description: |
-  The Request Transformer plugin for Kong Gateway builds on the Kong version
-  of this plugin with enhanced capabilities to match portions of incoming requests
-  using regular expressions, save those matched strings into variables, and
-  substitute those strings into transformed requests via flexible templates.
+  Transform client requests before they reach the upstream server. The plugin lets you match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute the strings into transformed requests via flexible templates.
+
+  The Request Transformer Advanced plugin builds on the open-source [Request Transformer plugin](/hub/kong-inc/request-transformer/) with the following enhanced capability:
+  * Limit the list of allowed parameters in the request body. Set this up with the `allow.body` configuration parameter.
+
 enterprise: true
 type: plugin
 categories:
@@ -16,15 +16,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: request-transformer-advanced
   service_id: true
@@ -202,7 +194,7 @@ params:
 
 ## Template as Value
 
-You can use any of the the current request headers, query parameters, and captured
+You can use any of the current request headers, query parameters, and captured
 URI groups as templates to populate supported config fields.
 
 | Request Parameter | Template
@@ -300,7 +292,7 @@ whose value is being set from the captured group in the route path specified abo
 curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer-advanced" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
 ```
 
-Now send a request with a user id in the route path: 
+Now send a request with a user id in the route path:
 
 ```bash
 curl -i -X GET localhost:8000/requests/user/foo
@@ -409,3 +401,20 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | --------- | -----------
 | ?q1=v1 | ?q1=v1&q2=v1
 |        | ?q1=v2&q2=v1
+
+
+---
+
+## Changelog
+
+{% if_plugin_version gte:3.0.x %}
+
+### {{site.base_gateway}} 3.0.x
+- Removed the deprecated `whitelist` parameter.
+It is no longer supported.
+
+{% endif_plugin_version %}
+
+### {{site.base_gateway}} 2.1.x
+
+- Use `allow` instead of `whitelist`.
