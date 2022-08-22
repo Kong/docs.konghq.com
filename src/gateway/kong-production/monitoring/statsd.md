@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 [StatsD](https://github.com/statsd/statsd) is a network daemon that collects
-and aggreates performance metrics by listening on the network for 
+and aggregates performance metrics by listening on the network for 
 text based statistics data, published by applications. 
 
 This guide will help you setup a test {{site.base_gateway}} and
