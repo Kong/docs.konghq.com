@@ -194,7 +194,7 @@ params:
 
 ## Template as Value
 
-You can use any of the the current request headers, query parameters, and captured
+You can use any of the current request headers, query parameters, and captured
 URI groups as templates to populate supported config fields.
 
 | Request Parameter | Template
@@ -409,12 +409,12 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 
 {% if_plugin_version gte:3.0.x %}
 
-### Kong Gateway 3.0.x
+### {{site.base_gateway}} 3.0.x
 - Removed the deprecated `whitelist` parameter.
 It is no longer supported.
 
 {% endif_plugin_version %}
 
-### Kong Gateway 2.1.x
+### {{site.base_gateway}} 2.1.x
 
 - Use `allow` instead of `whitelist`.
