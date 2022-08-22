@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 [StatsD](https://github.com/statsd/statsd) is a network daemon that collects
-and aggreates performance metrics by listening on the network for simple 
+and aggreates performance metrics by listening on the network for 
 text based statistics data, published by applications. 
 
 This guide will help you setup a test {{site.base_gateway}} and
@@ -55,7 +55,7 @@ observe the collected monitoring data.
        --data "config.port=8125"
    ```
 
-   You should receive a JSON response with the details of the installed plugin.
+   You should receive a JSON response with details about the installed plugin.
 
 1. Generate sample traffic to the mock service. This allows you to observe 
    metrics generated from the StatsD plugin. The following command generates 60 
@@ -88,7 +88,7 @@ observe the collected monitoring data.
 See the [StatsD plugin](/hub/kong-inc/statsd/) 
 documentation for more information about how to use and configure the plugin.
 
-### Clean up running software
+### Clean up
 
 Once you are done experimenting with StatsD and {{site.base_gateway}}, you can use the following
 commands to stop and remove the software ran in this guide:
