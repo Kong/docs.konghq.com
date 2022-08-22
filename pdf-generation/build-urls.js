@@ -44,7 +44,7 @@ module.exports = function (input) {
 
   // Build full URLs
   urls = urls.map((x) => {
-    return `http://localhost:3000${x}`
+    return `http://localhost:8888${x}`
   })
 
   return urls
