@@ -54,10 +54,8 @@ items:
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-learning.svg
     items:
-      - text: Overview
-        url: /get-started/
-      - text: Get Kong with Docker
-        url: /get-started/get-kong-with-docker
+      - text: Get Kong
+        url: /get-started/get-kong
       - text: Configure Services and Routes
         url: /get-started/configure-services-and-routes
       - text: Configure Rate Limiting
