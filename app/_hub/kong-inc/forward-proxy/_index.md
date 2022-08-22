@@ -28,7 +28,7 @@ params:
     - name: http_proxy_host
       required: semi
       default: null
-      value_in_examples: http://example.com
+      value_in_examples: example.com
       datatype: string
       description: |
         The HTTP hostname or IP address of the forward proxy to which to connect.
