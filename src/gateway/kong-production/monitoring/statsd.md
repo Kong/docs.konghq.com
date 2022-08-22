@@ -19,7 +19,7 @@ observe the collected monitoring data.
 
 ### Configure StatsD monitoring
 
-1. Install a test {{site.base_gateway}}:
+1. Install {{site.base_gateway}}:
 
    {:.note}
       > This step is optional if you wish to use an existing {{site.base_gateway}} installation. When using an existing
