@@ -5,25 +5,13 @@ content_type: explanation
 
 {{site.base_gateway}} can be deployed in three different modes:
 
-* Traditional (database)
 * Hybrid
 * DB-less and declarative
+* Traditional (database)
 
 Each mode has benefits and limitations, so it is important to consider them carefully when deciding which mode to use to install {{site.base_gateway}} in production. 
 
 The following sections briefly describe each mode. 
-
-## Traditional (database) mode
-
-In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.x as its datastore.
-
-{:.warning}
-> **Deprecation notice:** Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed.
-Our target for Cassandra removal is the {{site.base_gateway}} 4.0 release. Starting with the {{site.base_gateway}} 3.0 release, some new features might not be supported with Cassandra.
-
-A benefit of this mode is that {{site.base_gateway}} stores the configuration in memory, which increases performance. This is because the database is typically only reached when the configuration is updated. 
-
-You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in this mode. 
 
 ## Hybrid mode
 
@@ -63,3 +51,10 @@ Here are a few limitations of this mode:
 * The [Admin API](/gateway/{{page.kong_version}}/admin-api/) is read only.
 * You must manage {{site.base_gateway}} using declarative configuration [(decK)](/deck/{{page.kong_version}}/).
 * Some plugins, like rate limiting, do not fully function.
+
+## Traditional mode
+
+In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. In this mode {{site.base_gateway}} stores the configuration in memory. Traditional mode is typically only used for testing. 
+
+
+You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in traditional mode. 
