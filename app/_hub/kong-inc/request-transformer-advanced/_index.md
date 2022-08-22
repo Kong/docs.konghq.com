@@ -4,10 +4,11 @@ publisher: Kong Inc.
 version: 2.1.x
 desc: 'Use powerful regular expressions, variables, and templates to transform API requests'
 description: |
-  The Request Transformer plugin for Kong Gateway builds on the Kong version
-  of this plugin with enhanced capabilities to match portions of incoming requests
-  using regular expressions, save those matched strings into variables, and
-  substitute those strings into transformed requests via flexible templates.
+  Transform client requests before they reach the upstream server. The plugin lets you match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute the strings into transformed requests via flexible templates.
+
+  The Request Transformer Advanced plugin builds on the open-source [Request Transformer plugin](/hub/kong-inc/request-transformer/) with the following enhanced capability:
+  * Allow a limited list of parameters in the request body. Set this up with the `allow_body` configuration parameter.
+
 enterprise: true
 type: plugin
 categories:
@@ -300,7 +301,7 @@ whose value is being set from the captured group in the route path specified abo
 curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer-advanced" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
 ```
 
-Now send a request with a user id in the route path: 
+Now send a request with a user id in the route path:
 
 ```bash
 curl -i -X GET localhost:8000/requests/user/foo

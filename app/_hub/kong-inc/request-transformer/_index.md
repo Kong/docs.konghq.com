@@ -8,6 +8,11 @@ description: |
   before they reach the upstream server. These transformations can be simple substitutions
   or complex ones matching portions of incoming requests using regular expressions, saving
   those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
+
+  For additional request transformation features, check out the
+  [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/).
+  With the advanced plugin, you can also allow a limited list of parameters in the request body.
+
 type: plugin
 categories:
   - transformations
@@ -284,7 +289,7 @@ whose value is being set from the captured group in the route path specified abo
 curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
 ```
 
-Now send a request with a user id in the route path: 
+Now send a request with a user id in the route path:
 
 ```bash
 curl -i -X GET localhost:8000/requests/user/foo
