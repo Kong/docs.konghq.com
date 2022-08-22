@@ -4,13 +4,13 @@ no_version: true
 ---
 
 ## 1.9.0
-> Release on **TBD**
+> Release on **2022/08/22**
 
 Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 
-### Changes
+### Upgrading
 
-- TO DO
+- add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole`
 
 ## 1.8.2
 
