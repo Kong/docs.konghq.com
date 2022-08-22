@@ -84,6 +84,7 @@ Luarocks
 ngrok
 npm
 md
+middleware
 minifier
 minikube
 Mockbin
