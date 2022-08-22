@@ -5,30 +5,37 @@ content_type: how-to
 
 [StatsD](https://github.com/statsd/statsd) is a network daemon that collects
 and aggreates performance metrics by listening on the network for simple 
-text based statistics data published by applications. 
+text based statistics data, published by applications. 
 
 This guide will help you setup a test {{site.base_gateway}} and
 StatsD service. Then you will generate sample requests to {{site.base_gateway}} and
 observe the collected monitoring data. 
 
 ### Prerequisites
-* [Docker](https://docs.docker.com/get-docker/) is installed locally. It is used to run {{site.base_gateway}}, the supporting database, and StatsD locally. 
-
-   If you will be using an existing {{site.base_gateway}} instance instead of the test instance, you may need configure Docker to ensure features like network connectivity function correctly.  
-* [curl](https://curl.se/) is installed locally. It is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
-* [Netcat](http://netcat.sourceforge.net/) is installed locally as `nc` on the `PATH`. `nc` is used to send requests 
+* [Docker](https://docs.docker.com/get-docker/) is used to run StatsD and supporting services locally. 
+* [curl](https://curl.se/) is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems.
+* [Netcat](http://netcat.sourceforge.net/) is installed as `nc` on the system `PATH`. `nc` is used to send requests 
   to the StatsD management interface. `nc` is pre-installed on many systems.
 
 ### Configure StatsD monitoring
 
-{:.note}
-   > **Note:** This guide's instructions use a test {{site.base_gateway}} instance to demonstrate how the StatsD plugin can be used to collect metrics. If you want to use an existing {{site.base_gateway}} instance for this guide, you must modify the connection information in the commands.
+1. Install a test {{site.base_gateway}}:
 
-1. Optional: Install {{site.base_gateway}} using the following script:
+   {:.note}
+      > This step is optional if you wish to use an existing {{site.base_gateway}} installation. When using an existing
+        {{site.base_gateway}}, you will need to modify the remaining commands as appropriate to account for network
+        connectivity and installed {{site.base_gateway}} services and routes.
+
    ```sh
    curl -Ls get.konghq.com/quickstart | sh -s -- -m
    ```
    The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
+
+   Once the {{site.base_gateway}} is ready, you will see the following message:
+
+   ```text
+   ✔ Kong is ready!
+   ```
 
 1. Run a StatsD container to capture monitoring data:
 
@@ -81,10 +88,10 @@ observe the collected monitoring data.
 See the [StatsD plugin](/hub/kong-inc/statsd/) 
 documentation for more information about how to use and configure the plugin.
 
-### Clean up the test instance 
+### Clean up running software
 
 Once you are done experimenting with StatsD and {{site.base_gateway}}, you can use the following
-commands to stop and remove the services created in this guide:
+commands to stop and remove the software ran in this guide:
 
 ```sh
 docker stop kong-quickstart-statsd
