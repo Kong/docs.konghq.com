@@ -1,13 +1,12 @@
 ---
 name: Request Transformer Advanced
 publisher: Kong Inc.
-version: 2.1.x
-desc: 'Use powerful regular expressions, variables, and templates to transform API requests'
+desc: Use powerful regular expressions, variables, and templates to transform API requests
 description: |
   Transform client requests before they reach the upstream server. The plugin lets you match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute the strings into transformed requests via flexible templates.
 
   The Request Transformer Advanced plugin builds on the open-source [Request Transformer plugin](/hub/kong-inc/request-transformer/) with the following enhanced capability:
-  * Allow a limited list of parameters in the request body. Set this up with the `allow_body` configuration parameter.
+  * Limit the list of allowed parameters in the request body. Set this up with the `allow.body` configuration parameter.
 
 enterprise: true
 type: plugin
@@ -17,15 +16,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: request-transformer-advanced
   service_id: true
@@ -410,3 +401,20 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | --------- | -----------
 | ?q1=v1 | ?q1=v1&q2=v1
 |        | ?q1=v2&q2=v1
+
+
+---
+
+## Changelog
+
+{% if_plugin_version gte:3.0.x %}
+
+### Kong Gateway 3.0.x
+- Removed the deprecated `whitelist` parameter.
+It is no longer supported.
+
+{% endif_plugin_version %}
+
+### Kong Gateway 2.1.x
+
+- Use `allow` instead of `whitelist`.
