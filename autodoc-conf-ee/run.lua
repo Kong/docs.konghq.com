@@ -153,13 +153,13 @@ end
 
 
 for _, section in ipairs(parsed) do
+  write("---")
   write("")
   write("## " .. titleize(section.name) .. " section")
   write("")
   if #section.description > 0 then
     write(format_description(section.description))
     write("")
-    write("---")
     write("")
   end
 
@@ -244,7 +244,6 @@ for _, section in ipairs(parsed) do
       write("")
       write("**Default:** " .. format_default(var.default))
       write("")
-      write("---")
       write("")
     end
   end
