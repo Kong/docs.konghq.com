@@ -29,7 +29,7 @@ deck validate [command-specific flags] [global flags]
 
 `--online`
 :  perform validations against Kong API. When this flag is used, validation is done
-via communication with Kong. This increases the time for validation but catches 
+via communication with Kong. This increases the time for validation but catches
 significant errors. No resource is created in Kong. (Default: `false`)
 
 
@@ -114,6 +114,16 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 {% endif_version %}
 
+{% if_version gte:1.14.x %}
+
+`--konnect-token`
+:  Personal Access Token associated with your Konnect account, this takes precedence over `--konnect-token-file` flag.
+
+`--konnect-token-file`
+:  File containing the Personal Access Token to your Konnect account.
+
+{% endif_version %}
+
 `--no-color`
 :  Disable colorized output (Default: `false`)
 
@@ -167,4 +177,3 @@ between decK and Kong. (Default: `0`)
 ## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
-

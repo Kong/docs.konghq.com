@@ -14,6 +14,7 @@ configure {{site.konnect_short_name}}.
 > **Deprecation notice:** The `deck konnect` command has been deprecated as of
 v1.12. Please use `deck <cmd>` instead if you would like to declaratively
 manage your {{site.base_gateway}} config with {{site.konnect_short_name}}.
+
 ## Syntax
 
 ```
@@ -99,6 +100,16 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} Runtime group name.
+
+{% endif_version %}
+
+{% if_version gte:1.14.x %}
+
+`--konnect-token`
+:  Personal Access Token associated with your Konnect account, this takes precedence over `--konnect-token-file` flag.
+
+`--konnect-token-file`
+:  File containing the Personal Access Token to your Konnect account.
 
 {% endif_version %}
 
