@@ -52,35 +52,6 @@ end
 
 
 
-## kong.pdk_major_version
-
-A number representing the major version of the current PDK (e.g.
- `1`). Useful for feature-existence checks or backwards-compatible behavior
- as users of the PDK.
-
-
-**Usage**
-
-``` lua
-if kong.pdk_version_num < 2 then
-  -- PDK is below version 2
-end
-```
-
-
-
-## kong.pdk_version
-
-A human-readable string containing the version number of the current PDK.
-
-**Usage**
-
-``` lua
-print(kong.pdk_version) -- "1.0.0"
-```
-
-
-
 ## kong.configuration
 
 A read-only table containing the configuration of the current Kong node,

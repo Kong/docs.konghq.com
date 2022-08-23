@@ -26,7 +26,7 @@ Sets the desired Upstream entity to handle the load-balancing step for
  request would be proxied to one of the Targets associated with that
  Upstream).
 
- The `host` argument should receive a string equal to that of one of the
+ The `host` argument should receive a string equal to the name of one of the
  Upstream entities currently configured.
 
 
