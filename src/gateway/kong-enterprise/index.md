@@ -99,6 +99,12 @@ You can configure event hooks through the Admin API.
 
 [Learn more about event hooks &rarr;](/gateway/{{page.kong_version}}/admin-api/event-hooks/reference/)
 
+## FIPS support
+
+With version 3.0.0.0, {{site.base_gateway}} provides built-in support for the Federal Information Processing Standard (FIPS 140-2). Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
+
+[Learn more about FIPS support &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/fips-support/)
+
 ## More information
 
 See [Plugin Compatibility](/hub/plugins/compatibility/) for more information about Enterprise-only plugins.
