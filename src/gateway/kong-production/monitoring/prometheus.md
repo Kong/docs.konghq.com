@@ -22,20 +22,23 @@ and Prometheus locally.
 
 ### Configure Prometheus monitoring
 
-1. Run the following command to start {{site.base_gateway}} using Docker:
+1. Install {{site.base_gateway}}:
+
+   {:.note}
+      > This step is optional if you wish to use an existing {{site.base_gateway}} installation. When using an existing
+        {{site.base_gateway}}, you will need to modify the commands to account for network
+        connectivity and installed {{site.base_gateway}} services and routes.
 
    ```sh
    curl -Ls get.konghq.com/quickstart | sh -s -- -m
    ```
+   The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
 
-      Once {{site.base_gateway}} is ready, you will see the following message:
+   Once the {{site.base_gateway}} is ready, you will see the following message:
 
    ```text
    ✔ Kong is ready!
    ```
-
-   The `-m` flag instructs the script to install a mock service to make testing easier. 
-   You will use this service later to generate sample metrics. 
 
 1. Install the Prometheus {{site.base_gateway}} plugin:
 
