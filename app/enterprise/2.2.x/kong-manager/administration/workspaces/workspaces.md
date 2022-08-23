@@ -63,7 +63,7 @@ navigate to the new Workspace's dashboard.
 
 1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
 
-1. Here, you can edit the workspace name, avatar, and avatar background color.
+1. Here, you can edit the workspace avatar and avatar background color.
 
 1. Click **Update Workspace** to save.
 
