@@ -1,7 +1,6 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 3.6.x
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
   Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. The
@@ -12,13 +11,9 @@ categories:
   - serverless
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: aws-lambda
   service_id: true
@@ -40,7 +35,7 @@ params:
         The AWS key credential to be used when invoking the function. The `aws_key` value is required
         if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
-        if using Kong Gateway and [data encryption](https://docs.konghq.com/gateway/latest/plan-and-deploy/security/db-encryption/)
+        if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
         is configured.
     - name: aws_secret
       required: semi
@@ -53,9 +48,25 @@ params:
         The AWS secret credential to be used when invoking the function. The `aws_secret` value is required
         if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
-        if using Kong Gateway and [data encryption](https://docs.konghq.com/gateway/latest/plan-and-deploy/security/db-encryption/)
+        if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
         is configured.
-    - name: aws_region
+
+    - name: aws_region  # old version, do not update
+      maximum_version: "2.5.x"
+      required: true
+      default:
+      value_in_examples: <AWS_REGION>
+      datatype: string
+      description: |
+        The AWS region where the Lambda function is located. The plugin does not
+        attempt to validate the supplied region name. If an invalid region name
+        is provided, the plugin responds with an HTTP `500 Internal Server Error`
+        at runtime and logs a DNS resolution failure. Either `aws_region` or `host`
+        must be provided.
+
+    - name: aws_region  # old version, do not update
+      minimum_version: "2.6.x"  
+      maximum_version: "2.8.x"
       required: false
       default: null
       value_in_examples: <AWS_REGION>
@@ -64,14 +75,43 @@ params:
         The AWS region where the Lambda function is located. The plugin does not
         attempt to validate the supplied region name. If an invalid region name
         is provided, the plugin responds with an HTTP `500 Internal Server Error`
-        at run-time and logs a DNS resolution failure. The plugin will automatically
-        detect AWS region on runtime via `AWS_REGION` or `AWS_DEFAULT_REGION` environment
-        variables when neither `region` nor `host` is specified in plugin configuration.
+        at runtime and logs a DNS resolution failure.
+
+        The plugin will automatically
+        detect the AWS region on runtime via `AWS_REGION` or `AWS_DEFAULT_REGION` environment
+        variables when neither `aws_region` nor `host` is specified in plugin configuration.
         Using environment variables enables regionally distributed Kong cluster nodes
-        to connect to the closest AWS region. If `region`, `host` and environment
+        to connect to the closest AWS region. If `aws_region`, `host` and environment
         variables have not been specified, the plugin responds with an HTTP
         `500 Internal Server Error` at run-time.
+
+    - name: aws_region  # current version of parameter
+      minimum_version: "3.0.x"
+      required: semi
+      default: null
+      value_in_examples: <AWS_REGION>
+      datatype: string
+      description: |
+        The AWS region where the Lambda function is located. The plugin does not
+        attempt to validate the supplied region name.
+
+        The plugin has two methods of detecting the AWS region: the `aws_region`
+        parameter, or one of the `AWS_REGION` or `AWS_DEFAULT_REGION` environment
+        variables. One of these must be set.
+
+        If `region` is not specified in plugin configuration, the plugin
+        automatically detects the AWS region on runtime via one of the environment
+        variables.
+        Using environment variables enables regionally distributed Kong cluster nodes
+        to connect to the closest AWS region.
+
+        The AWS region is required for AWS SigV4.
+        If `aws_region` or the `AWS_REGION` or `AWS_DEFAULT_REGION` environment
+        variables have not been specified, or an invalid region name has been provided,
+        the plugin responds with an HTTP `500 Internal Server Error` at runtime.
+
     - name: aws_assume_role_arn
+      minimum_version: "2.8.x"
       required: false
       default: null
       value_in_examples: <AWS_ASSUME_ROLE_ARN>
@@ -80,6 +120,7 @@ params:
         The target AWS IAM role ARN used to invoke the Lambda function. Typically this is
         used for a cross-account Lambda function invocation.
     - name: aws_role_session_name
+      minimum_version: "2.8.x"
       required: false
       default: '`kong`'
       value_in_examples: <AWS_ROLE_SESSION_NAME>
@@ -88,7 +129,22 @@ params:
         The identifier of the assumed role session. It is used for uniquely identifying
         a session when the same target role is assumed by different principals or
         for different reasons. The role session name is also used in the ARN of the assumed role principle.
+
     - name: host
+      minimum_version: "2.1.x"
+      maximum_version: "2.5.x"
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        The host where the Lambda function is located. This value can point to a
+        local Lambda server, allowing for easier debugging.
+
+        Either `aws_region` or `host` must be provided.
+
+    - name: host
+      minimum_version: "3.0.x"
       required: false
       default: null
       value_in_examples: null
@@ -96,6 +152,9 @@ params:
       description: |
         The host where the Lambda function is located. This value can point to a
         local Lambda server, allowing for easier debugging.
+
+        To set a region, use the `aws_region` parameter.
+
     - name: function_name
       required: true
       default: null
@@ -103,7 +162,7 @@ params:
       datatype: string
       description: |
         The AWS Lambda function name to invoke. This may contain
-        the function name only (`my-function`), the full ARN 
+        the function name only (`my-function`), the full ARN
         (arn:aws:lambda:us-west-2:123456789012:function:my-function) or a
         partial ARN (123456789012:function:my-function). You can also append a version
         number or alias to any of the formats.
@@ -205,15 +264,15 @@ params:
         Kong Gateway uses HTTP tunneling via the [CONNECT HTTP](https://httpwg.org/specs/rfc7231.html#CONNECT)
         method so that no details of the AWS Lambda request are leaked to the proxy server.
 
-    - name: proxy_scheme
+    - name: proxy_scheme # deprecated and removed
+      maximum_version: "2.8.x"
       required: semi
       default: null
       datatype: string
       description: |
 
         {:.important}
-        > As of Kong Gateway 2.8.0.0, this parameter is deprecated and will be
-        removed in 3.x.x.
+        > As of Kong Gateway 2.8.0.0, this parameter is deprecated.
         > <br><br>
         > If running Kong Gateway 2.7.x or earlier, the
         `proxy_scheme` value is required if `proxy_url` is defined. In 2.8.x or
@@ -221,6 +280,7 @@ params:
 
         An optional value that defines which HTTP scheme to use for connecting through the proxy server. The
         supported schemes are `http` and `https`.
+
     - name: skip_large_bodies
       required: false
       default: '`true`'
@@ -237,6 +297,7 @@ params:
         [client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
         value instead.
     - name: base64_encode_body
+      minimum_version: "2.2.x"
       required: false
       default: '`true`'
       datatype: boolean
@@ -252,19 +313,28 @@ params:
     different MIME type (like `application/json`), or to use a different HTTP client.
 ---
 
-### Sending parameters
+## Sending parameters
 
 Any form parameter sent along with the request is also sent as an
 argument to the AWS Lambda function.
 
 ---
-### Notes
+## Notes
 
 If you provide `aws_key` and `aws_secret`, they will be used in the highest priority to
 invoke the Lambda function.
 
 If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited
 from the instance running Kong.
+
+{% if_plugin_version lte:2.7.x %}
+
+First, the plugin tries ECS metadata to get the role. If no ECS metadata is available,
+the plugin falls back on EC2 metadata.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.8.x %}
 
 For example, if you're running Kong on an EC2 instance, the IAM role that attached
 to the EC2 will be used, and Kong will fetch the credential from the
@@ -281,7 +351,10 @@ configuring AWS access key/secret or fetching credentials automatically from EC2
 If it succeeds, the plugin will fetch a temporary security credentials that represents
 that the plugin now has the access permission configured in the target assumed role.
 
-### AWS Region as Environment Variable
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.6.x %}
+## AWS region as environment variable
 
 If the plugin configuration `aws_region` is unset, the plugin attempts to obtain the
 AWS region through environment variables `AWS_REGION` and `AWS_DEFAULT_REGION`,
@@ -291,8 +364,30 @@ with the former taking higher precedence. For example, if both `AWS_REGION` and
 nor environment variables are set, a run-time error "no region or host specified"
 will be thrown.
 
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:2.1.x %}
+
+### Known issues
+
+#### Use a fake upstream service
+
+When using the AWS Lambda plugin, the response will be returned by the plugin
+itself without proxying the request to any upstream service. This means that
+a service's `host`, `port`, and `path` properties will be ignored, but must
+still be specified for the entity to be validated by Kong. The `host` property
+in particular must either be an IP address, or a hostname that gets resolved by
+your nameserver.
+
+#### Response plugins
+
+There is a known limitation in the system that prevents some response plugins
+from being executed. We are planning to remove this limitation in the future.
+
+{% endif_plugin_version %}
+
 ---
-### Step-By-Step Guide
+## Usage
 
 Prerequisite: You must have access to the AWS Console as a user who is
 allowed to operate with lambda functions, and create users and roles.
@@ -377,7 +472,7 @@ plugins:
 {% endnavtab %}
 {% endnavtabs %}
 
-#### Test your Lambda with Kong
+### Test your Lambda with Kong
 
 After everything is created, make the http request and verify the correct
 invocation, execution, and response:
@@ -404,15 +499,45 @@ Have fun leveraging the power of AWS Lambda in Kong!
 
 ## Changelog
 
-> See the Kong GitHub repository for the
-[full plugin changelog](https://github.com/Kong/kong/blob/master/kong/plugins/aws-lambda/CHANGELOG.md).
+{% if_plugin_version gte:3.0.x %}
 
-### {{site.base_gateway}} 2.8.x (plugin version 3.6.3)
+**{{site.base_gateway}} 3.0.x**
+* The `proxy_scheme` configuration parameter has been removed from the plugin.
+* The plugin now allows both `aws_region` and `host` to be set at the same time.
 
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.8.x %}
+
+**{{site.base_gateway}} 2.8.x**
 * The `proxy_scheme` configuration parameter is deprecated and planned to be
 removed in 3.x.x.
+* {{site.base_gateway}} 2.8.1.3: Added support for cross account invocation
+through configuration properties `aws_assume_role_arn` and `aws_role_session_name`.
 
-### {{site.base_gateway}} 2.7.x (plugin version 3.6.0)
+{% endif_plugin_version %}
 
+{% if_plugin_version gte:2.7.x %}
+
+**{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.aws_key` and `config.aws_secret` parameter values will be encrypted.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.6.x %}
+
+**{{site.base_gateway}} 2.6.x**
+* The AWS region can now be set with the environment variables: `AWS_REGION` or `AWS_DEFAULT_REGION`.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.2.x %}
+
+**{{site.base_gateway}} 2.2.x**
+* Added support for `isBase64Encoded` flag in Lambda function responses.
+
+{% endif_plugin_version %}
+
+**{{site.base_gateway}} 2.1.x**
+* Added `host` configuration to allow for custom Lambda endpoints.
