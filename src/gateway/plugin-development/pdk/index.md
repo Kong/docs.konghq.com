@@ -21,7 +21,7 @@ The Plugin Development Kit (PDK) is set of Lua functions and variables
  and various functionalities are namespaced under this table, such as
  `kong.request`, `kong.log`, etc.
 
-
+<!-- vale off -->
 
 
 ## kong.version
@@ -48,35 +48,6 @@ An integral number representing the version number of the currently running
 if kong.version_num < 13000 then -- 000.130.00 -> 0.13.0
   -- no support for Routes & Services
 end
-```
-
-
-
-## kong.pdk_major_version
-
-A number representing the major version of the current PDK (e.g.
- `1`). Useful for feature-existence checks or backwards-compatible behavior
- as users of the PDK.
-
-
-**Usage**
-
-``` lua
-if kong.pdk_version_num < 2 then
-  -- PDK is below version 2
-end
-```
-
-
-
-## kong.pdk_version
-
-A human-readable string containing the version number of the current PDK.
-
-**Usage**
-
-``` lua
-print(kong.pdk_version) -- "1.0.0"
 ```
 
 

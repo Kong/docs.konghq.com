@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!-- vale off -->
 Client response module.
 
  The downstream response module contains a set of functions for producing and
@@ -246,6 +246,7 @@ Sets a response header with the given value.  This function overrides any
 
  Be aware that changing this setting might break any plugins that
  rely on the automatic underscore conversion.
+ You cannot set Transfer-Encoding header with this function. It will be ignored.
 
 
 **Phases**
@@ -346,6 +347,8 @@ Sets the headers for the response.  Unlike `kong.response.set_header()`,
 
  This function overrides any existing header bearing the same name as those
  specified in the `headers` argument. Other headers remain unchanged.
+
+ You cannot set Transfer-Encoding header with this function. It will be ignored.
 
 
 **Phases**

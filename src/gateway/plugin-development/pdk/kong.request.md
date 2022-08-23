@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!-- vale off -->
 Client request module.
 
  This module provides a set of functions to retrieve information about the
@@ -326,8 +326,47 @@ kong.request.get_method() -- "GET"
 
 ## kong.request.get_path()
 
+Returns the normalized path component of the request's URL.  The return
+ value is the same as `kong.request.get_raw_path()` but normalized according
+ to RFC 3986 section 6:
+
+ * Percent-encoded values of unreserved characters are decoded (`%20`
+   becomes ` `).
+ * Percent-encoded values of reserved characters have their hexidecimal
+   value uppercased (`%2f` becomes `%2F`).
+ * Relative path elements (`/.` and `/..`) are dereferenced.
+ * Duplicate slashes are consolidated (`//` becomes `/`).
+
+
+**Phases**
+
+* rewrite, access, header_filter, response, body_filter, log, admin_api
+
+**Returns**
+
+* `string`:  the path
+
+
+**Usage**
+
+``` lua
+-- Given a request to https://example.com/t/Abc%20123%C3%B8%2f/parent/..//test/./
+
+kong.request.get_path() -- "/t/Abc 123ø%2F/test/"
+```
+
+
+
+## kong.request.get_raw_path()
+
 Returns the path component of the request's URL.  It is not normalized in
  any way and does not include the query string.
+
+ **NOTE:** Using the raw path to perform string comparision during request
+ handling (such as in routing, ACL/authorization checks, setting rate-limit
+ keys, etc) is widely regarded as insecure, as it can leave plugin code
+ vulnerable to path traversal attacks. Prefer `kong.request.get_path()` for
+ such use cases.
 
 
 **Phases**
@@ -342,9 +381,9 @@ Returns the path component of the request's URL.  It is not normalized in
 **Usage**
 
 ``` lua
--- Given a request to https://example.com:1234/v1/movies?movie=foo
+-- Given a request to https://example.com/t/Abc%20123%C3%B8%2f/parent/..//test/./?movie=foo
 
-kong.request.get_path() -- "/v1/movies"
+kong.request.get_raw_path() -- "/t/Abc%20123%C3%B8%2f/parent/..//test/./"
 ```
 
 
@@ -671,4 +710,25 @@ Returns the request data as a key/value table.
 local body, err, mimetype = kong.request.get_body()
 body.name -- "John Doe"
 body.age  -- "42"
+```
+
+
+
+## kong.request.get_start_time()
+
+Returns the request start time, in Unix epoch milliseconds.
+
+**Phases**
+
+* rewrite, access, header_filter, response, body_filter, log, admin_api
+
+**Returns**
+
+* `number`:  The timestamp
+
+
+**Usage**
+
+``` lua
+kong.request.get_start_time() -- 1649960273000
 ```

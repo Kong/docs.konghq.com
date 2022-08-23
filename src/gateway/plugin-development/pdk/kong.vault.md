@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!-- vale off -->
 This module can be used to resolve, parse, and verify vault references.
 
 
@@ -104,4 +104,40 @@ Resolves the passed in reference and returns the value of it.
 
 ``` lua
 local value, err = kong.vault.get("{vault://env/cert/key}")
+```
+
+
+
+## kong.vault.try(callback, options)
+
+Helper function for automatic secret rotation. Currently experimental.
+
+
+**Parameters**
+
+* **callback** (`function`):   callback function
+* **options** (`table`):    options containing credentials and references
+
+**Returns**
+
+1.  `string|nil`:  return value of the callback function
+
+1.  `string|nil`:  error message on failure, otherwise `nil`
+
+
+**Usage**
+
+``` lua
+local function connect(options)
+  return database_connect(options)
+end
+
+local connection, err = kong.vault.try(connect, {
+  username = "john",
+  password = "doe",
+  ["$refs"] = {
+    username = "{vault://aws/database-username}",
+    password = "{vault://aws/database-password}",
+  }
+})
 ```

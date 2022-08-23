@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!-- vale off -->
 The service module contains a set of functions to manipulate the connection
  aspect of the request to the Service, such as connecting to a given host, IP
  address/port, or choosing a given Upstream entity for load-balancing and
@@ -26,7 +26,7 @@ Sets the desired Upstream entity to handle the load-balancing step for
  request would be proxied to one of the Targets associated with that
  Upstream).
 
- The `host` argument should receive a string equal to that of one of the
+ The `host` argument should receive a string equal to the name of one of the
  Upstream entities currently configured.
 
 
