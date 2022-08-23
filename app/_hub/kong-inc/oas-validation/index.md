@@ -77,15 +77,15 @@ params:
       description: |
         If set to true, notifications via event hooks are enabled, but response validation failures do not effect the response flow.
     - name: header_parameter_check
-      required: false
+      required: true
       datatype: boolean
-      default: true
+      default: false
       description: |
         If set to true, check if HTTP Header parameters in the request exist in the API specification.
     - name: query_parameter_check
-      required: false
+      required: true
       datatype: boolean
-      default: true
+      default: false
       description: |
         If set to true, check if Query parameters in the request exist in the API specification.
     - name: allowed_header_parameters
