@@ -28,7 +28,7 @@ and Prometheus locally.
    curl -Ls get.konghq.com/quickstart | sh -s -- -m
    ```
 
-   You should see the following message when {{site.base_gateway}} is ready:
+      Once {{site.base_gateway}} is ready, you will see the following message:
 
    ```text
    ✔ Kong is ready!
@@ -50,8 +50,8 @@ and Prometheus locally.
 
    You should receive a JSON response with the details of the installed plugin.
 
-1. Create the following Prometheus configuration file named `prometheus.yml`
-in the current directory:
+1. Create a Prometheus configuration file named `prometheus.yml`
+in the current directory, and copy the following values:
 
    ```text
    scrape_configs:
@@ -64,7 +64,7 @@ in the current directory:
    See the Prometheus [Configuration Documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
    for details on these settings.
 
-1. Run a Prometheus server passing it the configuration file created previously. Prometheus 
+1. Run a Prometheus server, and pass it the configuration file created in the previous step. Prometheus 
 will begin to scrape metrics data from {{site.base_gateway}}.
 
    ```sh
@@ -108,7 +108,7 @@ will begin to scrape metrics data from {{site.base_gateway}}.
    curl -s 'localhost:9090/api/v1/query?query=kong_http_status'
    ```
 
-   Finally, Prometheus [provides documentation](https://prometheus.io/docs/visualization/grafana/) 
+   Prometheus [provides documentation](https://prometheus.io/docs/visualization/grafana/) 
    for setting up [Grafana](https://grafana.com/) as a visualization tool for the collected time series data.
 
 ### Cleanup
