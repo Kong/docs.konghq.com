@@ -9,7 +9,9 @@ source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
 <!-- vale off -->
 
-## Properties reference
+Reference for {{site.base_gateway}} configuration parameters. Set these parameters in `kong.conf`.
+
+To learn more about the `kong.conf` file, see the guide on the [Kong Configuration File](/gateway/{{page.kong_version}}/kong-production/kong-conf).
 
 ### General section
 
@@ -128,13 +130,52 @@ adjusted by the `log_level` property.
 
 #### vaults
 
-Comma-separated list of vaults this node should load. By default, no vaults are
-enabled.
+Comma-separated list of vaults this node should load. By default, all the
+bundled vaults are enabled.
 
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.vaults.{name}.*`.
 
+**Default:** `bundled`
+
+---
+
+#### opentelemetry_tracing
+
+Comma-separated list of tracing instrumentations this node should load. By
+default, no instrumentations are enabled.
+
+Valid values to this setting are:
+
+- `off`: do not enable instrumentations.
+- `request`: only enable request-level instrumentations.
+- `all`: enable all the following instrumentations.
+- `db_query`: trace database query, including Postgres and Cassandra.
+- `dns_query`: trace DNS query.
+- `router`: trace router execution, including router rebuilding.
+- `http_client`: trace OpenResty HTTP client requests.
+- `balancer`: trace balancer retries.
+- `plugin_rewrite`: trace plugins iterator execution with rewrite phase.
+- `plugin_access`: trace plugins iterator execution with access phase.
+- `plugin_header_filter`: trace plugins iterator execution with header_filter
+  phase.
+
+**Note:** In the current implementation, tracing instrumentations are not
+enabled in stream mode.
+
 **Default:** `off`
+
+---
+
+#### opentelemetry_tracing_sampling_rate
+
+Tracing instrumentation sampling rate.
+
+Tracer samples a fixed percentage of all spans following the sampling rate.
+
+Example: `0.25`, this should account for 25% of all traces.
+
+**Default:** `1.0`
 
 ---
 
@@ -372,14 +413,7 @@ node to which telemetry updates will be posted in `host:port` format.
 **Default:** none
 
 ---
-#### cluster_telemetry_server_name
-{:.badge .enterprise}
 
-The SNI (Server Name Indication extension) to use for Vitals telemetry data.
-
-**Default:** none
-
----
 
 ### Hybrid Mode Control Plane section
 
@@ -466,6 +500,7 @@ Default is 4Mb - 4 * 1024 * 1024 due to historical reasons.
 **Default:** `4194304`
 
 ---
+
 
 ### NGINX section
 
@@ -1233,10 +1268,6 @@ ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 
 ### Datastore section
 
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
 Kong can run with a database to store coordinated data between Kong nodes in a
 cluster, or without a database, where each node stores its information
 independently in memory.
@@ -1367,6 +1398,17 @@ node as a user-controlled fallback.
 #### declarative_config_string
 
 The declarative configuration as a string
+
+**Default:** none
+
+---
+
+#### declarative_config_encryption_mode
+
+Set encryption of the declarative config mapped file on filesystem.
+
+`aes-256-gcm` = Use AES-256-GCM to encrypt `chacha20-poly1305` = Use
+chacha20-poly1305 to encrypt `off` = does not encrypt
 
 **Default:** none
 
@@ -1601,12 +1643,14 @@ a single query.
 Defines whether this node should rebuild its state synchronously or
 asynchronously (the balancers and the router are rebuilt on updates that affects
 them, e.g., updates to Routes, Services or Upstreams, via the Admin API or
-loading a declarative configuration file).
+loading a declarative configuration file). (This option is deprecated and will
+be removed in future releases. The new default is `eventual`.)
 
 Accepted values are:
 
 - `strict`: the router will be rebuilt synchronously, causing incoming requests
-  to be delayed until the rebuild is finished.
+  to be delayed until the rebuild is finished. (This option is deprecated and
+  will be removed in future releases. The new default is `eventual`)
 - `eventual`: the router will be rebuilt asynchronously via a recurring
   background job running every second inside of each worker.
 
@@ -1618,7 +1662,7 @@ Using `eventual` will help preventing long tail latency issues in such cases,
 but may cause workers to route requests differently for a short period of time
 after Routes and Services updates.
 
-**Default:** `strict`
+**Default:** `eventual`
 
 ---
 
@@ -1662,8 +1706,6 @@ one found will be used:
 - /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem (CentOS/RHEL 7)
 - /etc/ssl/cert.pem (OpenBSD, Alpine)
 
-If no file is found on any of these paths, an error will be raised.
-
 `system` can be used by itself or in conjunction with other CA filepaths.
 
 When `pg_ssl_verify` or `cassandra_ssl_verify` are enabled, these certificate
@@ -1671,7 +1713,7 @@ authority files will be used for verifying Kong's database connections.
 
 See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
 
-**Default:** none
+**Default:** `system`
 
 ---
 
@@ -1780,6 +1822,14 @@ that are triggered send associated data.
 See: https://docs.konghq.com/gateway/latest/admin-api/event-hooks/reference/
 
 **Default:** `on`
+
+---
+
+#### fips
+
+Turn on FIPS mode; this mode is only available on a FIPS build.
+
+**Default:** `off`
 
 ---
 
@@ -2217,6 +2267,37 @@ This should be same as the scrape interval (in seconds) of the Prometheus
 server.
 
 **Default:** `5`
+
+---
+
+
+### Konnect section
+
+#### konnect_mode
+
+When enabled, the dataplane is connected to Konnect
+
+**Default:** `off`
+
+---
+
+
+### Analytics For Konnect section
+
+#### analytics_flush_interval
+
+Determine the frequency of flushing local data to Konnect in seconds.
+
+**Default:** `1`
+
+---
+
+#### analytics_buffer_size_limit
+
+Max number of messages can be buffered locally before dropping data in case
+there is no network connection to Konnect.
+
+**Default:** `100000`
 
 ---
 
@@ -2699,7 +2780,6 @@ The email looks like the following:
 
 ```
 Subject: Invite to access Dev Portal <WORKSPACE_NAME>
-```
 
 Hello Developer!
 
@@ -2708,6 +2788,7 @@ You have been invited to create a Dev Portal account at %s.
 Please visit `<DEV_PORTAL_URL/register>` to create your account.
 
 **Default:** `on`
+```
 
 ---
 
@@ -2724,15 +2805,15 @@ The email looks like the following:
 
 ```
 Subject: Request to access Dev Portal <WORKSPACE NAME>
-```
 
 Hello Admin!
 
-`<DEVELOPER NAME>` has requested Dev Portal access for `<WORKSPACE_NAME>`.
+<DEVELOPER NAME> has requested Dev Portal access for <WORKSPACE_NAME>.
 
-Please visit `<KONG_MANAGER_URL/developers/requested>` to review this request.
+Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 
 **Default:** `on`
+```
 
 ---
 
@@ -2750,11 +2831,12 @@ The email looks like the following:
 
 ```
 Subject: Dev Portal access approved
+
+
+Hello Developer! You have been approved to access <WORKSPACE_NAME>.
+
+Please visit <DEV PORTAL URL/login> to login.
 ```
-
-Hello Developer! You have been approved to access `<WORKSPACE_NAME>`.
-
-Please visit `<DEV PORTAL URL/login>` to login.
 
 **Default:** `on`
 
@@ -2773,19 +2855,20 @@ the Kong Manager.
 The email looks like the following:
 
 ```
-Subject: Password Reset Instructions for Dev Portal `<WORKSPACE_NAME>`.
-```
+Subject: Password Reset Instructions for Dev Portal <WORKSPACE_NAME>.
+
 
 Hello Developer,
 
 Please click the link below to reset your Dev Portal password.
 
-`<DEV_PORTAL_URL/reset?token=12345>`
+<DEV_PORTAL_URL/reset?token=12345>
 
-This link will expire in `<portal_reset_token_exp>`
+This link will expire in <portal_reset_token_exp>
 
 If you didn't make this request, keep your account secure by clicking the link
 above to change your password.
+```
 
 **Default:** `on`
 
@@ -2804,14 +2887,15 @@ The email looks like the following:
 
 ```
 Subject: Dev Portal password change success
-```
+
 
 Hello Developer, We are emailing you to let you know that your Dev Portal
-password at `<DEV_PORTAL_URL>` has been changed.
+password at <DEV_PORTAL_URL> has been changed.
 
 Click the link below to sign in with your new credentials.
 
-`<DEV_PORTAL_URL>`
+<DEV_PORTAL_URL>
+```
 
 **Default:** `on`
 
@@ -2820,8 +2904,8 @@ Click the link below to sign in with your new credentials.
 #### portal_application_status_email
 {:.badge .enterprise}
 
-When enabled, developers will receive an email when the status changes for their
-application service requests.
+When enabled, developers will receive an email when the status changes for
+their appliciation service requests.
 
 When disabled, developers will still be able to view the status in their
 developer portal application page.
@@ -2831,12 +2915,12 @@ The email looks like the following:
 ```
 Subject: Dev Portal application request <REQUEST_STATUS> (<DEV_PORTAL_URL>)
 
-Hello Developer,
-We are emailing you to let you know that your request for application access from the
-Developer Portal account at <DEV_PORTAL_URL> is <REQUEST_STATUS>.
 
-Application: <APPLICATION_NAME>
-Service: <SERVICE_NAME>
+Hello Developer, We are emailing you to let you know that your request for
+application access from the Developer Portal account at <DEV_PORTAL_URL> is
+<REQUEST_STATUS>.
+
+Application: <APPLICATION_NAME> Service: <SERVICE_NAME>
 
 You will receive another email when your access has been approved.
 ```
@@ -2854,25 +2938,28 @@ email when a developer requests access to service through an application.
 When disabled, Kong admins will have to manually check the Kong Manager to view
 any requests.
 
-By default, `smtp_admin_emails` will be the recipients. This can be overriden
-by `portal_smtp_admin_emails`, which can be set dynamically per workspace through
-the Admin API.
+By default, `smtp_admin_emails` will be the recipients.
+
+This can be overriden by `portal_smtp_admin_emails`, which can be set
+dynamically per workspace through the Admin API.
 
 The email looks like the following:
 
- ```
+```
 Subject: Request to access Dev Portal (<DEV_PORTAL_URL>) service from <DEVELOPER_EMAIL>
+
 
 Hello Admin,
 
-<DEVELOPER NAME> (<DEVELOPER_EMAIL>) has requested application access for <DEV_PORTAL_URL>.
+<DEVELOPER NAME> (<DEVELOPER_EMAIL>) has requested application access for
+<DEV_PORTAL_URL>.
 
-Requested workspace: <WORKSPACE_NAME>
-Requested application: <APPLICATION_NAME>
+Requested workspace: <WORKSPACE_NAME> Requested application: <APPLICATION_NAME>
 Requested service: <SERVICE_NAME>
 
-Please visit <KONG_MANAGER_URL/WORKSPACE_NAME/applications/APPLICATION_ID#requested> to review this request.
-
+Please visit
+<KONG_MANAGER_URL/WORKSPACE_NAME/applications/APPLICATION_ID#requested> to
+review this request.
 ```
 
 **Default:** `off`
@@ -2911,9 +2998,11 @@ associated with the account.
 #### portal_smtp_admin_emails
 {:.badge .enterprise}
 
-Comma separated list of admin emails to receive portal-related notifications.
+Comma separated list of admin emails to receive
+portal notifications. Can be dynamically set per workspace through the Admin
+API.
 
-If none are set, the values in `smtp_admin_emails` will be used.
+If not set, `smtp_admin_emails` will be used.
 
 Example `admin1@example.com, admin2@example.com`
 
@@ -3162,6 +3251,11 @@ future. If this value is undefined, no signature will be generated.
 
 ### Granular Tracing section
 
+{:.warning} > **Deprecation warning**: Granular tracing is deprecated. This
+means the feature will eventually be removed.
+
+Our target for Granular tracing removal is the Kong Gateway 4.0 release.
+
 Granular tracing offers a mechanism to expose metrics and detailed debug data
 about the lifecycle of Kong in a human- or machine-consumable format.
 
@@ -3386,6 +3480,16 @@ recovery and optional bootstrapping.
 
 ---
 
+#### keyring_recovery_public_key
+{:.badge .enterprise}
+
+Defines the filesystem path at which the public
+key to optionally encrypt all keyring materials and backup in the database.
+
+**Default:** none
+
+---
+
 #### keyring_blob_path
 {:.badge .enterprise}
 
@@ -3439,7 +3543,6 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 ---
 
 #### untrusted_lua
-{:.badge .enterprise}
 
 Controls loading of Lua functions from admin-supplied sources such as the Admin
 API. LuaJIT bytecode loading is always disabled.
@@ -3487,7 +3590,6 @@ and `untrusted_lua_sandbox_environment` parameters below.
 ---
 
 #### untrusted_lua_sandbox_requires
-{:.badge .enterprise}
 
 Comma-separated list of modules allowed to be loaded with `require` inside the
 sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -3514,7 +3616,6 @@ sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 ---
 
 #### untrusted_lua_sandbox_environment
-{:.badge .enterprise}
 
 Comma-separated list of global Lua variables that should be made available
 inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -3525,6 +3626,21 @@ to escape the sandbox.
 **Default:** none
 
 ---
+
+#### openresty_path
+
+Path to the OpenResty installation that Kong will use. When this is empty (the
+default), Kong determines the OpenResty installation by searching for a
+system-installed OpenResty and falling back to searching $PATH for the nginx
+binary.
+
+Setting this attribute disables the search behavior and explicitly instructs
+Kong which OpenResty installation to use.
+
+**Default:** none
+
+---
+
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html

@@ -140,7 +140,7 @@ infd:close()
 
 local parsed = assert(parser.parse(lines))
 
-local outpath = "app/gateway/" .. KONG_VERSION .. "/reference/configuration.md"
+local outpath = "src/gateway/reference/configuration.md"
 local outfd = assert(io.open(outpath, "w+"))
 
 outfd:write(data.header)
@@ -209,7 +209,7 @@ for _, section in ipairs(parsed) do
       elseif string.match(var.name, "admin_gui_session") then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "telemetry") then
+      elseif string.match(var.name, "cluster_telemetry") then
         write("{:.badge .enterprise}")
 
       elseif string.match(var.name, "rbac") then
@@ -218,7 +218,7 @@ for _, section in ipairs(parsed) do
       elseif string.match(var.name, "event_hooks") then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "data_plane_config_cache") then
+      elseif string.match(var.name, "keyring") then
         write("{:.badge .enterprise}")
 
       elseif string.match(section.name, "PORTAL") then
@@ -237,9 +237,6 @@ for _, section in ipairs(parsed) do
         write("{:.badge .enterprise}")
 
       elseif string.match(section.name, "ROUTE COLLISION") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "DATABASE ENCRYPTION") then
         write("{:.badge .enterprise}")
       end
       write("")

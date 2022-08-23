@@ -11,7 +11,9 @@ title: Configuration Reference for Kong Gateway
 source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
 
-## Properties reference
+Reference for {{site.base_gateway}} configuration parameters. Set these parameters in `kong.conf`.
+
+To learn more about the `kong.conf` file, see the guide on the [Kong Configuration File](/gateway/{{page.kong_version}}/kong-production/kong-conf).
 ]]
 
 
