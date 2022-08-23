@@ -433,6 +433,10 @@
   version: "1.13.0"
   edition: "deck"
 -
+  release: "1.14.x"
+  version: "1.14.0"
+  edition: "deck"
+-
   release: "1.0.x"
   version: "1.0.4"
   edition: "mesh"
