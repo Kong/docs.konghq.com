@@ -25,16 +25,12 @@ Workspace displayed beneath the **Vitals** chart.
 The list of **Workspaces** may be rendered as cards or a table,
 depending on preference.
 
-![Workspace List](https://doc-assets.konghq.com/1.3/manager/kong-manager-workspaces-grid.png)
-
 
 ## Creating New Workspaces
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button at the top right to see the **Create Workspace** form. Name and choose a
 color / icon for the new Workspace.
-
-    ![New Workspace Form](https://doc-assets.konghq.com/1.3/manager/workspaces/01-create-new-workspace.png)
 
     ⚠️ **WARNING**: Do not name Workspaces the same as these major routes in Kong
     Manager:
@@ -54,8 +50,6 @@ color / icon for the new Workspace.
 
 4. Click the "Create New Workspace" button. Upon creation, the application will
 navigate to the new Workspace's dashboard.
-
-    ![New Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
 
 ## Edit a workspace
 

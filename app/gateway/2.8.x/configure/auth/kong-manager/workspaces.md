@@ -30,8 +30,6 @@ workspace displayed beneath the **Vitals** chart.
 The list of workspaces may be rendered as cards or a table,
 depending on preference.
 
-![Workspace List](https://doc-assets.konghq.com/1.3/manager/kong-manager-workspaces-grid.png)
-
 
 ## Create a Workspace
 
