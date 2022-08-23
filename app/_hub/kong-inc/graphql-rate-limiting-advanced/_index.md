@@ -79,11 +79,6 @@ params:
       datatype: string
       description: |
         How to define the rate limit key. Can be `ip`, `credential`, `consumer`.
-    - name: header_name
-      required: semi
-      datatype: string
-      description: |
-        Header name to use as the rate limit key when the `header` identifier is defined.
     - name: dictionary_name
       required: true
       default: kong_rate_limiting_counters
