@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!-- vale off -->
 This module can be used to resolve, parse, and verify vault references.
 
 
@@ -110,7 +110,7 @@ local value, err = kong.vault.get("{vault://env/cert/key}")
 
 ## kong.vault.try(callback, options)
 
-Helper function for automatic secret rotation.  Currently experimental.
+Helper function for automatic secret rotation. Currently experimental.
 
 
 **Parameters**
