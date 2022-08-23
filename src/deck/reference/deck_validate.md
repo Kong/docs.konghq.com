@@ -121,7 +121,7 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 
 `--konnect-token-file`
-:  File containing the Personal Access Token to your {{site.konnect_short_name}} account.
+:  File containing the personal access token to your {{site.konnect_short_name}} account.
 
 {% endif_version %}
 

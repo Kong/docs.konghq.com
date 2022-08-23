@@ -111,7 +111,7 @@ You may also need to pass in as header the User-Agent that was used to create th
 {% if_version gte:1.14.x %}
 
 `--konnect-token`
-:  Personal Access Token associated with your {{site.konnect_short_name}} account, this takes precedence over `--konnect-token-file` flag.
+:  Personal access token associated with your {{site.konnect_short_name}} account, this takes precedence over the `--konnect-token-file` flag.
 
 
 `--konnect-token-file`
