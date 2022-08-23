@@ -567,7 +567,7 @@ items:
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
-      - text: Configuration Reference
+      - text: Configuration
         url: /reference/configuration
       - text: Kong Gateway Nginx Directives
         url: /reference/nginx-directives

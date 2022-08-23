@@ -9,11 +9,15 @@ source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 ---
 <!-- vale off -->
 
-## Properties reference
+Reference for {{site.base_gateway}} configuration parameters. Set these parameters in `kong.conf`.
 
-### General section
+To learn more about the `kong.conf` file, see the guide on the [Kong Configuration File](/gateway/{{page.kong_version}}/kong-production/kong-conf).
 
-#### prefix
+---
+
+## General section
+
+### prefix
 
 Working directory. Equivalent to Nginx's prefix path, containing temporary
 files and logs.
@@ -22,9 +26,9 @@ Each Kong process must have a separate working directory.
 
 **Default:** `/usr/local/kong/`
 
----
 
-#### log_level
+
+### log_level
 
 Log level of the Nginx server. Logs are found at `<prefix>/logs/error.log`.
 
@@ -33,9 +37,9 @@ accepted values.
 
 **Default:** `notice`
 
----
 
-#### proxy_access_log
+
+### proxy_access_log
 
 Path for proxy port request access logs. Set this value to `off` to disable
 logging proxy requests.
@@ -45,18 +49,18 @@ location.
 
 **Default:** `logs/access.log`
 
----
 
-#### proxy_error_log
+
+### proxy_error_log
 
 Path for proxy port request error logs. The granularity of these logs is
 adjusted by the `log_level` property.
 
 **Default:** `logs/error.log`
 
----
 
-#### proxy_stream_access_log
+
+### proxy_stream_access_log
 
 Path for tcp streams proxy port access logs. Set this value to `off` to disable
 logging proxy requests.
@@ -69,18 +73,18 @@ $bytes_sent $bytes_received ' '$session_time'`
 
 **Default:** `logs/access.log basic`
 
----
 
-#### proxy_stream_error_log
+
+### proxy_stream_error_log
 
 Path for tcp streams proxy port request error logs. The granularity of these
 logs is adjusted by the `log_level` property.
 
 **Default:** `logs/error.log`
 
----
 
-#### admin_access_log
+
+### admin_access_log
 
 Path for Admin API request access logs. If Hybrid Mode is enabled and the
 current node is set to be the Control Plane, then the connection requests from
@@ -94,18 +98,18 @@ location.
 
 **Default:** `logs/admin_access.log`
 
----
 
-#### admin_error_log
+
+### admin_error_log
 
 Path for Admin API request error logs. The granularity of these logs is
 adjusted by the `log_level` property.
 
 **Default:** `logs/error.log`
 
----
 
-#### status_access_log
+
+### status_access_log
 
 Path for Status API request access logs. The default value of `off` implies
 that logging for this API is disabled by default.
@@ -115,30 +119,69 @@ location.
 
 **Default:** `off`
 
----
 
-#### status_error_log
+
+### status_error_log
 
 Path for Status API request error logs. The granularity of these logs is
 adjusted by the `log_level` property.
 
 **Default:** `logs/status_error.log`
 
----
 
-#### vaults
 
-Comma-separated list of vaults this node should load. By default, no vaults are
-enabled.
+### vaults
+
+Comma-separated list of vaults this node should load. By default, all the
+bundled vaults are enabled.
 
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.vaults.{name}.*`.
 
+**Default:** `bundled`
+
+
+
+### opentelemetry_tracing
+
+Comma-separated list of tracing instrumentations this node should load. By
+default, no instrumentations are enabled.
+
+Valid values to this setting are:
+
+- `off`: do not enable instrumentations.
+- `request`: only enable request-level instrumentations.
+- `all`: enable all the following instrumentations.
+- `db_query`: trace database query, including Postgres and Cassandra.
+- `dns_query`: trace DNS query.
+- `router`: trace router execution, including router rebuilding.
+- `http_client`: trace OpenResty HTTP client requests.
+- `balancer`: trace balancer retries.
+- `plugin_rewrite`: trace plugins iterator execution with rewrite phase.
+- `plugin_access`: trace plugins iterator execution with access phase.
+- `plugin_header_filter`: trace plugins iterator execution with header_filter
+  phase.
+
+**Note:** In the current implementation, tracing instrumentations are not
+enabled in stream mode.
+
 **Default:** `off`
 
----
 
-#### plugins
+
+### opentelemetry_tracing_sampling_rate
+
+Tracing instrumentation sampling rate.
+
+Tracer samples a fixed percentage of all spans following the sampling rate.
+
+Example: `0.25`, this should account for 25% of all traces.
+
+**Default:** `1.0`
+
+
+
+### plugins
 
 Comma-separated list of plugins this node should load. By default, only plugins
 bundled in official distributions are loaded via the `bundled` keyword.
@@ -173,43 +216,43 @@ experiencing LRU churning in the database cache (i.e. when the configured
 
 **Default:** `bundled`
 
----
 
-#### pluginserver_names
+
+### pluginserver_names
 
 Comma-separated list of names for pluginserver processes. The actual names are
 used for log messages and to relate the actual settings.
 
 **Default:** none
 
----
 
-#### pluginserver_XXX_socket
+
+### pluginserver_XXX_socket
 
 Path to the unix socket used by the <XXX> pluginserver.
 
 **Default:** `<prefix>/<XXX>.socket`
 
----
 
-#### pluginserver_XXX_start_cmd
+
+### pluginserver_XXX_start_cmd
 
 Full command (including any needed arguments) to start the <XXX> pluginserver
 
 **Default:** `/usr/local/bin/<XXX>`
 
----
 
-#### pluginserver_XXX_query_cmd
+
+### pluginserver_XXX_query_cmd
 
 Full command to "query" the <XXX> pluginserver. Should produce a JSON with the
 dump info of all plugins it manages
 
 **Default:** `/usr/local/bin/query_<XXX>`
 
----
 
-#### port_maps
+
+### port_maps
 
 With this configuration parameter, you can let the Kong to know about the port
 from which the packets are forwarded to it. This is fairly common when running
@@ -228,20 +271,20 @@ of reporting the port Kong is listening to.
 
 **Default:** none
 
----
 
-#### anonymous_reports
+
+### anonymous_reports
 
 Send anonymous usage data such as error stack traces to help improve Kong.
 
 **Default:** `on`
 
+
 ---
 
+## Hybrid Mode section
 
-### Hybrid Mode section
-
-#### role
+### role
 
 Use this setting to enable Hybrid Mode, This allows running some Kong nodes in
 a control plane role with a database and have them deliver configuration updates
@@ -257,9 +300,9 @@ Valid values to this setting are:
 
 **Default:** `traditional`
 
----
 
-#### cluster_mtls
+
+### cluster_mtls
 
 Sets the verification between nodes of the cluster.
 
@@ -277,9 +320,9 @@ Valid values to this setting are:
 
 **Default:** `shared`
 
----
 
-#### cluster_cert
+
+### cluster_cert
 
 Filename of the cluster certificate to use when establishing secure
 communication between control and data plane nodes.
@@ -291,9 +334,9 @@ should be a different certificate for each DP node.
 
 **Default:** none
 
----
 
-#### cluster_cert_key
+
+### cluster_cert_key
 
 Filename of the cluster certificate key to use when establishing secure
 communication between control and data plane nodes.
@@ -305,9 +348,9 @@ should be a different certificate for each DP node.
 
 **Default:** none
 
----
 
-#### cluster_ca_cert
+
+### cluster_ca_cert
 
 The trusted CA certificate file in PEM format used for Control Plane to verify
 Data Plane's certificate and Data Plane to verify Control Plane's certificate.
@@ -321,9 +364,9 @@ This field is ignored if `cluster_mtls` is set to `shared`.
 
 **Default:** none
 
----
 
-#### cluster_allowed_common_names
+
+### cluster_allowed_common_names
 
 The list of Common Names that are allowed to connect to the control plane.
 Multiple entries may be supplied in a comma-separated string. When not
@@ -334,12 +377,12 @@ This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 
 **Default:** none
 
+
 ---
 
+## Hybrid Mode Data Plane section
 
-### Hybrid Mode Data Plane section
-
-#### cluster_server_name
+### cluster_server_name
 
 The server name used in the SNI of the TLS connection from a DP node to a CP
 node.
@@ -352,18 +395,18 @@ If `cluster_mtls` is set to `shared`, this setting is ignored and
 
 **Default:** none
 
----
 
-#### cluster_control_plane
+
+### cluster_control_plane
 
 To be used by data plane nodes only: address of the control plane node from
 which configuration updates will be fetched, in `host:port` format.
 
 **Default:** none
 
----
 
-#### cluster_telemetry_endpoint
+
+### cluster_telemetry_endpoint
 {:.badge .enterprise}
 
 To be used by data plane nodes only: telemetry address of the control plane
@@ -371,19 +414,12 @@ node to which telemetry updates will be posted in `host:port` format.
 
 **Default:** none
 
----
-#### cluster_telemetry_server_name
-{:.badge .enterprise}
-
-The SNI (Server Name Indication extension) to use for Vitals telemetry data.
-
-**Default:** none
 
 ---
 
-### Hybrid Mode Control Plane section
+## Hybrid Mode Control Plane section
 
-#### cluster_listen
+### cluster_listen
 
 Comma-separated list of addresses and ports on which the cluster control plane
 server should listen for data plane connections.
@@ -401,9 +437,9 @@ See `admin_access_log` config description for more information.
 
 **Default:** `0.0.0.0:8005`
 
----
 
-#### cluster_telemetry_listen
+
+### cluster_telemetry_listen
 {:.badge .enterprise}
 
 Comma-separated list of addresses and ports on which the cluster control plane
@@ -416,9 +452,9 @@ This setting has no effect if `role` is not set to `control_plane`.
 
 **Default:** `0.0.0.0:8006`
 
----
 
-#### cluster_data_plane_purge_delay
+
+### cluster_data_plane_purge_delay
 
 How many seconds must pass from the time a DP node becomes offline to the time
 its entry gets removed from the database, as returned by the
@@ -430,9 +466,9 @@ its entry will be removed.
 
 **Default:** `1209600`
 
----
 
-#### cluster_ocsp
+
+### cluster_ocsp
 
 Whether to check for revocation status of DP certificates using OCSP (Online
 Certificate Status Protocol).
@@ -454,9 +490,9 @@ Valid values to this setting are:
 
 **Default:** `off`
 
----
 
-#### cluster_max_payload
+
+### cluster_max_payload
 
 This sets the maximum payload size allowed to be sent across from CP to DP in
 Hybrid mode.
@@ -465,11 +501,12 @@ Default is 4Mb - 4 * 1024 * 1024 due to historical reasons.
 
 **Default:** `4194304`
 
+
 ---
 
-### NGINX section
+## NGINX section
 
-#### proxy_listen
+### proxy_listen
 
 Comma-separated list of addresses and ports on which the proxy server should
 listen for HTTP/HTTPS traffic.
@@ -522,9 +559,9 @@ documentation.
 
 **Default:** `0.0.0.0:8000 reuseport backlog=16384, 0.0.0.0:8443 http2 ssl reuseport backlog=16384`
 
----
 
-#### proxy_url
+
+### proxy_url
 
 Kong Proxy URL
 
@@ -548,9 +585,9 @@ append the resolved listener port depending on the requested protocol.
 
 **Default:** none
 
----
 
-#### stream_listen
+
+### stream_listen
 
 Comma-separated list of addresses and ports on which the stream mode should
 listen.
@@ -592,9 +629,9 @@ description of the formats that Kong might accept in stream_listen.
 
 **Default:** `off`
 
----
 
-#### admin_api_uri
+
+### admin_api_uri
 
 Hierarchical part of a URI which is composed optionally of a host, port, and
 path at which the Admin API accepts HTTP or HTTPS traffic. When this config is
@@ -603,9 +640,9 @@ resolved admin_listen HTTP/HTTPS port.
 
 **Default:** none
 
----
 
-#### admin_listen
+
+### admin_listen
 
 Comma-separated list of addresses and ports on which the Admin interface should
 listen.
@@ -646,9 +683,9 @@ Example: `admin_listen = 127.0.0.1:8444 http2 ssl`
 
 **Default:** `127.0.0.1:8001 reuseport backlog=16384, 127.0.0.1:8444 http2 ssl reuseport backlog=16384`
 
----
 
-#### status_listen
+
+### status_listen
 
 Comma-separated list of addresses and ports on which the Status API should
 listen.
@@ -668,9 +705,9 @@ Example: `status_listen = 0.0.0.0:8100`
 
 **Default:** `off`
 
----
 
-#### nginx_user
+
+### nginx_user
 
 Defines user and group credentials used by worker processes. If group is
 omitted, a group whose name equals that of user is used.
@@ -682,9 +719,9 @@ default user and group credentials will be `nobody nobody`.
 
 **Default:** `kong kong`
 
----
 
-#### nginx_worker_processes
+
+### nginx_worker_processes
 
 Determines the number of worker processes spawned by Nginx.
 
@@ -693,9 +730,9 @@ usage of the equivalent Nginx directive and a description of accepted values.
 
 **Default:** `auto`
 
----
 
-#### nginx_daemon
+
+### nginx_daemon
 
 Determines whether Nginx will run as a daemon or as a foreground process.
 Mainly useful for development or when running Kong inside a Docker environment.
@@ -704,9 +741,9 @@ See http://nginx.org/en/docs/ngx_core_module.html#daemon.
 
 **Default:** `on`
 
----
 
-#### mem_cache_size
+
+### mem_cache_size
 
 Size of each of the two in-memory caches for database entities. The accepted
 units are `k` and `m`, with a minimum recommended value of a few MBs.
@@ -716,9 +753,9 @@ total memory Kong uses to cache entities might be double this value.
 
 **Default:** `128m`
 
----
 
-#### ssl_cipher_suite
+
+### ssl_cipher_suite
 
 Defines the TLS ciphers served by Nginx.
 
@@ -730,9 +767,9 @@ https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
 
 **Default:** `intermediate`
 
----
 
-#### ssl_ciphers
+
+### ssl_ciphers
 
 Defines a custom list of TLS ciphers to be served by Nginx. This list must
 conform to the pattern defined by `openssl ciphers`.
@@ -741,9 +778,9 @@ This value is ignored if `ssl_cipher_suite` is not `custom`.
 
 **Default:** none
 
----
 
-#### ssl_protocols
+
+### ssl_protocols
 
 Enables the specified protocols for client-side connections. The set of
 supported protocol versions also depends on the version of OpenSSL Kong was
@@ -753,9 +790,9 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
 
 **Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
 
----
 
-#### ssl_prefer_server_ciphers
+
+### ssl_prefer_server_ciphers
 
 Specifies that server ciphers should be preferred over client ciphers when
 using the SSLv3 and TLS protocols. This value is ignored if `ssl_cipher_suite`
@@ -766,9 +803,9 @@ http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
 
 **Default:** `on`
 
----
 
-#### ssl_dhparam
+
+### ssl_dhparam
 
 Defines DH parameters for DHE ciphers from the predefined groups: `ffdhe2048`,
 `ffdhe3072`, `ffdhe4096`, `ffdhe6144`, `ffdhe8192`, or from the absolute path to
@@ -782,9 +819,9 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
 
 **Default:** none
 
----
 
-#### ssl_session_tickets
+
+### ssl_session_tickets
 
 Enables or disables session resumption through TLS session tickets. This has no
 impact when used with TLSv1.3.
@@ -796,9 +833,9 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets
 
 **Default:** `on`
 
----
 
-#### ssl_session_timeout
+
+### ssl_session_timeout
 
 Specifies a time during which a client may reuse the session parameters. See
 the rationale: https://github.com/mozilla/server-side-tls/issues/198
@@ -807,9 +844,9 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
 
 **Default:** `1d`
 
----
 
-#### ssl_cert
+
+### ssl_cert
 
 Comma-separated list of the absolute path to the certificates for
 `proxy_listen` values with TLS enabled.
@@ -825,9 +862,9 @@ requests.
 
 **Default:** none
 
----
 
-#### ssl_cert_key
+
+### ssl_cert_key
 
 Comma-separated list of the absolute path to the keys for `proxy_listen` values
 with TLS enabled.
@@ -842,18 +879,18 @@ requests.
 
 **Default:** none
 
----
 
-#### client_ssl
+
+### client_ssl
 
 Determines if Nginx should attempt to send client-side TLS certificates and
 perform Mutual TLS Authentication with upstream service when proxying requests.
 
 **Default:** `off`
 
----
 
-#### client_ssl_cert
+
+### client_ssl_cert
 
 If `client_ssl` is enabled, the absolute path to the client certificate for the
 `proxy_ssl_certificate` directive.
@@ -863,9 +900,9 @@ attribute of the `Service` object.
 
 **Default:** none
 
----
 
-#### client_ssl_cert_key
+
+### client_ssl_cert_key
 
 If `client_ssl` is enabled, the absolute path to the client TLS key for the
 `proxy_ssl_certificate_key` directive.
@@ -875,9 +912,9 @@ attribute of the `Service` object.
 
 **Default:** none
 
----
 
-#### admin_ssl_cert
+
+### admin_ssl_cert
 
 Comma-separated list of the absolute path to the certificates for
 `admin_listen` values with TLS enabled.
@@ -886,9 +923,9 @@ See docs for `ssl_cert` for detailed usage.
 
 **Default:** none
 
----
 
-#### admin_ssl_cert_key
+
+### admin_ssl_cert_key
 
 Comma-separated list of the absolute path to the keys for `admin_listen` values
 with TLS enabled.
@@ -897,9 +934,9 @@ See docs for `ssl_cert_key` for detailed usage.
 
 **Default:** none
 
----
 
-#### status_ssl_cert
+
+### status_ssl_cert
 
 Comma-separated list of the absolute path to the certificates for
 `status_listen` values with TLS enabled.
@@ -908,9 +945,9 @@ See docs for `ssl_cert` for detailed usage.
 
 **Default:** none
 
----
 
-#### status_ssl_cert_key
+
+### status_ssl_cert_key
 
 Comma-separated list of the absolute path to the keys for `status_listen`
 values with TLS enabled.
@@ -919,9 +956,9 @@ See docs for `ssl_cert_key` for detailed usage.
 
 **Default:** none
 
----
 
-#### headers
+
+### headers
 
 Comma-separated list of headers Kong should inject in client responses.
 
@@ -955,9 +992,9 @@ Example: `headers = via, latency_tokens`
 
 **Default:** `server_tokens, latency_tokens`
 
----
 
-#### trusted_ips
+
+### trusted_ips
 
 Defines trusted IP addresses blocks that are known to send correct
 `X-Forwarded-*` headers.
@@ -981,9 +1018,9 @@ for examples of accepted values.
 
 **Default:** none
 
----
 
-#### real_ip_header
+
+### real_ip_header
 
 Defines the request header field whose value will be used to replace the client
 address.
@@ -1003,9 +1040,9 @@ for a description of this directive.
 
 **Default:** `X-Real-IP`
 
----
 
-#### real_ip_recursive
+
+### real_ip_recursive
 
 This value sets the `ngx_http_realip_module` directive of the same name in the
 Nginx configuration.
@@ -1015,9 +1052,9 @@ for a description of this directive.
 
 **Default:** `off`
 
----
 
-#### error_default_type
+
+### error_default_type
 
 Default MIME type to use when the request `Accept` header is missing and Nginx
 is returning an error for the request.
@@ -1027,9 +1064,9 @@ Accepted values are `text/plain`, `text/html`, `application/json`, and
 
 **Default:** `text/plain`
 
----
 
-#### upstream_keepalive_pool_size
+
+### upstream_keepalive_pool_size
 
 Sets the default size of the upstream keepalive connection pools.
 
@@ -1041,9 +1078,9 @@ each upstream request to open a new connection.
 
 **Default:** `60`
 
----
 
-#### upstream_keepalive_max_requests
+
+### upstream_keepalive_max_requests
 
 Sets the default maximum number of requests than can be proxied upstream
 through one keepalive connection.
@@ -1055,9 +1092,9 @@ used to proxy an indefinite number of requests.
 
 **Default:** `100`
 
----
 
-#### upstream_keepalive_idle_timeout
+
+### upstream_keepalive_idle_timeout
 
 Sets the default timeout (in seconds) for which an upstream keepalive
 connection should be kept open. When the timeout is reached while the connection
@@ -1068,10 +1105,10 @@ be kept open indefinitely.
 
 **Default:** `60`
 
+
 ---
 
-
-### NGINX Injected Directives section
+## NGINX Injected Directives section
 
 Nginx directives can be dynamically injected in the runtime nginx.conf file
 without requiring a custom Nginx configuration template.
@@ -1122,9 +1159,9 @@ server, you may specify `nginx_proxy_ssl_protocols` and/or
 `nginx_admin_ssl_protocols`, both of which taking precedence over the `http {}`
 block.
 
----
 
-#### nginx_main_worker_rlimit_nofile
+
+### nginx_main_worker_rlimit_nofile
 
 Changes the limit on the maximum number of open files for worker processes.
 
@@ -1135,9 +1172,9 @@ See http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile
 
 **Default:** `auto`
 
----
 
-#### nginx_events_worker_connections
+
+### nginx_events_worker_connections
 
 Sets the maximum number of simultaneous connections that can be opened by a
 worker process.
@@ -1149,9 +1186,9 @@ See http://nginx.org/en/docs/ngx_core_module.html#worker_connections
 
 **Default:** `auto`
 
----
 
-#### nginx_http_client_header_buffer_size
+
+### nginx_http_client_header_buffer_size
 
 Sets buffer size for reading the client request headers.
 
@@ -1160,9 +1197,9 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_siz
 
 **Default:** `1k`
 
----
 
-#### nginx_http_large_client_header_buffers
+
+### nginx_http_large_client_header_buffers
 
 Sets the maximum number and size of buffers used for reading large clients
 requests headers.
@@ -1172,9 +1209,9 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buff
 
 **Default:** `4 8k`
 
----
 
-#### nginx_http_client_max_body_size
+
+### nginx_http_client_max_body_size
 
 Defines the maximum request body size allowed by requests proxied by Kong,
 specified in the Content-Length request header. If a request exceeds this limit,
@@ -1186,17 +1223,17 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 
 **Default:** `0`
 
----
 
-#### nginx_admin_client_max_body_size
+
+### nginx_admin_client_max_body_size
 
 Defines the maximum request body size for Admin API.
 
 **Default:** `10m`
 
----
 
-#### nginx_http_client_body_buffer_size
+
+### nginx_http_client_body_buffer_size
 
 Defines the buffer size for reading the request body. If the client request
 body is larger than this value, the body will be buffered to disk. Note that
@@ -1211,31 +1248,27 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
 
 **Default:** `8k`
 
----
 
-#### nginx_admin_client_body_buffer_size
+
+### nginx_admin_client_body_buffer_size
 
 Defines the buffer size for reading the request body on Admin API.
 
 **Default:** `10m`
 
----
 
-#### nginx_http_lua_regex_match_limit
+
+### nginx_http_lua_regex_match_limit
 
 Global `MATCH_LIMIT` for PCRE regex matching. The default of `100000` should
 ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 
 **Default:** `100000`
 
+
 ---
 
-
-### Datastore section
-
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
+## Datastore section
 
 Kong can run with a database to store coordinated data between Kong nodes in a
 cluster, or without a database, where each node stores its information
@@ -1270,9 +1303,9 @@ By default, all other database config for the read-only connection are
 inherited from the corresponding main connection config described above but may
 be optionally overwritten explicitly using the `pg_ro_*` config below.
 
----
 
-#### database
+
+### database
 
 Determines which of PostgreSQL or Cassandra this node will use as its
 datastore.
@@ -1281,13 +1314,13 @@ Accepted values are `postgres`, `cassandra`, and `off`.
 
 **Default:** `postgres`
 
----
 
 
-#### Postgres settings
+
+### Postgres settings
 
 name   | description  | default
--------|--------------|----------
+-|--|-
 **pg_host** | Host of the Postgres server. | `127.0.0.1`
 **pg_port** | Port of the Postgres server. | `5432`
 **pg_timeout** | Defines the timeout (in ms), for connecting, reading and writing. | `5000`
@@ -1319,14 +1352,14 @@ name   | description  | default
 **pg_ro_semaphore_timeout** | Same as `pg_semaphore_timeout`, but for the read-only connection. | `<pg_semaphore_timeout>`
 **pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
 
-#### Cassandra settings
+### Cassandra settings
 
 
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 
 name   | description  | default
--------|--------------|----------
+-|--|-
 **cassandra_contact_points** | A comma-separated list of contact points to your cluster. You may specify IP addresses or hostnames. Note that the port component of SRV records will be ignored in favor of `cassandra_port`. When connecting to a multi-DC cluster, ensure that contact points from the local datacenter are specified first in this list. | `127.0.0.1`
 **cassandra_port** | The port on which your nodes are listening on. All your nodes and contact points must listen on the same port. Will be created if it doesn't exist. | `9042`
 **cassandra_keyspace** | The keyspace to use in your cluster. | `kong`
@@ -1345,7 +1378,7 @@ name   | description  | default
 **cassandra_data_centers** | When migrating for the first time, will use this setting when using the `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
 **cassandra_schema_consensus_timeout** | Defines the timeout (in ms) for the waiting period to reach a schema consensus between your Cassandra nodes. This value is only used during migrations. | `10000`
 
-#### declarative_config
+### declarative_config
 
 The path to the declarative configuration file which holds the specification of
 all entities (Routes, Services, Consumers, etc.) to be used when the `database`
@@ -1362,18 +1395,29 @@ node as a user-controlled fallback.
 
 **Default:** none
 
----
 
-#### declarative_config_string
+
+### declarative_config_string
 
 The declarative configuration as a string
 
 **Default:** none
 
+
+
+### declarative_config_encryption_mode
+
+Set encryption of the declarative config mapped file on filesystem.
+
+`aes-256-gcm` = Use AES-256-GCM to encrypt `chacha20-poly1305` = Use
+chacha20-poly1305 to encrypt `off` = does not encrypt
+
+**Default:** none
+
+
 ---
 
-
-### Datastore Cache section
+## Datastore Cache section
 
 In order to avoid unnecessary communication with the datastore, Kong caches
 entities (such as APIs, Consumers, Credentials...) for a configurable period of
@@ -1382,9 +1426,9 @@ time. It also handles invalidations if such an entity is updated.
 This section allows for configuring the behavior of Kong regarding the caching
 of such configuration entities.
 
----
 
-#### db_update_frequency
+
+### db_update_frequency
 
 Frequency (in seconds) at which to check for updated entities with the
 datastore.
@@ -1395,9 +1439,9 @@ purge the old cached entity and start using the new one.
 
 **Default:** `5`
 
----
 
-#### db_update_propagation
+
+### db_update_propagation
 
 Time (in seconds) taken for an entity in the datastore to be propagated to
 replica nodes of another datacenter.
@@ -1414,9 +1458,9 @@ and this value can be safely set to 0.
 
 **Default:** `0`
 
----
 
-#### db_cache_ttl
+
+### db_cache_ttl
 
 Time-to-live (in seconds) of an entity from the datastore when cached by this
 node.
@@ -1428,9 +1472,9 @@ If set to 0 (default), such cached entities or misses never expire.
 
 **Default:** `0`
 
----
 
-#### db_cache_neg_ttl
+
+### db_cache_neg_ttl
 
 Time-to-live (in seconds) of a datastore miss (no entity).
 
@@ -1440,9 +1484,9 @@ If set to 0, misses will never expire.
 
 **Default:** none
 
----
 
-#### db_resurrect_ttl
+
+### db_resurrect_ttl
 
 Time (in seconds) for which stale entities from the datastore should be
 resurrected for when they cannot be refreshed (e.g., the datastore is
@@ -1451,9 +1495,9 @@ will be made.
 
 **Default:** `30`
 
----
 
-#### db_cache_warmup_entities
+
+### db_cache_warmup_entities
 
 Entities to be pre-loaded from the datastore into the in-memory cache at Kong
 start-up.
@@ -1470,10 +1514,10 @@ If the size is insufficient, Kong will log a warning.
 
 **Default:** `services`
 
+
 ---
 
-
-### DNS Resolver section
+## DNS Resolver section
 
 By default, the DNS resolver will use the standard configuration files
 `/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be
@@ -1496,9 +1540,9 @@ request it gets over the entries in the DNS record. For `SRV` records the
 `weight` fields will be honored, but it will only use the lowest `priority`
 field entries in the record.
 
----
 
-#### dns_resolver
+
+### dns_resolver
 
 Comma separated list of nameservers, each entry in `ip[:port]` format to be
 used by Kong. If not specified the nameservers in the local `resolv.conf` file
@@ -1508,9 +1552,9 @@ Port defaults to 53 if omitted. Accepts both IPv4 and IPv6 addresses.
 
 **Default:** none
 
----
 
-#### dns_hostsfile
+
+### dns_hostsfile
 
 The hosts file to use. This file is read once and its content is static in
 memory.
@@ -1519,9 +1563,9 @@ To read the file again after modifying it, Kong must be reloaded.
 
 **Default:** `/etc/hosts`
 
----
 
-#### dns_order
+
+### dns_order
 
 The order in which to resolve different record types. The `LAST` type means the
 type of the last successful lookup (for the specified name). The format is a
@@ -1529,9 +1573,9 @@ type of the last successful lookup (for the specified name). The format is a
 
 **Default:** `LAST,SRV,A,CNAME`
 
----
 
-#### dns_valid_ttl
+
+### dns_valid_ttl
 
 By default, DNS records are cached using the TTL value of a response. If this
 property receives a value (in seconds), it will override the TTL for all
@@ -1539,9 +1583,9 @@ records.
 
 **Default:** none
 
----
 
-#### dns_stale_ttl
+
+### dns_stale_ttl
 
 Defines, in seconds, how long a record will remain in cache past its TTL. This
 value will be used while the new DNS record is fetched in the background.
@@ -1551,9 +1595,9 @@ completes, or the `dns_stale_ttl` number of seconds have passed.
 
 **Default:** `4`
 
----
 
-#### dns_cache_size
+
+### dns_cache_size
 
 Defines the maximum allowed number of DNS records stored in memory cache.
 
@@ -1563,25 +1607,25 @@ errors and data are cached, therefore a single name query can easily take up
 
 **Default:** `10000`
 
----
 
-#### dns_not_found_ttl
+
+### dns_not_found_ttl
 
 TTL in seconds for empty DNS responses and "(3) name error" responses.
 
 **Default:** `30`
 
----
 
-#### dns_error_ttl
+
+### dns_error_ttl
 
 TTL in seconds for error responses.
 
 **Default:** `1`
 
----
 
-#### dns_no_sync
+
+### dns_no_sync
 
 If enabled, then upon a cache-miss every request will trigger its own dns
 query.
@@ -1591,22 +1635,24 @@ a single query.
 
 **Default:** `off`
 
+
 ---
 
+## Tuning & Behavior section
 
-### Tuning & Behavior section
-
-#### worker_consistency
+### worker_consistency
 
 Defines whether this node should rebuild its state synchronously or
 asynchronously (the balancers and the router are rebuilt on updates that affects
 them, e.g., updates to Routes, Services or Upstreams, via the Admin API or
-loading a declarative configuration file).
+loading a declarative configuration file). (This option is deprecated and will
+be removed in future releases. The new default is `eventual`.)
 
 Accepted values are:
 
 - `strict`: the router will be rebuilt synchronously, causing incoming requests
-  to be delayed until the rebuild is finished.
+  to be delayed until the rebuild is finished. (This option is deprecated and
+  will be removed in future releases. The new default is `eventual`)
 - `eventual`: the router will be rebuilt asynchronously via a recurring
   background job running every second inside of each worker.
 
@@ -1618,11 +1664,11 @@ Using `eventual` will help preventing long tail latency issues in such cases,
 but may cause workers to route requests differently for a short period of time
 after Routes and Services updates.
 
-**Default:** `strict`
+**Default:** `eventual`
 
----
 
-#### worker_state_update_frequency
+
+### worker_state_update_frequency
 
 Defines how often the worker state changes are checked with a background job.
 When a change is detected, a new router or balancer will be built, as needed.
@@ -1632,10 +1678,10 @@ each individual worker.
 
 **Default:** `5`
 
+
 ---
 
-
-### Miscellaneous section
+## Miscellaneous section
 
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
@@ -1643,9 +1689,9 @@ flexibility and advanced usage.
 See the lua-nginx-module documentation for more information:
 https://github.com/openresty/lua-nginx-module
 
----
 
-#### lua_ssl_trusted_certificate
+
+### lua_ssl_trusted_certificate
 
 Comma-separated list of paths to certificate authority files for Lua cosockets
 in PEM format.
@@ -1662,8 +1708,6 @@ one found will be used:
 - /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem (CentOS/RHEL 7)
 - /etc/ssl/cert.pem (OpenBSD, Alpine)
 
-If no file is found on any of these paths, an error will be raised.
-
 `system` can be used by itself or in conjunction with other CA filepaths.
 
 When `pg_ssl_verify` or `cassandra_ssl_verify` are enabled, these certificate
@@ -1671,11 +1715,11 @@ authority files will be used for verifying Kong's database connections.
 
 See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
 
-**Default:** none
+**Default:** `system`
 
----
 
-#### lua_ssl_verify_depth
+
+### lua_ssl_verify_depth
 
 Sets the verification depth in the server certificates chain used by Lua
 cosockets, set by `lua_ssl_trusted_certificate`.
@@ -1689,9 +1733,9 @@ See https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth
 
 **Default:** `1`
 
----
 
-#### lua_ssl_protocols
+
+### lua_ssl_protocols
 
 Defines the TLS versions supported when handshaking with OpenResty's TCP
 cosocket APIs.
@@ -1702,9 +1746,9 @@ connections made to the upstream Service or from downstream clients.
 
 **Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
 
----
 
-#### lua_package_path
+
+### lua_package_path
 
 Sets the Lua module search path (LUA_PATH). Useful when developing or using
 custom plugins not stored in the default search path.
@@ -1713,9 +1757,9 @@ See https://github.com/openresty/lua-nginx-module#lua_package_path
 
 **Default:** `./?.lua;./?/init.lua;`
 
----
 
-#### lua_package_cpath
+
+### lua_package_cpath
 
 Sets the Lua C module search path (LUA_CPATH).
 
@@ -1723,9 +1767,9 @@ See https://github.com/openresty/lua-nginx-module#lua_package_cpath
 
 **Default:** none
 
----
 
-#### lua_socket_pool_size
+
+### lua_socket_pool_size
 
 Specifies the size limit for every cosocket connection pool associated with
 every remote server.
@@ -1734,9 +1778,9 @@ See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 
 **Default:** `30`
 
----
 
-#### enforce_rbac
+
+### enforce_rbac
 {:.badge .enterprise}
 
 Specifies whether Admin API RBAC is enforced.
@@ -1755,9 +1799,9 @@ resource.
 
 **Default:** `off`
 
----
 
-#### rbac_auth_header
+
+### rbac_auth_header
 {:.badge .enterprise}
 
 Defines the name of the HTTP request header from which the Admin API will
@@ -1765,9 +1809,9 @@ attempt to authenticate the RBAC user.
 
 **Default:** `Kong-Admin-Token`
 
----
 
-#### event_hooks_enabled
+
+### event_hooks_enabled
 {:.badge .enterprise}
 
 When enabled, event hook entities represent a relationship between an event
@@ -1781,16 +1825,24 @@ See: https://docs.konghq.com/gateway/latest/admin-api/event-hooks/reference/
 
 **Default:** `on`
 
+
+
+### fips
+
+Turn on FIPS mode; this mode is only available on a FIPS build.
+
+**Default:** `off`
+
+
 ---
 
-
-### Kong Manager section
+## Kong Manager section
 
 The Admin GUI for Kong Enterprise.
 
----
 
-#### admin_gui_listen
+
+### admin_gui_listen
 {:.badge .free}
 
 Kong Manager Listeners
@@ -1804,9 +1856,9 @@ directive.
 
 **Default:** `0.0.0.0:8002, 0.0.0.0:8445 ssl`
 
----
 
-#### admin_gui_url
+
+### admin_gui_url
 {:.badge .free}
 
 Kong Manager URL
@@ -1828,9 +1880,9 @@ resolved listener port depending on the requested protocol.
 
 **Default:** none
 
----
 
-#### admin_gui_ssl_cert
+
+### admin_gui_ssl_cert
 {:.badge .free}
 
 The absolute path to the SSL certificate for `admin_gui_listen` values with SSL
@@ -1838,9 +1890,9 @@ enabled.
 
 **Default:** none
 
----
 
-#### admin_gui_ssl_cert_key
+
+### admin_gui_ssl_cert_key
 {:.badge .free}
 
 The absolute path to the SSL key for `admin_gui_listen` values with SSL
@@ -1848,9 +1900,9 @@ enabled.
 
 **Default:** none
 
----
 
-#### admin_gui_flags
+
+### admin_gui_flags
 {:.badge .free}
 
 Alters the layout Admin GUI (JSON) The only supported value is `{
@@ -1858,9 +1910,9 @@ Alters the layout Admin GUI (JSON) The only supported value is `{
 
 **Default:** `{}`
 
----
 
-#### admin_gui_access_log
+
+### admin_gui_access_log
 {:.badge .free}
 
 Kong Manager Access Logs
@@ -1872,9 +1924,9 @@ Setting this value to `off` disables access logs for Kong Manager.
 
 **Default:** `logs/admin_gui_access.log`
 
----
 
-#### admin_gui_error_log
+
+### admin_gui_error_log
 {:.badge .free}
 
 Kong Manager Error Logs
@@ -1888,9 +1940,9 @@ Granularity can be adjusted through the `log_level` directive.
 
 **Default:** `logs/admin_gui_error.log`
 
----
 
-#### admin_gui_auth
+
+### admin_gui_auth
 {:.badge .enterprise}
 
 Kong Manager Authentication Plugin Name
@@ -1905,9 +1957,9 @@ Supported Plugins:
 
 **Default:** none
 
----
 
-#### admin_gui_auth_conf
+
+### admin_gui_auth_conf
 {:.badge .enterprise}
 
 Kong Manager Authentication Plugin Config (JSON)
@@ -1924,9 +1976,9 @@ Example for `basic-auth`:
 
 **Default:** none
 
----
 
-#### admin_gui_auth_password_complexity
+
+### admin_gui_auth_password_complexity
 {:.badge .enterprise}
 
 Kong Manager Authentication Password Complexity (JSON)
@@ -1966,9 +2018,9 @@ Example:
 
 **Default:** none
 
----
 
-#### admin_gui_session_conf
+
+### admin_gui_session_conf
 {:.badge .enterprise}
 
 Kong Manager Session Config (JSON)
@@ -1987,9 +2039,9 @@ admin_gui_session_conf = { "cookie_name": "kookie", \
 
 **Default:** none
 
----
 
-#### admin_gui_auth_header
+
+### admin_gui_auth_header
 {:.badge .enterprise}
 
 Defines the name of the HTTP request header from which the Admin API will
@@ -1997,9 +2049,9 @@ attempt to identify the Kong Admin user.
 
 **Default:** `Kong-Admin-User`
 
----
 
-#### admin_gui_auth_login_attempts
+
+### admin_gui_auth_login_attempts
 {:.badge .enterprise}
 
 Number of times a user can attempt to login to Kong Manager. 0 means infinite
@@ -2007,9 +2059,9 @@ attempts allowed.
 
 **Default:** `0`
 
----
 
-#### admin_gui_header_txt
+
+### admin_gui_header_txt
 {:.badge .free}
 
 Kong Manager Header Text Sets text for Kong Manager Header Banner. Header
@@ -2017,9 +2069,9 @@ Banner is not shown if this config is empty.
 
 **Default:** none
 
----
 
-#### admin_gui_header_bg_color
+
+### admin_gui_header_bg_color
 {:.badge .free}
 
 Kong Manager Header Background Color Sets background color for Kong Manager
@@ -2028,9 +2080,9 @@ values are ignored by Manager.
 
 **Default:** none
 
----
 
-#### admin_gui_header_txt_color
+
+### admin_gui_header_txt_color
 {:.badge .free}
 
 Kong Manager Header Text Color Sets text color for Kong Manager Header Banner.
@@ -2040,9 +2092,9 @@ ignored by Kong Manager.
 
 **Default:** none
 
----
 
-#### admin_gui_footer_txt
+
+### admin_gui_footer_txt
 {:.badge .free}
 
 Kong Manager Footer Text Sets text for Kong Manager Footer Banner. Footer
@@ -2050,9 +2102,9 @@ Banner is not shown if this config is empty
 
 **Default:** none
 
----
 
-#### admin_gui_footer_bg_color
+
+### admin_gui_footer_bg_color
 {:.badge .free}
 
 Kong Manager Footer Background Color Sets background color for Kong Manager
@@ -2063,9 +2115,9 @@ ignored by Manager.
 
 **Default:** none
 
----
 
-#### admin_gui_footer_txt_color
+
+### admin_gui_footer_txt_color
 {:.badge .free}
 
 Kong Manager Footer Text Color Sets text color for Kong Manager Footer Banner.
@@ -2075,9 +2127,9 @@ ignored by Kong Manager.
 
 **Default:** none
 
----
 
-#### admin_gui_login_banner_title
+
+### admin_gui_login_banner_title
 {:.badge .free}
 
 Kong Manager Login Banner Title Text Sets title text for Kong Manager Login
@@ -2088,9 +2140,9 @@ Login Banner is not shown if both `admin_gui_login_banner_title` and
 
 **Default:** none
 
----
 
-#### admin_gui_login_banner_body
+
+### admin_gui_login_banner_body
 {:.badge .free}
 
 Kong Manager Login Banner Body Text Sets body text for Kong Manager Login
@@ -2101,12 +2153,12 @@ Login Banner is not shown if both `admin_gui_login_banner_title` and
 
 **Default:** none
 
+
 ---
 
+## Vitals section
 
-### Vitals section
-
-#### vitals
+### vitals
 {:.badge .enterprise}
 
 When enabled, Kong will store and report metrics about its performance.
@@ -2121,9 +2173,9 @@ and visualizations on the dashboard.
 
 **Default:** `on`
 
----
 
-#### vitals_strategy
+
+### vitals_strategy
 {:.badge .enterprise}
 
 Determines whether to use the Kong database (either PostgreSQL or Cassandra, as
@@ -2134,9 +2186,9 @@ Accepted values are `database`, `prometheus`, or `influxdb`.
 
 **Default:** `database`
 
----
 
-#### vitals_tsdb_address
+
+### vitals_tsdb_address
 {:.badge .enterprise}
 
 Defines the host and port of the TSDB server to which Vitals data is written
@@ -2152,27 +2204,27 @@ Vitals data.
 
 **Default:** none
 
----
 
-#### vitals_tsdb_user
+
+### vitals_tsdb_user
 {:.badge .enterprise}
 
 Influxdb user
 
 **Default:** none
 
----
 
-#### vitals_tsdb_password
+
+### vitals_tsdb_password
 {:.badge .enterprise}
 
 Influxdb password
 
 **Default:** none
 
----
 
-#### vitals_statsd_address
+
+### vitals_statsd_address
 {:.badge .enterprise}
 
 Defines the host and port (and an optional protocol) of the StatsD server to
@@ -2183,9 +2235,9 @@ in Kong sending StatsD metrics via TCP instead of the UDP (default).
 
 **Default:** none
 
----
 
-#### vitals_statsd_prefix
+
+### vitals_statsd_prefix
 {:.badge .enterprise}
 
 Defines the prefix value attached to all Vitals StatsD events. This prefix is
@@ -2193,9 +2245,9 @@ useful when writing metrics to a multi-tenant StatsD exporter or server.
 
 **Default:** `kong`
 
----
 
-#### vitals_statsd_udp_packet_size
+
+### vitals_statsd_udp_packet_size
 {:.badge .enterprise}
 
 Defines the maximum buffer size in which Vitals statsd metrics will be held and
@@ -2205,9 +2257,9 @@ This value is defined in bytes.
 
 **Default:** `1024`
 
----
 
-#### vitals_prometheus_scrape_interval
+
+### vitals_prometheus_scrape_interval
 {:.badge .enterprise}
 
 Defines the scrape_interval query parameter sent to the Prometheus server when
@@ -2218,12 +2270,43 @@ server.
 
 **Default:** `5`
 
+
 ---
 
+## Konnect section
 
-### Developer Portal section
+### konnect_mode
 
-#### portal
+When enabled, the dataplane is connected to Konnect
+
+**Default:** `off`
+
+
+---
+
+## Analytics For Konnect section
+
+### analytics_flush_interval
+
+Determine the frequency of flushing local data to Konnect in seconds.
+
+**Default:** `1`
+
+
+
+### analytics_buffer_size_limit
+
+Max number of messages can be buffered locally before dropping data in case
+there is no network connection to Konnect.
+
+**Default:** `100000`
+
+
+---
+
+## Developer Portal section
+
+### portal
 {:.badge .enterprise}
 
 Developer Portal Switch
@@ -2240,9 +2323,9 @@ and the Dev Portal API.
 
 **Default:** `off`
 
----
 
-#### portal_gui_listen
+
+### portal_gui_listen
 {:.badge .enterprise}
 
 Developer Portal GUI Listeners
@@ -2253,9 +2336,9 @@ Portal GUI. Suffixes can be specified for each pair, similarly to the
 
 **Default:** `0.0.0.0:8003, 0.0.0.0:8446 ssl`
 
----
 
-#### portal_gui_protocol
+
+### portal_gui_protocol
 {:.badge .enterprise}
 
 Developer Portal GUI protocol
@@ -2267,9 +2350,9 @@ Examples: `http`,`https`
 
 **Default:** `http`
 
----
 
-#### portal_gui_host
+
+### portal_gui_host
 {:.badge .enterprise}
 
 Developer Portal GUI host
@@ -2285,9 +2368,9 @@ Examples:
 
 **Default:** `127.0.0.1:8003`
 
----
 
-#### portal_cors_origins
+
+### portal_cors_origins
 {:.badge .enterprise}
 
 Developer Portal CORS Origins
@@ -2310,9 +2393,9 @@ and can remain unset.
 
 **Default:** none
 
----
 
-#### portal_gui_use_subdomains
+
+### portal_gui_use_subdomains
 {:.badge .enterprise}
 
 Developer Portal GUI subdomain toggle
@@ -2329,9 +2412,9 @@ Example (on): - `<scheme>://<WORKSPACE>.<HOSTNAME>` ->
 
 **Default:** `off`
 
----
 
-#### portal_gui_ssl_cert
+
+### portal_gui_ssl_cert
 {:.badge .enterprise}
 
 Developer Portal GUI SSL Certificate
@@ -2341,9 +2424,9 @@ SSL enabled.
 
 **Default:** none
 
----
 
-#### portal_gui_ssl_cert_key
+
+### portal_gui_ssl_cert_key
 {:.badge .enterprise}
 
 Developer Portal GUI SSL Certificate Key
@@ -2353,9 +2436,9 @@ enabled.
 
 **Default:** none
 
----
 
-#### portal_gui_access_log
+
+### portal_gui_access_log
 {:.badge .enterprise}
 
 Developer Portal GUI Access Log location
@@ -2368,9 +2451,9 @@ When using relative pathing, logs will be placed under the `prefix` location.
 
 **Default:** `logs/portal_gui_access.log`
 
----
 
-#### portal_gui_error_log
+
+### portal_gui_error_log
 {:.badge .enterprise}
 
 Developer Portal GUI Error Log location
@@ -2385,9 +2468,9 @@ Granularity can be adjusted through the `log_level` directive.
 
 **Default:** `logs/portal_gui_error.log`
 
----
 
-#### portal_api_listen
+
+### portal_api_listen
 {:.badge .enterprise}
 
 Developer Portal API Listeners
@@ -2398,9 +2481,9 @@ Portal API. Suffixes can be specified for each pair, similarly to the
 
 **Default:** `0.0.0.0:8004, 0.0.0.0:8447 ssl`
 
----
 
-#### portal_api_url
+
+### portal_api_url
 {:.badge .enterprise}
 
 Developer Portal API URL
@@ -2432,9 +2515,9 @@ By default this value points to the local interface:
 
 **Default:** none
 
----
 
-#### portal_api_ssl_cert
+
+### portal_api_ssl_cert
 {:.badge .enterprise}
 
 Developer Portal API SSL Certificate
@@ -2444,9 +2527,9 @@ SSL enabled.
 
 **Default:** none
 
----
 
-#### portal_api_ssl_cert_key
+
+### portal_api_ssl_cert_key
 {:.badge .enterprise}
 
 Developer Portal API SSL Certificate Key
@@ -2456,9 +2539,9 @@ enabled.
 
 **Default:** none
 
----
 
-#### portal_api_access_log
+
+### portal_api_access_log
 {:.badge .enterprise}
 
 Developer Portal API Access Log location
@@ -2471,9 +2554,9 @@ When using relative pathing, logs will be placed under the `prefix` location.
 
 **Default:** `logs/portal_api_access.log`
 
----
 
-#### portal_api_error_log
+
+### portal_api_error_log
 {:.badge .enterprise}
 
 Developer Portal API Error Log location
@@ -2488,9 +2571,9 @@ Granularity can be adjusted through the `log_level` directive.
 
 **Default:** `logs/portal_api_error.log`
 
----
 
-#### portal_is_legacy
+
+### portal_is_legacy
 {:.badge .enterprise}
 
 Developer Portal legacy support
@@ -2503,9 +2586,9 @@ current rendering system.
 
 **Default:** `off`
 
----
 
-#### portal_app_auth
+
+### portal_app_auth
 {:.badge .enterprise}
 
 Developer Portal application registration auth provider and strategy. Must be
@@ -2514,17 +2597,17 @@ external-oauth2
 
 **Default:** `kong-oauth2`
 
+
 ---
 
-
-### Default Developer Portal Authentication section
+## Default Developer Portal Authentication section
 
 Referenced on workspace creation to set Dev Portal authentication defaults in
 the database for that particular workspace.
 
----
 
-#### portal_auth
+
+### portal_auth
 {:.badge .enterprise}
 
 Developer Portal Authentication Plugin Name
@@ -2540,9 +2623,9 @@ Supported Plugins:
 
 **Default:** none
 
----
 
-#### portal_auth_password_complexity
+
+### portal_auth_password_complexity
 {:.badge .enterprise}
 
 Kong Portal Authentication Password Complexity (JSON)
@@ -2582,9 +2665,9 @@ Example:
 
 **Default:** none
 
----
 
-#### portal_auth_conf
+
+### portal_auth_conf
 {:.badge .enterprise}
 
 Developer Portal Authentication Plugin Config (JSON)
@@ -2601,9 +2684,9 @@ Example for `basic-auth`:
 
 **Default:** none
 
----
 
-#### portal_auth_login_attempts
+
+### portal_auth_login_attempts
 {:.badge .enterprise}
 
 Number of times a user can attempt to login to the Dev Portal before password
@@ -2616,9 +2699,9 @@ basic-auth.
 
 **Default:** `0`
 
----
 
-#### portal_session_conf
+
+### portal_session_conf
 {:.badge .enterprise}
 
 Portal Session Config (JSON)
@@ -2638,9 +2721,9 @@ portal_session_conf = { "cookie_name": "portal_session", \
 
 **Default:** none
 
----
 
-#### portal_auto_approve
+
+### portal_auto_approve
 {:.badge .enterprise}
 
 Developer Portal Auto Approve Access
@@ -2654,9 +2737,9 @@ using Kong Manager or the Admin API.
 
 **Default:** `off`
 
----
 
-#### portal_token_exp
+
+### portal_token_exp
 {:.badge .enterprise}
 
 Duration in seconds for the expiration of the Dev Portal reset password token.
@@ -2664,9 +2747,9 @@ Default is `21600` (six hours).
 
 **Default:** `21600`
 
----
 
-#### portal_email_verification
+
+### portal_email_verification
 {:.badge .enterprise}
 
 Portal Developer Email Verification.
@@ -2679,17 +2762,17 @@ Note: SMTP must be turned on in order to use this feature.
 
 **Default:** `off`
 
+
 ---
 
-
-### Default Portal Smtp Configuration section
+## Default Portal Smtp Configuration section
 
 Referenced on workspace creation to set SMTP defaults in the database for that
 particular workspace.
 
----
 
-#### portal_invite_email
+
+### portal_invite_email
 {:.badge .enterprise}
 
 When enabled, Kong admins can invite developers to a Dev Portal by using the
@@ -2699,7 +2782,6 @@ The email looks like the following:
 
 ```
 Subject: Invite to access Dev Portal <WORKSPACE_NAME>
-```
 
 Hello Developer!
 
@@ -2708,10 +2790,11 @@ You have been invited to create a Dev Portal account at %s.
 Please visit `<DEV_PORTAL_URL/register>` to create your account.
 
 **Default:** `on`
+```
 
----
 
-#### portal_access_request_email
+
+### portal_access_request_email
 {:.badge .enterprise}
 
 When enabled, Kong admins specified by `smtp_admin_emails` will receive an
@@ -2724,19 +2807,19 @@ The email looks like the following:
 
 ```
 Subject: Request to access Dev Portal <WORKSPACE NAME>
-```
 
 Hello Admin!
 
-`<DEVELOPER NAME>` has requested Dev Portal access for `<WORKSPACE_NAME>`.
+<DEVELOPER NAME> has requested Dev Portal access for <WORKSPACE_NAME>.
 
-Please visit `<KONG_MANAGER_URL/developers/requested>` to review this request.
+Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 
 **Default:** `on`
+```
 
----
 
-#### portal_approved_email
+
+### portal_approved_email
 {:.badge .enterprise}
 
 When enabled, developers will receive an email when access to a Dev Portal has
@@ -2750,17 +2833,18 @@ The email looks like the following:
 
 ```
 Subject: Dev Portal access approved
+
+
+Hello Developer! You have been approved to access <WORKSPACE_NAME>.
+
+Please visit <DEV PORTAL URL/login> to login.
 ```
-
-Hello Developer! You have been approved to access `<WORKSPACE_NAME>`.
-
-Please visit `<DEV PORTAL URL/login>` to login.
 
 **Default:** `on`
 
----
 
-#### portal_reset_email
+
+### portal_reset_email
 {:.badge .enterprise}
 
 When enabled, developers will be able to use the Reset Password flow on a Dev
@@ -2773,25 +2857,26 @@ the Kong Manager.
 The email looks like the following:
 
 ```
-Subject: Password Reset Instructions for Dev Portal `<WORKSPACE_NAME>`.
-```
+Subject: Password Reset Instructions for Dev Portal <WORKSPACE_NAME>.
+
 
 Hello Developer,
 
 Please click the link below to reset your Dev Portal password.
 
-`<DEV_PORTAL_URL/reset?token=12345>`
+<DEV_PORTAL_URL/reset?token=12345>
 
-This link will expire in `<portal_reset_token_exp>`
+This link will expire in <portal_reset_token_exp>
 
 If you didn't make this request, keep your account secure by clicking the link
 above to change your password.
+```
 
 **Default:** `on`
 
----
 
-#### portal_reset_success_email
+
+### portal_reset_success_email
 {:.badge .enterprise}
 
 When enabled, developers will receive an email after successfully resetting
@@ -2804,24 +2889,25 @@ The email looks like the following:
 
 ```
 Subject: Dev Portal password change success
-```
+
 
 Hello Developer, We are emailing you to let you know that your Dev Portal
-password at `<DEV_PORTAL_URL>` has been changed.
+password at <DEV_PORTAL_URL> has been changed.
 
 Click the link below to sign in with your new credentials.
 
-`<DEV_PORTAL_URL>`
+<DEV_PORTAL_URL>
+```
 
 **Default:** `on`
 
----
 
-#### portal_application_status_email
+
+### portal_application_status_email
 {:.badge .enterprise}
 
-When enabled, developers will receive an email when the status changes for their
-application service requests.
+When enabled, developers will receive an email when the status changes for
+their appliciation service requests.
 
 When disabled, developers will still be able to view the status in their
 developer portal application page.
@@ -2831,21 +2917,21 @@ The email looks like the following:
 ```
 Subject: Dev Portal application request <REQUEST_STATUS> (<DEV_PORTAL_URL>)
 
-Hello Developer,
-We are emailing you to let you know that your request for application access from the
-Developer Portal account at <DEV_PORTAL_URL> is <REQUEST_STATUS>.
 
-Application: <APPLICATION_NAME>
-Service: <SERVICE_NAME>
+Hello Developer, We are emailing you to let you know that your request for
+application access from the Developer Portal account at <DEV_PORTAL_URL> is
+<REQUEST_STATUS>.
+
+Application: <APPLICATION_NAME> Service: <SERVICE_NAME>
 
 You will receive another email when your access has been approved.
 ```
 
 **Default:** `off`
 
----
 
-#### portal_application_request_email
+
+### portal_application_request_email
 {:.badge .enterprise}
 
 When enabled, Kong admins specified by `smtp_admin_emails` will receive an
@@ -2854,32 +2940,35 @@ email when a developer requests access to service through an application.
 When disabled, Kong admins will have to manually check the Kong Manager to view
 any requests.
 
-By default, `smtp_admin_emails` will be the recipients. This can be overriden
-by `portal_smtp_admin_emails`, which can be set dynamically per workspace through
-the Admin API.
+By default, `smtp_admin_emails` will be the recipients.
+
+This can be overriden by `portal_smtp_admin_emails`, which can be set
+dynamically per workspace through the Admin API.
 
 The email looks like the following:
 
- ```
+```
 Subject: Request to access Dev Portal (<DEV_PORTAL_URL>) service from <DEVELOPER_EMAIL>
+
 
 Hello Admin,
 
-<DEVELOPER NAME> (<DEVELOPER_EMAIL>) has requested application access for <DEV_PORTAL_URL>.
+<DEVELOPER NAME> (<DEVELOPER_EMAIL>) has requested application access for
+<DEV_PORTAL_URL>.
 
-Requested workspace: <WORKSPACE_NAME>
-Requested application: <APPLICATION_NAME>
+Requested workspace: <WORKSPACE_NAME> Requested application: <APPLICATION_NAME>
 Requested service: <SERVICE_NAME>
 
-Please visit <KONG_MANAGER_URL/WORKSPACE_NAME/applications/APPLICATION_ID#requested> to review this request.
-
+Please visit
+<KONG_MANAGER_URL/WORKSPACE_NAME/applications/APPLICATION_ID#requested> to
+review this request.
 ```
 
 **Default:** `off`
 
----
 
-#### portal_emails_from
+
+### portal_emails_from
 {:.badge .enterprise}
 
 The name and email address for the `From` header included in all Dev Portal
@@ -2892,9 +2981,9 @@ and name associated with the account.
 
 **Default:** none
 
----
 
-#### portal_emails_reply_to
+
+### portal_emails_reply_to
 {:.badge .enterprise}
 
 Email address for the `Reply-To` header for portal emails
@@ -2906,43 +2995,45 @@ associated with the account.
 
 **Default:** none
 
----
 
-#### portal_smtp_admin_emails
+
+### portal_smtp_admin_emails
 {:.badge .enterprise}
 
-Comma separated list of admin emails to receive portal-related notifications.
+Comma separated list of admin emails to receive
+portal notifications. Can be dynamically set per workspace through the Admin
+API.
 
-If none are set, the values in `smtp_admin_emails` will be used.
+If not set, `smtp_admin_emails` will be used.
 
 Example `admin1@example.com, admin2@example.com`
 
 **Default:** none
 
+
 ---
 
+## Admin Smtp Configuration section
 
-### Admin Smtp Configuration section
-
-#### admin_emails_from
+### admin_emails_from
 {:.badge .enterprise}
 
 The email address for the `From` header for admin emails.
 
 **Default:** `""`
 
----
 
-#### admin_emails_reply_to
+
+### admin_emails_reply_to
 {:.badge .enterprise}
 
 Email address for the `Reply-To` header for admin emails.
 
 **Default:** none
 
----
 
-#### admin_invitation_expiry
+
+### admin_invitation_expiry
 {:.badge .enterprise}
 
 Expiration time for the admin invitation link (in seconds). 0 means no
@@ -2952,12 +3043,12 @@ Example, 72 hours: `72 * 60 * 60 = 259200`
 
 **Default:** `259200`
 
+
 ---
 
+## General Smtp Configuration section
 
-### General Smtp Configuration section
-
-#### smtp_mock
+### smtp_mock
 {:.badge .enterprise}
 
 This flag will mock the sending of emails. This can be used for testing before
@@ -2965,27 +3056,27 @@ the SMTP client is fully configured.
 
 **Default:** `on`
 
----
 
-#### smtp_host
+
+### smtp_host
 {:.badge .enterprise}
 
 The hostname of the SMTP server to connect to.
 
 **Default:** `localhost`
 
----
 
-#### smtp_port
+
+### smtp_port
 {:.badge .enterprise}
 
 The port number on the SMTP server to connect to.
 
 **Default:** `25`
 
----
 
-#### smtp_starttls
+
+### smtp_starttls
 {:.badge .enterprise}
 
 When set to `on`, STARTTLS is used to encrypt communication with the SMTP
@@ -2993,27 +3084,27 @@ server. This is normally used in conjunction with port 587.
 
 **Default:** `off`
 
----
 
-#### smtp_username
+
+### smtp_username
 {:.badge .enterprise}
 
 Username used for authentication with SMTP server
 
 **Default:** none
 
----
 
-#### smtp_password
+
+### smtp_password
 {:.badge .enterprise}
 
 Password used for authentication with SMTP server
 
 **Default:** none
 
----
 
-#### smtp_ssl
+
+### smtp_ssl
 {:.badge .enterprise}
 
 When set to `on`, SMTPS is used to encrypt communication with the SMTP server.
@@ -3021,9 +3112,9 @@ This is normally used in conjunction with port 465.
 
 **Default:** `off`
 
----
 
-#### smtp_auth_type
+
+### smtp_auth_type
 {:.badge .enterprise}
 
 The method used to authenticate with the SMTP server Valid options are `plain`,
@@ -3031,45 +3122,45 @@ The method used to authenticate with the SMTP server Valid options are `plain`,
 
 **Default:** none
 
----
 
-#### smtp_domain
+
+### smtp_domain
 {:.badge .enterprise}
 
 The domain used in the `EHLO` connection and part of the `Message-ID` header
 
 **Default:** `localhost.localdomain`
 
----
 
-#### smtp_timeout_connect
+
+### smtp_timeout_connect
 {:.badge .enterprise}
 
 The timeout (in milliseconds) for connecting to the SMTP server.
 
 **Default:** `60000`
 
----
 
-#### smtp_timeout_send
+
+### smtp_timeout_send
 {:.badge .enterprise}
 
 The timeout (in milliseconds) for sending data to the SMTP server.
 
 **Default:** `60000`
 
----
 
-#### smtp_timeout_read
+
+### smtp_timeout_read
 {:.badge .enterprise}
 
 The timeout (in milliseconds) for reading data from the SMTP server.
 
 **Default:** `60000`
 
----
 
-#### smtp_admin_emails
+
+### smtp_admin_emails
 {:.badge .enterprise}
 
 Comma separated list of admin emails to receive notifications.
@@ -3078,10 +3169,10 @@ Example `admin1@example.com, admin2@example.com`
 
 **Default:** none
 
+
 ---
 
-
-### Data & Admin Audit section
+## Data & Admin Audit section
 
 When enabled, Kong will store detailed audit data regarding Admin API and
 database access. In most cases, updates to the database are associated with
@@ -3089,36 +3180,36 @@ Admin API requests. As such, database object audit log data is tied to a given
 HTTP via a unique identifier, providing built-in association of Admin API and
 database traffic.
 
----
 
-#### audit_log
+
+### audit_log
 
 When enabled, Kong will log information about Admin API access and database row
 insertions, updates, and deletes.
 
 **Default:** `off`
 
----
 
-#### audit_log_ignore_methods
+
+### audit_log_ignore_methods
 
 Comma-separated list of HTTP methods that will not generate audit log entries.
 By default, all HTTP requests will be logged.
 
 **Default:** none
 
----
 
-#### audit_log_ignore_paths
+
+### audit_log_ignore_paths
 
 Comma-separated list of request paths that will not generate audit log entries.
 By default, all HTTP requests will be logged.
 
 **Default:** none
 
----
 
-#### audit_log_ignore_tables
+
+### audit_log_ignore_tables
 
 Comma-separated list of database tables that will not generate audit log
 entries. By default, updates to all database tables will be logged (the term
@@ -3126,18 +3217,18 @@ entries. By default, updates to all database tables will be logged (the term
 
 **Default:** none
 
----
 
-#### audit_log_payload_exclude
+
+### audit_log_payload_exclude
 
 Comma-separated list of keys that will be filtered out of the payload. Keys
 that were filtered will be recorded in the audit log.
 
 **Default:** `token, secret, password`
 
----
 
-#### audit_log_record_ttl
+
+### audit_log_record_ttl
 
 Length, in seconds, of the TTL for audit log records. Records in the database
 older than their TTL are automatically purged.
@@ -3146,9 +3237,9 @@ Example, 30 days: `30 * 24 * 60 * 60 = 2592000`
 
 **Default:** `2592000`
 
----
 
-#### audit_log_signing_key
+
+### audit_log_signing_key
 
 Defines the path to a private RSA signing key that can be used to insert a
 signature of audit records, adjacent to the record. The corresponding public key
@@ -3157,17 +3248,22 @@ future. If this value is undefined, no signature will be generated.
 
 **Default:** none
 
+
 ---
 
+## Granular Tracing section
 
-### Granular Tracing section
+{:.warning}
+> **Deprecation warning**: Granular tracing is deprecated. This
+means the feature will eventually be removed.
+Our target for Granular tracing removal is the Kong Gateway 4.0 release.
 
 Granular tracing offers a mechanism to expose metrics and detailed debug data
 about the lifecycle of Kong in a human- or machine-consumable format.
 
----
 
-#### tracing
+
+### tracing
 {:.badge .enterprise}
 
 When enabled, Kong will generate granular debug data about various portions of
@@ -3176,9 +3272,9 @@ timing, etc.
 
 **Default:** `off`
 
----
 
-#### tracing_write_strategy
+
+### tracing_write_strategy
 {:.badge .enterprise}
 
 Defines how Kong will write tracing data at the conclusion of the request. The
@@ -3189,9 +3285,9 @@ option are `file`, `file_raw`, `http`, `tcp`, `tls`, and `udp`.
 
 **Default:** `file`
 
----
 
-#### tracing_write_endpoint
+
+### tracing_write_endpoint
 {:.badge .enterprise}
 
 Defines the endpoint to which tracing data will be written.
@@ -3208,9 +3304,9 @@ Content-Type.
 
 **Default:** none
 
----
 
-#### tracing_time_threshold
+
+### tracing_time_threshold
 {:.badge .enterprise}
 
 The minimum time, in microseconds, over which a trace must execute in order to
@@ -3221,9 +3317,9 @@ limitation, causing traces of any duration to be written.
 
 **Default:** `0`
 
----
 
-#### tracing_types
+
+### tracing_types
 {:.badge .enterprise}
 
 Defines the types of traces that are written.
@@ -3251,9 +3347,9 @@ The following trace types are included:
 
 **Default:** `all`
 
----
 
-#### tracing_debug_header
+
+### tracing_debug_header
 {:.badge .enterprise}
 
 Defines the name of the HTTP request header that must be present in order to
@@ -3266,9 +3362,9 @@ certificate handling phases is not logged when this setting is enabled.
 
 **Default:** none
 
----
 
-#### generate_trace_details
+
+### generate_trace_details
 {:.badge .enterprise}
 
 When enabled, Kong will write context- specific details into traces. Trace
@@ -3279,12 +3375,12 @@ to store traces properly when this option is enabled.
 
 **Default:** `off`
 
+
 ---
 
+## Route Collision Detection/Prevention section
 
-### Route Collision Detection/Prevention section
-
-#### route_validation_strategy
+### route_validation_strategy
 {:.badge .enterprise}
 
 The strategy used to validate routes when creating or updating them.
@@ -3300,9 +3396,9 @@ workspaces.
 
 **Default:** `smart`
 
----
 
-#### enforce_route_path_pattern
+
+### enforce_route_path_pattern
 {:.badge .enterprise}
 
 Specifies the Lua pattern which will be enforced on the `paths` attribute of a
@@ -3320,10 +3416,10 @@ Example For Pattern `/$(workspace)/v%d/.*` valid paths are:
 
 **Default:** none
 
+
 ---
 
-
-### Database Encryption & Keyring Management section
+## Database Encryption & Keyring Management section
 
 When enabled, Kong will transparently encrypt sensitive fields, such as
 Consumer credentials, TLS private keys, and RBAC user tokens, among others. A
@@ -3338,9 +3434,9 @@ semantic versioning compatibility guarantees on the keyring feature's APIs in
 that Kong may make a breaking change to the feature in a minor version. Also
 note that mis-management of keyring data may result in irrecoverable data loss.
 
----
 
-#### keyring_enabled
+
+### keyring_enabled
 {:.badge .enterprise}
 
 When enabled, Kong will encrypt sensitive field values before writing them to
@@ -3350,9 +3446,9 @@ managed based on the strategy defined below.
 
 **Default:** `off`
 
----
 
-#### keyring_strategy
+
+### keyring_strategy
 {:.badge .enterprise}
 
 Defines the strategy implementation by which Kong nodes will manage symmetric
@@ -3362,9 +3458,9 @@ and 'vault'.
 
 **Default:** `cluster`
 
----
 
-#### keyring_public_key
+
+### keyring_public_key
 {:.badge .enterprise}
 
 Defines the filesystem path at which the public key of an RSA keypair resides.
@@ -3373,9 +3469,9 @@ recovery and optional bootstrapping.
 
 **Default:** none
 
----
 
-#### keyring_private_key
+
+### keyring_private_key
 {:.badge .enterprise}
 
 Defines the filesystem path at which the private key of an RSA keypair resides.
@@ -3384,9 +3480,19 @@ recovery and optional bootstrapping.
 
 **Default:** none
 
----
 
-#### keyring_blob_path
+
+### keyring_recovery_public_key
+{:.badge .enterprise}
+
+Defines the filesystem path at which the public
+key to optionally encrypt all keyring materials and backup in the database.
+
+**Default:** none
+
+
+
+### keyring_blob_path
 {:.badge .enterprise}
 
 Defines the filesystem path at which Kong will backup the initial keyring
@@ -3396,9 +3502,9 @@ This option is useful largely for development purposes.
 
 **Default:** none
 
----
 
-#### keyring_vault_host
+
+### keyring_vault_host
 {:.badge .enterprise}
 
 Defines the Vault host at which Kong will fetch the encryption material. This
@@ -3408,9 +3514,9 @@ value should be defined in the format:
 
 **Default:** none
 
----
 
-#### keyring_vault_mount
+
+### keyring_vault_mount
 {:.badge .enterprise}
 
 Defines the name of the Vault v2 KV secrets engine at which symmetric keys are
@@ -3418,28 +3524,27 @@ found.
 
 **Default:** none
 
----
 
-#### keyring_vault_path
+
+### keyring_vault_path
 {:.badge .enterprise}
 
 Defines the names of the Vault v2 KV path at which symmetric keys are found.
 
 **Default:** none
 
----
 
-#### keyring_vault_token
+
+### keyring_vault_token
 {:.badge .enterprise}
 
 Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
 **Default:** none
 
----
 
-#### untrusted_lua
-{:.badge .enterprise}
+
+### untrusted_lua
 
 Controls loading of Lua functions from admin-supplied sources such as the Admin
 API. LuaJIT bytecode loading is always disabled.
@@ -3484,10 +3589,9 @@ and `untrusted_lua_sandbox_environment` parameters below.
 
 **Default:** `sandbox`
 
----
 
-#### untrusted_lua_sandbox_requires
-{:.badge .enterprise}
+
+### untrusted_lua_sandbox_requires
 
 Comma-separated list of modules allowed to be loaded with `require` inside the
 sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -3511,10 +3615,9 @@ sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 
 **Default:** none
 
----
 
-#### untrusted_lua_sandbox_environment
-{:.badge .enterprise}
+
+### untrusted_lua_sandbox_environment
 
 Comma-separated list of global Lua variables that should be made available
 inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -3524,7 +3627,22 @@ to escape the sandbox.
 
 **Default:** none
 
----
+
+
+### openresty_path
+
+Path to the OpenResty installation that Kong will use. When this is empty (the
+default), Kong determines the OpenResty installation by searching for a
+system-installed OpenResty and falling back to searching $PATH for the nginx
+binary.
+
+Setting this attribute disables the search behavior and explicitly instructs
+Kong which OpenResty installation to use.
+
+**Default:** none
+
+
+
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
