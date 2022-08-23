@@ -528,7 +528,7 @@ through configuration properties `aws_assume_role_arn` and `aws_role_session_nam
 {% if_plugin_version gte:2.6.x %}
 
 **{{site.base_gateway}} 2.6.x**
-* The AWS region can now be set with an environment variable: `AWS_REGION` or `AWS_DEFAULT_REGION`.
+* The AWS region can now be set with the environment variables: `AWS_REGION` or `AWS_DEFAULT_REGION`.
 
 {% endif_plugin_version %}
 
