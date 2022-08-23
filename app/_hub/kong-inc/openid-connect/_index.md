@@ -1026,7 +1026,7 @@ params:
         - `regenerate`: generates a new session identifier on each modification and does not use expiry for signature verification (useful in single-page applications or SPAs)
     - name: session_compressor
       required: false
-      default: '"default"'
+      default: '"none"'
       datatype: string
       description: |
         The session strategy:
