@@ -477,7 +477,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
     : The tag of the {{site.base_gateway}} image that you're using, and the Docker network it communicates on.
 
     `KONG_CLUSTER_CONTROL_PLANE`
-    : Sets the address and port of the control plane (port `8005` by defaut).
+    : Sets the address and port of the control plane (port `8005` by default).
 
     `KONG_DATABASE`
     : Specifies whether this node connects directly to a database.
@@ -634,16 +634,15 @@ The output shows all of the connected data plane instances in the cluster:
 When set as a DP node, {{site.base_gateway}} processes configuration in the
 following order:
 
-1. **Config cache**: If the file `config.json.gz` exists in the `kong_prefix`
-path (`/usr/local/kong` by default), the DP node loads it as configuration.
-2. **`declarative_config` exists**: If there is no config cache and the
+1. **Config cache**: If the file `dbless.lmdb` exists in `/usr/local/kong`, the DP node loads it as configuration.
+1.  **`declarative_config` exists**: If there is no config cache and the
 `declarative_config` parameter is set, the DP node loads the specified file.
-3. **Empty config**: If there is no config cache or declarative
+1.**Empty config**: If there is no config cache or declarative
 configuration file available, the node starts with empty configuration. In this
 state, it returns 404 to all requests.
-4. **Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
+1.**Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
 the latest configuration. If successful, it gets stored in the local config
-cache (`config.json.gz`).
+cache (`dbless.lmdb`).
 
 ### Configuration reference
 
