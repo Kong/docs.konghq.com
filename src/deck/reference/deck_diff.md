@@ -131,7 +131,7 @@ You may also need to pass in as header the User-Agent that was used to create th
 :  Personal Access Token associated with your Konnect account, this takes precedence over `--konnect-token-file` flag.
 
 `--konnect-token-file`
-:  File containing the Peronsal Access Token to your Konnect account.
+:  File containing the Personal Access Token to your Konnect account.
 
 {% endif_version %}
 
