@@ -299,9 +299,9 @@ Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](htt
 
 ## Common name
 
-Kong Mesh uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, Common Name in the certificate is not used.
-However, for compliance reason, you may want to set Common Name in the certificate. To do this, set the `commonName` field in the Vault mTLS backend configuration.
-The value contains the template that will be used to generate the name. For example, assuming that the template is {% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}, a data plane proxy with `kuma.io/service: backend` tag will receive a certificate with `backend.mesh` common name. You can also use `replace` function to replace `_` with `-`, for example {% raw %}'{{ tag "kuma.io/service" | replace "_" "-" }}.mesh'{% endraw %} will change Common Name of `kuma.io/service: my_backend` from `my_backend.mesh` to `my-backend.mesh`.
+Kong Mesh uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
+You may need to set a common name in the certificate, for compliance reasons. To do this, set the `commonName` field in the Vault mTLS backend configuration.
+The value contains the template that will be used to generate the name. For example, assuming that the template is {% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}, a data plane proxy with `kuma.io/service: backend` tag will receive a certificate with the `backend.mesh` common name. You can also use the `replace` function to replace `_` with `-`, for example {% raw %}'{{ tag "kuma.io/service" | replace "_" "-" }}.mesh'{% endraw %} will change the common name of `kuma.io/service: my_backend` from `my_backend.mesh` to `my-backend.mesh`.
 
 ## Multi-zone and Vault
 
