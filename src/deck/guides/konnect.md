@@ -32,11 +32,14 @@ This takes precedence over the `--konnect-password-file` flag.
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} runtime group name.
 
+{% if_version gte:1.14.x %}
 `--konnect-token`
-:  Personal Access Token associated with your Konnect account, this takes precedence over `--konnect-token-file` flag.
+:  Personal Access Token associated with your {{site.konnect_short_name}} account, this takes precedence over `--konnect-token-file` flag.
+
 
 `--konnect-token-file`
-:  File containing the Personal Access Token to your Konnect account.
+:  File containing the Personal Access Token to your {{site.konnect_short_name}} account.
+{% endif_version %}
 
 {:.note}
 > **Note:** Prior to decK 1.12, decK provided [`deck konnect`](/deck/1.11.x/reference/deck_konnect) commands.
@@ -111,8 +114,12 @@ Use `--konnect-addr` to select the API to connect to.
 
 The default API decK uses is `https://us.api.konghq.com`, which targets the `cloud.konghq.com` environment.
 
+{% if_version gte:1.14.x %}
+
 {{site.base_gateway}} supports US and EU geographic regions.
 To target the EU region, set `konnect-addr` to `"https://eu.api.konghq.com"`.
+
+{% endif_version %}
 
 ### Target the legacy {{site.konnect_short_name}} environment
 
