@@ -11,11 +11,9 @@ categories:
   - security
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
+    compatible: true
 params:
   name: acme
   service_id: false
@@ -156,10 +154,17 @@ params:
           "timeout": 2000,
           "https": false,
           "tls_verify": true,
-          "tls_server_name": null
+          "tls_server_name": null,
+          "auth_method": "token",
+          "auth_path": null,
+          "auth_role": null,
+          "jwt_path": null,
       },
     }
 ```
+
+The `consul.token`, `redis.auth`, and `vault.token` fields are _referenceable_, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
 
 To configure a storage type other than `kong`, refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
@@ -484,11 +489,16 @@ own certificate.
 
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 0.4.0)
+**{{site.base_gateway}} 3.0.x**
+* The `storage_config.vault.auth_method` configuration parameter now defaults to `token`. 
+
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `rsa_key_size` configuration parameter.
+* The `consul.token`, `redis.auth`, and `vault.token` are now marked as now marked as
+referenceable, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
 
-### {{site.base_gateway}} 2.7.x (plugin version 0.3.0)
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `account_email`, `eab_kid`, and `eab_hmac_kid` parameter values will be
