@@ -6,6 +6,36 @@ no_version: true
 <!-- vale off -->
 
 ## 2.8.1.3
+**Release Date** TBD
+
+### Fixes
+
+#### Enterprise
+
+* Fixed vulnerabilities [CVE-2022-37434](https://nvd.nist.gov/vuln/detail/CVE-2022-37434) and [CVE-2022-24975](https://nvd.nist.gov/vuln/detail/CVE-2022-24975).
+
+* When using secrets management in free mode, only the [environment variable](/gateway/2.8.x/plan-and-deploy/security/secrets-management/backends/env) backend is available. AWS, GCP, and HashiCorp vault backends require an Enterprise license.
+
+* Fixed an issue in Kong Manager where entity detail pages were empty and didn't list existing entities.
+The following entities were affected:
+  * Route lists on service pages
+  * Upstreams
+  * Certificates
+  * SNIs
+  * RBAC roles
+
+#### Plugins
+
+* [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  * Fixed a caching issue in hybrid mode, where the data plane node would try to retrieve a new JWK from the IdP every time.
+  The data plane node now looks for a cached JWK first.
+
+### Dependencies
+
+* Bump `lua-resty-aws` version to 0.5.4 to reduce memory usage when GCP vault is enabled. [#23](https://github.com/Kong/lua-resty-aws/pull/23)
+* Bump `lua-resty-gcp` version to 0.0.5 to reduce memory usage when AWS vault is enabled. [#7](https://github.com/Kong/lua-resty-gcp/pull/7)
+
+## 2.8.1.3
 **Release Date** 2022/08/05
 
 ### Features
