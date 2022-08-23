@@ -7,6 +7,8 @@
     - text: Version Support Policy
       url: /konnect-platform/support-policy
       absolute_url: true
+    - text: Compatibility
+      url: /compatibility/
     - text: Changelog
       url: /gateway/changelog
       absolute_url: true

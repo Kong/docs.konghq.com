@@ -14,6 +14,8 @@
     - text: Changelog
       url: /gateway/changelog
       absolute_url: true
+    - text: Compatibility
+      url: /compatibility/
     - text: What's New in the Docs
       url: /doc-updates
     - text: Version Support
