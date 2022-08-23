@@ -71,16 +71,6 @@ items:
         url: /reference/deck_validate
       - text: deck version
         url: /reference/deck_version
-      - text: deck konnect
-        url: /reference/deck_konnect
-      - text: deck konnect diff
-        url: /reference/deck_konnect_diff
-      - text: deck konnect dump
-        url: /reference/deck_konnect_dump
-      - text: deck konnect ping
-        url: /reference/deck_konnect_ping
-      - text: deck konnect sync
-        url: /reference/deck_konnect_sync
 
   - title: FAQ
     icon: /assets/images/icons/documentation/icn-faq-color.svg
