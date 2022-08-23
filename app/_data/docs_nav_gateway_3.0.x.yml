@@ -579,3 +579,5 @@ items:
         url: /reference/performance-testing-framework
       - text: Router Operators
         url: /reference/router-operators
+      - text: FAQ
+        url: /reference/faq
