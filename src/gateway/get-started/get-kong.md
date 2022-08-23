@@ -20,7 +20,7 @@ can be performed to complete the tutorial:
 * [Increase system performance with Proxy Caching](/gateway/latest/get-started/proxy-caching)
 * [Load Balancing for horizontal Service scaling](/gateway/latest/get-started/load-balancing)
 * [Protecting Services with Key Authentication](/gateway/latest/get-started/protect-services)
-* [Use Workspaces and Teams to further protect {{site.base_gateway}}](/gateway/latest/get-started/manage-teams)
+* [Use Workspaces and Teams to organize {{site.base_gateway}}](/gateway/latest/get-started/manage-teams) at scale.
 
 ### Prerequisites
 
@@ -77,7 +77,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 
    The root route of the Admin API provides important information about the running 
    {{site.base_gateway}} including networking, security, and plugin information. The full 
-   configuraiton is provided in the `.configuration` key of the returned JSON document.
+   configuration is provided in the `.configuration` key of the returned JSON document.
 
    ```sh
    curl -s localhost:8001 | jq '.configuration'
@@ -86,7 +86,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    You should receive a large JSON document with various {{site.base_gateway}} configuration information.
 
 
-The following steps in this tutorial depend on a running {{site.base_gateway}}, so leave
+Every step in this tutorial requires a running {{site.base_gateway}}, so leave
 everything running and proceed to the next steps in this tutorial.
 
 #### Next
