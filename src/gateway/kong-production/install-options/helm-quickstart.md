@@ -215,13 +215,6 @@ You can replace this self signed issuer with your own [CA issuer](https://cert-m
 
 ## Deploy {{site.base_gateway}}
 
-{:.important}
-> The following 3 steps are temporary development steps and will be removed from the guide.
-> These steps are required to access the helm-chart before it is released with Kong 3.0.
-
-1. `git clone https://github.com/Kong/charts ~/kong-charts-helm-project`
-2. `cd ~/kong-charts-helm-project/charts/kong`
-3. `helm dependencies update`
 {% navtabs %}
 {% navtab Docker Desktop Kubernetes %}
 
@@ -233,7 +226,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 2. Install Kong:
 
-       helm install quickstart --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO ./
+       helm install quickstart kong/kong --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO
 
 3. Wait for all pods to be in the `Running` state:
 
@@ -259,7 +252,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 2. Install Kong:
 
-       helm install quickstart --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO ./
+       helm install quickstart kong/kong --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO
 
 3. Wait for all pods to be in the `Running` state:
 
@@ -285,7 +278,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 2. Install Kong:
 
-       helm install quickstart --namespace kong --values ~/quickstart.yaml ./
+       helm install quickstart kong/kong --namespace kong --values ~/quickstart.yaml
 
 3. Wait for all pods to be in the `Running` state:
 
