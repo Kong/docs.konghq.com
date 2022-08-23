@@ -273,7 +273,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   **Create a Service**
 
   ```bash
-  $ curl -i -X POST http://localhost:8001/services \
+  curl -i -X POST http://localhost:8001/services \
       -d "name=example-service" \
       -d "url=http://example.com"
   HTTP/1.1 201 Created
@@ -284,7 +284,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   **Then create a Route**
 
   ```bash
-  $ curl -i -f -X POST http://localhost:8001/services/example-service/routes \
+  curl -i -f -X POST http://localhost:8001/services/example-service/routes \
       -d "paths[]=/"
   HTTP/1.1 201 Created
   ...
@@ -296,7 +296,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   Plugins can be enabled on a Service or a Route. This example uses a Service.
 
   ```bash
-  $ curl -i -X POST http://localhost:8001/services/example-service/plugins \
+  curl -i -X POST http://localhost:8001/services/example-service/plugins \
       -d "name=hmac-auth" \
       -d "config.enforce_headers=date, request-line" \
       -d "config.algorithms=hmac-sha1, hmac-sha256"
@@ -308,7 +308,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   **Add a Consumer**
 
   ```bash
-  $ curl -i -X POST http://localhost:8001/consumers/ \
+  curl -i -X POST http://localhost:8001/consumers/ \
       -d "username=alice"
   HTTP/1.1 201 Created
   ...
@@ -318,7 +318,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   **Add credential for Alice**
 
   ```bash
-  $ curl -i -X POST http://localhost:8001/consumers/alice/hmac-auth \
+  curl -i -X POST http://localhost:8001/consumers/alice/hmac-auth \
       -d "username=alice123" \
       -d "secret=secret"
   HTTP/1.1 201 Created
@@ -329,7 +329,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   **Making an authorized request**
 
   ```bash
-  $ curl -i -X GET http://localhost:8000/requests \
+  curl -i -X GET http://localhost:8000/requests \
       -H "Host: hmac.com" \
       -H "Date: Thu, 22 Jun 2017 17:15:21 GMT" \
       -H 'Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature="ujWCGHeec9Xd6UD2zlyxiNMCiXnDOWeVFMu5VeRUxtw="'
@@ -376,7 +376,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   `SHA-256` of the body and matching it against the `Digest` header's value.
 
   ```bash
-  $ curl -i -X GET http://localhost:8000/requests \
+  curl -i -X GET http://localhost:8000/requests \
       -H "Host: hmac.com" \
       -H "Date: Thu, 22 Jun 2017 21:12:36 GMT" \
       -H "Digest: SHA-256=SBH7QEtqnYUpEcIhDbmStNd1MxtHg2+feBfWc1105MA=" \
@@ -399,23 +399,7 @@ The HMAC plugin can be enabled on a Service or a Route.
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to
-the request before proxying it to the upstream service, so that you
-can identify the Consumer in your code:
-
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
-
-You can use this information on your side to implement additional logic.
-You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve
-more information about the Consumer.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong>`X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
-</div>
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 ### Paginate through the HMAC credentials
 
@@ -423,8 +407,11 @@ Paginate through the `hmac-auth` Credentials for all Consumers using the
 following request:
 
 ```bash
-$ curl -X GET http://kong:8001/hmac-auths
+curl -X GET http://kong:8001/hmac-auths
+```
 
+Example output:
+```json
 {
     "total": 3,
     "data": [
@@ -456,8 +443,11 @@ $ curl -X GET http://kong:8001/hmac-auths
 You can filter the list by consumer by using this other path:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/hmac-auth
+curl -X GET http://kong:8001/consumers/{username or id}/hmac-auth
+```
 
+Example output:
+```json
 {
     "total": 1,
     "data": [
@@ -481,7 +471,10 @@ HMAC Credential using the following request:
 
 ```bash
 curl -X GET http://kong:8001/hmac-auths/{hmac username or id}/consumer
+```
 
+Example output:
+```json
 {
    "created_at":1507936639000,
    "username":"foo",
@@ -496,3 +489,9 @@ Consumer.
 
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [clock-skew]: https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4
+
+---
+## Changelog
+
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.

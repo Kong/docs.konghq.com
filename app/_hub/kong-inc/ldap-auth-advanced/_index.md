@@ -246,20 +246,7 @@ You can set the header type `ldap` to any string (such as `basic`) using
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin appends some headers to the
-request before proxying it to the upstream service so that you can identify
-the consumer in your code:
-
-* `X-Credential-Username`, the `username` of the Credential (only if the
-consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and
-the 'anonymous' consumer was set instead.
-* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if
-authentication failed and 'anonymous' was set)
-* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if
-authentication failed and 'anonymous' was set)
-* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if
-authentication failed and 'anonymous' was set)
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 
 ### LDAP Search and `config.bind_dn`
@@ -324,14 +311,15 @@ mapping.
 
 {% if_plugin_version gte:3.0.x %}
 
-### {{site.base_gateway}} 3.0.x
+**{{site.base_gateway}} 3.0.x**
 * Added the `groups_required` parameter.
+* The deprecated `X-Credential-Username` header has been removed.
 
 {% endif_plugin_version %}
 
 {% if_plugin_version gte:2.8.x %}
 
-### {{site.base_gateway}} 2.8.x
+**{{site.base_gateway}} 2.8.x**
 
 * The `ldap_password` and `bind_dn` configuration fields are now marked as
 referenceable, which means they can be securely stored as
@@ -342,7 +330,7 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 
 {% if_plugin_version gte:2.7.x %}
 
-### {{site.base_gateway}} 2.7.x
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.ldap_password` parameter value will be encrypted.
@@ -351,7 +339,7 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 
 {% if_plugin_version gte:2.3.x %}
 
-### {{site.base_gateway}} 2.3.x
+**{{site.base_gateway}} 2.3.x**
 
 * Added the parameter `log_search_results`, which lets the plugin display all the LDAP search results received from the LDAP server.
 * Added new debug log statements for authenticated groups.

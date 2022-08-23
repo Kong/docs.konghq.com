@@ -273,16 +273,7 @@ HTTP/1.1 204 No Content
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin appends some headers to the request before
-proxying it to the upstream service so that you can identify the Consumer in your code:
-
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
-
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 ### Paginate through keys
 
@@ -378,8 +369,10 @@ associated Consumer.
 
 ## Changelog
 
-### 2.0.0
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.
 
+**{{site.base_gateway}} 2.7.x**
 * If keyring encryption is enabled
 and you are using key authentication, the `keyauth_credentials.key` field will
 be encrypted.

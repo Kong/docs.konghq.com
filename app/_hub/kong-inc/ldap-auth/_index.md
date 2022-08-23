@@ -175,19 +175,8 @@ You can set the header type `ldap` to any string (such as `basic`) using
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin appends some headers to the
-request before proxying it to the upstream service so that you can identify
-the consumer in your code:
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
-* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if authentication failed and 'anonymous' was set)
-* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
-* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
-* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
-
-<div class="alert alert-warning">
-  <strong>Note:</strong>`X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
-</div>
 
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
@@ -197,3 +186,9 @@ the consumer in your code:
 ### Using Service Directory Mapping on the CLI
 
 {% include /md/2.1.x/ldap/ldap-service-directory-mapping.md %}
+
+---
+## Changelog
+
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.

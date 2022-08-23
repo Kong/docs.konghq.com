@@ -141,7 +141,7 @@ params:
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to certain authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-    denied groups of users. 
+    denied groups of users.
 ---
 
 ## Usage
@@ -307,16 +307,7 @@ HTTP/1.1 204 No Content
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin appends some headers to the request before
-proxying it to the upstream service so that you can identify the Consumer in your code:
-
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
-
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 ### Paginate through keys
 
@@ -329,7 +320,7 @@ curl -X GET http://localhost:8001/key-auths
 
 Response:
 
-```bash
+```json
 ...
 {
    "data":[
@@ -366,7 +357,7 @@ In the above, substitute the `username` or `id` property associated with the Con
 
 Response:
 
-```bash
+```json
 ...
 {
     "data": [
@@ -394,7 +385,7 @@ In the above, substitute either the `key` or `id` property associated with the k
 
 Response:
 
-```bash
+```json
 {
    "created_at":1507936639000,
    "username":"foo",
@@ -405,3 +396,9 @@ Response:
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
+
+---
+## Changelog
+
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.

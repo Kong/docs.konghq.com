@@ -214,9 +214,9 @@ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 {% navtab Konnect Cloud %}
 
 Go through the Runtime Manager:
-1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Runtime Manager**. 
+1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Runtime Manager**.
 2. Select the runtime instance you want to add the CA certificate to.
-3. Click **Certificates**. 
+3. Click **Certificates**.
 4. Select the **CA Certificates** tab.
 5. Click **+ Add CA Certificate**
 6. Copy and paste your certificate information and click **Save**.
@@ -251,7 +251,7 @@ Common Name (CN). CN is only used if the SAN extension does not exist.
 Create a mapping:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
+curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
     -d 'subject_name=test@example.com'
 ```
 
@@ -261,7 +261,7 @@ credentials to.
 
 Once created, you'll see a `201` success message:
 
-```bash
+```json
 HTTP/1.1 201 Created
 
 {
@@ -315,13 +315,7 @@ After a client certificate has been verified as valid, the consumer object is de
 {:.note}
 > **Note**: Matching stops as soon as the first successful match is found.
 
-When a client has been authenticated, the plugin appends headers to the request before proxying it to the upstream service so that you can identify the consumer in your code:
-
-* `X-Consumer-ID`, the ID of the consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the consumer (if set)
-* `X-Consumer-Username`, the `username` of the consumer (if set)
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer` is set to `true` if authentication failed and the 'anonymous' consumer was set instead.
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 When `skip_consumer_lookup` is set to `true`, consumer lookup is skipped and instead of appending aforementioned headers, the plugin appends the following two headers
 
@@ -340,9 +334,14 @@ failure. The security reason for this omission is to prevent malicious reconnais
 Instead, the details are recorded inside Kong's error logs under the `[mtls-auth]`
 filter.
 
+---
+
 ## Changelog
 
-### {{site.base_gateway}} 2.8.1.1
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.
+
+**{{site.base_gateway}} 2.8.1.1**
 
 * Introduced certificate revocation list (CRL) and OCSP server support with the
 following parameters: `http_proxy_host`, `http_proxy_port`, `https_proxy_host`,

@@ -173,7 +173,7 @@ Use these headers to identify the consumer in your code:
 - `X-Anonymous-Consumer`, set to true if authentication fails, and the `anonymous` consumer is set instead.
 - `X-Credential-Scope`, as returned by the Introspection response (if any)
 - `X-Credential-Client-ID`, as returned by the Introspection response (if any)
-- `X-Credential-Username`, as returned by the Introspection response (if any)
+- `X-Credential-Identifier`, as returned by the Introspection response (if any)
 - `X-Credential-Token-Type`, as returned by the Introspection response (if any)
 - `X-Credential-Exp`, as returned by the Introspection response (if any)
 - `X-Credential-Iat`, as returned by the Introspection response (if any)
@@ -188,3 +188,9 @@ Additionally, any claims specified in `config.custom_claims_forward` are also fo
 {:.note}
 > **Note:** If authentication fails, the plugin doesn't set any `X-Credential-*` headers.
 It appends `X-Anonymous-Consumer: true` and sets the `anonymous` consumer instead.
+
+---
+## Changelog
+
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.
