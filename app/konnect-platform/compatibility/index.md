@@ -63,9 +63,6 @@ for more information about Kong's support for {{site.base_gateway}} and our
 
 <p>If you have an Enterprise tier subscription, contact <a href="https://support.konghq.com/">Kong Support</a>.</p>
 
-{% elsif product.slug == 'kong-gateway-oss' %}
-<br><br><p> If you need help using Kong Gateway (OSS) with any of the supported technologies, <a href="https://github.com/Kong/kong/discussions">ask a question</a> or <a href="https://github.com/Kong/kong/issues">file an issue</a> in our GitHub repository.</p>
-
 {% endif %}
 
 <table class="compat-table">
