@@ -2894,7 +2894,7 @@ In this case you would probably want to use `config.groups_claim` to point to `g
 is not a top-level claim, so you need to traverse there:
 
 1. Find the `user` claim and under it.
-2. Find the the `groups` claim, and read the value:
+2. Find the `groups` claim, and read the value:
 
 ```json
 {
