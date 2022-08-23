@@ -96,8 +96,8 @@ environment variable.
 You can create multiple entities, which lets you have secrets in different regions:
 
 ```bash
-http -f PUT :8001/vaults/aws-eu-central-vault name=aws config.region="eu-central-1"
-http -f PUT :8001/vaults/aws-us-west-vault name=aws config.region="us-west-1"
+curl -X PUT http://HOSTNAME:8001/vaults/aws-eu-central-vault -d name=aws -d config.region="eu-central-1"
+curl -X PUT http://HOSTNAME:8001/vaults/aws-us-west-vault -d name=aws -d config.region="us-west-1"
 ```
 
 This lets you source secrets from different regions:
