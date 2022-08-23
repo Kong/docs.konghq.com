@@ -2,10 +2,10 @@
 title: Kong Gateway Compatibility
 ---
 
-Provided below are compatibility tables for Kong Gateway. Select a version
+Provided below are compatibility tables for {{site.base_gateway}}. Select a version
 to see technologies that have been tested for interoperability with the Kong platform.
 
-Please see [Kong Gateway Version Support](https://docs.konghq.com/konnect-platform/support-policy/)
+Please see [{{site.base_gateway}} Version Support](https://docs.konghq.com/konnect-platform/support-policy/)
 for more information about Kong's support for {{site.base_gateway}} and our
 [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
 
@@ -16,7 +16,7 @@ for more information about Kong's support for {{site.base_gateway}} and our
 {{ msg | raise_error }}
 {% endunless %}
 
-> <p> If you need help using Kong Gateway with any of the supported technologies, ask a question in <a href="https://discuss.konghq.com/">our community</a>.</p>
+> <p> If you need help using {{site.base_gateway}} with any of the supported technologies, ask a question in <a href="https://discuss.konghq.com/">our community</a>.</p>
 
 <p>If you have an Enterprise tier subscription, contact <a href="https://support.konghq.com/">Kong Support</a>.</p>
 
