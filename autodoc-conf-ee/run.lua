@@ -154,7 +154,7 @@ end
 
 for _, section in ipairs(parsed) do
   write("")
-  write("### " .. titleize(section.name) .. " section")
+  write("## " .. titleize(section.name) .. " section")
   write("")
   if #section.description > 0 then
     write(format_description(section.description))
@@ -174,7 +174,7 @@ for _, section in ipairs(parsed) do
       if not pg_found then
         pg_found = true
         write("")
-        write("#### Postgres settings")
+        write("### Postgres settings")
         write("")
         write(table_header)
       end
@@ -184,7 +184,7 @@ for _, section in ipairs(parsed) do
       if not cassandra_found then
         cassandra_found = true
         write("")
-        write("#### Cassandra settings")
+        write("### Cassandra settings")
         write("")
         write(table_header)
       end
@@ -202,7 +202,7 @@ for _, section in ipairs(parsed) do
               " | " .. format_default(var.default))
 
     else
-      write("#### " .. var.name)
+      write("### " .. var.name)
       if string.match(var.name, "admin_gui_auth") then
         write("{:.badge .enterprise}")
 
