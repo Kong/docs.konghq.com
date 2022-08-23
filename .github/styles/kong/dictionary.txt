@@ -143,6 +143,7 @@ stderr
 stdin
 stdout
 Styra
+subtree
 Bagdi
 subcommand
 substring

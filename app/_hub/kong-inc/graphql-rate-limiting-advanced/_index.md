@@ -434,7 +434,7 @@ query { # + 1
 This strategy is fit for GraphQL schemas that enforce quantifier arguments on
 any connection, providing a good approximation on the number of nodes visited
 for satisfying a query. Any query without decorated quantifiers has a cost of 1.
-It is roughly based on [github's GraphQL resource limits].
+It is roughly based on [GitHub's GraphQL resource limits].
 
 [github's GraphQL resource limits]: https://developer.github.com/v4/guides/resource-limitations/
 
@@ -556,7 +556,7 @@ curl -i -X POST --url http://kong:8001/services/example/plugins \
   --data 'config.sync_rate=10'
 ```
 
-### Decorate gql schema for costs
+### Decorate GraphQL schema for costs
 
 Cost decoration schema looks like:
 
@@ -564,7 +564,7 @@ Cost decoration schema looks like:
 |-------------------|-----------|-------------
 | `type_path`       |           | Path to node to decorate
 | `add_constant`    | `1`       | Node weight when added
-| `add_arguments`   | `[]`      | List of arguments to add to add_constant
+| `add_arguments`   | `[]`      | List of arguments to add to `add_constant`
 | `mul_constant`    | `1`       | Node weight multiplier value
 | `mul_arguments`   | `[]`      | List of arguments that multiply weight
 
@@ -693,7 +693,7 @@ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.2.5)
+### {{site.base_gateway}} 2.8.x (plugin version 0.2.5)
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
