@@ -35,11 +35,7 @@ and Prometheus locally.
    ```
 
    The `-m` flag instructs the script to install a mock service to make testing easier. 
-   You will use this service later to generate sample metrics. You can send a sample request with:
-
-   ```sh
-   curl -s localhost:8000/mock/requests
-   ```
+   You will use this service later to generate sample metrics. 
 
 1. Install the Prometheus {{site.base_gateway}} plugin:
 
