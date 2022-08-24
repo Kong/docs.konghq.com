@@ -320,9 +320,5 @@ syslog                      | 4
 request-termination         | 2
 post-function               | -1000
 
----
-
-Next: [Plugin configuration &rsaquo;]({{page.book.next}})
-
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /enterprise/{{page.kong_version}}/pdk
