@@ -52,9 +52,14 @@ Here are a few limitations of this mode:
 * You must manage {{site.base_gateway}} using declarative configuration [(decK)](/deck/{{page.kong_version}}/).
 * Some plugins, like rate limiting, do not fully function.
 
-## Traditional mode
+## Traditional (database) mode
 
-In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. In this mode {{site.base_gateway}} stores the configuration in memory. Traditional mode is typically only used for testing. 
+In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its datastore.
 
+Running {{ site.base_gateway }} in Traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database (such as rate-limiting with the cluster strategy, or OAuth2). However, there are some downsides too.
 
-You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in traditional mode. 
+When running in Traditional mode, every {{ site.base_gateway} }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, your running gateway configuration . In contrast, Hybrid mode (shown below) has distinct CP and DP nodes, which reduces the attack surface.
+
+In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
+
+You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in Traditional mode.
