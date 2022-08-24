@@ -51,7 +51,7 @@
 
     {% assign breadcrumb_url = product_url %}
     {% for crumb in crumbs offset: offset %}
-      {% assign title = crumb | replace:'-',' ' | remove:'.md' | capitalize | strip %}
+      {% assign title = crumb | strip | remove:'.md' | titleize %}
 
       {% if title == "Servicehub" %}{% assign title = "Service Hub" %}{% endif %}
 
