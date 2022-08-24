@@ -218,9 +218,9 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        The groups (`groups_claim` claim) required to be present in the access token (or introspection results) for successful authorization. This config parameter works in both **AND** / **OR** cases.
-        - When `["group1 group2"]` are in the same array indices, both `group1` AND `group2` need to be present in access token (or introspection results).
-        - When `["group1", "group2"]` are in different array indices, either `group1` OR `group2` need to be present in access token (or introspection results).
+        The groups required to be present in the LDAP search result for successful authorization. This config parameter works in both **AND** / **OR** cases.
+        - When `["group1 group2"]` are in the same array indices, both `group1` AND `group2` need to be present in the LDAP search result.
+        - When `["group1", "group2"]` are in different array indices, either `group1` OR `group2` need to be present in the LDAP search result.
       minimum_version: "3.0.x"
 ---
 
