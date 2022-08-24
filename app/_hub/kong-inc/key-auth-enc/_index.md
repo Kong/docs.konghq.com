@@ -1,7 +1,6 @@
 ---
 name: Key Authentication - Encrypted
 publisher: Kong Inc.
-version: 2.0.x
 desc: Add key authentication to your Services
 description: |
   Add key authentication (also sometimes referred to as an _API key_) to a Service
@@ -16,17 +15,7 @@ categories:
   - authentication
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3.x
+    compatible: true
 params:
   name: key-auth-enc
   service_id: true
@@ -369,10 +358,18 @@ associated Consumer.
 
 ## Changelog
 
+{% if_plugin_version gte:3.0.x %}
+
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.7.x %}
 
 **{{site.base_gateway}} 2.7.x**
 * If keyring encryption is enabled
 and you are using key authentication, the `keyauth_credentials.key` field will
 be encrypted.
+
+{% endif_plugin_version %}
