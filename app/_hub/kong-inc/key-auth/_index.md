@@ -1,10 +1,9 @@
 ---
 name: Key Authentication
 publisher: Kong Inc.
-version: 2.3.x (internal 2.4.0)
 desc: Add key authentication to your Services
 description: |
-  Add key authentication (also sometimes referred to as an _API key_) to a Service or a Route.
+  Add key authentication (also sometimes referred to as an _API key_) to a service or a route.
   Consumers then add their API key either in a query string parameter, a header, or a
   request body to authenticate their requests.
 
@@ -18,48 +17,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
-      - 0.4.x
-      - 0.3.x
-      - 0.2.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: key-auth
   service_id: true
@@ -94,12 +54,14 @@ params:
       description: |
         If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: key_in_header
+      minimum_version: "2.3.x"
       required: true
       default: '`true`'
       datatype: boolean
       description: |
         If enabled (default), the plugin reads the request header and tries to find the key in it.
     - name: key_in_query
+      minimum_version: "2.3.x"
       required: true
       default: '`true`'
       datatype: boolean
@@ -127,22 +89,20 @@ params:
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests.
         If set to `false`, then `OPTIONS` requests are always allowed.
-  extra: |
-
-    ## Case sensitivity
-
-    Note that, according to their respective specifications, HTTP header names are treated as
-    case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_.
-    Kong follows these specifications as designed, meaning that the `key_names`
-    configuration values are treated differently when searching the request header fields versus
-    searching the query string. As a best practice, administrators are advised against defining
-    case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
-
-    Once applied, any user with a valid credential can access the Service.
-    To restrict usage to certain authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-    denied groups of users.
 ---
+## Case sensitivity
+
+Note that, according to their respective specifications, HTTP header names are treated as
+case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_.
+Kong follows these specifications as designed, meaning that the `key_names`
+configuration values are treated differently when searching the request header fields versus
+searching the query string. As a best practice, administrators are advised against defining
+case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
+
+Once applied, any user with a valid credential can access the Service.
+To restrict usage to certain authenticated users, also add the
+[ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+denied groups of users.
 
 ## Usage
 
@@ -242,6 +202,8 @@ field/parameter     | description
 
 ### Make a Request with the Key
 
+{% if_plugin_version gte:2.3.x %}
+
 Make a request with the key as a query string parameter:
 
 ```bash
@@ -250,14 +212,6 @@ curl http://localhost:8000/{proxy path}?apikey={some_key}
 
 **Note:** The `key_in_query` plugin parameter must be set to `true` (default).
 
-Make a request with the key in the body:
-
-```bash
-curl http://localhost:8000/{proxy path} \
-    --data 'apikey: {some_key}'
-```
-
-**Note:** The `key_in_body` plugin parameter must be set to `true` (default is `false`).
 
 Make a request with the key in a header:
 
@@ -268,11 +222,25 @@ curl http://localhost:8000/{proxy path} \
 
 **Note:** The `key_in_header` plugin parameter must be set to `true` (default).
 
+{% endif_plugin_version %}
+
+Make a request with the key in the body:
+
+```bash
+curl http://localhost:8000/{proxy path} \
+    --data 'apikey: {some_key}'
+```
+
+**Note:** The `key_in_body` plugin parameter must be set to `true` (default is `false`).
+
 gRPC clients are supported too:
 
 ```bash
 grpcurl -H 'apikey: {some_key}' ...
 ```
+
+{% if_plugin_version gte:2.3.x %}
+
 ### About API Key Locations in a Request
 
 {% include /md/plugins-hub/api-key-locations.md %}
@@ -287,6 +255,8 @@ curl -X POST http://localhost:8001/routes/{NAME_OR_ID}/plugins \
     --data "config.key_names=apikey" \
     --data "config.key_in_query=false"
 ```
+
+{% endif_plugin_version %}
 
 ### Delete a Key
 
@@ -402,3 +372,7 @@ Response:
 
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
+* The `key-auth` plugin priority has changed from 1003 to 1250.
+
+**{{site.base_gateway}} 2.3.x**
+* Added the configuration parameters `key_in_header` and `key_in_query`.
