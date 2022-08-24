@@ -91,6 +91,3 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 Every step in this tutorial requires a running {{site.base_gateway}}, so leave
 everything running and proceed to the next steps in this tutorial.
 
-#### Next
-[Configure Services and Routes](/gateway/latest/get-started/configure-services-and-routes/)
-
