@@ -1331,12 +1331,12 @@ params:
       datatype: array of string elements
       description: |
         Pass extra arguments from the client to the OpenID-Connect plugin. If arguments exist, the client can pass them using:
-        - Request Body 
+        - Request Body
         - Query parameters
-        
-        This parameter can be used with `scope` values, like this: 
 
-        `config.token_post_args_client=scope` 
+        This parameter can be used with `scope` values, like this:
+
+        `config.token_post_args_client=scope`
 
         In this case, the token would take the `scope` value from the query parameter or from the request body and send it to the token endpoint.
     - group: Token Endpoint Response Headers
@@ -2899,7 +2899,7 @@ In this case you would probably want to use `config.groups_claim` to point to `g
 is not a top-level claim, so you need to traverse there:
 
 1. Find the `user` claim and under it.
-2. Find the the `groups` claim, and read the value:
+2. Find the `groups` claim, and read the value:
 
 ```json
 {

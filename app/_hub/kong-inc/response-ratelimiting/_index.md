@@ -163,7 +163,7 @@ params:
       datatype: string
       description: |
         When using the `redis` policy, this property specifies the password to connect to the Redis server.
-          
+
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
@@ -243,7 +243,7 @@ X-RateLimit-Remaining-Images: 0
 ---
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 2.0.1)
+**{{site.base_gateway}} 2.8.x (plugin version 2.0.1)**
 
 * Added the `redis_username` configuration parameter.
 * Fixed plugin versions in the documentation. Previously, the plugin versions

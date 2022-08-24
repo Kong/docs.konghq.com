@@ -92,7 +92,7 @@ params:
         The rate-limiting policies to use for retrieving and incrementing the
         limits. Available values are:
         - `local`: Counters are stored locally in-memory on the node.
-        - `cluster`: Counters are stored in the Kong datastore and shared across
+        - `cluster`: Counters are stored in the Kong data store and shared across
         the nodes.
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
@@ -110,7 +110,7 @@ params:
       default: '`true`'
       datatype: boolean
       description: |
-        A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true`, requests will be proxied anyway, effectively disabling the rate-limiting function until the datastore is working again. If `false`, then the clients will see `500` errors.
+        A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party data store. If `true`, requests will be proxied anyway, effectively disabling the rate-limiting function until the data store is working again. If `false`, then the clients will see `500` errors.
     - name: hide_client_headers
       required: true
       default: '`false`'
@@ -132,7 +132,7 @@ params:
       datatype: string
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
-        
+
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
@@ -220,7 +220,7 @@ The plugin supports three policies.
 
 | Policy    | Pros | Cons   |
 | --------- | ---- | ------ |
-| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the datastore. Therefore, relatively, the biggest performance impact. |
+| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
 | `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
 | `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes. |
 
@@ -234,7 +234,7 @@ Two common use cases are:
 
 {:.warning}
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
-include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [Kong Gateway Subscription](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
+include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.base_gateway}} Enterprise](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
 ### Every transaction counts
 
@@ -244,8 +244,8 @@ for Redis, and then choose either `cluster` or `redis`.
 You could start with the `cluster` policy, and move to `redis`
 if performance reduces drastically.
 
-Do remember that you cannot port the existing usage metrics from the datastore to Redis.
-This might not be a problem with shortlived metrics (for example, seconds or minutes)
+Do remember that you cannot port the existing usage metrics from the data store to Redis.
+This might not be a problem with short-lived metrics (for example, seconds or minutes)
 but if you use metrics with a longer time frame (for example, months), plan
 your switch carefully.
 
@@ -273,11 +273,11 @@ selected header was not sent by the client or the configured service was not fou
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 2.3.1)
+**{{site.base_gateway}} 2.8.x (plugin version 2.3.1)**
 
 * Added the `redis_username` configuration parameter.
 
-### Kong Gateway 2.7.x (plugin version 2.3.0)
+**{{site.base_gateway}}  2.7.x (plugin version 2.3.0)**
 
 * Added the `redis_ssl`, `redis_ssl_verify`, and `redis_server_name` configuration parameters.
 

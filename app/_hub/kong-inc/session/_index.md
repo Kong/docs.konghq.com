@@ -56,7 +56,7 @@ params:
       encrypted: true
       description |
         The secret that is used in keyed HMAC generation.​
-        
+
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
@@ -254,7 +254,7 @@ For usage with [Key Auth] plugin
 1. Enable anonymous access
 
    You can now re-configure the key-auth plugin to permit anonymous access by
-   issuing the following request (**replace the uuids below with the `id` value
+   issuing the following request (**replace the UUIDs below with the `id` value
    from previous steps**):
 
    ```bash
@@ -377,7 +377,7 @@ plugins:
 
 4. Navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`
 
-   It should return `200` and authenticated via `key-auth` key query param.
+   It should return `200` and authenticated via `key-auth` key query parameter.
 
 5. Navigate to `http://localhost:8000/sessions-test`
 
@@ -415,20 +415,20 @@ plugins, it also sets `authenticated_groups` associated headers.
 
 The Session plugin extends the functionality of [lua-resty-session] with its own
 session data storage adapter when `storage=kong`. This stores encrypted
-session data into the current database strategy and the cookie does not contain 
-any session data. Data stored in the database is encrypted and the cookie contains only 
-the session id, expiration time, and HMAC signature. Sessions use the built-in Kong 
-DAO `ttl` mechanism that destroys sessions after specified `cookie_lifetime` unless renewal 
+session data into the current database strategy and the cookie does not contain
+any session data. Data stored in the database is encrypted and the cookie contains only
+the session id, expiration time, and HMAC signature. Sessions use the built-in Kong
+DAO `ttl` mechanism that destroys sessions after specified `cookie_lifetime` unless renewal
 occurs during normal browser activity. Log out the application via XHR request
 (or something similar) to manually handle the redirects.
 
 ## Logging Out
 
 It is typical to provide users the ability to log out (i.e., to manually destroy) their
-current session. Logging out is possible with either query params or `POST` params in
+current session. Logging out is possible with either query parameters or `POST` parameters in
 the request URL. The config's `logout_methods` allows the plugin to limit logging
 out based on the HTTP verb. When `logout_query_arg` is set, it checks the
-presence of the URL query param specified, and likewise when `logout_post_arg`
+presence of the URL query parameter specified, and likewise when `logout_post_arg`
 is set, it checks the presence of the specified variable in the request body.
 Allowed HTTP verbs are `GET`, `DELETE`, and `POST`. When there is a session
 present and the incoming request is a logout request, the Kong Session plugin
