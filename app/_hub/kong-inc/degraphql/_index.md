@@ -11,17 +11,7 @@ categories:
   - transformations
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
+    compatible: true
 params:
   name: degraphql
   service_id: true
@@ -64,9 +54,9 @@ curl -X POST http://localhost:8001/services/github/plugins \
   --data name="degraphql"
 ```
 
-Enabling the plugin disables regular service function. Instead, the 
-plugin now builds the path and GraphQL query to hit the GraphQL service 
-with. 
+Enabling the plugin disables regular service function. Instead, the
+plugin now builds the path and GraphQL query to hit the GraphQL service
+with.
 
 From this point on, the Service represents
 your REST API and not the GraphQL endpoint itself. It will return a `404 Not Found`
@@ -180,11 +170,8 @@ curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
 <div class="endpoint delete">/services/:service_name/degraphql/routes/:id</div>
 
 ---
-{% if_plugin_version gte:3.0.x %}
 ## Changelog
 
-### Kong Gateway 3.0.x
+**{{site.base_gateway}} 3.0.x**
 
 * Added the `graphql_server_path` configuration parameter.
-
-{% endif_plugin_version %}

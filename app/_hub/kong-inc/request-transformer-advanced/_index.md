@@ -407,14 +407,10 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
-
-### {{site.base_gateway}} 3.0.x
+**{{site.base_gateway}} 3.0.x**
 - Removed the deprecated `whitelist` parameter.
 It is no longer supported.
 
-{% endif_plugin_version %}
-
-### {{site.base_gateway}} 2.1.x
+**{{site.base_gateway}} 2.1.x**
 
 - Use `allow` instead of `whitelist`.

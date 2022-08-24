@@ -905,11 +905,9 @@ ensure you set the actual URL for your service so that the response can be recei
 
 ---
 
-{% if_plugin_version gte:2.7.x %}
 ## Changelog
 
-### {{site.base_gateway}} 2.7.x
+**{{site.base_gateway}} 2.7.x**
 
 * Added the `random_examples` parameter.
 Use this setting to randomly select one example from a set of mocked responses.
-{% endif_plugin_version %}

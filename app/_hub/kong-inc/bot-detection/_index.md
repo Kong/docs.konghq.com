@@ -9,27 +9,10 @@ categories:
   - security
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
+    compatible: true
 
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 
 params:
   name: bot-detection
@@ -89,23 +72,14 @@ The plugin already includes a basic list of rules that will be checked on every 
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 
-
-{% if_plugin_version gte:2.1.x %}
-
 ---
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
-
-### Kong Gateway 3.0.x
+**{{site.base_gateway}} 3.0.x**
 - Removed the deprecated `whitelist` and `blacklist` parameters.
 They are no longer supported.
 
-{% endif_plugin_version %}
-
-### Kong Gateway 2.1.x (plugin version 2.0.0)
+**{{site.base_gateway}} 2.1.x**
 
 - Use `allow` and `deny` instead of `whitelist` and `blacklist`
-
-{% endif_plugin_version %}
