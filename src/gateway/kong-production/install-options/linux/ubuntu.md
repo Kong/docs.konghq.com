@@ -14,10 +14,10 @@ Kong is licensed under an
 
 ## Download and install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository. We currently package Kong Gateway for Ubuntu Bionic, Focal, and Xenial.
+You can install {{site.base_gateway}} by downloading an installation package or using our APT repository. We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Xenial.
 
 {:.note .no-icon}
-> We currently package Kong Gateway for Ubuntu Bionic, Focal and Xenial.
+> We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal and Xenial.
 > If you are using a different release, replace `$(lsb_release -sc)` with `xenial` in the commands below.
 > <br /><br />
 > To check your release name run `lsb_release -sc`.
