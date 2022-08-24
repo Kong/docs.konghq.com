@@ -252,25 +252,17 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[acl-associating]: /plugins/acl/#associating-consumers
+
 ---
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
-
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
-
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:3.0.x %}
 
 **{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
 and you are using basic authentication, the `basicauth_credentials.password` field will be encrypted.
-
-{% endif_plugin_version %}
-
-[configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
-[acl-associating]: /plugins/acl/#associating-consumers
