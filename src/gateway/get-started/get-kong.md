@@ -1,6 +1,8 @@
 ---
 title: Get Kong
 content-type: tutorial
+book: get-started
+chapter: 1
 ---
 
 [{{site.base_gateway}}](/gateway/latest/) is a lightweight, fast, and flexible cloud-native API gateway. 
