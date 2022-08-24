@@ -16,7 +16,7 @@ for more information about Kong's support for {{site.base_gateway}} and our
 {{ msg | raise_error }}
 {% endunless %}
 
-> <p> If you need help using {{site.base_gateway}} with any of the supported technologies, ask a question in <a href="https://discuss.konghq.com/">our community</a>.</p>
+<p> If you need help using {{site.base_gateway}} with any of the supported technologies, ask a question in <a href="https://discuss.konghq.com/">our community</a>.</p>
 
 <p>If you have an Enterprise tier subscription, contact <a href="https://support.konghq.com/">Kong Support</a>.</p>
 
