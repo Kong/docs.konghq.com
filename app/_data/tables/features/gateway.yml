@@ -47,7 +47,7 @@ features:
         oss: true
         enterprise: true
       - name: GraphQL
-        tooltip: Convert GraphQL queries to REST requests. Rate limit and cache GraphQL queries
+        tooltip: Convert GraphQL queries to REST requests. Rate limit and cache GraphQL queries.
         oss: false
         enterprise: true
       - name: Request Validation
@@ -73,7 +73,7 @@ features:
         oss: true
         enterprise: true
       - name: Advanced Authentication
-        tooltip: Enterprise-grade API authentication - Full OAuth 2.0, OpenID Connect, Vault, Mutual TLS, JWT Signing/Resigning, full LDAP
+        tooltip: Enterprise-grade API authentication - Full OAuth 2.0, OpenID Connect, Vault, mutual TLS, JWT signing/resigning, full LDAP
         oss: false
         enterprise: true
       - name: Role-Based Access Control (RBAC)
@@ -93,7 +93,7 @@ features:
         oss: false
         enterprise: true
       - name: FIPS 140-2 Compliance
-        tooltip: Generally Available version coming soon. Kong Gateway in a FIPS 140-2 compliant mode
+        tooltip: Generally available (GA) version coming soon. Kong Gateway in a FIPS 140-2 compliant mode.
         oss: false
         enterprise: true
   - name: Observability
