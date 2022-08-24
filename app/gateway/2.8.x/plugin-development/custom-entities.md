@@ -673,9 +673,5 @@ to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 The next chapter will focus on caching custom entities, and invalidating them
 when they change in the data store: [Caching custom entities]({{page.book.next}}).
 
----
-
-Next: [Caching custom entities &rsaquo;]({{page.book.next}})
-
 [Admin API]: /gateway/{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
