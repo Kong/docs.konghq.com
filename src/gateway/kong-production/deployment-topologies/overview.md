@@ -5,7 +5,7 @@ content_type: explanation
 
 {{site.base_gateway}} can be deployed in four different modes:
 
-* Konnect (hosted control plane)
+* {{site.konnect_short_name}} (hosted control plane)
 * Hybrid
 * Traditional (database)
 * DB-less and declarative
@@ -14,17 +14,17 @@ Each mode has benefits and limitations, so it is important to consider them care
 
 The following sections briefly describe each mode. 
 
-## Konnect
+## {{ site.konnect_short_name }}
 
-Konnect is the fastest way to get started when using {{site.base_gateway}}. It allows you to deploy your own data planes (DP) to handle customer traffic without needing to deploy your own control plane (CP) or database.
+{{ site.konnect_short_name }} is the fastest way to get started when using {{site.base_gateway}}. It allows you to deploy your own data planes (DP) to handle customer traffic without needing to deploy your own control plane (CP) or database.
 
-Konnect is a Hybrid mode deployment, where Kong host the control plane for you. This means that you get all of the benefits of a hybrid mode deployment without needing to run multiple nodes yourself.
+{{ site.konnect_short_name }} is a Hybrid mode deployment, where Kong host the control plane for you. This means that you get all of the benefits of a hybrid mode deployment without needing to run multiple nodes yourself.
 
-Configuration changes can be made using the Konnect UI and configuration wizards, or applied in an automated way using [decK](/deck/).
+Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/).
 
 As with Hybrid mode, your data planes will continue to process traffic even if the control plane is offline. In addition, you no longer need to worry about securing the control plane as Kong do it for you.
 
-Finally, Konnect supports Runtime Groups, which allows you to segment your configuration in any way that you need. It could be by business unit, or environment. Achieving this using Hybrid mode requires you to deploy one control plane per segment, whilst Konnect allows you to manage multiple configuration sets through the same UI and API.
+Finally, {{ site.konnect_short_name }} supports Runtime Groups, which allows you to segment your configuration in any way that you need. It could be by business unit, or environment. Achieving this using Hybrid mode requires you to deploy one control plane per segment, whilst {{ site.konnect_short_name }} allows you to manage multiple configuration sets through the same UI and API.
 
 ## Hybrid mode
 
@@ -35,7 +35,7 @@ In this mode, {{site.base_gateway}} nodes in a cluster are split into two roles:
 (CP), where configuration is managed and the Admin API is served from, and data
 plane (DP), which serves traffic for the proxy. Many DP nodes are connected to a single CP node. Instead of accessing the database contents directly like in the
 traditional deployment method, the DP nodes maintain connection with CP nodes,
-and receive the latest configuration in realtime. 
+and receive the latest configuration in real-time.
 
 Hybrid mode deployments have the following benefits:
 
@@ -46,7 +46,7 @@ Hybrid mode deployments have the following benefits:
 
 ## Traditional (database) mode
 
-In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its datastore.
+In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its data store.
 
 Running {{ site.base_gateway }} in Traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database (such as rate-limiting with the cluster strategy, or OAuth2). However, there are some downsides too.
 
