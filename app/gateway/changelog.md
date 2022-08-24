@@ -32,8 +32,8 @@ The following entities were affected:
 
 ### Dependencies
 
-* Bump `lua-resty-aws` version to 0.5.4 to reduce memory usage when GCP vault is enabled. [#23](https://github.com/Kong/lua-resty-aws/pull/23)
-* Bump `lua-resty-gcp` version to 0.0.5 to reduce memory usage when AWS vault is enabled. [#7](https://github.com/Kong/lua-resty-gcp/pull/7)
+* Bump `lua-resty-aws` version to 0.5.4 to reduce memory usage when AWS vault is enabled. [#23](https://github.com/Kong/lua-resty-aws/pull/23)
+* Bump `lua-resty-gcp` version to 0.0.5 to reduce memory usage when GCP vault is enabled. [#7](https://github.com/Kong/lua-resty-gcp/pull/7)
 
 ## 2.8.1.3
 **Release Date** 2022/08/05
