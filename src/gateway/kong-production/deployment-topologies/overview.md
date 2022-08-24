@@ -3,8 +3,9 @@ title: Overview
 content_type: explanation
 ---
 
-{{site.base_gateway}} can be deployed in three different modes:
+{{site.base_gateway}} can be deployed in four different modes:
 
+* Konnect (hosted control plane)
 * Hybrid
 * Traditional (database)
 * DB-less and declarative
@@ -12,6 +13,18 @@ content_type: explanation
 Each mode has benefits and limitations, so it is important to consider them carefully when deciding which mode to use to install {{site.base_gateway}} in production. 
 
 The following sections briefly describe each mode. 
+
+## Konnect
+
+Konnect is the fastest way to get started when using {{site.base_gateway}}. It allows you to deploy your own data planes (DP) to handle customer traffic without needing to deploy your own control plane (CP) or database.
+
+Konnect is a Hybrid mode deployment, where Kong host the control plane for you. This means that you get all of the benefits of a hybrid mode deployment without needing to run multiple nodes yourself.
+
+Configuration changes can be made using the Konnect UI and configuration wizards, or applied in an automated way using [decK](/deck/).
+
+As with Hybrid mode, your data planes will continue to process traffic even if the control plane is offline. In addition, you no longer need to worry about securing the control plane as Kong do it for you.
+
+Finally, Konnect supports Runtime Groups, which allows you to segment your configuration in any way that you need. It could be by business unit, or environment. Achieving this using Hybrid mode requires you to deploy one control plane per segment, whilst Konnect allows you to manage multiple configuration sets through the same UI and API.
 
 ## Hybrid mode
 
