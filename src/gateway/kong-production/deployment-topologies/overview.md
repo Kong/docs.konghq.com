@@ -46,20 +46,24 @@ You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declar
 
 ## DB-less and declarative mode
 
-Starting with {{site.base_gateway}} 1.1, you can enable [DB-less mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, the entire configuration is stored in-memory on the node.  
+Starting with {{site.base_gateway}} 1.1, you can enable [DB-less mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, configured entities such as Routes, Services and Plugins are stored in-memory on the node.
+
+When running in DB-less mode, configuration is provided to {{ site.base_gateway }} using a second file. This file contains your configuration in YAML or JSON format using Kong's declarative configuration syntax.
+
+DB-less mode is also used by the Kong Ingress Controller, where the Kubernetes API server uses Kong's `/config` endpoint to update the running configuration in memory any time a change is made.
 
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
 
 * Reduced number of dependencies: no need to manage a database installation
-  if the entire setup for your use-cases fits in memory
+  if the entire setup for your use-case fits in memory
+* Your configuration is always in a known state. There is no intermediate 
+  state between creating a service and a route using the Admin API
 * It is a good fit for automation in CI/CD scenarios. Configuration for
   entities can be kept in a single source of truth managed via a Git
   repository
-* It enables more deployment options for {{site.base_gateway}}
 
 Here are a few limitations of this mode:
 
 * The [Admin API](/gateway/{{page.kong_version}}/admin-api/) is read only.
-* You must manage {{site.base_gateway}} using declarative configuration [(decK)](/deck/{{page.kong_version}}/).
-* Some plugins, like rate limiting, do not fully function.
+* Any plugin that stores information in the database, like rate limiting (cluster mode), do not fully function.
