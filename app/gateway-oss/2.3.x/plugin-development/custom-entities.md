@@ -11,7 +11,7 @@ its configuration in the database. In that case, Kong provides you with
 an abstraction on top of its primary datastores which allows you to store
 custom entities.
 
-As explained in the [previous chapter]({{page.book.previous}}), Kong interacts
+As explained in the [previous chapter]({{page.book.previous.url}}), Kong interacts
 with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
 to to provide an abstraction for your own entities.
@@ -670,7 +670,7 @@ When a custom entity is required on every request/response it is good practice
 to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 
 The next chapter will focus on caching custom entities, and invalidating them
-when they change in the datastore: [Caching custom entities]({{page.book.next}}).
+when they change in the datastore: [Caching custom entities]({{page.book.next.url}}).
 
 [Admin API]: /{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /{{page.kong_version}}/pdk

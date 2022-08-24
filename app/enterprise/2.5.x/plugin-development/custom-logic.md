@@ -65,7 +65,7 @@ All of those functions, except `init_worker`, take one parameter that is given
 by {{site.ee_product_name}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugin schemas
-in the [next chapter]({{page.book.next}}).
+in the [next chapter]({{page.book.next.url}}).
 
 Note that UDP streams don't have real connections. {{site.ee_product_name}} considers all
 packets with the same origin and destination host and port as a single
