@@ -292,9 +292,5 @@ request-termination         | 2
 correlation-id              | 1
 post-function               | -1000
 
----
-
-Next: [Plugin configuration &rsaquo;]({{page.book.next}})
-
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /gateway-oss/{{page.kong_version}}/pdk

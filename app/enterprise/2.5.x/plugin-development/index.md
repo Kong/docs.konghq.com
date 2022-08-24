@@ -29,9 +29,5 @@ This guide will explore in detail the structure of plugins, what they can
 extend, and how to distribute and install them. For a complete reference of the
 PDK, see the [Plugin Development Kit] reference.
 
----
-
-Next: [File structure of a plugin &rsaquo;]({{page.book.next}})
-
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [Plugin Development Kit]: /enterprise/{{page.kong_version}}/pdk
