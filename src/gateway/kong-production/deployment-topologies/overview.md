@@ -50,7 +50,7 @@ In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-
 
 Running {{ site.base_gateway }} in Traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database (such as rate-limiting with the cluster strategy, or OAuth2). However, there are some downsides too.
 
-When running in Traditional mode, every {{ site.base_gateway} }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, your running gateway configuration . In contrast, Hybrid mode (shown below) has distinct CP and DP nodes, which reduces the attack surface.
+When running in Traditional mode, every {{ site.base_gateway }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, your running gateway configuration . In contrast, Hybrid mode (shown below) has distinct CP and DP nodes, which reduces the attack surface.
 
 In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
 
