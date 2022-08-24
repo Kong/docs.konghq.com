@@ -94,7 +94,11 @@ items:
           - text: OpenShift with Helm
             url: /kong-production/install-options/openshift
           - text: Docker
-            url: /kong-production/install-options/docker
+            items:
+              - text: Install Kong with Docker
+                url: /kong-production/install-options/docker
+              - text: Build your own Docker images
+                url: /kong-production/install-options/docker/build-custom-images/
           - text: Linux
             items:
               - text: Supported Distributions
