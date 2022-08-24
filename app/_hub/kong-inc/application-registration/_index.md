@@ -1,7 +1,6 @@
 ---
 name: Portal Application Registration
 publisher: Kong Inc.
-version: 2.0.x
 desc: Allow portal developers to register applications against Services
 description: |
 
@@ -45,15 +44,7 @@ categories:
   - authentication
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: application-registration
   global: false
