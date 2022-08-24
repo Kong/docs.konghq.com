@@ -1,7 +1,6 @@
 ---
 name: Basic Authentication
 publisher: Kong Inc.
-version: 2.2.0
 desc: Add Basic Authentication to your Services
 description: |
   Add Basic Authentication to a Service or a Route with username and password protection. The plugin
@@ -11,25 +10,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: basic-auth
   service_id: true
@@ -273,13 +256,20 @@ Consumer.
 
 ## Changelog
 
+{% if_plugin_version gte:3.0.x %}
+
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:3.0.x %}
 
 **{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
 and you are using basic authentication, the `basicauth_credentials.password` field will be encrypted.
 
+{% endif_plugin_version %}
 
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
