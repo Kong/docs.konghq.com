@@ -85,7 +85,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    curl -s localhost:8001 | jq '.configuration'
    ```
 
-   You should receive a large JSON document with various {{site.base_gateway}} configuration information.
+   You should receive a large JSON response with {{site.base_gateway}} configuration information.
 
 
 Every step in this tutorial requires a running {{site.base_gateway}}, so leave
