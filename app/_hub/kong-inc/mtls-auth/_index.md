@@ -1,7 +1,6 @@
 ---
 name: Mutual TLS Authentication
 publisher: Kong Inc.
-version: 1.5.x
 desc: Secure routes and services with client certificate and mutual TLS authentication
 description: |
   Add mutual TLS authentication based on client-supplied or server-supplied certificate, and on the configured trusted CA list. Automatically maps certificates to consumers based on the common name field.
@@ -14,18 +13,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: mtls-auth
   service_id: true
@@ -108,6 +96,7 @@ params:
       description: |
         Cache expiry time in seconds.
     - name: http_proxy_host
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: example
@@ -118,8 +107,8 @@ params:
         (CRL) or an OCSP server.
 
         Required if `http_proxy_port` is set.
-      # minimum_version: "2.8.x"
     - name: http_proxy_port
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: 80
@@ -128,8 +117,8 @@ params:
         The TCP port of the HTTP proxy.
 
         Required if `http_proxy_host` is set.
-      # minimum_version: "2.8.x"
     - name: https_proxy_host
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples:
@@ -140,8 +129,8 @@ params:
         (CRL) or an OCSP server.
 
         Required if `https_proxy_port` is set.
-      # minimum_version: "2.8.x"
     - name: https_proxy_port
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples:
@@ -150,7 +139,6 @@ params:
         The TCP port of the HTTPS proxy.
 
         Required if `https_proxy_host` is set.
-      # minimum_version: "2.8.x"
 ---
 
 ## Usage
