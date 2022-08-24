@@ -374,9 +374,5 @@ post-function               | -1000
 
 {% endnavtab %}
 {% endnavtabs %}
----
-
-Next: [Plugin configuration &rsaquo;]({{page.book.next}})
-
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /gateway/{{page.kong_version}}/pdk
