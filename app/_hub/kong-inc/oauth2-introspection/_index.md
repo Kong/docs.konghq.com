@@ -1,7 +1,6 @@
 ---
 name: OAuth 2.0 Introspection
 publisher: Kong Inc.
-version: 1.3-x
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
   Validate access tokens sent by developers using a third-party OAuth 2.0
@@ -25,18 +24,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: oauth2-introspection
   service_id: true
@@ -173,7 +161,7 @@ Use these headers to identify the consumer in your code:
 - `X-Anonymous-Consumer`, set to true if authentication fails, and the `anonymous` consumer is set instead.
 - `X-Credential-Scope`, as returned by the Introspection response (if any)
 - `X-Credential-Client-ID`, as returned by the Introspection response (if any)
-- `X-Credential-Username`, as returned by the Introspection response (if any)
+- `X-Credential-Identifier`, as returned by the Introspection response (if any)
 - `X-Credential-Token-Type`, as returned by the Introspection response (if any)
 - `X-Credential-Exp`, as returned by the Introspection response (if any)
 - `X-Credential-Iat`, as returned by the Introspection response (if any)
@@ -188,3 +176,9 @@ Additionally, any claims specified in `config.custom_claims_forward` are also fo
 {:.note}
 > **Note:** If authentication fails, the plugin doesn't set any `X-Credential-*` headers.
 It appends `X-Anonymous-Consumer: true` and sets the `anonymous` consumer instead.
+
+---
+## Changelog
+
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.
