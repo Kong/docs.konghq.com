@@ -20,17 +20,16 @@ Starting with {{site.base_gateway}} 2.1, {{site.base_gateway}} can be deployed i
 
 In this mode, {{site.base_gateway}} nodes in a cluster are split into two roles: control plane
 (CP), where configuration is managed and the Admin API is served from, and data
-plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the database contents directly like in the
+plane (DP), which serves traffic for the proxy. Many DP nodes are connected to a single CP node. Instead of accessing the database contents directly like in the
 traditional deployment method, the DP nodes maintain connection with CP nodes,
-and receive the latest configuration. 
+and receive the latest configuration in realtime. 
 
 Hybrid mode deployments have the following benefits:
 
 * Users can deploy groups of data planes in different data centers, geographies, or zones without needing a local clustered database for each DP group.
-* The availability of the database does not affect the availability of the data planes. 
+* The availability of the database does not affect the availability of the data planes. If a control plane is offline, data planes will run using their last known configuration.
 * Drastically reduces the amount of traffic to and from the database, since only CP nodes need a direct connection to the database.
 * If one of the DP nodes is compromised, an attacker won’t be able to affect other nodes in the {{site.base_gateway}} cluster.
-* Admins only need to interact with the CP nodes to control and monitor the status of the entire {{site.base_gateway}} cluster.
 
 ## Traditional (database) mode
 
