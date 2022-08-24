@@ -132,11 +132,19 @@ params:
       datatype: string
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis_password
       required: false
       datatype: string
       description: |
         When using the `redis` policy, this property specifies the password to connect to the Redis server.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis_ssl
       required: true
       default: '`false`'

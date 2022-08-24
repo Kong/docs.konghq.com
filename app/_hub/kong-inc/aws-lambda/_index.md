@@ -37,6 +37,10 @@ params:
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
         if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
         is configured.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: aws_secret
       required: semi
       value_in_examples: <AWS_SECRET>
@@ -51,6 +55,9 @@ params:
         if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
         is configured.
 
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: aws_region  # old version, do not update
       maximum_version: "2.5.x"
       required: true
@@ -119,6 +126,10 @@ params:
       description: |
         The target AWS IAM role ARN used to invoke the Lambda function. Typically this is
         used for a cross-account Lambda function invocation.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: aws_role_session_name
       minimum_version: "2.8.x"
       required: false
