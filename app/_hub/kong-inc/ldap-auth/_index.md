@@ -79,6 +79,7 @@ params:
       datatype: string
       description: Host on which the LDAP server is running.
     - name: ldap_port
+      minimum_version: "2.5.x"
       required: true
       default: 389
       value_in_examples: 389
@@ -192,3 +193,7 @@ You can set the header type `ldap` to any string (such as `basic`) using
 
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
+
+**{{site.base_gateway}} 2.5.x**
+* Added support for setting the `ldap_port`.
+Previously, this parameter was documented but did not exist in the plugin.
