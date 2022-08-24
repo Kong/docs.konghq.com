@@ -10,7 +10,7 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 
 ### Upgrading
 
-- add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole`
+- Added `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole`
 
 ## 1.8.2
 
