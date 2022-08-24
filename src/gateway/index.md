@@ -79,6 +79,8 @@ configuration, and forwarded to upstream services._
 
 ## Features
 
+{% include_cached feature-table.html config=site.data.tables.features.gateway %}
+
 ### Kong Admin API
 
 [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) provides a RESTful

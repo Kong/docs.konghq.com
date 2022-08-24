@@ -9,7 +9,11 @@
       {% assign keys = keys | concat: key %}
         <th class="product-name">
           <span class="mobile-label">{{ c.name }}</span>
-          <img src="{{ c.image }}" alt="Kuma"/>
+          {% if c.image %}
+          <img src="{{ c.image }}" alt="{{ c.name }}"/>
+          {% else %}
+          <strong class="product-title">{{ c.name }}</strong>
+          {% endif %}
           <a class="feature-cta" href="{{ c.cta_link }}" target="_blank">{{ c.cta }}</a>
         </th>
       {% endfor %}
