@@ -73,6 +73,7 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 
 | Version  | Released Date | End of Full Support |
 |:--------:|:-------------:|:-------------------:|
+|  1.9.x   |  2022-08-24   |     2023-08-24      |
 |  1.8.x   |  2022-06-15   |     2023-06-14      |
 |  1.7.x   |  2022-04-11   |     2023-04-10      |
 |  1.6.x   |  2022-02-24   |     2023-02-23      |
