@@ -11,10 +11,8 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 ### Changes
 
 - Add "replace" function to CommonName template in CAs which support it (ACMPCA, cert-manager, Vault).
-- Improve error message when non-https URL is used with OPA.
 - Fix ZoneControlPlane token generation by setting access type to RBAC in the generated default.
 - Improve RBAC logic by checking both old and new spec on updates.
-- Change log level of RBAC to `debug` by default except the result of RBAC validation.
 - Add configuration option for RBAC validation result logging.
 - Add cert-manager.io CA manager.
 
