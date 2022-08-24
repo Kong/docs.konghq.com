@@ -89,7 +89,7 @@ items:
         items:
           - text: Kubernetes
             url: /kong-production/install-options/kubernetes
-          - text: Kubernetes with Helm
+          - text: Install Kong Gateway with Helm
             url: /kong-production/install-options/helm-quickstart
           - text: OpenShift with Helm
             url: /kong-production/install-options/openshift

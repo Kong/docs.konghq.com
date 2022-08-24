@@ -100,7 +100,7 @@ Verify your kubeconfig context is set correctly with the following command.
 
     kubectl cluster-info
 
-## Prepare your Kong Helm chart `values.yaml`
+## Prepare the Helm chart 
 
 To inject your custom domain name into the Helm values file configure the {{site.base_gateway}} deployment with:
 
@@ -343,7 +343,7 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
 
        kubectl delete pvc -n kong data-quickstart-postgresql-0
 
-4. Remove Kong Helm Chart repository
+4. Remove Kong Helm chart repository
   
        helm repo remove kong
 
@@ -373,7 +373,7 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
 
        kubectl delete pvc -n kong data-quickstart-postgresql-0
 
-4. Remove Kong Helm Chart repository
+4. Remove Kong Helm chart repository
   
        helm repo remove kong
 
@@ -408,7 +408,7 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
 
        kubectl delete pvc -n kong data-quickstart-postgresql-0
 
-4. Remove Kong Helm Chart Repository
+4. Remove Kong Helm chart repository
   
        helm repo remove kong
 
