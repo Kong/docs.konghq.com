@@ -9,7 +9,7 @@ At its core, {{site.base_gateway}} is a tool to manage **services** and **routes
 
 Get started with {{site.base_gateway}}:
 
-* [How to install kong](/gateway/latest/get-started/get-kong-with-docker)
+* [Get Kong](/gateway/latest/get-started/get-kong)
 * [Configure rate limiting](/gateway/latest/get-started/protect-services)
 * [Configure key authentication](/gateway/latest/get-started/secure-services)
 * [Configure load-balancing](/gateway/latest/get-started/load-balancing)

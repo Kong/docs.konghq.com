@@ -1,3 +1,4 @@
 ---
 /gateway-oss/VERSION/configuration/: "/gateway/VERSION/reference/configuration/"
 /gateway/VERSION/install-and-run/rhel/: "/gateway/VERSION/kong-production/install-options/linux/rhel/"
+/gateway/VERSION/get-started/get-kong-with-docker/: "/gateway/VERSION/get-started/get-kong"
