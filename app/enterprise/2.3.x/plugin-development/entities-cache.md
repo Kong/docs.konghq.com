@@ -341,9 +341,5 @@ example, creating and deleting API keys). The way you would do this is by
 extending the Admin API, which we will detail in the next chapter:
 [Extending the Admin API]({{page.book.next}}).
 
----
-
-Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
-
 [Admin API]: /enterprise/{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /enterprise/{{page.kong_version}}/pdk
