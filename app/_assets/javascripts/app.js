@@ -574,7 +574,7 @@ function pluginFilter(target){
     // Toggle all nav tabs that match this title
     const text = navtabTitle.text();
     const search = $(".navtab-title").filter(function () {
-      return $(this).text().toLowerCase().indexOf(text.toLowerCase()) >= 0;
+      return $(this).text().trim().toLowerCase() == text.trim().toLowerCase()
     }).each(function(k,v){
       activateSingleNavTab($(v));
     });
