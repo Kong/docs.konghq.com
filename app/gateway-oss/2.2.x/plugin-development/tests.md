@@ -103,6 +103,3 @@ and Admin API on port 9001.
 If you want to see a real-world example, give a look at the
 [Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/09-key-auth)
 
----
-
-Next: [Distribute your plugin &rsaquo;]({{page.book.next}})

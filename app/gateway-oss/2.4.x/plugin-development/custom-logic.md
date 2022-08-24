@@ -65,7 +65,7 @@ All of those functions, except `init_worker`, take one parameter which is given
 by {{site.ce_product_name}} upon its invocation: the configuration of your Plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 Plugin's schema (described in the `schema.lua` module). More on Plugins schemas
-in the [next chapter]({{page.book.next}}).
+in the [next chapter]({{page.book.next.url}}).
 
 Note that UDP streams don't have real connections.  {{site.ce_product_name}} will consider all
 packets with the same origin and destination host and port as a single
@@ -291,10 +291,6 @@ syslog                      | 4
 request-termination         | 2
 correlation-id              | 1
 post-function               | -1000
-
----
-
-Next: [Plugin configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /gateway-oss/{{page.kong_version}}/pdk

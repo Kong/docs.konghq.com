@@ -167,8 +167,4 @@ three functions:
 - The `PUT` function populates `self.args.post.consumer` before calling the `endpoints`-provided
   `put_entity_endpoint` function.
 
----
-
-Next: [Write tests for your plugin]({{page.book.next}})
-
 [Admin API]: /enterprise/{{page.kong_version}}/admin-api/
