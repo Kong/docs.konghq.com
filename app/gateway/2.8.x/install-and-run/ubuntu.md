@@ -90,16 +90,30 @@ Install the APT repository from the command line.
 ```bash
 sudo apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
 ```
+
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
+sudo apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
 ```
+
+
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endcapture %}
 
 {{ install_from_repo | indent | replace: " </code>", "</code>" }}
+
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+{:.note .no-icon}
+> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong-enterprise-edition`. This will prevent an accidental upgrade to a new version.
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+{:.note .no-icon}
+> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong`. This will prevent an accidental upgrade to a new version.
+{% endnavtab %}
+{% endnavtabs_ee %}
 
 {% endnavtab %}
 {% endnavtabs %}
