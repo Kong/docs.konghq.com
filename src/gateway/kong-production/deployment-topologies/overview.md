@@ -6,8 +6,8 @@ content_type: explanation
 {{site.base_gateway}} can be deployed in three different modes:
 
 * Hybrid
-* DB-less and declarative
 * Traditional (database)
+* DB-less and declarative
 
 Each mode has benefits and limitations, so it is important to consider them carefully when deciding which mode to use to install {{site.base_gateway}} in production. 
 
@@ -32,6 +32,18 @@ Hybrid mode deployments have the following benefits:
 * If one of the DP nodes is compromised, an attacker won’t be able to affect other nodes in the {{site.base_gateway}} cluster.
 * Admins only need to interact with the CP nodes to control and monitor the status of the entire {{site.base_gateway}} cluster.
 
+## Traditional (database) mode
+
+In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its datastore.
+
+Running {{ site.base_gateway }} in Traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database (such as rate-limiting with the cluster strategy, or OAuth2). However, there are some downsides too.
+
+When running in Traditional mode, every {{ site.base_gateway} }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, your running gateway configuration . In contrast, Hybrid mode (shown below) has distinct CP and DP nodes, which reduces the attack surface.
+
+In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
+
+You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in Traditional mode.
+
 ## DB-less and declarative mode
 
 Starting with {{site.base_gateway}} 1.1, you can enable [DB-less mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, the entire configuration is stored in-memory on the node.  
@@ -51,15 +63,3 @@ Here are a few limitations of this mode:
 * The [Admin API](/gateway/{{page.kong_version}}/admin-api/) is read only.
 * You must manage {{site.base_gateway}} using declarative configuration [(decK)](/deck/{{page.kong_version}}/).
 * Some plugins, like rate limiting, do not fully function.
-
-## Traditional (database) mode
-
-In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its datastore.
-
-Running {{ site.base_gateway }} in Traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database (such as rate-limiting with the cluster strategy, or OAuth2). However, there are some downsides too.
-
-When running in Traditional mode, every {{ site.base_gateway} }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, your running gateway configuration . In contrast, Hybrid mode (shown below) has distinct CP and DP nodes, which reduces the attack surface.
-
-In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
-
-You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in Traditional mode.
