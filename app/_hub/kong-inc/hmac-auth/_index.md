@@ -153,7 +153,7 @@ field/parameter            | description
 ### Signature Authentication Scheme
 
 The client is expected to send an `Authorization` or `Proxy-Authorization` header
-with the following parameterization:
+with the following:
 
 ```
 credentials := "hmac" params
@@ -183,7 +183,7 @@ MUST take the values of each HTTP header specified by `headers` in
 the order they appear.
 
 1. If the header name is not `request-line` then append the
-  lowercased header name followed with an ASCII colon `:` and an
+  lowercase header name followed with an ASCII colon `:` and an
   ASCII space ` `.
 
 2. If the header name is `request-line` then append the HTTP
@@ -202,7 +202,7 @@ MUST take the values of each HTTP header specified by `headers` in
 the order they appear.
 
 1. If the header name is not `request-line` or `@request-target`,
-  append the lowercased header name followed with an ASCII colon `:` and an
+  append the lowercase header name followed with an ASCII colon `:` and an
   ASCII space ` `.
 
 2. If the header name is `request-line`, append the HTTP
@@ -217,9 +217,9 @@ the order they appear.
 
 {:.note}
   > **Note:** The `@request-target` pseudo header was added in the 2.5.0
-  version of the plugin release. It is similiar to the `request-line` pseudo header
+  version of the plugin release. It is similar to the `request-line` pseudo header
   except that the HTTP version was removed from the signature calculation. Otherwise,
-  semantically equivlent requests that uses HTTP/1.x and HTTP/2 will generate different
+  semantically equivalent requests that uses HTTP/1.x and HTTP/2 will generate different
   signature value. It is strongly recommended to use `@request-target`
   instead of `request-line` with releases of this plugin after 2.5.0.
 
