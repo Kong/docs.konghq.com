@@ -54,7 +54,7 @@ params:
       value_in_examples: opensesame
       datatype: string
       encrypted: true
-      description |
+      description: |
         The secret that is used in keyed HMAC generation.​
 
         This field is _referenceable_, which means it can be securely stored as a
