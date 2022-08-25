@@ -20,9 +20,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: rate-limiting-advanced
   service_id: true
@@ -99,7 +97,33 @@ params:
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
         data and sync configuration is shared in a namespace.
-    - name: strategy
+
+    - name: strategy # old version of param description
+      maximum_version: "2.8.x"
+      required: true
+      default: cluster
+      value_in_examples: cluster
+      datatype: string
+      description: |
+        The rate-limiting strategy to use for retrieving and incrementing the
+        limits. Available values are:
+        - `cluster`: Counters are stored in the Kong datastore and shared across
+           the nodes.
+        - `redis`: Counters are stored on a Redis server and shared
+           across the nodes.
+        - `local`: Counters are stored locally in-memory on the node (same effect
+           as setting `sync_rate` to `-1`).
+
+        In DB-less and hybrid modes, the `cluster` config strategy
+        is not supported.
+
+        In Konnect Cloud, the default strategy is `redis`.
+
+        For details on which strategy should be used, refer to the
+        [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
+
+    - name: strategy # current
+      minimum_version: "3.0.x"
       required: true
       default: cluster
       value_in_examples: cluster
@@ -123,6 +147,7 @@ params:
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
+
     - name: hide_client_headers
       required: false
       default: false
@@ -146,6 +171,7 @@ params:
         Specifies the Redis server port when using the `redis` strategy. Must be a
         value between 0 and 65535. Default: 6379.
     - name: redis.ssl
+      minimum_version: "2.2.x"
       required: false
       default: false
       value_in_examples: null
@@ -153,9 +179,8 @@ params:
       description: |
         If set to true, then uses SSL to connect to Redis.
 
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
     - name: redis.ssl_verify
+      minimum_version: "2.2.x"
       required: false
       default: false
       value_in_examples: null
@@ -166,9 +191,8 @@ params:
         to specify the CA (or server) certificate used by your redis server. You may also need to configure
         [lua_ssl_verify_depth](/gateway/latest/reference/configuration/#lua_ssl_verify_depth) accordingly.
 
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
     - name: redis.server_name
+      minimum_version: "2.2.x"
       required: false
       default: null
       value_in_examples: null
@@ -176,9 +200,17 @@ params:
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
 
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
-    - name: redis.timeout
+    - name: redis.timeout # old version
+      maximum_version: "2.4.x"
+      required: semi
+      default: 2000
+      value_in_examples: null
+      datatype: number
+      description: |
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
+
+    - name: redis.timeout # current
+      minimum_version: "2.5.x"
       required: semi
       default: 2000
       value_in_examples: null
@@ -190,24 +222,28 @@ params:
         If set to something other than the default, a deprecation warning will be logged in the log file, stating the field's deprecation
         and planned removal in v3.x.x.
     - name: redis.connect_timeout
+      minimum_version: "2.5.x"
       required: semi
       default: 2000
       datatype: number
       description: |
         Connection timeout to use for Redis connection when the `redis` strategy is defined.
     - name: redis.send_timeout
+      minimum_version: "2.5.x"
       required: semi
       default: 2000
       datatype: number
       description: |
         Send timeout to use for Redis connection when the `redis` strategy is defined.
     - name: redis.read_timeout
+      minimum_version: "2.5.x"
       required: semi
       default: 2000
       datatype: number
       description: |
         Read timeout to use for Redis connection when the `redis` strategy is defined.
     - name: redis.username
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: null
@@ -247,6 +283,7 @@ params:
         Sentinel master to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_username
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: null
@@ -297,18 +334,20 @@ params:
         Defining this value implies using Redis cluster. Each string element must
         be a hostname. The minimum length of the array is 1 element.
     - name: redis.keepalive_backlog
+      minimum_version: "2.5.x"
       required: false
       default: null
       value_in_examples: null
       datatype: integer
       description: |
-        If specified, limits the total number of opened connections for a pool. If the 
-        connection pool is full, all connection queues beyond the maximum limit go into 
-        the backlog queue. Once the backlog queue is full, subsequent connect operations 
-        will fail and return `nil`. Queued connect operations resume once the number of 
-        connections in the pool is less than `keepalive_pool_size`. Note that queued 
+        If specified, limits the total number of opened connections for a pool. If the
+        connection pool is full, all connection queues beyond the maximum limit go into
+        the backlog queue. Once the backlog queue is full, subsequent connect operations
+        will fail and return `nil`. Queued connect operations resume once the number of
+        connections in the pool is less than `keepalive_pool_size`. Note that queued
         connect operations are subject to set timeouts.
     - name: redis.keepalive_pool
+      minimum_version: "2.5.x"
       required: false
       default: generated from string template
       value_in_examples: null
@@ -317,6 +356,7 @@ params:
         The custom name of the connection pool. If not specified, the connection pool
         name is generated from the string template `"<host>:<port>"` or `"<unix-socket-path>"`.
     - name: redis.keepalive_pool_size
+      minimum_version: "2.5.x"
       required: false
       default: 30
       value_in_examples: null
@@ -344,6 +384,7 @@ params:
         from coming back at the same time. The lower bound of the jitter is `0`; in this case,
         the `Retry-After` header is equal to the `RateLimit-Reset` header.
     - name: enforce_consumer_groups
+      minimum_version: "2.7.x"
       required: false
       default: false
       value_in_examples: true
@@ -353,6 +394,7 @@ params:
         from one of the allowed consumer groups to override the given plugin
         configuration.
     - name: consumer_groups
+      minimum_version: "2.7.x"
       required: semi
       default: null
       value_in_examples:
@@ -472,6 +514,7 @@ When the `redis` strategy is used and a {{site.base_gateway}} node is disconnect
 {{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
 
+{% if_plugin_version gte:2.7.x %}
 ## Rate limiting for consumer groups
 
 You can use consumer groups to manage custom rate limiting configuration for
@@ -489,19 +532,35 @@ the Admin API documentation.
 > **Note:** Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
 
+{% endif_plugin_version %}
+
 ---
 
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 1.6.1)
+**{{site.base_gateway}} 3.0.x**
+
+* {{site.base_gateway}} now disallows enabling the plugin if the `cluster`
+strategy is set with DB-less or hybrid mode.
+
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
 * The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be securely stored as
-[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+[secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
 
-### {{site.base_gateway}} 2.7.x (plugin version 1.6.0)
+**{{site.base_gateway}} 2.7.x**
 
 * Added the `enforce_consumer_groups` and `consumer_groups` configuration parameters.
+
+**{{site.base_gateway}} 2.5.x**
+
+* Deprecated the `timeout` field and replaces it with three precise options: `connect_timeout`, `read_timeout`, and `send_timeout`.
+* Added `redis.keepalive_pool`, `redis.keepalive_pool_size`, and `redis.keepalive_backlog` configuration options.
+* `ssl_verify` and `server_name` configuration options now support Redis Sentinel-based connections.
+
+**{{site.base_gateway}} 2.2.x**
+* Added the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name` parameters for configuring TLS connections.
