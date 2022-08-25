@@ -45,6 +45,7 @@ Fargate
 favicon
 flamegraph
 gevent
+gibibytes
 Github
 gojira
 Goroutine
@@ -68,6 +69,7 @@ init_worker
 inso
 instrumentations
 io
+ip
 iptables
 Istio
 jq
@@ -78,6 +80,7 @@ jwks
 jwt
 Keycloak
 kiali
+kibibytes
 Knative
 kong
 Kong/kong
@@ -102,6 +105,7 @@ Luarocks
 ngrok
 npm
 md
+mebibytes
 middleware
 minifier
 minikube
@@ -170,6 +174,7 @@ sandboxing
 schema's
 serializer
 serverless
+sni
 snis
 Splunk
 ssl
@@ -185,6 +190,8 @@ Styra
 subtree
 Bagdi
 subcommand
+submodule
+submodule's
 substring
 sudo
 syslog
@@ -211,6 +218,7 @@ unregistering
 upsert
 upstream
 upstreams
+upstream's
 upvalue
 upvalues
 use_daily_image
