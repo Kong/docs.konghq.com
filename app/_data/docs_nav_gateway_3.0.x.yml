@@ -16,32 +16,34 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
-      - text: Understanding Kong
+      - text: Key Concepts
         items:
-          - text: Key Concepts
+          - text: Services
+            url: /key-concepts/services
+          - text: Routes
             items:
-              - text: Services
-                url: /understanding-kong/key-concepts/services
-              - text: Routes
-                items:
-                  - text: Overview
-                    url: /understanding-kong/key-concepts/routes
-                  - text: Configure Routes with Expressions
-                    url: /understanding-kong/key-concepts/routes/expressions
-              - text: Upstreams
-                url: /understanding-kong/key-concepts/upstreams
-              - text: Plugins
-                url: /understanding-kong/key-concepts/plugins
+              - text: Overview
+                url: /key-concepts/routes
+              - text: Configure Routes with Expressions
+                url: /key-concepts/routes/expressions
+          - text: Upstreams
+            url: /key-concepts/upstreams
+          - text: Plugins
+            url: /key-concepts/plugins
+      - text: How Kong works
+        items:
           - text: Routing Traffic
-            url: /understanding-kong/proxy
+            url: /how-kong-works/proxy
           - text: Load Balancing
-            url: /understanding-kong/loadbalancing
+            url: /how-kong-works/loadbalancing
           - text: Health Checks and Circuit Breakers
-            url: /understanding-kong/health-checks-circuit-breakers
+            url: /how-kong-works/health-checks-circuit-breakers
+          - text: Manage Kong Gateway with decK
+            url: /how-kong-works/manange-kong-with-deck
           - text: Kong Performance Testing
-            url: /understanding-kong/performance-testing
-          - text: Glossary
-            url: /understanding-kong/glossary
+            url: /how-kong-works/performance-testing
+      - text: Glossary
+        url: /glossary
 
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-learning.svg
