@@ -1,7 +1,6 @@
 ---
 name: Apache OpenWhisk
 publisher: Kong Inc.
-version: 1.0.x
 
 source_url: https://github.com/Kong/kong-plugin-openwhisk
 

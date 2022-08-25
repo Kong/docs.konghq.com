@@ -1,7 +1,6 @@
 ---
 name: Proxy Caching Advanced
 publisher: Kong Inc.
-version: 0.5.x
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches
@@ -19,17 +18,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
+    compatible: true
 params:
   name: proxy-cache-advanced
   service_id: true
@@ -201,6 +190,7 @@ params:
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
     - name: redis.sentinel_username
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: null
@@ -213,6 +203,7 @@ params:
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_password
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: null
@@ -256,11 +247,11 @@ params:
       value_in_examples: null
       datatype: integer
       description: |
-        If specified, limits the total number of opened connections for a pool. If the 
-        connection pool is full, all connection queues beyond the maximum limit go into 
-        the backlog queue. Once the backlog queue is full, subsequent connect operations 
-        will fail and return `nil`. Queued connect operations resume once the number of 
-        connections in the pool is less than `keepalive_pool_size`. Note that queued 
+        If specified, limits the total number of opened connections for a pool. If the
+        connection pool is full, all connection queues beyond the maximum limit go into
+        the backlog queue. Once the backlog queue is full, subsequent connect operations
+        will fail and return `nil`. Queued connect operations resume once the number of
+        connections in the pool is less than `keepalive_pool_size`. Note that queued
         connect operations are subject to set timeouts.
     - name: redis.keepalive_pool
       required: false
