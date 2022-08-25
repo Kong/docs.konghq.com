@@ -17,6 +17,7 @@
   "https://aws.amazon.com/*",
   "http://xip.io",
   "https://kong.127-0-0-1.nip.io/*",
+  "https://kong.127-0-0-1.nip.io",
   "https://kong.7f000001.nip.io/*",
   "https://portal.7f000001.nip.io/*",
   "https://manager.7f000001.nip.io/*",
