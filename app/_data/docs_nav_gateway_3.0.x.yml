@@ -30,6 +30,8 @@ items:
             url: /key-concepts/upstreams
           - text: Plugins
             url: /key-concepts/plugins
+          - text: Manage Kong Gateway with decK
+            url: /key-concepts/manage-kong-with-deck
       - text: How Kong works
         items:
           - text: Routing Traffic
@@ -38,8 +40,6 @@ items:
             url: /how-kong-works/loadbalancing
           - text: Health Checks and Circuit Breakers
             url: /how-kong-works/health-checks-circuit-breakers
-          - text: Manage Kong Gateway with decK
-            url: /how-kong-works/manange-kong-with-deck
           - text: Kong Performance Testing
             url: /how-kong-works/performance-testing
       - text: Glossary
