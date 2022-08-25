@@ -1,7 +1,6 @@
 ---
 name: File Log
 publisher: Kong Inc.
-version: 2.1.x
 desc: Append request and response data to a log file
 description: |
   Append request and response data in JSON format to a log file. You can also specify
@@ -15,48 +14,9 @@ categories:
   - logging
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
-      - 0.4.x
-      - 0.3.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
-params:
+    compatible: true
   name: file-log
   service_id: true
   route_id: true
@@ -87,6 +47,7 @@ params:
         is not reopened, and has been removed/rotated, the plugin keeps writing to the
         stale file descriptor, and hence loses information.
     - name: custom_fields_by_lua
+      minimum_version: "2.4.x"
       required: false
       default: null
       datatype: map
@@ -108,6 +69,15 @@ params:
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
+{% if_plugin_version gte:2.4.x %}
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
+{% endif_plugin_version %}
+
+---
+## Changelog
+
+**{{site.base_gateway}} 2.4.x**
+
+* Added `custom_fields_by_lua` configuration option.
