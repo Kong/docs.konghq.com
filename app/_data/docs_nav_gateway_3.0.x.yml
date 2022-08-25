@@ -49,7 +49,7 @@ items:
     icon: /assets/images/icons/documentation/icn-learning.svg
     items:
       - text: Get Kong
-        url: /get-started/get-kong
+        url: /get-started/
       - text: Services and Routes
         url: /get-started/services-and-routes
       - text: Rate Limiting
@@ -96,9 +96,9 @@ items:
           - text: Docker
             items:
               - text: Install Kong with Docker
-                url: /kong-production/install-options/docker
+                url: /install/docker
               - text: Build your own Docker images
-                url: /kong-production/install-options/docker/build-custom-images/
+                url: /install/docker/build-custom-images/
           - text: Linux
             items:
               - text: Supported Distributions
