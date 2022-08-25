@@ -588,9 +588,9 @@ items:
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
-      - text: Kong.conf Configuration File
+      - text: kong.conf
         url: /reference/configuration
-      - text: Kong Gateway Nginx Directives
+      - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
