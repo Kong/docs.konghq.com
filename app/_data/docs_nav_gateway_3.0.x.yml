@@ -18,27 +18,21 @@ items:
         absolute_url: true
       - text: Understanding Kong
         items:
-          - text: Guides
-            items:
-              - text: Run Kong Gateway in Minutes
-                url: /understanding-kong/how-to/kong-gateway
-              - text: Request Transformations
-                url: /understanding-kong/how-to/request-transformations
-              - text: Securing the Database with AWS Secrets Manager
-                url: /understanding-kong/how-to/aws-secrets-manager
-              - text: Configure Routes with Expressions
-                url: /understanding-kong/how-to/router-atc
           - text: Key Concepts
             items:
               - text: Services
                 url: /understanding-kong/key-concepts/services
               - text: Routes
-                url: /understanding-kong/key-concepts/routes
+                items:
+                  - text: Overview
+                    url: /understanding-kong/key-concepts/routes
+                  - text: Configure Routes with Expressions
+                    url: /understanding-kong/key-concepts/routes/expressions
               - text: Upstreams
                 url: /understanding-kong/key-concepts/upstreams
               - text: Plugins
                 url: /understanding-kong/key-concepts/plugins
-          - text: Routing in Kong
+          - text: Routing Traffic
             url: /understanding-kong/proxy
           - text: Load Balancing
             url: /understanding-kong/loadbalancing
@@ -242,6 +236,10 @@ items:
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
+          - text: Guides
+            items:
+              - text: Securing the Database with AWS Secrets Manager
+                url: /kong-enterprise/secrets-management/how-to/aws-secrets-manager
           - text: Reference Format
             url: /kong-enterprise/secrets-management/reference-format
       - text: Dynamic Plugin Ordering
@@ -502,6 +500,10 @@ items:
                 url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               - text: Configuring Fixed bucket
                 url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
+      - text: Request Transformer
+        items:
+          - text: Add a body value
+            url: /kong-plugins/request-transformer/add-body-value
 
       - text: GraphQL
         url: /kong-plugins/graphql
