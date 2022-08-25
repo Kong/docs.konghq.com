@@ -17,16 +17,16 @@ title: Glossary
 |Groups| Sets of role-defined entities.|
 |Host | A host represents the domain hosts (using DNS) intended to receive upstream traffic. In {{site.base_gateway}}, it is a list of domain names that match a route object. |
 | Kong plugin|  A plugin developed, maintained, and supported by Kong.|
-|Permission| A Permission is a policy representing the ability to create, read, update, or destroy an Admin API entity defined by endpoints.|
+|Permission| A permission is a policy representing the ability to create, read, update, or destroy an Admin API entity defined by endpoints.|
 |Plugin| Plugins provide advanced functionality and extend the use of {{site.base_gateway}}, allowing you to add new features to your gateway. Plugins can be configured to run in a variety of contexts, ranging from a specific route to all upstreams. Plugins can perform operations in your environment, such as authentication, rate-limiting, or transformations on a proxied request.|
 |Proxy| {{site.base_gateway}} is a reverse proxy that manages traffic between clients and hosts. As a gateway, Kong’s proxy functionality evaluates any incoming HTTP request against configured routes. |
 |Rate Limiting| Rate limiting allows you to restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API. Rate limiting protects the APIs from inadvertent or malicious overuse.|
 |Role |A role is a set of permissions that may be reused and assigned to admins.|
 |Route| A route, also referred to as a route object, defines rules to match client requests to upstream services. Each route is associated with a service, and a service may have multiple routes associated with it. routes are entry points to upstream services.|
-|Service| A service, also referred to as a service object, is the upstream APIs and microservices that Kong manages. For example, Services could be a data transformation microservice or a billing API. The main attribute of a Service is its URL, the destination where Kong proxies traffic. The URL can be set as a single string, or by specifying its protocol, host, port, and path.  |
+|Service| A service, also referred to as a service object, is the upstream APIs and microservices that Kong manages. For example, a service could be a data transformation microservice or a billing API. The main attribute of a service is its URL, the destination where {{site.base_gateway}} proxies traffic. The URL can be set as a single string, or by specifying its protocol, host, port, and path.  |
 |Super admin| A super admin, or any role with read and write access to the /admins and /rbac endpoints, creates new Roles and customize permissions. A super admin can invite and disable other admin accounts, assign and revoke roles to admins, create new roles with custom permissions, and create new workspaces.|
-|Spec| A service version can have an optional spec (e.g. OAPI spec for a RESTful service) associated with it.    |
-|Tags| Tags are customer-defined labels that let you manage, search for, and filter core entities using the ?tags querystring parameter. Tags can be added when creating or editing most core entities. Each tag must be composed of one or more alphanumeric characters,` \_\`, `-`, . or `~`. |
+|Spec|  An OpenAPI definition of your service in YAML or JSON format. Can be uploaded to Dev Portal to share with developers in your organization.   |
+|Tags| Tags are customer-defined labels that let you manage, search for, and filter core entities using the `?tags` querystring parameter. Tags can be added when creating or editing most core entities. Each tag must be composed of one or more alphanumeric characters,` \_\`, `-`, . or `~`. |
 |Teams| Teams organize developers into working groups.|
 |Tech preview | See [availability stages](/gateway/latest/availability-stages). |
 |Third-party or community plugin| A custom plugin developed, maintained, and supported by an external developer, not by Kong. Kong does not test these plugins, or update their version compatibility.|
