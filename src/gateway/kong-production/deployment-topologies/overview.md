@@ -26,6 +26,8 @@ As with Hybrid mode, your data planes will continue to process traffic even if t
 
 Finally, {{ site.konnect_short_name }} supports Runtime Groups, which allows you to segment your configuration in any way that you need. It could be by business unit, or environment. Achieving this using Hybrid mode requires you to deploy one control plane per segment, whilst {{ site.konnect_short_name }} allows you to manage multiple configuration sets through the same UI and API.
 
+[Get started](https://cloud.konghq.com/register) with {{ site.konnect_short_name }} for free today.
+
 ## Hybrid mode
 
 Starting with {{site.base_gateway}} 2.1, {{site.base_gateway}} can be deployed in
