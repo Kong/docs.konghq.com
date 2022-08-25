@@ -204,11 +204,13 @@ items:
       - text: Logging Reference
         url: /production-deployment/logging
       - text: Upgrade Kong Gateway
-        url: /production-deployment/upgrade-enterprise
-      - text: Upgrade Kong Gateway OSS
-        url: /production-deployment/upgrade-oss
-      - text: Migrate from OSS to EE
-        url: /production-deployment/migrate-ce-to-ke
+        items:
+          - text: Upgrade Kong Enterprise
+            url: /production-deployment/upgrade/enterprise
+          - text: Upgrade Kong Gateway OSS
+            url: /production-deployment/upgrade/oss
+          - text: Migrate from OSS to EE
+            url: /production-deployment/upgrade/migrate-ce-to-ke
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
