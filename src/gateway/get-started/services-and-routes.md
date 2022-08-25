@@ -245,7 +245,7 @@ the full service update specification.
    * `/services/{service name or id}/routes/{route name or id}`
    * `/routes/{route name or id}`
 
-   To view the current state of the `mocking` route, make a `GET` request on the route URL:
+   To view the current state of the `mocking` route, make a `GET` request to the route URL:
 
    ```sh
    curl -X GET http://localhost:8001/services/example_service/routes/mocking
