@@ -1704,9 +1704,9 @@ A route can't have both `tls` and `tls_passthrough` protocols at same time.
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
 > is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
-> will be v0; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
-> will be v0 whether the value of `route.path_handling` is v0 or v1. Only `traditional` `router_flavor`
-> will support path_handling v1 behavior.
+> will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
+> will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
+> will support path_handling `"v1'` behavior.
 
 `"v0"` is the behavior used in Kong 0.x, 2.x and 3.x. It treats `service.path`, `route.path` and request path as
 *segments* of a URL. It will always join them via slashes. Given a service path `/s`, route path `/r`
