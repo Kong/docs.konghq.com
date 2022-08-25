@@ -494,6 +494,8 @@ items:
     items:
       - text: Overview
         url: /admin-api/
+      - text: Securing the Admin API
+        url: /admin-api/secure
       - text: Information Routes
         url: /admin-api/#information-routes
       - text: Health Routes
@@ -522,49 +524,18 @@ items:
         url: /admin-api/#vaults-entity
       - text: Licenses
         url: /admin-api/licenses/reference
-        items:
-          - text: Licenses Reference
-            url: /admin-api/licenses/reference
-          - text: Licenses Examples
-            url: /admin-api/licenses/examples
       - text: Workspaces
         url: /admin-api/workspaces/reference
-        items:
-          - text: Workspaces Reference
-            url: /admin-api/workspaces/reference
-          - text: Workspace Examples
-            url: /admin-api/workspaces/examples
       - text: RBAC
         url: /admin-api/rbac/reference
-        items:
-          - text: RBAC Reference
-            url: /admin-api/rbac/reference
-          - text: RBAC Examples
-            url: /admin-api/rbac/examples
       - text: Admins
         url: /admin-api/admins/reference
-        items:
-          - text: Admins API Reference
-            url: /admin-api/admins/reference
-          - text: Admins Examples
-            url: /admin-api/admins/examples
       - text: Developers
         url: /admin-api/developers/reference
       - text: Consumer Groups
-        items:
-          - text: Consumer Groups API Reference
-            url: /admin-api/consumer-groups/reference
-          - text: Consumer Groups Examples
-            url: /admin-api/consumer-groups/examples
+        url: /admin-api/consumer-groups/reference
       - text: Event Hooks
         url: /admin-api/event-hooks/reference
-        items:
-          - text: Event Hooks Reference
-            url: /admin-api/event-hooks/reference
-          - text: Event Hooks Examples
-            url: /admin-api/event-hooks/examples
-      - text: Securing the Admin API
-        url: /admin-api/secure
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
