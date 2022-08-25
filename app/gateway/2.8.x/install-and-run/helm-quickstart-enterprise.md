@@ -290,7 +290,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 5. Using your DNS Provider, configure a DNS entry to point to the load balancer shown by the last step. A wildcard DNS record is recommended for development environments.
 
-6. Open Kong Manager with the kong subdomain on your domain. For example: [https://kong.example.com](https://kong.example.com) Or open it with the following command:
+6. Open Kong Manager with the kong subdomain on your domain. For example: `https://kong.example.com`, or open it with the following command:
 
        open "https://$(kubectl get ingress --namespace kong quickstart-kong-manager -o jsonpath='{.spec.tls[0].hosts[0]}')"
 
@@ -308,7 +308,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 
-You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at [https://kong.127-0-0-1.nip.io/api](https://kong.127-0-0-1.nip.io/api)
+You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
 
 {% navtabs codeblock %}
 {% navtab cURL %}

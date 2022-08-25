@@ -20,5 +20,7 @@
   "https://kong.7f000001.nip.io/*",
   "https://portal.7f000001.nip.io/*",
   "https://manager.7f000001.nip.io/*",
-  "https://admin.okta.com/*"
+  "https://admin.okta.com/*",
+  "https://kong.example.com",
+  "https://kong.127-0-0-1.nip.io/api"
 ]
