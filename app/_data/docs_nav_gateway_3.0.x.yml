@@ -594,8 +594,6 @@ items:
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
-      - text: Rate Limiting Library
-        url: /reference/rate-limit
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
       - text: Router Operators
