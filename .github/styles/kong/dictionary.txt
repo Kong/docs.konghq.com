@@ -1,4 +1,3 @@
-AgeNet
 Alertmanager
 allowlist
 anonymized
@@ -31,6 +30,8 @@ declaratively
 degraphql
 denylist
 deployer
+deserialize
+deserialized
 dev
 etcd
 Fargate
@@ -50,6 +51,8 @@ HTTPie
 https
 inbounds
 ini
+invalidation
+invalidations
 io
 iptables
 Istio
@@ -73,11 +76,16 @@ kumactl
 kustomization
 Kustomize
 Loggly
+lookup
+lookups
 loopback
 lua
 Luarocks
 ngrok
+npm
 md
+middleware
+minifier
 minikube
 Mockbin
 Moesif
@@ -93,11 +101,15 @@ oc
 Okta
 onboard
 onboarding
+onwards
 opa
 outbounds
 passthrough
 PayPal
+performant
 plaintext
+Postgres
+PostgreSQL
 PowerShell
 prepend
 prepends
@@ -112,6 +124,7 @@ redis
 reentrant
 referenceable
 repo
+requery
 routable
 runtime
 runtimes
@@ -119,6 +132,7 @@ deduplication
 deduplicate
 sandboxed
 sandboxing
+schema's
 serializer
 serverless
 snis
@@ -129,6 +143,7 @@ stderr
 stdin
 stdout
 Styra
+subtree
 Bagdi
 subcommand
 substring
@@ -149,6 +164,8 @@ unregistering
 upsert
 upstream
 upstreams
+upvalue
+upvalues
 usr
 uri
 uris
@@ -158,6 +175,7 @@ uuid
 Valero
 validator
 validators
+vararg
 websocket
 websockets
 wireframe

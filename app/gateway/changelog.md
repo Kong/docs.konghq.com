@@ -5,6 +5,81 @@ no_version: true
 
 <!-- vale off -->
 
+## 2.8.1.4
+**Release Date**  2022/08/23
+
+### Fixes
+
+#### Enterprise
+
+* Fixed vulnerabilities [CVE-2022-37434](https://nvd.nist.gov/vuln/detail/CVE-2022-37434) and [CVE-2022-24975](https://nvd.nist.gov/vuln/detail/CVE-2022-24975).
+
+* When using secrets management in free mode, only the [environment variable](/gateway/2.8.x/plan-and-deploy/security/secrets-management/backends/env) backend is available. AWS, GCP, and HashiCorp vault backends require an Enterprise license.
+
+* Fixed an issue in Kong Manager where entity detail pages were empty and didn't list existing entities.
+The following entities were affected:
+  * Route lists on service pages
+  * Upstreams
+  * Certificates
+  * SNIs
+  * RBAC roles
+
+#### Plugins
+
+* [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
+  * Fixed a caching issue in hybrid mode, where the data plane node would try to retrieve a new JWK from the IdP every time.
+  The data plane node now looks for a cached JWK first.
+
+### Dependencies
+
+* Bump `lua-resty-aws` version to 0.5.4 to reduce memory usage when AWS vault is enabled. [#23](https://github.com/Kong/lua-resty-aws/pull/23)
+* Bump `lua-resty-gcp` version to 0.0.5 to reduce memory usage when GCP vault is enabled. [#7](https://github.com/Kong/lua-resty-gcp/pull/7)
+
+## 2.8.1.3
+**Release Date** 2022/08/05
+
+### Features
+
+#### Enterprise
+
+* Added GCP integration support for the secrets manager. GCP is now available as a vault backend.
+
+#### Plugins
+
+* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+   * Added support for cross-account lambda function invocation based on AWS roles.
+
+### Fixes
+
+#### Enterprise
+* Fixed an issue with excessive log file disk utilization on control planes.
+* Fixed an issue with keyring encryption, where keyring was not decrypting keys after a soft reload.
+* The router now detects static route collisions inside the current workspace, as well as with other workspaces.
+* When using a custom plugin in a hybrid mode deployment, the control plane now detects compatibility issues and stops sending the plugin configuration to data planes that can't use it. The control plane continues sending the custom plugin configuration to compatible data planes.
+* Optimized the Kong PDK function `kong.response.get_source()`.
+
+#### Kong Manager
+* Fixed an issue with admin creation.
+Previously, when an admin was created with no roles, the admin would have access to the first workspace listed alphabetically.
+* Fixed several issues with SNI listing.
+Previously, the SNI list was empty after sorting by the SSL certificate ID field. In 2.8.1.1, the SSL certificate ID field in the SNI list was empty.
+
+#### Plugins
+
+* [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  * Fixed an issue where the plugin didn't accept empty values in examples.
+
+* [ACME](/hub/kong-inc/acme) (`acme`)
+  * The `domains` plugin parameter can now be left empty.
+  When `domains` is empty, all TLDs are allowed.
+  Previously, the parameter was labelled as optional, but leaving it empty meant that the plugin retrieved no certificates at all.
+
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Fixed an issue with nested array parsing.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed an issue with `cluster` strategy timestamp precision in Cassandra.
+
 ## 2.8.1.2
 **Release Date** 2022/07/15
 
@@ -26,6 +101,7 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
 * Fixed empty string handling in Kong Manager. Previously, Kong Manager was handling empty strings as `""` instead of a null value.
 * Improved Kong Manager styling by fixing an issue where content didn't fit on object detail pages.
 * Fixed an issue that sometimes prevented clicking Kong Manager links and buttons in Safari.
+* Fixed an issue where users were being navigated to the object detail page after clicking on the "Copy ID" button from the object list.
 
 #### Plugins
 
@@ -81,6 +157,8 @@ during the initialization of the [keyring module](/gateway/latest/plan-and-deplo
 
 * Fixed an issue where Kong Manager did not display all RBAC users and Consumers
 in the organization.
+
+* Fixed an issue where some areas in a row of a list were not clickable.
 
 #### Plugins
 

@@ -63,7 +63,7 @@ concept document for details.
 
 The {{site.kic_product_name}} communicates with the Kubernetes API-server and
 dynamically configures Kong to automatically load balance across pods
-of a service as any service is scaled in our out.
+of a service as any service is scaled in or out.
 
 For this reason, it requires [RBAC][k8s-rbac] permissions to access resources
 stored in the Kubernetes object store.

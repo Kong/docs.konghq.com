@@ -107,8 +107,9 @@ claims to extract that information.
     > If the authorization server is pulling in additional groups from
     third-party applications (for example, Google groups), the `groups` claim
     cannot find them. An Okta administrator needs to duplicate those groups and
-    re-create them directly in Okta. They can do this by exporting the group in CSV format, then importing the CSV file to populate the new group.
-
+    re-create them directly in Okta. They can do this by exporting the group in
+    question in CSV format, then importing the CSV file to populate the new group.
+    
 1. Click **Create**.
 
 If you have problems setting up these claims, refer to the Okta documentation

@@ -14,6 +14,7 @@ configure {{site.konnect_short_name}}.
 > **Deprecation notice:** The `deck konnect` command has been deprecated as of
 v1.12. Please use `deck <cmd>` instead if you would like to declaratively
 manage your {{site.base_gateway}} config with {{site.konnect_short_name}}.
+
 ## Syntax
 
 ```

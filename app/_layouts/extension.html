@@ -35,6 +35,9 @@ breadcrumbs:
     {% if page.params.service_id %}
       <tr>
         <td><code>service.name</code> or <code>service.id</code>
+        {% if page.params.global == false %}
+        <br><i>required</i>
+        {% endif %}
           <br><br><strong>Type: </strong>string</td>
         <td>The name or ID of the service the plugin targets.
           <br><br>Set one of these parameters if adding the plugin to a service through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
@@ -187,7 +190,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
       {% if page.type == "plugin" and page.params %}
         <h2 id="configuration">Configuration Reference</h2>
 
-        {% if page.params.dbless_compatible == "yes" %}
+        {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}
           <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
         {% elsif page.params.dbless_compatible == "partially" %}
           <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>

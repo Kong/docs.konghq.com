@@ -26,6 +26,7 @@ HTTP 404 Not Found.
 curl -i $PROXY_IP
 ```
 
+The output is similar to the following:
 ```
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
@@ -41,27 +42,29 @@ This is expected as Kong does not yet know how to proxy the request.
 ## Installing sample services
 
 We will start by installing two services,
-an echo service and an httpbin service in their corresponding namespaces.
+an `httpbin` service and it's corresponding namespace:
 
 ```bash
 kubectl create namespace httpbin
 kubectl apply -n httpbin -f https://bit.ly/k8s-httpbin
 ```
 
+The output is similar to the following:
+```
+namespace/httpbin created
+service/httpbin created
+deployment.apps/httpbin created
+```
+
+Next, add an `echo` service and it's corresponding namespace:
+
 ```bash
 kubectl create namespace echo
 kubectl apply -n echo -f https://bit.ly/echo-service
 ```
 
-Once you've run these commands, you will see the namespace, service and deployments created:
-
+The output is similar to the following:
 ```
-# After running the first command
-namespace/httpbin created
-service/httpbin created
-deployment.apps/httpbin created
-
-# After running the second command
 namespace/echo created
 service/echo created
 deployment.apps/echo created
@@ -71,6 +74,8 @@ deployment.apps/echo created
 
 Let's expose these services outside the Kubernetes cluster
 by defining Ingress rules.
+
+First, expose the `httpbin-app`:
 
 ```bash
 echo "
@@ -96,6 +101,13 @@ spec:
 " | kubectl apply -f -
 ```
 
+The output is similar to the following:
+```
+ingress.networking.k8s.io/httpbin-app created
+```
+
+Next, expose the `echo-app`:
+
 ```
 echo "
 apiVersion: networking.k8s.io/v1
@@ -118,6 +130,11 @@ spec:
 " | kubectl apply -f -
 ```
 
+The output is similar to the following:
+```
+ingress.networking.k8s.io/echo-app created
+```
+
 Let's test these endpoints, starting with the `httpbin` service:
 
 ```bash
@@ -125,6 +142,7 @@ Let's test these endpoints, starting with the `httpbin` service:
 curl -i $PROXY_IP/foo/status/200
 ```
 
+The output is similar to the following:
 ```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
@@ -145,6 +163,7 @@ Next, we can test the `echo` service:
 curl -i $PROXY_IP/bar
 ```
 
+The output is similar to the following:
 ```
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
@@ -185,12 +204,18 @@ plugin: response-transformer
 ' | kubectl apply -f -
 ```
 
+The output is similar to the following:
+```
+kongclusterplugin.configuration.konghq.com/add-response-header created
+```
+
 Note how the resource is created at cluster-level and not in any specific namespace:
 
 ```bash
 kubectl get kongclusterplugins
 ```
 
+The output is similar to the following:
 ```
 NAME                  PLUGIN-TYPE            AGE
 add-response-header   response-transformer   4s
@@ -208,13 +233,21 @@ that we previously created:
 ```bash
 # Patch httpbin service
 kubectl patch ingress -n httpbin httpbin-app -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
+The output is similar to the following:
+```
 
+The output is similar to the following:
+```
+ingress.extensions/httpbin-app patched
+```
+
+```bash
 # Patch echo service
 kubectl patch ingress -n echo echo-app -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
 ```
 
+The output is similar to the following:
 ```
-ingress.extensions/httpbin-app patched
 ingress.extensions/echo-app patched
 ```
 
@@ -228,6 +261,7 @@ Let's test it out:
 curl -i $PROXY_IP/foo/status/200
 ```
 
+The output is similar to the following:
 ```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
@@ -248,6 +282,7 @@ Let's test the `echo` service to make sure that the header is injected there too
 curl -I $PROXY_IP/bar
 ```
 
+The output is similar to the following:
 ```
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
@@ -281,6 +316,11 @@ config:
     - "demo: injected-by-kong-for-kubernetes"
 plugin: response-transformer
 ' | kubectl apply -f -
+```
+
+The output is similar to the following:
+```
+kongclusterplugin.configuration.konghq.com/add-response-header configured
 ```
 
 If you repeat the requests from the last step, you will see Kong

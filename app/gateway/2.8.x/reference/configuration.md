@@ -97,7 +97,7 @@ Nginx directives to this file directly via your Kong configuration.
 
 ### Injecting individual Nginx directives
 
-Any entry added to your `kong.conf` file that is prefixed by the following 
+Any entry added to your `kong.conf` file that is prefixed by the following
 supported namespaces will be converted into an equivalent Nginx
 directive by removing the prefix and added to the appropriate section of the
 Nginx configuration:
@@ -525,13 +525,14 @@ adjusted by the `log_level` property.
 
 #### vaults
 
-Comma-separated list of vaults this node should load. By default, no vaults are
-enabled.
+Comma-separated list of vaults this node should load. Vaults are `bundled` by default.
 
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.vaults.{name}.*`.
 
-**Default:** `off`
+In version 2.8.1.3, enabling vaults can result in increased memory usage. To conserve memory usage, you can disable vault bundles by setting `vaults` to `off`.
+
+**Default:** `bundled`
 
 ---
 
@@ -2711,7 +2712,6 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
-- `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
 
 **Default:** `127.0.0.1:8003`
 

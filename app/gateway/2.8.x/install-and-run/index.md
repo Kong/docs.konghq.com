@@ -6,7 +6,7 @@ disable_image_expand: true
 <div class="docs-grid-install">
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/documentation/docker.png" alt="" />
     <div class="install-text">Docker</div>
   </a>
 
@@ -26,22 +26,22 @@ disable_image_expand: true
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/centos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/centos.gif" alt="" />
+    <img class="install-icon" src="/assets/images/icons/documentation/centos.gif" alt="" />
     <div class="install-text">CentOS</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/ubuntu" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/ubuntu.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/documentation/ubuntu.png" alt="" />
     <div class="install-text">Ubuntu</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/amazon-linux" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/documentation/amazon-linux.png" alt="" />
     <div class="install-text">Amazon Linux 2</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/rhel" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="" />
+    <img class="install-icon" src="/assets/images/icons/documentation/rhel.jpg" alt="" />
     <div class="install-text">RHEL</div>
   </a>
 

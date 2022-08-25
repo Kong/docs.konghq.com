@@ -463,6 +463,13 @@ selected header was not sent by the client or the configured service was not fou
 
 [`Retry-After`]: https://tools.ietf.org/html/rfc7231#section-7.1.3
 
+### Fallback from Redis
+
+When the `redis` strategy is used and a {{site.base_gateway}} node is disconnected from Redis, the `rate-limiting-advanced` plugin will fall back to `local`. This can happen when the Redis server is down or the connection to Redis broken.
+{{site.base_gateway}} keeps the local counters for rate limiting and syncs with Redis once the connection is re-established.
+{{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
+to perform more requests than the limit, but there will still be a limit per node.
+
 ## Rate limiting for consumer groups
 
 You can use consumer groups to manage custom rate limiting configuration for
@@ -484,7 +491,7 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 1.6.1)
+### {{site.base_gateway}} 2.8.x (plugin version 1.6.1)
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
@@ -493,6 +500,6 @@ configuration fields are now marked as referenceable, which means they can be se
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
-### Kong Gateway 2.7.x (plugin version 1.6.0)
+### {{site.base_gateway}} 2.7.x (plugin version 1.6.0)
 
 * Added the `enforce_consumer_groups` and `consumer_groups` configuration parameters.

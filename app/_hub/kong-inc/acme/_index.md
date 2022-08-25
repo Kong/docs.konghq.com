@@ -2,7 +2,6 @@
 name: ACME
 publisher: Kong Inc.
 version: 0.4.x
-source_url: 'https://github.com/Kong/kong-plugin-acme'
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
   This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
@@ -58,9 +57,13 @@ params:
       datatype: array of string elements
       description: |
         The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`.
-        Regex pattern is not supported. Note this config is only used to match domains, not to specify the Common Name
-        or Subject Alternative Name to create certificates; each domain must have its own certificate.
+        Regex pattern is not supported.
+
+        This parameter is only used to match domains, not to specify the Common Name
+        or Subject Alternative Name to create certificates. Each domain must have its own certificate.
         The ACME plugin checks this configuration before checking any certificate in `storage` when serving the certificate of a request.
+
+        If this field is left empty, all top-level domains (TLDs) are allowed.
     - name: fail_backoff_minutes
       required: false
       default: 5

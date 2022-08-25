@@ -490,7 +490,10 @@ You can configure this plugin through the Kong Manager UI.
 <!-- Global config example -->
 
 {% capture plugin_global_config %}
-
+{% if include.params.global == false %}
+{:.important}
+> This plugin cannot be enabled globally. Please select another tab.
+{% else %}
 A plugin which is not associated to any service, route, or consumer is
 considered _global_, and will be run on every request. Read the
 [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
@@ -570,7 +573,7 @@ You can configure this plugin through the Kong Manager UI.
 {% endnavtab %}
 {% endunless %}
 {% endnavtabs %}
-
+{% endif %}
 {% endcapture %}
 
 <!-- Layout text -->

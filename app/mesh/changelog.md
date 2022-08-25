@@ -1,8 +1,35 @@
 ---
 title: Kong Mesh Changelog
-no_search: true
 no_version: true
 ---
+
+## 1.9.0
+> Release on **2022/08/23**
+
+Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
+
+### Changes
+
+- Add "replace" function to CommonName template in CAs which support it (ACMPCA, cert-manager, Vault).
+- Fix ZoneControlPlane token generation by setting access type to RBAC in the generated default.
+- Improve RBAC logic by checking both old and new spec on updates.
+- Add configuration option for RBAC validation result logging.
+- Add cert-manager.io CA manager.
+
+### Upgrading
+
+- You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
+
+## 1.8.2
+
+> Released on **2022/08/08**
+
+Built on top of [Kuma 1.7.1](https://github.com/kumahq/kuma/releases/tag/1.7.1)
+
+### Changes
+
+- Fix RBAC: all tags specified in when section are required in policies.
+- Fix RBAC: `*` value in tag specified in when section means that the tag is required, but can have any value.
 
 ## 1.8.1
 

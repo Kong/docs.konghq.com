@@ -25,11 +25,16 @@ You can also store this information in an entity.
 {:.note}
 The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
+{:.important}
+> **API Endpoint update**
+>
+> If you're using 2.8.2 or below, or have not set `vaults_use_new_style_api=on` in `kong.conf` you will need to replace `/vaults/` with `/vaults-beta/` in the examples below.
+
 {% navtabs codeblock %}
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-hashicorp-vault \
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
   --data name="hcv" \
   --data description="Storing secrets in Hashicorp Vault" \
   --data config.protocol="https" \
@@ -44,7 +49,7 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-hashicorp-vault \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-hashicorp-vault \
+http -f PUT :8001/vaults/my-hashicorp-vault \
   name="hcv" \
   description="Storing secrets in Hashicorp Vault" \
   config.protocol="https" \
@@ -52,8 +57,7 @@ http PUT :8001/vaults-beta/my-hashicorp-vault \
   config.port="8200" \
   config.mount="secret" \
   config.kv="v2" \
-  config.token="<mytoken>" \
-  -f 
+  config.token="<mytoken>"
 ```
 
 {% endnavtab %}
