@@ -4,7 +4,7 @@ title: Build your own Docker images
 
 Kong is distributed as prebuilt `apk`, `deb` and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
 
-Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. [Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only**.
+Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. [Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.
 
 Our Debian and RHEL images are built with minimal dependencies (as of {{ site.base_gateway }} 3.0) and run through automated security scanners before being published. Any vulnerabilities detected in supported images will be addressed in the next available patch release.
 
@@ -41,7 +41,6 @@ FROM debian:bullseye-slim
 COPY kong.deb /tmp/kong.deb
 
 RUN set -ex; \
-    apt-get update; \
     apt-get update \
     && apt-get install --yes /tmp/kong.deb \
     && rm -rf /var/lib/apt/lists/* \
@@ -66,7 +65,6 @@ FROM ubuntu:20.04
 COPY kong.deb /tmp/kong.deb
 
 RUN set -ex; \
-    apt-get update; \
     apt-get update \
     && apt-get install --yes /tmp/kong.deb \
     && rm -rf /var/lib/apt/lists/* \
