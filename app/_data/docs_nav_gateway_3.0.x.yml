@@ -117,12 +117,18 @@ items:
             url: /install/macos
       - text: Running Kong
         items:
-          - text: Start Kong Gateway Securely
-            url: /production-deployment/running-kong/start-securely
           - text: Running Kong as a non-root user
             url: /production-deployment/running-kong/kong-user
           - text: Configure Kong Gateway and SystemD
             url: /production-deployment/running-kong/systemd
+      - text: Access Control
+        items:
+          - text: Start Kong Gateway Securely
+            url: /production-deployment/access-control/start-securely
+          - text: Programatically creating Admins
+            url: /production-deployment/access-control/register-admin-api
+          - text: Enabling RBAC
+            url: /production-deployment/access-control/enable-rbac
       - text: Kubernetes
         items:
           - text: Kubernetes Deployment Options
@@ -135,6 +141,8 @@ items:
             url: /licenses/download
           - text: Deploy Enterprise License
             url: /licenses/deploy
+          - text: Using the License API
+            url: /licenses/examples
           - text: Monitor Licenses usuage
             url: /licenses/report
       - text: Networking
@@ -316,6 +324,12 @@ items:
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption
         url: /kong-enterprise/db-encryption
+      - text: Workspaces
+        url: /kong-enterprise/workspaces
+      - text: Consumer Groups
+        url: /kong-enterprise/consumer-groups
+      - text: Event Hooks
+        url: /kong-enterprise/event-hooks
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:

@@ -7,9 +7,7 @@ This chapter aims to provide a step-by-step tutorial on how to set up
 RBAC and see it in action, with an end-to-end use case. The chosen
 use case demonstrates how **RBAC with workspaces** can be coupled
 to achieve a flexible organization of teams and users in complex
-hierarchies. Make sure to read the [RBAC Overview][rbac-overview] page
-and to glance over the [RBAC Admin API][rbac-admin] chapter, keeping it
-open as a reference.
+hierarchies. 
 
 ## Use Case
 
@@ -18,7 +16,7 @@ cluster to be shared with 3 teams: teamA, teamB, and teamC. While the Kong
 cluster are shared among these teams, they want to be able to segment
 their entities in such a way that management of entities in one team doesn't
 disrupt operation in some other team. As shown in the
-[Workspaces Examples Page][workspaces-examples], such a use case is possible
+[Workspaces Page][workspaces-examples], such a use case is possible
 with workspaces. On top of workspaces, though, each team wants to enforce
 access control over their Workspace, which is possible with RBAC. **To sum up,
 Workspaces and RBAC are complementary: Workspaces provide segmentation of
@@ -1040,7 +1038,5 @@ he created.
 
 ---
 
-[rbac-overview]: /gateway/{{page.kong_version}}/configure/auth/rbac
-[rbac-admin]: /gateway/{{page.kong_version}}/admin-api/rbac/reference
-[workspaces-examples]: /gateway/{{page.kong_version}}/admin-api/workspaces/examples
+[workspaces-examples]: /gateway/{{page.kong_version}}/kong-enterprise/workspaces
 [getting-started-guide]: /gateway/{{page.kong_version}}/get-started/comprehensive
