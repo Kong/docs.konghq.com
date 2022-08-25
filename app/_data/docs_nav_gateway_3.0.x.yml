@@ -462,13 +462,13 @@ items:
       - text: Plugins in Other Languages
         items:
           - text: Go
-            url: /plugin-development/other/go
+            url: /plugin-development/pluginserver/go
           - text: Javascript
-            url: /plugin-development/other/javascript
+            url: /plugin-development/pluginserver/javascript
           - text: Python
-            url: /plugin-development/other/python
+            url: /plugin-development/pluginserver/python
           - text: Running Plugins in Containers
-            url: /plugin-development/other/plugins-kubernetes
+            url: /plugin-development/pluginserver/plugins-kubernetes
   - title: Kong Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
     items:
