@@ -45,11 +45,9 @@ mirror the cluster-level Roles, and a fourth unique to each Workspace:
 `workspace-read-only`, `workspace-admin`, `workspace-super-admin`, and
 `workspace-portal-admin`.
 
-These roles can be viewed in the Teams tab under Roles
+These roles can be viewed in the **Teams > Roles** tab in Kong Manager.
 
-![Default Roles in New Workspaces](https://doc-assets.konghq.com/1.3/manager/teams/kong-manager-default-roles.png)
 
 {:.important}
-> Important: Any Role assigned in the Default Workspace will have
-Permissions applied to all subsequently created Workspaces. A Super Admin
-in `default` has RBAC Permissions across all Workspaces.
+> Important: Any role assigned in the `default` workspace will have permissions applied to all subsequently created workspaces. A super admin in `default` has RBAC Permissions across all workspaces.
+
