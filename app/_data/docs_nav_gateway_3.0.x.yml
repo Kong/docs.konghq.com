@@ -481,11 +481,11 @@ items:
               - text: Open ID Connect Plugin
                 items:
                   - text: Overview
-                    url: /kong-plugins/authentication/oidc/use-cases
+                    url: /kong-plugins/authentication/oidc/
                   - text: OpenID Connect with Curity
                     url: /kong-plugins/authentication/oidc/curity
                   - text: OpenID Connect with Azure AD
-                    url: /kong-plugins/authentication/oidc/azuread
+                    url: /kong-plugins/authentication/oidc/azure-ad
                   - text: OpenID Connect with Google
                     url: /kong-plugins/authentication/oidc/google
                   - text: OpenID Connect with Okta
