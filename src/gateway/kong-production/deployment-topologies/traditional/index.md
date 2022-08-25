@@ -1,5 +1,5 @@
 ---
-title: Clustering Reference
+title: Traditional Deployment
 ---
 
 A Kong cluster allows you to scale the system horizontally by adding more

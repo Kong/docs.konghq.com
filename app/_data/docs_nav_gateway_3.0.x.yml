@@ -175,8 +175,6 @@ items:
         url: /kong-production/blue-green
       - text: Canary Deployments
         url: /kong-production/canary
-      - text: Clustering Reference
-        url: /kong-production/clustering
       - text: Logging Reference
         url: /kong-production/logging
       - text: Upgrade Kong Gateway
