@@ -55,21 +55,12 @@ items:
     icon: /assets/images/icons/documentation/icn-learning.svg
     items:
       - text: Get Kong
-<<<<<<< HEAD
         url: /get-started/get-kong
       - text: Services and Routes
         url: /get-started/services-and-routes
       - text: Rate Limiting
         url: /get-started/rate-limiting
       - text: Proxy Caching
-=======
-        url: /get-started/
-      - text: Configure Services and Routes
-        url: /get-started/configure-services-and-routes
-      - text: Configure Rate Limiting
-        url: /get-started/configure-ratelimiting
-      - text: Configure Proxy Caching
->>>>>>> 7c157264e1 (Fix broken rebase)
         url: /get-started/proxy-caching
       - text: Configure Key Authentication
         url: /get-started/secure-services
