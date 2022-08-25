@@ -106,24 +106,35 @@ items:
             url: /production-deployment/install/openshift
           - text: Docker
             items:
+<<<<<<< HEAD
               - text: Install Kong with Docker
                 url: /kong-production/install-options/docker
               - text: Build your own Docker images
                 url: /kong-production/install-options/docker/build-custom-images/
+=======
+              - text: Install Kong Gateway with Kubernetes
+                url: /install/kubernetes
+              - text: Helm
+                url: /install/helm
+              - text: OpenShift with Helm
+                url: /install/openshift
+              - text: Docker
+                url: /install/docker
+>>>>>>> 3a3bae19af (Move /install/ out of /kong-production/)
           - text: Linux
             items:
               - text: Supported Distributions
-                url: /production-deployment/install/linux/os-support
+                url: /install/linux/os-support
               - text: Amazon Linux
-                url: /production-deployment/install/linux/amazon-linux
+                url: /install/linux/amazon-linux
               - text: Debian
-                url: /production-deployment/install/linux/debian
+                url: /install/linux/debian
               - text: Red Hat
-                url: /production-deployment/install/linux/rhel
+                url: /install/linux/rhel
               - text: Ubuntu
-                url: /production-deployment/install/linux/ubuntu
+                url: /install/linux/ubuntu
           - text: macOS
-            url: /production-deployment/install/macos
+            url: /install/macos
       - text: Running Kong
         items:
           - text: Start Kong Gateway Securely
