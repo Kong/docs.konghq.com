@@ -56,9 +56,9 @@ items:
         url: /get-started/rate-limiting
       - text: Proxy Caching
         url: /get-started/proxy-caching
-      - text: Configure Key Authentication
+      - text: Key Authentication
         url: /get-started/secure-services
-      - text: Configure Load-Balancing
+      - text: Load-Balancing
         url: /get-started/load-balancing
       - text: Workspaces and Teams
         url: /get-started/manage-teams
@@ -234,7 +234,7 @@ items:
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
-          - text: Guides
+          - text: How to
             items:
               - text: Securing the Database with AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/how-to/aws-secrets-manager
@@ -507,7 +507,7 @@ items:
         url: /kong-plugins/graphql
       - text: gRPC
         url: /kong-plugins/grpc
-  - title: Admin API
+  - title: Introduction to the Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:
       - text: Overview
