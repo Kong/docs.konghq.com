@@ -74,7 +74,7 @@ items:
       - text: Deployment Topologies
         items:
           - text: Overview
-            url: /kong-production/deployment-topologies/overview
+            url: /kong-production/deployment-topologies/
           - text: Hybrid Mode
             items:
             - text: Overview
