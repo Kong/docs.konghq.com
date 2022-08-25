@@ -22,7 +22,7 @@ test.describe("Canonical links", () => {
     {
       title:
         "plugins contain a canonical link pointing to the latest version of a plugin",
-      src: "/hub/kong-inc/application-registration/1.0.x.html",
+      src: "/hub/kong-inc/application-registration/2.8.x.html",
       href: "/hub/kong-inc/application-registration/",
     },
     {
@@ -80,7 +80,7 @@ test.describe("noindex links", () => {
     },
     {
       title: "contains a noindex tag for old plugin versions",
-      src: "/hub/kong-inc/application-registration/1.0.x.html",
+      src: "/hub/kong-inc/application-registration/2.8.x.html",
     },
   ].forEach((t) => {
     test(t.title, async ({ page }) => {
