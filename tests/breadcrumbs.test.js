@@ -10,7 +10,7 @@ test.describe("Gateway", () => {
       "Kong Gateway"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(3)")).toHaveText(
-      "Plugin development"
+      /\s*Plugin Development\s*/m
     );
   });
 
@@ -23,7 +23,7 @@ test.describe("Gateway", () => {
       "Kong Gateway (OSS)"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(3)")).toHaveText(
-      "Plugin development"
+      /\s*Plugin Development\s*/m
     );
   });
 
