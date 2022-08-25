@@ -447,7 +447,7 @@ Note that this endpoint purges all cache entities across all `proxy-cache-advanc
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.5.7)
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis.sentinel_username` and `redis.sentinel_password` configuration
 parameters.

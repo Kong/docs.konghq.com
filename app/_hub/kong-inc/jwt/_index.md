@@ -256,7 +256,7 @@ in that order.
 }
 ```
 
-Using the JWT debugger at https://jwt.io with the header (HS256), claims (iss, etc.),
+Using the JWT debugger at https://jwt.io with the header (HS256), claims (`iss`, etc.),
 and `secret` associated with this `key` (e71829c351aa4242c2719cbfbe671c09), you'll end up with a JWT token of:
 
 ```
@@ -387,7 +387,7 @@ in that order.
 ```
 
 Then, create the signature using your private keys. Using the JWT debugger at
-[https://jwt.io](https://jwt.io), set the right header (RS256), the claims (iss, etc.), and the
+[https://jwt.io](https://jwt.io), set the right header (RS256), the claims (`iss`, etc.), and the
 associated public key. Then, append the resulting value in the `Authorization` header, for example:
 
 ```bash

@@ -55,7 +55,7 @@ params:
 
 A service that presents a gRPC API can be used by clients written in many languages,
 but the network specifications are oriented primarily to connections within a
-datacenter. [gRPC-Web] lets you expose the gRPC API to the Internet so
+data center. [gRPC-Web] lets you expose the gRPC API to the Internet so
 that it can be consumed by browser-based JavaScript applications.
 
 This plugin translates requests and responses between [gRPC-Web] and

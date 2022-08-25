@@ -302,22 +302,13 @@ A successful DELETE request returns a `204` status.
 ### See also
 - [configuration](/gateway/latest/reference/configuration)
 
-{% if_plugin_version gte:2.1.x %}
-
 ---
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
-
-### Kong Gateway 3.0.x
+**{{site.base_gateway}} 3.0.x**
 - Removed the deprecated `whitelist` and `blacklist` parameters.
 They are no longer supported.
 
-{% endif_plugin_version %}
-
-### Kong Gateway 2.1.x (plugin version 2.0.0)
-
+**{{site.base_gateway}} 2.1.x**
 - Use `allow` and `deny` instead of `whitelist` and `blacklist`
-
-{% endif_plugin_version %}
