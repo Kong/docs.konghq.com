@@ -150,13 +150,13 @@ items:
       - text: Licenses
         items:
           - text: Overview
-            url: /production-deployment/licenses/
+            url: /licenses/
           - text: Download your license
-            url: /production-deployment/licenses/download
+            url: /licenses/download
           - text: Deploy Enterprise License
-            url: /production-deployment/licenses/deploy
+            url: /licenses/deploy
           - text: Monitor Licenses usuage
-            url: /production-deployment/licenses/report
+            url: /licenses/report
       - text: Networking
         items:
           - text: Default Ports
