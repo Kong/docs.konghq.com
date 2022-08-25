@@ -862,7 +862,7 @@ HTTP 200 OK
   different `node_id` each time it is restarted.
 * `available_on_server`: Names of plugins that are installed on the node.
 * `enabled_in_cluster`: Names of plugins that are enabled/configured.
-  That is, the plugins configurations currently in the datastore shared
+  That is, the plugins configurations currently in the data store shared
   by all Kong nodes.
 
 
@@ -1703,10 +1703,10 @@ A route can't have both `tls` and `tls_passthrough` protocols at same time.
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will be not be configurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
-> will support path_handling `"v1'` behavior.
+> will support `path_handling` `"v1'` behavior.
 
 `"v0"` is the behavior used in Kong 0.x, 2.x and 3.x. It treats `service.path`, `route.path` and request path as
 *segments* of a URL. It will always join them via slashes. Given a service path `/s`, route path `/r`
@@ -2035,9 +2035,9 @@ HTTP 204 No Content
 ## Consumer Object
 
 The Consumer object represents a consumer - or a user - of a Service. You can
-either rely on Kong as the primary datastore, or you can map the consumer list
+either rely on Kong as the primary data store, or you can map the consumer list
 with your database to keep consistency between Kong and your existing primary
-datastore.
+data store.
 
 Consumers can be both [tagged and filtered by tags](#tags).
 
@@ -3477,7 +3477,7 @@ HTTP 204 No Content
 
 ## Upstream Object
 
-The upstream object represents a virtual hostname and can be used to loadbalance
+The upstream object represents a virtual hostname and can be used to load balance
 incoming requests over multiple services (targets). So for example an upstream
 named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`.
 Requests for this Service would be proxied to the targets defined within the upstream.
