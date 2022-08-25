@@ -44,8 +44,6 @@ items:
             url: /understanding-kong/loadbalancing
           - text: Health Checks and Circuit Breakers
             url: /understanding-kong/health-checks-circuit-breakers
-          - text: Manage Kong Gateway with decK
-            url: /understanding-kong/manange-kong-with-deck
           - text: Kong Performance Testing
             url: /understanding-kong/performance-testing
           - text: Glossary
@@ -90,11 +88,15 @@ items:
           - text: Overview
             url: /kong-production/install-options/
           - text: Kubernetes
-            url: /production-deployment/install/kubernetes
-          - text: Helm
-            url: /production-deployment/install/helm
-          - text: OpenShift with Helm
-            url: /production-deployment/install/openshift
+            items:
+              - text: Install Kong Gateway with Kubernetes
+                url: /install/kubernetes/kubernetes
+              - text: Helm
+                url: /install/kubernetes/helm
+              - text: OpenShift with Helm
+                url: /install/kubernetes/openshift
+              - text: Kubernetes Deployment Options
+                url: /install/kubernetes/deployment-options
           - text: Docker
             items:
               - text: Install Kong with Docker
@@ -262,7 +264,7 @@ items:
             url: /kong-enterprise/developer-portal/working-with-templates
           - text: Using the Editor
             url: /kong-enterprise/developer-portal/using-the-editor
-          - text: Access and Approval
+          - text: Authentication and Authorization
             items:
               - text: Basic Auth
                 url: /kong-enterprise/developer-portal/authentication/basic-auth
@@ -278,7 +280,7 @@ items:
                 url: /kong-enterprise/developer-portal/authentication/managing-developers
               - text: Developer Roles and Content Permissions
                 url: /kong-enterprise/developer-portal/authentication/developer-permissions
-          - text: Working with Applications
+          - text: Application Registration
             items:
               - text: Authorization Provider Strategy
                 url: /kong-enterprise/developer-portal/applications/auth-provider-strategy
