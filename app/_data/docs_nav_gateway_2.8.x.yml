@@ -3,6 +3,9 @@
   url: /gateway/
   absolute_url: true
   items:
+    - text: Overview of Kong Gateway
+      url: /gateway/2.8.x/
+      absolute_url: true
     - text: Version Support Policy
       url: /support-policy
     - text: Stages of Software Availability
