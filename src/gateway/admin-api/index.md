@@ -4186,7 +4186,7 @@ HTTP 200 OK
 
 ---
 
-## Vaults Beta Entity
+## Vaults Entity
 
 Vault entities are used to configure different Vault connectors. Examples of
 Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager.

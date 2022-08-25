@@ -512,7 +512,7 @@ items:
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:
-      - text: Introduction to the Kong Admin API
+      - text: Overview
         url: /admin-api/
       - text: Information Routes
         url: /admin-api/#information-routes
@@ -520,26 +520,26 @@ items:
         url: /admin-api/#health-routes
       - text: Tags
         url: /admin-api/#tags
-      - text: Service Object
+      - text: Services
         url: /admin-api/#service-object
-      - text: Route Object
+      - text: Routes
         url: /admin-api/#route-object
-      - text: Consumer Object
+      - text: Consumers
         url: /admin-api/#consumer-object
-      - text: Plugin Object
+      - text: Plugins
         url: /admin-api/#plugin-object
-      - text: Certificate Object
+      - text: Certificates
         url: /admin-api/#certificate-object
-      - text: CA Certificate Object
+      - text: CA Certificates
         url: /admin-api/#ca-certificate-object
-      - text: SNI Object
+      - text: SNIs
         url: /admin-api/#sni-object
-      - text: Upstream Object
+      - text: Upstreams
         url: /admin-api/#upstream-object
-      - text: Target Object
+      - text: Targets
         url: /admin-api/#target-object
-      - text: Vaults Beta
-        url: /admin-api/#vaults-beta-entity
+      - text: Vaults
+        url: /admin-api/#vaults-entity
       - text: Licenses
         url: /admin-api/licenses/reference
         items:
