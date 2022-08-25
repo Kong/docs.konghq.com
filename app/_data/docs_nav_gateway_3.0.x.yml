@@ -106,21 +106,10 @@ items:
             url: /production-deployment/install/openshift
           - text: Docker
             items:
-<<<<<<< HEAD
               - text: Install Kong with Docker
                 url: /kong-production/install-options/docker
               - text: Build your own Docker images
                 url: /kong-production/install-options/docker/build-custom-images/
-=======
-              - text: Install Kong Gateway with Kubernetes
-                url: /install/kubernetes
-              - text: Helm
-                url: /install/helm
-              - text: OpenShift with Helm
-                url: /install/openshift
-              - text: Docker
-                url: /install/docker
->>>>>>> 3a3bae19af (Move /install/ out of /kong-production/)
           - text: Linux
             items:
               - text: Supported Distributions
