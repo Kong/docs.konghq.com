@@ -121,6 +121,8 @@ items:
         items:
           - text: Running Kong as a non-root user
             url: /production-deployment/running-kong/kong-user
+          - text: Securing the Admin API
+            url: /production-deployment/running-kong/secure-admin-api
           - text: Configure Kong Gateway and SystemD
             url: /production-deployment/running-kong/systemd
       - text: Access Control
@@ -510,8 +512,6 @@ items:
     items:
       - text: Overview
         url: /admin-api/
-      - text: Securing the Admin API
-        url: /admin-api/secure
       - text: Information Routes
         url: /admin-api/#information-routes
       - text: Health Routes
