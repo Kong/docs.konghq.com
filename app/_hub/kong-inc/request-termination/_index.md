@@ -1,7 +1,6 @@
 ---
 name: Request Termination
 publisher: Kong Inc.
-version: 2.1.0
 desc: Terminates all requests with a specific response
 description: |
   This plugin terminates incoming requests with a specified status code and
@@ -12,39 +11,9 @@ categories:
   - traffic-control
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: request-termination
   service_id: true
@@ -76,10 +45,12 @@ params:
       datatype: string
       description: Content type of the raw response configured with `config.body`.
     - name: trigger
+      minimum_version: "2.6.x"
       required: false
       default: null
       description: 'When not set, the plugin always activates. When set to a string, the plugin will activate exclusively on requests containing either a header or a query parameter that is named the string.'
     - name: echo
+      minimum_version: "2.6.x"
       required: false
       default: false
       description: 'When set, the plugin will echo a copy of the request back to the client. The main usecase for this is debugging. It can be combined with `trigger` in order to debug requests on live systems without disturbing real traffic.'
@@ -89,11 +60,6 @@ params:
     sending the configured response.
 ---
 
-## New in 2.1.0
-
-- `trigger` config option
-- `echo` config option
-
 ## Example Use Cases
 
 - Temporarily disable a Service (e.g. it is under maintenance).
@@ -101,3 +67,14 @@ params:
 - Temporarily disable a Consumer (e.g. excessive consumption).
 - Block anonymous access with multiple auth plugins in a logical `OR` setup.
 - Debugging erroneous requests in live systems.
+
+---
+
+## Changelog
+
+**{{site.base_gateway}} 2.6.x**
+* Added the `trigger` and `echo` configuration options
+
+**{{site.base_gateway}} 2.1.x**
+* There were changes in the plugin handler structure and on the plugins DAO (`load_plugin_schemas`) that make this plugin
+backwards-incompatible if another plugin depended on it.

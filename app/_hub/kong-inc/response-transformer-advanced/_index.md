@@ -1,7 +1,6 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 2.3.x (0.4.4 internal)
 desc: Modify the upstream response before returning it to the client
 description: |
   Transform the response sent by the upstream server on the fly before returning
@@ -24,7 +23,7 @@ description: |
     when the `Content-Encoding` header is `gzip`.
 
   Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
-  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, 
+  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`,
   `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
 
   <div class="alert alert-warning">
@@ -39,18 +38,7 @@ categories:
 enterprise: true
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: response-transformer-advanced
   service_id: true

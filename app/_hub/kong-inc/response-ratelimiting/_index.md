@@ -150,6 +150,7 @@ params:
       datatype: integer
       description: 'When using the `redis` policy, this property specifies the port of the Redis server.'
     - name: redis_username
+      minimum_version: "2.8.x"
       required: false
       datatype: string
       description: |
@@ -243,9 +244,6 @@ X-RateLimit-Remaining-Images: 0
 ---
 ## Changelog
 
-**{{site.base_gateway}} 2.8.x (plugin version 2.0.1)**
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis_username` configuration parameter.
-* Fixed plugin versions in the documentation. Previously, the plugin versions
-were labelled as `0.1-x` and `1.0-x`. They are now updated to align with the
-plugin's actual versions, `1.0.x` and `2.0.x`.
