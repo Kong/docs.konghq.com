@@ -129,10 +129,6 @@ items:
             url: /production-deployment/access-control/register-admin-api
           - text: Enabling RBAC
             url: /production-deployment/access-control/enable-rbac
-      - text: Kubernetes
-        items:
-          - text: Kubernetes Deployment Options
-            url: /production-deployment/kubernetes/deployment-options
       - text: Licenses
         items:
           - text: Overview
