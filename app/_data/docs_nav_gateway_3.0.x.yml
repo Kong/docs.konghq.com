@@ -56,8 +56,8 @@ items:
     items:
       - text: Get Kong
         url: /get-started/get-kong
-      - text: Configure Services and Routes
-        url: /get-started/configure-services-and-routes
+      - text: Services and Routes
+        url: /get-started/services-and-routes
       - text: Configure Rate Limiting
         url: /get-started/configure-ratelimiting
       - text: Configure Proxy Caching
