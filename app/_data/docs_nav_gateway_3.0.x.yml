@@ -507,7 +507,7 @@ items:
         url: /kong-plugins/graphql
       - text: gRPC
         url: /kong-plugins/grpc
-  - title: Introduction to the Admin API
+  - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:
       - text: Overview
