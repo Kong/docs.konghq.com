@@ -32,7 +32,7 @@ items:
             url: /key-concepts/plugins
           - text: Manage Kong Gateway with decK
             url: /key-concepts/manage-kong-with-deck
-      - text: How Kong works
+      - text: How Kong Works
         items:
           - text: Routing Traffic
             url: /how-kong-works/proxy
@@ -119,13 +119,13 @@ items:
             url: /production-deployment/running-kong/kong-user
           - text: Securing the Admin API
             url: /production-deployment/running-kong/secure-admin-api
-          - text: Configure Kong Gateway and SystemD
+          - text: Configure Kong Gateway and Systemd
             url: /production-deployment/running-kong/systemd
       - text: Access Control
         items:
           - text: Start Kong Gateway Securely
             url: /production-deployment/access-control/start-securely
-          - text: Programatically creating Admins
+          - text: Programatically Creating Admins
             url: /production-deployment/access-control/register-admin-api
           - text: Enabling RBAC
             url: /production-deployment/access-control/enable-rbac
@@ -139,13 +139,13 @@ items:
             url: /licenses/deploy
           - text: Using the License API
             url: /licenses/examples
-          - text: Monitor Licenses usuage
+          - text: Monitor Licenses Usage
             url: /licenses/report
       - text: Networking
         items:
           - text: Default Ports
             url: /production-deployment/networking/default-ports
-          - text: DNS considerations
+          - text: DNS Considerations
             url: /production-deployment/networking/dns-considerations
           - text: Network and Firewall
             url: /production-deployment/networking/firewall
@@ -155,15 +155,15 @@ items:
         url: /production-deployment/environment-variables
       - text: Embedding Kong in Open Resty
         url: /production-deployment/kong-openresty
-      - text: Serving a Website and API's from Kong
+      - text: Serving a Website and APIs from Kong
         url: /production-deployment/website-api-serving
       - text: Monitoring
         items:
-          - text: Introduction
+          - text: Overview
             url: /production-deployment/monitoring/
-          - text: How to Monitor with Prometheus
+          - text: How To Monitor with Prometheus
             url: /production-deployment/monitoring/prometheus
-          - text: How to Monitor with Statsd
+          - text: How To Monitor with Statsd
             url: /production-deployment/monitoring/statsd
           - text: Collect Metrics with Datadog
             url: /production-deployment/monitoring/datadog
@@ -171,9 +171,9 @@ items:
         items:
           - text: Overview
             url: /production-deployment/tracing/
-          - text: How to Write a Custom Trace Exporter
+          - text: How To Write a Custom Trace Exporter
             url: /production-deployment/tracing/write-custom-trace-exporter
-          - text: Tracing API reference
+          - text: Tracing API Reference
             url: /production-deployment/tracing/api
       - text: Resource Sizing Guidelines
         url: /production-deployment/sizing-guidelines
@@ -234,7 +234,7 @@ items:
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
-          - text: How to
+          - text: How-To
             items:
               - text: Securing the Database with AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/how-to/aws-secrets-manager
@@ -488,7 +488,7 @@ items:
                 url: /kong-plugins/authentication/oidc/cognito
           - text: Authentication Reference
             url: /kong-plugins/authentication/reference
-      - text: Rate-limiting
+      - text: Rate Limiting Plugin
         items:
           - text: Overview
             url: /kong-plugins/rate-limiting/
@@ -500,7 +500,7 @@ items:
                 url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
       - text: Request Transformer
         items:
-          - text: Add a body value
+          - text: Add a Body Value
             url: /kong-plugins/request-transformer/add-body-value
 
       - text: GraphQL

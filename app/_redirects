@@ -700,3 +700,16 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+
+
+
+# 3.0
+
+/gateway/2.8.x/install-and-run/                   /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
+/gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
+/gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
+/gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
+/gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
+/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
