@@ -60,7 +60,7 @@ items:
         url: /get-started/services-and-routes
       - text: Rate Limiting
         url: /get-started/rate-limiting
-      - text: Configure Proxy Caching
+      - text: Proxy Caching
         url: /get-started/proxy-caching
       - text: Configure Key Authentication
         url: /get-started/secure-services
