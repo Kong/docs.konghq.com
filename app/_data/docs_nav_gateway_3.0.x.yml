@@ -489,15 +489,17 @@ items:
           - text: Authentication Reference
             url: /kong-plugins/authentication/reference
       - text: Rate Limiting Plugin
-        items:
-          - text: Overview
-            url: /kong-plugins/rate-limiting/
-          - text: Algorithms
-            items:
-              - text: Configuring sliding-window
-                url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
-              - text: Configuring Fixed bucket
-                url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
+        url: /kong-plugins/rate-limiting/algorithms/rate-limiting
+        #items:
+          #- text: Overview
+            #url: /kong-plugins/rate-limiting/ commenting these lines out for 3.0
+            #url: /kong-plugins/rate-limiting/algorithms/rate-limiting
+          #- text: Algorithms
+           # items:
+            #  - text: Configuring sliding-window
+             #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
+              #- text: Configuring Fixed bucket
+               # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
       - text: Request Transformer
         items:
           - text: Add a Body Value
