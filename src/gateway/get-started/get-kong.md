@@ -34,7 +34,7 @@ remove `jq` processing.
 
 ### Get Kong
 
-For the purposes of this tutorial, a `quickstart` script is provided to quickly run {{site.base_gateway}} and it's supporting database.
+For the purposes of this tutorial, a `quickstart` script is provided to quickly run {{site.base_gateway}} and its supporting database.
 This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://www.postgresql.org/) database as the backing database.
 
 1. Run {{site.base_gateway}} with the `quickstart` script:
