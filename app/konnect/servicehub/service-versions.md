@@ -25,6 +25,14 @@ ready to test, you'd create v2 in `staging` before finally creating v2 in
 Instead, create a new version of the service in the new environment when you're
 ready to move to it.
 
+Every service version may be in one of the states: "Published", "Deprecated" and "Unpublished":
+* **Published**: This indicates that the service version is ready to be shared with the API consumers. It is exposed to Dev Portal where developers can request access to consuter it via the Kong gateway. This is default state.
+* **Deprecated**: This indicates that the service version will be deprecated soon. It will still be exposed to the Dev Portal and receive API request via Kong gateway. Banner with information about deprecation will be displayed at the top of the service version page in Dev Portal.
+* **Unpublished**: This indicates that the servie version is no longer exposed to Dev Portal but can still be accessed by existing Dev Portal Application via Kong gateway.
+
+{:.note}
+> **Note:** If service package to which service version is associated is unpublished, the service version won't be exposed to Dev Portal.
+
 ## Create a service version
 
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then follow these steps:
@@ -57,10 +65,26 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 
 1. Click **Create** to save.
 
+
+## Managing a service version lifecycle
+
+Changing service version status will have an impact on its visibility in Dev Portal. 
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then selects its service version which status you would like to adjust. Then follow these steps:
+
+1. From the **Service version actions** drop-down menu, select **Edit version status**.
+
+2. In dialog you can select appropiate status. Next to each status there is a brief explanation which pops up on icon hover.
+
+    1. In some cases there might be an additional step to fulfill.
+
+3. Click **Save** to adjust status of service version.
+
 ## Delete a service version
 
 Deleting a service version permanently removes it and its implementation, routes, and plugins from the Service Hub.
 
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then delete it:
 
-* From the **Version actions** drop-down menu, select **Delete**, then confirm deletion in the dialog.
+* From the **Service version actions** drop-down menu, select **Delete service version**, then confirm deletion in the dialog.
+* Confirm deletion by typing name of service version and click **Yes, delete**
