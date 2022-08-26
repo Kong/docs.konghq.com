@@ -26,9 +26,9 @@ Instead, create a new version of the service in the new environment when you're
 ready to move to it.
 
 Every service version may be in one of the states: "Published", "Deprecated" and "Unpublished":
-* **Published**: This indicates that the service version is ready to be shared with the API consumers. It is exposed to Dev Portal where developers can request access to consuter it via the Kong gateway. This is default state.
-* **Deprecated**: This indicates that the service version will be deprecated soon. It will still be exposed to the Dev Portal and receive API request via Kong gateway. Banner with information about deprecation will be displayed at the top of the service version page in Dev Portal.
-* **Unpublished**: This indicates that the servie version is no longer exposed to Dev Portal but can still be accessed by existing Dev Portal Application via Kong gateway.
+* **Published**: This indicates that the service version is ready to be shared with the API consumers. It is exposed to Dev Portal where developers can request access to consume it via the {{site.base_gateway}}. This is default state.
+* **Deprecated**: This indicates that the service version will be deprecated soon. It will still be exposed to the Dev Portal and receive API request via {{site.base_gateway}}. Banner with information about deprecation will be displayed at the top of the service version page in Dev Portal.
+* **Unpublished**: This indicates that the service version is no longer exposed to Dev Portal but can still be accessed by existing Dev Portal Application via {{site.base_gateway}}.
 
 {:.note}
 > **Note:** If service package to which service version is associated is unpublished, the service version won't be exposed to Dev Portal.
@@ -74,7 +74,7 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 
 1. From the **Service version actions** drop-down menu, select **Edit version status**.
 
-2. In dialog you can select appropiate status. Next to each status there is a brief explanation which pops up on icon hover.
+2. In dialog you can select appropriate status. Next to each status there is a brief explanation which pops up on icon hover.
 
     1. In some cases there might be an additional step to fulfill.
 
