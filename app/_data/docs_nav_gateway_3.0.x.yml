@@ -552,6 +552,8 @@ items:
         url: /admin-api/consumer-groups/reference
       - text: Event Hooks
         url: /admin-api/event-hooks/reference
+      - text: Keyring and Data Encryption
+        url: /admin-api/db-encryption
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
