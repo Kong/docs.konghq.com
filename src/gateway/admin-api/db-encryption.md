@@ -112,7 +112,7 @@ HTTP 201 Created
 HTTP 201 Created
 ```
 
-## Recovery Keyring from Database
+## Recover Keyring from Database
 
 *This endpoint is only available with the `cluster` keyring strategy.*
 
