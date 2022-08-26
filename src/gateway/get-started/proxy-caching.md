@@ -72,7 +72,7 @@ will potentially be cached.
    `application/json; charset=utf-8`. `cache_ttl` instructed the plugin to flush values after 30 seconds.
    
    The final option `config.strategy=memory` specifies the backing data store for cached responses. More
-   information on `strategy` can be found in the the [parameter reference](/hub/kong-inc/proxy-cache/) 
+   information on `strategy` can be found in the [parameter reference](/hub/kong-inc/proxy-cache/) 
    for the Proxy Cache plugin.
 
 1. **Validate**
