@@ -1,6 +1,9 @@
 ---
 title: Workspaces and Teams
 badge: enterprise
+content-type: tutorial
+book: get-started
+chapter: 7
 ---
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}}.
@@ -131,12 +134,3 @@ curl -X POST http://localhost:8001/SecureWorkspace/rbac/users/secureworkspaceadm
 
 You are now controlling access to {{site.base_gateway}} administration with RBAC.
 
-## Summary and next steps
-
-In this topic, you:
-
-* Enabled RBAC.
-* Created a workspace named `SecureWorkspace`.
-* Created an admin named `secureworkspaceadmin` and granted them permissions to manage to everything in the `SecureWorkspace`.
-
-Next, set up the [Dev Portal](/gateway/{{page.kong_version}}/get-started/comprehensive/dev-portal).
