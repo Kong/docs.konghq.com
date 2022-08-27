@@ -54,15 +54,13 @@ items:
   - title: Get Started with Kong
     icon: /assets/images/icons/documentation/icn-learning.svg
     items:
-      - text: Overview
-        url: /get-started/
-      - text: Get Kong with Docker
-        url: /get-started/get-kong-with-docker
-      - text: Configure Services and Routes
-        url: /get-started/configure-services-and-routes
-      - text: Configure Rate Limiting
-        url: /get-started/configure-ratelimiting
-      - text: Configure Proxy Caching
+      - text: Get Kong
+        url: /get-started/get-kong
+      - text: Services and Routes
+        url: /get-started/services-and-routes
+      - text: Rate Limiting
+        url: /get-started/rate-limiting
+      - text: Proxy Caching
         url: /get-started/proxy-caching
       - text: Configure Key Authentication
         url: /get-started/secure-services
@@ -76,7 +74,7 @@ items:
       - text: Deployment Topologies
         items:
           - text: Overview
-            url: /kong-production/deployment-topologies/overview
+            url: /kong-production/deployment-topologies/
           - text: Hybrid Mode
             items:
             - text: Overview
@@ -91,12 +89,16 @@ items:
         items:
           - text: Kubernetes
             url: /kong-production/install-options/kubernetes
-          - text: Helm
-            url: /kong-production/install-options/helm
+          - text: Install Kong Gateway with Helm
+            url: /kong-production/install-options/helm-quickstart
           - text: OpenShift with Helm
             url: /kong-production/install-options/openshift
           - text: Docker
-            url: /kong-production/install-options/docker
+            items:
+              - text: Install Kong with Docker
+                url: /kong-production/install-options/docker
+              - text: Build your own Docker images
+                url: /kong-production/install-options/docker/build-custom-images/
           - text: Linux
             items:
               - text: Supported Distributions
@@ -175,8 +177,6 @@ items:
         url: /kong-production/blue-green
       - text: Canary Deployments
         url: /kong-production/canary
-      - text: Clustering Reference
-        url: /kong-production/clustering
       - text: Logging Reference
         url: /kong-production/logging
       - text: Upgrade Kong Gateway

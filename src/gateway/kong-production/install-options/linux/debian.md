@@ -63,6 +63,17 @@ sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.de
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+{:.note .no-icon}
+> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong-enterprise-edition`. This will prevent an accidental upgrade to a new version.
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+{:.note .no-icon}
+> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong`. This will prevent an accidental upgrade to a new version.
+{% endnavtab %}
+{% endnavtabs_ee %}
+
 {% endnavtab %}
 {% navtab APT repository %}
 

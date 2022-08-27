@@ -1,6 +1,0 @@
----
-title: traditional
-
----
-
-## PLACEHOLDER traditional

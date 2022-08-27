@@ -1,7 +1,6 @@
 ---
 name: ACME
 publisher: Kong Inc.
-version: 0.4.x
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
   This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
@@ -11,11 +10,9 @@ categories:
   - security
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
+    compatible: true
 params:
   name: acme
   service_id: false
@@ -38,6 +35,10 @@ params:
       datatype: string
       description: |
         The account identifier. Can be reused in a different plugin instance.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: api_uri
       required: false
       default: '` https://acme-v02.api.letsencrypt.org/directory`'
@@ -56,7 +57,7 @@ params:
       default: '`[]`'
       datatype: array of string elements
       description: |
-        The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`.
+        The list of domains to create certificates for. To match subdomains under `example.com`, use `*.example.com`.
         Regex pattern is not supported.
 
         This parameter is only used to match domains, not to specify the Common Name
@@ -64,7 +65,15 @@ params:
         The ACME plugin checks this configuration before checking any certificate in `storage` when serving the certificate of a request.
 
         If this field is left empty, all top-level domains (TLDs) are allowed.
+    - name: allow_any_domain
+      minimum_version: "3.0.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        If set to `true`, the plugin allows all domains and ignores any values in the `domains` list.
     - name: fail_backoff_minutes
+      minimum_version: "2.1.x"
       required: false
       default: 5
       datatype: number
@@ -97,32 +106,48 @@ params:
       description: |
         If you are using Let's Encrypt, you must set this to `true` to agree the [Terms of Service](https://letsencrypt.org/repository/).
     - name: eab_kid
+      minimum_version: "2.4.x"
       required: false
       datatype: string
       encrypted: true
       description: |
         External account binding (EAB) key id. You usually don't need to set this unless it is explicitly required by the CA.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: eab_hmac_key
+      minimum_version: "2.4.x"
       required: false
       datatype: string
       encrypted: true
       description: |
         External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: rsa_key_size
+      minimum_version: "2.8.x"
       required: false
       datatype: number
       default: 4096
       description: |
         RSA private key size for the certificate. The possible values are 2048, 3072, or 4096.
-  extra: |
-
-    External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
-
-    The following CA provider's external account can be registered automatically, without specifying
-    the `eab_kid` or `eab_hmac_key`:
-
-    - [ZeroSSL](https://zerossl.com/)
 ---
+
+{% if_plugin_version gte:2.4.x %}
+
+## EAB support
+
+External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
+
+The following CA provider's external account can be registered automatically, without specifying
+the `eab_kid` or `eab_hmac_key`:
+
+- [ZeroSSL](https://zerossl.com/)
+
+{% endif_plugin_version %}
 
 ## Storage configuration considerations {#storage-config}
 
@@ -156,10 +181,17 @@ params:
           "timeout": 2000,
           "https": false,
           "tls_verify": true,
-          "tls_server_name": null
+          "tls_server_name": null,
+          "auth_method": "token",
+          "auth_path": null,
+          "auth_role": null,
+          "jwt_path": null,
       },
     }
 ```
+
+The `consul.token`, `redis.auth`, and `vault.token` fields are _referenceable_, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
 
 To configure a storage type other than `kong`, refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
@@ -484,12 +516,38 @@ own certificate.
 
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 0.4.0)
+{% if_plugin_version gte:3.0.x %}
+
+**{{site.base_gateway}} 3.0.x**
+* The `storage_config.vault.auth_method` configuration parameter now defaults to `token`.
+* Added the `allow_any_domain` configuration parameter. If enabled, it lets {{site.base_gateway}}
+  ignore the `domains` field.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.8.x %}
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `rsa_key_size` configuration parameter.
+* The `consul.token`, `redis.auth`, and `vault.token` are now marked as now marked as
+referenceable, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
 
-### {{site.base_gateway}} 2.7.x (plugin version 0.3.0)
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.7.x %}
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `account_email`, `eab_kid`, and `eab_hmac_kid` parameter values will be
  encrypted.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:2.4.x %}
+**{{site.base_gateway}} 2.4.x**
+* Added external account binding (EAB) support with the `eab_kid` and `eab_hmac_key` configuration parameters.
+
+{% endif_plugin_version %}
+
+**{{site.base_gateway}} 2.1.x**
+* Added the `fail_backoff_minutes` configuration parameter.

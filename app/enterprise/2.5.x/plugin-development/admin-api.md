@@ -230,8 +230,4 @@ return {
 
 This code will make all requests to the `/services` endpoint return a `404 not found` response.
 
----
-
-Next: [Write tests for your plugin]({{page.book.next}})
-
 [Admin API]: /enterprise/{{page.kong_version}}/admin-api/

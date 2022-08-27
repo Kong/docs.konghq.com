@@ -114,8 +114,10 @@ params:
         - `local`: Counters are stored locally in-memory on the node (same effect
            as setting `sync_rate` to `-1`).
 
-        In DB-less and hybrid modes, the `cluster` config strategy is not
-        supported.
+        In DB-less and hybrid modes, the `cluster` config strategy
+        is not supported. From `3.0.0.0` onwards, Kong disallows
+        the plugin enablement if `cluster` strategy is set with DB-less
+        or hybrid mode.
 
         In Konnect Cloud, the default strategy is `redis`.
 

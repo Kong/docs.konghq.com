@@ -66,8 +66,4 @@ local inserted_plugin, err = kong.db.plugins:insert({
 For a real-life example of the DAO being used in a plugin, see the
 [Key-Auth plugin source code](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
 
----
-
-Next: [Storing Custom Entities &rsaquo;]({{page.book.next}})
-
 [Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
