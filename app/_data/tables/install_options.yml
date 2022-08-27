@@ -1,0 +1,76 @@
+columns:
+  - name: Kong OSS
+    key: oss
+  - name: Kong Enterprise
+    key: enterprise
+  - name: Support
+    key: support
+features:
+  - name: 'Packages'
+    items:
+      - name: 'Alpine'
+        url: /gateway/VERSION/kong-production/install-options/docker/build-custom-images/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+      - name: 'Debian'
+        url: /gateway/VERSION/kong-production/install-options/linux/debian/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+      - name: 'Ubuntu'
+        url: /gateway/VERSION/kong-production/install-options/linux/ubuntu/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+      - name: 'RedHat'
+        url: /gateway/VERSION/kong-production/install-options/linux/rhel/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+      - name: 'Amazon Linux 2'
+        url: /gateway/VERSION/kong-production/install-options/linux/amazon-linux/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+  - name: 'Kubernetes'
+    items:
+      - name: 'Kubernetes (YAML Manifests)'
+        url: /gateway/VERSION/kong-production/install-options/kubernetes/
+        oss: true
+        enterprise: true
+        support_text: Local Testing
+      - name: 'Kubernetes (Helm)'
+        url: /gateway/VERSION/kong-production/install-options/helm-quickstart/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+      - name: 'OpenShift'
+        url: /gateway/VERSION/kong-production/install-options/openshift/
+        oss: true
+        enterprise: true
+        support_text: Production Support
+ 
+  - name: 'Docker'
+    items:
+      - name: 'Debian (bullseye-slim)'
+        oss: true
+        enterprise: false
+        support_text: Production Support
+      - name: 'RHEL (8-ubi)'
+        oss: true
+        enterprise: false
+        support_text: Production Support
+      - name: 'Alpine'
+        oss: true
+        enterprise: false
+        support_text: Local Testing
+ 
+  - name: 'Other'
+    items:
+      - name: 'MacOS (Homebrew)'
+        url: /gateway/VERSION/kong-production/install-options/macos/
+        oss: true
+        enterprise: false
+        support_text: Local Testing
+ 

@@ -87,6 +87,8 @@ items:
             url: /kong-production/deployment-topologies/traditional
       - text: Installation Options
         items:
+          - text: Overview
+            url: /kong-production/install-options/
           - text: Kubernetes
             url: /kong-production/install-options/kubernetes
           - text: Install Kong Gateway with Helm
