@@ -133,7 +133,7 @@ items:
         items:
           - text: Overview
             url: /licenses/
-          - text: Download your license
+          - text: Download your License
             url: /licenses/download
           - text: Deploy Enterprise License
             url: /licenses/deploy
