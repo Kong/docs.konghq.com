@@ -1,7 +1,7 @@
 columns:
   - name: Open Source
     cta: Get Started
-    cta_link: /
+    cta_link: /gateway/latest/kong-production/install-options/
     key: oss
   - name: Kong Enterprise
     cta: Contact Sales
