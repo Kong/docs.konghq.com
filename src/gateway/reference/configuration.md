@@ -1196,7 +1196,8 @@ block.
 Changes the limit on the maximum number of open files for worker processes.
 
 The special and default value of `auto` sets this value to `ulimit -n` with the
-upper bound limited to 16384 as a measure to protect against excess memory use.
+upper bound limited to 16384 as a measure to protect against excess memory use,
+and the lower bound of 1024 as a good default.
 
 See http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile
 
@@ -1210,7 +1211,8 @@ Sets the maximum number of simultaneous connections that can be opened by a
 worker process.
 
 The special and default value of `auto` sets this value to `ulimit -n` with the
-upper bound limited to 16384 as a measure to protect against excess memory use.
+upper bound limited to 16384 as a measure to protect against excess memory use,
+and the lower bound of 1024 as a good default.
 
 See http://nginx.org/en/docs/ngx_core_module.html#worker_connections
 
