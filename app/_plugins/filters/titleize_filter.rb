@@ -5,6 +5,8 @@ require 'active_support/core_ext/string/inflections' # If not using Rails
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'API'
   inflect.acronym 'mTLS'
+  inflect.acronym 'PDK'
+  inflect.acronym 'OIDC'
 end
 
 module Jekyll

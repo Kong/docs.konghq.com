@@ -31,7 +31,7 @@ module Jekyll
   class AliasGenerator < Generator
     priority :lowest
 
-    def generate(site) # rubocop:disable Metrics/AbcSize
+    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       @redirects = []
 
       # Generate redirect_to from frontmatter redirects
@@ -54,9 +54,9 @@ module Jekyll
     end
 
     def generate_moved_aliases(moved_pages)
-      moved_pages.each do |k,v|
-        k = k.sub("/VERSION/", "/latest/")
-        v = v.sub("/VERSION/", "/latest/")
+      moved_pages.each do |k, v|
+        k = k.sub('/VERSION/', '/latest/')
+        v = v.sub('/VERSION/', '/latest/')
         @redirects.push("#{k}\t#{v}")
       end
     end

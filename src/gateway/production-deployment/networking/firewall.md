@@ -1,5 +1,6 @@
 ---
 title: Network and Firewall
+content_type: reference
 ---
 
 In this section you will find a summary about the recommended network and firewall settings for Kong.

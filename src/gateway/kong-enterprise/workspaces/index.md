@@ -3,11 +3,6 @@ title: Workspace Examples
 badge: enterprise
 ---
 
-This chapter aims to provide a step-by-step tutorial on how to set up
-workspaces, entities, and see it in action.
-
-## Important Note: Conflicting Services or Routes in workspaces
-
 Workspaces provide a way to segment Kong entities—entities in a workspace
 are isolated from those in other workspaces. That said, entities
 such as Services and Routes have "routing rules", which are pieces of info

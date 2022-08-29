@@ -1,5 +1,5 @@
 ---
-title: Access Your Kong Gateway License
+title: Download Your Kong Gateway License
 badge: enterprise
 ---
 
