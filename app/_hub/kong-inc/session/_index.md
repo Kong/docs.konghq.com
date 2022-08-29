@@ -1,7 +1,6 @@
 ---
 name: Session
 publisher: Kong Inc.
-version: 2.4.x
 desc: Support sessions for Kong Authentication Plugins.
 description: |
   The Kong Session Plugin can be used to manage browser sessions for APIs proxied
@@ -18,25 +17,9 @@ categories:
 source_url: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: session
   service_id: true
@@ -449,7 +432,7 @@ _not_ a problem during session renewal period as renew happens in `access` phase
 
 ## Changelog
 
-### 2.4.5
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.secret` parameter value will be encrypted.

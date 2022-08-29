@@ -135,6 +135,9 @@ module PluginSingleSource
       @data['version'] = version if set_version
       @data['is_latest'] = permalink_name == 'index'
 
+      @data['canonical_url'] = "/hub/#{author}/#{plugin_name}" unless @data['is_latest']
+      @data['seo_noindex'] = true unless @data['is_latest']
+
       # We need to set the path so that some of the conditionals in templates
       # continue to work.
       @data['path'] = "_hub/#{author}/#{plugin_name}/#{permalink_name}.md"

@@ -1,7 +1,6 @@
 ---
 name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
-version: 0.2.x
 desc: Provide rate limiting for GraphQL queries
 description: |
   The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
@@ -14,16 +13,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
+    compatible: true
 params:
   name: graphql-rate-limiting-advanced
   service_id: true
@@ -695,11 +685,9 @@ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 ---
 
-{% if_plugin_version gte:2.2.x %}
 ## Changelog
 
-{% if_plugin_version gte:2.8.x %}
-### {{site.base_gateway}} 2.8.x
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
@@ -711,19 +699,12 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the
 plugin's actual versions, `0.1.x` and `0.2.x`.
-{% endif_plugin_version %}
 
-{% if_plugin_version gte:2.5.x %}
-
-### {{site.base_gateway}} 2.5.x
+**{{site.base_gateway}} 2.5.x**
 
 * Added the `redis.keepalive_pool`, `redis.keepalive_pool_size`, and `redis.keepalive_backlog` configuration parameters.
  These options relate to [Openresty’s Lua INGINX module’s](https://github.com/openresty/lua-nginx-module/#tcpsockconnect) `tcp:connect` options.
 
-{% endif_plugin_version %}
-
-### {{site.base_gateway}} 2.2.x
+**{{site.base_gateway}} 2.2.x**
 
 * Added Redis TLS support with the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name` configuration parameters.
-
-{% endif_plugin_version %}

@@ -9,19 +9,9 @@ categories:
   - logging
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
 params:
   name: http-log
   service_id: true
@@ -180,36 +170,23 @@ The log server that receives these messages might require extra headers, such as
 {% endif_plugin_version %}
 
 ---
-{% if_plugin_version gte:2.3.x %}
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
-
-### Kong Gateway 3.0.x
+**{{site.base_gateway}} 3.0.x**
 
 * The `headers` parameter now takes a single string per header name, where it
 previously took an array of values.
 
-{% endif_plugin_version %}
-{% if_plugin_version gte:2.7.x %}
-
-### Kong Gateway 2.7.x
+**{{site.base_gateway}} 2.7.x**
 
 * If keyring encryption is enabled, the `config.http_endpoint` parameter value
 will be encrypted.
 
-{% endif_plugin_version %}
-{% if_plugin_version gte:2.3.x %}
-
-### Kong Gateway 2.4.x
+**{{site.base_gateway}} 2.4.x**
 
 * Added the `custom_fields_by_lua` parameter.
 
-{% endif_plugin_version %}
-
-### Kong Gateway 2.3.x
+**{{site.base_gateway}} 2.3.x**
 
 * Custom headers can now be specified for the log request using the `headers` parameter.
-
-{% endif_plugin_version %}

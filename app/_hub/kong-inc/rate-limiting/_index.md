@@ -1,7 +1,6 @@
 ---
 name: Rate Limiting
 publisher: Kong Inc.
-version: 2.3.x
 desc: Rate-limit how many HTTP requests can be made in a period of time
 description: |
   Rate limit how many HTTP requests can be made in a given period of seconds, minutes, hours, days, months, or years.
@@ -17,13 +16,9 @@ categories:
   - traffic-control
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: rate-limiting
   service_id: true
@@ -128,6 +123,7 @@ params:
       description: |
         When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
     - name: redis_username
+      minimum_version: "2.8.x"
       required: false
       datatype: string
       description: |
@@ -137,6 +133,7 @@ params:
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis_password
+      minimum_version: "2.7.x"
       required: false
       datatype: string
       description: |
@@ -146,6 +143,7 @@ params:
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis_ssl
+      minimum_version: "2.7.x"
       required: true
       default: '`false`'
       datatype: boolean
@@ -273,11 +271,11 @@ selected header was not sent by the client or the configured service was not fou
 
 ## Changelog
 
-**{{site.base_gateway}} 2.8.x (plugin version 2.3.1)**
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis_username` configuration parameter.
 
-**{{site.base_gateway}}  2.7.x (plugin version 2.3.0)**
+**{{site.base_gateway}}  2.7.x**
 
 * Added the `redis_ssl`, `redis_ssl_verify`, and `redis_server_name` configuration parameters.
 

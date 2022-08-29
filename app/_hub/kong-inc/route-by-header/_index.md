@@ -1,7 +1,6 @@
 ---
 name: Route By Header
 publisher: Kong Inc.
-version: 1.3-x
 desc: Route request based on request headers
 description: |
   Kong Gateway plugin to route requests based on request headers.
@@ -14,18 +13,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: route-by-header
   service_id: true

@@ -297,17 +297,13 @@ using a [minifier][lua-minifier].
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
-
-### {{site.base_gateway}} 3.0
+**{{site.base_gateway}} 3.0**
 
 * The deprecated `config.functions` parameter has been removed from the plugin.
 Use `config.access` instead.
 * The pre-function plugin changed priority from `+inf` to `1000000`.
 
-{% endif_plugin_version %}
-
-### {{site.base_gateway}} 2.3
+**{{site.base_gateway}} 2.3**
 
 * Introduced sandboxing, which is enabled by default.
 Only the Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.

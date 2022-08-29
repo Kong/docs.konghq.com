@@ -13,36 +13,9 @@ categories:
   - serverless
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: azure-functions
   service_id: true
@@ -97,7 +70,7 @@ params:
       encrypted: true
       description: |
         The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.
-        
+
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
@@ -220,13 +193,9 @@ HTTP/1.1 200 OK
 
 ---
 
-{% if_plugin_version gte:2.7.x %}
-
 ## Changelog
 
-### {{site.base_gateway}} 2.7.x
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.apikey` and `config.clientid` parameter values will be encrypted.
-
-{% endif_plugin_version %}

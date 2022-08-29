@@ -1,7 +1,6 @@
 ---
 name: OAuth 2.0 Authentication
 publisher: Kong Inc.
-version: 2.1.x
 desc: Add OAuth 2.0 authentication to your Services
 description: |
   Add an OAuth 2.0 authentication layer with the [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4),
@@ -22,25 +21,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: oauth2
   service_id: true

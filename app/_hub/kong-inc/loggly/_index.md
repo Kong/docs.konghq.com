@@ -1,7 +1,6 @@
 ---
 name: Loggly
 publisher: Kong Inc.
-version: 2.1.x
 desc: Send request and response logs to Loggly
 description: |
   Log request and response data over UDP to [Loggly](https://www.loggly.com).
@@ -10,19 +9,9 @@ categories:
   - logging
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
 params:
   name: loggly
   service_id: true
@@ -132,15 +121,20 @@ logging level severity the same as or lower than the set `config.log_level` for 
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
+{% if_plugin_version gte:2.4.x %}
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
+{% endif_plugin_version %}
 
 ---
-
 ## Changelog
 
-### 2.1.0
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `key` parameter value will be encrypted.
+
+**{{site.base_gateway}} 2.4.x**
+
+* Added `custom_fields_by_lua` configuration option.

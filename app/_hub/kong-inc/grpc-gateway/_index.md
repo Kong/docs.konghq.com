@@ -1,7 +1,6 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
-version: 0.2.x
 categories:
   - transformations
 type: plugin
@@ -10,29 +9,12 @@ description: |
   A Kong plugin to allow access to a gRPC service via HTTP REST requests
   and translate requests and responses in a JSON format. Similar to
   [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/).
-source_url: 'https://github.com/Kong/kong-plugin-grpc-gateway'
 license_type: MIT
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: grpc-gateway
   route_id: true
@@ -161,6 +143,7 @@ curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 
 All syntax defined in [Path template syntax](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto#L225) is supported.
 
+{% if_plugin_version gte:2.6.x %}
 Object fields not mentioned in the endpoint paths as in `/messages/{name}` can be passed as URL arguments, for example `/v1/messages?name=Kong`.  Structured arguments are supported.
 
  For example, a request like the following:
@@ -181,8 +164,17 @@ is interpreted like the following JSON object:
 
 Similarly, fields of the type `google.protobuf.Timestamp` are converted to and from strings in ISO8601 format.
 
+{% endif_plugin_version %}
+
 Currently only unary requests are supported; streaming requests are not supported.
 
 ## See also
 
 [Introduction to Kong gRPC plugins](/gateway/latest/configure/grpc)
+
+---
+## Changelog
+
+**{{site.base_gateway}} 2.6.x**
+* Fields of type `.google.protobuf.Timestamp` on the gRPC side are now transcoded to and from ISO8601 strings on the REST side.
+* URI arguments like `..?foo.bar=x&foo.baz=y` are interpreted as structured fields, equivalent to `{"foo": {"bar": "x", "baz": "y"}}`.

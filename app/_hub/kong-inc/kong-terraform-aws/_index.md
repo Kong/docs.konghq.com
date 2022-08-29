@@ -13,6 +13,7 @@ license_type: Apache-2.0
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 3.0.x
       - 2.8.x
       - 2.7.x
       - 2.6.x
@@ -32,6 +33,7 @@ kong_version_compatibility:
       - 0.13.x
   enterprise_edition:
     compatible:
+      - 3.0.x
       - 2.8.x
       - 2.7.x
       - 2.6.x
