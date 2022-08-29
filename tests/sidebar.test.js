@@ -74,7 +74,7 @@ test.describe("Outdated version documentation", () => {
     await expect(await s.count()).toBe(1);
     await expect(await s.getAttribute("href")).toEqual(
       expect.stringMatching(
-        new RegExp(`^/gateway/latest/kong-production/install-options/linux/rhel/$`)
+        new RegExp(`^/gateway/latest/install/linux/rhel/$`)
       )
     );
   });
@@ -128,7 +128,7 @@ test.describe("sidenav versions", () => {
       title: "Root page links to /latest/",
       src: "/gateway/latest/",
       link_text: "Supported Distributions",
-      expected_url: "/gateway/latest/kong-production/install-options/linux/os-support",
+      expected_url: "/gateway/latest/install/linux/os-support",
     },
     {
       title: "Versioned root page links to the correct version",
@@ -140,7 +140,7 @@ test.describe("sidenav versions", () => {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
       link_text: "Supported Distributions",
-      expected_url: "/gateway/latest/kong-production/install-options/linux/os-support",
+      expected_url: "/gateway/latest/install/linux/os-support",
     },
     {
       title: "Versioned sub page links to the correct version",

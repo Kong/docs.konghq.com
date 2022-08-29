@@ -16,8 +16,8 @@ test.describe("Canonical links", () => {
     {
       title:
         "contains a canonical link pointing to itself if it's the latest version",
-      src: "/gateway/latest/kong-production/install-options/helm-quickstart/",
-      href: "/gateway/latest/kong-production/install-options/helm-quickstart/",
+      src: "/gateway/latest/install/kubernetes/helm-quickstart/",
+      href: "/gateway/latest/install/kubernetes/helm-quickstart/",
     },
     {
       title:
@@ -148,7 +148,7 @@ test.describe("sitemap includes", () => {
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
     "/deck/latest/",
-    "/gateway/latest/kong-production/install-options/helm-quickstart/",
+    "/gateway/latest/install/kubernetes/helm-quickstart/",
     "/mesh/latest/installation/ecs/",
     "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
     "/deck/latest/installation/",
