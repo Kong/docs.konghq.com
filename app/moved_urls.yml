@@ -3,7 +3,7 @@
 /gateway/VERSION/get-started/configure-services-and-routes/: "/gateway/VERSION/get-started/services-and-routes/"
 
 
-/gateway/VERSION/install-and-run/kubernetes/: "/gateway/VERSION/install/kubernetes/kubernetes/"
+/gateway/VERSION/install-and-run/kubernetes/: "/gateway/VERSION/install/kubernetes/kubectl/"
 /gateway/VERSION/install-and-run/helm/: "/gateway/VERSION/install/kubernetes/helm/"
 /gateway/VERSION/install-and-run/openshift/: "/gateway/VERSION/install/kubernetes/openshift/"
 /gateway/VERSION/install-and-run/helm-quickstart-enterprise/: "/gateway/VERSION/install/kubernetes/helm-quickstart/"

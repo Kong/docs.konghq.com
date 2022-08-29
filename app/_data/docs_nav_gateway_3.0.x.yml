@@ -77,17 +77,17 @@ items:
               url: /production-deployment/deployment-topologies/hybrid-mode/setup
           - text: DB-less Deployment
             url: /production-deployment/deployment-topologies/db-less-and-declarative-config
-          # - text: Traditional
-          #   url: /production-deployment/deployment-topologies/traditional
+          - text: Traditional
+            url: /production-deployment/deployment-topologies/traditional
       - text: Installation Options
         items:
           - text: Overview
             url: /install/
           - text: Kubernetes
             items:
-              - text: Install Kong Gateway with Kubernetes
-                url: /install/kubernetes/kubernetes
-              - text: Install Kong Gateway with Helm
+              - text: kubectl apply
+                url: /install/kubernetes/kubectl
+              - text: Helm
                 url: /install/kubernetes/helm-quickstart
               - text: OpenShift with Helm
                 url: /install/kubernetes/openshift
@@ -95,7 +95,7 @@ items:
                 url: /install/kubernetes/deployment-options
           - text: Docker
             items:
-              - text: Install Kong with Docker
+              - text: Using docker run
                 url: /install/docker
               - text: Build your own Docker images
                 url: /install/docker/build-custom-images/
