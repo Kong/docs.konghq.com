@@ -190,11 +190,11 @@ items:
       - text: Upgrade Kong Gateway
         items:
           - text: Upgrade Kong Enterprise
-            url: /production-deployment/upgrade/enterprise
+            url: /upgrade/enterprise
           - text: Upgrade Kong Gateway OSS
-            url: /production-deployment/upgrade/oss
+            url: /upgrade/oss
           - text: Migrate from OSS to EE
-            url: /production-deployment/upgrade/migrate-ce-to-ke
+            url: /upgrade/migrate-ce-to-ke
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
