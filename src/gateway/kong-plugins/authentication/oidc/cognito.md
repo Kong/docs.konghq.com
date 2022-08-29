@@ -12,27 +12,21 @@ In this configuration, we use User Pools.
 1. Log in to AWS Console.
 1. Navigate to the Amazon Cognito Service.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito1.png">
 
 1. Click on **Manage User Pools**.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito2.png">
 
 1. Click the **Create a user pool** button on the right-hand side.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito3.png">
 
 1. Enter a pool name; we use “test-pool” for this example.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito4.png">
 
 1. Click **Step Through Settings**.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito5.png">
 
 1. Select **Email address or phone number**, and under that, select **Allow email addresses**. Select the following standard attributes as required: email, family name, given name.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito6.png">
 
 1. Click **Next step**.
 1. Accept the defaults for **Password settings**, then click **Next step**.
@@ -43,12 +37,9 @@ In this configuration, we use User Pools.
 1. We can create an application definition later. Keep things simple for now and click **Next step**.
 1. We don’t have any need for Triggers or customized Sign Up/Sign In behavior for this example. Scroll down and click **Save Changes**.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito7.png">
 
 1. Click **Create pool**. Wait a moment for the success message.
 1. Make a note of the **Pool ID**. You will need this when configuring the application later.
-
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito8.png">
 
 ## Application Definition
 
@@ -56,40 +47,32 @@ You need to add an OAuth2 application definition to the User Pool we just create
 
 1. Go to the App clients screen in the AWS Cognito management screen for the User Pool we just created.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito9.png">
 
 1. Click “Add an app client”.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito10.png">
 
 1. Enter an App client name. This demo is using “kong-api”
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito11.png">
 
 1. Enter a Refresh token expiration (in days). We will use the default of 30 days.
 1. Do not select “Generate client secret”. This example will use a public client.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito12.png">
 
 1. Do not select any other checkboxes.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito13.png">
 
 1. Click the “Set attribute read and write permissions” button.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito14.png">
+
 
 1. Let’s make this simple and only give the user read and write access to the required attributes. So, uncheck everything except the email, given name, and family name fields.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito15.png">
 
 1. Click “Create app client”
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito16.png">
 
 1. Click “Show Details”.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito17.png">
 
 1. Take note of the App client ID. We will need that later.
 1. Go to the App integration -> App client settings screen.
@@ -103,11 +86,9 @@ You need to add an OAuth2 application definition to the User Pool we just create
     Note that AWS Cognito doesn’t support HTTP callback URLs. This field should
     include the API and Dev Portal URLs that you want to secure using AWS Cognito.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito18.png">
 
 1. Click the “Authorization code grant” checkbox under Allowed OAuth Flows.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito19.png">
 
 1. Click the checkboxes next to email, OpenID, aws.cognito.signin.user.admin, and profile.
 1. Click the “Save changes” button.
@@ -116,7 +97,6 @@ You need to add an OAuth2 application definition to the User Pool we just create
 1. Click the Check Availability button.
 1. As long as it reports “This domain is available”, the name you have chosen will work.
 
-    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito21.png">
 
 1. Click the “Save changes” button.
 

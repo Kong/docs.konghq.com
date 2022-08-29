@@ -30,8 +30,8 @@ items:
             url: /key-concepts/upstreams
           - text: Plugins
             url: /key-concepts/plugins
-          - text: Manage Kong Gateway with decK
-            url: /key-concepts/manage-kong-with-deck
+          # - text: Manage Kong Gateway with decK
+          #   url: /key-concepts/manage-kong-with-deck
       - text: How Kong Works
         items:
           - text: Routing Traffic
@@ -77,8 +77,8 @@ items:
               url: /production-deployment/deployment-topologies/hybrid-mode/setup
           - text: DB-less Deployment
             url: /production-deployment/deployment-topologies/db-less-and-declarative-config
-          - text: Traditional
-            url: /production-deployment/deployment-topologies/traditional
+          # - text: Traditional
+          #   url: /production-deployment/deployment-topologies/traditional
       - text: Installation Options
         items:
           - text: Overview
@@ -488,6 +488,8 @@ items:
                 url: /kong-plugins/authentication/oidc/cognito
           - text: Authentication Reference
             url: /kong-plugins/authentication/reference
+          - text: Allow Multiple Authentication Plugins
+            url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
       - text: Rate Limiting Plugin
         url: /kong-plugins/rate-limiting/algorithms/rate-limiting
         #items:
@@ -508,7 +510,12 @@ items:
       - text: GraphQL
         url: /kong-plugins/graphql
       - text: gRPC
-        url: /kong-plugins/grpc
+        items:
+        - text: gRPC Plugins
+          url: /kong-plugins/grpc
+        - text: Configure a gRPC service
+          url: /kong-plugins/configuring-a-grpc-service
+
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:

@@ -1,5 +1,5 @@
 ---
-title: Easy Theme Editing in Kong Manager
+title: Theme Editing in Kong Manager
 badge: enterprise
 ---
 
