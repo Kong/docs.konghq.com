@@ -197,7 +197,7 @@ the full service update specification.
    ```sh
    curl -i -X POST http://localhost:8001/services/example_service/routes \
      --data 'paths[]=/mock' \
-     --data name=mocking
+     --data name=example_route
    ```
 
    If the route was successfully created, the API returns a `201` response code and a response body like this:
@@ -210,7 +210,7 @@ the full service update specification.
      "methods": null,
      "sources": null,
      "destinations": null,
-     "name": "mocking",
+     "name": "example_route",
      "headers": null,
      "hosts": null,
      "preserve_host": false,
@@ -245,10 +245,10 @@ the full service update specification.
    * `/services/{service name or id}/routes/{route name or id}`
    * `/routes/{route name or id}`
 
-   To view the current state of the `mocking` route, make a `GET` request to the route URL:
+   To view the current state of the `example_route` route, make a `GET` request to the route URL:
 
    ```sh
-   curl -X GET http://localhost:8001/services/example_service/routes/mocking
+   curl -X GET http://localhost:8001/services/example_service/routes/example_route
    ``` 
 
    The response body contains the current configuration of your route:
@@ -261,7 +261,7 @@ the full service update specification.
      "methods": null,
      "sources": null,
      "destinations": null,
-     "name": "mocking",
+     "name": "example_route",
      "headers": null,
      "hosts": null,
      "preserve_host": false,
@@ -299,7 +299,7 @@ the full service update specification.
    
    ```
    curl --request PATCH \
-     --url localhost:8001/services/example_service/routes/mocking \
+     --url localhost:8001/services/example_service/routes/example_route \
      --data tags="tutorial"
    ```
    
@@ -335,7 +335,7 @@ the full service update specification.
          "methods": null,
          "sources": null,
          "destinations": null,
-         "name": "mocking",
+         "name": "example_route",
          "headers": null,
          "hosts": null,
          "preserve_host": false,
