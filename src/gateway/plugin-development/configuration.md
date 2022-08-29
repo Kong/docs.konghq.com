@@ -234,7 +234,6 @@ return {
             anonymous = {
               type = "string",
               uuid = true,
-              legacy = true,
             },
           },
           {
