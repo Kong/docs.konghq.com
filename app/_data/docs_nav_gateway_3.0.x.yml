@@ -66,8 +66,6 @@ items:
         url: /get-started/secure-services
       - text: Configure Load-Balancing
         url: /get-started/load-balancing
-      - text: Workspaces and Teams
-        url: /get-started/manage-teams
   - title: Kong in Production
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
