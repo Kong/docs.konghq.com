@@ -1,5 +1,6 @@
 ---
 title: Configuring a gRPC Service
+content_type: how-to
 ---
 
 Note: this guide assumes familiarity with gRPC; for learning how to set up
