@@ -6,7 +6,7 @@ chapter: 4
 
 Most of the time, it makes sense for your plugin to be configurable to answer
 all of your users' needs. Your plugin's configuration is stored in the
-datastore for Kong to retrieve it and pass it to your
+data store for Kong to retrieve it and pass it to your
 [handler.lua]({{page.book.chapters.custom-logic}}) methods when the plugin is
 being executed.
 
