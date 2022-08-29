@@ -35,11 +35,11 @@ items:
       - text: How Kong Works
         items:
           - text: Routing Traffic
-            url: /how-kong-works/proxy
+            url: /how-kong-works/routing-traffic
           - text: Load Balancing
-            url: /how-kong-works/loadbalancing
+            url: /how-kong-works/load-balancing
           - text: Health Checks and Circuit Breakers
-            url: /how-kong-works/health-checks-circuit-breakers
+            url: /how-kong-works/health-checks
           - text: Kong Performance Testing
             url: /how-kong-works/performance-testing
       - text: Glossary
