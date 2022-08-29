@@ -14,7 +14,9 @@
           {% else %}
           <strong class="product-title">{{ c.name }}</strong>
           {% endif %}
+          {% if c.cta_link %}
           <a class="feature-cta" href="{{ c.cta_link }}" target="_blank">{{ c.cta }}</a>
+          {% endif %}
         </th>
       {% endfor %}
     </tr>
@@ -23,14 +25,19 @@
     {% for f in include.config.features %}
       <tr>
         <td class="header-row">
-          <span>{{ f.name }}</span></td>
+          <span>{{ f.name }}</span>
+        </td>
         <td class="no-mobile"></td>
         <td class="no-mobile"></td>
       </tr>
       {% for i in f.items %}
-
         <tr>
-          <td>{{ i.name }}
+          <td>
+            {% if i.url %}
+              <a href="{{ i.url | replace: 'VERSION', page.kong_version}}"> {{ i.name }}</a>
+            {% else %}
+              {{ i.name }}
+            {% endif %}
             {% if i.tooltip %}
               {% info_tooltip %}
               {{ i.tooltip }}
@@ -38,8 +45,13 @@
             {% endif %}
           </td>
           {% for k in keys %}
+          {% assign k_text = k | append: "_text" %}
           <td>
+            {% if i[k_text] %}
+              {{ i[k_text] }}
+            {% else %}
             <i class="fa fa-{% if i[k] %}check{% else %}times{% endif %}"></i>
+            {% endif %}
           </td>
           {% endfor %}
         </tr>
