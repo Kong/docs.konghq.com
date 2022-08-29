@@ -35,11 +35,11 @@ items:
       - text: How Kong Works
         items:
           - text: Routing Traffic
-            url: /how-kong-works/proxy
+            url: /how-kong-works/routing-traffic
           - text: Load Balancing
-            url: /how-kong-works/loadbalancing
+            url: /how-kong-works/load-balancing
           - text: Health Checks and Circuit Breakers
-            url: /how-kong-works/health-checks-circuit-breakers
+            url: /how-kong-works/health-checks
           - text: Kong Performance Testing
             url: /how-kong-works/performance-testing
       - text: Glossary
@@ -75,17 +75,17 @@ items:
               url: /production-deployment/deployment-topologies/hybrid-mode/setup
           - text: DB-less Deployment
             url: /production-deployment/deployment-topologies/db-less-and-declarative-config
-          # - text: Traditional
-          #   url: /production-deployment/deployment-topologies/traditional
+          - text: Traditional
+            url: /production-deployment/deployment-topologies/traditional
       - text: Installation Options
         items:
           - text: Overview
             url: /install/
           - text: Kubernetes
             items:
-              - text: Install Kong Gateway with Kubernetes
-                url: /install/kubernetes/kubernetes
-              - text: Install Kong Gateway with Helm
+              - text: kubectl apply
+                url: /install/kubernetes/kubectl
+              - text: Helm
                 url: /install/kubernetes/helm-quickstart
               - text: OpenShift with Helm
                 url: /install/kubernetes/openshift
@@ -93,7 +93,7 @@ items:
                 url: /install/kubernetes/deployment-options
           - text: Docker
             items:
-              - text: Install Kong with Docker
+              - text: Using docker run
                 url: /install/docker
               - text: Build your own Docker images
                 url: /install/docker/build-custom-images/
@@ -117,7 +117,7 @@ items:
             url: /production-deployment/running-kong/kong-user
           - text: Securing the Admin API
             url: /production-deployment/running-kong/secure-admin-api
-          - text: Configure Kong Gateway and Systemd
+          - text: Using systemd
             url: /production-deployment/running-kong/systemd
       - text: Access Control
         items:
@@ -149,7 +149,7 @@ items:
             url: /production-deployment/networking/firewall
       - text: Kong Configuration File
         url: /production-deployment/kong-conf
-      - text: Kong Gateway Environment Variables
+      - text: Environment Variables
         url: /production-deployment/environment-variables
       - text: Embedding Kong in Open Resty
         url: /production-deployment/kong-openresty
@@ -159,17 +159,17 @@ items:
         items:
           - text: Overview
             url: /production-deployment/monitoring/
-          - text: How To Monitor with Prometheus
+          - text: Prometheus
             url: /production-deployment/monitoring/prometheus
-          - text: How To Monitor with Statsd
+          - text: StatsD
             url: /production-deployment/monitoring/statsd
-          - text: Collect Metrics with Datadog
+          - text: Datadog
             url: /production-deployment/monitoring/datadog
       - text: Tracing
         items:
           - text: Overview
             url: /production-deployment/tracing/
-          - text: How To Write a Custom Trace Exporter
+          - text: Writing a Custom Trace Exporter
             url: /production-deployment/tracing/write-custom-trace-exporter
           - text: Tracing API Reference
             url: /production-deployment/tracing/api
@@ -250,7 +250,7 @@ items:
             url: /kong-enterprise/developer-portal/
           - text: Enable the Dev Portal
             url: /kong-enterprise/developer-portal/enable
-          - text: Publish an API Spec to the Dev Portal
+          - text: Publish an OpenAPI Spec
             url: /kong-enterprise/developer-portal/publish-spec
           - text: Structure and File Types
             url: /kong-enterprise/developer-portal/structure-and-file-types

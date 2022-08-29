@@ -7,6 +7,11 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'mTLS'
   inflect.acronym 'PDK'
   inflect.acronym 'OIDC'
+  inflect.acronym 'OSS'
+  inflect.acronym 'kubectl'
+  inflect.acronym 'OpenShift'
+  inflect.acronym 'systemd'
+  inflect.acronym 'StatsD'
 end
 
 module Jekyll
