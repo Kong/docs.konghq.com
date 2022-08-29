@@ -542,11 +542,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the
   “TCP keepalive” behavior for the listening socket. If this parameter is
   omitted then the operating system’s settings will be in effect for the socket.
-  If it is set to the value “on”, the SO_KEEPALIVE option is turned
-  on for the socket. If it is set to the value “off”, the SO_KEEPALIVE option
+  If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
+  on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
   is turned off for the socket. Some operating systems support setting of
-  TCP keepalive parameters on a per-socket basis using the TCP_KEEPIDLE,
-  TCP_KEEPINTVL, and TCP_KEEPCNT socket options.
+  TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
+  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
 this node.
@@ -625,12 +625,12 @@ Some suffixes can be specified for each pair:
 - `ipv6only=on|off` whether an IPv6 socket listening on a wildcard address [::]
   will accept only IPv6 connections or both IPv6 and IPv4 connections.
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the
-  “TCP keepalive” behavior for the listening socket. If this parameter is
+  `TCP keepalive` behavior for the listening socket. If this parameter is
   omitted then the operating system’s settings will be in effect for the socket.
-  If it is set to the value “on”, the SO_KEEPALIVE option is turned
+  If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
   on for the socket. If it is set to the value “off”, the SO_KEEPALIVE option
   is turned off for the socket. Some operating systems support setting of
-  TCP keepalive parameters on a per-socket basis using the TCP_KEEPIDLE,
+  TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
   TCP_KEEPINTVL, and TCP_KEEPCNT socket options.
 
 Examples:
@@ -699,11 +699,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the
   “TCP keepalive” behavior for the listening socket. If this parameter is
   omitted then the operating system’s settings will be in effect for the socket.
-  If it is set to the value “on”, the SO_KEEPALIVE option is turned
-  on for the socket. If it is set to the value “off”, the SO_KEEPALIVE option
+  If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
+  on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
   is turned off for the socket. Some operating systems support setting of
   TCP keepalive parameters on a per-socket basis using the TCP_KEEPIDLE,
-  TCP_KEEPINTVL, and TCP_KEEPCNT socket options.
+  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the Admin interface for this
 node, enabling a 'data-plane' mode (without configuration capabilities) pulling
