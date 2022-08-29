@@ -55,7 +55,6 @@
 
       {% if title == "Servicehub" %}{% assign title = "Service Hub" %}{% endif %}
 
-      {% unless forloop.last %}
       {% capture breadcrumb_url %}{{ breadcrumb_url }}{{ crumb }}/{% endcapture %}
       {% capture breadcrumb_exists %}{% page_exists {{breadcrumb_url}} %}{% endcapture %}
 
@@ -66,7 +65,6 @@
           {{ title }}
           {% endif %}
         </li>
-      {% endunless %}
     {% endfor %}
   </ul>
 </div>
