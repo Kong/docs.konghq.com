@@ -119,7 +119,7 @@ items:
             url: /production-deployment/running-kong/kong-user
           - text: Securing the Admin API
             url: /production-deployment/running-kong/secure-admin-api
-          - text: Configure Kong Gateway and Systemd
+          - text: Using systemd
             url: /production-deployment/running-kong/systemd
       - text: Access Control
         items:
@@ -151,7 +151,7 @@ items:
             url: /production-deployment/networking/firewall
       - text: Kong Configuration File
         url: /production-deployment/kong-conf
-      - text: Kong Gateway Environment Variables
+      - text: Environment Variables
         url: /production-deployment/environment-variables
       - text: Embedding Kong in Open Resty
         url: /production-deployment/kong-openresty
@@ -161,17 +161,17 @@ items:
         items:
           - text: Overview
             url: /production-deployment/monitoring/
-          - text: How To Monitor with Prometheus
+          - text: Prometheus
             url: /production-deployment/monitoring/prometheus
-          - text: How To Monitor with Statsd
+          - text: statsd
             url: /production-deployment/monitoring/statsd
-          - text: Collect Metrics with Datadog
+          - text: DataDog
             url: /production-deployment/monitoring/datadog
       - text: Tracing
         items:
           - text: Overview
             url: /production-deployment/tracing/
-          - text: How To Write a Custom Trace Exporter
+          - text: Writing a Custom Trace Exporter
             url: /production-deployment/tracing/write-custom-trace-exporter
           - text: Tracing API Reference
             url: /production-deployment/tracing/api
