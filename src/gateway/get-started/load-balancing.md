@@ -1,66 +1,83 @@
 ---
-title: Configure Load Balancing
+title: Load Balancing
+content-type: tutorial
+book: get-started
+chapter: 6
 ---
 
-In this topic, you’ll learn about configuring upstream services, and create multiple targets for load balancing.
+Load balancing is a method of distributing API request traffic across
+multiple upstream services. Load balancing improves overall system responsiveness
+and reduces failures by preventing overloading of individual resources. 
 
-If you are following the getting started workflow, make sure you have completed [Secure Services Using Authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services) before moving on.
+In the following example, you’ll use an application deployed across two different servers, or upstream targets. 
+{{site.base_gateway}} needs to load balance across both servers, so that if one of the servers is unavailable, 
+it automatically detects the problem and routes all traffic to the working server.
 
-## What are Upstreams?
+An [upstream](/gateway/latest/understanding-kong/key-concepts/upstreams/) 
+refers to the service applications sitting behind {{site.base_gateway}}, 
+to which client requests are forwarded. In {{site.base_gateway}}, an upstream represents a virtual hostname and can be 
+used to health check, circuit break, and load balance incoming requests over multiple [target](gateway/latest/admin-api/#target-object) backend services.
 
-An **Upstream Object** refers to your upstream API/service sitting behind {{site.base_gateway}}, to which client requests are forwarded. In {{site.base_gateway}}, an Upstream Object represents a virtual hostname and can be used to health check, circuit break, and load balance incoming requests over multiple services (targets).
-
-In this topic, you’ll configure the service created earlier (`example_service`) to point to an upstream instead of the host. For the purposes of our example, the upstream will point to two different targets, `httpbin.org` and `mockbin.org`. In a real environment, the upstream will point to the same service running on multiple systems.
+In this section, you’ll re-configure the service created earlier, (`example_service`) to point to an upstream 
+instead of a specific host. For the purposes of our example, the upstream will point to two different targets, 
+`httpbin.org` and `mockbin.org`. More commonly, targets will be instances of the same backend service running on different host systems.
 
 Here is a diagram illustrating the setup:
 
 ![Upstream targets](/assets/images/docs/getting-started-guide/upstream-targets.png)
 
-## Why load balance across upstream targets?
+## Enable load balancing
 
-In the following example, you’ll use an application deployed across two different servers, or upstream targets. {{site.base_gateway}} needs to load balance across both servers, so that if one of the servers is unavailable, it automatically detects the problem and routes all traffic to the working server.
+In this section, you will create an upstream named `example_upstream` and add two targets to it.
 
-## Configure Upstream Services
+### Prerequisites
 
-In this section, you will create an Upstream named `example_upstream` and add two targets to it.
+This chapter is part of the *Get Started with Kong* series. For the best experience, it is recommended that you follow the
+series from the beginning. 
 
-Call the Admin API on port `8001` and create an Upstream named `example_upstream`:
+Start with the introduction, [Get Kong](/gateway/latest/get-started/get-kong), which includes
+a list of prerequisites and instructions for running a local {{site.base_gateway}}.
 
-```sh
-curl -X POST http://localhost:8001/upstreams \
-  --data name=example_upstream
-```
-Update the service you created previously to point to this upstream:
+Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),
+includes instructions for installing a mock service used throughout this series. 
 
-```sh
-curl -X PATCH http://localhost:8001/services/example_service \
-  --data host='example_upstream'
-```
+If you haven't completed these steps already, complete them before proceeding.
 
-Add two targets to the upstream, each with port 80: `mockbin.org:80` and
-`httpbin.org:80`:
+1. **Create an upstream** 
 
+   Use the Admin API to create an upstream named `example_upstream`:
 
-```sh
-curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
-  --data target='mockbin.org:80'
+   ```sh
+   curl -X POST http://localhost:8001/upstreams \
+     --data name=example_upstream
+   ```
 
-curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
-  --data target='httpbin.org:80'
-```
+1. **Create upstream targets**
 
-You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that Upstream.
+   Create two targets for `example_upstream`. Each request creates a new target, and 
+   sets the backend service connection endpoint:
+   
+   ```sh
+   curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
+     --data target='mockbin.org:80'
+   curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
+     --data target='httpbin.org:80'
+   ```
 
-## Validate the Upstream Services
+1. **Update service**
 
-1. With the Upstream configured, validate that it’s working by visiting the route `http://<localhost:8000/mock` using a web browser or CLI.
-2. Continue pinging the endpoint and the site should change from `httpbin` to `mockbin`.
+   In the [services and routes](/gateway/latest/get-started/services-and-routes/) section of this guide, you created `example_service` which pointed
+   to an explicit host, `http://mockbin.org`. Now you'll modify that service to point to the upstream instead:
+   
+   ```sh
+   curl -X PATCH http://localhost:8001/services/example_service \
+     --data host='example_upstream'
+   ```
 
-## Summary and next steps
+   You now have an upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that upstream.
 
-In this topic, you:
+1. **Validate**
 
-* Created an Upstream object named `example_upstream` and pointed the Service `example_service` to it.
-* Added two targets, `httpbin.org` and `mockbin.org`, with equal weight to the Upstream.
+   Validate that the upstream you configured is working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
+   Continue pinging the endpoint and the site should change from `httpbin` to `mockbin`.
 
-If you have a {{site.konnect_product_name}} subscription, go on to [Managing Administrative Teams](/gateway/{{page.kong_version}}/get-started/comprehensive/manage-teams).
