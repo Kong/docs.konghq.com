@@ -189,7 +189,7 @@
 /hub/kong-inc/opa/0.*                              /hub/kong-inc/opa/
 /hub/kong-inc/openid-connect/0.*                   /hub/kong-inc/openid-connect/
 /hub/kong-inc/openid-connect/1.*                   /hub/kong-inc/openid-connect/
-/hub/kong-inc/openwhisk/*                          /hub/kong-inc/openwhisk/
+/hub/kong-inc/openwhisk/0.1-x.html                 /hub/kong-inc/openwhisk/
 /hub/kong-inc/prometheus/0.*                       /hub/kong-inc/prometheus/
 /hub/kong-inc/prometheus/1.*                       /hub/kong-inc/prometheus/
 /hub/kong-inc/proxy-cache/0.*                      /hub/kong-inc/proxy-cache/
