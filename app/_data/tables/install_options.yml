@@ -9,44 +9,44 @@ features:
   - name: 'Packages'
     items:
       - name: 'Alpine'
-        url: /gateway/VERSION/kong-production/install-options/docker/build-custom-images/
+        url: /gateway/VERSION/install/docker/build-custom-images/
         oss: true
         enterprise: true
         support: true
       - name: 'Debian'
-        url: /gateway/VERSION/kong-production/install-options/linux/debian/
+        url: /gateway/VERSION/install/linux/debian/
         oss: true
         enterprise: true
         support: true
       - name: 'Ubuntu'
-        url: /gateway/VERSION/kong-production/install-options/linux/ubuntu/
+        url: /gateway/VERSION/install/linux/ubuntu/
         oss: true
         enterprise: true
         support: true
       - name: 'RedHat'
-        url: /gateway/VERSION/kong-production/install-options/linux/rhel/
+        url: /gateway/VERSION/install/linux/rhel/
         oss: true
         enterprise: true
         support: true
       - name: 'Amazon Linux 2'
-        url: /gateway/VERSION/kong-production/install-options/linux/amazon-linux/
+        url: /gateway/VERSION/install/linux/amazon-linux/
         oss: true
         enterprise: true
         support: true
   - name: 'Kubernetes'
     items:
       - name: 'Kubernetes (YAML Manifests)'
-        url: /gateway/VERSION/kong-production/install-options/kubernetes/
+        url: /gateway/VERSION/install/kubernetes/kubernetes/
         oss: true
         enterprise: true
         support: false
       - name: 'Kubernetes (Helm)'
-        url: /gateway/VERSION/kong-production/install-options/helm-quickstart/
+        url: /gateway/VERSION/install/kubernetes/helm-quickstart/
         oss: true
         enterprise: true
         support: true
       - name: 'OpenShift'
-        url: /gateway/VERSION/kong-production/install-options/openshift/
+        url: /gateway/VERSION/install/kubernetes/openshift/
         oss: true
         enterprise: true
         support: false
@@ -69,7 +69,7 @@ features:
   - name: 'Other'
     items:
       - name: 'MacOS (Homebrew)'
-        url: /gateway/VERSION/kong-production/install-options/macos/
+        url: /gateway/VERSION/install/macos/
         oss: true
         enterprise_text: N/A
         support: false
