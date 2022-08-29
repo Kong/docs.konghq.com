@@ -252,7 +252,7 @@ items:
             url: /kong-enterprise/developer-portal/
           - text: Enable the Dev Portal
             url: /kong-enterprise/developer-portal/enable
-          - text: Publish an API Spec to the Dev Portal
+          - text: Publish an OpenAPI Spec
             url: /kong-enterprise/developer-portal/publish-spec
           - text: Structure and File Types
             url: /kong-enterprise/developer-portal/structure-and-file-types
