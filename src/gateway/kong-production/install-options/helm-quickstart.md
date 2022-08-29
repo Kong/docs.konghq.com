@@ -144,7 +144,7 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
     kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
 
 {% endnavtab %}
-{% navtab Kong Enterprise licensed Mode%}
+{% navtab Kong Enterprise Licensed Mode%}
 
    >This command must be run in the directory that contains your `license.json` file.
 
@@ -304,7 +304,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 ## Use {{site.base_gateway}}
 
-{{site.base_gateway}} is now be serving the Kong Manager WebGUI and the Kong Admin API.
+{{site.base_gateway}} is now serving the Kong Manager WebGUI and the Kong Admin API.
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 
