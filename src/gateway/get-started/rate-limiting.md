@@ -167,7 +167,7 @@ may result in strained resources as the window counter is reset in the middle
 of the traffic burst. 
 * Your client applications may be waiting for the fixed time window to reset 
 so they can resume making requests. When the fixed window resets all the clients
-may flood the system with requests causing a stampedeing effect on your upstream services.
+may flood the system with requests causing a stampeding effect on your upstream services.
 
 The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) <span class="badge enterprise"></span> 
 plugin is an enhanced version of the Rate Limiting plugin. The advanced plugin 
