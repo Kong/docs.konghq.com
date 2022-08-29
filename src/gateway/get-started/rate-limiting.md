@@ -156,40 +156,22 @@ that defines a user of a service. Consumer-level rate limiting can be used to li
       --data "config.second=5" \
    ```
 
-## The Rate Limiting Advanced plugin
+## Advanced rate limiting
 
-Rate Limiting Advanced provides:
+In high scale production scenarios, effective rate limiting may require
+advanced techniques. The basic Rate Limiting plugin described above, 
+only allows you to define limits over fixed time windows. Fixed time windows
+are sufficient for many cases, however, there are disadvantages:
+* Bursts of requests around the boundary time of the fixed window,
+may result in strained resources as the window counter is reset in the middle
+of the traffic burst. 
+* Your client applications may be waiting for the fixed time window to reset 
+so they can resume making requests. When the fixed window resets all the clients
+may flood the system with requests causing a stampedeing effect on your upstream services.
 
-* Additional configurations: `limit`, `window_size`, and `sync_rate`
-* Support for Redis Sentinel, Redis cluster, and Redis SSL
-* Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. 
-  Configure `sync_rate` to periodically sync with backend storage.
-* More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration 
-  with more specificity. Learn more about our algorithms in How to Design a Scalable Rate Limiting Algorithm.
-* Consumer groups support: apply different rate limiting configurations to select groups of consumers.
-
-### Additional configuration
-
-The configuration process for the Rate Limiting Advanced plugin is similar to configuring the Rate Limiting plugin. 
-To configure the Rate Limiting Advanced plugin create a `POST` request like this: 
-
-```sh
-curl -i -X POST http://localhost:8001/plugins \
-   --data name=rate-limiting-advanced \
-   --data config.limit=5 \
-   --data config.window_size=30 \
-   --data config.sync_rate=-1
-```
-
-This request utilizes the `config.limit`, `config.window_size` and `config.sync_rate` form parameters. 
-
-* config.limit: Number of requests allows per window.
-* config.window_size: Window size to track request for in seconds. 
-* config.sync_rate: how often to sync counter data to the central data store.    `-1` ignores sync behavior 
-  entirely and only stores counters in node memory, `>0 ` sync the counters in that many number of seconds. 
-
-The word "window" here refers to a window of time, and the requests that can be made within that time frame. 
-In the request you created, 5 requests can be made within a 30 second window of time. On the 6th request, 
-the server will return a `429` response code. You can add multiple `window_size` and `config.limit` parameters 
-to this request to specify, with granularity, the rate limiting rules.  
+The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) <span class="badge enterprise"></span> 
+plugin is an enhanced version of the Rate Limiting plugin. The advanced plugin 
+provides additional limiting algorithm capabilities and superior performance compared
+to the basic plugin. For more information on advanced rate limiting algorithms, see 
+[How to Design a Scalable Rate Limiting Algorithm with Kong API](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
 
