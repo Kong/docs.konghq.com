@@ -132,7 +132,7 @@ curl -X POST http://localhost:8001/services/example_service/plugins \
 The Proxy Caching plugin can be enabled for specific routes. The request is the same as above, but the request is sent to the route URL:
 
 ```sh
-$ curl -X POST http://localhost:8001/routes/mock/plugins \
+$ curl -X POST http://localhost:8001/routes/example_route/plugins \
    --data "name=proxy-cache" \
    --data "config.request_method=GET" \
    --data "config.response_code=200" \
