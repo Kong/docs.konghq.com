@@ -16,7 +16,7 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 ## Prerequisites
 
-* RBAC is [enabled](src/gateway/kong-manager/auth/rbac/enable)
+* RBAC is [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
 * You are [logged in as the super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
 or a user that has `/admins` and `/rbac` read and write access.
 
