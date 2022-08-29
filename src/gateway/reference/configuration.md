@@ -628,10 +628,10 @@ Some suffixes can be specified for each pair:
   `TCP keepalive` behavior for the listening socket. If this parameter is
   omitted then the operating system’s settings will be in effect for the socket.
   If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
-  on for the socket. If it is set to the value “off”, the SO_KEEPALIVE option
+  on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
   is turned off for the socket. Some operating systems support setting of
   TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
-  TCP_KEEPINTVL, and TCP_KEEPCNT socket options.
+  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
 
 Examples:
 
@@ -702,7 +702,7 @@ Some suffixes can be specified for each pair:
   If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
   on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
   is turned off for the socket. Some operating systems support setting of
-  TCP keepalive parameters on a per-socket basis using the TCP_KEEPIDLE,
+  TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
   `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the Admin interface for this
