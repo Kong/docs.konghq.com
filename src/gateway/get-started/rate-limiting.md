@@ -124,7 +124,7 @@ The Rate Limiting plugin can be enabled for specific routes. The request is the 
 but posted to the route URL:
 
 ```sh
-curl -X POST http://localhost:8001/routes/mock/plugins \
+curl -X POST http://localhost:8001/routes/example_route/plugins \
    --data "name=rate-limiting" \
    --data config.minute=5 \
    --data config.policy=local
