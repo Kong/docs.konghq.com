@@ -11,6 +11,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'kubectl'
   inflect.acronym 'OpenShift'
   inflect.acronym 'systemd'
+  inflect.acronym 'StatsD'
 end
 
 module Jekyll

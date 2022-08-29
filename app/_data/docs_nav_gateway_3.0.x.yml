@@ -165,7 +165,7 @@ items:
             url: /production-deployment/monitoring/prometheus
           - text: statsd
             url: /production-deployment/monitoring/statsd
-          - text: DataDog
+          - text: Datadog
             url: /production-deployment/monitoring/datadog
       - text: Tracing
         items:
