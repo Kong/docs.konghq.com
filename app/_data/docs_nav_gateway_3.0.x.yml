@@ -82,13 +82,13 @@ items:
       - text: Installation Options
         items:
           - text: Overview
-            url: /kong-production/install-options/
+            url: /install/
           - text: Kubernetes
             items:
               - text: Install Kong Gateway with Kubernetes
                 url: /install/kubernetes/kubernetes
-              - text: Helm
-                url: /install/kubernetes/helm
+              - text: Install Kong Gateway with Helm
+                url: /install/kubernetes/helm-quickstart
               - text: OpenShift with Helm
                 url: /install/kubernetes/openshift
               - text: Kubernetes Deployment Options
