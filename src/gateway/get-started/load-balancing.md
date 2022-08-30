@@ -43,6 +43,8 @@ includes instructions for installing a mock service used throughout this series.
 
 If you haven't completed these steps already, complete them before proceeding.
 
+### Steps to enable load balancing
+
 1. **Create an upstream** 
 
    Use the Admin API to create an upstream named `example_upstream`:
@@ -80,4 +82,13 @@ If you haven't completed these steps already, complete them before proceeding.
 
    Validate that the upstream you configured is working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
    Continue pinging the endpoint and the site should change from `httpbin` to `mockbin`.
+
+## What's next
+
+You've completed the Get Started with Kong guide, but a lot more is possible with [{{site.base_gateway}}](/gateway/latest). 
+The following are guides to advanced features of {{site.base_gateway}}:
+
+* [Monitoring with {{site.base_gateway}}](/gateway/3.0.x/production-deployment/monitoring/)
+* [Securing {{site.base_gateway}} with RBAC](/gateway/latest/kong-manager/auth/rbac/enable/) <span class="badge enterprise"></span> 
+* [Managing Workspaces and Team with {{site.base_gateway}}](/gateway/latest/kong-manager/auth/workspaces-and-teams/) <span class="badge enterprise"></span>
 
