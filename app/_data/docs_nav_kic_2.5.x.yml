@@ -37,6 +37,8 @@ items:
         url: /concepts/security
       - text: Ingress Resource API Versions
         url: /concepts/ingress-versions
+      - text: Gateway API
+        url: /concepts/gateway-api
   - title: Deployment
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /deployment/overview
@@ -105,8 +107,10 @@ items:
         url: /guides/upstream-mtls
       - text: Exposing a TCP-based Service
         url: /guides/using-tcpingress
+        generate: false # Generated in the CustomResources section above
       - text: Exposing a UDP-based Service
         url: /guides/using-udpingress
+        generate: false # Generated in the CustomResources section above
       - text: Using the mTLS Auth Plugin
         url: /guides/using-mtls-auth-plugin
       - text: Configuring Custom Entities
@@ -138,3 +142,5 @@ items:
         url: /references/prometheus
       - text: Feature Gates
         url: /references/feature-gates
+      - text: Gateway API Support
+        url: /references/gateway-api-support
