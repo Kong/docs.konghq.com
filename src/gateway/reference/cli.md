@@ -18,7 +18,7 @@ If you haven't yet, we recommend you read the [configuration reference][configur
 
 All commands take a set of special, optional flags as arguments:
 
-* `--help`: print the command's help message
+* `-h`, `--help`: print the command's help message
 * `--v`: enable verbose mode
 * `--vv`: enable debug mode (noisy)
 
@@ -146,6 +146,9 @@ The available commands are:
 
   reinitialize-workspace-entity-counters  Resets the entity counters from the
                                           database entities.
+
+  status                            Dump the database migration status in JSON format.
+
 Options:
  -y,--yes                           Assume "yes" to prompts and run
                                     non-interactively.
@@ -278,9 +281,11 @@ Options:
 
 ```
 Usage: kong runner [file] [args]
+
 Execute a lua file in a kong node. the `kong` variable is available to
 reach the DAO, PDK, etc. The variable `args` can be used to access all
 arguments (args[1] being the lua filename being run).
+
 Example usage:
   kong runner file.lua arg1 arg2
   echo 'print("foo")' | kong runner
@@ -349,6 +354,10 @@ Example usage:
 
 The available commands are:
   get <reference>  Retrieves a value for <reference>
+
+Options:
+ -c,--conf    (optional string)  configuration file
+ -p,--prefix  (optional string)  override prefix directory
 
 ```
 
