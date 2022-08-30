@@ -3,7 +3,7 @@ title: Migrating from Kong Gateway (OSS) to Kong Gateway
 toc: true
 ---
 
-Run `kong migrations` commands to migrate from a open-source Gateway installation to an Enterprise one.
+Run `kong migrations` commands to migrate from an open-source {{site.base_gateway}} installation to an Enterprise one.
 
 You can only migrate to a {{site.ee_product_name}} version that
 supports the same {{site.ce_product_name}} version.
