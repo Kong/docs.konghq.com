@@ -468,7 +468,7 @@ to issue tokens.
 
 ```bash
 # create a WebSocket service
-$ curl -X POST http://kong:8001/services/ \
+$ curl -X POST http://localhost:8001/services/ \
   --data "name=my-websocket-service" \
   --data "url=ws://my-websocket-backend:8080/"
 
