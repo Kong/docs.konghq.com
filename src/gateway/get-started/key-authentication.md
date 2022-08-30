@@ -38,7 +38,7 @@ API key authentication is a popular method for enforcing API authentication. In 
 {{site.base_gateway}} is used to generate and associate an API key with a [consumer](/gateway/latest/admin-api/#consumer-object). 
 That key is the authentication secret presented by the client when making subsequent requests. {{site.base_gateway}} approves or 
 denies requests based on the validity of the presented key. This process can be applied globally or to individual 
-[services](/gateway/latest/admin-api/#service-object) and [routes](/gateway/latest/admin-api/#route-object).
+[services](/gateway/latest/key-concepts/services/) and [routes](/gateway/latest/key-concepts/routes/).
 
 ### Prerequisites
 
