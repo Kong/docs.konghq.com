@@ -11,6 +11,51 @@ no_version: true
 
 #### Enterprise
 
+* Kong Gateway now supports [dynamic plugin ordering](/gateway/3.0.x/kong-enterprise/plugin-ordering).
+You can change a plugin's static priority by specifing the order in which plugins run.
+This lets you run plugins such as `rate-limiting` before authentication plugins.
+
+* Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
+
+  To enable FIPS mode, set [`fips`](/gateway/3.0.x/reference/configuration/#fips) to `on`.
+  FIPS mode is only supported in Ubuntu 20.04.
+
+* **Beta feature**: Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
+
+  Previously, Kong Gateway 2.x supported limited WebSocket connections, where plugins only ran during the initial connection phase instead of for each frame.
+  Now, Kong Gateway provides more control over WebSocket traffic by implementing plugins that target WebSocket frames.
+
+  This release includes:
+  * [Service](/gateway/3.0.x/admin-api/#services) and [route](/gateway/3.0.x/admin-api/#routes) support for `ws` and `wss` protocols
+  * WebSocket PDK modules: [kong.websocket.client](/gateway/3.0.x/plugin-development/pdk/kong.websocket.client) and [kong.websocket.upstream](/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream).
+  * [New plugin handlers](/gateway/3.0.x/plugin-development/custom-logic/#websocket-plugin-development)
+  * Two new plugins: [WebSocket Size Limit](/hub/kong-inc/websocket-size-limit/)  and [WebSocket Validator](/hub/kong-inc/websocket-validator/)
+
+  Learn how to develop WebSocket plugins with our [plugin development guide](/gateway/3.0.x/plugin-development/custom-logic/#websocket-plugin-development).
+
+* In this release, Kong Manager ships a with a refactored design and improved user experience.
+
+  Notable changes:
+  * Reworked workspace dashboards, both for specific workspaces and at the multi-workspace level.
+  * License metrics now appear at the top of overview pages.
+  * Restructured the layout and navigation to make workspace selection a secondary concern.
+  * Grayed out portal buttons when you don't have permissions.
+  * Added license level to phone home metrics.
+  * Added more tooltips.
+
+* [Secrets management](/gateway/kong-enterprise/secrets-management/) is now generally available.
+  * Added GCP integration support for the secrets manager. GCP is now available as a vault backend.
+  * The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` entity.
+  [#8871](https://github.com/Kong/kong/pull/8871)
+  [#9217](https://github.com/Kong/kong/pull/9217)
+
+* Kong Gateway now provides slim and UBI images.
+Slim images are docker containers built with a minimal set of installed packages to run Kong Gateway.
+From 3.0 onward, Kong Docker images will only contain software required to run the Gateway.
+This ensures that false positive vulnerabilities don't get flagged during security scanning.
+
+    If you want to retain or add other dependencies, you can [build custom Kong Docker images](/gateway/3.0.x/install/docker/build-custom-images).
+
 * Added key recovery for keyring encryption.
 This exposes a new endpoint for the Admin API, [`/keyring/recover`](/gateway/3.0.x/admin-api/db-encryption/#recover-keyring-from-database), and requires [`keyring_recovery_public_key`](/gateway/3.0.x/reference/configuration/#keyring_recovery_public_key) to be set in `kong.conf`.
 
@@ -18,62 +63,21 @@ This exposes a new endpoint for the Admin API, [`/keyring/recover`](/gateway/3.0
 
     Set your desired encryption mode with the [`declarative_config_encryption_mode`](/gateway/3.0.x/reference/configuration/#declarative_config_encryption_mode) configuration parameter.
 
-* Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
-
-    To enable FIPS mode, set [`fips`](/gateway/3.0.x/reference/configuration/#fips) to `on`.
-   FIPS mode is only supported in Ubuntu 20.04.
-
-* [TO DO: expand description] Kong Gateway now includes WebSocket validation functionality:
-  * Services and routes now support `ws` and `wss` protocols
-  * WebSocket PDK module
-  * New plugin handlers
-  * Two new plugins: WebSocket Size Limit and WebSocket Validator
-
-* Kong Manager improvements:
-
-  * Reworked workspace dashboards, both for specific workspaces and at the multi-workspace level.
-  * License metrics now appear at the top of overview pages.
-  * Restructured the layout and navigation to make workspace selection a secondary concern.
-  * Grayed out portal buttons when you don't have permissions
-  * Added license level to phone home metrics.
-
-* Secrets management is now generally available.
-The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` entity.
-  [#8871](https://github.com/Kong/kong/pull/8871)
-  [#9217](https://github.com/Kong/kong/pull/9217)
-
-#### Performance
-
-- Kong Gateway does not register unnecessary event handlers on hybrid mode control plane
-  nodes anymore. [#8452](https://github.com/Kong/kong/pull/8452).
-- Use the new timer library to improve performance,
-  except for the plugin server.
-  [#8912](https://github.com/Kong/kong/pull/8912)
-- Increased the use of caching for DNS queries by activating `additional_section` by default.
-  [#8895](https://github.com/Kong/kong/pull/8895)
-- `pdk.request.get_header` has been changed to a faster implementation.
-  It doesn't fetch all headers every time it's called.
-  [#8716](https://github.com/Kong/kong/pull/8716)
-- Conditional rebuilding of the router, plugins iterator, and balancer on data planes.
-  [#8519](https://github.com/Kong/kong/pull/8519),
-  [#8671](https://github.com/Kong/kong/pull/8671)
-- Made configuration loading code more cooperative by yielding.
-  [#8888](https://github.com/Kong/kong/pull/8888)
-- Use the LuaJIT encoder instead of JSON to serialize values faster in LMDB.
-  [#8942](https://github.com/Kong/kong/pull/8942)
-- Made inflating and JSON decoding non-concurrent, which avoids blocking and makes data plane reloads faster.
-  [#8959](https://github.com/Kong/kong/pull/8959)
-- Stopped duplication of some events.
-  [#9082](https://github.com/Kong/kong/pull/9082)
-- Improved performance of configuration hash calculation by using `string.buffer` and `tablepool`.
-  [#9073](https://github.com/Kong/kong/pull/9073)
-- Reduced cache usage in DB-less mode by not using the Kong cache for routes and services in LMDB.
-  [#8972](https://github.com/Kong/kong/pull/8972)
-
 #### Core
 
-* Introduced a new router implementation `atc-router`,
-  which is written in Rust.
+* This release introduces a new router implementation: `atc-router`.
+This router is written in Rust, a powerful routing language that can handle complex routing requirements.
+The new router can be used in traditional-compatible mode, or use the new expression-based language.
+
+  With the new router, we have:
+  * Reduced router rebuild time when changing Kong’s configuration
+  * Increased runtime performance when routing requests
+  * Reduced P99 latency from 1.5s to 0.1s with 10,000 routes
+
+  Learn more about the router:
+  * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
+  * [Router operator reference](/gateway/3.0.x/reference/router-operators)
+
   [#8938](https://github.com/Kong/kong/pull/8938)
 * Implemented delayed response in stream mode.
   [#6878](https://github.com/Kong/kong/pull/6878)
@@ -109,6 +113,34 @@ The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` en
   [#9254](https://github.com/Kong/kong/pull/9254)
 * A new CLI command, `kong migrations status`, generates the migration status in a JSON file.
 * Removed the warning for `AAAA` being experimental with `dns_order`.
+
+#### Performance
+
+- Kong Gateway does not register unnecessary event handlers on hybrid mode control plane
+  nodes anymore. [#8452](https://github.com/Kong/kong/pull/8452).
+- Use the new timer library to improve performance,
+  except for the plugin server.
+  [#8912](https://github.com/Kong/kong/pull/8912)
+- Increased the use of caching for DNS queries by activating `additional_section` by default.
+  [#8895](https://github.com/Kong/kong/pull/8895)
+- `pdk.request.get_header` has been changed to a faster implementation.
+  It doesn't fetch all headers every time it's called.
+  [#8716](https://github.com/Kong/kong/pull/8716)
+- Conditional rebuilding of the router, plugins iterator, and balancer on data planes.
+  [#8519](https://github.com/Kong/kong/pull/8519),
+  [#8671](https://github.com/Kong/kong/pull/8671)
+- Made configuration loading code more cooperative by yielding.
+  [#8888](https://github.com/Kong/kong/pull/8888)
+- Use the LuaJIT encoder instead of JSON to serialize values faster in LMDB.
+  [#8942](https://github.com/Kong/kong/pull/8942)
+- Made inflating and JSON decoding non-concurrent, which avoids blocking and makes data plane reloads faster.
+  [#8959](https://github.com/Kong/kong/pull/8959)
+- Stopped duplication of some events.
+  [#9082](https://github.com/Kong/kong/pull/9082)
+- Improved performance of configuration hash calculation by using `string.buffer` and `tablepool`.
+  [#9073](https://github.com/Kong/kong/pull/9073)
+- Reduced cache usage in DB-less mode by not using the Kong cache for routes and services in LMDB.
+  [#8972](https://github.com/Kong/kong/pull/8972)
 
 #### Admin API
 
@@ -715,6 +747,12 @@ openid-connect
 * `kong.tools.uri.normalize()` now escapes reserved and unreserved characters more accurately.
   [#8140](https://github.com/Kong/kong/pull/8140)
 
+### Known limitations
+
+* Kong Manager does not currently support the following features:
+  * Secrets management
+  * Plugin ordering
+  * Expression-based routing
 
 ### Dependencies
 

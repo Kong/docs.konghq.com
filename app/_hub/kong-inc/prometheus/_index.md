@@ -112,7 +112,7 @@ When `status_code_metrics` is set to true:
 - **Status codes**: HTTP status codes returned by upstream services.
   These are available per service, across all services, and per route per consumer.
 
-When `lantency_metrics` is set to to true:
+When `lantency_metrics` is set to true:
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
    - **Request**: Total time taken by Kong and upstream services to serve
      requests.
