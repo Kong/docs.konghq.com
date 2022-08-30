@@ -10,9 +10,9 @@ The following sections describe key Kong Enterprise features.
 
 ## Monitoring and analytics
 
-Use [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/vitals/) to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as Datadog and Prometheus.
+Use [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as Datadog and Prometheus.
 
-[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/vitals/)
+[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
 
 ## Secrets management
 

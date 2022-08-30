@@ -10,7 +10,7 @@ requests per second), without placing additional write load on the database
 backing the Kong cluster.
 
 For information about using Kong Vitals with a database as the backend, refer to
-[Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
+[Kong Vitals](/gateway/{{page.kong_version}}/analytics/).
 
 ## Set up Kong Vitals with InfluxDB
 
@@ -266,7 +266,7 @@ worker process flushes its buffer of metrics every 5 seconds or 5000 data points
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
-the [Vitals API](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml), measurement
+the [Vitals API](/gateway/{{page.kong_version}}/analytics/vitalsSpec.yaml), measurement
 values are read back grouped by second.
 
 {:.note}

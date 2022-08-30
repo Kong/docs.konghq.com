@@ -155,6 +155,6 @@ migrating in the opposite direction.
 [supported-plugins]:/kubernetes-ingress-controller/latest/references/plugin-compatibility
 [k4k8s-enterprise-install]: /gateway/{{page.kong_version}}/install-and-run/kubernetes
 [k4k8s-with-enterprise-install]: /gateway/{{page.kong_version}}/install-and-run/kubernetes
-[vitals-prometheus]: /gateway/{{page.kong_version}}/vitals/vitals-prometheus-strategy/
-[vitals-influxdb]: /gateway/{{page.kong_version}}/vitals/vitals-influx-strategy/
+[vitals-prometheus]: /gateway/{{page.kong_version}}/analytics/vitals-prometheus-strategy/
+[vitals-influxdb]: /gateway/{{page.kong_version}}/analytics/vitals-influx-strategy/
 [support]: https://support.konghq.com/
