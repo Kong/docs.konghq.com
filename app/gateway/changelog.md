@@ -216,7 +216,7 @@ Kong Gateway version.
   * The plugin now separates AWS credential cache by the IAM role ARN.
     [#8907](https://github.com/Kong/kong/pull/8907)
 
-* [Collector](/hub/kong-inc/collector/) (`collector`)
+* Collector (`collector`)
   * The deprecated Collector plugin has been removed.
 
 * [DeGraphQL](/hub/kong-inc/degraphql) (`degraphql`)
