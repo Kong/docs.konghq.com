@@ -58,6 +58,11 @@
       {% capture breadcrumb_url %}{{ breadcrumb_url }}{{ crumb }}/{% endcapture %}
       {% capture breadcrumb_exists %}{% page_exists {{breadcrumb_url}} %}{% endcapture %}
 
+      {% assign bc_title = breadcrumb_url | breadcrumb_title %}
+      {% if bc_title %}
+        {% assign title = bc_title %}
+      {% endif %}
+
       {% if breadcrumb_url != page.url or page.is_dir_index %}
         <li class="breadcrumb-item">
           {% if breadcrumb_exists == 'true' %}
