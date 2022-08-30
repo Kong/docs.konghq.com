@@ -1,4 +1,5 @@
-/gateway/latest/production/: Production Deployment
-/gateway/latest/kong-manager/auth/: Authentication and Authorization
-/gateway/latest/kong-manager/auth/oidc/: OpenID Connect
-/gateway/latest/kong-plugins/authentication/oidc/: OpenID Connect
+/gateway/VERSION/production/: Production Deployment
+/gateway/VERSION/kong-manager/auth/: Authentication and Authorization
+/gateway/VERSION/kong-manager/auth/oidc/: OpenID Connect
+/gateway/VERSION/kong-plugins/authentication/oidc/: OpenID Connect
+/gateway/VERSION/kong-enterprise/analytics/: Vitals

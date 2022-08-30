@@ -8,6 +8,9 @@ module Jekyll
       @mapping = YAML.load_file("#{__dir__}/../../breadcrumb_titles.yml")
     end
     def breadcrumb_title(input)
+      parts = input.split("/")
+      parts[2] = 'VERSION'
+      input = "#{parts.join("/")}/"
       @mapping[input]
     end
   end
