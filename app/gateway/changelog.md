@@ -440,8 +440,8 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
         Kong latency and upstream latency can operate at orders of different magnitudes. Separate these buckets to reduce memory overhead.
 
     * `kong_bandwidth` to `kong_bandwidth_bytes`.
-    * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into to `nginx_hconnections_total` (or `nginx_current_connections`?)
-    *  `request_count` and `consumer_status` were merged into http_requests_total.
+    * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into to `nginx_connections_total`.
+    *  `request_count` and `consumer_status` were merged into `http_requests_total`.
 
         If the `per_consumer` config is set to `false`, the `consumer` label will be empty. If the `per_consumer` config is `true`, the `consumer` label will be filled.
   * Removed the following metric: `http_consumer_status`
