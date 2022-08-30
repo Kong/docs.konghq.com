@@ -303,6 +303,22 @@ To handle clusters split across multiple releases, you should:
 This ensures that all instances are using the new Kong package before running
 `kong migrations finish`.
 
+### Hybrid mode considerations
+
+{:.important}
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/production-deployment/deployment-topologies/hybrid-mode/),
+upgrade the control plane first, and then the data planes.
+
+* If you are currently running 2.8.x in classic (traditional)
+  mode and want to run in hybrid mode instead, follow the hybrid mode
+  [installation instructions](/gateway/{{page.kong_version}}/production-deployment/deployment-topologies/hybrid-mode/setup/)
+  after running the migration.
+* Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
+  need to be installed on both the control plane and the data planes in hybrid mode. Install the
+  plugins on the control plane first, and then the data planes.
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+    support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
+
 ## Upgrade from 2.1.x - 2.8.x to 3.0.x {#migrate-db}
 
 {{site.ee_product_name}} supports the zero downtime migration model. This means
