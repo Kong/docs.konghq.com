@@ -57,7 +57,7 @@ items:
       - text: Proxy Caching
         url: /get-started/proxy-caching
       - text: Key Authentication
-        url: /get-started/secure-services
+        url: /get-started/key-authentication
       - text: Load-Balancing
         url: /get-started/load-balancing
   - title: Kong in Production

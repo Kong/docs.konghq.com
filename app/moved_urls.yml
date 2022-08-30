@@ -1,8 +1,6 @@
 ---
 /gateway-oss/VERSION/configuration/: "/gateway/VERSION/reference/configuration/"
 /gateway/VERSION/get-started/configure-services-and-routes/: "/gateway/VERSION/get-started/services-and-routes/"
-
-
 /gateway/VERSION/install-and-run/kubernetes/: "/gateway/VERSION/install/kubernetes/kubectl/"
 /gateway/VERSION/install-and-run/helm/: "/gateway/VERSION/install/kubernetes/helm/"
 /gateway/VERSION/install-and-run/openshift/: "/gateway/VERSION/install/kubernetes/openshift/"
@@ -151,19 +149,4 @@
 /gateway/VERSION/pdk/kong.vault/: "/gateway/VERSION/plugin-development/pdk/kong.vault/"
 /gateway/VERSION/plugin-development/plugin-configuration/: "/gateway/VERSION/plugin-development/configuration/"
 /gateway/VERSION/reference/external-plugins/: "/gateway/VERSION/plugin-development/pluginserver/go/"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/gateway/VERSION/get-started/secure-services/: "/gateway/VERSION/get-started/key-authentication/"
