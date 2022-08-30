@@ -185,14 +185,12 @@ items:
         url: /production/clustering
       - text: Logging Reference
         url: /production/logging
-      - text: Upgrade Kong Gateway
+      - text: Upgrade and Migration
         items:
-          - text: Upgrade Kong Enterprise
-            url: /upgrade/enterprise
-          - text: Upgrade Kong Gateway OSS
-            url: /upgrade/oss
-          - text: Migrate from OSS to EE
-            url: /upgrade/migrate-ce-to-ke
+          - text: Upgrade Kong Gateway
+            url: /upgrade/
+          - text: Migrate from OSS to Enterprise
+            url: /migrate-ce-to-ke/
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:

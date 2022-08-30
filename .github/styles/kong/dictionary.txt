@@ -84,6 +84,7 @@ jwk
 jwks
 jwt
 Keycloak
+keyspace
 kiali
 kibibytes
 Knative
@@ -220,6 +221,7 @@ uncomment
 uncommenting
 Unicode
 unix
+unnormalized
 unprocessable
 unpublish
 unregister
