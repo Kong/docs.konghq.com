@@ -74,8 +74,12 @@
       {% endif %}
     {% endfor %}
 
+    {% assign page_title = page.title %}
+    {% if page.breadcrumb %}
+      {% assign page_title = page.breadcrumb %}
+    {% endif %}
     <li class="breadcrumb-item">
-      <a href="{{ page.url }}">{{ page.title }}</a>
+      <a href="{{ page.url }}">{{ page_title }}</a>
     </li>
   </ul>
 </div>

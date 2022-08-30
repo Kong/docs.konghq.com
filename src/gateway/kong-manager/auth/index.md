@@ -1,5 +1,6 @@
 ---
 title: Authentication and Authorization in Kong Manager
+breadcrumb: Overview
 badge: enterprise
 ---
 

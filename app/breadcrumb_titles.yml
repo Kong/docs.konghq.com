@@ -1,1 +1,4 @@
 /gateway/latest/production/: Production Deployment
+/gateway/latest/kong-manager/auth/: Authentication and Authorization
+/gateway/latest/kong-manager/auth/oidc/: OpenID Connect
+/gateway/latest/kong-plugins/authentication/oidc/: OpenID Connect
