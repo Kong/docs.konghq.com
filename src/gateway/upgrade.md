@@ -1,9 +1,8 @@
 ---
 title: Upgrade Kong Gateway
-badge: free
 ---
 
-Upgrade to major, minor, and patch {{site.base_gateway}} (Enterprise package)
+Upgrade to major, minor, and patch {{site.base_gateway}}
 releases using the `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.base_gateway}} open-source entities
