@@ -64,7 +64,7 @@ If you haven't completed these steps already, complete them before proceeding.
      --data target='httpbin.org:80'
    ```
 
-1. **Update service**
+1. **Update the service**
 
    In the [services and routes](/gateway/latest/get-started/services-and-routes/) section of this guide, you created `example_service` which pointed
    to an explicit host, `http://mockbin.org`. Now you'll modify that service to point to the upstream instead:
