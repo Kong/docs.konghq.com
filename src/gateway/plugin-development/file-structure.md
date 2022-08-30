@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - File Structure
+title: File Structure
 book: plugin_dev
 chapter: 2
 ---

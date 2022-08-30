@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Introduction
+title: Introduction
 book: plugin_dev
 chapter: 1
 ---

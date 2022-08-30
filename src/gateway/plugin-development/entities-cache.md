@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Caching Custom Entities
+title: Caching Custom Entities
 book: plugin_dev
 chapter: 7
 ---

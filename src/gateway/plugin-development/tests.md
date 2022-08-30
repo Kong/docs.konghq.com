@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Writing tests
+title: Writing tests
 book: plugin_dev
 chapter: 9
 ---
