@@ -159,14 +159,14 @@ that defines a user of a service. Consumer-level rate limiting can be used to li
 ## Advanced rate limiting
 
 In high scale production scenarios, effective rate limiting may require
-advanced techniques. The basic Rate Limiting plugin described above, 
-only allows you to define limits over fixed time windows. Fixed time windows
+advanced techniques. The basic Rate Limiting plugin described above 
+only allows you to define limits over fixed-time windows. Fixed-time windows
 are sufficient for many cases, however, there are disadvantages:
 * Bursts of requests around the boundary time of the fixed window,
 may result in strained resources as the window counter is reset in the middle
 of the traffic burst. 
-* Multiple client applications may be waiting for the fixed time window to reset 
-so they can resume making requests. When the fixed window resets, multiple clients
+* Multiple client applications may be waiting for the fixed-time window to reset 
+so they can resume making requests. When the fixed-window resets, multiple clients
 may flood the system with requests, causing a stampeding effect on your upstream services.
 
 The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) <span class="badge enterprise"></span> 
