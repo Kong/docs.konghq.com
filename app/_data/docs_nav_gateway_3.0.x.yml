@@ -247,77 +247,77 @@ items:
       - text: Dev Portal
         items:
           - text: Overview
-            url: /kong-enterprise/developer-portal/
+            url: /kong-enterprise/dev-portal/
           - text: Enable the Dev Portal
-            url: /kong-enterprise/developer-portal/enable
+            url: /kong-enterprise/dev-portal/enable
           - text: Publish an OpenAPI Spec
-            url: /kong-enterprise/developer-portal/publish-spec
+            url: /kong-enterprise/dev-portal/publish-spec
           - text: Structure and File Types
-            url: /kong-enterprise/developer-portal/structure-and-file-types
+            url: /kong-enterprise/dev-portal/structure-and-file-types
           - text: Themes Files
-            url: /kong-enterprise/developer-portal/themes
+            url: /kong-enterprise/dev-portal/themes
           - text: Working with Templates
-            url: /kong-enterprise/developer-portal/working-with-templates
+            url: /kong-enterprise/dev-portal/working-with-templates
           - text: Using the Editor
-            url: /kong-enterprise/developer-portal/using-the-editor
+            url: /kong-enterprise/dev-portal/using-the-editor
           - text: Authentication and Authorization
             items:
               - text: Basic Auth
-                url: /kong-enterprise/developer-portal/authentication/basic-auth
+                url: /kong-enterprise/dev-portal/authentication/basic-auth
               - text: Key Auth
-                url: /kong-enterprise/developer-portal/authentication/key-auth
+                url: /kong-enterprise/dev-portal/authentication/key-auth
               - text: OIDC
-                url: /kong-enterprise/developer-portal/authentication/oidc
+                url: /kong-enterprise/dev-portal/authentication/oidc
               - text: Sessions
-                url: /kong-enterprise/developer-portal/authentication/sessions
+                url: /kong-enterprise/dev-portal/authentication/sessions
               - text: Adding Custom Registration Fields
-                url: /kong-enterprise/developer-portal/authentication/adding-registration-fields
+                url: /kong-enterprise/dev-portal/authentication/adding-registration-fields
               - text: Manage Developers
-                url: /kong-enterprise/developer-portal/authentication/managing-developers
+                url: /kong-enterprise/dev-portal/authentication/managing-developers
               - text: Developer Roles and Content Permissions
-                url: /kong-enterprise/developer-portal/authentication/developer-permissions
+                url: /kong-enterprise/dev-portal/authentication/developer-permissions
           - text: Application Registration
             items:
               - text: Authorization Provider Strategy
-                url: /kong-enterprise/developer-portal/applications/auth-provider-strategy
+                url: /kong-enterprise/dev-portal/applications/auth-provider-strategy
               - text: Enable Application Registration
-                url: /kong-enterprise/developer-portal/applications/enable-application-registration
+                url: /kong-enterprise/dev-portal/applications/enable-application-registration
               - text: Enable Key Authentication for Application Registration
-                url: /kong-enterprise/developer-portal/applications/enable-key-auth-plugin
+                url: /kong-enterprise/dev-portal/applications/enable-key-auth-plugin
               - text: Enable External Authentication
                 items:
                   - text: External OAuth2 Support
-                    url: /kong-enterprise/developer-portal/authentication/3rd-party-oauth
+                    url: /kong-enterprise/dev-portal/authentication/3rd-party-oauth
                   - text: Set up Okta and Kong for External Oauth
-                    url: /kong-enterprise/developer-portal/authentication/okta-config
+                    url: /kong-enterprise/dev-portal/authentication/okta-config
                   - text: Set up Azure AD and Kong for External Authentication
-                    url: /kong-enterprise/developer-portal/authentication/azure-oidc-config
+                    url: /kong-enterprise/dev-portal/authentication/azure-oidc-config
               - text: Manage Applications
-                url: /kong-enterprise/developer-portal/applications/managing-applications
+                url: /kong-enterprise/dev-portal/applications/managing-applications
           - text: Customize Dev Portal
             items:
               - text: Theme Editing
-                url: /kong-enterprise/developer-portal/customize/theme-editing
+                url: /kong-enterprise/dev-portal/customize/theme-editing
               - text: Migrating Templates Between Workspaces
-                url: /kong-enterprise/developer-portal/customize/migrating-templates
+                url: /kong-enterprise/dev-portal/customize/migrating-templates
               - text: Markdown Rendering Module
-                url: /kong-enterprise/developer-portal/customize/markdown-extended
+                url: /kong-enterprise/dev-portal/customize/markdown-extended
               - text: Customizing Portal Emails
-                url: /kong-enterprise/developer-portal/customize/emails
+                url: /kong-enterprise/dev-portal/customize/emails
               - text: Adding and Using JavaScript Assets
-                url: /kong-enterprise/developer-portal/customize/adding-javascript-assets
+                url: /kong-enterprise/dev-portal/customize/adding-javascript-assets
               - text: Single Page App in Dev Portal
-                url: /kong-enterprise/developer-portal/customize/single-page-app
+                url: /kong-enterprise/dev-portal/customize/single-page-app
               - text: Alternate OpenAPI Renderer
-                url: /kong-enterprise/developer-portal/customize/alternate-openapi-renderer
+                url: /kong-enterprise/dev-portal/customize/alternate-openapi-renderer
           - text: SMTP
-            url: /kong-enterprise/developer-portal/smtp
+            url: /kong-enterprise/dev-portal/smtp
           - text: Workspaces
-            url: /kong-enterprise/developer-portal/workspaces
+            url: /kong-enterprise/dev-portal/workspaces
           - text: Helpers CLI
-            url: /kong-enterprise/developer-portal/cli
+            url: /kong-enterprise/dev-portal/cli
           - text: Portal API
-            url: /kong-enterprise/developer-portal/portal-api
+            url: /kong-enterprise/dev-portal/portal-api
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption
