@@ -137,7 +137,7 @@ Installing the plugin globally means *every* proxy request to {{site.base_gatewa
      -H 'apikey:bad-key'
    ```
   
-   You will receive an an unauthorized response:
+   You will receive an unauthorized response:
  
    ```text
    HTTP/1.1 401 Unauthorized
