@@ -67,7 +67,7 @@ If you are using an external IdP, follow these steps.
 
 ## Next Steps
 
-1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
+1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/enable-application-registration) on a Service.
 
 2. Enable a supported authentication plugin on the same Service as the Application Registration plugin,
    as appropriate for your authorization strategy.
@@ -81,14 +81,14 @@ If you are using an external IdP, follow these steps.
     * If using the `kong-oauth2` authorization strategy with key authentication, configure the
     [Key Auth](/hub/kong-inc/key-auth/) plugin on the same Service as the Application
     Registration plugin. You can use either the
-    [Kong Manager GUI](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-key-auth-plugin)
+    [Kong Manager GUI](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/enable-key-auth-plugin)
     or cURL commands as documented on the Plugin Hub. The Key Auth plugin
     cannot be used in hybrid mode.
 
     Strategy `external-oauth2`:
 
     1. If you plan to use external OAuth2, review the
-    [recommended workflows](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
+    [recommended workflows](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/3rd-party-oauth#supported-oauth-flows).
 
     2. If using the third-party authorization strategy
     (`external-oauth2`), configure the OIDC plugin on the same Service as the
@@ -99,5 +99,5 @@ If you are using an external IdP, follow these steps.
 
     3. Configure the identity provider for your application, configure your
     application in {{site.base_gateway}}, and associate them with each other. See the
-    [Okta](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config)
-    or the [Azure](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config) setup examples.
+    [Okta](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/okta-config)
+    or the [Azure](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/azure-oidc-config) setup examples.

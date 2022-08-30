@@ -35,9 +35,9 @@ and lets you create _dynamic_ dependencies between plugins.
 
 ## Dev Portal
 
-Streamline developer onboarding with the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/developer-portal/), which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
+Streamline developer onboarding with the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/), which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
 
-[Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/developer-portal/)
+[Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/)
 
 ## Audit logging
 

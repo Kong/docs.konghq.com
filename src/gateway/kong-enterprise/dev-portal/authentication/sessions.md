@@ -59,7 +59,7 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 
 ⚠️**Important:** The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
-* If using different subdomains for the [portal_api_url](/gateway/{{page.kong_version}}/reference/configuration/#portal_api_url) and [portal_gui_host](/gateway/{{page.kong_version}}/reference/configuration/#portal_gui_host), see the example below for [Domains](/gateway/{{page.kong_version}}/developer-portal/configuration/authentication/sessions/#domains).
+* If using different subdomains for the [portal_api_url](/gateway/{{page.kong_version}}/reference/configuration/#portal_api_url) and [portal_gui_host](/gateway/{{page.kong_version}}/reference/configuration/#portal_gui_host), see the example below for [Domains](/gateway/{{page.kong_version}}/dev-portal/configuration/authentication/sessions/#domains).
 
 {:.important}
 > **Important:** Sessions are not invalidated when a user logs out if `"storage": "cookie"`
