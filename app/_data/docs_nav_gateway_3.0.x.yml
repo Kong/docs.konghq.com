@@ -206,11 +206,11 @@ items:
             url: /kong-enterprise/analytics/metrics
           - text: Reports
             url: /kong-enterprise/analytics/reports
-          - text: analytics with InfluxDB
+          - text: Analytics with InfluxDB
             url: /kong-enterprise/analytics/influx-strategy
-          - text: analytics with Prometheus
+          - text: Analytics with Prometheus
             url: /kong-enterprise/analytics/prometheus-strategy
-          - text: Estimate analytics Storage in PostgreSQL
+          - text: Estimate Analytics Storage in PostgreSQL
             url: /kong-enterprise/analytics/estimates
       - text: Secrets Management
         items:
