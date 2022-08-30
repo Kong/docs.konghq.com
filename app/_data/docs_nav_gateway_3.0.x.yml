@@ -66,17 +66,17 @@ items:
       - text: Deployment Topologies
         items:
           - text: Overview
-            url: /production-deployment/deployment-topologies/
+            url: /production/deployment-topologies/
           - text: Hybrid Mode
             items:
             - text: Overview
-              url: /production-deployment/deployment-topologies/hybrid-mode/
+              url: /production/deployment-topologies/hybrid-mode/
             - text: Deploy Kong Gateway in Hybrid mode
-              url: /production-deployment/deployment-topologies/hybrid-mode/setup
+              url: /production/deployment-topologies/hybrid-mode/setup
           - text: DB-less Deployment
-            url: /production-deployment/deployment-topologies/db-less-and-declarative-config
+            url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
-            url: /production-deployment/deployment-topologies/traditional
+            url: /production/deployment-topologies/traditional
       - text: Installation Options
         items:
           - text: Overview
@@ -114,19 +114,19 @@ items:
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
-            url: /production-deployment/running-kong/kong-user
+            url: /production/running-kong/kong-user
           - text: Securing the Admin API
-            url: /production-deployment/running-kong/secure-admin-api
+            url: /production/running-kong/secure-admin-api
           - text: Using systemd
-            url: /production-deployment/running-kong/systemd
+            url: /production/running-kong/systemd
       - text: Access Control
         items:
           - text: Start Kong Gateway Securely
-            url: /production-deployment/access-control/start-securely
+            url: /production/access-control/start-securely
           - text: Programatically Creating Admins
-            url: /production-deployment/access-control/register-admin-api
+            url: /production/access-control/register-admin-api
           - text: Enabling RBAC
-            url: /production-deployment/access-control/enable-rbac
+            url: /production/access-control/enable-rbac
       - text: Licenses
         items:
           - text: Overview
@@ -142,49 +142,49 @@ items:
       - text: Networking
         items:
           - text: Default Ports
-            url: /production-deployment/networking/default-ports
+            url: /production/networking/default-ports
           - text: DNS Considerations
-            url: /production-deployment/networking/dns-considerations
+            url: /production/networking/dns-considerations
           - text: Network and Firewall
-            url: /production-deployment/networking/firewall
+            url: /production/networking/firewall
       - text: Kong Configuration File
-        url: /production-deployment/kong-conf
+        url: /production/kong-conf
       - text: Environment Variables
-        url: /production-deployment/environment-variables
+        url: /production/environment-variables
       - text: Embedding Kong in Open Resty
-        url: /production-deployment/kong-openresty
+        url: /production/kong-openresty
       - text: Serving a Website and APIs from Kong
-        url: /production-deployment/website-api-serving
+        url: /production/website-api-serving
       - text: Monitoring
         items:
           - text: Overview
-            url: /production-deployment/monitoring/
+            url: /production/monitoring/
           - text: Prometheus
-            url: /production-deployment/monitoring/prometheus
+            url: /production/monitoring/prometheus
           - text: StatsD
-            url: /production-deployment/monitoring/statsd
+            url: /production/monitoring/statsd
           - text: Datadog
-            url: /production-deployment/monitoring/datadog
+            url: /production/monitoring/datadog
       - text: Tracing
         items:
           - text: Overview
-            url: /production-deployment/tracing/
+            url: /production/tracing/
           - text: Writing a Custom Trace Exporter
-            url: /production-deployment/tracing/write-custom-trace-exporter
+            url: /production/tracing/write-custom-trace-exporter
           - text: Tracing API Reference
-            url: /production-deployment/tracing/api
+            url: /production/tracing/api
       - text: Resource Sizing Guidelines
-        url: /production-deployment/sizing-guidelines
+        url: /production/sizing-guidelines
       - text: Security Update Process
-        url: /production-deployment/security-update-process
+        url: /production/security-update-process
       - text: Blue-Green Deployments
-        url: /production-deployment/blue-green
+        url: /production/blue-green
       - text: Canary Deployments
-        url: /production-deployment/canary
+        url: /production/canary
       - text: Clustering Reference
-        url: /production-deployment/clustering
+        url: /production/clustering
       - text: Logging Reference
-        url: /production-deployment/logging
+        url: /production/logging
       - text: Upgrade Kong Gateway
         items:
           - text: Upgrade Kong Enterprise
