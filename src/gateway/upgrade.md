@@ -3,55 +3,73 @@ title: Upgrade Kong Gateway
 badge: free
 ---
 
-Upgrade to major, minor, and patch {{site.ee_product_name}} (Enterprise package)
+Upgrade to major, minor, and patch {{site.base_gateway}} (Enterprise package)
 releases using the `kong migrations` commands.
 
-You can also use the commands to migrate all {{site.ce_product_name}} entities
-to {{site.ee_product_name}}. See
-[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/migrate-ce-to-ke/).
+You can also use the commands to migrate all {{site.base_gateway}} open-source entities
+to {{site.base_gateway}} (Enterprise). See
+[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
 
-## Upgrade path for Kong Gateway releases
+## Upgrade path for {{site.base_gateway}} releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions.
 
 The upgrade to 3.0.x is a **major** upgrade.
+The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
+
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
-(both this version and prior versions) and in the Gateway changelogs.
+(both this version and prior versions) and in the
+[open-source (OSS)](https://github.com/Kong/kong/blob/3.0.0/CHANGELOG.md#300) and
+[Enterprise](/gateway/changelog/#3000) Gateway changelogs. Since {{site.base_gateway}}
+is built on an open-source foundation, any breaking changes in OSS affect all Gateway packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to 3.0.x.
 If you are running 1.x, upgrade to 2.1.0 first at minimum, then upgrade to 3.0.x from there.
 
-See specific breaking changes in the Kong Gateway changelogs:
-[open-source (OSS)](https://github.com/Kong/kong/blob/3.0.0/CHANGELOG.md#300) and
-[Enterprise](/gateway/changelog/#3000). Since Kong Gateway is built on an
-open-source foundation, any breaking changes in OSS affect all Gateway packages.
-
-In either case, you can review the [upgrade considerations](#upgrade-considerations),
+In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
 then follow the [database migration](#migrate-db) instructions.
 
-## Upgrade considerations
+## Upgrade considerations and breaking changes
 
 Before upgrading, review this list for any configuration or breaking changes that
 affect your current installation.
 
 ### Deployment
 
-Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of Kong Gateway.
+Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
+
+Blue-green deployments from {{site.base_gateway}} versions before 2.1.0 are not supported with 3.0.0.
+Upgrade to 2.1.0 or later before upgrading to 3.0.x to use blue-green deployment.
+
+### Dependencies
+
+If you are using the provided binary packages (except Debian and RHEL), all necessary dependencies
+for the gateway are bundled and you can skip this section.
 
 As of {{ site.base_gateway }} 3.0, our Debian and RHEL images are built with minimal dependencies and run through automated security scanners before being published.
-They only contain the bare minimum required to run Kong. If you would like further customize the base image and any dependencies, you can [build your own Docker images](/gateway/{{page.kong_version}}/install/docker/build-custom-images).
+They only contain the bare minimum required to run Kong.
+If you would like further customize the base image and any dependencies, you can
+[build your own Docker images](/gateway/{{page.kong_version}}/install/docker/build-custom-images).
 
-Blue-green deployments from Kong Gateway versions before 2.1.0 are not supported with 3.0.0.
-Upgrade to 2.1.0 or later before upgrading to 3.0.x to use blue-green deployment.
+If you are using Debian, RHEL, or building your dependencies by hand, there are changes since the
+previous release, so you will need to rebuild them with the latest patches.
+
+The required OpenResty version for {{site.base_gateway}} 3.0.x is
+[1.21.4.1](https://openresty.org/en/ann-1021004001.html). In addition to an upgraded
+OpenResty, you need the correct [OpenResty patches](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/patches)
+for this new version, including the latest release of [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module).
+The [kong-build-tools](https://github.com/Kong/kong-build-tools)
+repository contains [openresty-build-tools](https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools),
+which allows you to more easily build OpenResty with the necessary patches and modules.
 
 ### Migrations
 
-The migration helper library (mostly used for Cassandra migrations) is no longer supplied with Kong Gateway.
+The migration helper library (mostly used for Cassandra migrations) is no longer supplied with {{site.base_gateway}}.
 
 PostgreSQL migrations can now have an `up_f` part like Cassandra
 migrations, designating a function to call. The `up_f` part is
@@ -77,63 +95,67 @@ setting the upstream headers for a credential.
 
 #### Deprecations and changed parameters
 
-The [StatsD Advanced](/hub/kong-inc/statsd-advanced/) (`statsd-advanced`) plugin
+The [StatsD Advanced](/hub/kong-inc/statsd-advanced/) plugin
 has been deprecated and will be removed in 4.0.
 All capabilities are now available in the [StatsD](/hub/kong-inc/statsd/) plugin.
 
 The following plugins have had configuration parameters changed or removed. You will need to carefully review and update your configuration as needed:
 
-* [ACL](/hub/kong-inc/acl/) (`acl`), [Bot Detection](/hub/kong-inc/bot-detection) (`bot-detection`), and [IP Restriction](/hub/kong-inc/ip-restriction/) (`ip-restriction`): Removed the deprecated `blacklist` and `whitelist` configuration parameters. Use `allow` or `deny` instead.
+**[ACL](/hub/kong-inc/acl/), [Bot Detection](/hub/kong-inc/bot-detection), and [IP Restriction](/hub/kong-inc/ip-restriction/)**
+* Removed the deprecated `blacklist` and `whitelist` configuration parameters. Use `allow` or `deny` instead.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`): The default value of the `auth_method` configuration parameter is now `token`.
+**[ACME](/hub/kong-inc/ACME/)**
+* The default value of the `auth_method` configuration parameter is now `token`.
 
-* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
-  * The AWS region is now required. You can set it through the plugin configuration with the `aws_region` field parameter, or with environment variables.
-  * The plugin now allows `host` and `aws_region` fields to be set at the same time, and always applies the SigV4 signature.
+**[AWS Lambda](/hub/kong-inc/aws-lambda/)**
+* The AWS region is now required. You can set it through the plugin configuration with the `aws_region` field parameter, or with environment variables.
+* The plugin now allows `host` and `aws_region` fields to be set at the same time, and always applies the SigV4 signature.
 
-* [HTTP Log](/hub/kong-inc/http-log/) (`http-log`): The `headers` field now only takes a single string per header name,
-  where it previously took an array of values.
+**[HTTP Log](/hub/kong-inc/http-log/)**
+* The `headers` field now only takes a single string per header name,
+where it previously took an array of values.
 
-* [JWT](/hub/kong-inc/jwt/) (`jwt`): The authenticated JWT is no longer put into the nginx
+**[JWT](/hub/kong-inc/jwt/)**
+* The authenticated JWT is no longer put into the nginx
 context (`ngx.ctx.authenticated_jwt_token`). Custom plugins which depend on that
 value being set under that name must be updated to use Kong's shared context
 instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
 
-* [Prometheus](/hub/kong-inc/prometheus/) (`prometheus`)
-  * High cardinality metrics are now disabled by default.
-  * Decreased performance penalty to proxy traffic when collecting metrics.
-  * The following metric names were adjusted to add units to standardize where possible:
-    * `http_status` to `http_requests_total`.
-    * `latency` to `kong_request_latency_ms` (HTTP), `kong_upstream_latency_ms`, `kong_kong_latency_ms`, and `session_duration_ms` (stream).
+**[Prometheus](/hub/kong-inc/prometheus/)**
+* High cardinality metrics are now disabled by default.
 
-        Kong latency and upstream latency can operate at orders of different magnitudes. Separate these buckets to reduce memory overhead.
+* The following metric names were adjusted to add units to standardize where possible:
+  * `http_status` to `http_requests_total`.
+  * `latency` to `kong_request_latency_ms` (HTTP), `kong_upstream_latency_ms`, `kong_kong_latency_ms`, and `session_duration_ms` (stream).
+      Kong latency and upstream latency can operate at orders of different magnitudes. Separate these buckets to reduce memory overhead.
+  * `kong_bandwidth` to `kong_bandwidth_bytes`.
+  * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into to `nginx_connections_total`.
+  * `request_count` and `consumer_status` were merged into `http_requests_total`.
+      If the `per_consumer` config is set to `false`, the `consumer` label will be empty. If the `per_consumer` config is `true`, the `consumer` label will be filled.
 
-    * `kong_bandwidth` to `kong_bandwidth_bytes`.
-    * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into to `nginx_hconnections_total` (or `nginx_current_connections`?)
-    *  `request_count` and `consumer_status` were merged into http_requests_total.
-
-        If the `per_consumer` config is set to `false`, the `consumer` label will be empty. If the `per_consumer` config is `true`, the `consumer` label will be filled.
-  * Removed the following metric: `http_consumer_status`
-  * New metrics:
-    * `session_duration_ms`: monitoring stream connections.
-    * `node_info`: Single gauge set to 1 that outputs the node's ID and Kong Gateway version.
-
+* Other metric changes:
+  * Removed the following metric: `http_consumer_status`.
   * `http_requests_total` has a new label, `source`. It can be set to `exit`, `error`, or `service`.
   * All memory metrics have a new label: `node_id`.
   * The plugin doesn't export status codes, latencies, bandwidth and upstream
   health check metrics by default. They can still be turned on manually by setting `status_code_metrics`,
   `lantency_metrics`, `bandwidth_metrics` and `upstream_health_metrics` respectively.
 
-* [Serverless Functions](/hub/kong-inc/serverless-functions/) (`post-function` or `pre-function`): Removed the deprecated `config.functions` configuration parameter from the Serverless Functions plugins' schemas. Use the `config.access` phase instead.
+**[Serverless Functions](/hub/kong-inc/serverless-functions/)**
+* Removed the deprecated `config.functions` configuration parameter from the
+Serverless Functions plugins' schemas (`post-fuction` and `pre-function`).
+Use the `config.access` phase instead.
 
-* [StatsD](/hub/kong-inc/statsd/) (`statsd`):
-  * Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.
-    * The metric `kong.<service_identifier>.request.status.<status>` has been renamed to `kong.service.<service_identifier>.status.<status>`.
-    * The metric `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` has been renamed to `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`.
-  * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
+**[StatsD](/hub/kong-inc/statsd/)**
+* Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.
+  * The metric `kong.<service_identifier>.request.status.<status>` has been renamed to `kong.service.<service_identifier>.status.<status>`.
+  * The metric `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` has been renamed to `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`.
 
-* [Proxy Cache](/hub/kong-inc/proxy-cache/) (`proxy-cache`), [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`), and [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced/) (`graphql-proxy-cache-advanced`): These plugins don't store response data in `ngx.ctx.proxy_cache_hit` anymore.
-    Logging plugins that need the response data must now read it from `kong.ctx.shared.proxy_cache_hit`.
+* The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
+
+**[Proxy Cache](/hub/kong-inc/proxy-cache/), [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/), and [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced/)**
+* These plugins don't store response data in `ngx.ctx.proxy_cache_hit` anymore.
+* Logging plugins that need the response data must now read it from `kong.ctx.shared.proxy_cache_hit`.
 
 ### Custom plugins and the PDK
 
@@ -149,7 +171,7 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
 * Updated the priority for some plugins.
 
     This is important for those who run custom plugins as it may affect the sequence in which your plugins are executed.
-    This does not change the order of execution for plugins in a standard Kong Gateway installation.
+    This does not change the order of execution for plugins in a standard {{site.base_gateway}} installation.
 
     Old and new plugin priority values:
     - `acme` changed from `1007` to `1705`
@@ -181,7 +203,7 @@ If you are using
  [Go plugin server](https://github.com/Kong/go-pluginserver), migrate your plugins to use the
  [Go PDK](https://github.com/Kong/go-pdk) before upgrading.
 
-* As of 3.0, Kong Gateway's schema library's `process_auto_fields` function will not make deep
+* As of 3.0, {{site.base_gateway}}'s schema library's `process_auto_fields` function will not make deep
   copies of data that is passed to it when the given context is `select`. This was
   done to avoid excessive deep copying of tables where we believe the data most of
   the time comes from a driver like `pgmoon` or `lmdb`.
@@ -200,12 +222,12 @@ If you are using
 
 ### New router
 
-Kong Gateway no longer uses a heuristic to guess whether a `route.path` is a regex pattern. From 3.0 onward,
+{{site.base_gateway}} no longer uses a heuristic to guess whether a `route.path` is a regex pattern. From 3.0 onward,
 all regex paths must start with the `"~"` prefix, and all paths that don't start with `"~"` will be considered plain text.
 The migration process should automatically convert the regex paths when upgrading from 2.x to 3.0.
 
-The normalization rules for `route.path` have changed. Kong Gateway now stores the unnormalized path, but
-the regex path always pattern-matches with the normalized URI. Previously, Kong Gateway replaced percent-encoding
+The normalization rules for `route.path` have changed. {{site.base_gateway}} now stores the unnormalized path, but
+the regex path always pattern-matches with the normalized URI. Previously, {{site.base_gateway}} replaced percent-encoding
 in the regex path pattern to ensure different forms of URI matches.
 That is no longer supported. Except for the reserved characters defined in
 [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-2.2),
@@ -217,7 +239,7 @@ The version number (`_format_version`) of declarative configuration has been bum
 Declarative configurations with older versions will be upgraded to `3.0` automatically.
 
 It is no longer possible to use the `.lua` format to import a declarative configuration file from the `kong`
-CLI tool. Only JSON and YAML formats are supported. If your update procedure with Kong Gateway involves
+CLI tool. Only JSON and YAML formats are supported. If your update procedure with {{site.base_gateway}} involves
 executing `kong config db_import config.lua`, convert the `config.lua` file into a `config.json` or `config.yml` file
 before upgrading.
 
@@ -240,9 +262,6 @@ removed.
 
 The default value of `lua_ssl_trusted_certificate` has changed to `system` to automatically load the trusted CA list from the system CA store.
 
-The deprecated alias of `Kong.serve_admin_api` was removed. If your custom Nginx
-templates still use it, change it to `Kong.admin_content`.
-
 The data plane config cache mechanism and its related configuration options
 (`data_plane_config_cache_mode` and `data_plane_config_cache_path`) have been removed in favor of LMDB.
 
@@ -258,7 +277,7 @@ to run `kong migrations finish`.
 
 While the migrations themselves are automated, the chart does not automatically ensure
 that you follow the recommended upgrade path. If you are upgrading from more than one minor
-Kong version back, check the upgrade path recommendations for Kong open source or Kong Gateway.
+Kong version back, check the upgrade path recommendations for Kong open source or {{site.base_gateway}}.
 
 Although not required, users should upgrade their chart version and Kong version independently.
 In the event of any issues, this will help clarify whether the issue stems from changes in
@@ -319,6 +338,52 @@ upgrade the control plane first, and then the data planes.
 * The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
+### Template changes
+
+There are changes in the Nginx configuration file between every minor and major
+version of {{site.base_gateway}} starting with 2.0.x.
+
+In 3.0.x, the deprecated alias of `Kong.serve_admin_api` was removed.
+If your custom Nginx templates still use it, change it to `Kong.admin_content`.
+
+{% navtabs %}
+{% navtab OSS %}
+To view all of the configuration changes between versions, clone the
+[Kong repository](https://github.com/kong/kong) and run `git diff`
+on the configuration templates, using `-w` for greater readability.
+
+Here's how to see the differences between previous versions and 3.0.x:
+
+```
+git clone https://github.com/kong/kong
+cd kong
+git diff -w 2.0.0 3.0.0 kong/templates/nginx_kong*.lua
+```
+
+Adjust the starting version number (2.0.0 in the example) to the version number you are currently using.
+
+To produce a patch file, use the following command:
+
+```
+git diff 2.0.0 3.0.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
+```
+
+Adjust the starting version number to the version number (2.0.0 in the example) you are currently using.
+
+{% endnavtab %}
+{% navtab Enterprise %}
+
+The default template for {{site.base_gateway}} can be found using this command
+on the system running your {{site.base_gateway}} instance:
+`find / -type d -name "templates" | grep kong`.
+
+When upgrading, make sure to run this command on both the old and new clusters,
+diff the files to identify any changes, and apply them as needed.
+
+{% endnavtab %}
+{% endnavtabs %}
+
+
 ## Upgrade from 2.1.x - 2.8.x to 3.0.x {#migrate-db}
 
 {{site.ee_product_name}} supports the zero downtime migration model. This means
@@ -339,15 +404,15 @@ decommission it. For this reason, the full migration is split into two commands:
 Follow the instructions for your backing data store to migrate to the new version.
 If you prefer to use a fresh data store and only migrate your `kong.conf` file,
 see the instructions to
-[install 3.0.x on a fresh datastore](#install-28x-on-a-fresh-datastore).
+[install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
 
 ### PostgreSQL
 
 1. Download 3.0.x, and configure it to point to the same
-   datastore as your old (2.1.x-2.8.x) cluster.
+   data store as your old (2.1.x-2.8.x) cluster.
 2. Run `kong migrations up`.
 3. After that finishes running, both the old (2.1.x-2.8.x) and new (3.0.x) clusters can
-   now run simultaneously on the same datastore. Start provisioning 3.0.x nodes,
+   now run simultaneously on the same data store. Start provisioning 3.0.x nodes,
    but do _not_ use their Admin API yet.
 
    {:.important}
@@ -363,13 +428,17 @@ see the instructions to
    old nodes.
 6. From your 3.0.x cluster, run `kong migrations finish`. From this point onward,
    it is no longer possible to start nodes in the old cluster
-   that still points to the same datastore.
+   that still points to the same data store.
 
      Run this command _only_ when you are
      confident that your migration was successful. From now on, you can safely make
      Admin API requests to your 3.0.x nodes.
 
 ### Cassandra
+
+{:.warning .no-icon}
+> **Deprecation notice:**
+> Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the {{site.base_gateway}} 4.0 release, and some new features might not be supported with Cassandra in the {{site.base_gateway}} 3.0 release.
 
 Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.8.x on Cassandra
 are incompatible with those used by {{site.ee_product_name}} 2.1.x or lower. Migrating using the usual commands
@@ -398,15 +467,43 @@ described below:
 6. When your traffic is fully migrated to the 3.0.x cluster,
    decommission your old nodes.
 
-### Install 3.0.x on a fresh datastore
+### Install 3.0.x on a fresh data store
 
-For installing on a fresh datastore, {{site.ee_product_name}} 3.0.x has the
+For installing on a fresh data store, {{site.ee_product_name}} 3.0.x has the
 `kong migrations bootstrap` command. Run the following commands to
-prepare a new 3.0.x cluster from a fresh datastore. By default, the `kong` CLI tool
+prepare a new 3.0.x cluster from a fresh data store.
+
+By default, the `kong` CLI tool
 loads the configuration from `/etc/kong/kong.conf`, but you can optionally use
 the `-c` flag to indicate the path to your configuration file:
 
 ```bash
-$ kong migrations bootstrap [-c /path/to/kong.conf]
-$ kong start [-c /path/to/kong.conf]
+kong migrations bootstrap [-c /path/to/kong.conf]
+kong start [-c /path/to/kong.conf]
 ```
+
+Assuming that Kong is already running on your system, acquire the latest
+version from any of the available [installation methods](/gateway/{{page.kong_version}}/install/)
+and install it, overriding your previous installation.
+
+**If you are planning to make modifications to your configuration, this is a
+good time to do so**.
+
+Then, run migrations to upgrade your database schema:
+
+```shell
+kong migrations up [-c configuration_file]
+```
+
+If the command is successful, and no migration ran
+(no output), then you only have to
+[reload](/gateway/{{page.kong_version}}/reference/cli/#kong-reload) Kong:
+
+```shell
+kong reload [-c configuration_file]
+```
+
+**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
+starts new workers, which take over from old workers before those old workers
+are terminated. In this way, {{site.base_gateway}} will serve new requests via the new
+configuration, without dropping existing in-flight connections.
