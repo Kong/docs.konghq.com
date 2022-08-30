@@ -7,7 +7,7 @@ API gateways isolate your applications from the outside world and provide critic
 protection for your upstream services. Understanding the state of your API gateway
 system is critical to providing reliable API based systems.
 
-There are many monitoring and alerting systems available, and {{site.base_gateay}} integrates with 
+There are many monitoring and alerting systems available, and {{site.base_gateway}} integrates with 
 multiple well known solutions.
 
 * [Prometheus](https://prometheus.io/) is an open-source systems monitoring and alerting toolkit.
