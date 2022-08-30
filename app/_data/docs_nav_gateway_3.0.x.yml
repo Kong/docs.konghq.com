@@ -201,17 +201,17 @@ items:
       - text: Kong Vitals
         items:
           - text: Overview
-            url: /kong-enterprise/vitals/
+            url: /kong-enterprise/analytics/
           - text: Metrics
-            url: /kong-enterprise/vitals/metrics
+            url: /kong-enterprise/analytics/metrics
           - text: Reports
-            url: /kong-enterprise/vitals/reports
-          - text: Vitals with InfluxDB
-            url: /kong-enterprise/vitals/influx-strategy
-          - text: Vitals with Prometheus
-            url: /kong-enterprise/vitals/prometheus-strategy
-          - text: Estimate Vitals Storage in PostgreSQL
-            url: /kong-enterprise/vitals/estimates
+            url: /kong-enterprise/analytics/reports
+          - text: analytics with InfluxDB
+            url: /kong-enterprise/analytics/influx-strategy
+          - text: analytics with Prometheus
+            url: /kong-enterprise/analytics/prometheus-strategy
+          - text: Estimate analytics Storage in PostgreSQL
+            url: /kong-enterprise/analytics/estimates
       - text: Secrets Management
         items:
           - text: Overview
