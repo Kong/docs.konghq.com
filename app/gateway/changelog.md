@@ -18,11 +18,10 @@ This exposes a new endpoint for the Admin API, [`/keyring/recover`](/gateway/3.0
 
     Set your desired encryption mode with the [`declarative_config_encryption_mode`](/gateway/3.0.x/reference/configuration/#declarative_config_encryption_mode) configuration parameter.
 
-* Kong Gateway now provides FIPS support with a new installation package that uses a FIPS-certified cryptographic module.
-The Gateway core in that package is FIPS-compliant.
+* Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
 
     To enable FIPS mode, set [`fips`](/gateway/3.0.x/reference/configuration/#fips) to `on`.
-    This setting is only available in FIPS-compliant build artifacts.
+   FIPS mode is only supported in Ubuntu 20.04.
 
 * [TO DO: expand description] Kong Gateway now includes WebSocket validation functionality:
   * Services and routes now support `ws` and `wss` protocols
@@ -80,7 +79,7 @@ The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` en
   [#6878](https://github.com/Kong/kong/pull/6878)
 * Added `cache_key` on target entity for uniqueness detection.
   [#8179](https://github.com/Kong/kong/pull/8179)
-* Introduced the tracing API, which is compatible with OpenTelemetry API specs and
+* Introduced the tracing API, which is compatible with OpenTelemetry API specs, and
   adds built-in instrumentations.
 
   The tracing API is intended to be used with a external exporter plugin.
@@ -90,8 +89,8 @@ The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` en
 * Added `path`, `uri_capture`, and `query_arg` options to upstream `hash_on`
   for load balancing.
   [#8701](https://github.com/Kong/kong/pull/8701)
-* Introduced Unix domain socket based `lua-resty-events` to
-  replace shared memory based `lua-resty-worker-events`.
+* Introduced Unix domain socket-based `lua-resty-events` to
+  replace shared memory-based `lua-resty-worker-events`.
   [#8890](https://github.com/Kong/kong/pull/8890)
 * Introduced the `table_name` field for entities.
   This field lets you specify a table name.
