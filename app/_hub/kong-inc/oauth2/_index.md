@@ -473,7 +473,7 @@ $ curl -X POST http://kong:8001/services/ \
   --data "url=ws://my-websocket-backend:8080/"
 
 # attach a route to the service
-$ curl -X POST http://kong:8001/services/my-websocket-service/routes \
+$ curl -X POST http://localhost:8001/services/my-websocket-service/routes \
   --data "name=my-websocket-route" \
   --data "protocols=wss" \
   --data "hosts=my-websocket-hostname.com" \
@@ -482,7 +482,7 @@ $ curl -X POST http://kong:8001/services/my-websocket-service/routes \
 #
 # NOTE: setting `global_credentials=true` is necessary to allow tokens
 # created by other plugin instances
-$ curl -x POST http://kong:8001/services/my-websocket-service/plugins \
+$ curl -x POST http://localhost:8001/services/my-websocket-service/plugins \
   --data "name=oauth2" \
   --data "config.scopes=email" \
   --data "config.scopes=profile" \
@@ -492,22 +492,22 @@ $ curl -x POST http://kong:8001/services/my-websocket-service/plugins \
 #
 # NOTE: adding a POST method matcher ensures that regular WebSocket handshake
 # requests will not match this route
-$ curl -X POST http://kong:8001/routes \
+$ curl -X POST http://localhost:8001/routes \
   --data "name=my-websocket-token-helper" \
   --data "protocols=https" \
   --data "hosts=my-websocket-hostname.com" \
   --data "methods=POST"
 
 # finally, add the additional oauth2 plugin instance, using the same
-$ curl -x POST http://kong:8001/routes/my-websocket-token-helper/plugins \
+$ curl -x POST http://localhost:8001/routes/my-websocket-token-helper/plugins \
   --data "name=oauth2" \
   --data "config.scopes=email" \
   --data "config.scopes=profile" \
   --data "config.global_credentials=true"
 ```
 
-Client token requests (e.g. `POST https://my-websocket-hostname.com/oauth2/authorize`)
-will be handled by the oauth2 plugin instance attached to the `my-websocket-token-helper`
+Client token requests (for example: `POST https://my-websocket-hostname.com/oauth2/authorize`)
+will be handled by the `oauth2` plugin instance attached to the `my-websocket-token-helper`
 route, and tokens issued by this route can be used in the WebSocket handshake
 request to the `my-websocket-route` route.
 

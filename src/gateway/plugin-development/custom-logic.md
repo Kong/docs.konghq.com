@@ -269,7 +269,7 @@ methods.
 {:.badge .enterprise}
 
 <div class="alert alert-warning">
-  <strong>Warning</strong>The WebSocket PDK is under active development and is
+  <strong>Warning:</strong> The WebSocket PDK is under active development and is
   considered unstable at this time. Backwards-incompatible changes may be made
   to these functions.
 </div>
@@ -299,7 +299,7 @@ The following handlers are executed for both WebSocket _and_ non-Websocket servi
   - `rewrite`
 
 Even with these differences, it is possible to develop plugins that support both WebSocket
-and non-WebSocket services. Example:
+and non-WebSocket services. For example:
 
 ```lua
 -- handler.lua
@@ -334,15 +334,15 @@ return MultiProtoHandler
 ```
 
 As seen above, the `log` and `ws_close` handlers are parallel to each other. In
-many cases one can simply be aliased to the other without having to write any
+many cases, one can be aliased to the other without having to write any
 additional code. The `access` and `ws_handshake` handlers are also very similar in
-this regard. The notable difference lies in which PDK functions are/aren't availble
+this regard. The notable difference lies in which PDK functions are/aren't available
 in each context. For instance, the `kong.request.get_body()` PDK function cannot be
 used in an `access` handler because it is fundamentally incompatible with this kind
 of request.
 
 
-### WebSocket Requests to non-WebSocket Services
+### WebSocket requests to non-WebSocket services
 
 When WebSocket traffic is proxied via an http/https service, it is treated as a
 non-WebSocket request. Therefore, the http handlers (`access`, `header_filter`, etc)

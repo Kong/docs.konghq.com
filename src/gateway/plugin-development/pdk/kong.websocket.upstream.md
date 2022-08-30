@@ -14,7 +14,7 @@ toc: true
 Upstream WebSocket PDK functions.
 
 <div class="alert alert-warning">
-  <strong>Warning</strong>The WebSocket PDK is under active development and is
+  <strong>Warning:</strong> The WebSocket PDK is under active development and is
   considered unstable at this time. Backwards-incompatible changes may be made
   to these functions.
 </div>
@@ -29,7 +29,7 @@ Retrieve the current frame.
  the in-flight frame/message.
 
  This function is useful in contexts like the pre-function or post-function plugins
- where execution is sandboxed, and the caller no access to these
+ where execution is sandboxed, and the caller has no access to these
  variables in the plugin handler scope.
 
 
@@ -39,12 +39,12 @@ Retrieve the current frame.
 
 **Returns**
 
-1.  `string`:  The frame payload.
+*  `string`:  The frame payload.
 
-1.  `string`:  The frame type (one of "text", "binary", "ping",
+*  `string`:  The frame type (one of "text", "binary", "ping",
    "pong", or "close")
 
-1.  `number`:  The frame status code (only returned for close frames)
+*  `number`:  The frame status code (only returned for close frames)
 
 
 **Usage**
