@@ -62,7 +62,7 @@ There are no migrations necessary for the Dev Portal when upgrading from 2.7.x t
 2.8.x.
 
 If you are currently using the Dev Portal in 1.5.x or earlier,
-[manually migrate the files](/enterprise/2.1.x/developer-portal/latest-migrations)
+[manually migrate the files](/enterprise/2.1.x/dev-portal/latest-migrations)
 to version 2.1.x before continuing.
 
 ### Hybrid mode considerations

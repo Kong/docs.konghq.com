@@ -8,7 +8,7 @@ browser clients using an Azure AD identity provider.
 
 For information about configuring OIDC using Azure as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Azure AD and OIDC](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+[Set Up External Portal Application Authentication with Azure AD and OIDC](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/azure-oidc-config).
 
 ## Prerequisites
 

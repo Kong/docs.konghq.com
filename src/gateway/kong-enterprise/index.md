@@ -10,9 +10,9 @@ The following sections describe key Kong Enterprise features.
 
 ## Monitoring and analytics
 
-Use [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/vitals/) to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as Datadog and Prometheus.
+Use [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as Datadog and Prometheus.
 
-[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/vitals/)
+[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
 
 ## Secrets management
 
@@ -35,9 +35,9 @@ and lets you create _dynamic_ dependencies between plugins.
 
 ## Dev Portal
 
-Streamline developer onboarding with the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/developer-portal/), which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
+Streamline developer onboarding with the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/), which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
 
-[Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/developer-portal/)
+[Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/)
 
 ## Audit logging
 
