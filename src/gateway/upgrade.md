@@ -26,7 +26,7 @@ breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
 [open-source (OSS)](https://github.com/Kong/kong/blob/3.0.0/CHANGELOG.md#300) and
 [Enterprise](/gateway/changelog/#3000) Gateway changelogs. Since {{site.base_gateway}}
-is built on an open-source foundation, any breaking changes in OSS affect all Gateway packages.
+is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to 3.0.x.
 If you are running 1.x, upgrade to 2.1.0 first at minimum, then upgrade to 3.0.x from there.
@@ -52,7 +52,7 @@ If you are using the provided binary packages (except Debian and RHEL), all nece
 for the gateway are bundled and you can skip this section.
 
 As of {{ site.base_gateway }} 3.0, our Debian and RHEL images are built with minimal dependencies and run through automated security scanners before being published.
-They only contain the bare minimum required to run Kong.
+They only contain the bare minimum required to run {{site.base_gateway}}.
 If you would like further customize the base image and any dependencies, you can
 [build your own Docker images](/gateway/{{page.kong_version}}/install/docker/build-custom-images).
 
@@ -129,7 +129,7 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
   * `latency` to `kong_request_latency_ms` (HTTP), `kong_upstream_latency_ms`, `kong_kong_latency_ms`, and `session_duration_ms` (stream).
       Kong latency and upstream latency can operate at orders of different magnitudes. Separate these buckets to reduce memory overhead.
   * `kong_bandwidth` to `kong_bandwidth_bytes`.
-  * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into to `nginx_connections_total`.
+  * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into `nginx_connections_total`.
   * `request_count` and `consumer_status` were merged into `http_requests_total`.
       If the `per_consumer` config is set to `false`, the `consumer` label will be empty. If the `per_consumer` config is `true`, the `consumer` label will be filled.
 
@@ -277,21 +277,21 @@ to run `kong migrations finish`.
 
 While the migrations themselves are automated, the chart does not automatically ensure
 that you follow the recommended upgrade path. If you are upgrading from more than one minor
-Kong version back, check the upgrade path recommendations for Kong open source or {{site.base_gateway}}.
+{{site.base_gateway}} version back, check the upgrade path recommendations.
 
-Although not required, users should upgrade their chart version and Kong version independently.
+Although not required, users should upgrade their chart version and {{site.base_gateway}} version independently.
 In the event of any issues, this will help clarify whether the issue stems from changes in
-Kubernetes resources or changes in Kong.
+Kubernetes resources or changes in {{site.base_gateway}}.
 
 For specific Kong for Kubernetes version upgrade considerations, see
 [Upgrade considerations](https://github.com/Kong/charts/blob/main/charts/kong/UPGRADE.md)
 
 #### Kong deployment split across multiple releases
 
-The standard chart upgrade automation process assumes that there is only a single Kong release
-in the Kong cluster, and runs both `migrations up` and `migrations finish` jobs.
+The standard chart upgrade automation process assumes that there is only a single {{site.base_gateway}} release
+in the {{site.base_gateway}} cluster, and runs both `migrations up` and `migrations finish` jobs.
 
-If you split your Kong deployment across multiple Helm releases (to create proxy-only
+If you split your {{site.base_gateway}} deployment across multiple Helm releases (to create proxy-only
 and admin-only nodes, for example), you must set which migration jobs run based on your
 upgrade order.
 
@@ -319,7 +319,7 @@ To handle clusters split across multiple releases, you should:
    --set migrations.postUpgrade=true
    ```
 
-This ensures that all instances are using the new Kong package before running
+This ensures that all instances are using the new {{site.base_gateway}} package before running
 `kong migrations finish`.
 
 ### Hybrid mode considerations
@@ -332,7 +332,7 @@ upgrade the control plane first, and then the data planes.
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/gateway/{{page.kong_version}}/production-deployment/deployment-topologies/hybrid-mode/setup/)
   after running the migration.
-* Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
+* Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
   plugins on the control plane first, and then the data planes.
 * The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
@@ -387,14 +387,14 @@ diff the files to identify any changes, and apply them as needed.
 ## Upgrade from 2.1.x - 2.8.x to 3.0.x {#migrate-db}
 
 {{site.ee_product_name}} supports the zero downtime migration model. This means
-that while the migration is in process, you have two Kong clusters with different
+that while the migration is in process, you have two {{site.base_gateway}} clusters with different
 versions running that are sharing the same database. This is sometimes referred
 to as the
 [blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
 The migrations are designed so that there is no need to fully copy
 the data. The new version of {{site.ee_product_name}} is able to use the data as it
-is migrated, and the old Kong cluster keeps working until it is finally time to
+is migrated, and the old {{site.base_gateway}} cluster keeps working until it is finally time to
 decommission it. For this reason, the full migration is split into two commands:
 
 - `kong migrations up`: performs only non-destructive operations
@@ -482,7 +482,7 @@ kong migrations bootstrap [-c /path/to/kong.conf]
 kong start [-c /path/to/kong.conf]
 ```
 
-Assuming that Kong is already running on your system, acquire the latest
+Assuming that {{site.base_gateway}} is already running on your system, acquire the latest
 version from any of the available [installation methods](/gateway/{{page.kong_version}}/install/)
 and install it, overriding your previous installation.
 
@@ -497,7 +497,7 @@ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](/gateway/{{page.kong_version}}/reference/cli/#kong-reload) Kong:
+[reload](/gateway/{{page.kong_version}}/reference/cli/#kong-reload) {{site.base_gateway}}:
 
 ```shell
 kong reload [-c configuration_file]

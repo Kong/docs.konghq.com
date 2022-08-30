@@ -26,7 +26,7 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   Now, Kong Gateway provides more control over WebSocket traffic by implementing plugins that target WebSocket frames.
 
   This release includes:
-  * [Service](/gateway/3.0.x/admin-api/#services) and [route](/gateway/3.0.x/admin-api/#routes) support for `ws` and `wss` protocols
+  * [Service](/gateway/3.0.x/admin-api/#service-object) and [route](/gateway/3.0.x/admin-api/#route-object) support for `ws` and `wss` protocols
   * WebSocket PDK modules: [kong.websocket.client](/gateway/3.0.x/plugin-development/pdk/kong.websocket.client) and [kong.websocket.upstream](/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream).
   * [New plugin handlers](/gateway/3.0.x/plugin-development/custom-logic/#websocket-plugin-development)
   * Two new plugins: [WebSocket Size Limit](/hub/kong-inc/websocket-size-limit/)  and [WebSocket Validator](/hub/kong-inc/websocket-validator/)
@@ -43,7 +43,7 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   * Added license level to phone home metrics.
   * Added more tooltips.
 
-* [Secrets management](/gateway/kong-enterprise/secrets-management/) is now generally available.
+* [Secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/) is now generally available.
   * Added GCP integration support for the secrets manager. GCP is now available as a vault backend.
   * The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` entity.
   [#8871](https://github.com/Kong/kong/pull/8871)
@@ -375,7 +375,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   [#8596](https://github.com/Kong/kong/pull/8596),
   [#8798](https://github.com/Kong/kong/pull/8798). If you have scripts that use
   `POST` requests to modify `/targets`, change them to `PUT`
-  requests to the appropriate endpoints before updating to Kong 3.0.
+  requests to the appropriate endpoints before updating to {{site.base_gateway}} 3.0.
 * Insert and update operations on duplicated targets return a `409` error.
   [#8179](https://github.com/Kong/kong/pull/8179),
   [#8768](https://github.com/Kong/kong/pull/8768)
@@ -632,14 +632,14 @@ during the initialization of the [keyring module](/gateway/latest/kong-enterpris
   [#9174](https://github.com/Kong/kong/pull/9174)
 * The schema now runs select transformations before `process_auto_fields`.
   [#9049](https://github.com/Kong/kong/pull/9049)
-* Fixed an issue where Kong would use too many timers to keep track of upstreams when `worker_consistency = eventual`.
+* Fixed an issue where {{site.base_gateway}} would use too many timers to keep track of upstreams when `worker_consistency = eventual`.
   [#8694](https://github.com/Kong/kong/pull/8694),
   [#8858](https://github.com/Kong/kong/pull/8858)
 * Fixed an issue where it wasn't possible to set target status using only a hostname for targets set only by their hostname.
   [#8797](https://github.com/Kong/kong/pull/8797)
 * Fixed an issue where cache entries of some entities were not being properly invalidated after a cascade delete.
   [#9261](https://github.com/Kong/kong/pull/9261)
-* Running `kong start` when Kong is already running no longer overwrites
+* Running `kong start` when {{site.base_gateway}} is already running no longer overwrites
   the existing `.kong_env` file [#9254](https://github.com/Kong/kong/pull/9254)
 
 

@@ -16,7 +16,7 @@ supports the same {{site.ce_product_name}} version.
    {{site.ce_product_name}} to {{site.ee_product_name}}.
 
 If running a version of {{site.ce_product_name}} earlier than 3.0.x,
-[upgrade to Kong 3.0.x](/gateway/{{page.kong_version}}/upgrade/) before migrating
+[upgrade to {{site.ce_product_name}} 3.0.x](/gateway/{{page.kong_version}}/upgrade/) before migrating
 {{site.ce_product_name}} to {{site.ee_product_name}} 3.0.x.
 
 ## Migration steps
