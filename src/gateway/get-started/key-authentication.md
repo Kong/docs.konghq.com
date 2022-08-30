@@ -5,7 +5,7 @@ book: get-started
 chapter: 5
 ---
 
-Authentication is the process of verifying that a requestor has permissions to access a resource. 
+Authentication is the process of verifying that a requester has permissions to access a resource. 
 As it's name implies, API gateway authentication authenticates the flow of data to and from your upstream services. 
 
 {{site.base_gateway}} has a library of plugins that support 
