@@ -99,8 +99,8 @@ route_body: |
     `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
-    `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
-    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute.
+    `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array.
+    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Default: `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Default: `0`.
     `strip_path` |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Default: `true`.
@@ -124,7 +124,7 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
+        "headers": {"x-my-header":["foo", "bar"], "x-another-header":["bla"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -146,7 +146,7 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
+        "headers": {"x-my-header":["foo", "bar"], "x-another-header":["bla"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -170,8 +170,8 @@ route_data: |
         "request_buffering": true,
         "response_buffering": true,
         "snis": ["foo.test", "example.com"],
-        "sources": [{"port":1234, "ip":"10.1.0.0/16"}, {"ip":"10.2.2.2"}, {"port":9123}],
-        "destinations": [{"port":1234, "ip":"10.1.0.0/16"}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "tags": ["admin", "high-priority", "critical"],
         "service": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"}
     }],
@@ -181,6 +181,7 @@ consumer_body: |
     ---:| ---
     `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request.
     `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
+    `type`<br>*required* |  The type of consumer. It can be `0` (proxy), `1` (developer), `2` (admin) or `3` (application)  Default: `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering.
 
 consumer_json: |
@@ -189,6 +190,7 @@ consumer_json: |
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
+        "type": 0,
         "tags": ["user-level", "low-priority"]
     }
 
@@ -198,12 +200,14 @@ consumer_data: |
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
+        "type": 0,
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "01c23299-839c-49a5-a6d5-8864c09184af",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
+        "type": 0,
         "tags": ["admin", "high-priority", "critical"]
     }],
 
@@ -218,6 +222,7 @@ plugin_body: |
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering.
+    `ordering`<br>*optional* <span class="badge enterprise"></span> | Describes a dependency to another plugin to determine plugin ordering during the `access` phase. <br> --`before`: The plugin will be executed _before_ a specified plugin or list of plugins. <br> -- `after`: The plugin will be executed _after_ a specified plugin or list of plugins.
 
 plugin_json: |
     {
@@ -230,7 +235,8 @@ plugin_json: |
         "config": {"minute":20, "hour":500},
         "protocols": ["http", "https"],
         "enabled": true,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "ordering": {"before":["plugin-name"]}
     }
 
 plugin_data: |
@@ -244,7 +250,8 @@ plugin_data: |
         "config": {"minute":20, "hour":500},
         "protocols": ["http", "https"],
         "enabled": true,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "ordering": {"before":["plugin-name"]}
     }, {
         "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "name": "rate-limiting",
@@ -255,18 +262,19 @@ plugin_data: |
         "config": {"minute":20, "hour":500},
         "protocols": ["tcp", "tls"],
         "enabled": true,
-        "tags": ["admin", "high-priority", "critical"]
+        "tags": ["admin", "high-priority", "critical"],
+        "ordering": {"after":["plugin-name"]}
     }],
 
 certificate_body: |
-    Attributes | Description
-    ---:| ---
-    `cert` | PEM-encoded public certificate chain of the SSL key pair.
-    `key` | PEM-encoded private key of the SSL key pair.
-    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it.
-    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
+  Attributes | Description
+  ---:| ---
+  `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format).
+  `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format).
+  `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format).
+  `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format).
+  `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
+  `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
 
 certificate_json: |
     {
@@ -360,40 +368,45 @@ sni_data: |
         "certificate": {"id":"4e8d95d4-40f2-4818-adcb-30e00c349618"}
     }],
 
+
 upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
     `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`.  Default: `"round-robin"`.
-    `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
-    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
+    `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`, `"path"`, `"query_arg"`, `"uri_capture"`.  Default: `"none"`.
+    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`, `"path"`, `"query_arg"`, `"uri_capture"`.  Default: `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
     `hash_fallback_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
     `hash_on_cookie_path`<br>*semi-optional* | The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`. Default: `"/"`.
+    `hash_on_query_arg`<br>*semi-optional* | The name of the query string argument to take the value from as hash input. Only required when `hash_on` is set to `query_arg`.
+    `hash_fallback_query_arg`<br>*semi-optional* | The name of the query string argument to take the value from as hash input. Only required when `hash_fallback` is set to `query_arg`.
+    `hash_on_uri_capture`<br>*semi-optional* | The name of the route URI capture to take the value from as hash input. Only required when `hash_on` is set to `uri_capture`.
+    `hash_fallback_uri_capture`<br>*semi-optional* | The name of the route URI capture to take the value from as hash input. Only required when `hash_fallback` is set to `uri_capture`.
     `slots`<br>*optional* | The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`. Default: `10000`.
-    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Default: `1`.
-    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Default: `0`.
-    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Default: `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
-    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
-    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Default: `10`.
     `healthchecks.active.`<wbr>`headers`<br>*optional* | One or more lists of values indexed by header name to use in GET HTTP request to run as a probe on active health checks. Values must be pre-formatted.
-    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Default: `0`.
-    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Default: `0`.
-    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Default: `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
-    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
     `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
     `healthchecks.active.`<wbr>`https_verify_certificate` | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Default: `true`.
-    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Default: `0`.
+    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Default: `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Default: `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Default: `0`.
+    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Default: `0`.
+    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
+    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Default: `10`.
+    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Default: `1`.
+    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
+    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Default: `0`.
+    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Default: `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
+    `healthchecks.passive.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
     `healthchecks.passive.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. Default: `[429, 500, 503]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an Array.
     `healthchecks.passive.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks. Default: `0`.
     `healthchecks.passive.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
-    `healthchecks.passive.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Default: `0`.
-    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Default: `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
-    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Default: `0`.
+    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Default: `"http"`.
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Default: `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering.
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
@@ -411,38 +424,38 @@ upstream_json: |
         "slots": 10000,
         "healthchecks": {
             "active": {
-                "timeout": 1,
-                "unhealthy": {
-                    "interval": 0,
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505]
-                },
-                "type": "http",
-                "concurrency": 10,
-                "headers": [{"x-another-header":["bla"], "x-my-header":["foo", "bar"]}],
+                "headers": [{"x-my-header":["foo", "bar"], "x-another-header":["bla"]}],
+                "https_sni": "example.com",
+                "https_verify_certificate": true,
                 "healthy": {
                     "interval": 0,
-                    "successes": 0,
-                    "http_statuses": [200, 302]
+                    "http_statuses": [200, 302],
+                    "successes": 0
+                },
+                "unhealthy": {
+                    "tcp_failures": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "http_failures": 0,
+                    "interval": 0,
+                    "timeouts": 0
                 },
                 "http_path": "/",
-                "https_sni": "example.com",
-                "https_verify_certificate": true
+                "concurrency": 10,
+                "timeout": 1,
+                "type": "http"
             },
             "passive": {
-                "type": "http",
+                "healthy": {
+                    "successes": 0,
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                },
                 "unhealthy": {
+                    "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
                     "http_failures": 0,
-                    "timeouts": 0,
-                    "tcp_failures": 0
+                    "timeouts": 0
                 },
-                "healthy": {
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
-                    "successes": 0
-                }
+                "type": "http"
             },
             "threshold": 0
         },
@@ -463,38 +476,38 @@ upstream_data: |
         "slots": 10000,
         "healthchecks": {
             "active": {
-                "timeout": 1,
-                "unhealthy": {
-                    "interval": 0,
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505]
-                },
-                "type": "http",
-                "concurrency": 10,
-                "headers": [{"x-another-header":["bla"], "x-my-header":["foo", "bar"]}],
+                "headers": [{"x-my-header":["foo", "bar"], "x-another-header":["bla"]}],
+                "https_sni": "example.com",
+                "https_verify_certificate": true,
                 "healthy": {
                     "interval": 0,
-                    "successes": 0,
-                    "http_statuses": [200, 302]
+                    "http_statuses": [200, 302],
+                    "successes": 0
+                },
+                "unhealthy": {
+                    "tcp_failures": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "http_failures": 0,
+                    "interval": 0,
+                    "timeouts": 0
                 },
                 "http_path": "/",
-                "https_sni": "example.com",
-                "https_verify_certificate": true
+                "concurrency": 10,
+                "timeout": 1,
+                "type": "http"
             },
             "passive": {
-                "type": "http",
+                "healthy": {
+                    "successes": 0,
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                },
                 "unhealthy": {
+                    "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
                     "http_failures": 0,
-                    "timeouts": 0,
-                    "tcp_failures": 0
+                    "timeouts": 0
                 },
-                "healthy": {
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
-                    "successes": 0
-                }
+                "type": "http"
             },
             "threshold": 0
         },
@@ -512,38 +525,38 @@ upstream_data: |
         "slots": 10000,
         "healthchecks": {
             "active": {
-                "timeout": 1,
-                "unhealthy": {
-                    "interval": 0,
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0,
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505]
-                },
-                "type": "http",
-                "concurrency": 10,
-                "headers": [{"x-another-header":["bla"], "x-my-header":["foo", "bar"]}],
+                "headers": [{"x-my-header":["foo", "bar"], "x-another-header":["bla"]}],
+                "https_sni": "example.com",
+                "https_verify_certificate": true,
                 "healthy": {
                     "interval": 0,
-                    "successes": 0,
-                    "http_statuses": [200, 302]
+                    "http_statuses": [200, 302],
+                    "successes": 0
+                },
+                "unhealthy": {
+                    "tcp_failures": 0,
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "http_failures": 0,
+                    "interval": 0,
+                    "timeouts": 0
                 },
                 "http_path": "/",
-                "https_sni": "example.com",
-                "https_verify_certificate": true
+                "concurrency": 10,
+                "timeout": 1,
+                "type": "http"
             },
             "passive": {
-                "type": "http",
+                "healthy": {
+                    "successes": 0,
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                },
                 "unhealthy": {
+                    "tcp_failures": 0,
                     "http_statuses": [429, 500, 503],
                     "http_failures": 0,
-                    "timeouts": 0,
-                    "tcp_failures": 0
+                    "timeouts": 0
                 },
-                "healthy": {
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308],
-                    "successes": 0
-                }
+                "type": "http"
             },
             "threshold": 0
         },
@@ -586,7 +599,7 @@ target_data: |
         "tags": ["admin", "high-priority", "critical"]
     }],
 
-vaults_beta_body: |
+vault_body: |
     Attributes | Description
     ---:| ---
     `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
@@ -595,7 +608,7 @@ vaults_beta_body: |
     `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
     `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
-vaults_beta_json: |
+vault_json: |
     {
         "id": "B2A30E8F-C542-49CF-8015-FB674987D1A5",
         "prefix": "env",
@@ -607,7 +620,7 @@ vaults_beta_json: |
         "tags": ["database-credentials", "data-plane"]
     }
 
-vaults_beta_data: |
+vault_data: |
     "data": [{
         "id": "518BBE43-2454-4559-99B0-8E7D1CD3E8C8",
         "prefix": "env",
@@ -649,7 +662,7 @@ vaults_beta_data: |
 ## DB-less Mode
 
 
-In [DB-less mode](../reference/db-less-and-declarative-config), the Admin API can be used to load a new declarative
+In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config), the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
 of that particular Kong node. This is the case because there is no database
@@ -696,7 +709,7 @@ are erased from memory, and the entities specified in the
 given file take their place.
 
 To learn more about the file format, see the
-[declarative configuration](../reference/db-less-and-declarative-config) documentation.
+[declarative configuration](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
 
 
 <div class="endpoint post indent">/config</div>
@@ -1086,6 +1099,83 @@ HTTP 200 OK
 }
 ```
 
+---
+
+### Retrieve Runtime Debugging Info of Kong's Timers
+{:.badge .dbless}
+
+Retrieve runtime stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).
+
+
+<div class="endpoint post">/timers</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{   "worker": {
+      "id": 0,
+      "count": 4,
+    },
+    "stats": {
+      "flamegraph": {
+        "running": "@./kong/init.lua:706:init_worker();@./kong/runloop/handler.lua:1086:before() 0\n",
+        "elapsed_time": "@./kong/init.lua:706:init_worker();@./kong/runloop/handler.lua:1086:before() 17\n",
+        "pending": "@./kong/init.lua:706:init_worker();@./kong/runloop/handler.lua:1086:before() 0\n"
+      },
+      "sys": {
+          "running": 0,
+          "runs": 7,
+          "pending": 0,
+          "waiting": 7,
+          "total": 7
+      },
+      "timers": {
+          "healthcheck-localhost:8080": {
+              "name": "healthcheck-localhost:8080",
+              "meta": {
+                  "name": "@/build/luarocks/share/lua/5.1/resty/counter.lua:71:new()",
+                  "callstack": "@./kong/plugins/prometheus/prometheus.lua:673:init_worker();@/build/luarocks/share/lua/5.1/resty/counter.lua:71:new()"
+              },
+              "stats": {
+                  "finish": 2,
+                  "runs": 2,
+                  "elapsed_time": {
+                      "min": 0,
+                      "max": 0,
+                      "avg": 0,
+                      "variance": 0
+                  },
+                  "last_err_msg": ""
+              }
+          }
+      }
+    }
+}
+```
+* `worker`:
+  * `id`: The ordinal number of the current Nginx worker processes (starting from number 0).
+  * `count`: The total number of the Nginx worker processes.
+* `stats.flamegraph`: String-encoded timer-related flamegraph data.
+  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph svgs.
+* `stats.sys`: List the number of different type of timers.
+  * `running`: number of running timers.
+  * `pending`: number of pending timers.
+  * `waiting`: number of unexpired timers.
+  * `total`: running + pending + waiting.
+* `timers.meta`: Program callstack of created timers.
+  * `name`: An automatically generated string that stores the location where the creation timer was created.
+  * `callstack`: Lua call stack string showing where this timer was created.
+* `timers.stats.elapsed_time`: An object that stores the maximum, minimum, average and variance
+  of the time spent on each run of the timer (second).
+* `timers.stats.runs`: Total number of runs.
+* `timers.stats.finish`: Total number of successful runs.
+
+Note: `flamegraph`, `timers.meta` and `timers.stats.elapsed_time` keys are only available when Kong's `log_level` config is set to `debug`.
+Read the [doc of lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng#stats) for more details.
 
 ---
 
@@ -1144,7 +1234,8 @@ HTTP 200 OK
         "connections_reading": 0,
         "connections_writing": 1,
         "connections_waiting": 0
-    }
+      },
+  "configuration_hash": "779742c3d7afee2e38f977044d2ed96b"
 }
 ```
 
@@ -1195,6 +1286,10 @@ HTTP 200 OK
     * `reachable`: A boolean value reflecting the state of the
       database connection. Please note that this flag **does not**
       reflect the health of the database itself.
+* `configuration_hash`: The hash of the current configuration. This
+field is only returned when the Kong node is running in DB-less
+or data-plane mode. The special return value "00000000000000000000000000000000"
+means Kong does not currently have a valid configuration loaded.
 
 
 ---
@@ -1628,7 +1723,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -1989,7 +2084,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -2233,7 +2328,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -2645,7 +2740,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+ HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -2965,7 +3060,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -3176,7 +3271,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -3432,7 +3527,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -3701,7 +3796,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -3864,68 +3959,6 @@ Targets can be both [tagged and filtered by tags](#tags).
 {{ page.target_json }}
 ```
 
-### Add Target
-
-
-
-{:.note}
-> **Note**: This API is not available in DB-less mode.
-
-##### Create Target Associated to a Specific Upstream
-
-<div class="endpoint post indent">/upstreams/{upstream_id}/targets</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`upstream_id`<br>**required** | The unique identifier of the Upstream that should be associated to the newly-created Target.
-
-
-#### Request Body
-
-{{ page.target_body }}
-
-
-#### Response
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.target_json }}
-```
-
-
----
-
-### List Targets
-{:.badge .dbless}
-
-##### List Targets Associated to a Specific Upstream
-
-<div class="endpoint get indent">/upstreams/{upstream_id}/targets</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`upstream_id`<br>**required** | The unique identifier of the Upstream whose Targets are to be retrieved. When using this endpoint, only Targets associated to the specified Upstream will be listed.
-
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-{{ page.target_data }}
-    "next": "http://localhost:8001/targets?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
-}
-```
-
-
 ---
 
 ### Update Target
@@ -4003,8 +4036,9 @@ This resets the health counters of the health checkers running in all workers
 of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
+Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4047,8 +4081,9 @@ that the address is actually healthy, it will automatically re-enable it again.
 To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
+Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4082,8 +4117,9 @@ This resets the health counters of the health checkers running in all workers
 of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
+Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4122,8 +4158,9 @@ that the target is actually healthy, it will automatically re-enable it again.
 To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
+Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
 {:.indent}
 Attributes | Description
@@ -4203,7 +4240,7 @@ Vaults can be both [tagged and filtered by tags](#tags).
 
 
 ```json
-{{ page.vaults_beta_json }}
+{{ page.vault_json }}
 ```
 
 ### Add Vault
@@ -4215,12 +4252,12 @@ Vaults can be both [tagged and filtered by tags](#tags).
 
 ##### Create Vault
 
-<div class="endpoint post indent">/vaults-beta</div>
+<div class="endpoint post indent">/vaults</div>
 
 
 #### Request Body
 
-{{ page.vaults_beta_body }}
+{{ page.vault_body }}
 
 
 #### Response
@@ -4230,7 +4267,7 @@ HTTP 201 Created
 ```
 
 ```json
-{{ page.vaults_beta_json }}
+{{ page.vault_json }}
 ```
 
 
@@ -4241,7 +4278,7 @@ HTTP 201 Created
 
 ##### List All Vaults
 
-<div class="endpoint get indent">/vaults-beta</div>
+<div class="endpoint get indent">/vaults</div>
 
 
 #### Response
@@ -4252,8 +4289,8 @@ HTTP 200 OK
 
 ```json
 {
-{{ page.vaults_beta_data }}
-    "next": "http://localhost:8001/vaults-beta?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+{{ page.vault_data }}
+    "next": "http://localhost:8001/vaults?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
 
@@ -4265,12 +4302,12 @@ HTTP 200 OK
 
 ##### Retrieve Vault
 
-<div class="endpoint get indent">/vaults-beta/{vaults_beta prefix or id}</div>
+<div class="endpoint get indent">/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`vaults_beta prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to retrieve.
+`vault prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to retrieve.
 
 
 #### Response
@@ -4280,7 +4317,7 @@ HTTP 200 OK
 ```
 
 ```json
-{{ page.vaults_beta_json }}
+{{ page.vault_json }}
 ```
 
 
@@ -4295,17 +4332,17 @@ HTTP 200 OK
 
 ##### Update Vault
 
-<div class="endpoint patch indent">/vaults-beta/{vaults_beta prefix or id}</div>
+<div class="endpoint patch indent">/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`vaults_beta prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to update.
+`vault prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to update.
 
 
 #### Request Body
 
-{{ page.vaults_beta_body }}
+{{ page.vault_body }}
 
 
 #### Response
@@ -4315,7 +4352,7 @@ HTTP 200 OK
 ```
 
 ```json
-{{ page.vaults_beta_json }}
+{{ page.vault_json }}
 ```
 
 
@@ -4330,17 +4367,17 @@ HTTP 200 OK
 
 ##### Create Or Update Vault
 
-<div class="endpoint put indent">/vaults-beta/{vaults_beta prefix or id}</div>
+<div class="endpoint put indent">/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`vaults_beta prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to create or update.
+`vault prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to create or update.
 
 
 #### Request Body
 
-{{ page.vaults_beta_body }}
+{{ page.vault_body }}
 
 
 Inserts (or replaces) the Vault under the requested resource with the
@@ -4361,7 +4398,7 @@ body is not allowed.
 #### Response
 
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 200 OK
 ```
 
 See POST and PATCH responses.
@@ -4378,12 +4415,12 @@ See POST and PATCH responses.
 
 ##### Delete Vault
 
-<div class="endpoint delete indent">/vaults-beta/{vaults_beta prefix or id}</div>
+<div class="endpoint delete indent">/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`vaults_beta prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to delete.
+`vault prefix or id`<br>**required** | The unique identifier **or** the prefix of the Vault to delete.
 
 
 #### Response
@@ -4395,9 +4432,9 @@ HTTP 204 No Content
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
+[clustering]: /gateway/{{page.kong_version}}/production/clustering
 [cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/reference/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/reference/health-checks-circuit-breakers
-[secure-admin-api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/reference/proxy
+[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
+[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
