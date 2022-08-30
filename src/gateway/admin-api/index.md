@@ -14,7 +14,7 @@ service_body: |
     ---:| ---
     `name`<br>*optional* | The Service name.
     `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Default: `5`.
-    `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"tls_passthrough"`, `"udp"`, `"ws"`, `"wss"`.  Default: `"http"`.
+    `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"tls_passthrough"`, `"udp"`, `"ws"` <span class="badge enterprise"></span>, `"wss"` <span class="badge enterprise"></span>.  Default: `"http"`.
     `host` | The host of the upstream server. Note that the host value is case sensitive.
     `port` | The upstream server port. Default: `80`.
     `path`<br>*optional* | The path to be used in requests to the upstream server.
@@ -1696,8 +1696,8 @@ following attributes must be set:
 * For `tls_passthrough`, set `snis`;
 * For `grpc`, at least one of `hosts`, `headers` or `paths`;
 * For `grpcs`, at least one of `hosts`, `headers`, `paths` or `snis`.
-* For `ws`, at least one of `hosts`, `headers` or `paths`;
-* For `wss`, at least one of `hosts`, `headers`, `paths` or `snis`;
+* For `ws`, at least one of `hosts`, `headers` or `paths`; <span class="badge enterprise"></span>
+* For `wss`, at least one of `hosts`, `headers`, `paths` or `snis`; <span class="badge enterprise"></span>
 
 A route can't have both `tls` and `tls_passthrough` protocols at same time.
 
