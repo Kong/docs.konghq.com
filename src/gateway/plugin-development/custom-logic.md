@@ -363,7 +363,11 @@ basic-auth                  | 1100
 openid-connect              | 1050
 jwt-signer                  | 1020
 request-validator           | 999
+websocket-size-limit        | 999
+websocket-validator         | 999
 grpc-gateway                | 998
+tls-handshake-modifier      | 997
+tls-metadata-headers        | 996
 application-registration    | 995
 ip-restriction              | 990
 request-size-limiting       | 951
@@ -388,6 +392,7 @@ proxy-cache                 | 100
 graphql-proxy-cache-advanced | 99
 forward-proxy               | 50
 canary                      | 20
+opentelemetry               | 14
 prometheus                  | 13
 http-log                    | 12
 statsd                      | 11
