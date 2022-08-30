@@ -458,6 +458,59 @@ Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  De
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen
 
+## WebSocket requests
+{:.badge .enterprise}
+
+This plugin cannot issue new tokens from a WebSocket route, because the request
+will be rejected as an invalid WebSocket handshake. Therefore, to use this
+plugin with WebSocket services, an additional non-WebSocket route must be used
+to issue tokens.
+
+```bash
+# create a WebSocket service
+$ curl -X POST http://localhost:8001/services/ \
+  --data "name=my-websocket-service" \
+  --data "url=ws://my-websocket-backend:8080/"
+
+# attach a route to the service
+$ curl -X POST http://localhost:8001/services/my-websocket-service/routes \
+  --data "name=my-websocket-route" \
+  --data "protocols=wss" \
+  --data "hosts=my-websocket-hostname.com" \
+
+# attach an oauth2 plugin instance to the service
+#
+# NOTE: setting `global_credentials=true` is necessary to allow tokens
+# created by other plugin instances
+$ curl -x POST http://localhost:8001/services/my-websocket-service/plugins \
+  --data "name=oauth2" \
+  --data "config.scopes=email" \
+  --data "config.scopes=profile" \
+  --data "config.global_credentials=true"
+
+# create another route to handle token creation
+#
+# NOTE: adding a POST method matcher ensures that regular WebSocket handshake
+# requests will not match this route
+$ curl -X POST http://localhost:8001/routes \
+  --data "name=my-websocket-token-helper" \
+  --data "protocols=https" \
+  --data "hosts=my-websocket-hostname.com" \
+  --data "methods=POST"
+
+# finally, add the additional oauth2 plugin instance, using the same
+$ curl -x POST http://localhost:8001/routes/my-websocket-token-helper/plugins \
+  --data "name=oauth2" \
+  --data "config.scopes=email" \
+  --data "config.scopes=profile" \
+  --data "config.global_credentials=true"
+```
+
+Client token requests (for example: `POST https://my-websocket-hostname.com/oauth2/authorize`)
+will be handled by the `oauth2` plugin instance attached to the `my-websocket-token-helper`
+route, and tokens issued by this route can be used in the WebSocket handshake
+request to the `my-websocket-route` route.
+
 ---
 
 ## Changelog
