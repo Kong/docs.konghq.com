@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Implementing Custom Logic
+title: Implementing Custom Logic
 book: plugin_dev
 chapter: 3
 ---

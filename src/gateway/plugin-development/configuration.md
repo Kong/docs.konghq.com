@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Plugin Configuration
+title: Plugin Configuration
 book: plugin_dev
 chapter: 4
 ---

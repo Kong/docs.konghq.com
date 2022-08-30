@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - (un)Installing your plugin
+title: (un)Installing your plugin
 book: plugin_dev
 chapter: 10
 ---

@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Storing Custom Entities
+title: Storing Custom Entities
 book: plugin_dev
 chapter: 6
 ---

@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Extending the Admin API
+title: Extending the Admin API
 book: plugin_dev
 chapter: 8
 ---

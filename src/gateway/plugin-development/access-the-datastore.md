@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Accessing the Datastore
+title: Accessing the Datastore
 book: plugin_dev
 chapter: 5
 ---
