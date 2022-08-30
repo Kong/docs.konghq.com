@@ -295,18 +295,19 @@ The current order of execution for the bundled plugins is:
 
 Plugin                      | Priority
 ----------------------------|----------
-pre-function                | `+inf`
+pre-function                | 1000000
 correlation-id <span class="badge free"></span> | 100001
 zipkin                      | 100000
 bot-detection               | 2500
 cors                        | 2000
 session                     | 1900
+acme                        | 1705
 jwt                         | 1450
 oauth2                      | 1400
-hmac-auth                   | 1300
 key-auth                    | 1250
 ldap-auth                   | 1200
 basic-auth                  | 1100
+hmac-auth                   | 1030
 grpc-gateway                | 998
 ip-restriction              | 990
 request-size-limiting       | 951
@@ -317,6 +318,7 @@ request-transformer         | 801
 response-transformer        | 800
 aws-lambda                  | 750
 azure-functions             | 749
+opentelemetry               | 14
 prometheus                  | 13
 http-log                    | 12
 statsd                      | 11
@@ -340,7 +342,7 @@ The current order of execution for the bundled plugins is:
 
 Plugin                      | Priority
 ----------------------------|----------
-pre-function                | `+inf`
+pre-function                | 1000000
 correlation-id              | 100001 <!--  CE priority is 1, EE priority is 100001 -->
 zipkin                      | 100000
 exit-transformer            | 9999
@@ -348,22 +350,26 @@ bot-detection               | 2500
 cors                        | 2000
 session                     | 1900
 oauth2-introspection        | 1700
-acme                        | 1750
+acme                        | 1705
 mtls-auth                   | 1600
 jwt                         | 1450
 degraphql                   | 1500
 oauth2                      | 1400
 vault-auth                  | 1350
-hmac-auth                   | 1300
 key-auth                    | 1250
 key-auth-enc                | 1250
 ldap-auth                   | 1200
 ldap-auth-advanced          | 1200
 basic-auth                  | 1100
 openid-connect              | 1050
+hmac-auth                   | 1030
 jwt-signer                  | 1020
 request-validator           | 999
+websocket-size-limit        | 999
+websocket-validator         | 999
 grpc-gateway                | 998
+tls-handshake-modifier      | 997
+tls-metadata-headers        | 996
 application-registration    | 995
 ip-restriction              | 990
 request-size-limiting       | 951
@@ -388,6 +394,7 @@ proxy-cache                 | 100
 graphql-proxy-cache-advanced | 99
 forward-proxy               | 50
 canary                      | 20
+opentelemetry               | 14
 prometheus                  | 13
 http-log                    | 12
 statsd                      | 11
