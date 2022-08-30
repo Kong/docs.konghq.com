@@ -65,7 +65,7 @@ module SingleSource
   end
 
   class SingleSourcePage < Jekyll::Page
-    def initialize(site, src, dest, product, release, version, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists
+    def initialize(site, src, dest, product, release, version, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists, Metrics/PerceivedComplexity
       # Configure variables that Jekyll depends on
       @site = site
 
@@ -98,9 +98,8 @@ module SingleSource
         is_dir_index = false
       else
         file = "src/#{src}/index.md"
-        unless File.exist?(file)
-          raise "Could not find a source file at 'src/#{src}.md' or #{file}"
-        end
+        raise "Could not find a source file at 'src/#{src}.md' or #{file}" unless File.exist?(file)
+
         is_dir_index = true
       end
 
