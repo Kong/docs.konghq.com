@@ -35,6 +35,7 @@ params:
   dbless_compatible: 'yes'
   config:
     - name: local_service_name
+      minimum_version: "2.7.x"
       required: true
       default: kong
       datatype: string
@@ -128,8 +129,45 @@ params:
       description: |
         The tags specified on this property will be added to the generated request traces. For example:
         `[ { "name": "color", "value": "red" } ]`.
----
 
+    - name: http_span_name
+      minimum_version: "3.0.x"
+      required: true
+      default: method
+      value_in_examples: null
+      datatype: string
+      description: |
+        Specify whether to include the HTTP path in the span name.
+
+        Options:
+        * `method`: Do not include the HTTP path. This is the default.
+        * `method_path`: Include the HTTP path.
+
+    - name: connect_timeout
+      minimum_version: "3.0.x"
+      required: false
+      default: 2000
+      value_in_examples: null
+      datatype: number
+      description: The timeout, in milliseconds, for establishing a connection to the Zipkin server.
+    - name: send_timeout
+      minimum_version: "3.0.x"
+      required: false
+      default: 5000
+      value_in_examples: null
+      datatype: number
+      description: The timeout, in milliseconds, between two
+        successive write operations when sending a request to the Zipkin server.
+    - name: read_timeout
+      minimum_version: "3.0.x"
+      required: false
+      default: 5000
+      value_in_examples: null
+      datatype: number
+      description: The timeout, in milliseconds, between two
+        successive read operations when receiving a response from the Zipkin server.
+
+---
 ## How it Works
 
 When enabled, [this plugin](https://github.com/Kong/kong-plugin-zipkin) traces requests in a way compatible with [zipkin](https://zipkin.io/).
@@ -199,7 +237,18 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 
 ## Changelog
 
-### 1.5.x
+**{{site.base_gateway}} 3.0.x**
+
+* Added support for including the HTTP path in the span name with the
+`http_span_name` configuration parameter.
+[#8150](https://github.com/Kong/kong/pull/8150)
+* Added support for socket connect and send/read timeouts
+  through the `connect_timeout`, `send_timeout`,
+  and `read_timeout` configuration parameters. This can help mitigate
+  `ngx.timer` saturation when upstream collectors are unavailable or slow.
+  [#8735](https://github.com/Kong/kong/pull/8735)
+
+**{{site.base_gateway}} 2.7.x (plugin version 1.5.x)**
 
 * Added a new parameter: `local_service_name`
 * Added a new `ignore` option for the `header_type` parameter
