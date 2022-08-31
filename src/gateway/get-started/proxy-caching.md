@@ -37,7 +37,7 @@ The following tutorial walks through managing proxy caching across various aspec
 This chapter is part of the *Get Started with Kong* series. For the best experience, it is recommended that you follow the
 series from the beginning. 
 
-Start with the introduction [Get Kong](/gateway/latest/get-started/get-kong), which includes
+Start with the introduction [Get Kong](/gateway/latest/get-started/), which includes
 a list of prerequisites and instructions for running a local {{site.base_gateway}}.
 
 Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),

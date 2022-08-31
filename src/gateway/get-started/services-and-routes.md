@@ -65,10 +65,10 @@ In this section of the tutorial, you will complete the following steps:
 This chapter is part of the *Get Started with Kong* series. For the best experience, it is recommended that you follow the
 series from the beginning. 
 
-The introduction, [Get Kong](/gateway/latest/get-started/get-kong), includes
+The introduction, [Get Kong](/gateway/latest/get-started/), includes
 tool prerequisites and instructions for running a local {{site.base_gateway}}.
 
-If you haven't completed the [Get Kong](/gateway/latest/get-started/get-kong) step already, 
+If you haven't completed the [Get Kong](/gateway/latest/get-started/) step already, 
 complete that before proceeding.
 
 ### Managing services

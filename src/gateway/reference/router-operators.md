@@ -5,7 +5,7 @@ content-type: reference
 
 With the release of version 3.0, {{site.base_gateway}} now ships with a new router. The new router can describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as
 combinations of logical operations called "predicates". This document serves as a reference for all of the available operators and fields.
-If you want to learn how to configure routes using Expressions read [How to configure routes using Expressions](gateway/latest/understanding-kong/how-to/router-atc/).
+If you want to learn how to configure routes using Expressions read [How to configure routes using Expressions](/gateway/{{ page.kong_version }}/key-concepts/routes/expressions).
 
 
 ## General design
@@ -97,4 +97,4 @@ Example:
 ## More information
 
 * [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-* [How to configure routes using Expressions](gateway/latest/understanding-kong/how-to/router-atc/)
+* [How to configure routes using Expressions](/gateway/{{ page.kong_version }}/key-concepts/routes/expressions)
