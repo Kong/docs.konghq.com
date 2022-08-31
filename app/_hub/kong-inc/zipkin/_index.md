@@ -173,6 +173,7 @@ params:
         `Zipkin-Tags: fg=blue, bg=red` will generate a trace with the tag `fg` with
         value `blue`, and another tag called `bg` with value `red`.
     - name: static_tags
+      minimum_version: "2.3.x"
       required: false
       default: []
       value_in_examples: null
@@ -316,3 +317,6 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 * Added support for OT and Jaeger style `uber-trace-id` headers.
 * The plugin now allows insertion of custom tags on the Zipkin request trace.
 * The plugin now allows the creation of baggage items on child spans.
+
+**{{site.base_gateway}} 2.3.x**
+* Added the `default_header_type` and `static_tags` configuration parameters.
