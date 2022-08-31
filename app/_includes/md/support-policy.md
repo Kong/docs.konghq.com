@@ -36,8 +36,6 @@ Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs th
 * Other bugs as well as feature requests will be assessed for severity and fixes or enhancements applied to versions of {{site.ee_product_name}} at Kong’s discretion depending on the impact of the bug. Typically, these types of fixes and enhancements will only be applied to the most recent Minor Version in the most recent Major Version.
 
 Customers with platinum or higher subscriptions may request fixes outside of the above and Kong will assess them at its sole discretion.
-<<<<<<< HEAD:app/_includes/md/support-policy.md
-=======
 
 ## Version support for {{site.base_gateway}} (Enterprise)
 
@@ -96,4 +94,3 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 ## Additional terms
 - The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
 - The above applies to Kong standard software builds only.
->>>>>>> main:app/konnect-platform/support-policy.md
