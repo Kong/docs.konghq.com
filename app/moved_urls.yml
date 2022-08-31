@@ -34,7 +34,7 @@
 /gateway/VERSION/plan-and-deploy/hybrid-mode/hybrid-mode-setup/: "/gateway/VERSION/production/deployment-topologies/hybrid-mode/setup/"
 /gateway/VERSION/plan-and-deploy/kubernetes-deployment-options/: "/gateway/VERSION/install/kubernetes/deployment-options/"
 /gateway/VERSION/plan-and-deploy/systemd/: "/gateway/VERSION/production/running-kong/systemd/"
-/gateway/VERSION/plan-and-deploy/performance-testing-framework/: "/gateway/VERSION/reference/performance-testing/"
+/gateway/VERSION/plan-and-deploy/performance-testing-framework/: "/gateway/VERSION/reference/performance-testing-framework/"
 /gateway/VERSION/plan-and-deploy/dns-considerations/: "/gateway/VERSION/production/networking/dns-considerations/"
 /gateway/VERSION/plan-and-deploy/default-ports/: "/gateway/VERSION/production/networking/default-ports/"
 /gateway/VERSION/plan-and-deploy/licenses/: "/gateway/VERSION/licenses/"
