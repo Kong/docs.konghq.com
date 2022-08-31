@@ -16,7 +16,7 @@ multiple solutions:
    shows how to install and configure the {{site.base_gateway}} [Prometheus plugin](/hub/kong-inc/prometheus/).
 * [Datadog](https://www.datadoghq.com/) is a popular cloud based infrastructure and application monitoring service.
    See the [Collect Metrics with Datadog guide](/gateway/latest/production/monitoring/datadog/) for information on 
-   integrating {{site.base_gateway}} with Datadog. You can also integrate the [Datadog plugin](/hub/kong-inc/datadog/) with {{site.base_gateway}}.
+   integrating {{site.base_gateway}} with Datadog. You can also integrate the [Datadog plugin](/hub/kong-inc/datadog/) with {{site.base_gateway}} for additional insights.
 * [StatsD](https://github.com/statsd/statsd) is a lightweight network daemon that listens for application metrics on
    UDP or TCP and sends aggregated values to one or more backend services. {{site.base_gateway}} directly supports StatsD
    with the [StatsD plugin](/hub/kong-inc/statsd/). [Monitoring with StatsD](/gateway/latest/production/monitoring/statsd/) provides a 
