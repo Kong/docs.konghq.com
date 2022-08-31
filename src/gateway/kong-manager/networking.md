@@ -27,7 +27,7 @@ the same host. By default, the Admin API listens on ports 8001 and
 8444 on localhost. Change [`admin_listen`] if necessary, or set
 [`admin_api_uri`].
 
-{% include_cached /md/admin-listen.md desc='short' %}
+{% include_cached /md/admin-listen.md desc='short' kong_version=page.kong_version %}
 
 ### Securing Kong Manager and serving it from a dedicated node
 

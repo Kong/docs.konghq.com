@@ -35,7 +35,7 @@ it from unauthorized access.
 
 * `8001` provides Kong's **Admin API** that you can use to operate Kong with HTTP. See [admin_listen].
 
-{% include_cached /md/admin-listen.md desc='short' %}
+{% include_cached /md/admin-listen.md desc='short' kong_version=page.kong_version %}
 
 * `8444` provides the same Kong **Admin API** but using HTTPS. See [admin_listen] and the `ssl` suffix.
 

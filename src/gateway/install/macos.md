@@ -8,7 +8,7 @@ badge: oss
 
 ## Prerequisites
 
-You have [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+You have [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user) access.
 
 ## Download and install
 
@@ -40,7 +40,7 @@ file for specifying the entities as a declarative configuration.
 [Configure][configuration] Kong so it can connect to your database. Kong supports
 [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and
 [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as datastores, and
-can also run in [DB-less mode](/gateway/latest/reference/db-less-and-declarative-config/)
+can also run in [DB-less mode](/gateway/{{ page.kong_version }}/production/deployment-topologies/db-less-and-declarative-config)
 
 1. If you are using Postgres, provision a database and a user before starting Kong:
 
@@ -66,7 +66,7 @@ can also run in [DB-less mode](/gateway/latest/reference/db-less-and-declarative
 
 ### Without a database
 
-If you are going to run Kong in [DB-less mode](/gateway/latest/reference/db-less-and-declarative-config/),
+If you are going to run Kong in [DB-less mode](/gateway/latest/production/deployment-topologies/db-less-and-declarative-config),
 you should start by generating a declarative config file.
 
 1. Generate a `kong.yml` file in your current folder using the following command:
@@ -102,7 +102,7 @@ you should start by generating a declarative config file.
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{page.kong_version}}/get-started/comprehensive) guides to get the most
+[Getting Started](/gateway/{{page.kong_version}}/get-started/services-and-routes) guides to get the most
 out of {{site.base_gateway}}.
 
 [configuration]: /gateway/{{page.kong_version}}/reference/configuration#database

@@ -32,7 +32,7 @@ of authentication.
 For a simple configuration to use for the subsequent Getting
 Started guides:
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md desc='long' kong_version=page.version %}
 
 ```
 enforce_rbac = on

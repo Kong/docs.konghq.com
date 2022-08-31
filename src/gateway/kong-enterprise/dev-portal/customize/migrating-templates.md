@@ -7,7 +7,7 @@ The template styling from your default Dev Portal doesn't automatically apply to
 
 ## Prerequisites
 
-* Install [Portal CLI](/gateway/latest/dev-portal/helpers/cli/) and set up the [configuration](/gateway/latest/developer-portal/helpers/cli/#usage).
+* Install [Portal CLI](/gateway/latest/dev-portal/helpers/cli/) and set up the [configuration](/gateway/latest/dev-portal/helpers/cli/#usage).
 
 ## Apply customization from default Dev Portal
 

@@ -78,7 +78,7 @@ with each other.
 
 1. Start the gateway with Kong Manager:
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md desc='long' kong_version=page.version %}
 
     <pre><code>docker run -d --name kong-ee --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \

@@ -1039,4 +1039,4 @@ he created.
 ---
 
 [workspaces-examples]: /gateway/{{page.kong_version}}/kong-enterprise/workspaces
-[getting-started-guide]: /gateway/{{page.kong_version}}/get-started/comprehensive
+[getting-started-guide]: /gateway/{{page.kong_version}}/get-started/

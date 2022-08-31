@@ -238,7 +238,7 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 {:.badge .enterprise}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
-or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).
+or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/).
 
 1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
    `portal_gui_host` property to the DNS or IP address of the system.
@@ -274,9 +274,9 @@ or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/
 {:.badge .enterprise}
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
@@ -285,5 +285,5 @@ your setup, reach out to your Kong Support contact or go to the
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
+[Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to get the most
 out of {{site.base_gateway}}.

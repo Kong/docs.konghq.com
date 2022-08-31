@@ -68,7 +68,7 @@ Result:
 ```
 
 For more detail and options, see the
-[Admin API `licenses` endpoint reference](/gateway/latest/admin-api/licenses/examples/).
+[Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
 
 {% endnavtab %}
 {% navtab Filesystem %}
