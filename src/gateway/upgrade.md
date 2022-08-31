@@ -324,12 +324,12 @@ This ensures that all instances are using the new {{site.base_gateway}} package 
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/production-deployment/deployment-topologies/hybrid-mode/),
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/),
 upgrade the control plane first, and then the data planes.
 
 * If you are currently running 2.8.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/production-deployment/deployment-topologies/hybrid-mode/setup/)
+  [installation instructions](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
