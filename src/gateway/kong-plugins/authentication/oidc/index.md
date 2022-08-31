@@ -26,7 +26,7 @@ identity provider:
 
   - [Auth0](/gateway/{{page.kong_version}}/configure/auth/oidc-auth0)
   - [Amazon AWS Cognito](/gateway/{{page.kong_version}}/configure/auth/oidc-cognito/)
-  - [Curity](/gateway/{{page.kong_version}}/configure/auth/oidc-curity/)
+  - [Curity](/gateway/{{page.kong_version}}/kong-plugins/authentication/oidc/curity/)
   - [Google](/gateway/{{page.kong_version}}/configure/auth/oidc-google/)
   - [Microsoft Azure Active Directory (Azure AD)](/gateway/{{page.kong_version}}/configure/auth/oidc-azuread)
   - [Okta](/gateway/{{page.kong_version}}/configure/auth/oidc-okta)
