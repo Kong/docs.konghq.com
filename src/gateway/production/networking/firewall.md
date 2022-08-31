@@ -69,4 +69,4 @@ to start Kong as a `root` user or set the needed capabilities for the executable
 [proxy_listen]: /gateway/{{page.kong_version}}/reference/configuration/#proxy_listen
 [stream_listen]: /gateway/{{page.kong_version}}/reference/configuration/#stream_listen
 [admin_listen]: /gateway/{{page.kong_version}}/reference/configuration/#admin_listen
-[secure_admin_api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api
+[secure_admin_api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
