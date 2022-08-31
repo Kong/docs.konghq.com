@@ -12,7 +12,7 @@ delimit the types of actions and entities available to an admin.
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/)
 * You are logged into Kong Manager as a [super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
 or a user that has `/admins` and `/rbac` read and write access
 
@@ -194,4 +194,4 @@ workspace are already visible, and new roles specific
 to the workspace can be assigned from this page.
 
 For more information about admins and roles, see
-[RBAC in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/rbac/).
+[RBAC in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/).

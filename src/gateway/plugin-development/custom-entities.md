@@ -674,4 +674,4 @@ The next chapter will focus on caching custom entities, and invalidating them
 when they change in the datastore: [Caching custom entities]({{page.book.next.url}}).
 
 [Admin API]: /gateway/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
+[Plugin Development Kit]: /gateway/{{page.kong_version}}/plugin-development/pdk
