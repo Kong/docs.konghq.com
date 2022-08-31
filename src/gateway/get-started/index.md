@@ -17,12 +17,11 @@ This page will walk you through running {{site.base_gateway}} and verifying it w
 [Admin API](/gateway/latest/admin-api). Once complete, the following tasks 
 can be performed to complete the tutorial:
 
-* [Understanding and configuring Services and Routes](/gateway/latest/get-started/configure-services-and-routes)
-* [Configuring Rate Limiting to protect upstream Services](/gateway/latest/get-started/configure-ratelimiting)
-* [Increase system performance with Proxy Caching](/gateway/latest/get-started/proxy-caching)
-* [Load Balancing for horizontal Service scaling](/gateway/latest/get-started/load-balancing)
-* [Protecting Services with Key Authentication](/gateway/latest/get-started/protect-services)
-* [Use Workspaces and Teams to organize {{site.base_gateway}}](/gateway/latest/get-started/manage-teams) at scale.
+* [Understanding and configuring Services and Routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes)
+* [Configuring Rate Limiting to protect upstream Services](/gateway/{{ page.kong_version }}/get-started/rate-limiting)
+* [Increase system performance with Proxy Caching](/gateway/{{ page.kong_version }}/get-started/proxy-caching)
+* [Load Balancing for horizontal Service scaling](/gateway/{{ page.kong_version }}/get-started/load-balancing)
+* [Protecting Services with Key Authentication](/gateway/{{ page.kong_version }}/get-started/key-authentication)
 
 ### Prerequisites
 

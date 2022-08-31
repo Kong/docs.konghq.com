@@ -171,7 +171,7 @@ contains more information about available backends and configuration details.
   * [Environment Variables Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/env/)
   * [AWS Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
   * [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
-  * [Google Secrets Management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/google-sm/)
-* See [Starting Kong Securely](/gateway/{{page.kong_version}}/kong-production/running-kong/start-kong-securely/) for more 
+  * [Google Secrets Management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* See [Starting Kong Securely](/gateway/{{page.kong_version}}/production/access-control/start-securely/) for more
 security practices with {{site.base_gateway}}
 

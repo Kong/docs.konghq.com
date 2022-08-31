@@ -9,7 +9,7 @@ Note that some of the supported GNU/Linux distributions for {{site.base_gateway}
 may not have adopted systemd as their default init system
 (for example, CentOS 6 and RHEL 6). For the following instructions, it is
 assumed that {{site.base_gateway}} has already been
-[installed and configured](/gateway/{{page.kong_version}}/install-and-run) on a
+[installed and configured](/gateway/{{page.kong_version}}/install) on a
 systemd-supported GNU/Linux distribution.
 
 ## systemd commands for working with {{site.base_gateway}}

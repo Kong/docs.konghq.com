@@ -26,6 +26,6 @@ export KONG_LOG_LEVEL=error
 
 ## More Information
 
-* [Embedding Kong in OpenResty](/gateway/latest/kong-production/kong-openresty)
-* [How to use `kong.conf`](/gateway/latest/kong-production/kong-conf)
-* [How to serve an API and a website with Kong](/gateway/latest/kong-production/website-api-serving)
+* [Embedding Kong in OpenResty](/gateway/latest/production/kong-openresty)
+* [How to use `kong.conf`](/gateway/latest/production/kong-conf)
+* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving)

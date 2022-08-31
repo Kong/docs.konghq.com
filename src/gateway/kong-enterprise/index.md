@@ -67,7 +67,7 @@ You can configure {{site.base_gateway}} users, roles, and permissions with role-
 
 ## Workspaces
 
-[Workspaces](/gateway/{{page.kong_version}}/admin-api/workspaces/examples/) provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces. 
+[Workspaces](/gateway/{{page.kong_version}}/kong-enterprise/workspaces/) provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces. 
 
 [Learn more about workspaces &rarr;](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
 

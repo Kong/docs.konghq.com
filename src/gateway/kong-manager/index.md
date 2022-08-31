@@ -18,7 +18,7 @@ Here are some of the things you can do with Kong Manager:
 * Monitor performance: visualize cluster-wide, workspace-level, or even object-level health using intuitive, customizable dashboards
 
 {:.note}
-> **Note**: If you are running Kong in [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional), increased traffic could lead to potential performance issues for the Kong proxy.
+> **Note**: If you are running Kong in [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional), increased traffic could lead to potential performance issues for the Kong proxy.
 > Server-side sorting and filtering large quantities of entities can also cause increased CPU usage in both {{site.base_gateway}} and its database.
 
 ## Kong Manager interface

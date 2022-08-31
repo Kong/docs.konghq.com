@@ -135,7 +135,7 @@ You can verify the confirmed user from the Cognito page under “General setting
 
 ## Dev Portal Integration
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
 Since AWS Cognito only supports the HTTPS protocol, when you start {{site.base_gateway}}, ensure that HTTPS protocol for Dev Portal is enabled. For example:
 

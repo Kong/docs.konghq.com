@@ -3,11 +3,11 @@ title: Migrating Templates Between Workspaces
 badge: enterprise
 ---
 
-The template styling from your default Dev Portal doesn't automatically apply to new Dev Portals you create in other workspaces. However, with the [Portal CLI](/gateway/latest/dev-portal/helpers/cli/), you can move over templates in a few steps.
+The template styling from your default Dev Portal doesn't automatically apply to new Dev Portals you create in other workspaces. However, with the [Portal CLI](/gateway/latest/kong-enterprise/dev-portal/cli/), you can move over templates in a few steps.
 
 ## Prerequisites
 
-* Install [Portal CLI](/gateway/latest/dev-portal/helpers/cli/) and set up the [configuration](/gateway/latest/developer-portal/helpers/cli/#usage).
+* Install [Portal CLI](/gateway/latest/kong-enterprise/dev-portal/cli/) and set up the [configuration](/gateway/latest/kong-enterprise/dev-portal/cli/#usage).
 
 ## Apply customization from default Dev Portal
 

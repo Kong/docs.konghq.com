@@ -10,6 +10,6 @@ layout: default
 <link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
 
 <elements-api
-  apiDescriptionUrl="/api/developer-portal.json"
+  apiDescriptionUrl="/api/dev-portal.json"
   router="hash"
 />

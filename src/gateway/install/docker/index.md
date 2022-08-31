@@ -118,7 +118,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
 
 ### Start Kong Gateway
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
 1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
 export the license key to a variable:
@@ -230,14 +230,14 @@ using the URL specified in `KONG_ADMIN_GUI_URL`:
 ### Get started with Kong Gateway
 
 Now that you have a running Gateway instance, Kong provides a series of
-[getting started guides](/gateway/{{page.kong_version}}/get-started/comprehensive/)
+[getting started guides](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
  to help you set up and enhance your first Service.
+ 
 
 In particular, right after installation you might want to:
-* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services)
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing)
+* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication)
 
 ### Clean up containers
 
@@ -255,7 +255,7 @@ docker network rm kong-net
 ## Install Kong Gateway in DB-less mode
 
 The following steps walk you through starting Kong Gateway in
-[DB-less mode](/gateway/{{page.kong_version}}/reference/db-less-and-declarative-config).
+[DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config).
 
 ### Create a Docker network
 
@@ -305,7 +305,7 @@ backed up by a Redis cluster).
 
 ### Start Kong Gateway in DB-less mode
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
 1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
 export the license key to a variable:
@@ -410,21 +410,21 @@ docker run -d --name kong-dbless \
     curl -i http://localhost:8001/services
     ```
 
-[DB-less mode]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/
-[Declarative Configuration format]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/#the-declarative-configuration-format
+[DB-less mode]: /gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/
+[Declarative Configuration format]: /gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/#the-declarative-configuration-format
 [Docker Volume]: https://docs.docker.com/storage/volumes/
 
 ### Get started with Kong Gateway
 
 Now that you have a running Gateway instance, Kong provides a series of
-[getting started guides](/gateway/{{page.kong_version}}/get-started/comprehensive/)
+[getting started guides](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
 to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/?tab=using-deck-yaml)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/?tab=using-deck-yaml)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/?tab=using-deck-yaml)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting?tab=using-deck-yaml)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication?tab=using-deck-yaml)
+* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/load-balancing/?tab=using-deck-yaml)
 
 ### Clean up containers
 
@@ -440,9 +440,9 @@ docker network rm kong-net
 ## Troubleshooting
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy/)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples)
 
 If you did not receive a `200 OK` status code or need assistance completing
 setup, reach out to your support contact or head over to the

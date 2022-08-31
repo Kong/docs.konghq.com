@@ -7,7 +7,7 @@ This guide covers an example OpenID Connect plugin configuration to authenticate
 
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/dev-portal/administration/application-registration/okta-config).
+[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config).
 
 ## Authorization code flow with the OpenID Connect plugin and Okta
 

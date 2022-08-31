@@ -97,4 +97,4 @@ plugin ordering.
 ## See also
 
 Check out the examples in the
-[getting started guide for dynamic plugin ordering](/gateway/{{page.kong_version}}/configure/dynamic-plugin-ordering/get-started).
+[getting started guide for dynamic plugin ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/get-started).

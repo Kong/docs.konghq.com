@@ -7,9 +7,9 @@ API, where you'll manage entities including Services, Routes, and Consumers.
 
 ## Start Kong Gateway using Docker with a database
 
-One quick way to get Kong Gateway up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install-and-run/docker). We recommend this method to test out basic Kong Gateway functionality.
+One quick way to get Kong Gateway up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install/docker). We recommend this method to test out basic Kong Gateway functionality.
 
-For a comprehensive list of installation options, see our [Install page](/gateway/{{page.kong_version}}/install-and-run/).
+For a comprehensive list of installation options, see our [Install page](/gateway/{{page.kong_version}}/install/).
 
 1. Create a Docker network:
 
@@ -118,4 +118,4 @@ To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 [CLI]: /gateway/{{page.kong_version}}/reference/cli
 [API]: /gateway/{{page.kong_version}}/admin-api
 [datastore-section]: /gateway/{{page.kong_version}}/reference/configuration/#datastore-section
-[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
+[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/services-and-routes

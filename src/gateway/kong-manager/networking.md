@@ -7,7 +7,7 @@ badge: enterprise
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/plan-and-deploy/default-ports) of the same host that serves Kong Manager.
+on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/production/networking/default-ports) of the same host that serves Kong Manager.
 
 ## Custom configuration
 
@@ -27,7 +27,7 @@ the same host. By default, the Admin API listens on ports 8001 and
 8444 on localhost. Change [`admin_listen`] if necessary, or set
 [`admin_api_uri`].
 
-{% include_cached /md/admin-listen.md desc='short' %}
+{% include_cached /md/admin-listen.md desc='short' kong_version=page.kong_version %}
 
 ### Securing Kong Manager and serving it from a dedicated node
 

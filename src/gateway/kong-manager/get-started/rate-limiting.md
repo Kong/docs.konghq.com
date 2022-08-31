@@ -5,7 +5,7 @@ badge: free
 
 This tutorial walks you through setting up rate limiting for a service in Kong Manager.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/protect-services/).
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/rate-limiting).
 
 ## Prerequisites
 

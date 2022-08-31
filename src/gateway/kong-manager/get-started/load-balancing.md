@@ -41,6 +41,6 @@ To test that {{site.base_gateway}} is load balancing traffic across the two targ
 ## Next steps
 
 Next, check out some guides on what else you can do in Kong Manager:
-* [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/overview)
+* [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth)
 * [Manage workspaces and teams with role-based access control (RBAC)](/gateway/{{page.kong_version}}/kong-manager/auth/workspaces-and-teams)
 * [Create custom workspaces](/gateway/{{page.kong_version}}/kong-manager/workspaces)

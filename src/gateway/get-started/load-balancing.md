@@ -13,10 +13,10 @@ In the following example, you’ll use an application deployed across two differ
 {{site.base_gateway}} needs to load balance across both servers, so that if one of the servers is unavailable, 
 it automatically detects the problem and routes all traffic to the working server.
 
-An [upstream](/gateway/latest/understanding-kong/key-concepts/upstreams/) 
+An [upstream](/gateway/latest/key-concepts/upstreams/) 
 refers to the service applications sitting behind {{site.base_gateway}}, 
 to which client requests are forwarded. In {{site.base_gateway}}, an upstream represents a virtual hostname and can be 
-used to health check, circuit break, and load balance incoming requests over multiple [target](gateway/latest/admin-api/#target-object) backend services.
+used to health check, circuit break, and load balance incoming requests over multiple [target](/gateway/latest/admin-api/#target-object) backend services.
 
 In this section, you’ll re-configure the service created earlier, (`example_service`) to point to an upstream 
 instead of a specific host. For the purposes of our example, the upstream will point to two different targets, 
@@ -35,7 +35,7 @@ In this section, you will create an upstream named `example_upstream` and add tw
 This chapter is part of the *Get Started with Kong* series. For the best experience, it is recommended that you follow the
 series from the beginning. 
 
-Start with the introduction, [Get Kong](/gateway/latest/get-started/get-kong), which includes
+Start with the introduction, [Get Kong](/gateway/latest/get-started/), which includes
 a list of prerequisites and instructions for running a local {{site.base_gateway}}.
 
 Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),

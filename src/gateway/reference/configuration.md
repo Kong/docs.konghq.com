@@ -11,7 +11,7 @@ source_url: https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 
 Reference for {{site.base_gateway}} configuration parameters. Set these parameters in `kong.conf`.
 
-To learn more about the `kong.conf` file, see the guide on the [Kong Configuration File](/gateway/{{page.kong_version}}/kong-production/kong-conf).
+To learn more about the `kong.conf` file, see the guide on the [Kong Configuration File](/gateway/{{page.kong_version}}/production/kong-conf).
 
 ---
 
@@ -3421,7 +3421,7 @@ Different strategies are available to tune how to enforce splitting traffic of
 workspaces.
 
 - `smart` is the default option and uses the algorithm described in
-  https://docs.konghq.com/gateway/latest/admin-api/workspaces/examples/#important-note-conflicting-services-or-routes-in-workspaces
+  https://docs.konghq.com/gateway/latest/kong-enterprise/workspaces/#important-note-conflicting-services-or-routes-in-workspaces
 - `off` disables any check
 - `path` enforces routes to comply with the pattern described in config
   enforce_route_path_pattern

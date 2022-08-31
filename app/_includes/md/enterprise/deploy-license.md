@@ -68,7 +68,7 @@ Result:
 ```
 
 For more detail and options, see the
-[Admin API `licenses` endpoint reference](/gateway/latest/admin-api/licenses/examples/).
+[Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
 
 {% endnavtab %}
 {% navtab Filesystem %}
@@ -123,7 +123,7 @@ substituting your own license key.
 
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install/docker).
 
     ```bash
     docker run -d --name kong-gateway \
@@ -147,7 +147,7 @@ from the container:
 
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+[Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install/docker).
 
 ```bash
 docker run -d --name kong-gateway \

@@ -16,4 +16,4 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
-Dev Portal email content and styling can be customized via [template files](/gateway/{{page.kong_version}}/dev-portal/theme-customization/emails/).
+Dev Portal email content and styling can be customized via [template files](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/customize/emails/).
