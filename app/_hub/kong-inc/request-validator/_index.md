@@ -359,7 +359,7 @@ In this example, use the plugin to validate a request's path parameter.
 
     ```
     curl -i -X POST http://kong:8001/services/httpbin/routes \
-      --data paths="/status/(?<status_code>\d%+)" \
+      --data paths="~/status/(?<status_code>\d%+)" \
       --data strip_path=false
 
     HTTP/1.1 201 Created
