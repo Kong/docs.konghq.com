@@ -37,7 +37,7 @@ configuration file (`kong.conf`):
 ## Enable Dev Portal with Docker installation
 
 {:.note}
-> This feature is only available with a [{{site.konnect_product_name}} Enterprise](/gateway/{{page.kong_version}}/plan-and-deploy/licenses) subscription.
+> This feature is only available with a [{{site.konnect_product_name}} Enterprise](/gateway/{{page.kong_version}}/licenses) subscription.
 
 1. [Deploy a license](/gateway/{{page.kong_version}}/licenses/deploy).
 

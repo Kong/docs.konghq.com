@@ -46,7 +46,7 @@ The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a se
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.
-Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
+Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth//sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
 
 Replace the entries surrounded by `<>` with values that are valid for your IdP.
 For example, Google credentials can be found here:

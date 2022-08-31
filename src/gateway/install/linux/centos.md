@@ -7,7 +7,7 @@ title: Install Kong Gateway on CentOS
 CentOS is now deprecated, as [CentOS has reached End of Life (EOL)](https://www.centos.org/centos-linux-eol/).
 Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source CentOS images.
 > If you need to install Kong Gateway (OSS) on CentOS, see the documentation for
-[previous versions](/gateway/2.7.x/install-and-run/centos/).
+[previous versions](/gateway/2.7.x/install/centos/).
 > <br><br>
 > Kong Gateway Enterprise subscriptions can still use CentOS in 2.8, but support
 for CentOS is planned to be removed in 3.0.
