@@ -2,8 +2,6 @@
 title: Reference Format
 ---
 
-## Reference Format
-
 We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe references to a secret store.
 
 ```text
