@@ -33,7 +33,7 @@ curl -i -X GET http://localhost:8001
 
 ## (Optional) Verify Control Plane and Data Plane connection
 
-If you're running {{site.base_gateway}} in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/), 
+If you're running {{site.base_gateway}} in [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/), 
 you need to perform all tasks in this guide from the control plane. You can check
 that all of your configurations are being pushed from the control plane to your
 data planes using the Cluster Status CLI.
