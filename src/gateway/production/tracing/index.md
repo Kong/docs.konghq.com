@@ -32,7 +32,6 @@ The tracing API support to propagate the following headers:
 - `b3`, `b3-single` - [Zipkin headers](https://github.com/openzipkin/b3-propagation)
 - `jaeger` - [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot` - [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
-- `datadog` - [Datadog headers](https://docs.datadoghq.com/tracing/agent/propagation/)
 
 The tracing API will detect the propagation format from the headers, and will use the appropriate format to propagate the span context.
 If no appropriate format is found, then will fallback to the default format, which can be specified.
