@@ -24,7 +24,7 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "1.25.0",
+    "@playwright/test": "1.25.1",
     "broken-link-checker": "0.7.8",
     "browser-sync": "2.27.10",
     "cloudflare": "2.9.1",

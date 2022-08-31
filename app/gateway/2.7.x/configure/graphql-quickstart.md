@@ -26,7 +26,7 @@ $ curl -i -X POST \
   --data 'name=graphql-service' \
   --data 'url=http://example.com'
 $ curl -i -X POST \
-  --url http://localhost:8001/services/example-service/routes \
+  --url http://localhost:8001/services/graphql-service/routes \
   --data 'hosts[]=example.com' \
 ```  
 
@@ -36,7 +36,7 @@ Proxy caching for GraphQL provides advanced caching over queries.
 
 ```
 $ curl -i -X POST \
-  --url http://localhost:8001/services/example-service/plugins/ \
+  --url http://localhost:8001/services/graphql-service/plugins/ \
   --data 'name=graphql-proxy-cache-advanced' \
   --data 'config.strategy=memory'
 ```
@@ -44,7 +44,7 @@ $ curl -i -X POST \
 Protect your upstream GraphQL service with rate limiting. By introspecting your schema, it will analyze query costs and provide an enterprise-grade rate-limiting strategy.
 
 ```
-$ curl -i -X POST http://kong:8001/services/example-service/plugins \
+$ curl -i -X POST http://kong:8001/services/graphql-service/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \

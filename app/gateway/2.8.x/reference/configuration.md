@@ -530,6 +530,8 @@ Comma-separated list of vaults this node should load. Vaults are `bundled` by de
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.vaults.{name}.*`.
 
+In version 2.8.1.3, enabling vaults can result in increased memory usage. To conserve memory usage, you can disable vault bundles by setting `vaults` to `off`.
+
 **Default:** `bundled`
 
 ---

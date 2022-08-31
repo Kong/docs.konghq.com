@@ -1,5 +1,4 @@
 const path = require('path')
-const connect = require('connect')
 const serveStatic = require('serve-static')
 
 const buildUrls = require('./build-urls')
@@ -8,11 +7,6 @@ const listVersions = require('./list-versions')
 const listPlugins = require('./list-plugins')
 
 module.exports = async function (nav) {
-  // Serve the static files
-  connect()
-    .use(serveStatic(path.join(__dirname, '..', 'dist')))
-    .listen(3000, () => console.log('Server running on :3000'))
-
   if (process.env.KONG_DOC_VERSIONS) {
     return await printDocs(process.env.KONG_DOC_VERSIONS)
   }

@@ -30,6 +30,8 @@
     - text: Changelog
       url: /gateway/changelog
       absolute_url: true
+    - text: Compatibility
+      url: /compatibility/
     - text: Migrating to 1.3
       url: /deployment/migrations
     - text: Kong Cloud
