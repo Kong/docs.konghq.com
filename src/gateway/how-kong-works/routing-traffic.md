@@ -14,7 +14,7 @@ properties:
 - `admin_listen`, which also defines a list of addresses and ports, but those
   should be restricted to only be accessed by administrators, as they expose
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
-{% include_cached /md/admin-listen.md desc='short' %}
+{% include_cached /md/admin-listen.md desc='short' kong_version=page.kong_version %}
 - `stream_listen`, which is similar to `proxy_listen` but for Layer 4 (TCP, TLS)
   generic proxy. This is turned off by default.
 
@@ -1355,7 +1355,7 @@ plain text (`http` or `ws`).
 
 gRPC proxying is natively supported in {{site.base_gateway}}. In order
 to manage gRPC services and proxy gRPC requests with {{site.base_gateway}}, create services and
-routes for your gRPC services (check out the [Configuring a gRPC Service guide][conf-grpc-service]).
+routes for your gRPC services.
 
 Only observability and logging plugins are supported with
 gRPC - plugins known to be supported with gRPC have "grpc" and "grpcs" listed
@@ -1445,11 +1445,11 @@ just covered.
 [plugin-configuration-object]: /gateway/{{page.kong_version}}/admin-api#plugin-object
 [plugin-development-guide]: /gateway/{{page.kong_version}}/plugin-development
 [plugin-association-rules]: /gateway/{{page.kong_version}}/admin-api/#precedence
-[proxy-websocket]: /gateway/{{page.kong_version}}/reference/proxy/#proxy-websocket-traffic
-[load-balancing-reference]: /gateway/{{page.kong_version}}/reference/loadbalancing
+[proxy-websocket]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic#proxy-websocket-traffic
+[load-balancing-reference]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing
 [configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
 [configuration-trusted-ips]: /gateway/{{page.kong_version}}/reference/configuration/#trusted_ips
-[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
+[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/services-and-routes
 [API]: /gateway/{{page.kong_version}}/admin-api
 [service-entity]: /gateway/{{page.kong_version}}/admin-api/#add-service
 [route-entity]: /gateway/{{page.kong_version}}/admin-api/#add-route
@@ -1462,5 +1462,4 @@ just covered.
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
-[conf-grpc-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-grpc-service
 [file-log]: /hub/kong-inc/file-log

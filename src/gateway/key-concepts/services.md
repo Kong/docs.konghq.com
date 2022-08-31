@@ -23,5 +23,5 @@ When configuring access to your API, you start by specifying a service.
 
 You can configure a service in {{site.base_gateway}} using the following methods:
 
-* [Send an HTTP request using the Admin API](/gateway/latest/get-started/configure-services-and-routes/)
-* [Create a service using the Kong Manager user interface](/gateway/latest/kong-manager/get-started/services-routes/)
+* [Send an HTTP request using the Admin API](/gateway/latest/get-started/services-and-routes/)
+* [Create a service using the Kong Manager user interface](/gateway/latest/kong-manager/get-started/services-and-routes/)
