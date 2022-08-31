@@ -7,7 +7,7 @@ This tutorial walks you through setting up proxy caching in Kong Manager.
 
 Use proxy caching so that upstream services are not bogged down with repeated requests. With proxy caching, {{site.base_gateway}} can respond with cached results for better performance.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/improve-performance/).
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/proxy-caching).
 
 ## Prerequisites
 

@@ -41,7 +41,7 @@ or a user that has `/admins` and `/rbac` read and write access.
 
     * If you created a super admin via database migration, log in to Kong
     Manager with the username `kong_admin` and the password
-    set in the [environment variable](/gateway/{{page.kong_version}}/production/running-kong/start-kong-securely/).
+    set in the [environment variable](/gateway/{{page.kong_version}}/production/access-control/start-securely/).
 
     * If you created a super admin via the Kong Manager **Teams** tab
     as described in
