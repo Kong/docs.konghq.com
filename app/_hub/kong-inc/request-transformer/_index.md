@@ -268,7 +268,7 @@ Create a route for the `test` service, capturing a `user_id` field from the thir
 
 ```bash
 curl -X POST http://localhost:8001/services/test/routes --data "name=test_user" \
-    --data-urlencode 'paths=/requests/user/(?<user_id>\w+)'
+    --data-urlencode 'paths=~/requests/user/(?<user_id>\w+)'
 ```
 
 Enable the `request-transformer` plugin to add a new header, `x-user-id`,
