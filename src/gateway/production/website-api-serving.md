@@ -72,6 +72,6 @@ Then start Nginx:
 
 ## More Information
 
-* [Embedding Kong in OpenResty](/gateway/latest/kong-production/kong-openresty)
-* [Setting environment variables](/gateway/latest/kong-production/environment-variables)
-* [How to use `kong.conf`](/gateway/latest/kong-production/kong-conf)
+* [Embedding Kong in OpenResty](/gateway/latest/production/kong-openresty)
+* [Setting environment variables](/gateway/latest/production/environment-variables)
+* [How to use `kong.conf`](/gateway/latest/production/kong-conf)

@@ -31,7 +31,7 @@ Finally, {{ site.konnect_short_name }} supports runtime groups, which allows you
 ## Hybrid mode
 
 Starting with {{site.base_gateway}} 2.1, {{site.base_gateway}} can be deployed in
-[hybrid mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/hybrid-mode/), which separates the control plane from the data plane.
+[hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/), which separates the control plane from the data plane.
 
 In this mode, {{site.base_gateway}} nodes in a cluster are split into two roles: control plane
 (CP), where configuration is managed and the Admin API is served from, and data
@@ -48,7 +48,7 @@ Hybrid mode deployments have the following benefits:
 
 ## Traditional (database) mode
 
-In [traditional mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its data store.
+In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its data store.
 
 Running {{ site.base_gateway }} in traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database, like rate-limiting with the cluster strategy, or OAuth2. However, there are some downsides too.
 
@@ -60,7 +60,7 @@ You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declar
 
 ## DB-less and declarative mode
 
-Starting with {{site.base_gateway}} 1.1, you can enable [DB-less mode](/gateway/{{page.kong_version}}/kong-production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, configured entities such as routes, services and plugins are stored in-memory on the node.
+Starting with {{site.base_gateway}} 1.1, you can enable [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, configured entities such as routes, services and plugins are stored in-memory on the node.
 
 When running in DB-less mode, configuration is provided to {{ site.base_gateway }} using a second file. This file contains your configuration in YAML or JSON format using Kong's declarative configuration syntax.
 

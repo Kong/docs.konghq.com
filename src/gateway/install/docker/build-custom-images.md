@@ -146,4 +146,4 @@ RUN set -ex; \
 
 1. Test that the image built correctly with `docker run -it kong-your-tag kong version`
 
-1. To run {{ site.base_gateway }} and process traffic, follow the [Docker install instructions](/gateway/latest/kong-production/install-options/docker/), replacing the image name with your custom name
+1. To run {{ site.base_gateway }} and process traffic, follow the [Docker install instructions](/gateway/latest/production/install-options/docker/), replacing the image name with your custom name

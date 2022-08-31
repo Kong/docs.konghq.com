@@ -92,7 +92,7 @@ be unique.
 
 ## Example configuration
 
-To load plugins using the `kong.conf` [configuration file](/gateway/latest/kong-production/kong-conf), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
+To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
 Below are two examples of loading plugins within `kong.conf`.
 
 ```

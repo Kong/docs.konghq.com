@@ -40,7 +40,7 @@ Manager on a node where `enforce_rbac` is set to `on` or `off`, but not `both`.
 
 In the event that the default `kong_admin` super admin was not seeded
 during the initial database preparation step as defined in
-[How To Start {{site.base_gateway}} Securely](/gateway/{{page.kong_version}}/kong-production/running-kong/start-kong-securely/),
+[How To Start {{site.base_gateway}} Securely](/gateway/{{page.kong_version}}/production/running-kong/start-kong-securely/),
 the following steps outline how to create and enable a new super admin post
 installation.
 

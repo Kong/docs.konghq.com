@@ -12,7 +12,7 @@ as services, plugins, and consumers.
 
 {{site.base_gateway}} comes packaged with authentication plugins that can be used
 to secure Kong Manager.
-To enable to an authentication plugin for *only* Kong Manager, you need to set the following properties in [`kong.conf`](/gateway/{{page.kong_version}}/kong-production/kong-conf/):
+To enable to an authentication plugin for *only* Kong Manager, you need to set the following properties in [`kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/):
 * Set `enforce_rbac` to `on`
 * Set `admin_gui_auth` to the desired authentication type (for example, `basic-auth`)
 * Configure `admin_gui_session_conf` with a session secret
