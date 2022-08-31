@@ -1121,11 +1121,12 @@ params:
         If undefined, no AUTH commands are sent to Redis.
 
         {:.important}
-        > This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth`
-        field will continue to work in a backwards compatible way, but it is recommended to use the
-        replacement field.
-        A deprecation warning will be logged in the log file, stating the field's deprecation and planned
-        removal in v3.x.x.
+        > In Kong Gateway 2.8.x, this field is deprecated and replaced with `session_redis_password`.
+        > The`session_redis_auth` field will continue to work in a backwards compatible way,
+        > but it is recommended to use the replacement field.
+        >
+        > Starting from Kong Gateway 3.0.0.0, this field has been removed.
+
     - name: session_redis_connect_timeout
       required: false
       default: (from kong)
@@ -3386,7 +3387,10 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 2.2.1)
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `session_redis_auth` field has been removed from the plugin.
+
+**{{site.base_gateway}} 2.8.x (plugin version 2.2.1)**
 
 * Added the `session_redis_username` and `session_redis_password` configuration
 parameters.
@@ -3403,7 +3407,7 @@ referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 
-### {{site.base_gateway}} 2.7.x (plugin version 2.2.0)
+**{{site.base_gateway}} 2.7.x (plugin version 2.2.0)**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.client_id`, `config.client_secret`, `config.session_auth`, and
