@@ -11,7 +11,7 @@ Service entities are abstractions of each of your own upstream services. Example
 
 ## Service and route interaction
 
-Services, in conjunction with [routes](/gateway/latest/understanding-kong/key-concepts/routes/), let you expose your services to clients with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the clients by using routes. Since the client always calls the route, changes to the services(like versioning) don't impact how clients make the call. Routes also allow the same service to be used by multiple clients and apply different policies based on the route used. 
+Services, in conjunction with [routes](/gateway/latest/key-concepts/routes/), let you expose your services to clients with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the clients by using routes. Since the client always calls the route, changes to the services(like versioning) don't impact how clients make the call. Routes also allow the same service to be used by multiple clients and apply different policies based on the route used. 
 
 For example, if you have an external client and an internal client that need to access the `hwservice` service, but the external client should be limited in how often it can query the service to assure no denial of service. If a rate limit policy is configured for the service when the internal client calls the service, the internal client is limited as well. Routes solve this problem. 
 

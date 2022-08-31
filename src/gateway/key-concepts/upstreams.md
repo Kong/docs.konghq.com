@@ -8,7 +8,7 @@ In {{site.base_gateway}}, an upstream object represents a virtual hostname and c
 
 ## Upstream and service interaction
 
-You can configure a [service](/gateway/understanding-kong/key-concepts/services/) to point to an upstream instead of a host. 
+You can configure a [service](/gateway/key-concepts/services/) to point to an upstream instead of a host. 
 For example, if you have a service called `example_service` and an upstream called `example_upstream`, you can point `example_service` to `example_upstream` instead of specifying a host. 
 The `example_upstream` upstream can then point both `httpbin.org` and `mockbin.org`. 
 In a real environment, the upstream points to the same service running on multiple systems.

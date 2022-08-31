@@ -9,7 +9,7 @@ A single service can have many routes. Once a route is matched, {{site.base_gate
 
 ## Route and service interaction
 
-Routes, in conjunction with [services](/gateway/{{page.kong_version}}/understanding-kong/key-concepts/services/), let you expose your services to applications with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the applications by using routes. Since the application always uses the route to make a request, changes to the services, like versioning, don't impact how applications make the request. Routes also allow the same service to be used by multiple applications and apply different policies based on the route used.
+Routes, in conjunction with [services](/gateway/{{page.kong_version}}/key-concepts/services/), let you expose your services to applications with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the applications by using routes. Since the application always uses the route to make a request, changes to the services, like versioning, don't impact how applications make the request. Routes also allow the same service to be used by multiple applications and apply different policies based on the route used.
 
 For example, if you have an external application and an internal application that need to access the `example_service` service, but the external application should be limited in how often it can query the service to assure no denial of service. If a rate limit policy is configured for the service when the internal application calls the service, the internal application is limited as well. Routes can solve this problem.
 
