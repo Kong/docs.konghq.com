@@ -449,6 +449,8 @@ items:
           url: /plugin-development/pdk/kong.service.response
         - text: kong.table
           url: /plugin-development/pdk/kong.table
+        - text: kong.tracing
+          url: /plugin-development/pdk/kong.tracing
         - text: kong.vault
           url: /plugin-development/pdk/kong.vault
 
