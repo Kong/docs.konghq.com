@@ -10,7 +10,7 @@ requests per second), without placing additional write load on the database
 backing the Kong cluster.
 
 For information about using Kong Vitals with a database as the backend, refer to
-[Kong Vitals](/gateway/{{page.kong_version}}/analytics/).
+[Kong Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/).
 
 ## Set up Kong Vitals with InfluxDB
 
@@ -78,7 +78,7 @@ with each other.
 
 1. Start the gateway with Kong Manager:
 
-{% include_cached /md/admin-listen.md desc='long' kong_version=page.version %}
+{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
     <pre><code>docker run -d --name kong-ee --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \
@@ -266,7 +266,7 @@ worker process flushes its buffer of metrics every 5 seconds or 5000 data points
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
-the [Vitals API](/gateway/{{page.kong_version}}/analytics/vitalsSpec.yaml), measurement
+the [Vitals API](/api/vitals.yaml), measurement
 values are read back grouped by second.
 
 {:.note}
