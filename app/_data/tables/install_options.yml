@@ -36,7 +36,7 @@ features:
   - name: 'Kubernetes'
     items:
       - name: 'Kubernetes (YAML Manifests)'
-        url: /gateway/VERSION/install/kubernetes/kubernetes/
+        url: /gateway/VERSION/install/kubernetes/kubectl/
         oss: true
         enterprise: true
         support: false
