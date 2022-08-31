@@ -16,7 +16,7 @@ from unauthorized use.
 
 ## Before you start
 
-* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run)
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install)
 * You have [configured your Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service) in {{site.base_gateway}}
 
 ## 1. Configure the key-auth plugin

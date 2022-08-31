@@ -48,11 +48,11 @@ control and monitor the status of the entire Kong cluster.
 ## Platform Compatibility
 
 You can run {{site.base_gateway}} in hybrid mode on any platform where
-{{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install-and-run/).
+{{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install/).
 
 ### Kubernetes Support and Additional Documentation
 
-[{{site.base_gateway}} on Kubernetes](/gateway/{{page.kong_version}}/install-and-run/kubernetes)
+[{{site.base_gateway}} on Kubernetes](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart)
 fully supports hybrid mode deployments, with or without the Kong Ingress Controller.
 
 For the full Kubernetes hybrid mode documentation, see

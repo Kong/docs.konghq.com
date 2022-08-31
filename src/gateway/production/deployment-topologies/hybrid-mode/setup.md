@@ -6,7 +6,7 @@ title: Deploy Kong Gateway in Hybrid Mode
 
 To get started with a hybrid mode deployment, first install an instance of
 {{site.base_gateway}} with TLS to be your control plane (CP) node. See the
-[installation documentation](/gateway/{{page.kong_version}}/install-and-run/)
+[installation documentation](/gateway/{{page.kong_version}}/install/)
 for details.
 
 We will bring up any subsequent data plane (DP) instances in this topic.
@@ -378,10 +378,10 @@ on how data plane nodes process configuration.
 
 {% navtabs %}
 {% navtab Using Docker %}
-1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install-and-run/docker),
+1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install/docker),
 follow the instructions to:
-    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/docker).
-    2. [Create a Docker network](/gateway/{{page.kong_version}}/install-and-run/docker/#install-gateway-in-db-less-mode).
+    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/docker).
+    2. [Create a Docker network](/gateway/{{page.kong_version}}/install/docker/#install-gateway-in-db-less-mode).
 
     {:.warning}
     > **Warning:** Do not start or create a database on this node.
@@ -506,7 +506,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
-1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install-and-run),
+1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install),
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.base_gateway}} and install Kong.
 

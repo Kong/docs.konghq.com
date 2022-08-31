@@ -20,7 +20,7 @@ The following sections briefly describe each mode.
 
 {{ site.konnect_short_name }} is a hybrid mode deployment, where Kong host the control plane for you. This means that you get all of the benefits of a hybrid mode deployment without needing to run multiple nodes yourself.
 
-Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/).
+Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/latest/).
 
 As with hybrid mode, your data planes will continue to process traffic even if the control plane is offline. In addition, you no longer need to worry about securing the control plane because {{site.base_gateway}} does it for you.
 
@@ -56,7 +56,7 @@ When running in traditional mode, every {{ site.base_gateway }} node runs as bot
 
 In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
 
-You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/{{page.kong_version}}/) to configure the {{site.base_gateway}} in traditional mode.
+You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/latest/) to configure the {{site.base_gateway}} in traditional mode.
 
 ## DB-less and declarative mode
 
