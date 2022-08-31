@@ -1,8 +1,6 @@
 ---
 name: Zipkin
 publisher: Kong Inc.
-version: 1.5.x
-source_url: 'https://github.com/Kong/kong-plugin-zipkin'
 desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
   Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
@@ -11,13 +9,9 @@ categories:
   - analytics-monitoring
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: zipkin
   service_id: true
@@ -224,12 +218,12 @@ params:
 
 When enabled, [this plugin](https://github.com/Kong/kong-plugin-zipkin) traces requests in a way compatible with [zipkin](https://zipkin.io/).
 
-The code is structured around an [opentracing](http://opentracing.io/) core using the [opentracing-lua library](https://github.com/Kong/opentracing-lua) to collect timing data of a request in each of Kong's phases.
-The plugin uses opentracing-lua compatible extractor, injector, and reporters to implement Zipkin's protocols.
+The code is structured around an [OpenTracing](http://opentracing.io/) core using the [opentracing-lua library](https://github.com/Kong/opentracing-lua) to collect timing data of a request in each of Kong's phases.
+The plugin uses `opentracing-lua` compatible extractor, injector, and reporters to implement Zipkin's protocols.
 
 ### Reporter
 
-An opentracing "reporter" is how tracing data is reported to another system.
+An OpenTracing "reporter" is how tracing data is reported to another system.
 This plugin records tracing data for a given request, and sends it as a batch to a Zipkin server using [the Zipkin v2 API](https://zipkin.io/zipkin-api/#/default/post_spans). Note that zipkin version 1.31 or higher is required.
 
 The `http_endpoint` configuration variable must contain the full uri including scheme, host, port and path sections (i.e. your uri likely ends in `/api/v2/spans`).
