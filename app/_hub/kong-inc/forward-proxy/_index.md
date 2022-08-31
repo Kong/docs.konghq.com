@@ -94,7 +94,7 @@ params:
 
         {:.important}
         > This parameter is deprecated as of Kong Gateway 2.8.0.0 and
-        is planned to be removed in 3.x.x.
+        is planned to be removed in a future release.
         > <br>
         > Use `http_proxy_host` or `https_proxy_host` instead.
 
@@ -109,7 +109,7 @@ params:
 
         {:.important}
         > This parameter is deprecated as of Kong Gateway 2.8.0.0 and
-        is planned to be removed in 3.x.x.
+        is planned to be removed in a future release.
         > <br>
         > Use `http_proxy_host` or `https_proxy_host` instead.
 
@@ -173,7 +173,7 @@ params:
 
     {:.important}
     > These parameters replace the `proxy_port` and `proxy_host` fields, which
-    are now **deprecated** and planned to be removed in 3.x.x.
+    are now **deprecated** and planned to be removed in a future release.
 
 * The `auth_password` and `auth_username` configuration fields are now marked as
 referenceable, which means they can be securely stored as
