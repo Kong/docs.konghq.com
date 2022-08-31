@@ -127,6 +127,6 @@ If your workload is CPU intensive, consider the multi-processing model by by pas
 
 ## More Information
 * [PDK Reference](/gateway/latest/plugin-development/pdk/)
-* [Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
-* [Develop plugins with Go](/gateway/latest/plugin-development/other/go)
-* [Develop plugins with JavaScript](/gateway/latest/plugin-development/other/javascript)
+* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes)
+* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript)

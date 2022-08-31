@@ -152,6 +152,6 @@ pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 ## More information
 
 * [PDK Reference](/gateway/latest/plugin-development/pdk/)
-* [Plugins with Containers](/gateway/latest/plugin-development/other/plugins-kubernetes)
-* [Develop plugins with Python](/gateway/latest/plugin-development/other/python)
-* [Develop plugins with JavaScript](/gateway/latest/plugin-development/other/javascript)
+* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes)
+* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript)

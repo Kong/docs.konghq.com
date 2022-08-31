@@ -9,9 +9,9 @@ management, and more.
 
 ## Before you start
 
-* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install).
-* You have [configured a Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service)
-* You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins)
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install).
+* You have [configured a Service](/gateway/{{page.kong_version}}/get-started/services-and-routes)
+* You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/enabling-plugins)
 
 ## 1. Create a Consumer through the RESTful API
 
@@ -82,7 +82,7 @@ for help!
 
 [key-auth]: /hub/kong-inc/key-auth
 [API-consumers]: /gateway/{{page.kong_version}}/admin-api#create-consumer
-[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
+[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/enabling-plugins
 [configuration]: /gateway/{{page.kong_version}}/reference/configuration
 [CLI]: /gateway/{{page.kong_version}}/reference/cli
 [proxy]: /gateway/{{page.kong_version}}/reference/proxy

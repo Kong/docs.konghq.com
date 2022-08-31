@@ -20,7 +20,7 @@ You can use the Admin API to modify Kong's configuration, including adding
 Services and Routes.
 
 ## Before you start
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install).
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install).
 
 ## 1. Add a Service using the Admin API
 
@@ -123,6 +123,6 @@ Now that you've added your Service to Kong, let's learn how to enable plugins.
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
 [API]: /gateway/{{page.kong_version}}/admin-api
-[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
+[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/enabling-plugins
 [proxy-port]: /gateway/{{page.kong_version}}/reference/configuration/#nginx-section
 [mockbin]: https://mockbin.com/

@@ -118,4 +118,4 @@ To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 [CLI]: /gateway/{{page.kong_version}}/reference/cli
 [API]: /gateway/{{page.kong_version}}/admin-api
 [datastore-section]: /gateway/{{page.kong_version}}/reference/configuration/#datastore-section
-[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
+[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/services-and-routes
