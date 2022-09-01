@@ -210,7 +210,7 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 2. Update the Admin API setting in the `kong.conf` file to listen on the needed network interfaces on the OS host.
    A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
-    {% include_cached /md/admin-listen.md desc='long' %}
+    {% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
     Example configuration:
 
