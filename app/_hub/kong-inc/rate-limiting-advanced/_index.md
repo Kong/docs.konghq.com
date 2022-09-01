@@ -125,18 +125,18 @@ params:
     - name: strategy # current
       minimum_version: "3.0.x"
       required: true
-      default: cluster
-      value_in_examples: cluster
+      default: local
+      value_in_examples: local
       datatype: string
       description: |
         The rate-limiting strategy to use for retrieving and incrementing the
         limits. Available values are:
+        - `local`: Counters are stored locally in-memory on the node (same effect
+           as setting `sync_rate` to `-1`).
         - `cluster`: Counters are stored in the Kong datastore and shared across
            the nodes.
         - `redis`: Counters are stored on a Redis server and shared
            across the nodes.
-        - `local`: Counters are stored locally in-memory on the node (same effect
-           as setting `sync_rate` to `-1`).
 
         In DB-less and hybrid modes, the `cluster` config strategy
         is not supported. From `3.0.0.0` onwards, Kong disallows
@@ -485,8 +485,7 @@ For example:
   --data "config.limit=10" \
   --data "config.limit=100" \
   --data "config.window_size=60" \
-  --data "config.window_size=3600" \
-  --data "config.sync_rate=10"</code></pre>
+  --data "config.window_size=3600"</code></pre>
 
 This example applies rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds,
 or the other when 100 hits have been counted in 3600 seconds. For more information, see the

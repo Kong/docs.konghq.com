@@ -81,7 +81,7 @@ params:
     - name: policy
       required: false
       value_in_examples: local
-      default: '`cluster`'
+      default: '`local`'
       datatype: string
       description: |
         The rate-limiting policies to use for retrieving and incrementing the
@@ -218,9 +218,9 @@ The plugin supports three policies.
 
 | Policy    | Pros | Cons   |
 | --------- | ---- | ------ |
+| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
 | `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
-| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
-| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes. |
+| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. ||
 
 Two common use cases are:
 
