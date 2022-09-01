@@ -316,6 +316,22 @@
       notes: --
       url: /hub/kong-inc/route-by-header
 
+    - name: WebSocket Size Limit
+      free: No
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/websocket-size-limit
+
+    - name: WebSocket Validator
+      free: No
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/websocket-validator
+
     - name: Mocking
       free: No
       plus: Yes
@@ -372,6 +388,14 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/datadog
+
+    - name: OpenTelemetry
+      free: Yes
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/opentelemetry
 
     - name: Prometheus
       free: Yes
