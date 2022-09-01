@@ -503,16 +503,9 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
 
   [#9046](https://github.com/Kong/kong/pull/9046)
 
-* [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`):
+* [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`), [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`), and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`):
   * The default policy is now local for all deployment modes.
   [#9344](https://github.com/Kong/kong/pull/9344)
-
-* [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`):
-  * The default policy is now local for all deployment modes.
-  [#9344](https://github.com/Kong/kong/pull/9344)
-
-* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  * The default policy is now local.
 
 * **Deprecated**: [StatsD Advanced](/hub/kong-inc/statsd-advanced/) (`statsd-advanced`):
   * The StatsD Advanced plugin has been deprecated and will be removed in 4.0.
