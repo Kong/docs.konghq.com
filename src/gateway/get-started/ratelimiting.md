@@ -164,12 +164,11 @@ The configuration process for the Rate Limiting Advanced plugin is similar to co
 curl -i -X POST http://localhost:8001/plugins \
 --data name=rate-limiting-advanced \
 --data config.limit=5 \
---data config.window_size=30 \
---data config.sync_rate=-1
+--data config.window_size=30
 
 ```
 
-This request utilizes the `config.limit`, `config.window_size` and `config.sync_rate` form parameters. 
+This request utilizes the `config.limit` and `config.window_size` form parameters.
 
 
 * config.limit: Number of requests allows per window.

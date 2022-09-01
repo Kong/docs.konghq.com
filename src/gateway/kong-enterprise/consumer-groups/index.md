@@ -155,7 +155,6 @@ setting the rate limit to five requests (`config.limit`) for every
 curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
   --data name=rate-limiting-advanced \
   --data config.limit=5 \
-  --data config.sync_rate=-1 \
   --data config.window_size=30 \
   --data config.window_type=sliding \
   --data config.retry_after_jitter_max=0 \
@@ -168,7 +167,6 @@ curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
 http -f :8001/plugins/  \
   name=rate-limiting-advanced \
   config.limit=5 \
-  config.sync_rate=-1 \
   config.window_size=30 \
   config.window_type=sliding \
   config.retry_after_jitter_max=0 \
