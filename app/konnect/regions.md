@@ -2,6 +2,7 @@
 title: Geographic Regions
 content_type: explanation
 no_version: true
+beta: true
 ---
 
 {{site.konnect_saas}} allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. 

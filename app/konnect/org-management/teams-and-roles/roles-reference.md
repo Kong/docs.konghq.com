@@ -5,7 +5,7 @@ content_type: reference
 ---
 
 A team can have any number of roles.
-See [Manage Teams and Roles](/konnect/org-management/teams-and-roles). All predefined roles and teams automatically get access to all [geographic regions](/konnect/regions) in your {{site.konnect_short_name}} instance.
+See [Manage Teams and Roles](/konnect/org-management/teams-and-roles). All predefined roles and teams automatically get access to all [geographic regions](/konnect/regions)<span class="badge beta"></span> in your {{site.konnect_short_name}} instance.
 
 The following predefined roles are available in {{site.konnect_short_name}}:
 
