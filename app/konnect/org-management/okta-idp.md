@@ -34,6 +34,8 @@ access to an Okta admin account and a
 [{{site.konnect_short_name}} admin account](/konnect/org-management/teams-and-roles),
 which you will access concurrently.
 
+Optionally, if you want to use team mappings, you must configure Okta to include group claims in the ID token. 
+
 Here are the steps you need to complete, in both Okta and
 {{site.konnect_short_name}}.
 First, complete the following in Okta:
@@ -244,7 +246,10 @@ in Okta to locate the Okta groups you want to map.
     groups may be accessible by the `groups` claim. See the
     [claims](#set-up-claims-in-okta) setup step for details.
 
-1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and enter your Okta groups in the relevant fields.
+1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and do at least one of the following:
+
+    * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
+    * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
 
     Each {{site.konnect_short_name}} team can be mapped to **one** Okta group.
 

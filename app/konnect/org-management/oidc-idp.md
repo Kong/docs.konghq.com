@@ -1,6 +1,7 @@
 ---
 title: Set up SSO with OpenID Connect
 content_type: how-to
+no_version: true
 ---
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
@@ -18,7 +19,7 @@ authentication.
 
 ## Prerequisites
 
-* {{site.konnect_short_name}} must be added to your IdP
+* {{site.konnect_short_name}} must be added to your IdP as an application
 * Claims are set up in your IdP
 
 ## Set up SSO in {{site.konnect_short_name}}
