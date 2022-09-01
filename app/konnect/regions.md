@@ -7,7 +7,8 @@ beta: true
 
 {{site.konnect_saas}} allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. 
 
-Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geographical region to your users and their infrastructure applications. This reduces network latency and minimizes the blast-radius in the event of cross-region connectivity failures.
+Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geographical region to your users and their infrastructure applications. 
+<!--- Do not publish yet: "This reduces network latency and minimizes the blast-radius in the event of cross-region connectivity failures." -->
 
 {:.note}
 > **Note:** Only Enterprise plans can operate in more than one region at a time. For more information about how to upgrade your plan, see [Change to a Different Plan](/konnect/account-management/change-plan/).
