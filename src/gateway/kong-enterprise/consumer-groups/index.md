@@ -16,7 +16,7 @@ The `consumer_groups` endpoint works together with the [Rate Limiting Advanced p
 
 Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and
-have a default behavior for ungrouped consumers.
+have a default behavior for consumers without groups.
 
 To use consumer groups for rate limiting, you need to:
 * Create one or more consumer groups
