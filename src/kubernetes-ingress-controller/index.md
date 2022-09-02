@@ -35,7 +35,7 @@ involved and different ways of deploying them based on the use-case.
 
 The {{site.kic_product_name}} is designed to scale with your traffic
 and infrastructure.
-Refer to the [High-availability and Scaling guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
+Refer to the [high-availability and scaling guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
 failures scenarios, recovery methods, as well as scaling considerations.
 
 ### Ingress classes
@@ -46,7 +46,7 @@ load configuration intended for other instances or other ingress controllers.
 
 ### Security
 
-Refer to the [Security concepts guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
+Refer to the [security concepts guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
 default security settings and how to further secure the Ingress Controller.
 
 ## Guides and Tutorials
