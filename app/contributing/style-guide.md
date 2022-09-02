@@ -93,7 +93,8 @@ The type of placeholder you use depends on context:
 
 ## Capitalization guidelines
 
-Follow the user interface (UI). If a term is capitalized in the UI, it should be capitalized in the documentation.
+Follow the user interface (UI).
+If a term is capitalized in the UI and you are referring to the specific UI element, it should be capitalized in the documentation.
 
 Don't capitalize the following terms:
 
@@ -112,9 +113,18 @@ Don't capitalize the following terms:
 - target
 - upstream
 
+### Plugin names
+
+1. Capitalize the plugin _name_ but not the word _plugin_. For example, "Rate Limiting plugin".
+2. Don’t capitalize the name if you’re using it in code. For example, `rate-limiting`.
+3. Don’t capitalize if you’re referring to the concept, not the plugin.
+For example, “Set up rate limiting in {{site.base_gateway}} with the Rate Limiting plugin”.
+
 ### Kong-specific terms
 
-For product, application, and component names, see [Word Choice](/contributing/word-choice).
+For product and component names, see [Word Choice](/contributing/word-choice).
+
+Object/entity names (for example, service, route, upstream) should be lowercase.
 
 ## Code formatting
 
@@ -136,11 +146,11 @@ to avoid horizontal scrolling.
 
 ## Screenshots
 
-You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation. 
+You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation.
 
-Screenshots are used to support documentation and do not _replace_ documentation. In some cases, using wireframes in place of screenshots is easier to maintain. Otherwise, all screenshots must follow these guidelines. 
+Screenshots are used to support documentation and do not _replace_ documentation. In some cases, using wireframes in place of screenshots is easier to maintain. Otherwise, all screenshots must follow these guidelines.
 
-- Screenshots must be taken with browser developer tools. 
+- Screenshots must be taken with browser developer tools.
 - Resolution should be set to **1500x843.75**.
 - Screenshots of UI elements should include only the relevant **panel**. Panels are a container within a UI window which contain multiple related elements.
 - Mouse should not be visible.
