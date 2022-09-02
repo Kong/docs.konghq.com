@@ -67,7 +67,7 @@ commands.
 
 ## Frequently Asked Questions (FAQs)
 
-[Access our FAQs page](/deck/{{page.kong_version}}/faqs).
+[Check out our FAQs page](/deck/{{page.kong_version}}/faqs).
 
 ## Video: Kong Summit motivation behind decK
 
@@ -76,14 +76,14 @@ features of decK at Kong Summit 2019.
 
 ## Changelog
 
-The changelog can be found in the
+decK's changelog can be found in the
 [CHANGELOG](https://github.com/kong/deck/blob/main/CHANGELOG.md) file.
 
 ## Licensing
 
-decK is licensed with Apache License Version 2.0.
+decK is licensed under the Apache License Version 2.0 license.
 Please read the
-[LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more details.
+[LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more informaiton.
 
 ## Security
 
@@ -108,11 +108,11 @@ To get help, use the following resources:
 - If you still need help, [open a Github issue](https://github.com/kong/deck/issues/new) to ask your
   question.
 - decK has very wide adoption by Kong's community and you can seek help
-  from the larger community at [Kong Nation](https://discuss.konghq.com).
+  from the Kong community at [Kong Nation](https://discuss.konghq.com).
 
 ## Report a bug
 
 If you believe you have run into a bug with decK, [open a Github issue](https://github.com/kong/deck/issues/new).
 
-If you think you've found a security issue with decK, read the
+If you think you've found a security issue with decK, please read the
 [Security](#security) section.
