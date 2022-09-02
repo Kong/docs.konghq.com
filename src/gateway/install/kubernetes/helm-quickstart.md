@@ -21,7 +21,7 @@ Docker Desktop Kubernetes is a tool for running a local Kubernetes cluster using
 - [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/)
 
 {:.note}
-> Kong services will be published to localhost at the domain name `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Configure Kubectl
 
@@ -45,7 +45,7 @@ Kind or "Kubernetes-in-Docker", is a tool for running local Kubernetes clusters 
 - [KinD](https://kind.sigs.k8s.io/)
 
 {:.note}
-> Kong services will be published to localhost at the domain name `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Create Kubernetes Cluster
 
@@ -112,9 +112,20 @@ To inject your custom domain name into the Helm values file configure the {{site
 
        export BASE_DOMAIN="example.com"
 
-3. Replace the `127-0-0-1.nip.io` base domain in the values file with your preferred domain name.
+3. Find & replace the `127-0-0-1.nip.io` base domain in the values file with your preferred domain name.
+
+{% navtabs %}
+{% navtab MacOS%}
+
+       sed -i '' "s/127-0-0-1\.nip\.io/$BASE_DOMAIN/g" ~/quickstart.yaml
+
+{% endnavtab %}
+{% navtab Linux%}
 
        sed -i "s/127-0-0-1\.nip\.io/$BASE_DOMAIN/g" ~/quickstart.yaml
+
+{% endnavtab %}
+{% endnavtabs %}
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -158,7 +169,7 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
 
 ## Install Cert Manager
 
-Cert Manager provides automation for generating SSL certificates. {{site.base_gateway}} uses Cert Manager to provide the required certificates.
+[Cert Manager](https://cert-manager.io/docs/) provides automation for generating SSL certificates. {{site.base_gateway}} uses Cert Manager to provide the required certificates.
 
 
 
@@ -228,7 +239,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
        helm install quickstart kong/kong --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO
 
-3. Wait for all pods to be in the `Running` state:
+3. Wait for all pods to be in the `Running` and `Completed` states:
 
        kubectl get po --namespace kong -w
 
@@ -254,7 +265,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
        helm install quickstart kong/kong --namespace kong --values https://bit.ly/KongGatewayHelmValuesAIO
 
-3. Wait for all pods to be in the `Running` state:
+3. Wait for all pods to be in the `Running` and `Completed` states:
 
        kubectl get po --namespace kong -w
 
@@ -280,7 +291,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
        helm install quickstart kong/kong --namespace kong --values ~/quickstart.yaml
 
-3. Wait for all pods to be in the `Running` state:
+3. Wait for all pods to be in the `Running` and `Completed` states:
 
        kubectl get po --namespace kong -w
 
@@ -304,7 +315,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 ## Use {{site.base_gateway}}
 
-{{site.base_gateway}} is now serving the Kong Manager WebGUI and the Kong Admin API.
+{{site.base_gateway}} is now serving the [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) Web UI and the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api).
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 
@@ -339,7 +350,7 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
        kubectl delete secrets -nkong kong-enterprise-license
        kubectl delete secrets -nkong kong-config-secret
 
-3. Remove Kong database PVC
+3. Remove Kong database [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 
        kubectl delete pvc -n kong data-quickstart-postgresql-0
 
@@ -369,7 +380,7 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
        kubectl delete secrets -nkong kong-enterprise-license
        kubectl delete secrets -nkong kong-config-secret
 
-3. Remove Kong database PVC
+3. Remove Kong database [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 
        kubectl delete pvc -n kong data-quickstart-postgresql-0
 
@@ -404,7 +415,7 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
        kubectl delete secrets -nkong kong-enterprise-license
        kubectl delete secrets -nkong kong-config-secret
 
-3. Remove Kong database PVC
+3. Remove Kong database [PVC](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 
        kubectl delete pvc -n kong data-quickstart-postgresql-0
 
