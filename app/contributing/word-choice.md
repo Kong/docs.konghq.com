@@ -12,7 +12,7 @@ Generally:
 
 ## Product and component names
 
-* Product: Either an application that can be used on its own, or a group of modules packaged together (for example, Konnect).
+* Product: Either an application that can be used on its own, or a group of modules packaged together (for example, {{site.konnect_short_name}}).
 * Component: A module that's packaged with a product, for example, Dev Portal. Can't be used or sold on its own.
 
 Capitalize the following Kong-specific terms and component names:

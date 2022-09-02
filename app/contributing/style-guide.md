@@ -118,7 +118,7 @@ Don't capitalize the following terms:
 1. Capitalize the plugin _name_ but not the word _plugin_. For example, "Rate Limiting plugin".
 2. Don’t capitalize the name if you’re using it in code. For example, `rate-limiting`.
 3. Don’t capitalize if you’re referring to the concept, not the plugin.
-For example, “Set up rate limiting in Kong Gateway with the Rate Limiting plugin”.
+For example, “Set up rate limiting in {{site.base_gateway}} with the Rate Limiting plugin”.
 
 ### Kong-specific terms
 
