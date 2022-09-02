@@ -78,7 +78,7 @@ Please read through our [deployment guide][deployment] for a detailed
 understanding of how Ingress Controller is designed and deployed
 alongside Kong.
 
-- [FAQs][faqs] might be of help as well for general questions.
+- [FAQs][faqs] might be of help as well for common questions.
 - [The troubleshooting guide][troubleshooting] could help
   resolve some technical issues.
   Please contribute back if you feel your experience can help
