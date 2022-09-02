@@ -47,7 +47,7 @@ Therefore, authentication is required, which can be achieved in two different wa
 
 ## Discovering API-server
 
-Using this flag `--apiserver-host=http://localhost:8080`,
+Using the flag `--apiserver-host=http://localhost:8080`,
 it is possible to specify an unsecured API server or
 reach a remote Kubernetes cluster using
 [kubectl proxy](https://kubernetes.io/docs/user-guide/kubectl/kubectl_proxy/).
