@@ -5,7 +5,7 @@ title: FAQs
 ### Why endpoints and not services?
 
 The {{site.kic_product_name}} does not use
-[Services][k8s-service] to route traffic
+[services][k8s-service] to route traffic
 to the pods. Instead, it uses the Endpoints API
 to bypass [kube-proxy][kube-proxy]
 to allow Kong features like session affinity and
