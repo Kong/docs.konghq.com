@@ -78,11 +78,11 @@ Please read through our [deployment guide][deployment] for a detailed
 understanding of how Ingress Controller is designed and deployed
 alongside Kong.
 
-- [FAQs][faqs] might help as well.
-- [Troubleshooting guide][troubleshooting] can help
-  resolve some issues.
+- [FAQs][faqs] might be of help as well for general questions.
+- [The troubleshooting guide][troubleshooting] could help
+  resolve some technical issues.
   Please contribute back if you feel your experience can help
-  the larger community.
+  the Kong community.
 
 [annotations]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations
 [crd]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources
