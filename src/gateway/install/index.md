@@ -8,7 +8,7 @@ This page outlines Kong's official support policy and provides links to detailed
 
 **Legend:**
 * <i class="fa fa-check"></i>: Full production support
-* <i class="fa fa-times" style="color: #d44324; opacity: 50%"></i>: Local testing only
+* <i class="fa fa-times" style="color: #d44324; opacity: 50%"></i>: Runs as expected, but no official support is available
 
 
 {% include feature-table.html config=site.data.tables.install_options %}
