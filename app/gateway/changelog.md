@@ -24,11 +24,16 @@ The following entities were affected:
   * SNIs
   * RBAC roles
 
+* Fixed an issue where the browser hung on creating an upstream with the existing host and port.
+
 #### Plugins
 
 * [OpenID Connect](/hub/kong-inc/openid-connect) (`openid-connect`)
   * Fixed a caching issue in hybrid mode, where the data plane node would try to retrieve a new JWK from the IdP every time.
   The data plane node now looks for a cached JWK first.
+
+* [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced) (`proxy-cache-advanced`)
+  * Fixed an issue preventing users from removing the cluster addresses on an existing configuration.
 
 ### Dependencies
 
@@ -102,6 +107,7 @@ Kong Manager was constructing the wrong URL when retrieving Dev Portal assignees
 * Improved Kong Manager styling by fixing an issue where content didn't fit on object detail pages.
 * Fixed an issue that sometimes prevented clicking Kong Manager links and buttons in Safari.
 * Fixed an issue where users were being navigated to the object detail page after clicking on the "Copy ID" button from the object list.
+* Fixed an issue where the number of requests and error rate was not correctly showing when Vitals was disabled.
 
 #### Plugins
 
