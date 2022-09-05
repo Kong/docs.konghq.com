@@ -210,9 +210,9 @@ $ kong config -c kong.conf parse kong.yml
 
 parse successful
 ```
-## Sintax hingling and schema validation with Visual Studio Code, Yaml extension and Schemastore
+## Schema validation with Visual Studio Code, Yaml extension and Schemastore
 
-If you want can edit declarative configuration with Visual Studio Code:
+If you want to edit the declarative configuration in your Visual Studio Code:
 
 Install redhat yaml extension:
 ```console
