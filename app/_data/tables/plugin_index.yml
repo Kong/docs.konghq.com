@@ -316,6 +316,14 @@
       notes: --
       url: /hub/kong-inc/route-by-header
 
+    - name: Upstream Timeout
+      free: No
+      plus: No
+      Enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/upstream-timeout
+
     - name: WebSocket Size Limit
       free: No
       plus: Yes

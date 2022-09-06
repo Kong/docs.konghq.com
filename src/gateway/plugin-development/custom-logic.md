@@ -425,6 +425,7 @@ request-transformer         | 801
 response-transformer        | 800
 aws-lambda                  | 750
 azure-functions             | 749
+upstream-timeout            | 400
 opentelemetry               | 14
 prometheus                  | 13
 http-log                    | 12
@@ -496,6 +497,7 @@ route-transformer-advanced  | 780
 kafka-upstream              | 751
 aws-lambda                  | 750
 azure-functions             | 749
+upstream-timeout            | 400
 proxy-cache-advanced        | 100
 proxy-cache                 | 100
 graphql-proxy-cache-advanced | 99
