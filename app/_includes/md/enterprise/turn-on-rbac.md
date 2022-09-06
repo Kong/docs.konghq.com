@@ -51,7 +51,7 @@ The cookie is used for all subsequent requests to authenticate the user, until i
 {% endnavtabs %}
 
 {% if_version lte:2.8.x %}
-Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/gateway/latest/kong-manager/auth//basic/).
+Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/gateway/latest/kong-manager/auth/basic/).
 {% endif_version %}
 
 {% if_version gte:3.0.x %}

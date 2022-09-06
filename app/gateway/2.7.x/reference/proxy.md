@@ -14,7 +14,7 @@ properties:
 - `admin_listen`, which also defines a list of addresses and ports, but those
   should be restricted to only be accessed by administrators, as they expose
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
-{% include_cached /md/admin-listen.md desc='short' %}
+{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='short' %}
 - `stream_listen`, which is similar to `proxy_listen` but for Layer 4 (TCP, TLS)
   generic proxy. This is turned off by default.
 

@@ -210,7 +210,7 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 2. Update the Admin API setting in the `kong.conf` file to listen on the needed network interfaces on the OS host.
    A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
-    {% include_cached /md/admin-listen.md desc='long' %}
+    {% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
     Example configuration:
 
@@ -273,6 +273,8 @@ or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/
 ## Troubleshooting and support
 {:.badge .enterprise}
 
+{% if_version gte:3.0.x %}
+
 For troubleshooting license issues, see:
 * [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
@@ -287,3 +289,23 @@ your setup, reach out to your Kong Support contact or go to the
 Check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to get the most
 out of {{site.base_gateway}}.
+
+{% endif_version %}
+{% if_version lte:2.8.x %}
+
+For troubleshooting license issues, see:
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license)
+* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples)
+
+If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
+your setup, reach out to your Kong Support contact or go to the
+[Support Portal](https://support.konghq.com/support/s/).
+
+## Next steps
+
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive/) guides to get the most
+out of {{site.base_gateway}}.
+
+{% endif_version %}

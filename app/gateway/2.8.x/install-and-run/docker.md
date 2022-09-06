@@ -118,7 +118,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
 
 ### Start Kong Gateway
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
 1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
 export the license key to a variable:
@@ -305,7 +305,7 @@ backed up by a Redis cluster).
 
 ### Start Kong Gateway in DB-less mode
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
 1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
 export the license key to a variable:

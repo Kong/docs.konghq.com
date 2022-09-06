@@ -14,7 +14,7 @@ might also want to write integration tests. Again, Kong has your back.
 ## Write integration tests
 
 The preferred testing framework for Kong is
-[busted](http://olivinelabs.com/busted/) running with the
+[busted](https://github.com/lunarmodules/busted/) running with the
 [resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are
 free to use another one if you wish. In the Kong repository, the busted
 executable can be found at `bin/busted`.
