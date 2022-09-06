@@ -42,8 +42,10 @@ affect your current installation.
 
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
-Blue-green deployments from {{site.base_gateway}} versions before 2.1.0 are not supported with 3.0.0.
-Upgrade to 2.1.0 or later before upgrading to 3.0.x to use blue-green deployment.
+Blue-green deployments:
+* **{{site.ee_product_name}}**: Upgrade from versions before 2.1.0.0 is not supported with 3.0.0.0.
+Upgrade to 2.1.0.0 or later before upgrading to 3.0.0.0 to use blue-green deployment.
+* **{{site.ce_product_name}}**: Blue-green deployments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
 
 ### Dependencies
 
@@ -383,22 +385,27 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtabs %}
 
 
-## Upgrade from 2.1.x - 2.8.x to 3.0.x {#migrate-db}
+## Upgrade from 2.1.x - 2.8.x to 3.0.x with blue-green {#migrate-db}
 
-{{site.ee_product_name}} supports the zero downtime migration model. This means
+{{site.base_gateway}} supports the zero downtime migration model. This means
 that while the migration is in process, you have two {{site.base_gateway}} clusters with different
 versions running that are sharing the same database. This is sometimes referred
 to as the
 [blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
+{:.important}
+> **Important**: For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
+Blue-green migration between major versions is not available in open-source Gateway environments.
+For {{site.ce_product_name}}, [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
+
 The migrations are designed so that there is no need to fully copy
-the data. The new version of {{site.ee_product_name}} is able to use the data as it
+the data. The new version of {{site.base_gateway}} is able to use the data as it
 is migrated, and the old {{site.base_gateway}} cluster keeps working until it is finally time to
 decommission it. For this reason, the full migration is split into two commands:
 
 - `kong migrations up`: performs only non-destructive operations
 - `kong migrations finish`: puts the database in the final expected state (DB-less
-  mode is not supported in {{site.ee_product_name}})
+  mode is not supported in {{site.base_gateway}})
 
 Follow the instructions for your backing data store to migrate to the new version.
 If you prefer to use a fresh data store and only migrate your `kong.conf` file,
@@ -439,8 +446,8 @@ see the instructions to
 > **Deprecation notice:**
 > Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the {{site.base_gateway}} 4.0 release, and some new features might not be supported with Cassandra in the {{site.base_gateway}} 3.0 release.
 
-Due to internal changes, the table schemas used by {{site.ee_product_name}} 2.8.x on Cassandra
-are incompatible with those used by {{site.ee_product_name}} 2.1.x or lower. Migrating using the usual commands
+Due to internal changes, the table schemas used by {{site.base_gateway}} 2.8.x on Cassandra
+are incompatible with those used by {{site.base_gateway}} 2.1.x or lower. Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the
 database at the same time.
@@ -466,9 +473,9 @@ described below:
 6. When your traffic is fully migrated to the 3.0.x cluster,
    decommission your old nodes.
 
-### Install 3.0.x on a fresh data store
+## Install 3.0.x on a fresh data store
 
-For installing on a fresh data store, {{site.ee_product_name}} 3.0.x has the
+For installing on a fresh data store, {{site.base_gateway}} 3.0.x has the
 `kong migrations bootstrap` command. Run the following commands to
 prepare a new 3.0.x cluster from a fresh data store.
 

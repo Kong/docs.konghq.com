@@ -307,13 +307,12 @@ Kong Gateway version.
 
 ### Breaking changes and deprecations
 
+#### Enterprise
+
+* Blue-green deployments from Kong Gateway Enterprise versions before 2.1.0.0 are not supported with 3.0.0.0.
+Upgrade to 2.1.0.0 or later before upgrading to 3.0.0.0 to use blue-green deployment.
+
 #### Deployment
-
-* Blue-green deployments from Kong Gateway versions before 2.1.0 are not supported with 3.0.
-Upgrade to 2.1.0 or later before upgrading to 3.0.x to use blue-green deployment.
-
-  Thanks, [@marc-charpentier](https://github.com/charpentier)!
-  [#8896](https://github.com/Kong/kong/pull/8896)
 
 * Deprecated and stopped producing Amazon Linux 1 containers and packages.
 Amazon Linux 1 [reached end-of-life on December 31, 2020](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life).
@@ -758,6 +757,8 @@ openid-connect
   * Secrets management
   * Plugin ordering
   * Expression-based routing
+
+* Blue-green deployments for Kong Gateway (OSS) are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
 
 ### Dependencies
 
