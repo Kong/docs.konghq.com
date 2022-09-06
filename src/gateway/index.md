@@ -3,6 +3,39 @@ title: Kong Gateway
 subtitle: API gateway built for hybrid and multi-cloud, optimized for microservices and distributed architectures
 ---
 
+## Quick Links
+
+<div class="docs-grid-install">
+
+  <a href="#features" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Features</div>
+  </a>
+
+  <a href="/gateway/{{page.kong_version}}/get-started/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
+    <div class="install-text">Quick Start</div>
+  </a>
+
+  <a href="/gateway/{{page.kong_version}}/install/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
+    <div class="install-text">Install</div>
+  </a>
+
+  <a href="/hub/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
+    <div class="install-text">Plugins</div>
+  </a>
+
+  <a href="/gateway/{{page.kong_version}}/admin-api/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <div class="install-text">API Reference</div>
+  </a>
+
+</div>
+
+## Introducing {{ site.base_gateway }}
+
 {{site.base_gateway}} is a lightweight, fast, and flexible cloud-native API
 gateway. An API gateway is a reverse proxy that lets you manage, configure, and route
 requests to your APIs.
