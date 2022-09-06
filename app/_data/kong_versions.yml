@@ -196,6 +196,16 @@
   ee-version: "3.0.0.0"
   ce-version: "3.0.0"
   edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
 -
   release: "CE-2.0.x_KE-1.5.x"
   version: "CE-2.0.x/KE-1.5.x"
