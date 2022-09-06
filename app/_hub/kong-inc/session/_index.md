@@ -42,7 +42,7 @@ params:
 
         This field is _referenceable_, which means it can be securely stored as a
         [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: cookie_name
       required: false
       default: '`session`'
