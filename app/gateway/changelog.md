@@ -231,6 +231,8 @@ Kong Gateway version.
   The new configuration parameter, `groups_required`, is an array of string
   elements that indicates the groups that users must belong to for the request
   to be authorized.
+  * The character `.` is now allowed in group attributes.
+  * The character `:` is now allowed in the password field.
 
 * [mTLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
   * Introduced certificate revocation list (CRL) and OCSP server support with the
@@ -308,9 +310,6 @@ Kong Gateway version.
 ### Breaking changes and deprecations
 
 #### Enterprise
-
-* Blue-green deployments from Kong Gateway Enterprise versions before 2.1.0.0 are not supported with 3.0.0.0.
-Upgrade to 2.1.0.0 or later before upgrading to 3.0.0.0 to use blue-green deployment.
 
 #### Deployment
 
@@ -758,7 +757,11 @@ openid-connect
   * Plugin ordering
   * Expression-based routing
 
-* Blue-green deployments for Kong Gateway (OSS) are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
+* Blue-green deployments:
+  * **Kong Gateway (OSS)**: Upgrades with blue-green deloyments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
+  * **Kong Enterprise**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
+    * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is known issue planned to be fixed in the next 2.8.x.x release.
+    * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
 
 ### Dependencies
 

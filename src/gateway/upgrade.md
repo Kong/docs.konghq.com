@@ -43,8 +43,10 @@ affect your current installation.
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
 Blue-green deployments:
-* **{{site.ee_product_name}}**: Upgrade from versions before 2.1.0.0 is not supported with 3.0.0.0.
-Upgrade to 2.1.0.0 or later before upgrading to 3.0.0.0 to use blue-green deployment.
+* **{{site.ee_product_name}}**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
+  * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is known issue planned to be fixed in the next 2.8.x.x release.
+  * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
+  Upgrade to a supported version before upgrading to 3.0.0.0 to use blue-green deployment.
 * **{{site.ce_product_name}}**: Blue-green deployments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
 
 ### Dependencies
@@ -385,7 +387,7 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtabs %}
 
 
-## Upgrade from 2.1.x - 2.8.x to 3.0.x with blue-green {#migrate-db}
+## Upgrade from 2.1.x - 2.8.x to 3.0.x {#migrate-db}
 
 {{site.base_gateway}} supports the zero downtime migration model. This means
 that while the migration is in process, you have two {{site.base_gateway}} clusters with different
@@ -394,9 +396,12 @@ to as the
 [blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
 {:.important}
-> **Important**: For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
+> **Important**:
+* For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
 Blue-green migration between major versions is not available in open-source Gateway environments.
 For {{site.ce_product_name}}, [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
+* There is a known issue with migrating 2.8.x.x to 3.0.0.0. It is planned to be fixed in the next 2.8.x release.
+If you need to upgrade to 3.0.0.0, either wait for the fix release, or [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
 
 The migrations are designed so that there is no need to fully copy
 the data. The new version of {{site.base_gateway}} is able to use the data as it
@@ -415,9 +420,9 @@ see the instructions to
 ### PostgreSQL
 
 1. Download 3.0.x, and configure it to point to the same
-   data store as your old (2.1.x-2.8.x) cluster.
+   data store as your old (2.1.x-2.7.x) cluster.
 2. Run `kong migrations up`.
-3. After that finishes running, both the old (2.1.x-2.8.x) and new (3.0.x) clusters can
+3. After that finishes running, both the old (2.1.x-2.7.x) and new (3.0.x) clusters can
    now run simultaneously on the same data store. Start provisioning 3.0.x nodes,
    but do _not_ use their Admin API yet.
 
@@ -446,7 +451,7 @@ see the instructions to
 > **Deprecation notice:**
 > Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the {{site.base_gateway}} 4.0 release, and some new features might not be supported with Cassandra in the {{site.base_gateway}} 3.0 release.
 
-Due to internal changes, the table schemas used by {{site.base_gateway}} 2.8.x on Cassandra
+Due to internal changes, the table schemas used by {{site.base_gateway}} 2.7.x on Cassandra
 are incompatible with those used by {{site.base_gateway}} 2.1.x or lower. Migrating using the usual commands
 `kong migrations up` and `kong migrations finish` will require a small
 window of downtime, since the old and new versions cannot use the
@@ -460,7 +465,7 @@ described below:
 
 2. Run `kong migrations bootstrap`.
 
-   Once that finishes running, both the old (2.1.x-2.8.x) and new (3.0.x)
+   Once that finishes running, both the old (2.1.x-2.7.x) and new (3.0.x)
    clusters can now run simultaneously, but the new cluster does not
    have any data yet.
 3. On the old cluster, run `kong config db_export`. This will create
