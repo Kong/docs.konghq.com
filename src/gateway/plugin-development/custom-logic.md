@@ -72,23 +72,6 @@ packets with the same origin and destination host and port as a single
 connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
 
-<!-- vale off -->
-
-[HTTP Module]: https://github.com/openresty/lua-nginx-module
-[Stream Module]: https://github.com/openresty/stream-lua-nginx-module
-[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
-[ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
-[rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
-[access]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
-[header_filter]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua_block
-[body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
-[log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
-[preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
-[enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
-[content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
-
-<!-- vale on -->
-
 ## handler.lua specifications
 
 {{site.base_gateway}} processes requests in **phases**. A plugin is a piece of code that gets
@@ -529,9 +512,22 @@ request-termination         | 2
 mocking                     | -1
 post-function               | -1000
 
-<!-- vale on -->
-
 {% endnavtab %}
 {% endnavtabs %}
+
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[HTTP Module]: https://github.com/openresty/lua-nginx-module
+[Stream Module]: https://github.com/openresty/stream-lua-nginx-module
+[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
+[ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
+[rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
+[access]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
+[header_filter]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua_block
+[body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
+[log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
+[preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
+[enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
+[content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
+
+<!-- vale on -->
