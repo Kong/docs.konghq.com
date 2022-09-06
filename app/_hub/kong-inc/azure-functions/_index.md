@@ -60,8 +60,8 @@ params:
         The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: clientid
       required: false
       default: null
@@ -72,8 +72,8 @@ params:
         The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: https_verify
       required: false
       default: false

@@ -57,7 +57,19 @@ You can now reference the secret's individual resources like this:
 ```
 
 Note that both the provider (`gcp`) as well as the GCP project ID
-(`my_project_id`) need to be specified.
+(`my_project_id`) need to be specified. You can configure project ID
+with an environment variable (before starting Kong):
+
+```bash 
+export KONG_VAULT_GCP_PROJECT_ID=my_project_id
+```
+
+Then you don't need to repeat it in references:
+
+```bash
+{vault://gcp/my-secret-name/foo}
+{vault://gcp/my-secret-name/snip}
+```
 
 ## Entity
 
@@ -111,5 +123,3 @@ through it:
 {vault://my-gcp-sm-vault/my-secret-name/foo}
 {vault://my-gcp-sm-vault/my-secret-name/snip}
 ```
-
-When you use the Vault entity, you no longer need to specify the GCP project ID to access the secrets.

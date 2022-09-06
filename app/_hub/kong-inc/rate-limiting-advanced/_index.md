@@ -253,8 +253,8 @@ params:
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: redis.password
       required: semi
       default: null
@@ -265,8 +265,8 @@ params:
         If undefined, no AUTH commands are sent to Redis.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -293,8 +293,8 @@ params:
         If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: redis.sentinel_password
       required: semi
       default: null
@@ -305,8 +305,8 @@ params:
         If undefined, no AUTH commands are sent to Redis Sentinels.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null

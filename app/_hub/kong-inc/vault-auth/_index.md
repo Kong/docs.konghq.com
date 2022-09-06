@@ -111,8 +111,8 @@ service, you must add the new consumer to an allowed group. See
 A Vault object represents the connection between Kong and a Vault server. It defines the connection and authentication information used to communicate with the Vault API. This allows different instances of the `vault-auth` plugin to communicate with different Vault servers, providing a flexible deployment and consumption model.
 
 Vault objects require setting a `vault_token` attribute. This attribute is _referenceable_, which means it can be securely stored as a
-[secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+[secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 Vault objects can be created via the following HTTP request:
 
@@ -281,8 +281,8 @@ EOF
 
 * The `vaults.vault_token` form field is now marked as
 referenceable, which means it can be securely stored as a
-[secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+[secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `2.7.x`, `2.1.x`, `1.5.x`, `1.3-x`, `0.36-x`, and `0.35-x`.

@@ -39,8 +39,8 @@ params:
         is configured.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: aws_secret
       required: semi
       value_in_examples: <AWS_SECRET>
@@ -56,8 +56,8 @@ params:
         is configured.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: aws_region  # old version, do not update
       maximum_version: "2.5.x"
       required: true
@@ -128,8 +128,8 @@ params:
         used for a cross-account Lambda function invocation.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: aws_role_session_name
       minimum_version: "2.8.x"
       required: false
