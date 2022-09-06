@@ -73,6 +73,7 @@ connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
 
 <!-- vale off -->
+
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
 [init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
@@ -85,6 +86,7 @@ considered closed and the `log` function is executed.
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
 [enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
 [content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
+
 <!-- vale on -->
 
 ## handler.lua specifications
@@ -527,7 +529,7 @@ request-termination         | 2
 mocking                     | -1
 post-function               | -1000
 
-<!-- vale off -->
+<!-- vale on -->
 
 {% endnavtab %}
 {% endnavtabs %}
