@@ -41,7 +41,7 @@ recognizes your account credentials:
 deck ping \
   --konnect-runtime-group-name default \
   --konnect-email {YOUR_EMAIL} \
-  --konnect-password {YOUR_PASSWORD}
+  --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
 
 If the connection is successful, the terminal displays the full name of the user
@@ -52,12 +52,12 @@ Successfully Konnected as Some Name (Org Name)!
 ```
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
-your password in a file, then either calling it with
-`--konnect-password-file /path/{FILENAME}.txt`, or adding it to your decK configuration
-file under the `konnect-password` option along with your email:
+your personal access token in a file, then either calling it with
+`--konnect-token-file /path/{FILENAME}.txt`, or adding it to your decK configuration
+file under the `konnect-token` option along with your email:
 
 ```yaml
-konnect-password: {YOUR_PASSWORD}
+konnect-token: {YOUR_PERSONAL_ACCESS_TOKEN}
 konnect-email: {YOUR_EMAIL}
 ```
 

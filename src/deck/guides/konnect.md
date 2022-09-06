@@ -114,7 +114,22 @@ You can generate a personal access token (PAT) in {{site.konnect_short_name}} to
 
 To generate a PAT in {{site.konnect_short_name}}, go to your name > **Personal access tokens** and click **+ Generate token**. After configuring the name and expiration date, make sure you copy the token to a secure location. 
 
-You can then use the `--konnect-token` and `--konnect-token-file` flags to use the PAT.
+You can use the `--konnect-token` flag to provide the PAT directly in the command:
+
+```sh
+deck ping \
+  --konnect-email example@example.com \
+  --konnect-token YOUR_PERSONAL_ACCESS_TOKEN
+```
+
+You can save your {{site.konnect_short_name}}
+PAT to a file, then pass the filename to decK with `--konnect-token-file`:
+
+```sh
+deck ping \
+  --konnect-email example@example.com \
+  --konnect-token-file /PATH/TO/FILE
+```
 {% endif_version %}
 
 ## Target a {{site.konnect_short_name}} API
