@@ -43,10 +43,8 @@ affect your current installation.
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
 Blue-green deployments:
-* **{{site.ee_product_name}}**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
-  * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
-  * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
-  Upgrade to a supported version before upgrading to 3.0.0.0 to use blue-green deployment.
+* **{{site.ee_product_name}}**: Blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0 are not currently supported.
+  * This is a known issue planned to be fixed in the next 2.8.x.x release. When that version is released 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.0.0.
 * **{{site.ce_product_name}}**: Blue-green deployments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
 
 ### Dependencies
@@ -397,10 +395,11 @@ to as the
 
 {:.important}
 > **Important**:
+TODO confirm this, and if false, remove this line. If true we need to change all the below documentation to reference EE-only instructions...
 * For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
 Blue-green migration between major versions is not available in open-source Gateway environments.
 For {{site.ce_product_name}}, [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
-* There is a known issue with migrating 2.8.x.x to 3.0.0.0. It is planned to be fixed in the next 2.8.x release.
+* There is a known issue with migrating 2.8.x.x to 3.0.0.0. It is planned to be fixed in the next 2.8.x.x release.
 If you need to upgrade to 3.0.0.0, either wait for the fix release, or [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
 
 The migrations are designed so that there is no need to fully copy
