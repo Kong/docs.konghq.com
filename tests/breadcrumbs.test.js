@@ -7,7 +7,7 @@ test.describe("Gateway", () => {
       "Home"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
-      "Kong Gateway"
+      "Kong Enterprise"
     );
     await expect(page.locator(".breadcrumb-item:nth-of-type(3)")).toHaveText(
       /\s*Plugin Development\s*/m
