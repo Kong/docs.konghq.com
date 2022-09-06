@@ -108,3 +108,26 @@ You should consider:
 
 It is simple, short, and easy to use in the terminal.
 It is derived from the combination of words 'declarative' and 'Kong'.
+
+
+
+### Is there a JSON Schema for decK? 
+
+Yes. The decK team maintains a JSON schema that you can use to validate YAML files on [Github](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json). You can use the schema with a text editor to provide JIT YAML validation. For example, to use the JSON schema with VS Code: 
+
+1. Install the Red Hat YAML extension:
+```console
+code --install-extension redhat.vscode-yaml
+```
+
+1. Edit the plugin settings in VS Code:
+```json
+ "yaml.schemas": {
+        "https://json.schemastore.org/kong_json_schema.json": [
+            "kong.yml",
+            "kong.yaml"
+        ]
+}
+```
+
+1. Verify that it works by opening your existing `kong.yml` or `kong.yaml` file. 
