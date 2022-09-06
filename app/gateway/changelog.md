@@ -309,8 +309,6 @@ Kong Gateway version.
 
 ### Breaking changes and deprecations
 
-#### Enterprise
-
 #### Deployment
 
 * Deprecated and stopped producing Amazon Linux 1 containers and packages.
