@@ -70,7 +70,7 @@ params:
         replace its old value with the new one. Ignored if the header is not already set.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: replace.querystring
       required: false
@@ -82,7 +82,7 @@ params:
         replace its old value with the new one. Ignored if the header is not already set.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: replace.uri
       required: false
@@ -105,7 +105,7 @@ params:
         and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.headers
       required: false
@@ -119,7 +119,7 @@ params:
         rename the header. The value is unchanged. Ignored if the header is not already set.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.querystring
       required: false
@@ -133,7 +133,7 @@ params:
         rename the field name. The value is unchanged. Ignored if the field name is not already set.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.body
       required: false
@@ -147,7 +147,7 @@ params:
         one of the following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: add.headers
       required: false
@@ -161,7 +161,7 @@ params:
         set a new header with the given value. Ignored if the header is already set.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: add.querystring
       required: false
@@ -175,7 +175,7 @@ params:
         set a new querystring with the given value. Ignored if the querystring name is already set.
       
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: add.body
       required: false
@@ -187,7 +187,7 @@ params:
         Ignored if the parameter is already present.
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: append.headers
       required: false
@@ -199,7 +199,7 @@ params:
         If it is already set, a new header with the same name and the new value will be set.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: append.querystring
       required: false
@@ -211,7 +211,7 @@ params:
         If it is already set, a new querystring with the same name and the new value will be set.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: append.body
       required: false
@@ -223,7 +223,7 @@ params:
         the two values (old and new) will be aggregated in an array.
         
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
         in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
     - name: allow.body
       required: false
