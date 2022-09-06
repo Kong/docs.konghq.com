@@ -107,6 +107,15 @@ deck ping
 
 Successfully Konnected as MyName (Konnect Org)!
 ```
+{% if_version gte:1.14.x %}
+### Authenticate using a personal access token
+
+You can generate a personal access token (PAT) in {{site.konnect_short_name}} to use to authenticate with decK commands. This can be useful for organizations with CI pipelines that can't use the standard username and password authentication. 
+
+To generate a PAT in {{site.konnect_short_name}}, go to your name > **Personal access tokens** and click **+ Generate token**. After configuring the name and expiration date, make sure you copy the token to a secure location. 
+
+You can then use the `--konnect-token` and `--konnect-token-file` flags to use the PAT.
+{% endif_version %}
 
 ## Target a {{site.konnect_short_name}} API
 
