@@ -177,7 +177,7 @@ defaults:
       layout: "docs-v2"
 
 # product name vars
-ee_product_name: Kong Gateway # This is a legacy variable that used to differentiate the Enterprise package from the Gateway product. Leaving this in case of further rebranding.
+ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
@@ -187,8 +187,3 @@ konnect_short_name: Konnect
 konnect_saas: Konnect Cloud
 package_name: Kong Konnect
 company_name: Kong Inc.
-
-# Konnect tier vars
-free_tier: Kong Gateway
-plus_tier: Kong Konnect Plus
-enterprise_tier: Kong Konnect Enterprise
