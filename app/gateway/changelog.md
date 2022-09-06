@@ -758,7 +758,7 @@ openid-connect
 * Blue-green deployments:
   * **Kong Gateway (OSS)**: Upgrades with blue-green deloyments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
   * **Kong Enterprise**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
-    * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is known issue planned to be fixed in the next 2.8.x.x release.
+    * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
     * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
 
 ### Dependencies
