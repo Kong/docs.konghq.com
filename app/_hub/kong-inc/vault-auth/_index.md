@@ -1,7 +1,7 @@
 ---
 name: Vault Authentication
 publisher: Kong Inc.
-version: 0.4.0
+version: 0.4.1
 desc: Add Vault authentication to your Services
 description: |
   Add authentication to a Service or Route with an access token and secret token. Credential tokens are stored securely via Vault. Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
@@ -105,6 +105,9 @@ service, you must add the new consumer to an allowed group. See
 
 ### Create a Vault
 
+{:.note}
+> Vault Auth plugin only works with HashiCorp Vault KV Secrets Engine - Version 1.
+
 A Vault object represents the connection between Kong and a Vault server. It defines the connection and authentication information used to communicate with the Vault API. This allows different instances of the `vault-auth` plugin to communicate with different Vault servers, providing a flexible deployment and consumption model.
 
 Vault objects require setting a `vault_token` attribute. This attribute is _referenceable_, which means it can be securely stored as a
@@ -114,7 +117,7 @@ in a vault. References must follow a [specific format](/gateway/latest/plan-and-
 Vault objects can be created via the following HTTP request:
 
 ```bash
-$ curl -X POST http://localhost:8001/vaults \
+$ curl -X POST http://localhost:8001/vault-auth \
   --header 'Content-Type: multipart/form-data' \
   --form name=kong-auth \
   --form mount=kong-auth \
@@ -146,10 +149,10 @@ This assumes a Vault server is accessible via `127.0.0.1:8200`, and that a versi
 
 `vault-auth` credentials are defined as a pair of tokens: an `access` token that identifies the owner of the credential, and a `secret` token that is used to authenticate ownership of the `access` token.
 
-Token pairs can be managed either via the Kong Admin API, or independantly via direct access with Vault. Token pairs must be associated with an existing Kong Consumer. Creating a token pair with the Kong Admin API can be done via the following request:
+Token pairs can be managed either via the Kong Admin API, or independently via direct access with Vault. Token pairs must be associated with an existing Kong Consumer. Creating a token pair with the Kong Admin API can be done via the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/vaults/{vault}/credentials/{consumer}
+$ curl -X POST http://kong:8001/vault-auth/{vault}/credentials/{consumer}
 HTTP/1.1 201 Created
 
 {
@@ -224,7 +227,7 @@ $ curl http://kong:8000/{proxy path} \
 Existing Vault credentials can be removed from the Vault server via the following API:
 
 ```bash
-$ curl -X DELETE http://kong:8001/vaults/{vault}/credentials/token/{access token}
+$ curl -X DELETE http://kong:8001/vault-auth/{vault}/credentials/token/{access token}
 
 HTTP/1.1 204 No Content
 ```
@@ -270,7 +273,11 @@ EOF
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.4.0)
+### {{site.base_gateway}} 2.8.1.3 (plugin version 0.4.1)
+
+* The endpoints of Vault Auth plugin will be moved from `/vaults` to `/vault-auth` with `vaults_use_new_style_api=on` set in `kong.conf`.
+
+### {{site.base_gateway}} 2.8.x (plugin version 0.4.0)
 
 * The `vaults.vault_token` form field is now marked as
 referenceable, which means it can be securely stored as a
@@ -282,7 +289,7 @@ were labelled as `2.7.x`, `2.1.x`, `1.5.x`, `1.3-x`, `0.36-x`, and `0.35-x`.
 They are now updated to align with the plugin's actual versions, `0.3.0`, `0.2.2`,
 `0.2.1`, `0.2.0`, `0.1.2`, and `0.1.0` respectively.
 
-### Kong Gateway 2.7.x (plugin version 0.3.0)
+### {{site.base_gateway}} 2.7.x (plugin version 0.3.0)
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
 and you are using Vault, the `vaults.vault_token` and `vault_credentials.secret_token` fields will be encrypted.

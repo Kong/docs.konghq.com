@@ -93,7 +93,7 @@ params:
       description: |
         A list of key-value pairs, where the key is the name of a log field and
         the value is a chunk of Lua code, whose return value sets or replaces
-        the log field value.
+        the log field value. Requires Kong 2.4.x or above.
 ---
 
 ## Log format

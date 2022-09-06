@@ -6,7 +6,7 @@
 #
 title: Configuration Reference for Kong Gateway (Enterprise)
 ---
-
+<!-- vale off -->
 ## Configuration loading
 
 Kong comes with a default configuration file that can be found at
@@ -2503,7 +2503,6 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
-- `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
 
 **Default:** `127.0.0.1:8003`
 

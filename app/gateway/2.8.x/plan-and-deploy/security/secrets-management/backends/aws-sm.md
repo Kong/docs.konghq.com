@@ -1,12 +1,11 @@
 ---
 title: AWS Secrets Manager
-beta: true
 badge: enterprise
 ---
 
 ## Configuration
 
-[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) can be configured in multiple ways. The current version of Kong Gateway's implementation only supports
+[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) can be configured in multiple ways. The current version of {{site.base_gateway}} implementation only supports
 configuring via environment variables.
 
 ```bash
@@ -32,18 +31,24 @@ Access these secrets from `my-secret-name` like this:
 
 ```bash
 {vault://aws/my-secret-name/foo}
-{vault://aws/my-secret-name/snap}
+{vault://aws/my-secret-name/snip}
 ```
 
 ## Entity
 
 The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
+{:.important}
+> **API Endpoint update**
+>
+> If you're using 2.8.2 or below, or have not set `vaults_use_new_style_api=on` in `kong.conf` you will need to replace `/vaults/` with `/vaults-beta/` in the examples below.
+
+
 {% navtabs codeblock %}
 {% navtab cURL %}
 
 ```bash
-curl -i -X PUT http://<hostname>:8001/vaults-beta/my-aws-sm-vault  \
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-aws-sm-vault  \
   --data name=aws \
   --data description="Storing secrets in AWS Secrets Manager" \
   --data config.region="us-east-1"
@@ -53,10 +58,9 @@ curl -i -X PUT http://<hostname>:8001/vaults-beta/my-aws-sm-vault  \
 {% navtab HTTPie %}
 
 ```bash
-http PUT :8001/vaults-beta/my-aws-sm-vault name="aws" \
+http -f PUT :8001/vaults/my-aws-sm-vault name="aws" \
   description="Storing secrets in AWS Secrets Manager" \
-  config.region="us-east-1" \
-  -f 
+  config.region="us-east-1"
 ```
 
 {% endnavtab %}
@@ -84,7 +88,7 @@ environment variable.
 
 ```bash
 {vault://my-aws-sm-vault/my-secret-name/foo}
-{vault://my-aws-sm-vault/my-secret-name/snap}
+{vault://my-aws-sm-vault/my-secret-name/snip}
 ```
 
 ## Advanced Examples
@@ -92,13 +96,13 @@ environment variable.
 You can create multiple entities, which lets you have secrets in different regions:
 
 ```bash
-http PUT :8001/vaults-beta/aws-eu-central-vault name=aws config.region="eu-central-1" -f 
-http PUT :8001/vaults-beta/aws-us-west-vault name=aws config.region="us-west-1" -f 
+http -f PUT :8001/vaults/aws-eu-central-vault name=aws config.region="eu-central-1"
+http -f PUT :8001/vaults/aws-us-west-vault name=aws config.region="us-west-1"
 ```
 
 This lets you source secrets from different regions:
 
 ```bash
 {vault://aws-eu-central-vault/my-secret-name/foo}
-{vault://aws-us-west-vault/my-secret-name/snap}
+{vault://aws-us-west-vault/my-secret-name/snip}
 ```

@@ -30,8 +30,6 @@ workspace displayed beneath the **Vitals** chart.
 The list of workspaces may be rendered as cards or a table,
 depending on preference.
 
-![Workspace List](https://doc-assets.konghq.com/1.3/manager/kong-manager-workspaces-grid.png)
-
 
 ## Create a Workspace
 
@@ -72,7 +70,7 @@ navigate to the new Workspace's dashboard.
 
 1. Near the top right, click the **Settings** button. This button takes you to the **Edit Workspace** page.
 
-1. Here, you can edit the workspace name, avatar, and avatar background color.
+1. Here, you can edit the workspace avatar and avatar background color.
 
 1. Click **Update Workspace** to save.
 

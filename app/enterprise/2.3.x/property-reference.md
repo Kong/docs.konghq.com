@@ -6,7 +6,7 @@
 #
 title: Configuration Reference for Kong Gateway (Enterprise)
 ---
-
+<!-- vale off -->
 ## Configuration loading
 
 Kong comes with a default configuration file that can be found at
@@ -833,7 +833,7 @@ Some suffixes can be specified for each pair:
   necessary to raise `net.core.somaxconn` at the same time to match or exceed
   the `backlog` number set.
 
-  
+
 **Note:** The `ssl` suffix is not supported, and each address/port will accept
 TCP with or without TLS enabled.
 
@@ -2168,7 +2168,7 @@ Sets text for Kong Manager Header Banner. Header Banner is not shown if this con
 
 #### admin_gui_header_bg_color
 
-Kong Manager Header Background Color 
+Kong Manager Header Background Color
 Sets background color for Kong Manager Header Banner.
 Accepts css color keyword, #-hexadecimal or rgb format. Invalid values are ignored by Manager.
 
@@ -2410,7 +2410,6 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
-- `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
 
 **Default:** `127.0.0.1:8003`
 

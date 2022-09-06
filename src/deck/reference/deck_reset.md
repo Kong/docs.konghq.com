@@ -108,6 +108,17 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 {% endif_version %}
 
+{% if_version gte:1.14.x %}
+
+`--konnect-token`
+:  Personal access token associated with your {{site.konnect_short_name}} account, this takes precedence over the `--konnect-token-file` flag.
+
+
+`--konnect-token-file`
+:  File containing the Personal Access Token to your {{site.konnect_short_name}} account.
+
+{% endif_version %}
+
 `--no-color`
 :  Disable colorized output (Default: `false`)
 
@@ -161,4 +172,3 @@ between decK and Kong. (Default: `0`)
 ## See also
 
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
-

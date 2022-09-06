@@ -11,7 +11,13 @@ function extractUrls (input) {
 }
 
 module.exports = function (input) {
-  const nav = yaml.load(fs.readFileSync(input.path, 'utf8'))
+  let nav = yaml.load(fs.readFileSync(input.path, 'utf8'))
+
+  // If it's single sourced, the nav is under nav.items
+  if (nav.product && nav.items) {
+    nav = nav.items;
+  }
+
   let urls = extractUrls(nav)
   const urlVersion = input.version ? `/${input.version}` : ''
 
@@ -38,7 +44,7 @@ module.exports = function (input) {
 
   // Build full URLs
   urls = urls.map((x) => {
-    return `http://localhost:3000${x}`
+    return `http://localhost:8888${x}`
   })
 
   return urls

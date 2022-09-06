@@ -45,8 +45,6 @@ params:
   protocols:
     - http
     - https
-    - grpc
-    - grpcs
   dbless_compatible: 'yes'
   dbless_explanation: |
     Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
@@ -912,5 +910,5 @@ ensure you set the actual URL for your service so that the response can be recei
  ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
 
 ## See also
-* [Inso CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
+* [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
 * [OpenAPI2Kong npm package](https://www.npmjs.com/package/openapi-2-kong)

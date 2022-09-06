@@ -59,6 +59,9 @@ module PluginSingleSource
         name = f.gsub('app/_hub/', '').gsub('/_index.md', '')
         next if seen.include?(name)
 
+        # Don't generate the sample file
+        next if name == '_init/my-extension'
+
         create_pages(
           {
             'strategy' => 'matrix',
