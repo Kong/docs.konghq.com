@@ -104,7 +104,7 @@ Successfully Konnected as MyName (Konnect Org)!
 Use `--konnect-addr` to select the API to connect to.
 
 The default API decK uses is `https://us.api.konghq.com`, which targets the `cloud.konghq.com` environment.
-If your account is in this environment, you don't need to change anything.
+If your account is in this environment, you don't need to change anything. If your account is in another environment or [geographic region](/konnect/regions/)<span class="badge beta"></span>, change the url to point to that API.
 
 If your account is in the `konnect.konghq.com` environment, use this flag to target the relevant API:
 
