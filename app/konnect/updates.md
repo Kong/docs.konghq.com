@@ -104,17 +104,17 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 
 : To set up a custom URL, see the [Dev Portal customization documentation](/konnect/dev-portal/customization) for more information.
 
-**Vitals metrics and dashboards**
-: The Vitals overview dashboard has been reworked for Plus and Enterprise tiers.
+**Analytics metrics and dashboards**
+: The Analytics overview dashboard has been reworked for Plus and Enterprise tiers.
 The dashboard now provides metrics for services cataloged by Service Hub within a selected time interval.
 You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views. Each graph is filterable by time frame.
 
 : In the Service Hub, graphs for services and routes now show data up to the last 30 days.
 
-**Vitals custom reports** <span class="badge alpha"></span>
+**Analytics custom reports** <span class="badge alpha"></span>
 
-: Vitals custom reports are now available for Plus and Enterprise tiers.
-Through the Vitals menu, you can create custom reports to track API requests for services, routes, and applications.
+: Analytics custom reports are now available for Plus and Enterprise tiers.
+Through the Analytics menu, you can create custom reports to track API requests for services, routes, and applications.
 
 : See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
 
