@@ -1,7 +1,6 @@
 ---
 name: Azure Functions
 publisher: Kong Inc.
-source_url: 'https://github.com/Kong/kong-plugin-azure-functions'
 desc: Invoke and manage Azure functions from Kong
 description: |
   This plugin invokes
