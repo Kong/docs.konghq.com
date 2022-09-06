@@ -312,6 +312,8 @@ mapping.
 **{{site.base_gateway}} 3.0.x**
 * Added the `groups_required` parameter.
 * The deprecated `X-Credential-Username` header has been removed.
+* The character `.` is now allowed in group attributes.
+* The character `:` is now allowed in the password field.
 
 **{{site.base_gateway}} 2.8.x**
 
