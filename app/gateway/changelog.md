@@ -20,16 +20,17 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   To enable FIPS mode, set [`fips`](/gateway/3.0.x/reference/configuration/#fips) to `on`.
   FIPS mode is only supported in Ubuntu 20.04.
 
-* **Beta feature**: Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
+* Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
 
   Previously, Kong Gateway 2.x supported limited WebSocket connections, where plugins only ran during the initial connection phase instead of for each frame.
   Now, Kong Gateway provides more control over WebSocket traffic by implementing plugins that target WebSocket frames.
 
   This release includes:
   * [Service](/gateway/3.0.x/admin-api/#service-object) and [route](/gateway/3.0.x/admin-api/#route-object) support for `ws` and `wss` protocols
-  * WebSocket PDK modules: [kong.websocket.client](/gateway/3.0.x/plugin-development/pdk/kong.websocket.client) and [kong.websocket.upstream](/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream).
-  * [New plugin handlers](/gateway/3.0.x/plugin-development/custom-logic/#websocket-plugin-development)
-  * Two new plugins: [WebSocket Size Limit](/hub/kong-inc/websocket-size-limit/)  and [WebSocket Validator](/hub/kong-inc/websocket-validator/)
+  * Two new plugins: [WebSocket Size Limit](/hub/kong-inc/websocket-size-limit/) and [WebSocket Validator](/hub/kong-inc/websocket-validator/)
+  * WebSocket plugin development capabilities (**Beta feature**)
+    * PDK modules: [kong.websocket.client](/gateway/3.0.x/plugin-development/pdk/kong.websocket.client) and [kong.websocket.upstream](/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream)
+    * [New plugin handlers](/gateway/3.0.x/plugin-development/custom-logic/#websocket-plugin-development)
 
   Learn how to develop WebSocket plugins with our [plugin development guide](/gateway/3.0.x/plugin-development/custom-logic/#websocket-plugin-development).
 
