@@ -202,12 +202,6 @@ application into {{site.konnect_saas}}.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
-1. Optional: For **Logout Behavior**, enable Single Logout (SLO) by selecting
-the **Logout user from identity provider** checkbox.
-
-    If this option is enabled, signing out from {{site.konnect_short_name}}
-    also signs users out of their Okta session.
-
 1. Click **Save**.
 
 ### Map {{site.konnect_short_name}} teams to Okta groups
