@@ -288,26 +288,4 @@ Not all Kong plugins are compatible with DB-less mode since some of them
 by design require a central database coordination or dynamic creation of
 entities.
 
-For current plugin compatibility, see [Plugin compatibility](/konnect-platform/compatibility/plugins/).  
-
-## VS Code schema validation
-
-If you want to edit the declarative configuration in Visual Studio Code:
-
-1. Install the Red Hat YAML extension:
-```console
-code --install-extension redhat.vscode-yaml
-```
-
-1. Edit the plugin settings in VS Code :
-```json
- "yaml.schemas": {
-        "https://json.schemastore.org/kong_json_schema.json": [
-            "kong.yml",
-            "kong.yaml"
-        ]
-}
-```
-
-1. If the plugin was installed and configured correctly, when configuring a decK file, this pop-up menu will appear: 
-![Validation on Visual Studio Code](https://user-images.githubusercontent.com/12378570/188483769-6440e9e2-7d2a-40be-b37f-9abf6cd430d6.png)
+For current plugin compatibility, see [Plugin compatibility](/konnect-platform/compatibility/plugins/).
