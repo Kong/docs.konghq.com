@@ -66,7 +66,7 @@ portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","s
 To patch a Dev Portal's authentication property directly, run:
 
 ```bash
-$ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
+curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
   --data "config.portal_auth=basic-auth"
 ```
 

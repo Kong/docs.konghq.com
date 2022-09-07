@@ -73,8 +73,8 @@ The Status Codes view displays visualizations of cluster-wide status code classe
 1. Edit the configuration file to enable or disable Vitals:    
     ```bash
     # via your Kong configuration file; e.g., kong.conf
-    $ vitals = on  # vitals is enabled
-    $ vitals = off # vitals is disabled
+    vitals = on  # vitals is enabled
+    vitals = off # vitals is disabled
     ```
 2. Restart Kong.
 
@@ -84,8 +84,8 @@ The Status Codes view displays visualizations of cluster-wide status code classe
 1. Use environment variables to enable or disable Vitals:
     ```bash
     # or via environment variables
-    $ export KONG_VITALS=on
-    $ export KONG_VITALS=off
+    export KONG_VITALS=on
+    export KONG_VITALS=off
     ```
 
 2. Restart Kong.

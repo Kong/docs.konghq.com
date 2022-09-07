@@ -253,9 +253,9 @@ The following is an example for adding a custom span using {{site.base_gateway}}
 2. Apply the Lua code using the `post-function` plugin using a cURL file upload:
 
     ```bash
-    $ curl -i -X POST http://<admin-hostname>:8001/plugins \
-        -F "name=post-function" \
-        -F "config.access[1]=@custom-span.lua"
+    curl -i -X POST http://<admin-hostname>:8001/plugins \
+      -F "name=post-function" \
+      -F "config.access[1]=@custom-span.lua"
 
     HTTP/1.1 201 Created
     ...

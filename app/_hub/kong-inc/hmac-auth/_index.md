@@ -123,9 +123,9 @@ You can provision new username/password credentials by making the following
 HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
-    --data "username=bob" \
-    --data "secret=secret456"
+curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
+  --data "username=bob" \
+  --data "secret=secret456"
 ```
 {% endnavtab %}
 
@@ -351,8 +351,8 @@ The HMAC plugin can be enabled on a service or a route. This example uses a serv
     a service or a route.
 
     ```bash
-    $ curl -i -X PATCH http://localhost:8001/plugins/{plugin-id} \
-        -d "config.validate_request_body=true"
+    curl -i -X PATCH http://localhost:8001/plugins/{plugin-id} \
+      -d "config.validate_request_body=true"
     ```
     Response:
     ```

@@ -206,8 +206,11 @@ Once you are done editing the file, it is possible to check the syntax
 for any errors before attempting to load it into Kong:
 
 ```
-$ kong config -c kong.conf parse kong.yml
+kong config -c kong.conf parse kong.yml
+```
 
+Response:
+```
 parse successful
 ```
 

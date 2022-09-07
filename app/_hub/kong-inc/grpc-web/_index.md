@@ -86,24 +86,28 @@ services:
 
 Same thing via the Admin API:
 
-```bash
-$ # add the gRPC service
-$ curl -X POST localhost:8001/services \
-  --data name=grpc \
-  --data protocol=grpc \
-  --data host=localhost \
-  --data port=9000
+1. Add the gRPC service:
+  ```sh
+  curl -X POST localhost:8001/services \
+    --data name=grpc \
+    --data protocol=grpc \
+    --data host=localhost \
+    --data port=9000
+  ```
 
-$ # add an http route
-$ curl -X POST localhost:8001/services/grpc/routes \
-  --data protocols=http \
-  --data name=web-service \
-  --data paths=/
+2. Add an `http` route:
+  ```sh
+  curl -X POST localhost:8001/services/grpc/routes \
+    --data protocols=http \
+    --data name=web-service \
+    --data paths[]=/
+  ```
 
-$ # add the plugin to the route
-$ curl -X POST localhost:8001/routes/web-service/plugins \
-  --data name=grpc-web
-```
+3. Add the plugin to the route:
+  ```sh
+  curl -X POST localhost:8001/routes/web-service/plugins \
+    --data name=grpc-web
+  ```
 
 In these examples, we don't set any plugin configurations.
 This minimal setup works for the default varieties of the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2),
@@ -158,8 +162,7 @@ services:
 or via the Admin API:
 
 ```bash
-$ # add the plugin to the route
-$ curl -X POST localhost:8001/routes/web-service/plugins \
+curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web \
   --data proto=path/to/hello.proto
 ```

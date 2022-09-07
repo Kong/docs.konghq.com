@@ -19,12 +19,12 @@ To write a {{site.base_gateway}} plugin in Go, you need to:
 6. Compile as an executable with `go build`.
 
 {:.note}
-> **Note**: [The Kong Go plugins repository](https://github.com/Kong/go-plugins) contains example Go plugins. 
+> **Note**: [The Kong Go plugins repository](https://github.com/Kong/go-plugins) contains example Go plugins.
 
 ## Configuration
 
 ### `Struct`
-The plugin you write needs a way to handle incoming configuration data from the data store or the Admin API. 
+The plugin you write needs a way to handle incoming configuration data from the data store or the Admin API.
 You can use a `struct` to create a schema of the incoming data.
 
 ```go
@@ -69,9 +69,12 @@ func main () {
 Executables can be placed somewhere in your path (for example,
 `/usr/local/bin`). The common `-h` flag shows a usage help message:
 
+```sh
+my-plugin -h
 ```
-$ my-plugin -h
 
+Output:
+```
 Usage of my-plugin:
   -dump
         Dump info about plugins
@@ -82,7 +85,7 @@ Usage of my-plugin:
 ```
 
 When you run the plugin without arguments, it creates a socket file within the
-`kong-prefix` and the executable name, appending `.socket`. 
+`kong-prefix` and the executable name, appending `.socket`.
 For example, if the executable is `my-plugin`, the socket file would be
 `/usr/local/kong/my-plugin.socket`.
 

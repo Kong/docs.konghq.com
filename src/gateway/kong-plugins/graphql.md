@@ -20,12 +20,15 @@ Use {{site.base_gateway}} to protect and manage an existing GraphQL endpoint. Th
 After installing and starting {{site.base_gateway}}, use the Admin API on port 8001 to add a new Service and Route. In this example, {{site.base_gateway}} will reverse proxy every incoming request with the specified incoming host to the associated upstream URL. You can implement very complex routing mechanisms beyond simple host matching.
 
 
-```
-$ curl -i -X POST \
+```sh
+curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=graphql-service' \
   --data 'url=http://example.com'
-$ curl -i -X POST \
+```
+
+```sh
+curl -i -X POST \
   --url http://localhost:8001/services/example-service/routes \
   --data 'hosts[]=example.com' \
 ```  
@@ -34,8 +37,8 @@ $ curl -i -X POST \
 
 Proxy caching for GraphQL provides advanced caching over queries.
 
-```
-$ curl -i -X POST \
+```sh
+curl -i -X POST \
   --url http://localhost:8001/services/example-service/plugins/ \
   --data 'name=graphql-proxy-cache-advanced' \
   --data 'config.strategy=memory'
@@ -43,8 +46,8 @@ $ curl -i -X POST \
 
 Protect your upstream GraphQL service with rate limiting. By introspecting your schema, it will analyze query costs and provide an enterprise-grade rate-limiting strategy.
 
-```
-$ curl -i -X POST http://kong:8001/services/example-service/plugins \
+```sh
+curl -i -X POST http://kong:8001/services/example-service/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \

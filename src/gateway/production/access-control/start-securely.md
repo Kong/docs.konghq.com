@@ -56,7 +56,7 @@ be present in the environment where database migrations will run.
 > **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
 ```
-$ export KONG_PASSWORD=<password-only-you-know>
+export KONG_PASSWORD=<password-only-you-know>
 ```
 
 This automatically creates a user, `kong_admin`, and a password that
@@ -76,7 +76,7 @@ To add additional Super Admins it is necessary to
 Issue the following command to prepare your data store by running the Kong migrations:
 
 ```
-$ kong migrations bootstrap [-c /path/to/kong.conf]
+kong migrations bootstrap [-c /path/to/kong.conf]
 ```
 
 ## Step 3
@@ -84,7 +84,7 @@ $ kong migrations bootstrap [-c /path/to/kong.conf]
 Start Kong:
 
 ```
-$ kong start [-c /path/to/kong.conf]
+kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
