@@ -58,7 +58,7 @@ want to use, skip to [setting defaults](#set-defaults).
 2. Add the following sample service and route to the file:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "3.0"
     services:
       - host: mockbin.org
         name: example_service
@@ -163,7 +163,7 @@ Summary:
 `defaults`:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "3.0"
     _info:
       defaults:
     services:
@@ -189,7 +189,7 @@ Summary:
     For example:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "3.0"
     _info:
       defaults:
         route:

@@ -223,7 +223,7 @@ users can set this config to `system` to auto pick CA-bundle from OS.
 Here's a sample declarative configuration with `redis` as storage:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 # this section is not necessary if there's already a route that matches
 # /.well-known/acme-challenge path with http protocol
 services:

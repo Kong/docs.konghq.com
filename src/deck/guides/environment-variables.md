@@ -21,7 +21,7 @@ You can use this method for any sensitive content.
 2. Save the following snippet into a `env-demo.yaml` file:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     consumers:
     - keyauth_credentials:
       - key: {%raw%}${{ env "DECK_API_KEY" }}{%endraw%}
