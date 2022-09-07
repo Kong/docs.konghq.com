@@ -469,57 +469,57 @@ plugin with WebSocket services, an additional non-WebSocket route must be used
 to issue tokens.
 
 1. Create a WebSocket service:
-  ```bash
-  curl -X POST http://localhost:8001/services/ \
-    --data "name=my-websocket-service" \
-    --data "url=ws://my-websocket-backend:8080/"
-  ```
+    ```bash
+    curl -X POST http://localhost:8001/services/ \
+      --data "name=my-websocket-service" \
+      --data "url=ws://my-websocket-backend:8080/"
+    ```
 
 2. Attach a route to the service:
-  ```sh
-  curl -X POST http://localhost:8001/services/my-websocket-service/routes \
-    --data "name=my-websocket-route" \
-    --data "protocols=wss" \
-    --data "hosts=my-websocket-hostname.com" \
-  ```
+    ```sh
+    curl -X POST http://localhost:8001/services/my-websocket-service/routes \
+      --data "name=my-websocket-route" \
+      --data "protocols=wss" \
+      --data "hosts=my-websocket-hostname.com" \
+    ```
 
 3. Attach an OAuth2 plugin instance to the service:
 
-  {:.note}
-  > **Note**: Setting `global_credentials=true` is necessary to allow tokens
-  created by other plugin instances.
+    {:.note}
+    > **Note**: Setting `global_credentials=true` is necessary to allow tokens
+    created by other plugin instances.
 
-  ```sh
-  curl -x POST http://localhost:8001/services/my-websocket-service/plugins \
-    --data "name=oauth2" \
-    --data "config.scopes=email" \
-    --data "config.scopes=profile" \
-    --data "config.global_credentials=true"
-  ```
+    ```sh
+    curl -x POST http://localhost:8001/services/my-websocket-service/plugins \
+      --data "name=oauth2" \
+      --data "config.scopes=email" \
+      --data "config.scopes=profile" \
+      --data "config.global_credentials=true"
+    ```
 
 
 4. Create another route to handle token creation:
-  {:.note}
-  > **Note**: Adding a POST method matcher ensures that regular WebSocket
-  handshake requests will not match this route.
+    {:.note}
+    > **Note**: Adding a POST method matcher ensures that regular WebSocket
+    handshake requests will not match this route.
 
-  ```sh
-  curl -X POST http://localhost:8001/routes \
-    --data "name=my-websocket-token-helper" \
-    --data "protocols=https" \
-    --data "hosts=my-websocket-hostname.com" \
-    --data "methods=POST"
-  ```
+    ```sh
+    curl -X POST http://localhost:8001/routes \
+      --data "name=my-websocket-token-helper" \
+      --data "protocols=https" \
+      --data "hosts=my-websocket-hostname.com" \
+      --data "methods=POST"
+    ```
 
 5. Finally, add the additional OAuth2 plugin instance, using the route:
 
-  ```sh
-  curl -x POST http://localhost:8001/routes/my-websocket-token-helper/plugins \
-    --data "name=oauth2" \
-    --data "config.scopes=email" \
-    --data "config.scopes=profile" \
-    --data "config.global_credentials=true"
-  ```
+    ```sh
+    curl -x POST http://localhost:8001/routes/my-websocket-token-helper/plugins \
+      --data "name=oauth2" \
+      --data "config.scopes=email" \
+      --data "config.scopes=profile" \
+      --data "config.global_credentials=true"
+    ```
 
 Client token requests (for example: `POST https://my-websocket-hostname.com/oauth2/authorize`)
 will be handled by the `oauth2` plugin instance attached to the `my-websocket-token-helper`

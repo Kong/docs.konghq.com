@@ -26,21 +26,21 @@ template][plugin-template]. For more info about the format, see the LuaRocks
 Pack your rock using the following command (from the plugin repo):
 
 1. Install it locally (based on the `.rockspec` in the current directory):
-  ```sh
-  luarocks make
-  ```
+    ```sh
+    luarocks make
+    ```
 
 2. Pack the installed rock:
-  ```sh
-  luarocks pack <plugin-name> <version>
-  ```
+    ```sh
+    luarocks pack <plugin-name> <version>
+    ```
 
-  Assuming your plugin rockspec is called
-  `kong-plugin-my-plugin-0.1.0-1.rockspec`, the above would become;
+    Assuming your plugin rockspec is called
+    `kong-plugin-my-plugin-0.1.0-1.rockspec`, the above would become;
 
-  ```sh
-  luarocks pack kong-plugin-my-plugin 0.1.0-1
-  ```
+    ```sh
+    luarocks pack kong-plugin-my-plugin 0.1.0-1
+    ```
 
 The LuaRocks `pack` command has now created a `.rock` file (this is simply a
 zip file containing everything needed to install the rock).
@@ -178,40 +178,42 @@ equivalent: `KONG_LUA_PACKAGE_PATH`.
 1. Add the custom plugin's name to the `plugins` list in your
 Kong configuration (on each Kong node):
 
-  ```
-  plugins = bundled,<plugin-name>
-  ```
+    ```
+    plugins = bundled,<plugin-name>
+    ```
 
-  Or, if you don't want to include the bundled plugins:
+    Or, if you don't want to include the bundled plugins:
 
-  ```
-  plugins = <plugin-name>
-  ```
+    ```
+    plugins = <plugin-name>
+    ```
 
-  If you are using two or more custom plugins, insert commas in between, like so:
+    If you are using two or more custom plugins, insert commas in between, like so:
 
-  ```
-  plugins = bundled,plugin1,plugin2
-  ```
-  Or:
-  ```
-  plugins = plugin1,plugin2
-  ```
+    ```
+    plugins = bundled,plugin1,plugin2
+    ```
+    Or:
+    ```
+    plugins = plugin1,plugin2
+    ```
 
-  You can also set this property via its environment variable equivalent:
-  `KONG_PLUGINS`.
+    You can also set this property via its environment variable equivalent:
+    `KONG_PLUGINS`.
 
 1. Update the `plugins` directive for each node in your Kong cluster.
 
 1. Restart Kong to apply the plugin:
 
-        kong restart
-
+    ```
+    kong restart
+    ```
     Or, if you want to apply a plugin without stopping Kong, you can use this:
 
-        kong prepare
-        kong reload
-
+    ```
+    kong prepare
+    kong reload
+    ```
 
 ## Verify loading the plugin
 
@@ -301,8 +303,6 @@ directive is properly set to load this plugin's Lua sources.
 unable to load the `schema.lua` source file from the file system. To resolve,
 make sure tha the `schema.lua` file is present alongside the plugin's
 `handler.lua` file.
-
----
 
 [rockspec]: https://github.com/keplerproject/luarocks/wiki/Creating-a-rock
 [plugin-template]: https://github.com/Kong/kong-plugin
