@@ -143,7 +143,7 @@ entities and their attributes. This is a small yet complete
 example that illustrates a number of features:
 
 ```yaml
-_format_version: "2.1"
+_format_version: "3.0"
 _transform: true
 
 services:
@@ -162,7 +162,7 @@ consumers:
   - key: my-key
 ```
 
-The only mandatory piece of metadata is `_format_version: "2.1"`, which
+The only mandatory piece of metadata is `_format_version: "3.0"`, which
 specifies the version number of the declarative configuration syntax format.
 This also matches the minimum version of Kong required to parse the file.
 
@@ -238,13 +238,13 @@ http :8001/config config=@kong.yml
 The `/config` endpoint replaces the entire set of entities in memory
 with the ones specified in the given file.
 
-Or another way you can start Kong in DB-less mode is with a 
+Or another way you can start Kong in DB-less mode is with a
 declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG_STRING`
-environment variable. 
+environment variable.
 
 ```
-export KONG_DATABASE=off 
-export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}' 
+export KONG_DATABASE=off
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}'
 kong start
 ```
 

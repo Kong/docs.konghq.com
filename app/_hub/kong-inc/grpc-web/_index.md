@@ -70,7 +70,7 @@ but proxies to a Service with the `grpc(s)` protocol.
 Sample configuration via declarative (YAML):
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 services:
 - protocol: grpc
   host: localhost
@@ -140,7 +140,7 @@ message HelloResponse {
 The declarative configuration becomes:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 services:
 - protocol: grpc
   host: localhost

@@ -43,7 +43,7 @@ again to see how decK interprets default values.
 1. Add the following sample service, route, and plugin to the file:
 
    ```yaml
-   _format_version: "0.1"
+   _format_version: "3.0"
    services:
      - host: mockbin.org
        name: example_service
@@ -127,7 +127,7 @@ overwriting your current state file, specify a different filename:
     default values populated for the service, route, and Basic Auth plugin:
 
    ```yaml
-   _format_version: "1.1"
+   _format_version: "3.0"
    plugins:
    - config:
        anonymous: null
@@ -196,7 +196,7 @@ configuration would overwrite the value in your environment.
 `defaults`:
 
    ```yaml
-   _format_version: "0.1"
+   _format_version: "3.0"
    _info:
      defaults:
    services:
@@ -223,7 +223,7 @@ configuration would overwrite the value in your environment.
     Service object:
 
    ```yaml
-   _format_version: "0.1"
+   _format_version: "3.0"
    _info:
      defaults:
        service:
@@ -242,7 +242,7 @@ configuration would overwrite the value in your environment.
     Or you could define custom default values for all available fields:
 
    ```yaml
-   _format_version: "0.1"
+   _format_version: "3.0"
    _info:
      defaults:
        route:
