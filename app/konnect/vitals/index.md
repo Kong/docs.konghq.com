@@ -1,16 +1,16 @@
 ---
-title: Introduction to Monitoring Health with Vitals
+title: Introduction to Monitoring Health with Analytics
 no_version: true
 ---
 
 You can monitor the health and performance of any service, service version,
 route, or application managed by {{site.konnect_saas}}.
 
-Vitals provides traffic reports to help you track the performance and
+Analytics provides traffic reports to help you track the performance and
 behavior of your APIs and runtimes. Use these reports to quickly access key
 statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-Depending on your {{site.konnect_saas}} subscription tier, Vitals retains
+Depending on your {{site.konnect_saas}} subscription tier, Analytics retains
 historical data for the following lengths of time:
 * **Free:** 24 hours
 * **Plus:** 6 months
@@ -26,17 +26,17 @@ routes, the graphs show requests broken down by status codes.
 
 > _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
-For greater insights into your service usage, access {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals) <span class="badge plus"></span>.
+For greater insights into your service usage, access {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals) <span class="badge plus"></span>.
 
-From Vitals, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
-* View the [Vitals dashboard](/konnect/vitals/overview-dashboard) to track traffic and errors by error code across all services in your organization.
+From Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
+* View the [Analytics dashboard](/konnect/vitals/overview-dashboard) to track traffic and errors by error code across all services in your organization.
 * [Export historical data in CSV format](/konnect/vitals/analyze/) for any individual service, service version, or route.
 * [Create a custom report](/konnect/vitals/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
-![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
+![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
 > _**Figure 2:** Graph showing successful and failed requests over the past three hours._
 
- ![errors vitals graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
+ ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
 > _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
 ## Time intervals

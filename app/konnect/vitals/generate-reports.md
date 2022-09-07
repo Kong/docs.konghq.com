@@ -17,7 +17,7 @@ It does not show data points for individual service versions.
 ## View custom reports
 
 To access all custom reports, open {% konnect_icon vitals %}
-**Vitals** from the left-side menu in {{site.konnect_short_name}}, then **Reports**.
+**Analytics** from the left-side menu in {{site.konnect_short_name}}, then **Reports**.
 This brings you to a list of all custom reports in the organization.
 
 Click on any report in the table to view it. From the report's details page, you
@@ -25,7 +25,7 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 ## Create a custom report
 
-To set up a new report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then follow these steps:
+To set up a new report, open {% konnect_icon vitals %} [analytics](https://cloud.konghq.com/analytics), click **Reports**, then follow these steps:
 
 1. Click the **Add New Report** button.
 1. Name the report and optionally add a description.
@@ -74,7 +74,7 @@ and click it again to show the item. The graph resets on a refresh.
 
 You can export any custom report in CSV format.
 
-To export a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then follow these steps:
+To export a report, open {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals), click **Reports**, then follow these steps:
 
 1. Click on a report row to open the report's page.
 1. From the **Actions** dropdown, select **Export Report**.
@@ -83,7 +83,7 @@ To export a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq
 
 ## Edit a custom report
 
-To edit a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
+To edit a report, open {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
 
 * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
 settings icon for a report row and select **Edit**.
@@ -96,7 +96,7 @@ You may have to refresh the page to see the updated report.
 
 ## Delete a custom report
 
-To delete a report, open {% konnect_icon vitals %} [Vitals](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
+To delete a report, open {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
 
 * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
 settings icon for a report row, select **Delete**, then confirm deletion in the dialog.
