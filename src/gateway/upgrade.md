@@ -58,7 +58,7 @@ Blue-green deployments:
 Note that either way, the blue-green deployment should be a temporary status, and we should fully transfer to the
 new version when it's ready. We recommend not to change configurations when applying blue-green migration, as it may
 leads to issues:
-* For tradtional mode, old instances may create old format of entities to configuration, and new instances may create entities that old instances don't understand, and thus causes unexpected behavior;
+* For traditional mode, old instances may create old format of entities to configuration, and new instances may create entities that old instances don't understand, and thus causes unexpected behavior;
 * For hybrid mode, old dataplanes may not response to the change of the configuration.
 
 ### Dependencies
