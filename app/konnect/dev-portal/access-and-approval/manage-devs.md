@@ -6,7 +6,7 @@ content-type: reference
 
 Within the {% konnect_icon dev-portal %} **Dev Portal** section there are three ways to manage access and authorization settings for the Dev Portal: 
 * The **Access Requests** page lists developer registration and application registration requests.
-* The **Developers** page list of developers who have requested access to the developer portal, along with the developer's current status and associated applications.
+* The **Developers** page list of developers who have requested access to the Dev Portal, along with the developer's current status and associated applications.
 * The **Applications** page lists applications and their statuses.
 
 To allow automatic approval of developer registration requests,

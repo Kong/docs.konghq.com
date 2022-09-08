@@ -61,7 +61,7 @@ use the [sample Vitals spec](/konnect/vitalsSpec.yaml) for testing.
 
 1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service, then pick a version.
 
-1. Find the the **Version Spec** section and click **Upload Spec**.
+1. Find the **Version Spec** section and click **Upload Spec**.
 
 1. Select a spec file to upload.
 
