@@ -318,7 +318,7 @@ Kong Gateway version.
 * Blue-green deployments:
   * **Kong Gateway (OSS)**: Upgrades with blue-green deloyments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
   * **Kong Enterprise**: Blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0 are not currently supported.
-    * This is a known issue planned to be fixed in the next 2.8.x.x release. When that version is released 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.0.0.
+    * This is a known issue planned to be fixed in the next 2.8.x.x release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.0.0.
     * We will remove this known limitation after releasing the next 2.8.x.x version.
 
 ### Breaking changes and deprecations
