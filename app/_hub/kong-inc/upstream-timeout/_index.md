@@ -35,7 +35,7 @@ params:
       datatype: integer
       description: |
         The timeout, in milliseconds, for establishing a connection to the upstream server.
-        Overrides the [service object `connect_timeout` setting](/gateway/latest/admin-api/#service-object).
+        Overrides the service object [`connect_timeout`](/gateway/latest/how-kong-works/routing-traffic/#proxying-and-upstream-timeouts) setting, if the setting exists.
     - name: send_timeout
       required: false
       default: null
@@ -44,7 +44,7 @@ params:
       description: |
         The timeout, in milliseconds, between two
         successive write operations when sending a request to the upstream server.
-        Overrides the [service object `send_timeout` setting](/gateway/latest/admin-api/#service-object).
+        Overrides the service object [`write_timeout`](/gateway/latest/how-kong-works/routing-traffic/#proxying-and-upstream-timeouts) setting, if the setting exists.
     - name: read_timeout
       required: false
       default: null
@@ -53,5 +53,5 @@ params:
       description: |
         The timeout, in milliseconds, between two
         successive read operations when receiving a response from the upstream server.
-        Overrides the [service object `read_timeout` setting](/gateway/latest/admin-api/#service-object).
+        Overrides the service object [`read_timeout`](/gateway/latest/how-kong-works/routing-traffic/#proxying-and-upstream-timeouts) setting, if the setting exists.
 ---
