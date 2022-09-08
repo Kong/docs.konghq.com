@@ -54,16 +54,17 @@ Kong receives the payload and extracts the `"username"` value of `"john"` for th
 `{vault://hcv/pg/username}`.
 <!-- vale on -->
 
-Most of the [Kong Configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
+### What can be stored as a secret?
+
+Most of the [Kong configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
 can be stored as a secret, such as [pg_user](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
 [pg_password](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings).
 
-Limitations:
- * {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.
+{:.note}
+> **Limitation:** {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.
 
-The [Kong License](/gateway/{{page.kong_version}}/kong-enterprise/licenses/), usually configured with
+The [Kong license](/gateway/{{page.kong_version}}/kong-enterprise/licenses/), usually configured with
 a `KONG_LICENSE_DATA` environment variable, can be stored as a secret.
-
 
 The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)
 can be stored as a secret.
