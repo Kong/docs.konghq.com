@@ -38,7 +38,7 @@ Please pick one of the following guides depending on your platform:
 Use Kustomize to install Kong for Kubernetes:
 
 ```
-kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/base
+kustomize build github.com/kong/kubernetes-ingress-controller/config/base
 ```
 
 You can use the above URL as a base kustomization and build on top of it
