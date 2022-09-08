@@ -87,6 +87,19 @@ entity-specific permissions.
 
 [Administer teams &rarr;](/konnect/org-management/teams-and-roles)
 
+## Runtime group dashboard
+
+For each runtime group, you can view latency, traffic, and error rate analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display. 
+
+The following table describes the different metrics that display on this dashboard: 
+
+Metric | Description
+-------|-------------
+Traffic | The total number of requests made to the instances in the runtime group.
+Errors | The average number of failed requests made to the instances in the runtime group.
+Latency | The delay between request and data transfer for instances in the runtime group. 
+Gateway services | Total number of active services associated with the runtime group.
+
 ## Runtime group configuration
 
 For each runtime group, you can spin up runtime instances and configure
