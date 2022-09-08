@@ -376,7 +376,7 @@ The following steps assume that {{site.base_gateway}} is installed and the Kafka
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.4.0)
+**{{site.base_gateway}} 2.8.x**
 
 * Added support for the `SCRAM-SHA-512` authentication mechanism.
 
@@ -387,7 +387,7 @@ referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
-### Kong Gateway 2.7.x (plugin version 0.3.0)
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.authentication.user` and `config.authentication.password` parameter
