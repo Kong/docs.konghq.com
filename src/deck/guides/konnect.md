@@ -112,13 +112,19 @@ Successfully Konnected as MyName (Konnect Org)!
 
 You can generate a personal access token (PAT) in {{site.konnect_short_name}} to use to authenticate with decK commands. This can be useful for organizations with CI pipelines that can't use the standard username and password authentication. 
 
+Before you generate a PAT, keep the following in mind:
+
+* A PAT is granted all of the permissions that the user has access to via their most up-to-date role assignment.
+* The PAT has a maximum duration of up to 12 months.
+* There is a limit of 10 personal access tokens per user.
+* Unused tokens are deleted/revoked after 12 months of inactivity.
+
 To generate a PAT in {{site.konnect_short_name}}, go to your name > **Personal access tokens** and click **+ Generate token**. After configuring the name and expiration date, make sure you copy the token to a secure location. 
 
 You can use the `--konnect-token` flag to provide the PAT directly in the command:
 
 ```sh
 deck ping \
-  --konnect-email example@example.com \
   --konnect-token YOUR_PERSONAL_ACCESS_TOKEN
 ```
 
@@ -127,7 +133,6 @@ PAT to a file, then pass the filename to decK with `--konnect-token-file`:
 
 ```sh
 deck ping \
-  --konnect-email example@example.com \
   --konnect-token-file /PATH/TO/FILE
 ```
 {% endif_version %}

@@ -40,7 +40,6 @@ recognizes your account credentials:
 ```sh
 deck ping \
   --konnect-runtime-group-name default \
-  --konnect-email {YOUR_EMAIL} \
   --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
 
@@ -54,11 +53,10 @@ Successfully Konnected as Some Name (Org Name)!
 You can also use decK with {{site.konnect_short_name}} more securely by storing
 your personal access token in a file, then either calling it with
 `--konnect-token-file /path/{FILENAME}.txt`, or adding it to your decK configuration
-file under the `konnect-token` option along with your email:
+file under the `konnect-token` option:
 
 ```yaml
 konnect-token: {YOUR_PERSONAL_ACCESS_TOKEN}
-konnect-email: {YOUR_EMAIL}
 ```
 
 The default location for this file is `$HOME/.deck.yaml`. You can target a
