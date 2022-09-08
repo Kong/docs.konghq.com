@@ -34,7 +34,7 @@ When {{site.base_gateway}} is installed with a package management system such as
 1. Switch to the built-in `kong` user:
 
     ```sh
-    $ su kong
+    su kong
     ```
 2. Start Kong:
 

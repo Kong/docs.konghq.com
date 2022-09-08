@@ -211,7 +211,7 @@ flows with your Azure AD implementation.
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+curl -X POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
 --data scope="<your_client_id>/.default" \
 --data grant_type="client_credentials" \
 --data client_id="<your_client_id>" \
@@ -222,7 +222,7 @@ $ curl -X POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/t
 {% navtab Using HTTPie %}
 
 ```bash
-$ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
+https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/token" \
   scope=<your_client_id>/.default \
   grant_type=client_credentials \
   -a <your_client_id>:<your_client_secret> \

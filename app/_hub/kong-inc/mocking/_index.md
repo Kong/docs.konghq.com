@@ -122,7 +122,7 @@ The `<service>` is the id or name of the service that this plugin configuration 
 Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
+curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
    --data "name=mocking" \
    --data "config.api_specification_filename=multipleexamples.json" \
    --data "config.random_delay=true" \
@@ -138,11 +138,11 @@ Configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
-    --data "name=mocking"  \
-    --data "config.api_specification_filename=multipleexamples.json" \
-    --data "config.random_delay=true" \
-    --data "config.max_delay_time=1" \
-    --data "config.min_delay_time=0.001"
+  --data "name=mocking"  \
+  --data "config.api_specification_filename=multipleexamples.json" \
+  --data "config.random_delay=true" \
+  --data "config.max_delay_time=1" \
+  --data "config.min_delay_time=0.001"
 ```
 
 The `<consumer>` is the id or username of the consumer that this plugin configuration will target.

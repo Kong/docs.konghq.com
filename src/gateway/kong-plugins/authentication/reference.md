@@ -51,7 +51,7 @@ the corresponding Route:
     the request:
 
     ```bash
-    $ curl -i -X POST \
+    curl -i -X POST \
       --url http://localhost:8001/services/ \
       --data 'name=example-service' \
       --data 'url=http://mockbin.org/request'
@@ -60,7 +60,7 @@ the corresponding Route:
     Add a Route to the Service:
 
     ```bash
-    $ curl -i -X POST \
+    curl -i -X POST \
       --url http://localhost:8001/services/example-service/routes \
       --data 'paths[]=/auth-sample'
     ```
@@ -72,7 +72,7 @@ the corresponding Route:
     Issue the following cURL request to add a plugin to a Service:
 
     ```bash
-    $ curl -i -X POST \
+    curl -i -X POST \
       --url http://localhost:8001/services/example-service/plugins/ \
       --data 'name=key-auth'
     ```
@@ -85,7 +85,7 @@ the corresponding Route:
     plugin was properly configured on the Service:
 
     ```bash
-    $ curl -i -X GET \
+    curl -i -X GET \
       --url http://localhost:8000/auth-sample
     ```
 
@@ -108,7 +108,7 @@ the corresponding Route:
     following request:
 
     ```bash
-    $ curl -i -X POST \
+    curl -i -X POST \
       --url http://localhost:8001/consumers/ \
       --data "username=anonymous_users"
     ```
@@ -135,7 +135,7 @@ the corresponding Route:
     request (**replace the sample uuids below by the `id` values from step 2 and 4**):
 
     ```bash
-    $ curl -i -X PATCH \
+    curl -i -X PATCH \
       --url http://localhost:8001/plugins/<your-plugin-id> \
       --data "config.anonymous=<your-consumer-id>"
     ```
@@ -151,7 +151,7 @@ the corresponding Route:
     Confirm that your Service now permits anonymous access by issuing the following request:
 
     ```bash
-    $ curl -i -X GET \
+    curl -i -X GET \
       --url http://localhost:8000/auth-sample
     ```
 

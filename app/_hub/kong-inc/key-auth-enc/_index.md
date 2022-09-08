@@ -160,7 +160,7 @@ service, you must add the new Consumer to the allowed group. See
 Provision new credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth-enc -d ""
+curl -X POST http://kong:8001/consumers/{consumer}/key-auth-enc -d ""
 ```
 
 Response:
@@ -200,7 +200,7 @@ field/parameter     | description
 Make a request with the key as a query string parameter:
 
 ```bash
-$ curl http://kong:8000/{proxy path}?apikey=<some_key>
+curl http://kong:8000/{proxy path}?apikey=<some_key>
 ```
 
 **Note:** The `key_in_query` parameter must be set to `true` (default).
@@ -208,8 +208,8 @@ $ curl http://kong:8000/{proxy path}?apikey=<some_key>
 Make a request with the key in the body:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    --data 'apikey: <some_key>'
+curl http://kong:8000/{proxy path} \
+  --data 'apikey: <some_key>'
 ```
 
 **Note:** The `key_in_body` parameter must be set to `true` (default is `false`).
@@ -217,8 +217,8 @@ $ curl http://kong:8000/{proxy path} \
 Make a request with the key in a header:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    -H 'apikey: <some_key>'
+curl http://kong:8000/{proxy path} \
+  -H 'apikey: <some_key>'
 ```
 
 **Note:** The `key_in_header` parameter must be set to `true` (default).
@@ -226,7 +226,7 @@ $ curl http://kong:8000/{proxy path} \
 gRPC clients are supported too:
 
 ```bash
-$ grpcurl -H 'apikey: <some_key>' ...
+grpcurl -H 'apikey: <some_key>' ...
 ```
 ### About API Key Locations in a Request
 
@@ -248,7 +248,7 @@ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 Delete an API Key by making the following request:
 
 ```bash
-$ curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth-enc/{id}
+curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth-enc/{id}
 ```
 
 Response:
@@ -270,7 +270,7 @@ Paginate through the API keys for all Consumers using the following
 request:
 
 ```bash
-$ curl -X GET http://kong:8001/key-auths-enc
+curl -X GET http://kong:8001/key-auths-enc
 ```
 
 Response:
@@ -305,7 +305,7 @@ Response:
 Filter the list by Consumer by using a different endpoint:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/key-auth-enc
+curl -X GET http://kong:8001/consumers/{username or id}/key-auth-enc
 ```
 
 `username or id`: The username or id of the Consumer whose credentials need to be listed.

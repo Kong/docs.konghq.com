@@ -17,14 +17,14 @@ We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe reference
 
 The `vault` in the URL is used as an identifier for Kong. We use this to reference a vault.
 
-### Path
+### Host/Path
 
 ```text
 {vault://<vault-prefix>/<secret-id>[/<secret-key]}
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-The `path` of the URL defines the following:
+The `host` and  `path` of the URL defines the following:
 
 #### Vault Prefix
 
@@ -46,8 +46,9 @@ or using a vault entity
 
 #### Secret ID
 
-The `secret-id` is used as an identifier in case the vault uses a
-nested data structure.
+The `secret-id` is used as an identifier for a secret stored in a vault. The vault
+may return either a `string` value (a single secret) or multiple related secrets
+like username and password as a secret `object`.
 
 #### Secret Key
 

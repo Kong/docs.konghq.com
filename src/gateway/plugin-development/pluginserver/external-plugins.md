@@ -189,9 +189,12 @@ no plugin loading, and no compiler, library, or environment compatibility issues
 The resulting executable can be placed somewhere in your path (for example,
 `/usr/local/bin`). The common `-h` flag shows a usage help message:
 
+```sh
+my-plugin -h
 ```
-$ my-plugin -h
 
+Output:
+```
 Usage of my-plugin:
   -dump
         Dump info about plugins

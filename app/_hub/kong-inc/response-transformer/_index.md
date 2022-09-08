@@ -147,7 +147,7 @@ similar for Services.
 {% navtab With a database %}
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -186,7 +186,7 @@ plugins:
 - Add multiple headers by passing comma separated header:value pair (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -207,7 +207,7 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 - Add multiple headers passing config as JSON body (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -231,7 +231,7 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 {% navtab With a database %}
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
@@ -281,7 +281,7 @@ plugins:
 {% navtab With a database %}
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
@@ -324,7 +324,7 @@ plugins:
 - Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
 ```
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number"

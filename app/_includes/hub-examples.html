@@ -254,8 +254,8 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
-    --data "name={{include.params.name}}" {{ config_required_fields }}
+curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
+  --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
@@ -391,8 +391,8 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-$ curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
-    --data "name={{include.params.name}}" {{ config_required_fields }}
+curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
+  --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
@@ -510,8 +510,8 @@ the <code>{{include.params.name}}</code> plugin globally.
 Make the following request:
 
 ```bash
-$ curl -X POST http://localhost:8001/plugins/ \
-    --data "name={{include.params.name}}" {{ config_required_fields }}
+curl -X POST http://localhost:8001/plugins/ \
+  --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 {% endnavtab %}

@@ -131,7 +131,11 @@ When `upstream_health_metrics` is set to true:
 Here is an example of output you could expect from the `/metrics` endpoint:
 
 ```bash
-$ curl -i http://localhost:8001/metrics
+curl -i http://localhost:8001/metrics
+```
+
+Response:
+```sh
 HTTP/1.1 200 OK
 Server: openresty/1.15.8.3
 Date: Tue, 7 Jun 2020 16:35:40 GMT

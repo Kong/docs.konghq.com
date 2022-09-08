@@ -2,7 +2,6 @@
 title: Advanced Secrets Configuration
 ---
 
-
 Vault implementations offer a variety of advanced configuration options.
 
 ## Query arguments
@@ -61,6 +60,8 @@ The available commands are:
   get <reference>  Retrieves a value for <reference>
 
 Options:
+ -c,--conf    (optional string)  configuration file
+ -p,--prefix  (optional string)  override prefix directory
  --v              verbose
  --vv             debug
 ```
@@ -78,10 +79,10 @@ Create a Vault entity:
 {% navtab cURL %}
 
 ```bash
-$ curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
-        --data name=env \
-        --data description='ENV vault for secrets' \
-        --data config.prefix=SECRET_
+curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
+  --data name=env \
+  --data description='ENV vault for secrets' \
+  --data config.prefix=SECRET_
 ```
 
 {% endnavtab %}
