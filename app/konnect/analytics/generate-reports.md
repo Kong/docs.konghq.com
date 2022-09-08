@@ -16,7 +16,7 @@ It does not show data points for individual service versions.
 
 ## View custom reports
 
-To access all custom reports, open {% konnect_icon vitals %}
+To access all custom reports, open {% konnect_icon analytics %}
 **Analytics** from the left-side menu in {{site.konnect_short_name}}, then **Reports**.
 This brings you to a list of all custom reports in the organization.
 
@@ -25,9 +25,9 @@ can [export](#export-a-custom-report), [edit](#edit-a-custom-report), or [delete
 
 ## Create a custom report
 
-To set up a new report, open {% konnect_icon vitals %} [analytics](https://cloud.konghq.com/analytics), click **Reports**, then follow these steps:
+To set up a new report, open {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics), click **Reports**, then follow these steps:
 
-1. Click the **Add New Report** button.
+1. Click the **New Report** button.
 1. Name the report and optionally add a description.
 
     The name and description fields each have a 255 character limit.
@@ -49,9 +49,9 @@ To set up a new report, open {% konnect_icon vitals %} [analytics](https://cloud
 
 1. Choose a report type.
 
-   * **Service report**: Generate a report based on services cataloged in Service Hub.
-   * **Route report**: Generate a report based on routes.
-   * **Application report**: Generate a report based on applications registered on your Dev Portal.
+   * **Service Report**: Generate a report based on services cataloged in Service Hub.
+   * **Route Report**: Generate a report based on routes.
+   * **Application Report**: Generate a report based on applications registered on your Dev Portal.
 
    Depending on the report type you choose, the available metrics and entities
    will change.
@@ -62,9 +62,9 @@ To set up a new report, open {% konnect_icon vitals %} [analytics](https://cloud
     Route entity names are composed of multiple elements.
     See [route entity format](#route-entity-format) for the breakdown.
 
-1. Click **Create**.
+1. Click **Create** to open the report details page.
 
-The report details page opens. Here you can:
+From the report details page you can:
 
 * **View details**: Hover over a bar on the graph to see details about the data.
 * **Filter the graph**: Click on an item in the legend to temporarily hide it from view,
@@ -74,7 +74,7 @@ and click it again to show the item. The graph resets on a refresh.
 
 You can export any custom report in CSV format.
 
-To export a report, open {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals), click **Reports**, then follow these steps:
+To export a report, open {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics), click **Reports**, then follow these steps:
 
 1. Click on a report row to open the report's page.
 1. From the **Actions** dropdown, select **Export Report**.
@@ -83,7 +83,7 @@ To export a report, open {% konnect_icon vitals %} [Analytics](https://cloud.kon
 
 ## Edit a custom report
 
-To edit a report, open {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
+To edit a report, open {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics), click **Reports**, then choose one of following options:
 
 * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
 settings icon for a report row and select **Edit**.
@@ -96,7 +96,7 @@ You may have to refresh the page to see the updated report.
 
 ## Delete a custom report
 
-To delete a report, open {% konnect_icon vitals %} [Analytics](https://cloud.konghq.com/vitals), click **Reports**, then choose one of following options:
+To delete a report, open {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics), click **Reports**, then choose one of following options:
 
 * Click the ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
 settings icon for a report row, select **Delete**, then confirm deletion in the dialog.
@@ -135,5 +135,5 @@ Or, if your route doesn't have a name, it might look like this:
 Where `DA58B` are the first five characters of its UUID.
 
 ## See also
-[Export historical data in CSV format](/konnect/vitals/analyze/) through the
+[Export historical data in CSV format](/konnect/analytics/analyze/) through the
 Service Hub for any individual service, service version, or route.

@@ -116,7 +116,7 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 : Analytics custom reports are now available for Plus and Enterprise tiers.
 Through the Analytics menu, you can create custom reports to track API requests for services, routes, and applications.
 
-: See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
+: See the [custom reports documentation](/konnect/analytics/generate-reports) for more information.
 
 **Custom plugin requirements have changed**
 : Some custom plugin limitations have changed or been removed.

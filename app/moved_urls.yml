@@ -1,2 +1,8 @@
 ---
 /gateway-oss/VERSION/configuration/: "/gateway/VERSION/reference/configuration/"
+
+
+
+
+/konnect/VERSION/vitals/: "/konnect/VERSION/analytics/"
+/konnect/VERSION/vitals/generate-reports/: "/konnect/VERSION/analytics/generate-reports"
