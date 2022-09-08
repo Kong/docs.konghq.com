@@ -953,6 +953,7 @@ properties of a service:
 
 {{site.base_gateway}} will send the request over HTTP/1.1, and set the following headers:
 
+<!-- vale off -->
 - `Host: <your_upstream_host>`, as previously described in this document.
 - `Connection: keep-alive`, to allow for reusing the upstream connections.
 - `X-Real-IP: <remote_addr>`, where `$remote_addr` is the variable bearing
@@ -985,6 +986,7 @@ properties of a service:
   if provided. Otherwise, the value of the `$request_uri` variable (with
   the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
   will be used.
+<!-- vale on-->
 
   {:.note}
   > **Note**: {{site.base_gateway}} returns `"/"` for an empty path, but it doesn't do any other
@@ -1115,7 +1117,7 @@ associating the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.tls-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
-rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
+rightmost (suffix) position. This can be useful when maintaining multiple subdomains. A
 single `sni` configured with a wildcard name can be used to match multiple
 subdomains, instead of creating an SNI for each.
 
