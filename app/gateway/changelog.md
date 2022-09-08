@@ -315,11 +315,9 @@ Kong Gateway version.
   * Plugin ordering
   * Expression-based routing
 
-* Blue-green deployments:
-  * **Kong Gateway (OSS)**: Upgrades with blue-green deloyments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
-  * **Kong Enterprise**: Blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0 are not currently supported.
-    * This is a known issue planned to be fixed in the next 2.8.x.x release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.0.0.
-    * We will remove this known limitation with the release of the next 2.8.x.x version.
+* Blue-green upgrades from versions of 2.8.1(2.8.1.x for EE) and below to 3.0.0(3.0.0.0 for EE) are not supported for traditional mode.
+  * This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.0.0.
+  * We will remove this known limitation with the release of the next 2.8 version.
 
 ### Breaking changes and deprecations
 
