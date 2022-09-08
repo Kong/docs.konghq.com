@@ -21,7 +21,7 @@ installation: |
   You can either use the LuaRocks package manager to install the plugin
 
   ```bash
-  $ luarocks install kong-plugin-openwhisk
+  luarocks install kong-plugin-openwhisk
   ```
 
   or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
@@ -121,7 +121,7 @@ function main(params) {
 ```
 
 ```bash
-$ wsk action create hello hello.js
+wsk action create hello hello.js
 ```
 
 ```
@@ -136,7 +136,7 @@ ok: created action hello
 Create a service:
 
 ```bash
-$ curl -i -X  POST http://localhost:8001/services/ \
+curl -i -X  POST http://localhost:8001/services/ \
   --data "name=openwhisk-test" \
   --data "url=http://example.com"
 ```
@@ -150,7 +150,7 @@ HTTP/1.1 201 Created
 Create a route that uses the service:
 
 ```bash
-$ curl -i -f -X  POST http://localhost:8001/services/openwhisk-test/routes/ \
+curl -i -f -X  POST http://localhost:8001/services/openwhisk-test/routes/ \
   --data "paths[]=/"
 ```
 
@@ -186,12 +186,12 @@ routes:
 Plugins can be enabled on a service or a route (or globally). This example uses a service.
 
 ```bash
-$ curl -i -X POST http://localhost:8001/services/openwhisk-test/plugins \
-    --data "name=openwhisk" \
-    --data "config.host=192.168.33.13" \
-    --data "config.service_token=username:key" \
-    --data "config.action=hello" \
-    --data "config.path=/api/v1/namespaces/guest"
+curl -i -X POST http://localhost:8001/services/openwhisk-test/plugins \
+  --data "name=openwhisk" \
+  --data "config.host=192.168.33.13" \
+  --data "config.service_token=username:key" \
+  --data "config.action=hello" \
+  --data "config.path=/api/v1/namespaces/guest"
 ```
 
 Response:
@@ -225,7 +225,7 @@ plugins:
 **Without parameters:**
 
   ```bash
-  $ curl -i -X POST http://localhost:8000/ -H "Host:example.com"
+  curl -i -X POST http://localhost:8000/ -H "Host:example.com"
   ```
 
   Response:
@@ -242,7 +242,7 @@ plugins:
 **Parameters as form-urlencoded:**
 
   ```bash
-  $ curl -i -X POST http://localhost:8000/ -H "Host:example.com" --data "name=bar"
+  curl -i -X POST http://localhost:8000/ -H "Host:example.com" --data "name=bar"
   ```
   Response:
   ```
@@ -257,7 +257,7 @@ plugins:
 **Parameters as JSON body:**
 
   ```bash
-  $ curl -i -X POST http://localhost:8000/ -H "Host:example.com" \
+  curl -i -X POST http://localhost:8000/ -H "Host:example.com" \
     -H "Content-Type:application/json" --data '{"name":"bar"}'
   ```
   Response:
@@ -273,7 +273,7 @@ plugins:
 **Parameters as multipart form:**
 
   ```bash
-  $ curl -i -X POST http://localhost:8000/ -H "Host:example.com"  -F name=bar
+  curl -i -X POST http://localhost:8000/ -H "Host:example.com"  -F name=bar
   ```
   Response:
   ```
@@ -290,9 +290,9 @@ plugins:
 **Parameters as querystring:**
 
   ```bash
-  $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
+  curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
   ```
-Response:
+  Response:
   ```
   HTTP/1.1 200 OK
   ...
@@ -308,9 +308,9 @@ Response:
   returned in the response.
 
   ```bash
-  $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
+  curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
   ```
-Response:
+  Response:
   ```
   HTTP/1.1 200 OK
   ...

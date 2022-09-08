@@ -10,12 +10,14 @@ Using a very simple two target example:
 
 ```bash
 # first target at 1000
-$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
+curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=1000"
+```
 
+```sh
 # second target at 0
-$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
+curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=0"
 ```
@@ -25,12 +27,14 @@ slowly be routed towards the other target. For example, set it at 10%:
 
 ```bash
 # first target at 900
-$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
+curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=900"
+```
 
+```sh
 # second target at 100
-$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
+curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=100"
 ```

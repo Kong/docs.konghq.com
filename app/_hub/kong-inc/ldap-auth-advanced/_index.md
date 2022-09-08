@@ -260,8 +260,11 @@ search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
 using the `ldapsearch` command line utility:
 
 ```bash
-$ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
-"<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
+ldapsearch -x \
+  -h "<config.ldap_host>" \
+  -D "<config.bind_dn>" \
+  -b "<config.attribute>=<username><config.base_dn>" \
+  -w "<config.ldap_password>"
 ```
 
 [api-object]: /gateway/latest/admin-api/#api-object

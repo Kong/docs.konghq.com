@@ -196,7 +196,7 @@ similarly for Services.
 - Add multiple headers by passing each `header:value` pair separately:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -218,7 +218,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Add multiple headers by passing comma-separated `header:value` pair:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -240,7 +240,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Add multiple headers passing config as a JSON body:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -261,7 +261,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Add a body property and a header:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
@@ -295,7 +295,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Append multiple headers and remove a body property:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer-advanced", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
@@ -321,7 +321,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Replace entire response body if response code is 500:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.replace.body='{\"error\": \"internal server error\"}'" \
   --data "config.replace.if_status=500"
@@ -369,7 +369,7 @@ end
 ```
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   -F "name=response-transformer-advanced" \
   -F "config.transform.functions=@transform.lua" \
   -F "config.transform.if_status=200"
@@ -378,7 +378,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove the entire header field with a given header name:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1,h2"
 ```
@@ -391,7 +391,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove a specific header value of a given header field:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1:v1,h1:v2"
 ```
@@ -403,7 +403,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove a specific header value from a comma-separated list of header values:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1:v1,h1:v2"
 ```
@@ -418,7 +418,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove a specific header value defined by a regular expression
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/"
 ```
@@ -437,7 +437,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number" \

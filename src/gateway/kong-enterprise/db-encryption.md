@@ -18,8 +18,8 @@ Before enabling database encryption, we strongly recommend you generate an RSA k
 Generating an RSA key pair is straightforward via the `openssl` CLI:
 
 ```bash
-$ openssl genrsa -out key.pem 2048
-$ openssl rsa -in key.pem -pubout -out cert.pem
+openssl genrsa -out key.pem 2048
+openssl rsa -in key.pem -pubout -out cert.pem
 ```
 
 This key pair will be provided to Kong in order to facilitate recovering, exporting, and re-importing the keyring. The public `cert.pem` and private `key.pem` should be stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs are outside the scope of this documentation.
@@ -50,7 +50,7 @@ The generated private key `key.pem` is not required to configure Kong, or to sta
 Once all Kong nodes in the cluster have been configured, start each node:
 
 ```bash
-$ kong start
+kong start
 ```
 
 When encryption is enabled on a Kong node, it checks the status of the cluster keyring on boot. If it detects that no keys are present in the keyring, it will generate a key automatically. This process allows encryption/decryption operations to begin immediately.
@@ -65,7 +65,11 @@ With the keyring enabled and Kong started, verify the contents of the keyring:
 
 
 ```bash
-$ curl -s localhost:8001/keyring | jq
+curl -s localhost:8001/keyring | jq
+```
+
+Response:
+```json
 {
   "ids": [
     "LaW1urRQ"
@@ -82,7 +86,11 @@ Note that in this example, the value `LaW1urRQ` is the _ID_ of the key, not the 
 Create a Consumer with a basic-auth credential. At this point, the `password` field of the basic-auth credential will be symmetrically encrypted before it is written to the database (in addition to being hashed by the basic-auth plugin, which is done by the plugin regardless of whether keyring encryption is enabled):
 
 ```bash
-$ curl -s localhost:8001/consumers -d username=bob | jq
+curl -s localhost:8001/consumers -d username=bob | jq
+```
+
+Response:
+```json
 {
   "custom_id": null,
   "created_at": 1576518610,
@@ -94,7 +102,11 @@ $ curl -s localhost:8001/consumers -d username=bob | jq
 ```
 
 ```bash
-$ curl -s localhost:8001/consumers/bob/basic-auth -d username=bob -d password=supersecretpassword | jq
+curl -s localhost:8001/consumers/bob/basic-auth -d username=bob -d password=supersecretpassword | jq
+```
+
+Response:
+```json
 {
   "created_at": 1576518704,
   "consumer": {
@@ -119,7 +131,11 @@ kong=# select id,password from basicauth_credentials;
 We can also verify that reading back the credential after it has been created behaves as expected:
 
 ```bash
-$ curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 | jq
+curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 | jq
+```
+
+Response:
+```json
 {
   "created_at": 1576518704,
   "consumer": {
@@ -136,7 +152,11 @@ $ curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a7773
 As noted above, Kong supports rotating keys by allowing for multiple keys to exist on the keyring at the same time. This allows for data fields written by one key to be read back, while a fresher encryption key is used for write operations. Rotating keys is a matter of importing or generating a new key into the keyring, and marking it as active. Arbitrary key material can be imported via the `/keyring/import` material, or Kong can generate a new key via `/keyring/generate` endpoint:
 
 ```bash
-$ curl -XPOST -s localhost:8001/keyring/generate
+curl -XPOST -s localhost:8001/keyring/generate
+```
+
+Response:
+```json
 {
   "key": "t6NWgbj3g9cbNVC3/D6oZ2Md1Br5gWtRrqb1T2FZy44=",
   "id": "8zgITLQh"
@@ -148,7 +168,7 @@ Note that as a convenience the raw key material is returned from this endpoint c
 Once a new key is present in the keyring, activate the key's ID:
 
 ```bash
-$ curl -s localhost:8001/keyring/activate -d key=8zgITLQh
+curl -s localhost:8001/keyring/activate -d key=8zgITLQh
 ```
 
 Kong can write new sensitive data fields with the current `active` key, and read previously written fields in the database with the prior key, provided that key is in the keyring. Kong automatically selects the appropriate key to use when decrypting fields from the database.
@@ -160,7 +180,11 @@ At this point, it is encouraged to take another backup of the keyring via the `/
 Once the keyring has updated, existing encrypted fields can rotate to use the new active key. To accomplish this rotation, issue a PATCH request to the entity in question:
 
 ```bash
-$ # curl -XPATCH -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 -d password=adifferentsecretpassword | jq
+curl -XPATCH -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 -d password=adifferentsecretpassword | jq
+```
+
+Response:
+```json
 {
   "created_at": 1576518704,
   "consumer": {
@@ -191,7 +215,11 @@ Currently, encrypted fields must undergo a direct write operation in order to ro
 As a test, stop all Kong nodes in the cluster, and restart one Kong node again, but do not import the keyring material. The behavior of attempting to read an entity with an encrypted field now changes:
 
 ```bash
-$ time curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2
+time curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2
+```
+
+Response:
+```
 {"message":"An unexpected error occurred"}
 real	0m24.811s
 user	0m0.017s
@@ -223,7 +251,11 @@ The keyring material is then encrypted with the public RSA key defined with the 
 Kong configuration value in the database. The corresponding private key can be used to decrypt the keyring material in the database:
 
 ```bash
-$ curl -X POST localhost:8001/keyring/recover -F recovery_private_key=@/path/to/generated/key.pem
+curl -X POST localhost:8001/keyring/recover -F recovery_private_key=@/path/to/generated/key.pem
+```
+
+Response:
+```json
 {
   "message": "successfully recovered 1 keys",
     "recovered": [
@@ -258,8 +290,8 @@ Not every node needs to be provided the management RSA key pair, as that key pai
 The user that the Kong worker process is running under must have read access to the public and private keys in order to be able to import and export keyrings. This user is defined with the `nginx_user` Kong configuration option. We recommend restricting access to these files, for example:
 
 ```bash
-$ chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
-$ chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
+chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
+chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
 ```
 
 When testing, you can set `keyring_blob_path` in kong.conf or `KONG_KEYRING_BLOB_PATH`
@@ -272,7 +304,11 @@ value, and are automatically loaded when Kong starts.
 Export the keyring. The exported material can be re-imported to the cluster in the event of an outage or to restore a previously-deleted key:
 
 ```bash
-$ curl -XPOST -s localhost:8001/keyring/export | jq
+curl -XPOST -s localhost:8001/keyring/export | jq
+```
+
+Response:
+```json
 {
   "data": "eyJrIjoiV1JZeTdubDlYeFZpR3VVQWtWTXBcL0JiVW1jMWZrWHluc0dKd3N4M1c0MlIxWE5XM05lZ05sdFdIVmJ1d0ZnaVZSTnFSdmM1WERscGY3b0NIZ1ZDQ3JvTFJ4czFnRURhOXpJT0tVV0prM2lhd0VLMHpKTXdwRDd5ZjV2VFYzQTY0Y2UxcVl1emJoSTI4VUZ1ZExRZWljVjd2T3BYblVvU3dOY3IzblhJQWhyWlcxc1grWXE3aHM1RzhLRXY2OWlRamJBTXAwbHZmTWNFWWxTOW9NUjdnSm5xZWlST0J1Q09iMm5tSXg0Qk1uaTJGalZzQzBtd2R2dmJyYWxYa3VLYXhpRWZvQm9EODk3MEtVcDYzY05lWGdJclpjang4YmJDV1lDRHlEVmExdGt5c0g1TjBJM0hTNDRQK1dyT2JkcElCUk5vSVZVNis1QWdcLzdZM290RUdzN1E9PSIsImQiOiIxWEZJOXZKQ05CTW5uVTB5c0hQenVjSG5nc2c5UURxQmcxZ3g1VVYxNWNlOEVTTlZXTmthYm8zdlUzS2VRTURcL0RUYXdzZCtJWHB5SllBTkRtanZNcytqU2lrVTFiRkpyMEVcLzBSRlg2emJrT0oybTR2bXlxdVE9PSIsIm4iOiJUUmRLK01Qajh6MkdHTmtyIn0="
 }
@@ -292,11 +328,11 @@ a disaster recovery process.
 Restart Kong and re-import the previously exported keyring:
 
 ```bash
-$ kong restart
+kong restart
 ```
 
 ```bash
-$ curl localhost:8001/keyring/import -d data=<exported data>
+curl localhost:8001/keyring/import -d data=<exported data>
 ```
 
 This operation requires that the `keyring_private_key` point to the private RSA
@@ -305,7 +341,11 @@ this is complete, Admin API operations that require the keyring for encryption/
 decryption can be verified:
 
 ```bash
-$ curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 | jq
+curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 | jq
+```
+
+Response:
+```json
 {
   "created_at": 1576518704,
   "consumer": {
