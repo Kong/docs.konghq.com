@@ -57,8 +57,8 @@ You can now reference the secret's individual resources like this:
 ```
 
 Note that both the provider (`gcp`) as well as the GCP project ID
-(`my_project_id`) need to be specified. You can configure project ID
-with an environment variable (before starting Kong):
+(`my_project_id`) need to be specified. You can configure the project ID
+with an environment variable before starting {{site.base_gateway}}:
 
 ```bash 
 export KONG_VAULT_GCP_PROJECT_ID=my_project_id
