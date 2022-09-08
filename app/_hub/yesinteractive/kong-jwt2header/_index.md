@@ -24,7 +24,7 @@ description: |
 
 support_url: https://github.com/yesinteractive/kong-jwt2header/issues
 
-source_url: https://github.com/yesinteractive/kong-jwt2header
+source_code: https://github.com/yesinteractive/kong-jwt2header
 
 license_type: MIT
 

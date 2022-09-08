@@ -12,7 +12,7 @@ description: |
 
 support_url: https://support.signalfx.com/hc/en-us
 
-source_url: https://github.com/signalfx/kong-plugin-signalfx
+source_code: https://github.com/signalfx/kong-plugin-signalfx
 
 license_type: Apache-2.0
 

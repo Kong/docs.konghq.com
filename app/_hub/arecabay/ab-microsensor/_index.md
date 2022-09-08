@@ -20,7 +20,7 @@ description: |
 support_url:
   https://www.arecabay.com/partners/kong#support
 
-source_url:
+source_code:
   https://luarocks.org/modules/sekhar-arecabay/ab-microsensor
 
 #license_type:

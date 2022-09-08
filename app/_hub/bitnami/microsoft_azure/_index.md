@@ -21,8 +21,6 @@ description: |
 
 support_url: https://bitnami.com/support/azure
 
-source_url: # (Optional) If your extension is open source, provide a link to your code.
-
 # license_type: Apache-2.0
   # (Optional) For open source, use the abbreviations in parentheses at:
   # https://opensource.org/licenses/alphabetical

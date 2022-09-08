@@ -8,7 +8,7 @@ desc: Kong middleware to completely rewrite the URL of a route.
 description: |
     When using Kong, you can create routes that proxy to an upstream. The problem lies when the upstream has an url that is not very friendly to your clients, or restful, or even pretty. When you add a Route in Kong, you have a somewhat limited url rewrite capability. This plugin simply throws away the url set in Kong route and uses the url set in it's configuration to proxy to the upstream. This gives you full freedom as to how to write your url's in Kong and inner services as well.
 support_url: https://github.com/stone-payments/kong-plugin-url-rewrite/issues
-source_url:  https://github.com/stone-payments/kong-plugin-url-rewrite
+source_code:  https://github.com/stone-payments/kong-plugin-url-rewrite
 license_type: Apache-2.0
 license_url: https://github.com/stone-payments/kong-plugin-url-rewrite/blob/master/LICENSE
 
