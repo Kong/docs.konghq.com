@@ -85,6 +85,7 @@ JsonPath
 jwk
 jwks
 jwt
+kafka
 Keycloak
 keyspace
 kiali
