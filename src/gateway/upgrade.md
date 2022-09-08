@@ -43,23 +43,22 @@ affect your current installation.
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
 Blue-green deployments:
-* Traditional mode: Blue-green upgrades from versions of 2.8.1(2.8.1.x for Enterprise) and below to 3.0.0(3.0.0.0 for Enterprise) are not currently supported for traditional mode.
+* Traditional mode: Blue-green upgrades from versions of 2.8.1.x and below to 3.0.0.0 are not currently supported for traditional mode.
   * This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
-* Hybrid mode: migration can be done by following steps:
-  1. Upgrade control plane (override installation and reload, or stop and start);
-  2. Start new version of data planes;
-  3. gracefully shut down old version of data planes.
+* Hybrid mode: you can migrate Enterprise hybrid mode deployments with the following method:
+  1. Upgrade the control plane: Override the previous installation with version 3.0.0.0 and reload, or stop and start {{site.kong_gateway}}.
+  2. Install {{site.base_gateway}} 3.0.0.0 on new data planes.
+  3. Gracefully shut down old versions of data planes.
 
-  This solution works in 2 ways for different setup:
-  1. For 2.8 dataplanes of Enterprise, new control plane will downgrade the configuration when syncing up;
-  2. For other situation(open-source, or version below 2.8), the control plane won't sync up any new configuration
-  to old data planes.
+  Depending on your setup, this solution will have the following effects:
+  1. For 2.8 data planes of {{site.ee_product_name}}, the new control plane will downgrade the configuration when syncing up.
+  2. For other situations (open-source, or versions below 2.8), the control plane won't sync up any new configuration to old data planes.
 
-Note that either way, the blue-green deployment should be a temporary status, and we should fully transfer to the
-new version when it's ready. We recommend not to change configurations when applying blue-green migration, as it may
+Note that either way, the blue-green deployment should be a temporary state, and you should fully transfer to the
+new version when it's ready. We recommend not changing configurations when using blue-green migration, as it may
 leads to issues:
-* For traditional mode, old instances may create old format of entities to configuration, and new instances may create entities that old instances don't understand, and thus causes unexpected behavior;
-* For hybrid mode, old dataplanes may not response to the change of the configuration.
+* For traditional mode, old instances may create conflicts with old entity formats in configuration, and new instances may create entities that old instances don't understand, causing unexpected behavior.
+* For hybrid mode, old data planes may not respond to the change in the configuration.
 
 ### Dependencies
 
@@ -409,7 +408,6 @@ to as the
 
 {:.important}
 > **Important**:
-TODO confirm this, and if false, remove this line. If true we need to change all the below documentation to reference EE-only instructions...
 * For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
 Blue-green migration between major versions is not available in open-source Gateway environments.
 For {{site.ce_product_name}}, [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
