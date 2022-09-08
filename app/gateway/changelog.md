@@ -762,6 +762,10 @@ openid-connect
     * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
     * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
 
+* OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
+  recommended to upgrade quite yet if you are an OpenTracing user. This will be
+  rectified in an upcoming patch/minor release.
+
 ### Dependencies
 
 * Bumped `openresty` from 1.19.9.1 to 1.21.4.1
