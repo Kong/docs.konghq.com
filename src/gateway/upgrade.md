@@ -42,21 +42,23 @@ affect your current installation.
 
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
-Blue-green deployments:
-* Traditional mode: Blue-green upgrades from versions of 2.8.1.x and below to 3.0.0.0 are not currently supported for traditional mode.
-  * This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
-* Hybrid mode: you can migrate Enterprise hybrid mode deployments with the following method:
-  1. Upgrade the control plane: Override the previous installation with version 3.0.0.0 and reload, or stop and start {{site.kong_gateway}}.
-  2. Install {{site.base_gateway}} 3.0.0.0 on new data planes.
-  3. Gracefully shut down old versions of data planes.
+#### Blue-green deployments
 
-  Depending on your setup, this solution will have the following effects:
-  1. For 2.8 data planes of {{site.ee_product_name}}, the new control plane will downgrade the configuration when syncing up.
-  2. For other situations (open-source, or versions below 2.8), the control plane won't sync up any new configuration to old data planes.
+**Traditional mode**: Blue-green upgrades from versions of 2.8.1.x and below 3.0.0.0 are not currently supported for traditional mode.
+This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
+
+**Hybrid mode**: You can migrate Enterprise hybrid mode deployments with the following method:
+1. Upgrade the control plane: Override the previous installation with version 3.0.0.0 and reload, or stop and start {{site.kong_gateway}}.
+2. Install {{site.base_gateway}} 3.0.0.0 on new data planes.
+3. Gracefully shut down old versions of data planes.
+
+Depending on your setup, this solution will have the following effects:
+* For 2.8 data planes of {{site.ee_product_name}}, the new control plane will downgrade the configuration when syncing up.
+* For other situations (open-source, or versions below 2.8), the control plane won't sync up any new configuration to old data planes.
 
 Note that either way, the blue-green deployment should be a temporary state, and you should fully transfer to the
 new version when it's ready. We recommend not changing configurations when using blue-green migration, as it may
-leads to issues:
+lead to issues:
 * For traditional mode, old instances may create conflicts with old entity formats in configuration, and new instances may create entities that old instances don't understand, causing unexpected behavior.
 * For hybrid mode, old data planes may not respond to the change in the configuration.
 
