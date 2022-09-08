@@ -43,9 +43,23 @@ affect your current installation.
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
 Blue-green deployments:
-* **{{site.ee_product_name}}**: Blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0 are not currently supported.
-  * This is a known issue planned to be fixed in the next 2.8.x.x release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.0.0.
-* **{{site.ce_product_name}}**: Blue-green deployments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
+* Traditional mode: Blue-green upgrades from versions of 2.8.1(2.8.1.x for Enterprise) and below to 3.0.0(3.0.0.0 for Enterprise) are not currently supported for traditional mode.
+  * This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
+* Hybrid mode: migration can be done by following steps:
+  1. Upgrade control plane (override installation and reload, or stop and start);
+  2. Start new version of data planes;
+  3. gracefully shut down old version of data planes.
+
+  This solution works in 2 ways for different setup:
+  1. For 2.8 dataplanes of Enterprise, new control plane will downgrade the configuration when syncing up;
+  2. For other situation(open-source, or version below 2.8), the control plane won't sync up any new configuration
+  to old data planes.
+
+Note that either way, the blue-green deployment should be a temporary status, and we should fully transfer to the
+new version when it's ready. We recommend not to change configurations when applying blue-green migration, as it may
+leads to issues:
+* For tradtional mode, old instances may create old format of entities to configuration, and new instances may create entities that old instances don't understand, and thus causes unexpected behavior;
+* For hybrid mode, old dataplanes may not response to the change of the configuration.
 
 ### Dependencies
 
