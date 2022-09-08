@@ -1,7 +1,6 @@
 ---
 title: Gateway API Support
 content_type: reference
-content_type: reference
 ---
 
 The {{site.kic_product_name}} supports the following resources and features in the
@@ -15,8 +14,12 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ## Gateways and GatewayClasses
 
 ### Supported Versions
+{% if_version gte: 2.6.x %}
 - `v1beta1`
+{% endif_version %}
+{% if_version lte: 2.5.x %}
 - `v1alpha2`
+{% endif_version %}
 
 ## HTTPRoutes
 
@@ -27,8 +30,13 @@ to allow you to fine-tune the load-balancing between those backend
 services.
 
 ### Supported Versions
+
+{% if_version gte: 2.6.x %}
 - `v1beta1`
+{% endif_version %}
+{% if_version lte: 2.5.x %}
 - `v1alpha2`
+{% endif_version %}
 
 ### Supported Extended Features
 - Supports `method` in route matches.
