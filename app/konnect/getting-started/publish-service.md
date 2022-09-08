@@ -114,7 +114,7 @@ You can't use your {{site.konnect_short_name}} credentials to log in here.
 1. As an admin, return to {{site.konnect_short_name}} and approve the account:
 
     1. From the left side menu, click {% konnect_icon dev-portal %} **Dev Portal**.
-    Then click **Access Requests** to open the Access Requests page which displays all pending developer request.
+    Then click **Access Requests** to open the Access Requests page, which displays all pending developer request.
 
     2. In the row for developer request you want to approve, click the icon and choose
        **Approve** from the context menu.
