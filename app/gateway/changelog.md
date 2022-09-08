@@ -363,6 +363,9 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   [#9078](https://github.com/Kong/kong/pull/9078)
 * Tags may now contain space characters.
   [#9143](https://github.com/Kong/kong/pull/9143)
+* Support for the `nginx-opentracing` module is deprecated as of `3.0` and will
+  be removed from Kong in `4.0` (see the `Known Limitations` section for additional
+  information).
 
 #### Admin API
 
