@@ -2,7 +2,7 @@
 name: Apache OpenWhisk
 publisher: Kong Inc.
 
-source_url: https://github.com/Kong/kong-plugin-openwhisk
+source_code: https://github.com/Kong/kong-plugin-openwhisk
 
 desc: Invoke and manage OpenWhisk actions from Kong
 description: |

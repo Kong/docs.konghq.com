@@ -18,7 +18,7 @@ description: |
  
 support_url: https://github.com/cheriL/apig-request-transformer/issues 
  
-source_url: https://github.com/cheriL/apig-request-transformer 
+source_code: https://github.com/cheriL/apig-request-transformer 
  
 license_type: Apache-2.0 
  

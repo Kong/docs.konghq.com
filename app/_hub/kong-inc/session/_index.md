@@ -14,7 +14,7 @@ description: |
 type: plugin
 categories:
   - authentication
-source_url: 'https://github.com/Kong/kong-plugin-session'
+source_code: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
     compatible: true

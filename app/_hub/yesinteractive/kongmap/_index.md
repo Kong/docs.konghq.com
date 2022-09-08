@@ -14,7 +14,7 @@ description: |
  
 support_url: https://github.com/yesinteractive/kong-map/issues
 
-source_url: https://github.com/yesinteractive/kong-map
+source_code: https://github.com/yesinteractive/kong-map
 
 license_type: AGPL-3.0
 
