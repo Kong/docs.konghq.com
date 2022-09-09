@@ -76,15 +76,6 @@ describe("Outdated version documentation", () => {
       new RegExp(`^/gateway/latest/install/linux/rhel/$`)
     );
   });
-
-  test("links to the root when the page no longer exists", async () => {
-    const $ = await fetchPage(`/enterprise/0.31-x/postgresql-redhat/`);
-    const s =  $(oldVersionSelector);
-    await expect(s).toHaveCount(1);
-    await expect(s.attr("href")).toMatch(
-      new RegExp(`^/gateway/$`)
-    );
-  });
 });
 
 describe("Sidebar section count", () => {
