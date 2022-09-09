@@ -769,6 +769,8 @@ openid-connect
   recommended to upgrade yet if you are an OpenTracing user. This will be
   rectified in an upcoming patch/minor release.
 
+* RFC3987 validation on route paths was removed, allowing operators to create a route with an invalid path URI like `/something|`. This validation will be added back in a future release.
+
 ### Dependencies
 
 * Bumped `openresty` from 1.19.9.1 to 1.21.4.1
