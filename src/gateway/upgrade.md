@@ -21,7 +21,7 @@ The upgrade to 3.0.x is a **major** upgrade.
 The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
 
 {:.important}
-> **Important**: Blue-green migration for traditional mode for versions below 2.8.2 to 3.0.x is not supported.
+> **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
 The upcoming 2.8.2 release will include blue-green migration support. If you want
 to perform migrations for traditional mode with no downtime, please wait for the upcoming 2.8.2 patch release,
 upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
