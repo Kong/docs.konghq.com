@@ -32,8 +32,7 @@ and much more.
 : To use any new features in the release,
 [start up a new 3.0.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
 
-: {:.important}
-> **Limitation**: [Secrets management](/gateway/latest/kong-enterprise/secrets-management) is not yet supported in {{site.konnect_saas}}.
+: **Limitation**: [Secrets management](/gateway/latest/kong-enterprise/secrets-management) is not yet supported in {{site.konnect_saas}}.
 
 
 ## August 2022
