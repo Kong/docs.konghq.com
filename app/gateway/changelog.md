@@ -15,11 +15,6 @@ no_version: true
 You can change a plugin's static priority by specifing the order in which plugins run.
 This lets you run plugins such as `rate-limiting` before authentication plugins.
 
-* Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
-
-  To enable FIPS mode, set [`fips`](/gateway/3.0.x/reference/configuration/#fips) to `on`.
-  FIPS mode is only supported in Ubuntu 20.04.
-
 * Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
 
   Previously, Kong Gateway 2.x supported limited WebSocket connections, where plugins only ran during the initial connection phase instead of for each frame.
