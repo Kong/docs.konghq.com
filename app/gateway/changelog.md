@@ -363,6 +363,9 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   [#9078](https://github.com/Kong/kong/pull/9078)
 * Tags may now contain space characters.
   [#9143](https://github.com/Kong/kong/pull/9143)
+* Support for the `nginx-opentracing` module is deprecated as of `3.0` and will
+  be removed from Kong in `4.0` (see the [Known Limitations](#known-limitations) section for additional
+  information).
 
 #### Admin API
 
@@ -761,6 +764,10 @@ openid-connect
   * **Kong Enterprise**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
     * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
     * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
+
+* OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
+  recommended to upgrade yet if you are an OpenTracing user. This will be
+  rectified in an upcoming patch/minor release.
 
 ### Dependencies
 
