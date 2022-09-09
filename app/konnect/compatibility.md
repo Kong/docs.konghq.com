@@ -9,7 +9,7 @@ no_version: true
 |----------------------------------|:--:|:----:|:-------:|:------:|:------:|
 | {{site.konnect_saas}} |  <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |  <i class="fa fa-check"></i> |  <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
-## Runtime compatibility
+## Runtime version compatibility
 
 {:.note}
 > **Note:** Currently, the only supported runtime type in
@@ -18,6 +18,7 @@ data plane.
 
 |                                | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------
+| {{site.ee_product_name}} 3.0.x | <i class="fa fa-check"></i>    | 3.0.0.0
 | {{site.ee_product_name}} 2.8.x | <i class="fa fa-check"></i>    | 2.8.0.0
 | {{site.ee_product_name}} 2.7.x | <i class="fa fa-check"></i>    | 2.7.0.0
 | {{site.ee_product_name}} 2.6.x | <i class="fa fa-check"></i>    | 2.6.0.0

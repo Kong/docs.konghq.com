@@ -10,7 +10,33 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
-## August  2022
+## September 2022
+
+### 2022.09.09
+
+**{{site.base_gateway}} 3.0.0.0 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 3.0.0.0 runtimes.
+You can keep using existing 2.8.x runtimes, or you can upgrade to
+3.0.0.0 to take advantage of any new features, updates, and bug fixes.
+
+: With this major release, {{site.base_gateway}} introduces many new features, including:
+* Five new plugins, including WebSocket validation support, TLS connection customization, and OpenTelemetry
+* A new expression-based router
+* Dynamic plugin ordering through declarative configuration
+* Slim and UBI Docker images
+and much more.
+
+: For all the changes and new features in {{site.base_gateway}} 3.0.0.0, see the
+[changelog](/gateway/changelog/#3000).
+
+: To use any new features in the release,
+[start up a new 3.0.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
+
+: {:.important}
+> **Limitation**: [Secrets management](/gateway/latest/kong-enterprise/secrets-management) is not yet supported in {{site.konnect_saas}}.
+
+
+## August 2022
 
 ### 2022.08.31
 
