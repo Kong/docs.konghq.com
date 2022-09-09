@@ -119,9 +119,10 @@ Before you generate a PAT, keep the following in mind:
 * There is a limit of 10 personal access tokens per user.
 * Unused tokens are deleted/revoked after 12 months of inactivity.
 
-To generate a PAT in {{site.konnect_short_name}}, go to your name > **Personal access tokens** and click **+ Generate token**. After configuring the name and expiration date, make sure you copy the token to a secure location. 
+To generate a PAT in {{site.konnect_short_name}}, select your name to open the context menu 
+ and click **Personal access tokens**, then click **Generate token**. After configuring the name and expiration date, make sure you copy the token to a secure location. 
 
-You can use the `--konnect-token` flag to provide the PAT directly in the command:
+You can use the `--konnect-token` flag to pass the PAT directly in the command:
 
 ```sh
 deck ping \
