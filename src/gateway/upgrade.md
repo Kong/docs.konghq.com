@@ -20,6 +20,12 @@ distinction between major, minor, and patch versions.
 The upgrade to 3.0.x is a **major** upgrade.
 The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
 
+{:.important}
+> **Important**: Blue-green migration for versions below 2.8.2 to 3.0.x is not supported.
+The upcoming 2.8.2 release will include blue-green migration support. If you want
+to perform migrations with no downtime, please wait for the upcoming 2.8.2 patch release,
+upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
+
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
@@ -425,7 +431,7 @@ below to migrate to 3.0.x.
 
 ### Upgrade to 3.0.x for hybrid mode
 
-Data planes can serve traffic during the process of migration. 
+Data planes can serve traffic during the process of migration.
 
 1. Download 3.0.x.
 2. Decommission your old control plane.
