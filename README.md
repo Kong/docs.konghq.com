@@ -95,7 +95,7 @@ Then open a pull request against `release/2.4`.
 
 ## Testing
 
-Tests for this site are written using `playwright` and `expect.js`
+Tests for this site are written using `fetch`, `cheerio` and `jest`
 
 To run the tests, you must first build the site by running `make build` before running `make smoke`.
 
@@ -104,10 +104,9 @@ Many of the tests are smoke tests to check for issues that occurred while adding
 To add your own tests, look in the `tests` directory and use `home.test.js` as a sample. You specify which URL to visit and then a CSS selector to search for, before asserting that the contents match what you expect.
 
 ```javascript
-test("has the 'Welcome to Kong' header", async ({ page }) => {
-  await page.goto("/");
-  const title = page.locator("#main");
-  await expect(title).toHaveText("Welcome to Kong Docs");
+test("has the 'Welcome to Kong' header", async () => {
+  const $ = await fetchPage("/")
+  expect($("#main")).toHaveText("Welcome to Kong Docs");
 });
 ```
 
