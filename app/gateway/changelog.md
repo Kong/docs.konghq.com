@@ -361,7 +361,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   Declarative configurations using older versions are upgraded to `3.0` during migrations.
 
     {:.important}
-    > Do not `deck sync` 2.8 or earlier declarative configuration files to 3.0.
+    > **Do not sync (`deck sync`) declarative configuration files from 2.8 or earlier to 3.0.**
     Old configuration files will overwrite the configuration and create compatibility issues.
     To grab the updated configuration, `deck dump` the 3.0 file after migrations are completed.
 
