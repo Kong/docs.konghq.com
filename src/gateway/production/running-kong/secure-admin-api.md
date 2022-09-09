@@ -115,7 +115,7 @@ normally to any other Kong API.
 If you are using Docker to host {{site.ee_product_name}}, you can accomplish a similar task using a declarative configuration such as this one:
 
 ``` yaml
-_format_version: "1.1"
+_format_version: "3.0"
 
 services:
 - name: admin-api

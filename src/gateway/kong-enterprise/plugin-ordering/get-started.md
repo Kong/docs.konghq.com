@@ -69,7 +69,7 @@ http -f post :8001/plugins \
     Your file should now look like this:
 
     ``` yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     services:
     - host: mockbin.org
       name: example_service
@@ -167,7 +167,7 @@ http -f post :8001/plugins \
     Your file should now look like this:
 
     ``` yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     services:
     - host: mockbin.org
       name: example_service

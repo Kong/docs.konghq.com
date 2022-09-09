@@ -14,7 +14,6 @@ description: |
 type: plugin
 categories:
   - authentication
-source_url: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
     compatible: true
@@ -41,8 +40,8 @@ params:
         The secret that is used in keyed HMAC generation.​
 
         This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: cookie_name
       required: false
       default: '`session`'
@@ -162,7 +161,7 @@ For usage with [Key Auth] plugin
    mockbin.org, which echoes the request:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/services/ \
      --data 'name=example-service' \
      --data 'url=http://mockbin.org/request'
@@ -171,7 +170,7 @@ For usage with [Key Auth] plugin
    Add a route to the Service:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/services/example-service/routes \
      --data 'paths[]=/sessions-test'
    ```
@@ -184,7 +183,7 @@ For usage with [Key Auth] plugin
    Issue the following cURL request to add the key-auth plugin to the Service:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/services/example-service/plugins/ \
      --data 'name=key-auth'
    ```
@@ -197,7 +196,7 @@ For usage with [Key Auth] plugin
    plugin is properly configured on the Service:
 
    ```bash
-   $ curl -i -X GET \
+   curl -i -X GET \
      --url http://localhost:8000/sessions-test
    ```
 
@@ -211,7 +210,7 @@ For usage with [Key Auth] plugin
    the following request:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/consumers/ \
      --data "username=anonymous_users"
    ```
@@ -221,7 +220,7 @@ For usage with [Key Auth] plugin
    Now create a consumer that authenticates via sessions:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/consumers/ \
      --data "username=fiona"
    ```
@@ -229,7 +228,7 @@ For usage with [Key Auth] plugin
 1. Provision `key-auth` credentials for your Consumer
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/consumers/fiona/key-auth/ \
      --data 'key=open_sesame'
    ```
@@ -241,7 +240,7 @@ For usage with [Key Auth] plugin
    from previous steps**):
 
    ```bash
-   $ curl -i -X PATCH \
+   curl -i -X PATCH \
      --url http://localhost:8001/plugins/<your-key-auth-plugin-id> \
      --data "config.anonymous=<anonymous_consumer_id>"
    ```
@@ -249,10 +248,10 @@ For usage with [Key Auth] plugin
 1. Add the Kong Session plugin to the service
 
    ```bash
-   $ curl -X POST http://localhost:8001/services/example-service/plugins \
-       --data "name=session"  \
-       --data "config.storage=kong" \
-       --data "config.cookie_secure=false"
+   curl -X POST http://localhost:8001/services/example-service/plugins \
+     --data "name=session"  \
+     --data "config.storage=kong" \
+     --data "config.cookie_secure=false"
    ```
 
    > Note: cookie_secure is true by default, and should always be true, but is set to
@@ -264,11 +263,11 @@ For usage with [Key Auth] plugin
    authentication credentials, enable the Request Termination plugin.
 
    ```bash
-   $ curl -X POST http://localhost:8001/services/example-service/plugins \
-       --data "name=request-termination"  \
-       --data "config.status_code=403" \
-       --data "config.message=So long and thanks for all the fish!" \
-       --data "consumer.id=<anonymous_consumer_id>"
+   curl -X POST http://localhost:8001/services/example-service/plugins \
+     --data "name=request-termination"  \
+     --data "config.status_code=403" \
+     --data "config.message=So long and thanks for all the fish!" \
+     --data "consumer.id=<anonymous_consumer_id>"
    ```
 
 ### Set up Without a Database
@@ -320,8 +319,8 @@ plugins:
 1. Check that Anonymous requests are disabled:
 
    ```bash
-     $ curl -i -X GET \
-       --url http://localhost:8000/sessions-test
+   curl -i -X GET \
+     --url http://localhost:8000/sessions-test
    ```
 
    Should return `403`.
@@ -329,7 +328,7 @@ plugins:
 2. Verify that a user can authenticate via sessions
 
    ```bash
-   $ curl -i -X GET \
+   curl -i -X GET \
      --url http://localhost:8000/sessions-test?apikey=open_sesame
    ```
 
@@ -345,9 +344,9 @@ plugins:
    Use it like this:
 
    ```bash
-     $ curl -i -X GET \
-       --url http://localhost:8000/sessions-test \
-       -H "cookie:session=emjbJ3MdyDsoDUkqmemFqw..|1544654411|4QMKAE3I-jFSgmvjWApDRmZHMB8."
+   curl -i -X GET \
+     --url http://localhost:8000/sessions-test \
+     -H "cookie:session=emjbJ3MdyDsoDUkqmemFqw..|1544654411|4QMKAE3I-jFSgmvjWApDRmZHMB8."
    ```
 
    This request should succeed and the `Set-Cookie` response header does not appear

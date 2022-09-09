@@ -14,6 +14,12 @@ export AWS_SECRET_ACCESS_KEY=<secrets_access_key>
 export AWS_REGION=<aws-region>
 ```
 
+Region used by default with references, can also be specified with:
+
+```bash
+export KONG_VAULT_AWS_REGION=<aws-region>
+```
+
 ## Examples
 
 For example, let's use an AWS Secrets Manager Secret with the name `my-secret-name`.

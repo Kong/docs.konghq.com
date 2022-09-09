@@ -40,14 +40,14 @@ will instantly take effect. Example:
 Consider a single Kong node `A`. If we delete a previously registered Service:
 
 ```bash
-$ curl -X DELETE http://127.0.0.1:8001/services/test-service
+curl -X DELETE http://127.0.0.1:8001/services/test-service
 ```
 
 Then any subsequent request to `A` would instantly return `404 Not Found`, as
 the node purged it from its local cache:
 
 ```bash
-$ curl -i http://127.0.0.1:8000/test-service
+curl -i http://127.0.0.1:8000/test-service
 ```
 
 ## Multiple nodes Kong clusters
@@ -99,12 +99,12 @@ On node `A`, we add a Service and a Route:
 
 ```bash
 # node A
-$ curl -X POST http://127.0.0.1:8001/services \
-    --data "name=example-service" \
-    --data "url=http://example.com"
+curl -X POST http://127.0.0.1:8001/services \
+  --data "name=example-service" \
+  --data "url=http://example.com"
 
-$ curl -X POST http://127.0.0.1:8001/services/example-service/routes \
-    --data "paths[]=/example"
+curl -X POST http://127.0.0.1:8001/services/example-service/routes \
+  --data "paths[]=/example"
 ```
 
 (Note that we used `/services/example-service/routes` as a shortcut: we
@@ -116,14 +116,22 @@ the fact that no plugin is configured on it:
 
 ```bash
 # node A
-$ curl http://127.0.0.1:8000/example
+curl http://127.0.0.1:8000/example
+```
+
+Response:
+```
 HTTP 200 OK
 ...
 ```
 
 ```bash
 # node B
-$ curl http://127.0.0.2:8000/example
+curl http://127.0.0.2:8000/example
+```
+
+Response:
+```
 HTTP 200 OK
 ...
 ```
@@ -132,8 +140,8 @@ Now, say we add a plugin to this Service via node `A`'s Admin API:
 
 ```bash
 # node A
-$ curl -X POST http://127.0.0.1:8001/services/example-service/plugins \
-    --data "name=example-plugin"
+curl -X POST http://127.0.0.1:8001/services/example-service/plugins \
+  --data "name=example-plugin"
 ```
 
 Because this request was issued via node `A`'s Admin API, node `A` will locally

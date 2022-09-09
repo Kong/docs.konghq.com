@@ -25,7 +25,7 @@ description: |
 support_url: https://github.com/tomkerkhove/kong-deployment-on-azure/issues
   # Defaults to the url setting in your publisher profile.
 
-source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
+source_code: https://github.com/tomkerkhove/kong-deployment-on-azure
   # (Optional) If your extension is open source, provide a link to your code.
 
 #license_type:

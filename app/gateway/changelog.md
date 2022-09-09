@@ -379,6 +379,9 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   [#9078](https://github.com/Kong/kong/pull/9078)
 * Tags may now contain space characters.
   [#9143](https://github.com/Kong/kong/pull/9143)
+* Support for the `nginx-opentracing` module is deprecated as of `3.0` and will
+  be removed from Kong in `4.0` (see the [Known Limitations](#known-limitations) section for additional
+  information).
 
 #### Admin API
 
@@ -764,6 +767,23 @@ openid-connect
   [#8599](https://github.com/Kong/kong/pull/8599)
 * `kong.tools.uri.normalize()` now escapes reserved and unreserved characters more accurately.
   [#8140](https://github.com/Kong/kong/pull/8140)
+
+### Known limitations
+
+* Kong Manager does not currently support the following features:
+  * Secrets management
+  * Plugin ordering
+  * Expression-based routing
+
+* Blue-green deployments:
+  * **Kong Gateway (OSS)**: Upgrades with blue-green deloyments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
+  * **Kong Enterprise**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
+    * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
+    * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
+
+* OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
+  recommended to upgrade yet if you are an OpenTracing user. This will be
+  rectified in an upcoming patch/minor release.
 
 ### Dependencies
 
@@ -1190,7 +1210,7 @@ making your environment more secure.
   and `session_redis_password` configuration fields are now marked as
   referenceable, which means they can be securely stored as
   [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [Forward Proxy Advanced](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
 
@@ -1204,7 +1224,7 @@ making your environment more secure.
   * The `auth_password` and `auth_username` configuration fields are now marked as
   referenceable, which means they can be securely stored as
   [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [Kafka Upstream](/hub/kong-inc/kafka-upstream/) (`kafka-upstream`) and [Kafka Log](/hub/kong-inc/kafka-log) (`kafka-log`)
 
@@ -1214,21 +1234,21 @@ making your environment more secure.
   * **Beta feature:** The `authentication.user` and `authentication.password` configuration fields are now marked as
   referenceable, which means they can be securely stored as
   [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
 
   * **Beta feature:** The `ldap_password` and `bind_dn` configuration fields are now marked as
   referenceable, which means they can be securely stored as
   [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [Vault Authentication](/hub/kong-inc/vault-auth/) (`vault-auth`)
 
   * **Beta feature:** The `vaults.vault_token` form field is now marked as
   referenceable, which means it can be securely stored as a
-  [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started)
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
 
@@ -1239,7 +1259,7 @@ making your environment more secure.
   * **Beta feature:** The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
   configuration fields are now marked as referenceable, which means they can be securely stored as
   [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
 
@@ -1251,7 +1271,7 @@ making your environment more secure.
   * **Beta feature:** The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
   configuration fields are now marked as referenceable, which means they can be securely stored as
   [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
   * Added Redis ACL support (Redis v6.0.0+ and Redis Sentinel v6.2.0+).
@@ -1272,7 +1292,7 @@ making your environment more secure.
   * **Beta feature:**  The `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
   configuration fields are now marked as referenceable, which means they can be
   securely stored as [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-  in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format).
 
 * [jq](/hub/kong-inc/jq/) (`jq`)
   * Use response buffering from the PDK.

@@ -25,16 +25,22 @@ template][plugin-template]. For more info about the format, see the LuaRocks
 
 Pack your rock using the following command (from the plugin repo):
 
-    # install it locally (based on the `.rockspec` in the current directory)
-    $ luarocks make
+1. Install it locally (based on the `.rockspec` in the current directory):
+    ```sh
+    luarocks make
+    ```
 
-    # pack the installed rock
-    $ luarocks pack <plugin-name> <version>
+2. Pack the installed rock:
+    ```sh
+    luarocks pack <plugin-name> <version>
+    ```
 
-Assuming your plugin rockspec is called
-`kong-plugin-my-plugin-0.1.0-1.rockspec`, the above would become;
+    Assuming your plugin rockspec is called
+    `kong-plugin-my-plugin-0.1.0-1.rockspec`, the above would become;
 
-    $ luarocks pack kong-plugin-my-plugin 0.1.0-1
+    ```sh
+    luarocks pack kong-plugin-my-plugin 0.1.0-1
+    ```
 
 The LuaRocks `pack` command has now created a `.rock` file (this is simply a
 zip file containing everything needed to install the rock).
@@ -46,17 +52,18 @@ systems.
 
 The contents of this archive should be close to the following:
 
-    $ tree <plugin-name>
-    <plugin-name>
-    ├── INSTALL.txt
-    ├── README.md
-    ├── kong
-    │   └── plugins
-    │       └── <plugin-name>
-    │           ├── handler.lua
-    │           └── schema.lua
-    └── <plugin-name>-<version>.rockspec
-
+```
+tree <plugin-name>
+<plugin-name>
+├── INSTALL.txt
+├── README.md
+├── kong
+│   └── plugins
+│       └── <plugin-name>
+│           ├── handler.lua
+│           └── schema.lua
+└── <plugin-name>-<version>.rockspec
+```
 
 ## Install the plugin
 
@@ -78,8 +85,9 @@ install the 'rock' in your LuaRocks tree (a directory in which LuaRocks
 installs Lua modules).
 
 It can be installed by doing:
-
-    $ luarocks install <rock-filename>
+```sh
+luarocks install <rock-filename>
+```
 
 The filename can be a local name, or any of the supported methods, eg.
 `http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
@@ -94,11 +102,15 @@ LuaRocks installs Lua modules).
 You can do so by changing the current directory to the extracted archive,
 where the rockspec file is:
 
-    $ cd <plugin-name>
+```sh
+cd <plugin-name>
+```
 
 And then run the following:
 
-    $ luarocks make
+```sh
+luarocks make
+```
 
 This will install the Lua sources in `kong/plugins/<plugin-name>` in your
 system's LuaRocks tree, where all the Kong sources are already present.
@@ -117,7 +129,9 @@ Those properties contain a semicolon-separated list of directories in
 which to search for Lua sources. It should be set like so in your Kong
 configuration file:
 
-    lua_package_path = /<path-to-plugin-location>/?.lua;;
+```
+lua_package_path = /<path-to-plugin-location>/?.lua;;
+```
 
 Where:
 
@@ -132,19 +146,25 @@ Where:
 For example, if the plugin `something` is located on the file system and the
 handler file is in the following directory:
 
-    /usr/local/custom/kong/plugins/<something>/handler.lua
+```
+/usr/local/custom/kong/plugins/<something>/handler.lua
+```
 
 The location of the `kong` directory is `/usr/local/custom`, so the
 proper path setup would be:
 
-    lua_package_path = /usr/local/custom/?.lua;;
+```
+lua_package_path = /usr/local/custom/?.lua;;
+```
 
 #### Multiple plugins
 
 If you want to install two or more custom plugins this way, you can set
 the variable to something like:
 
-    lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;
+```
+lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;
+```
 
 * `;` is the separator between directories.
 * `;;` still means "the default Lua path".
@@ -158,20 +178,25 @@ equivalent: `KONG_LUA_PACKAGE_PATH`.
 1. Add the custom plugin's name to the `plugins` list in your
 Kong configuration (on each Kong node):
 
-        plugins = bundled,<plugin-name>
+    ```
+    plugins = bundled,<plugin-name>
+    ```
 
     Or, if you don't want to include the bundled plugins:
 
-        plugins = <plugin-name>
-
+    ```
+    plugins = <plugin-name>
+    ```
 
     If you are using two or more custom plugins, insert commas in between, like so:
 
-        plugins = bundled,plugin1,plugin2
-
-    Or
-
-        plugins = plugin1,plugin2
+    ```
+    plugins = bundled,plugin1,plugin2
+    ```
+    Or:
+    ```
+    plugins = plugin1,plugin2
+    ```
 
     You can also set this property via its environment variable equivalent:
     `KONG_PLUGINS`.
@@ -180,13 +205,15 @@ Kong configuration (on each Kong node):
 
 1. Restart Kong to apply the plugin:
 
-        kong restart
-
+    ```
+    kong restart
+    ```
     Or, if you want to apply a plugin without stopping Kong, you can use this:
 
-        kong prepare
-        kong reload
-
+    ```
+    kong prepare
+    kong reload
+    ```
 
 ## Verify loading the plugin
 
@@ -197,16 +224,18 @@ on a Service, Route, or Consumer entity.
 1. To make sure your plugin is being loaded by Kong, you can start Kong with a
 `debug` log level:
 
-        log_level = debug
-
+    ```
+    log_level = debug
+    ```
     or:
-
-        KONG_LOG_LEVEL=debug
-
+    ```
+    KONG_LOG_LEVEL=debug
+    ```
 2. Then, you should see the following log for each plugin being loaded:
 
-        [debug] Loading plugin <plugin-name>
-
+    ```
+    [debug] Loading plugin <plugin-name>
+    ```
 
 ## Remove a plugin
 
@@ -274,8 +303,6 @@ directive is properly set to load this plugin's Lua sources.
 unable to load the `schema.lua` source file from the file system. To resolve,
 make sure tha the `schema.lua` file is present alongside the plugin's
 `handler.lua` file.
-
----
 
 [rockspec]: https://github.com/keplerproject/luarocks/wiki/Creating-a-rock
 [plugin-template]: https://github.com/Kong/kong-plugin

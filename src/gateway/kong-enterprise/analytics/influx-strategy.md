@@ -124,7 +124,7 @@ effort, but for proof-of-concept testing, running a local InfluxDB instance
 is possible with Docker:
 
 ```bash
-$ docker run -p 8086:8086 \
+docker run -p 8086:8086 \
   --network=<YOUR_NETWORK_NAME> \
   --name influxdb \
   -e INFLUXDB_DB=kong \
@@ -149,13 +149,13 @@ In addition to enabling Kong Vitals, {{site.base_gateway}} must be configured to
 backing strategy for Vitals. The InfluxDB host and port must also be defined:
 
 ```bash
-$ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kong reload exit" \
+echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kong reload exit" \
 | docker exec -i kong-ee /bin/sh
 ```
 
 {:.note}
-> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy) 
-and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address) 
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy)
+and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address)
 on both the control plane and all data planes.
 
 ## Understanding Vitals data using InfluxDB measurements
@@ -174,13 +174,13 @@ in Docker:
 1. Open command line in your InfluxDB Docker container.
 
     ```sh
-    $ docker exec -it influxdb /bin/sh
+    docker exec -it influxdb /bin/sh
     ```
 
 2. Log in to the InfluxDB CLI.
 
     ```sh
-    $ influx -precision rfc3339
+    influx -precision rfc3339
     ```
 
 3. Enter the InfluxQL query for returning a list of tag keys associated

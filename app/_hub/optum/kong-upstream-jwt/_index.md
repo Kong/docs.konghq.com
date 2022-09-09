@@ -20,7 +20,7 @@ description: |
 
 support_url: https://github.com/Optum/kong-upstream-jwt/issues
 
-source_url: https://github.com/Optum/kong-upstream-jwt/
+source_code: https://github.com/Optum/kong-upstream-jwt/
 
 license_type: Apache-2.0
 

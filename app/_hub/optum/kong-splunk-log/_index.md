@@ -14,7 +14,7 @@ description: |
 
 support_url: https://github.com/Optum/kong-splunk-log/issues
 
-source_url: https://github.com/Optum/kong-splunk-log
+source_code: https://github.com/Optum/kong-splunk-log
 
 license_type: Apache-2.0
 

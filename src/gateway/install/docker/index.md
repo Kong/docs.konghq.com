@@ -232,7 +232,7 @@ using the URL specified in `KONG_ADMIN_GUI_URL`:
 Now that you have a running Gateway instance, Kong provides a series of
 [getting started guides](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
  to help you set up and enhance your first Service.
- 
+
 
 In particular, right after installation you might want to:
 * [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes)
@@ -284,7 +284,7 @@ backed up by a Redis cluster).
     could look something like this:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     _transform: true
 
     services:

@@ -40,7 +40,7 @@ This allows you to do
 ## Entity
 
 {:.note}
-The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
+> The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
 {% navtabs codeblock %}
 {% navtab cURL %}

@@ -95,9 +95,13 @@ how Kong is configured via the [Admin API][API].
 Adding a service to {{site.base_gateway}} is done by sending an HTTP request to the Admin API:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/services/ \
-    -d 'name=foo-service' \
-    -d 'url=http://foo-service.com'
+curl -i -X POST http://localhost:8001/services/ \
+  -d 'name=foo-service' \
+  -d 'url=http://foo-service.com'
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 ...
 
@@ -127,10 +131,14 @@ Now, in order to send traffic to this service through {{site.base_gateway}}, we 
 a route, which acts as an entry point to {{site.base_gateway}}:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/routes/ \
-    -d 'hosts[]=example.com' \
-    -d 'paths[]=/foo' \
-    -d 'service.id=d54da06c-d69f-4910-8896-915c63c270cd'
+curl -i -X POST http://localhost:8001/routes/ \
+  -d 'hosts[]=example.com' \
+  -d 'paths[]=/foo' \
+  -d 'service.id=d54da06c-d69f-4910-8896-915c63c270cd'
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 ...
 
@@ -256,9 +264,13 @@ entity.
 them via the Admin API, and is represented in a JSON payload:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/routes/ \
-    -H 'Content-Type: application/json' \
-    -d '{"hosts":["example.com", "foo-service.com"]}'
+curl -i -X POST http://localhost:8001/routes/ \
+  -H 'Content-Type: application/json' \
+  -d '{"hosts":["example.com", "foo-service.com"]}'
+```
+
+Response:
+```
 HTTP/1.1 201 Created
 ...
 ```
@@ -267,9 +279,13 @@ But since the Admin API also supports form-urlencoded content types, you
 can specify an array via the `[]` notation:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/routes/ \
-    -d 'hosts[]=example.com' \
-    -d 'hosts[]=foo-service.com'
+curl -i -X POST http://localhost:8001/routes/ \
+  -d 'hosts[]=example.com' \
+  -d 'hosts[]=foo-service.com'
+```
+
+Response:
+```
 HTTP/1.1 201 Created
 ...
 ```
@@ -289,9 +305,13 @@ Host: foo-service.com
 
 Similarly, any other header can be used for routing:
 
+```sh
+curl -i -X POST http://localhost:8001/routes/ \
+  -d 'headers.region=north'
 ```
-$ curl -i -X POST http://localhost:8001/routes/ \
-    -d 'headers.region=north'
+
+Response:
+```
 HTTP/1.1 201 Created
 ```
 
@@ -616,8 +636,12 @@ Admin API, be sure to URL encode your payload if necessary**. For example,
 with `curl` and using an `application/x-www-form-urlencoded` MIME type:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/routes \
-    --data-urlencode 'uris[]=/status/\d+'
+curl -i -X POST http://localhost:8001/routes \
+  --data-urlencode 'uris[]=/status/\d+'
+```
+
+Response:
+```
 HTTP/1.1 201 Created
 ...
 ```
@@ -1074,10 +1098,14 @@ Here is how to configure a TLS certificate on a given route: first, upload
 your TLS certificate and key via the Admin API:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/certificates \
-    -F "cert=@/path/to/cert.pem" \
-    -F "key=@/path/to/cert.key" \
-    -F "snis=*.tls-example.com,other-tls-example.com"
+curl -i -X POST http://localhost:8001/certificates \
+  -F "cert=@/path/to/cert.pem" \
+  -F "key=@/path/to/cert.key" \
+  -F "snis=*.tls-example.com,other-tls-example.com"
+```
+
+Response:
+```
 HTTP/1.1 201 Created
 ...
 ```
@@ -1100,10 +1128,14 @@ A default certificate can be added using the following parameters in {{site.base
 Or, by dynamically configuring the default certificate with an SNI of `*`:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/certificates \
-    -F "cert=@/path/to/default-cert.pem" \
-    -F "key=@/path/to/default-cert.key" \
-    -F "snis=*"
+curl -i -X POST http://localhost:8001/certificates \
+  -F "cert=@/path/to/default-cert.pem" \
+  -F "key=@/path/to/default-cert.key" \
+  -F "snis=*"
+```
+
+Response:
+```
 HTTP/1.1 201 Created
 ...
 ```
@@ -1120,9 +1152,13 @@ You must now register the following route within {{site.base_gateway}}. We match
 to this route using only the Host header for convenience:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/routes \
-    -d 'hosts=prefix.tls-example.com,other-tls-example.com' \
-    -d 'service.id=d54da06c-d69f-4910-8896-915c63c270cd'
+curl -i -X POST http://localhost:8001/routes \
+  -d 'hosts=prefix.tls-example.com,other-tls-example.com' \
+  -d 'service.id=d54da06c-d69f-4910-8896-915c63c270cd'
+```
+
+Response:
+```
 HTTP/1.1 201 Created
 ...
 ```
@@ -1130,8 +1166,12 @@ HTTP/1.1 201 Created
 You can now expect the route to be served over HTTPS by {{site.base_gateway}}:
 
 ```bash
-$ curl -i https://localhost:8443/ \
+curl -i https://localhost:8443/ \
   -H "Host: prefix.tls-example.com"
+```
+
+Response:
+```
 HTTP/1.1 200 OK
 ...
 ```

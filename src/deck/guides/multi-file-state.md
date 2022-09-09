@@ -46,7 +46,7 @@ deck dump --select-tag team-svc1 -o svc1.yaml
 
 ```sh
 $ cat svc1.yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _info:
   defaults: {}
   select_tags:
@@ -70,7 +70,7 @@ deck dump --select-tag team-svc2 -o svc2.yaml
 
 ```sh
 $ cat svc2.yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _info:
   defaults: {}
   select_tags:

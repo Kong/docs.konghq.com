@@ -14,7 +14,7 @@ description: |
 
 support_url: https://github.com/Optum/kong-service-virtualization/issues
 
-source_url: https://github.com/Optum/kong-service-virtualization
+source_code: https://github.com/Optum/kong-service-virtualization
 
 license_type: Apache-2.0
 

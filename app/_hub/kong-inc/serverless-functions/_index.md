@@ -96,22 +96,16 @@ params:
 1. Create a service on Kong:
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/services/ \
+    curl -i -X  POST http://localhost:8001/services/ \
       --data "name=plugin-testing" \
       --data "url=http://httpbin.org/headers"
-
-    HTTP/1.1 201 Created
-    ...
     ```
 
 2. Add a route to the service:
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/services/plugin-testing/routes \
+    curl -i -X  POST http://localhost:8001/services/plugin-testing/routes \
       --data "paths[]=/test"
-
-    HTTP/1.1 201 Created
-    ...
     ```
 
 1. Create a file named `custom-auth.lua` with the following content:
@@ -133,20 +127,23 @@ params:
 4. Ensure the file contents:
 
     ```bash
-    $ cat custom-auth.lua
+    cat custom-auth.lua
     ```
 
 5. Apply our Lua code using the `pre-function` plugin using cURL file upload:
 
     ```bash
-    $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
+    curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
         -F "name=pre-function" \
         -F "config.access[1]=@custom-auth.lua" \
         -F "config.access[2]=kong.log.err('Hi there Access!')" \
         -F "config.header_filter[1]=kong.log.err('Hi there Header_Filter!')" \
         -F "config.body_filter[1]=kong.log.err('Hi there Body_Filter!')" \
         -F "config.log[1]=kong.log.err('Hi there Log!')"
+    ```
 
+    Response:
+    ```
     HTTP/1.1 201 Created
     ...
     ```

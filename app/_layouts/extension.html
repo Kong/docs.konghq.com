@@ -369,14 +369,14 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
             <td><a href="{{ page.support_url }}">{{ support_dom | truncate: 15 }}</a></td>
           </tr>
         {% endif %}
-        {% if page.source_url or page.license_type %}
+        {% if page.source_code or page.license_type %}
           <tr class="source-code">
             <td>Source</td>
             <td>
               <ul>
-              {% if page.source_url %}
+              {% if page.source_code %}
                 <li>
-                  <a href="{{ page.source_url }}">Code</a>
+                  <a href="{{ page.source_code }}">Code</a>
                 </li>
               {% endif %}
               {% if page.license_type %}

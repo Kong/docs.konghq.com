@@ -260,8 +260,11 @@ search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
 using the `ldapsearch` command line utility:
 
 ```bash
-$ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
-"<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
+ldapsearch -x \
+  -h "<config.ldap_host>" \
+  -D "<config.bind_dn>" \
+  -b "<config.attribute>=<username><config.base_dn>" \
+  -w "<config.ldap_password>"
 ```
 
 [api-object]: /gateway/latest/admin-api/#api-object
@@ -320,7 +323,7 @@ mapping.
 * The `ldap_password` and `bind_dn` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
 **{{site.base_gateway}} 2.7.x**
 

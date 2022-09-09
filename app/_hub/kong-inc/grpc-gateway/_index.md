@@ -50,7 +50,7 @@ but proxies to a `Service` with the `grpc(s)` protocol.
 Sample configuration via declarative (YAML):
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 services:
 - protocol: grpc
   host: localhost
@@ -68,24 +68,28 @@ services:
 
 Sample configuration via the Admin API:
 
-```bash
-$ # add the gRPC service
-$ curl -X POST localhost:8001/services \
-  --data name=grpc \
-  --data protocol=grpc \
-  --data host=localhost \
-  --data port=9000
+1. Add the gRPC service:
+  ```sh
+  curl -X POST localhost:8001/services \
+    --data name=grpc \
+    --data protocol=grpc \
+    --data host=localhost \
+    --data port=9000
+  ```
 
-$ # add an http route
-$ curl -X POST localhost:8001/services/grpc/routes \
-  --data protocols=http \
-  --data name=web-service \
-  --data paths[]=/
+2. Add an `http` route:
+  ```sh
+  curl -X POST localhost:8001/services/grpc/routes \
+    --data protocols=http \
+    --data name=web-service \
+    --data paths[]=/
+  ```
 
-$ # add the plugin to the route
-$ curl -X POST localhost:8001/routes/web-service/plugins \
-  --data name=grpc-gateway
-```
+3. Add the plugin to the route:
+  ```sh
+  curl -X POST localhost:8001/routes/web-service/plugins \
+    --data name=grpc-gateway
+  ```
 
 The proto file must contain the
 [HTTP REST to gRPC mapping rule](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto).

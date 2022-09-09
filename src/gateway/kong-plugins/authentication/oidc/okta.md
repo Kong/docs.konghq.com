@@ -175,7 +175,7 @@ For a list of all available configuration parameters and what they do, see the
 Configure the OpenID Connect plugin using the following sample values:
 
 ```bash
-$ curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins
+curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins \
   --data name="openid-connect"                                                                             \
   --data config.issuer="https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID"                                                                 \
@@ -226,11 +226,13 @@ For this example, the user's Okta's AD account GUID is mapped to a Consumer by s
 as the `custom_id` on their consumer:
 
 ```bash
-$ curl -i -X POST http://admin.kong.example/consumers/ \
+curl -i -X POST http://admin.kong.example/consumers/ \
   --data username="Yoda" \
   --data custom_id="e5634b31-d67f-4661-a6fb-b6cb77849bcf"
+```
 
-$ curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
+```bash
+curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_by="custom_id" \
   --data config.consumer_claim="sub"
 ```

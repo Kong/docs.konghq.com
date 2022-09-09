@@ -3,8 +3,9 @@ title: Get Started with Secrets Management
 ---
 
 Secrets are generally confidential values that should not appear in plain text in the application.
-There are several products that help you store, retrieve, and rotate these secrets securely.
-{{site.base_gateway}} offers a mechanism to set up references to these secrets which makes your {{site.base_gateway}} installation more secure.
+There are several products that help you store, retrieve, and rotate these secrets securely as well as
+audit the access to them. {{site.base_gateway}} offers a mechanism to set up references to these
+secrets which makes your {{site.base_gateway}} installation more secure.
 
 ## Getting started
 
@@ -28,14 +29,14 @@ Next, set up a reference to this environment variable so that {{site.base_gatewa
 In this case, the reference would look like this:
 
 ```bash
-{vault://env/my_secret_postgres_password}
+{vault://env/my-secret-postgres-password}
 ```
 
 Where:
 
 * `vault` is the scheme (protocol) that we use to indicate that this is a secret.
 * `env` is the name of the backend [(Environment Variables)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/env), since we're storing the secret in a ENV variable.
-* `my_secret_postgres_password` corresponds to the environment variable that you just defined.
+* `my-secret-postgres-password` corresponds to the environment variable that you just defined.
 
 Note that the reference is wrapped in curly braces.
 

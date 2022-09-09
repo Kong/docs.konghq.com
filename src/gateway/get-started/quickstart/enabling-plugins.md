@@ -25,7 +25,7 @@ To configure the key-auth plugin for the Service you <a href="/gateway/{{page.ko
 issue the following cURL request:
 
 ```bash
-$ curl -i -X POST \
+curl -i -X POST \
   --url http://localhost:8001/services/example-service/plugins/ \
   --data 'name=key-auth'
 ```
