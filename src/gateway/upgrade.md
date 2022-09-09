@@ -239,7 +239,12 @@ write all other characters without percent-encoding.
 ### Declarative and DB-less
 
 The version number (`_format_version`) of declarative configuration has been bumped to `3.0` for changes on `route.path`.
-Declarative configurations with older versions will be upgraded to `3.0` automatically.
+Declarative configurations with older versions will be upgraded to `3.0` during migrations.
+
+{:.important}
+> Do not `deck sync` 2.8 or earlier declarative configuration files to 3.0.
+Old configuration files will overwrite the configuration and create compatibility issues.
+To grab the updated configuration, `deck dump` the 3.0 file after migrations are completed.
 
 It is no longer possible to use the `.lua` format to import a declarative configuration file from the `kong`
 CLI tool. Only JSON and YAML formats are supported. If your update procedure with {{site.base_gateway}} involves
