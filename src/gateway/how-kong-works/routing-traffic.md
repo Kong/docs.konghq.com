@@ -908,7 +908,7 @@ upstream services. Below, we detail what happens internally between the time
 {{site.base_gateway}} *matches* an HTTP request with a registered route, and the actual
 *forwarding* of the request.
 
-### 1. Load balancing
+### Load balancing
 
 {{site.base_gateway}} implements load balancing capabilities to distribute proxied
 requests across a pool of instances of an upstream service.
@@ -916,7 +916,7 @@ requests across a pool of instances of an upstream service.
 You can find more information about configuring load balancing by consulting
 the [Load Balancing Reference][load-balancing-reference].
 
-### 2. Plugins execution
+### Plugins execution
 
 {{site.base_gateway}} is extensible via "plugins" that hook themselves in the request/response
 lifecycle of the proxied requests. Plugins can perform a variety of operations
@@ -934,7 +934,7 @@ rules of [plugins association][plugin-association-rules] apply.
 These configured plugins will run their `access` phase, which you can find more
 information about in the [Plugin development guide][plugin-development-guide].
 
-### 3. Proxying and upstream timeouts
+### Proxying and upstream timeouts
 
 Once {{site.base_gateway}} has executed all the necessary logic (including plugins), it is ready
 to forward the request to your upstream service. This is done via Nginx's
@@ -953,6 +953,7 @@ properties of a service:
 
 {{site.base_gateway}} will send the request over HTTP/1.1, and set the following headers:
 
+<!-- vale off -->
 - `Host: <your_upstream_host>`, as previously described in this document.
 - `Connection: keep-alive`, to allow for reusing the upstream connections.
 - `X-Real-IP: <remote_addr>`, where `$remote_addr` is the variable bearing
@@ -985,6 +986,7 @@ properties of a service:
   if provided. Otherwise, the value of the `$request_uri` variable (with
   the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
   will be used.
+<!-- vale on-->
 
   {:.note}
   > **Note**: {{site.base_gateway}} returns `"/"` for an empty path, but it doesn't do any other
@@ -1002,7 +1004,7 @@ client and your upstream services:
 More information on this topic is covered in the
 [Proxy WebSocket traffic][proxy-websocket] section.
 
-### 4. Errors and retries
+### Errors and retries
 
 Whenever an error occurs during proxying, {{site.base_gateway}} uses the underlying
 Nginx [retries][ngx-http-proxy-retries] mechanism to pass the request on to
@@ -1023,7 +1025,7 @@ directly configurable through {{site.base_gateway}}, but can be added using a cu
 configuration. See the [configuration reference][configuration-reference] for
 more details.
 
-### 5. Response
+### Response
 
 {{site.base_gateway}} receives the response from the upstream service and sends it back to the
 downstream client in a streaming fashion. At this point, {{site.base_gateway}} executes
@@ -1115,7 +1117,7 @@ associating the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.tls-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
-rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
+rightmost (suffix) position. This can be useful when maintaining multiple subdomains. A
 single `sni` configured with a wildcard name can be used to match multiple
 subdomains, instead of creating an SNI for each.
 

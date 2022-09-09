@@ -34,18 +34,18 @@ of {{site.base_gateway}}'s execution life-cycle:
 
 | Function name       | Phase             | Request Protocol        | Description
 |---------------------|-------------------|-------------------------|------------
-| `init_worker`       | [init_worker]     | *                       | Executed upon every Nginx worker process's startup.
-| `certificate`       | [ssl_certificate] | https, grpcs, wss       | Executed during the SSL certificate serving phase of the SSL handshake.
-| `rewrite`           | [rewrite]         | *                       | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
-| `access`            | [access]          | http(s), grpc(s), ws(s) | Executed for every request from a client and before it is being proxied to the upstream service.
-| `ws_handshake`      | [access]          | ws(s)                   | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
-| `response`          | [access]          | http(s), grpc(s)        | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
-| `header_filter`     | [header_filter]   | http(s), grpc(s)        | Executed when all response headers bytes have been received from the upstream service.
-| `ws_client_frame`   | [content]         | ws(s)                   | Executed for each WebSocket message received from the client.
-| `ws_upstream_frame` | [content]         | ws(s)                   | Executed for each WebSocket message received from the upstream service.
-| `body_filter`       | [body_filter]     | http(s), grpc(s)        | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `log`               | [log]             | http(s), grpc(s)        | Executed when the last response byte has been sent to the client.
-| `ws_close`          | [log]             | ws(s)                   | Executed after the WebSocket connection has been terminated.
+| `init_worker`       | [init_worker]     | *                        | Executed upon every Nginx worker process's startup.
+| `certificate`       | [ssl_certificate] | `https`, `grpcs`, `wss`  | Executed during the SSL certificate serving phase of the SSL handshake.
+| `rewrite`           | [rewrite]         | *                        | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
+| `access`            | [access]          | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
+| `ws_handshake`      | [access]          | `ws(s)`                  | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `response`          | [access]          | `http(s)`, `grpc(s)`     | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `header_filter`     | [header_filter]   | `http(s)`, `grpc(s)`     | Executed when all response headers bytes have been received from the upstream service.
+| `ws_client_frame`   | [content]         | `ws(s)`                  | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` | [content]         | `ws(s)`                  | Executed for each WebSocket message received from the upstream service.
+| `body_filter`       | [body_filter]     | `http(s)`, `grpc(s)`     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `log`               | [log]             | `http(s)`, `grpc(s)`     | Executed when the last response byte has been sent to the client.
+| `ws_close`          | [log]             | `ws(s)`                  | Executed after the WebSocket connection has been terminated.
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -71,20 +71,6 @@ Note that UDP streams don't have real connections.  {{site.base_gateway}} will c
 packets with the same origin and destination host and port as a single
 connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
-
-[HTTP Module]: https://github.com/openresty/lua-nginx-module
-[Stream Module]: https://github.com/openresty/stream-lua-nginx-module
-[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
-[ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
-[rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
-[access]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
-[header_filter]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua_block
-[body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
-[log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
-[preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
-[enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
-[content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
-
 
 ## handler.lua specifications
 
@@ -200,7 +186,7 @@ end
 ```
 
 The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
-It can be be split into several Lua files (also called *modules*).
+It can be split into several Lua files (also called *modules*).
 The `handler.lua` module can use `require` to include other modules in your plugin.
 
 For example, the following plugin splits the functionality into three files.
@@ -400,6 +386,8 @@ open-source package.
 
 The current order of execution for the bundled plugins is:
 
+<!-- vale off -->
+
 Plugin                      | Priority
 ----------------------------|----------
 pre-function                | 1000000
@@ -425,6 +413,7 @@ request-transformer         | 801
 response-transformer        | 800
 aws-lambda                  | 750
 azure-functions             | 749
+upstream-timeout            | 400
 opentelemetry               | 14
 prometheus                  | 13
 http-log                    | 12
@@ -440,12 +429,16 @@ request-termination         | 2
 correlation-id <span class="badge oss"></span> | 1
 post-function               | -1000
 
+<!-- vale on -->
+
 {% endnavtab %}
 {% navtab Enterprise %}
 The following list includes all plugins bundled with a {{site.base_gateway}}
 Enterprise subscription.
 
 The current order of execution for the bundled plugins is:
+
+<!-- vale off -->
 
 Plugin                      | Priority
 ----------------------------|----------
@@ -496,6 +489,7 @@ route-transformer-advanced  | 780
 kafka-upstream              | 751
 aws-lambda                  | 750
 azure-functions             | 749
+upstream-timeout            | 400
 proxy-cache-advanced        | 100
 proxy-cache                 | 100
 graphql-proxy-cache-advanced | 99
@@ -520,5 +514,20 @@ post-function               | -1000
 
 {% endnavtab %}
 {% endnavtabs %}
+
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[HTTP Module]: https://github.com/openresty/lua-nginx-module
+[Stream Module]: https://github.com/openresty/stream-lua-nginx-module
+[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
+[ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
+[rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
+[access]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
+[header_filter]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua_block
+[body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
+[log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
+[preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
+[enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
+[content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
+
+<!-- vale on -->
