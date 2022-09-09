@@ -63,7 +63,7 @@ describe("Outdated version documentation", () => {
 
   test("does not show on the latest version", async () => {
     const $ = await fetchPage(
-      `/gateway/${latestGatewayVersion}/install-and-run/rhel/`
+      `/gateway/${latestGatewayVersion}/install/linux/rhel/`
     );
     await expect($(oldVersionSelector)).toHaveCount(0);
   });
@@ -73,7 +73,7 @@ describe("Outdated version documentation", () => {
     const s = $(oldVersionSelector);
     await expect(s).toHaveCount(1);
     await expect(s.attr("href")).toMatch(
-      new RegExp(`^/gateway/latest/install-and-run/rhel/$`)
+      new RegExp(`^/gateway/latest/install/linux/rhel/$`)
     );
   });
 
