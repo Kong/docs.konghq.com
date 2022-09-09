@@ -358,7 +358,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   The migration process should automatically convert the regex paths when upgrading from 2.x to 3.0.
   [#9027](https://github.com/Kong/kong/pull/9027)
 * Bumped the version number (`_format_version`) of declarative configuration to `3.0` for changes on `route.path`.
-  Declarative configurations with older versions are upgraded to `3.0` during migrations.
+  Declarative configurations using older versions are upgraded to `3.0` during migrations.
 
     {:.important}
     > Do not `deck sync` 2.8 or earlier declarative configuration files to 3.0.

@@ -242,7 +242,7 @@ The version number (`_format_version`) of declarative configuration has been bum
 Declarative configurations with older versions will be upgraded to `3.0` during migrations.
 
 {:.important}
-> Do not `deck sync` 2.8 or earlier declarative configuration files to 3.0.
+> **Do not sync (`deck sync`) declarative configuration files from 2.8 or earlier to 3.0.**
 Old configuration files will overwrite the configuration and create compatibility issues.
 To grab the updated configuration, `deck dump` the 3.0 file after migrations are completed.
 
