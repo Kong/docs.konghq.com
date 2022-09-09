@@ -166,6 +166,7 @@
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/manage-proxy-config/
 /konnect/shared-config                               /konnect/runtime-manager/gateway-config/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 # COMMUNITY DOC REBRANDING
 /community                                  https://konghq.com/community-resources/
 /2.5.x/*                                    /gateway-oss/2.5.x/:splat

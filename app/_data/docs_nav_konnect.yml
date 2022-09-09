@@ -142,7 +142,7 @@
     - text: Overview Dashboard
       url: /analytics/overview-dashboard/
     - text: Analyze Services and Routes
-      url: /analytics/analyze/
+      url: /analytics/services-and-routes/
     - text: Generate Reports
       url: /analytics/generate-reports
 
