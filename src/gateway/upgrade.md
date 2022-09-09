@@ -47,20 +47,7 @@ Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and 
 **Traditional mode**: Blue-green upgrades from versions of 2.8.1.x and below 3.0.0.0 are not currently supported for traditional mode.
 This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
 
-**Hybrid mode**: You can migrate Enterprise hybrid mode deployments with the following method:
-1. Upgrade the control plane: Override the previous installation with version 3.0.0.0 and reload, or stop and start {{site.kong_gateway}}.
-2. Install {{site.base_gateway}} 3.0.0.0 on new data planes.
-3. Gracefully shut down old versions of data planes.
-
-Depending on your setup, this solution will have the following effects:
-* For 2.8 data planes of {{site.ee_product_name}}, the new control plane will downgrade the configuration when syncing up.
-* For other situations (open-source, or versions below 2.8), the control plane won't sync up any new configuration to old data planes.
-
-Note that either way, the blue-green deployment should be a temporary state, and you should fully transfer to the
-new version when it's ready. We recommend not changing configurations when using blue-green migration, as it may
-lead to issues:
-* For traditional mode, old instances may create conflicts with old entity formats in configuration, and new instances may create entities that old instances don't understand, causing unexpected behavior.
-* For hybrid mode, old data planes may not respond to the change in the configuration.
+**Hybrid mode**: See the [upgrade instructions](#migrate-db)below.
 
 ### Dependencies
 
@@ -408,14 +395,6 @@ versions running that are sharing the same database. This is sometimes referred
 to as the
 [blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
-{:.important}
-> **Important**:
-* For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
-Blue-green migration between major versions is not available in open-source Gateway environments.
-For {{site.ce_product_name}}, [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
-* There is a known issue with migrating 2.8.x.x to 3.0.0.0. It is planned to be fixed in the next 2.8.x.x release.
-If you need to upgrade to 3.0.0.0, either wait for the fix release, or [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
-
 The migrations are designed so that there is no need to fully copy
 the data. The new version of {{site.base_gateway}} is able to use the data as it
 is migrated, and the old {{site.base_gateway}} cluster keeps working until it is finally time to
@@ -430,33 +409,44 @@ If you prefer to use a fresh data store and only migrate your `kong.conf` file,
 see the instructions to
 [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
 
+As with all upgrades make a backup of your data store before beginning the process.
+
 ### PostgreSQL
 
-1. Download 3.0.x, and configure it to point to the same
-   data store as your old (2.1.x-2.7.x) cluster.
-2. Run `kong migrations up`.
-3. After that finishes running, both the old (2.1.x-2.7.x) and new (3.0.x) clusters can
-   now run simultaneously on the same data store. Start provisioning 3.0.x nodes,
-   but do _not_ use their Admin API yet.
+#### Traditional Mode
 
-   {:.important}
-   > **Important:** If you need to make Admin API requests,
-   these should be made to the old cluster's nodes. This prevents
-   the new cluster from generating data that is not understood by the old
-   cluster.
+{:.important}
+> **Important**:
+* There is a known issue with migrating 2.8.x.x to 3.0.0.0. It is planned to be fixed in the next 2.8.x.x release.
+If you need to upgrade to 3.0.0.0, either wait for the fix release, or [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
 
-4. Gradually divert traffic away from your old nodes, and redirect traffic to
-   your 3.0.x cluster. Monitor your traffic to make sure everything
+#### Hybrid mode
+
+Kong configuration changes cannot be made during the upgrade, IE `deck sync` and admin API POST/PUT requests are not allowed. The data planes will continue to serve traffic using the configuration state before starting the ugprade. 
+
+A {{site.ee_product_name}} control plane can be installed on a new node or upgraded in place on an existing node.
+
+For a new node:
+
+1. Download {{site.ee_product_name}} 3.0.x on a new control plane and configure it to access the same data store as your old (2.1.x-2.7.x) cluster.
+2. Stop the 2.x control plane. The 2.x data planes will continue to service traffic. This prevents the 2.x control plane from accessing updated configuration it can not read.
+3. Run `kong migrations up` and `kong migrations finish` on the 3.0.x control plane.
+4. Run `kong start` on the 3.0.x control plane.
+
+For an in place upgrade on an existing control plane:
+
+1. Download 3.0.x on the {{site.ee_product_name}} control plane and install it.
+2. Run `kong migrations up` and `kong migrations finish` on the 3.0.x control plane.
+3. Run `kong reload` or `kong restart`.
+
+In both cases we recommend provisioning new data planes:
+
+1. Provision and install {{site.ee_product_name}} 3.0.x on new data planes.
+2. Gradually divert traffic away from your old data planes, and redirect traffic to
+   your 3.0.x data planes. Monitor your traffic to make sure everything
    is going smoothly.
-5. When your traffic is fully migrated to the 3.0.x cluster, decommission your
-   old nodes.
-6. From your 3.0.x cluster, run `kong migrations finish`. From this point onward,
-   it is no longer possible to start nodes in the old cluster
-   that still points to the same data store.
-
-     Run this command _only_ when you are
-     confident that your migration was successful. From now on, you can safely make
-     Admin API requests to your 3.0.x nodes.
+3. When your traffic is fully migrated to the 3.0.x data planes, decommission your
+   old 2.x cluster.
 
 ### Cassandra
 
