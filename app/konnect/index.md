@@ -26,7 +26,7 @@ no_version: true
 
   <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-references-color.svg" alt="">
-    <div class="install-text">Manage Konnect with decK</div>
+    <div class="install-text">Manage {{site.konnect_short_name}} with decK</div>
   </a>
 
   <a href="/hub/" class="docs-grid-install-block no-description">

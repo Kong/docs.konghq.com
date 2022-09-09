@@ -26,14 +26,18 @@ You can keep using existing 2.8.x runtimes, or you can upgrade to
 * Slim and UBI Docker images
 and much more.
 
+: **3.0.0.0 is a major release**. This means that it contains breaking changes and incompatibilities with 2.x versions.
+Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-deprecations) before upgrading to 3.0.
+: In particular, note the following:
+* **Changes to regex route path format**: 3.0 has a new router. To make sure your existing routes work in 3.0, add a `~` to any regex routes. Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+* **Limitations** ({{site.konnect_short_name}} only): [Secrets management](/gateway/latest/kong-enterprise/secrets-management/) and [consumer groups](/gateway/latest/kong-enterprise/consumer-groups/) are not yet supported in {{site.konnect_saas}}.
+
+
 : For all the changes and new features in {{site.base_gateway}} 3.0.0.0, see the
 [changelog](/gateway/changelog/#3000).
 
 : To use any new features in the release,
 [start up a new 3.0.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
-
-: **Limitation**: [Secrets management](/gateway/latest/kong-enterprise/secrets-management) is not yet supported in {{site.konnect_saas}}.
-
 
 ## August 2022
 

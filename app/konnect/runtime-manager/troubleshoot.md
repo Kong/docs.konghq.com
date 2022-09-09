@@ -63,9 +63,9 @@ If your version is up to date but the feature still isn't working, contact
 We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane.
 
 If you mix major runtime instance versions, the control plane will support the least common subset of configurations across all the versions connected to the {{site.konnect_short_name}} control plane.
-For example, if you are running 2.8.1.3 on one runtime instance and 3.0.0.0 on another, the control plane will only push configurations that can be used by the 2.8.1.3 runtime instance.
+For example, if you are running 2.8.1.3 on one runtime instance and 3.0.0.0 on another, the control plane will only push configuration that can be used by the 2.8.1.3 runtime instance.
 
-If you experience compatibility errors, [upgrade your data planes](/konnect/runtime-manager/runtime-instances/upgrade) to match the version of the highest-versioned runtime instance in your runtime group.
+If you are running into compatibility errors, [upgrade your data planes](/konnect/runtime-manager/runtime-instances/upgrade) to match the version of the highest-versioned runtime instance in your runtime group.
 
 Possible compatibility errors:
 
@@ -77,7 +77,7 @@ Possible compatibility errors:
       <th>Severity</th>
       <th>Description</th>
       <th>Resolution</th>
-      <th class="width=20%">References</th>
+      <th class="width=25%">References</th>
   </thead>
 <tbody>
   {% for message in errors.messages %}
