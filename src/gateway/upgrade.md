@@ -47,7 +47,7 @@ Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and 
 **Traditional mode**: Blue-green upgrades from versions of 2.8.1 and below to 3.0.0 are not currently supported.
 This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
 
-**Hybrid mode**: See the [upgrade instructions](#migrate-db)below.
+**Hybrid mode**: See the [upgrade instructions](#migrate-db) below.
 
 ### Dependencies
 
@@ -396,21 +396,23 @@ see the instructions to
 
 As with all upgrades make a backup of your data store before beginning the process.
 
-You should not configure with admin API during migration, as it may lead to unexpected behavior and
+You should not make changes to configuration with the Admin API during migration, as it may lead to unexpected behavior and
 break your configuration.
 
 **Version prerequisites for migrating to version 3.0.x**
 
-If you are migrating from 2.7.x or lower version, you should first migrate to 2.8.1.
-Here's how you can migrate to 2.8.1: [Upgrade from 1.0.x - 2.2.x to 2.8.x](#upgrade-from-10x---22x-to-28x)
+If you are migrating from 2.7.x or lower versions, first [migrate to 2.8.1](#upgrade-from-10x---22x-to-28x).
 
-Once you migrated to 2.8.x, you can follow the instructions in the section
+Once you have migrated to 2.8.x, you can follow the instructions in the section
 below to migrate to 3.0.x.
 
-### Upgrade from 2.8.x (x>=2) to 3.0.x for Traditional mode
+### Upgrade from 2.8.x (x>=2) to 3.0.x for traditional mode
+
+{:.note}
+> These instructions will only work once 2.8.2 is available.
 
 1. Clone your database.
-2. Download 3.0.x, and configure it to point to the cloned datastore
+2. Download 3.0.x, and configure it to point to the cloned data store
    as your old (2.8.2 or beyond) cluster. Run `kong migrations up` and `kong migrations finish`.
 3. Start 3.0.x cluster.
 4. Now both the old (2.8.x) and new (3.0.x)
@@ -421,15 +423,15 @@ below to migrate to 3.0.x.
 4. When your traffic is fully migrated to the 3.0.x cluster,
    decommission your old nodes.
 
-### Upgrade to 3.0.x for Hybrid mode
+### Upgrade to 3.0.x for hybrid mode
 
-Data planes are capable to serve traffic during the process of migration. 
+Data planes can serve traffic during the process of migration. 
 
 1. Download 3.0.x.
 2. Decommission your old control plane.
-3. Configure new control plane to point to the same datastore
+3. Configure the new control plane to point to the same data store
    as your old control plane. Run `kong migrations up` and `kong migrations finish`.
-4. Start new control plane. It is expected that old data planes may complain
+4. Start the new control plane. It is expected that old data planes may complain
 about connection failure to the control plane.
 5. Start new data planes.
 6. Gradually divert traffic away from your old data planes, and into
