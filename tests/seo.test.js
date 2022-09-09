@@ -1,6 +1,4 @@
-const { test, expect } = require("@playwright/test");
-
-test.describe("Canonical links", () => {
+describe("Canonical links", () => {
   [
     {
       title: "links to the latest available page in /gateway/ when it exists",
@@ -46,17 +44,16 @@ test.describe("Canonical links", () => {
       href: "/gateway/latest/reference/configuration/",
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      const link = await page.locator("link[rel='canonical']");
-      expect(await link.getAttribute("href")).toEqual(
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src);
+      expect($("link[rel='canonical']").attr("href")).toBe(
         `https://docs.konghq.com${t.href}`
       );
     });
   });
 });
 
-test.describe("noindex links", () => {
+describe("noindex links", () => {
   [
     {
       title: "contains a noindex tag if it's not the latest URL (index)",
@@ -83,17 +80,14 @@ test.describe("noindex links", () => {
       src: "/hub/kong-inc/application-registration/2.8.x.html",
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      const link = page.locator(
-        "meta[name='robots'][content='follow,noindex']"
-      );
-      await expect(link).toHaveCount(1);
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src);
+      await expect($("meta[name='robots'][content='follow,noindex']")).toHaveCount(1);
     });
   });
 });
 
-test.describe("index links", () => {
+describe("index links", () => {
   [
     {
       title: "latest page",
@@ -108,15 +102,14 @@ test.describe("index links", () => {
       src: "/hub/kong-inc/application-registration/",
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      const link = page.locator("meta[name='robots'][content='follow,index']");
-      await expect(link).toHaveCount(1);
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src);
+      await expect($("meta[name='robots'][content='follow,index']")).toHaveCount(1);
     });
   });
 });
 
-test.describe("unversioned content", () => {
+describe("unversioned content", () => {
   [
     {
       title: "konnect",
@@ -127,21 +120,17 @@ test.describe("unversioned content", () => {
       src: "/contributing/",
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      const robotsIndex = page.locator(
-        "meta[name='robots'][content='follow,index']"
-      );
-      await expect(robotsIndex).toHaveCount(1);
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src);
+      await expect($("meta[name='robots'][content='follow,index']")).toHaveCount(1);
 
       // There's no need for a canonical link with unversioned content
-      const canonical = await page.locator("link[rel='canonical']");
-      await expect(canonical).toHaveCount(0);
+      await expect($("link[rel='canonical']")).toHaveCount(0);
     });
   });
 });
 
-test.describe("sitemap includes", () => {
+describe("sitemap includes", () => {
   [
     "/konnect/",
     "/gateway/latest/",
@@ -157,16 +146,15 @@ test.describe("sitemap includes", () => {
     "/mesh/changelog/",
     "/hub/",
   ].forEach((t) => {
-    test(t, async ({ page }) => {
-      await page.goto("/sitemap.xml");
-      const html = await page.content();
-      await expect(html).toContain(`<loc>https://docs.konghq.com${t}</loc>`);
+    test(t, async () => {
+      const page = await fetchPageRaw("/sitemap.xml");
+      await expect(page.includes(`<loc>https://docs.konghq.com${t}</loc>`)).toBe(true);
     });
   });
 });
 
 
-test.describe("sitemap does not include", () => {
+describe("sitemap does not include", () => {
   [
     "/gateway/2.6.x/configure/auth/kong-manager/oidc/",
     "/mesh/1.6.x/",
@@ -174,10 +162,9 @@ test.describe("sitemap does not include", () => {
     "/deck/",
     "/gateway/",
   ].forEach((t) => {
-    test(t, async ({ page }) => {
-      await page.goto("/sitemap.xml");
-      const html = await page.content();
-      await expect(html).not.toContain(`<loc>https://docs.konghq.com${t}</loc>`);
+    test(t, async () => {
+      const page = await fetchPageRaw("/sitemap.xml");
+      await expect(page.includes(`<loc>https://docs.konghq.com${t}</loc>`)).toBe(false);
     });
   });
 });

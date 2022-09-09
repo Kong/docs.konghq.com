@@ -1,30 +1,29 @@
-const { test, expect } = require("@playwright/test");
+const { toArray } = require("lodash");
 
-test.describe("Module Switcher", () => {
-  test("has the same products, in the same order as the top 'Docs' dropdown", async ({
-    page,
-  }) => {
-    await page.goto("/gateway/latest/");
+describe("Module Switcher", () => {
+  test("has the same products, in the same order as the top 'Docs' dropdown", async () => {
+    const $ = await fetchPage("/gateway/latest/");
 
-    async function fetchLinksFromElement(selector) {
-      return (
-        await Promise.all(
-          (
-            await page.$$(selector)
-          ).map(async (link) => {
-            const r = {};
-            const title = await link.innerText();
-            r[title] = await link.getAttribute("href");
-            return r;
-          })
-        )
-      ).reduce((prev, current) => {
-        return { ...prev, ...current };
-      }, {});
+    function fetchLinksFromElement($, selector) {
+      return $(selector)
+        .map(function(){
+          const link = $(this);
+          const r = {};
+
+          // Normalise title by removing newlines and collapsing whitespace
+          const title = link.text().replace(/\n/m, "").replace(/\s+/g, " ");
+          r[title] = link.attr("href");
+          return r;
+        })
+        .toArray()
+        .reduce((prev, current) => {
+          return { ...prev, ...current };
+        }, {});
     }
 
-    const sidebarUrls = await fetchLinksFromElement("#module-list a");
-    const topNavUrls = await fetchLinksFromElement(
+    const sidebarUrls = fetchLinksFromElement($, "#module-list a");
+    const topNavUrls = fetchLinksFromElement(
+      $,
       "#top-module-list .navbar-item-submenu a"
     );
 
@@ -32,7 +31,7 @@ test.describe("Module Switcher", () => {
   });
 });
 
-test.describe("Version Switcher", () => {
+describe("Version Switcher", () => {
   [
     {
       title: "links to the same page if it exists in previous versions",
@@ -48,48 +47,47 @@ test.describe("Version Switcher", () => {
       href: "/gateway/2.6.x",
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.page);
-      const s = await page.locator(t.selector).first();
-      await expect(await s.getAttribute("href")).toEqual(
-        expect.stringMatching(new RegExp(`^${t.href}$`))
+    test(t.title, async () => {
+      const $ = await fetchPage(t.page);
+      await expect($(t.selector).attr("href")).toMatch(
+        new RegExp(`^${t.href}$`)
       );
     });
   });
 });
 
-test.describe("Outdated version documentation", () => {
+describe("Outdated version documentation", () => {
   const oldVersionSelector =
-    'blockquote:has-text("You are browsing documentation for an outdated version.") a';
-  const latestGatewayVersion = "3.0.x";
+    'blockquote:contains("You are browsing documentation for an outdated version.") a';
+  const latestGatewayVersion = "2.8.x";
 
-  test("does not show on the latest version", async ({ page }) => {
-    await page.goto(`/gateway/${latestGatewayVersion}/install-and-run/rhel/`);
-    await expect(await page.locator(oldVersionSelector).count()).toBe(0);
+  test("does not show on the latest version", async () => {
+    const $ = await fetchPage(
+      `/gateway/${latestGatewayVersion}/install-and-run/rhel/`
+    );
+    await expect($(oldVersionSelector)).toHaveCount(0);
   });
 
-  test("links to the same page in a newer version", async ({ page }) => {
-    await page.goto(`/gateway/2.7.x/install-and-run/rhel/`);
-    const s = await page.locator(oldVersionSelector);
-    await expect(await s.count()).toBe(1);
-    await expect(await s.getAttribute("href")).toEqual(
-      expect.stringMatching(
-        new RegExp(`^/gateway/latest/install/linux/rhel/$`)
-      )
+  test("links to the same page in a newer version", async () => {
+    const $ = await fetchPage(`/gateway/2.7.x/install-and-run/rhel/`);
+    const s = $(oldVersionSelector);
+    await expect(s).toHaveCount(1);
+    await expect(s.attr("href")).toMatch(
+      new RegExp(`^/gateway/latest/install-and-run/rhel/$`)
     );
   });
 
-  test("links to the root when the page no longer exists", async ({ page }) => {
-    await page.goto(`/enterprise/2.1.x/studio/download-install/`);
-    const s = await page.locator(oldVersionSelector);
-    await expect(await s.count()).toBe(1);
-    await expect(await s.getAttribute("href")).toEqual(
-      expect.stringMatching(new RegExp(`^/gateway/$`))
+  test("links to the root when the page no longer exists", async () => {
+    const $ = await fetchPage(`/enterprise/0.31-x/postgresql-redhat/`);
+    const s =  $(oldVersionSelector);
+    await expect(s).toHaveCount(1);
+    await expect(s.attr("href")).toMatch(
+      new RegExp(`^/gateway/$`)
     );
   });
 });
 
-test.describe("Sidebar section count", () => {
+describe("Sidebar section count", () => {
   const sidebarSelector = ".accordion-container > .accordion-item";
 
   [
@@ -114,15 +112,14 @@ test.describe("Sidebar section count", () => {
       count: 6,
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.path);
-      const s = await page.locator(sidebarSelector);
-      await expect(await s.count()).toBe(t.count);
+    test(t.title, async () => {
+      const $ = await fetchPage(t.path);
+      await expect($(sidebarSelector)).toHaveCount(t.count);
     });
   });
 });
 
-test.describe("sidenav versions", () => {
+describe("sidenav versions", () => {
   [
     {
       title: "Root page links to /latest/",
@@ -148,15 +145,11 @@ test.describe("sidenav versions", () => {
       link_text: "Docker",
       expected_url: "/gateway/2.8.x/install-and-run/docker",
     },
-
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      const link = page.locator(
-        `a:text("${t.link_text}")`
-      );
-      const href = await link.getAttribute("href");
-      await expect(href).toEqual(t.expected_url)
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src);
+      const link = $(`a:contains("${t.link_text}")`);
+      await expect(link.attr("href")).toBe(t.expected_url);
     });
   });
 });

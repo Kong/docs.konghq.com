@@ -10,6 +10,7 @@
   "http://localhost:8002/*",
   "http://localhost:8003/*",
   "http://localhost:8004/*",
+  "http://localhost:9090/*",
   "insomnia://*",
   "insomniad://",
   "*/hub/*",

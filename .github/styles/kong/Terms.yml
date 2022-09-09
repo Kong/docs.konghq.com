@@ -19,6 +19,7 @@ swap:
   pg: PostgreSQL
   'postgres$': PostgreSQL
   'self(?:-| )hosted': self-managed
+  redhat: Red Hat
   ServiceHub: Service Hub
   timezone: time zone
   utilize: use

@@ -20,14 +20,14 @@ id: documentation
         <div class="github-links">
           <p>
             {% if page.edit_link %}
-            <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/{{ page.edit_link }}" target="_blank">
+            <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/{{ page.edit_link }}">
             {% else %}
-            <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ default_edit_link }}" target="_blank">
+            <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ default_edit_link }}">
             {% endif %}
               <img src="/assets/images/logos/logo-github.svg" alt="github-edit-page"/>Edit this page</a>
           </p>
           <p>
-            <a href="https://github.com/Kong/docs.konghq.com/issues" target="_blank">
+            <a href="https://github.com/Kong/docs.konghq.com/issues">
               <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
           </p>
           <p id="oss-ee-toggle" data-current="Enterprise" style="display: none">
@@ -91,7 +91,7 @@ id: documentation
             <h1 tabindex="-1" id="main" class="page-content-title"
             >{{page.title | flatify }}
             {% if page.badge %}
-              <a href="https://konghq.com/pricing" target="_blank" {%
+              <a href="https://konghq.com/pricing" {%
                 if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
                 if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
                 if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
