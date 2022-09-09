@@ -5,7 +5,11 @@ no_version: true
 <!-- vale off -->
 
 ## 3.0.0.0
-**Release Date** 2022/08/31
+**Release Date** 2022/09/09
+
+{:.important}
+> **Important**: Kong Gateway 3.0.0.0 is a major release and contains breaking changes.
+Review the [breaking changes and deprecations](#breaking-changes-and-deprecations) and the [known limitations](#known-limitations) before attempting to upgrade.
 
 ### Features
 
@@ -354,7 +358,13 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   The migration process should automatically convert the regex paths when upgrading from 2.x to 3.0.
   [#9027](https://github.com/Kong/kong/pull/9027)
 * Bumped the version number (`_format_version`) of declarative configuration to `3.0` for changes on `route.path`.
-  Declarative configurations with older versions are upgraded to `3.0` automatically.
+  Declarative configurations using older versions are upgraded to `3.0` during migrations.
+
+    {:.important}
+    > **Do not sync (`deck sync`) declarative configuration files from 2.8 or earlier to 3.0.**
+    Old configuration files will overwrite the configuration and create compatibility issues.
+    To grab the updated configuration, `deck dump` the 3.0 file after migrations are completed.
+
   [#9078](https://github.com/Kong/kong/pull/9078)
 * Tags may now contain space characters.
   [#9143](https://github.com/Kong/kong/pull/9143)
