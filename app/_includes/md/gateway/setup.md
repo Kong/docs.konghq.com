@@ -238,7 +238,8 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 {:.badge .enterprise}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
-or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/).
+or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).{% endif_version %}{% if_version gte:3.0.x
+   %}[Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/){% endif_version %}
 
 1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
    `portal_gui_host` property to the DNS or IP address of the system.
