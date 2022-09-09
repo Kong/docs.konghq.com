@@ -307,6 +307,22 @@ Kong Gateway version.
 * The function `kong.db.*.cache_key()` now falls back to `.id` if nothing from `cache_key` is found.
   [#8553](https://github.com/Kong/kong/pull/8553)
 
+### Known limitations
+
+* Kong Manager does not currently support the following features:
+  * Secrets management
+  * Plugin ordering
+  * Expression-based routing
+
+* Blue-green migration from 2.8.x (and below) to 3.0.x is not supported.
+  * This is a known issue planned to be fixed in the next 2.8 release. If this is a requirement for upgrading,
+  Kong operators should upgrade to that version before beginning a upgrade to 3.0.0.0.
+  * See [Upgrade Kong Gateway](/gateway/latest/upgrade/) for more details.
+
+* OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
+  recommended to upgrade yet if you are an OpenTracing user. This will be
+  rectified in an upcoming patch/minor release.
+
 ### Breaking changes and deprecations
 
 #### Deployment
@@ -757,22 +773,6 @@ openid-connect
 * `kong.tools.uri.normalize()` now escapes reserved and unreserved characters more accurately.
   [#8140](https://github.com/Kong/kong/pull/8140)
 
-### Known limitations
-
-* Kong Manager does not currently support the following features:
-  * Secrets management
-  * Plugin ordering
-  * Expression-based routing
-
-* Blue-green deployments:
-  * **Kong Gateway (OSS)**: Upgrades with blue-green deloyments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
-  * **Kong Enterprise**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
-    * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
-    * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
-
-* OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
-  recommended to upgrade yet if you are an OpenTracing user. This will be
-  rectified in an upcoming patch/minor release.
 
 * RFC3987 validation on route paths was removed, allowing operators to create a route with an invalid path
   URI like `/something|` which can not match any incoming request. This validation will be added back in a future release.

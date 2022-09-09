@@ -20,6 +20,12 @@ distinction between major, minor, and patch versions.
 The upgrade to 3.0.x is a **major** upgrade.
 The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
 
+{:.important}
+> **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
+The upcoming 2.8.2 release will include blue-green migration support. If you want
+to perform migrations for traditional mode with no downtime, please wait for the upcoming 2.8.2 patch release,
+upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
+
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
@@ -42,12 +48,12 @@ affect your current installation.
 
 Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and are no longer produced for new versions of {{site.base_gateway}}.
 
-Blue-green deployments:
-* **{{site.ee_product_name}}**: You can perform blue-green upgrades from versions 2.1.x.x-2.7.x.x to 3.0.0.0.
-  * Upgrades from 2.8.x.x to 3.0.0.0 are currently not supported, as there is a known issue planned to be fixed in the next 2.8.x.x release.
-  * Upgrades from versions before 2.1.0.0 are not supported with 3.0.0.0.
-  Upgrade to a supported version before upgrading to 3.0.0.0 to use blue-green deployment.
-* **{{site.ce_product_name}}**: Blue-green deployments are not supported for major versions, therefore they are not supported with upgrades from 2.x.x to 3.0.x.
+#### Blue-green deployments
+
+**Traditional mode**: Blue-green upgrades from versions of 2.8.1 and below to 3.0.0 are not currently supported.
+This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
+
+**Hybrid mode**: See the [upgrade instructions](#migrate-db) below.
 
 ### Dependencies
 
@@ -394,93 +400,55 @@ diff the files to identify any changes, and apply them as needed.
 
 ## Upgrade from 2.1.x - 2.8.x to 3.0.x {#migrate-db}
 
-{{site.base_gateway}} supports the zero downtime migration model. This means
-that while the migration is in process, you have two {{site.base_gateway}} clusters with different
-versions running that are sharing the same database. This is sometimes referred
-to as the
-[blue-green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
-
-{:.important}
-> **Important**:
-* For 3.0.x, the blue-green migration option is only available for {{site.ee_product_name}} users.
-Blue-green migration between major versions is not available in open-source Gateway environments.
-For {{site.ce_product_name}}, [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
-* There is a known issue with migrating 2.8.x.x to 3.0.0.0. It is planned to be fixed in the next 2.8.x release.
-If you need to upgrade to 3.0.0.0, either wait for the fix release, or [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
-
-The migrations are designed so that there is no need to fully copy
-the data. The new version of {{site.base_gateway}} is able to use the data as it
-is migrated, and the old {{site.base_gateway}} cluster keeps working until it is finally time to
-decommission it. For this reason, the full migration is split into two commands:
-
-- `kong migrations up`: performs only non-destructive operations
-- `kong migrations finish`: puts the database in the final expected state (DB-less
-  mode is not supported in {{site.base_gateway}})
-
 Follow the instructions for your backing data store to migrate to the new version.
 If you prefer to use a fresh data store and only migrate your `kong.conf` file,
 see the instructions to
 [install 3.0.x on a fresh data store](#install-30x-on-a-fresh-data-store).
 
-### PostgreSQL
+As with all upgrades make a backup of your data store before beginning the process.
 
-1. Download 3.0.x, and configure it to point to the same
-   data store as your old (2.1.x-2.7.x) cluster.
-2. Run `kong migrations up`.
-3. After that finishes running, both the old (2.1.x-2.7.x) and new (3.0.x) clusters can
-   now run simultaneously on the same data store. Start provisioning 3.0.x nodes,
-   but do _not_ use their Admin API yet.
+You should not make changes to configuration with the Admin API during migration, as it may lead to unexpected behavior and
+break your configuration.
 
-   {:.important}
-   > **Important:** If you need to make Admin API requests,
-   these should be made to the old cluster's nodes. This prevents
-   the new cluster from generating data that is not understood by the old
-   cluster.
+**Version prerequisites for migrating to version 3.0.x**
 
-4. Gradually divert traffic away from your old nodes, and redirect traffic to
+If you are migrating from 2.7.x or lower versions, first [migrate to 2.8.1](#upgrade-from-10x---22x-to-28x).
+
+Once you have migrated to 2.8.x, you can follow the instructions in the section
+below to migrate to 3.0.x.
+
+### Upgrade from 2.8.x (x>=2) to 3.0.x for traditional mode
+
+{:.note}
+> These instructions will only work once 2.8.2 is available.
+
+1. Clone your database.
+2. Download 3.0.x, and configure it to point to the cloned data store
+   as your old (2.8.2 or beyond) cluster. Run `kong migrations up` and `kong migrations finish`.
+3. Start 3.0.x cluster.
+4. Now both the old (2.8.x) and new (3.0.x)
+   clusters can now run simultaneously. Start provisioning 3.0.x nodes.
+3. Gradually divert traffic away from your old nodes, and into
    your 3.0.x cluster. Monitor your traffic to make sure everything
    is going smoothly.
-5. When your traffic is fully migrated to the 3.0.x cluster, decommission your
-   old nodes.
-6. From your 3.0.x cluster, run `kong migrations finish`. From this point onward,
-   it is no longer possible to start nodes in the old cluster
-   that still points to the same data store.
+4. When your traffic is fully migrated to the 3.0.x cluster,
+   decommission your old nodes.
 
-     Run this command _only_ when you are
-     confident that your migration was successful. From now on, you can safely make
-     Admin API requests to your 3.0.x nodes.
+### Upgrade to 3.0.x for hybrid mode
 
-### Cassandra
+Data planes can serve traffic during the process of migration.
 
-{:.warning .no-icon}
-> **Deprecation notice:**
-> Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the {{site.base_gateway}} 4.0 release, and some new features might not be supported with Cassandra in the {{site.base_gateway}} 3.0 release.
-
-Due to internal changes, the table schemas used by {{site.base_gateway}} 2.7.x on Cassandra
-are incompatible with those used by {{site.base_gateway}} 2.1.x or lower. Migrating using the usual commands
-`kong migrations up` and `kong migrations finish` will require a small
-window of downtime, since the old and new versions cannot use the
-database at the same time.
-
-Alternatively, to keep your previous version fully operational while the new
-one initializes, transfer the data to a new keyspace using a database dump, as
-described below:
-
-1. Download 3.0.x, and configure it to point to a new keyspace.
-
-2. Run `kong migrations bootstrap`.
-
-   Once that finishes running, both the old (2.1.x-2.7.x) and new (3.0.x)
-   clusters can now run simultaneously, but the new cluster does not
-   have any data yet.
-3. On the old cluster, run `kong config db_export`. This will create
-   a file named `kong.yml` with a database dump.
-4. Transfer the file to the new cluster and run
-   `kong config db_import kong.yml`. This will load the data into the new cluster.
-5. Gradually divert traffic away from your old nodes, and into
-   your 3.0.x cluster. Monitor your traffic to make sure everything
+1. Download 3.0.x.
+2. Decommission your old control plane.
+3. Configure the new control plane to point to the same data store
+   as your old control plane. Run `kong migrations up` and `kong migrations finish`.
+4. Start the new control plane. It is expected that old data planes may complain
+about connection failure to the control plane.
+5. Start new data planes.
+6. Gradually divert traffic away from your old data planes, and into
+   your 3.0.x data planes. Monitor your traffic to make sure everything
    is going smoothly.
-6. When your traffic is fully migrated to the 3.0.x cluster,
+7. When your traffic is fully migrated to the 3.0.x cluster,
    decommission your old nodes.
 
 ## Install 3.0.x on a fresh data store
