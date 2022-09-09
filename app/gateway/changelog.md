@@ -315,13 +315,9 @@ Kong Gateway version.
   * Plugin ordering
   * Expression-based routing
 
-* Creating and updating Kong configuration for traditional mode is not allowed during migration from 2.x to 3.0.0.0.
-  * This is a known issue planned to be fixed in the next 2.8 release. If this is a requirement for upgrading, Kong operators should upgrade to that version before beginning a upgrade to 3.0.0.0.
-  * In traditional and hybrid mode Kong can be upgraded while continuing to proxy traffic.
-
-* Creating and updating Kong configuration for hybrid mode is not allowed from both a 2.8 CP and 3.0 CP.
-  * It is possible to upgrade Kong in hybrid mode from 2.8 to 3.0 while continuing to proxy traffic.
-  * A 2.8 CP and 3.0 CP cannot both write to the same database. For example, Kong operators cannot `deck sync` to a 2.8 CP after starting the migration.
+* Blue-green migration from 2.8.x (and below) to 3.0.x is not supported.
+  * This is a known issue planned to be fixed in the next 2.8 release. If this is a requirement for upgrading,
+  Kong operators should upgrade to that version before beginning a upgrade to 3.0.0.0.
   * See [Upgrade Kong Gateway](/gateway/upgrade) for more details.
 
 ### Breaking changes and deprecations
