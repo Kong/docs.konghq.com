@@ -26,7 +26,7 @@ routes, the graphs show requests broken down by status codes.
 
 > _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
-For greater insights into your service usage, access {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/vitals) <span class="badge plus"></span>.
+For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page <span class="badge plus"></span>.
 
 From Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the [Analytics dashboard](/konnect/analytics/overview-dashboard) to track traffic and errors by error code across all services in your organization.
