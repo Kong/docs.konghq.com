@@ -9,8 +9,8 @@
     "start": "gulp",
     "dev": "gulp dev",
     "pdk-docs": "KONG_PATH=${KONG_PATH:=} KONG_VERSION=${KONG_VERSION:=} gulp pdk-docs",
-    "test": "standard --verbose",
-    "test:smoke": "playwright test"
+    "test": "jest",
+    "test:smoke": "npm run test"
   },
   "standard": {
     "ignore": [
@@ -55,7 +55,11 @@
     "node-fetch": "^2.6.7"
   },
   "jest": {
-    "setupFiles": ["<rootDir>/tests/__utils__/fetchPage.js"],
+    "testMatch": ["**/tests/**.test.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/__utils__/customMatchers.js",
+      "<rootDir>/tests/__utils__/fetchPage.js"
+    ],
     "testPathIgnorePatterns": ["/__utils__/"]
   }
 }
