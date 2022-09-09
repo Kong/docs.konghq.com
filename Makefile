@@ -25,7 +25,6 @@ test:
 	npm test
 
 smoke:
-	@npx playwright install chromium
 	@netlify dev & echo $$! > netlify.PID
 	@sleep 3
 	@npm run test:smoke || true
