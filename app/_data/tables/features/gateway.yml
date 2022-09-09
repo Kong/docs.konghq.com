@@ -92,10 +92,6 @@ features:
         tooltip: Encrypt sensitive keys, certificates, and passwords
         oss: false
         enterprise: true
-      - name: FIPS 140-2 Compliance
-        tooltip: Generally available (GA) version coming soon. Kong Gateway in a FIPS 140-2 compliant mode.
-        oss: false
-        enterprise: true
   - name: Observability
     items:
       - name: Simple logging
