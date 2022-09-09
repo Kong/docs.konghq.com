@@ -17,7 +17,7 @@ historical data for the following lengths of time:
 * **Enterprise:** 1 year
 
 In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
-[activity graphs](/konnect/analytics/analyze/) for services, service versions, or
+[activity graphs](/konnect/analytics/services-and-routes/) for services, service versions, or
 routes for the past 30 days.
 For services, these graphs display request counts. For service versions and
 routes, the graphs show requests broken down by status codes.
@@ -30,7 +30,7 @@ For greater insights into your service usage, access the dedicated {% konnect_ic
 
 From Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the [Analytics dashboard](/konnect/analytics/overview-dashboard) to track traffic and errors by error code across all services in your organization.
-* [Export historical data in CSV format](/konnect/analytics/analyze/) for any individual service, service version, or route.
+* [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)

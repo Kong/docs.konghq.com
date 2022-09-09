@@ -134,5 +134,5 @@ Or, if your route doesn't have a name, it might look like this:
 Where `DA58B` are the first five characters of its UUID.
 
 ## See also
-[Export historical data in CSV format](/konnect/analytics/analyze/) through the
+[Export historical data in CSV format](/konnect/analytics/services-and-routes/) through the
 Service Hub for any individual service, service version, or route.
