@@ -789,11 +789,10 @@ total memory Kong uses to cache entities might be double this value.
 
 Defines the TLS ciphers served by Nginx.
 
-Accepted values are `modern`, `intermediate`, `old`, `fips` or `custom`.
+Accepted values are `modern`, `intermediate`, `old`, or `custom`.
 
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
-of each cipher suite. `fips` cipher suites are as decribed in
-https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
+of each cipher suite.
 
 **Default:** `intermediate`
 
@@ -1856,14 +1855,6 @@ that are triggered send associated data.
 See: https://docs.konghq.com/gateway/latest/admin-api/event-hooks/reference/
 
 **Default:** `on`
-
-
-
-### fips
-
-Turn on FIPS mode; this mode is only available on a FIPS build.
-
-**Default:** `off`
 
 
 ---
