@@ -8,11 +8,12 @@ desc: Terraform module to provision Kong and Kong Gateway clusters on Amazon Web
 description: |
   Terraform module to provision Kong clusters in Amazon Web Service (AWS) using AWS best practices for architecture and security. Both Kong and Kong Gateway are supported. Available under the Apache License 2.0 license.
 support_url: 'https://github.com/Kong/kong-terraform-aws/issues'
-source_url: 'https://github.com/kong/kong-terraform-aws'
+source_code: 'https://github.com/kong/kong-terraform-aws'
 license_type: Apache-2.0
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 3.0.x
       - 2.8.x
       - 2.7.x
       - 2.6.x
@@ -32,6 +33,7 @@ kong_version_compatibility:
       - 0.13.x
   enterprise_edition:
     compatible:
+      - 3.0.x
       - 2.8.x
       - 2.7.x
       - 2.6.x

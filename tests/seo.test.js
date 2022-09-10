@@ -14,13 +14,13 @@ describe("Canonical links", () => {
     {
       title:
         "contains a canonical link pointing to itself if it's the latest version",
-      src: "/gateway/latest/install-and-run/docker/",
-      href: "/gateway/latest/install-and-run/docker/",
+      src: "/gateway/latest/install/kubernetes/helm-quickstart/",
+      href: "/gateway/latest/install/kubernetes/helm-quickstart/",
     },
     {
       title:
         "plugins contain a canonical link pointing to the latest version of a plugin",
-      src: "/hub/kong-inc/application-registration/1.0.x.html",
+      src: "/hub/kong-inc/application-registration/2.8.x.html",
       href: "/hub/kong-inc/application-registration/",
     },
     {
@@ -77,7 +77,7 @@ describe("noindex links", () => {
     },
     {
       title: "contains a noindex tag for old plugin versions",
-      src: "/hub/kong-inc/application-registration/1.0.x.html",
+      src: "/hub/kong-inc/application-registration/2.8.x.html",
     },
   ].forEach((t) => {
     test(t.title, async () => {
@@ -116,10 +116,6 @@ describe("unversioned content", () => {
       src: "/konnect/",
     },
     {
-      title: "konnect-platform",
-      src: "/konnect-platform/",
-    },
-    {
       title: "contributing",
       src: "/contributing/",
     },
@@ -137,12 +133,11 @@ describe("unversioned content", () => {
 describe("sitemap includes", () => {
   [
     "/konnect/",
-    "/konnect-platform/",
     "/gateway/latest/",
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
     "/deck/latest/",
-    "/gateway/latest/install-and-run/docker/",
+    "/gateway/latest/install/kubernetes/helm-quickstart/",
     "/mesh/latest/installation/ecs/",
     "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
     "/deck/latest/installation/",
@@ -164,7 +159,6 @@ describe("sitemap does not include", () => {
     "/gateway/2.6.x/configure/auth/kong-manager/oidc/",
     "/mesh/1.6.x/",
     "/mesh/1.1.x/overview/",
-    "/konnect-platform/compatibility/",
     "/deck/",
     "/gateway/",
   ].forEach((t) => {

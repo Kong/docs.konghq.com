@@ -1,7 +1,6 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
-version: 2.1.x
 desc: Send request and response logs to an HTTP server
 description: |
   Send request and response logs to an HTTP server.
@@ -10,19 +9,9 @@ categories:
   - logging
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
 params:
   name: http-log
   service_id: true
@@ -45,7 +34,12 @@ params:
       value_in_examples: 'http://mockbin.org/bin/:id'
       datatype: string
       encrypted: true
-      description: The HTTP URL endpoint (including the protocol to use) to which the data is sent.
+      description: |
+        The HTTP URL endpoint (including the protocol to use) to which the data is sent.
+
+        If the `http_endpoint` contains a username and password (for example,
+        `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
+        a basic-auth `Authorization` header in the log requests.
     - name: method
       required: false
       default: '`POST`'
@@ -91,20 +85,37 @@ params:
       default: 1
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
+
+    # ----- Old version of the 'headers' parameter -----
     - name: headers
       required: false
       default: empty table
-      datatype: array of string elements
+      datatype: table
       description: |
-        An optional table of headers added to the HTTP message to the upstream server. The following
-        headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
 
-        **Note:** This parameter is only available for versions
-        2.3.x and later.
-  extra: |
-    **NOTE:** If the `config.http_endpoint` contains a username and password (for example,
-    `http://bob:password@example.com/logs`), then Kong Gateway automatically includes
-    a basic-auth `Authorization` header in the log requests.
+        An optional table of headers added to the HTTP message to the upstream server.
+        The table contains arrays of values, indexed by the header name (multiple values per header).
+
+        The following headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
+
+      minimum_version: "2.3.x"
+      maximum_version: "2.8.x"
+    # ---------------------------------------------------
+
+    - name: headers
+      required: false
+      default: empty table
+      datatype: table
+      description: |
+        An optional table of headers included in the HTTP message to the
+        upstream server. Values are indexed by header name, and each header name
+        accepts a single string.
+
+        The following headers are not allowed: `Host`, `Content-Length`, `Content-Type`.
+
+        > **Note:** Before version 3.0.0, the values were arrays of strings (multiple values per header name).
+
+      minimum_version: "3.0.x"
     - name: custom_fields_by_lua
       required: false
       default:
@@ -113,11 +124,13 @@ params:
         A list of key-value pairs, where the key is the name of a log field and
         the value is a chunk of Lua code, whose return value sets or replaces
         the log field value.
+      minimum_version: "2.4.x"
 ---
 
 ## Log format
 
-**Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
+{:.note}
+> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
 
 {% include /md/plugins-hub/log-format.md %}
 
@@ -125,6 +138,8 @@ params:
 
 {% include /md/plugins-hub/json-object-log.md %}
 
+
+{% if_plugin_version gte:2.3.x %}
 
 ## Custom Headers
 
@@ -139,19 +154,39 @@ The log server that receives these messages might require extra headers, such as
 ...
 ```
 
+{% endif_plugin_version %}
+
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+
+{% if_plugin_version gte:2.4.x %}
 
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 
+{% endif_plugin_version %}
+
 ---
 
 ## Changelog
 
-### 2.2.1
+**{{site.base_gateway}} 3.0.x**
 
-* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `config.http_endpoint` parameter value will be encrypted.
+* The `headers` parameter now takes a single string per header name, where it
+previously took an array of values.
+
+**{{site.base_gateway}} 2.7.x**
+
+* If keyring encryption is enabled, the `config.http_endpoint` parameter value
+will be encrypted.
+
+**{{site.base_gateway}} 2.4.x**
+
+* Added the `custom_fields_by_lua` parameter.
+
+**{{site.base_gateway}} 2.3.x**
+
+* Custom headers can now be specified for the log request using the `headers` parameter.

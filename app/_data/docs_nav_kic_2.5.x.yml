@@ -9,6 +9,10 @@ items:
     items:
       - text: FAQ
         url: /faq
+      - text: Version Support Policy
+        url: /support-policy
+      - text: Stages of Software Availability
+        url: /availability-stages
       - text: Changelog
         url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
         absolute_url: true

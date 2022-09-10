@@ -16,7 +16,7 @@ description: |
 
 support_url: https://approov.zendesk.com/hc/en-gb/requests/new
 
-source_url: https://github.com/approov/kong_approov-plugin
+source_code: https://github.com/approov/kong_approov-plugin
 
 kong_version_compatibility:
   community_edition:

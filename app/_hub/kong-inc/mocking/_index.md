@@ -1,7 +1,6 @@
 ---
 name: Mocking
 publisher: Kong Inc.
-version: 0.2.x
 desc: Provide mock endpoints to test your APIs against your services
 description: |
   Provide mock endpoints to test your APIs in development against your services.
@@ -20,10 +19,6 @@ description: |
 
   This plugin can mock `200`, `201`, and `204` responses.
 
-  {:.note}
-  > To use this plugin in Konnect Cloud,
-  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
-  v2.4.1.1.
 enterprise: true
 plus: true
 type: plugin
@@ -31,12 +26,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
 params:
   name: mocking
   service_id: true
@@ -103,6 +93,7 @@ params:
       value_in_examples: true
       description: |
         Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
+      minimum_version: "2.7.x"
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
@@ -131,7 +122,7 @@ The `<service>` is the id or name of the service that this plugin configuration 
 Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
+curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
    --data "name=mocking" \
    --data "config.api_specification_filename=multipleexamples.json" \
    --data "config.random_delay=true" \
@@ -147,11 +138,11 @@ Configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
-    --data "name=mocking"  \
-    --data "config.api_specification_filename=multipleexamples.json" \
-    --data "config.random_delay=true" \
-    --data "config.max_delay_time=1" \
-    --data "config.min_delay_time=0.001"
+  --data "name=mocking"  \
+  --data "config.api_specification_filename=multipleexamples.json" \
+  --data "config.random_delay=true" \
+  --data "config.max_delay_time=1" \
+  --data "config.min_delay_time=0.001"
 ```
 
 The `<consumer>` is the id or username of the consumer that this plugin configuration will target.
@@ -911,4 +902,12 @@ ensure you set the actual URL for your service so that the response can be recei
 
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
-* [OpenAPI2Kong npm package](https://www.npmjs.com/package/openapi-2-kong)
+
+---
+
+## Changelog
+
+**{{site.base_gateway}} 2.7.x**
+
+* Added the `random_examples` parameter.
+Use this setting to randomly select one example from a set of mocked responses.

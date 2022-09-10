@@ -8,7 +8,7 @@ desc: Kong middleware to transform requests / responses, using Lua script.
 description: |
     This is a Kong Plugin that transforms requests and responses depending on your own business requirements.
 support_url: https://github.com/qnap-dev/kong-plugin-api-transformer/issues
-source_url:  https://github.com/qnap-dev/kong-plugin-api-transformer
+source_code:  https://github.com/qnap-dev/kong-plugin-api-transformer
 license_type: Apache-2.0
 license_url: https://github.com/qnap-dev/kong-plugin-api-transformer/blob/master/LICENSE
 

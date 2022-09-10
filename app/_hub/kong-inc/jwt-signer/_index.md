@@ -798,7 +798,7 @@ GET kong:8001/jwt-signer/jwks
 Example:
 
 ```bash
-$ curl -X GET http://<kong>:8001/jwt-signer/jwks
+curl -X GET http://<kong>:8001/jwt-signer/jwks
 ```
 ```json
 {
@@ -877,7 +877,7 @@ GET kong:8001/jwt-signer/jwks/<name-or-id>
 Example:
 
 ```bash
-$ curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
+curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
 ```
 ```json
 {
@@ -921,7 +921,7 @@ DELETE kong:8001/jwt-signer/jwks/<name-or-id>
 Example:
 
 ```bash
-$ curl -X DELETE http://<kong>:8001/jwt-signer/jwks/kong
+curl -X DELETE http://<kong>:8001/jwt-signer/jwks/kong
 ```
 
 The plugin automatically reloads or regenerates missing JWKS if it cannot
@@ -950,7 +950,7 @@ POST kong:8001/jwt-signer/jwks/<name-or-id>/rotate
 Example:
 
 ```bash
-$ curl -X POST http://<kong>:8001/jwt-signer/jwks/kong/rotate
+curl -X POST http://<kong>:8001/jwt-signer/jwks/kong/rotate
 ```
 Response:
 

@@ -1,8 +1,6 @@
 ---
 name: Serverless Functions
 publisher: Kong Inc.
-version: 2.0-x
-source_url: 'https://github.com/Kong/kong-plugin-serverless-functions'
 desc: Dynamically run Lua code from Kong
 description: |
   Dynamically run Lua code from Kong.
@@ -15,37 +13,20 @@ description: |
   - `post-function`
     - Runs after other plugins in each phase. The `post-function` plugin can be applied to individual services, routes, or globally.
 
-  <div class="alert alert-ee red">
-    <strong>Warning: </strong>The pre-function and post-function serverless plugin
+  {:.important}
+  > **Warning:** The pre-function and post-function serverless plugin
     allows anyone who can enable the plugin to execute arbitrary code.
     If your organization has security concerns about this, disable the plugin
-    in your <code>kong.conf</code> file.
-  </div>
+    in your `kong.conf` file.
+
 type: plugin
 categories:
   - serverless
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
+    compatible: true
 params:
   name: pre-function OR post-function
   examples: false
@@ -64,17 +45,27 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
-      description: '*Deprecated*; use `config.access` instead. Array of stringified Lua code to be cached and run in sequence during access phase.'
+      description: |
+        *Deprecated*. Use `config.access` instead.
+
+        Array of stringified Lua code to be cached and run in sequence during access phase.
+      maximum_version: "2.8.x"
     - name: certificate
       required: false
       default: '[]'
       value_in_examples: '[]'
-      description: 'Array of stringified Lua code to be cached and run in sequence during the certificate phase. *Note*: This only runs on global plugins.'
+      description: |
+        Array of stringified Lua code to be cached and run in sequence during the certificate phase.
+
+        *Note*: This only runs on global plugins.
     - name: rewrite
       required: false
       default: '[]'
       value_in_examples: '[]'
-      description: 'Array of stringified Lua code to be cached and run in sequence during the rewrite phase. *Note*: This only runs on global plugins.'
+      description: |
+        Array of stringified Lua code to be cached and run in sequence during the rewrite phase.
+
+        *Note*: This only runs on global plugins.
     - name: access
       required: false
       default: '[]'
@@ -97,30 +88,24 @@ params:
       description: Array of stringified Lua code to be cached and run in sequence during the log phase.
 ---
 
-## Demonstration
+## Usage
 
 {% navtabs %}
 {% navtab With a database %}
 
-1. Create a Service on Kong:
+1. Create a service on Kong:
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/services/ \
+    curl -i -X  POST http://localhost:8001/services/ \
       --data "name=plugin-testing" \
       --data "url=http://httpbin.org/headers"
-
-    HTTP/1.1 201 Created
-    ...
     ```
 
-2. Add a Route to the Service:
+2. Add a route to the service:
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/services/plugin-testing/routes \
+    curl -i -X  POST http://localhost:8001/services/plugin-testing/routes \
       --data "paths[]=/test"
-
-    HTTP/1.1 201 Created
-    ...
     ```
 
 1. Create a file named `custom-auth.lua` with the following content:
@@ -142,20 +127,23 @@ params:
 4. Ensure the file contents:
 
     ```bash
-    $ cat custom-auth.lua
+    cat custom-auth.lua
     ```
 
 5. Apply our Lua code using the `pre-function` plugin using cURL file upload:
 
     ```bash
-    $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
+    curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
         -F "name=pre-function" \
         -F "config.access[1]=@custom-auth.lua" \
         -F "config.access[2]=kong.log.err('Hi there Access!')" \
         -F "config.header_filter[1]=kong.log.err('Hi there Header_Filter!')" \
         -F "config.body_filter[1]=kong.log.err('Hi there Body_Filter!')" \
         -F "config.log[1]=kong.log.err('Hi there Log!')"
+    ```
 
+    Response:
+    ```
     HTTP/1.1 201 Created
     ...
     ```
@@ -193,7 +181,7 @@ params:
 {% endnavtab %}
 {% navtab Without a database %}
 
-1. Create the Service, Route and Associated plugin on the declarative config file:
+1. Create the service, route, and associated plugin in the declarative config file:
 
     ``` yaml
     services:
@@ -262,8 +250,6 @@ params:
 {% endnavtab %}
 {% endnavtabs %}
 
-----
-
 This is just a small demonstration of the power these plugins grant. You were
 able to dynamically inject Lua code into the plugin phases to dynamically
 terminate, or transform the request without creating a custom plugin or
@@ -272,29 +258,15 @@ reloading / redeploying Kong.
 In summary, serverless functions give you the full capabilities of a custom plugin
 without requiring redeploying or restarting Kong.
 
+## Sandboxing
 
-### Notes
-
-#### Sandboxing
-
-Starting with version 2.0 of the plugin, the provided Lua environment is sandboxed.
+The provided Lua environment is sandboxed.
 
 {% include /md/plugins-hub/sandbox.md %}
 
-#### Upvalues
+## Upvalues
 
-Prior to version 0.3 of the plugin, the provided Lua code would run as the
-function. Since version 0.3 functions can be returned, to allow
-the use of upvalues.
-
-So the older version would do this (still works with 0.3 and above):
-
-```lua
--- this entire block is executed on each request
-ngx.log(ngx.ERR, "hello world")
-```
-
-With this version you can return a function to run on each request,
+You can return a function to run on each request,
 allowing for upvalues to keep state in between requests:
 
 ```lua
@@ -308,7 +280,7 @@ return function()
 end
 ```
 
-#### Minifying Lua
+## Minifying Lua
 
 Since we send our code over in a string format, it is advisable to use either
 curl file upload `@file.lua` (see demonstration) or to minify your Lua code
@@ -317,3 +289,21 @@ using a [minifier][lua-minifier].
 
 [service-url]: https://getkong.org/docs/latest/admin-api/#service-object
 [lua-minifier]: https://mothereff.in/lua-minifier
+
+---
+
+## Changelog
+
+**{{site.base_gateway}} 3.0**
+
+* The deprecated `config.functions` parameter has been removed from the plugin.
+Use `config.access` instead.
+* The pre-function plugin changed priority from `+inf` to `1000000`.
+
+**{{site.base_gateway}} 2.3**
+
+* Introduced sandboxing, which is enabled by default.
+Only the Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.
+To change the default setting, see the Kong [configuration property reference](/gateway/latest/reference/configuration/#untrusted_lua).
+
+  This change was also introduced into previous releases through patch versions: 1.5.0.9, 2.1.4.3, and 2.2.1.0.

@@ -1,8 +1,6 @@
 ---
 name: Zipkin
 publisher: Kong Inc.
-version: 1.5.x
-source_url: 'https://github.com/Kong/kong-plugin-zipkin'
 desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
   Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
@@ -11,13 +9,9 @@ categories:
   - analytics-monitoring
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: zipkin
   service_id: true
@@ -35,6 +29,7 @@ params:
   dbless_compatible: 'yes'
   config:
     - name: local_service_name
+      minimum_version: "2.7.x"
       required: true
       default: kong
       datatype: string
@@ -73,7 +68,56 @@ params:
       datatype: integer
       description: |
         The length in bytes of each request's Trace ID. The value can be either `8` or `16`.
+
+    # ----- 2.3.x and earlier version of the 'header_type' parameter -----
     - name: header_type
+      maximum_version: "2.3.x"
+      required: true
+      default: preserve
+      datatype: string
+      description: |
+        All HTTP requests going through the plugin are tagged with a tracing HTTP request.
+        This property codifies what kind of tracing header the plugin expects on incoming requests.
+
+        Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
+        * `b3`: Expects [Zipkin's B3 multiple headers](https://github.com/openzipkin/b3-propagation#multiple-headers)
+        on incoming requests, and will add them to the transmitted requests if the headers are missing from those requests.
+        * `b3-single`: Expects or adds Zipkin's B3 single-header tracing headers.
+        * `w3c`: Expects or adds W3C's traceparent tracing header.
+        * `preserve`: Does not expect any format, and will transmit whatever header is recognized or present,
+        with a default of `b3` if none is found. In case of a mismatch between the expected and incoming
+        tracing headers (for example, when `header_type` is set to `b3` but a w3c-style tracing header is
+        found in the incoming request), then the plugin will add both kinds of tracing headers
+        to the request and generate a mismatch warning in the logs.
+
+    # ----- 2.4.x-2.6.x version of the 'header_type' parameter -----
+    - name: header_type
+      minimum_version: "2.4.x"
+      maximum_version: "2.6.x"
+      required: true
+      default: preserve
+      datatype: string
+      description: |
+        All HTTP requests going through the plugin are tagged with a tracing HTTP request.
+        This property codifies what kind of tracing header the plugin expects on incoming requests.
+
+        Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
+        * `b3`: Expects [Zipkin's B3 multiple headers](https://github.com/openzipkin/b3-propagation#multiple-headers)
+        on incoming requests, and will add them to the transmitted requests if the headers are missing from those requests.
+        * `b3-single`: Expects or adds Zipkin's B3 single-header tracing headers.
+        * `w3c`: Expects or adds W3C's traceparent tracing header.
+        * `preserve`: Does not expect any format, and will transmit whatever header is recognized or present,
+        with a default of `b3` if none is found. In case of a mismatch between the expected and incoming
+        tracing headers (for example, when `header_type` is set to `b3` but a w3c-style tracing header is
+        found in the incoming request), then the plugin will add both kinds of tracing headers
+        to the request and generate a mismatch warning in the logs.
+        * `jaeger`: Expects or adds
+        [Jaeger-style tracing headers](https://www.jaegertracing.io/docs/1.22/client-libraries/#propagation-format) (`uber-trace-id`).
+        * `ot`: Expects or adds [OpenTelemetry tracing headers](https://github.com/open-telemetry/opentelemetry-java/blob/96e8523544f04c305da5382854eee06218599075/extensions/trace_propagators/src/main/java/io/opentelemetry/extensions/trace/propagation/OtTracerPropagator.java) of the form `ot-tracer-*`.
+      # ----------------------------------------------------------
+
+    - name: header_type # current version of param
+      minimum_version: "2.7.x"
       required: true
       default: preserve
       datatype: string
@@ -98,6 +142,7 @@ params:
         Starts a new request using the `default_header_type` value, or falls back to
         `b3` if there is no `default_header_type` value set.
     - name: default_header_type
+      minimum_version: "2.3.x"
       required: true
       default: b3
       datatype: string
@@ -109,6 +154,7 @@ params:
         Possible values are `b3`, `b3-single`, `w3c`, `jaeger`, or `ot`.
         See the entry for `header_type` for value definitions.
     - name: tags_header
+      minimum_version: "2.4.x"
       required: true
       default: Zipkin-Tags
       datatype: string
@@ -121,6 +167,7 @@ params:
         `Zipkin-Tags: fg=blue, bg=red` will generate a trace with the tag `fg` with
         value `blue`, and another tag called `bg` with value `red`.
     - name: static_tags
+      minimum_version: "2.3.x"
       required: false
       default: []
       value_in_examples: null
@@ -128,22 +175,60 @@ params:
       description: |
         The tags specified on this property will be added to the generated request traces. For example:
         `[ { "name": "color", "value": "red" } ]`.
----
 
+    - name: http_span_name
+      minimum_version: "3.0.x"
+      required: true
+      default: method
+      value_in_examples: null
+      datatype: string
+      description: |
+        Specify whether to include the HTTP path in the span name.
+
+        Options:
+        * `method`: Do not include the HTTP path. This is the default.
+        * `method_path`: Include the HTTP path.
+
+    - name: connect_timeout
+      minimum_version: "3.0.x"
+      required: false
+      default: 2000
+      value_in_examples: null
+      datatype: number
+      description: The timeout, in milliseconds, for establishing a connection to the Zipkin server.
+    - name: send_timeout
+      minimum_version: "3.0.x"
+      required: false
+      default: 5000
+      value_in_examples: null
+      datatype: number
+      description: The timeout, in milliseconds, between two
+        successive write operations when sending a request to the Zipkin server.
+    - name: read_timeout
+      minimum_version: "3.0.x"
+      required: false
+      default: 5000
+      value_in_examples: null
+      datatype: number
+      description: The timeout, in milliseconds, between two
+        successive read operations when receiving a response from the Zipkin server.
+
+---
 ## How it Works
 
 When enabled, [this plugin](https://github.com/Kong/kong-plugin-zipkin) traces requests in a way compatible with [zipkin](https://zipkin.io/).
 
-The code is structured around an [opentracing](http://opentracing.io/) core using the [opentracing-lua library](https://github.com/Kong/opentracing-lua) to collect timing data of a request in each of Kong's phases.
-The plugin uses opentracing-lua compatible extractor, injector, and reporters to implement Zipkin's protocols.
+The code is structured around an [OpenTracing](http://opentracing.io/) core using the [opentracing-lua library](https://github.com/Kong/opentracing-lua) to collect timing data of a request in each of Kong's phases.
+The plugin uses `opentracing-lua` compatible extractor, injector, and reporters to implement Zipkin's protocols.
 
 ### Reporter
 
-An opentracing "reporter" is how tracing data is reported to another system.
+An OpenTracing "reporter" is how tracing data is reported to another system.
 This plugin records tracing data for a given request, and sends it as a batch to a Zipkin server using [the Zipkin v2 API](https://zipkin.io/zipkin-api/#/default/post_spans). Note that zipkin version 1.31 or higher is required.
 
 The `http_endpoint` configuration variable must contain the full uri including scheme, host, port and path sections (i.e. your uri likely ends in `/api/v2/spans`).
 
+{% if_plugin_version gte:2.4.x %}
 ### Spans
 
 The plugin does *request sampling*. For each request which triggers the plugin, a random number between 0 and 1 is chosen.
@@ -162,9 +247,11 @@ For each request that gets traced, the following spans are produced:
 
   * `lc`: Hardcoded to `kong`.
   * `kong.service`: The uuid of the service matched when processing the request, if any.
+  {% if_plugin_version gte:2.5.x %}
   * `kong.service_name`: The name of the service matched when processing the request, if service exists and has a `name` attribute.
   * `kong.route`: The uuid of the route matched when processing the request, if any (it can be nil on non-matched requests).
   * `kong.route_name`: The name of the route matched when processing the request, if route exists and has a `name` attribute.
+  {% endif_plugin_version%}
   * `http.method`: The HTTP method used on the original request (only for HTTP requests).
   * `http.path`: The path of the request (only for HTTP requests).
   * If the plugin `tags_header` config option is set, and the request contains headers with the appropriate name and correct encoding tags, then the trace will include the tags.
@@ -191,6 +278,8 @@ Contains the following tags specific to load balancing:
   * `kong.balancer.state`: An NGINX-specific description of the error, `next/failed` for HTTP failures, or `0` for stream failures.
      Equivalent to `state_name` in OpenResty's balancer's `get_last_failure` function.
 
+{% endif_plugin_version %}
+
 ### See also
 
 For more information, read the [Kong blog post](https://konghq.com/blog/tracing-with-zipkin-in-kong-2-1-0).
@@ -199,7 +288,29 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 
 ## Changelog
 
-### 1.5.x
+**{{site.base_gateway}} 3.0.x**
+
+* Added support for including the HTTP path in the span name with the
+`http_span_name` configuration parameter.
+[#8150](https://github.com/Kong/kong/pull/8150)
+* Added support for socket connect and send/read timeouts
+  through the `connect_timeout`, `send_timeout`,
+  and `read_timeout` configuration parameters. This can help mitigate
+  `ngx.timer` saturation when upstream collectors are unavailable or slow.
+  [#8735](https://github.com/Kong/kong/pull/8735)
+
+**{{site.base_gateway}} 2.7.x**
 
 * Added a new parameter: `local_service_name`
 * Added a new `ignore` option for the `header_type` parameter
+
+**{{site.base_gateway}} 2.5.x**
+* The plugin now includes the following tags: `kong.route`, `kong.service_name`, and `kong.route_name`.
+
+**{{site.base_gateway}} 2.4.x**
+* Added support for OT and Jaeger style `uber-trace-id` headers.
+* The plugin now allows insertion of custom tags on the Zipkin request trace.
+* The plugin now allows the creation of baggage items on child spans.
+
+**{{site.base_gateway}} 2.3.x**
+* Added the `default_header_type` and `static_tags` configuration parameters.

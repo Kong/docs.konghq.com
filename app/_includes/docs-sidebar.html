@@ -15,7 +15,6 @@
         <span>
           {% if include.edition == 'enterprise' %}{{site.ee_product_name}}
           {% elsif include.edition == 'konnect' %}{{site.konnect_saas}}
-          {% elsif include.edition == 'konnect-platform' %}{{site.konnect_product_name}} Platform
           {% elsif include.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
@@ -52,10 +51,6 @@
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
-        </li>
-        <hr>
-        <li role="menuitem" tabindex="-1" {% if include.edition == 'konnect_platform' %} class="active"{% endif %}>
-          <a href="/konnect-platform/" {% if include.edition == 'konnect_platform' %}class="active"{% endif %}>Kong Konnect Platform</a>
         </li>
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'contributing' %} class="active"{% endif %}>
@@ -104,20 +99,20 @@
         {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
           <a href="/enterprise/2.5.x/">
-            Older Enterprise versions (0.31-2.5)
+            Older Enterprise versions (2.1-2.5)
           </a>
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="/gateway-oss/2.5.x/">
-            Older OSS versions (0.13-2.5)
+            Older OSS versions (2.0-2.5)
           </a>
         </li>
         {% endif %}
 
-        {% if include.edition == 'gateway-oss' or include.edition == 'gateway' %}
+        {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
         <li role="menuitem" tabindex="-1">
-          <a href="https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/">
-            Archive (pre-0.13)
+          <a href="https://legacy-gateway--kongdocs.netlify.app/">
+            Archive (pre-2.0)
           </a>
         </li>
         {% endif %}

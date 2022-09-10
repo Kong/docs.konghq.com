@@ -1,13 +1,13 @@
 ---
 name: Request Transformer Advanced
 publisher: Kong Inc.
-version: 2.1.x
-desc: 'Use powerful regular expressions, variables, and templates to transform API requests'
+desc: Use powerful regular expressions, variables, and templates to transform API requests
 description: |
-  The Request Transformer plugin for Kong Gateway builds on the Kong version
-  of this plugin with enhanced capabilities to match portions of incoming requests
-  using regular expressions, save those matched strings into variables, and
-  substitute those strings into transformed requests via flexible templates.
+  Transform client requests before they reach the upstream server. The plugin lets you match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute the strings into transformed requests via flexible templates.
+
+  The Request Transformer Advanced plugin builds on the open-source [Request Transformer plugin](/hub/kong-inc/request-transformer/) with the following enhanced capability:
+  * Limit the list of allowed parameters in the request body. Set this up with the `allow.body` configuration parameter.
+
 enterprise: true
 type: plugin
 categories:
@@ -16,15 +16,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: request-transformer-advanced
   service_id: true
@@ -76,6 +68,10 @@ params:
       description: |
         List of headername:value pairs. If and only if the header is already set,
         replace its old value with the new one. Ignored if the header is not already set.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: replace.querystring
       required: false
       default: null
@@ -84,6 +80,10 @@ params:
       description: |
         List of queryname:value pairs. If and only if the querystring name is already set,
         replace its old value with the new one. Ignored if the header is not already set.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: replace.uri
       required: false
       default: null
@@ -103,6 +103,10 @@ params:
         List of paramname:value pairs. If and only if content-type is one the
         following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`];
         and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.headers
       required: false
       default: null
@@ -113,6 +117,10 @@ params:
       description: |
         List of `headername:value` pairs. If and only if the header is already set,
         rename the header. The value is unchanged. Ignored if the header is not already set.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.querystring
       required: false
       default: null
@@ -123,6 +131,10 @@ params:
       description: |
         List of `queryname:value` pairs. If and only if the field name is already set,
         rename the field name. The value is unchanged. Ignored if the field name is not already set.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.body
       required: false
       default: null
@@ -133,6 +145,10 @@ params:
       description: |
         List of parameter `name:value` pairs. Rename the parameter name if and only if content-type is
         one of the following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: add.headers
       required: false
       default: null
@@ -143,6 +159,10 @@ params:
       description: |
         List of `headername:value` pairs. If and only if the header is not already set,
         set a new header with the given value. Ignored if the header is already set.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: add.querystring
       required: false
       default: null
@@ -153,6 +173,10 @@ params:
       description: |
         List of `queryname:value` pairs. If and only if the querystring name is not already set,
         set a new querystring with the given value. Ignored if the querystring name is already set.
+      
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: add.body
       required: false
       default: null
@@ -161,6 +185,10 @@ params:
       description: |
         List of `paramname:value` pairs. If and only if content-type is one the following: [`application/json, multipart/form-data`, `application/x-www-form-urlencoded`]; and the parameter is not present, add a new parameter with the given value to form-encoded body.
         Ignored if the parameter is already present.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: append.headers
       required: false
       default: null
@@ -169,6 +197,10 @@ params:
       description: |
         List of `headername:value` pairs. If the header is not set, set it with the given value.
         If it is already set, a new header with the same name and the new value will be set.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: append.querystring
       required: false
       default: null
@@ -177,6 +209,10 @@ params:
       description: |
         List of `queryname:value` pairs. If the querystring is not set, set it with the given value.
         If it is already set, a new querystring with the same name and the new value will be set.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: append.body
       required: false
       default: null
@@ -185,6 +221,10 @@ params:
       description: |
         List of `paramname:value` pairs. If the content-type is one the following: [`application/json`, `application/x-www-form-urlencoded`]; add a new parameter with the given value if the parameter is not present. Otherwise, if it is already present,
         the two values (old and new) will be aggregated in an array.
+        
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: allow.body
       required: false
       default: null
@@ -202,7 +242,7 @@ params:
 
 ## Template as Value
 
-You can use any of the the current request headers, query parameters, and captured
+You can use any of the current request headers, query parameters, and captured
 URI groups as templates to populate supported config fields.
 
 | Request Parameter | Template
@@ -290,7 +330,7 @@ Create a route for the `test` service, capturing a `user_id` field from the thir
 
 ```bash
 curl -X POST http://localhost:8001/services/test/routes --data "name=test_user" \
-    --data-urlencode 'paths=/requests/user/(?<user_id>\w+)'
+    --data-urlencode 'paths=~/requests/user/(?<user_id>\w+)'
 ```
 
 Enable the `request-transformer-advanced` plugin to add a new header, `x-user-id`,
@@ -300,7 +340,7 @@ whose value is being set from the captured group in the route path specified abo
 curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer-advanced" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
 ```
 
-Now send a request with a user id in the route path: 
+Now send a request with a user id in the route path:
 
 ```bash
 curl -i -X GET localhost:8000/requests/user/foo
@@ -409,3 +449,16 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | --------- | -----------
 | ?q1=v1 | ?q1=v1&q2=v1
 |        | ?q1=v2&q2=v1
+
+
+---
+
+## Changelog
+
+**{{site.base_gateway}} 3.0.x**
+- Removed the deprecated `whitelist` parameter.
+It is no longer supported.
+
+**{{site.base_gateway}} 2.1.x**
+
+- Use `allow` instead of `whitelist`.

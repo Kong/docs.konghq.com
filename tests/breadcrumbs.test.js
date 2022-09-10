@@ -7,10 +7,10 @@ describe("Gateway", () => {
       "Home"
     );
     await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
-      "Kong Gateway"
+      "Kong Enterprise"
     );
     await expect($(".breadcrumb-item:nth-of-type(3)")).toHaveTextAllowingWhitespace(
-      "Plugin development"
+      "Plugin Development"
     );
   });
 
@@ -25,7 +25,7 @@ describe("Gateway", () => {
       "Kong Gateway (OSS)"
     );
     await expect($(".breadcrumb-item:nth-of-type(3)")).toHaveTextAllowingWhitespace(
-      "Plugin development"
+      "Plugin Development"
     );
   });
 

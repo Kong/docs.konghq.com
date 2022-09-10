@@ -1,7 +1,12 @@
-- release: 0.4.x
-- release: 0.3.x
-- release: 0.2.14
-- release: 0.2.13
-- release: 0.2.11
-- release: 0.2.7
-- release: 0.2.2
+strategy: gateway
+delegate_releases: true
+
+overrides:
+  2.8.x: 0.4.0
+  2.7.x: 0.3.0
+  2.6.x: 0.3.0
+  2.5.x: 0.2.15
+  2.4.x: 0.2.15
+  2.3.x: 0.2.15
+  2.2.x: 0.2.15
+  2.1.x: 0.2.14

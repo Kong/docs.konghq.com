@@ -140,7 +140,7 @@ or use a flag when running any decK command.
 * Target a runtime group in your state file with the `konnect_runtime_group` parameter:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     _konnect:
       runtime_group_name: staging
     ```
@@ -181,7 +181,7 @@ If the {{site.konnect_short_name}} service doesn't exist, setting a `_Konnect` t
 For example, see the following configuration snippet, where the Gateway service named `example_service` is attached to the {{site.konnect_short_name}} service `example`:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _konnect:
   runtime_group_name: default
 services:

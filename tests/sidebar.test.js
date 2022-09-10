@@ -35,16 +35,16 @@ describe("Version Switcher", () => {
   [
     {
       title: "links to the same page if it exists in previous versions",
-      page: "/enterprise/2.5.x/deployment/installation/docker/",
-      selector: 'a[data-version-id="2.1.x"]',
-      href: "/enterprise/2.1.x/deployment/installation/docker/",
+      page: "/gateway/2.8.x/install-and-run/docker/",
+      selector: 'a[data-version-id="2.6.x"]',
+      href: "/gateway/2.6.x/install-and-run/docker/",
     },
     {
       title:
         "links to the root page if the page does not exist in previous versions",
-      page: "/enterprise/2.5.x/deployment/installation/docker/",
-      selector: 'a[data-version-id="0.34-x"]',
-      href: "/enterprise/0.34-x",
+      page: "/gateway/2.8.x/admin-api/consumer-groups/examples/",
+      selector: 'a[data-version-id="2.6.x"]',
+      href: "/gateway/2.6.x",
     },
   ].forEach((t) => {
     test(t.title, async () => {
@@ -63,7 +63,7 @@ describe("Outdated version documentation", () => {
 
   test("does not show on the latest version", async () => {
     const $ = await fetchPage(
-      `/gateway/${latestGatewayVersion}/install-and-run/rhel/`
+      `/gateway/${latestGatewayVersion}/install/linux/rhel/`
     );
     await expect($(oldVersionSelector)).toHaveCount(0);
   });
@@ -73,16 +73,7 @@ describe("Outdated version documentation", () => {
     const s = $(oldVersionSelector);
     await expect(s).toHaveCount(1);
     await expect(s.attr("href")).toMatch(
-      new RegExp(`^/gateway/latest/install-and-run/rhel/$`)
-    );
-  });
-
-  test("links to the root when the page no longer exists", async () => {
-    const $ = await fetchPage(`/enterprise/0.31-x/postgresql-redhat/`);
-    const s =  $(oldVersionSelector);
-    await expect(s).toHaveCount(1);
-    await expect(s.attr("href")).toMatch(
-      new RegExp(`^/gateway/$`)
+      new RegExp(`^/gateway/latest/install/linux/rhel/$`)
     );
   });
 });
@@ -104,7 +95,7 @@ describe("Sidebar section count", () => {
     {
       title: "Gateway Single Sourced",
       path: "/gateway/latest/",
-      count: 8,
+      count: 9,
     },
     {
       title: "decK",
@@ -124,8 +115,8 @@ describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/latest/",
-      link_text: "Docker",
-      expected_url: "/gateway/latest/install-and-run/docker",
+      link_text: "Supported Distributions",
+      expected_url: "/gateway/latest/install/linux/os-support",
     },
     {
       title: "Versioned root page links to the correct version",
@@ -136,8 +127,8 @@ describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Docker",
-      expected_url: "/gateway/latest/install-and-run/docker",
+      link_text: "Supported Distributions",
+      expected_url: "/gateway/latest/install/linux/os-support",
     },
     {
       title: "Versioned sub page links to the correct version",

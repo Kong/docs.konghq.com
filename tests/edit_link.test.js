@@ -17,7 +17,7 @@ describe("Edit this page link", () => {
       title: "/app/ page /latest/",
       src: "/gateway/latest/",
       expected:
-        "https://github.com/Kong/docs.konghq.com/edit/main/app/gateway/2.8.x/index.md",
+        "https://github.com/Kong/docs.konghq.com/edit/main/src/gateway/index.md",
     },
     {
       title: "Single Sourced /latest/",

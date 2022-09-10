@@ -70,7 +70,7 @@ id: documentation
               </div>
             {% endunless %}
             {% unless page.no_breadcrumbs %}
-              {% include_cached breadcrumbs.html edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
+              {% include_cached breadcrumbs.html is_latest=page.is_latest edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
             {% endunless %}
           </div>
           {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
@@ -106,12 +106,12 @@ id: documentation
 
             {% if page.alpha %}
             <blockquote class="warning no-icon">
-              This feature is released as a <a href="/konnect-platform/key-concepts/#tech-preview">tech preview</a> (alpha-quality) and should not be deployed in a production environment.
+              This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be deployed in a production environment.
             </blockquote>
             {% endif %}
             {% if page.beta %}
             <blockquote class="warning no-icon">
-              This feature is released as <a href="/konnect-platform/key-concepts/#beta">beta</a> and should not be deployed in a production environment.
+              This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be deployed in a production environment.
             </blockquote>
             {% endif %}
 
@@ -124,8 +124,25 @@ id: documentation
             <a href="/konnect/">current {{site.konnect_short_name}} documentation</a>.
             </blockquote>
             {% endif %}
-
             {{ content }}
+
+            {% if page.book %}
+            <div class="book-nav-container">
+            <hr />
+            {% if page.book.previous %}
+            <div class="book-nav previous">
+              <span class="direction">Previous</span>
+              <a href="{{ page.book.previous.url }}">{{ page.book.previous.title  }}</a>
+            </div>
+            {% endif %}
+            {% if page.book.next %}
+            <div class="book-nav next">
+              <span class="direction">Next</span>
+              <a href="{{ page.book.next.url }}">{{ page.book.next.title  }}</a>
+            </div>
+            {% endif %}
+            </div>
+            {% endif %}
 
           </div>
         </div>

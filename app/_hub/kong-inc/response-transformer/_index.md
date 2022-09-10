@@ -1,7 +1,6 @@
 ---
 name: Response Transformer
 publisher: Kong Inc.
-version: 1.0.x
 desc: Modify the upstream response before returning it to the client
 description: |
   Transform the response sent by the upstream server on the fly before returning the response to the client.
@@ -14,9 +13,9 @@ description: |
   </div>
 
   For additional response transformation features, check out the
-  [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/). Response Transformer 
+  [Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/). Response Transformer
   Advanced adds the following abilities:
-  
+
   * When transforming a JSON payload, transformations are applied to nested JSON objects and
     arrays. This can be turned off and on using the `config.dots_in_keys` configuration parameter.
     See [Response Transformed Advanced arrays and nested objects](/hub/kong-inc/response-transformer-advanced/#arrays-and-nested-objects).
@@ -30,52 +29,16 @@ description: |
     when the `Content-Encoding` header is `gzip`.
 
   Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
-  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, 
+  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`,
   `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
 type: plugin
 categories:
   - transformations
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: response-transformer
   service_id: true
@@ -184,7 +147,7 @@ similar for Services.
 {% navtab With a database %}
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -223,7 +186,7 @@ plugins:
 - Add multiple headers by passing comma separated header:value pair (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -244,7 +207,7 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 - Add multiple headers passing config as JSON body (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -268,7 +231,7 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 {% navtab With a database %}
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
@@ -318,7 +281,7 @@ plugins:
 {% navtab With a database %}
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
@@ -361,7 +324,7 @@ plugins:
 - Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
 ```
-$ curl -X POST http://localhost:8001/routes/{route}/plugins \
+curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number"
@@ -370,4 +333,3 @@ $ curl -X POST http://localhost:8001/routes/{route}/plugins \
 [api-object]: /gateway/latest/admin-api/#api-object
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [configuration]: /gateway/latest/reference/configuration
-

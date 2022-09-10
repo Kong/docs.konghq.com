@@ -30,7 +30,7 @@ description: |
 
 support_url: https://github.com/peter-evans/kong-plugin-paseto/issues
 
-source_url: https://github.com/peter-evans/kong-plugin-paseto
+source_code: https://github.com/peter-evans/kong-plugin-paseto
 
 license_type: MIT
 

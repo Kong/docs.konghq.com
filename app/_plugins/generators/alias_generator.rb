@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'yaml'
 # Alias Generator for Posts using Netlify _redirects
 #
 # Generates redirect pages for posts with aliases set in the YAML Front Matter.
@@ -30,12 +31,17 @@ module Jekyll
   class AliasGenerator < Generator
     priority :lowest
 
-    def generate(site) # rubocop:disable Metrics/AbcSize
+    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       @redirects = []
 
+      # Generate redirect_to from frontmatter redirects
       site.pages.each do |page|
         generate_aliases(page.destination('').gsub(/index\.(html|htm)$/, ''), page)
       end
+
+      # Generate redirects from moved_urls
+      moved_pages = YAML.load_file("#{__dir__}/../../moved_urls.yml")
+      generate_moved_aliases(moved_pages)
 
       # Read existing _redirects file
       existing = "#{File.read("#{__dir__}/../../_redirects")}\n"
@@ -45,6 +51,14 @@ module Jekyll
       page.content = existing + @redirects.join("\n")
       page.data['layout'] = nil
       site.pages << page
+    end
+
+    def generate_moved_aliases(moved_pages)
+      moved_pages.each do |k, v|
+        k = k.sub('/VERSION/', '/latest/')
+        v = v.sub('/VERSION/', '/latest/')
+        @redirects.push("#{k}\t#{v}")
+      end
     end
 
     def generate_aliases(_destination_path, page) # rubocop:disable Metrics/MethodLength

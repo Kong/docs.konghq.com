@@ -1,7 +1,6 @@
 ---
 name: Syslog
 publisher: Kong Inc.
-version: 2.2.x
 desc: Send request and response logs to Syslog
 description: |
   Log request and response data to Syslog.
@@ -10,44 +9,9 @@ categories:
   - logging
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: syslog
   service_id: true
@@ -94,6 +58,7 @@ params:
         An optional logging severity. Any request with equal or higher severity
         will be logged to System log. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
     - name: custom_fields_by_lua
+      minimum_version: "2.4.x"
       required: false
       default: null
       datatype: map
@@ -102,6 +67,7 @@ params:
         the value is a chunk of Lua code, whose return value sets or replaces
         the log field value.
     - name: facility
+      minimum_version: "2.5.x"
       required: false
       default: '`user`'
       datatype: string
@@ -130,6 +96,20 @@ logging level severity the same as or lower than the set `config.log_level` for 
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
+{% if_plugin_version gte:2.4.x %}
+
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
+
+{% endif_plugin_version %}
+
+---
+## Changelog
+
+**{{site.base_gateway}} 2.5.x**
+* The plugin now includes facility configuration options, which are a way for the plugin to group error messages from different sources.
+
+**{{site.base_gateway}} 2.4.x**
+
+* Added `custom_fields_by_lua` configuration option.

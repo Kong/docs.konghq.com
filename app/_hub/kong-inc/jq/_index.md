@@ -1,7 +1,6 @@
 ---
 name: jq
 publisher: Kong Inc.
-versions: 0.0.1
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |
   The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
@@ -113,4 +112,3 @@ params:
         A list of HTTP response status codes. The response status code **must**
         match one of the response status codes on this list for the program to run.
 ---
-
