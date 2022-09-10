@@ -6,7 +6,7 @@ gem 'jekyll-include-cache'
 gem 'jekyll-redirect-from'
 gem 'kramdown-parser-gfm'
 gem 'liquid-c'
-gem 'rouge', '3.30.0'
+gem 'rouge', '4.0.0'
 gem 'activesupport'
 
 group :development do
