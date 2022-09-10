@@ -27,12 +27,12 @@ Install {{site.base_gateway}} on Amazon Linux from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm"
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.amd64.rpm"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm "{{ site.links.download }}/gateway-2.x-amazonlinux-2/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm"
+curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rpm"
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -46,7 +46,7 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rp
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.noarch.rpm
+sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.amd64.rpm
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -66,7 +66,7 @@ Install the YUM repository from the command line.
 
 1. Download the Kong APT repository:
     ```bash
-    curl https://download.konghq.com/gateway-2.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
+    curl https://download.konghq.com/gateway-3.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
     ```
 
 2. Install Kong:

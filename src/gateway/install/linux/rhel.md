@@ -27,12 +27,12 @@ Install {{site.base_gateway}} on RHEL from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rhel%{rhel}.noarch.rpm")
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rhel%{rhel}.amd64.rpm")
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel}/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.rhel%{rhel}.amd64.rpm")
+curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.rhel%{rhel}.amd64.rpm")
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -83,7 +83,7 @@ Install the YUM repository from the command line.
 
 1. Download the Kong APT repository:
     ```bash
-    curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
+    curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
     ```
 
 2. Install Kong:
