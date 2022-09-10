@@ -29,7 +29,7 @@ upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
-[open-source (OSS)](https://github.com/Kong/kong/blob/3.0.0/CHANGELOG.md#300) and
+[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.0.x/CHANGELOG.md#300) and
 [Enterprise](/gateway/changelog/#3000) Gateway changelogs. Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
