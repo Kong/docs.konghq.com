@@ -9,7 +9,7 @@ no_version: true
 
 {:.important}
 > **Important**: Kong Gateway 3.0.0.0 is a major release and contains breaking changes.
-Review the [breaking changes and deprecations](#breaking-changes-and-deprecations) and the [known limitations](#known-limitations) before attempting to upgrade.
+Review the [breaking changes and deprecations](#breaking-changes-and-deprecations) and the [known limitations](#known-limitations) before attempting to [upgrade](/gateway/latest/upgrade/).
 
 ### Features
 
