@@ -22,7 +22,7 @@ upstream API, as well as on any incoming responses.
 ## Plugin compatibility with deployment types
 
 {{site.base_gateway}} can be deployed in a variety of ways, and not all plugins
-are fully compatible with each mode. See [Plugin Compatibility](/konnect-platform/compatibility/plugins)
+are fully compatible with each mode. See [Plugin Compatibility](/konnect/compatibility#plugin-compatibility)
 for a comparison.
 
 
@@ -93,9 +93,9 @@ of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
 To start creating your own plugins, check out the PDK documentation:
-* [Plugin Development Guide](/gateway/latest/plugin-development)
-* [Plugin Development Kit reference](/gateway/latest/pdk)
-* [Other Language Support](/gateway/latest/reference/external-plugins)
+* [Plugin Development Guide](/gateway/latest/plugin-development/)
+* [Plugin Development Kit reference](/gateway/latest/plugin-development/pdk/)
+* [Other Language Support](/gateway/latest/plugin-development/pluginserver/go/)
 
 ## Contributing custom plugins
 
@@ -107,4 +107,4 @@ for adding documentation.
 ## Other key concepts
 
 * For more information about available plugins, see the [Plugin Hub](/hub/).
-* [Stages of software availability](/konnect-platform/key-concepts/)
+* [Stages of software availability](/gateway/latest/stability/)
