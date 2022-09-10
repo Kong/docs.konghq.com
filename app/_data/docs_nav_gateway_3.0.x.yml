@@ -83,12 +83,12 @@ items:
             url: /install/
           - text: Kubernetes
             items:
-              - text: kubectl apply
-                url: /install/kubernetes/kubectl
               - text: Helm
                 url: /install/kubernetes/helm-quickstart
               - text: OpenShift with Helm
                 url: /install/kubernetes/openshift
+              - text: kubectl apply
+                url: /install/kubernetes/kubectl
               - text: Kubernetes Deployment Options
                 url: /install/kubernetes/deployment-options
           - text: Docker
