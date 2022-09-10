@@ -27,7 +27,7 @@ Install {{site.base_gateway}} on Amazon Linux from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.amd64.rpm"
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.aws.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.aws.amd64.rpm"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -46,7 +46,7 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.aws.amd64.rp
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amzn2.amd64.rpm
+sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.aws.amd64.rpm
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
