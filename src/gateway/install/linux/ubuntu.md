@@ -14,11 +14,11 @@ Kong is licensed under an
 
 ## Download and install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository. We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Xenial.
+You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
 {:.note .no-icon}
-> We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal and Xenial.
-> If you are using a different release, replace `$(lsb_release -sc)` with `xenial` in the commands below.
+> We currently package {{ site.base_gateway }} for Ubuntu Bionic and Focal.
+> If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below.
 > <br /><br />
 > To check your release name run `lsb_release -sc`.
 
@@ -39,7 +39,7 @@ curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-ver
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
