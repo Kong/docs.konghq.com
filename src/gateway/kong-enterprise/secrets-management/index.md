@@ -63,7 +63,7 @@ can be stored as a secret, such as [pg_user](/gateway/{{page.kong_version}}/refe
 {:.note}
 > **Limitation:** {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.
 
-The [Kong license](/gateway/{{page.kong_version}}/kong-enterprise/licenses/), usually configured with
+The [Kong license](/gateway/{{page.kong_version}}/licenses/), usually configured with
 a `KONG_LICENSE_DATA` environment variable, can be stored as a secret.
 
 The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)

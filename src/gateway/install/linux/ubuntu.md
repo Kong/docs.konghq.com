@@ -34,7 +34,7 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -84,7 +84,7 @@ Install the APT repository from the command line.
 
 1. Setup the Kong APT repository:
     ```bash
-    echo "deb [trusted=yes] {{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/ \
+    echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
     default all" | sudo tee /etc/apt/sources.list.d/kong.list
     ```
 
