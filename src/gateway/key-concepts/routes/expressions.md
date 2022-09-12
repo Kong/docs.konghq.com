@@ -20,7 +20,7 @@ To create a new router object using expressions, send a `POST` request to the [s
 ```sh
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
-  --form  atc='http.path == "/mock"'
+  --form expression='http.path == "/mock"'
 ```
 
 In this example, you associated a new route object with the path `/mock` to the existing service `example-service`. The Expressions DSL also allows you to create complex router match conditions.
