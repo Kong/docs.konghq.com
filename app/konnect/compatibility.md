@@ -122,5 +122,5 @@ see [{{site.ee_product_name}} for Kubernetes Deployment Options](/gateway/latest
 
 ### Deployment
 
-[Deployment plugins](/hub) are not bundled with any version of Konnect, and are
-simply tools to help you deploy Kong Gateway in various environments.
+[Deployment plugins](/hub/) are not bundled with any version of {{site.konnect_short_name}}, and are
+simply tools to help you deploy {{site.base_gateway}} in various environments.
