@@ -12,7 +12,7 @@ For a list of all available operators and configurable fields please review the 
 
 Edit [kong.conf](/gateway/latest/production/kong-conf) to contain the line `router_flavor = expressions` and restart {{site.base_gateway}}.
 Note: once you enable expressions, the match fields that traditionally exist on the Route object (such as `paths`, `methods`) will no longer
-be configurable and you must specify Expressions in the `atc` field.
+be configurable and you must specify Expressions in the `expression` field.
 
 ## Create routes with Expressions
 
