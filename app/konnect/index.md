@@ -12,6 +12,8 @@ in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's
 lightweight, fast, and flexible API gateway  — is managed by you within your 
 preferred network environment. 
 
+![{{site.konnect_short_name}} service diagram](/assets/images/docs/konnect/azure/konnect-manager.png)
+
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
 
 * Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines. 
