@@ -161,11 +161,11 @@
       items:
         - text: Overview
           url: /org-management/auth
-        - text: Teams and Roles
+        - text: Teams
           items:
             - text: Overview
               url: /org-management/teams-and-roles
-            - text: Manage Teams and Roles
+            - text: Manage Teams
               url: /org-management/teams-and-roles/manage
             - text: Teams Reference
               url: /org-management/teams-and-roles/teams-reference
