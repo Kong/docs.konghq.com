@@ -4,18 +4,51 @@ subtitle: The SaaS API Platform
 no_version: true
 ---
 
-{{site.konnect_short_name}} is an API lifecycle 
-management platform designed from the ground up for the cloud native era 
-and delivered as a service. This platform lets you build modern applications 
-better, faster, and more securely. The management plane is hosted 
-in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's 
-lightweight, fast, and flexible API gateway  — is managed by you within your 
-preferred network environment. 
+## Quick Links
+
+<div class="docs-grid-install">
+
+  <!-- TO DO: ADD KONNECT FEATURES TABLE
+   <a href="#features" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Features</div>
+  </a> -->
+
+  <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
+    <div class="install-text">Get Started</div>
+  </a>
+
+  <a href="/konnect/runtime-manager/runtime-groups" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
+    <div class="install-text">Runtime Groups</div>
+  </a>
+
+  <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-references-color.svg" alt="">
+    <div class="install-text">Manage {{site.konnect_short_name}} with decK</div>
+  </a>
+
+  <a href="/hub/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
+    <div class="install-text">Plugins</div>
+  </a>
+</div>
+
+## Introducing {{site.konnect_short_name}}
+
+{{site.konnect_short_name}} is an API lifecycle
+management platform designed from the ground up for the cloud native era
+and delivered as a service. This platform lets you build modern applications
+better, faster, and more securely. The management plane is hosted
+in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's
+lightweight, fast, and flexible API gateway  — is managed by you within your
+preferred network environment.
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
 
-* Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines. 
- 
+* Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines.
+
 * Instantly applying authentication, API security, and traffic control policies consistently across all your services using powerful enterprise and community plugins.
 
 * Providing a real-time, centralized view of all your services. Monitor golden signals such as error rate and latency for each service and route to gain deep insights into your API products.
@@ -31,12 +64,12 @@ preferred network environment.
 
 ### Service Hub
 
-[Service Hub](/konnect/servicehub) makes internal APIs discoverable, 
+[Service Hub](/konnect/servicehub) makes internal APIs discoverable,
 consumable, and reusable for internal development teams. Catalog
-all your services through the Service Hub to create a single source of 
-truth for your organization’s service inventory. By leveraging Service Hub, 
-your application developers 
-can search, discover, and consume existing services to accelerate their 
+all your services through the Service Hub to create a single source of
+truth for your organization’s service inventory. By leveraging Service Hub,
+your application developers
+can search, discover, and consume existing services to accelerate their
 time-to-market, while enabling a more consistent end-user experience
 across the organization’s applications.
 
@@ -45,7 +78,7 @@ across the organization’s applications.
 ### Runtime Manager
 
 [Runtime Manager](/konnect/runtime-manager) empowers your teams to securely
-collaborate and manage their own set of runtimes and services without 
+collaborate and manage their own set of runtimes and services without
 the risk of impacting other teams and projects. Runtime Manager instantly
 provisions hosted {{site.base_gateway}} control planes and supports securely
 attaching {{site.base_gateway}} data planes from your cloud or hybrid environments.
