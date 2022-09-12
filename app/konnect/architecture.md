@@ -26,3 +26,6 @@ handling authentication.
 * The service only receives valid requests and therefore cycles are not wasted
 processing invalid requests.
 * All requests are logged for central visibility of traffic.
+
+
+Try it for yourself! [Get started](https://cloud.konghq.com/quick-start) with {{ site.konnect_short_name }} for free today.
