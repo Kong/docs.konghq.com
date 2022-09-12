@@ -324,6 +324,8 @@ Kong Gateway version.
 * OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
   recommended to upgrade yet if you are an OpenTracing user. This will be
   rectified in an upcoming patch/minor release.
+  
+* TLS connections are not supported when using the prebuilt Alpine Docker image.
 
 ### Breaking changes and deprecations
 
