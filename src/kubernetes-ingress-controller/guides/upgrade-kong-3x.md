@@ -1,0 +1,294 @@
+---
+title: Upgrading to Kong 3.x
+---
+
+This guide walks through the steps needed to upgrade to 2.1.x and later
+versions from earlier versions, and covers changes from older versions to help
+operators evaluate whether they need to make changes to their configuration. It
+also covers creation of a testing environment to test the upgrade.
+
+This guide covers the changes required when upgrading an ingress
+controller-managed Kong instance from 2.x to 3.x.
+
+## Prerequisites
+
+* [Helm v3][helm] is installed
+* You are familiar with Helm `install` and `upgrade` operations. See the [documentation for Helm v3][helm-docs].
+
+> **Note:** Deploying and upgrading via the [Helm chart][chart] is the
+supported mechanism for production deployments of KIC. If you're deploying KIC
+using Kustomize or some other mechanism, you need to develop and test your own
+upgrade strategy based on the following examples.
+
+[helm]:https://helm.sh/
+[chart]:https://github.com/kong/charts
+[list-releases]:https://v3.helm.sh/docs/helm/helm_list/
+[helm-docs]:https://v3.helm.sh/docs/
+
+### Update CRDs
+
+Helm does not update CRDs automatically, and 2.6 includes Kong 3.x
+compatibility changes to the controller CRDs. You must apply them manually
+before upgrading KIC:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/Kong/charts/main/charts/kong/crds/custom-resource-definitions.yaml
+```
+
+## Upgrading your KIC version
+
+KIC 2.6 is the first version that supports Kong 3.x. You must upgrade to KIC
+2.6 before upgrading to Kong 3.x. See the [KIC Changelog][changelog] for all
+changes in this release.
+
+[changelog]:https://github.com/kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md#260
+
+As KIC 2.6 is compatible with all 2.x Kong releases, you should upgrade it and
+the chart first:
+
+```shell
+helm repo update
+```
+
+```shell
+helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
+  --namespace ${YOUR_NAMESPACE} \
+  -f ${PATH_TO_YOUR_VALUES_FILE} \
+  --version 2.13.0 \
+  --set ingressController.image.tag="2.6"
+```
+
+2.13 is the first chart version that supports 2.6. You can use later versions
+if available.
+
+2.6 does include a minor breaking change affecting the `CombinedRoutes` feature
+gate, but is otherwise not expected to require changes to existing
+configuration.
+
+## Updating Ingress regular expression paths for Kong 3.x compatibility
+
+Kong 3.x includes a number of its own [breaking changes](https://docs.konghq.com/gateway/changelog/#breaking-changes-and-deprecations),
+but most do not affect its interactions with KIC, or are handled automatically
+by 2.6 changes. You should still review these changes for changes that do not
+interact with KIC, such as changes to kong.conf/environment variable settings
+and changes to the PDK that affect custom plugins.
+
+Kong 3.x's changes to regular expression path handling _do_ require manual
+changes to Ingress configuration. In Kong 2.x, Kong applied a heuristic based
+on the presence of special characters in a route path to determine if a path
+was a regular expression. This heuristic was imperfect and Kong 3.x has
+removed it, instead requiring that any regular expression begin with a `~`
+prefix.
+
+Ingress rule paths have no way to indicate that a path is a regular expression.
+The `ImplementationSpecific` path type can contain either regular expression or
+non-regular expression paths. If you have existing Ingresses with regular
+expression paths, those paths will no longer be routed correctly if you upgrade
+to 3.x without updating configuration.
+
+The preferred option for configuring regular expression Ingress rules for Kong
+3.x is to add the `~` prefix to Ingress rules directly. However, this is not
+compatible with Kong 2.x, and therefore cannot be easily done prior to the 3.x
+upgrade.
+
+To smooth the migration process and allow users to update rules gradually. KIC
+2.6 includes an option to continue applying the 2.x regular expression
+heuristic on KIC's end: if the option is enabled, the Kong version is 3.0 or
+higher,  and a path matches the 2.x heuristic, KIC will insert the `~` prefix
+for you unless the path already begins with `~`. This allows for a mixture of
+paths that have and have not been migrated to 3.x-style configuration.
+
+To enable this option, you need to create an IngressClassParameters resource
+with `enableLegacyRegexDetection=true` and attach it to your IngressClass. The
+option _is not_ enabled for IngressClasses by default.
+
+```bash
+echo '
+apiVersion: configuration.konghq.com/v1alpha1
+kind: IngressClassParameters
+metadata:
+  name: 2x-heuristic
+spec:
+  enableLegacyRegexDetection: true
+' | kubectl apply -n kong -f -
+```
+
+```bash
+kubectl patch ingressclass kong --patch '
+{"spec":
+		{"parameters":
+				{
+				"apiGroup": "configuration.konghq.com",
+				"kind": "IngressClassParameters",
+				"name": "2x-heuristic",
+				"namespace": "kong",
+				"scope": "Namespace"
+				}
+		}
+}'
+```
+
+If you use a non-standard namespace and/or ingress class, you will need to
+replace the `kong` ingress class name and `kong` namespace with values
+appropriate to your environment.
+
+After you have upgraded to Kong 3.x, you should work to update all of your
+regular expression paths to include the `~` prefix in the Ingress itself at
+your earliest convenience. The heuristic is available for upgrade convenience
+and thus behaves exactly like the version included in Kong 2.8.x, bugs
+included. Once you added the prefix to all regular expression paths, you can
+disable `enableLegacyRegexDetection`.
+
+Lastly, Gateway API HTTPRoute resources are not affected by this problem: they
+do have a dedicated regular expression path type, and KIC does insert the `~`
+prefix automatically for these.
+
+## Testing environment
+
+To avoid issues with the upgrade, run it in a test environment before
+deploying it to production. Create a [Kubernetes][k8s] cluster
+using the same tools that deployed your production cluster, or use
+a local development cluster such as [minikube][minikube] or [kind][kind].
+
+Using Helm, check the deployed chart version:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+
+```shell
+$ helm list -A
+```
+
+{% endnavtab %}
+{% navtab Response %}
+
+```shell
+NAME               NAMESPACE   STATUS   CHART       APP VERSION
+ingress-controller kong-system deployed kong-2.13.0 2.6
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+In the above example, `kong-2.13.0` is the currently deployed chart version.
+
+Using the existing chart version and the `values.yaml` configuration for
+your production environment, deploy a copy to your test cluster
+with the `--version` flag:
+
+```shell
+$ helm install kong-upgrade-testing kong/kong \
+  --version ${YOUR_VERSION} \
+  -f ${PATH_TO_YOUR_VALUES_FILE}
+```
+> **Note:** You may need to adjust your chart further to work in a development or
+staging environment. See the [Helm chart documentation][chart-docs].
+Use this testing environment to walk through the following
+[upgrade steps](#upgrade) and ensure there are no problems during the
+upgrade process. Once you're satisfied everything is ready,
+switch to the production cluster and work through the upgrade steps again.
+
+[k8s]:https://kubernetes.io
+[minikube]:https://github.com/kubernetes/minikube
+[kind]:https://github.com/kubernetes-sigs/kind
+[chart-docs]: https://helm.sh/docs/topics/charts/
+
+## Upgrade
+
+### Configure Helm repository
+
+Check the local `helm` installation to make sure it has the
+[Kong Charts Repository][chart] loaded:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+
+```shell
+helm repo list
+```
+
+{% endnavtab %}
+{% navtab Response %}
+
+```shell
+NAME    URL
+kong    https://charts.konghq.com
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+If the repository is not present, add it:
+
+```shell
+$ helm repo add kong https://charts.konghq.com
+```
+
+Update the repository to pull the latest repository updates:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+
+```shell
+helm repo update
+```
+
+{% endnavtab %}
+{% navtab Response %}
+
+```
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "kong" chart repository
+Update Complete. ⎈Happy Helming!⎈
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+### Perform the upgrade
+
+Run the following command, specifying the old release name, the namespace where
+you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file:
+
+```shell
+$ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
+  --namespace ${YOUR_NAMESPACE} \
+  -f ${PATH_TO_YOUR_VALUES_FILE} \
+  --set image.tag="3.0"
+```
+
+After the upgrade completes there is a brief period of time before the new
+resources are online. You can wait for the relevant Pod resources to complete
+by watching them in your release namespace:
+
+```shell
+$ kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
+```
+
+Once the new pods are in a `Ready` state, the upgrade is complete. Update your
+values.yaml file to use the new Kong and ingress controller image versions to
+continue using these through future upgrades.
+
+### Rollback
+
+If you run into problems during or after the upgrade, Helm provides a
+rollback mechanism to revert to a previous revision of the release:
+
+```shell
+$ helm rollback --namespace ${YOUR_RELEASE_NAMESPACE} ${YOUR_RELEASE_NAME}
+```
+
+You can wait for the rollback to complete by watching the relevant Pod
+resources:
+
+```shell
+$ kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
+```
+
+After a rollback, if you ran into issues in production,
+consider using a [testing environment](#testing-environment) to
+identify and correct these issues, or reference the
+[troubleshooting documentation][troubleshooting].
+
+[troubleshooting]:/kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting/
+[admission]:/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook
