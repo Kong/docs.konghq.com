@@ -44,3 +44,7 @@ Last 30 days | Data is aggregated in one hour increments.
 
 {:.important}
 > Free tier users can only select intervals up to 24 hours.
+
+## See also
+
+For more information about runtime group metrics, see [Runtime groups dashboard](/konnect/runtime-manager/runtime-groups/dashboard/).
