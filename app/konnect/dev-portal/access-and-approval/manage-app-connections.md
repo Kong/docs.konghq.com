@@ -6,15 +6,15 @@ content-type: reference
 
 When a developer
 [registration](/konnect/dev-portal/applications/dev-reg-app-service) request is approved, it creates a connection between
-the developer, their applications, and any associated service versions. In {{site.konnect_short_name}}, you can revoke, reinstate, or delete a connection to a service. This functionality is managed from the **Applications** page within the {% konnect_icon connections %} **Connections** section. 
+the developer, their applications, and any associated service versions. In {{site.konnect_short_name}}, you can revoke, reinstate, or delete a connection to a service. This functionality is managed from the **Applications** page within the {% konnect_icon dev-portal %} **Dev Portal** section. 
 
 ## Applications section
 
 The Applications section shows existing applications that have been approved to access a {{site.konnect_short_name}} service.
 
-To access the **Applications** section, from the {{site.konnect_product_name}} navigation menu, click {% konnect_icon connections %} **Connections**, then open the **Applications** section.
+To access the **Applications** section, from the {{site.konnect_product_name}} navigation menu, click {% konnect_icon dev-portal %} **Dev Portal**, then open the **Applications** page.
 
-Use the **Applications** section to:
+In this section you can: 
 
 - Search for existing applications.
 - View details of an application, such as its name, developer, creation date, and description.
@@ -30,7 +30,6 @@ A connection that has been revoked can be
 To revoke a connection, follow these steps: 
 
 1. Navigate to the application's details page, by clicking on a specific application from the **Applications** section. 
-
 
 2. From the **Connections** panel, find a connection that has been rejected, click the context menu, then select **Revoke**.
 
@@ -61,11 +60,11 @@ The connection will be removed from the applications page.
 
 ## Application connection statuses
 
-The following status conditions reflect the current state of an application's connection to a Service:
+The following status conditions reflect the current state of an application's connection to a service:
 
 **Approved**
-: An application connection to a Service was approved by a {{site.konnect_short_name}} admin.
+: An application connection to a service was approved by a {{site.konnect_short_name}} admin.
 
 **Revoked**
-: An application connection to a Service that was formerly approved has been revoked by a
+: An application connection to a service that was formerly approved has been revoked by a
 {{site.konnect_short_name}} admin.

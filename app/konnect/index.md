@@ -67,21 +67,21 @@ Enable application registration to automatically secure your APIs with a
 
 [Learn more about the Dev Portal &rarr;](/konnect/dev-portal)
 
-### Monitoring and analytics in {{site.konnect_short_name}}
+### Analytics
 
-Use [Vitals](/konnect/vitals) to gain deep insights
+Use [Analytics](/konnect/analytics) to gain deep insights
 into service, route, and application usage and health monitoring data. Keep your finger
 on the pulse of the health of your API products with custom reports and contextual dashboards.
 In addition, you can enhance the native monitoring and analytics capabilities with
-Gateway plugins that enable streaming monitoring metrics to
+{{site.base_gateway}} plugins that enable streaming monitoring metrics to
 third-party analytics providers, such as Datadog and Prometheus.
 
-[Learn more about monitoring and analytics &rarr;](/konnect/vitals)
+[Learn more about Analytics &rarr;](/konnect/analytics)
 
-### Teams and roles
+### Teams
 
 To help secure and govern your environment, {{site.konnect_short_name}} provides
-the ability to manage authorization with [teams and roles](/konnect/org-management/teams-and-roles).
+the ability to manage authorization with [teams](/konnect/org-management/teams-and-roles).
 You can use {{site.konnect_short_name}}'s predefined teams for a standard set of roles,
 or create custom teams with any roles you choose. Invite users and add them to these teams to manage user
 access. You can also map groups from your existing identity provider into {{site.konnect_short_name}} teams.

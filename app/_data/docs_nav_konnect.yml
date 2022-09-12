@@ -36,30 +36,6 @@
     - text: Import Kong Gateway Entities into Konnect Cloud
       url: /getting-started/import
 
-- title: Service Hub
-  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
-  items:
-    - text: Overview
-      url: /servicehub
-    - text: Manage Services
-      items:
-        - text: Konnect Services
-          url: /servicehub/manage-services
-        - text: Service Versions
-          url: /servicehub/service-versions
-        - text: Service Implementations
-          url: /servicehub/service-implementations
-        - text: Manage Service Documentation
-          url: /servicehub/service-documentation
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /servicehub/plugins
-        - text: Configure a Plugin on a Service
-          url: /servicehub/enable-service-plugin
-        - text: Configure a Plugin on a Route
-          url: /servicehub/enable-route-plugin
-
 - title: Runtime Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
   items:
@@ -96,6 +72,30 @@
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
 
+- title: Service Hub
+  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
+  items:
+    - text: Overview
+      url: /servicehub
+    - text: Manage Services
+      items:
+        - text: Konnect Services
+          url: /servicehub/manage-services
+        - text: Service Versions
+          url: /servicehub/service-versions
+        - text: Service Implementations
+          url: /servicehub/service-implementations
+        - text: Manage Service Documentation
+          url: /servicehub/service-documentation
+    - text: Manage Plugins
+      items:
+        - text: Overview
+          url: /servicehub/plugins
+        - text: Configure a Plugin on a Service
+          url: /servicehub/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /servicehub/enable-route-plugin
+          
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
@@ -134,17 +134,17 @@
     - text: Troubleshoot
       url: /dev-portal/troubleshoot
 
-- title: Analyze
-  icon: /assets/images/icons/konnect/icn-vitals-nav.svg
+- title: Analytics
+  icon: /assets/images/icons/konnect/icn-analytics-nav.svg
   items:
-    - text: Introduction to Vitals
-      url: /vitals/
+    - text: Introduction to Analytics
+      url: /analytics/
     - text: Overview Dashboard
-      url: /vitals/overview-dashboard/
+      url: /analytics/overview-dashboard/
     - text: Analyze Services and Routes
-      url: /vitals/analyze/
+      url: /analytics/services-and-routes/
     - text: Generate Reports
-      url: /vitals/generate-reports
+      url: /analytics/generate-reports
 
 - title: Administer
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
@@ -161,11 +161,11 @@
       items:
         - text: Overview
           url: /org-management/auth
-        - text: Teams and Roles
+        - text: Teams
           items:
             - text: Overview
               url: /org-management/teams-and-roles
-            - text: Manage Teams and Roles
+            - text: Manage Teams
               url: /org-management/teams-and-roles/manage
             - text: Teams Reference
               url: /org-management/teams-and-roles/teams-reference
