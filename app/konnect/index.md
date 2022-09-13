@@ -1,5 +1,5 @@
 ---
-title: Kong Konnect Cloud
+title: Kong Konnect
 subtitle: The SaaS API Platform
 no_version: true
 ---
@@ -56,8 +56,8 @@ preferred network environment.
 
 {:.note}
 > This documentation is for the {{site.konnect_short_name}} environment at
-[cloud.konghq.com](https://cloud.konghq.com). For the old
-[konnect.konghq.com](https://konnect.konghq.com) environment, see the
+[`cloud.konghq.com`](https://cloud.konghq.com). For the old
+[`konnect.konghq.com`](https://konnect.konghq.com) environment, see the
 [legacy {{site.konnect_short_name}} documentation](/konnect/legacy).
 
 ## {{site.konnect_short_name}} modules

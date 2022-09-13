@@ -164,6 +164,23 @@ Vale can be forced to ignore sections of text using the following syntax:
 ```
 Everything in that section will be ignored. Consider using this exclusively for edge-cases where text should be used in a way that does not fit our current rule-set.
 
+
+## Ignoring raw link text
+
+Because our URL's contain product names they will trigger terms or dictionary checks. 
+If you need to ignore raw link text in URL's here are two options:
+
+Adding the `bare` class to the link: 
+
+```
+<a href="https://konnect.konghq.com" class="bare">konnect.konghq.com</a>
+```
+
+Wrapping the link in code tags: 
+
+[`konnect.konghq.com`](https://konnect.konghq.com")
+
+
 ## Policy around adding new rules
 
 The following two rules are in place while we are integrating Vale into our repository. 

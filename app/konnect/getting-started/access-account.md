@@ -1,5 +1,5 @@
 ---
-title: Accessing a Kong Konnect Cloud Account
+title: Accessing a Kong Konnect Account
 no_version: true
 ---
 
