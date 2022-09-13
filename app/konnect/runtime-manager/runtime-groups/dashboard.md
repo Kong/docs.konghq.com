@@ -21,7 +21,7 @@ The following describes the different metrics that display on this dashboard:
 
 * **Errors**: This displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
-* **Gateway services**: This displays the total number of active services associated with the runtime group.
+* **Gateway services**: This displays the total number of active services associated with the runtime group. An active service is a service that has received at least one request during the defined time period.
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
 

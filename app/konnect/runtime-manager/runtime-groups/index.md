@@ -89,7 +89,7 @@ entity-specific permissions.
 
 ## Runtime group dashboard
 
-For each runtime group, you can view latency, traffic, and error rate analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display. 
+For each runtime group, you can view traffic, error rate, and {{site.base_gateway}} service analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display. 
 
 [Runtime group dashboard &rarr;](/konnect/runtime-manager/runtime-groups/dashboard)
 
