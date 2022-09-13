@@ -29,9 +29,6 @@ features:
         tooltip: Visually manage Kong cluster, plugins, APIs, and consumers
         oss: false
         enterprise: true
-      - name: 
-        oss: true
-        enterprise: true
   - name: Traffic Management and Transformations
     items:
       - name: Basic Traffic Control Plugins

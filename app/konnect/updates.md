@@ -8,7 +8,7 @@ no_version: true
 The updates contained in this topic apply to {{site.konnect_saas}},
 an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
-services.
+services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2022
 
