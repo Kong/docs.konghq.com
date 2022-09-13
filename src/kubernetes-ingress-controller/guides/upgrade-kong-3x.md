@@ -2,11 +2,6 @@
 title: Upgrading to Kong 3.x
 ---
 
-This guide walks through the steps needed to upgrade to 2.1.x and later
-versions from earlier versions, and covers changes from older versions to help
-operators evaluate whether they need to make changes to their configuration. It
-also covers creation of a testing environment to test the upgrade.
-
 This guide covers the changes required when upgrading an ingress
 controller-managed Kong instance from 2.x to 3.x.
 
