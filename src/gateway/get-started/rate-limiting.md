@@ -85,7 +85,7 @@ will be subject to rate limit enforcement.
 Run the following command to quickly send 6 mock requests:
 
 ```sh
-for _ in {1..6}; do {curl -s -i localhost:8000/mock/request; echo; sleep 1; } done
+for _ in {1..6}; do curl -s -i localhost:8000/mock/request; echo; sleep 1; done
 ```
 
 {% endnavtab %}
