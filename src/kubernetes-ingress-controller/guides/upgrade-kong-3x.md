@@ -39,6 +39,10 @@ changes in this release.
 
 [changelog]:https://github.com/kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md#260
 
+2.6 does include a minor breaking change affecting the `CombinedRoutes` feature
+gate, but is otherwise not expected to require changes to existing
+configuration.
+
 As KIC 2.6 is compatible with all 2.x Kong releases, you should upgrade it and
 the chart first:
 
@@ -56,10 +60,6 @@ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
 
 2.13 is the first chart version that supports 2.6. You can use later versions
 if available.
-
-2.6 does include a minor breaking change affecting the `CombinedRoutes` feature
-gate, but is otherwise not expected to require changes to existing
-configuration.
 
 ## Update Ingress regular expression paths for Kong 3.x compatibility
 
