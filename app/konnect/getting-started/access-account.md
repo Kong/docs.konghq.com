@@ -57,8 +57,10 @@ landing page.
 In this topic, you created a {{site.konnect_saas}} account, or
 reset a password if you forgot it.
 
-If this is your first time using {{site.konnect_short_name}}, see the
-quickstart guide to:
+If this is your first time using {{site.konnect_short_name}}, follow these guides: 
+
 * [Configure a runtime](/konnect/getting-started/configure-runtime)
 * [Configure a service](/konnect/getting-started/configure-service)
 * [Implement the service](/konnect/getting-started/implement-service)
+
+For a guided experience, try {{site.konnect_saas}} using the free [quickstart](https://cloud.konghq.com/quick-start) experience!
