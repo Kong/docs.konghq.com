@@ -15,6 +15,7 @@ controller-managed Kong instance from 2.x to 3.x.
 * [Helm v3][helm] is installed
 * You are familiar with Helm `install` and `upgrade` operations. See the [documentation for Helm v3][helm-docs].
 
+{:.note}
 > **Note:** Deploying and upgrading via the [Helm chart][chart] is the
 supported mechanism for production deployments of KIC. If you're deploying KIC
 using Kustomize or some other mechanism, you need to develop and test your own
@@ -27,15 +28,15 @@ upgrade strategy based on the following examples.
 
 ### Update CRDs
 
-Helm does not update CRDs automatically, and 2.6 includes Kong 3.x
-compatibility changes to the controller CRDs. You must apply them manually
+KIC 2.6 includes {{site.base_gateway}} 3.x
+compatibility changes to the controller CRDs. Helm does not update CRDs automatically. You must apply them manually
 before upgrading KIC:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Kong/charts/main/charts/kong/crds/custom-resource-definitions.yaml
 ```
 
-## Upgrading your KIC version
+## Upgrade your KIC version
 
 KIC 2.6 is the first version that supports Kong 3.x. You must upgrade to KIC
 2.6 before upgrading to Kong 3.x. See the [KIC Changelog][changelog] for all
@@ -65,12 +66,12 @@ if available.
 gate, but is otherwise not expected to require changes to existing
 configuration.
 
-## Updating Ingress regular expression paths for Kong 3.x compatibility
+## Update Ingress regular expression paths for Kong 3.x compatibility
 
-Kong 3.x includes a number of its own [breaking changes](https://docs.konghq.com/gateway/changelog/#breaking-changes-and-deprecations),
+Kong 3.x includes a number of its own [breaking changes](/gateway/changelog/#breaking-changes-and-deprecations),
 but most do not affect its interactions with KIC, or are handled automatically
 by 2.6 changes. You should still review these changes for changes that do not
-interact with KIC, such as changes to kong.conf/environment variable settings
+interact with KIC, such as changes to `kong.conf` or environment variable settings
 and changes to the PDK that affect custom plugins.
 
 Kong 3.x's changes to regular expression path handling _do_ require manual
@@ -91,10 +92,10 @@ The preferred option for configuring regular expression Ingress rules for Kong
 compatible with Kong 2.x, and therefore cannot be easily done prior to the 3.x
 upgrade.
 
-To smooth the migration process and allow users to update rules gradually. KIC
+To smooth the migration process and allow users to update rules gradually, KIC
 2.6 includes an option to continue applying the 2.x regular expression
-heuristic on KIC's end: if the option is enabled, the Kong version is 3.0 or
-higher,  and a path matches the 2.x heuristic, KIC will insert the `~` prefix
+heuristic on KIC's end. If the option is enabled, the Kong version is 3.0 or
+higher, and a path matches the 2.x heuristic, KIC will insert the `~` prefix
 for you unless the path already begins with `~`. This allows for a mixture of
 paths that have and have not been migrated to 3.x-style configuration.
 
@@ -128,19 +129,19 @@ kubectl patch ingressclass kong --patch '
 }'
 ```
 
-If you use a non-standard namespace and/or ingress class, you will need to
-replace the `kong` ingress class name and `kong` namespace with values
+If you use a non-standard namespace or Ingress class, you will need to
+replace the `kong` Ingress class name and `kong` namespace with values
 appropriate to your environment.
 
-After you have upgraded to Kong 3.x, you should work to update all of your
-regular expression paths to include the `~` prefix in the Ingress itself at
-your earliest convenience. The heuristic is available for upgrade convenience
-and thus behaves exactly like the version included in Kong 2.8.x, bugs
+After you have upgraded to Kong 3.x, update all of your regular expression paths 
+to include the `~` prefix in the Ingress itself at your earliest convenience. 
+The heuristic is only intended for decreasing downtime during upgrades, so 
+it behaves exactly like the version included in Kong 2.8.x, bugs
 included. Once you added the prefix to all regular expression paths, you can
 disable `enableLegacyRegexDetection`.
 
-Lastly, Gateway API HTTPRoute resources are not affected by this problem: they
-do have a dedicated regular expression path type, and KIC does insert the `~`
+Gateway API HTTPRoute resources are not affected by this problem. They
+do have a dedicated regular expression path type, and KIC inserts the `~`
 prefix automatically for these.
 
 ## Testing environment
@@ -177,10 +178,12 @@ your production environment, deploy a copy to your test cluster
 with the `--version` flag:
 
 ```shell
-$ helm install kong-upgrade-testing kong/kong \
+helm install kong-upgrade-testing kong/kong \
   --version ${YOUR_VERSION} \
   -f ${PATH_TO_YOUR_VALUES_FILE}
 ```
+
+{:.note}
 > **Note:** You may need to adjust your chart further to work in a development or
 staging environment. See the [Helm chart documentation][chart-docs].
 Use this testing environment to walk through the following
@@ -221,7 +224,7 @@ kong    https://charts.konghq.com
 If the repository is not present, add it:
 
 ```shell
-$ helm repo add kong https://charts.konghq.com
+helm repo add kong https://charts.konghq.com
 ```
 
 Update the repository to pull the latest repository updates:
@@ -251,22 +254,22 @@ Run the following command, specifying the old release name, the namespace where
 you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file:
 
 ```shell
-$ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
+helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
   --namespace ${YOUR_NAMESPACE} \
   -f ${PATH_TO_YOUR_VALUES_FILE} \
   --set image.tag="3.0"
 ```
 
-After the upgrade completes there is a brief period of time before the new
+After the upgrade completes, there is a brief period of time before the new
 resources are online. You can wait for the relevant Pod resources to complete
 by watching them in your release namespace:
 
 ```shell
-$ kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
+kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
 ```
 
 Once the new pods are in a `Ready` state, the upgrade is complete. Update your
-values.yaml file to use the new Kong and ingress controller image versions to
+`values.yaml` file to use the new Kong and ingress controller image versions to
 continue using these through future upgrades.
 
 ### Rollback
@@ -275,14 +278,14 @@ If you run into problems during or after the upgrade, Helm provides a
 rollback mechanism to revert to a previous revision of the release:
 
 ```shell
-$ helm rollback --namespace ${YOUR_RELEASE_NAMESPACE} ${YOUR_RELEASE_NAME}
+helm rollback --namespace ${YOUR_RELEASE_NAMESPACE} ${YOUR_RELEASE_NAME}
 ```
 
 You can wait for the rollback to complete by watching the relevant Pod
 resources:
 
 ```shell
-$ kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
+kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
 ```
 
 After a rollback, if you ran into issues in production,
