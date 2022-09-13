@@ -53,13 +53,17 @@ preferred network environment.
 
 * Providing a real-time, centralized view of all your services. Monitor golden signals such as error rate and latency for each service and route to gain deep insights into your API products.
 
+[Get started](https://cloud.konghq.com/quick-start) with {{ site.konnect_short_name }} for free today!
+
+<!-- vale off -->
 
 {:.note}
 > This documentation is for the {{site.konnect_short_name}} environment at
-[cloud.konghq.com](https://cloud.konghq.com). For the old
+[cloud.konghq.com](https://cloud.konghq.com). To view documentation for the legacy
 [konnect.konghq.com](https://konnect.konghq.com) environment, see the
 [legacy {{site.konnect_short_name}} documentation](/konnect/legacy).
 
+<!-- vale on -->
 ## {{site.konnect_short_name}} modules
 
 ### Service Hub
