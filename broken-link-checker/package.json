@@ -14,6 +14,7 @@
     "@octokit/rest": "^19.0.0",
     "broken-link-checker": "^0.7.8",
     "fast-glob": "^3.2.11",
+    "js-yaml": "^4.1.0",
     "minimist": "^1.2.5"
   }
 }

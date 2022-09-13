@@ -14,7 +14,7 @@ description: |
 
 support_url: https://github.com/seifchen/kong-path-allow/issues
 
-source_url: https://github.com/seifchen/kong-path-allow
+source_code: https://github.com/seifchen/kong-path-allow
 
 license_type: Apache-2.0
 

@@ -38,7 +38,7 @@ description: |
 
 support_url: https://docs.signalsciences.net/
 
-#source_url:
+#source_code:
   # (Optional) If your extension is open source, provide a link to your code.
 
 #license_type:

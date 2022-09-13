@@ -6,7 +6,7 @@ Kong for Kubernetes is a {{site.kic_product_name}} built on top
 of Open-Source {{site.base_gateway}}.
 
 If you are an Enterprise customer, you have an option of running the
-[Enterprise version](/gateway/latest/install-and-run/kubernetes/)
+[Enterprise version](/gateway/latest/install/kubernetes/helm-quickstart/)
 of the Ingress Controller, which includes
 all the Enterprise plugins but does not include Kong Manager or any
 other Enterprise features. This makes it possible to

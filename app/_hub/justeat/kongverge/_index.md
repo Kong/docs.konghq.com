@@ -28,7 +28,7 @@ description: |
 
 support_url: https://github.com/justeat/kongverge/issues
 
-source_url: https://github.com/justeat/kongverge
+source_code: https://github.com/justeat/kongverge
 
 license_type: Apache-2.0
 

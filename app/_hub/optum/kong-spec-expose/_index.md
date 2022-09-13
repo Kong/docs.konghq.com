@@ -19,7 +19,7 @@ description: |
 
 support_url: https://github.com/Optum/kong-spec-expose/issues
 
-source_url: https://github.com/Optum/kong-spec-expose/
+source_code: https://github.com/Optum/kong-spec-expose/
 
 license_type: Apache-2.0
 

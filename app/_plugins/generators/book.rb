@@ -22,9 +22,9 @@ module Jekyll
             'chapters' => {}
           }
 
-          page.data['book']['previous'] = pages[idx - 1].url if idx.positive?
+          page.data['book']['previous'] = pages[idx - 1] if idx.positive?
 
-          page.data['book']['next'] = pages[idx + 1].url if idx < pages.size - 1
+          page.data['book']['next'] = pages[idx + 1] if idx < pages.size - 1
 
           # Add all existing pages links to this page
           pages.each do |p|

@@ -11,6 +11,8 @@
       url: /network
     - text: Compatibility
       url: /compatibility
+    - text: Stages of Software Availability
+      url: /availability-stages
     - text: Release Notes
       url: /updates
 
@@ -173,6 +175,8 @@
               url: /org-management/teams-and-roles/roles-reference
         - text: Manage Users
           url: /org-management/users
+        - text: Set up SSO with OIDC
+          url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
     - text: Account and Org Deactivation

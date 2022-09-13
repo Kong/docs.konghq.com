@@ -77,7 +77,7 @@ breadcrumbs:
       </tr>
     {% endif %}
     {% for field in page.params.config %}
-      {% if_plugin_version gte:field.minimum_version %}
+      {% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}
       {% if field.group %}
     <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
       <tr><th>Form Parameter</th><th>Description</th></tr>
@@ -165,12 +165,12 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
     {% endif %}
       {% if page.alpha %}
       <blockquote class="warning no-icon">
-        This plugin is released as a <a href="/konnect-platform/key-concepts/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
+        This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
       </blockquote>
       {% endif %}
       {% if page.beta %}
       <blockquote class="warning no-icon">
-        This plugin is released as <a href="/konnect-platform/key-concepts/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
+        This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
       </blockquote>
       {% endif %}
 
@@ -333,7 +333,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         <tr>
           <td>DB-less compatible?</td>
           <td>
-            <a href="/konnect-platform/compatibility/plugins">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
+            <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
               if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
               if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
           </td>
@@ -369,14 +369,14 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
             <td><a href="{{ page.support_url }}">{{ support_dom | truncate: 15 }}</a></td>
           </tr>
         {% endif %}
-        {% if page.source_url or page.license_type %}
+        {% if page.source_code or page.license_type %}
           <tr class="source-code">
             <td>Source</td>
             <td>
               <ul>
-              {% if page.source_url %}
+              {% if page.source_code %}
                 <li>
-                  <a href="{{ page.source_url }}">Code</a>
+                  <a href="{{ page.source_code }}">Code</a>
                 </li>
               {% endif %}
               {% if page.license_type %}

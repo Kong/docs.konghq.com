@@ -34,6 +34,8 @@ access to an Okta admin account and a
 [{{site.konnect_short_name}} admin account](/konnect/org-management/teams-and-roles),
 which you will access concurrently.
 
+Optionally, if you want to use team mappings, you must configure Okta to include group claims in the ID token. 
+
 Here are the steps you need to complete, in both Okta and
 {{site.konnect_short_name}}.
 First, complete the following in Okta:
@@ -53,25 +55,25 @@ back to Okta for details
 Create a new application in Okta to manage {{site.konnect_saas}} account integration.
 
 1. Sign in to your [Okta admin account](https://admin.okta.com/).
-1. From the left menu, select **Applications**, then **Create App Integration**.
+1. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
 1. Select the application type:
 
-    1. Under **Sign-in method**, select **OIDC - OpenID Connect**.
-    1. Under **Application Type**, select **Web Application**.
+    1. For the **Sign-in method**, select **OIDC - OpenID Connect**.
+    1. For the **Application Type**, select **Web Application**.
+    1. Click **Next**.
 
-1. Select **Next**. Configure the application:
-    1. Create a unique name for your application.
-    1. Under **Grant Type**, select **Authorization Code**.
-    1. In both the **Sign-in redirect URIs** and
-    **Sign-out redirect URIs** fields, enter: `https://cloud.konghq.com/login`
-    1. In the Assignments section, for **Controlled access**, choose your
+1. Configure the application:
+    1. In the **App integration name** box, enter a unique name for your application.
+    1. For the **Grant type**, ensure the **Authorization Code** checkbox is selected.
+    1. For both the **Sign-in redirect URIs** and
+    **Sign-out redirect URIs** boxes, enter: `https://cloud.konghq.com/login`
+    1. In the **Assignments** pane, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
 
-1. Save your settings to generate connection details.
+1. Click **Save**.
 
-    Leave this page open. You'll need the details here to configure your {{site.konnect_short_name}}
-    Cloud account.
+    Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
 ### Set up claims in Okta
 
@@ -81,24 +83,23 @@ claims to extract that information.
 
 1. Open your Okta account in a new browser tab.
 
-1. From the left menu, select **Security > API**.
+1. In the sidebar, select **Security > API**.
 
 1. Select the authorization server that you want to configure.
 
-1. Go to the Claims tab to configure the `groups` claim.
+1. Click the **Claims** tab to configure the `groups` claim.
 
+1. Click **ID**, then click **Add Claim**.
 
-1. In the **Claim type** menu, select **ID**, then select **Add Claim**.
-
-1. Configure a `Groups` claim by filling in the following fields:
+1. Configure a `groups` claim by filling in the following fields:
 
     Field | Value
     ---|---
     Name | `groups`
     Include in token type | ID token, Always
     Value type | Groups
-    Filter | Select **Matches regex** from the drop-down, then enter `.*` in the field
-    Include in | Choose **The following scopes** and select `openid`
+    Filter | Select **Matches regex** from the drop-down, then enter `.*` in the field.
+    Include in | Choose **The following scopes** and select `openid`, `email`, and `profile`. 
 
     This claim tells Okta to reference a subset of Okta groups.
     In this case, the wildcard (`.*`) value tells Okta to make all groups
@@ -110,40 +111,63 @@ claims to extract that information.
     cannot find them. An Okta administrator needs to duplicate those groups and
     re-create them directly in Okta. They can do this by exporting the group in
     question in CSV format, then importing the CSV file to populate the new group.
+    
+1. Click **Create**.
 
-1. Select **Create** to save.
-
-If you have problems setting up this claim, refer to the Okta documentation
+If you have problems setting up these claims, refer to the Okta documentation
 for troubleshooting:
 * [Adding a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/add-groups-claim-custom-as/)
 * [Adding a custom claim](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-custom-claim/)
 
+### Add a user to your application
+
+1. In the sidebar of your Okta account, click **Applications > Applications**.
+
+1. Select your {{site.konnect_short_name}} application.
+
+1. Click the **Assignments** tab.
+
+1. Click **Assign > Assign to People**, and then click **Assign** next to the name of the users you want to add.
+
+1. Optional: In the dialog, enter additional information about the user.
+
+1. Click **Save and Go Back**.
+
+1. Click **Done**.
+
 ### Test claims and find groups for mapping
 
-1. Open the **Token Preview** tab.
+1. In the sidebar of your Okta account, click **Security > API**.
 
-2. Select your client, set **Grant Type** to Authorization Code, and choose an
-Okta user to test the claim with.
+1. Select the authorization server that you want to configure.
 
-3. Set the scope to `openid`, then select **Preview Token**.
+1. Click the **Token Preview** tab.
 
-4. In the generated preview, check to make sure that the `groups`
+1. Enter your client in the **OAuth/OIDC client** box. This is the name you created previously for your Okta application.
+
+1. In the **Grant Type** menu, select **Authorization Code**.
+
+1. In the **User** menu, select an Okta user that is assigned to the {{site.konnect_short_name}} application to test the claim with.
+
+1. In the **Scope** box, enter `openid`, `email`, and `profile`.
+
+1. Click **Preview Token**.
+
+1. In the generated preview, ensure that the `groups`
 value is present.
 
-5. From the list of groups in the preview, identify groups that you want to use in
+1. From the list of groups in the preview, identify groups that you want to use in
 {{site.konnect_short_name}}. Take note of these groups.
 
 ## Set up {{site.konnect_short_name}}
 
 ### Provide Okta connection details
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-1. Open ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-**Settings**, then **Identity Management**.
-1. Select **Okta**.
+1. Click ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
+**Settings**, and then **Auth Settings**.
+1. Click **Configure provider** for **OIDC**.
 
-    Refer back to your Okta application to fill in the following fields.
-
-1. Locate your issuer URI in Okta.
+1. In Okta, locate your issuer URI.
     1. Go to **Security** > **API**.
     1. Copy the issuer URI for your authorization server. It should look
     something like this:
@@ -157,33 +181,37 @@ value is present.
         > Note: Do not use the issuer URI from your application's settings. That
         URI is incomplete: `https://example.okta.com`.
 
-1. Paste the issuer URI from Okta into the **Issuer URI** field in {{site.konnect_short_name}}.
-1. Copy and paste the **Client ID** and **Client Secret** from your Okta
+1. Paste the issuer URI from Okta in the **Issuer URI** box in {{site.konnect_short_name}}.
+
+1. In Okta, copy your client ID and client secret by going to **Applications > Applications** and selecting your {{site.konnect_short_name}} application. 
+
+1. Paste the **Client ID** and **Client Secret** from your Okta
 application into {{site.konnect_saas}}.
 
     See the [Okta developer documentation](https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/)
     to learn more about client credentials in Okta.
 
-1. For the **Organization Login Path**, enter a unique string
-(for example, `somepath`).
+1. In the **Organization Login Path** box, enter a unique string. For example: `examplepath`.
 
     {{site.konnect_short_name}} uses this string to generate a custom login
     URL for your organization.
 
     Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
-    If your desired path is already taken, you will need to choose another one.
+    If your desired path is already taken, you must to choose another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
-### Map teams to groups
+1. Click **Save**.
+
+### Map {{site.konnect_short_name}} teams to Okta groups
 
 By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
 Okta group membership.
 
 After mapping is set up:
-* Okta users belonging to the mapped groups can log into {{site.konnect_short_name}}.
+* Okta users belonging to the mapped groups can log in to {{site.konnect_short_name}}.
 * When a user logs into {{site.konnect_short_name}} with their Okta account
 for the first time,
 {{site.konnect_short_name}} automatically provisions an account with the
@@ -204,15 +232,18 @@ Any changes to the mapped Okta groups on the Okta side are reflected in
 * Moving a user from one group to another changes their team in {{site.konnect_short_name}}
 to align with the new group-to-team mapping.
 
-1. Referring to the [token preview](#test-claims-and-find-groups-for-mapping)
-in Okta, locate the Okta groups you want to map.
+1. Refer to the [token preview](#test-claims-and-find-groups-for-mapping)
+in Okta to locate the Okta groups you want to map.
 
     You can also locate a list of all existing groups by going to
-    **Directory > Groups** in Okta. However, be aware that not all of these
+    **Directory > Groups** in Okta. However, not all of these
     groups may be accessible by the `groups` claim. See the
     [claims](#set-up-claims-in-okta) setup step for details.
 
-1. Enter your Okta groups in the relevant fields.
+1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and do at least one of the following:
+
+    * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
+    * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
 
     Each {{site.konnect_short_name}} team can be mapped to **one** Okta group.
 
@@ -224,47 +255,25 @@ in Okta, locate the Okta groups you want to map.
 
     You must have at least one group mapped to save configuration changes.
 
-## Test and apply configuration
+1. Click **Save**.
 
-1. (Optional) Under **Logout Behavior**, enable Single Logout (SLO) by checking
-the box.
+## Test and apply the configuration
 
-    If this option is enabled, signing out from {{site.konnect_short_name}}
-    also signs users out of their Okta session.
+{:.important}
+> **Important:** Keep built-in authentication enabled while you are testing Okta authentication. Only disable built-in authentication after successfully testing Okta authentication.
 
-1. Select **Test Configuration** to make sure the configuration details are
-valid.
+You can test the Okta configuration by navigating to the login URI based on the Organization Login Path you set earlier. For example: `cloud.konghq.com/login/examplepath`. You will see the Okta sign in window if your configuration is set up correctly.
 
-    You must test configuration before saving. If you have filled out all
-    required fields but the **Save** button remains greyed out, run the test
-    first to enable saving.
-
-    When you test the configuration, {{site.konnect_short_name}} runs a connection check. If the
-    connection test succeeds, the page reloads and prints the message
-    `Configuration tested successfully`.
-
-    Any subsequent changes to the configuration require a test before saving.
-
-1. Save your changes, then confirm that you want to change your identity
-provider to Okta.
-
-    {:.warning}
-    > **Warning:** This change is irreversible. Once you switch to Okta, you
-    cannot revert to using native {{site.konnect_short_name}} authentication.
-
-1. {{site.konnect_short_name}} generates a login URI based on the Organization
-Login Path you set earlier. Copy this URI.
-
-   You can now manage your organization's user permissions entirely from the Okta
-   application.
+You can now manage your organization's user permissions entirely from the Okta
+application.
 
 ## Log in through Okta to test the integration
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
     If you ever need to find the path again, you can always find it under
     ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-     **Settings > Identity Management**, then copy **Organization Login URI**
-     from this page.
+     **Settings > Auth Settings**, then copy the **Organization Login URI**
+     and append it to `cloud.konghq.com/login/`.
 
 1. Paste the URI into a browser address bar. An Okta login page should appear.
 
@@ -281,24 +290,24 @@ admin account.
 1. In the left menu, select **Organization**.
 
     You should see a list of users in this org, including a new entry for the
-    previous user and the team that they were assigned.
+    previous user and the team that they were assigned to.
 
 ## (Optional) Enable {{site.konnect_saas}} as a dashboard app in Okta
 
 If you want your users to have easy access to {{site.konnect_saas}} alongside their other apps,
 you can add it to your Okta dashboard.
 
-1. Sign in to your [Okta admin account](https://admin.okta.com/).
-1. Select **Applications**, then open your {{site.konnect_saas}} Okta application.
-1. Scroll to **General Settings** and select **Edit**.
-1. In the **Application** section, set **Grant type** to `Implicit (Hybrid)`.
+1. Log in to your [Okta admin account](https://admin.okta.com/).
+1. Click **Applications > Applications**, then select your {{site.konnect_saas}} Okta application.
+1. On **General** tab, click **Edit** for the **General Settings** pane.
+1. In the **Application** section, click the **Implicit (hybrid)** checkbox for the **Grant type**.
 1. In the **Login** section:
-    1. Set **Login Initiated by** to `Either Okta or App`.
-    1. Set **Application Visibility** to `Display application icon to users`
-    1. Set **Initiate login URI** to your organization's login URI. You can
-    find the URI in {{site.konnect_saas}} under
+    1. In the **Login Initiated by** menu, select **Either Okta or App**.
+    1. For the **Application Visibility**, click the **Display application icon to users** checkbox.
+    1. In the **Initiate login URI** box, enter your organization's login URI. You can
+    find the URI in {{site.konnect_saas}} by going to
     **Settings** > **Identity Management**.
-1. Select **Save**.
+1. Click **Save**.
 
 ## Okta reference docs
 * [Build an Okta SSO integration](https://developer.okta.com/docs/guides/build-sso-integration/openidconnect/overview/)

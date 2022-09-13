@@ -1,7 +1,6 @@
 ---
 name: Session
 publisher: Kong Inc.
-version: 2.4.x
 desc: Support sessions for Kong Authentication Plugins.
 description: |
   The Kong Session Plugin can be used to manage browser sessions for APIs proxied
@@ -15,28 +14,11 @@ description: |
 type: plugin
 categories:
   - authentication
-source_url: 'https://github.com/Kong/kong-plugin-session'
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: session
   service_id: true
@@ -54,7 +36,12 @@ params:
       value_in_examples: opensesame
       datatype: string
       encrypted: true
-      description: The secret that is used in keyed HMAC generation.​
+      description: |
+        The secret that is used in keyed HMAC generation.​
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: cookie_name
       required: false
       default: '`session`'
@@ -174,7 +161,7 @@ For usage with [Key Auth] plugin
    mockbin.org, which echoes the request:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/services/ \
      --data 'name=example-service' \
      --data 'url=http://mockbin.org/request'
@@ -183,7 +170,7 @@ For usage with [Key Auth] plugin
    Add a route to the Service:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/services/example-service/routes \
      --data 'paths[]=/sessions-test'
    ```
@@ -196,7 +183,7 @@ For usage with [Key Auth] plugin
    Issue the following cURL request to add the key-auth plugin to the Service:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/services/example-service/plugins/ \
      --data 'name=key-auth'
    ```
@@ -209,7 +196,7 @@ For usage with [Key Auth] plugin
    plugin is properly configured on the Service:
 
    ```bash
-   $ curl -i -X GET \
+   curl -i -X GET \
      --url http://localhost:8000/sessions-test
    ```
 
@@ -223,7 +210,7 @@ For usage with [Key Auth] plugin
    the following request:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/consumers/ \
      --data "username=anonymous_users"
    ```
@@ -233,7 +220,7 @@ For usage with [Key Auth] plugin
    Now create a consumer that authenticates via sessions:
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/consumers/ \
      --data "username=fiona"
    ```
@@ -241,7 +228,7 @@ For usage with [Key Auth] plugin
 1. Provision `key-auth` credentials for your Consumer
 
    ```bash
-   $ curl -i -X POST \
+   curl -i -X POST \
      --url http://localhost:8001/consumers/fiona/key-auth/ \
      --data 'key=open_sesame'
    ```
@@ -249,11 +236,11 @@ For usage with [Key Auth] plugin
 1. Enable anonymous access
 
    You can now re-configure the key-auth plugin to permit anonymous access by
-   issuing the following request (**replace the uuids below with the `id` value
+   issuing the following request (**replace the UUIDs below with the `id` value
    from previous steps**):
 
    ```bash
-   $ curl -i -X PATCH \
+   curl -i -X PATCH \
      --url http://localhost:8001/plugins/<your-key-auth-plugin-id> \
      --data "config.anonymous=<anonymous_consumer_id>"
    ```
@@ -261,10 +248,10 @@ For usage with [Key Auth] plugin
 1. Add the Kong Session plugin to the service
 
    ```bash
-   $ curl -X POST http://localhost:8001/services/example-service/plugins \
-       --data "name=session"  \
-       --data "config.storage=kong" \
-       --data "config.cookie_secure=false"
+   curl -X POST http://localhost:8001/services/example-service/plugins \
+     --data "name=session"  \
+     --data "config.storage=kong" \
+     --data "config.cookie_secure=false"
    ```
 
    > Note: cookie_secure is true by default, and should always be true, but is set to
@@ -276,11 +263,11 @@ For usage with [Key Auth] plugin
    authentication credentials, enable the Request Termination plugin.
 
    ```bash
-   $ curl -X POST http://localhost:8001/services/example-service/plugins \
-       --data "name=request-termination"  \
-       --data "config.status_code=403" \
-       --data "config.message=So long and thanks for all the fish!" \
-       --data "consumer.id=<anonymous_consumer_id>"
+   curl -X POST http://localhost:8001/services/example-service/plugins \
+     --data "name=request-termination"  \
+     --data "config.status_code=403" \
+     --data "config.message=So long and thanks for all the fish!" \
+     --data "consumer.id=<anonymous_consumer_id>"
    ```
 
 ### Set up Without a Database
@@ -332,8 +319,8 @@ plugins:
 1. Check that Anonymous requests are disabled:
 
    ```bash
-     $ curl -i -X GET \
-       --url http://localhost:8000/sessions-test
+   curl -i -X GET \
+     --url http://localhost:8000/sessions-test
    ```
 
    Should return `403`.
@@ -341,7 +328,7 @@ plugins:
 2. Verify that a user can authenticate via sessions
 
    ```bash
-   $ curl -i -X GET \
+   curl -i -X GET \
      --url http://localhost:8000/sessions-test?apikey=open_sesame
    ```
 
@@ -357,9 +344,9 @@ plugins:
    Use it like this:
 
    ```bash
-     $ curl -i -X GET \
-       --url http://localhost:8000/sessions-test \
-       -H "cookie:session=emjbJ3MdyDsoDUkqmemFqw..|1544654411|4QMKAE3I-jFSgmvjWApDRmZHMB8."
+   curl -i -X GET \
+     --url http://localhost:8000/sessions-test \
+     -H "cookie:session=emjbJ3MdyDsoDUkqmemFqw..|1544654411|4QMKAE3I-jFSgmvjWApDRmZHMB8."
    ```
 
    This request should succeed and the `Set-Cookie` response header does not appear
@@ -372,7 +359,7 @@ plugins:
 
 4. Navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`
 
-   It should return `200` and authenticated via `key-auth` key query param.
+   It should return `200` and authenticated via `key-auth` key query parameter.
 
 5. Navigate to `http://localhost:8000/sessions-test`
 
@@ -410,20 +397,20 @@ plugins, it also sets `authenticated_groups` associated headers.
 
 The Session plugin extends the functionality of [lua-resty-session] with its own
 session data storage adapter when `storage=kong`. This stores encrypted
-session data into the current database strategy and the cookie does not contain 
-any session data. Data stored in the database is encrypted and the cookie contains only 
-the session id, expiration time, and HMAC signature. Sessions use the built-in Kong 
-DAO `ttl` mechanism that destroys sessions after specified `cookie_lifetime` unless renewal 
+session data into the current database strategy and the cookie does not contain
+any session data. Data stored in the database is encrypted and the cookie contains only
+the session id, expiration time, and HMAC signature. Sessions use the built-in Kong
+DAO `ttl` mechanism that destroys sessions after specified `cookie_lifetime` unless renewal
 occurs during normal browser activity. Log out the application via XHR request
 (or something similar) to manually handle the redirects.
 
 ## Logging Out
 
 It is typical to provide users the ability to log out (i.e., to manually destroy) their
-current session. Logging out is possible with either query params or `POST` params in
+current session. Logging out is possible with either query parameters or `POST` parameters in
 the request URL. The config's `logout_methods` allows the plugin to limit logging
 out based on the HTTP verb. When `logout_query_arg` is set, it checks the
-presence of the URL query param specified, and likewise when `logout_post_arg`
+presence of the URL query parameter specified, and likewise when `logout_post_arg`
 is set, it checks the presence of the specified variable in the request body.
 Allowed HTTP verbs are `GET`, `DELETE`, and `POST`. When there is a session
 present and the incoming request is a logout request, the Kong Session plugin
@@ -444,7 +431,7 @@ _not_ a problem during session renewal period as renew happens in `access` phase
 
 ## Changelog
 
-### 2.4.5
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.secret` parameter value will be encrypted.

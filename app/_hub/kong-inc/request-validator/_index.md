@@ -1,7 +1,6 @@
 ---
 name: Request Validator
 publisher: Kong Inc.
-version: 1.3-x
 desc: Validates requests before they reach the Upstream service
 description: |
   Validate requests before they reach their Upstream service. Supports validating
@@ -14,18 +13,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: request-validator
   service_id: true
@@ -371,7 +359,7 @@ In this example, use the plugin to validate a request's path parameter.
 
     ```
     curl -i -X POST http://kong:8001/services/httpbin/routes \
-      --data paths="/status/(?<status_code>\d%+)" \
+      --data paths="~/status/(?<status_code>\d%+)" \
       --data strip_path=false
 
     HTTP/1.1 201 Created

@@ -18,7 +18,7 @@ description: |
 
 support_url: https://github.com/tom-smith-okta/okta-api-center/issues
 
-source_url: https://github.com/tom-smith-okta/okta-api-center/tree/master/gateways/kong
+source_code: https://github.com/tom-smith-okta/okta-api-center/tree/master/gateways/kong
 
 kong_version_compatibility:
     community_edition:

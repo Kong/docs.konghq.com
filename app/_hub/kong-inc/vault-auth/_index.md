@@ -79,9 +79,13 @@ In order to use the plugin, you first need to create a Consumer to associate one
 You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/ \
-    --data "username=<USERNAME>" \
-    --data "custom_id=<CUSTOM_ID>"
+curl -X POST http://kong:8001/consumers/ \
+  --data "username=<USERNAME>" \
+  --data "custom_id=<CUSTOM_ID>"
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 
 {
@@ -111,13 +115,13 @@ service, you must add the new consumer to an allowed group. See
 A Vault object represents the connection between Kong and a Vault server. It defines the connection and authentication information used to communicate with the Vault API. This allows different instances of the `vault-auth` plugin to communicate with different Vault servers, providing a flexible deployment and consumption model.
 
 Vault objects require setting a `vault_token` attribute. This attribute is _referenceable_, which means it can be securely stored as a
-[secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+[secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
 Vault objects can be created via the following HTTP request:
 
 ```bash
-$ curl -X POST http://localhost:8001/vault-auth \
+curl -X POST http://localhost:8001/vault-auth \
   --header 'Content-Type: multipart/form-data' \
   --form name=kong-auth \
   --form mount=kong-auth \
@@ -127,7 +131,7 @@ $ curl -X POST http://localhost:8001/vault-auth \
   --form vault_token=<token>
 ```
 
-```bash
+```json
 HTTP/1.1 201 Created
 
 {
@@ -152,7 +156,11 @@ This assumes a Vault server is accessible via `127.0.0.1:8200`, and that a versi
 Token pairs can be managed either via the Kong Admin API, or independently via direct access with Vault. Token pairs must be associated with an existing Kong Consumer. Creating a token pair with the Kong Admin API can be done via the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/vault-auth/{vault}/credentials/{consumer}
+curl -X POST http://kong:8001/vault-auth/{vault}/credentials/{consumer}
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 
 {
@@ -175,9 +183,13 @@ When the `access_token` or `secret_token` values are not provided, token values 
 Vault objects are treated as foreign references in plugin configs, creating a seamless lifecycle relationship between Vault instances and plugins with which they're associated. `vault-auth` plugins require an association with a Vault object, which can be defined with the following HTTP request during plugin creation:
 
 ```bash
-$ curl -X POST http://kong:8001/plugins \
+curl -X POST http://kong:8001/plugins \
   --data name=vault-auth \
   --data config.vault.id=<uuid>
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 
 {
@@ -211,15 +223,15 @@ Where `<uuid>` is the `id` of an existing Vault object.
 Simply make a request with the `access_token` and `secret_token` as querystring parameters:
 
 ```bash
-$ curl http://kong:8000/{proxy path}?access_token=<access token>&secret_token=<secret token>
+curl http://kong:8000/{proxy path}?access_token=<access token>&secret_token=<secret token>
 ```
 
 Or in a header:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    -H 'access_token: <access_token>' \
-    -H 'secret_token: <secret_token>'
+curl http://kong:8000/{proxy path} \
+  -H 'access_token: <access_token>' \
+  -H 'secret_token: <secret_token>'
 ```
 
 ### Deleting an Access/Secret Token Pair
@@ -227,8 +239,11 @@ $ curl http://kong:8000/{proxy path} \
 Existing Vault credentials can be removed from the Vault server via the following API:
 
 ```bash
-$ curl -X DELETE http://kong:8001/vault-auth/{vault}/credentials/token/{access token}
+curl -X DELETE http://kong:8001/vault-auth/{vault}/credentials/token/{access token}
+```
 
+Response:
+```
 HTTP/1.1 204 No Content
 ```
 
@@ -258,7 +273,7 @@ Additional fields within the secret are ignored. The key must be the `access_tok
 `vault-auth` token pairs can be created with the Vault HTTP API or the `vault write` command:
 
 ```bash
-$ vault write kong-auth/foo - <<EOF
+vault write kong-auth/foo - <<EOF
 {
   "access_token": "foo",
   "secret_token": "supersecretvalue",
@@ -270,6 +285,7 @@ $ vault write kong-auth/foo - <<EOF
 EOF
 ```
 
+---
 
 ## Changelog
 
@@ -281,8 +297,8 @@ EOF
 
 * The `vaults.vault_token` form field is now marked as
 referenceable, which means it can be securely stored as a
-[secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+[secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `2.7.x`, `2.1.x`, `1.5.x`, `1.3-x`, `0.36-x`, and `0.35-x`.

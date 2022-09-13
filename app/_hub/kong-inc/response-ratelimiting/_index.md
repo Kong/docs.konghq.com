@@ -110,7 +110,7 @@ params:
       description: 'The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.'
     - name: policy
       required: false
-      default: '`cluster`'
+      default: '`local`'
       value_in_examples: local
       datatype: string
       description: |
@@ -150,14 +150,24 @@ params:
       datatype: integer
       description: 'When using the `redis` policy, this property specifies the port of the Redis server.'
     - name: redis_username
+      minimum_version: "2.8.x"
       required: false
       datatype: string
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: redis_password
       required: false
       datatype: string
-      description: 'When using the `redis` policy, this property specifies the password to connect to the Redis server.'
+      description: |
+        When using the `redis` policy, this property specifies the password to connect to the Redis server.
+
+        This field is _referenceable_, which means it can be securely stored as a
+        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: redis_timeout
       required: false
       default: '`2000`'
@@ -234,9 +244,6 @@ X-RateLimit-Remaining-Images: 0
 ---
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 2.0.1)
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis_username` configuration parameter.
-* Fixed plugin versions in the documentation. Previously, the plugin versions
-were labelled as `0.1-x` and `1.0-x`. They are now updated to align with the
-plugin's actual versions, `1.0.x` and `2.0.x`.

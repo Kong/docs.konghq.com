@@ -8,7 +8,7 @@ desc: Kong middleware to transform requests / responses, using pre-configured te
 description: |
     This is Kong plugins that accepts requests and response templates to completely transform requests and responses with Lua templates.
 support_url: https://github.com/stone-payments/kong-plugin-template-transformer/issues
-source_url:  https://github.com/stone-payments/kong-plugin-template-transformer
+source_code:  https://github.com/stone-payments/kong-plugin-template-transformer
 license_type: Apache-2.0
 license_url: https://github.com/stone-payments/kong-plugin-template-transformer/blob/master/LICENSE
 

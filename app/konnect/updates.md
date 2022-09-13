@@ -10,7 +10,36 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services.
 
-## August  2022
+## September 2022
+
+### 2022.09.09
+
+**{{site.base_gateway}} 3.0.0.0 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 3.0.0.0 runtimes.
+You can keep using existing 2.8.x runtimes, or you can upgrade to
+3.0.0.0 to take advantage of any new features, updates, and bug fixes.
+
+: With this major release, {{site.base_gateway}} introduces many new features, including:
+* Five new plugins, including WebSocket validation support, TLS connection customization, and OpenTelemetry
+* A new expression-based router
+* Dynamic plugin ordering through declarative configuration
+* Slim and UBI Docker images
+and much more.
+
+: **3.0.0.0 is a major release**. This means that it contains breaking changes and incompatibilities with 2.x versions.
+Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-deprecations) before upgrading to 3.0.
+: In particular, note the following:
+* **Changes to regex route path format**: 3.0 has a new router. To make sure your existing routes work in 3.0, add a `~` to any regex routes. Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+* **Limitations** ({{site.konnect_short_name}} only): [Secrets management](/gateway/latest/kong-enterprise/secrets-management/) and [consumer groups](/gateway/latest/kong-enterprise/consumer-groups/) are not yet supported in {{site.konnect_saas}}.
+
+
+: For all the changes and new features in {{site.base_gateway}} 3.0.0.0, see the
+[changelog](/gateway/changelog/#3000).
+
+: To use any new features in the release,
+[start up a new 3.0.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
+
+## August 2022
 
 ### 2022.08.31
 

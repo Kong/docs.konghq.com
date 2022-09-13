@@ -7,7 +7,7 @@ chapter: 7
 ## Introduction
 
 Your plugin may need to frequently access custom entities (explained in the
-[previous chapter]({{page.book.previous}})) on every request and/or response.
+[previous chapter]({{page.book.previous.url}})) on every request and/or response.
 Usually, loading them once and caching them in-memory dramatically improves
 the performance while making sure the datastore is not stressed with an
 increased load.
@@ -339,11 +339,7 @@ Kong to setup their APIs and plugins. It is likely that they also need to be
 able to interact with the custom entities you implemented for your plugin (for
 example, creating and deleting API keys). The way you would do this is by
 extending the Admin API, which we will detail in the next chapter:
-[Extending the Admin API]({{page.book.next}}).
-
----
-
-Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
+[Extending the Admin API]({{page.book.next.url}}).
 
 [Admin API]: /enterprise/{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /enterprise/{{page.kong_version}}/pdk

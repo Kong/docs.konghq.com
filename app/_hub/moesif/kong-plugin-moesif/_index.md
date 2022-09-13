@@ -25,7 +25,7 @@ description: |
 
 support_url: https://www.moesif.com/implementation/log-http-calls-from-kong-api-gateway?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
-source_url: https://github.com/Moesif/kong-plugin-moesif
+source_code: https://github.com/Moesif/kong-plugin-moesif
 
 license_url: https://raw.githubusercontent.com/Moesif/kong-plugin-moesif/master/LICENSE
 

@@ -1,6 +1,4 @@
-const { test, expect } = require("@playwright/test");
-
-test.describe("Edit this page link", () => {
+describe("Edit this page link", () => {
   [
     {
       title: "/app/ page",
@@ -19,7 +17,7 @@ test.describe("Edit this page link", () => {
       title: "/app/ page /latest/",
       src: "/gateway/latest/",
       expected:
-        "https://github.com/Kong/docs.konghq.com/edit/main/app/gateway/2.8.x/index.md",
+        "https://github.com/Kong/docs.konghq.com/edit/main/src/gateway/index.md",
     },
     {
       title: "Single Sourced /latest/",
@@ -28,10 +26,9 @@ test.describe("Edit this page link", () => {
         "https://github.com/Kong/docs.konghq.com/edit/main/src/deck/index.md",
     },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      const s = await page.locator(".github-links a").first();
-      await expect(await s.getAttribute("href")).toEqual(t.expected);
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src)
+      expect($(".github-links a").first().attr("href")).toBe(t.expected);
     });
   });
 });

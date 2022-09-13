@@ -111,10 +111,6 @@ master each one of them.
 The [Key-Auth plugin] is an example of plugin with this file structure.
 See [its source code] for more details.
 
----
-
-Next: [Write custom logic &rsaquo;]({{page.book.next}})
-
 [api.lua]: {{page.book.chapters.admin-api}}
 [daos.lua]: {{page.book.chapters.custom-entities}}
 [handler.lua]: {{page.book.chapters.custom-logic}}
