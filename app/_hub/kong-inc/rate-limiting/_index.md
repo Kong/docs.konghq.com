@@ -96,7 +96,7 @@ params:
         For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
         `redis`, or `local` for data planes only.
 
-        In {{site.konnect_short_name}}, the default policy is `redis`.
+        In Konnect, the default policy is `redis`.
 
         For details on which policy should be used, refer to the
         [implementation considerations](#implementation-considerations).

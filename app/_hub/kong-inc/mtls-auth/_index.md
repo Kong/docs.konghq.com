@@ -199,7 +199,7 @@ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 ```
 {% endnavtab %}
 
-{% navtab {{site.konnect_short_name}} %}
+{% navtab Konnect %}
 
 Go through the Runtime Manager:
 1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Runtime Manager**.
