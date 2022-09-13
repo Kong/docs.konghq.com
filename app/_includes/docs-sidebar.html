@@ -33,7 +33,7 @@
           <a href="/enterprise/1.5.x/" {% if include.edition == 'enterprise' %}class="active"{% endif %}>Kong Enterprise [ARCHIVE]</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>
-          <a href="/gateway-oss/1.5.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS [ARCHIVE]</a>
+          <a href="/gateway-oss/2.0.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS [ARCHIVE]</a>
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="https://docs.konghq.com/gateway/">Latest Kong Gateway <br>documentation</a>
@@ -111,7 +111,7 @@
           </a>
         </li>
         {% endfor %}
-        {% if include.edition == 'gateway' %}
+        <!-- {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
           <a href="/enterprise/2.5.x/">
             Older Enterprise versions (2.1-2.5)
@@ -122,7 +122,7 @@
             Older OSS versions (2.1-2.5)
           </a>
         </li>
-        {% endif %}
+        {% endif %} -->
 
         <!-- {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
         <li role="menuitem" tabindex="-1">
