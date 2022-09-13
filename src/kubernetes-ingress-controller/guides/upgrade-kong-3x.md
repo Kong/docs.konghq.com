@@ -82,10 +82,6 @@ non-regular expression paths. If you have existing Ingresses with regular
 expression paths, those paths will no longer be routed correctly if you upgrade
 to 3.x without updating configuration.
 
-The preferred option for configuring regular expression Ingress rules for Kong
-3.x is to add the `~` prefix to Ingress rules directly. However, this is not
-compatible with Kong 2.x, and therefore cannot be easily done prior to the 3.x
-upgrade.
 
 To smooth the migration process and allow users to update rules gradually, KIC
 2.6 includes an option to continue applying the 2.x regular expression
