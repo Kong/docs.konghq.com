@@ -125,6 +125,8 @@ items:
         url: /guides/preserve-client-ip
       - text: Using Gateway API
         url: /guides/using-gateway-api
+      - text: Using Kong with Knative
+        url: /guides/using-kong-with-knative
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:
