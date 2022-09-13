@@ -3,78 +3,45 @@ title: Manage Developer Access
 no_version: true
 content-type: reference
 ---
-{% konnect_icon connections %} **Connections** manages Dev Portal registration requests and developer accounts.
-The **Connections** section contains three pages to help you manage different aspects of the Dev Portal:
-* The **Requests** page has options to manage developer and application registration requests.
-* The **Developers** page has options to manage access to your Dev Portal for individual developers.
+
+In the {% konnect_icon dev-portal %} **Dev Portal** section, there are three ways to manage access and authorization settings for the Dev Portal: 
+* The **Access Requests** page lists developer registration and application registration requests.
+* The **Developers** page lists developers who have requested access to the Dev Portal, along with the developer's current status and associated applications.
 * The **Applications** page lists applications and their statuses.
 
 To allow automatic approval of developer registration requests,
 enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps).
 
-## Requests page
+## Access Requests page
 
-The **Requests** page is available by clicking {% konnect_icon connections %} **Connections**, from the {{site.konnect_short_name}} navigation menu. On the **Requests** page, you can manage registration requests for developers by clicking the **Developers** tab, and application requests by clicking the **Applications** tab.
+The **Access Requests** page is available by clicking {% konnect_icon dev-portal %} **Dev Portal**, from the {{site.konnect_short_name}} navigation menu. On the **Access Requests** page, you can manage registration requests for developers using the **Developers** tab, and application requests using the **Applications** tab. When auto-approve is disabled, all registration requests must be manually approved from the **Access Requests** page. 
 
-### Approve access request {#approve-dev-reg}
+### Manage developer access requests {#approve-dev-reg}
 
-When auto-approve is not enabled, developers registering for the Dev Portal must be manually approved. All pending developer requests are displayed in the **Developers** tab within the **Requests** section. The number of pending requests is displayed in the Developers tab. If there are no pending requests, a `No Developer Requests` message is displayed.
+All pending developer requests are displayed in the **Developers** tab in the **Access Requests** section.
 
-From the **Developers** page, approve a developer's registration request:
+To approve or reject an access requests, go to the **Developers** page:
 
-1. Find the developer request you want to approve.
+1. Find the developer request you want to view.
 
-2.  Click the {% konnect_icon cogwheel %} icon and choose
-   **Approve** from the context menu.
+2. Click the {% konnect_icon cogwheel %} icon and choose
+   **Approve**, **Reject**, or **Delete** from the menu.
 
-The status is updated from **Pending** to **Approved**. The developer
-is now visible in the **Developers** page and is no longer shown in the **Requests** section.
+The three options available are defined below: 
 
-### Reject access request {#reject-dev-reg}
+* **Approve** - The developer access request is approved. The developer is able to log in to the Dev Portal. The developer is now visible from the **Developers** page in {{site.konnect_short_name}}. 
+* **Reject** - The developer access request is rejected. Rejected developers are removed from the requests list. The developer is unable to submit another registration request.
+* **Delete** - The developer access request is deleted. A developer can submit another registration request. To prevent a developer from submitting requests, you must [revoke](#revoke-dev-access) access.
 
-You can to reject a developer's request to register to the Dev Portal. Rejecting a developer will prevent them from accessing the Dev Portal. You can reject an registration request from the **Developers** tab. 
+## Developers page
 
-To reject a developer's registration request, from the **Developers** tab follow these steps: 
+From this page, you can manage users who have already been approved and are actively using the Dev Portal. 
 
-1.  Find the request you want to reject.
-
-2.  In the row for developer request you want to reject, click the {% konnect_icon cogwheel %} icon and choose
-   **Reject** from the context menu.
-
-   The status is updated to **Rejected**. You can
-   let the rejected request remain on the requests page or
-   [delete](#delete-dev-reg) it.
-
-A developer whose request was rejected will have to use a different email address to register for the Dev Portal.
-If a rejected request is deleted, the developer can re-register with the same email address.
-
-{:.note}
-> **Note:** Rejecting a request is a permanent action. Rejected requests cannot be approved once rejected. 
-
-### Delete access request {#delete-dev-reg}
-
-You can delete a developer's access request. This action cannot be undone. 
-
-To delete an access request from the **Developers** tab, follow these steps: 
-
-1. Find the developer request you want to delete.
-
-2. In the row for developer request you want to delete, click the {% konnect_icon cogwheel %} icon and choose
-   **Delete** from the context menu.
-
-{:.important}
-> **Important:** Deleting an access request does not prevent a user from submitting another access request.
-To prevent a user from submitting requests, you must [revoke](#revoke-dev-access) access.
-
-### Revoke a developer's access {#revoke-dev-access}
+### Revoke access {#revoke-dev-access}
 
 Revoking access prevents a developer from signing up for access again with the same
 email address, unless the revoked request is deleted. Reasons for revoking a developer can include
 violations of your organization's policies or other nefarious reasons.
-
-A developer who has been revoked can be
-[approved again](#approve-revoked-dev-access) at any time. You can also
-[delete a developer](#delete-dev) entirely from the {{site.konnect_short_name}} Portal.
 
 To revoke a developer's access, from the **Developers** page, follow these steps:
 
@@ -82,15 +49,7 @@ To revoke a developer's access, from the **Developers** page, follow these steps
 2. Click the {% konnect_icon cogwheel %} icon and choose **Revoke** from the
    context menu.
 
-### Approve a revoked developer again {#approve-revoked-dev-access}
-
-A developer whose access was revoked can be re-approved
-at your discretion.
-To re-approve a revoked developer, navigate to the **Developers** page, and follow these steps: 
-
-1. Find the developer whose status you want to change.
-2. In the row for the developer whose status you want to change, click the {% konnect_icon cogwheel %} icon and choose **Approve** from the
-   context menu.
+This action can be undone by clicking the {% konnect_icon cogwheel %} and choosing **Approve**.
 
 ### Delete a developer {#delete-dev}
 
@@ -102,21 +61,15 @@ To delete a developer, navigate to the **Developers** page, and follow these ste
 2. In the row for the developer you want to delete, click the {% konnect_icon cogwheel %} icon and choose **Delete** from the
    context menu.
 
-## Developer status {#status}
+### Developers page statuses
 
 A status represents the state of developers and their access to the {{site.konnect_short_name}} Dev Portal.
 
-This list represents all of the statuses a developer's request can be in:
+This list represents all of the statuses an approved developer can be in:
 
 **Approved**
 : A developer has been approved to access the {{site.konnect_short_name}} Dev Portal. Approved developers
    can generate credentials and access all APIs that allow those credentials.
-
-**Pending**
-: A developer who has requested access but has not yet had their request reviewed by a {{site.konnect_short_name}} admin.
-
-**Rejected**
-: A developer who has had their developer access request rejected by a {{site.konnect_short_name}} admin.
 
 **Revoked**
 : A developer who had prior access to the {{site.konnect_short_name}} Dev Portal but has since had

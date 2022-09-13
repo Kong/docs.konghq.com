@@ -61,7 +61,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 **Download option to all reports**
 
-: We have introduced an "Export" option to all reports inside the overview page in Analytics. Exporting a report downloads an unpivoted CSV to your local machine that can be used for offline analysis.
+: We have introduced an "Export" option to all reports inside the overview page in Vitals. Exporting a report downloads an unpivoted CSV to your local machine that can be used for offline analysis.
 
 ## July 2022
 
@@ -145,7 +145,7 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 : Vitals custom reports are now available for Plus and Enterprise tiers.
 Through the Vitals menu, you can create custom reports to track API requests for services, routes, and applications.
 
-: See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
+: See the [custom reports documentation](/konnect/analytics/generate-reports) for more information.
 
 **Custom plugin requirements have changed**
 : Some custom plugin limitations have changed or been removed.

@@ -22,7 +22,7 @@ for a specified time frame but you can't export a route traffic report through
 Service Hub.
 
 If you want to combine multiple services, routes, or applications in one report,
-see [custom reports](/konnect/vitals/generate-reports/).
+see [custom reports](/konnect/analytics/generate-reports/).
 
 ## Analyze services
 
@@ -120,9 +120,9 @@ class and count.
     * **Time format:** The default time format depends on your local system time.
     Set to UTC for Coordinated Universal Time.
     * **Display type:** Choose the first icon
-    ( {% konnect_icon vitals-bargraph %} )
+    ( {% konnect_icon analytics-bargraph %} )
     for a vertical bar graph, or the second icon
-    ( {% konnect_icon vitals-horizontal %} )
+    ( {% konnect_icon analytics-horizontal %} )
     for a horizontal line chart.
 
     By default, the graph displays data for the last six hours.
@@ -132,4 +132,4 @@ class and count.
 In this topic, you viewed the health and monitoring information for individual
 services, service versions, and routes.
 
-For reports comparing multiple {{site.konnect_short_name}} entities, see [custom reports](/konnect/vitals/generate-reports/).
+For reports comparing multiple {{site.konnect_short_name}} entities, see [custom reports](/konnect/analytics/generate-reports/).
