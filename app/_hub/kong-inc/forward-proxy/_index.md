@@ -127,25 +127,19 @@ params:
       default: null
       value_in_examples: example_user
       datatype: string
+      referenceable: true
       description: |
         The username to authenticate with, if the forward proxy is protected
         by basic authentication.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: auth_password
       required: false
       default: null
       value_in_examples: example_pass
       datatype: string
+      referenceable: true
       description: |
         The password to authenticate with, if the forward proxy is protected
         by basic authentication.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: https_verify
       required: true
       default: false

@@ -68,12 +68,9 @@ params:
       default: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         Username for SASL authentication.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: authentication.password
       required: false
       value_in_examples: admin-secret
@@ -81,12 +78,9 @@ params:
       default: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         Password for SASL authentication.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: authentication.tokenauth
       required: false
       value_in_examples: false

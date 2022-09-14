@@ -92,7 +92,14 @@ breadcrumbs:
         </td>
         <td>
           <br>{{ field.description | markdownify }}
-          <p>{% if field.encrypted == true %}If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.{% endif %}</p>
+          {% if field.encrypted == true %}<p>If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.</p>{% endif %}
+          {% if field.referenceable == true %}
+          <p>
+            This field is <em>referenceable</em>, which means it can be securely stored as a
+            <a href="/gateway/latest/kong-enterprise/secrets-management/">secret</a>
+            in a vault. References must follow a <a href="/gateway/latest/kong-enterprise/secrets-management/reference-format/">specific format</a>.
+          </p>
+          {% endif %}
         </td>
       </tr>
       {% endif %}
