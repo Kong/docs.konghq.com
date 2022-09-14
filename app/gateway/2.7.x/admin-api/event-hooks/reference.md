@@ -10,7 +10,7 @@ reloaded.
 {% include_cached /md/enterprise/event-hooks-intro.md %}
 
 {:.note}
-> **Note:** Event hooks do not work with Konnect Cloud yet.
+> **Note:** Event hooks do not work with {{site.konnect_short_name}} yet.
 
 ## List all event hooks
 

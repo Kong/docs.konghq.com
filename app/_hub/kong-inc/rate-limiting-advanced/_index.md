@@ -117,7 +117,7 @@ params:
         In DB-less and hybrid modes, the `cluster` config strategy
         is not supported.
 
-        In Konnect Cloud, the default strategy is `redis`.
+        In Konnect, the default strategy is `redis`.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -143,7 +143,7 @@ params:
         the plugin enablement if `cluster` strategy is set with DB-less
         or hybrid mode.
 
-        In Konnect Cloud, the default strategy is `redis`.
+        In Konnect, the default strategy is `redis`.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).

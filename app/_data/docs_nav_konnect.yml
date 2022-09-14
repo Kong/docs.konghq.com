@@ -35,7 +35,7 @@
           url: /getting-started/publish-service
         - text: Register Applications
           url: /getting-started/app-registration
-    - text: Import Kong Gateway Entities into Konnect Cloud
+    - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import
 
 - title: Runtime Manager
@@ -220,7 +220,7 @@
           url: /legacy/deployment/network
         - text: Network Resiliency and Availability
           url: /legacy/deployment/network-resiliency
-        - text: Migrate from Kong Gateway to Konnect Cloud
+        - text: Migrate from Kong Gateway to Kong Konnect
           url: /legacy/migrate
 
     - text: Getting Started
@@ -234,7 +234,7 @@
               url: /legacy/getting-started/configure-service
             - text: Implement and Test the Service
               url: /legacy/getting-started/implement-service
-        - text: Manage Konnect Cloud with decK
+        - text: Manage Konnect with decK
           url: /legacy/getting-started/declarative-config
 
     - text: ServiceHub

@@ -21,7 +21,7 @@ description: |
   > **Notes:**
   > * In the response context the entire body must be buffered to be processed. This requirement also
   implies that the `Content-Length` header will be dropped if present, and the body transferred with chunked encoding.
-  > * To use this plugin in Konnect Cloud,
+  > * To use this plugin in Konnect,
     [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
     v2.6.0.0.
 
