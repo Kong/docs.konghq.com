@@ -15,15 +15,15 @@ All categories measure trends by comparing metrics across fixed comparable time 
 The following describes the different metrics that display on this dashboard: 
 
 * **Traffic**: This displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval.
-    * Successful requests contain all requests that returned a **1xx-3xx** status code.
-    * Failed requests contain all requests that returned a **4xx-5xx** status code.
+    * Successful requests include all requests that returned a **1xx-3xx** status code.
+    * Failed requests include all requests that returned a **4xx-5xx** status code.
     * Custom 6xx status codes are not tracked.
 
 * **Errors**: This displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
-* **Gateway services**: This displays the total number of active services associated with the runtime group. An active service is a service that has received at least one request during the defined time period.
+* **Gateway services**: This displays the total number of active services associated with the runtime group. Active services are services that have received at least one request during the defined time period.
 
-Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
+Graphs are interactive, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
 
 You can select a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time.
 
