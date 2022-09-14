@@ -55,24 +55,18 @@ params:
       value_in_examples: <AZURE_APIKEY>
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: clientid
       required: false
       default: null
       value_in_examples: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: https_verify
       required: false
       default: false

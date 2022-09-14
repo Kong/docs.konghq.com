@@ -174,26 +174,20 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
       minimum_version: "2.8.x"
     - name: redis.password
       required: semi
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Password to use for Redis connection when the `redis` strategy is defined.
         If undefined, no AUTH commands are sent to Redis.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -213,26 +207,20 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Sentinel username to authenticate with a Redis Sentinel instance.
         If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
       minimum_version: "2.8.x"
     - name: redis.sentinel_password
       required: semi
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
         If undefined, no AUTH commands are sent to Redis Sentinels.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null

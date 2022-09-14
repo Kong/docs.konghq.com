@@ -57,12 +57,9 @@ params:
       value_in_examples: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         The password to the LDAP server.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
     - name: start_tls
       required: true
       default: '`false`'
@@ -173,13 +170,10 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         The DN to bind to. Used to perform LDAP search of user. This `bind_dn`
         should have permissions to search for the user being authenticated.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
     - name: group_base_dn
       required: null
       default: matches `conf.base_dn`
