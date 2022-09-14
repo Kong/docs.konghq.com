@@ -84,7 +84,7 @@ $ docker run -d --name kong-dp \
   -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" \
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
-  kong/kong-gateway:2.8.0.0-alpine
+  kong/kong-gateway:3.0.0.0-alpine
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
@@ -102,7 +102,7 @@ docker run -d --name kong-dp `
   -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" `
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
-  kong/kong-gateway:2.8.0.0-alpine
+  kong/kong-gateway:3.0.0.0-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}

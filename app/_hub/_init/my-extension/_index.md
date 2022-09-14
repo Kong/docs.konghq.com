@@ -67,7 +67,7 @@ description: #|
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
-#source_url:
+#source_code:
   # (Optional) If your extension is open source, provide a link to your code.
 
 #license_type:

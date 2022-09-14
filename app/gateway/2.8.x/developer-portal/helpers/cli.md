@@ -28,7 +28,7 @@ Make sure Kong is running and portal is on.
 
 Now, from the root folder of the templates repo, you can run:
 
-```portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
+```portal [-h,--help] [--config PATH] <command> <workspace>```
 
 Where `<command>` is one of:
 

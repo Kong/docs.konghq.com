@@ -124,7 +124,7 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 configuration in this guide, the file should look like this:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     services:
     - connect_timeout: 60000
       host: example.com
@@ -168,7 +168,7 @@ Edit the `kong.yaml` file, making the following changes:
 Your `kong.yaml` file should now look like this:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 services:
 - connect_timeout: 60000
   host: example.com

@@ -15,7 +15,7 @@ categories:
 
 support_url: https://github.com/Optum/kong-response-size-limiting/issues
 
-source_url: https://github.com/Optum/kong-response-size-limiting/
+source_code: https://github.com/Optum/kong-response-size-limiting/
 
 license_type: Apache-2.0
 

@@ -21,7 +21,7 @@ support_url: https://github.com/codecentric/kong-plugin-reedelk-transformer/issu
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
-source_url: https://github.com/codecentric/kong-plugin-reedelk-transformer
+source_code: https://github.com/codecentric/kong-plugin-reedelk-transformer
 
 license_type: Apache-2.0
   # (Optional) For open source, use the abbreviations in parentheses at:

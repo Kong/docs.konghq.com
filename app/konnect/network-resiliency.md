@@ -35,7 +35,7 @@ and telemetry. Both use the secure TCP port `443`.
   data planes in the cluster.
 
 * **Telemetry:** data plane nodes send usage information to the control plane
-  for Vitals and for account billing. Vitals tracks aggregate traffic by
+  for Analytics and for account billing. Analytics tracks aggregate traffic by
   service, route, and the consuming application. For billing, Kong tracks the
   number of services, API calls, and active dev portals.
 

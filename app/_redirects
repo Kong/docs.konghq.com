@@ -1,6 +1,15 @@
+# DEPRECATED OS
+/gateway/3.0.x/install-and-run/centos    /gateway/latest/install-and-run/os-support
+/gateway/latest/install-and-run/centos   /gateway/latest/install-and-run/os-support
+
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
 /konnect-platform/plans/              https://konghq.com/pricing/
+/konnect-platform/get-started/        /konnect/getting-started/
+/konnect-platform/compatibility/plugins/  /hub/plugins/compatibility/
+/konnect-platform/key-concepts/           /konnect/availability-stages/
+/konnect-platform/support-policy/         /gateway/latest/support-policy/
+/konnect-platform/                        /konnect/
 
 # DECK
 /deck/overview/                       /deck/
@@ -87,7 +96,6 @@
 # PLUGINS
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
-/hub/plugins/compatibility                  /konnect-platform/compatibility/plugins
 /enterprise/latest/plugins/statsd-advanced/ /hub/kong-inc/statsd-advanced/
 /hub/kong-inc/basic-auth/1.0-x.html         /hub/kong-inc/basic-auth/2.1-x.html
 /hub/kong-inc/basic-authentication/         /hub/kong-inc/basic-auth/
@@ -97,7 +105,7 @@
 /hub/kong-inc/ldap-authentication-advanced  /hub/kong-inc/ldap-auth-advanced/
 /hub/kong-inc/ldap-authentication           /hub/kong-inc/ldap-auth/
 /hub/kong-inc/proxy-cache/0.35-x.html       /hub/kong-inc/proxy-cache/
-/hub/kong-inc/upstream-tls/0.36-x.html      /hub/
+/hub/kong-inc/upstream-tls/*                 /hub/
 /hub/rate-limiting-advanced                 /hub/kong-inc/rate-limiting-advanced/
 /kong-inc/rate-limiting/                    /hub/kong-inc/rate-limiting/
 /latest/pdk/kong.service.request/           /gateway/latest/pdk/kong.service.request/
@@ -122,7 +130,105 @@
 /enterprise/2.6.x/plugins/*            /gateway/2.6.x/configuration/auth/:splat
 /enterprise/2.7.x/plugins/*            /gateway/2.7.x/configuration/auth/:splat
 /enterprise/latest/plugins/*           /gateway/latest/configuration/auth/:splat
+/hub/kong-inc/kubernetes-sidecar-injector        /mesh/
+/hub/kong-inc/ee-openid-connect-rp/              /hub/kong-inc/openid-connect/
 
+/hub/kong-inc/acl/0.*                              /hub/kong-inc/acl/
+/hub/kong-inc/acme/0.*                             /hub/kong-inc/acme/
+/hub/kong-inc/application-registration/1.*         /hub/kong-inc/application-registration/
+/hub/kong-inc/aws-lambda/0.*                       /hub/kong-inc/aws-lambda/
+/hub/kong-inc/aws-lambda/1.*                       /hub/kong-inc/aws-lambda/
+/hub/kong-inc/aws-lambda/3.4.x.html                /hub/kong-inc/aws-lambda/
+/hub/kong-inc/aws-lambda/3.5.x.html                /hub/kong-inc/aws-lambda/
+/hub/kong-inc/azure-functions/0.*                  /hub/kong-inc/azure-functions/
+/hub/kong-inc/basic-auth/0.*                       /hub/kong-inc/basic-auth/
+/hub/kong-inc/basic-auth/2.1-x.html                /hub/kong-inc/basic-auth/
+/hub/kong-inc/bot-detection/0.*                    /hub/kong-inc/bot-detection/
+/hub/kong-inc/canary/0.*                           /hub/kong-inc/canary/
+/hub/kong-inc/correlation-id/0.*                   /hub/kong-inc/correlation-id/
+/hub/kong-inc/correlation-id/1.*                   /hub/kong-inc/correlation-id/
+/hub/kong-inc/cors/0.*                             /hub/kong-inc/cors/
+/hub/kong-inc/datadog/0.*                          /hub/kong-inc/datadog/
+/hub/kong-inc/datadog/1.*                          /hub/kong-inc/datadog/
+/hub/kong-inc/datadog/3.1.x.html                   /hub/kong-inc/datadog/
+/hub/kong-inc/exit-transformer/1.*                 /hub/kong-inc/exit-transformer/
+/hub/kong-inc/file-log/0.*                         /hub/kong-inc/file-log/
+/hub/kong-inc/file-log/1.*                         /hub/kong-inc/file-log/
+/hub/kong-inc/forward-proxy/0.*                    /hub/kong-inc/forward-proxy/
+/hub/kong-inc/forward-proxy/1.*                    /hub/kong-inc/forward-proxy/
+/hub/kong-inc/graphql-rate-limiting-advanced/0.*   /hub/kong-inc/graphql-rate-limiting-advanced/
+/hub/kong-inc/grpc-gateway/0.*                     /hub/kong-inc/grpc-gateway/
+/hub/kong-inc/grpc-web/0.*                         /hub/kong-inc/grpc-web/
+/hub/kong-inc/hmac-auth/0.*                        /hub/kong-inc/hmac-auth
+/hub/kong-inc/hmac-auth/2.1-x.html                 /hub/kong-inc/hmac-auth
+/hub/kong-inc/hmac-auth/2.4-x.html                 /hub/kong-inc/hmac-auth
+/hub/kong-inc/http-log/0.*                         /hub/kong-inc/http-log/
+/hub/kong-inc/http-log/1.*                         /hub/kong-inc/http-log/
+/hub/kong-inc/ip-restriction/0.*                   /hub/kong-inc/ip-restriction/
+/hub/kong-inc/ip-restriction/1.*                   /hub/kong-inc/ip-restriction/
+/hub/kong-inc/jwt/0.*                              /hub/kong-inc/jwt/
+/hub/kong-inc/jwt/2.1-x.html                       /hub/kong-inc/jwt/
+/hub/kong-inc/jwt-signer/0.*                       /hub/kong-inc/jwt-signer/
+/hub/kong-inc/jwt-signer/1.*                       /hub/kong-inc/jwt-signer/
+/hub/kong-inc/kafka-log/0.*                        /hub/kong-inc/kafka-log/
+/hub/kong-inc/kafka-upstream/0.*                   /hub/kong-inc/kafka-upstream/
+/hub/kong-inc/key-auth/0.*                         /hub/kong-inc/key-auth/
+/hub/kong-inc/key-auth-enc/1.*                     /hub/kong-inc/key-auth-enc/
+/hub/kong-inc/ldap-auth/0.*                        /hub/kong-inc/ldap-auth/
+/hub/kong-inc/ldap-auth/2.1-x.html                 /hub/kong-inc/ldap-auth/
+/hub/kong-inc/ldap-auth-advanced/0.*               /hub/kong-inc/ldap-auth-advanced/
+/hub/kong-inc/ldap-auth-advanced/1.*               /hub/kong-inc/ldap-auth-advanced/
+/hub/kong-inc/loggly/0.*                           /hub/kong-inc/loggly/
+/hub/kong-inc/loggly/1.*                           /hub/kong-inc/loggly/
+/hub/kong-inc/mocking/0.*                          /hub/kong-inc/mocking/
+/hub/kong-inc/mtls-auth/0.*                        /hub/kong-inc/mtls-auth/
+/hub/kong-inc/mtls-auth/1.*                        /hub/kong-inc/mtls-auth/
+/hub/kong-inc/oauth2/0.*                           /hub/kong-inc/oauth2/
+/hub/kong-inc/oauth2/1.*                           /hub/kong-inc/oauth2/
+/hub/kong-inc/oauth2-introspection/0.*             /hub/kong-inc/oauth2-introspection/
+/hub/kong-inc/opa/0.*                              /hub/kong-inc/opa/
+/hub/kong-inc/openid-connect/0.*                   /hub/kong-inc/openid-connect/
+/hub/kong-inc/openid-connect/1.*                   /hub/kong-inc/openid-connect/
+/hub/kong-inc/openwhisk/0.1-x.html                 /hub/kong-inc/openwhisk/
+/hub/kong-inc/prometheus/0.*                       /hub/kong-inc/prometheus/
+/hub/kong-inc/prometheus/1.*                       /hub/kong-inc/prometheus/
+/hub/kong-inc/proxy-cache/0.*                      /hub/kong-inc/proxy-cache/
+/hub/kong-inc/proxy-cache-advanced/0.*             /hub/kong-inc/proxy-cache-advanced/
+/hub/kong-inc/rate-limiting/0.*                    /hub/kong-inc/rate-limiting/
+/hub/kong-inc/rate-limiting/1.*                    /hub/kong-inc/rate-limiting/
+/hub/kong-inc/rate-limiting/2.1-x.html             /hub/kong-inc/rate-limiting/
+/hub/kong-inc/rate-limiting-advanced/0.*           /hub/kong-inc/rate-limiting-advanced/
+/hub/kong-inc/rate-limiting-advanced/1.*           /hub/kong-inc/rate-limiting-advanced/
+/hub/kong-inc/request-size-limiting/0.*            /hub/kong-inc/request-size-limiting/
+/hub/kong-inc/request-size-limiting/1.*            /hub/kong-inc/request-size-limiting/
+/hub/kong-inc/request-termination/0.*              /hub/kong-inc/request-termination/
+/hub/kong-inc/request-termination/1.*              /hub/kong-inc/request-termination/
+/hub/kong-inc/request-transformer/0.*              /hub/kong-inc/request-transformer
+/hub/kong-inc/request-transformer/1.*              /hub/kong-inc/request-transformer
+/hub/kong-inc/request-transformer-advanced/0.*     /hub/kong-inc/request-transformer-advanced/
+/hub/kong-inc/request-transformer-advanced/1.*     /hub/kong-inc/request-transformer-advanced/
+/hub/kong-inc/request-validator/0.*                /hub/kong-inc/request-validator/
+/hub/kong-inc/response-ratelimiting/1.*            /hub/kong-inc/response-ratelimiting/
+/hub/kong-inc/response-transformer/0.*             /hub/kong-inc/response-transformer/
+/hub/kong-inc/response-transformer/1.*             /hub/kong-inc/response-transformer/
+/hub/kong-inc/response-transformer-advanced/0.*    /hub/kong-inc/response-transformer-advanced/
+/hub/kong-inc/response-transformer-advanced/1.*    /hub/kong-inc/response-transformer-advanced/
+/hub/kong-inc/route-by-header/0.*                  /hub/kong-inc/route-by-header/
+/hub/kong-inc/serverless-functions/0.*             /hub/kong-inc/serverless-functions
+/hub/kong-inc/serverless-functions/1.*             /hub/kong-inc/serverless-functions
+/hub/kong-inc/session/0.*                          /hub/kong-inc/session/
+/hub/kong-inc/session/1.*                          /hub/kong-inc/session/
+/hub/kong-inc/session/2.2-x.html                   /hub/kong-inc/session/
+/hub/kong-inc/statsd/0.*                           /hub/kong-inc/statsd/
+/hub/kong-inc/syslog/0.*                           /hub/kong-inc/syslog
+/hub/kong-inc/syslog/1.*                           /hub/kong-inc/syslog
+/hub/kong-inc/tcp-log/0.*                          /hub/kong-inc/tcp-log/
+/hub/kong-inc/tcp-log/1.*                          /hub/kong-inc/tcp-log/
+/hub/kong-inc/udp-log/0.*                          /hub/kong-inc/udp-log/
+/hub/kong-inc/udp-log/1.*                          /hub/kong-inc/udp-log/
+/hub/kong-inc/vault-auth/0.*                       /hub/kong-inc/udp-log/
+/hub/kong-inc/zipkin/1.*                           /hub/kong-inc/zipkin/
+/hub/tomkerkhove/*                                 /hub/
 
 # KONNECT
 
@@ -165,6 +271,8 @@
 /konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/manage-proxy-config/
 /konnect/shared-config                               /konnect/runtime-manager/gateway-config/
+/konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
+/konnect/vitals/*                                    /konnect/analytics/:splat
 
 # COMMUNITY DOC REBRANDING
 /community                                  https://konghq.com/community-resources/
@@ -665,12 +773,12 @@
 
 # GENERAL REDIRECTS TO /GATEWAY/
 /enterprise/changelog      /gateway/changelog
-/enterprise/2.6.x/introduction/key-concepts     /konnect-platform/key-concepts
-/enterprise/2.7.x/introduction/key-concepts     /konnect-platform/key-concepts
-/enterprise/latest/introduction/key-concepts    /konnect-platform/key-concepts
-/enterprise/2.6.x/introduction/support-policy   /konnect-platform/support-policy
-/enterprise/2.7.x/introduction/support-policy   /konnect-platform/support-policy
-/enterprise/latest/introduction/support-policy  /konnect-platform/support-policy
+/enterprise/2.6.x/introduction/key-concepts     /gateway/latest/availability-stages/
+/enterprise/2.7.x/introduction/key-concepts     /gateway/latest/availability-stages/
+/enterprise/latest/introduction/key-concepts    /gateway/latest/availability-stages/
+/enterprise/2.6.x/introduction/support-policy   /gateway/latest/support-policy/
+/enterprise/2.7.x/introduction/support-policy   /gateway/latest/support-policy/
+/enterprise/latest/introduction/support-policy  /gateway/latest/support-policy/
 /latest/*                  /
 /latest                    /
 /2.6.x/*                   /gateway/2.6.x/
@@ -690,3 +798,16 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+
+
+
+# 3.0
+
+/gateway/2.8.x/install-and-run/                   /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
+/gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
+/gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
+/gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
+/gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
+/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/

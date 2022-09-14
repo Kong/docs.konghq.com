@@ -1,5 +1,5 @@
 ---
-title: Upgrade a Runtime to a New Version
+title: Upgrade a Runtime Instance to a New Version
 no_version: true
 content-type: how-to
 ---
@@ -8,9 +8,17 @@ You can upgrade runtimes to a new {{site.base_gateway}} version by bringing
 up new runtime instances, and then shutting down the old ones. This is the best
 method for high availability, as the new node starts processing data before the
 old node is removed. It is the cleanest and safest way to upgrade with no
-proxy downtime. 
+proxy downtime.
 
-To upgrade a runtime to a new version follow these steps: 
+We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
+
+## Prerequisites
+
+Read through the [{{site.base_gateway}} upgrade considerations](/gateway/latest/upgrade) for the version that you're upgrading to.
+
+## Upgrade a runtime instance
+
+To upgrade a runtime instance to a new version, follow these steps:
 
 1. Provision a new runtime instance through the Runtime Manager:
   * [Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker)
@@ -18,7 +26,7 @@ To upgrade a runtime to a new version follow these steps:
   * [Kubernetes (Helm)](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes)
 
 2. Open {% konnect_icon runtimes %} **Runtime Manager**, then choose a runtime group.
-    
+
     Make sure that your new runtime instance appears in the list of runtime
     instances, displays a _Connected_ status, and that it was last seen _Just Now_.
 

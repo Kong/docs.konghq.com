@@ -73,11 +73,8 @@ files = files
     const item = { path: f };
     const info = f.replace("../app/_data/docs_nav_", "").replace(/\.yml$/, "");
 
-    // Special case Konnect Platform
-    if (info === "konnect_platform") {
-      item.type = "konnect-platform";
-      item.version = "";
-    } else if (info === "konnect") {
+    // Special case Konnect
+    if (info === "konnect") {
       item.type = "konnect";
       item.version = "";
     } else {

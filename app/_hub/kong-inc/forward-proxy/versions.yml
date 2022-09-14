@@ -1,9 +1,20 @@
-- release: 1.2.x
-- release: 1.1.x
-- release: 1.0.5
-- release: 0.36-x
-- release: 0.35-x
-- release: 0.34-x
-- release: 0.33-x
-- release: 0.32-x
-- release: 0.31-x
+strategy: gateway
+delegate_releases: true
+sources:
+  2.7.x: _1.1.x
+  2.6.x: _1.0.5
+  2.5.x: _1.0.5
+  2.4.x: _1.0.5
+  2.3.x: _1.0.5
+  2.2.x: _1.0.5
+  2.1.x: _1.0.5
+
+overrides:
+  2.8.x: 1.2.0
+  2.7.x: 1.1.0
+  2.6.x: 1.0.5
+  2.5.x: 1.0.5
+  2.4.x: 1.0.5
+  2.3.x: 1.0.4
+  2.2.x: 1.0.4
+  2.1.x: 1.0.4

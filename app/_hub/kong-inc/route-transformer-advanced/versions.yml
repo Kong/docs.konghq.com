@@ -1,1 +1,12 @@
-- release: 0.2.x
+strategy: gateway
+delegate_releases: true
+
+overrides:
+  2.8.x: 0.2.1
+  2.7.x: 0.2.1
+  2.6.x: 0.2.1
+  2.5.x: 0.2.1
+  2.4.x: 0.2.1
+  2.3.x: 0.2.1
+  2.2.x: 0.2.1
+  2.1.x: 0.2.0

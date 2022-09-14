@@ -1,7 +1,6 @@
 ---
 name: Key Authentication - Encrypted
 publisher: Kong Inc.
-version: 2.0.x
 desc: Add key authentication to your Services
 description: |
   Add key authentication (also sometimes referred to as an _API key_) to a Service
@@ -16,17 +15,7 @@ categories:
   - authentication
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3.x
+    compatible: true
 params:
   name: key-auth-enc
   service_id: true
@@ -171,7 +160,7 @@ service, you must add the new Consumer to the allowed group. See
 Provision new credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth-enc -d ""
+curl -X POST http://kong:8001/consumers/{consumer}/key-auth-enc -d ""
 ```
 
 Response:
@@ -211,7 +200,7 @@ field/parameter     | description
 Make a request with the key as a query string parameter:
 
 ```bash
-$ curl http://kong:8000/{proxy path}?apikey=<some_key>
+curl http://kong:8000/{proxy path}?apikey=<some_key>
 ```
 
 **Note:** The `key_in_query` parameter must be set to `true` (default).
@@ -219,8 +208,8 @@ $ curl http://kong:8000/{proxy path}?apikey=<some_key>
 Make a request with the key in the body:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    --data 'apikey: <some_key>'
+curl http://kong:8000/{proxy path} \
+  --data 'apikey: <some_key>'
 ```
 
 **Note:** The `key_in_body` parameter must be set to `true` (default is `false`).
@@ -228,8 +217,8 @@ $ curl http://kong:8000/{proxy path} \
 Make a request with the key in a header:
 
 ```bash
-$ curl http://kong:8000/{proxy path} \
-    -H 'apikey: <some_key>'
+curl http://kong:8000/{proxy path} \
+  -H 'apikey: <some_key>'
 ```
 
 **Note:** The `key_in_header` parameter must be set to `true` (default).
@@ -237,7 +226,7 @@ $ curl http://kong:8000/{proxy path} \
 gRPC clients are supported too:
 
 ```bash
-$ grpcurl -H 'apikey: <some_key>' ...
+grpcurl -H 'apikey: <some_key>' ...
 ```
 ### About API Key Locations in a Request
 
@@ -259,7 +248,7 @@ curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
 Delete an API Key by making the following request:
 
 ```bash
-$ curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth-enc/{id}
+curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth-enc/{id}
 ```
 
 Response:
@@ -273,16 +262,7 @@ HTTP/1.1 204 No Content
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin appends some headers to the request before
-proxying it to the upstream service so that you can identify the Consumer in your code:
-
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
-
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 ### Paginate through keys
 
@@ -290,7 +270,7 @@ Paginate through the API keys for all Consumers using the following
 request:
 
 ```bash
-$ curl -X GET http://kong:8001/key-auths-enc
+curl -X GET http://kong:8001/key-auths-enc
 ```
 
 Response:
@@ -325,7 +305,7 @@ Response:
 Filter the list by Consumer by using a different endpoint:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/key-auth-enc
+curl -X GET http://kong:8001/consumers/{username or id}/key-auth-enc
 ```
 
 `username or id`: The username or id of the Consumer whose credentials need to be listed.
@@ -378,8 +358,10 @@ associated Consumer.
 
 ## Changelog
 
-### 2.0.0
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.
 
+**{{site.base_gateway}} 2.7.x**
 * If keyring encryption is enabled
 and you are using key authentication, the `keyauth_credentials.key` field will
 be encrypted.

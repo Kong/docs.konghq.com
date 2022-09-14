@@ -126,7 +126,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
 
 ### Start Kong Gateway
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
 1. Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
@@ -295,7 +295,7 @@ backed up by a Redis cluster).
 
 ### Start Kong Gateway in DB-less mode
 
-{% include_cached /md/admin-listen.md desc='long' %}
+{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
 1. From the same directory where you just created the `kong.yml` file,
 run the following command to start a container with {{site.base_gateway}}:

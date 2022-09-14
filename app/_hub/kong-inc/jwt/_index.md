@@ -1,7 +1,6 @@
 ---
 name: JWT
 publisher: Kong Inc.
-version: 2.2.x
 desc: Verify and authenticate JSON Web Tokens
 description: |
   Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified
@@ -21,45 +20,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
-      - 0.7.x
-      - 0.6.x
-      - 0.5.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: jwt
   service_id: true
@@ -179,7 +142,11 @@ parameter                       | description
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/jwt -H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://kong:8001/consumers/{consumer}/jwt -H "Content-Type: application/x-www-form-urlencoded"
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 
 {
@@ -231,7 +198,11 @@ You can remove a Consumer's JWT credential by issuing the following HTTP
 request:
 
 ```bash
-$ curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
+curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
+```
+
+Response:
+```
 HTTP/1.1 204 No Content
 ```
 
@@ -244,7 +215,11 @@ You can list a Consumer's JWT credentials by issuing the following HTTP
 request:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{consumer}/jwt
+curl -X GET http://kong:8001/consumers/{consumer}/jwt
+```
+
+Response:
+```
 HTTP/1.1 200 OK
 ```
 
@@ -293,7 +268,7 @@ in that order.
 }
 ```
 
-Using the JWT debugger at https://jwt.io with the header (HS256), claims (iss, etc.),
+Using the JWT debugger at https://jwt.io with the header (HS256), claims (`iss`, etc.),
 and `secret` associated with this `key` (e71829c351aa4242c2719cbfbe671c09), you'll end up with a JWT token of:
 
 ```
@@ -305,14 +280,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWN
 The JWT can now be included in a request to Kong by adding it as a header, if configured in `config.header_names` (which contains `Authorization` by default):
 
 ```bash
-$ curl http://kong:8000/{route path} \
-    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
+curl http://kong:8000/{route path} \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
 ```
 
 as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
 
 ```bash
-$ curl http://kong:8000/{route path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
+curl http://kong:8000/{route path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
 ```
 
 or as cookie, if the name is configured in `config.cookie_names` (which is not enabled by default):
@@ -349,8 +324,8 @@ You can patch an existing JWT plugin:
 
 ```bash
 # This adds verification for both nbf and exp claims:
-$ curl -X PATCH http://kong:8001/plugins/{jwt plugin id} \
-    --data "config.claims_to_verify=exp,nbf"
+curl -X PATCH http://kong:8001/plugins/{jwt plugin id} \
+  --data "config.claims_to_verify=exp,nbf"
 ```
 
 Supported claims:
@@ -368,15 +343,15 @@ Enable this option in the plugin's configuration.
 You can patch an existing Route:
 
 ```bash
-$ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
-    --data "config.secret_is_base64=true"
+curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
+  --data "config.secret_is_base64=true"
 ```
 
 Then, base64 encode your Consumers' secrets:
 
 ```bash
 # secret is: "blob data"
-$ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+curl -X POST http://kong:8001/consumers/{consumer}/jwt \
   --data "secret=YmxvYiBkYXRh"
 ```
 
@@ -389,8 +364,12 @@ select `RS256` or `ES256` as the `algorithm`, and explicitly upload the public k
 in the `rsa_public_key` field (including for ES256 signed tokens). For example:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
-      -F "rsa_public_key=@/path/to/public_key.pem" \
+curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+  -F "rsa_public_key=@/path/to/public_key.pem" \
+```
+
+Response:
+```json
 HTTP/1.1 201 Created
 
 {
@@ -424,12 +403,12 @@ in that order.
 ```
 
 Then, create the signature using your private keys. Using the JWT debugger at
-[https://jwt.io](https://jwt.io), set the right header (RS256), the claims (iss, etc.), and the
+[https://jwt.io](https://jwt.io), set the right header (RS256), the claims (`iss`, etc.), and the
 associated public key. Then, append the resulting value in the `Authorization` header, for example:
 
 ```bash
-$ curl http://kong:8000/{route path} \
-    -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxM2Q1ODE0NTcyZTc0YTIyYjFhOWEwMDJmMmQxN2MzNyJ9.uNPTnDZXVShFYUSiii78Q-IAfhnc2ExjarZr_WVhGrHHBLweOBJxGJlAKZQEKE4rVd7D6hCtWSkvAAOu7BU34OnlxtQqB8ArGX58xhpIqHtFUkj882JQ9QD6_v2S2Ad-EmEx5402ge71VWEJ0-jyH2WvfxZ_pD90n5AG5rAbYNAIlm2Ew78q4w4GVSivpletUhcv31-U3GROsa7dl8rYMqx6gyo9oIIDcGoMh3bu8su5kQc5SQBFp1CcA5H8sHGfYs-Et5rCU2A6yKbyXtpHrd1Y9oMrZpEfQdgpLae0AfWRf6JutA9SPhst9-5rn4o3cdUmto_TBGqHsFmVyob8VQ'
+curl http://kong:8000/{route path} \
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxM2Q1ODE0NTcyZTc0YTIyYjFhOWEwMDJmMmQxN2MzNyJ9.uNPTnDZXVShFYUSiii78Q-IAfhnc2ExjarZr_WVhGrHHBLweOBJxGJlAKZQEKE4rVd7D6hCtWSkvAAOu7BU34OnlxtQqB8ArGX58xhpIqHtFUkj882JQ9QD6_v2S2Ad-EmEx5402ge71VWEJ0-jyH2WvfxZ_pD90n5AG5rAbYNAIlm2Ew78q4w4GVSivpletUhcv31-U3GROsa7dl8rYMqx6gyo9oIIDcGoMh3bu8su5kQc5SQBFp1CcA5H8sHGfYs-Et5rCU2A6yKbyXtpHrd1Y9oMrZpEfQdgpLae0AfWRf6JutA9SPhst9-5rn4o3cdUmto_TBGqHsFmVyob8VQ'
 ```
 
 ### Generate public/private keys
@@ -437,13 +416,13 @@ $ curl http://kong:8000/{route path} \
 To create a brand new pair of public/private keys, run the following command:
 
 ```bash
-$ openssl genrsa -out private.pem 2048
+openssl genrsa -out private.pem 2048
 ```
 
 This private key must be kept secret. To generate a public key corresponding to the private key, execute:
 
 ```bash
-$ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
 If you run the commands above, the public key is written to `public.pem`, whereas the
@@ -463,17 +442,17 @@ _Note: Auth0 does not use base64-encoded secrets._
 Create a Service:
 
 ```bash
-$ curl -i -f -X POST http://localhost:8001/services \
-    --data "name=example-service" \
-    --data "url=http://httpbin.org"
+curl -i -f -X POST http://localhost:8001/services \
+  --data "name=example-service" \
+  --data "url=http://httpbin.org"
 ```
 
 Then create a Route:
 
 ```bash
-$ curl -i -f -X POST http://localhost:8001/routes \
-    --data "service.id={example-service's id}" \
-    --data "paths[]=/example_path"
+curl -i -f -X POST http://localhost:8001/routes \
+  --data "service.id={example-service's id}" \
+  --data "paths[]=/example_path"
 ```
 
 #### Add the JWT Plugin
@@ -481,33 +460,33 @@ $ curl -i -f -X POST http://localhost:8001/routes \
 Add the plugin to your Route:
 
 ```bash
-$ curl -X POST http://localhost:8001/route/{route id}/plugins \
-    --data "name=jwt"
+curl -X POST http://localhost:8001/route/{route id}/plugins \
+  --data "name=jwt"
 ```
 
 Download your Auth0 account's X509 Certificate:
 
 ```bash
-$ curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.{REGION-ID}.auth0.com/pem
+curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.{REGION-ID}.auth0.com/pem
 ```
 
 Extract the public key from the X509 Certificate:
 
 ```bash
-$ openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
+openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
 ```
 
 Create a Consumer with the Auth0 public key:
 
 ```bash
-$ curl -i -X POST http://kong:8001/consumers \
-    --data "username=<USERNAME>" \
-    --data "custom_id=<CUSTOM_ID>"
+curl -i -X POST http://kong:8001/consumers \
+  --data "username=<USERNAME>" \
+  --data "custom_id=<CUSTOM_ID>"
 
-$ curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
-    -F "algorithm=RS256" \
-    -F "rsa_public_key=@./pubkey.pem" \
-    -F "key=https://{COMPANYNAME}.auth0.com/" # the `iss` field
+curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
+  -F "algorithm=RS256" \
+  -F "rsa_public_key=@./pubkey.pem" \
+  -F "key=https://{COMPANYNAME}.auth0.com/" # the `iss` field
 ```
 
 The JWT plugin by default validates the `key_claim_name` against the `iss`
@@ -519,9 +498,9 @@ Consumer.
 Send requests through. Only tokens signed by Auth0 will work:
 
 ```bash
-$ curl -i http://localhost:8000 \
-    -H "Host:example.com" \
-    -H "Authorization:Bearer <TOKEN>"
+curl -i http://localhost:8000 \
+  -H "Host:example.com" \
+  -H "Authorization:Bearer <TOKEN>"
 ```
 
 ### Upstream Headers
@@ -550,8 +529,11 @@ You can paginate through the JWTs for all Consumers using the following
 request:
 
 ```bash
-$ curl -X GET http://kong:8001/jwts
+curl -X GET http://kong:8001/jwts
+```
 
+Response:
+```json
 {
     "total": 3,
     "data": [
@@ -586,8 +568,11 @@ $ curl -X GET http://kong:8001/jwts
 You can filter the list by consumer by using this other path:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/jwt
+curl -X GET http://kong:8001/consumers/{username or id}/jwt
+```
 
+Response:
+```json
 {
     "total": 1,
     "data": [
@@ -618,7 +603,10 @@ using the following request:
 
 ```bash
 curl -X GET http://kong:8001/jwts/{key or id}/consumer
+```
 
+Response:
+```json
 {
    "created_at":1507936639000,
    "username":"foo",
@@ -632,4 +620,3 @@ associated [Consumer][consumer-object].
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
-

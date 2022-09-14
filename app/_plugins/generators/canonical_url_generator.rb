@@ -159,6 +159,8 @@ module CanonicalUrl
     def resolve_moved_url(url)
       resolved_url = nil
       loop do
+        raise "Circular reference for #{url}" if url == @moved_pages[url]
+
         url = @moved_pages[url]
         break unless url
 

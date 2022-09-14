@@ -1,7 +1,6 @@
 ---
 name: Basic Authentication
 publisher: Kong Inc.
-version: 2.2.0
 desc: Add Basic Authentication to your Services
 description: |
   Add Basic Authentication to a Service or a Route with username and password protection. The plugin
@@ -11,25 +10,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: basic-auth
   service_id: true
@@ -168,18 +151,7 @@ grpcurl -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l' ...
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin appends some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
-
-* `X-Consumer-ID`: the ID of the Consumer in Kong Gateway
-* `X-Consumer-Custom-ID`: the `custom_id` of the Consumer (if set)
-* `X-Consumer-Username`: the `username` of the Consumer (if set)
-* `X-Credential-Identifier`: the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`: set to `true` if authentication fails, and the 'anonymous' consumer is set instead
-
-You can use this information on your side to implement additional logic. Use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
-
-{:.important}
-> **Important:** `X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
+{% include_cached /md/plugins-hub/upstream-headers.md %}
 
 ### Paginate through the basic-auth Credentials
 
@@ -280,16 +252,17 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
+[configuration]: /gateway/latest/reference/configuration
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[acl-associating]: /plugins/acl/#associating-consumers
+
 ---
 
 ## Changelog
 
-### 2.2.0
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `X-Credential-Username` header has been removed.
 
+**{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
 and you are using basic authentication, the `basicauth_credentials.password` field will be encrypted.
-
-
-[configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
-[acl-associating]: /plugins/acl/#associating-consumers

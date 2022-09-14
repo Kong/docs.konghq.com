@@ -95,10 +95,8 @@ return {
 ```
 
 This code will create two Admin API endpoints in `/consumers/:consumers/key-auth`, to
-obtain (`GET`) and create (`POST`) credentials associated to a given consumer. On this example
-the functions are provided by the `kong.api.endpoints` library. If you want to see a more
-complete example, with custom code in functions, see
-[the `api.lua` file from the key-auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua).
+obtain (`GET`) and create (`POST`) credentials associated to a given consumer. In this example,
+the functions are provided by the `kong.api.endpoints` library.
 
 The `endpoints` module currently contains the default implementation for the most usual CRUD
 operations used in Kong. This module provides you with helpers for any insert, retrieve,
@@ -166,9 +164,5 @@ three functions:
   "prepared" things in advance, like `self.consumer`.
 - The `PUT` function populates `self.args.post.consumer` before calling the `endpoints`-provided
   `put_entity_endpoint` function.
-
----
-
-Next: [Write tests for your plugin]({{page.book.next}})
 
 [Admin API]: /gateway/{{page.kong_version}}/admin-api/

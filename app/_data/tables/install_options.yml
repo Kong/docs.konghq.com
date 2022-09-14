@@ -1,0 +1,76 @@
+columns:
+  - name: Kong OSS
+    key: oss
+  - name: Kong Enterprise
+    key: enterprise
+  - name: Production Ready
+    key: support
+features:
+  - name: 'Packages'
+    items:
+      - name: 'Alpine'
+        url: /gateway/VERSION/install/docker/build-custom-images/
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'Debian'
+        url: /gateway/VERSION/install/linux/debian/
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'Ubuntu'
+        url: /gateway/VERSION/install/linux/ubuntu/
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'RedHat'
+        url: /gateway/VERSION/install/linux/rhel/
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'Amazon Linux 2'
+        url: /gateway/VERSION/install/linux/amazon-linux/
+        oss: true
+        enterprise: true
+        support: true
+  - name: 'Kubernetes'
+    items:
+      - name: 'Kubernetes (YAML Manifests)'
+        url: /gateway/VERSION/install/kubernetes/kubectl/
+        oss: true
+        enterprise: true
+        support: false
+      - name: 'Kubernetes (Helm)'
+        url: /gateway/VERSION/install/kubernetes/helm-quickstart/
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'OpenShift'
+        url: /gateway/VERSION/install/kubernetes/openshift/
+        oss: true
+        enterprise: true
+        support: false
+ 
+  - name: 'Docker'
+    items:
+      - name: 'Debian (bullseye-slim)'
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'RHEL (8-ubi)'
+        oss: true
+        enterprise: true
+        support: true
+      - name: 'Alpine'
+        oss: true
+        enterprise: true
+        support: false
+ 
+  - name: 'Other'
+    items:
+      - name: 'MacOS (Homebrew)'
+        url: /gateway/VERSION/install/macos/
+        oss: true
+        enterprise_text: N/A
+        support: false
+ 

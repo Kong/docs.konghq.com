@@ -22,7 +22,7 @@ both Kubernetes and VMs on any cloud. Built on top of CNCF's
 
 {{site.mesh_product_name}} extends Kuma and Envoy with enterprise features and
 support, while providing native integration with
-[{{site.ee_product_name}}](https://konghq.com/products/kong-enterprise) for a
+[{{site.ee_product_name}}](https://konghq.com/products/api-gateway-platform) for a
 full-stack connectivity platform for all of your services and APIs, across
 every cloud and environment.
 
@@ -68,8 +68,8 @@ for both edge and internal API traffic.
   <img src="/assets/images/docs/mesh/gw_mesh.png" width="600px"/>
   <br>
   <i>Two different applications - "Banking" and "Trading" - run in their
-  own meshes "A" and "B" across different datacenters. In this example,
-  Kong Gateway is being used both for edge communication and for internal
+  own meshes "A" and "B" across different data centers. In this example,
+  {{site.base_gateway}} is being used both for edge communication and for internal
   communication between meshes.</i>
 </center>
 
@@ -129,7 +129,7 @@ hybrid Kubernetes/VMs:
   <img src="/assets/images/docs/mesh/multi-zone.jpg" width="600px"/>
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes
-    cluster, VPC, datacenter, etc.) together in the same distributed deployment.
+    cluster, VPC, data center, etc.) together in the same distributed deployment.
      Then, you can create multiple isolated virtual meshes with the same
      control plane in order to support every team and application in the
      organization.</i>
@@ -137,3 +137,10 @@ hybrid Kubernetes/VMs:
 <br>
 [Learn more](https://kuma.io/docs/latest/introduction/deployments/) about the
 standalone and multi-zone deployment modes in the Kuma documentation.
+
+## Support policy
+Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
+model for its products.
+
+For the latest version support information for
+{{site.mesh_product_name}}, see our [version support policy](/mesh/latest/support-policy).

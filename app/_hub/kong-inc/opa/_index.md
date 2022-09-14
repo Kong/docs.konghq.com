@@ -1,16 +1,11 @@
 ---
 name: OPA
 publisher: Kong Inc.
-version: 0.2.x
 desc: Authorize requests against Open Policy Agent
 description: |
   Forward request to Open Policy Agent and process the request only if the
   authorization policy allows for it.
 
-  {:.note}
-  > To use this plugin in Konnect Cloud,
-  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
-  v2.4.1.1.
 enterprise: true
 plus: true
 type: plugin
@@ -18,12 +13,7 @@ categories:
   - security
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
+    compatible: true
 params:
   name: opa
   service_id: true
@@ -91,6 +81,13 @@ params:
       default: false
       description: |
         If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be JSON decoded and the decoded struct is included as input to OPA.
+    - name: ssl_verify
+      required: true
+      datatype: boolean
+      default: true
+      description: |
+        If set to true, the OPA certificate will be verified according to the CA certificates specified in [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate).
+      minimum_version: "3.0.x"
 ---
 
 ## Usage

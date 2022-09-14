@@ -245,6 +245,7 @@ params:
       default: null
       datatype: array of string elements (the plugin supports multiple clients)
       encrypted: true
+      referenceable: true
       description: |
         The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider.
         Other settings that are associated with the client are:
@@ -260,10 +261,6 @@ params:
         - `config.unexpected_redirect_uri`
 
         Use the same array index when configuring related settings for the client.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: client_arg
       required: false
       default: null
@@ -297,14 +294,11 @@ params:
       default: null
       datatype: array of string elements (one for each client)
       encrypted: true
+      referenceable: true
       description: |
         The client secret.
         > Specify one if using `client_secret_*` authentication with the client on
         > the identity provider endpoints.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: client_jwk
       required: false
       default: (plugin managed)
@@ -995,12 +989,9 @@ params:
       datatype: string
       encrypted: true
       value_in_examples: <session-secret>
+      referenceable: true
       description: |
         The session secret.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: disable_session
       required: false
       default: null
@@ -1092,25 +1083,19 @@ params:
       required: false
       default: null
       datatype: string
+      referenceable: true
       description: |
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: session_redis_password
       required: false
       default: (from kong)
       encrypted: true
       datatype: string
+      referenceable: true
       description: |
         Password to use for Redis connection when the `redis` session storage is defined.
         If undefined, no AUTH commands are sent to Redis.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: session_redis_auth
       required: false
       default: (from kong)
@@ -1121,11 +1106,12 @@ params:
         If undefined, no AUTH commands are sent to Redis.
 
         {:.important}
-        > This field is deprecated and replaced with `session_redis_password`. The`session_redis_auth`
-        field will continue to work in a backwards compatible way, but it is recommended to use the
-        replacement field.
-        A deprecation warning will be logged in the log file, stating the field's deprecation and planned
-        removal in v3.x.x.
+        > In Kong Gateway 2.8.x, this field is deprecated and replaced with `session_redis_password`.
+        > The`session_redis_auth` field will continue to work in a backwards compatible way,
+        > but it is recommended to use the replacement field.
+        >
+        > Starting from Kong Gateway 3.0.0.0, this field has been removed.
+
     - name: session_redis_connect_timeout
       required: false
       default: (from kong)
@@ -1331,12 +1317,12 @@ params:
       datatype: array of string elements
       description: |
         Pass extra arguments from the client to the OpenID-Connect plugin. If arguments exist, the client can pass them using:
-        - Request Body 
+        - Request Body
         - Query parameters
-        
-        This parameter can be used with `scope` values, like this: 
 
-        `config.token_post_args_client=scope` 
+        This parameter can be used with `scope` values, like this:
+
+        `config.token_post_args_client=scope`
 
         In this case, the token would take the `scope` value from the query parameter or from the request body and send it to the token endpoint.
     - group: Token Endpoint Response Headers
@@ -1649,11 +1635,16 @@ Below are descriptions of the record types.
 The JSON Web Key (JWK) record is specified in [RFC7517][jwk]. This record is used with the
 `config.client_jwk` when using `private_key_jwk` client authentication.
 
-Here is an example of JWK record generated by the plugin itself (see: [JSON Web Key Set](#json-web-key-set):
+Here is an example of JWK record generated by the plugin itself (see: [JSON Web Key Set](#json-web-key-set)):
 
 ```json
 {{ page.jwk }}
 ```
+
+The JWK private fields (`k`, `d`, `p`, `q`, `dp`, `dq`, `qi`, `oth`, `r`, `t`) are _referenceable_,
+which means they can be securely stored as a
+[secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
 ### Host Record
 
@@ -3381,7 +3372,10 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 2.2.1)
+**{{site.base_gateway}} 3.0.x**
+* The deprecated `session_redis_auth` field has been removed from the plugin.
+
+**{{site.base_gateway}} 2.8.x (plugin version 2.2.1)**
 
 * Added the `session_redis_username` and `session_redis_password` configuration
 parameters.
@@ -3396,9 +3390,9 @@ parameters.
 and `session_redis_password` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
-### {{site.base_gateway}} 2.7.x (plugin version 2.2.0)
+**{{site.base_gateway}} 2.7.x (plugin version 2.2.0)**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.client_id`, `config.client_secret`, `config.session_auth`, and

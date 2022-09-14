@@ -80,6 +80,11 @@ first one.
 
 All routes are created in the same runtime group as their parent service version.
 
+{:.important}
+> **Important**: Starting with {{site.base_gateway}} 3.0.0.0, the router supports logical expressions.
+Regex routes must begin with a `~` character. For example: `~/foo/bar/(?baz\w+)`.
+Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
 Add a route from this page:
 

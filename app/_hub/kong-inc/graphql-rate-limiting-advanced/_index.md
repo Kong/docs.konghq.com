@@ -1,7 +1,6 @@
 ---
 name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
-version: 0.2.x
 desc: Provide rate limiting for GraphQL queries
 description: |
   The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
@@ -14,16 +13,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
+    compatible: true
 params:
   name: graphql-rate-limiting-advanced
   service_id: true
@@ -119,7 +109,7 @@ params:
         In DB-less and hybrid modes, the `cluster` config strategy is not
         supported.
 
-        In Konnect Cloud, the default strategy is `redis`.
+        In Konnect, the default strategy is `redis`.
 
         {:.important}
         > There is no local storage strategy. However, you can achieve local
@@ -152,9 +142,7 @@ params:
       datatype: boolean
       description: |
         If set to true, then uses SSL to connect to Redis.
-
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
+      minimum_version: "2.2.x"
     - name: redis.ssl_verify
       required: false
       default: false
@@ -165,9 +153,7 @@ params:
         [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate)
         to specify the CA (or server) certificate used by your redis server. You may also need to configure
         [lua_ssl_verify_depth](/gateway/latest/reference/configuration/#lua_ssl_verify_depth) accordingly.
-
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
+      minimum_version: "2.2.x"
     - name: redis.server_name
       required: false
       default: null
@@ -175,9 +161,7 @@ params:
       datatype: string
       description: |
         Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
-
-        **Note:** This parameter is only available for Kong Gateway versions
-        2.2.x and later.
+      minimum_version: "2.2.x"
     - name: redis.timeout
       required: semi
       default: 2000
@@ -190,25 +174,20 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+      minimum_version: "2.8.x"
     - name: redis.password
       required: semi
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Password to use for Redis connection when the `redis` strategy is defined.
         If undefined, no AUTH commands are sent to Redis.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.database
       required: semi
       default: 0
@@ -228,25 +207,20 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Sentinel username to authenticate with a Redis Sentinel instance.
         If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+      minimum_version: "2.8.x"
     - name: redis.sentinel_password
       required: semi
       default: null
       value_in_examples: null
       datatype: string
+      referenceable: true
       description: |
         Sentinel password to authenticate with a Redis Sentinel instance.
         If undefined, no AUTH commands are sent to Redis Sentinels.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: redis.sentinel_role
       required: semi
       default: null
@@ -280,6 +254,7 @@ params:
         will fail and return `nil`. Queued connect operations resume once the number of
         connections in the pool is less than `keepalive_pool_size`. Note that queued
         connect operations are subject to set timeouts.
+      minimum_version: "2.5.x"
     - name: redis.keepalive_pool
       required: false
       default: generated from string template
@@ -288,6 +263,7 @@ params:
       description: |
         The custom name of the connection pool. If not specified, the connection pool
         name is generated from the string template `"<host>:<port>"` or `"<unix-socket-path>"`.
+      minimum_version: "2.5.x"
     - name: redis.keepalive_pool_size
       required: false
       default: 30
@@ -298,6 +274,7 @@ params:
         server, per worker process. If no `keepalive_pool_size` is specified and no `keepalive_backlog`
         is specified, no pool is created. If no `keepalive_pool_size` is specified and `keepalive_backlog`
         is specified, then the pool uses the default value `30`.
+      minimum_version: "2.5.x"
     - name: window_type
       required: true
       default: sliding
@@ -693,15 +670,24 @@ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 0.2.5)
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
 * The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the
 plugin's actual versions, `0.1.x` and `0.2.x`.
+
+**{{site.base_gateway}} 2.5.x**
+
+* Added the `redis.keepalive_pool`, `redis.keepalive_pool_size`, and `redis.keepalive_backlog` configuration parameters.
+ These options relate to [Openresty’s Lua INGINX module’s](https://github.com/openresty/lua-nginx-module/#tcpsockconnect) `tcp:connect` options.
+
+**{{site.base_gateway}} 2.2.x**
+
+* Added Redis TLS support with the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name` configuration parameters.

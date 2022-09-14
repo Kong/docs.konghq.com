@@ -145,21 +145,21 @@ jQuery(function () {
     });
   });
 
-  // COMPAT DROPDOWN: dropdown menu functionality (handles /konnect-platform/compatibility dropdown)
-  $("#compat-dropdown").on("click", function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    $("#compat-list").toggleClass("open");
-
-    $(document).one('click', function closeMenu (e){
-        if($('#compat-list').has(e.target).length === 0){
-            $('#compat-list').removeClass('open');
-        } else {
-            $(document).one('click', closeMenu);
-        }
-    });
-  });
+  // COMPAT DROPDOWN: dropdown menu functionality (handles /archive/konnect-platform/compatibility dropdown. Currently not in use.)
+  // $("#compat-dropdown").on("click", function(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //
+  //   $("#compat-list").toggleClass("open");
+  //
+  //   $(document).one('click', function closeMenu (e){
+  //       if($('#compat-list').has(e.target).length === 0){
+  //           $('#compat-list').removeClass('open');
+  //       } else {
+  //           $(document).one('click', closeMenu);
+  //       }
+  //   });
+  // });
 
   // Cookie functions
 
@@ -574,7 +574,7 @@ function pluginFilter(target){
     // Toggle all nav tabs that match this title
     const text = navtabTitle.text();
     const search = $(".navtab-title").filter(function () {
-      return $(this).text().toLowerCase().indexOf(text.toLowerCase()) >= 0;
+      return $(this).text().trim().toLowerCase() == text.trim().toLowerCase()
     }).each(function(k,v){
       activateSingleNavTab($(v));
     });
