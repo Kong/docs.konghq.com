@@ -167,7 +167,7 @@ Everything in that section will be ignored. Consider using this exclusively for 
 
 ## Ignoring raw link text
 
-Because our URL's contain product names they will trigger terms or dictionary checks. 
+Because our URLs contain product names, they will trigger terms or dictionary checks. 
 If you need to ignore raw link text in URL's here are two options:
 
 Adding the `bare` class to the link: 
