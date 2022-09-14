@@ -423,9 +423,9 @@ below to migrate to 3.0.x.
 > These instructions will only work once 2.8.2 is available.
 
 1. Clone your database.
-2. Download 3.0.x, and configure it to point to the cloned data store
-   as your old (2.8.2 or beyond) cluster. Run `kong migrations up` and `kong migrations finish`.
-3. Start 3.0.x cluster.
+2. Download 3.0.x, and configure it to point to the cloned data store.
+   Run `kong migrations up` and `kong migrations finish`.
+3. Start the 3.0.x cluster.
 4. Now both the old (2.8.x) and new (3.0.x)
    clusters can now run simultaneously. Start provisioning 3.0.x nodes.
 3. Gradually divert traffic away from your old nodes, and into
