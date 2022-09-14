@@ -168,15 +168,7 @@ Everything in that section will be ignored. Consider using this exclusively for 
 ## Ignoring raw link text
 
 Because our URLs contain product names, they will trigger terms or dictionary checks. 
-If you need to ignore raw link text in URL's here are two options:
-
-Adding the `bare` class to the link: 
-
-```
-<a href="https://konnect.konghq.com" class="bare">konnect.konghq.com</a>
-```
-
-Wrapping the link in code tags: 
+If you need to ignore raw link text wrap the link in code tags: 
 
 [`konnect.konghq.com`](https://konnect.konghq.com")
 
