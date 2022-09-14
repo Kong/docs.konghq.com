@@ -35,7 +35,7 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 ## Enable the feature
 
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
-first [install them](https://gateway-api.sigs.k8s.io/v1alpha2/guides/getting-started/#installing-gateway-api-crds-manually).
+first [install them](https://gateway-api.sigs.k8s.io/guides/getting-started/#installing-gateway-api-crds-manually).
 
 The default controller configuration disables Gateway API handling. To enable
 it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
@@ -93,6 +93,7 @@ by all Gateways of a given type.
 
 Add a GatewayClass:
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 apiVersion: gateway.networking.k8s.io/v1alpha2
@@ -103,6 +104,21 @@ spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
 ```
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: GatewayClass
+metadata:
+  name: kong
+spec:
+  controllerName: konghq.com/kic-gateway-controller
+" | kubectl apply -f -
+```
+{% endif_version %}
+
 
 ```
 gatewayclass.gateway.networking.k8s.io/kong created
@@ -110,6 +126,7 @@ gatewayclass.gateway.networking.k8s.io/kong created
 
 Add a Gateway: 
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: Gateway
@@ -130,6 +147,30 @@ spec:
     protocol: HTTPS
 " | kubectl apply -f -
 ```
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    konghq.com/gateway-unmanaged: kong/kong-proxy
+  name: kong
+spec:
+  gatewayClassName: kong
+  listeners:
+  - name: proxy
+    port: 80
+    hostname: kong.example
+    protocol: HTTP
+  - name: proxy-ssl
+    port: 443
+    hostname: kong.example
+    protocol: HTTPS
+" | kubectl apply -f -
+```
+{% endif_version %}
 
 ```
 gateway.gateway.networking.k8s.io/kong created
@@ -182,6 +223,7 @@ HTTPRoute resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
 requests to.
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
@@ -207,6 +249,35 @@ spec:
         value: /echo
 " | kubectl apply -f -
 ```
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: echo
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: kong
+  hostnames:
+  - kong.example
+  rules:
+  - backendRefs:
+    - group: ""
+      kind: Service
+      name: echo
+      port: 80
+      weight: 1
+    matches:
+    - path:
+        type: PathPrefix
+        value: /echo
+" | kubectl apply -f -
+```
+{% endif_version %}
 
 After creating an HTTPRoute, accessing `/echo` forwards a request to the
 echo service:
