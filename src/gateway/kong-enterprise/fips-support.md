@@ -19,7 +19,7 @@ The only supported {{site.base_gateway}} distribution is based on Ubuntu 20.04 a
 
 To install the {{site.base_gateway}} FIPS package use:
 
-    apt install kong-enterprise-edition-fips`.
+    apt install kong-enterprise-edition-fips
 
 {:.note .no-icon}
 > FIPS mode is only supported in Ubuntu 20.04

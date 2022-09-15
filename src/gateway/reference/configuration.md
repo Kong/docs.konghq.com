@@ -789,7 +789,7 @@ total memory Kong uses to cache entities might be double this value.
 
 Defines the TLS ciphers served by Nginx.
 
-Accepted values are `modern`, `intermediate`, `old`, `fips` or `custom`.
+Accepted values are `modern`, `intermediate`, `old`, `fips`, or `custom`.
 
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
 of each cipher suite. `fips` cipher suites are as decribed in
