@@ -25,7 +25,7 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   FIPS mode is only supported in Ubuntu 20.04.
 
   {:.note}
-  > **Note**: The Kong Gateway FIPS package is not compatible at this point with SSL 
+  > **Note**: The Kong Gateway FIPS package is not currently compatible with SSL 
   > connections to PostgreSQL.
 
 * Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
