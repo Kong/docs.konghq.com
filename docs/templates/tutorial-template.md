@@ -16,6 +16,7 @@ class: no-copy-code # Disables the copy code button for all code blocks on the p
 * https://docs.konghq.com/gateway/latest/migrate-ce-to-ke/
 * https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/influx-strategy/ 
 -->
+<!-- Remove these comments once you are done writing -->
 
 ## Prerequistes <!-- Optional -->
 
@@ -41,7 +42,7 @@ class: no-copy-code # Disables the copy code button for all code blocks on the p
 1. First step.
 1. Second step.
 
-## See also
+## See also <!-- Optional, but recommended -->
 
 <!-- List of tutorials or other pages that a user can visit to extend their learning from this tutorial -->
 
