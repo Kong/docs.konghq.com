@@ -89,8 +89,8 @@ features:
         tooltip: Encrypt sensitive keys, certificates, and passwords
         oss: false
         enterprise: true
-      - name: FIPS 140-2 Compliance
-        tooltip: Generally available (GA) version coming soon. Kong Gateway in a FIPS 140-2 compliant mode.
+      - name: FIPS 140-2 Support
+        tooltip: Kong Gateway now provides a FIPS mode, which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
         oss: false
         enterprise: true
   - name: Observability
