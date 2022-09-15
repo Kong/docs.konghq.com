@@ -152,8 +152,8 @@ that defines a user of a service. Consumer-level rate limiting can be used to li
    ```sh
    curl -X POST http://localhost:8001/plugins \
       --data "name=rate-limiting" \
-      --data "consumer.id=jsmith" \
-      --data "config.second=5" \
+      --data "consumer.username=jsmith" \
+      --data "config.second=5"
    ```
 
 ## Advanced rate limiting
