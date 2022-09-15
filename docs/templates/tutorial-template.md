@@ -9,3 +9,6 @@ class: no-copy-code # Disables the copy code button for all code blocks on the p
 ---
 
 <!-- Add an introduction paragraph here. Good introductions explain what this tutorial will help the user accomplish -->
+
+## Prerequistes <!-- Optional -->
+
