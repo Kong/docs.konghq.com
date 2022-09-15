@@ -43,7 +43,7 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   * Added license level to phone home metrics.
   * Added more tooltips.
 
-* [Secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/) is now generally available.
+* [Secrets management](/gateway/3.0.x/kong-enterprise/secrets-management/) is now generally available.
   * Added GCP integration support for the secrets manager. GCP is now available as a vault backend.
   * The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` entity.
   [#8871](https://github.com/Kong/kong/pull/8871)
