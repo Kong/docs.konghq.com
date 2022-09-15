@@ -8,7 +8,7 @@ disable_image_expand: true # Stops images from expanding in a modal on click. Se
 class: no-copy-code # Disables the copy code button for all code blocks on the page.
 ---
 
-<!-- Add an introduction paragraph here. Good introductions explain who this how-to guide is for and what this guide will help the user accomplish. -->
+<!-- Add an introduction paragraph here. Good introductions explain who this reference guide is for and what this guide will help the user accomplish. -->
 <!-- Reference material should not contain information about basic concepts. You can add links to explanation articles if needed. -->
 <!-- See https://documentation.divio.com/reference/ for more info about how to write a reference article -->
 <!-- See the following examples of reference documentation:
@@ -42,3 +42,5 @@ Here's information about this topic. This feature also allows you to configure t
 ## See also <!-- Optional -->
 
 <!-- List of tutorials or how-to guides that a user can visit to extend their learning from this reference article. -->
+
+* [Article title](article URL)

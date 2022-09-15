@@ -1,0 +1,39 @@
+---
+title: Noun or nouns describing your subject
+content_type: explanation
+no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
+alpha: true # Labels the page as alpha; adds a banner to the top of the page.
+beta: true # Labels the page as beta; adds a banner to the top of the page.
+disable_image_expand: true # Stops images from expanding in a modal on click. Sets it for the entire page.
+class: no-copy-code # Disables the copy code button for all code blocks on the page.
+---
+
+<!-- Add an introduction paragraph here. Good introductions explain who this explanation topic is for and what this guide will cover. -->
+<!-- See https://documentation.divio.com/explanation/ for more info about how to write an explanation article -->
+<!-- See the following examples of explanation documentation:
+* https://docs.konghq.com/gateway/latest/key-concepts/routes/
+* https://docs.konghq.com/gateway/latest/production/deployment-topologies/hybrid-mode/
+* https://docs.konghq.com/gateway/latest/kong-enterprise/plugin-ordering/
+-->
+<!-- Remove these comments once you are done writing -->
+
+## First section <!-- Header optional if there's only one section in the article -->
+
+<!-- The first section should be about the main idea of the topic -->
+<!-- You can also use bulleted lists and paragraphs to describe -->
+
+Here's information about this topic. This feature has the following benefits:
+
+* First item
+* Second item
+
+## Second section <!-- Optional -->
+
+<!-- Write more information about another element of your topic. -->
+<!-- Keep adding headers and sections until you've completed your article.  -->
+
+## See also <!-- Optional -->
+
+<!-- List of tutorials or how-to guides that a user can visit to extend their learning from this explanation article. -->
+
+* [Article title](article URL)
