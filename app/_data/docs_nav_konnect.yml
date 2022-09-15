@@ -47,6 +47,8 @@
       items:
         - text: Overview
           url: /runtime-manager/runtime-groups
+        - text: Dashboard
+          url: /runtime-manager/runtime-groups/dashboard
         - text: Manage Runtime Groups with UI
           url: /runtime-manager/runtime-groups/manage
         - text: Manage Runtime Groups with decK
