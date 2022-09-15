@@ -1,12 +1,18 @@
 const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
 const github = require("@actions/github");
-const argv = require('minimist')(process.argv.slice(2));
+const argv = require("minimist")(process.argv.slice(2));
+
+const yaml = require("js-yaml");
+const fs = require("fs");
+const fg = require("fast-glob");
 
 (async function () {
   const pull_number = argv.pr || github.context.issue.number;
   const is_fork =
-    argv.is_fork || github.context.payload.pull_request.head.repo.fork;
+    argv.is_fork !== undefined
+      ? argv.is_fork
+      : github.context.payload.pull_request.head.repo.fork;
 
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
@@ -41,7 +47,14 @@ const argv = require('minimist')(process.argv.slice(2));
         `${baseUrl}/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`
       );
     }
+
+    // Any changes in src
+    else if (f.startsWith("src/")) {
+      urls = urls.concat((await srcToUrls(f)).map((u) => `${baseUrl}/${u}`));
+    }
   }
+
+  urls = Array.from(new Set(urls));
 
   const blockList = [/.*\/changelog\/?/];
   const ignoredUrls = [];
@@ -153,4 +166,58 @@ function dataFileToUrl(filename) {
   }
 
   return `/${lookup[edition]}/${version}/`;
+}
+
+async function srcToUrls(src) {
+  let urls = [];
+
+  let files = await fg(`../../app/_data/docs_nav_*.yml`);
+  const navEntries = files
+    .map((f) => {
+      return yaml.load(fs.readFileSync(f, "utf8"));
+    })
+    .filter((n) => {
+      return n.generate;
+    });
+
+  // Build a map of src files to URLs
+  for (const entry of navEntries) {
+    const r = extractNavWithMeta(entry.items, ``, `src/${entry.product}`);
+    urls = urls.concat(
+      r
+        .filter((u) => u.src == src)
+        .map((u) => `${entry.product}/${entry.release}${u.url}`)
+    );
+  }
+
+  urls = Array.from(new Set(urls));
+
+  return urls;
+}
+
+function extractNavWithMeta(items, base, srcPrefix) {
+  let urls = [];
+  for (let u of items) {
+    if (u.items) {
+      urls = urls.concat(extractNavWithMeta(u.items, base, srcPrefix));
+    } else {
+      if (u.absolute_url) {
+        urls.push({
+          src: u.src || u.url,
+          url: u.url,
+        });
+      } else {
+        const url = `${base}${u.url}`;
+        urls.push({
+          src: srcPrefix + (u.src || url)
+                .replace(/\/?#.*$/, "") // Remove anchor links
+                .replace(/\/$/,"") // Remove trailing slashes
+                + ".md",
+          url,
+        });
+      }
+    }
+  }
+
+  return urls;
 }
