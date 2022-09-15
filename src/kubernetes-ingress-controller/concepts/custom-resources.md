@@ -24,33 +24,42 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 
 ## KongIngress
 
-The Ingress resource in Kubernetes is a fairly narrow and ambiguous API, and
-doesn't offer resources to describe the specifics of proxying.
-To overcome this limitation, `KongIngress` Custom Resource is used as an
-"extension" to the existing Ingress API to provide fine-grained control
-over proxy behavior.
-In other words, `KongIngress` works in conjunction with
-the existing Ingress resource and extends it.
-It is not meant as a replacement for the `Ingress` resource in Kubernetes.
-Using `KongIngress`, all properties of [Upstream][kong-upstream],
-[Service][kong-service] and [Route][kong-route]
-entities in Kong related to an Ingress resource can be modified.
+{:.note}
+> **Note:** Many fields available on KongIngress are also available as
+> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
+> You can add these annotations directly to Service and Ingress resources
+> without creating a separate KongIngress resource. When an annotation is
+> available, it is the preferred means of configuring that setting, and the
+> annotation value will take precedence over a KongIngress value if both set
+> the same setting.
 
-Once a `KongIngress` resource is created, you can use the `configuration.konghq.com`
-annotation to associate the `KongIngress` resource with an `Ingress` or a `Service`
+The standard Ingress and Service Kubernetes resources cannot express the full
+range of Kong's routing capabilities. KongIngress is a custom resource that
+attaches to Ingresses and Services to extend their capabilities and allow them
+to control all settings on the Kong [routes][kong-route],
+[services][kong-service], and [upstreams][kong-upstream] generated for them.
+KongIngress is not an alternative to Ingress: it cannot be used independently
+and only functions when attached to another resource.
+
+Once a KongIngress resource is created, you can use the `konghq.com/override`
+annotation to associate the KongIngress resource with an Ingress or a Service
 resource:
 
-- When the annotation is added to the `Ingress` resource, the routing
+- When the annotation is added to the Ingress resource, the routing
   configurations are updated, meaning all routes associated with the annotated
-  `Ingress` are updated to use the values defined in the `KongIngress`'s route
+  Ingress are updated to use the values defined in the KongIngress's `route`
   section.
-- When the annotation is added to a `Service` resource in Kubernetes,
-  the corresponding `Service` and `Upstream` in Kong are updated to use the
-  `proxy` and `upstream` blocks as defined in the associated
-  `KongIngress` resource.
+- When the annotation is added to a Service resource in Kubernetes, the
+  corresponding service and upstream in Kong are updated to use the `proxy` and
+  `upstream` blocks as defined in the associated KongIngress resource.
 
-The below diagram shows how the resources are linked
-with one another:
+While you can attach a KongIngress that sets values in the `proxy` and
+`upstream` sections to an Ingress, this will not have any effect: these
+sections are only honored when a KongIngress is attached to a Service.
+Similarly, the `route` section has no effect when attached to a Service, only
+when attached to an Ingress.
+
+The below diagram shows how the resources are linked with one another:
 
 ![Associating Kong Ingress](/assets/images/docs/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
 
@@ -63,11 +72,11 @@ These plugins can be used to modify the request/response or impose restrictions
 on the traffic.
 
 Once this resource is created, the resource needs to be associated with an
-`Ingress`, `Service`, or `KongConsumer` resource in Kubernetes.
-For more details, please read the reference documentation on `KongPlugin`.
+Ingress, Service, or KongConsumer resource in Kubernetes.
+For more details, please read the reference documentation on KongPlugin.
 
-The below diagram shows how you can link `KongPlugin` resource to an
-`Ingress`, `Service`, or `KongConsumer`:
+The below diagram shows how you can link KongPlugin resource to an
+Ingress, Service, or KongConsumer:
 
 |  |  |
 :-:|:-:
@@ -83,7 +92,7 @@ This can help when the configuration of the plugin needs to be centralized
 and the permissions to add/update plugin configuration rests with a different
 persona than application owners.
 
-This resource can be associated with `Ingress`, `Service` or `KongConsumer`
+This resource can be associated with Ingress, Service or KongConsumer
 and can be used in the exact same way as KongPlugin.
 
 A namespaced KongPlugin resource takes priority over a
@@ -95,8 +104,8 @@ _This resource requires the `kubernetes.io/ingress.class` annotation. Its value
 must match the value of the controller's `--ingress-class` argument, which is
 `kong` by default._
 
-This custom resource configures `Consumers` in Kong.
-Every `KongConsumer` resource in Kubernetes directly translates to a
+This custom resource configures consumers in Kong.
+Every KongConsumer resource in Kubernetes directly translates to a
 [Consumer][kong-consumer] object in Kong.
 
 ## TCPIngress
