@@ -148,7 +148,7 @@ Using Helm, check the deployed chart version:
 {% navtab Command %}
 
 ```shell
-$ helm list -A
+helm list -A
 ```
 
 {% endnavtab %}
