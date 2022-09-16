@@ -13,7 +13,8 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 - A service that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
-- The service version must be in the `default` runtime group.
+- The service version can be in any runtime group.
+
 - The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
