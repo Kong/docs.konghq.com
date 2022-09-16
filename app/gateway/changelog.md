@@ -336,8 +336,6 @@ Kong Gateway version.
 
 * The Kong Gateway FIPS package is not currently compatible with SSL connections to PostgreSQL.
   
-* TLS connections are not supported when using the prebuilt Alpine Docker image.
-
 ### Breaking changes and deprecations
 
 #### Deployment
