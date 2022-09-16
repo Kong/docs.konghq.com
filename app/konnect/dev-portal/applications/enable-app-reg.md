@@ -15,6 +15,10 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 
 - The service version can be in any runtime group.
 
+  - Service versions **not** in the `default` runtime group must be proxied with a version of Kong Gateway >= 3.0
+
+  - Service versions in the `default` runtime group can be proxied with any version of Kong Gateway
+
 - The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
