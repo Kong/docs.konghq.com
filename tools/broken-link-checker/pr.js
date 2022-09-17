@@ -34,24 +34,35 @@ const fg = require("fast-glob");
 
   // Generate a list of URLs to test
   let urls = [];
+
+  const source = {};
+
   for (let f of filenames) {
+    let urlsToAdd = [];
     // If any data files have changed, we need to check a page that uses that
     // file to generate the side navigation
     if (f.startsWith("app/_data/docs_nav_")) {
-      urls.push(`${baseUrl}${dataFileToUrl(f)}`);
+      urlsToAdd = [`${baseUrl}${dataFileToUrl(f)}`];
     }
 
     // Handle any prose changes
     else if (f.startsWith("app/") && !f.startsWith("app/_")) {
-      urls.push(
-        `${baseUrl}/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`
-      );
+      urlsToAdd = [
+        `${baseUrl}/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`,
+      ];
     }
 
     // Any changes in src
     else if (f.startsWith("src/")) {
-      urls = urls.concat((await srcToUrls(f)).map((u) => `${baseUrl}/${u}`));
+      urlsToAdd = (await srcToUrls(f)).map((u) => `${baseUrl}/${u}`);
     }
+
+    for (let u of urlsToAdd) {
+      source[u] = f;
+    }
+
+    // Add the URLs
+    urls = urls.concat(urlsToAdd);
   }
 
   urls = Array.from(new Set(urls));
@@ -76,7 +87,7 @@ const fg = require("fast-glob");
   if (urls.length) {
     console.log(`Checking the following URLs:\n\n${urls.join("\n")}\n`);
     // Check all the URLs provided
-    const r = await checkUrls(urls, is_fork);
+    const r = await checkUrls(urls, is_fork, source);
 
     // Output report
     if (r.length) {
@@ -91,7 +102,7 @@ const fg = require("fast-glob");
   }
 })();
 
-function checkUrls(urls, is_fork) {
+function checkUrls(urls, is_fork, source) {
   return new Promise((resolve, reject) => {
     const exclusions = require("./excluded.json");
     const brokenLinks = new Set();
@@ -123,6 +134,7 @@ function checkUrls(urls, is_fork) {
 
             brokenLinks.add({
               page: result.base.resolved,
+              source: source[result.base.resolved],
               text: result.html.text,
               target: result.url.resolved,
               reason: result.brokenReason,
