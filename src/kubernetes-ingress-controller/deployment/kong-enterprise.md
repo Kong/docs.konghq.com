@@ -87,8 +87,7 @@ postgres                  ClusterIP      10.63.241.104   <none>          5432/TC
 > Note: Depending on the Kubernetes distribution you are using, you might or might
 not see an external IP assigned to the three LoadBalancer type services. Please see
 your provider's guide on obtaining an IP address for a Kubernetes Service of
-type `LoadBalancer`. If you are running Minikube, you will not get an
-external IP address.
+type `LoadBalancer`.
 
 ### Setup Kong Manager
 
