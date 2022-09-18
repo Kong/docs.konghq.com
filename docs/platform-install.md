@@ -56,3 +56,9 @@ gem install bundler
 ```
 
 At this point you can go [back to the README](https://github.com/Kong/docs.konghq.com#run-locally) and continue reading the `Run Locally` instructions.
+
+## FAQ
+
+### If I get an error while attempting to install dependencies for building the docs site locally, what can I do?
+
+You can try installing next step i.e. `gem install liquid-c -v '4.0.0' --source 'https://rubygems.org/' -- --with-cflags=\"-Wno-compound-token-split-by-macro\"`, to install missing dependencies.
