@@ -230,6 +230,7 @@ Using `KongIngress`, all properties of [Upstream][kong-upstream],
 [Route][kong-route] entities in Kong related to an Ingress resource
 can be modified.
 
+
 Once a `KongIngress` resource is created, it needs to be associated with
 an Ingress or Service resource using the following annotation:
 
@@ -309,6 +310,8 @@ route:
   - http
   - https
 ```
+
+Please note that the [Kubernetes Ingress Controller annotations][kic-annotations] takes precedence over the `KongIngress` resource. If the [annotations][kic-annotations] are present in the [Upstream][kong-upstream], [Service][kong-service] or [Route][kong-route], they take precedence over corresponding configuration from the `KongIngress` resource.
 
 ## TCPIngress
 
@@ -417,3 +420,4 @@ For help configuring credentials for the `KongConsumer` Please refer to the [usi
 [kong-upstream]: /gateway/latest/admin-api/#upstream-object
 [kong-service]: /gateway/latest/admin-api/#service-object
 [kong-route]: /gateway/latest/admin-api/#route-object
+[kic-annotations]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations.md

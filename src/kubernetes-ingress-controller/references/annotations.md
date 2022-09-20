@@ -230,6 +230,9 @@ Kubernetes Service `billings`, then any request that is routed to the
 request contains `/foo/something` as the path, then the service will
 receive an HTTP request with path set as `/baz/foo/something`.
 
+The value of this annotation takes precedence over the `proxy.path` field in the
+KongIngress resource.
+
 ### konghq.com/strip-path
 
 > Available since controller 0.8
@@ -252,6 +255,9 @@ Sample usage:
 konghq.com/strip-path: "true"
 ```
 
+The value of this annotation takes precedence over the `route.strip_path` field in the
+KongIngress resource.
+
 ### konghq.com/preserve-host
 
 > Available since controller 0.8
@@ -268,6 +274,9 @@ Sample usage:
 ```yaml
 konghq.com/preserve-host: "true"
 ```
+
+The value of this annotation takes precedence over the
+`route.preserve_host` field from the KongIngress resource.
 
 ### konghq.com/https-redirect-status-code
 
@@ -293,6 +302,9 @@ konghq.com/https-redirect-status-code: "301"
 
 Please note the quotes (`"`) around the integer value.
 
+The value of this annotation takes precedence over the
+`route.https_redirect_status_code` field from the KongIngress resource.
+
 ### konghq.com/regex-priority
 
 > Available since controller 0.9
@@ -311,6 +323,9 @@ konghq.com/regex-priority: "10"
 
 Please note the quotes (`"`) around the integer value.
 
+The value of this annotation takes precedence over the
+`route.regex_priority` field from the KongIngress resource.
+
 ### konghq.com/methods
 
 > Available since controller 0.9
@@ -325,6 +340,9 @@ Sample usage:
 ```yaml
 konghq.com/methods: "GET,POST"
 ```
+
+The value of this annotation takes precedence over the
+`route.methods` field from the KongIngress resource.
 
 ### konghq.com/snis
 
@@ -342,6 +360,9 @@ Sample usage:
 konghq.com/snis: "foo.example.com, bar.example.com"
 ```
 
+The value of this annotation takes precedence over the
+`route.snis` field from the KongIngress resource.
+
 ### konghq.com/request-buffering
 
 > Available since controller 1.2
@@ -355,6 +376,9 @@ Sample usage:
 konghq.com/request-buffering: "false"
 ```
 
+The value of this annotation takes precedence over the
+`route.request_buffering` field from the KongIngress resource.
+
 ### konghq.com/response-buffering
 
 > Available since controller 1.2
@@ -367,6 +391,9 @@ Sample usage:
 ```yaml
 konghq.com/response-buffering: "false"
 ```
+
+The value of this annotation takes precedence over the
+`route.response_buffering` field from the KongIngress resource.
 
 ### konghq.com/host-aliases
 
@@ -455,6 +482,9 @@ Accepted values are:
 - `tcp`
 - `tls`
 
+The value of this annotation takes precedence over the `proxy.protocol` field in the
+KongIngress resource.
+
 ### konghq.com/protocols
 
 > Available since controller 0.8
@@ -469,6 +499,9 @@ You usually want to set this annotation for the following two use-cases:
   `konghq.com/protocols: "https"`
 - You want to define gRPC routing, in which case you should use
   `konghq.com/protocols: "grpc,grpcs"`
+
+The value of this annotation takes precedence over the `route.protocols` field in the
+KongIngress resource.
 
 ### konghq.com/client-cert
 
@@ -495,6 +528,9 @@ Kubernetes Service. By default, Kong upstreams set `Host` to the hostname or IP
 address of an individual target (the Pod IP for controller-managed
 configuration). This annotation overrides the default behavior and sends
 the annotation value as the `Host` header value.
+
+The value of this annotation takes precedence over the `upstream.host_header` field in the
+KongIngress resource.
 
 If `konghq.com/preserve-host: true` is present on an Ingress (or
 `route.preserve_host: true` is present in a linked KongIngress), it will take
