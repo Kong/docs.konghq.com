@@ -64,13 +64,13 @@ if available.
 ## Update Ingress regular expression paths for Kong 3.x compatibility
 
 Kong 3.x includes a number of its own [breaking changes](/gateway/changelog/#breaking-changes-and-deprecations),
-but most do not affect its interactions with KIC, or are handled automatically
-by 2.6 changes. You should still review these changes for changes that do not
-interact with KIC, such as changes to `kong.conf` or environment variable settings
+but most don't affect its interactions with KIC, or are handled automatically
+by 2.6 changes. You should still review the changelog for changes that don't
+interact with KIC, such as changes to `kong.conf` or environment variable settings,
 and changes to the PDK that affect custom plugins.
 
-Kong 3.x's changes to regular expression path handling _do_ require manual
-changes to Ingress configuration. In Kong 2.x, Kong applied a heuristic based
+Kong 3.x includes changes to regular expression path handling, which _do_ require
+manual updates to Ingress configuration. In Kong 2.x, Kong applied a heuristic based
 on the presence of special characters in a route path to determine if a path
 was a regular expression. This heuristic was imperfect and Kong 3.x has
 removed it, instead requiring that any regular expression begin with a `~`
@@ -79,18 +79,29 @@ prefix.
 Ingress rule paths have no way to indicate that a path is a regular expression.
 The `ImplementationSpecific` path type can contain either regular expression or
 non-regular expression paths. If you have existing Ingresses with regular
-expression paths, those paths will no longer be routed correctly if you upgrade
+expression paths, those paths will break if you upgrade
 to 3.x without updating configuration.
 
+{:.important}
+> **Important**: `Prefix` and `Exact` rules [must never use regular expressions](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-versions/#networkingk8siov1).
+Only use regular expressions in `ImplementationSpecific` rules.
 
-To smooth the migration process and allow users to update rules gradually, KIC
-2.6 includes an option to continue applying the 2.x regular expression
-heuristic on KIC's end. If the option is enabled, the Kong version is 3.0 or
-higher, and a path matches the 2.x heuristic, KIC will insert the `~` prefix
-for you unless the path already begins with `~`. This allows for a mixture of
-paths that have and have not been migrated to 3.x-style configuration.
+The new 3.x paths are also incompatible with 2.x. Adding the `~` character to
+Ingress rules directly breaks incremental upgrades. To smooth the migration
+process and allow users to update rules gradually, KIC 2.6 includes the
+`enableLegacyRegexDetection` option to continue applying the 2.x regular
+expression heuristic on KIC's end.
 
-To enable this option, you need to create an IngressClassParameters resource
+If the following rules are met, KIC will insert the `~` prefix:
+* The `enableLegacyRegexDetection` option is enabled
+* The Kong version is 3.0 or higher
+* A path matches the 2.x heuristic
+* The path does not begin with `~`
+
+This allows for a mixture of paths that have and have not been migrated to
+3.x-style configuration.
+
+To enable this option, create an IngressClassParameters resource
 with `enableLegacyRegexDetection=true` and attach it to your IngressClass. The
 option _is not_ enabled for IngressClasses by default.
 
@@ -124,12 +135,16 @@ If you use a non-standard namespace or Ingress class, you will need to
 replace the `kong` Ingress class name and `kong` namespace with values
 appropriate to your environment.
 
-After you have upgraded to Kong 3.x, update all of your regular expression paths 
-to include the `~` prefix in the Ingress itself at your earliest convenience. 
-The heuristic is only intended for decreasing downtime during upgrades, so 
+After you have upgraded to Kong 3.x, update all of your regular expression paths
+to include the `~` prefix in the Ingress itself at your earliest convenience.
+The heuristic is only intended for decreasing downtime during upgrades, so
 it behaves exactly like the version included in Kong 2.8.x, bugs
 included. Once you added the prefix to all regular expression paths, you can
 disable `enableLegacyRegexDetection`.
+
+{:.important}
+> **Important**: The `enableLegacyRegexDetection` option is meant to be **temporary**.
+Only use it for migration.
 
 Gateway API HTTPRoute resources are not affected by this problem. They
 do have a dedicated regular expression path type, and KIC inserts the `~`
