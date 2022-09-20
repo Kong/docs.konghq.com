@@ -1,6 +1,11 @@
 ---
 title: Using Gateway API
-alpha: true
+
+overrides:
+  alpha:
+    true:
+      gte: 2.3.x
+      lte: 2.5.x
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for

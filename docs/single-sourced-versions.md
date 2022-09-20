@@ -139,6 +139,8 @@ unlisted:
 
 ## Conditional Rendering
 
+### Content
+
 As we add new functionality, we'll want content to be displayed for specific releases of a product. We can use the `if_version` block for this:
 
 ```
@@ -183,4 +185,37 @@ If using `if_version` in a sentence, specify `inline:true` like so:
 
 ```
 Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world
+```
+
+### Frontmatter
+
+You may want to set values in the frontmatter conditionally. You can do this using `overrides`:
+
+```yaml
+---
+title: Page Here
+alpha: false # This is the default, but is here for completeness
+
+overrides:
+  alpha:
+    true:
+      gte: 2.3.x
+      lte: 2.5.x
+---
+```
+
+In the above example, versions `2.3.x`, `2.4.x` and `2.5.x` will have `alpha: true`, and all other versions will have `alpha: false`.
+
+You can set the key to any scalar value. Here's an example using strings to switch something from "Private Beta" (2.8.x and before) to GA (anything later than this).
+
+```yaml
+---
+title: Another Page
+availability: GA
+
+overrides:
+  availability:
+    Private Beta:
+      lte: 2.8.x
+---
 ```
