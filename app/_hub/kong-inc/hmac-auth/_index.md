@@ -57,9 +57,9 @@ params:
       default: null
       datatype: string    
       description: |
-        An optional string (consumer UUID) value to use as an anonymous Consumer if authentication fails.
+        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
-        must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
+        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
       maximum_version: "3.0.0"
     - name: validate_request_body
       required: true
