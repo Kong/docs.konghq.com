@@ -77,7 +77,7 @@ params:
       default: null
       datatype: string
       description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
       minimum_version: "3.1.0"
     - name: anonymous
       required: false
