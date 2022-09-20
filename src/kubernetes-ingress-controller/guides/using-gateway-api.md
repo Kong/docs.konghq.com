@@ -113,6 +113,8 @@ apiVersion: gateway.networking.k8s.io/v1beta1
 kind: GatewayClass
 metadata:
   name: kong
+  annotations:
+    konghq.com/gateway-unmanaged: true
 spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
@@ -154,8 +156,6 @@ spec:
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
 kind: Gateway
 metadata:
-  annotations:
-    konghq.com/gateway-unmanaged: kong/kong-proxy
   name: kong
 spec:
   gatewayClassName: kong
@@ -189,12 +189,24 @@ kubectl patch --type=json gateway kong -p='[{"op":"add","path":"/spec/listeners/
 Change `example-cert-secret` to the name of your Secret.
 {% endif_version %}
 
+{% if_version lte: 2.5.x %}
 Because KIC and Kong instances are installed independent of their Gateway
 resource, we set the `konghq.com/gateway-unmanaged` annotation to the
 `<namespace>/<name>` of the Kong proxy Service. This instructs KIC to populate
-that Gateway resource with listener and status information. You can check to
-confirm if KIC has updated the bound Gateway by inspecting the list of
-associated addresses:
+that Gateway resource with listener and status information. 
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+To configure KIC to reconcile `Gateway` resource, you need to set the 
+`konghq.com/gateway-unmanaged` annotation in `GatewayClass` resource used in 
+`spec.gatewayClassName` in `Gateway` resource, as the example. Also, the 
+`spec.controllerName` of `GatewayClass` needs to be same as the value of the
+`--gateway-api-controller-name` flag configured in KIC:
+[kic-flags](kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags)
+{% endif_version %}
+
+You can check to confirm if KIC has updated the bound Gateway by 
+inspecting the list of associated addresses:
 
 ```bash
 $ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
