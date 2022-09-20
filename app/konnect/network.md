@@ -35,7 +35,7 @@ want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
 
-Add the following hostnames to the allowlist to give the
+Add the following hostnames to the allow list to give the
 {{site.konnect_short_name}} control plane access through the firewall:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
