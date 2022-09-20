@@ -176,10 +176,18 @@ params:
       required: false
       default: null
       datatype: string
+      description:
+        An optional string (Consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` or `username` attribute, and **not** its `custom_id`.
+      minimum_version: "3.1.0"  
+    - name: anonymous
+      required: false
+      default: null
+      datatype: string      
       description: |
-        Let unauthenticated requests pass or skip the plugin if another authentication plugin
-        has already authenticated the request by setting the value to anonymous Consumer.
-        The value can be a UUID or a username.
+        An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails.
+        If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
+        must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
+      maximum_version: "3.0.0"
     - group: General Settings
       description: Parameters for settings that affect different grants and flows.
     - name: preserve_query_args
