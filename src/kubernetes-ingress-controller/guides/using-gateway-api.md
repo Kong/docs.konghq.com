@@ -204,7 +204,7 @@ To configure KIC to reconcile the `Gateway` resource, you must set the
 `--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
 {% endif_version %}
 
-You can check to confirm if KIC has updated the bound {{site.base_gateway}} by 
+You can check to confirm if KIC has updated the bound `Gateway` by 
 inspecting the list of associated addresses:
 
 ```bash
