@@ -82,6 +82,10 @@ non-regular expression paths. If you have existing Ingresses with regular
 expression paths, those paths will break if you upgrade
 to 3.x without updating configuration.
 
+{:.important}
+> **Important**: `Prefix` and `Exact` rules [must never use regular expressions](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-versions/#networkingk8siov1).
+Only use regular expressions in `ImplementationSpecific` rules.
+
 The new 3.x paths are also incompatible with 2.x. Adding the `~` character to
 Ingress rules directly would break incremental upgrades. To smooth the migration
 process and allow users to update rules gradually, KIC 2.6 includes the
