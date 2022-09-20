@@ -87,7 +87,7 @@ to 3.x without updating configuration.
 Only use regular expressions in `ImplementationSpecific` rules.
 
 The new 3.x paths are also incompatible with 2.x. Adding the `~` character to
-Ingress rules directly would break incremental upgrades. To smooth the migration
+Ingress rules directly breaks incremental upgrades. To smooth the migration
 process and allow users to update rules gradually, KIC 2.6 includes the
 `enableLegacyRegexDetection` option to continue applying the 2.x regular
 expression heuristic on KIC's end.
@@ -144,7 +144,7 @@ disable `enableLegacyRegexDetection`.
 
 {:.important}
 > **Important**: The `enableLegacyRegexDetection` option is meant to be **temporary**.
-Use it for migration only.
+Only use it for migration.
 
 Gateway API HTTPRoute resources are not affected by this problem. They
 do have a dedicated regular expression path type, and KIC inserts the `~`
