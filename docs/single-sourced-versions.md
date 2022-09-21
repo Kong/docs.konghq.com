@@ -187,9 +187,9 @@ If using `if_version` in a sentence, specify `inline:true` like so:
 Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world
 ```
 
-### Frontmatter
+### Front matter
 
-You may want to set values in the frontmatter conditionally. You can do this using `overrides`:
+You may want to set values in the front matter conditionally. You can do this using `overrides`:
 
 ```yaml
 ---
