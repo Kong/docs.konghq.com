@@ -37,9 +37,10 @@ params:
     - https
   dbless_compatible: 'yes'
   dbless_explanation: |
-    Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
+    {:.note}
+    > Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
     instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
-  examples: false
+  examples: true
   config:
     - name: api_specification_filename
       required: semi
@@ -94,76 +95,124 @@ params:
       description: |
         Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
       minimum_version: "2.7.x"
+    - name: included_status_codes
+      required: false
+      default: null
+      datatype: array of integers
+      description: |
+        A global list of the HTTP status code that only allows being chosen and returned.
+      minimum_version: "3.1.x"
+    - name: random_status_code
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        Whether to randomly select an HTTP status code from the responses of the corresponding API method.
+        The default value is `false`, which means the minimum HTTP status code will always be chosen and returned.
+      minimum_version: "3.1.x"
   extra: |
 
     Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
     or the `api_specification` parameter. The plugin requires a spec to work.
 ---
 
-## Configuration
+## Behavioral Headers
 
-### Enable the plugin on a service
+Behavioral headers allow you to change the behavior of the Mocking plugin for the individual request without changing the configuration.
 
-Configure this plugin on a [service](/gateway/latest/admin-api/#service-object):
+### X-Kong-Mocking-Delay
 
-```bash
-curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
-  --data "name=mocking" \
-  --data "config.api_specification_filename=multipleexamples.json" \
-  --data "config.random_delay=true" \
-  --data "config.max_delay_time=1" \
-  --data "config.min_delay_time=0.01"
+The `X-Kong-Mocking-Delay` header tells the plugin how many milliseconds should be taken before responding. The delay value should between `0`(inclusive) and `10000`(inclusive), otherwise a 400 error instead to return
+
+```
+HTTP/1.1 400 Bad Request
+
+{
+    "message": "Invalid value for X-Kong-Mocking-Delay. The delay value should between 0 and 10000ms"
+}
 ```
 
-The `<service>` is the id or name of the service that this plugin configuration will target.
+### X-Kong-Mocking-Example-Id
 
-### Enable the plugin on a route
+The `X-Kong-Mocking-Example-Id` header tells the plugin which response example should be used when the endpoint has multiple examples for a single status code.
 
-Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
+OpenAPI 3.0 allows you to define multiple examples in a single MIME type. Here is an example that has two candidate examples, `Jessica` and `Ron`.
 
-```bash
-curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
-   --data "name=mocking" \
-   --data "config.api_specification_filename=multipleexamples.json" \
-   --data "config.random_delay=true" \
-   --data "config.max_delay_time=1" \
-   --data "config.min_delay_time=0.01"
-   ```
-
-The `<route>` is the id or name of the route that this plugin configuration will target.
-
-### Enable the plugin on a consumer
-
-Configure this plugin on a [consumer](/gateway/latest/admin-api/#consumer-object):
-
-```bash
-curl -X POST http://<admin-hostname>:8001/consumers/<consumer>/plugins \
-  --data "name=mocking"  \
-  --data "config.api_specification_filename=multipleexamples.json" \
-  --data "config.random_delay=true" \
-  --data "config.max_delay_time=1" \
-  --data "config.min_delay_time=0.001"
+```yaml
+paths:
+  /query_user:
+    get:
+      responses:
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              examples:
+                Jessica:
+                  value:
+                    id: 10
+                    name: Jessica Smith
+                Ron:
+                  value:
+                    id: 20
+                    name: Ron Stewart
 ```
 
-The `<consumer>` is the id or username of the consumer that this plugin configuration will target.
 
-You can combine `consumer.id`, `service.id`, or `route.id` within the same request to further narrow the scope of the plugin.
-
-### Enable the plugin globally
-
-A plugin that is not associated to any service, route, or consumer is considered global, and
-will run on every request. Read the [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the
-[Plugin Precedence](/gateway/latest/admin-api/#precedence) sections for more information.
-
-Configure this plugin globally:
+Makes a request to choose a specific example to respond to:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/plugins/ \
-    --data "name=mocking"  \
-    --data "config.api_specification_filename=multipleexamples.json" \
-    --data "config.random_delay=true" \
-    --data "config.max_delay_time=1" \
-    --data "config.min_delay_time=0.001"
+curl -X GET http://<kong-hostname>:8000/query_user -H "X-Kong-Mocking-Example-Id: Ron"
+```
+
+Response:
+
+```
+{
+    "id": 20,
+    "name": "Ron Stewart"
+}
+```
+
+### X-Kong-Mocking-Status-Code
+
+By default, the plugin chooses the minimum status code that is defined in the corresponding method.
+
+The `X-Kong-Mocking-Status-Code` header allows requests to change the default status code selection behavior by specific a status code that is defined in the corresponding method. 
+
+```yaml
+paths:
+  /ping:
+    get:
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              example:
+                message: '200'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              example:
+                message: '500'
+```
+
+Makes a request to choose a specific status code to respond to:
+
+```bash
+curl -i -X GET http://<kong-hostname>:8000/ping -H "X-Kong-Mocking-Status-Code: 500"
+```
+
+Response:
+
+```
+HTTP/1.1 500 Internal Server Error
+
+{
+    "message": "500"
+}
 ```
 
 ## Tutorial Example
@@ -906,6 +955,14 @@ ensure you set the actual URL for your service so that the response can be recei
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+
+* Added `config.included_status_codes`, `config.random_status_codes` configuration parameters for status code selection.
+* Added behavioral headers feature.
+* $ref and schema support.
+* Added MIME types priority match support.
+
 
 **{{site.base_gateway}} 2.7.x**
 
