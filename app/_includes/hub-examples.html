@@ -281,7 +281,7 @@ Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route
 by annotating the ingress as follows:
 
 ``` yaml
-apiVersion: networking/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ROUTE_NAME|ROUTE_ID
@@ -295,8 +295,10 @@ spec:
       paths:
       - path: /bar
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
   ```
 
 Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
