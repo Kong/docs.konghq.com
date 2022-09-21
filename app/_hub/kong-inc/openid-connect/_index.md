@@ -182,7 +182,7 @@ params:
       description: |
         Let unauthenticated requests pass or skip the plugin if another authentication plugin
         has already authenticated the request by setting the value to anonymous Consumer.
-        The value can be UUID or username.
+        The value can be a UUID or a username.
     - group: General Settings
       description: Parameters for settings that affect different grants and flows.
     - name: preserve_query_args
