@@ -44,7 +44,7 @@ To use Okta as an external client provider for Dynamic Client Registration (DCR)
 
 Once you have Okta configured, we can now setup the Dev Portal to use Okta for DCR.
 
-1. Sign in to Konnect, and select **Dev Portal** from the menu.
+1. Sign in to {{site.konnect_short_name}}, and select **Dev Portal** from the menu.
 
 2. Click **Settings** to open your Dev Portal settings.
 
