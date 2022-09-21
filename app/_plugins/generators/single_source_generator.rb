@@ -124,6 +124,30 @@ module SingleSource
 
       # Set the layout if it's not already provided
       @data['layout'] = 'docs-v2' unless data['layout']
+
+      # Apply any overrides
+      current = to_version(@data['release'])
+      @data['overrides']&.each do |key, entries|
+        entries.each do |value, conditions|
+          gte = conditions['gte'] ? to_version(conditions['gte']) : nil
+          lte = conditions['lte'] ? to_version(conditions['lte']) : nil
+          eq = conditions['eq'] ? to_version(conditions['eq']) : nil
+
+          if gte && lte
+            @data[key] = value if current >= gte && current <= lte
+          elsif gte
+            @data[key] = value if current >= gte
+          elsif lte
+            @data[key] = value if current <= lte
+          elsif eq
+            @data[key] = value if current == eq
+          end
+        end
+      end
+    end
+
+    def to_version(input)
+      Gem::Version.new(input.gsub(/\.x$/, '.0'))
     end
   end
 end
