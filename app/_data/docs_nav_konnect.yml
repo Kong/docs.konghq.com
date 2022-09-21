@@ -125,10 +125,10 @@
           url: /dev-portal/applications/application-overview
         - text: Enable and Disable App Registration
           url: /dev-portal/applications/enable-app-reg
-        - text: External Client Providers
+        - text: Dynamic Client Registration
           items:
             - text: Okta
-              url: /dev-portal/applications/external-client-providers/okta
+              url: /dev-portal/applications/providers/okta
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps
         - text: Register an Application with a Service
