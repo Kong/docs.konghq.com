@@ -58,7 +58,7 @@ Once you have Okta configured, we can now setup the Dev Portal to use Okta for D
 
 4. Enter the **Issuer URL** for your authorization server, and the **Token** that you created in Okta.
 
-5. Enter the names of the **Scopes** or **Claims** that you created as comma-separated values in their corresponding inputs.
+5. Enter the names of the **Scopes** and **Claims** as comma-separated values in their corresponding inputs.
 
 6. Click **Save**.
 
