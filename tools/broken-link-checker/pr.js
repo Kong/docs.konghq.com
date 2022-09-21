@@ -37,6 +37,15 @@ const fg = require("fast-glob");
 
   const source = {};
 
+  let navEntries = await fg(`../../app/_data/docs_nav_*.yml`);
+  navEntries = navEntries
+    .map((f) => {
+      return yaml.load(fs.readFileSync(f, "utf8"));
+    })
+    .filter((n) => {
+      return n.generate;
+    });
+
   for (let f of filenames) {
     let urlsToAdd = [];
     // If any data files have changed, we need to check a page that uses that
@@ -54,7 +63,7 @@ const fg = require("fast-glob");
 
     // Any changes in src
     else if (f.startsWith("src/")) {
-      urlsToAdd = (await srcToUrls(f)).map((u) => `${baseUrl}/${u}`);
+      urlsToAdd = (await srcToUrls(f, navEntries)).map((u) => `${baseUrl}/${u}`);
     }
 
     for (let u of urlsToAdd) {
@@ -180,17 +189,8 @@ function dataFileToUrl(filename) {
   return `/${lookup[edition]}/${version}/`;
 }
 
-async function srcToUrls(src) {
+async function srcToUrls(src, navEntries) {
   let urls = [];
-
-  let files = await fg(`../../app/_data/docs_nav_*.yml`);
-  const navEntries = files
-    .map((f) => {
-      return yaml.load(fs.readFileSync(f, "utf8"));
-    })
-    .filter((n) => {
-      return n.generate;
-    });
 
   // Build a map of src files to URLs
   for (const entry of navEntries) {
