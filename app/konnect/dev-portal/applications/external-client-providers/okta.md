@@ -38,10 +38,6 @@ To use Okta as an external client provider for Dynamic Client Registration (DCR)
 
 4. If you would like to create an additional scope, select the **Scopes** tab, and then click the **Add Scope** button.
 
-   {:.note}
-   > Note that you can use any of the existing scopes besides **openid**, as openid
-   scope will prevent you from using client credentials.
-
 5. In order to map an application from the Dev Portal to Okta, we need to create a claim. Select the **Claims** tab. and then click the **Add Claim** button.
 
 6. Enter a name for this claim, and enter **app.clientId** for value. We can leave the Value type as expression, and include it in any scope.
@@ -58,7 +54,12 @@ Once you have Okta configured, we can now setup the Dev Portal to use Okta for D
 
 4. Enter the **Issuer URL** for your authorization server, and the **Token** that you created in Okta.
 
-5. Enter the names of the **Scopes** and **Claims** as comma-separated values in their corresponding inputs.
+5. Enter the names of the **Scopes** and **Claims** as comma-separated values in their corresponding inputs. The values should match the scopes or claims that you created in Okta.
+
+   {:.note}
+   > Note that you can use any of the existing scopes besides **openid**, as openid
+   scope will prevent you from using client credentials. If this input is left empty, openid
+   will be used.
 
 6. Click **Save**.
 
