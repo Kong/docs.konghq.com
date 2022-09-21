@@ -2,6 +2,7 @@
 title: Configuring Okta for Dynamic Client Registration
 no_version: true
 toc: true
+breadcrumb: Okta
 content-type: how-to
 ---
 
@@ -55,7 +56,7 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 6. Enter a name for this claim, and enter **app.clientId** for value. We can leave the value type as expression, and include it in any scope.
 
-## Configuring the Dev Portal
+## Configure the Dev Portal
 
 Once you have Okta configured, you can setup the Dev Portal to use Okta for DCR.
 

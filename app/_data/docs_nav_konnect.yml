@@ -128,7 +128,7 @@
         - text: Dynamic Client Registration
           items:
             - text: Okta
-              url: /dev-portal/applications/providers/okta
+              url: /dev-portal/applications/dynamic-client-registration/okta
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps
         - text: Register an Application with a Service
