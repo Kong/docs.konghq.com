@@ -35,10 +35,10 @@ want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
 
-Data planes initiate the connection to the {{site.konnect_short_name}} control plane.
+Runtime instances initiate the connection to the {{site.konnect_short_name}} control plane. 
 They require access through firewalls to communicate with the control plane.
 
-To let data planes request and receive configuration, and send telemetry data,
+To let a runtime instances request and receive configuration, and send telemetry data, 
 add the following hostnames to the firewall allowlist:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
