@@ -27,7 +27,7 @@ const fs   = require('fs');
     process.exit(1);
   }
 
-  let items = yaml.load(fs.readFileSync(`../app/_data/docs_nav_${nav}.yml`, 'utf8'));
+  let items = yaml.load(fs.readFileSync(`../../app/_data/docs_nav_${nav}.yml`, 'utf8'));
 
   // If it's a single sourced doc, extract the items directly
   if (items.items) {
