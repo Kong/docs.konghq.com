@@ -581,7 +581,7 @@ items:
         url: /reference/cli
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
-      - text: Router Operators
-        url: /reference/router-operators
+      - text: Router Expressions Language
+        url: /reference/router-expressions-language
       - text: FAQ
         url: /reference/faq

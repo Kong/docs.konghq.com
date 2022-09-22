@@ -1,5 +1,5 @@
 ---
-title: Router Operator Reference for Kong Gateway
+title: Router Expressions Language Reference for Kong Gateway
 content-type: reference
 ---
 

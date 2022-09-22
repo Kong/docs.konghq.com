@@ -6,7 +6,7 @@ content-type: how-to
 
 Expressions can describe routes or paths as patterns using logical expressions.
 This how-to guide will walk through switching to the new router, and configuring routes with the new expressive domain specific language.
-For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-operators).
+For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-expressions-language).
 
 ## Prerequisite
 
@@ -16,7 +16,7 @@ be configurable and you must specify Expressions in the `expression` field.
 
 ## Create routes with Expressions
 
-To create a new router object using expressions, send a `POST` request to the [services endpoint](/gateway/latest/admin-api/#update-route) like this: 
+To create a new router object using expressions, send a `POST` request to the [services endpoint](/gateway/latest/admin-api/#update-route) like this:
 ```sh
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
@@ -58,7 +58,7 @@ curl --request POST \
 ```
 
 
-For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-operators/).
+For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-expressions-language).
 
 ### Matching priority
 
@@ -160,4 +160,4 @@ This reduces the number of routes the Expressions engine has to consider, which 
 ## More information
 
 * [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-* [Expressions Reference](/gateway/latest/reference/router-operators)
+* [Expressions Language Reference](/gateway/latest/reference/router-expressions-language)
