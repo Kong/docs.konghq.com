@@ -107,8 +107,8 @@ params:
       default: false
       datatype: boolean
       description: |
-        Whether to randomly select an HTTP status code from the responses of the corresponding API method.
-        The default value is `false`, which means the minimum HTTP status code will always be chosen and returned.
+        Determines whether to randomly select an HTTP status code from the responses of the corresponding API method.
+        The default value is `false`, which means the minimum HTTP status code is always selected and returned.
       minimum_version: "3.1.x"
   extra: |
 
@@ -122,7 +122,7 @@ Behavioral headers allow you to change the behavior of the Mocking plugin for th
 
 ### X-Kong-Mocking-Delay
 
-The `X-Kong-Mocking-Delay` header tells the plugin how many milliseconds should be taken before responding. The delay value should between `0`(inclusive) and `10000`(inclusive), otherwise a 400 error instead to return
+The `X-Kong-Mocking-Delay` header tells the plugin how many milliseconds to delay before responding. The delay value must be between `0`(inclusive) and `10000`(inclusive), otherwise a it returns a `400` error.
 
 ```
 HTTP/1.1 400 Bad Request
@@ -134,9 +134,9 @@ HTTP/1.1 400 Bad Request
 
 ### X-Kong-Mocking-Example-Id
 
-The `X-Kong-Mocking-Example-Id` header tells the plugin which response example should be used when the endpoint has multiple examples for a single status code.
+The `X-Kong-Mocking-Example-Id` header tells the plugin which response example is used when the endpoint has multiple examples for a single status code.
 
-OpenAPI 3.0 allows you to define multiple examples in a single MIME type. Here is an example that has two candidate examples, `Jessica` and `Ron`.
+OpenAPI 3.0 allows you to define multiple examples in a single MIME type. The following example has two candidate examples: `Hao` and `Sasha`.
 
 ```yaml
 paths:
@@ -151,18 +151,18 @@ paths:
                 Jessica:
                   value:
                     id: 10
-                    name: Jessica Smith
+                    name: Hao
                 Ron:
                   value:
                     id: 20
-                    name: Ron Stewart
+                    name: Sasha
 ```
 
 
 Makes a request to choose a specific example to respond to:
 
 ```bash
-curl -X GET http://<kong-hostname>:8000/query_user -H "X-Kong-Mocking-Example-Id: Ron"
+curl -X GET http://HOSTNAME:8000/query_user -H "X-Kong-Mocking-Example-Id: Sasha"
 ```
 
 Response:
@@ -170,7 +170,7 @@ Response:
 ```
 {
     "id": 20,
-    "name": "Ron Stewart"
+    "name": "Sasha"
 }
 ```
 
@@ -178,7 +178,7 @@ Response:
 
 By default, the plugin chooses the minimum status code that is defined in the corresponding method.
 
-The `X-Kong-Mocking-Status-Code` header allows requests to change the default status code selection behavior by specific a status code that is defined in the corresponding method. 
+The `X-Kong-Mocking-Status-Code` header allows requests to change the default status code selection behavior by specifying a status code that is defined in the corresponding method. 
 
 ```yaml
 paths:
@@ -202,7 +202,7 @@ paths:
 Makes a request to choose a specific status code to respond to:
 
 ```bash
-curl -i -X GET http://<kong-hostname>:8000/ping -H "X-Kong-Mocking-Status-Code: 500"
+curl -i -X GET http://HOSTNAME:8000/ping -H "X-Kong-Mocking-Status-Code: 500"
 ```
 
 Response:
