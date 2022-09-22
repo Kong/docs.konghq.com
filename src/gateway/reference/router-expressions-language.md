@@ -41,7 +41,7 @@ Example:
 ## Types
 
 Router expressions are strongly typed. The operators available to each field depends on the type of that field.
-For example, you can not perform String comparisons on a Integer type field.
+For example, you can not perform string comparisons on a integer type field.
 
 ## Available fields
 
