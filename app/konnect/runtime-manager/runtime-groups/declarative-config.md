@@ -32,6 +32,12 @@ registration, or configure custom plugins.
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
 
+## Generate a Personal Access Token
+
+To test your connection, it is recommended that you use a personal access token (PAT).
+
+{% include_cached /md/personal-access-token.md %}
+
 ## Test your connection
 
 Check that you can log in to {{site.konnect_short_name}} and that decK
