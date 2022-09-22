@@ -1,5 +1,5 @@
 ---
-title: Router Operator Reference for Kong Gateway
+title: Router Expressions Language Reference for Kong Gateway
 content-type: reference
 ---
 
@@ -37,6 +37,11 @@ Example:
 ```
 (http.path ^= "/prefix/" && net.port == 80) || http.method == "POST"
 ```
+
+## Types
+
+Router expressions are strongly typed. The operators available to each field depends on the type of that field.
+For example, you can not perform string comparisons on a integer type field.
 
 ## Available fields
 
