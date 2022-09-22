@@ -63,7 +63,7 @@ For a list of all available operators, see the [reference documentation](/gatewa
 ### Matching priority
 
 When the Expressions router is used, available expressions are evaluated using the `priority` field of the corresponding `Route` object
-where the expression is configured. Routes are evaluated in order of priority. If two routes have the same priority, then
+where the expression is configured. Routes are evaluated in order of priority, where the highest priority integer is evaluated first. If two routes have the same priority, then
 the newest route (that is, routes with the highest `created_at` will be evaluated first).
 
 The Expressions router stops evaluating the remaining rules as soon as the first match is found.
