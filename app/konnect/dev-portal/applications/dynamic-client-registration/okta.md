@@ -9,7 +9,8 @@ content-type: how-to
 
 ## Prerequisites
 
-To use Okta as an external client provider for Dynamic Client Registration (DCR), create or use an existing Okta account [here](http://developer.okta.com). Once you have an account, you will need to create a token, find the Issuer URL, and optionally set any scopes or claims.
+* Enterprise {{site.konnect_short_name}} account.
+* An [Okta account](http://developer.okta.com).
 
 ### Issuer URL
 
