@@ -38,6 +38,11 @@ Example:
 (http.path ^= "/prefix/" && net.port == 80) || http.method == "POST"
 ```
 
+## Types
+
+Router expressions are strongly typed. The operators available to each field depends on the type of that field.
+For example, you can not perform String comparisons on a Integer type field.
+
 ## Available fields
 
 | Field | Description | Type |

@@ -31,7 +31,7 @@ curl --request POST \
   --header 'Content-Type: multipart/form-data' \
   --form 'expression=(http.path == "/mock" || net.protocol == "https")'
 ```
-In this example the || operator created an expression that set variables for the following fields: 
+In this example the || operator created an expression that set variables for the following fields:
 
 ```
 curl --request POST \
@@ -59,6 +59,35 @@ curl --request POST \
 
 
 For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-operators/).
+
+### Matching priority
+
+When Expressions router is used, available expressions are evaluated by the `priority` field of the corresponding `Route` object
+where the expression is configured, from routes with highest priority number to the lowest. If two routes has the same priority, then
+the newest route (that is, routes with the highest `created_at` will be evaluated first).
+
+Expressions router stops evaluating the remaining rules as soon as the first match is found.
+
+For example, given the following config:
+
+```
+Route 1 =>
+created_at: 100000001
+priority: 100,
+expression: ...
+
+Route 2 =>
+created_at: 100000000
+priority: 100,
+expression: ...
+
+Route 3 =>
+created_at: 100000002
+priority: 99,
+expression: ...
+```
+
+The evaluation order will be: Route 1 then Route 2 and finally Route 3.
 
 ## Performance considerations when using Expressions
 
