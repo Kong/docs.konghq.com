@@ -85,7 +85,7 @@ will be subject to rate limit enforcement.
 Run the following command to quickly send 6 mock requests:
 
 ```sh
-for _ in {1..6}; do {curl -s -i localhost:8000/mock/request; echo; sleep 1; } done
+for _ in {1..6}; do curl -s -i localhost:8000/mock/request; echo; sleep 1; done
 ```
 
 {% endnavtab %}
@@ -152,8 +152,8 @@ that defines a user of a service. Consumer-level rate limiting can be used to li
    ```sh
    curl -X POST http://localhost:8001/plugins \
       --data "name=rate-limiting" \
-      --data "consumer.id=jsmith" \
-      --data "config.second=5" \
+      --data "consumer.username=jsmith" \
+      --data "config.second=5"
    ```
 
 ## Advanced rate limiting

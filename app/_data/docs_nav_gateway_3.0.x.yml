@@ -326,6 +326,8 @@ items:
         url: /kong-enterprise/consumer-groups
       - text: Event Hooks
         url: /kong-enterprise/event-hooks
+      - text: FIPS 140-2
+        url: /kong-enterprise/fips-support
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
@@ -579,7 +581,7 @@ items:
         url: /reference/cli
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
-      - text: Router Operators
-        url: /reference/router-operators
+      - text: Router Expressions Language
+        url: /reference/router-expressions-language
       - text: FAQ
         url: /reference/faq

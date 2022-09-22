@@ -1,5 +1,5 @@
 ---
-title: Konnect Cloud Updates
+title: Kong Konnect Updates
 no_version: true
 ---
 

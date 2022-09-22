@@ -126,7 +126,7 @@ params:
         For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
         `redis`, or `local` for data planes only.
 
-        In Konnect Cloud, the default policy is `redis`.
+        In Konnect, the default policy is `redis`.
 
         For details on which policy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -153,21 +153,15 @@ params:
       minimum_version: "2.8.x"
       required: false
       datatype: string
+      referenceable: true
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: redis_password
       required: false
       datatype: string
+      referenceable: true
       description: |
         When using the `redis` policy, this property specifies the password to connect to the Redis server.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: redis_timeout
       required: false
       default: '`2000`'

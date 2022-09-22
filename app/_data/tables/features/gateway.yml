@@ -29,9 +29,6 @@ features:
         tooltip: Visually manage Kong cluster, plugins, APIs, and consumers
         oss: false
         enterprise: true
-      - name: 
-        oss: true
-        enterprise: true
   - name: Traffic Management and Transformations
     items:
       - name: Basic Traffic Control Plugins
@@ -90,6 +87,10 @@ features:
         enterprise: true
       - name: Secret Management
         tooltip: Encrypt sensitive keys, certificates, and passwords
+        oss: false
+        enterprise: true
+      - name: FIPS 140-2 Support
+        tooltip: Kong Gateway now provides a FIPS mode, which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
         oss: false
         enterprise: true
   - name: Observability

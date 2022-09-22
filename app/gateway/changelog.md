@@ -19,6 +19,15 @@ Review the [breaking changes and deprecations](#breaking-changes-and-deprecation
 You can change a plugin's static priority by specifing the order in which plugins run.
 This lets you run plugins such as `rate-limiting` before authentication plugins.
 
+* Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
+
+  To enable FIPS mode, set [`fips`](/gateway/3.0.x/reference/configuration/#fips) to `on`.
+  FIPS mode is only supported in Ubuntu 20.04.
+
+  {:.note}
+  > **Note**: The Kong Gateway FIPS package is not currently compatible with SSL 
+  > connections to PostgreSQL.
+
 * Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
 
   Previously, Kong Gateway 2.x supported limited WebSocket connections, where plugins only ran during the initial connection phase instead of for each frame.
@@ -43,7 +52,7 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   * Added license level to phone home metrics.
   * Added more tooltips.
 
-* [Secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/) is now generally available.
+* [Secrets management](/gateway/3.0.x/kong-enterprise/secrets-management/) is now generally available.
   * Added GCP integration support for the secrets manager. GCP is now available as a vault backend.
   * The `/vaults-beta` entity has been deprecated and replaced with the `/vaults` entity.
   [#8871](https://github.com/Kong/kong/pull/8871)
@@ -78,7 +87,7 @@ The new router can be used in traditional-compatible mode, or use the new expres
 
   Learn more about the router:
   * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
-  * [Router operator reference](/gateway/3.0.x/reference/router-operators)
+  * [Router Expressions Language reference](/reference/router-expressions-language)
 
   [#8938](https://github.com/Kong/kong/pull/8938)
 * Implemented delayed response in stream mode.
@@ -324,9 +333,9 @@ Kong Gateway version.
 * OpenTracing: There is an issue with `nginx-opentracing` in this release, so it is not
   recommended to upgrade yet if you are an OpenTracing user. This will be
   rectified in an upcoming patch/minor release.
-  
-* TLS connections are not supported when using the prebuilt Alpine Docker image.
 
+* The Kong Gateway FIPS package is not currently compatible with SSL connections to PostgreSQL.
+  
 ### Breaking changes and deprecations
 
 #### Deployment

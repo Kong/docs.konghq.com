@@ -180,7 +180,7 @@ For example, using the response headers above, pass the `X-Cache-Key` value of
 `c9e1d4c8e5fd8209a5969eb3b0e85bc6` to the Admin API:
 
 ```sh
-curl -i http://localhost/proxy-cache/c9e1d4c8e5fd8209a5969eb3b0e85bc6
+curl -i http://localhost:8001/proxy-cache/c9e1d4c8e5fd8209a5969eb3b0e85bc6
 ```
 
 A response with `200 OK` will contain full details of the cached entity.

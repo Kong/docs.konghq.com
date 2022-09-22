@@ -14,7 +14,9 @@ much of the page content is generated out of a plugin’s front matter.
 ## Product names
 
 For specific product name definitions and when to use what, see [word choice and naming](/contributing/word-choice).
+
 <!-- vale off-->
+
 Variable | Output | Definition
 ---------|--------|-----------
 {% raw %}`{{site.base_gateway}}`{% endraw %} | {{site.base_gateway}} | The Kong API Gateway. Use this in most situations, including: <br><br> &#8226; When talking about a feature that is available for both open-source and Enterprise <br> &#8226; When referring to the Enterprise image used in any mode, with a license or without.

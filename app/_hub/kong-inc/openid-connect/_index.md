@@ -178,10 +178,11 @@ params:
     - name: anonymous
       required: false
       default: null
-      datatype: uuid
+      datatype: string
       description: |
         Let unauthenticated requests pass or skip the plugin if another authentication plugin
         has already authenticated the request by setting the value to anonymous Consumer.
+        The value can be a UUID or a username.
     - group: General Settings
       description: Parameters for settings that affect different grants and flows.
     - name: preserve_query_args
@@ -245,6 +246,7 @@ params:
       default: null
       datatype: array of string elements (the plugin supports multiple clients)
       encrypted: true
+      referenceable: true
       description: |
         The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider.
         Other settings that are associated with the client are:
@@ -260,10 +262,6 @@ params:
         - `config.unexpected_redirect_uri`
 
         Use the same array index when configuring related settings for the client.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: client_arg
       required: false
       default: null
@@ -297,14 +295,11 @@ params:
       default: null
       datatype: array of string elements (one for each client)
       encrypted: true
+      referenceable: true
       description: |
         The client secret.
         > Specify one if using `client_secret_*` authentication with the client on
         > the identity provider endpoints.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: client_jwk
       required: false
       default: (plugin managed)
@@ -995,12 +990,9 @@ params:
       datatype: string
       encrypted: true
       value_in_examples: <session-secret>
+      referenceable: true
       description: |
         The session secret.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: disable_session
       required: false
       default: null
@@ -1092,25 +1084,19 @@ params:
       required: false
       default: null
       datatype: string
+      referenceable: true
       description: |
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: session_redis_password
       required: false
       default: (from kong)
       encrypted: true
       datatype: string
+      referenceable: true
       description: |
         Password to use for Redis connection when the `redis` session storage is defined.
         If undefined, no AUTH commands are sent to Redis.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: session_redis_auth
       required: false
       default: (from kong)

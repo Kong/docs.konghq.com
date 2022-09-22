@@ -33,7 +33,7 @@ const { SiteChecker } = require("broken-link-checker");
     gateway: "gateway",
   };
   const path = "*";
-  let files = await fg(`../app/_data/docs_nav_${path}.yml`);
+  let files = await fg(`../../app/_data/docs_nav_${path}.yml`);
   files = files
     .map((f) => {
       if (f.includes("docs_nav_contributing")) {
@@ -41,7 +41,7 @@ const { SiteChecker } = require("broken-link-checker");
       }
       const item = { path: f };
       const info = f
-        .replace("../app/_data/docs_nav_", "")
+        .replace("../../app/_data/docs_nav_", "")
         .replace(/\.yml$/, "");
 
       // Special case Konnect

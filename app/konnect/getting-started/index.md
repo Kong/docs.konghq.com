@@ -1,5 +1,5 @@
 ---
-title: Get started with Konnect Cloud
+title: Get started with Konnect
 no_version: true
 ---
 

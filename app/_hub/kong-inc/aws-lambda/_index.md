@@ -31,16 +31,13 @@ params:
       default: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         The AWS key credential to be used when invoking the function. The `aws_key` value is required
         if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
         if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
         is configured.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: aws_secret
       required: semi
       value_in_examples: <AWS_SECRET>
@@ -48,16 +45,13 @@ params:
       default: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         The AWS secret credential to be used when invoking the function. The `aws_secret` value is required
         if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
         if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
         is configured.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: aws_region  # old version, do not update
       maximum_version: "2.5.x"
       required: true
@@ -123,13 +117,10 @@ params:
       default: null
       value_in_examples: <AWS_ASSUME_ROLE_ARN>
       datatype: string
+      referenceable: true
       description: |
         The target AWS IAM role ARN used to invoke the Lambda function. Typically this is
         used for a cross-account Lambda function invocation.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: aws_role_session_name
       minimum_version: "2.8.x"
       required: false

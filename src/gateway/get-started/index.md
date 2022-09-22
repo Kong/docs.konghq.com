@@ -39,7 +39,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 1. Run {{site.base_gateway}} with the `quickstart` script:
 
    ```sh
-   curl -Ls get.konghq.com/quickstart | sh -s
+   curl -Ls get.konghq.com/quickstart | bash -s
    ```
 
    This script runs Docker containers for {{site.base_gateway}} and the supporting PostgreSQL database.

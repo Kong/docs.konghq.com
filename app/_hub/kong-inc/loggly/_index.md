@@ -44,12 +44,9 @@ params:
       value_in_examples: YOUR_LOGGLY_SERVICE_TOKEN
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         Loggly [customer token](https://www.loggly.com/docs/customer-token-authentication-token/).
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: tags
       required: false
       default: '`kong`'

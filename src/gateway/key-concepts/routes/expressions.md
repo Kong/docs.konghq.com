@@ -6,7 +6,7 @@ content-type: how-to
 
 Expressions can describe routes or paths as patterns using logical expressions.
 This how-to guide will walk through switching to the new router, and configuring routes with the new expressive domain specific language.
-For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-operators).
+For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-expressions-language).
 
 ## Prerequisite
 
@@ -16,7 +16,7 @@ be configurable and you must specify Expressions in the `expression` field.
 
 ## Create routes with Expressions
 
-To create a new router object using expressions, send a `POST` request to the [services endpoint](/gateway/latest/admin-api/#update-route) like this: 
+To create a new router object using expressions, send a `POST` request to the [services endpoint](/gateway/latest/admin-api/#update-route) like this:
 ```sh
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
@@ -31,7 +31,7 @@ curl --request POST \
   --header 'Content-Type: multipart/form-data' \
   --form 'expression=(http.path == "/mock" || net.protocol == "https")'
 ```
-In this example the || operator created an expression that set variables for the following fields: 
+In this example the || operator created an expression that set variables for the following fields:
 
 ```
 curl --request POST \
@@ -58,7 +58,36 @@ curl --request POST \
 ```
 
 
-For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-operators/).
+For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-expressions-language).
+
+### Matching priority
+
+When the Expressions router is used, available expressions are evaluated using the `priority` field of the corresponding `Route` object
+where the expression is configured. Routes are evaluated in order of priority, where the highest priority integer is evaluated first. If two routes have the same priority, then
+the newest route (that is, routes with the highest `created_at`) will be evaluated first.
+
+The Expressions router stops evaluating the remaining rules as soon as the first match is found.
+
+For example, given the following config:
+
+```
+Route 1 =>
+created_at: 100000001
+priority: 100,
+expression: ...
+
+Route 2 =>
+created_at: 100000000
+priority: 100,
+expression: ...
+
+Route 3 =>
+created_at: 100000002
+priority: 99,
+expression: ...
+```
+
+The evaluation order will be: Route 1 then Route 2 and finally Route 3.
 
 ## Performance considerations when using Expressions
 
@@ -131,4 +160,4 @@ This reduces the number of routes the Expressions engine has to consider, which 
 ## More information
 
 * [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-* [Expressions Reference](/gateway/latest/reference/router-operators)
+* [Expressions Language Reference](/gateway/latest/reference/router-expressions-language)

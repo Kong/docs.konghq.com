@@ -32,7 +32,7 @@
           <a href="/gateway/latest/" {% if include.edition == 'gateway' %}class="active"{% endif %}>Kong Gateway</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'konnect' %} class="active"{% endif %}>
-          <a href="/konnect/" {% if include.edition == 'konnect' %}class="active"{% endif %}>Konnect Cloud</a>
+          <a href="/konnect/" {% if include.edition == 'konnect' %}class="active"{% endif %}>Kong Konnect</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'mesh' %} class="active"{% endif %}>
           <a href="/mesh/latest/" {% if include.edition == 'mesh' %}class="active"{% endif %}>Kong Mesh</a>
@@ -104,7 +104,7 @@
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="/gateway-oss/2.5.x/">
-            Older OSS versions (2.0-2.5)
+            Older OSS versions (2.1-2.5)
           </a>
         </li>
         {% endif %}
@@ -112,7 +112,7 @@
         {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
         <li role="menuitem" tabindex="-1">
           <a href="https://legacy-gateway--kongdocs.netlify.app/">
-            Archive (pre-2.0)
+            Archive (pre-2.1)
           </a>
         </li>
         {% endif %}

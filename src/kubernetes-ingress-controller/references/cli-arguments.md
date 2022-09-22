@@ -52,7 +52,12 @@ Following table describes all the flags that are available:
 | `--enable-controller-tcpingress`                | `boolean` | Enable the TCPIngress controller.                                                                     | `true`                         |
 | `--enable-controller-udpingress`                | `boolean` | Enable the UDPIngress controller.                                                                     | `true`                         |
 | `--enable-reverse-sync`                  | `boolean`          | Send configuration to Kong even if the configuration checksum has not changed since previous update.                                                | `false`                           |
-| `--health-probe-bind-address`            | `string`           | The address the probe endpoint binds. to.                                                                                                            | `":10254"`                        |
+
+{% if_version gte: 2.6.x %}
+| `--gateway-api-controller-name`          | `string`           | Controller name of the Kubernetes Gateway API. `Gateway` resources are reconciled only when their `GatewayClass` has the same value in `spec.controllerName`.           | `konghq.com/kic-gateway-controller` |
+{% endif_version %}
+
+| `--health-probe-bind-address`            | `string`           | The address the probe endpoint binds to.                                                                                                            | `":10254"`                        |
 | `--help`                                 | `boolean`          | Help for this command.                                                                                                                               | `false`                           |
 | `--ingress-class`                        | `string`           | Name of the ingress class to route through this controller.                                                                                         | `"kong"`                          |
 | `--kong-admin-ca-cert`                   | `string`           | PEM-encoded CA certificate to verify Kong's Admin SSL certificate.                                                                                  |                                   |

@@ -65,25 +65,19 @@ params:
       default: null
       value_in_examples: null
       datatype: array of string elements
+      referenceable: true
       description: |
         List of headername:value pairs. If and only if the header is already set,
         replace its old value with the new one. Ignored if the header is not already set.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: replace.querystring
       required: false
       default: null
       value_in_examples: null
       datatype: array of string elements
+      referenceable: true
       description: |
         List of queryname:value pairs. If and only if the querystring name is already set,
         replace its old value with the new one. Ignored if the header is not already set.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: replace.uri
       required: false
       default: null
@@ -99,14 +93,11 @@ params:
         - 'body-param1:new-value-1'
         - 'body-param2:new-value-2'
       datatype: array of string elements
+      referenceable: true
       description: |
         List of paramname:value pairs. If and only if content-type is one the
         following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`];
         and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.headers
       required: false
       default: null
@@ -114,13 +105,10 @@ params:
         - 'header-old-name:header-new-name'
         - 'another-old-name:another-new-name'
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `headername:value` pairs. If and only if the header is already set,
         rename the header. The value is unchanged. Ignored if the header is not already set.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.querystring
       required: false
       default: null
@@ -128,13 +116,10 @@ params:
         - 'qs-old-name:qs-new-name'
         - 'qs2-old-name:qs2-new-name'
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `queryname:value` pairs. If and only if the field name is already set,
         rename the field name. The value is unchanged. Ignored if the field name is not already set.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: rename.body
       required: false
       default: null
@@ -142,13 +127,10 @@ params:
         - 'param-old:param-new'
         - 'param2-old:param2-new'
       datatype: array of string elements
+      referenceable: true
       description: |
         List of parameter `name:value` pairs. Rename the parameter name if and only if content-type is
         one of the following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: add.headers
       required: false
       default: null
@@ -156,13 +138,10 @@ params:
         - 'x-new-header:value'
         - 'x-another-header:something'
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `headername:value` pairs. If and only if the header is not already set,
         set a new header with the given value. Ignored if the header is already set.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: add.querystring
       required: false
       default: null
@@ -170,61 +149,46 @@ params:
         - 'new-param:some_value'
         - 'another-param:some_value'
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `queryname:value` pairs. If and only if the querystring name is not already set,
         set a new querystring with the given value. Ignored if the querystring name is already set.
-      
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: add.body
       required: false
       default: null
       value_in_examples: null
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `paramname:value` pairs. If and only if content-type is one the following: [`application/json, multipart/form-data`, `application/x-www-form-urlencoded`]; and the parameter is not present, add a new parameter with the given value to form-encoded body.
         Ignored if the parameter is already present.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: append.headers
       required: false
       default: null
       value_in_examples: null
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `headername:value` pairs. If the header is not set, set it with the given value.
         If it is already set, a new header with the same name and the new value will be set.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: append.querystring
       required: false
       default: null
       value_in_examples: null
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `queryname:value` pairs. If the querystring is not set, set it with the given value.
         If it is already set, a new querystring with the same name and the new value will be set.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: append.body
       required: false
       default: null
       value_in_examples: null
       datatype: array of string elements
+      referenceable: true
       description: |
         List of `paramname:value` pairs. If the content-type is one the following: [`application/json`, `application/x-www-form-urlencoded`]; add a new parameter with the given value if the parameter is not present. Otherwise, if it is already present,
         the two values (old and new) will be aggregated in an array.
-        
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/kong-enterprise/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
     - name: allow.body
       required: false
       default: null

@@ -30,7 +30,7 @@ and Prometheus locally.
         connectivity and installed {{site.base_gateway}} services and routes.
 
    ```sh
-   curl -Ls get.konghq.com/quickstart | sh -s -- -m
+   curl -Ls get.konghq.com/quickstart | bash -s -- -m
    ```
    The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
 
@@ -137,7 +137,7 @@ commands to stop and remove the services created in this guide:
 
 ```sh
 docker stop kong-quickstart-prometheus
-curl -Ls get.konghq.com/quickstart | sh -s -- -d
+curl -Ls get.konghq.com/quickstart | bash -s -- -d
 ```
 
 ### More information

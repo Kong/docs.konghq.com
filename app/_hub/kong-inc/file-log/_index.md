@@ -17,6 +17,7 @@ kong_version_compatibility:
     compatible: true
   enterprise_edition:
     compatible: true
+params:
   name: file-log
   service_id: true
   route_id: true

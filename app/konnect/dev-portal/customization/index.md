@@ -59,7 +59,6 @@ The Custom URL feature currently supports domain names with the following top-le
 
 If you need to use a different domain [contact support](https://support.konghq.com).
 
-{% comment %}
 ### Domain name restrictions
 
 Because of SSL certificate authority restrictions, {{site.konnect_short_name}} can't generate SSL certificates
@@ -83,7 +82,6 @@ for the following domains:
   * `.zw` Zimbabwe
 
 If you have any questions, [contact Support](https://support.konghq.com).
-{% endcomment %}
 
 ### Delete a custom URL {#delete-url}
 

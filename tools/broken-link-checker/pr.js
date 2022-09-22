@@ -1,12 +1,18 @@
 const { Octokit } = require("@octokit/rest");
 const { HtmlUrlChecker } = require("broken-link-checker");
 const github = require("@actions/github");
-const argv = require('minimist')(process.argv.slice(2));
+const argv = require("minimist")(process.argv.slice(2));
+
+const yaml = require("js-yaml");
+const fs = require("fs");
+const fg = require("fast-glob");
 
 (async function () {
   const pull_number = argv.pr || github.context.issue.number;
   const is_fork =
-    argv.is_fork || github.context.payload.pull_request.head.repo.fork;
+    argv.is_fork !== undefined
+      ? argv.is_fork
+      : github.context.payload.pull_request.head.repo.fork;
 
   const baseUrl = `https://deploy-preview-${pull_number}--kongdocs.netlify.app`;
 
@@ -28,20 +34,47 @@ const argv = require('minimist')(process.argv.slice(2));
 
   // Generate a list of URLs to test
   let urls = [];
+
+  const source = {};
+
+  let navEntries = await fg(`../../app/_data/docs_nav_*.yml`);
+  navEntries = navEntries
+    .map((f) => {
+      return yaml.load(fs.readFileSync(f, "utf8"));
+    })
+    .filter((n) => {
+      return n.generate;
+    });
+
   for (let f of filenames) {
+    let urlsToAdd = [];
     // If any data files have changed, we need to check a page that uses that
     // file to generate the side navigation
     if (f.startsWith("app/_data/docs_nav_")) {
-      urls.push(`${baseUrl}${dataFileToUrl(f)}`);
+      urlsToAdd = [`${baseUrl}${dataFileToUrl(f)}`];
     }
 
     // Handle any prose changes
     else if (f.startsWith("app/") && !f.startsWith("app/_")) {
-      urls.push(
-        `${baseUrl}/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`
-      );
+      urlsToAdd = [
+        `${baseUrl}/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`,
+      ];
     }
+
+    // Any changes in src
+    else if (f.startsWith("src/")) {
+      urlsToAdd = (await srcToUrls(f, navEntries)).map((u) => `${baseUrl}/${u}`);
+    }
+
+    for (let u of urlsToAdd) {
+      source[u] = f;
+    }
+
+    // Add the URLs
+    urls = urls.concat(urlsToAdd);
   }
+
+  urls = Array.from(new Set(urls));
 
   const blockList = [/.*\/changelog\/?/];
   const ignoredUrls = [];
@@ -63,7 +96,7 @@ const argv = require('minimist')(process.argv.slice(2));
   if (urls.length) {
     console.log(`Checking the following URLs:\n\n${urls.join("\n")}\n`);
     // Check all the URLs provided
-    const r = await checkUrls(urls, is_fork);
+    const r = await checkUrls(urls, is_fork, source);
 
     // Output report
     if (r.length) {
@@ -78,7 +111,7 @@ const argv = require('minimist')(process.argv.slice(2));
   }
 })();
 
-function checkUrls(urls, is_fork) {
+function checkUrls(urls, is_fork, source) {
   return new Promise((resolve, reject) => {
     const exclusions = require("./excluded.json");
     const brokenLinks = new Set();
@@ -110,6 +143,7 @@ function checkUrls(urls, is_fork) {
 
             brokenLinks.add({
               page: result.base.resolved,
+              source: source[result.base.resolved],
               text: result.html.text,
               target: result.url.resolved,
               reason: result.brokenReason,
@@ -153,4 +187,49 @@ function dataFileToUrl(filename) {
   }
 
   return `/${lookup[edition]}/${version}/`;
+}
+
+async function srcToUrls(src, navEntries) {
+  let urls = [];
+
+  // Build a map of src files to URLs
+  for (const entry of navEntries) {
+    const r = extractNavWithMeta(entry.items, ``, `src/${entry.product}`);
+    urls = urls.concat(
+      r
+        .filter((u) => u.src == src)
+        .map((u) => `${entry.product}/${entry.release}${u.url}`)
+    );
+  }
+
+  urls = Array.from(new Set(urls));
+
+  return urls;
+}
+
+function extractNavWithMeta(items, base, srcPrefix) {
+  let urls = [];
+  for (let u of items) {
+    if (u.items) {
+      urls = urls.concat(extractNavWithMeta(u.items, base, srcPrefix));
+    } else {
+      if (u.absolute_url) {
+        urls.push({
+          src: u.src || u.url,
+          url: u.url,
+        });
+      } else {
+        const url = `${base}${u.url}`;
+        urls.push({
+          src: srcPrefix + (u.src || url)
+                .replace(/\/?#.*$/, "") // Remove anchor links
+                .replace(/\/$/,"") // Remove trailing slashes
+                + ".md",
+          url,
+        });
+      }
+    }
+  }
+
+  return urls;
 }
