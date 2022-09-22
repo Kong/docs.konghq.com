@@ -35,14 +35,17 @@ want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
 
-Add the following hostnames to the allowlist to give the
-{{site.konnect_short_name}} control plane access through the firewall:
+Runtime instances initiate the connection to the {{site.konnect_short_name}} control plane. 
+They require access through firewalls to communicate with the control plane.
+
+To let a runtime instances request and receive configuration, and send telemetry data, 
+add the following hostnames to the firewall allowlist:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
 * `us.api.konghq.com`: The {{site.konnect_short_name}} API.
     Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
 * `RUNTIME_GROUP_ID.us.cp0.konghq.com`: Handles configuration for a runtime group.
-    Runtime instances connect to this host to receive configuration updates. 
+    Runtime instances connect to this host to receive configuration updates.
     This hostname is unique to each organization and runtime group.
 * `RUNTIME_GROUP_ID.us.tp0.konghq.com`: Gathers telemetry data for a runtime group.
     This hostname is unique to each organization and runtime group.

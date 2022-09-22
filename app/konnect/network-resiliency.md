@@ -18,8 +18,10 @@ the config as `config.json.gz` into `/usr/local/kong` by default.
 
 ### How do the control plane and data planes communicate?
 
-Data travelling between control planes and data planes is secured through a
-mutual TLS handshake.
+Data traveling between control planes and data planes is secured through a
+mutual TLS handshake. 
+Data planes initiate the connection to the {{site.konnect_short_name}} control plane.
+Once the connection is established, the control plane can send configuration data to the connected data planes.
 
 Normally, the data plane maintains a persistent connection with the control
 plane. The data plane sends a heartbeat to the control plane every 30 seconds to
