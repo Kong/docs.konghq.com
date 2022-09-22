@@ -74,8 +74,6 @@ Kong OSS limits workspaces to one, with Enterprise you can leverage multiple wor
 
 [Learn more about workspaces &rarr;](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
 
----- 
-
 ## Connectivity and scale
 
 {{site.base_gateway}} offers access to 400+ out-of-box enterprise and community plugins. {{site.base_gateway}} Enterprise offers exclusive versions of OSS plugins like the [Rate-Limiting Advanced plugin](hub/kong-inc/rate-limiting-advanced/) with added functionality such as the use of consumer groups and the addition of the Redis strategy. {{site.base_gateway}} Enterprise natively support gRPC and REST, WebSockets and integrate with Apollo GraphQL server and Apache Kafka services. These plugins can be leveraged to provide advanced connectivity features and solutions to {{site.base_gateway}} Enterprise such as: 
@@ -132,14 +130,9 @@ Use [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) to gain 
 
 ## Dev Portal
 
-The Dev Portal provides a single source of truth for all developers to locate, access and consume APIs, similar to a traditional API Catalogue. Included in the Dev Portal are intuitive content management for documentation, streamlined developer onboarding and RBAC - all of this provides a comprehensive solution for creating and customizing a unified developer experience. Dev Portal is a customizable website for developers to locate, access and consume API services. [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/) streamlines developer onboarding by offering a self-service developer experience to discover, register, and consume published services from the Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
+The Dev Portal provides a single source of truth for all developers to locate, access and consume APIs, similar to a traditional API Catalogue. [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/) streamlines developer onboarding by offering a self-service developer experience to discover, register, and consume published services from the Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
 
 [Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/)
-
-
-
-
-
 
 ## More information
 
