@@ -34,7 +34,7 @@ registration, or configure custom plugins.
 
 ## Generate a Personal Access Token
 
-To test your connection, it is recommended that you use a personal access token (PAT).
+To test your connection, we recommend that you use a personal access token (PAT).
 
 {% include_cached /md/personal-access-token.md %}
 

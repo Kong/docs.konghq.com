@@ -26,7 +26,7 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 
 ## Generate a Personal Access Token
 
-To use decK to import entity configurations, it is recommended that you use a personal access token (PAT).
+To use decK to import entity configurations, we recommend that you use a personal access token (PAT).
 
 {% include_cached /md/personal-access-token.md %}
 
