@@ -86,7 +86,7 @@ FIPS compliance with this standard is typically required for working with U.S. f
 ## Workspaces
 
 Workspaces provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces.
-{{site.ce_product_name}} is limited to one workspaces. With Kong Enterprise, you can leverage multiple workspaces to allow developers to easily transition between projects, and to separate services and routes belonging to different upstreams. 
+{{site.ce_product_name}} is limited to one workspace. With Kong Enterprise, you can leverage multiple workspaces to allow developers to easily transition between projects, and to separate services and routes belonging to different upstreams. 
 
 [Learn more about workspaces &rarr;](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
 
