@@ -100,7 +100,7 @@ params:
       default: null
       datatype: array of integers
       description: |
-        A global list of the HTTP status code that only allows being chosen and returned.
+        A global list of the HTTP status codes that can only be selected and returned.
       minimum_version: "3.1.x"
     - name: random_status_code
       required: false
@@ -122,7 +122,7 @@ Behavioral headers allow you to change the behavior of the Mocking plugin for th
 
 ### X-Kong-Mocking-Delay
 
-The `X-Kong-Mocking-Delay` header tells the plugin how many milliseconds to delay before responding. The delay value must be between `0`(inclusive) and `10000`(inclusive), otherwise a it returns a `400` error.
+The `X-Kong-Mocking-Delay` header tells the plugin how many milliseconds to delay before responding. The delay value must be between `0`(inclusive) and `10000`(inclusive), otherwise it returns a `400` error.
 
 ```
 HTTP/1.1 400 Bad Request
