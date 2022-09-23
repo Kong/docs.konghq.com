@@ -2,6 +2,7 @@
 title: Prometheus metrics
 ---
 
+
 {{site.kic_product_name}}, as well as {{site.base_gateway}}, both expose Prometheus metrics, under certain conditions:
 
 * {{site.kic_product_name}}, since version 2.0, exposes Prometheus metrics for configuration updates.
@@ -11,7 +12,8 @@ This document is a reference for the former type.
 
 | Metric name | Description |
 |-------------|-------------|
-| `ingress_controller_configuration_push_count[success=true|false][protocol=db-less|deck]` | Count of successful or failed configuration pushes to Kong. <br><br> `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.  |
+| `ingress_controller_configuration_push_count[success=true|false][protocol=db-less|deck]{% if_version gte:2.7.x inline:true %}[failure_reason=conflict|other]{% endif_version %}` | Count of successful or failed configuration pushes to Kong. <br><br> `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors. {% if_version gte:2.7.x inline:true %}<br><br> `failure_reason` is populated in case of `success="false"` and describes the reason of failure: <br> * `conflict` - configuration conflict, most probably requiring manual fix, <br> * `other` - any other error (e.g. transient network issues).{% endif_version %} |
+| `ingress_controller_configuration_push_count[success=true|false][protocol=db-less|deck]` | Count of successful or failed configuration pushes to Kong. <br><br> `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors. |
 | `ingress_controller_translation_count[success=true|false]` | Count of translations from Kubernetes state to Kong state. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the translation succeeded with no errors. |
 | `ingress_controller_configuration_push_duration_milliseconds[success=true|false][protocol=db-less|deck]` | The amount of time, in milliseconds, that it takes to push the configuration to Kong. <br><br> `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors. |
 
