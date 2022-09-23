@@ -34,7 +34,7 @@ In addition, you can secure your APIs with a variety of authorization providers 
 
 ## Monitoring and analytics
 
-The [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) platform provides deep insights into services, routes, and application usage data.You can view the health of your API products with custom reports and contextual dashboards, and you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as [Datadog](/hub/kong-inc/datadog/) and [Prometheus](/hub/kong-inc/prometheus/).
+The Vitals platform provides deep insights into services, routes, and application usage data.You can view the health of your API products with custom reports and contextual dashboards, and you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as [Datadog](/hub/kong-inc/datadog/) and [Prometheus](/hub/kong-inc/prometheus/).
 
 [Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
 
@@ -85,14 +85,14 @@ FIPS compliance with this standard is typically required for working with U.S. f
 
 ## Workspaces
 
-[Workspaces](/gateway/{{page.kong_version}}/kong-enterprise/workspaces/) provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces.
+Workspaces provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces.
 {{site.ce_product_name}} is limited to one workspaces. With Kong Enterprise, you can leverage multiple workspaces to allow developers to easily transition between projects, and to separate services and routes belonging to different upstreams. 
 
 [Learn more about workspaces &rarr;](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
 
 ## Dynamic plugin ordering
 
-[Dynamic plugin ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/) allows you to override the priority for any {{site.base_gateway}} plugin using each plugin's `ordering` field. 
+Dynamic plugin ordering allows you to override the priority for any {{site.base_gateway}} plugin using each plugin's `ordering` field. 
 This determines plugin ordering during the `access` phase
 and lets you create _dynamic_ dependencies between plugins.
 
@@ -114,7 +114,7 @@ You can configure event hooks through the Admin API.
 
 ## Consumer groups
 
-You can use [consumer groups](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/) to manage custom rate limiting configuration for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and
+You can use consumer groups to manage custom rate limiting configuration for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and
 apply them to subsets of consumers, instead of managing each consumer
 individually.
 
