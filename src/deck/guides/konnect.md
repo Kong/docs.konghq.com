@@ -241,7 +241,7 @@ If the {{site.konnect_short_name}} service doesn't exist, this configuration sni
 ### Authentication with a {{site.konnect_short_name}} password or token file is not working
 
 If you have verified that your password or token is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password or token file.
-There is likely a decK config file conflicting with the password or token file and passing another set of credentials.
+A decK config file is likely conflicting with the password or token file and passing another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
 
@@ -303,13 +303,13 @@ They are managed entirely by {{site.konnect_short_name}}, so you can't manage th
 
 {% if_version gte:1.15 %}
 
-### decK keeps targeting {{site.base_gateway}} instead of {{site.konnect_short_name}}
+### decK targets {{site.base_gateway}} instead of {{site.konnect_short_name}}
 
 decK can run against {{site.base_gateway}} or {{site.konnect_short_name}}.
 By default, it targets {{site.base_gateway}}, unless a setting tells decK to point to {{site.konnect_short_name}} instead.
 Make sure that one of the {{site.konnect_short_name}} options is present.
 
-decK determines which environment to run against in the following order of precedence:
+decK determines the environment using the following order of precedence:
 
 1. If the declarative configuration file contains the `_konnect` entry, decK runs
 against {{site.konnect_short_name}}.
