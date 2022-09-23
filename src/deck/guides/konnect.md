@@ -251,7 +251,7 @@ To resolve, remove one of the duplicate sets of credentials.
 ### Authentication with a {{site.konnect_short_name}} password file is not working
 
 If you have verified that your password is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password file.
-There is likely a decK config file conflicting with the password file and passing another set of credentials.
+A decK config file is likely conflicting with the password or token file and passing another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
 
@@ -307,7 +307,6 @@ They are managed entirely by {{site.konnect_short_name}}, so you can't manage th
 
 decK can run against {{site.base_gateway}} or {{site.konnect_short_name}}.
 By default, it targets {{site.base_gateway}}, unless a setting tells decK to point to {{site.konnect_short_name}} instead.
-Make sure that one of the {{site.konnect_short_name}} options is present.
 
 decK determines the environment using the following order of precedence:
 
