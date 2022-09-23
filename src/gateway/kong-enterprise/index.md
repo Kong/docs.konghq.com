@@ -4,7 +4,7 @@ badge: enterprise
 content_type: explanation
 ---
 
-Kong Enterprise is the scalable, secure, and flexible API management solution that extends Kong Gateway, the fastest, most adopted API gateway, with enterprise plugins, developer portal, analytics, advanced security features, GUI's, and 24/7 support. It is the only solution that helps you accelerate your cloud journey by managing, securing, and monitoring connections between applications across hybrid and multi-cloud architectures, to help you scale faster and boost developer productivity. 
+Kong Enterprise is the scalable, secure, and flexible API management solution that extends {{site.base_gateway}}, the fastest, most adopted API gateway, with enterprise plugins, dev portal, analytics, advanced security features, GUI's, and 24/7 support. It is the only solution that helps you accelerate your cloud journey by managing, securing, and monitoring connections between applications across hybrid and multi-cloud architectures, to help you scale faster and boost developer productivity. 
 
 ## Enterprise Plugins
 
