@@ -23,7 +23,7 @@ upgrade strategy based on the following examples.
 
 ### Update CRDs
 
-KIC 2.6 includes {{site.base_gateway}} 3.x
+KIC 2.7 includes {{site.base_gateway}} 3.x
 compatibility changes to the controller CRDs. Helm does not update CRDs automatically. You must apply them manually
 before upgrading KIC:
 
@@ -33,17 +33,17 @@ kubectl apply -f https://raw.githubusercontent.com/Kong/charts/main/charts/kong/
 
 ## Upgrade your KIC version
 
-KIC 2.6 is the first version that supports Kong 3.x. You must upgrade to KIC
-2.6 before upgrading to Kong 3.x. See the [KIC Changelog][changelog] for all
+KIC 2.7 is the first version that supports Kong 3.x. You must upgrade to KIC
+2.7 before upgrading to Kong 3.x. See the [KIC Changelog][changelog] for all
 changes in this release.
 
 [changelog]:https://github.com/kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md#260
 
-2.6 does include a minor breaking change affecting the `CombinedRoutes` feature
+2.7 does include a minor breaking change affecting the `CombinedRoutes` feature
 gate, but is otherwise not expected to require changes to existing
 configuration.
 
-As KIC 2.6 is compatible with all 2.x Kong releases, you should upgrade it and
+As KIC 2.7 is compatible with all 2.x Kong releases, you should upgrade it and
 the chart first:
 
 ```shell
@@ -55,26 +55,28 @@ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
   --namespace ${YOUR_NAMESPACE} \
   -f ${PATH_TO_YOUR_VALUES_FILE} \
   --version 2.13.0 \
-  --set ingressController.image.tag="2.6"
+  --set ingressController.image.tag="2.7"
 ```
 
-2.13 is the first chart version that supports 2.6. You can use later versions
+2.13 is the first chart version that supports 2.7. You can use later versions
 if available.
 
 ## Update Ingress regular expression paths for Kong 3.x compatibility
 
 Kong 3.x includes a number of its own [breaking changes](/gateway/changelog/#breaking-changes-and-deprecations),
 but most don't affect its interactions with KIC, or are handled automatically
-by 2.6 changes. You should still review the changelog for changes that don't
+by 2.7 changes. You should still review the changelog for changes that don't
 interact with KIC, such as changes to `kong.conf` or environment variable settings,
 and changes to the PDK that affect custom plugins.
 
 Kong 3.x includes changes to regular expression path handling, which _do_ require
 manual updates to Ingress configuration. In Kong 2.x, Kong applied a heuristic based
 on the presence of special characters in a route path to determine if a path
-was a regular expression. This heuristic was imperfect and Kong 3.x has
-removed it, instead requiring that any regular expression begin with a `~`
-prefix.
+was a regular expression. This heuristic was imperfect and Kong 3.x has removed
+it, instead requiring that any regular expression begin with a `~` prefix.
+Ingress does not allow paths that begin with any character other than `/`,
+however, so Ingress rules with a regular expression path must begin with `/~`
+instead.
 
 Ingress rule paths have no way to indicate that a path is a regular expression.
 The `ImplementationSpecific` path type can contain either regular expression or
@@ -86,22 +88,35 @@ to 3.x without updating configuration.
 > **Important**: `Prefix` and `Exact` rules [must never use regular expressions](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-versions/#networkingk8siov1).
 Only use regular expressions in `ImplementationSpecific` rules.
 
-The new 3.x paths are also incompatible with 2.x. Adding the `~` character to
+The new 3.x paths are also incompatible with 2.x. Adding the `/~` prefix to
 Ingress rules directly breaks incremental upgrades. To smooth the migration
-process and allow users to update rules gradually, KIC 2.6 includes the
+process and allow users to update rules gradually, KIC 2.7 includes the
 `enableLegacyRegexDetection` option to continue applying the 2.x regular
 expression heuristic on KIC's end.
 
-If the following rules are met, KIC will insert the `~` prefix:
+If the following sets of rules are met, KIC will create a Kong route path with
+the `~` prefix:
+
 * The `enableLegacyRegexDetection` option is enabled
 * The Kong version is 3.0 or higher
 * A path matches the 2.x heuristic
-* The path does not begin with `~`
+
+or:
+
+* The path begins with `/~`
 
 This allows for a mixture of paths that have and have not been migrated to
-3.x-style configuration.
+3.x-style configuration. The heuristic is never applied to paths that already
+begin with `/~`.
 
-To enable this option, create an IngressClassParameters resource
+{:.note}
+> **Note:** If you have paths that require a Kong route that actually begins
+with `/~`, set the `konghq.com/regex-prefix` annotation on their Ingress. This
+overrides the default prefix. For example, setting `konghq.com/regex-prefix:
+/@` will replace leading `/@` sequences with `~` in their Kong route, while
+leading `/~` sequences will be preserved as-is in the Kong route.
+
+To enable legacy regex detection, create an IngressClassParameters resource
 with `enableLegacyRegexDetection=true` and attach it to your IngressClass. The
 option _is not_ enabled for IngressClasses by default.
 
@@ -136,7 +151,7 @@ replace the `kong` Ingress class name and `kong` namespace with values
 appropriate to your environment.
 
 After you have upgraded to Kong 3.x, update all of your regular expression paths
-to include the `~` prefix in the Ingress itself at your earliest convenience.
+to include the `/~` prefix in the Ingress itself at your earliest convenience.
 The heuristic is only intended for decreasing downtime during upgrades, so
 it behaves exactly like the version included in Kong 2.8.x, bugs
 included. Once you added the prefix to all regular expression paths, you can
@@ -171,7 +186,7 @@ helm list -A
 
 ```shell
 NAME               NAMESPACE   STATUS   CHART       APP VERSION
-ingress-controller kong-system deployed kong-2.13.0 2.6
+ingress-controller kong-system deployed kong-2.13.0 2.7
 ```
 
 {% endnavtab %}
