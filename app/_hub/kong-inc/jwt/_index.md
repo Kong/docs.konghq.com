@@ -150,7 +150,7 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer_id": "7bce93e1-0a90-489c-c887-d385545f8f4b",
+    "consumer": { "id": "7bce93e1-0a90-489c-c887-d385545f8f4b" },
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
@@ -231,7 +231,7 @@ HTTP/1.1 200 OK
     "data": [
         {
             "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK .... -----END PUBLIC KEY-----",
-            "consumer_id": "39f52333-9741-48a7-9450-495960d91684",
+            "consumer": { "id": "39f52333-9741-48a7-9450-495960d91684" },
             "id": "3239880d-1de5-4dbc-bccf-78f7a4280f33",
             "created_at": 1491430568000,
             "key": "c5a55906cc244f483226e02bcff2b5e",
@@ -373,7 +373,7 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer_id": "7bce93e1-0a90-489c-c887-d385545f8f4b",
+    "consumer": { "id": "7bce93e1-0a90-489c-c887-d385545f8f4b" },
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
