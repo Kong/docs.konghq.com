@@ -8,7 +8,7 @@ Kong with an upstream REST API, check out the [Configuring a Service guide][conf
 
 Starting with version 1.3, gRPC proxying is natively supported in Kong. In this
 section, you'll learn how to configure Kong to manage your gRPC services. For the
-purpose of this guide, we'll use [grpcurl][grpcurl] and [grpcbin][grpcbin] - they
+purpose of this guide, we'll use [`grpcurl`][grpcurl] and [`grpcbin`][grpcbin] - they
 provide a gRPC client and gRPC services, respectively.
 
 We will describe two setups: Single gRPC Service and Route and single gRPC Service
@@ -47,7 +47,7 @@ curl -XPOST localhost:8001/services/grpc/routes \
   --data paths=/
 ```
 
-Using the [grpcurl][grpcurl] command line client, issue the following gRPC
+Using the [`grpcurl`][grpcurl] command line client, issue the following gRPC
 request:
 
 ```bash
@@ -91,7 +91,7 @@ Building on top of the previous example, let's create a few more routes, for
 individual gRPC methods.
 
 The gRPC "HelloService" service being used in this example exposes a few different
-methods, as can be seen in [its protobuf file][protobuf]. We will create individual
+methods, as can be seen in [its protocol buffer file][protobuf]. We will create individual
 routes for its "SayHello" and LotsOfReplies methods.
 
 Create a Route for "SayHello":

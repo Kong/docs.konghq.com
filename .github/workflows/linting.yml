@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: errata-ai/vale-action@v1
+      - uses: errata-ai/vale-action@v2
         with:
           # path where vale checks checking only modified files.
           files: __onlyModified

@@ -22,7 +22,7 @@ how many requests the cluster is processing and the latency on those requests.
 
 Health metrics are tracked for each node in a cluster as well as for the cluster
 as a whole. In Kong, a node is a running process with a unique identifier,
-configuration, cache layout, and connections to both Kong’s datastores and the
+configuration, cache layout, and connections to both Kong’s data stores and the
 upstream APIs it proxies. Note that node identifiers are unique to the process,
 and not to the host on which the process runs. In other words, each Kong restart
 results in a new node, and therefore a new node ID.
@@ -30,7 +30,7 @@ results in a new node, and therefore a new node ID.
 ### Latency
 
 The Vitals API may return null for Latency metrics. This occurs when no API
-requests were proxied during the timeframe. Null latencies are not graphed in
+requests were proxied during the time frame. Null latencies are not graphed in
 Kong Manager; periods with null latencies appear as gaps in Vitals charts.
 
 #### Proxy Latency (Request)
@@ -47,21 +47,21 @@ The Upstream Latency metrics are the min, max, and average values for the time e
 
 These metrics are referenced in the Vitals API with the following labels: `latency_upstream_min_ms`, `latency_upstream_max_ms`, `latency_upstream_avg_ms`.
 
-### Datastore Cache
+### Data store Cache
 
-#### Datastore Cache Hit/Miss
+#### Data store Cache Hit/Miss
 
-The Datastore Cache Hit/Miss metrics are the count of requests to Kong's node-level datastore cache. When Kong workers need configuration information to respond to a given API proxy request, they first check their worker-specific cache (also known as L1 cache), then if the information isn’t available they check the node-wide datastore cache (also known as L2 cache). If neither cache contains the necessary information, Kong requests it from the datastore.
+The Data store Cache Hit/Miss metrics are the count of requests to Kong's node-level data store cache. When Kong workers need configuration information to respond to a given API proxy request, they first check their worker-specific cache (also known as L1 cache), then if the information isn’t available they check the node-wide data store cache (also known as L2 cache). If neither cache contains the necessary information, Kong requests it from the data store.
 
-A `Hit` indicates that an entity was retrieved from the data store cache. A `Miss` indicates that the record had to be fetched from the datastore. Not every API request will result in datastore cache access; some entities will be retrieved from Kong's worker-specific cache memory.
+A `Hit` indicates that an entity was retrieved from the data store cache. A `Miss` indicates that the record had to be fetched from the data store. Not every API request will result in data store cache access; some entities will be retrieved from Kong's worker-specific cache memory.
 
 These metrics are referenced in the Vitals API with the following labels: `cache_datastore_hits_total`, `cache_datastore_misses_total`.
 
-#### Datastore Cache Hit Ratio
+#### Data store Cache Hit Ratio
 
-This metric contains the ratio of datastore cache hits to the total count of datastore cache requests.
+This metric contains the ratio of data store cache hits to the total count of data store cache requests.
 
-> **Note:** Datastore Cache Hit Ratio cannot be calculated for time indices with no hits and no misses.
+> **Note:** Data store Cache Hit Ratio cannot be calculated for time indices with no hits and no misses.
 
 ## Traffic Metrics
 

@@ -11,7 +11,7 @@ You will receive this file from Kong when you sign up for a
 
 <div class="alert alert-ee blue">
 <b>Note:</b> The free mode does not require a license. See
-<a href="/gateway/{{page.kong_version}}/licenses">Kong Gateway Licensing</a>
+<a href="/gateway/{{page.kong_version}}/licenses">{{site.base_gateway}} Licensing</a>
 for a feature comparison.
 </div>
 

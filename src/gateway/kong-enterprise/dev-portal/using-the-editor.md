@@ -8,7 +8,7 @@ Kong Manager offers a robust file editor for editing the template files of the D
 ## Prerequisites
 
 * Access to Kong Manager
-* The Kong Developer Portal is **enabled** and **running**
+* The Kong Dev Portal is **enabled** and **running**
 
 >NOTE: Editor Mode is *not* available when running the Dev Portal in **legacy** mode.
 
@@ -41,11 +41,11 @@ Once created, files will immediately be available from within the Editor.
 
 ## Authenticating files
 
-Authentication is handled by `readable_by` value on content pages (for gui view, go to permissions page)
-    - set readable_by: '*' to equal old authenticated
-    - to restrict access to certain roles, set readable_by to an array of accepted roles (you must first create roles on the permissions page)
-    - on specs, readable_by is set inside "x-headmatter" object
+Authentication is handled by `readable_by` value on content pages (for a GUI view, go to permissions page)
+    - set `readable_by`: '*' to equal old authenticated
+    - to restrict access to certain roles, set `readable_by` to an array of accepted roles (you must first create roles on the permissions page)
+    - on specs, `readable_by` is set inside "`x-headmatter`" object
 
 ## Deleting files
 
-To _permanently_ delete a file from within the Editor, right click on the file name and select **Delete** from the popup menu.
+To _permanently_ delete a file from within the Editor, right click on the filename and select **Delete** from the popup menu.

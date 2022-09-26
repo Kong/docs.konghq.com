@@ -145,7 +145,7 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`id`<br>**conditional** | The **Workspace's** unique ID, if replacing it.*
+`id`<br>**conditional** | The **Workspaces'** unique ID, if replacing it.*
 
 * The behavior of `PUT` endpoints is the following: if the request payload **does
 not** contain an entity's primary key (`id` for Workspaces), the entity will be

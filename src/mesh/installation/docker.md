@@ -29,7 +29,7 @@ executables, hosted on Docker Hub:
 * **kuma-prometheus-sd**: at [`kong/kuma-prometheus-sd:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-prometheus-sd)
 
 {:.note}
-> **Note**: {{site.mesh_product_name}} also has UBI images, image names are prefixed with "ubi". For example `kong/ubi-kuma-cp` instead of `kong/kuma-cp`.
+> **Note**: {{site.mesh_product_name}} also has UBI images, image names are prefixed with `ubi`. For example `kong/ubi-kuma-cp` instead of `kong/kuma-cp`.
 
 `docker pull` each image that you need. For example:
 

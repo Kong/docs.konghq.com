@@ -3,7 +3,7 @@ title: Markdown Rendering Module
 badge: enterprise
 ---
 
-The Kong Developer Portal supports
+The Kong Dev Portal supports
 [Github-flavored markdown](https://github.github.com/gfm/) (GFM) that can be
 used in lieu of the [templates](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/working-with-templates). Instead of having to
 create an HTML layout and partials for your templates, you can use custom CSS
@@ -13,7 +13,7 @@ improves rendering significantly, especially for tables.
 ## Prerequisites
 
 * Access to Kong Manager
-* The Developer Portal is enabled and running
+* The Dev Portal is enabled and running
 
 ## Specify the markdown rendering module in a document
 

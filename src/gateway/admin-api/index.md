@@ -1160,13 +1160,13 @@ HTTP 200 OK
   * `id`: The ordinal number of the current Nginx worker processes (starting from number 0).
   * `count`: The total number of the Nginx worker processes.
 * `stats.flamegraph`: String-encoded timer-related flamegraph data.
-  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph svgs.
+  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph SVGs.
 * `stats.sys`: List the number of different type of timers.
   * `running`: number of running timers.
   * `pending`: number of pending timers.
   * `waiting`: number of unexpired timers.
   * `total`: running + pending + waiting.
-* `timers.meta`: Program callstack of created timers.
+* `timers.meta`: Program call stack of created timers.
   * `name`: An automatically generated string that stores the location where the creation timer was created.
   * `callstack`: Lua call stack string showing where this timer was created.
 * `timers.stats.elapsed_time`: An object that stores the maximum, minimum, average and variance

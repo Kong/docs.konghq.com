@@ -3,7 +3,7 @@ title: Customizing Portal Emails
 badge: enterprise
 ---
 
-You can manage the message and appearance of emails being sent by the Kong Developer Portal.
+You can manage the message and appearance of emails being sent by the Kong Dev Portal.
 Editable email templates are loaded as files similar to content files for portal rendering.
 Email files can be managed in the same way as other files for rendering, via editor or via the Portal CLI Tool.
 This feature is **not** supported on legacy portal mode.
@@ -17,8 +17,8 @@ Not all tokens are supported on all emails.
 
 ## Prerequisites
 
-* The Kong Developer Portal is not running in **Legacy Mode**
-* The Kong Developer Portal is enabled and running
+* The Kong Dev Portal is not running in **Legacy Mode**
+* The Kong Dev Portal is enabled and running
 * [The emails you want are enabled in kong](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/smtp/#portal_invite_email)
 * If using CLI tool, kong-portal-cli tool 1.1 or later is installed locally and git installed
 
@@ -34,7 +34,7 @@ The follow example is the `emails/approved-access.txt`  template:
 ---
 layout: emails/email_base.html
 
-subject: Developer Portal access approved {{portal.url}}
+subject: Dev Portal access approved {{portal.url}}
 heading: Hello {{email.developer_name}}!
 ---
 You have been approved to access {{portal.url}}.
@@ -61,9 +61,9 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |emails/approved-access.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	                            |`{{portal.gui_url}}`	                                                |email sent to developer when their account is approved	|
 |emails/password-reset.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.token_exp}}` `{{email.reset_url}}`	|`{{portal.url}}` `{{email.token}}` or `{{email.reset_url}}`	|email sent to developer when a password reset  is requested (basic-auth only)	|
 |emails/password-reset-success.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	                    |`{{portal.url}}`	                                                    |email sent to developer when a password reset is successful (basic-auth only) 	|
-|emails/account-verification.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.verify_url}}` `{{email.invalidate_url}}`	|`{{portal.url}}` `{{email.token}}` or  both `{{email.verify_url}}` and `{{email.invalidate_url}} `	|email sent to developer when portal_email_verification is on  to verify developer email (basic-auth only)	|
-|emails/account-verification-approved.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has been approved by admin/auto-approve is on (basic-auth only)	|
-|emails/account-verification-pending.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
+|emails/account-verification.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.verify_url}}` `{{email.invalidate_url}}`	|`{{portal.url}}` `{{email.token}}` or  both `{{email.verify_url}}` and `{{email.invalidate_url}} `	|email sent to developer when `portal_email_verification` is on  to verify developer email (basic-auth only)	|
+|emails/account-verification-approved.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when `portal_email_verification` is on and developer has verified email and developer has been approved by admin/auto-approve is on (basic-auth only)	|
+|emails/account-verification-pending.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when `portal_email_verification` is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
 {% endraw %}
 
 ## Token Descriptions
@@ -86,12 +86,12 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 
 ## Editing Email Templates
 
-The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
+The default email templates will be automatically loaded into the Kong Dev Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
 **Note:** If you are using a Dev Portal initiated in a {{site.base_gateway}} version prior to 1.3.0.1, you will need to manually load the email templates into the file system. Follow the steps in [Loading Email Templates on Existing Dev Portals](#loading-email-templates-on-existing-dev-portals).
 
 ### Editing via the Portal Editor
 
-Email templates can now be edited in the Portal Editor along with the rest of the files in the Kong Developer Portal file system. To view and edit these files:
+Email templates can now be edited in the Portal Editor along with the rest of the files in the Kong Dev Portal file system. To view and edit these files:
 
 1. Log into Kong Manager and navigate to the Workspace whose Dev Portal you wish to edit.
 2. Select the **Editor** from the sidebar under **Dev Portal**.
@@ -141,9 +141,9 @@ The `img` tag loads the logo that can be set in the appearance tab in the manage
 
 > Note: Logo will not render for many email clients that pre-fetch images if portal is not set to be accessible from a public url (for example if you are testing the Portal with a localhost)
 
-By modifying the html of this file, you can change the appearance of your emails. For example if you wanted to add a footer that would show on all emails, add it under the `<p>` tag
+By modifying the HTML of this file, you can change the appearance of your emails. For example if you wanted to add a footer that would show on all emails, add it under the `<p>` tag
 
-Be sure to keep in mind the html support limitations of the email clients you plan to support.
+Be sure to keep in mind the HTML support limitations of the email clients you plan to support.
 
 ## Loading Email Templates on Existing Dev Portals
 

@@ -104,7 +104,7 @@ the corresponding Route:
 4. **Create an anonymous Consumer**
 
     Every request proxied by Kong must be associated with a Consumer. You'll now create a Consumer
-    named `anonymous_users` (that Kong will utilize when proxying anonymous access) by issuing the
+    named `anonymous_users` (that Kong will use when proxying anonymous access) by issuing the
     following request:
 
     ```bash
@@ -132,7 +132,7 @@ the corresponding Route:
 5. **Enable anonymous access**
 
     You'll now re-configure the key-auth plugin to permit anonymous access by issuing the following
-    request (**replace the sample uuids below by the `id` values from step 2 and 4**):
+    request (**replace the sample UUIDs below by the `id` values from step 2 and 4**):
 
     ```bash
     curl -i -X PATCH \
@@ -179,7 +179,7 @@ the corresponding Route:
 ## Multiple Authentication
 
 Kong supports multiple authentication plugins for a given Service, allowing
-different clients to utilize different authentication methods to access a given Service or Route.
+different clients to use different authentication methods to access a given Service or Route.
 
 The behaviour of the auth plugins can be set to do either a logical `AND`, or a logical `OR` when evaluating
 multiple authentication credentials. The key to the behaviour is the `config.anonymous` property.
