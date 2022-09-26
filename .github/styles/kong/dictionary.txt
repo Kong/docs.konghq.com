@@ -11,6 +11,8 @@ Curity
 DAO
 DAOs
 Datadog
+DPP
+DPPs
 Equinix
 Fargate
 Github
@@ -155,6 +157,7 @@ iptables
 jetstack
 journald
 jq
+jQuery
 json
 jwk
 jwks
@@ -276,6 +279,8 @@ submodule's
 substring
 subtree
 sudo
+svg
+svgs
 syscall
 syslog
 systemd
@@ -322,6 +327,7 @@ urls
 use_daily_image
 usr
 uuid
+uuids
 uuidgen
 validator
 validators
