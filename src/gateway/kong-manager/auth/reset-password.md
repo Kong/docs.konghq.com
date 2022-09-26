@@ -52,5 +52,4 @@ or a user that has `/admins` and `/rbac` read and write access
 
 1. Open the dropdown from your **account name**, then select **Profile**.
 2. In the **Reset RBAC Token** section, click **Reset Token** and confirm the reset.
-3. Type in a new token and click **Reset**.
-4. To copy the token, click the **Copy** button.
+3. To copy the token, click the **Copy** button.
