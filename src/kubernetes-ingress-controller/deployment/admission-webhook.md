@@ -20,7 +20,7 @@ If you are using the stock YAML manifests to install and setup Kong for
 Kubernetes, then you can set up the admission webhook using a single command:
 
 ```bash
-curl -sL https://bit.ly/install-kong-admission-webhook | bash
+curl -sL https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/main/hack/deploy-admission-controller.sh | bash
 ```
 The output is similar to the following:
 ```
