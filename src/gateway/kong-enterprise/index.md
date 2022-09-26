@@ -12,7 +12,7 @@ It is the only solution that helps you accelerate your cloud journey by managing
 
 Kong Enterprise offers access to 400+ out-of-box enterprise and community plugins. 
 It offers exclusive versions of OSS plugins like the [Rate-Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/) with added functionality such as the use of consumer groups, and database specific strategy. 
-Kong Enterprise also natively supports gRPC and REST, WebSockets and integrates with Apollo GraphQL server and Apache Kafka services. These plugins can be leveraged to provide advanced connectivity features and solutions to {{site.base_gateway}} such as:
+Kong Enterprise also natively supports gRPC and REST, WebSockets, and integrates with Apollo GraphQL server and Apache Kafka services. These plugins can be leveraged to provide advanced connectivity features and solutions to {{site.base_gateway}} such as:
 
 * [Event gateways with Kafka](/hub/kong-inc/kafka-upstream/)
 * [GraphQL](/hub/kong-inc/graphql-proxy-cache-advanced/)
@@ -34,7 +34,7 @@ In addition, you can secure your APIs with a variety of authorization providers 
 
 ## Monitoring and analytics
 
-The Vitals platform provides deep insights into services, routes, and application usage data.You can view the health of your API products with custom reports and contextual dashboards, and you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as [Datadog](/hub/kong-inc/datadog/) and [Prometheus](/hub/kong-inc/prometheus/).
+The Vitals platform provides deep insights into services, routes, and application usage data. You can view the health of your API products with custom reports and contextual dashboards, and you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as [Datadog](/hub/kong-inc/datadog/) and [Prometheus](/hub/kong-inc/prometheus/).
 
 [Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
 
@@ -79,7 +79,7 @@ the cluster.
 ## FIPS support
 
 Kong Enterprise features a self-managed FIPS 140-2 gateway package, making it ideal for highly regulated industries with strict compliance and security considerations. 
-FIPS compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
+Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
 
 [Learn more about FIPS support &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/fips-support/)
 
