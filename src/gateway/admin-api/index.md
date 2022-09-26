@@ -4083,7 +4083,7 @@ target](#delete-target) instead.
 
 Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/unhealthy</div>
 
 {:.indent}
 Attributes | Description
