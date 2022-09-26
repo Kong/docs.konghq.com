@@ -31,7 +31,7 @@ items:
       - text: Backup and Restore
         url: /guides/backup-restore
       - text: Upgrade to Kong Gateway 3.x
-        url: /guides/3.0-upgrade
+        url: /3.0-upgrade
       - text: Configuration as Code and GitOps
         url: /guides/ci-driven-configuration
       - text: Distributed Configuration
