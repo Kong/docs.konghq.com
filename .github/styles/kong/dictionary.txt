@@ -94,6 +94,7 @@ Keycloak
 keyspace
 kiali
 kibibytes
+kic
 Knative
 kong
 Kong/kong
