@@ -39,11 +39,11 @@ changes in this release.
 
 [changelog]:https://github.com/kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md#260
 
-2.7 does include a minor breaking change affecting the `CombinedRoutes` feature
-gate, but is otherwise not expected to require changes to existing
+2.7 includes a minor breaking change that affects the `CombinedRoutes` feature
+gate, but is otherwise not expected to require changes to the existing
 configuration.
 
-As KIC 2.7 is compatible with all 2.x Kong releases, you should upgrade it and
+Because KIC 2.7 is compatible with all 2.x {{site.base_gateway}} releases, you should upgrade it and
 the chart first:
 
 ```shell
@@ -72,10 +72,9 @@ and changes to the PDK that affect custom plugins.
 Kong 3.x includes changes to regular expression path handling, which _do_ require
 manual updates to Ingress configuration. In Kong 2.x, Kong applied a heuristic based
 on the presence of special characters in a route path to determine if a path
-was a regular expression. This heuristic was imperfect and Kong 3.x has removed
-it, instead requiring that any regular expression begin with a `~` prefix.
-Ingress does not allow paths that begin with any character other than `/`,
-however, so Ingress rules with a regular expression path must begin with `/~`
+was a regular expression. This heuristic was imperfect and {{site.base_gateway}} 3.x removed
+it, and instead requires that any regular expression begins with a `~` prefix.
+Ingress does not allow paths that begin with any character other than `/`,  so Ingress rules with a regular expression path must begin with `/~`
 instead.
 
 Ingress rule paths have no way to indicate that a path is a regular expression.
@@ -94,7 +93,7 @@ process and allow users to update rules gradually, KIC 2.7 includes the
 `enableLegacyRegexDetection` option to continue applying the 2.x regular
 expression heuristic on KIC's end.
 
-If the following sets of rules are met, KIC will create a Kong route path with
+If the following sets of rules are met, KIC creates a Kong route path with
 the `~` prefix:
 
 * The `enableLegacyRegexDetection` option is enabled
