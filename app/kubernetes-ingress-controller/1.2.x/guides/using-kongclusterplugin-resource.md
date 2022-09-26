@@ -253,3 +253,38 @@ services running in different namespaces.
 This can prove to be useful if the persona controlling the plugin
 configuration is different from service owners that are responsible for the
 Service and Ingress resources in Kubernetes.
+
+## Configure a global plugin
+
+Now, we will protect our Kubernetes cluster.
+For this, we will be configuring a rate-limiting plugin, which
+will throttle requests coming from the same client.
+
+This must be a cluster-level `KongClusterPlugin` resource, as `KongPlugin`
+resources cannot be applied globally, to preserve Kubernetes RBAC guarantees
+for cross-namespace isolation.
+
+Let's create the `KongClusterPlugin` resource:
+
+```bash
+$ echo "
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: global-rate-limit
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: \"true\"
+config:
+  minute: 5
+  limit_by: consumer
+  policy: local
+plugin: rate-limiting
+" | kubectl apply -f -
+kongclusterplugin.configuration.konghq.com/global-rate-limit created
+```
+
+With this plugin (please note the `global` label), every request through
+the {{site.kic_product_name}} will be rate-limited:
+
