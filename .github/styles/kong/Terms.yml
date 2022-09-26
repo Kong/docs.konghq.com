@@ -7,6 +7,7 @@ custom: true
 swap:
 
   datacenter: data center
+  codeblock': code block
   blacklist: denylist
   codeblock: code block
   file name: filename
