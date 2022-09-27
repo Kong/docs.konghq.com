@@ -78,7 +78,7 @@ The service version lifecycle determines how and if a service version is display
 
 4. Select a service version status.
    
-    1. In some cases there might be an additional step to fulfill.
+    1. Deprecation only: Click **Save** on the dialog to deprecate the service version and send consumers an email notification.
 
 5. Click **Save**.
 
