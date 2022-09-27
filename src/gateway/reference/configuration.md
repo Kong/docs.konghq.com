@@ -3605,6 +3605,7 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
 
 ### untrusted_lua
+{:.badge .enterprise}
 
 Controls loading of Lua functions from admin-supplied sources such as the Admin
 API. LuaJIT bytecode loading is always disabled.
@@ -3652,6 +3653,7 @@ and `untrusted_lua_sandbox_environment` parameters below.
 
 
 ### untrusted_lua_sandbox_requires
+{:.badge .enterprise}
 
 Comma-separated list of modules allowed to be loaded with `require` inside the
 sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -3678,6 +3680,7 @@ sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 
 
 ### untrusted_lua_sandbox_environment
+{:.badge .enterprise}
 
 Comma-separated list of global Lua variables that should be made available
 inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
