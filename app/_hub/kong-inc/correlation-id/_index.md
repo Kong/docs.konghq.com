@@ -25,21 +25,21 @@ params:
   config:
     - name: header_name
       required: false
-      default: '`Kong-Request-ID`'
+      default: Kong-Request-ID
       value_in_examples: Kong-Request-ID
       datatype: string
       description: |
         The HTTP header name to use for the correlation ID.
     - name: generator
       required: false
-      default: '`uuid#counter`'
+      default: uuid#counter
       value_in_examples: uuid#counter
       datatype: string
       description: |
         The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker`. See [Generators](#generators).
     - name: echo_downstream
       required: false
-      default: '`false`'
+      default: false
       value_in_examples: false
       datatype: boolean
       description: |
