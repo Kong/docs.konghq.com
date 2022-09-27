@@ -1711,6 +1711,34 @@ each individual worker.
 **Default:** `5`
 
 
+### router_flavor
+
+Selects the router implementation to use when performing request routing.
+Incremental router rebuild is available when the flavor is set to either
+`expressions` or `traditional_compatible` which could significantly shorten
+rebuild time for large number of routes.
+
+Accepted values are:
+
+- `traditional_compatible`: the DSL based expression router engine will be used
+  under the hood. However the router config interface will be the same as
+  `traditional` and expressions are automatically generated at router build
+  time. The `expression` field on the `Route` object is not visible.
+- `expressions`: the DSL based expression router engine will be used under the
+  hood. Traditional router config interface is not visible and you must write
+  Router Expression manually and provide them in the `expression` field on the
+  `Route` object.
+- `traditional`: the pre-3.0 Router engine will be used. Config interface will
+  be the same as pre-3.0 Kong and the `expression` field on the `Route` object
+  is not visible.
+
+Deprecation warning: In Kong 3.0, `traditional` mode should be avoided and only
+be used in case `traditional_compatible` did not work as expected.
+
+This flavor of router will be removed in the next major release of Kong.
+
+**Default:** `traditional_compatible`
+
 ---
 
 ## Miscellaneous section
