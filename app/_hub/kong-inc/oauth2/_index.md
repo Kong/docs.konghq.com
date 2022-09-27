@@ -337,7 +337,7 @@ curl --location --request POST 'https://your.service.com/oauth2/token' \
   --header 'Content-Type: application/json' \
   --data-raw '{ "client_id": "XXXXX", "client_secret": "XXXX", "grant_type": "client_credentials" }'
 ```
-_Sending the credentials in URL query param in a POST call._
+_Sending the credentials in URL query parameters in a POST call._
 ```bash 
 curl --location --request POST 'https://your.service.com/oauth2/token?client_id=XXXX&client_secret=XXXX&grant_type=client_credentials'
 ```
