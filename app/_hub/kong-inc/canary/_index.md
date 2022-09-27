@@ -105,7 +105,7 @@ params:
       description: |
         Header name whose value will be used as hash input. Required if `config.hash` is set to `header`.
     - name: canary_by_header_name
-      minimum_version: 2.8.x
+      minimum_version: "2.8.x"
       required: null
       default: null
       value_in_examples: null
