@@ -392,7 +392,7 @@ Instead of applying plugins to specific services or ingress routes,
 we can apply plugins to protect the entire gateway.
 To test this, let's configure a rate-limiting plugin to throttle requests coming from the same client.
 
-This must be a cluster-level `KongClusterPlugin` resource, as `KongPlugin`
+This must be a cluster-level `KongClusterPlugin` resource (refer [KongClusterPlugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongclusterplugin-resource) for more details), as `KongPlugin`
 resources cannot be applied globally, to preserve Kubernetes RBAC guarantees
 for cross-namespace isolation.
 
