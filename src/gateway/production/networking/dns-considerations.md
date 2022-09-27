@@ -91,7 +91,7 @@ HTTP/1.1 200 OK
 
 Missing CORS headers when CORS headers are expected results in failure.
 
-### CORS in the context of Kong Gateway
+### CORS in the context of {{site.base_gateway}}
 
 Kong Manager and the Dev Portal operate by issuing requests to their respective
 APIs using JavaScript. These requests may be cross-origin depending on your
@@ -163,7 +163,7 @@ interest are the following directives:
   with same-site requests, `Lax` are sent when navigating to a link from
   another site, and `None` are sent with all cross-origin requests.
 
-### Cookies in the context of Kong Gateway
+### Cookies in the context of {{site.base_gateway}}
 
 After you log in to Kong Manager or the Dev Portal, Kong stores session
 information in a cookie to recognize your browser during future requests. These

@@ -19,7 +19,7 @@ their respective Kong PDKs:
 - JavaScript language: [kong-js-pdk]
 - Python language: [kong-python-pdk]
 
-## Kong Gateway plugin server configuration
+## {{site.base_gateway}} plugin server configuration
 
 The `pluginserver_names` property is a comma-separated list of names, one
 for each plugin server process. These names are used to group each process'
@@ -98,7 +98,7 @@ the following steps:
 1. Add a `main()` function that calls `server.StartServer(New, Version, Priority)`.
 2. Ensure that properties `go_plugins_dir` and `go_pluginserver_exe` are not set
 in your Kong configuration file or environment variable.
-3. Set configuration according to [Kong Gateway plugin server configuration](#kong-gateway-plugin-server-configuration).
+3. Set configuration according to [{{site.base_gateway}} plugin server configuration](#kong-gateway-plugin-server-configuration).
 
 Check out the [go-plugins](https://github.com/Kong/go-plugins/tree/v0.5.0) repository for an example of the required updates. Plugins with the `-lm` suffix correspond to the legacy method, while those without the suffix
 correspond to the embedded plugin server approach.
@@ -132,7 +132,7 @@ for example Go plugins.
 #### 1. Configuration Structure
 
 Plugins written in Lua define a schema to specify how to read and validate
-configuration data coming from the datastore or the Admin API. Since Go is a
+configuration data coming from the data store or the Admin API. Since Go is a
 statically-typed language, all that specification is handled by defining a
 configuration structure:
 
@@ -145,7 +145,7 @@ type MyConfig struct {
 
 Public fields (that is, those starting with a capital letter) will be filled
 with configuration data. If you want them to have a different name in the
-datastore, add field tags as defined in the `encoding/json` package:
+data store, add field tags as defined in the `encoding/json` package:
 
 ```go
 type MyConfig struct {
@@ -561,9 +561,9 @@ pluginserver_other_one_query_cmd = /path/to/other-one --dump
 Python plugin server and embedded server supports multiple concurrency model. By default,
 the server starts in multi-threading mode.
 
-If your workload is IO intensive, consider the gevent model by adding `-g` to pluginserver's
+If your workload is IO intensive, consider the gevent model by adding `-g` to the plugin server
 start_cmd.
-If your workload is CPU intensive, consider the multi-processing model by adding `-m` to pluginserver's
+If your workload is CPU intensive, consider the multi-processing model by adding `-m` to plugin server's
 start_cmd.
 
 

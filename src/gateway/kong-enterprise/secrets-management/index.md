@@ -57,8 +57,8 @@ Kong receives the payload and extracts the `"username"` value of `"john"` for th
 ### What can be stored as a secret?
 
 Most of the [Kong configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
-can be stored as a secret, such as [pg_user](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
-[pg_password](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings).
+can be stored as a secret, such as [`pg_user`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
+[`pg_password`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings).
 
 {:.note}
 > **Limitation:** {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.

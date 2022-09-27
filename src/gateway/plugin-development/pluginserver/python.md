@@ -66,7 +66,7 @@ The presence of the `response` handler automatically enables the buffered proxy 
 ### Type hints
 
 Support for [type hints](https://www.python.org/dev/peps/pep-0484/) is available. To use type hints
-and autocomplete in an IDE, add the the `kong` parameter to the phase handler function:
+and autocomplete in an IDE, add the `kong` parameter to the phase handler function:
 
 ```python
 import kong_pdk.pdk.kong as kong
@@ -121,7 +121,7 @@ the server starts in multi-threading mode.
 
 If your workload is IO intensive, you can use the [Gevent](http://www.gevent.org/) model by passing the `-g` flag to
 `start_cmd` in `kong.conf`.
-If your workload is CPU intensive, consider the multi-processing model by by passing the `-m` flag to
+If your workload is CPU intensive, consider the multi-processing model by passing the `-m` flag to
 `start_cmd` in `kong.conf`.
 
 

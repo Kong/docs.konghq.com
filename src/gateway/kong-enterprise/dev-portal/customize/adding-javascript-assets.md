@@ -3,7 +3,7 @@ title: Adding and Using JavaScript Assets in Kong Dev Portal
 badge: enterprise
 ---
 
-The Kong Developer Portal ships with Vue, React, and jQuery already loaded.
+The Kong Dev Portal ships with Vue, React, and jQuery already loaded.
 You may want to make use of these libraries to write custom interactive
 webpages or load additional JavaScript.
 
@@ -12,7 +12,7 @@ webpages or load additional JavaScript.
 ## Prerequisites
 
 * Portal Legacy is turned off
-* The Kong Developer Portal is enabled and running
+* The Kong Dev Portal is enabled and running
 * The [kong-portal-cli tool](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/cli) is installed locally
 
 
