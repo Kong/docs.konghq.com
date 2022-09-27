@@ -30,6 +30,28 @@ params:
       required: true
       value_in_examples:
         - '@example/my_function.lua'
+      value_in_examples_serialized:
+        - |
+          |
+            local responses = {
+              ["Invalid authentication credentials"] = {
+                message = "Invalid API key",
+              },
+            }
+
+            return function(status, body, headers)
+              if not body or not body.message then
+                return status, body, headers
+              end
+
+              local response = responses[body.message]
+
+              body.message = response.message or body.message
+              status = response.status or status
+              headers = response.headers or headers
+
+              return status, body, headers
+            end
       datatype: array of string elements
       description: Array of functions used to transform any Kong proxy exit response.
     - name: handle_unknown

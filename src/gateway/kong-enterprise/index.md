@@ -4,46 +4,71 @@ badge: enterprise
 content_type: explanation
 ---
 
-In addition to the {{site.base_gateway}} open source, free, and plus features, users with an Enterprise plan also have access to Enterprise-only features. These features enhance the security, monitoring, and management capabilities of {{site.base_gateway}}.
+Kong Enterprise is the scalable, secure, and flexible API management solution that extends {{site.base_gateway}}, the fastest, most adopted API gateway. 
+It adds enterprise plugins, a developer portal, analytics, advanced security features, GUI's, and 24/7 support. 
+It is the only solution that helps you accelerate your cloud journey by managing, securing, and monitoring connections between applications across hybrid and multi-cloud architectures, to help you scale faster and boost developer productivity.
 
-The following sections describe key Kong Enterprise features. 
+## Enterprise Plugins
 
-## Monitoring and analytics
+Kong Enterprise offers access to 400+ out-of-box enterprise and community plugins. 
+It offers exclusive versions of OSS plugins like the [Rate-Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/) with added functionality such as the use of consumer groups, and database specific strategy. 
+Kong Enterprise also natively supports gRPC and REST, WebSockets, and integrates with Apollo GraphQL server and Apache Kafka services. These plugins can be leveraged to provide advanced connectivity features and solutions to {{site.base_gateway}} such as:
 
-Use [Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as Datadog and Prometheus.
+* [Event gateways with Kafka](/hub/kong-inc/kafka-upstream/)
+* [GraphQL](/hub/kong-inc/graphql-proxy-cache-advanced/)
+* [Mocking](/hub/kong-inc/mocking/)
+* [Advanced data transformation](/hub/kong-inc/jq/)
+* [OPA Policy driven traffic management](/hub/kong-inc/opa/)
+* [API product tiers](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
 
-[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
-
-## Secrets management
-
-Application secrets include sensitive data like passwords, keys, certifications, tokens, and other items
-which must be secured. {{site.base_gateway}} supports
-[secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/), 
-which allows you to store secrets in a vault to help you protect them from accidental exposure. By storing sensitive values as secrets, you ensure that they are not
-visible in plaintext throughout the platform, in places such as `kong.conf`,
-in declarative configuration files, logs, or in the Kong Manager UI.
-
-[Secure your application secrets &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/)
-
-## Dynamic plugin ordering
-
-By default, the execution order of {{site.base_gateway}} plugins is static. [Dynamic plugin ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/) allows you to override the priority for any {{site.base_gateway}} plugin using each plugin's `ordering` field. 
-This determines plugin ordering during the `access` phase,
-and lets you create _dynamic_ dependencies between plugins.
-
-[Get started with dynamic plugin ordering &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/)
+[Get started with plugins &rarr;](/hub/)
 
 ## Dev Portal
 
-Streamline developer onboarding with the [Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/), which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
+The Dev Portal provides a single source of truth for all developers to locate, access and consume APIs, similar to a traditional API catalog. 
+Dev Portal streamlines developer onboarding by offering a self-service developer experience to discover, register, and consume published services from {{site.base_gateway}}.
+This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services.
+In addition, you can secure your APIs with a variety of authorization providers by enabling application registration.
 
 [Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/)
 
+## Monitoring and analytics
+
+The Vitals platform provides deep insights into services, routes, and application usage data. You can view the health of your API products with custom reports and contextual dashboards, and you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as [Datadog](/hub/kong-inc/datadog/) and [Prometheus](/hub/kong-inc/prometheus/).
+
+[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
+
+## Role-based access control (RBAC)
+
+Kong Enterprise lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac).
+
+[Manage teams with RBAC &rarr;](/gateway/{{page.kong_version}}/kong-manager/auth/rbac)
+
+## Secrets management
+Kong Enterprise offers out of the box secrets management with the following backends: 
+
+* [Amazon Web Services](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+* [Google Cloud Platform](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+
+To configure secrets management, {{site.base_gateway}} consumes your key for the backend provider, authenticates with the backend provider, and uses the backend to centrally manage and store application secrets, sensitive data, passwords, keys, certifications, tokens, and other items.
+
+[Secure your application secrets &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/)
+
+
+## Keyring and data encryption
+
+Keyring and data encryption functionality provides transparent, symmetric encryption of sensitive data fields at rest. When enabled, {{site.base_gateway}} encrypts and decrypts data immediately before writing, or immediately after reading, from the database. Responses generated by the Admin API that contain sensitive fields continue to show data as plaintext, and {{site.base_gateway}} runtime elements (such as plugins) that require access to sensitive fields do so transparently, without requiring additional configuration.
+
+{{site.base_gateway}} allows you to store sensitive data fields, such as consumer secrets, in an encrypted format within the database.
+This provides encryption-at-rest security controls in a {{site.base_gateway}} cluster.
+
+[Set up keyring and data encryption &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/db-encryption/)
+
 ## Audit logging
 
-{{site.base_gateway}} provides a granular logging facility on its Admin API. This
-allows cluster administrators to keep detailed track of changes made to the
-cluster configuration throughout its lifetime, aiding in compliance efforts and
+{{site.base_gateway}} provides granular logging of the Admin API. You can keep detailed track of changes made to the
+cluster configuration throughout its lifetime, for compliance efforts and for
 providing valuable data points during forensic investigations. Generated audit
 log trails are [workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference) and [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference)-aware,
 providing {{site.base_gateway}} operators a deep and wide look into changes happening within
@@ -51,42 +76,30 @@ the cluster.
 
 [Get started with audit logging &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/audit-log/)
 
-## Keyring and data encryption
+## FIPS support
 
-{{site.base_gateway}} allows you to store sensitive data fields, such as consumer secrets, in an encrypted format within the database. This provides encryption-at-rest security controls in a {{site.base_gateway}} cluster.
+Kong Enterprise features a self-managed FIPS 140-2 gateway package, making it ideal for highly regulated industries with strict compliance and security considerations. 
+Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
 
-This functionality provides transparent, symmetric encryption of sensitive data fields at rest. Transparency refers to the fact that, when enabled, encryption and decryption of data is done by {{site.base_gateway}} immediately before writing, or immediately after reading from the database. Responses generated by the Admin API containing sensitive fields continue to show data as plaintext, and runtime elements of {{site.base_gateway}} (such as plugins) that require access to sensitive fields do so transparently, without requiring additional configuration.
-
-[Set up keyring and data encryption &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/db-encryption/)
-
-## Roles-based access control (RBAC)
-
-You can configure {{site.base_gateway}} users, roles, and permissions with role-based access control (RBAC), either through the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/) or with [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac). RBAC lets you manage access to resources in {{site.base_gateway}}.
-
-[Manage teams with RBAC &rarr;](/gateway/{{page.kong_version}}/kong-manager/auth/rbac)
+[Learn more about FIPS support &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/fips-support/)
 
 ## Workspaces
 
-[Workspaces](/gateway/{{page.kong_version}}/kong-enterprise/workspaces/) provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces. 
+Workspaces provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces.
+{{site.ce_product_name}} is limited to one workspace. With Kong Enterprise, you can leverage multiple workspaces to allow developers to easily transition between projects, and to separate services and routes belonging to different upstreams. 
 
 [Learn more about workspaces &rarr;](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
 
-## Consumer groups
+## Dynamic plugin ordering
 
-You can use [consumer groups](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/) to manage custom rate limiting configuration for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and
-apply them to subsets of consumers, instead of managing each consumer
-individually.
+Dynamic plugin ordering allows you to override the priority for any {{site.base_gateway}} plugin using each plugin's `ordering` field. 
+This determines plugin ordering during the `access` phase
+and lets you create _dynamic_ dependencies between plugins.
 
-For example, you could define three consumer groups:
-* A "gold tier" with 1000 requests per minute
-* A "silver tier" with 10 requests per second
-* A "bronze tier" with 6 requests per second
-
-[Set up consumer groups &rarr;](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
-
+[Get started with dynamic plugin ordering &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/)
 ## Event hooks
 
-Event hooks are outbound calls from {{site.base_gateway}}. With event hooks, the {{site.base_gateway}} can communicate with target services or resources, letting the target know that an event was triggered. When an event is triggered in the {{site.base_gateway}}, it calls a URL with information about that event. Event hooks add a layer of configuration for subscribing to worker events using the admin interface. Worker events are integrated into {{site.base_gateway}} to communicate within the gateway context. For example, when an entity is created, the {{site.base_gateway}} fires an event with information about the entity. Parts of the {{site.base_gateway}} codebase can subscribe to these events, then process the events using callbacks.
+Event hooks are outbound calls from {{site.base_gateway}}. With event hooks, the {{site.base_gateway}} can communicate with target services or resources, letting the target know that an event was triggered. When an event is triggered in the {{site.base_gateway}}, it calls a URL with information about that event. Event hooks add a layer of configuration for subscribing to worker events using the admin interface. 
 
 In {{site.base_gateway}}, these callbacks can be defined using one of the following handlers:
 
@@ -99,11 +112,18 @@ You can configure event hooks through the Admin API.
 
 [Learn more about event hooks &rarr;](/gateway/{{page.kong_version}}/admin-api/event-hooks/reference/)
 
-## FIPS support
+## Consumer groups
 
-With version 3.0.0.0, {{site.base_gateway}} provides built-in support for the Federal Information Processing Standard (FIPS 140-2). Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
+You can use consumer groups to manage custom rate limiting configuration for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and
+apply them to subsets of consumers, instead of managing each consumer
+individually.
 
-[Learn more about FIPS support &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/fips-support/)
+For example, you could define three consumer groups:
+* A "gold tier" with 1000 requests per minute
+* A "silver tier" with 10 requests per second
+* A "bronze tier" with 6 requests per second
+
+[Set up consumer groups &rarr;](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
 
 ## More information
 
