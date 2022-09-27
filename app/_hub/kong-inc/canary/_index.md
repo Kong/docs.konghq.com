@@ -59,7 +59,7 @@ params:
       description: |
         The target hostname where traffic will be routed. Required if `upstream_uri` and `upstream_port` are not set.
     - name: upstream_fallback
-      required: true
+      required: false
       default: false
       value_in_examples: null
       datatype: boolean
