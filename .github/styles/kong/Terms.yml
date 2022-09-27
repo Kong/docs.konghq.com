@@ -5,7 +5,6 @@ ignorecase: true
 swap:
 
   datacenter: data center
-  developer portal: Dev Portal
   codeblock': code block
   blacklist: denylist
   codeblock: code block
