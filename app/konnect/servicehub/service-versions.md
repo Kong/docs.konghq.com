@@ -25,13 +25,13 @@ ready to test, you'd create v2 in `staging` before finally creating v2 in
 Instead, create a new version of the service in the new environment when you're
 ready to move to it.
 
-Every service version may be in one of the states: "Published", "Deprecated" and "Unpublished":
-* **Published**: This indicates that the service version is ready to be shared with the API consumers. It is exposed to Dev Portal where developers can request access to consume it via the {{site.base_gateway}}. This is default state.
-* **Deprecated**: This indicates that the service version will be deprecated soon. It will still be exposed to the Dev Portal and receive API request via {{site.base_gateway}}. Banner with information about deprecation will be displayed at the top of the service version page in Dev Portal.
-* **Unpublished**: This indicates that the service version is no longer exposed to Dev Portal but can still be accessed by existing Dev Portal Application via {{site.base_gateway}}.
+Each service version is in one of the states:
+* **Published**: This indicates that the service version is ready to be shared with API consumers. It displays in the Dev Portal where developers can request access to consume it via {{site.base_gateway}}. This is the default state.
+* **Deprecated**: This indicates that the service version will be deprecated soon. It is still displayed in the Dev Portal and can receive API request via {{site.base_gateway}}. A banner with information about the deprecation is displayed at the top of the service version page in the Dev Portal and developers are notified via email that the version is deprecated.
+* **Unpublished:** This indicates that the service version no longer displays in the Dev Portal, but it can still be accessed by existing Dev Portal applications via {{site.base_gateway}}.
 
 {:.note}
-> **Note:** If service package to which service version is associated is unpublished, the service version won't be exposed to Dev Portal.
+> **Note:** If the service package associated with a service version is unpublished, the service version won't display in the Dev Portal.
 
 ## Create a service version
 
@@ -66,25 +66,28 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 1. Click **Create** to save.
 
 
-## Managing a service version lifecycle
+## Manage the service version lifecycle
 
-Changing service version status will have an impact on its visibility in Dev Portal. 
+The service version lifecycle determines how and if a service version is displayed in the Dev Portal. 
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then selects its service version which status you would like to adjust. Then follow these steps:
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), choose the service you want to manage the lifecycle of.
 
-1. From the **Service version actions** drop-down menu, select **Edit version status**.
+2. Select the service version you want to manage.
 
-2. In dialog you can select appropriate status. Next to each status there is a brief explanation which pops up on icon hover.
+3. Click  **Service version actions** > **Edit version status**.
 
+4. Select a service version status.
+   
     1. In some cases there might be an additional step to fulfill.
 
-3. Click **Save** to adjust status of service version.
+5. Click **Save**.
 
 ## Delete a service version
 
 Deleting a service version permanently removes it and its implementation, routes, and plugins from the Service Hub.
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then delete it:
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select the service version you want to delete.
 
-* From the **Service version actions** drop-down menu, select **Delete service version**, then confirm deletion in the dialog.
-* Confirm deletion by typing name of service version and click **Yes, delete**
+2. Click **Service version actions** > **Delete service version**.
+
+3. Confirm the deletion by typing the name of the service version and clicking **Yes, delete**.
