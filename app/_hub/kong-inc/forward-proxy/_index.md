@@ -18,8 +18,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
+    compatible: true
 
 params:
   name: forward-proxy
@@ -29,6 +28,7 @@ params:
   dbless_compatible: 'yes'
   config:
     - name: http_proxy_host
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: example.com
@@ -41,9 +41,8 @@ params:
 
         If `http_proxy_host` isn't set, the plugin falls back to the value
         configured in `https_proxy_host`.
-      # minimum_version: "2.8.x"
-
     - name: http_proxy_port
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples: 80
@@ -56,8 +55,8 @@ params:
 
         If `http_proxy_port` isn't set, the plugin falls back to the value
         configured in `https_proxy_port`.
-      # minimum_version: "2.8.x"
     - name: https_proxy_host
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples:
@@ -70,8 +69,8 @@ params:
 
         If `https_proxy_host` isn't set, the plugin falls back to the value
         configured in `http_proxy_host`.
-      # minimum_version: "2.8.x"
     - name: https_proxy_port
+      minimum_version: "2.8.x"
       required: semi
       default: null
       value_in_examples:
@@ -84,8 +83,8 @@ params:
 
         If `https_proxy_port` isn't set, the plugin falls back to the value
         configured in `http_proxy_port`.
-      # minimum_version: "2.8.x"
     - name: proxy_host
+      maximum_version: "2.8.x"
       required: false
       default: null
       value_in_examples:
@@ -99,8 +98,8 @@ params:
         > Use `http_proxy_host` or `https_proxy_host` instead.
 
         The hostname or IP address of the forward proxy to which to connect.
-      # maximum_version: "2.8.x"
     - name: proxy_port
+      maximum_version: "2.8.x"
       required: false
       default: null
       value_in_examples:
@@ -114,15 +113,15 @@ params:
         > Use `http_proxy_host` or `https_proxy_host` instead.
 
         The TCP port of the forward proxy to which to connect.
-      # maximum_version: "2.8.x"
     - name: proxy_scheme
-      required: true
+      required: false
       default: http
       value_in_examples: http
       datatype: string
       description: |
         The proxy scheme to use when connecting. Only `http` is supported.
     - name: auth_username
+      minimum_version: "2.7.x"
       required: false
       default: null
       value_in_examples: example_user
@@ -132,6 +131,7 @@ params:
         The username to authenticate with, if the forward proxy is protected
         by basic authentication.
     - name: auth_password
+      minimum_version: "2.7.x"
       required: false
       default: null
       value_in_examples: example_pass
@@ -141,7 +141,7 @@ params:
         The password to authenticate with, if the forward proxy is protected
         by basic authentication.
     - name: https_verify
-      required: true
+      required: false
       default: false
       value_in_examples: false
       datatype: boolean
@@ -160,7 +160,7 @@ params:
 ---
 ## Changelog
 
-### {{site.base_gateway}} 2.8.x (plugin version 1.2.0)
+**{{site.base_gateway}} 2.8.x**
 
 * Added `http_proxy_host`, `http_proxy_port`, `https_proxy_host`, and
 `https_proxy_port` configuration parameters for mTLS support.
@@ -174,10 +174,6 @@ referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
-* Fixed a plugin version in the documentation. Previously, there was a plugin
-version labelled as `1.0.x`. It is now updated to align with the
-plugin's actual version, `1.1.x`.
-
-### {{site.base_gateway}} 2.7.x (plugin version 1.1.0)
+**{{site.base_gateway}} 2.7.x**
 
 * Added `auth_username` and `auth_password` parameters for proxy authentication.
