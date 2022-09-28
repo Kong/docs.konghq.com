@@ -334,18 +334,17 @@ Service and Ingress resources in Kubernetes.
 
 ## Configure a global plugin
 
-Now, we will protect our Kubernetes cluster.
-For this, we will be configuring a rate-limiting plugin, which
-will throttle requests coming from the same client.
+Now, you can protect your Kubernetes cluster by configuring a rate-limiting plugin, which
+throttles requests coming from the same client.
 
-This must be a cluster-level `KongClusterPlugin` resource, as `KongPlugin`
-resources cannot be applied globally, to preserve Kubernetes RBAC guarantees
+This must be a cluster-level `KongClusterPlugin` resource because `KongPlugin`
+resources cannot be applied globally to preserve Kubernetes RBAC guarantees
 for cross-namespace isolation.
 
-Let's create the `KongClusterPlugin` resource:
+Create the `KongClusterPlugin` resource:
 
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
@@ -363,5 +362,5 @@ plugin: rate-limiting
 kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
-With this plugin (please note the `global` label), every request through
-the {{site.kic_product_name}} will be rate-limited:
+With this plugin (note the `global` label), every request through
+the {{site.kic_product_name}} is rate-limited:
