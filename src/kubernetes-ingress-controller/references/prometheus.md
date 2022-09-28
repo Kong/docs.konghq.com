@@ -5,21 +5,42 @@ title: Prometheus metrics
 {{site.kic_product_name}}, as well as {{site.base_gateway}}, both expose Prometheus metrics, under certain conditions:
 
 * {{site.kic_product_name}}, since version 2.0, exposes Prometheus metrics for configuration updates.
-* {{site.base_gateway}} can expose Prometheus metrics for served requests, if the [Prometheus plugin][prom-plugin] is enabled. See the [Using KongPlugin resource guide][kongplugin-guide] for information on how to enable a plugin. Also, we provide a specific [guide for integration with Prometheus and Grafana][grafana-guide] as well.
+* {{site.base_gateway}} can expose Prometheus metrics for served requests, if the [Prometheus plugin][prom-plugin] is enabled. See the [Using KongPlugin resource guide][kongplugin-guide] for information about how to enable a plugin. Also, we provide a specific [guide for integration with Prometheus and Grafana][grafana-guide] as well.
 
 This document is a reference for the former type.
 
-| Metric name | Description |
-|-------------|-------------|
-| `ingress_controller_configuration_push_count[success=true|false][protocol=db-less|deck]{% if_version gte:2.7.x inline:true %}[failure_reason=conflict|network|other]{% endif_version %}` | Count of successful or failed configuration pushes to Kong. <br><br> `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors. {% if_version gte:2.7.x inline:true %}<br><br> `failure_reason` is populated in case of `success="false"` and describes the reason of failure: <br> * `conflict` - configuration conflict that requires manual fix, <br> * `network` - network related issues (e.g. Kong being offline), <br> * `other` - other issues (e.g. Kong reporting non-conflict error). {% endif_version %} |
-| `ingress_controller_translation_count[success=true|false]` | Count of translations from Kubernetes state to Kong state. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the translation succeeded with no errors. |
-| `ingress_controller_configuration_push_duration_milliseconds[success=true|false][protocol=db-less|deck]` | The amount of time, in milliseconds, that it takes to push the configuration to Kong. <br><br> `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. <br><br> `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors. |
+## Prometheus metrics for configuration updates
 
-In addition to the above, {{site.kic_product_name}} exposes more low-level performance metrics - these may however change from version to version, as they are provided by underlying frameworks of {{site.kic_product_name}}.
+### ingress_controller_configuration_push_count
 
-A non-exhaustive list of these low-level metrics is present in the following places:
-* [controller-runtime metrics definition](https://github.com/kubernetes-sigs/controller-runtime/blob/master/pkg/internal/controller/metrics/metrics.go)
-* [workqueue metrics definition](https://github.com/kubernetes/component-base/blob/release-1.20/metrics/prometheus/workqueue/metrics.go#L29)
+`ingress_controller_configuration_push_count` provides the number of successful or failed configuration pushes to {{site.base_gateway}}.
+
+* `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. 
+* `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.  
+* {% if_version gte:2.7.x inline:true %}`failure_reason` is populated in case `success="false"`. It describes the reason for the failure: 
+    * `conflict`: A configuration conflict that must be manually fixed. 
+    * `network`: A network related issues, such as {{site.base_gateway}} is offline.
+    * `other`: Other issues, such as {{site.base_gateway}} reports a non-conflict error. {% endif_version %}
+
+
+### ingress_controller_translation_count
+`ingress_controller_translation_count` provides the number of translations from the Kubernetes state to the {{site.base_gateway}} state. 
+
+`success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the translation succeeded with no errors.
+
+### ingress_controller_configuration_push_duration_milliseconds
+`ingress_controller_configuration_push_duration_milliseconds` is the amount of time, in milliseconds, that it takes to push the configuration to {{site.base_gateway}}. 
+ 
+* `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.
+* `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`.
+
+## Low-level performance metrics
+
+In addition to the above, {{site.kic_product_name}} exposes more low-level performance metrics, but these may change from version to version because they are provided by underlying frameworks of {{site.kic_product_name}}.
+
+A non-exhaustive list of these low-level metrics is described in the following:
+* [Controller-runtime metrics](https://github.com/kubernetes-sigs/controller-runtime/blob/master/pkg/internal/controller/metrics/metrics.go)
+* [Workqueue metrics](https://github.com/kubernetes/component-base/blob/release-1.20/metrics/prometheus/workqueue/metrics.go#L29)
 
 [kongplugin-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/
 [grafana-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/prometheus-grafana/
