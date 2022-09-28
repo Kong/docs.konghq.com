@@ -1,18 +1,20 @@
 
+ACLs
 Alertmanager
 Arya
 Bagdi
 Bintray
 Bitnami
+CAs
 CloudFormation
 Cloudformation
 Cognito
 Curity
 DAO
 DAOs
-Datadog
 DPP
 DPPs
+Datadog
 Equinix
 Fargate
 Github
@@ -20,11 +22,9 @@ Goroutine
 Grafana
 HTTPie
 Istio
-Istio
 Istio's
 JsonPath
 Keycloak
-Knative
 Knative
 Knative's
 Knatives
@@ -42,6 +42,7 @@ Netcat
 Netlify
 Nginx
 Nginx's
+OAuth
 Okta
 Okta's
 PayPal
@@ -116,6 +117,7 @@ dockerfile
 downsample
 downsampled
 drilldown
+elbs
 enum
 env
 etcd
@@ -132,6 +134,8 @@ globbing
 gojira
 grpc
 grpcs
+gui
+guis
 hardcoded
 hardcoding
 hashicorp
@@ -154,16 +158,18 @@ io
 ip
 ips
 iptables
+jQuery
 jetstack
 journald
 jq
-jQuery
 json
 jwk
 jwks
 jwt
+jwts
 kafka
 keepalive
+keps
 keyrings
 keyspace
 kiali
@@ -208,6 +214,7 @@ nopping
 npm
 observability
 oc
+odks
 onboard
 onboarding
 onwards
@@ -215,11 +222,11 @@ opa
 openresty
 outbounds
 passthrough
+pdks
 perf
 performant
 petstore
 pgdump
-plaintext
 plaintext
 prepend
 prepended
@@ -248,7 +255,6 @@ reinstallation
 repo
 requery
 rockspec
-rockspec
 rockspecs
 routable
 ruleset
@@ -261,6 +267,7 @@ serializer
 serverless
 shm
 slas
+slos
 sni
 snis
 ssl
@@ -287,11 +294,13 @@ systemd
 tbl
 tcp
 tcpdump
+tcpingress
 teardown
 templated
 tfvars
 timeframe
 timeframes
+tlds
 transcoded
 transcoder
 transpile
@@ -299,6 +308,7 @@ transpiled
 truthy
 ttl
 txt
+udpingress
 unary
 uncheck
 unchecking
@@ -327,8 +337,8 @@ urls
 use_daily_image
 usr
 uuid
-uuids
 uuidgen
+uuids
 validator
 validators
 vararg

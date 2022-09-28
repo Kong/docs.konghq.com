@@ -21,7 +21,7 @@ The {{site.kic_product_name}} supports the following resources and features in t
 - `v1alpha2`
 {% endif_version %}
 
-## HTTPRoutes
+## HTTP Routes
 
 {{site.kic_product_name}}'s implementation of `HTTPRoute` supports multiple `BackendRefs` with a 
 round-robin load-balancing strategy applied by default across the 
@@ -45,7 +45,7 @@ services.
 - Does not support `queryParam` in route matches.
 - Does not support `requestRedirect` in filters.
 
-## TCPRoutes
+## TCP Routes
 
 The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `BackendRefs` in 
 `TCPRoute` resources for load balancing.
@@ -53,7 +53,7 @@ The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `
 ### Supported Versions
 - `v1alpha2`
 
-## UDPRoutes
+## UDP Routes
 
 The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `BackendRefs` in
 `UDPRoute` resources for load balancing.
@@ -61,13 +61,13 @@ The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `
 ### Supported Versions
 - `v1alpha2`
 
-## TLSRoutes
+## TLS Routes
 
 ### Supported Versions
 - `v1alpha2`
 
 {% if_version gte:2.6.x %}
-## ReferenceGrants
+## Reference Grants
 
 Kong implementation supports `ReferenceGrant` to allow routes to 
 reference backends in other namespaces in `BackendRefs`.
@@ -77,7 +77,7 @@ reference backends in other namespaces in `BackendRefs`.
 {% endif_version %}
 
 {% if_version gte:2.4.x lte:2.5.x %}
-## ReferencePolicies 
+## Reference Policies 
 
 The {{site.kic_product_name}}'s implementation supports using `ReferencePolicy` to allow routes to 
 reference backends in other namespaces in `BackendRefs`.
