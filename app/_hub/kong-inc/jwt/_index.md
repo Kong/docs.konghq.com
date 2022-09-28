@@ -150,11 +150,11 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer": { "id": "7bce93e1-0a90-489c-c887-d385545f8f4b" },
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
-    "secret": "e71829c351aa4242c2719cbfbe671c09"
+    "secret": "e71829c351aa4242c2719cbfbe671c09",
+    "consumer": { "id": "7bce93e1-0a90-489c-c887-d385545f8f4b" }
 }
 ```
 {% endnavtab %}
@@ -231,12 +231,12 @@ HTTP/1.1 200 OK
     "data": [
         {
             "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK .... -----END PUBLIC KEY-----",
-            "consumer": { "id": "39f52333-9741-48a7-9450-495960d91684" },
             "id": "3239880d-1de5-4dbc-bccf-78f7a4280f33",
             "created_at": 1491430568000,
             "key": "c5a55906cc244f483226e02bcff2b5e",
             "algorithm": "RS256",
-            "secret": "b0970f7fc9564e65xklfn48930b5d08b1"
+            "secret": "b0970f7fc9564e65xklfn48930b5d08b1",
+            "consumer": {"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"}
         }
     ],
     "total": 1
@@ -373,11 +373,11 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer": { "id": "7bce93e1-0a90-489c-c887-d385545f8f4b" },
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
-    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ..."
+    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ...",
+    "consumer": {"id": "8a21c4fa-e65e-4258-8673-540e85e67b33"}
 }
 ```
 
