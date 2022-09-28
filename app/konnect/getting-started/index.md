@@ -11,10 +11,10 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
     [Create an account &gt;](/konnect/getting-started/access-account)
 
-1.  **Set up a runtime connection**:
+1.  **Set up a runtime instance**:
 
-    Set up a runtime and connect it to your account. Your first runtime
-    connection gives you a data plane for proxying traffic.
+    Set up a runtime instance and connect it to your account. Your first runtime
+    instance gives you a data plane for proxying traffic.
 
     Start with a data plane proxy so that when your service configuration is
     ready, your services are immediately connected, configured,
