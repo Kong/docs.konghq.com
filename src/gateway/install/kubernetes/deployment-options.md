@@ -114,7 +114,7 @@ controller can render it into a complete configuration.
 
 On database-backed deployments, users can create or modify configuration
 through the Admin API. The ingress controller uses a tag (set by the
-`CONTROLLER_KONG_ADMIN_FILTER_TAG` environment variable) to to identify
+`CONTROLLER_KONG_ADMIN_FILTER_TAG` environment variable) to identify
 configuration that it manages. While the controller will revert changes to
 configuration with its tag, other configuration is left as-is.
 

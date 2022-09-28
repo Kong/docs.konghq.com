@@ -549,7 +549,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     Where:
 
     `cluster_control_plane`
-    : Sets the address and port of the control plane (port `8005` by defaut).
+    : Sets the address and port of the control plane (port `8005` by default).
 
     `database`
     : Specifies whether this node connects directly to a database.

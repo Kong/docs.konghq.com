@@ -36,7 +36,7 @@ Using `KongIngress`, all properties of [Upstream][kong-upstream],
 [Service][kong-service] and [Route][kong-route]
 entities in Kong related to an Ingress resource can be modified.
 
-Once a `KongIngress` resource is created, you can use the `configuration.konghq.com`
+Once a `KongIngress` resource is created, you can use the `konghq.com/override`
 annotation to associate the `KongIngress` resource with an `Ingress` or a `Service`
 resource:
 

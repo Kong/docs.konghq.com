@@ -486,7 +486,7 @@ Host: anything.com
 ```
 
 For each of these requests, {{site.base_gateway}} detects that their normalized URL path is prefixed with
-one of the routes's `paths` values. By default, {{site.base_gateway}} would then proxy the
+one of the routes' `paths` values. By default, {{site.base_gateway}} would then proxy the
 request upstream without changing the URL path.
 
 When proxying with path prefixes, **the longest paths get evaluated first**.
@@ -938,7 +938,7 @@ information about in the [Plugin development guide][plugin-development-guide].
 
 Once {{site.base_gateway}} has executed all the necessary logic (including plugins), it is ready
 to forward the request to your upstream service. This is done via Nginx's
-[ngx_http_proxy_module][ngx-http-proxy-module]. You can configure the desired
+[`ngx_http_proxy_module`][ngx-http-proxy-module]. You can configure the desired
 timeouts for the connection between {{site.base_gateway}} and a given upstream, via the following
 properties of a service:
 

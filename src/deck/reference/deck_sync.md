@@ -57,7 +57,7 @@ Use `-` to read from stdin. (Default: `[kong.yaml]`)
 
 `--workspace`
 :  Sync configuration to a specific workspace (Kong Enterprise only).
-This takes precedence over _workspace fields in state files.
+This takes precedence over `_workspace` fields in state files.
 
 {% if_version gte:1.7.x %}
 

@@ -85,7 +85,7 @@ you should start by generating a declarative config file.
     declarative_config = /path/to/kong.yml
     ```
 
-## Run Kong Gateway
+## Run {{site.base_gateway}}
 
 1. Start {{site.base_gateway}}:
 

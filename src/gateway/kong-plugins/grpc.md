@@ -5,7 +5,7 @@ title: Introduction to Kong gRPC Plugins
 Before going into the specifics of configuring Kong's gRPC plugins, let's
 discuss the advantages of the gRPC protocol. Unlike JSON,
 [gRPC](https://en.wikipedia.org/wiki/GRPC)
-is a binary protocol, using [protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers)
+is a binary protocol, using [Protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers)
 definitions to instruct how the data is marshalled and unmarshalled. Because
 binary data is used instead of text, it's a more efficient way to transmit data
 over a network. However, this also makes gRPC harder to work with, because inspecting
@@ -22,11 +22,11 @@ interfaces that talk to a gRPC service.
 
 The gRPC-Web plugin allows you to interact with a gRPC service from a browser.
 Instead of presenting a RESTful-type call, you POST data to the same
-gRPC service endpoint that the protobuf defines.
+gRPC service endpoint that the Protobuf defines.
 
 For flexibility and compatibility with RESTful expectations, the gRPC-Gateway
 plugin offers more configurability, whereas the gRPC-Web plugin adheres more
-directly to the protobuf specification.
+directly to the Protobuf specification.
 
 Let's walk through setting up each plugin so you can see how they work.
 
@@ -90,7 +90,7 @@ message HelloResponse {
 }
 ```
 
-Upload the protobuf definition to your Kong Node:
+Upload the Protobuf definition to your Kong Node:
 
 ```
 docker cp hello-gateway.proto kong-dp-host:/usr/local/kong/
@@ -154,7 +154,7 @@ message HelloResponse {
 }
 ```
 
-Upload the protobuf definition to your Kong Node:
+Upload the Protobuf definition to your Kong Node:
 
 ```
 docker cp hello.proto kong-dp-host:/usr/local/kong/

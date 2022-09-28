@@ -20,7 +20,7 @@ kong.plugins.<plugin_name>.<module_name>
 Your modules need to be accessible through your
 [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
 variable, which can be tweaked to your needs via the
-[lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#lua_package_path)
+[`lua_package_path`](/gateway/{{page.kong_version}}/reference/configuration/#lua_package_path)
 configuration property.
 However, the preferred way of installing plugins is through
 [LuaRocks](https://luarocks.org/), which Kong natively integrates with.
@@ -98,7 +98,7 @@ master each one of them.
 | Module name            | Required   | Description
 |:-----------------------|------------|------------
 | **[api.lua]**          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
-| **[daos.lua]**         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the datastore.
+| **[daos.lua]**         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the data store.
 | **[handler.lua]**      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request / connection.
 | **[migrations/*.lua]** | No         | The database migrations (e.g. creation of tables). Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
 | **[schema.lua]**       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
