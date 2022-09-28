@@ -1,13 +1,13 @@
 ---
 title: Allowing Multiple Authentication Methods
+content-type: how-to
 ---
 
 This guide walks you through the steps for configuring multiple authentication options for consumers using the {{site.kic_product_name}}.
-
 The default behavior for Kong authentication plugins is to require credentials
 for all requests without regard for whether a request has been authenticated
-via some other plugin. Configuring an anonymous consumer on your authentication
-plugins allows you to offer clients multiple options for authentication.
+via another plugin. Configuring an anonymous consumer on your authentication
+plugins allows you to offer clients authentication options.
 
 ## Installation
 
@@ -16,7 +16,7 @@ the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
 
-This guide assumes that `PROXY_IP` environment variable is
+This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 If you've not done so, please follow one of the
 [deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
