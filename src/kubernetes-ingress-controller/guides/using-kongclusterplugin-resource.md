@@ -334,11 +334,12 @@ Service and Ingress resources in Kubernetes.
 
 ## Configure a global plugin
 
-Now, you can protect your Kubernetes cluster by configuring a rate-limiting plugin, which
-throttles requests coming from the same client.
+Instead of applying plugins to specific services or ingress routes,
+you can apply plugins to protect the entire gateway.
+To test this, you can configure a rate limiting plugin to throttle requests coming from the same client.
 
 This must be a cluster-level `KongClusterPlugin` resource because `KongPlugin`
-resources cannot be applied globally to preserve Kubernetes RBAC guarantees
+resources cannot be applied globally. This preserves Kubernetes RBAC guarantees
 for cross-namespace isolation.
 
 Create the `KongClusterPlugin` resource:
@@ -363,4 +364,49 @@ kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
 With this plugin (note the `global` label), every request through
-the {{site.kic_product_name}} is rate-limited:
+the {{site.kic_product_name}} is rate limited:
+
+```sh
+curl -I $PROXY_IP/foo -H 'apikey: my-super-secret-key'
+```
+
+```sh
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 9593
+Connection: keep-alive
+X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 5
+RateLimit-Remaining: 4
+RateLimit-Reset: 46
+RateLimit-Limit: 5
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+demo:  injected-by-kong
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: kong/2.8.1
+```
+
+
+Requests to `/bar` are also rate limited:
+```sh
+curl -I $PROXY_IP/bar
+```
+
+```sh
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=UTF-8
+Connection: keep-alive
+X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 5
+RateLimit-Remaining: 4
+RateLimit-Reset: 11
+RateLimit-Limit: 5
+Server: echoserver
+demo:  injected-by-kong
+X-Kong-Upstream-Latency: 0
+X-Kong-Proxy-Latency: 1
+Via: kong/2.8.1
+```
