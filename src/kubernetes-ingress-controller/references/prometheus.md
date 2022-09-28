@@ -15,6 +15,8 @@ This document is a reference for the former type.
 
 `ingress_controller_configuration_push_count` provides the number of successful or failed configuration pushes to {{site.base_gateway}}.
 
+This metric expects that the following parameters are configured: 
+
 * `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`. 
 * `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.  
 * {% if_version gte:2.7.x inline:true %}`failure_reason` is populated in case `success="false"`. It describes the reason for the failure: 
@@ -26,10 +28,12 @@ This document is a reference for the former type.
 ### ingress_controller_translation_count
 `ingress_controller_translation_count` provides the number of translations from the Kubernetes state to the {{site.base_gateway}} state. 
 
-`success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the translation succeeded with no errors.
+This metric expects that the `success` parameter is configured. `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the translation succeeded with no errors.
 
 ### ingress_controller_configuration_push_duration_milliseconds
 `ingress_controller_configuration_push_duration_milliseconds` is the amount of time, in milliseconds, that it takes to push the configuration to {{site.base_gateway}}. 
+
+This metric expects that the following parameters are configured: 
  
 * `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.
 * `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`.
