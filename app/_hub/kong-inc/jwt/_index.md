@@ -385,7 +385,9 @@ HTTP/1.1 201 Created
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
     "rsa_public_key": "-----BEGIN PUBLIC KEY----- ...",
-    "consumer": {"id": "8a21c4fa-e65e-4258-8673-540e85e67b33"}
+    "consumer": {
+      "id": "8a21c4fa-e65e-4258-8673-540e85e67b33"
+    }
 }
 ```
 
@@ -590,7 +592,9 @@ Response:
             "algorithm": "ES256",
             "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
             "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
-            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+            "consumer": {
+               "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" 
+              }
 
         }
     ]
