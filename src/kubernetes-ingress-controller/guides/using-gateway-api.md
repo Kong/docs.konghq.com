@@ -85,7 +85,7 @@ to use the {{site.kic_product_name}}:
 $ kubectl apply -f https://bit.ly/echo-service
 ```
 
-## Add a GatewayClass and Gateway
+## Add a Gateway class and gateway
 
 The Gateway resource represents the proxy instance that handles traffic for a
 set of Gateway API routes, and a GatewayClass describes characteristics shared
@@ -201,7 +201,7 @@ To configure KIC to reconcile the `Gateway` resource, you must set the
 `konghq.com/gateway-unmanaged` annotation as the example in `GatewayClass` resource used in 
 `spec.gatewayClassName` in `Gateway` resource. Also, the 
 `spec.controllerName` of `GatewayClass` needs to be same as the value of the
-`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
+`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
 {% endif_version %}
 
 You can check to confirm if KIC has updated the bound `Gateway` by 
@@ -228,9 +228,9 @@ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
 ]
 ```
 
-## Add an HTTPRoute
+## Add an HTTP Route
 
-HTTPRoute resources are similar to Ingress resources: they contain a set of
+`HTTPRoute` resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
 requests to.
 
@@ -290,7 +290,7 @@ spec:
 ```
 {% endif_version %}
 
-After creating an HTTPRoute, accessing `/echo` forwards a request to the
+After creating an HTTP Route, accessing `/echo` forwards a request to the
 echo service:
 
 ```bash
@@ -320,16 +320,16 @@ The KIC Gateway API alpha is a work in progress, and not all features of
 Gateway APIs are supported. In particular:
 
 {% if_version lte: 2.3.x %}
-- HTTPRoute is the only supported route type. TCPRoute, UDPRoute, and TLSRoute
+- `HTTPRoute` is the only supported route type. `TCPRoute`, `UDPRoute`, and `TLSRoute`
   are not yet implemented.
-- HTTPRoute does not yet support multiple backendRefs. You cannot distribute
+- `HTTPRoute` does not yet support multiple `backendRefs`. You cannot distribute
   requests across multiple Services.
 {% endif_version %}
-- queryParam matches are not supported.
+- `queryParam` matches are not supported.
 {% if_version gte: 2.4.x %}
 {% if_version lte: 2.5.x %}
-- Gateway Listener configuration does not support TLSConfig. You can't
-  load certificates for HTTPRoutes and TLSRoutes via Gateway
+- Gateway Listener configuration does not support `TLSConfig`. You can't
+  load certificates for HTTP Routes and TLS Routes via Gateway
   configuration, and must either accept the default Kong certificate or add
   certificates and SNI resources manually via the admin API in DB-backed mode.
 {% endif_version %}
