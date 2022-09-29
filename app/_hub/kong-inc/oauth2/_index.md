@@ -325,7 +325,7 @@ You can access the `/oauth2/token` endpoint to retrieve the `access_token` in th
 
 * Using a POST request, set `Content-Type` to `application/x-www-form-urlencoded` and send the credentials as form data:
 ```bash  
-curl --location --request POST 'https://your.service.com/oauth2/token' \
+curl -i -X POST 'https://example.service.com/oauth2/token' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'client_id=XXXX' \
   --data-urlencode 'client_secret=XXXX' \
