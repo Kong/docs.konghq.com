@@ -66,7 +66,7 @@ in case of potential bugs.
 
 ### Gateway API
 
-The following table presents the git compatibility of {{site.kic_product_name}}'s [Gateway API][gateway-api]
+The following table presents the compatibility of {{site.kic_product_name}}'s [Gateway API][gateway-api]
 features with specific Kubernetes minor versions. As {{site.kic_product_name}} implements these features on top of the upstream
 project which defines [its own compatibility declarations][gateway-api-supported-versions], the expected compatibility
 of Gateway API features might be limited to those.
