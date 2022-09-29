@@ -1340,7 +1340,7 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        Enable the sending of the token endpoint response headers only with certain granst:
+        Enable the sending of the token endpoint response headers only with certain grants:
         - `password`: with OAuth password grant
         - `client_credentials`: with OAuth client credentials grant
         - `authorization_code`: with authorization code flow

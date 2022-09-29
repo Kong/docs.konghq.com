@@ -12,7 +12,7 @@ variables and apply it.
 Create environment variables with the `DECK_` prefix and reference them as
 `{%raw%}${{ env "DECK_*" }}{%endraw%}` in your state file.
 
-The following example demonstrates how to apply an apiKey stored in an environment variable.
+The following example demonstrates how to apply an API key stored in an environment variable.
 You can use this method for any sensitive content.
 
 1. Create an environment variable:
@@ -46,10 +46,10 @@ You can use this method for any sensitive content.
       - https
     ```
     This snippet enables the [key authentication][key-auth] plugin globally and creates
-     a consumer named `demo` with an apiKey.
+     a consumer named `demo` with an API key.
 3. Run `deck sync -s env-demo.yaml` to sync this file.
 
-    The output should look something like this, where `abc` is the apiKey stored
+    The output should look something like this, where `abc` is the API key stored
     in the environment variable:
 
     ```plaintext
