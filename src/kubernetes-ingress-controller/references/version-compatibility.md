@@ -48,7 +48,7 @@ other enterprise functionality, built on top of the Open-Source {{site.base_gate
 ### General
 
 The following table presents the general compatibility of {{site.kic_product_name}} with specific Kubernetes versions.
-Users should expect all the combinations marked with <i class="fa fa-check"></i> to work, and to be supported
+Users should expect all the combinations marked with <i class="fa fa-check"></i> to work and to be supported
 in case of potential bugs.
 
 | {{site.kic_product_name}} |            2.1.x            |            2.2.x            |            2.3.x            |            2.4.x            |            2.5.x            |            2.6.x            |            2.7.x            |
