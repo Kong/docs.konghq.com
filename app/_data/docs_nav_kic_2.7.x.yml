@@ -89,6 +89,8 @@ items:
         url: /guides/configure-acl-plugin
       - text: Using cert-manager with Kong
         url: /guides/cert-manager
+      - text: Allowing Multiple Authentication Methods
+        url: /guides/allowing-multiple-authentication-methods
       - text: Configuring a Fallback Service
         url: /guides/configuring-fallback-service
       - text: Using an External Service
