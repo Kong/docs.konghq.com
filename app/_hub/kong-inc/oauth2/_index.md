@@ -319,11 +319,11 @@ You can use this information on your side to implement additional logic. You can
 
 ### Client Credentials
   
-The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.  
+The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow works out of the box, without building any authorization page. The clients need to use the `/oauth2/token` endpoint to request an access token.  
   
-Below are the various ways we can consume "/oauth2/token" endpoint to retrieve the access_token.
+You can access the `/oauth2/token` endpoint to retrieve the `access_token` in the following ways:.
 
-_Content-Type set to application/x-www-form-urlencoded and sending the credentials as a form data in a POST call._
+* Using a POST request, set `Content-Type` to `application/x-www-form-urlencoded` and send the credentials as form data:
 ```bash  
 curl --location --request POST 'https://your.service.com/oauth2/token' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -331,15 +331,15 @@ curl --location --request POST 'https://your.service.com/oauth2/token' \
   --data-urlencode 'client_secret=XXXX' \
   --data-urlencode 'grant_type=client_credentials'
 ```
-_Content-Type set to application/json and sending the credentials as a JSON body in a POST call._
+* Using a POST request, set `_Content-Type` to `application/json` and send the credentials as a JSON body:
 ```bash 
-curl --location --request POST 'https://your.service.com/oauth2/token' \
+curl -i -X POST 'https://example.service.com/oauth2/token' \
   --header 'Content-Type: application/json' \
   --data-raw '{ "client_id": "XXXXX", "client_secret": "XXXX", "grant_type": "client_credentials" }'
 ```
-_Sending the credentials in URL query parameters in a POST call._
+* Using a POST request, send the credentials in URL query parameters:
 ```bash 
-curl --location --request POST 'https://your.service.com/oauth2/token?client_id=XXXX&client_secret=XXXX&grant_type=client_credentials'
+curl -i -X POST 'https://your.service.com/oauth2/token?client_id=XXXX&client_secret=XXXX&grant_type=client_credentials'
 ```
 
 ### Authorization Code
