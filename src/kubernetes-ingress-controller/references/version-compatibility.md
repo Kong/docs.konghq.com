@@ -67,7 +67,7 @@ if there are bugs.
 ### Gateway API
 
 The following table presents the compatibility of {{site.kic_product_name}}'s [Gateway API][gateway-api]
-with specific Kubernetes minor versions. As {{site.kic_product_name}} implements Gateway API features in addition to the upstream
+with specific Kubernetes minor versions. As {{site.kic_product_name}} implements Gateway API features using the upstream
 project, which defines [its own compatibility declarations][gateway-api-supported-versions], the expected compatibility
 of Gateway API features might be limited to those.
 
