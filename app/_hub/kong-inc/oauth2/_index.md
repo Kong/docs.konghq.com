@@ -318,8 +318,35 @@ You can use this information on your side to implement additional logic. You can
 ## OAuth 2.0 Flows
 
 ### Client Credentials
+  
+The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow works out of the box, without building any authorization page. 
+The clients need to use the `/oauth2/token` endpoint to request an access token.  
+  
+You can access the `/oauth2/token` endpoint to retrieve the `access_token` in the following ways:
 
-The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.
+* Using a POST request, set `Content-Type` to `application/x-www-form-urlencoded` and send the credentials as form data:
+    
+    ```bash  
+    curl -i -X POST 'https://example.service.com/oauth2/token' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      --data-urlencode 'client_id=XXXX' \
+      --data-urlencode 'client_secret=XXXX' \
+      --data-urlencode 'grant_type=client_credentials'
+    ```
+    
+* Using a POST request, set `_Content-Type` to `application/json` and send the credentials as a JSON body:
+    
+    ```bash 
+    curl -i -X POST 'https://example.service.com/oauth2/token' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{ "client_id": "XXXXX", "client_secret": "XXXX", "grant_type": "client_credentials" }'
+    ```
+    
+* Using a POST request, send the credentials in URL query parameters:
+    
+    ```bash 
+    curl -i -X POST 'https://example.service.com/oauth2/token?client_id=XXXX&client_secret=XXXX&grant_type=client_credentials'
+    ```
 
 ### Authorization Code
 
