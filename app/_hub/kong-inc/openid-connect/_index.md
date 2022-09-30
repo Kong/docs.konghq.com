@@ -1090,7 +1090,7 @@ params:
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
     - name: session_redis_password
-      minumum_version: "2.8.x"
+      minimum_version: "2.8.x"
       required: false
       default: (from kong)
       encrypted: true
