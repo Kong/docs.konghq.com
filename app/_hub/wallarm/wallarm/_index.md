@@ -16,13 +16,11 @@ type: integration
 desc: Wallarm is AI-Powered Security Platform for protecting microservices and APIs
 
 description: |
-  Wallarm AI-Powered Security Platform automates application protection and security testing. Its NG WAF module seamlessly integrates with API gateway and protects APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+  Wallarm Advanced API Security and WAAP products provide robust protection for APIs, microservices, and serverless workloads running in cloud-native environments. Hundreds of Security and DevOps teams choose Wallarm to get unique visibility into malicious traffic, robust protection across their whole API portfolio, and automated incident response for product security programs. Wallarm supports modern tech stacks, offering dozens of deployment options in public clouds, multi-cloud and Kubernetes-based environments, and also provides a full cloud solution.
 
-  * Protects all types of REST, XML, SOAP and other HTTP APIs from XSS, XXE, SQL Injections, RCE and other OWASP Top 10 threats
-  * Detects the microservice’s logic and payload boundary from stateless HTTP traffic analysis — without access to the code inside the container
-  * Works well with CI/CD by updating security rules automatically
-  * Provides visibility on malicious requests and uses vulnerability verification to cut down on the noise and false positives
-  * Learns and decodes all the data formats including nested and encoded custom API protocols, such as JSON inside Base64 encoding.
+  * Protect your web applications and APIs against OWASP Security Top-10 risks and other advanced API threats like Injections, BOLA and authentication failures.
+  * Get runtime visibility across your entire API portfolio, minimize API drift and prioritize security efforts (like pen tests or bug bounties) with alerts on new, changed or deprecated endpoints.
+  * Meet compliance requirements by tracking and protecting sensitive data, including PII, financial & health data, credentials and more.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
@@ -52,11 +50,11 @@ terms_of_service_url: https://www.wallarm.com/terms-of-service
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 0.14.x
+      - 2.7.x
 #    incompatible:
   enterprise_edition:
     compatible:
-      - 0.33-x
+      - 2.7.x
 #    incompatible:
 
 params:
@@ -74,14 +72,14 @@ params:
 # BEGIN MARKDOWN CONTENT
 ---
 
-More details on [Wallarm NG WAF](https://wallarm.com/products/ng-waf){:target="_blank"}{:rel="noopener noreferrer"}.
+More details on [Wallarm API Security Platform](https://www.wallarm.com/product/wallarm-cloud-native-platform-overview?utm_source=konghub){:target="_blank"}{:rel="noopener noreferrer"}.
 
 Free Wallarm trial license is available [here](https://my.wallarm.com/signup?utm_source=konghub){:target="_blank"}{:rel="noopener noreferrer"}.
 
-“Wallarm implementation was one of many steps to migrate our application iMedNet to AWS. Ensuring the ability to monitor and secure our web-based APIs and to meet HIPAA guidelines for PHI compliance were important in the decision to go with Wallarm”, said Gary Johnson, Infrastructure Architect at MedNetStudy.
+"Wallarm implementation was one of many steps to migrate our application iMedNet to AWS. Ensuring the ability to monitor and secure our web-based APIs and to meet HIPAA guidelines for PHI compliance were important in the decision to go with Wallarm", said Gary Johnson, Infrastructure Architect at MedNetStudy.
 
-“Wallarm offers an adaptive security platform including an integrated Web vulnerability scanner and NG-WAF solution with automatically generated security rules based on AI”, said Chris Rodriguez, Senior Security Analyst, Frost & Sullivan
+"With Wallarm, we've been able to scale API protection to the scale we need and manage with our infrastructure as a code approach", said Gustavo Ogawa, Head of Security at Rappi
 
 ### Installation
 
-Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/admin-en/installation-kong-en/){:target="_blank"}{:rel="noopener noreferrer"}. 
+Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided [here](https://docs.wallarm.com/admin-en/installation-kong-en/?utm_source=konghub){:target="_blank"}{:rel="noopener noreferrer"}. 
