@@ -76,11 +76,7 @@ More details on [Wallarm API Security Platform](https://www.wallarm.com/product/
 
 Free Wallarm trial license is available [here](https://my.wallarm.com/signup?utm_source=konghub){:target="_blank"}{:rel="noopener noreferrer"}.
 
-"Wallarm implementation was one of many steps to migrate our application iMedNet to AWS. Ensuring the ability to monitor and secure our web-based APIs and to meet HIPAA guidelines for PHI compliance were important in the decision to go with Wallarm", said Gary Johnson, Infrastructure Architect at MedNetStudy.
 
-<!-- vale off -->
-"With Wallarm, we've been able to scale API protection to the scale we need and manage with our infrastructure as a code approach", said Gustavo Ogawa, Head of Security at Rappi.
-<!-- vale on -->
 
 ### Installation
 
