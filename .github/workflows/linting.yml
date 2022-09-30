@@ -39,6 +39,6 @@ jobs:
       - uses: errata-ai/vale-action@v2
         with:
           # path where vale checks checking only modified files.
-          files: __onlyModified
+          filter_mode: added
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
