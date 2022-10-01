@@ -51,7 +51,7 @@
     "node-fetch": "2.6.7",
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4",
-    "standard": "16.0.4"
+    "standard": "17.0.0"
   },
   "jest": {
     "testMatch": [
