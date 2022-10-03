@@ -33,17 +33,17 @@ HTTP 404 Not Found.
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-$ curl -i $PROXY_IP
+curl -i $PROXY_IP
+```
+{% endnavtab %}
+{% navtab Response %}
+```bash
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
 Server: kong/1.2.1
-```
-{% endnavtab %}
 
-{% navtab Response %}
-```json
 {"message":"no Route matched with those values"}
 ```
 {% endnavtab %}
@@ -58,7 +58,7 @@ We will start by installing the echo service and increasing its replica count:
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-$ kubectl apply -f https://bit.ly/echo-service
+kubectl apply -f https://bit.ly/echo-service
 ```
 {% endnavtab %}
 
@@ -74,7 +74,6 @@ deployment.apps/echo created
 {% navtab Command %}
 ```bash
 kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
-$ kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
 ```
 {% endnavtab %}
 
@@ -93,7 +92,7 @@ by defining an Ingress.
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -126,7 +125,7 @@ Let's test:
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-$ curl -i $PROXY_IP/foo
+curl -i $PROXY_IP/foo
 ```
 {% endnavtab %}
 
@@ -182,7 +181,7 @@ defining the new behaviour:
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-$ echo "apiVersion: configuration.konghq.com/v1
+echo "apiVersion: configuration.konghq.com/v1
 kind: KongIngress
 metadata:
   name: sample-customization
@@ -207,7 +206,7 @@ using the `konghq.com/override` annotation.
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-$ kubectl patch service echo -p '{"metadata":{"annotations":{"konghq.com/override":"sample-customization"}}}'
+kubectl patch service echo -p '{"metadata":{"annotations":{"konghq.com/override":"sample-customization"}}}'
 ```
 {% endnavtab %}
 
