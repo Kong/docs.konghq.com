@@ -10,42 +10,9 @@ categories:
   - transformations
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: correlation-id
   service_id: true
@@ -57,22 +24,22 @@ params:
   dbless_compatible: 'yes'
   config:
     - name: header_name
-      required: true
-      default: '`Kong-Request-ID`'
+      required: false
+      default: Kong-Request-ID
       value_in_examples: Kong-Request-ID
       datatype: string
       description: |
         The HTTP header name to use for the correlation ID.
     - name: generator
-      required: true
-      default: '`uuid#counter`'
+      required: false
+      default: uuid#counter
       value_in_examples: uuid#counter
       datatype: string
       description: |
         The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker`. See [Generators](#generators).
     - name: echo_downstream
-      required: true
-      default: '`false`'
+      required: false
+      default: false
       value_in_examples: false
       datatype: boolean
       description: |
@@ -155,7 +122,7 @@ To edit your Nginx parameters, do the following:
    ```
 
 1. Use your custom log format for the proxy access log phase. Locate the following line:
-   
+
    ```
    access_log ${PROXY_ACCESS_LOG};
    ```
@@ -174,7 +141,7 @@ To edit your Nginx parameters, do the following:
    ```
    kong reload
    ```
-  
+
 3. Tail the access log:
 
    ```
@@ -186,3 +153,8 @@ To edit your Nginx parameters, do the following:
 Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/reference/configuration/#custom-nginx-templates--embedding-kong).
 
 You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
+
+## Changelog
+
+**{{site.base_gateway}} 2.2.x**
+* The plugin now generates a `correlation-id` value by default if the correlation ID header arrives empty.

@@ -1,7 +1,6 @@
 ---
 name: Canary Release
 publisher: Kong Inc.
-version: 0.6.x
 desc: Slowly roll out software changes to a subset of users
 description: |
   Reduce the risk of introducing a new software version in production by slowly
@@ -13,8 +12,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
+    compatible: true
 params:
   name: canary
   service_id: true
@@ -61,7 +59,7 @@ params:
       description: |
         The target hostname where traffic will be routed. Required if `upstream_uri` and `upstream_port` are not set.
     - name: upstream_fallback
-      required: true
+      required: false
       default: false
       value_in_examples: null
       datatype: boolean
@@ -107,19 +105,20 @@ params:
       description: |
         Header name whose value will be used as hash input. Required if `config.hash` is set to `header`.
     - name: canary_by_header_name
+      minimum_version: "2.8.x"
       required: null
       default: null
       value_in_examples: null
       datatype: string
       description: |
-        Header name that, when present on a request, overrides the configured canary 
-        functionality. 
-        
-        * If the configured header is present with the value `always`, the request will 
-        always go to the canary upstream. 
-        * If the header is present with the value `never`, the request will never go to the 
-        canary upstream. 
-        
+        Header name that, when present on a request, overrides the configured canary
+        functionality.
+
+        * If the configured header is present with the value `always`, the request will
+        always go to the canary upstream.
+        * If the header is present with the value `never`, the request will never go to the
+        canary upstream.
+
         For all other values, the configured canary rules will be applied.
 ---
 
@@ -173,12 +172,15 @@ _Service A_ and _Service B_ on consecutive requests.
 Canary provides an automatic fallback if, for some reason, a Consumer, Header, or IP can
 not be identified. The fallback order is `consumer`->`ip`->`none`.
 
+{% if_plugin_version gte:2.8.x %}
 ### Overriding the Canary
 
 In some cases, you may want to allow clients to pick _Service A_ or _Service B_
 instead of applying the configured canary rules. By setting the `config.canary_by_header_name`,
 clients can send the value `always` to always use the canary service (_Service B_) or send the
 value `never` to never use the canary service (always use _Service A_).
+
+{% endif_plugin_version %}
 
 ### Finalizing the Canary
 
@@ -214,6 +216,9 @@ target. For this configuration to take effect, the following conditions must be 
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.6.0)
-
+**{{site.base_gateway}} 2.8.x**
 * Added the `canary_by_header_name` configuration parameter.
+
+**{{site.base_gateway}} 2.1.x**
+* Use `allow` and `deny` instead of `whitelist` and `blacklist` in the `groups` parameter.
+* Added the `hash_header` configuration parameter.

@@ -1,13 +1,5 @@
 strategy: gateway
 delegate_releases: true
-sources:
-  2.7.x: _1.1.x
-  2.6.x: _1.0.5
-  2.5.x: _1.0.5
-  2.4.x: _1.0.5
-  2.3.x: _1.0.5
-  2.2.x: _1.0.5
-  2.1.x: _1.0.5
 
 overrides:
   2.8.x: 1.2.0

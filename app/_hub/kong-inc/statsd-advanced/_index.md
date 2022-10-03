@@ -1,7 +1,6 @@
 ---
 name: StatsD Advanced
 publisher: Kong Inc.
-version: 3.0.x
 desc: Send metrics to StatsD with more flexible options
 description: |
   Log [metrics](#metrics) for a Service, route
@@ -11,7 +10,8 @@ description: |
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
   {:.important}
-  > Starting in Gateway version 3.0.x this plugin has been combined with the open-sourced [StatsD](/hub/kong-inc/statsd/) plugin.
+  > Starting in Gateway version 3.0.x, StatsD Advanced has been combined with the open-sourced [StatsD](/hub/kong-inc/statsd/) plugin.
+  StatsD Advanced has been deprecated.
 
   The StatsD Advanced plugin provides
   features not available in the open-source [StatsD](/hub/kong-inc/statsd/) plugin, such as:
@@ -26,19 +26,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 3.0.x
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: statsd-advanced
   service_id: true
@@ -109,12 +97,12 @@ params:
       description: The default consumer identifier for metrics. This will take effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
     - name: service_identifier_default
       required: true
-      default: 'service_name_or_host' 
+      default: 'service_name_or_host'
       datatype: string
       description: The default service identifier for metrics. This will take effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
     - name: workspace_identifier_default
       required: true
-      default: 'workspace_id' 
+      default: 'workspace_id'
       datatype: string
       description: The default workspace identifier for metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.   
   extra: |

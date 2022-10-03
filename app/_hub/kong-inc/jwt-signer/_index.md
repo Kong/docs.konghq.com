@@ -1,7 +1,6 @@
 ---
 name: Kong JWT Signer
 publisher: Kong Inc.
-version: 2.7.x
 desc: Verify and sign one or two tokens in a request
 description: |
   The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign
@@ -23,9 +22,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: jwt-signer
   service_id: true
