@@ -33,9 +33,11 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 > annotation value will take precedence over a KongIngress value if both set
 > the same setting.
 
-The standard Ingress and Service Kubernetes resources cannot express the full
-range of Kong's routing capabilities. KongIngress is a custom resource that
-attaches to Ingresses and Services to extend their capabilities and allow them
+The standard Ingress and Service Kubernetes resources can't express the full
+range of Kong's routing capabilities. You can use KongIngress to extend these resources. 
+
+KongIngress is a custom resource that
+attaches to Ingresses and Services and allows them
 to control all settings on the Kong [routes][kong-route],
 [services][kong-service], and [upstreams][kong-upstream] generated for them.
 KongIngress is not an alternative to Ingress. It can't be used independently
