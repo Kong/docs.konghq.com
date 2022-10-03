@@ -125,10 +125,10 @@ By default, Kong will round-robin requests between upstream replicas. If you
 run `curl -s $PROXY_IP/foo | grep "pod name:"` repeatedly, you should see the
 reported Pod name alternate between two values.
 
-We can configure the Kong upstream associated with the Service to use a
+You can configure the Kong upstream associated with the Service to use a
 different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms),
 such as consistently sending requests to the same upstream based on a header
-value. This and other fields available on the Kong upstream resource cannot be
+value. This and other fields available on the Kong upstream resource can't be
 configured using annotations, only using KongIngress.
 
 To modify these behaviours, let's first create a KongIngress resource
@@ -155,12 +155,11 @@ $ kubectl patch service echo -p '{"metadata":{"annotations":{"konghq.com/overrid
 service/echo patched
 ```
 
-Sending repeated requests now without any `x-lb` header will send them to the
-same Pod, since we're using consistent hashing and fall back to the client IP
-if no header is present:
+With consistent hashing and client IP fallback, sending repeated requests without any `x-lb` header now sends them to the
+same Pod:
 
 ```bash
-$ for n in {1..5}; do curl -s $PROXY_IP/foo | grep "pod name:"; done
+for n in {1..5}; do curl -s $PROXY_IP/foo | grep "pod name:"; done
 	pod name:	echo-588c888c78-6jrmn
 	pod name:	echo-588c888c78-6jrmn
 	pod name:	echo-588c888c78-6jrmn
@@ -168,11 +167,11 @@ $ for n in {1..5}; do curl -s $PROXY_IP/foo | grep "pod name:"; done
 	pod name:	echo-588c888c78-6jrmn
 ```
 
-If we then add the header, Kong will hash its value and distribute it to the
-same replica when we use the same value:
+If you add the header, Kong hashes its value and distributes it to the
+same replica when using the same value:
 
 ```bash
-$ for n in {1..3}; do
+for n in {1..3}; do
   curl -s $PROXY_IP/foo -H "x-lb: foo" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: bar" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: baz" | grep "pod name:";
@@ -188,16 +187,16 @@ done
 	pod name:	echo-588c888c78-6jrmn
 ```
 
-Increasing the replicas will redistribute some subsequent requests onto the new
+Increasing the replicas redistributes some subsequent requests onto the new
 replica:
 
 ```bash
-$ kubectl patch deploy echo --patch '{"spec": {"replicas": 3}}'
+kubectl patch deploy echo --patch '{"spec": {"replicas": 3}}'
 deployment.apps/echo patched
 ```
 
 ```bash
-$ for n in {1..3}; do
+for n in {1..3}; do
   curl -s $PROXY_IP/foo -H "x-lb: foo" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: bar" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: baz" | grep "pod name:";
@@ -213,23 +212,26 @@ done
 	pod name:	echo-588c888c78-6jrmn
 ```
 
-Kong's load balancer does not directly distribute requests to each of the
+Kong's load balancer doesn't directly distribute requests to each of the
 Service's Endpoints. It first distributes them evenly across a number of
 equal-size buckets. These buckets are then distributed across the available
-Endpoints according to their weight. For Ingresses, however, there is a single
+Endpoints according to their weight. For Ingresses, however, there is only one
 Service, and the controller assigns each Endpoint (represented by a Kong
-upstream target) equal weight, and requests are indeed evenly hashed across all
+upstream target) equal weight. In this case, requests are evenly hashed across all
 Endpoints.
 
 Gateway API HTTPRoutes support multiple backend Services with associated
-weights per Service. The controller still assigns each Endpoint for a given
-Service the same weight, but assigns them proportionally across the
+weights per Service. For each Service, the controller still assigns the same weight per Endpoint, but it assigns them proportionally across the
 multi-Service backend: the Endpoints of a Service will have a Kong target
 weight such they collectively receive a percentage of requests equal to their
-Service's weight in the HTTPRoute. For example, if you have two Services, one
-with 4 Endpoints and one with 2, and each Service has weight 50 in the
-HTTPRoute, the targets created for the 2-Endpoint Service have double the
-weight of the targets created for the 4-Endpoint Service.
+Service's weight in the HTTPRoute. 
+
+For example, say you have two Services with the following configuration:
+ * One Service has four Endpoints
+ * The other Service has two Endpoints
+ * Each Service has weight 50 in the HTTPRoute
+The targets created for the two-Endpoint Service have double the
+weight of the targets created for the four-Endpoint Service.
 
 KongIngress can also configure upstream [health checking behavior as
 well](/gateway/latest/reference/health-checks-circuit-breakers/). See [the
@@ -239,18 +241,18 @@ for the health check fields.
 ## Use KongIngress with Ingress resource
 
 Kong can match routes based on request headers. For example, you can have two
-separate foutes for `/foo`, one which matches requests that include an
-`x-split: alpha` and another that matches requests with `x-split: bravo` or
+separate foutes for `/foo`, one that matches requests which include an
+`x-split: alpha`, and another that matches requests with `x-split: bravo` or
 `x-legacy: charlie`. Configuring this using the ingress controller requires
 attaching a KongIngress to an Ingress resource. It is not available via an
 Ingress annotation.
 
-To start, create a copy of the Ingress we created earlier with a different
+To start, create a copy of the Ingress you created earlier with a different
 name:
 
 
 ```bash
-$ echo "
+echo "
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -271,15 +273,17 @@ spec:
 ingress.extensions/demo-copy created
 ```
 
-The controller will create this route, but it will not be accessible: all
-requests for `/foo` will match the original `demo` route. When two routes have
-identical matching criteria, Kong uses their creation time as a tiebreaker (you
-may, however, see the matched route flipped if you restart the container when
-using DB-less mode, as both routes will then be re-added at the same time). To
-fix this, we'll create KongIngresses that differentiate the routes via headers:
+The controller creates this route, but it's not immediately accessible. All
+requests for `/foo` will match the original `demo` route. 
+
+When two routes have
+identical matching criteria, Kong uses their creation time as a tiebreaker, defaulting to the route created first. You may see the matched route flipped if you restart the container when
+using DB-less mode, as both routes are then re-added at the same time. 
+
+To fix this, create KongIngresses that differentiate the routes via headers:
 
 ```bash
-$ echo "
+echo "
 ---
 apiVersion: configuration.konghq.com/v1
 kind: KongIngress
@@ -306,16 +310,16 @@ kongingress.configuration.konghq.com/header-alpha created
 kongingress.configuration.konghq.com/header-bravo created
 ```
 
-Now, let's associate these KongIngress resources with our Ingress resources
-using the `konghq.com/override` annotation.
+Now, you can associate these KongIngress resources with your Ingress resources
+using the `konghq.com/override` annotation:
 
 ```bash
-$ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/override":"header-alpha"}}}'
+kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/override":"header-alpha"}}}'
 ingress.extensions/demo patched
 ```
 
 ```bash
-$ kubectl patch ingress demo-copy -p '{"metadata":{"annotations":{"konghq.com/override":"header-bravo"}}}'
+kubectl patch ingress demo-copy -p '{"metadata":{"annotations":{"konghq.com/override":"header-bravo"}}}'
 ingress.extensions/demo-copy patched
 ```
 
@@ -326,23 +330,23 @@ $ curl -s $PROXY_IP/foo
 {"message":"no Route matched with those values"}
 ```
 
-Adding headers to your requests will make your requests match routes again, and
-you'll be able to access both routes depending on which header you use:
+Add headers to your requests to make your requests match routes again.
+You'll be able to access both routes depending on which header you use:
 
 ```bash
-$ curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: alpha" 2>&1 | grep -i kong-route-name
+curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: alpha" 2>&1 | grep -i kong-route-name
 < Kong-Route-Name: default.demo.00
 ```
 
 ```bash
-$ curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: bravo" -H "x-legacy: enabled"  2>&1 | grep -i kong-route-name
+curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: bravo" -H "x-legacy: enabled"  2>&1 | grep -i kong-route-name
 < Kong-Route-Name: default.demo-copy.00
 ```
 
 ```bash
-$ curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: charlie" -H "x-legacy: enabled"  2>&1 | grep -i kong-route-name
+curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: charlie" -H "x-legacy: enabled"  2>&1 | grep -i kong-route-name
 < Kong-Route-Name: default.demo-copy.00
 ```
 
-Note that demo-copy requires _both_ headers, but will match any of the
+Note that `demo-copy` requires _both_ headers, but matches any of the
 individual values configured for a given header.
