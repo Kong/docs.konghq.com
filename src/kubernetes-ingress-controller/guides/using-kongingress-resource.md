@@ -54,7 +54,7 @@ deployment.apps/echo created
 ```
 
 ```bash
-$ kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
+kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
 deployment.apps/echo patched
 ```
 
