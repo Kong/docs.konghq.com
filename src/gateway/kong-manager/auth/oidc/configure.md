@@ -30,7 +30,7 @@ admin_gui_auth_conf={                                      \
   "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \
   "consumer_by": ["username","custom_id"],                 \
   "ssl_verify": false,                                     \
-  "consumer_claim": ["email"],                             \
+  "admin_claim": ["email"],                             \
   "leeway": 60,                                            \
   "redirect_uri": ["http://localhost:8002"],                      \
   "login_redirect_uri": ["http://localhost:8002"],                \
