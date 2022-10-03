@@ -30,6 +30,8 @@ Please follow one of the
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ curl -i $PROXY_IP
 HTTP/1.1 404 Not Found
@@ -37,9 +39,15 @@ Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 48
 Server: kong/1.2.1
+```
+{% endnavtab %}
 
+{% navtab Response %}
+```json
 {"message":"no Route matched with those values"}
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 This is expected as Kong does not yet know how to proxy the request.
 
@@ -47,22 +55,43 @@ This is expected as Kong does not yet know how to proxy the request.
 
 We will start by installing the echo service and increasing its replica count:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ kubectl apply -f https://bit.ly/echo-service
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 service/echo created
 deployment.apps/echo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
+$ kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```
 deployment.apps/echo patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Setup Ingress
 
 Let's expose the echo service outside the Kubernetes cluster
 by defining an Ingress.
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ echo "
 apiVersion: networking.k8s.io/v1
@@ -82,13 +111,27 @@ spec:
             port:
               number: 80
 " | kubectl apply -f -
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 ingress.extensions/demo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Let's test:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ curl -i $PROXY_IP/foo
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=UTF-8
 Transfer-Encoding: chunked
@@ -118,6 +161,8 @@ Request Information:
   request_scheme=http
   request_uri=http://35.233.170.67:8080/foo
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Use KongIngress with a Service resource
 
@@ -134,6 +179,8 @@ configured using annotations, only using KongIngress.
 To modify these behaviours, let's first create a KongIngress resource
 defining the new behaviour:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ echo "apiVersion: configuration.konghq.com/v1
 kind: KongIngress
@@ -144,38 +191,70 @@ upstream:
   hash_on_header: x-lb
   hash_fallback: ip
   algorithm: consistent-hashing" | kubectl apply -f -
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 kongingress.configuration.konghq.com/test created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, let's associate this KongIngress resource with our Service resource
 using the `konghq.com/override` annotation.
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ kubectl patch service echo -p '{"metadata":{"annotations":{"konghq.com/override":"sample-customization"}}}'
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 service/echo patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 With consistent hashing and client IP fallback, sending repeated requests without any `x-lb` header now sends them to the
 same Pod:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 for n in {1..5}; do curl -s $PROXY_IP/foo | grep "pod name:"; done
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 	pod name:	echo-588c888c78-6jrmn
 	pod name:	echo-588c888c78-6jrmn
 	pod name:	echo-588c888c78-6jrmn
 	pod name:	echo-588c888c78-6jrmn
 	pod name:	echo-588c888c78-6jrmn
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 If you add the header, Kong hashes its value and distributes it to the
 same replica when using the same value:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 for n in {1..3}; do
   curl -s $PROXY_IP/foo -H "x-lb: foo" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: bar" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: baz" | grep "pod name:";
 done
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 	pod name:	echo-588c888c78-nk4jc
 	pod name:	echo-588c888c78-nk4jc
 	pod name:	echo-588c888c78-6jrmn
@@ -186,21 +265,39 @@ done
 	pod name:	echo-588c888c78-nk4jc
 	pod name:	echo-588c888c78-6jrmn
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Increasing the replicas redistributes some subsequent requests onto the new
 replica:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 kubectl patch deploy echo --patch '{"spec": {"replicas": 3}}'
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 deployment.apps/echo patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 for n in {1..3}; do
   curl -s $PROXY_IP/foo -H "x-lb: foo" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: bar" | grep "pod name:";
   curl -s $PROXY_IP/foo -H "x-lb: baz" | grep "pod name:";
 done
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 	pod name:	echo-588c888c78-nk4jc
 	pod name:	echo-588c888c78-d477r
 	pod name:	echo-588c888c78-6jrmn
@@ -211,6 +308,8 @@ done
 	pod name:	echo-588c888c78-d477r
 	pod name:	echo-588c888c78-6jrmn
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Kong's load balancer doesn't directly distribute requests to each of the
 Service's Endpoints. It first distributes them evenly across a number of
@@ -255,7 +354,8 @@ Ingress annotation.
 To start, create a copy of the Ingress you created earlier with a different
 name:
 
-
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 echo "
 apiVersion: networking.k8s.io/v1
@@ -275,18 +375,27 @@ spec:
             port:
               number: 80
 " | kubectl apply -f -
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 ingress.extensions/demo-copy created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 The controller creates this route, but it's not immediately accessible. All
-requests for `/foo` will match the original `demo` route. 
+requests for `/foo` will match the original `demo` route.
 
 When two routes have
 identical matching criteria, Kong uses their creation time as a tiebreaker, defaulting to the route created first. You may see the matched route flipped if you restart the container when
-using DB-less mode, as both routes are then re-added at the same time. 
+using DB-less mode, as both routes are then re-added at the same time.
 
 To fix this, create KongIngresses that differentiate the routes via headers:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 echo "
 ---
@@ -311,47 +420,108 @@ route:
     x-legacy:
 	- enabled
   " | kubectl apply -f -
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 kongingress.configuration.konghq.com/header-alpha created
 kongingress.configuration.konghq.com/header-bravo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, you can associate these KongIngress resources with your Ingress resources
 using the `konghq.com/override` annotation:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/override":"header-alpha"}}}'
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 ingress.extensions/demo patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 kubectl patch ingress demo-copy -p '{"metadata":{"annotations":{"konghq.com/override":"header-bravo"}}}'
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 ingress.extensions/demo-copy patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, neither of the routes will match:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 $ curl -s $PROXY_IP/foo
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 {"message":"no Route matched with those values"}
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Add headers to your requests to make your requests match routes again.
 You'll be able to access both routes depending on which header you use:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: alpha" 2>&1 | grep -i kong-route-name
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 < Kong-Route-Name: default.demo.00
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: bravo" -H "x-legacy: enabled"  2>&1 | grep -i kong-route-name
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 < Kong-Route-Name: default.demo-copy.00
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
 curl -sv $PROXY_IP/foo -H "kong-debug: 1" -H "x-split: charlie" -H "x-legacy: enabled"  2>&1 | grep -i kong-route-name
+```
+{% endnavtab %}
+
+{% navtab Response %}
+```bash
 < Kong-Route-Name: default.demo-copy.00
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Note that `demo-copy` requires _both_ headers, but matches any of the
 individual values configured for a given header.
