@@ -55,6 +55,11 @@ resource:
   corresponding service and upstream in Kong are updated to use the `proxy` and
   `upstream` blocks as defined in the associated KongIngress resource.
 
+- **Annotated Ingress resource:** All routes associated with the annotated
+  Ingress are updated to use the values defined in the KongIngress's route section.
+- **Annotated Service resource:** The
+  corresponding service and upstream in Kong are updated to use the proxy and upstream blocks as defined in the associated KongIngress resource.
+
 Don't attach a KongIngress that sets values in the `proxy` and
 `upstream` sections to an Ingress, as it won't have any effect. These
 sections are only honored when a KongIngress is attached to a Service.
