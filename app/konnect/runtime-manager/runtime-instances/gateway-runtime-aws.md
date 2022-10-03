@@ -10,10 +10,7 @@ configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
 
-You have the following options when configuring a new runtime instance with AWS:
-* Use the quick setup script, which generates a data plane container
-running on `localhost`.
-* Use the advanced setup to customize your installation.
+When you create an AWS runtime instance, runtime manager provides a pre-populated template for the runtime instance in AWS.
 
 {:.note}
 > **Note:** Kong does not host runtimes. You must install and host your own
@@ -27,7 +24,7 @@ You need an account with AWS that is already configured. <!-- Does this need cer
 
 IAM resources????
 
-### Run the quick setup script
+### Configure the AWS Gateway instance
 
 1. Open the {% konnect_icon runtimes %} **Runtime Manager**.
 
@@ -42,6 +39,4 @@ IAM resources????
 <!-- Or can we do just a "configure the fields on the page" ?-->
 
 1. Click **Deploy to AWS**. 
-This redirects you to the AWS Management Console.
-
-1. On the **Specify stack details** page, type a stack name in the **Stack name** box. This name should be unique across your AWS subscription, as in the name should be unique across all gateway instance deployments in your AWS organization.
+This redirects you to the AWS Management Console where it prepopulates a CloudFormation template. 
