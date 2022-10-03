@@ -344,7 +344,7 @@ for the health check fields.
 ## Use KongIngress with Ingress resource
 
 Kong can match routes based on request headers. For example, you can have two
-separate foutes for `/foo`, one that matches requests which include an
+separate routes for `/foo`, one that matches requests which include an
 `x-split: alpha`, and another that matches requests with `x-split: bravo` or
 `x-legacy: charlie`. Configuring this using the ingress controller requires
 attaching a KongIngress to an Ingress resource. It is not available via an
