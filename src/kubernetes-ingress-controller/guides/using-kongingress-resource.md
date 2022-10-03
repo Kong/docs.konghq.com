@@ -220,18 +220,23 @@ Service, and the controller assigns each Endpoint (represented by a Kong
 upstream target) equal weight. In this case, requests are evenly hashed across all
 Endpoints.
 
-Gateway API HTTPRoutes support multiple backend Services with associated
-weights per Service. For each Service, the controller still assigns the same weight per Endpoint, but it assigns them proportionally across the
-multi-Service backend: the Endpoints of a Service will have a Kong target
-weight such they collectively receive a percentage of requests equal to their
-Service's weight in the HTTPRoute. 
+Gateway API HTTPRoute rules support distributing traffic across multiple
+Services. The rule can assign weights to the Services to change the proportion
+of requests an individual Service receives. In Kong's implementation, all
+Endpoint of a Service have the same weight. Kong calculates a per-Endpoint
+upstream target weight such that the aggregate target weight of the Endpoints
+is equal to the proportion indicated by the HTTPRoute weight.
 
 For example, say you have two Services with the following configuration:
  * One Service has four Endpoints
  * The other Service has two Endpoints
  * Each Service has weight 50 in the HTTPRoute
+
 The targets created for the two-Endpoint Service have double the
-weight of the targets created for the four-Endpoint Service.
+weight of the targets created for the four-Endpoint Service (two weight 16
+targets and four weight 8 targets) . Scaling the
+four-Endpoint Service to eight would halve the weight of its targets (two
+weight 16 targets and eight weight 4 targets).
 
 KongIngress can also configure upstream [health checking behavior as
 well](/gateway/latest/reference/health-checks-circuit-breakers/). See [the
