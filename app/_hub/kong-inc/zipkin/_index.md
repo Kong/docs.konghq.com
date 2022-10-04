@@ -164,7 +164,7 @@ params:
         format is `name_of_tag=value_of_tag`, separated by commas.
 
         For example: with the default value, a request with the header
-        `Zipkin-Tags: fg=blue, bg=red` will generate a trace with the tag `fg` with
+        `Zipkin-Tags: fg=blue; bg=red` will generate a trace with the tag `fg` with
         value `blue`, and another tag called `bg` with value `red`.
     - name: static_tags
       minimum_version: "2.3.x"
