@@ -20,7 +20,7 @@ class: no-copy-code # Disables the copy code button for all code blocks on the p
 
 ## First section <!-- Header optional if there's only one section in the article -->
 
-<!-- Tables can be common in reference material. -->
+<!-- Tables are common in reference material. -->
 
 | Term      | Definition |
 | ----------- | ----------- |

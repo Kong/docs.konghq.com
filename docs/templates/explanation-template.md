@@ -1,11 +1,14 @@
 ---
 title: Noun or nouns describing your subject
 content_type: explanation
-no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
-alpha: true # Labels the page as alpha; adds a banner to the top of the page.
-beta: true # Labels the page as beta; adds a banner to the top of the page.
-disable_image_expand: true # Stops images from expanding in a modal on click. Sets it for the entire page.
-class: no-copy-code # Disables the copy code button for all code blocks on the page.
+
+# Optional values. Uncomment any that apply to your document.
+
+# no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
+# alpha: true # Labels the page as alpha; adds a banner to the top of the page.
+# beta: true # Labels the page as beta; adds a banner to the top of the page.
+# disable_image_expand: true # Stops images from expanding in a modal on click. Sets it for the entire page.
+# class: no-copy-code # Disables the copy code button for all code blocks on the page.
 ---
 
 <!-- Add an introduction paragraph here. Good introductions explain who this explanation topic is for and what this guide will cover. -->
@@ -27,6 +30,12 @@ Here's information about this topic. This feature has the following benefits:
 * First item
 * Second item
 
+### Subsection <!-- Optional --> 
+
+ <!--  Go into more detail about some aspect of the functionality you're describing -->
+ 
+ <!-- H2 is the highest header level a topic can have. If using nested headers, make sure that they're sequential. An H2 can contain an H3, but not the other way around. -->
+ 
 ## Second section <!-- Optional -->
 
 <!-- Write more information about another element of your topic. -->

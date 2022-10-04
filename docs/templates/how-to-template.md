@@ -1,5 +1,5 @@
 ---
-title: Start with a gerund
+title: Start with a verb ending in -ing
 content_type: how-to
 no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
 alpha: true # Labels the page as alpha; adds a banner to the top of the page.
@@ -21,7 +21,7 @@ class: no-copy-code # Disables the copy code button for all code blocks on the p
 ## Prerequistes <!-- Optional -->
 
 <!-- Write prerequisites as a bulleted list. Only list prerequisites if they are application level prerequisites. -->
-<!-- If it isn't a "getting started" topic, we can assume our products are installed. -->
+<!-- If it isn't a "getting started" topic, we can assume our products are already installed. -->
 <!-- Don't prescribe Konnect or Gateway role permissions. -->
 
 * First prerequisite
