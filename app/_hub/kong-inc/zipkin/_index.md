@@ -161,7 +161,7 @@ params:
       description: |
         The Zipkin plugin will add extra headers to the tags associated with any HTTP
         requests that come with a header named as configured by this property. The
-        format is `name_of_tag=value_of_tag`, separated by commas.
+        format is `name_of_tag=value_of_tag`, separated by semicolons (`;`).
 
         For example: with the default value, a request with the header
         `Zipkin-Tags: fg=blue; bg=red` will generate a trace with the tag `fg` with
