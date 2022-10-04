@@ -56,7 +56,7 @@ cd kong-mesh-{{include.kong_latest.version}}/bin
 Then, run the control plane with:
 
 ```sh
-$ KMESH_LICENSE_PATH=/path/to/file/license.json kuma-cp run
+KMESH_LICENSE_PATH=/path/to/file/license.json kuma-cp run
 ```
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_

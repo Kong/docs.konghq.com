@@ -29,7 +29,7 @@ Run the following script to automatically detect the operating system and
 download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 {% endnavtab %}
@@ -40,7 +40,7 @@ the distribution manually.
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}

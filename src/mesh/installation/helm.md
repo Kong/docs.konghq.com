@@ -20,7 +20,7 @@ To start using {{site.mesh_product_name}} with Helm charts, first add the
 {{site.mesh_product_name}} charts repository to your local Helm deployment:
 
 ```sh
-$ helm repo add kong-mesh https://kong.github.io/kong-mesh-charts
+helm repo add kong-mesh https://kong.github.io/kong-mesh-charts
 ```
 
 Once the repo is added, any following updates can be fetched with
@@ -35,13 +35,13 @@ suggest `kong-mesh-system`.
 1. Create the `kong-mesh-system` namespace:
 
     ```sh
-    $ kubectl create namespace kong-mesh-system
+    kubectl create namespace kong-mesh-system
     ```
 
 2. Upload the license secret to the cluster:
 
     ```sh
-    $ kubectl create secret generic kong-mesh-license -n kong-mesh-system --from-file=/path/to/license.json
+    kubectl create secret generic kong-mesh-license -n kong-mesh-system --from-file=/path/to/license.json
     ```
 
     Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
@@ -58,8 +58,8 @@ suggest `kong-mesh-system`.
    for those fields, i.e. disabled.
     
     ```sh
-    $ helm repo update
-    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+    helm repo update
+    helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
       --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
       --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
       --set kuma.controlPlane.secrets[0].Key="license.json"
@@ -96,7 +96,7 @@ the API port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681/gui` to see the GUI.
@@ -108,7 +108,7 @@ You can use {{site.mesh_product_name}} with `kubectl` to perform
 example:
 
 ```sh
-$ kubectl get meshes
+kubectl get meshes
 
 NAME          AGE
 default       1m
@@ -117,7 +117,7 @@ default       1m
 Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
-$ echo "apiVersion: kuma.io/v1alpha1
+echo "apiVersion: kuma.io/v1alpha1
   kind: Mesh
   metadata:
     name: default
@@ -139,7 +139,7 @@ the HTTP API listens on port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681` to see the HTTP API.
@@ -153,13 +153,13 @@ the {{site.mesh_product_name}} HTTP API. To use it, first port-forward the API
 service with:
 
 ```sh
-$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Then run `kumactl`. For example:
 
 ```sh
-$ kumactl get meshes
+kumactl get meshes
 
 NAME          mTLS      METRICS      LOGGING   TRACING
 default       off       off          off       off
@@ -168,7 +168,7 @@ default       off       off          off       off
 You can configure `kumactl` to point to any remote `kuma-cp` instance by running:
 
 ```
-$ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
+kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
 ```
 
 {% endnavtab %}

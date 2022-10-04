@@ -29,8 +29,8 @@ Run the following script to automatically detect the operating system and
 download the latest version of {{site.mesh_product_name}}:
 
 ```sh
-$ yum install -y tar gzip
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+yum install -y tar gzip
+curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 {% endnavtab %}
@@ -42,7 +42,7 @@ the distribution manually.
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}

@@ -25,7 +25,7 @@ You can run the following script to automatically detect the operating system
 and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 {% endnavtab %}
@@ -44,7 +44,7 @@ Kubernetes:
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -55,13 +55,13 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
+cd kong-mesh-{{page.kong_latest.version}}/bin
 ```
 
 Then, run the control plane with:
 
 ```sh
-$ kumactl install control-plane --license-path=/path/to/license.json | kubectl apply -f -
+kumactl install control-plane --license-path=/path/to/license.json | kubectl apply -f -
 ```
 
 {:.note}
@@ -79,14 +79,14 @@ available in every working directory. Alternatively, you can create a link
 in `/usr/local/bin/` by running:
 
 ```sh
-$ ln -s ./kumactl /usr/local/bin/kumactl
+ln -s ./kumactl /usr/local/bin/kumactl
 ```
 
 It may take a while for Kubernetes to start the
 {{site.mesh_product_name}} resources. You can check the status by executing:
 
 ```sh
-$ kubectl get pod -n kong-mesh-system
+kubectl get pod -n kong-mesh-system
 ```
 
 ## 3. Verify the Installation
@@ -103,7 +103,7 @@ the API port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681/gui` to see the GUI.
@@ -115,7 +115,7 @@ You can use {{site.mesh_product_name}} with `kubectl` to perform
 example:
 
 ```sh
-$ kubectl get meshes
+kubectl get meshes
 
 NAME          AGE
 default       1m
@@ -124,7 +124,7 @@ default       1m
 Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
-$ echo "apiVersion: kuma.io/v1alpha1
+echo "apiVersion: kuma.io/v1alpha1
   kind: Mesh
   metadata:
     name: default
@@ -146,7 +146,7 @@ the HTTP API listens on port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681` to see the HTTP API.
@@ -160,13 +160,13 @@ the {{site.mesh_product_name}} HTTP API. To use it, first port-forward the API
 service with:
 
 ```sh
-$ kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+kubectl port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Then run `kumactl`. For example:
 
 ```sh
-$ kumactl get meshes
+kumactl get meshes
 
 NAME          mTLS      METRICS      LOGGING   TRACING
 default       off       off          off       off
@@ -175,7 +175,7 @@ default       off       off          off       off
 You can configure `kumactl` to point to any remote `kuma-cp` instance by running:
 
 ```
-$ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
+kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
 ```
 
 {% endnavtab %}

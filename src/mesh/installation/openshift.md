@@ -28,7 +28,7 @@ You can run the following script to automatically detect the operating system
 and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+curl -L https://docs.konghq.com/mesh/installer.sh | sh -
 ```
 
 {% endnavtab %}
@@ -47,7 +47,7 @@ Kubernetes:
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -59,7 +59,7 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
+cd kong-mesh-{{page.kong_latest.version}}/bin
 ```
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
@@ -67,7 +67,7 @@ available in every working directory. Alternatively, you can also create a link
 in `/usr/local/bin/` by executing:
 
 ```sh
-$ ln -s ./kumactl /usr/local/bin/kumactl
+ln -s ./kumactl /usr/local/bin/kumactl
 ```
 
 Then, run the control plane on OpenShift with:
@@ -111,7 +111,7 @@ After updating `master-config.yaml`, restart the cluster and install
 `control-plane`:
 
 ```sh
-$ ./kumactl install control-plane --license-path=/path/to/license.json | oc apply -f -
+./kumactl install control-plane --license-path=/path/to/license.json | oc apply -f -
 ```
 
 {% endnavtab %}
@@ -128,7 +128,7 @@ It may take a while for OpenShift to start the
 {{site.mesh_product_name}} resources. You can check the status by running:
 
 ```sh
-$ oc get pod -n kong-mesh-system
+oc get pod -n kong-mesh-system
 ```
 
 ## 3. Verify the Installation
@@ -144,7 +144,7 @@ the API port `5681` and defaults to `:5681/gui`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Navigate to `127.0.0.1:5681/gui` to see the GUI.
@@ -156,7 +156,7 @@ You can use {{site.mesh_product_name}} with `oc` to perform
 example:
 
 ```sh
-$ oc get meshes
+oc get meshes
 
 NAME          AGE
 default       1m
@@ -165,7 +165,7 @@ default       1m
 Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
-$ echo "apiVersion: kuma.io/v1alpha1
+echo "apiVersion: kuma.io/v1alpha1
   kind: Mesh
   metadata:
     name: default
@@ -187,7 +187,7 @@ the HTTP API listens on port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681` to see the HTTP API.
@@ -201,13 +201,13 @@ the {{site.mesh_product_name}} HTTP API. To use it, first port-forward the API
 service with:
 
 ```sh
-$ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Then run `kumactl`. For example:
 
 ```sh
-$ kumactl get meshes
+kumactl get meshes
 
 NAME          mTLS      METRICS      LOGGING   TRACING
 default       off       off          off       off
@@ -216,7 +216,7 @@ default       off       off          off       off
 You can configure `kumactl` to point to any remote `kuma-cp` instance by running:
 
 ```
-$ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
+kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
 ```
 
 {% endnavtab %}
@@ -232,7 +232,7 @@ for the `kuma-dp` sidecar to avoid capturing traffic from
 to the application namespace:
 
 ```sh
-$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:<app-namespace>
+oc adm policy add-scc-to-group nonroot system:serviceaccounts:<app-namespace>
 ```
 
 If the namespace is not configured properly, you will see the following error
@@ -251,7 +251,7 @@ Before running the Kuma Demo in the Quickstart guide,
 run the following command:
 
 ```sh
-$ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
+oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
 ```
 
 One of the components in the demo requires root access, therefore it uses the
