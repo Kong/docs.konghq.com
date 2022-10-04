@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-gem 'jekyll', '4.2.0'
+gem 'jekyll', '4.2.2'
 gem 'jekyll-include-cache'
 gem 'jekyll-redirect-from'
 gem 'kramdown-parser-gfm'
