@@ -22,6 +22,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Runtime groups dashboard**
 : In {{site.konnect_saas}}, you now have insights into your runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
 
+**Custom Plugin Instantiation**
+: {{site.konnect_saas}} now allows customers to discover, configure and apply Kong approved custom plugins to their control planes directly through the plugin hub in Runtime Manager by submitting their custom plugin schemas for approval through the CRE teams. This allows customers to expand Kong's functionality in their environment by using custom plugins, while reducing the operational overhead for our customers to work with their CRE teams to discover, configure and apply custom plugins.
+
+**Launch runtimes directly in choice of cloud provider [Tech Preview]**
+: Customers can now create runtime instances in cloud providers of their choice(Azure and AWS), directly through {{site.konnect_saas}}. This simplifies the operational process for the runtime instance creation for customers' private cloud for AWS and Azure.
+
+**Support for multiple versions of runtime instances**
+: {{site.konnect_saas}} now supports customers who need to run multiple runtime instances versions at the same time with the same control plane configuration.  This makes it easier for customers to test/validate new runtime instance versions -- patch, minor, and in this case MAJOR upgrades.
+This release includes new UI elements to provide information as to which runtime instances are incompatible with the current gateway configuration and provides actionable insights onto the corrective steps to fix the issue.
+
+
 ### 2022.09.09
 
 **{{site.base_gateway}} 3.0.0.0 support**
