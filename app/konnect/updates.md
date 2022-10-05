@@ -1,5 +1,5 @@
 ---
-title: Konnect Cloud Updates
+title: Kong Konnect Updates
 no_version: true
 ---
 
@@ -8,9 +8,38 @@ no_version: true
 The updates contained in this topic apply to {{site.konnect_saas}},
 an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
-services.
+services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## August  2022
+## September 2022
+
+### 2022.09.09
+
+**{{site.base_gateway}} 3.0.0.0 support**
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 3.0.0.0 runtimes.
+You can keep using existing 2.8.x runtimes, or you can upgrade to
+3.0.0.0 to take advantage of any new features, updates, and bug fixes.
+
+: With this major release, {{site.base_gateway}} introduces many new features, including:
+* Five new plugins, including WebSocket validation support, TLS connection customization, and OpenTelemetry
+* A new expression-based router
+* Dynamic plugin ordering through declarative configuration
+* Slim and UBI Docker images
+and much more.
+
+: **3.0.0.0 is a major release**. This means that it contains breaking changes and incompatibilities with 2.x versions.
+Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-deprecations) before upgrading to 3.0.
+: In particular, note the following:
+* **Changes to regex route path format**: 3.0 has a new router. To make sure your existing routes work in 3.0, add a `~` to any regex routes. Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+* **Limitations** ({{site.konnect_short_name}} only): [Secrets management](/gateway/latest/kong-enterprise/secrets-management/) and [consumer groups](/gateway/latest/kong-enterprise/consumer-groups/) are not yet supported in {{site.konnect_saas}}.
+
+
+: For all the changes and new features in {{site.base_gateway}} 3.0.0.0, see the
+[changelog](/gateway/changelog/#3000).
+
+: To use any new features in the release,
+[start up a new 3.0.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
+
+## August 2022
 
 ### 2022.08.31
 
@@ -32,7 +61,7 @@ services.
 
 **Download option to all reports**
 
-: We have introduced an "Export" option to all reports inside the overview page in Analytics. Exporting a report downloads an unpivoted CSV to your local machine that can be used for offline analysis.
+: We have introduced an "Export" option to all reports inside the overview page in Vitals. Exporting a report downloads an unpivoted CSV to your local machine that can be used for offline analysis.
 
 ## July 2022
 
@@ -116,7 +145,7 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 : Vitals custom reports are now available for Plus and Enterprise tiers.
 Through the Vitals menu, you can create custom reports to track API requests for services, routes, and applications.
 
-: See the [custom reports documentation](/konnect/vitals/generate-reports) for more information.
+: See the [custom reports documentation](/konnect/analytics/generate-reports) for more information.
 
 **Custom plugin requirements have changed**
 : Some custom plugin limitations have changed or been removed.

@@ -38,9 +38,10 @@ jobs:
         id: waitForNetlify
         with:
           site_name: "kongdocs"
+          max_timeout: 120
       - name: Run link checker
         run: |
-          cd broken-link-checker
+          cd tools/broken-link-checker
           npm ci
           node pr.js
         env:

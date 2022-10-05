@@ -1,5 +1,5 @@
 ---
-title: Import Kong Gateway Entities into Konnect Cloud
+title: Import Kong Gateway Entities into Konnect
 no_version: true
 content_type: how-to
 ---
@@ -24,9 +24,15 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 * {{site.konnect_saas}} [account credentials](/konnect/getting-started/access-account/).
 * decK v1.12 or later [installed](/deck/latest/installation/).
 
+## Generate a Personal Access Token
+
+To use decK to import entity configurations, we recommend that you use a personal access token (PAT).
+
+{% include_cached /md/personal-access-token.md %}
+
 ## Import entity configuration
 
-Use deck to import entity configurations into a runtime group.
+Use decK to import entity configurations into a runtime group.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
 If you want to target the `konnect.konghq.com` environment instead, use the [`--konnect-addr`](/deck/latest/guides/konnect/#target-a-konnect-api) flag.
@@ -36,8 +42,7 @@ If you want to target the `konnect.konghq.com` environment instead, use the [`--
     ```sh
     deck ping \
       --konnect-runtime-group-name default \
-      --konnect-email {YOUR_EMAIL} \
-      --konnect-password {YOUR_PASSWORD}
+      --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
     ```
 
     If the connection is successful, the terminal displays the full name of the
@@ -48,13 +53,12 @@ If you want to target the `konnect.konghq.com` environment instead, use the [`--
     ```
 
     You can also use decK with {{site.konnect_short_name}} more securely by storing
-    your password in a file, then either calling it with
-    `--konnect-password-file /path/{FILENAME}.txt`, or adding it to your decK configuration
-    file under the `konnect-password` option along with your email:
+    your personal access token in a file, then either calling it with
+    `--konnect-token-file /path/{FILENAME}.txt`, or adding it to your decK configuration
+    file under the `konnect-token` option:
 
     ```yaml
-    konnect-password: {YOUR_PASSWORD}
-    konnect-email: {YOUR_EMAIL}
+    konnect-token: {YOUR_PERSONAL_ACCESS_TOKEN}
     ```
 
     The default location for this file is `$HOME/.deck.yaml`. You can target a
@@ -83,8 +87,7 @@ Run [`deck dump`](/deck/latest/reference/deck_dump) and point decK at the `konne
 ```sh
 deck dump \
   --konnect-addr https://konnect.konghq.com \
-  --konnect-email {YOUR_EMAIL} \
-  --konnect-password {YOUR_PASSWORD}
+  --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
 {% endnavtab %}
 {% endnavtabs %}

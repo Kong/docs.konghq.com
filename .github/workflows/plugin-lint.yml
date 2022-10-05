@@ -1,0 +1,20 @@
+name: Linting
+on:
+  push:
+    paths:
+    - 'app/_hub/**'
+  pull_request:
+    paths: 
+    - 'app/_hub/**'
+
+  vale:
+    name: Vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: errata-ai/vale-action@v2
+        with:
+          # path where vale checks checking only modified files.
+          files: app/_hub/
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

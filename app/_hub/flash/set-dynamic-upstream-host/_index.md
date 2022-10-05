@@ -14,7 +14,7 @@ description: |
   
   
 support_url: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host/issues
-source_url: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host
+source_code: https://github.com/anup-krai/kong-plugin-set-dynamic-target-host
 license_type: Apache-2.0 
 
 type: plugin
@@ -87,7 +87,7 @@ params:
 
         For example, `query` is set to `target` and the incoming request includes the 
         query `/api?target=httpbin`. The value `httpbin` from the query param `target` 
-        is used to form the upstream host.
+        is used to form the upstream host. 
         The final upstream hostname formed is `httpbin.org`, and 
         Kong makes a call to this host.
     - name: path_index

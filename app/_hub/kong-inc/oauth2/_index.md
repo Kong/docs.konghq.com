@@ -1,7 +1,6 @@
 ---
 name: OAuth 2.0 Authentication
 publisher: Kong Inc.
-version: 2.1.x
 desc: Add OAuth 2.0 authentication to your Services
 description: |
   Add an OAuth 2.0 authentication layer with the [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4),
@@ -22,25 +21,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: oauth2
   service_id: true
@@ -212,9 +195,9 @@ The clients trying to authorize and request access tokens must use these endpoin
 You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/ \
-    --data "username=user123" \
-    --data "custom_id=SOME_CUSTOM_ID"
+curl -X POST http://kong:8001/consumers/ \
+  --data "username=user123" \
+  --data "custom_id=SOME_CUSTOM_ID"
 ```
 
 parameter                       | default | description
@@ -229,12 +212,12 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new OAuth 2.0 credentials (also called "OAuth applications") by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
-    --data "name=Test%20Application" \
-    --data "client_id=SOME-CLIENT-ID" \
-    --data "client_secret=SOME-CLIENT-SECRET" \
-    --data "redirect_uris=http://some-domain/endpoint/" \
-    --data "hash_secret=true"
+curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
+  --data "name=Test%20Application" \
+  --data "client_id=SOME-CLIENT-ID" \
+  --data "client_secret=SOME-CLIENT-SECRET" \
+  --data "redirect_uris=http://some-domain/endpoint/" \
+  --data "hash_secret=true"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
@@ -255,12 +238,12 @@ If you are migrating your existing OAuth 2.0 applications and access tokens over
 * Migrate access tokens using the `/oauth2_tokens` endpoints in the Kong's Admin API. For example:
 
 ```bash
-$ curl -X POST http://kong:8001/oauth2_tokens \
-    --data 'credential.id=KONG-APPLICATION-ID' \
-    --data "token_type=bearer" \
-    --data "access_token=SOME-TOKEN" \
-    --data "refresh_token=SOME-TOKEN" \
-    --data "expires_in=3600"
+curl -X POST http://kong:8001/oauth2_tokens \
+  --data 'credential.id=KONG-APPLICATION-ID' \
+  --data "token_type=bearer" \
+  --data "access_token=SOME-TOKEN" \
+  --data "refresh_token=SOME-TOKEN" \
+  --data "expires_in=3600"
 ```
 
 form parameter                        | default | description
@@ -278,7 +261,11 @@ form parameter                        | default | description
 Active tokens can be listed and modified using the Admin API. A GET on the `/oauth2_tokens` endpoint returns the following:
 
 ```bash
-$ curl -sX GET http://kong:8001/oauth2_tokens/
+curl -sX GET http://kong:8001/oauth2_tokens/
+```
+
+Response:
+```json
 {
   "total": 2,
   "data": [
@@ -356,9 +343,7 @@ The authorization page is made of two parts:
 
 A diagram representing this flow:
 
-<div class="alert alert-info">
-  <a title="OAuth 2.0 Flow" href="/assets/images/docs/oauth2/oauth2-flow.png" target="_blank"><img src="/assets/images/docs/oauth2/oauth2-flow.png"/></a>
-</div>
+![OAuth2 flow](/assets/images/docs/oauth2/oauth2-flow.png)
 
 1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as query string parameters. This is a sample authorization page:
     <div class="alert alert-info">
@@ -370,7 +355,7 @@ A diagram representing this flow:
 3. The client application will send the `client_id` in the query string, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
 
     ```bash
-    $ curl kong:8001/oauth2?client_id=XXX
+    curl kong:8001/oauth2?client_id=XXX
     ```
 
 4. If the end user authorized the application, the form will submit the data to your backend with a `POST` request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
@@ -378,13 +363,13 @@ A diagram representing this flow:
 5. The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a `POST` request to Kong at your Service address, on the `/oauth2/authorize` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
-    $ curl https://your.service.com/oauth2/authorize \
-        --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
-        --data "client_id=XXX" \
-        --data "response_type=XXX" \
-        --data "scope=XXX" \
-        --data "provision_key=XXX" \
-        --data "authenticated_userid=XXX"
+    curl https://your.service.com/oauth2/authorize \
+      --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
+      --data "client_id=XXX" \
+      --data "response_type=XXX" \
+      --data "scope=XXX" \
+      --data "provision_key=XXX" \
+      --data "authenticated_userid=XXX"
     ```
 
     The `provision_key` is the key the plugin has generated when it has been added to the Service while `authenticated_userid` is the ID of the logged-in end user who has granted the permission.
@@ -424,16 +409,16 @@ The [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6
 2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key`, `authenticated_userid` and `grant_type` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at, on the `/oauth2/token` endpoint of the configured plugin. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
-    $ curl https://your.service.com/oauth2/token \
-        --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
-        --data "client_id=XXX" \
-        --data "client_secret=XXX" \
-        --data "grant_type=password" \
-        --data "scope=XXX" \
-        --data "provision_key=XXX" \
-        --data "authenticated_userid=XXX" \
-        --data "username=XXX" \
-        --data "password=XXX"
+    curl https://your.service.com/oauth2/token \
+      --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
+      --data "client_id=XXX" \
+      --data "client_secret=XXX" \
+      --data "grant_type=password" \
+      --data "scope=XXX" \
+      --data "provision_key=XXX" \
+      --data "authenticated_userid=XXX" \
+      --data "username=XXX" \
+      --data "password=XXX"
     ```
 
     The `provision_key` is the key the plugin has generated when it has been added to the Service, while `authenticated_userid` is the ID of the end user whose `username` and `password` belong to.
@@ -453,11 +438,11 @@ In this flow, the steps that you need to implement are:
 When your access token expires, you can generate a new access token using the refresh token you received in conjunction to your expired access token.
 
 ```bash
-$ curl -X POST https://your.service.com/oauth2/token \
-    --data "grant_type=refresh_token" \
-    --data "client_id=XXX" \
-    --data "client_secret=XXX" \
-    --data "refresh_token=XXX"
+curl -X POST https://your.service.com/oauth2/token \
+  --data "grant_type=refresh_token" \
+  --data "client_id=XXX" \
+  --data "client_secret=XXX" \
+  --data "refresh_token=XXX"
 ```
 
 ----
@@ -467,13 +452,79 @@ $ curl -X POST https://your.service.com/oauth2/token \
 The same access tokens can be used by gRPC applications:
 
 ```bash
-$ grpcurl -H 'authorization: bearer XXX' ...
+grpcurl -H 'authorization: bearer XXX' ...
 ```
 
 Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  Depending on your application, you might have to configure the `oauth2` plugin on two separate routes: one under `protocols: ["https"]` and another under `protocols: ["grpcs"]`.
 
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen
+
+## WebSocket requests
+{:.badge .enterprise}
+
+This plugin cannot issue new tokens from a WebSocket route, because the request
+will be rejected as an invalid WebSocket handshake. Therefore, to use this
+plugin with WebSocket services, an additional non-WebSocket route must be used
+to issue tokens.
+
+1. Create a WebSocket service:
+    ```bash
+    curl -X POST http://localhost:8001/services/ \
+      --data "name=my-websocket-service" \
+      --data "url=ws://my-websocket-backend:8080/"
+    ```
+
+2. Attach a route to the service:
+    ```sh
+    curl -X POST http://localhost:8001/services/my-websocket-service/routes \
+      --data "name=my-websocket-route" \
+      --data "protocols=wss" \
+      --data "hosts=my-websocket-hostname.com" \
+    ```
+
+3. Attach an OAuth2 plugin instance to the service:
+
+    {:.note}
+    > **Note**: Setting `global_credentials=true` is necessary to allow tokens
+    created by other plugin instances.
+
+    ```sh
+    curl -x POST http://localhost:8001/services/my-websocket-service/plugins \
+      --data "name=oauth2" \
+      --data "config.scopes=email" \
+      --data "config.scopes=profile" \
+      --data "config.global_credentials=true"
+    ```
+
+
+4. Create another route to handle token creation:
+    {:.note}
+    > **Note**: Adding a POST method matcher ensures that regular WebSocket
+    handshake requests will not match this route.
+
+    ```sh
+    curl -X POST http://localhost:8001/routes \
+      --data "name=my-websocket-token-helper" \
+      --data "protocols=https" \
+      --data "hosts=my-websocket-hostname.com" \
+      --data "methods=POST"
+    ```
+
+5. Finally, add the additional OAuth2 plugin instance, using the route:
+
+    ```sh
+    curl -x POST http://localhost:8001/routes/my-websocket-token-helper/plugins \
+      --data "name=oauth2" \
+      --data "config.scopes=email" \
+      --data "config.scopes=profile" \
+      --data "config.global_credentials=true"
+    ```
+
+Client token requests (for example: `POST https://my-websocket-hostname.com/oauth2/authorize`)
+will be handled by the `oauth2` plugin instance attached to the `my-websocket-token-helper`
+route, and tokens issued by this route can be used in the WebSocket handshake
+request to the `my-websocket-route` route.
 
 ---
 

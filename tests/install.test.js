@@ -1,6 +1,4 @@
-const { test, expect } = require("@playwright/test");
-
-test("latest page contains a version", async ({ page }) => {
-  await page.goto("/gateway/latest/install-and-run/rhel/");
-  await expect(page.locator(".codeblock").first()).not.toContainText("kong-enterprise-edition-.rpm");
+test("latest page contains a version", async () => {
+  const $ = await fetchPage("/gateway/latest/install/linux/rhel/");
+  await expect($(".codeblock")).not.toContainText("kong-enterprise-edition-.rpm");
 });

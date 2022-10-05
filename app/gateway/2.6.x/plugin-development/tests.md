@@ -12,7 +12,7 @@ might also want to write integration tests. Again, Kong has your back.
 ## Write integration tests
 
 The preferred testing framework for Kong is
-[busted](http://olivinelabs.com/busted/) running with the
+[busted](https://github.com/lunarmodules/busted/) running with the
 [resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are
 free to use a different one. In the Kong repository, the busted
 executable can be found at `bin/busted`.
@@ -100,6 +100,3 @@ and Admin API on port 9001.
 For a real-world example, see the
 [Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/09-key-auth).
 
----
-
-Next: [Distribute your plugin &rsaquo;]({{page.book.next}})

@@ -112,7 +112,34 @@ items:
         src: terminology-v3
 ```
 
+## Rendering unlisted pages
+
+In some cases you may want to render a page within a version without adding it to the side navigation. You can accomplish this by adding an `unlisted` section to the data file:
+
+```yaml
+product: deck
+release: 1.11.x
+generate: true
+items:
+  - title: Introduction
+    url: /deck/
+    absolute_url: true
+    items:
+      - text: Terminology
+        # Reads `src/deck/terminology-v3.md` and writes `/deck/<release>/terminology/index.html`
+        # This is how you can have multiple release of a single source file when completely rewriting content
+        url: /terminology
+        src: terminology-v3
+unlisted:
+  # Read from src/deck/how-to/example.md. Rendered at /deck/how-to/example/
+  # Not listed in the sidebar
+  # Options such as 'generate' and 'src' are valid here too
+  - url: /how-to/example
+```
+
 ## Conditional Rendering
+
+### Content
 
 As we add new functionality, we'll want content to be displayed for specific releases of a product. We can use the `if_version` block for this:
 
@@ -158,4 +185,37 @@ If using `if_version` in a sentence, specify `inline:true` like so:
 
 ```
 Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world
+```
+
+### Front matter
+
+You may want to set values in the front matter conditionally. You can do this using `overrides`:
+
+```yaml
+---
+title: Page Here
+alpha: false # This is the default, but is here for completeness
+
+overrides:
+  alpha:
+    true:
+      gte: 2.3.x
+      lte: 2.5.x
+---
+```
+
+In the above example, versions `2.3.x`, `2.4.x` and `2.5.x` will have `alpha: true`, and all other versions will have `alpha: false`.
+
+You can set the key to any scalar value. Here's an example using strings to switch something from "Private Beta" (2.8.x and before) to GA (anything later than this).
+
+```yaml
+---
+title: Another Page
+availability: GA
+
+overrides:
+  availability:
+    Private Beta:
+      lte: 2.8.x
+---
 ```

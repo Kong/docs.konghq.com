@@ -1,53 +1,53 @@
-const { test, expect } = require("@playwright/test");
-
-test.describe("Gateway", () => {
-  test("renders nested breadcrumbs correctly (EE)", async ({ page }) => {
-    await page.goto("/enterprise/2.5.x/plugin-development/custom-entities/");
-    await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
+describe("Gateway", () => {
+  test("renders nested breadcrumbs correctly (EE)", async () => {
+    const $ = await fetchPage(
+      "/enterprise/2.5.x/plugin-development/custom-entities/"
+    );
+    await expect($(".breadcrumb-item:nth-of-type(1)")).toHaveTextAllowingWhitespace(
       "Home"
     );
-    await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
-      "Kong Gateway"
+    await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
+      "Kong Enterprise"
     );
-    await expect(page.locator(".breadcrumb-item:nth-of-type(3)")).toHaveText(
-      "Plugin development"
+    await expect($(".breadcrumb-item:nth-of-type(3)")).toHaveTextAllowingWhitespace(
+      "Plugin Development"
     );
   });
 
-  test("renders nested breadcrumbs correctly (OSS)", async ({ page }) => {
-    await page.goto("/gateway-oss/2.5.x/plugin-development/custom-entities/");
-    await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
+  test("renders nested breadcrumbs correctly (OSS)", async () => {
+    const $ = await fetchPage(
+      "/gateway-oss/2.5.x/plugin-development/custom-entities/"
+    );
+    await expect($(".breadcrumb-item:nth-of-type(1)")).toHaveTextAllowingWhitespace(
       "Home"
     );
-    await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
+    await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
       "Kong Gateway (OSS)"
     );
-    await expect(page.locator(".breadcrumb-item:nth-of-type(3)")).toHaveText(
-      "Plugin development"
+    await expect($(".breadcrumb-item:nth-of-type(3)")).toHaveTextAllowingWhitespace(
+      "Plugin Development"
     );
   });
 
-  test("renders nested breadcrumbs correctly (Single Sourced)", async ({
-    page,
-  }) => {
-    await page.goto("/gateway/latest/");
-    await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
+  test("renders nested breadcrumbs correctly (Single Sourced)", async () => {
+    const $ = await fetchPage("/gateway/latest");
+    await expect($(".breadcrumb-item:nth-of-type(1)")).toHaveTextAllowingWhitespace(
       "Home"
     );
-    await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
+    await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
       "Kong Gateway"
     );
   });
 });
 
-test.describe("decK", () => {
-  test("rrenders the index page breadcrumbs correctly", async ({ page }) => {
-    await page.goto("/deck/latest/");
+describe("decK", () => {
+  test("renders the index page breadcrumbs correctly", async () => {
+    const $ = await fetchPage("/deck/latest/");
 
-    await expect(page.locator(".breadcrumb-item:nth-of-type(1)")).toHaveText(
+    await expect($(".breadcrumb-item:nth-of-type(1)")).toHaveTextAllowingWhitespace(
       "Home"
     );
-    await expect(page.locator(".breadcrumb-item:nth-of-type(2)")).toHaveText(
+    await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
       "decK"
     );
   });

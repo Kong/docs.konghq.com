@@ -1,7 +1,6 @@
 ---
 name: GraphQL Proxy Caching Advanced
 publisher: Kong Inc.
-version: 1.3-x
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse GraphQL proxy cache implementation for Kong. It caches response entities based on
@@ -15,17 +14,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
+    compatible: true
 params:
   name: graphql-proxy-cache-advanced
   service_id: true

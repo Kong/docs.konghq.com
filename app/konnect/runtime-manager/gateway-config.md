@@ -45,6 +45,11 @@ routes in the runtime group from here.
 See the [route object API reference](/gateway/latest/admin-api/#route-object)
 for all configuration options.
 
+{:.important}
+> **Important**: Starting with {{site.base_gateway}} 3.0.0.0, the router supports logical expressions.
+Regex routes must begin with a `~` character. For example: `~/foo/bar/(?baz\w+)`.
+Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+
 ### Consumers
 
 The **Consumers** configuration page lists all consumers in the runtime group.

@@ -1,7 +1,6 @@
 ---
 title: Gateway API Support
 content_type: reference
-content_type: reference
 ---
 
 The {{site.kic_product_name}} supports the following resources and features in the
@@ -15,10 +14,14 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ## Gateways and GatewayClasses
 
 ### Supported Versions
+{% if_version gte: 2.6.x %}
 - `v1beta1`
+{% endif_version %}
+{% if_version lte: 2.5.x %}
 - `v1alpha2`
+{% endif_version %}
 
-## HTTPRoutes
+## HTTP Routes
 
 {{site.kic_product_name}}'s implementation of `HTTPRoute` supports multiple `BackendRefs` with a 
 round-robin load-balancing strategy applied by default across the 
@@ -27,8 +30,13 @@ to allow you to fine-tune the load-balancing between those backend
 services.
 
 ### Supported Versions
+
+{% if_version gte: 2.6.x %}
 - `v1beta1`
+{% endif_version %}
+{% if_version lte: 2.5.x %}
 - `v1alpha2`
+{% endif_version %}
 
 ### Supported Extended Features
 - Supports `method` in route matches.
@@ -37,7 +45,7 @@ services.
 - Does not support `queryParam` in route matches.
 - Does not support `requestRedirect` in filters.
 
-## TCPRoutes
+## TCP Routes
 
 The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `BackendRefs` in 
 `TCPRoute` resources for load balancing.
@@ -45,7 +53,7 @@ The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `
 ### Supported Versions
 - `v1alpha2`
 
-## UDPRoutes
+## UDP Routes
 
 The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `BackendRefs` in
 `UDPRoute` resources for load balancing.
@@ -53,13 +61,13 @@ The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `
 ### Supported Versions
 - `v1alpha2`
 
-## TLSRoutes
+## TLS Routes
 
 ### Supported Versions
 - `v1alpha2`
 
 {% if_version gte:2.6.x %}
-## ReferenceGrants
+## Reference Grants
 
 Kong implementation supports `ReferenceGrant` to allow routes to 
 reference backends in other namespaces in `BackendRefs`.
@@ -69,7 +77,7 @@ reference backends in other namespaces in `BackendRefs`.
 {% endif_version %}
 
 {% if_version gte:2.4.x lte:2.5.x %}
-## ReferencePolicies 
+## Reference Policies 
 
 The {{site.kic_product_name}}'s implementation supports using `ReferencePolicy` to allow routes to 
 reference backends in other namespaces in `BackendRefs`.

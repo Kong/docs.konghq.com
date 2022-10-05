@@ -21,7 +21,16 @@ Features that reach GA and become stable are removed from this table, but they c
 | Feature                | Default | Stage | Since | Until |
 |------------------------|---------|-------|-------|-------|
 | Knative                | `true`  | Alpha | 0.8.0 | TBD   |
-| Gateway                | `false` | Alpha | 2.2.0 | TBD   |
+
+{% if_version lte: 2.5.x %}
+| Gateway                | `false` | Alpha | 2.2.0 | 2.5.0 |
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+| Gateway                | `true`  | Beta  | 2.6.0 | TBD   |
+| GatewayAlpha           | `false` | Alpha | 2.6.0 | TBD   |
+{% endif_version %}
+
 | CombinedRoutes         | `false` | Alpha | 2.4.0 | TBD   |
 | IngressClassParameters | `false` | Alpha | 2.6.0 | TBD   |
 

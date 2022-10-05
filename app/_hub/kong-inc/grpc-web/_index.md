@@ -1,7 +1,6 @@
 ---
 name: gRPC-Web
 publisher: Kong Inc.
-version: 0.3.x
 categories:
   - transformations
 type: plugin
@@ -9,29 +8,12 @@ desc: Allow browser clients to call gRPC services
 description: |
   A Kong plugin to allow access to a gRPC service via the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2).
   Primarily, this means JavaScript browser applications using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
-source_url: 'https://github.com/Kong/kong-plugin-grpc-web'
 license_type: MIT
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
+    compatible: true
 params:
   name: grpc-web
   route_id: true
@@ -50,12 +32,14 @@ params:
         Required to support payload transcoding. When absent, the
         web client must use application/grpw-web+proto content.
     - name: pass_stripped_path
+      minimum_version: "2.2.x"
       required: false
       default: null
       value_in_examples: null
       datatype: boolean
       description: If set to `true` causes the plugin to pass the stripped request path to the upstream gRPC service (see the `strip_path` Route attribute).
     - name: allow_origin_header
+      minimum_version: "2.5.x"
       required: false
       datatype: string
       default: '*'
@@ -71,7 +55,7 @@ params:
 
 A service that presents a gRPC API can be used by clients written in many languages,
 but the network specifications are oriented primarily to connections within a
-datacenter. [gRPC-Web] lets you expose the gRPC API to the Internet so
+data center. [gRPC-Web] lets you expose the gRPC API to the Internet so
 that it can be consumed by browser-based JavaScript applications.
 
 This plugin translates requests and responses between [gRPC-Web] and
@@ -86,7 +70,7 @@ but proxies to a Service with the `grpc(s)` protocol.
 Sample configuration via declarative (YAML):
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 services:
 - protocol: grpc
   host: localhost
@@ -102,24 +86,28 @@ services:
 
 Same thing via the Admin API:
 
-```bash
-$ # add the gRPC service
-$ curl -X POST localhost:8001/services \
-  --data name=grpc \
-  --data protocol=grpc \
-  --data host=localhost \
-  --data port=9000
+1. Add the gRPC service:
+  ```sh
+  curl -X POST localhost:8001/services \
+    --data name=grpc \
+    --data protocol=grpc \
+    --data host=localhost \
+    --data port=9000
+  ```
 
-$ # add an http route
-$ curl -X POST localhost:8001/services/grpc/routes \
-  --data protocols=http \
-  --data name=web-service \
-  --data paths=/
+2. Add an `http` route:
+  ```sh
+  curl -X POST localhost:8001/services/grpc/routes \
+    --data protocols=http \
+    --data name=web-service \
+    --data paths[]=/
+  ```
 
-$ # add the plugin to the route
-$ curl -X POST localhost:8001/routes/web-service/plugins \
-  --data name=grpc-web
-```
+3. Add the plugin to the route:
+  ```sh
+  curl -X POST localhost:8001/routes/web-service/plugins \
+    --data name=grpc-web
+  ```
 
 In these examples, we don't set any plugin configurations.
 This minimal setup works for the default varieties of the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2),
@@ -129,7 +117,7 @@ for binary, and `application/grpc-web-text` or `application/grpc-web-text+proto`
 
 If you want to use JSON encoding, you have to provide the gRPC specification in
 a `.proto` file, which needs to be installed in the Kong node running the plugin.
-A path starting with a `/` is considered absolute; otherwise, it interprets 
+A path starting with a `/` is considered absolute; otherwise, it interprets
 relative to the Kong node's prefix (`/usr/local/kong/` by default). For example:
 
 ```protobuf
@@ -156,7 +144,7 @@ message HelloResponse {
 The declarative configuration becomes:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 services:
 - protocol: grpc
   host: localhost
@@ -174,8 +162,7 @@ services:
 or via the Admin API:
 
 ```bash
-$ # add the plugin to the route
-$ curl -X POST localhost:8001/routes/web-service/plugins \
+curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web \
   --data proto=path/to/hello.proto
 ```
@@ -207,3 +194,12 @@ separate records if it has to support multiple response messages.
 ## See also
 
 [Introduction to Kong gRPC plugins](/gateway/latest/configure/grpc)
+
+---
+## Changelog
+
+**{{site.base_gateway}} 2.5.x**
+* Added support for setting the `Access-Control-Allow-Origin` header.
+
+**{{site.base_gateway}} 2.2.x**
+* Added the `pass_stripped_path` configuration parameter, which, if set to true, causes the plugin to pass the stripped request path to the upstream gRPC service.

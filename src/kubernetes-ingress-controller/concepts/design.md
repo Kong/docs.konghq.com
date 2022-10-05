@@ -61,4 +61,4 @@ configuration:
 
 For more information on how Kong works with Routes, Services, and Upstreams,
 please see the [Proxy](/gateway/latest/reference/proxy/)
-and [Load balancing](/gateway/latest/reference/loadbalancing/) references.
+and [Load balancing](/gateway/latest/how-kong-works/load-balancing/) references.

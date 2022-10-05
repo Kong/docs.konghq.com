@@ -14,7 +14,7 @@ description: |
 
 support_url: https://github.com/SmartParkingTechnology/kong-google-logging-plugin/issues
 
-source_url: https://github.com/SmartParkingTechnology/kong-google-logging-plugin
+source_code: https://github.com/SmartParkingTechnology/kong-google-logging-plugin
 
 license_type: Apache-2.0
 

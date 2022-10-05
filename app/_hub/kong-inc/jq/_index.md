@@ -1,7 +1,6 @@
 ---
 name: jq
 publisher: Kong Inc.
-versions: 0.0.1
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |
   The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.
@@ -22,7 +21,7 @@ description: |
   > **Notes:**
   > * In the response context the entire body must be buffered to be processed. This requirement also
   implies that the `Content-Length` header will be dropped if present, and the body transferred with chunked encoding.
-  > * To use this plugin in Konnect Cloud,
+  > * To use this plugin in Konnect,
     [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
     v2.6.0.0.
 
@@ -113,4 +112,3 @@ params:
         A list of HTTP response status codes. The response status code **must**
         match one of the response status codes on this list for the program to run.
 ---
-

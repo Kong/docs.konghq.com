@@ -1,6 +1,4 @@
-const { test, expect } = require("@playwright/test");
-
-test.describe("Page titles", () => {
+describe("Page titles", () => {
   [
     {
       title: "Docs page",
@@ -12,15 +10,10 @@ test.describe("Page titles", () => {
       src: "/hub/kong-inc/application-registration/",
       expected: "Portal Application Registration plugin | Kong Docs",
     },
-    {
-      title: "Plugin Page (old style, file on disk)",
-      src: "/hub/kong-inc/application-registration/1.0.x.html",
-      expected: "Portal Application Registration plugin | Kong Docs",
-    },
   ].forEach((t) => {
-    test(t.title, async ({ page }) => {
-      await page.goto(t.src);
-      expect(await page.title()).toEqual(t.expected);
+    test(t.title, async () => {
+      const $ = await fetchPage(t.src);
+      expect($("title").text().replace(/\n/m, " ")).toBe(t.expected);
     });
   });
 });

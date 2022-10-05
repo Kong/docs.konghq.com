@@ -13,6 +13,8 @@
       url: /network
     - text: Compatibility
       url: /compatibility
+    - text: Stages of Software Availability
+      url: /availability-stages
     - text: Release Notes
       url: /updates
 
@@ -35,32 +37,8 @@
           url: /getting-started/publish-service
         - text: Register Applications
           url: /getting-started/app-registration
-    - text: Import Kong Gateway Entities into Konnect Cloud
+    - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import
-
-- title: Service Hub
-  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
-  items:
-    - text: Overview
-      url: /servicehub
-    - text: Manage Services
-      items:
-        - text: Konnect Services
-          url: /servicehub/manage-services
-        - text: Service Versions
-          url: /servicehub/service-versions
-        - text: Service Implementations
-          url: /servicehub/service-implementations
-        - text: Manage Service Documentation
-          url: /servicehub/service-documentation
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /servicehub/plugins
-        - text: Configure a Plugin on a Service
-          url: /servicehub/enable-service-plugin
-        - text: Configure a Plugin on a Route
-          url: /servicehub/enable-route-plugin
 
 - title: Runtime Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
@@ -71,6 +49,8 @@
       items:
         - text: Overview
           url: /runtime-manager/runtime-groups
+        - text: Dashboard
+          url: /runtime-manager/runtime-groups/dashboard
         - text: Manage Runtime Groups with UI
           url: /runtime-manager/runtime-groups/manage
         - text: Manage Runtime Groups with decK
@@ -98,6 +78,30 @@
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
 
+- title: Service Hub
+  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
+  items:
+    - text: Overview
+      url: /servicehub
+    - text: Manage Services
+      items:
+        - text: Konnect Services
+          url: /servicehub/manage-services
+        - text: Service Versions
+          url: /servicehub/service-versions
+        - text: Service Implementations
+          url: /servicehub/service-implementations
+        - text: Manage Service Documentation
+          url: /servicehub/service-documentation
+    - text: Manage Plugins
+      items:
+        - text: Overview
+          url: /servicehub/plugins
+        - text: Configure a Plugin on a Service
+          url: /servicehub/enable-service-plugin
+        - text: Configure a Plugin on a Route
+          url: /servicehub/enable-route-plugin
+          
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
@@ -125,6 +129,10 @@
           url: /dev-portal/applications/application-overview
         - text: Enable and Disable App Registration
           url: /dev-portal/applications/enable-app-reg
+        - text: Dynamic Client Registration
+          items:
+            - text: Okta
+              url: /dev-portal/applications/dynamic-client-registration/okta
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps
         - text: Register an Application with a Service
@@ -136,17 +144,17 @@
     - text: Troubleshoot
       url: /dev-portal/troubleshoot
 
-- title: Analyze
-  icon: /assets/images/icons/konnect/icn-vitals-nav.svg
+- title: Analytics
+  icon: /assets/images/icons/konnect/icn-analytics-nav.svg
   items:
-    - text: Introduction to Vitals
-      url: /vitals/
+    - text: Introduction to Analytics
+      url: /analytics/
     - text: Overview Dashboard
-      url: /vitals/overview-dashboard/
+      url: /analytics/overview-dashboard/
     - text: Analyze Services and Routes
-      url: /vitals/analyze/
+      url: /analytics/services-and-routes/
     - text: Generate Reports
-      url: /vitals/generate-reports
+      url: /analytics/generate-reports
 
 - title: Administer
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
@@ -163,11 +171,11 @@
       items:
         - text: Overview
           url: /org-management/auth
-        - text: Teams and Roles
+        - text: Teams
           items:
             - text: Overview
               url: /org-management/teams-and-roles
-            - text: Manage Teams and Roles
+            - text: Manage Teams
               url: /org-management/teams-and-roles/manage
             - text: Teams Reference
               url: /org-management/teams-and-roles/teams-reference
@@ -175,6 +183,8 @@
               url: /org-management/teams-and-roles/roles-reference
         - text: Manage Users
           url: /org-management/users
+        - text: Set up SSO with OIDC
+          url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
     - text: Account and Org Deactivation
@@ -218,7 +228,7 @@
           url: /legacy/deployment/network
         - text: Network Resiliency and Availability
           url: /legacy/deployment/network-resiliency
-        - text: Migrate from Kong Gateway to Konnect Cloud
+        - text: Migrate from Kong Gateway to Kong Konnect
           url: /legacy/migrate
 
     - text: Getting Started
@@ -232,7 +242,7 @@
               url: /legacy/getting-started/configure-service
             - text: Implement and Test the Service
               url: /legacy/getting-started/implement-service
-        - text: Manage Konnect Cloud with decK
+        - text: Manage Konnect with decK
           url: /legacy/getting-started/declarative-config
 
     - text: ServiceHub

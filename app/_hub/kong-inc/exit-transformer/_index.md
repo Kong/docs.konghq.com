@@ -1,7 +1,6 @@
 ---
 name: Exit Transformer
 publisher: Kong Inc.
-version: 1.5.x
 desc: Customize Kong exit responses sent downstream
 description: |
   Transform and customize Kong response exit messages using Lua functions.
@@ -14,17 +13,7 @@ categories:
   - transformations
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
+    compatible: true
 params:
   name: exit-transformer
   service_id: true
@@ -41,6 +30,28 @@ params:
       required: true
       value_in_examples:
         - '@example/my_function.lua'
+      value_in_examples_serialized:
+        - |
+          |
+            local responses = {
+              ["Invalid authentication credentials"] = {
+                message = "Invalid API key",
+              },
+            }
+
+            return function(status, body, headers)
+              if not body or not body.message then
+                return status, body, headers
+              end
+
+              local response = responses[body.message]
+
+              body.message = response.message or body.message
+              status = response.status or status
+              headers = response.headers or headers
+
+              return status, body, headers
+            end
       datatype: array of string elements
       description: Array of functions used to transform any Kong proxy exit response.
     - name: handle_unknown
@@ -230,7 +241,7 @@ end
    {% navtab Using cURL %}
 
    ```bash
-   $ curl -i -X POST http://<admin-hostname>:8001/services \
+   curl -i -X POST http://<admin-hostname>:8001/services \
      --data name=example.com \
      --data url='http://mockbin.org'
    ```
@@ -239,7 +250,7 @@ end
    {% navtab Using HTTPie %}
 
    ```bash
-   $ http :8001/services name=example.com host=mockbin.org
+   http :8001/services name=example.com host=mockbin.org
    ```
 
    {% endnavtab %}
@@ -251,7 +262,7 @@ end
    {% navtab Using cURL %}
 
 ```bash
-$ curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
+curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
   --data 'hosts[]=example.com'
 ```
 
@@ -259,7 +270,7 @@ $ curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
    {% navtab Using HTTPie %}
 
 ```bash
-$ http -f :8001/services/example.com/routes hosts=example.com
+http -f :8001/services/example.com/routes hosts=example.com
 ```
 
    {% endnavtab %}
@@ -297,7 +308,7 @@ Configure the `exit-transformer` plugin with `transform.lua`.
    {% navtab Using cURL %}
 
    ```bash
-   $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+   curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
      -F "name=exit-transformer"  \
      -F "config.functions=@transform.lua"
    ```
@@ -305,7 +316,7 @@ Configure the `exit-transformer` plugin with `transform.lua`.
    {% navtab Using HTTPie %}
 
    ```bash
-   $ http -f :8001/services/example.com/plugins \
+   http -f :8001/services/example.com/plugins \
      name=exit-transformer \
      config.functions=@transform.lua
    ```
@@ -322,7 +333,7 @@ response in [step 6](#testy-exit):
    {% navtab Using cURL %}
 
    ```bash
-   $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+   curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
      --data "name=key-auth"
    ```
 
@@ -330,7 +341,7 @@ response in [step 6](#testy-exit):
    {% navtab Using HTTPie %}
 
    ```bash
-   $ http :8001/services/example.com/plugins name=key-auth
+   http :8001/services/example.com/plugins name=key-auth
    ```
 
    {% endnavtab %}
@@ -346,14 +357,14 @@ in the message body.
 {% navtab Using cURL %}
 
 ```bash
-$ curl --header 'Host: example.com' 'localhost:8000'
+curl --header 'Host: example.com' 'localhost:8000'
 ```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
-$ http :8000 Host:example.com
+http :8000 Host:example.com
 ```
 
 {% endnavtab %}
@@ -383,24 +394,24 @@ The plugin can also be applied globally:
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/plugins/ \
+curl -X POST http://<admin-hostname>:8001/plugins/ \
   -F "name=exit-transformer"  \
   -F "config.handle_unknown=true" \
   -F "config.functions=@transform.lua"
 ...
-$ curl --header 'Host: non-existent.com' 'localhost:8000'
+curl --header 'Host: non-existent.com' 'localhost:8000'
 ```
 
 {% endnavtab %}
 {% navtab Using HTTPie %}
 
 ```bash
-$ http :8001/plugins \
+http :8001/plugins \
   name=exit-transformer \
   config.handle_unknown=true \
   config.functions=@transform.lua
 
-$ http :8000 Host:non-existent.com
+http :8000 Host:non-existent.com
 ```
 
 {% endnavtab %}
@@ -500,7 +511,7 @@ Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`.
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
   -F "name=exit-transformer"  \
   -F "config.handle_unknown=true" \
   -F "config.handle_unexpected=true" \
@@ -511,7 +522,7 @@ $ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
 {% navtab Using HTTPie %}
 
 ```bash
-$ http -f :8001/plugins name=exit-transformer \
+http -f :8001/plugins name=exit-transformer \
   config.handle_unknown=true \
   config.handle_unexpected=true \
   config.functions=@examples/custom-errors-by-mimetype.lua

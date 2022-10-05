@@ -14,7 +14,7 @@ description: |
 
 support_url: https://github.com/revolsys/kong-plugin-upstream-auth-basic/issues
 
-source_url: https://github.com/revolsys/kong-plugin-upstream-auth-basic
+source_code: https://github.com/revolsys/kong-plugin-upstream-auth-basic
 
 license_type: Apache-2.0
 

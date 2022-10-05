@@ -20,7 +20,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Maintainer | Access to read, edit, and deploy a {{site.konnect_short_name}} service and its service versions, and manage its plugins. |
 | Plugins Admin | Access to install plugins on the {{site.konnect_short_name}} service versions and routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
 | Publisher | Access to publish a {{site.konnect_short_name}} service to the Dev Portal. |
-| Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} service, including attributes, versions, Vitals reports, and plugins. |
+| Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} service, including attributes, versions, Analytics reports, and plugins. |
 
 ## Runtime groups
 
@@ -40,7 +40,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Admin | Allows a user to view and manage existing organization settings, including billing/usage. Admins have all write access to organization objects. |
 | Creator | Allows a user to create organizations. [*Q: What's stopping a user from creating orgs in general? What does this role actually imply - they can crete new orgs within a company umbrella of orgs?*] |
 | Privileged | Privileged users of an existing organization can change system-level configuration, including the organization's license tier, organization status, (and what else?).
-| Root |  Allows root access for an existing organization. This role grants write access to all organization objects as well as to all {{site.konnect_short_name}} services, runtime groups, Dev Portal, Vitals reports, applications, and developers. | -->
+| Root |  Allows root access for an existing organization. This role grants write access to all organization objects as well as to all {{site.konnect_short_name}} services, runtime groups, Dev Portal, Analytics reports, applications, and developers. | -->
 
 <!--
 ## Portals

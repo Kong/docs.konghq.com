@@ -22,7 +22,7 @@ To register as a developer, follow these steps:
 
 3. Fill out the registration form, then click **Create Account**.
 
-4. A registration link will be sent to the email address you registered. Click the verification link in the registration email.
+4. A registration link will be sent to the email address you registered. Click the verification link in the registration email. 
 
 5. Create a password for your account.
 

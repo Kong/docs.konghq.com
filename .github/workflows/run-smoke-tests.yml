@@ -56,5 +56,4 @@ jobs:
         run: |
           npm install -g wait-on netlify-cli
           netlify dev & wait-on http://localhost:8888
-          npx playwright install chromium
-          npm run test:smoke
+          npm test

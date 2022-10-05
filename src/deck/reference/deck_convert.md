@@ -17,7 +17,9 @@ deck convert [command-specific flags] [global flags]
 ## Flags
 
 `--from`
-:  format of the source file, allowed formats: `kong-gateway`
+:  format of the source file, allowed formats:
+{% if_version gte:1.15.x %}[`kong-gateway` `kong-gateway-2.x`]{% endif_version %}{%
+   if_version gte:1.7.x lte:1.14.x %}`kong-gateway`{% endif_version %}
 
 `-h`, `--help`
 :  help for convert (Default: `false`)
@@ -29,7 +31,9 @@ deck convert [command-specific flags] [global flags]
 :  file to write configuration to after conversion. Use `-` to write to stdout.
 
 `--to`
-:  desired format of the output, allowed formats: `konnect`
+:  desired format of the output, allowed formats:
+{% if_version gte:1.15.x %}[`konnect` `kong-gateway-3.x`]{% endif_version %}{%
+   if_version gte:1.7.x lte:1.14.x %}`konnect`{% endif_version %}
 
 
 {% if_version gte:1.7.x %}

@@ -32,6 +32,12 @@ registration, or configure custom plugins.
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
 
+## Generate a Personal Access Token
+
+To test your connection, we recommend that you use a personal access token (PAT).
+
+{% include_cached /md/personal-access-token.md %}
+
 ## Test your connection
 
 Check that you can log in to {{site.konnect_short_name}} and that decK
@@ -40,8 +46,7 @@ recognizes your account credentials:
 ```sh
 deck ping \
   --konnect-runtime-group-name default \
-  --konnect-email {YOUR_EMAIL} \
-  --konnect-password {YOUR_PASSWORD}
+  --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
 
 If the connection is successful, the terminal displays the full name of the user
@@ -52,13 +57,12 @@ Successfully Konnected as Some Name (Org Name)!
 ```
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
-your password in a file, then either calling it with
-`--konnect-password-file /path/{FILENAME}.txt`, or adding it to your decK configuration
-file under the `konnect-password` option along with your email:
+your personal access token in a file, then either calling it with
+`--konnect-token-file /path/{FILENAME}.txt`, or adding it to your decK configuration
+file under the `konnect-token` option:
 
 ```yaml
-konnect-password: {YOUR_PASSWORD}
-konnect-email: {YOUR_EMAIL}
+konnect-token: {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
 
 The default location for this file is `$HOME/.deck.yaml`. You can target a

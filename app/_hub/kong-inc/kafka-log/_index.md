@@ -66,12 +66,9 @@ params:
       default: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         Username for SASL authentication.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: authentication.password
       required: false
       value_in_examples: admin-secret
@@ -79,12 +76,9 @@ params:
       default: null
       datatype: string
       encrypted: true
+      referenceable: true
       description: |
         Password for SASL authentication.
-
-        This field is _referenceable_, which means it can be securely stored as a
-        [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-        in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
     - name: authentication.tokenauth
       required: false
       value_in_examples: false
@@ -313,7 +307,7 @@ Known limitations:
 
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 0.4.0)
+**{{site.base_gateway}} 2.8.x**
 
 * Added support for the `SCRAM-SHA-512` authentication mechanism.
 
@@ -322,9 +316,9 @@ Known limitations:
 * The `authentication.user` and `authentication.password` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
-### Kong Gateway 2.7.x (plugin version 0.3.0)
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.authentication.user` and `config.authentication.password` parameter

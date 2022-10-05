@@ -1,8 +1,6 @@
 ---
 name: Azure Functions
 publisher: Kong Inc.
-version: 1.0.0
-source_url: 'https://github.com/Kong/kong-plugin-azure-functions'
 desc: Invoke and manage Azure functions from Kong
 description: |
   This plugin invokes
@@ -14,36 +12,9 @@ categories:
   - serverless
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: azure-functions
   service_id: true
@@ -84,14 +55,18 @@ params:
       value_in_examples: <AZURE_APIKEY>
       datatype: string
       encrypted: true
-      description: 'The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.'
+      referenceable: true
+      description: |
+        The apikey to access the Azure resources. If provided, it is injected as the `x-functions-key` header.
     - name: clientid
       required: false
       default: null
       value_in_examples: null
       datatype: string
       encrypted: true
-      description: 'The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.'
+      referenceable: true
+      description: |
+        The `clientid` to access the Azure resources. If provided, it is injected as the `x-functions-clientid` header.
     - name: https_verify
       required: false
       default: false
@@ -129,7 +104,7 @@ To demonstrate the plugin, set up the [Azure Functions "hello world" function](h
 1. In this example, we'll consider the following placeholder settings. Insert your own values
     for the placeholders in the code examples:
 
-    - `<appname>` for the functions appname
+    - `<appname>` for the function's app name
     - `<functionname>` for the function name
     - `<apikey>` for the api key
 
@@ -213,7 +188,7 @@ HTTP/1.1 200 OK
 
 ## Changelog
 
-### 1.0.1
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.apikey` and `config.clientid` parameter values will be encrypted.

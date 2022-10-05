@@ -1,0 +1,20 @@
+{
+  "name": "broken-link-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Michael Heap <m@michaelheap.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/github": "^5.0.0",
+    "@octokit/rest": "^19.0.0",
+    "broken-link-checker": "^0.7.8",
+    "fast-glob": "^3.2.11",
+    "js-yaml": "^4.1.0",
+    "minimist": "^1.2.5"
+  }
+}

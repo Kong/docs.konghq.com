@@ -15,6 +15,10 @@ module SingleSource
         # Assume that the whole file should be treated as generated
         assume_generated = data['assume_generated'].nil? ? true : data['assume_generated']
         version = version_for_release(data['product'], data['release'])
+
+        # If there is an 'unlisted' section, add that in to 'items' to be rendered
+        data['items'] = data['items'] + data['unlisted'] if data['unlisted']
+
         create_pages(data['items'], site, data['product'], data['release'], version, assume_generated, f)
       end
     end
@@ -61,7 +65,7 @@ module SingleSource
   end
 
   class SingleSourcePage < Jekyll::Page
-    def initialize(site, src, dest, product, release, version, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists
+    def initialize(site, src, dest, product, release, version, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists, Metrics/PerceivedComplexity
       # Configure variables that Jekyll depends on
       @site = site
 
@@ -90,7 +94,15 @@ module SingleSource
 
       # Read the source file, either `<src>.md or <src>/index.md`
       file = "src/#{src}.md"
-      file = "src/#{src}/index.md" unless File.exist?(file)
+      if File.exist?(file)
+        is_dir_index = false
+      else
+        file = "src/#{src}/index.md"
+        raise "Could not find a source file at 'src/#{src}.md' or #{file}" unless File.exist?(file)
+
+        is_dir_index = true
+      end
+
       content = File.read(file)
 
       # Load content + frontmatter from the file
@@ -104,6 +116,7 @@ module SingleSource
 
       # Make it clear that this content comes from a generated file
       @data['path'] = "GENERATED:nav=#{nav}:src=#{src}:#{@dir}"
+      @data['is_dir_index'] = is_dir_index
 
       # Set the current release and concrete version
       @data['release'] = release
@@ -111,6 +124,30 @@ module SingleSource
 
       # Set the layout if it's not already provided
       @data['layout'] = 'docs-v2' unless data['layout']
+
+      # Apply any overrides
+      current = to_version(@data['release'])
+      @data['overrides']&.each do |key, entries|
+        entries.each do |value, conditions|
+          gte = conditions['gte'] ? to_version(conditions['gte']) : nil
+          lte = conditions['lte'] ? to_version(conditions['lte']) : nil
+          eq = conditions['eq'] ? to_version(conditions['eq']) : nil
+
+          if gte && lte
+            @data[key] = value if current >= gte && current <= lte
+          elsif gte
+            @data[key] = value if current >= gte
+          elsif lte
+            @data[key] = value if current <= lte
+          elsif eq
+            @data[key] = value if current == eq
+          end
+        end
+      end
+    end
+
+    def to_version(input)
+      Gem::Version.new(input.gsub(/\.x$/, '.0'))
     end
   end
 end

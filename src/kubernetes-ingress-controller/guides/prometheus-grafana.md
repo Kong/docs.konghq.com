@@ -13,7 +13,7 @@ This guide walks you through setting up monitoring for
 > (as opposed to the runtime performance of the Gateway), described in detail
 > in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
 
-This guide was originally posted on [Kong Inc's blog](https://konghq.com/blog/observability-kubernetes-kong/).
+This guide was originally posted on [Kong blog](https://konghq.com/blog/observability-kubernetes-kong/).
 
 ## Prerequisites
 

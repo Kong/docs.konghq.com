@@ -30,8 +30,11 @@ endcapture %}
   for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
   if field.value_in_examples != nil %}{%
   if field.value_in_examples.first %}{%
-  for value in field.value_in_examples %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{%
+  for value in field.value_in_examples %} \{%
+    if field.datatype == "map" %}{% assign mapValues = value | split: ":" %}
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] | replace: "'", "" }}'{% else %}"config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] }}"{% endif %}{%
+    else %}
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{% endif %}{%
   endfor %}{%
   else %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ field.value_in_examples | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ field.value_in_examples }}"{% endif %}{%
@@ -72,27 +75,32 @@ endcapture %}
 {% capture config_required_fields_k8s
 %}config: {%
 for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
-if field.value_in_examples != nil %}{%
-  if field.value_in_examples.first %}{%
+assign example = field.value_in_examples
+%}{%
+if field.value_in_examples_serialized%}{%
+assign example = field.value_in_examples_serialized
+%}{% endif %}{%
+if example != nil %}{%
+  if example.first %}{%
       if field.name contains "." %}{%
         assign names = field.name | split: "." %}
   {{ names[0] }}:{%
     for name in names offset:1 %}
     {{ name }}:{% endfor %}{%
-    for value in field.value_in_examples %}
+    for value in example %}
     - {{ value }}{%
     endfor %}{% else %}
   {{ field.name }}:{%
-  for value in field.value_in_examples %}
+  for value in example %}
   - {{ value }}{%
   endfor %}{% endif %}{%
   elsif field.name contains "." %}{%
         assign names = field.name | split: "." %}
   {{ names[0] }}:{%
     for name in names offset:1 %}
-    {{ name }}:{% endfor %} {{ field.value_in_examples }}{%
+    {{ name }}:{% endfor %} {{ example }}{%
   else %}
-  {{ field.name }}: {{ field.value_in_examples }}{%
+  {{ field.name }}: {{ example }}{%
   endif %}{%
 endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}
@@ -218,7 +226,7 @@ service row.
     if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
     </blockquote>{% endif %}
 5. If the option is available, select **Scoped**.
 6. Add the service name and ID to the **Service** field if it
@@ -251,8 +259,8 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
-    --data "name={{include.params.name}}" {{ config_required_fields }}
+curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
+  --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
@@ -278,7 +286,7 @@ Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route
 by annotating the ingress as follows:
 
 ``` yaml
-apiVersion: networking/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ROUTE_NAME|ROUTE_ID
@@ -292,8 +300,10 @@ spec:
       paths:
       - path: /bar
         backend:
-          serviceName: echo
-          servicePort: 80
+          service:
+            name: echo
+            port:
+              number: 80
   ```
 
 Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
@@ -356,7 +366,7 @@ route row.
     if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
     </blockquote>{% endif %}
 5. If the option is available, select **Scoped**.
 6. Add the route ID if it is not already prefilled.{% unless
@@ -388,8 +398,8 @@ the <code>{{include.params.name}}</code> plugin on a
 Make the following request:
 
 ```bash
-$ curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
-    --data "name={{include.params.name}}" {{ config_required_fields }}
+curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
+  --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
@@ -470,7 +480,7 @@ You can configure this plugin through the Kong Manager UI.
     if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
     </blockquote>{% endif %}
 5. If the option is available, select **Scoped**.
 6. Add the consumer ID if it is not already prefilled.{% unless
@@ -507,8 +517,8 @@ the <code>{{include.params.name}}</code> plugin globally.
 Make the following request:
 
 ```bash
-$ curl -X POST http://localhost:8001/plugins/ \
-    --data "name={{include.params.name}}" {{ config_required_fields }}
+curl -X POST http://localhost:8001/plugins/ \
+  --data "name={{include.params.name}}" {{ config_required_fields }}
 ```
 
 {% endnavtab %}
@@ -560,7 +570,7 @@ You can configure this plugin through the Kong Manager UI.
     if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/gateway/latest/plan-and-deploy/licenses/">{{site.base_gateway}} tiers</a>.
+    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
     </blockquote>{% endif %}
 4. If the option is available, set the plugin scope to **Global**.{% unless
     config_required_fields_gui == empty %}

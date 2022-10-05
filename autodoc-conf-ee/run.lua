@@ -140,7 +140,7 @@ infd:close()
 
 local parsed = assert(parser.parse(lines))
 
-local outpath = "app/gateway/" .. KONG_VERSION .. "/reference/configuration.md"
+local outpath = "src/gateway/reference/configuration.md"
 local outfd = assert(io.open(outpath, "w+"))
 
 outfd:write(data.header)
@@ -153,13 +153,13 @@ end
 
 
 for _, section in ipairs(parsed) do
+  write("---")
   write("")
-  write("### " .. titleize(section.name) .. " section")
+  write("## " .. titleize(section.name) .. " section")
   write("")
   if #section.description > 0 then
     write(format_description(section.description))
     write("")
-    write("---")
     write("")
   end
 
@@ -174,7 +174,7 @@ for _, section in ipairs(parsed) do
       if not pg_found then
         pg_found = true
         write("")
-        write("#### Postgres settings")
+        write("### Postgres settings")
         write("")
         write(table_header)
       end
@@ -184,7 +184,7 @@ for _, section in ipairs(parsed) do
       if not cassandra_found then
         cassandra_found = true
         write("")
-        write("#### Cassandra settings")
+        write("### Cassandra settings")
         write("")
         write(table_header)
       end
@@ -202,14 +202,14 @@ for _, section in ipairs(parsed) do
               " | " .. format_default(var.default))
 
     else
-      write("#### " .. var.name)
+      write("### " .. var.name)
       if string.match(var.name, "admin_gui_auth") then
         write("{:.badge .enterprise}")
 
       elseif string.match(var.name, "admin_gui_session") then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "telemetry") then
+      elseif string.match(var.name, "cluster_telemetry") then
         write("{:.badge .enterprise}")
 
       elseif string.match(var.name, "rbac") then
@@ -218,7 +218,7 @@ for _, section in ipairs(parsed) do
       elseif string.match(var.name, "event_hooks") then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "data_plane_config_cache") then
+      elseif string.match(var.name, "keyring") then
         write("{:.badge .enterprise}")
 
       elseif string.match(section.name, "PORTAL") then
@@ -238,16 +238,12 @@ for _, section in ipairs(parsed) do
 
       elseif string.match(section.name, "ROUTE COLLISION") then
         write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "DATABASE ENCRYPTION") then
-        write("{:.badge .enterprise}")
       end
       write("")
       write(format_description(var.description))
       write("")
       write("**Default:** " .. format_default(var.default))
       write("")
-      write("---")
       write("")
     end
   end

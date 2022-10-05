@@ -2,24 +2,21 @@ extends: substitution
 message: Use '%s' instead of '%s'.
 level: error
 ignorecase: true
+scope: text
+custom: true
 swap:
 
   datacenter: data center
-  developer portal: Dev Portal
   codeblock': code block
   blacklist: denylist
   codeblock: code block
-  dbless: DB-less
   file name: filename
   # '(?:kubernetes|k8s)': Kubernetes
-  kong gateway: "{{site.base_gateway}}"
-  Konnect: "{{site.konnect_short_name}}"
-  Konnect Cloud: "{{site.konnect_saas}}"
   multizone: multi-zone
   pg: PostgreSQL
   'postgres$': PostgreSQL
   'self(?:-| )hosted': self-managed
-  ServiceHub: Service Hub
+  redhat: Red Hat
   timezone: time zone
   utilize: use
   whitelist: allowlist

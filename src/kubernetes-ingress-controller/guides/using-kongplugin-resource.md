@@ -351,7 +351,7 @@ guide to provision a user and an `apikey`.
 Use the API key to pass authentication. Try it with `/baz`:
 
 ```sh
-curl -I $PROXY_IP/baz -H 'apikey: my-sooper-secret-key'
+curl -I $PROXY_IP/baz -H 'apikey: my-super-secret-key'
 ```
 
 ```sh
@@ -369,7 +369,7 @@ Via: kong/2.8.1
 
 Then use the API key with `/foo`:
 ```sh
-curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+curl -I $PROXY_IP/foo -H 'apikey: my-super-secret-key'
 ```
 
 ```sh
@@ -388,85 +388,7 @@ Via: kong/2.8.1
 
 ## Configure a global plugin
 
-Instead of applying plugins to specific services or ingress routes,
-we can apply plugins to protect the entire gateway.
-To test this, let's configure a rate-limiting plugin to throttle requests coming from the same client.
-
-This must be a cluster-level `KongClusterPlugin` resource, as `KongPlugin`
-resources cannot be applied globally, to preserve Kubernetes RBAC guarantees
-for cross-namespace isolation.
-
-Let's create the `KongClusterPlugin` resource:
-
-```sh
-echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongClusterPlugin
-metadata:
-  name: global-rate-limit
-  annotations:
-    kubernetes.io/ingress.class: kong
-  labels:
-    global: \"true\"
-config:
-  minute: 5
-  limit_by: consumer
-  policy: local
-plugin: rate-limiting
-" | kubectl apply -f -
-```
-
-```sh
-kongclusterplugin.configuration.konghq.com/global-rate-limit created
-```
-
-With this plugin (please note the `global` label), every request through
-the {{site.kic_product_name}} is rate-limited:
-
-```sh
-curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
-```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 9593
-Connection: keep-alive
-X-RateLimit-Remaining-Minute: 4
-X-RateLimit-Limit-Minute: 5
-RateLimit-Remaining: 4
-RateLimit-Reset: 46
-RateLimit-Limit: 5
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-demo:  injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/2.8.1
-```
-
-
-Requests to `/bar` are also rate limited:
-```sh
-curl -I $PROXY_IP/bar
-```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Connection: keep-alive
-X-RateLimit-Remaining-Minute: 4
-X-RateLimit-Limit-Minute: 5
-RateLimit-Remaining: 4
-RateLimit-Reset: 11
-RateLimit-Limit: 5
-Server: echoserver
-demo:  injected-by-kong
-X-Kong-Upstream-Latency: 0
-X-Kong-Proxy-Latency: 1
-Via: kong/2.8.1
-```
+Follow the [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongclusterplugin-resource/#configure-a-global-plugin) guide to configure a rate limiting plugin to throttle requests coming from the same client. 
 
 ## Configure a plugin for a specific consumer
 
@@ -520,7 +442,7 @@ Now, if the request is made as the `harry` consumer, the client
 is rate-limited differently:
 
 ```sh
-curl -I $PROXY_IP/foo -H 'apikey: my-sooper-secret-key'
+curl -I $PROXY_IP/foo -H 'apikey: my-super-secret-key'
 ```
 
 ```

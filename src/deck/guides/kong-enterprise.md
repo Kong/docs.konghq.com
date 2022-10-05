@@ -66,7 +66,7 @@ To set a workspace directly in the state file, use the `_workspace` parameter.
 For example:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _workspace: default
 services:
 - name: example_service

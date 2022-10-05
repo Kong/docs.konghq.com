@@ -1,7 +1,6 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 2.3.x (0.4.4 internal)
 desc: Modify the upstream response before returning it to the client
 description: |
   Transform the response sent by the upstream server on the fly before returning
@@ -24,7 +23,7 @@ description: |
     when the `Content-Encoding` header is `gzip`.
 
   Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
-  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`, 
+  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`,
   `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
 
   <div class="alert alert-warning">
@@ -39,18 +38,7 @@ categories:
 enterprise: true
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: response-transformer-advanced
   service_id: true
@@ -194,7 +182,7 @@ The plugin allows navigating complex JSON objects (arrays and nested objects)
 when `config.dots_in_keys` is set to `false` (the default is `true`).
 
 - `array[*]`: Loops through all elements of the array.
-- `array[N]`: Navigates to the `N`th element of the array (the index of the first element is `1`).
+- `array[N]`: Navigates to the nth element of the array (the index of the first element is `1`).
 - `top.sub`: Navigates to the `sub` property of the `top` object.
 
 These can be combined. For example, `config.remove.json: customers[*].info.phone` removes
@@ -208,7 +196,7 @@ similarly for Services.
 - Add multiple headers by passing each `header:value` pair separately:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -230,7 +218,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Add multiple headers by passing comma-separated `header:value` pair:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -252,7 +240,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Add multiple headers passing config as a JSON body:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -273,7 +261,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Add a body property and a header:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
@@ -307,7 +295,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Append multiple headers and remove a body property:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer-advanced", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
@@ -333,7 +321,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Replace entire response body if response code is 500:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.replace.body='{\"error\": \"internal server error\"}'" \
   --data "config.replace.if_status=500"
@@ -381,7 +369,7 @@ end
 ```
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   -F "name=response-transformer-advanced" \
   -F "config.transform.functions=@transform.lua" \
   -F "config.transform.if_status=200"
@@ -390,7 +378,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove the entire header field with a given header name:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1,h2"
 ```
@@ -403,7 +391,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove a specific header value of a given header field:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1:v1,h1:v2"
 ```
@@ -415,7 +403,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove a specific header value from a comma-separated list of header values:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1:v1,h1:v2"
 ```
@@ -430,7 +418,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Remove a specific header value defined by a regular expression
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/"
 ```
@@ -449,7 +437,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 - Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.json=p1:-1" \
   --data "config.add.json_types=number" \

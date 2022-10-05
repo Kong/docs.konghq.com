@@ -49,9 +49,21 @@ Those commands are deprecated and have been replaced with the flags in this guid
 
 decK looks for {{site.konnect_short_name}} credentials in the following order of precedence:
 
-1. Password set with the `--konnect-password` flag
+{% if_version gte:1.14.x %}
+
+1. Credentials set with a flag, either `--konnect-password` or `--konnect-token`
+2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
+3. Credential file passed with a flag, either `--konnect-password-file` or `--konnect-token-file`
+
+{% endif_version %}
+
+{% if_version lte:1.13.x %}
+
+1.  Password set with the `--konnect-password` flag
 2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
 3. File passed with the `--konnect-password-file` flag
+
+{% endif_version %}
 
 For example, if you have both a decK config file and a {{site.konnect_short_name}} password file, decK uses the password in the config file.
 
@@ -107,6 +119,26 @@ deck ping
 
 Successfully Konnected as MyName (Konnect Org)!
 ```
+{% if_version gte:1.14.x %}
+### Authenticate using a personal access token
+
+{% include_cached /md/personal-access-token.md %}
+
+You can use the `--konnect-token` flag to pass the PAT directly in the command:
+
+```sh
+deck ping \
+  --konnect-token YOUR_PERSONAL_ACCESS_TOKEN
+```
+
+You can save your {{site.konnect_short_name}}
+PAT to a file, then pass the filename to decK with `--konnect-token-file`:
+
+```sh
+deck ping \
+  --konnect-token-file /PATH/TO/FILE
+```
+{% endif_version %}
 
 ## Target a {{site.konnect_short_name}} API
 
@@ -140,7 +172,7 @@ or use a flag when running any decK command.
 * Target a runtime group in your state file with the `konnect_runtime_group` parameter:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     _konnect:
       runtime_group_name: staging
     ```
@@ -181,7 +213,7 @@ If the {{site.konnect_short_name}} service doesn't exist, setting a `_Konnect` t
 For example, see the following configuration snippet, where the Gateway service named `example_service` is attached to the {{site.konnect_short_name}} service `example`:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _konnect:
   runtime_group_name: default
 services:
@@ -195,12 +227,25 @@ If the {{site.konnect_short_name}} service doesn't exist, this configuration sni
 
 ## Troubleshoot
 
+{% if_version gte:1.14.x %}
+### Authentication with a {{site.konnect_short_name}} password or token file is not working
+
+If you have verified that your password or token is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password or token file.
+A decK config file is likely conflicting with the password or token file and passing another set of credentials.
+
+To resolve, remove one of the duplicate sets of credentials.
+
+{% endif_version %}
+
+{% if_version lte:1.13.x %}
 ### Authentication with a {{site.konnect_short_name}} password file is not working
 
 If you have verified that your password is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password file.
-There is likely a decK config file conflicting with the password file and passing another set of credentials.
+A decK config file is likely conflicting with the password or token file and passing another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
+
+{% endif_version %}
 
 ### Workspace connection refused
 
@@ -246,7 +291,27 @@ They are managed entirely by {{site.konnect_short_name}}, so you can't manage th
 
 [Manage application registration](/konnect/dev-portal/applications/enable-app-reg) through the Service Hub to avoid any issues.
 
+{% if_version gte:1.15 %}
+
+### decK targets {{site.base_gateway}} instead of {{site.konnect_short_name}}
+
+decK can run against {{site.base_gateway}} or {{site.konnect_short_name}}.
+By default, it targets {{site.base_gateway}}, unless a setting tells decK to point to {{site.konnect_short_name}} instead.
+
+decK determines the environment using the following order of precedence:
+
+1. If the declarative configuration file contains the `_konnect` entry, decK runs
+against {{site.konnect_short_name}}.
+
+2. If the `--kong-addr` flag is set to a non-default value, decK runs against {{site.base_gateway}}.
+
+3. If {{site.konnect_short_name}} credentials are set in any way (flag, file, or decK config), decK runs against {{site.konnect_short_name}}.
+
+4. If none of the above are present, decK runs against {{site.base_gateway}}.
+
+{% endif_version %}
+
 ## See also
 
-* [Import {{site.base_gateway}} entities into {{site.konnect_saas}}](/konnect/getting-started/import)
+* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import)
 * [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config)

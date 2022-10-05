@@ -54,6 +54,11 @@ need to specify a route. Routes determine how successful requests are sent to
 their services after they reach the API gateway. A single service version
 can have only one implementation, but potentially many routes.
 
+{:.important}
+> **Important**: Starting with {{site.base_gateway}} 3.0.0.0, the router supports logical expressions.
+Regex routes must begin with a `~` character. For example: `~/foo/bar/(?baz\w+)`.
+Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+
 After configuring the service, version, implementation, and at least one route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
 

@@ -18,8 +18,10 @@ the config as `config.json.gz` into `/usr/local/kong` by default.
 
 ### How do the control plane and data planes communicate?
 
-Data travelling between control planes and data planes is secured through a
-mutual TLS handshake.
+Data traveling between control planes and data planes is secured through a
+mutual TLS handshake. 
+Data planes initiate the connection to the {{site.konnect_short_name}} control plane.
+Once the connection is established, the control plane can send configuration data to the connected data planes.
 
 Normally, the data plane maintains a persistent connection with the control
 plane. The data plane sends a heartbeat to the control plane every 30 seconds to
@@ -35,7 +37,7 @@ and telemetry. Both use the secure TCP port `443`.
   data planes in the cluster.
 
 * **Telemetry:** data plane nodes send usage information to the control plane
-  for Vitals and for account billing. Vitals tracks aggregate traffic by
+  for Analytics and for account billing. Analytics tracks aggregate traffic by
   service, route, and the consuming application. For billing, Kong tracks the
   number of services, API calls, and active dev portals.
 

@@ -110,7 +110,7 @@ params:
       description: 'The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.'
     - name: policy
       required: false
-      default: '`cluster`'
+      default: '`local`'
       value_in_examples: local
       datatype: string
       description: |
@@ -126,7 +126,7 @@ params:
         For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
         `redis`, or `local` for data planes only.
 
-        In Konnect Cloud, the default policy is `redis`.
+        In Konnect, the default policy is `redis`.
 
         For details on which policy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -150,14 +150,18 @@ params:
       datatype: integer
       description: 'When using the `redis` policy, this property specifies the port of the Redis server.'
     - name: redis_username
+      minimum_version: "2.8.x"
       required: false
       datatype: string
+      referenceable: true
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
     - name: redis_password
       required: false
       datatype: string
-      description: 'When using the `redis` policy, this property specifies the password to connect to the Redis server.'
+      referenceable: true
+      description: |
+        When using the `redis` policy, this property specifies the password to connect to the Redis server.
     - name: redis_timeout
       required: false
       default: '`2000`'
@@ -234,9 +238,6 @@ X-RateLimit-Remaining-Images: 0
 ---
 ## Changelog
 
-### Kong Gateway 2.8.x (plugin version 2.0.1)
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `redis_username` configuration parameter.
-* Fixed plugin versions in the documentation. Previously, the plugin versions
-were labelled as `0.1-x` and `1.0-x`. They are now updated to align with the
-plugin's actual versions, `1.0.x` and `2.0.x`.

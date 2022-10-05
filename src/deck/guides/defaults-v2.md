@@ -58,7 +58,7 @@ want to use, skip to [setting defaults](#set-defaults).
 2. Add the following sample service and route to the file:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "3.0"
     services:
       - host: mockbin.org
         name: example_service
@@ -163,7 +163,7 @@ Summary:
 `defaults`:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "3.0"
     _info:
       defaults:
     services:
@@ -189,7 +189,7 @@ Summary:
     For example:
 
     ```yaml
-    _format_version: "0.1"
+    _format_version: "3.0"
     _info:
       defaults:
         route:
@@ -411,6 +411,6 @@ http :8001/schemas/targets
 
 ## See also
 * [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
-* [Distributed configuration for Kong Gateway using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
+* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
 * [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
 * {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

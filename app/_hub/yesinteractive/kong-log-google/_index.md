@@ -19,7 +19,7 @@ description: This plugin logs your Kong gateway transactions to Google Analytics
 
 support_url: https://github.com/yesinteractive/kong-log-google/issues
 
-source_url: https://github.com/yesinteractive/kong-log-google
+source_code: https://github.com/yesinteractive/kong-log-google
 
 license_type: MIT
 

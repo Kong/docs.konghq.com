@@ -35,7 +35,7 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 ## Enable the feature
 
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
-first [install them](https://gateway-api.sigs.k8s.io/v1alpha2/guides/getting-started/#installing-gateway-api-crds-manually).
+first [install them](https://gateway-api.sigs.k8s.io/guides/getting-started/#installing-gateway-api-crds-manually).
 
 The default controller configuration disables Gateway API handling. To enable
 it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
@@ -85,7 +85,7 @@ to use the {{site.kic_product_name}}:
 $ kubectl apply -f https://bit.ly/echo-service
 ```
 
-## Add a GatewayClass and Gateway
+## Add a Gateway class and gateway
 
 The Gateway resource represents the proxy instance that handles traffic for a
 set of Gateway API routes, and a GatewayClass describes characteristics shared
@@ -93,6 +93,7 @@ by all Gateways of a given type.
 
 Add a GatewayClass:
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 apiVersion: gateway.networking.k8s.io/v1alpha2
@@ -103,6 +104,23 @@ spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
 ```
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: GatewayClass
+metadata:
+  name: kong
+  annotations:
+    konghq.com/gateway-unmanaged: true
+spec:
+  controllerName: konghq.com/kic-gateway-controller
+" | kubectl apply -f -
+```
+{% endif_version %}
+
 
 ```
 gatewayclass.gateway.networking.k8s.io/kong created
@@ -110,6 +128,7 @@ gatewayclass.gateway.networking.k8s.io/kong created
 
 Add a Gateway: 
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: Gateway
@@ -130,6 +149,28 @@ spec:
     protocol: HTTPS
 " | kubectl apply -f -
 ```
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: kong
+spec:
+  gatewayClassName: kong
+  listeners:
+  - name: proxy
+    port: 80
+    hostname: kong.example
+    protocol: HTTP
+  - name: proxy-ssl
+    port: 443
+    hostname: kong.example
+    protocol: HTTPS
+" | kubectl apply -f -
+```
+{% endif_version %}
 
 ```
 gateway.gateway.networking.k8s.io/kong created
@@ -148,15 +189,26 @@ kubectl patch --type=json gateway kong -p='[{"op":"add","path":"/spec/listeners/
 Change `example-cert-secret` to the name of your Secret.
 {% endif_version %}
 
+{% if_version lte: 2.5.x %}
 Because KIC and Kong instances are installed independent of their Gateway
 resource, we set the `konghq.com/gateway-unmanaged` annotation to the
 `<namespace>/<name>` of the Kong proxy Service. This instructs KIC to populate
-that Gateway resource with listener and status information. You can check to
-confirm if KIC has updated the bound Gateway by inspecting the list of
-associated addresses:
+that {{site.base_gateway}} resource with listener and status information. 
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+To configure KIC to reconcile the `Gateway` resource, you must set the 
+`konghq.com/gateway-unmanaged` annotation as the example in `GatewayClass` resource used in 
+`spec.gatewayClassName` in `Gateway` resource. Also, the 
+`spec.controllerName` of `GatewayClass` needs to be same as the value of the
+`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
+{% endif_version %}
+
+You can check to confirm if KIC has updated the bound `Gateway` by 
+inspecting the list of associated addresses:
 
 ```bash
-$ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
+kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
 ```
 
 ```
@@ -176,12 +228,13 @@ $ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
 ]
 ```
 
-## Add an HTTPRoute
+## Add an HTTP Route
 
-HTTPRoute resources are similar to Ingress resources: they contain a set of
+`HTTPRoute` resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
 requests to.
 
+{% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
@@ -207,8 +260,37 @@ spec:
         value: /echo
 " | kubectl apply -f -
 ```
+{% endif_version %}
 
-After creating an HTTPRoute, accessing `/echo` forwards a request to the
+{% if_version gte: 2.6.x %}
+```bash
+$ echo "apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: echo
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: kong
+  hostnames:
+  - kong.example
+  rules:
+  - backendRefs:
+    - group: ""
+      kind: Service
+      name: echo
+      port: 80
+      weight: 1
+    matches:
+    - path:
+        type: PathPrefix
+        value: /echo
+" | kubectl apply -f -
+```
+{% endif_version %}
+
+After creating an HTTP Route, accessing `/echo` forwards a request to the
 echo service:
 
 ```bash
@@ -238,16 +320,16 @@ The KIC Gateway API alpha is a work in progress, and not all features of
 Gateway APIs are supported. In particular:
 
 {% if_version lte: 2.3.x %}
-- HTTPRoute is the only supported route type. TCPRoute, UDPRoute, and TLSRoute
+- `HTTPRoute` is the only supported route type. `TCPRoute`, `UDPRoute`, and `TLSRoute`
   are not yet implemented.
-- HTTPRoute does not yet support multiple backendRefs. You cannot distribute
+- `HTTPRoute` does not yet support multiple `backendRefs`. You cannot distribute
   requests across multiple Services.
 {% endif_version %}
-- queryParam matches are not supported.
+- `queryParam` matches are not supported.
 {% if_version gte: 2.4.x %}
 {% if_version lte: 2.5.x %}
-- Gateway Listener configuration does not support TLSConfig. You can't
-  load certificates for HTTPRoutes and TLSRoutes via Gateway
+- Gateway Listener configuration does not support `TLSConfig`. You can't
+  load certificates for HTTP Routes and TLS Routes via Gateway
   configuration, and must either accept the default Kong certificate or add
   certificates and SNI resources manually via the admin API in DB-backed mode.
 {% endif_version %}

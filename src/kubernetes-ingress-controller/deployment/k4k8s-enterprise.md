@@ -50,7 +50,7 @@ Execute the following to install Kong for Kubernetes Enterprise using YAML
 manifests:
 
 ```bash
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 
 It takes a few minutes the first time this setup is done.
@@ -94,7 +94,7 @@ IP address to the `kong-proxy` Service.
 Use Kustomize to install Kong for Kubernetes Enterprise:
 
 ```
-kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/enterprise-k8s
+kustomize build github.com/kong/kubernetes-ingress-controller/config/variants/enterprise
 ```
 
 You can use the above URL as a base kustomization and build on top of it

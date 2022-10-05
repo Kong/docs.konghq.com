@@ -54,7 +54,7 @@ All of those functions, except `init_worker`, take one parameter which is given
 by Kong upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugins schemas
-in the [next chapter]({{page.book.next}}).
+in the [next chapter]({{page.book.next.url}}).
 
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
@@ -319,10 +319,6 @@ kafka-log                   | 5
 syslog                      | 4
 request-termination         | 2
 post-function               | -1000
-
----
-
-Next: [Plugin configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /enterprise/{{page.kong_version}}/pdk
