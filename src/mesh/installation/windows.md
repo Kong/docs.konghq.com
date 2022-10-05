@@ -45,12 +45,12 @@ tar xvzf kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz
 
 ## 2. Run Kong Mesh
 
-Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{include.kong_latest.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
+Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{page.kong_latest.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
 
 Navigate to the `bin` folder:
 
 ```powershell
-cd kong-mesh-{{include.kong_latest.version}}/bin
+cd kong-mesh-{{page.kong_latest.version}}/bin
 ```
 
 Then, run the control plane with:
