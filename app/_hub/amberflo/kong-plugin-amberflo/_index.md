@@ -91,7 +91,7 @@ params:
 
 This plugin will intercept the requests, detect which customer is making it, generate a meter event and send it to Amberflo.
 
-Customer detection happens via inspection of the request headers. So, you can configure Kong to inject the `customerId` as a header before this plugin runs. For instance, if you use the [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) plugin, this happens by automatically.
+Customer detection happens via inspection of the request headers. You can configure Kong to inject the `customerId` as a header before this plugin runs. For instance, if you use the [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) plugin, this happens automatically.
 
 To avoid impacting the performance of your gateway, the plugin will batch the meter records and send them asynchronously to Amberflo.
 
