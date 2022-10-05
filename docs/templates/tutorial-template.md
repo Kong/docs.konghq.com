@@ -1,11 +1,14 @@
 ---
-title: Start with a gerund
+title: Start with a verb ending in -ing
 content_type: tutorial
-no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
-alpha: true # Labels the page as alpha; adds a banner to the top of the page.
-beta: true # Labels the page as beta; adds a banner to the top of the page.
-disable_image_expand: true # Stops images from expanding in a modal on click. Sets it for the entire page.
-class: no-copy-code # Disables the copy code button for all code blocks on the page.
+
+# Optional values. Uncomment any that apply to your document.
+
+# no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
+# alpha: true # Labels the page as alpha; adds a banner to the top of the page.
+# beta: true # Labels the page as beta; adds a banner to the top of the page.
+# disable_image_expand: true # Stops images from expanding in a modal on click. Sets it for the entire page.
+# class: no-copy-code # Disables the copy code button for all code blocks on the page.
 ---
 
 <!-- Add an introduction paragraph here. Good introductions explain who this tutorial is for and what this tutorial will help the user accomplish and learn. -->
@@ -18,7 +21,7 @@ class: no-copy-code # Disables the copy code button for all code blocks on the p
 -->
 <!-- Remove these comments once you are done writing -->
 
-## Prerequistes <!-- Optional -->
+## Prerequisites <!-- Optional -->
 
 <!-- Write prerequisites as a bulleted list. Only list prerequisites if they are application level prerequisites. -->
 <!-- If it isn't a "getting started" topic, we can assume our products are installed. -->
