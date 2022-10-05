@@ -10,7 +10,7 @@ description: |
   exception that API keys are stored in an encrypted format within the API gateway datastore.
 
   {:.note}
-  > **Note**: Before configuring this plugin, Kong's encryption keyring must be enabled. See the
+  > **Note**: Before configuring this plugin, you must enable Kong Gateway's encryption keyring. See the
   [keyring getting started guide](/gateway/latest/kong-enterprise/db-encryption#getting-started) for more details.
 
 enterprise: true
@@ -154,9 +154,9 @@ service, you must add the new consumer to the allowed group. See
 ### Create a key
 
 {:.note}
-> **Note:** We recommend letting Kong auto-generate the key.
-Only specify it yourself if you are migrating an existing system to Kong.
-You must re-use your keys to make the migration to Kong transparent to your consumers.
+> **Note:** We recommend that {{site.base_gateway}} auto generates the key.
+Only specify it yourself if you are migrating an existing system to {{site.base_gateway}}.
+You must reuse your keys to make the migration to {{site.base_gateway}} transparent to your consumers.
 
 {% navtabs %}
 {% navtab With a database %}
@@ -173,7 +173,10 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer": { "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007" },
+    "consumer": 
+       { 
+           "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007" 
+           },
     "created_at": 1443371053000,
     "id": "62a7d3b7-b995-49f9-c9c8-bac4d781fb59",
     "key": "62eb165c070a41d5c1b58d9d3d725ca1",
@@ -262,7 +265,7 @@ You can also use this option with a gRPC client:
 grpcurl -H 'apikey: <some_key>' ...
 ```
 
-### API key locations in a eequest
+### API key locations in a request
 
 {% include /md/plugins-hub/api-key-locations.md %}
 
