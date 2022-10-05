@@ -16,34 +16,39 @@ to your data store.
 To alter the default properties listed in the `kong.conf.default` file and configure {{site.base_gateway}},
 make a copy of the file, rename it (for example `kong.conf`), make your updates, and save it to the same location.
 
-For more information on how to configure {{site.base_gateway}} to connect to your data store, see the Data store section of the
-[Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
-
 ### Using a database
 
-First, you must configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
+First, configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
+See the data store section of the [Configuration Property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section) for all relevant configuration parameters.
 
-For more information on how to configure {{site.base_gateway}} to connect to your database, see the Data store section of the
-[Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
-
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
+{% if_version lte:2.6.x %}
 
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
 and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its data store.
 
-If you are using PostgreSQL, provision a database and a user before starting {{site.base_gateway}}, for example:
+The following instructions use PostgreSQL as a database to store Kong configuration.
 
-```sql
-CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
-```
+{% endif_version %}
 
-Then, run the {{site.base_gateway}} migrations, using the following command:
+{% if_version gte:2.7.x %}
 
-```bash
-kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
-```
+The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
+
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+
+{% endif_version %}
+
+1. Provision a database and a user before starting {{site.base_gateway}}:
+
+    ```sql
+    CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
+    ```
+
+2. Run the {{site.base_gateway}} migrations using the following command:
+
+    ```bash
+    kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
+    ```
 
 {:.note}
 > **Note:** Older versions of PostgreSQL use `ident` authentication by default, newer versions (PSQL 10+)
