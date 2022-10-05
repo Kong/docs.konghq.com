@@ -14,15 +14,14 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ### 2022.09.28
 
-**Analytics custom reports is now generally available** 
-: Announcing the general availability of {{site.konnect_saas}} custom reporting functionality for Kong Analytics. In this release we focused on stability and minor usability improvements. 
+**Analytics custom reports** 
+: Analytics custom reports are now general availability in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
 
-: **What is custom reporting?** 
 
-: With only a few clicks, customers can look at Kong Analytics data in more detail and export that data into a CSV. With this capability, you can easily visualize the data you need.
+: Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
 
-**Runtime Groups Dashboard**
-: In {{site.konnect_saas}}, customers now have insights into their runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group which often reflects individual business units in a more federated organization.
+**Runtime groups dashboard**
+: In {{site.konnect_saas}}, you now have insights into your runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
 
 ### 2022.09.09
 
