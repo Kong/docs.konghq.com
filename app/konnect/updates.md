@@ -12,6 +12,16 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2022
 
+### 2022.09.28
+
+**Analytics custom reports** 
+: Analytics custom reports are now general availability in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
+
+: Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
+
+**Runtime groups dashboard**
+: In {{site.konnect_saas}}, you now have insights into your runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
+
 ### 2022.09.09
 
 **{{site.base_gateway}} 3.0.0.0 support**
