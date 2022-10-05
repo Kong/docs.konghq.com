@@ -25,6 +25,12 @@ directly.
 
 For any license questions, contact your sales representative.
 
+## Geographic region management
+
+When you create a {{site.konnect_saas}} account, you select a [geographic region](/konnect/regions) for your instance. Regions are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are region-specific. Only authentication is shared between {{site.konnect_short_name}} regions.
+
+Only Enterprise plans can select more than one region.
+
 ## Manage and view plan billing and usage
 
 You can view service, Dev Portal, and API call usage from the [Billing and Usage](https://cloud.konghq.com/settings/billing-settings)
@@ -36,6 +42,7 @@ This page provides an overview of your current plan, including:
 * An estimated cost for the month (not available for trial accounts)
 * The total count of all services, services published to Dev Portal, and API calls for
 the current month
+* The number of regions
 
 For Free and Plus plans, you can:
 * [Modify or cancel your plan](/konnect/account-management/change-plan)
