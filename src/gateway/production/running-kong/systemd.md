@@ -78,7 +78,7 @@ sudo systemctl status kong
 
 ## Customize the {{site.base_gateway}} unit file
 
-The official systemd service is located at at `/lib/systemd/system/kong-enterprise-edition.service` for
+The official systemd service is located at `/lib/systemd/system/kong-enterprise-edition.service` for
 {{site.base_gateway}}, or at `/lib/systemd/system/kong.service` for {{site.ce_product_name}}.
 
 For scenarios where customizations are needed (for example, configuring Kong

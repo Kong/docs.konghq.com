@@ -89,7 +89,7 @@ Writes a log line to the location specified by the current Nginx
 
 **Parameters**
 
-* **...** :  All params will be concatenated and stringified before being sent to the log.
+* **...** :  All parameters will be concatenated and stringified before being sent to the log.
 
 **Returns**
 

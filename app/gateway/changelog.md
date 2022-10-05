@@ -87,9 +87,9 @@ The new router can be used in traditional-compatible mode, or use the new expres
 
   Learn more about the router:
   * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
-  * [Router operator reference](/gateway/3.0.x/reference/router-operators)
+  * [Router Expressions Language reference](/gateway/3.0.x/reference/router-expressions-language)
+  * [#8938](https://github.com/Kong/kong/pull/8938)
 
-  [#8938](https://github.com/Kong/kong/pull/8938)
 * Implemented delayed response in stream mode.
   [#6878](https://github.com/Kong/kong/pull/6878)
 * Added `cache_key` on target entity for uniqueness detection.

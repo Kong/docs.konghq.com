@@ -411,6 +411,6 @@ http :8001/schemas/targets
 
 ## See also
 * [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
-* [Distributed configuration for Kong Gateway using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
+* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
 * [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
 * {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

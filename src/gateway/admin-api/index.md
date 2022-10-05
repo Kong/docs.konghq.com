@@ -1160,13 +1160,13 @@ HTTP 200 OK
   * `id`: The ordinal number of the current Nginx worker processes (starting from number 0).
   * `count`: The total number of the Nginx worker processes.
 * `stats.flamegraph`: String-encoded timer-related flamegraph data.
-  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph svgs.
+  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph SVGs.
 * `stats.sys`: List the number of different type of timers.
   * `running`: number of running timers.
   * `pending`: number of pending timers.
   * `waiting`: number of unexpired timers.
   * `total`: running + pending + waiting.
-* `timers.meta`: Program callstack of created timers.
+* `timers.meta`: Program call stack of created timers.
   * `name`: An automatically generated string that stores the location where the creation timer was created.
   * `callstack`: Lua call stack string showing where this timer was created.
 * `timers.stats.elapsed_time`: An object that stores the maximum, minimum, average and variance
@@ -1795,6 +1795,18 @@ following attributes must be set:
 * For `wss`, at least one of `hosts`, `headers`, `paths` or `snis`; <span class="badge enterprise"></span>
 
 A route can't have both `tls` and `tls_passthrough` protocols at same time.
+
+The 3.0.x release introduces a new router implementation: `atc-router`.
+The router adds:
+
+* Reduced router rebuild time when changing {{site.base_gateway}}’s configuration
+* Increased runtime performance when routing requests
+* Reduced P99 latency from 1.5s to 0.1s with 10,000 routes
+
+Learn more about the router: 
+
+* [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
+* [Router Expressions language reference](/gateway/3.0.x/reference/router-expressions-language/)
 
 #### Path handling algorithms
 
@@ -4083,7 +4095,7 @@ target](#delete-target) instead.
 
 Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/unhealthy</div>
 
 {:.indent}
 Attributes | Description

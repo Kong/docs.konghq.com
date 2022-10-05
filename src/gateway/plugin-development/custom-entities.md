@@ -6,13 +6,13 @@ chapter: 6
 
 While not all plugins need it, your plugin might need to store more than
 its configuration in the database. In that case, Kong provides you with
-an abstraction on top of its primary datastores which allows you to store
+an abstraction on top of its primary data stores which allows you to store
 custom entities.
 
 As explained in the [previous chapter]({{page.book.previous.url}}), Kong interacts
 with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
-to to provide an abstraction for your own entities.
+to provide an abstraction for your own entities.
 
 ## Modules
 
@@ -346,7 +346,7 @@ Here is a description of some top-level properties:
   <td><code>table</code></td>
   <td>
     Each field definition is a table with a single key, which is the field's name. The table value is
-    a subtable containing the field's <em>attributes</em>, some of which will be explained below.
+    a sub-table containing the field's <em>attributes</em>, some of which will be explained below.
   </td>
 </tr>
 </tbody>
@@ -662,16 +662,16 @@ end
 ## Cache custom entities
 
 Sometimes custom entities are required on every request/response, which in turn
-triggers a query on the datastore every time. This is very inefficient because
-querying the datastore adds latency and slows the request/response down, and
-the resulting increased load on the datastore could affect the datastore
+triggers a query on the data stores every time. This is very inefficient because
+querying the data stores adds latency and slows the request/response down, and
+the resulting increased load on the data stores could affect the data stores
 performance itself and, in turn, other Kong nodes.
 
 When a custom entity is required on every request/response it is good practice
 to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 
 The next chapter will focus on caching custom entities, and invalidating them
-when they change in the datastore: [Caching custom entities]({{page.book.next.url}}).
+when they change in the data stores: [Caching custom entities]({{page.book.next.url}}).
 
 [Admin API]: /gateway/{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /gateway/{{page.kong_version}}/plugin-development/pdk

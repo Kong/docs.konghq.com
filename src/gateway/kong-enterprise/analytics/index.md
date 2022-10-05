@@ -5,7 +5,7 @@ badge: enterprise
 
 Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performance, and to understand the microservice API transactions traversing Kong. Vitals uses visual API analytics to see exactly how your APIs and Gateway are performing. Quickly access key statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-* Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including dashboarding of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
+* Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including creating dashboards of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
@@ -54,7 +54,7 @@ Options to populate the Vitals view, or areas in the chart, include:
 
 | Option                   | Description                                                                                  |
 |--------------------------|----------------------------------------------------------------------------------------------|
-| Timeframe Selector       | A timeframe selector controls the timeframe of data visualized, which indirectly controls the granularity of the data. For example, the “Last 5 Minutes” selection displays 1-second resolution data, while longer time frames display 1-minute resolution data.
+| Time frame Selector       | A time frame selector controls the time frame of data visualized, which indirectly controls the granularity of the data. For example, the “Last 5 Minutes” selection displays 1-second resolution data, while longer time frames display 1-minute resolution data.
 | View                     | Select to populate the Vitals chart by Hostname, Hostname + ID, or ID.|
 | Total Requests           | The Total Requests chart displays a count of all proxy requests received. This includes requests that were rejected due to rate-limiting, failed authentication, and so on.|
 | Cluster and Node Data    | Metrics are displayed on Vitals charts at both node and cluster level. Controls are available to show cluster-wide metrics and/or node-specific metrics. Clicking on individual nodes will toggle the display of data from those nodes. Nodes are identified by a unique Kong node identifier, by hostname, or by a combination of the two.|

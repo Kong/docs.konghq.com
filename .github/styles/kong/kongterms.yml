@@ -1,0 +1,12 @@
+extends: substitution
+message: Use '%s' instead of '%s'.
+level: error
+ignorecase: false
+scope: text
+swap:
+
+  Developer Portal: Dev Portal
+  Kong Gateway: "{{site.base_gateway}}"
+  Konnect Cloud: "{{site.konnect_saas}}"
+  ServiceHub: Service Hub
+  dbless: DB-less

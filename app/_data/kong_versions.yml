@@ -252,6 +252,10 @@
   version: "1.14.0"
   edition: "deck"
 -
+  release: "1.15.x"
+  version: "1.15.0"
+  edition: "deck"
+-
   release: "1.0.x"
   version: "1.0.4"
   edition: "mesh"
@@ -338,4 +342,8 @@
 -
   release: "2.6.x"
   version: "2.6.0"
+  edition: "kubernetes-ingress-controller"
+-
+  release: "2.7.x"
+  version: "2.7.0"
   edition: "kubernetes-ingress-controller"

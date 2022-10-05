@@ -1,7 +1,6 @@
 ---
 name: OpenID Connect
 publisher: Kong Inc.
-version: 2.3.x
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
@@ -129,9 +128,7 @@ kong_version_compatibility:
   community_edition:
     compatible: null
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
+    compatible: true
 params:
   name: openid-connect
   service_id: true
@@ -418,6 +415,7 @@ params:
     - group: Consumer Mapping
       description: Parameters for mapping external identity provider managed identities to Kong managed ones.
     - name: admin_claim
+      minimum_version: "2.7.x"
       required: false
       default: null
       datatype: string
@@ -439,6 +437,7 @@ params:
         - `username`: try to find the matching Consumer by `username`
         - `custom_id`: try to find the matching Consumer by `custom_id`
     - name: by_username_ignore_case
+      minimum_version: "2.6.x"
       required: false
       default: false
       datatype: boolean
@@ -458,6 +457,7 @@ params:
       description: 'The claim used to derive a virtual credential (for instance, for the rate-limiting plugin), in case the Consumer mapping is not used.'
     - group: Issuer Verification
     - name: issuers_allowed
+      minimum_version: "2.2.x"
       required: false
       default: (discovered issuer)
       datatype: array of string elements
@@ -1081,6 +1081,7 @@ params:
       datatype: integer
       description: The Redis port.
     - name: session_redis_username
+      minimum_version: "2.8.x"
       required: false
       default: null
       datatype: string
@@ -1089,6 +1090,7 @@ params:
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
     - name: session_redis_password
+      minimum_version: "2.8.x"
       required: false
       default: (from kong)
       encrypted: true
@@ -1098,6 +1100,7 @@ params:
         Password to use for Redis connection when the `redis` session storage is defined.
         If undefined, no AUTH commands are sent to Redis.
     - name: session_redis_auth
+      maximum_version: "2.8.x"
       required: false
       default: (from kong)
       encrypted: true
@@ -1143,13 +1146,25 @@ params:
       default: null
       datatype: string
       description: The SNI used for connecting the Redis server.
-    - name: session_redis_cluster_nodes
+
+    - name: session_redis_cluster_nodes # old parameter version
+      maximum_version: "2.5.x"
+      required: false
+      default: null
+      datatype: array of host records
+      description: |
+        The Redis cluster node host. Takes an array of host records, with
+        `ip` and `port` values.
+
+    - name: session_redis_cluster_nodes # current parameter version
+      minimum_version: "2.6.x"
       required: false
       default: null
       datatype: array of host records
       description: |
         The Redis cluster node host. Takes an array of host records, with
         either `ip` or `host`, and `port` values.
+
     - name: session_redis_cluster_maxredirections
       required: false
       default: null
@@ -1178,6 +1193,7 @@ params:
       datatype: url
       description: The revocation endpoint.
     - name: userinfo_endpoint
+      minimum_version: "2.2.x"
       required: false
       default: (discovered uri)
       datatype: url
@@ -1340,7 +1356,7 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        Enable the sending of the token endpoint response headers only with certain granst:
+        Enable the sending of the token endpoint response headers only with certain grants:
         - `password`: with OAuth password grant
         - `client_credentials`: with OAuth client credentials grant
         - `authorization_code`: with authorization code flow
@@ -1539,6 +1555,7 @@ params:
       datatype: boolean
       description: Cache the user info requests.
     - name: resolve_distributed_claims
+      minimum_version: "2.8.x"
       required: false
       default: false
       datatype: boolean
@@ -3376,7 +3393,7 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `session_redis_auth` field has been removed from the plugin.
 
-**{{site.base_gateway}} 2.8.x (plugin version 2.2.1)**
+**{{site.base_gateway}} 2.8.x**
 
 * Added the `session_redis_username` and `session_redis_password` configuration
 parameters.
@@ -3393,7 +3410,7 @@ referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
 in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
 
-**{{site.base_gateway}} 2.7.x (plugin version 2.2.0)**
+**{{site.base_gateway}} 2.7.x**
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.client_id`, `config.client_secret`, `config.session_auth`, and
@@ -3407,3 +3424,14 @@ in a vault. References must follow a [specific format](/gateway/latest/kong-ente
   > There's a bug in {{site.base_gateway}} that prevents keyring encryption
   from working on deeply nested fields, so the `encrypted=true` setting does not
   currently have any effect on the nested fields in this plugin.
+
+* The plugin now allows Redis cluster nodes to be specified by hostname through
+the `session_redis_cluster_nodes` field, which is helpful if the cluster IPs are
+not static.
+
+**{{site.base_gateway}} 2.6.x**
+
+* The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
+* Added support for JWE introspection.
+* Added a new parameter, `by_username_ignore_case`, which allows `consumer_by` username
+values to be matched case-insensitive with identity provider (IdP) claims.

@@ -48,7 +48,7 @@ default. This means that until a role is added, the file is unauthenticated
 even if Dev Portal Authentication is enabled. Content Permissions are ignored
 when Dev Portal Authentication is disabled.
 
-## readable_by attribute
+## `readable_by` attribute
 
 When a role is applied to a content file using the Content Tab, a special
 attribute `readable_by` is added to the headmatter of the file.

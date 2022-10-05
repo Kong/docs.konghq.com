@@ -3,12 +3,12 @@ title: Theme Editing in Kong Manager
 badge: enterprise
 ---
 
-The Kong Developer Portal ships with a default theme, including preset images, background colors, fonts, and button styles. These settings can be edited quickly and easily from within Kong Manager, without the need to edit code.
+The Kong Dev Portal ships with a default theme, including preset images, background colors, fonts, and button styles. These settings can be edited quickly and easily from within Kong Manager, without the need to edit code.
 
 ## Prerequisites
 
 * Access to Kong Manager
-* The Developer Portal is enabled and running
+* The Dev Portal is enabled and running
 
 ## The Appearance Tab
 
@@ -16,7 +16,7 @@ The Kong Developer Portal ships with a default theme, including preset images, b
 > **Note**: Styling does not automatically carry over from the default Dev Portal to different Dev Portals in other workspaces. See [Migrating Templates Between Workspaces](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/customize/migrating-templates) to learn how to manually copy templates to workspaces where you want to duplicate the styling.
 
 From the **Workspace** dashboard in **Kong Manager**, click on the **Appearance** tab under **Dev Portal** on the left side bar.
-This will open the Developer Portals theme editor. From this page, the header logo, background colors, font colors, and button styles can be edited using the color picker interface.
+This will open the Dev Portals theme editor. From this page, the header logo, background colors, font colors, and button styles can be edited using the color picker interface.
 
 The predefined variables refer to the following elements:
 

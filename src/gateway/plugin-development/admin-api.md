@@ -61,7 +61,7 @@ Where:
   via `kong.db.<entity>.schema`. The schema is used to parse certain fields according to their
   types; for example if a field is marked as an integer, it will be parsed as such when it is
   passed to a function (by default form fields are all strings).
-- The `methods` subtable contains functions, indexed by a string.
+- The `methods` sub-table contains functions, indexed by a string.
   - The `before` key is optional and can hold a function. If present, the function will be executed
     on every request that hits `path`, before any other function is invoked.
   - One or more functions can be indexed with HTTP method names, like `GET` or `PUT`. These functions
