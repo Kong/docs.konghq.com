@@ -41,7 +41,7 @@ Edit team roles from the {% konnect_icon organizations %} [**Organization**](htt
 
 1. Open one of the entity tabs: **Services** or **Runtime Groups**.
 
-1. Enterprise only<span class="badge beta"></span>: Select the region you want to add from the **View region** drop-down menu. Members assigned to this role can only access {{site.konnect_short_name}} objects in the selected region. 
+1. Enterprise only: Select the region you want to add from the **View region** drop-down menu. Members assigned to this role can only access {{site.konnect_short_name}} objects in the selected region. 
 
 1. Click **Add role(s)**.
 

@@ -9,7 +9,7 @@ When you enable application registration, {{site.konnect_saas}} enables two plug
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
 {{site.konnect_saas}}.
 
-Enabling application registration is specific to the [geographic region](/konnect/regions)<span class="badge beta"></span>. 
+Enabling application registration is specific to the [geographic region](/konnect/regions). 
 You must enable application registration in each region that you want to allow developers to register with.
 Each region has their own API keys and specifications for application registration in their respective region.
 
