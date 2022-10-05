@@ -17,7 +17,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Analytics custom reports** 
 : Analytics custom reports are now general availability in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
 
-
 : Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
 
 **Runtime groups dashboard**
