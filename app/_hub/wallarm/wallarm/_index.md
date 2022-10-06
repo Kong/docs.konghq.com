@@ -16,7 +16,7 @@ type: integration
 desc: Wallarm is AI-Powered Security Platform for protecting microservices and APIs
 
 description: |
-  Wallarm Advanced API Security and WAAP products provide robust protection for APIs, microservices, and serverless workloads running in cloud-native environments. Hundreds of Security and DevOps teams choose Wallarm to get unique visibility into malicious traffic, robust protection across their whole API portfolio, and automated incident response for product security programs. Wallarm supports modern tech stacks, offering dozens of deployment options in public clouds, multi-cloud, and Kubernetes-based environments, in addition to providing a full cloud solution.
+  Wallarm Advanced API Security and WAAP products provide robust protection for APIs, microservices, and serverless workloads running in cloud-native environments. Hundreds of Security and DevOps teams choose Wallarm to get unique visibility into malicious traffic, robust protection across their whole API portfolio, and automated incident response for product security programs. Wallarm supports modern tech stacks, offering dozens of deployment options in public clouds, multi-cloud, and Kubernetes-based environments, in addition to providing a full cloud solution. Wallarm provides the following benefits:
 
   * Protect your web applications and APIs against OWASP Security Top-10 risks and other advanced API threats like injections, Broken Object Level Authorization (BOLA), and authentication failures.
   * Get runtime visibility across your entire API portfolio, minimize API drift, and prioritize security efforts (like pen tests or bug bounties) with alerts on new, changed, or deprecated endpoints.
@@ -76,9 +76,7 @@ More details on [Wallarm API Security Platform](https://www.wallarm.com/product/
 
 Free Wallarm trial license is available [here](https://my.wallarm.com/signup?utm_source=konghub){:target="_blank"}{:rel="noopener noreferrer"}.
 
-"Wallarm implementation was one of many steps to migrate our application iMedNet to AWS. Ensuring the ability to monitor and secure our web-based APIs and to meet HIPAA guidelines for PHI compliance were important in the decision to go with Wallarm”, said Gary Johnson, Infrastructure Architect at MedNetStudy.
 
-"With Wallarm, we've been able to scale API protection to the scale we need and manage with our infrastructure as a code approach", said Gustavo Ogawa, Head of Security at Rappi.
 
 ### Installation
 
