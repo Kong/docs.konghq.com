@@ -39,7 +39,7 @@ Runtime instances initiate the connection to the {{site.konnect_short_name}} con
 They require access through firewalls to communicate with the control plane.
 
 To let a runtime instances request and receive configuration, and send telemetry data, 
-add the following hostnames to the firewall allowlist (depending on the [geographic regions](/konnect/regions) you use):
+add the following hostnames to the firewall allowlist (depending on the [geographic regions](/konnect/regions) you use).
 
 ### US region
 
