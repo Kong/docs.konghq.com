@@ -2,7 +2,7 @@
 title: Install Kong Gateway on Docker
 ---
 
-This guide provides steps to configure {{site.base_gateway}} on Docker with a database or without.
+This guide provides steps to configure {{site.base_gateway}} on Docker with or without a database.
 The database used in this guide is PostgreSQL.
 
 If you prefer to use the open-source {{site.base_gateway}} image with Docker
