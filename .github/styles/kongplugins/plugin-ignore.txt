@@ -543,7 +543,7 @@ konnect_examples
 konnect_icon
 kty
 kv_path
-lantency_metrics
+latency_metrics
 latency_gateway
 latency_proxy
 latency_request
