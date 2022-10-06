@@ -46,7 +46,7 @@ params:
         A boolean value that determines if status code metrics should be
         collected.
         If enabled, `http_requests_total`, `stream_sessions_total` metrics will be exported.
-    - name: lantency_metrics
+    - name: latency_metrics
       required: false
       datatype: boolean
       default: '`false`'
@@ -109,7 +109,7 @@ When `status_code_metrics` is set to true:
 - **Status codes**: HTTP status codes returned by upstream services.
   These are available per service, across all services, and per route per consumer.
 
-When `lantency_metrics` is set to true:
+When `latency_metrics` is set to true:
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
    - **Request**: Total time taken by Kong and upstream services to serve
      requests.
