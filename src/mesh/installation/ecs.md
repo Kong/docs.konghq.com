@@ -137,10 +137,10 @@ definition](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/
 When a task starts, the following happens:
 
 1. The task requests the `token` JSON key from an existing AWS secret.
-1. Initially, the secret does not contain this key and ECS continues
+2. Initially, the secret does not contain this key and ECS continues
    trying to create the task.
-1. Shortly after the task is created, while it's in the retry loop, the ECS
+3. Shortly after the task is created, while it's in the retry loop, the ECS
    controller sees the task and checks whether `token` exists in the corresponding secret.
-1. The controller sees an empty secret and generates a new data plane token via the
+4. The controller sees an empty secret and generates a new data plane token via the
    mesh API, saving the result as `token` in the secret.
-1. Finally, ECS is able to fetch the `token` value and starts the task successfully.
+5. Finally, ECS is able to fetch the `token` value and starts the task successfully.

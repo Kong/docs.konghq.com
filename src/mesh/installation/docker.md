@@ -103,13 +103,12 @@ Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
 $ echo "type: Mesh
-  name: default
-  mtls:
-    enabledBackend: ca-1
-    backends:
-    - name: ca-1
-      type: builtin" | docker run -i --net="host" \
-    kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
+name: default
+mtls:
+  enabledBackend: ca-1
+  backends:
+  - name: ca-1
+    type: builtin" | docker run -i --net="host" kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
 ```
 
 This runs `kumactl` from the Docker
