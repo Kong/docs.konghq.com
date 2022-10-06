@@ -2,8 +2,8 @@
 title: Install Kong Gateway on Docker
 ---
 
-{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
-datastore. This guide provides steps to configure PostgreSQL.
+This guide provides steps to configure {{site.base_gateway}} on Docker with or without a database.
+The database used in this guide is PostgreSQL.
 
 If you prefer to use the open-source {{site.base_gateway}} image with Docker
 Compose, Kong also provides a
@@ -41,7 +41,7 @@ with a database.
 Set up a {{site.base_gateway}} container with a PostgreSQL database to store
 Kong configuration.
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 ### Prepare the database
 
