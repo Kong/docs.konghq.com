@@ -47,18 +47,11 @@ Once a KongIngress resource is created, you can use the `konghq.com/override`
 annotation to associate the KongIngress resource with an Ingress or a Service
 resource:
 
-- When the annotation is added to the Ingress resource, the routing
-  configurations are updated, meaning all routes associated with the annotated
-  Ingress are updated to use the values defined in the KongIngress's `route`
-  section.
-- When the annotation is added to a Service resource in Kubernetes, the
-  corresponding service and upstream in Kong are updated to use the `proxy` and
-  `upstream` blocks as defined in the associated KongIngress resource.
-
 - **Annotated Ingress resource:** All routes associated with the annotated
-  Ingress are updated to use the values defined in the KongIngress's route section.
+  Ingress are updated to use the values defined in the KongIngress's `route` section.
 - **Annotated Service resource:** The
-  corresponding service and upstream in Kong are updated to use the proxy and upstream blocks as defined in the associated KongIngress resource.
+  corresponding service and upstream in Kong are updated to use the `proxy` and `upstream`
+  blocks as defined in the associated KongIngress resource.
 
 Don't attach a KongIngress that sets values in the `proxy` and
 `upstream` sections to an Ingress, as it won't have any effect. These
