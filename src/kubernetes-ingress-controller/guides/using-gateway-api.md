@@ -109,12 +109,11 @@ spec:
 {% if_version gte: 2.6.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
-apiVersion: gateway.networking.k8s.io/v1beta1
 kind: GatewayClass
 metadata:
   name: kong
   annotations:
-    konghq.com/gateway-unmanaged: true
+    konghq.com/gatewayclass-unmanaged: 'true'
 spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
@@ -198,7 +197,7 @@ that {{site.base_gateway}} resource with listener and status information.
 
 {% if_version gte: 2.6.x %}
 To configure KIC to reconcile the `Gateway` resource, you must set the 
-`konghq.com/gateway-unmanaged` annotation as the example in `GatewayClass` resource used in 
+`konghq.com/gatewayclass-unmanaged` annotation as the example in `GatewayClass` resource used in 
 `spec.gatewayClassName` in `Gateway` resource. Also, the 
 `spec.controllerName` of `GatewayClass` needs to be same as the value of the
 `--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
