@@ -32,6 +32,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : {{site.konnect_saas}} now supports running multiple runtime instances versions at the same time with the same control plane configuration. This makes it easier for you to test and validate new runtime instance versions, such as patch, minor, and major upgrades.
 This release includes a new user interface that provides information about which runtime instances are incompatible with the current gateway configuration and provides actionable insights onto the corrective steps to fix the issue.
 
+**Quick start for new {{site.konnect_saas}} org admins**
+: {{site.konnect_saas}} now supports the ability to launch a quick start that will automatically create a runtime group, service package, and gateway service, apply the CORS plug-in, and show analytics for that service with the click of a button. Users will become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation, throughout the onboarding process. 
 
 ### 2022.09.09
 
