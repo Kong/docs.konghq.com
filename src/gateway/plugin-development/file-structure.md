@@ -65,10 +65,10 @@ simple-plugin
 └── schema.lua
 ```
 
-- **[handler.lua]**: the core of your plugin. It is an interface to implement, in
+- [handler.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/handler.lua): the core of your plugin. It is an interface to implement, in
   which each function will be run at the desired moment in the lifecycle of a
   request / connection.
-- **[schema.lua]**: your plugin probably has to retain some configuration entered
+- [schema.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/schema.lua): your plugin probably has to retain some configuration entered
   by the user. This module holds the *schema* of that configuration and defines
   rules on it, so that the user can only enter valid configuration values.
 
@@ -97,19 +97,12 @@ master each one of them.
 
 | Module name            | Required   | Description
 |:-----------------------|------------|------------
-| **[admin-api.lua]**          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
-| **[daos.lua]**         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the data store.
-| **[handler.lua]**      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request / connection.
-| **[migrations/*.lua]** | No         | The database migrations (e.g. creation of tables). Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
-| **[schema.lua]**       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
+| [admin-api.lua](https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
+| [daos.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/daos.lua)        | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the data store.
+| [handler.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/handler.lua)     | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request / connection.
+| [migrations/*.lua](https://github.com/Kong/kong/tree/master/kong/plugins/basic-auth/migrations) | No         | The database migrations (e.g. creation of tables). Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/daos.lua).
+| [schema.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/schema.lua)      | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
 
-The [Key-Auth plugin] is an example of plugin with this file structure.
-See the [Key-Auth source code] for more details.
+The [Key-Auth plugin](/hub/kong-inc/key-auth/) is an example of plugin with this file structure.
+See the [Key-Auth source code](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth) for more details.
 
-[admin-api.lua]:(https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)
-[daos.lua]:(https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/daos.lua)
-[handler.lua]:(https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/handler.lua)
-[schema.lua]:(https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/schema.lua)
-[migrations/*.lua]:(https://github.com/Kong/kong/tree/master/kong/plugins/basic-auth/migrations)
-[Key-Auth plugin]:(/hub/kong-inc/key-auth/)
-[Key-Auth source code]:(https://github.com/Kong/kong/tree/master/kong/plugins/key-auth)
