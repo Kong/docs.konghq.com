@@ -181,7 +181,6 @@ consumer_body: |
     ---:| ---
     `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request.
     `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
-    `type`<br>*required* |  The type of consumer. It can be `0` (proxy), `1` (developer), `2` (admin) or `3` (application)  Default: `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering.
 
 consumer_json: |
