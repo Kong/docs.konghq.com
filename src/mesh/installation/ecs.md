@@ -35,7 +35,7 @@ join the cluster, the controller requests a new data plane token scoped to that 
 
 With Kong Mesh on ECS, each service enumerates
 other services it contacts in the mesh and
-[exposes them in `Dataplane` specification](https://kuma.io/docs/1.8.x/generated/resources/proxy_dataplane/).
+[exposes them in `Dataplane` specification](https://kuma.io/docs/latest/generated/resources/proxy_dataplane/).
 
 ## Deployment
 
