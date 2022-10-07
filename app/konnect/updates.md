@@ -33,7 +33,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 This release includes a new user interface that provides information about which runtime instances are incompatible with the current gateway configuration and provides actionable insights onto the corrective steps to fix the issue.
 
 **Quick start for Konnect new org admins**
-: {{site.konnect_saas}} now supports org admins launching a Quick Start that will automatically create a runtime group, service package, gateway service, apply the CORS plug-in to send traffic, and show analytics for that service with a click of a button. Throughout the onboarding process users will become familiar with the different aspects of Konnect via short-form written text and call-outs to key docs
+: {{site.konnect_saas}} now supports the ability to launch a quick start that will automatically create a runtime group, service package, and gateway service, apply the CORS plug-in, and show analytics for that service with the click of a button. Users will become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation, throughout the onboarding process. 
 
 ### 2022.09.09
 
