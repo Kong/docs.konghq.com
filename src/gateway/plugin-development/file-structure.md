@@ -97,19 +97,19 @@ master each one of them.
 
 | Module name            | Required   | Description
 |:-----------------------|------------|------------
-| **[api.lua]**          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
+| **[admin-api.lua]**          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
 | **[daos.lua]**         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the data store.
 | **[handler.lua]**      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request / connection.
 | **[migrations/*.lua]** | No         | The database migrations (e.g. creation of tables). Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
 | **[schema.lua]**       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
 
 The [Key-Auth plugin] is an example of plugin with this file structure.
-See [its source code] for more details.
+See the [Key-Auth source code] for more details.
 
-[api.lua]: {{page.book.chapters.admin-api}}
-[daos.lua]: {{page.book.chapters.custom-entities}}
-[handler.lua]: {{page.book.chapters.custom-logic}}
-[schema.lua]: {{page.book.chapters.plugin-configuration}}
-[migrations/*.lua]: {{page.book.chapters.custom-entities}}
-[Key-Auth plugin]: /hub/kong-inc/key-auth/
-[its source code]: https://github.com/Kong/kong/tree/master/kong/plugins/key-auth
+[admin-api.lua]:(https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)
+[daos.lua]:(https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/daos.lua)
+[handler.lua]:(https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/handler.lua)
+[schema.lua]:(https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/schema.lua)
+[migrations/*.lua]:(https://github.com/Kong/kong/tree/master/kong/plugins/basic-auth/migrations)
+[Key-Auth plugin]:(/hub/kong-inc/key-auth/)
+[Key-Auth source code]:(https://github.com/Kong/kong/tree/master/kong/plugins/key-auth)
