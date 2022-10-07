@@ -7,12 +7,12 @@ content_type: reference
 # no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
 # alpha: true # Labels the page as alpha; adds a banner to the top of the page.
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
-# disable_image_expand: true # Stops images from expanding in a modal on click. Sets it for the entire page.
-# class: no-copy-code # Disables the copy code button for all code blocks on the page.
 ---
 
-<!-- Add an introduction paragraph here. Good introductions explain who this reference guide is for and what this guide will help the user accomplish. -->
-<!-- Reference material should not contain information about basic concepts. You can add links to explanation articles if needed. -->
+Add an introduction paragraph here. Good introductions explain who this reference guide is for and what this guide will help the user accomplish.
+
+Reference material should not contain information about basic concepts. You can add links to explanation articles if needed.
+
 <!-- See https://documentation.divio.com/reference/ for more info about how to write a reference article -->
 <!-- See the following examples of reference documentation:
 * https://docs.konghq.com/gateway/latest/plugin-development/file-structure/
