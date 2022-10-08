@@ -27,6 +27,7 @@ var sources = {
   styles: paths.assets + "stylesheets/**/*",
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
+    "node_modules/@segment/analytics-next/dist/umd/standalone.js",
     paths.assets + "javascripts/app.js",
     paths.assets + "javascripts/compat-dropdown.js",
     paths.assets + "javascripts/subscribe.js",

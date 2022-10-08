@@ -64,5 +64,8 @@
     "testPathIgnorePatterns": [
       "/__utils__/"
     ]
+  },
+  "dependencies": {
+    "@segment/analytics-next": "^1.43.0"
   }
 }
