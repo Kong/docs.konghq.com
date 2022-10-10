@@ -6,7 +6,7 @@ Once downloaded, you will find the contents of {{site.mesh_product_name}} in the
 Navigate to the `bin` folder:
 
 ```sh
-cd kong-mesh-{{include.kong_latest.version}}/bin
+cd kong-mesh-{{include.kong_version}}/bin
 ```
 
 Then, run the control plane with:
