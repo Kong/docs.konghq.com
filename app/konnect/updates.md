@@ -35,6 +35,9 @@ This release includes a new user interface that provides information about which
 **Quick start for new {{site.konnect_saas}} org admins**
 : {{site.konnect_saas}} now supports the ability to launch a quick start that will automatically create a runtime group, service package, and gateway service, apply the CORS plug-in, and show analytics for that service with the click of a button. Users will become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation, throughout the onboarding process. 
 
+**Organization Admin (Read Only) predefined team**
+: A new predefined team was introduced in {{site.konnect_saas}}. This allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
+
 ### 2022.09.09
 
 **{{site.base_gateway}} 3.0.0.0 support**
