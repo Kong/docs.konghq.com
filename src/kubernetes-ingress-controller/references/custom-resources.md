@@ -213,6 +213,15 @@ meaning it will be executed for every request that is proxied via Kong.
 
 ## KongIngress
 
+{:.note}
+> **Note:** Many fields available on KongIngress are also available as
+> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
+> You can add these annotations directly to Service and Ingress resources
+> without creating a separate KongIngress resource. When an annotation is
+> available, it is the preferred means of configuring that setting, and the
+> annotation value will take precedence over a KongIngress value if both set
+> the same setting.
+
 Ingress resource spec in Kubernetes can define routing policies
 based on HTTP Host header and paths.
 While this is sufficient in most cases,
@@ -257,7 +266,7 @@ kind: KongIngress
 metadata:
   name: configuration-demo
 upstream:
-  slots: 10
+  slots: 10000
   hash_on: none
   hash_fallback: none
   healthchecks:

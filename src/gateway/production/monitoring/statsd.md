@@ -27,7 +27,7 @@ observe the collected monitoring data.
         connectivity and installed {{site.base_gateway}} services and routes.
 
    ```sh
-   curl -Ls get.konghq.com/quickstart | bash -s -- -m
+   curl -Ls https://get.konghq.com/quickstart | bash -s -- -m
    ```
    The `-m` flag instructs the script to install a mock service that is used in this guide to generate sample metrics.
 
@@ -95,7 +95,7 @@ commands to stop and remove the software ran in this guide:
 
 ```sh
 docker stop kong-quickstart-statsd
-curl -Ls get.konghq.com/quickstart | bash -s -- -d
+curl -Ls https://get.konghq.com/quickstart | bash -s -- -d
 ```
 
 ### More information

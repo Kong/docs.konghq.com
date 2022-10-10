@@ -5,8 +5,8 @@ title: Kong Mesh with Helm
 To install and run {{site.mesh_product_name}} on Kubernetes using Helm:
 
 1. [Add the {{site.mesh_product_name}} Helm Repository](#1-add-the-kong-mesh-helm-repository)
-1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-1. [Verify the Installation](#3-verify-the-installation)
+2. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+3. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here and continue your {{site.mesh_product_name}} journey.
 
@@ -58,11 +58,11 @@ suggest `kong-mesh-system`.
    for those fields, i.e. disabled.
     
     ```sh
-    helm repo update
-    helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
-      --set kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE" \
-      --set kuma.controlPlane.secrets[0].Secret="kong-mesh-license" \
-      --set kuma.controlPlane.secrets[0].Key="license.json"
+    $ helm repo update
+    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+      --set 'kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE"' \
+      --set 'kuma.controlPlane.secrets[0].Secret="kong-mesh-license"' \
+      --set 'kuma.controlPlane.secrets[0].Key="license.json"'
     ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
@@ -118,15 +118,15 @@ Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
 echo "apiVersion: kuma.io/v1alpha1
-  kind: Mesh
-  metadata:
-    name: default
-  spec:
-    mtls:
-      enabledBackend: ca-1
-      backends:
-      - name: ca-1
-        type: builtin" | kubectl apply -f -
+kind: Mesh
+metadata:
+  name: default
+spec:
+  mtls:
+    enabledBackend: ca-1
+    backends:
+    - name: ca-1
+      type: builtin" | kubectl apply -f -
 ```
 
 {% endnavtab %}

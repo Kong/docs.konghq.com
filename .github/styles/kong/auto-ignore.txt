@@ -41,3 +41,17 @@ start_cmd
 stream_listen
 stringified
 trusted_ips
+Gateway
+GatewayClass
+HTTPRoute
+TCPRoute
+TLSRoute
+UDPRoute
+GRPCRoute
+ReferenceGrant
+KongIngress
+TCPIngress
+UDPIngress
+KongPlugin
+KongClusterPlugin
+KongConsumer
