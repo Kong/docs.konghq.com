@@ -49,9 +49,8 @@ mirror the cluster-level roles, and a fourth unique to each workspace:
 These roles can be viewed in the **Teams** > **Roles** tab in Kong Manager.
 
 {:.important}
-> Important: Any role assigned in the `default` workspace will have permissions applied to all subsequently created
+> **Important:** Any role assigned in the `default` workspace has permissions to all subsequently created
 > workspaces unless roles in specific workspaces are explicitly assigned. When roles across multiple workspaces are
-> assigned, roles in workspaces other than `default` have higher priority. For example, a super admin with role
-> `super-admin` in `default` and role `workspace-read-only` in `ws` assigned has RBAC permissions across all workspaces
-> and full permissions to endpoints in workspaces other than `ws`, but read-only permissions to endpoints in workspace
-> `ws`.
+> assigned, roles in workspaces other than `default` take precedent. For example, a super admin assigned to the
+> `super-admin` role in the `default` workspace as well as the `workspace-read-only` role in the `ws` workspace has RBAC permissions across all workspaces
+> and full permissions to endpoints in workspaces except the `ws` workspace. The admin only has read-only permissions to endpoints in the `ws` workspace.
