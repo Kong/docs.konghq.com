@@ -36,7 +36,7 @@ This release includes a new user interface that provides information about which
 : {{site.konnect_saas}} now supports the ability to launch a quick start that will automatically create a runtime group, service package, and gateway service, apply the CORS plug-in, and show analytics for that service with the click of a button. Users will become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation, throughout the onboarding process. 
 
 **Organization Admin (Read Only) predefined team**
-: A new predefined team was introduced in {{site.konnect_saas}} which will allow users to be granted read-only access to all the features and functions available in {{site.konnect_saas}}. As always, permissions are additive, therefore a user in the Organization Admin (Read Only) team may also have write access to various entities if they are assigned additional permissions.
+: A new predefined team was introduced in {{site.konnect_saas}}. This allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
 
 ### 2022.09.09
 
