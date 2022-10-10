@@ -86,8 +86,11 @@ guide, assume the route is in the default workspace.
 
     1. In the Assignments section, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
-    Okta admins. Do not select **Allow everyone in your organization to access** otherwise the **access token** could not be verified against Okta.
-    Either select **Limit access to selected groups** and **Skip group assignment for now** and assign the users and groups in later step.
+    Okta admins. 
+    
+    Do not select **Allow everyone in your organization to access** otherwise the **access token** won't be verified against Okta.
+    
+    Either select **Limit access to selected groups** or **Skip group assignment for now** and assign the users and groups in a later step.
 
 1. Save your settings to generate connection details.
 
@@ -100,10 +103,10 @@ guide, assume the route is in the default workspace.
     On the page that appears, note the **Issuer** address. You need this address
     to configure the Kong OIDC Plugin.
 
-1. Now you need to add a policy in the tab **Access Policies**.
-    1. Click on **Add New Access Policy** and give it a **Name** and **Description**    
-    1. Now add a **rule**
-    1. Give it a **Rule Name** and keep all defaults or adjust to your requirements.
+1. Now add a policy from the **Access Policies** tab.
+    1. Click **Add New Access Policy** and add a **Name** and **Description**    
+    1. Add a **rule**
+    1. Assign a **Rule Name** and use the default settings, or adjust to your requirements.
     1. Click **Create Rule**
 
 ### Configure the OIDC plugin in {{site.base_gateway}}
