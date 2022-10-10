@@ -5,8 +5,8 @@ title: Kong Mesh with OpenShift
 To install and run {{site.mesh_product_name}} on OpenShift:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-1. [Verify the Installation](#3-verify-the-installation)
+2. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+3. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
@@ -58,16 +58,12 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 
 Navigate to the `bin` folder:
 
-```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
-```
-
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
 available in every working directory. Alternatively, you can also create a link
 in `/usr/local/bin/` by executing:
 
 ```sh
-$ ln -s ./kumactl /usr/local/bin/kumactl
+$ ln -s kong-mesh-{{page.kong_latest.version}}/bin/kumactl /usr/local/bin/kumactl
 ```
 
 Then, run the control plane on OpenShift with:
@@ -166,15 +162,15 @@ Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
 $ echo "apiVersion: kuma.io/v1alpha1
-  kind: Mesh
-  metadata:
-    name: default
-  spec:
-    mtls:
-      enabledBackend: ca-1
-      backends:
-      - name: ca-1
-        type: builtin" | oc apply -f -
+kind: Mesh
+metadata:
+  name: default
+spec:
+  mtls:
+    enabledBackend: ca-1
+    backends:
+    - name: ca-1
+      type: builtin" | oc apply -f -
 ```
 
 {% endnavtab %}
