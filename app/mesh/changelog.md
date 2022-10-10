@@ -10,7 +10,7 @@ Built on top of [Kuma 1.8.1](https://github.com/kumahq/kuma/releases/tag/1.8.1)
 
 ### Changes
 
-- Gateway: add support for "retryOn"
+- Gateway: Adds support for `retryOn` in retry policies.
 - Added support for evicted Pods
 - Support wildcard tag value match in RBAC
 - Deep copy tags when generate outbounds
