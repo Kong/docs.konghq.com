@@ -3,6 +3,38 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 1.9.1
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.8.1](https://github.com/kumahq/kuma/releases/tag/1.8.1)
+
+### Changes
+
+- Gateway: add support for retryOn
+- Added support for evicted Pods
+- Support wildcard tag value match in RBAC
+- Deep copy tags when generate outbounds
+
+## 1.8.3
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.7.2](https://github.com/kumahq/kuma/releases/tag/1.7.2)
+
+### Changes
+
+- Added support for evicted Pods
+- Deep copy tags when generate outbounds
+
+## 1.7.4
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.6.2](https://github.com/kumahq/kuma/releases/tag/1.6.2)
+
+### Changes
+
+- Added support for evicted Pods
+- Deep copy tags when generate outbounds
+
 ## 1.9.0
 > Release on **2022/08/23**
 
