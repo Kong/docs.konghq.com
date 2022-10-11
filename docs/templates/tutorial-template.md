@@ -38,10 +38,10 @@ Keep the conceptual information to a minimum; the user should be learning by doi
 1. First step.
 1. Second step.
 1. Optional: This is an optional step. 
-1. Fourth step (with substeps). To _____, do the following:
-    1. First substep.
-    1. Second substep.
-1. Fifth step (with substeps where you must choose between options). To ____, do one of the following:
+1. Fourth step (with sub-steps). To _____, do the following:
+    1. First sub-step.
+    1. Second sub-step.
+1. Fifth step (with sub-steps where you must choose between options). To ____, do one of the following:
     * First option.
     * Second option.
 
