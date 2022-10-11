@@ -38,14 +38,14 @@ This release includes a new user interface that provides information about which
 **Organization Admin (Read Only) predefined team**
 : A new predefined team was introduced in {{site.konnect_saas}}. This allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
 
-**Multi-runtime group App registration support <span class="badge alpha"></span>**
-: You can enable the app registration to services in all the runtime groups. This feature only supports gateway 3.0 and above versions in the non default runtime groups. As part of this release, the API key credentials will no longer be stored in the dev portal. Portal developer will need to store their credentials immediately after the creation of the credentials. 
+**Multi-runtime group app registration support <span class="badge alpha"></span>**
+: You can enable app registration to services in all the runtime groups. This feature only supports versions in the non-default runtime group that use Kong Gateway 3.0. As part of this release, API key credentials will no longer be stored in the dev portal. Portal developers will need to store their credentials immediately after creation.
 
-**Dynamic Client Registration**
-: Kong Konnect developer portal supports the integration with Okta for the end to end client management. This feature is released as private beta. This feature allows the dev portal developers to automaticaly create applications in Okta and receive credentials to access the services proxied through Kong gateway. 
+**Dynamic client registration**
+:{{site.konnect_saas}} dev portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows dev portal developers to automatically create applications in Okta and receive credentials to access services proxied through Kong Gateway. 
 
-**Service Version Lifecycle**
-: You can identify the life stage of your APIs and notify the dev portal developer if a particular API will be deprecated soon.  
+**Service version lifecycle**
+: You can identify the life stage of your APIs and notify dev portal developers if a particular API will be deprecated soon.  
 
 
 ### 2022.09.09
