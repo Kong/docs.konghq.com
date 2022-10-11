@@ -47,7 +47,7 @@ Kubernetes:
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -66,7 +66,7 @@ control plane process in the next step &mdash; which is served by the
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
+$ cd kong-mesh-{{page.kong_version}}/bin
 ```
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always

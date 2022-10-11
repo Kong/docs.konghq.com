@@ -42,7 +42,7 @@ the distribution manually.
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.kong_version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
