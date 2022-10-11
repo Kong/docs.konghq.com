@@ -289,15 +289,15 @@
   edition: "mesh"
 -
   release: "1.7.x"
-  version: "1.7.1"
+  version: "1.7.4"
   edition: "mesh"
 -
   release: "1.8.x"
-  version: "1.8.2"
+  version: "1.8.3"
   edition: "mesh"
 -
   release: "1.9.x"
-  version: "1.9.0"
+  version: "1.9.1"
   edition: "mesh"
 -
   release: "1.0.x"
