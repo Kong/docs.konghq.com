@@ -1,6 +1,5 @@
 ---
 title: Gateway API
-alpha: true
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for

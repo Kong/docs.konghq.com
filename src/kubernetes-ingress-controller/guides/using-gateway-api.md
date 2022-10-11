@@ -1,6 +1,5 @@
 ---
 title: Using Gateway API
-alpha: true
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
@@ -37,9 +36,17 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
 first [install them](https://gateway-api.sigs.k8s.io/guides/getting-started/#installing-gateway-api-crds-manually).
 
-The default controller configuration disables Gateway API handling. To enable
-it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
+{% if_version gte:2.4.x lte:2.5.x %}
+The default controller configuration disables Gateway API handling.
+To enable it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
 `values.yaml`, or set `CONTROLLER_FEATURE_GATES=Gateway=true` if not using Helm.
+{% endif_version %}
+{% if_version gte:2.6.x %}
+The default controller configuration enables Gateway API handling, however the
+alpha features of Gateway API are still behind a feature flag in {{site.kic_product_name}}.
+To enable it, set `ingressController.env.feature_gates: GatewayAlpha=true` in your Helm
+`values.yaml`, or set `CONTROLLER_FEATURE_GATES=GatewayAlpha=true` if not using Helm.
+{% endif_version %}
 Note that you must restart Pods with this flag set _after_ installing the
 Gateway API CRDs.
 
