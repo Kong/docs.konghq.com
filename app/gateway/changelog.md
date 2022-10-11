@@ -400,6 +400,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
 * Support for the `nginx-opentracing` module is deprecated as of `3.0` and will
   be removed from Kong in `4.0` (see the [Known Limitations](#known-limitations) section for additional
   information).
+* We removed regex [look-around](https://www.regular-expressions.info/lookaround.html) and [backreferences](https://www.regular-expressions.info/backref.html) support in the the atc-router. These are rarely used features and removing support for them improves the speed of our regex matching. If your current regexes use look-around or backreferences you will receive an error when attempting to start Kong, showing exactly what regex is incompatible. Users can either switch to the `traditional` router flavor or change the regex to remove look-around / backreferences.
 
 #### Admin API
 
