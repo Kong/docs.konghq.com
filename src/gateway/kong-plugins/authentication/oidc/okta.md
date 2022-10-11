@@ -113,27 +113,6 @@ guide, assume the route is in the default workspace.
 
 #### Minimum configuration requirements
 
-
-Configure the following parameters:
-
-From the **Common Tab**:
-
-* **`issuer`**: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
-    * `https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration`
-* **`auth_method`**: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
-* **`client_id`**: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
-* **`client_secret`**: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
-
-From the **Authorization Tab**
-
-* **`Config.Scopes Required`**:  The scope of what OpenID Connect checks, this value is set to `openid` by default. The example is set to `email` and `profile`.
-* **`Config.Scopes Claim`**: This should be set to `scp`.
-
-From the **Advanced Tab**
-
-* **`Config.Redirect URI`**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
-
-
 {% navtabs %}
 {% navtab Configure plugin with Kong Manager %}
 
