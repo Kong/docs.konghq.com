@@ -11,6 +11,8 @@
       url: /network
     - text: Compatibility
       url: /compatibility
+    - text: Konnect API
+      url: /konnect-api
     - text: Stages of Software Availability
       url: /availability-stages
     - text: Release Notes
@@ -189,6 +191,12 @@
       url: /org-management/deactivation
     - text: Troubleshoot
       url: /org-management/troubleshoot
+
+- title: API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  items: 
+    - text: Identity Management API
+      url: /konnect-api
 
 
 - title: Legacy content
