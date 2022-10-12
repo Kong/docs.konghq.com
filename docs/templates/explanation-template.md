@@ -31,7 +31,7 @@ Here's information about this topic. This feature has the following benefits:
 
 ### Subsection <!-- Optional --> 
 
- <!--  Go into more detail about some aspect of the functionality you're describing -->
+ <!--  Go into more detail about some aspect of the functionality, concept, bigger picture context,  you're describing -->
  
  <!-- H2 is the highest header level a topic can have. If using nested headers, make sure that they're sequential. An H2 can contain an H3, but not the other way around. -->
  

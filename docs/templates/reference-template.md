@@ -11,7 +11,7 @@ content_type: reference
 
 Add an introduction paragraph here. Good introductions explain who this reference guide is for and what this guide will help the user accomplish.
 
-Reference material should not contain information about basic concepts. You can add links to explanation articles if needed.
+Reference material should not explain basic concepts. You can add links to explanation articles if needed.
 
 <!-- See https://documentation.divio.com/reference/ for more info about how to write a reference article -->
 <!-- See the following examples of reference documentation:
