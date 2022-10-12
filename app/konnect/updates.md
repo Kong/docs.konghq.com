@@ -15,12 +15,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ### 2022.09.28
 
 **Analytics custom reports** 
-: Analytics custom reports are now general availability in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
+: [Analytics custom reports](https://docs.konghq.com/konnect/analytics/generate-reports/) are now generally available in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
 
 : Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
 
 **Runtime groups dashboard**
-: In {{site.konnect_saas}}, you now have insights into your runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
+: In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](https://docs.konghq.com/konnect/runtime-manager/runtime-groups/dashboard/) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
 
 **Custom plugin instantiation**
 : {{site.konnect_saas}} now allows you to discover, configure, and apply Kong approved custom plugins to your control planes directly through the plugin hub in Runtime Manager. You can do this by submitting your custom plugin schemas for approval through the CRE teams. This allows you to expand Kong's functionality in your environment by using custom plugins, while reducing the operational overhead of working with your CRE teams to discover, configure, and apply custom plugins.
@@ -45,7 +45,7 @@ This release includes a new user interface that provides information about which
 :{{site.konnect_saas}} dev portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows dev portal developers to automatically create applications in Okta and receive credentials to access services proxied through Kong Gateway. 
 
 **Service version lifecycle**
-: You can identify the life stage of your APIs and notify dev portal developers if a particular API will be deprecated soon.  
+: You can identify the [lifecycle stage](https://docs.konghq.com/konnect/servicehub/service-versions/#manage-the-service-version-lifecycle) of your APIs and notify dev portal developers if a particular API will be deprecated soon.  
 
 
 ### 2022.09.09
