@@ -1,5 +1,5 @@
 ---
-title: Noun or nouns describing your subject
+title: About <noun or nouns describing your subject> 
 content_type: explanation
 
 # Optional values. Uncomment any that apply to your document.
@@ -9,39 +9,44 @@ content_type: explanation
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
 
-Add an introduction paragraph here. Good introductions explain who this explanation topic is for and what this guide will cover.
+Explanation topics are understanding-oriented because they clarify and discuss a particular topic. These topics take a broader view of the software by discussing how something works, the background or context of a topic, what it's benefits are, and drawbacks or alternatives.
 
-<!-- See https://documentation.divio.com/explanation/ for more info about how to write an explanation article -->
-<!-- See the following examples of explanation documentation:
-* https://docs.konghq.com/gateway/latest/key-concepts/routes/
-* https://docs.konghq.com/gateway/latest/production/deployment-topologies/hybrid-mode/
-* https://docs.konghq.com/gateway/latest/kong-enterprise/plugin-ordering/
--->
-<!-- Remove these comments once you are done writing --> 
+Explanation topics should start with an introduction paragraph. Good explanation documentation introductions explain who this explanation topic is for and what this topic will cover. 
 
-## First section <!-- Header optional if there's only one section in the article -->
+For example, you could start an explanation introduction paragraph about computers like the following:
 
-<!-- The first section should be about the main idea of the topic -->
-<!-- You can also use bulleted lists and paragraphs to describe -->
+"Computers are a digital machine that is used to perform operations, both arthimetic and logical, automatically. They can be useful in a variety of situations, such as to type a document, code software, or watch a video. This guide is for users who are new to computers and explains what computers are,their history, the benefits of using a computer, and drawbacks of using computers."
 
-Here's information about this topic. This feature has the following benefits:
+## First context section <!-- Header optional if there's only one section in the article -->
 
-* First item
-* Second item
+The first section should be about the main idea of the topic. The title for a explanation section generally starts with a noun. Examples include "History of computers", "Computer benefits", and "Computers and the internet". 
 
-### Subsection <!-- Optional --> 
+For example, if you were writing about computers, you could go into more detail about what they do, how they work, and so on. This would expand on the information that was in the introduction paragraph. 
 
- <!--  Go into more detail about some aspect of the functionality, concept, bigger picture context,  you're describing -->
+### Subsection with more details <!-- Optional --> 
+
+Subsections go into more detail about some aspect of the functionality, concept, or bigger picture context of the topic. The title for a explanation section generally starts with a noun. Examples include "History of computers", "Computer benefits", and "Computers and the internet".
+
+For example, if you were writing about the larger context of computers in the main section, you could write about the history of computers in this section or the history of a particular computer.
  
- <!-- H2 is the highest header level a topic can have. If using nested headers, make sure that they're sequential. An H2 can contain an H3, but not the other way around. -->
+Keep in mind that H2 is the highest header level a topic can have. If you are using nested headers, make sure that they're sequential. An H2 can contain an H3, but not the other way around.
  
-## Second section <!-- Optional -->
+## Second context section <!-- Optional -->
 
-<!-- Write more information about another element of your topic. -->
-<!-- Keep adding headers and sections until you've completed your article.  -->
+Additional sections contain more information about another element of your topic. You could write about the benefits and drawbacks of your topic or you could write about how your topic interacts with another part of the software in depth. The title for a explanation section generally starts with a noun. Examples include "History of computers", "Computer benefits", and "Computers and the internet".
+
+For example, if you were writing about computers, this section could cover the benefits of using a computer.
+
+"Using a computer has the following benefits:
+
+* Complete tasks in a faster amount of time than if you were completing them manually
+* Surf the internet"
 
 ## See also <!-- Optional -->
 
-<!-- List of tutorials or how-to guides that a user can visit to extend their learning from this explanation article. -->
+This section should include a list of tutorials or how-to guides that a user can visit to extend their learning from this explanation article.
 
-* [Article title](article URL)
+See the following examples of explanation documentation:
+* [Routes](/gateway/{{page.kong_version}}/key-concepts/routes/)
+* [Hybrid-mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/)
+* [Plugin ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/)

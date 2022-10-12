@@ -1,5 +1,5 @@
 ---
-title: Start with a verb ending in -ing
+title: How to <phrase with a verb ending in -ing>
 content_type: how-to
 
 # Optional values. Uncomment any that apply to your document.
@@ -9,51 +9,62 @@ content_type: how-to
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
 
-Add an introduction paragraph here. Good introductions explain who this how-to guide is for and what this guide will help the user accomplish.
+How-to topics take readers through the steps to complete a real-world problem. They are goal-oriented, prescriptive, and for users with more experience. They answer questions like "how do I delete a service version in Konnect?" or "how do I install this software?". 
 
-Keep the conceptual information to a minimum; we can assume the user already has some knowledge of the concepts. You can also add links to explanation articles if needed.
+You should start a how-to topic with an introduction paragraph that explains who this how-to guide is for and what this guide will help the user accomplish. Keep the background information to a minimum. You can assume the user already has some knowledge of the concepts. You can also add links to explanation articles if needed.
 
-<!-- See https://documentation.divio.com/how-to-guides/ for more info about how to write a how-to -->
-<!-- See the following examples of how-to documentation:
-* https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/
-* https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/
-* https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/
--->
-<!-- Remove these comments once you are done writing -->
+For example, if you were writing a how-to topic about how to install a specific kind of software on your computer, your introduction paragraph might look like the following:
+
+"This guide shows you how to install ____ on your computer. By installing _____, you can manage photos and documents using ______."
 
 ## Prerequisites <!-- Optional -->
 
-<!-- Write prerequisites as a bulleted list. Only list prerequisites if they are application level prerequisites. -->
-<!-- If it isn't a "getting started" topic, we can assume our products are already installed. -->
-<!-- Don't prescribe Konnect or Gateway role permissions. -->
+Write prerequisites as a bulleted list. If this isn't a "getting started" topic, we can assume our products are already installed and don't need to be listed as prerequisites. Don't prescribe product role permissions.
 
-* First prerequisite
-* Second prerequisite
+For example, if you were writing about how to install a certain type software on your computer, you might have prerequisites like the following:
+
+* A software account
+* Docker installed
+* A software license
 
 ## Task section <!-- Header optional if there's only one task section in the article -->
 
-<!-- Title must be tasked-based and start with a verb. -->
-<!-- Steps should break down the tasks the user will complete in sequential order -->
+Task sections break down the task into steps that the user completes in sequential order. The title for a how-to task section is task-based and generally starts with a verb. Examples include "Install Kubernetes", "Configure the security settings", and "Create a microservice".
 
-1. First step.
-1. Second step.
-1. Optional: This is an optional step. 
-1. Fourth step (with sub-steps). To _____, do the following:
-    1. First sub-step.
-    1. Second sub-step.
-1. Fifth step (with sub-steps where you must choose between options). To ____, do one of the following:
-    * First option.
-    * Second option.
+Continuing the previous example of installing software, here's an example:
+
+1. On your computer, open Terminal.
+1. Install ____ with Terminal:
+    ```sh
+    example code
+    ```
+1. Optional: To also install ____ to manage documents, install it using Terminal:
+    ```sh
+    example code
+    ```
+1. To ______, do the following:
+    1. Click **Start**.
+    1. Click **Stop**.
+1. To ____, do one of the following:
+    * If you are using Kubernetes, start the software:
+        ```sh
+        example code
+        ```
+    * If you are using Docker, start the software:
+        ```sh
+        example code
+        ```
 
 ## Second task section <!-- Optional -->
-
-<!-- Add additional task sections as needed -->
 
 1. First step.
 1. Second step.
 
 ## See also <!-- Optional -->
 
-<!-- List of tutorials or other pages that a user can visit to extend their learning from this tutorial. -->
+This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
 
-* [Article title](article URL)
+See the following examples of how-to documentation:
+* https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/
+* https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/
+* https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/
