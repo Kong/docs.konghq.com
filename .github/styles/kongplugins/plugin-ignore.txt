@@ -396,6 +396,7 @@ google_key
 google_key_file
 gprc
 granst
+grant_type
 graphql_server_path
 group_base_dn
 group_member_attribute
@@ -542,7 +543,7 @@ konnect_examples
 konnect_icon
 kty
 kv_path
-lantency_metrics
+latency_metrics
 latency_gateway
 latency_proxy
 latency_request
@@ -929,6 +930,7 @@ userinfo_headers_values
 userinfo_query_args_client
 userinfo_query_args_names
 userinfo_query_args_values
+username_lower
 utils
 validate_request_body
 value_in_examples

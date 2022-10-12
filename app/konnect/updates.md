@@ -12,6 +12,42 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2022
 
+### 2022.09.28
+
+**Analytics custom reports** 
+: Analytics custom reports are now general availability in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
+
+: Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
+
+**Runtime groups dashboard**
+: In {{site.konnect_saas}}, you now have insights into your runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
+
+**Custom plugin instantiation**
+: {{site.konnect_saas}} now allows you to discover, configure, and apply Kong approved custom plugins to your control planes directly through the plugin hub in Runtime Manager. You can do this by submitting your custom plugin schemas for approval through the CRE teams. This allows you to expand Kong's functionality in your environment by using custom plugins, while reducing the operational overhead of working with your CRE teams to discover, configure, and apply custom plugins.
+
+**Launch runtimes directly in a cloud provider <span class="badge alpha"></span>**
+: You can now create runtime instances in Azure and AWS directly through {{site.konnect_saas}}. This simplifies the operational process for creating the runtime instance in your private cloud for AWS and Azure.
+
+**Support for multiple versions of runtime instances**
+: {{site.konnect_saas}} now supports running multiple runtime instances versions at the same time with the same control plane configuration. This makes it easier for you to test and validate new runtime instance versions, such as patch, minor, and major upgrades.
+This release includes a new user interface that provides information about which runtime instances are incompatible with the current gateway configuration and provides actionable insights onto the corrective steps to fix the issue.
+
+**Quick start for new {{site.konnect_saas}} org admins**
+: {{site.konnect_saas}} now supports the ability to launch a quick start that will automatically create a runtime group, service package, and gateway service, apply the CORS plug-in, and show analytics for that service with the click of a button. Users will become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation, throughout the onboarding process. 
+
+**Organization Admin (Read Only) predefined team**
+: A new predefined team was introduced in {{site.konnect_saas}}. This allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
+
+**Multi-runtime group app registration support <span class="badge alpha"></span>**
+: You can enable app registration to services in all the runtime groups. This feature only supports versions in the non-default runtime group that use Kong Gateway 3.0. As part of this release, API key credentials will no longer be stored in the dev portal. Portal developers will need to store their credentials immediately after creation.
+
+**Dynamic client registration**
+:{{site.konnect_saas}} dev portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows dev portal developers to automatically create applications in Okta and receive credentials to access services proxied through Kong Gateway. 
+
+**Service version lifecycle**
+: You can identify the life stage of your APIs and notify dev portal developers if a particular API will be deprecated soon.  
+
+
 ### 2022.09.09
 
 **{{site.base_gateway}} 3.0.0.0 support**

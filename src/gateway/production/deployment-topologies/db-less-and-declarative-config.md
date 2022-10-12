@@ -3,12 +3,9 @@ title: DB-less and Declarative Configuration
 ---
 
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
-Traditionally, {{site.base_gateway}} has always required a database, to store its configured entities such as Routes,
-Services and Plugins. Kong uses its configuration file, `kong.conf`, to
-specify the use of Postgres and Cassandra and its various settings.
+Traditionally, {{site.base_gateway}} has always required a database, to store its configured entities such as routes,
+services and plugins. Kong uses its configuration file, `kong.conf`, to
+specify the use of the database and its [various settings](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section).
 
 {{site.base_gateway}} can be run without a database using only in-memory storage for entities. We call this DB-less mode. When running {{site.base_gateway}} DB-less, the configuration of entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
 

@@ -52,16 +52,10 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 
 ## 2. Run {{site.mesh_product_name}}
 
-Navigate to the `bin` folder:
-
-```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
-```
-
 Then, run the control plane with:
 
 ```sh
-$ kumactl install control-plane --license-path=/path/to/license.json | kubectl apply -f -
+$ kong-mesh-{{page.kong_latest.version}}/bin/kumactl install control-plane --license-path=/path/to/license.json | kubectl apply -f -
 ```
 
 {:.note}
@@ -79,7 +73,7 @@ available in every working directory. Alternatively, you can create a link
 in `/usr/local/bin/` by running:
 
 ```sh
-$ ln -s ./kumactl /usr/local/bin/kumactl
+$ ln -s kong-mesh-{{page.kong_latest.version}}/bin/kumactl /usr/local/bin/kumactl
 ```
 
 It may take a while for Kubernetes to start the
@@ -125,15 +119,15 @@ Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
 $ echo "apiVersion: kuma.io/v1alpha1
-  kind: Mesh
-  metadata:
-    name: default
-  spec:
-    mtls:
-      enabledBackend: ca-1
-      backends:
-      - name: ca-1
-        type: builtin" | kubectl apply -f -
+kind: Mesh
+metadata:
+  name: default
+spec:
+  mtls:
+    enabledBackend: ca-1
+    backends:
+    - name: ca-1
+      type: builtin" | kubectl apply -f -
 ```
 
 {% endnavtab %}

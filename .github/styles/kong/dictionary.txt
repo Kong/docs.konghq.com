@@ -254,6 +254,7 @@ reinstall
 reinstallation
 repo
 requery
+retryOn
 rockspec
 rockspecs
 routable

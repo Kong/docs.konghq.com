@@ -2,8 +2,8 @@
 title: Install Kong Gateway on Docker
 ---
 
-{{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
-datastore. This guide provides steps to configure PostgreSQL.
+This guide provides steps to configure {{site.base_gateway}} on Docker with or without a database.
+The database used in this guide is PostgreSQL.
 
 If you prefer to use the open-source {{site.base_gateway}} image with Docker
 Compose, Kong also provides a
@@ -41,7 +41,7 @@ with a database.
 Set up a {{site.base_gateway}} container with a PostgreSQL database to store
 Kong configuration.
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 ### Prepare the database
 
@@ -85,7 +85,7 @@ docker run --rm --network=kong-net \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kongpass" \
  -e "KONG_PASSWORD=test" \
-kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong migrations bootstrap
+kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}} kong migrations bootstrap
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -94,7 +94,7 @@ docker run --rm --network=kong-net \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kongpass" \
-kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migrations bootstrap
+kong:{{page.kong_versions[page.version-index].ce-version}} kong migrations bootstrap
 ```
 <!-- vale off -->
 {% endnavtab %}
@@ -163,7 +163,7 @@ docker run -d --name kong-gateway \
  -p 8445:8445 \
  -p 8003:8003 \
  -p 8004:8004 \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -183,7 +183,7 @@ docker run -d --name kong-gateway \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
  -p 127.0.0.1:8444:8444 \
- kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+ kong:{{page.kong_versions[page.version-index].ce-version}}
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -351,7 +351,7 @@ docker run -d --name kong-dbless \
  -p 8445:8445 \
  -p 8003:8003 \
  -p 8004:8004 \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -370,7 +370,7 @@ docker run -d --name kong-dbless \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
  -p 127.0.0.1:8444:8444 \
- kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+ kong:{{page.kong_versions[page.version-index].ce-version}}
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}

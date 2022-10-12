@@ -27,6 +27,7 @@ var sources = {
   styles: paths.assets + "stylesheets/**/*",
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
+    "node_modules/@segment/analytics-next/dist/umd/standalone.js",
     paths.assets + "javascripts/app.js",
     paths.assets + "javascripts/compat-dropdown.js",
     paths.assets + "javascripts/subscribe.js",
@@ -35,7 +36,7 @@ var sources = {
     paths.assets + "javascripts/feedback-widget.js",
     // uncomment the path to promo-banner.js when adding a new promo banner
     // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
-    paths.assets + "javascripts/promo-banner.js",
+    // paths.assets + "javascripts/promo-banner.js",
     paths.assets + "javascripts/copy-code-snippet-support.js"
   ],
   images: paths.assets + "images/**/*",

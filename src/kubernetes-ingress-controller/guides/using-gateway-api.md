@@ -1,6 +1,12 @@
 ---
 title: Using Gateway API
-alpha: true
+alpha: false # This is the default, but is here for completeness
+
+overrides:
+  alpha:
+    true:
+      gte: 2.4.x
+      lte: 2.5.x
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
@@ -37,9 +43,17 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
 first [install them](https://gateway-api.sigs.k8s.io/guides/getting-started/#installing-gateway-api-crds-manually).
 
-The default controller configuration disables Gateway API handling. To enable
-it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
+{% if_version gte:2.4.x lte:2.5.x %}
+The default controller configuration disables Gateway API handling.
+To enable it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
 `values.yaml`, or set `CONTROLLER_FEATURE_GATES=Gateway=true` if not using Helm.
+{% endif_version %}
+{% if_version gte:2.6.x %}
+The default controller configuration enables Gateway API handling, however the
+alpha features of Gateway API are still behind a feature flag in {{site.kic_product_name}}.
+To enable it, set `ingressController.env.feature_gates: GatewayAlpha=true` in your Helm
+`values.yaml`, or set `CONTROLLER_FEATURE_GATES=GatewayAlpha=true` if not using Helm.
+{% endif_version %}
 Note that you must restart Pods with this flag set _after_ installing the
 Gateway API CRDs.
 
@@ -109,12 +123,11 @@ spec:
 {% if_version gte: 2.6.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
-apiVersion: gateway.networking.k8s.io/v1beta1
 kind: GatewayClass
 metadata:
   name: kong
   annotations:
-    konghq.com/gateway-unmanaged: true
+    konghq.com/gatewayclass-unmanaged: 'true'
 spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
@@ -198,7 +211,7 @@ that {{site.base_gateway}} resource with listener and status information.
 
 {% if_version gte: 2.6.x %}
 To configure KIC to reconcile the `Gateway` resource, you must set the 
-`konghq.com/gateway-unmanaged` annotation as the example in `GatewayClass` resource used in 
+`konghq.com/gatewayclass-unmanaged` annotation as the example in `GatewayClass` resource used in 
 `spec.gatewayClassName` in `Gateway` resource. Also, the 
 `spec.controllerName` of `GatewayClass` needs to be same as the value of the
 `--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).

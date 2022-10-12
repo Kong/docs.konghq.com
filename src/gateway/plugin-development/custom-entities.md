@@ -30,12 +30,10 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
-If your plugin is intended to support both Cassandra and Postgres, then both
+If your plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
+
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
 folder to it. If there is no `init.lua` file inside already, you should create one.
@@ -83,9 +81,6 @@ return {
 ```
 
 ## Migration file syntax
-
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 While Kong's core migrations support both Postgres and Cassandra, custom plugins
 can choose to support either both of them or just one.
@@ -183,14 +178,15 @@ as reentrant as possible. `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
 reason, it is expected that the first attempt at fixing the problem will be simply
 re-running the migrations.
 
-While Postgres does, Cassandra does not support constraints such as "NOT
+While PostgreSQL does, Cassandra does not support constraints such as "NOT
 NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when
 you define your model's schema. Bear in mind that this schema will be the same
-for both Postgres and Cassandra, hence, you might trade-off a pure SQL schema
+for both PostgreSQL and Cassandra, hence, you might trade-off a pure SQL schema
 for one that works with Cassandra too.
 
-**IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will
-enforce it for Cassandra, but for Postgres you must set this constraint in
+{:.important}
+> If your `schema` uses a `unique` constraint, then Kong will
+enforce it for Cassandra, but for PostgreSQL you must set this constraint in
 the migrations.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).

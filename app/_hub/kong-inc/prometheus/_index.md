@@ -1,7 +1,6 @@
 ---
 name: Prometheus
 publisher: Kong Inc.
-version: 3.0.0
 desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |
   Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
@@ -10,11 +9,9 @@ categories:
   - analytics-monitoring
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
 params:
   name: prometheus
   service_id: true
@@ -49,7 +46,7 @@ params:
         A boolean value that determines if status code metrics should be
         collected.
         If enabled, `http_requests_total`, `stream_sessions_total` metrics will be exported.
-    - name: lantency_metrics
+    - name: latency_metrics
       required: false
       datatype: boolean
       default: '`false`'
@@ -112,7 +109,7 @@ When `status_code_metrics` is set to true:
 - **Status codes**: HTTP status codes returned by upstream services.
   These are available per service, across all services, and per route per consumer.
 
-When `lantency_metrics` is set to true:
+When `latency_metrics` is set to true:
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
    - **Request**: Total time taken by Kong and upstream services to serve
      requests.
@@ -294,8 +291,7 @@ allow access to the `/metrics` endpoint to Prometheus:
 
 ## Changelog
 
-### 3.0.x
-
+**{{site.base_gateway}} 3.0.x**
 * High cardinality metrics are now disabled by default.
 * Decreased performance penalty to proxy traffic when collecting metrics.
 * The following metric names were adjusted to add units to standardize where possible:
@@ -314,8 +310,7 @@ allow access to the `/metrics` endpoint to Prometheus:
 * Plugin version bumped to 3.0.0
 * The `node_id` label was added to memory metrics.
 
-### 1.6.x
-
+**{{site.base_gateway}} 2.8.x**
 * Adds a new metric:
   * `kong_nginx_timers` (gauge): total number of Nginx timers, in Running or Pending state.
 * Add two new metrics:
@@ -323,7 +318,12 @@ allow access to the `/metrics` endpoint to Prometheus:
   * `kong_db_entity_count_errors` (counter): measures the number of errors
       encountered during the measurement of `kong_db_entities_total`
 
-### 1.4.x
-
+**{{site.base_gateway}} 2.5.x**
 * New `data_plane_cluster_cert_expiry_timestamp` metric
 * Added `subsystem` label to Upstream Target health metrics
+
+**{{site.base_gateway}} 2.4.x**
+* Added the `per_consumer` configuration parameter to export per-consumer status.
+
+**{{site.base_gateway}} 2.3.x**
+* The plugin can now export Kong Enterprise licensing information.

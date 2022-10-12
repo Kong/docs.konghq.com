@@ -7,12 +7,11 @@ chapter: 5
 Kong interacts with the model layer through classes we refer to as "DAOs". This
 chapter will detail the available API to interact with the datastore.
 
-Kong supports two primary datastores: [Cassandra
-{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/)
-and [PostgreSQL
-{{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
+Kong supports two primary datastores: [PostgreSQL
+{{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra
+{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/).
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 ## kong.db
 
@@ -46,7 +45,7 @@ available through `kong.db.*`.
 
 The DAO class is responsible for the operations executed on a given table in
 the datastore, generally mapping to an entity in Kong. All the underlying
-supported databases (currently Cassandra and Postgres) comply to the same
+supported databases comply to the same
 interface, thus making the DAO compatible with all of them.
 
 For example, inserting a Service and a Plugin is as easy as:
