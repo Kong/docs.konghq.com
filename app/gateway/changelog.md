@@ -856,6 +856,7 @@ openid-connect
 * Hybrid mode: Fixed an issue with consumer groups, where the control plane wasn't sending the correct number of consumer entries to data planes.
 * Targets with a weight of `0` are no longer included in health checks, and checking their status via the `upstreams/<upstream>/health` endpoint results in the status `HEALTHCHECK_OFF`.
 Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting targets with `weight=0` as `HEALTHY`, and the health check was reporting the same targets as `UNDEFINED`.
+* Hybrid mode: Fixed an issue where sending a `PATCH` request to update a route after a control plane is restarted caused a 500 error response to be returned.
 
 #### Plugins
 
