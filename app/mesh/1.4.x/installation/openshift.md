@@ -28,7 +28,7 @@ You can run the following script to automatically detect the operating system
 and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.kong_version}} sh -
 ```
 
 {% endnavtab %}

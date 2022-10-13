@@ -30,7 +30,7 @@ download the latest version of {{site.mesh_product_name}}:
 
 ```sh
 $ yum install -y tar gzip
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.kong_version}} sh -
 ```
 
 {% endnavtab %}
