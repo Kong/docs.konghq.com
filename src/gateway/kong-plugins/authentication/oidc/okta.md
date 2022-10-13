@@ -190,9 +190,11 @@ curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins \
   --data config.client_id="YOUR_CLIENT_ID"                                                                 \
   --data config.client_secret="YOUR_CLIENT_SECRET"                                                         \
   --data config.redirect_uri="https://kong.com/api"                                                        \
+  --data config.scopes_claim="scp"                                                                         \
   --data config.scopes="openid"                                                                            \
   --data config.scopes="email"                                                                             \
-  --data config.scopes="profile"
+  --data config.scopes="profile"                                                                           \
+  --data config.auth_methods=authorization_code
 ```
 
 For a list of all available configuration parameters and what they do, see the
