@@ -115,13 +115,22 @@ guide, assume the route is in the default workspace.
 
 Configure the following parameters:
 
+From the **Common Tab**:
+
 * **`issuer`**: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
     * `https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration`
 * **`auth_method`**: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
 * **`client_id`**: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
 * **`client_secret`**: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
-* **`redirect_uri`**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
-* **`scopes`**:  The scope of what OpenID Connect checks. `openid` by default; set to `email` and `profile` for this example.
+
+From the **Authorization Tab**
+
+* **`Config.Scopes Required`**:  The scope of what OpenID Connect checks, this value is set to `openid` by default. The example is set to `email` and `profile`.
+* **`Config.Scopes Claim`**: This should be set to `scp`.
+
+From the **Advanced Tab**
+
+* **`Config.Redirect URI`**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
 
 {% navtabs %}
 {% navtab Configure plugin with Kong Manager %}
@@ -191,9 +200,11 @@ curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins \
   --data config.client_id="YOUR_CLIENT_ID"                                                                 \
   --data config.client_secret="YOUR_CLIENT_SECRET"                                                         \
   --data config.redirect_uri="https://kong.com/api"                                                        \
+  --data config.scopes_claim="scp"                                                                         \
   --data config.scopes="openid"                                                                            \
   --data config.scopes="email"                                                                             \
-  --data config.scopes="profile"
+  --data config.scopes="profile"                                                                           \
+  --data config.auth_methods=authorization_code
 ```
 
 For a list of all available configuration parameters and what they do, see the
