@@ -34,7 +34,7 @@ You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kon
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}

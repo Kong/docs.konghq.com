@@ -27,13 +27,13 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.kong_versio
 ```
 {% endnavtab %}
 {% navtab Manually %}
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_version}}-debian-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}

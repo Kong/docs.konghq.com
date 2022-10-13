@@ -47,7 +47,7 @@ Kubernetes:
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -65,7 +65,7 @@ control plane process in the next step &mdash; which is served by the
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_version}}/bin
+$ cd kong-mesh-{{page.version}}/bin
 ```
 
 Then, run the control plane with:
