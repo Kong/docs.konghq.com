@@ -171,6 +171,7 @@ module Jekyll
           end
 
           raise "Could not find #{page.data['edition']} #{page.data['kong_version']}" unless current
+
           page.data['release'] = current['release']
           page.data['version'] = current['version']
         end
