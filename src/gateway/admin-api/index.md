@@ -189,7 +189,6 @@ consumer_json: |
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
-        "type": 0,
         "tags": ["user-level", "low-priority"]
     }
 
@@ -199,14 +198,12 @@ consumer_data: |
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
-        "type": 0,
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "01c23299-839c-49a5-a6d5-8864c09184af",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
-        "type": 0,
         "tags": ["admin", "high-priority", "critical"]
     }],
 
