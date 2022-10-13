@@ -21,9 +21,9 @@ Tested on Windows 10 and Windows Server 2019.
 To run Kong Mesh on Windows you can choose among different installation methods:
 
 {% navtabs %}
-{% navtab Powershell Script %}
+{% navtab PowerShell Script %}
 
-Run the following script in Powershell to automatically detect the operating system and download {{site.mesh_product_name}}:
+Run the following script in PowerShell to automatically detect the operating system and download {{site.mesh_product_name}}:
 
 ```powershell
 Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Uri https://docs.konghq.com/mesh/installer.ps1).Content))
@@ -32,13 +32,13 @@ Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Ur
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-windows-amd64.tar.gz)
 the distribution manually.
 
 Then extract the archive with:
 
 ```powershell
-tar xvzf kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz
+tar xvzf kong-mesh-{{page.version}}-windows-amd64.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -63,7 +63,7 @@ This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
 deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
 like _multi-zone_.
 
-We suggest adding the `kumactl` executable to your `PATH` so that it's always available in every working directory (Powershell as Administrator):
+We suggest adding the `kumactl` executable to your `PATH` so that it's always available in every working directory (PowerShell as Administrator):
 
 ```powershell
 New-Item -ItemType SymbolicLink -Path C:\Windows\kumactl.exe -Target .\kumactl.exe

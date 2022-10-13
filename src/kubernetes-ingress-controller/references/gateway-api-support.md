@@ -1,6 +1,14 @@
 ---
 title: Gateway API Support
 content_type: reference
+alpha: false # This is the default, but is here for completeness
+
+overrides:
+  alpha:
+    true:
+      gte: 2.4.x
+      lte: 2.5.x
+
 ---
 
 The {{site.kic_product_name}} supports the following resources and features in the

@@ -30,25 +30,25 @@ Run the following script to automatically detect the operating system and
 download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh -
 ```
 
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also download the [amd64]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
-or [arm64]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-arm64.tar.gz) distribution manually.
+You can also download the [amd64]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-amd64.tar.gz) {% if_version gte:1.8.x %}
+or [arm64]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-arm64.tar.gz){% endif_version %} distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/install-universal-run.md %}
+{% include_cached /md/mesh/install-universal-run.md kong_version=page.kong_version %}
 
 {% include /md/mesh/install-universal-verify.md %}
 
