@@ -32,31 +32,31 @@ Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Ur
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-windows-amd64.tar.gz)
 the distribution manually.
 
 Then extract the archive with:
 
 ```powershell
-tar xvzf kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz
+tar xvzf kong-mesh-{{page.version}}-windows-amd64.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
 ## 2. Run Kong Mesh
 
-Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{include.kong_latest.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
+Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{page.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
 
 Navigate to the `bin` folder:
 
 ```powershell
-cd kong-mesh-{{include.kong_latest.version}}/bin
+cd kong-mesh-{{page.version}}/bin
 ```
 
 Then, run the control plane with:
 
 ```sh
-$ KMESH_LICENSE_PATH=/path/to/file/license.json kuma-cp run
+KMESH_LICENSE_PATH=/path/to/file/license.json kuma-cp run
 ```
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
