@@ -122,7 +122,6 @@ module Jekyll
           create_aliases(page, '/mesh', 1, parts, latest_version_mesh['release'])
         when 'konnect'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = konnect_versions
           page.data['nav_items'] = site.data['docs_nav_konnect']
           create_aliases(page, '/konnect', 1, parts, 'release')
@@ -161,12 +160,27 @@ module Jekyll
           create_aliases(page, '/gateway-oss', 1, parts, 'release')
         end
 
+        # Add additional variables that are available in src pages
+        # to pages in app
+        if !page.data['release'] && page.data['kong_version']
+          # Skip if the page does not have a version
+          next unless /\d+\.\d+\.x/.match(page.data['kong_version'])
+
+          current = page.data['kong_versions'].find do |elem|
+            elem['release'] == page.data['kong_version']
+          end
+
+          raise "Could not find #{page.data['edition']} #{page.data['kong_version']}" unless current
+          page.data['release'] = current['release']
+          page.data['version'] = current['version']
+        end
+
         # Clean up nav_items for generated pages as there's an
         # additional level of nesting
         page.data['nav_items'] = page.data['nav_items']['items'] if page.data['nav_items'].is_a?(Hash)
 
         # Helpful boolean in templates. If version has .md, then it is not versioned
-        page.data['has_version'] = false if page.data['kong_version'].include? '.md'
+        page.data['has_version'] = false if page.data['kong_version']&.include? '.md'
       end
     end
 
