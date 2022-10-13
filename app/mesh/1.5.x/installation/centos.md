@@ -45,7 +45,7 @@ $ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/install-universal-run.md kong_version=page.kong_version %}
+{% include_cached /md/mesh/install-universal-run.md version=page.version %}
 
 {% include /md/mesh/install-universal-verify.md %}
 
