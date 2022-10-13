@@ -32,13 +32,13 @@ Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Ur
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-windows-amd64.tar.gz)
 the distribution manually.
 
 Then extract the archive with:
 
 ```powershell
-tar xvzf kong-mesh-{{page.kong_latest.version}}-windows-amd64.tar.gz
+tar xvzf kong-mesh-{{page.version}}-windows-amd64.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
