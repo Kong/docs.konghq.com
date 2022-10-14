@@ -78,9 +78,9 @@ If you are using an external IdP, follow these steps.
     The OAuth2 plugin cannot be used in hybrid mode.
     * If using the `kong-oauth2` authorization strategy with key authentication, configure the
     [Key Auth](/hub/kong-inc/key-auth/) plugin on the same Service as the Application
-    Registration plugin. You can use either the
+    Registration plugin. You can use the
     [Kong Manager GUI](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-key-auth-plugin)
-    or cURL commands as documented on the Plugin Hub.
+    or cURL commands as documented on the Plugin Hub. 
 
     Strategy `external-oauth2`:
 
