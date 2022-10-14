@@ -12,9 +12,7 @@ OAuth2 plugins for use with the Application Registration plugin:
 
   <div class="alert alert-warning">
     <strong>Important:</strong> The OAuth2 plugin does not support
-    hybrid mode. Since the Key Authentication plugin is using the `kong-oauth2` strategy
-    and client ID credential, hybrid mode is also not supported for the Key
-    Authentication plugin. If your organization uses hybrid mode, you must use an external identity
+    hybrid mode. If your organization uses hybrid mode, you must use an external identity
     provider and configure the OpenID Connect plugin.
   </div>
 
@@ -82,8 +80,7 @@ If you are using an external IdP, follow these steps.
     [Key Auth](/hub/kong-inc/key-auth/) plugin on the same Service as the Application
     Registration plugin. You can use either the
     [Kong Manager GUI](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-key-auth-plugin)
-    or cURL commands as documented on the Plugin Hub. The Key Auth plugin
-    cannot be used in hybrid mode.
+    or cURL commands as documented on the Plugin Hub.
 
     Strategy `external-oauth2`:
 
