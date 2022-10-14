@@ -2109,6 +2109,8 @@ effect on the following plugins and fields:
 * Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
 
+* If you are using SSL certificates with custom plugins, you may need to set certificate phase in `ngc.ctx`.
+
 ## 2.6.1.0
 **Release Date** 2022/04/07
 
