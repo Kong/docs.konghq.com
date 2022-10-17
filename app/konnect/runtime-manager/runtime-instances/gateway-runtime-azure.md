@@ -11,21 +11,17 @@ configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
 
-When you create an Azure runtime instance, runtime manager provides a pre-populated template for the runtime instance in Azure.
+When you create an Azure runtime instance, runtime manager provides a template for the runtime instance in Azure.
 
 {:.note}
 > **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
 
-## Quick setup
+## Prerequisites
 
-### Prerequisites
+You need an account with Azure that is already configured.
 
-You need an account with Azure that is already configured. <!-- Does this need certain permissions or certain settings configured? -->
-
-IAM resources????
-
-### Configure the Azure Gateway instance
+## Configure the Azure Gateway instance
 
 1. Open the {% konnect_icon runtimes %} **Runtime Manager**.
 
@@ -35,7 +31,6 @@ IAM resources????
 
 1. Click **Azure**.
 
-1. Click **Deploy to Azure**. 
-This redirects you to the Azure where it prepopulates a custom development template.
+1. Click **Deploy to Azure**. This redirects you to Azure.
 
-1. Enter the cluster control plane, cluster telemetry endpoint, cluster certificate, and cluster certificate key values from {{site.konnect_short_name}} in to the Azure template.
+1. In Azure, enter the cluster control plane, cluster telemetry endpoint, cluster certificate, and cluster certificate key values from {{site.konnect_short_name}} in to the Azure template.

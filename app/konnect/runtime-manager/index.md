@@ -71,23 +71,18 @@ Choose an installation type below:
   </a>
 
   <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-aws" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/.png" alt="AWS" />
+    <img class="install-icon no-image-expand" src="/assets/images/icons/distribution/aws.svg" alt="AWS" />
     <div class="install-text">AWS</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-google" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/.png" alt="Google Cloud" />
-    <div class="install-text">Google Cloud</div>
-  </a>
-
   <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-azure" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/.png" alt="Azure" />
+    <img class="install-icon no-image-expand" src="/assets/images/icons/distribution/azure.svg" alt="Azure" />
     <div class="install-text">Azure</div>
   </a>
 
-    <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
-      <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
-      <div class="install-text">Universal (kong.conf)</div>
-    </a>
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
+    <div class="install-text">Universal (kong.conf)</div>
+  </a>
 
 </div>

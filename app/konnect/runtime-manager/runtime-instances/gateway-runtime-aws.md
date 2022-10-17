@@ -11,21 +11,25 @@ configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
 
-When you create an AWS runtime instance, runtime manager provides a pre-populated template for the runtime instance in AWS.
+When you create an AWS runtime instance, runtime manager provides a pre-populated template for the runtime instance in AWS. This template creates the following resources in AWS:
+* Amazon VPC along with internet gateway 
+* Secret
+* Amazon EC2 instances (keypair, role, profile)
+* Autoscaling group
+* Network Load Balancer
+* Optional: CloudWatch log group 
+* Optional: Redis 
 
 {:.note}
 > **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
 
-## Quick setup
+## Prerequisites
 
-### Prerequisites
+* An account with AWS that is already configured
+* An account that can use IAM resources
 
-You need an account with AWS that is already configured. <!-- Does this need certain permissions or certain settings configured? -->
-
-IAM resources????
-
-### Configure the AWS Gateway instance
+## Configure the AWS Gateway instance
 
 1. Open the {% konnect_icon runtimes %} **Runtime Manager**.
 
@@ -41,3 +45,9 @@ IAM resources????
 
 1. Click **Deploy to AWS**. 
 This redirects you to the AWS Management Console where it prepopulates a CloudFormation template. 
+
+## Verify the AWS runtime instance configuration
+
+1. In AWS CloudFormation on the **Outputs** tab, verify that the NetworkLoadBalancer DNS displays. 
+
+1. In {{site.konnect_short_name}}, open the {% konnect_icon runtimes %} **Runtime Manager** and select a runtime group. A new runtime instance should display with information about connection, when it was last seen, and the status.
