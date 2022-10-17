@@ -36,7 +36,6 @@ params:
       datatype: Set of string elements
       description: |
         List of allowed content types. The value can be configured with the `charset` parameter(e.g. `application/json; charset=UTF-8`).
-        Note that if no charset parameter is provided, all charsets will be allowed.
         <br>**Note:** Body validation is only done for `application/json` and skipped for any other allowed content types.
         
     - name: version
