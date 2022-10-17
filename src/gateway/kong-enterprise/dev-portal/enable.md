@@ -6,6 +6,8 @@ badge: enterprise
 If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can use the Dev Portal.
 
+Dev Portals are tied to workspaces. Each workspace has a separate Dev Portal instance.
+
 To enable the Dev Portal, you must first [deploy a license](/gateway/{{page.kong_version}}/licenses/deploy).
 
 {% navtabs %}
@@ -23,14 +25,14 @@ To enable the Dev Portal, you must first [deploy a license](/gateway/{{page.kong
     {:.note}
     > The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should not be preceded by a protocol, for example, `http://`.
 
-1. Execute the following command:
+1. Enable the Dev Portal for a workspace:
 
     ```sh
     curl -i -X PATCH http://localhost:8001/workspaces/default \
       --data "config.portal=true"
     ```
 
-1. Access the Dev Portal for the default workspace using the URL specified
+1. Access the Dev Portal for the workspace using the URL specified
 in the `KONG_PORTAL_GUI_HOST` variable:
 
     ```sh
@@ -53,25 +55,24 @@ configuration file ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong
    kong reload
    ```
 
-1. Enable Dev Portal for the `default` workspace using one of the following methods:
+1. Enable Dev Portal for a workspace using one of the following methods:
 
 {% capture enable-portal %}
 {% navtabs %}
 {% navtab Kong Manager %}
 
-1. Navigate to the default workspace in Kong Manager.
+1. Navigate to a workspace in Kong Manager.
 2. In the **Dev Portal** menu section, click **Overview**.
 3. Click the button to **Enable Developer Portal**.
 
 {% endnavtab %}
 {% navtab Admin API %}
 
-Enable the `default` workspace's Dev Portal via the command line using the following command:
-
 ```bash
 curl -i -X PATCH http://localhost:8001/workspaces/default \
   --data "config.portal=true"
 ```
+
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -82,6 +83,7 @@ curl -i -X PATCH http://localhost:8001/workspaces/default \
 {% endnavtabs %}
 
 Enabling the Dev Portal exposes the following URLs:
-* `default` workspace's Dev Portal: `http://localhost:8003/default`.
+* The workspace's Dev Portal URL.
+For example, for the `default` workspace, the URL is: `http://localhost:8003/default`.
 * Dev Portal files endpoint: `http://localhost:8001/files`
 * Public Dev Portal files API: `http://localhost:8004/files`
