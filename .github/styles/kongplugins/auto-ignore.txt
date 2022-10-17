@@ -18,10 +18,12 @@ datastores
 endpoint_key
 foogineer
 if_version
+included_status_codes
 kuma
 max_args
 max_headers
 metatable
+myapikey
 narr
 ngx
 ngx_stream_proxy_module
@@ -33,6 +35,7 @@ params
 proxy_listen
 proxy_ssl
 qux
+random_status_code
 real_ip_header
 real_ip_recursive
 resty
