@@ -61,9 +61,11 @@ configuration file ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong
 {% navtabs %}
 {% navtab Kong Manager %}
 
+<!-- vale off -->
 1. Navigate to a workspace in Kong Manager.
 2. In the **Dev Portal** menu section, click **Overview**.
 3. Click the button to **Enable Developer Portal**.
+<!-- vale on -->
 
 {% endnavtab %}
 {% navtab Admin API %}
