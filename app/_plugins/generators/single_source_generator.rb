@@ -14,23 +14,29 @@ module SingleSource
 
         # Assume that the whole file should be treated as generated
         assume_generated = data['assume_generated'].nil? ? true : data['assume_generated']
-        version = version_for_release(data['product'], data['release'])
+        versions = versions_for_release(data['product'], data['release'])
 
         # If there is an 'unlisted' section, add that in to 'items' to be rendered
         data['items'] = data['items'] + data['unlisted'] if data['unlisted']
 
-        create_pages(data['items'], site, data['product'], data['release'], version, assume_generated, f)
+        create_pages(data['items'], site, data['product'], data['release'], versions, assume_generated, f)
       end
     end
 
-    def version_for_release(product, release)
+    def versions_for_release(product, release)
       version = @kong_versions.detect do |v|
         v['edition'] == product && v['release'] == release
       end
-      version['version']
+
+      versions = {}
+      version.each do |k, v|
+        versions[k.sub('-version', '')] = v if k.end_with?('-version')
+      end
+      versions['default'] = version['version']
+      versions
     end
 
-    def create_pages(data, site, product, release, version, assume_generated, nav) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/ParameterLists, Metrics/MethodLength
+    def create_pages(data, site, product, release, versions, assume_generated, nav) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/ParameterLists, Metrics/MethodLength
       data.each do |v, _k|
         # Enable generation of specific files as required
         next unless v['generate'] || assume_generated
@@ -55,17 +61,17 @@ module SingleSource
           # Is it an in-page link? If so, skip it
           next if v['url']&.include?('/#')
 
-          site.pages << SingleSourcePage.new(site, v['src'], v['url'], product, release, version, nav)
+          site.pages << SingleSourcePage.new(site, v['src'], v['url'], product, release, versions, nav)
         end
 
         # If there are any children, generate those too
-        create_pages(v['items'], site, product, release, version, assume_generated, nav) if v['items']
+        create_pages(v['items'], site, product, release, versions, assume_generated, nav) if v['items']
       end
     end
   end
 
   class SingleSourcePage < Jekyll::Page
-    def initialize(site, src, dest, product, release, version, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists, Metrics/PerceivedComplexity
+    def initialize(site, src, dest, product, release, versions, nav) # rubocop:disable Lint/MissingSuper, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/ParameterLists, Metrics/PerceivedComplexity
       # Configure variables that Jekyll depends on
       @site = site
 
@@ -111,6 +117,9 @@ module SingleSource
         @data = SafeYAML.load(Regexp.last_match(1))
       end
 
+      # Handle multiple versions for Gateway
+      version = versions['default']
+
       # Set the "Edit on GitHub" link url
       @data['edit_link'] = file
 
@@ -121,6 +130,7 @@ module SingleSource
       # Set the current release and concrete version
       @data['release'] = release
       @data['version'] = version
+      @data['versions'] = versions
 
       # Set the layout if it's not already provided
       @data['layout'] = 'docs-v2' unless data['layout']
