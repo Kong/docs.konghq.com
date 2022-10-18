@@ -13,7 +13,7 @@ proxy downtime.
 We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
 
 {:.important}
-> **Important:** Upgrading a runtime instance version isn't supported for runtime instances created in cloud providers, such as AWS, Azure, and Google Cloud.
+> **Important:** Upgrading a runtime instance version isn't supported for runtime instances created in cloud providers, such as AWS and Azure.
 
 ## Prerequisites
 
