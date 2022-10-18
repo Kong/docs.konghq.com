@@ -14,8 +14,8 @@ instances associated with the {{site.konnect_saas}} account.
 When you create an AWS runtime instance, runtime manager provides a pre-populated template for the runtime instance in AWS. This template creates the following resources in AWS:
 * Amazon VPC along with internet gateway 
 * Secret
-* Amazon EC2 instances (keypair, role, profile)
-* Autoscaling group
+* Amazon EC2 instances (key pair, role, profile)
+* Auto Scaling group
 * Network Load Balancer
 * Optional: CloudWatch log group 
 * Optional: Redis 
@@ -44,7 +44,7 @@ runtime instances.
 <!-- Or can we do just a "configure the fields on the page" ?-->
 
 1. Click **Deploy to AWS**. 
-This redirects you to the AWS Management Console where it prepopulates a CloudFormation template. 
+This redirects you to the AWS Management Console where it pre-populates a CloudFormation template. 
 
 ## Verify the AWS runtime instance configuration
 
