@@ -11,7 +11,7 @@ configure your instance to accept configuration from
 {{site.konnect_short_name}}. The Runtime Manager keeps track of all runtime
 instances associated with the {{site.konnect_saas}} account.
 
-When you create an AWS runtime instance, runtime manager provides a pre-populated template for the runtime instance in AWS. This template creates the following resources in AWS:
+Runtime Manager provides a pre-populated template for a runtime instance in AWS. This template creates the following resources in AWS:
 * Amazon VPC along with internet gateway 
 * Secret
 * Amazon EC2 instances (key pair, role, profile)
@@ -35,7 +35,7 @@ runtime instances.
 
 1. Select a runtime group.
 
-1. Click **+ New Runtime Instance**.
+1. Click **New Runtime Instance**.
 
 1. Click **AWS**.
 
