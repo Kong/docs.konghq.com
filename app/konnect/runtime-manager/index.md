@@ -42,7 +42,6 @@ choose to manually configure runtime instances on the following:
 * Linux 
 * Kubernetes
 * AWS
-* Google Cloud
 * Azure
 
 Runtime manager provides a pre-populated template for AWS, Azure, and Google Cloud that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}.

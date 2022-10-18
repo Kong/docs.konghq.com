@@ -65,8 +65,6 @@
           url: /runtime-manager/runtime-instances/gateway-runtime-aws
         - text: Install on Azure
           url: /runtime-manager/runtime-instances/gateway-runtime-azure
-        - text: Install on Google Cloud
-          url: /runtime-manager/runtime-instances/gateway-runtime-google
         - text: Upgrade a Runtime Instance to a New Version
           url: /runtime-manager/runtime-instances/upgrade
         - text: Renew Certificates
