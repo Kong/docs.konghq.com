@@ -70,12 +70,12 @@ Choose an installation type below:
   </a>
 
   <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-aws" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/distribution/aws.svg" alt="AWS" />
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/aws.svg" alt="AWS" />
     <div class="install-text">AWS</div>
   </a>
 
   <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-azure" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/distribution/azure.svg" alt="Azure" />
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/azure.svg" alt="Azure" />
     <div class="install-text">Azure</div>
   </a>
 
