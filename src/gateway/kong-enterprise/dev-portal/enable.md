@@ -23,7 +23,7 @@ To enable the Dev Portal, you must first [deploy a license](/gateway/{{page.kong
     Replace `kong-container-name` with your {{site.base_gateway}} container.
 
     {:.note}
-    > The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should not be preceded by a protocol, for example, `http://`.
+    > The `HOSTNAME` for `KONG_PORTAL_GUI_HOST` should not be preceded by a protocol. For example, `http://`.
 
 1. Enable the Dev Portal for a workspace:
 
@@ -49,7 +49,7 @@ configuration file ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong
    portal = on
    ```
 
-   {{site.base_gateway}} must be **restarted** for this value to take effect.
+   Restart {{site.base_gateway}} for this value to take effect:
 
    ```
    kong reload
