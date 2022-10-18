@@ -463,6 +463,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
     - `basic-auth` changed from `1001` to `1100`
     - `hmac-auth` changed from `1000` to `1030`
     - `jwt` changed from `1005` to `1450`
+    - `jwt-signer` changed from `999` to `1020`.
     - `key-auth` changed from `1003` to `1250`
     - `ldap-auth` changed from `1002` to `1200`
     - `oauth2` changed from `1004` to `1400`
