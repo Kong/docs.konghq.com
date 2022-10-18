@@ -8,6 +8,12 @@ or hybrid mode), you can use the Dev Portal.
 
 Dev Portals are tied to workspaces. Each workspace has a separate Dev Portal instance.
 
+Enabling the Dev Portal exposes the following URLs:
+* The workspace's Dev Portal URL.
+For example, for the `default` workspace, the URL is: `http://localhost:8003/default`.
+* Dev Portal files endpoint: `http://localhost:8001/files`
+* Public Dev Portal files API: `http://localhost:8004/files`
+
 To enable the Dev Portal, you must first [deploy a license](/gateway/{{page.kong_version}}/licenses/deploy).
 
 {% navtabs %}
@@ -84,8 +90,3 @@ curl -i -X PATCH http://localhost:8001/workspaces/default \
 {% endnavtab %}
 {% endnavtabs %}
 
-Enabling the Dev Portal exposes the following URLs:
-* The workspace's Dev Portal URL.
-For example, for the `default` workspace, the URL is: `http://localhost:8003/default`.
-* Dev Portal files endpoint: `http://localhost:8001/files`
-* Public Dev Portal files API: `http://localhost:8004/files`
