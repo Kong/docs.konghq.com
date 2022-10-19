@@ -506,11 +506,11 @@ Any path that isn't prefixed with a `~` will be considered plain text:
 "paths": ["/users/\d+/profile", "/following"]
 ```
 
-For a deeper look into how the router processes regular expressions, read [performance considerations when using Expressions](/gateway/latest/key-concepts/routes/expressions/#performance-considerations-when-using-expressions).
+For more information about how the router processes regular expressions, see [performance considerations when using Expressions](/gateway/latest/key-concepts/routes/expressions/#performance-considerations-when-using-expressions).
 
 ##### Evaluation order
 
-The router evaluates routes using the `priority` field of the `Route` where a route is configured.
+The router evaluates routes using the `regex_priority` field of the `Route` where a route is configured.
 
 ```json
 [
@@ -539,7 +539,7 @@ defined URIs, in this order:
 3. `/version/any/`
 4. `/version`
 
-Routers that employ a large amount of regexes can consume traffic intended for other rules.
+Routers with a large number of regexes can consume traffic intended for other rules.
 You can avoid creating complex regexes using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
 request headers will indicate the matched route ID in the response headers for
 troubleshooting purposes.
