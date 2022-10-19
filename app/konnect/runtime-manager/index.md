@@ -44,7 +44,7 @@ choose to manually configure runtime instances on the following:
 * AWS
 * Azure
 
-Runtime manager provides a pre-populated template for AWS, Azure, and Google Cloud that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}.
+Runtime manager provides pre-populated templates for AWS and Azure that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}.
 
 A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected

@@ -47,7 +47,7 @@ runtime instances.
     |---|---|
     | AWS Region | The AWS region where the CloudFormation template should be created. |
     | Instance type for the gateway runtime instances | A valid x86_64 EC2 instance type. You can edit this later in AWS. |
-    | Create an Elasticache Cluster | This is used for rate limiting plugins. Selecting **Yes** creates an ElastiCache cluster. |
+    | Create an ElastiCache Cluster | This is used for rate limiting plugins. Selecting **Yes** creates an ElastiCache cluster. |
     | Enable Cloud Watch Logs collection | Sets up CloudWatch logs for the {{site.konnect_short_name}} access and error logs. Selecting **Yes** enables log collection. |
     | Existing VPC ID (Optional) | Enter an existing VPC ID, or leave blank to generate a new VPC ID. |
     | Existing Subnet IDs (Optional) | Enter an existing subnet ID, or leave blank to generate a new subnet ID. |
