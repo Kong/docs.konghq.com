@@ -539,7 +539,10 @@ defined URIs, in this order:
 3. `/version/any/`
 4. `/version`
 
-Routers with a large number of regexes can consume traffic intended for other rules.
+Routers with a large number of regexes can consume traffic intended for other rules. Regular expressions are much more expensive to build and execute and can't be optimized easily. 
+You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
+request headers will indicate the matched route ID in the response headers for
+troubleshooting purposes.
 You can avoid creating complex regexes using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
 request headers will indicate the matched route ID in the response headers for
 troubleshooting purposes.
