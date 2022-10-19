@@ -288,38 +288,6 @@ jQuery(function () {
     });
   }
 
-  // Add Smooth scroll when link with attr clicked
-  $('a[data-link="scroll"]').on("click", function () {
-    $("html, body").animate(
-      {
-        scrollTop: $($.attr(this, "href")).offset().top - NAV_HEIGHT, // Add spacing on top after scroll
-      },
-      600
-    ); // Adjust scroll speed
-    // Remove any active classes that may already be applied
-    $('a[data-link="scroll"').removeClass("active");
-    // Add active class sidebar a
-    $(this).addClass("active");
-    return false;
-  });
-
-  // Smooth scroll if hash in URL
-  if (window.location.hash) {
-    if ($(window).width() <= 1000) {
-      var offset = NAV_HEIGHT + 40;
-    } else {
-      var offset = NAV_HEIGHT;
-    }
-    $("html, body").scrollTop(0).show();
-    $("html, body").animate(
-      {
-        scrollTop: $(window.location.hash).offset().top - offset, // Add spacing on top after scroll
-      },
-      600
-    ); // Adjust scroll speed
-  }
-
-
 // Plugin filter all / only available
 var pluginsAllOrOnly = "all";
 var showPlusWithEnterprise = false;
