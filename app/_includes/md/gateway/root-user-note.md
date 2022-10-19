@@ -15,6 +15,7 @@ For more information, see
 
 {% endif_version %}
 {% if_version gte:3.0.x %}
+{:.important}
 > **Important:** When you start {{site.base_gateway}}, the NGINX master process runs as `root`, and the worker processes
 run as `kong` by default. If this is not the desired behavior, you can switch the NGINX master process
 to run on the built-in `kong` user or to a custom non-root user before starting {{site.base_gateway}}.
