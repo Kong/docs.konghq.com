@@ -55,7 +55,6 @@ Prerequisites:
 
 Steps:
 
-1. At the **top right corner**, after hovering over the **account name**, select **Profile**.
-2. In the **Reset RBAC Token** section at the bottom, click **Reset Token**.
-3. Type in a new token and click **Reset**.
-4. To copy the token, click the **Copy** button at the right.
+1. Open the dropdown from your **account name**, then select **Profile**.
+2. In the **Reset RBAC Token** section, click **Reset Token** and confirm the reset.
+3. To copy the token, click **Copy**.
