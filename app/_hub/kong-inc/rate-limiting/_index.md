@@ -65,7 +65,14 @@ params:
       default: '`consumer`'
       datatype: string
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the value for the entity chosen to aggregate the limit cannot be determined, the system will always fallback to `ip`. If value `service` is chosen, the `service.id` or `service.name` configuration must be provided if adding the plugin to a service through the top-level `/plugins` endpoint. If value `header` is chosen, the `header_name` configuration must be provided. If value `path` is chosen, the `path` configuration must be provided.
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`.
+        If the value for the entity chosen to aggregate the limit cannot be determined, the system will always fallback to `ip`.
+        
+        If value `service` is chosen, the `service.id` or `service.name` configuration must be provided if adding the plugin to a service through the top-level `/plugins` endpoint.
+        
+        If value `header` is chosen, the `header_name` configuration must be provided.
+        
+        If value `path` is chosen, the `path` configuration must be provided.
     - name: header_name
       required: semi
       datatype: string
