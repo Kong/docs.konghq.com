@@ -13,9 +13,6 @@ instances associated with the {{site.konnect_saas}} account.
 
 Runtime Manager provides a pre-populated template for a runtime instance in Azure.
 
-{:.note}
-> **Note:** Kong does not host runtimes. You must install and host your own
-runtime instances.
 
 ## Prerequisites
 

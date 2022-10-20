@@ -20,9 +20,6 @@ Runtime Manager provides a pre-populated template for a runtime instance in AWS.
 * Optional: CloudWatch log group 
 * Optional: Redis 
 
-{:.note}
-> **Note:** Kong does not host runtimes. You must install and host your own
-runtime instances.
 
 ## Prerequisites
 
