@@ -4,6 +4,72 @@ no_version: true
 ---
 <!-- vale off -->
 
+## 3.0.1.0
+**Release Date** 2022/10/27
+
+### Features
+
+#### Plugins
+
+* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
+  * Values stored in `key:value` pairs in this plugin's configuration are now referenceable, which means they can be stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/) in a vault.
+
+### Fixes
+
+#### Enterprise
+
+* Removed the endpoint `all_routes` from configurable RBAC endpoint permissions.
+This endpoint was erroneously appearing in the endpoints list, and didn't configure anything.
+
+* **Kong Manager**:
+  * Fixed an issue that allowed unauthorized IDP users to log in to Kong Manager.
+  These users had no access to any resources in Kong Manager, but were able to go beyond the login screen.
+  * Fixed an issue where, in an environment with a valid Enterprise license, admins with no access to the `default` workspace would see a message prompting them to upgrade to Kong Enterprise.
+  * Fixed pagination issues with Kong Manager tables.
+  * Fixed broken `Learn more` links.
+  * Fixed an issue with group to role mapping, where it didn't support group names with spaces.
+  * Fixed the Cross Site Scripting (XSS) security vulnerability in the Kong Manager UI.
+  * Fixed an RBAC issue where permissions applied to specific endpoints (for example, an individual service or route) were not reflected in the Kong Manager UI.
+  * Removed New Relic from Kong Manager. Previously, `VUE_APP_NEW_RELIC_LICENSE_KEY` and
+  `VUE_APP_SEGMENT_WRITE_KEY` were being exposed in Kong Manager with invalid values.
+  * Removed the action dropdown menu on service and route pages for read-only users.
+  * Fixed the **Edit Configuration** button for Dev Portal applications.
+  * Fixed an RBAC issue where the roles page listed deleted roles.
+  * Fixed an issue where the orphaned roles would remain after deleting a workspace and cause the **Teams** > **Admins** page to break.
+  * Added the missing **Copy JSON** button for plugin configuration.
+  * Fixed an issue where the **New Workspace** button on the globl workspace dashboard wasn't clickable on the first page load.
+  * Removed the ability to add multiple documents per service from the UI.
+  Each service only supports one document, so the UI now reflects that.
+  * The Upstream Timeout plugin now has an icon and is part of the Traffic Control category.
+  * Fixed an error that would occur when attempting to delete ACL credentials
+  from the consumer credentials list.
+  This happened because the the name of the plugin, `acl`, and its endpoint, `/acls`, don't match.
+  * Fixed a caching issue with Dev Portal, where enabling or disabling the Dev Portal for a workspace wouldn't change the Kong Manager menu.
+
+* Unpinned the version of `alpine` used in the `kong/kong-gateway` Docker image.
+Previously, the version was pinned to 3.10, which was creating outdated `alpine` builds.
+
+#### Core
+
+* Fixed an issue with how Kong initializes `resty.events`. The code was
+previously using `ngx.config.prefix()` to determine the listening socket
+path to provide to the resty.events module. This caused breakage when
+Nginx was started with a relative path prefix.
+
+    Instead of using `ngx.config.prefix()`, Kong will now prefer the
+    `kong.configuration.prefix` when available, as it is already normalized
+    to an absolute path. If `kong.configuration.prefix` is not defined, the
+    result of `ngx.config.prefix()` will be used after resolving it to an
+    absolute path. [#9337](https://github.com/Kong/kong/pull/9337)
+
+* Fixed an issue with secret management references. By default, Kong passes secrets to Nginx using environment variables when using `kong start`. Nginx was being started directly without calling `kong start`, so the secrets were not available at initialization. [#9478](https://github.com/Kong/kong/pull/9478)
+
+### Deprecations and removals
+
+* The deprecated `/oas-config` endpoint and the `openapi2kong` cli tool have been removed from Kong Gateway.
+Use [Insomnia's declarative configuration generator](https://docs.insomnia.rest/inso-cli/cli-command-reference/inso-generate-config) instead.
+
+
 ## 3.0.0.0
 **Release Date** 2022/09/09
 
