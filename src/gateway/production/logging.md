@@ -7,7 +7,7 @@ title: Logging Reference
 Log levels are set in [Kong's configuration](/gateway/{{page.kong_version}}/reference/configuration/#log_level). Following are the log levels in increasing order of their severity: `debug`, `info`,
 `notice`, `warn`, `error` and `crit`.
 
-- *`debug`:* It provides debug information about the plugin's runloop and each individual plugin or other components. Only to be used during debugging since it is too chatty.
+- *`debug`:* It provides debug information about the plugin's run loop and each individual plugin or other components. Only to be used during debugging since it is too chatty.
 - *`info`/`notice`:* Kong does not make a big difference between both these levels. Provides information about normal behavior most of which can be ignored.
 - *`warn`:* To log any abnormal behavior that doesn't result in dropped transactions but requires further investigation, `warn` level should be used.
 - *`error`:* Used for logging errors that result in a request being dropped (for example getting  an HTTP 500 error). The rate of such logs need to be monitored.

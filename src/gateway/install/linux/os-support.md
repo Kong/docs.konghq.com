@@ -6,7 +6,7 @@ title: Supported Operating Systems
 
 ## Supported
 
-Kong Gateway currently supports the following Linux operating systems:
+{{site.base_gateway}} currently supports the following Linux operating systems:
 
 <table>
   <thead>

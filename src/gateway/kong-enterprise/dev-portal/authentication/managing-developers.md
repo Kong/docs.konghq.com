@@ -57,10 +57,10 @@ To invite a single or multiple developers:
 opens in your default email client with a link to the registration page for
 your Dev Portal.
 
-Each developer is bcc'd by default for privacy. You may choose to edit the message or send as is.
+Each developer is BCC'd by default for privacy. You may choose to edit the message or send as is.
 
 ![Invite Developers](https://konghq.com/wp-content/uploads/2018/05/invite-developers.png)
 
 ## Developer Management Property Reference
 
-For comprehensive documentation on developer management properties, see [Default Developer Portal Authentication](/gateway/{{page.kong_version}}/reference/configuration/#default-developer-portal-authentication-section).
+For comprehensive documentation on developer management properties, see [Default Dev Portal Authentication](/gateway/{{page.kong_version}}/reference/configuration/#default-developer-portal-authentication-section).

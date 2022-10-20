@@ -61,7 +61,7 @@ $ helm repo update
 
 
 # Helm 3
-$ helm install kong/kong --generate-name --set ingressController.installCRDs=false
+$ helm install kong/kong --generate-name --set ingressController.installCRDs=false --create-namespace=kong
 ```
 
 Once installed, set an environment variable, $PROXY_IP with the External IP address of
@@ -70,6 +70,9 @@ the `demo-kong-proxy` service in `kong` namespace:
 ```
 export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong demo-kong-proxy)
 ```
+
+{:.note}
+> **Note:** Alternatively, you can also specify `ingress[0].hostname` depending on your environment.
 
 ## Using Kong for Kubernetes
 

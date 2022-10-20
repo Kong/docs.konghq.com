@@ -105,7 +105,7 @@ integration with a service. Because custom webhooks are fully configurable, they
 Custom webhooks support Lua templating on a configurable body, form payload, and headers. For a list of
 possible fields for templating, see the [sources](/gateway/{{ page.kong_version }}/admin-api/event-hooks/reference/#list-all-sources) endpoint.
 
-The following example sends a message to Slack any time a new administrator is invited to Kong Gateway.
+The following example sends a message to Slack any time a new administrator is invited to {{site.base_gateway}}.
 Slack allows for [incoming webhooks](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack#set-up-incoming-webhooks)
 and we can use these to build an integration with Kong's event hooks features.
 
@@ -207,7 +207,7 @@ Afterwards, you should receive a message in the Slack channel you selected with 
 
 ## Log
 
-Log event hooks log the specified event and content of the payload into the Kong Gateway logs.
+Log event hooks log the specified event and content of the payload into the {{site.base_gateway}} logs.
 
 To create a log event hook:
 
@@ -304,7 +304,7 @@ any time a consumer changes, but conditionally and with custom formatting.
 > The lambda event hook type is extremely powerful: you can write completely custom logic to handle any use case you want.
 However, it’s [restricted by default through the sandbox.](/gateway/{{ page.kong_version }}/reference/configuration/#untrusted_lua).  This
 sandbox is put in place to keep users safe: it’s easy to inadvertently add unsafe libraries/objects into the sandbox
-and leave the Kong Gateway exposed to security vulnerabilities. Use caution before modifying these sandbox settings.
+and leave the {{site.base_gateway}} exposed to security vulnerabilities. Use caution before modifying these sandbox settings.
 
 To create a lambda event hook:
 

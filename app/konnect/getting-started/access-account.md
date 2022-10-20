@@ -11,7 +11,7 @@ downgrade to the free version, or continue with a paid Plus subscription.
 
 1. Go to [cloud.konghq.com/register](https://cloud.konghq.com/register).
 
-2. On the registration screen, fill in your email address, first and last name,
+2. On the registration screen, select your default region and enter your email address, first and last name,
 and organization name.
 
     All fields are required.

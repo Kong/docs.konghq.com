@@ -35,7 +35,7 @@ file for specifying the entities as a declarative configuration.
 ### Using a database
 
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 [Configure][configuration] Kong so it can connect to your database. Kong supports
 [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and
@@ -54,7 +54,7 @@ can also run in [DB-less mode](/gateway/{{ page.kong_version }}/production/deplo
     kong migrations bootstrap [-c /path/to/kong.conf]
     ```
 
-    By default, Kong is configured to communicate with a local Postgres instance.
+    By default, Kong is configured to communicate with a local PostgreSQL instance.
     If you are using Cassandra, or need to modify any settings, download the [`kong.conf.default`](https://raw.githubusercontent.com/Kong/kong/master/kong.conf.default) file and [adjust][configuration] it as necessary.
 
 3. As root, add `kong.conf.default` to `/etc`:
@@ -85,7 +85,7 @@ you should start by generating a declarative config file.
     declarative_config = /path/to/kong.yml
     ```
 
-## Run Kong Gateway
+## Run {{site.base_gateway}}
 
 1. Start {{site.base_gateway}}:
 

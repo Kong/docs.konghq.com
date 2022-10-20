@@ -2,13 +2,13 @@
 title: License
 ---
 
-Kong Mesh requires a valid license before it can start the global `kuma-cp` process. When the license is not set, Kong Mesh automatically uses a **prebundled license** with the following limits:
+Kong Mesh requires a valid license before it can start the global `kuma-cp` process. When the license is not set, Kong Mesh automatically uses a **pre-bundled license** with the following limits:
 
 * Number of data plane proxies (DPPs) allowed: 5
 * Expiration date: 30 days
 
 
-The prebundled license can be overwritten by explicitly setting a new one. You can obtain a Kong Mesh license by getting in touch with the [Kong team](https://konghq.com/request-demo-kong-mesh/).
+The pre-bundled license can be overwritten by explicitly setting a new one. You can obtain a Kong Mesh license by getting in touch with the [Kong team](https://konghq.com/request-demo-kong-mesh/).
 
 A license file with a valid signature typically looks like the following example:
 
@@ -63,7 +63,7 @@ The control-plane will issue a warning in the logs and the GUI when the license 
 With a valid issued license, a data plane proxy will always be able to join the service mesh, even if you go above the allowed limit to prevent service disruptions.
 If the number of DPPs does go above the limit, you will see a warning in the GUI and in the control plane logs. 
 
-With the prebundled license, if you go over the maximum allowed number of DPPs, the system will automatically refuse their connections.
+With the pre-bundled license, if you go over the maximum allowed number of DPPs, the system will automatically refuse their connections.
 
 ## License API
 

@@ -13,6 +13,8 @@ Through a runtime group, you can configure the following [{{site.base_gateway}} 
 * Certificates
 * SNIs
 
+Services are region-specific and are not shared between [geographic regions](/konnect/regions/).
+
 ## Configure a {{site.base_gateway}} object
 
 1. Open the {% konnect_icon runtimes %}

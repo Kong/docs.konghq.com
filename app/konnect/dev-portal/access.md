@@ -14,11 +14,14 @@ The Dev Portal URL looks like this:
     
     https://example.us.portal.konghq.com/
 
+{:.note}
+>The Dev Portal URL varies based on region. 
+ 
 ## View a service in the Dev Portal {#url}
 
 The Dev Portal page contains a list of services that are published on the Dev Portal. 
 
-To find a service in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists every published service that is being managed by {{site.konnect_short_name}}. 
+To find a service in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists region-specific published services that are managed by {{site.konnect_short_name}}. 
 
 To open a published service in the Dev Portal:  
 

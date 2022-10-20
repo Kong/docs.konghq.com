@@ -25,6 +25,8 @@ for more information about Kong's support for {{site.base_gateway}} and our
 {% for system in compat_data.os %}
   <li><strong>{{ system[0] | split: "-" | join: " " | capitalize }}:</strong> {{ system[1] }}</li>
 {% endfor %}
+
+Kong only supports the latest vendor-supported minor version for RHEL and CentOS.
 </ul>
 
 <h3>Supported databases</h3>

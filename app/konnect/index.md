@@ -54,9 +54,12 @@ preferred network environment.
 
 * Providing a real-time, centralized view of all your services. Monitor golden signals such as error rate and latency for each service and route to gain deep insights into your API products.
 
+* Control which [geographic region](/konnect/regions) the universal API control plane is operated in. US and EU regions are currently supported. This allows you to operate {{site.konnect_short_name}} in a similar geographic region to your end-users, as well as ensure data privacy and regulatory compliance. 
+
 [Get started](https://cloud.konghq.com/quick-start) with {{ site.konnect_short_name }} for free today!
 
 <!-- vale off -->
+
 
 {:.note}
 > This documentation is for the {{site.konnect_short_name}} environment at

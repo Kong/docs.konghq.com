@@ -3,13 +3,13 @@ title: Install Kong Gateway on CentOS
 ---
 
 {:.important}
-> **Deprecation notice**: Support for running open-source Kong Gateway on
+> **Deprecation notice**: Support for running open-source {{site.base_gateway}} on
 CentOS is now deprecated, as [CentOS has reached End of Life (EOL)](https://www.centos.org/centos-linux-eol/).
-Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source CentOS images.
-> If you need to install Kong Gateway (OSS) on CentOS, see the documentation for
+Starting with {{site.base_gateway}} 2.8.0.0, Kong is not building new open-source CentOS images.
+> If you need to install {{site.base_gateway}} (OSS) on CentOS, see the documentation for
 [previous versions](/gateway/2.7.x/install/centos/).
 > <br><br>
-> Kong Gateway Enterprise subscriptions can still use CentOS in 2.8, but support
+> {{site.base_gateway}} Enterprise subscriptions can still use CentOS in 2.8, but support
 for CentOS is planned to be removed in 3.0.
 
 
@@ -36,13 +36,13 @@ Install {{site.base_gateway}} on CentOS from the command line.
 1. Download the Kong package:
 
     ```bash
-    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-3.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.amd64.rpm")
+    curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-3.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.el%{centos_ver}.amd64.rpm")
     ```
 
 2. Install the package:
 
     ```bash
-    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+    sudo yum install kong-enterprise-edition-{{page.versions.ee}}.rpm
     ```
 
 {% endnavtab %}
@@ -58,7 +58,7 @@ Install the YUM repository from the command line.
 2. Install Kong:
 
     ```bash
-    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
+    sudo yum install kong-enterprise-edition-{{page.versions.ee}}
     ```
 
 {% endnavtab %}

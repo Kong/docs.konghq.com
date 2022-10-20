@@ -15,7 +15,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.2
+          ruby-version: .ruby-version
       - name: Ruby gem cache
         uses: actions/cache@v2
         with:
@@ -36,9 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: errata-ai/vale-action@v1
+      - uses: errata-ai/vale-action@v2
         with:
           # path where vale checks checking only modified files.
-          files: __onlyModified
+          filter_mode: file
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

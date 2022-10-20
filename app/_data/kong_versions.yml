@@ -166,7 +166,7 @@
   lua_doc: true
 -
   release: "2.8.x"
-  ee-version: "2.8.1.4"
+  ee-version: "2.8.2.0"
   ce-version: "2.8.1"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -252,6 +252,10 @@
   version: "1.14.0"
   edition: "deck"
 -
+  release: "1.15.x"
+  version: "1.15.0"
+  edition: "deck"
+-
   release: "1.0.x"
   version: "1.0.4"
   edition: "mesh"
@@ -285,15 +289,15 @@
   edition: "mesh"
 -
   release: "1.7.x"
-  version: "1.7.1"
+  version: "1.7.4"
   edition: "mesh"
 -
   release: "1.8.x"
-  version: "1.8.2"
+  version: "1.8.3"
   edition: "mesh"
 -
   release: "1.9.x"
-  version: "1.9.0"
+  version: "1.9.1"
   edition: "mesh"
 -
   release: "1.0.x"
@@ -338,4 +342,8 @@
 -
   release: "2.6.x"
   version: "2.6.0"
+  edition: "kubernetes-ingress-controller"
+-
+  release: "2.7.x"
+  version: "2.7.0"
   edition: "kubernetes-ingress-controller"

@@ -101,7 +101,7 @@ route_body: |
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
     `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.
-    `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Default: `426`.
+    `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Default: `426`. *NOTE*: This applies only if the route is only listening to the `HTTPS` protocol.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Default: `0`.
     `strip_path` |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Default: `true`.
     `path_handling`<br>*optional* |  Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.  Accepted values are: `"v0"`, `"v1"`.  Default: `"v0"`.
@@ -181,7 +181,6 @@ consumer_body: |
     ---:| ---
     `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request.
     `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
-    `type`<br>*required* |  The type of consumer. It can be `0` (proxy), `1` (developer), `2` (admin) or `3` (application)  Default: `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering.
 
 consumer_json: |
@@ -190,7 +189,6 @@ consumer_json: |
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
-        "type": 0,
         "tags": ["user-level", "low-priority"]
     }
 
@@ -200,14 +198,12 @@ consumer_data: |
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
-        "type": 0,
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "01c23299-839c-49a5-a6d5-8864c09184af",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
-        "type": 0,
         "tags": ["admin", "high-priority", "critical"]
     }],
 
@@ -1160,13 +1156,13 @@ HTTP 200 OK
   * `id`: The ordinal number of the current Nginx worker processes (starting from number 0).
   * `count`: The total number of the Nginx worker processes.
 * `stats.flamegraph`: String-encoded timer-related flamegraph data.
-  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph svgs.
+  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph SVGs.
 * `stats.sys`: List the number of different type of timers.
   * `running`: number of running timers.
   * `pending`: number of pending timers.
   * `waiting`: number of unexpired timers.
   * `total`: running + pending + waiting.
-* `timers.meta`: Program callstack of created timers.
+* `timers.meta`: Program call stack of created timers.
   * `name`: An automatically generated string that stores the location where the creation timer was created.
   * `callstack`: Lua call stack string showing where this timer was created.
 * `timers.stats.elapsed_time`: An object that stores the maximum, minimum, average and variance
@@ -1795,6 +1791,18 @@ following attributes must be set:
 * For `wss`, at least one of `hosts`, `headers`, `paths` or `snis`; <span class="badge enterprise"></span>
 
 A route can't have both `tls` and `tls_passthrough` protocols at same time.
+
+The 3.0.x release introduces a new router implementation: `atc-router`.
+The router adds:
+
+* Reduced router rebuild time when changing {{site.base_gateway}}’s configuration
+* Increased runtime performance when routing requests
+* Reduced P99 latency from 1.5s to 0.1s with 10,000 routes
+
+Learn more about the router: 
+
+* [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
+* [Router Expressions language reference](/gateway/3.0.x/reference/router-expressions-language/)
 
 #### Path handling algorithms
 
@@ -4083,7 +4091,7 @@ target](#delete-target) instead.
 
 Note: This API is not available when Kong is running in hybrid mode.
 
-<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/unhealthy</div>
 
 {:.indent}
 Attributes | Description

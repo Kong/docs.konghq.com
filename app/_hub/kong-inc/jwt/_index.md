@@ -112,7 +112,7 @@ A Consumer can have many credentials.
 To create a Consumer, you can execute the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://localhost:8001/consumers/
 ```
 {% endnavtab %}
 {% navtab Declarative (YAML) %}
@@ -142,7 +142,7 @@ parameter                       | description
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{consumer}/jwt -H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://localhost:8001/consumers/CONSUMER/jwt -H "Content-Type: application/x-www-form-urlencoded"
 ```
 
 Response:
@@ -150,11 +150,16 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer_id": "7bce93e1-0a90-489c-c887-d385545f8f4b",
-    "created_at": 1442426001000,
-    "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
-    "key": "a36c3049b36249a3c9f8891cb127243c",
-    "secret": "e71829c351aa4242c2719cbfbe671c09"
+	"id": "0701ad83-949c-423f-b553-091d5a6bae52",
+	"secret": "C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X",
+	"key": "YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz",
+	"tags": null,
+	"rsa_public_key": null,
+	"consumer": {
+		"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"
+	},
+	"algorithm": "HS256",
+	"created_at": 1664462115
 }
 ```
 {% endnavtab %}
@@ -172,7 +177,7 @@ In both cases, the fields/parameters work as follows:
 
 field/parameter                | default         | description
 ---                            | ---             | ---
-`{consumer}`                   |                 | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`consumer`                   |                 | The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`, the public key (in PEM format) to use to verify the token's signature.
@@ -198,7 +203,7 @@ You can remove a Consumer's JWT credential by issuing the following HTTP
 request:
 
 ```bash
-curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
+curl -X DELETE http://localhost:8001/consumers/{consumer}/jwt/{id}
 ```
 
 Response:
@@ -215,7 +220,7 @@ You can list a Consumer's JWT credentials by issuing the following HTTP
 request:
 
 ```bash
-curl -X GET http://kong:8001/consumers/{consumer}/jwt
+curl -X GET http://localhost:8001/consumers/{consumer}/jwt
 ```
 
 Response:
@@ -228,18 +233,21 @@ HTTP/1.1 200 OK
 
 ```json
 {
-    "data": [
-        {
-            "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK .... -----END PUBLIC KEY-----",
-            "consumer_id": "39f52333-9741-48a7-9450-495960d91684",
-            "id": "3239880d-1de5-4dbc-bccf-78f7a4280f33",
-            "created_at": 1491430568000,
-            "key": "c5a55906cc244f483226e02bcff2b5e",
-            "algorithm": "RS256",
-            "secret": "b0970f7fc9564e65xklfn48930b5d08b1"
-        }
-    ],
-    "total": 1
+	"next": null,
+	"data": [
+		{
+			"id": "0701ad83-949c-423f-b553-091d5a6bae52",
+			"secret": "C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X",
+			"key": "YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz",
+			"tags": null,
+			"rsa_public_key": null,
+			"consumer": {
+				"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"
+			},
+			"algorithm": "HS256",
+			"created_at": 1664462115
+		}
+	]
 }
 ```
 
@@ -280,20 +288,20 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWN
 The JWT can now be included in a request to Kong by adding it as a header, if configured in `config.header_names` (which contains `Authorization` by default):
 
 ```bash
-curl http://kong:8000/{route path} \
+curl http://localhost:8000/{route path} \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
 ```
 
 as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
 
 ```bash
-curl http://kong:8000/{route path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
+curl http://localhost:8000/{route path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
 ```
 
 or as cookie, if the name is configured in `config.cookie_names` (which is not enabled by default):
 
 ```bash
-curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4 http://kong:8000/{route path}
+curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4 http://localhost:8000/{route path}
 ```
 
 gRPC requests can include the JWT in a header:
@@ -324,7 +332,7 @@ You can patch an existing JWT plugin:
 
 ```bash
 # This adds verification for both nbf and exp claims:
-curl -X PATCH http://kong:8001/plugins/{jwt plugin id} \
+curl -X PATCH http://localhost:8001/plugins/{jwt plugin id} \
   --data "config.claims_to_verify=exp,nbf"
 ```
 
@@ -343,7 +351,7 @@ Enable this option in the plugin's configuration.
 You can patch an existing Route:
 
 ```bash
-curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
+curl -X PATCH http://localhost:8001/routes/{route id}/plugins/{jwt plugin id} \
   --data "config.secret_is_base64=true"
 ```
 
@@ -351,7 +359,7 @@ Then, base64 encode your Consumers' secrets:
 
 ```bash
 # secret is: "blob data"
-curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+curl -X POST http://localhost:8001/consumers/{consumer}/jwt \
   --data "secret=YmxvYiBkYXRh"
 ```
 
@@ -364,7 +372,7 @@ select `RS256` or `ES256` as the `algorithm`, and explicitly upload the public k
 in the `rsa_public_key` field (including for ES256 signed tokens). For example:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+curl -X POST http://localhost:8001/consumers/{consumer}/jwt \
   -F "rsa_public_key=@/path/to/public_key.pem" \
 ```
 
@@ -373,11 +381,13 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer_id": "7bce93e1-0a90-489c-c887-d385545f8f4b",
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
-    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ..."
+    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ...",
+    "consumer": {
+      "id": "8a21c4fa-e65e-4258-8673-540e85e67b33"
+    }
 }
 ```
 
@@ -407,7 +417,7 @@ Then, create the signature using your private keys. Using the JWT debugger at
 associated public key. Then, append the resulting value in the `Authorization` header, for example:
 
 ```bash
-curl http://kong:8000/{route path} \
+curl http://localhost:8000/{route path} \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxM2Q1ODE0NTcyZTc0YTIyYjFhOWEwMDJmMmQxN2MzNyJ9.uNPTnDZXVShFYUSiii78Q-IAfhnc2ExjarZr_WVhGrHHBLweOBJxGJlAKZQEKE4rVd7D6hCtWSkvAAOu7BU34OnlxtQqB8ArGX58xhpIqHtFUkj882JQ9QD6_v2S2Ad-EmEx5402ge71VWEJ0-jyH2WvfxZ_pD90n5AG5rAbYNAIlm2Ew78q4w4GVSivpletUhcv31-U3GROsa7dl8rYMqx6gyo9oIIDcGoMh3bu8su5kQc5SQBFp1CcA5H8sHGfYs-Et5rCU2A6yKbyXtpHrd1Y9oMrZpEfQdgpLae0AfWRf6JutA9SPhst9-5rn4o3cdUmto_TBGqHsFmVyob8VQ'
 ```
 
@@ -479,7 +489,7 @@ openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
 Create a Consumer with the Auth0 public key:
 
 ```bash
-curl -i -X POST http://kong:8001/consumers \
+curl -i -X POST http://localhost:8001/consumers \
   --data "username=<USERNAME>" \
   --data "custom_id=<CUSTOM_ID>"
 
@@ -529,52 +539,52 @@ You can paginate through the JWTs for all Consumers using the following
 request:
 
 ```bash
-curl -X GET http://kong:8001/jwts
+curl -X GET http://localhost:8001/jwts
 ```
 
 Response:
 ```json
 {
-    "total": 3,
-    "data": [
-        {
-            "created_at": 1509593911000,
-            "id": "381879e5-04a1-4c8a-9517-f85fbf90c3bc",
-            "algorithm": "HS256",
-            "key": "UHVwIly5ZxZH7g52E0HRlFkFC09v9yI0",
-            "secret": "KMWyDsTTcZgqqyOGgRWTDgZtIyWeEtJh",
-            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
-        },
-        {
-            "created_at": 1511389527000,
-            "id": "0dfc969b-02be-42ae-9d98-e04ed1c05850",
-            "algorithm": "ES256",
-            "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
-            "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
-            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
-        },
-        {
-            "created_at": 1509593912000,
-            "id": "d10c6f3b-71f1-424e-b1db-366abb783460",
-            "algorithm": "HS256",
-            "key": "SqSNfg9ARmPnpycyJSMAc2uR6nxdmc9S",
-            "secret": "CCh6ZIcwDSOIWacqkkWoJ0FWdZ5eTqrx",
-            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
-        }
-    ]
+	"next": null,
+	"data": [
+		{
+			"id": "0701ad83-949c-423f-b553-091d5a6bae52",
+			"secret": "C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X",
+			"key": "YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz",
+			"tags": null,
+			"rsa_public_key": null,
+			"consumer": {
+				"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"
+			},
+			"algorithm": "HS256",
+			"created_at": 1664462115
+		},
+		{
+			"id": "e14d775e-3b52-45cc-be9e-b39cdb3f7ebf",
+			"secret": "gFrOZAYWH1osQ6ivkesT4qqH16DHpKu0",
+			"key": "7TrSUEFcEP7KZb2QrGT9IQXcEWrmszC8",
+			"tags": null,
+			"rsa_public_key": null,
+			"consumer": {
+				"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"
+			},
+			"algorithm": "HS256",
+			"created_at": 1664398496
+		}
+	]
 }
 ```
 
-You can filter the list by consumer by using this other path:
+You can filter the list by consumer by using another path:
 
 ```bash
-curl -X GET http://kong:8001/consumers/{username or id}/jwt
+curl -X GET http://localhost:8001/consumers/USERNAME|ID/jwt
 ```
 
 Response:
 ```json
 {
-    "total": 1,
+    "next": null,
     "data": [
         {
             "created_at": 1511389527000,
@@ -582,7 +592,9 @@ Response:
             "algorithm": "ES256",
             "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
             "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
-            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+            "consumer": {
+               "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" 
+              }
 
         }
     ]
@@ -602,15 +614,19 @@ Retrieve a [Consumer][consumer-object] associated with a JWT
 using the following request:
 
 ```bash
-curl -X GET http://kong:8001/jwts/{key or id}/consumer
+curl -X GET http://localhost:8001/jwts/{key or id}/consumer
 ```
 
 Response:
 ```json
 {
-   "created_at":1507936639000,
-   "username":"foo",
-   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+	"id": "8a21c1fa-e65e-4558-8673-540e85e67b33",
+	"username_lower": "username",
+	"custom_id": "123412312312312312312312",
+	"type": 0,
+	"created_at": 1664398410,
+	"username": "Username",
+	"tags": null
 }
 ```
 

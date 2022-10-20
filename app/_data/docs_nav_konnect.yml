@@ -7,6 +7,8 @@
       url: /architecture
     - text: Network Resiliency and Availability
       url: /network-resiliency
+    - text: Geographic Regions
+      url: /regions
     - text: Port and Network Requirements
       url: /network
     - text: Compatibility
@@ -151,8 +153,8 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Overview Dashboard
-      url: /analytics/overview-dashboard/
+    - text: Summary Dashboard
+      url: /analytics/summary-dashboard/
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
     - text: Generate Reports

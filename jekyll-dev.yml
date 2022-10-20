@@ -86,6 +86,7 @@ include:
 plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
+  - jekyll-generator-single-source
 
 defaults:
   - scope:
@@ -152,10 +153,10 @@ defaults:
       version-index: 2
 
   - scope:
-      path: "gateway/3.0.x/"
+      path: "gateway/2.8.x/"
     values:
       layout: "docs-v2"
-      version-index: 3
+      version-index: 2
 
   - scope:
       path: "about"
@@ -186,3 +187,7 @@ konnect_short_name: Konnect
 konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
+
+jekyll-generator-single-source:
+  versions_file: '_data/kong_versions.yml'
+  docs_nav_folder: '_data'

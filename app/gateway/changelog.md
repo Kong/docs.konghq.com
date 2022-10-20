@@ -25,7 +25,7 @@ This lets you run plugins such as `rate-limiting` before authentication plugins.
   FIPS mode is only supported in Ubuntu 20.04.
 
   {:.note}
-  > **Note**: The Kong Gateway FIPS package is not currently compatible with SSL 
+  > **Note**: The Kong Gateway FIPS package is not currently compatible with SSL
   > connections to PostgreSQL.
 
 * Kong Gateway now includes WebSocket validation functionality. Websockets are a type of persistent connection that works on top of HTTP.
@@ -87,9 +87,9 @@ The new router can be used in traditional-compatible mode, or use the new expres
 
   Learn more about the router:
   * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
-  * [Router Expressions Language reference](/reference/router-expressions-language)
+  * [Router Expressions Language reference](/gateway/3.0.x/reference/router-expressions-language)
+  * [#8938](https://github.com/Kong/kong/pull/8938)
 
-  [#8938](https://github.com/Kong/kong/pull/8938)
 * Implemented delayed response in stream mode.
   [#6878](https://github.com/Kong/kong/pull/6878)
 * Added `cache_key` on target entity for uniqueness detection.
@@ -335,7 +335,7 @@ Kong Gateway version.
   rectified in an upcoming patch/minor release.
 
 * The Kong Gateway FIPS package is not currently compatible with SSL connections to PostgreSQL.
-  
+
 ### Breaking changes and deprecations
 
 #### Deployment
@@ -400,6 +400,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
 * Support for the `nginx-opentracing` module is deprecated as of `3.0` and will
   be removed from Kong in `4.0` (see the [Known Limitations](#known-limitations) section for additional
   information).
+* We removed regex [look-around](https://www.regular-expressions.info/lookaround.html) and [backreferences](https://www.regular-expressions.info/backref.html) support in the the atc-router. These are rarely used features and removing support for them improves the speed of our regex matching. If your current regexes use look-around or backreferences you will receive an error when attempting to start Kong, showing exactly what regex is incompatible. Users can either switch to the `traditional` router flavor or change the regex to remove look-around / backreferences.
 
 #### Admin API
 
@@ -462,6 +463,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
     - `basic-auth` changed from `1001` to `1100`
     - `hmac-auth` changed from `1000` to `1030`
     - `jwt` changed from `1005` to `1450`
+    - `jwt-signer` changed from `999` to `1020`.
     - `key-auth` changed from `1003` to `1250`
     - `ldap-auth` changed from `1002` to `1200`
     - `oauth2` changed from `1004` to `1400`
@@ -830,8 +832,72 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.2.0
+**Release Date** 2022/10/12
+
+### Features
+
+#### Plugins
+
+* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
+  * Values stored in `key:value` pairs in this plugin's configuration are now referenceable, which means they can be stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/) in a vault.
+
+### Fixes
+
+#### Enterprise
+
+* **Kong Manager**:
+  * Fixed an issue where workspaces with zero roles were not correctly sorted by the number of roles.
+  * Fixed the Cross Site Scripting (XSS) security vulnerability in the Kong Manager UI.
+  * Fixed an issue where registering an admin without `admin_gui_auth` set resulted in a `500` error.
+  * Fixed an issue that allowed unauthorized IDP users to log in to Kong Manager.
+  These users had no access to any resources in Kong Manager, but were able to go beyond the login screen.
+
+* Fixed OpenSSL vulnerabilities [CVE-2022-2097](https://nvd.nist.gov/vuln/detail/CVE-2022-2097) and [CVE-2022-2068](https://nvd.nist.gov/vuln/detail/CVE-2022-2068).
+* Hybrid mode: Fixed an issue with consumer groups, where the control plane wasn't sending the correct number of consumer entries to data planes.
+* Targets with a weight of `0` are no longer included in health checks, and checking their status via the `upstreams/<upstream>/health` endpoint results in the status `HEALTHCHECK_OFF`.
+Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting targets with `weight=0` as `HEALTHY`, and the health check was reporting the same targets as `UNDEFINED`.
+* Hybrid mode: Fixed an issue where sending a `PATCH` request to update a route after restarting a control plane caused a 500 error response.
+
+#### Plugins
+
+* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * Fixed an issue where the plugin couldn't read environment variables in the ECS environment, causing permission errors.
+
+* [Azure Functions](/hub/kong-inc/azure-functions/) (`azure-functions`)
+  * Fixed an issue where calls made by this plugin would fail in the following situations:
+    * The plugin was associated with a route that had no service.
+    * The route's associated service had a `path` value.
+
+* [Forward Proxy](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  * If the `https_proxy` configuration parameter is not set, it now defaults to `http_proxy` to avoid DNS errors.
+
+* [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced/) (`graphql-proxy-cache-advanced`) and [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
+  * Fixed the error `function cannot be called in access phase (only in: log)`, which was preventing the plugin from working consistently.
+
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
+  * The plugin now returns a `500` error when using the `cluster` strategy in hybrid or DB-less modes instead of crashing.
+
+* [HTTP Log](/hub/kong-inc/http-log/) (`http-log`)
+  * Fixed the `could not update kong admin` internal error caused by empty headers.
+  This error occurred when using this plugin with the Kubernetes Ingress Controller.
+
+* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * The characters `.` and `:` are now allowed in group attributes.
+
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed issues with OIDC role mapping where admins couldn't be added to more than one workspace, and permissions were not being updated.
+
+* [Request Transformer](/hub/kong-inc/request-transformer/) (`request-transformer`) and [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
+  * Fixed an issue where empty arrays were being converted to empty objects.
+  Empty arrays are now preserved.
+
+* [Route Transformer Advanced](/hub/kong-inc/route-transformer-advanced/) (`route-transformer-advanced`)
+  * Fixed an issue where URIs that included `%20` or a whitespace would return a `400 Bad Request`.
+
+
 ## 2.8.1.4
-**Release Date**  2022/08/23
+**Release Date** 2022/08/23
 
 * Fixed vulnerabilities [CVE-2022-37434](https://nvd.nist.gov/vuln/detail/CVE-2022-37434) and [CVE-2022-24975](https://nvd.nist.gov/vuln/detail/CVE-2022-24975).
 
@@ -2047,6 +2113,8 @@ effect on the following plugins and fields:
 
 * Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
+
+* If you are using SSL certificates with custom plugins, you may need to set certificate phase in `ngc.ctx`.
 
 ## 2.6.1.0
 **Release Date** 2022/04/07

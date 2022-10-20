@@ -9,6 +9,8 @@ service version, and each service version can have one implementation.
 
 ![{{site.konnect_short_name}} service diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
 
+Services are region-specific and are not shared between [geographic regions](/konnect/regions/).
+
 For the purpose of this guide, you’ll create a service, version it, and
 expose the version by creating an implementation pointing to the Mockbin API.
 Mockbin is an *echo*-type public website that returns requests back to the

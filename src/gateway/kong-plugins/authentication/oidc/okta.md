@@ -13,7 +13,7 @@ in conjunction with the Application Registration plugin, see
 
 ### Sign-in flow
 
-![OIDC signin flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsignin.png)
+![OIDC sign-in flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsignin.png)
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -80,13 +80,17 @@ guide, assume the route is in the default workspace.
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
     **Sign-out redirect URIs** fields, enter a location handled by your Route
-    in Kong Gateway.
+    in {{site.base_gateway}}.
 
         For this example, you can enter `https://kong.com/api`.
 
-    1. In the Assigments section, for **Controlled access**, choose your
+    1. In the Assignments section, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
-    Okta admins.
+    Okta admins. 
+    
+    Do not select **Allow everyone in your organization to access** otherwise the **access token** won't be verified against Okta.
+    
+    Either select **Limit access to selected groups** or **Skip group assignment for now** and assign the users and groups in a later step.
 
 1. Save your settings to generate connection details.
 
@@ -99,19 +103,15 @@ guide, assume the route is in the default workspace.
     On the page that appears, note the **Issuer** address. You need this address
     to configure the Kong OIDC Plugin.
 
+1. Now add a policy from the **Access Policies** tab.
+    1. Click **Add New Access Policy** and add a **Name** and **Description**    
+    1. Add a **rule**
+    1. Assign a **Rule Name** and use the default settings, or adjust to your requirements.
+    1. Click **Create Rule**
+
 ### Configure the OIDC plugin in {{site.base_gateway}}
 
 #### Minimum configuration requirements
-
-Configure the following parameters:
-
-* **issuer**: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
-    * `https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration`
-* **auth_method**: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
-* **client_id**: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
-* **client_secret**: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
-* **redirect_uri**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
-* **scopes**:  The scope of what OpenID Connect checks. `openid` by default; set to `email` and `profile` for this example.
 
 {% navtabs %}
 {% navtab Configure plugin with Kong Manager %}
@@ -155,14 +155,17 @@ following, at minimum:
         that you want the plugin to accept. If you don't select an auth method,
         all auth methods are allowed by default.
 
-1. Switch to the **Authorization** tab and fill out **config.scopes required** with
-`openid, email, profile`.
+1. On the **Authorization** tab, configure the following, at a minimum:
+
+    1. For **config.scopes required**, enter `openid, email, profile`. This parameter is the scope of what OpenID Connect checks.
+
+    1. For **config.scopes claim**, enter `scp`.
 
 1. Switch to the **Advanced** tab and fill out **config.redirect_uri** with
  `https://kong.com/api`.
 
     The `redirect_uri` should be the URI you specified earlier when configuring
-     your app.
+     your app. This is the `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
 
 1. Click **Create** to save and apply the plugin to the Route.
 
@@ -181,10 +184,23 @@ curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins \
   --data config.client_id="YOUR_CLIENT_ID"                                                                 \
   --data config.client_secret="YOUR_CLIENT_SECRET"                                                         \
   --data config.redirect_uri="https://kong.com/api"                                                        \
+  --data config.scopes_claim="scp"                                                                         \
   --data config.scopes="openid"                                                                            \
   --data config.scopes="email"                                                                             \
-  --data config.scopes="profile"
+  --data config.scopes="profile"                                                                           \
+  --data config.auth_methods=authorization_code
 ```
+
+In this example, the configuration contains the following values:
+
+* **`issuer`**: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
+    * `https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration`
+* **`auth_method`**: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
+* **`client_id`**: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
+* **`client_secret`**: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
+* **`config.scopes_required`**:  The scope of what OpenID Connect checks. This is set to `openid` by default. You must also set `email` and `profile` for this example. 
+* **`config.scopes_claim`**: This should be set to `scp`.
+* **`config.redirect_uri`**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
 
 For a list of all available configuration parameters and what they do, see the
 [OIDC plugin reference](/hub/kong-inc/openid-connect).

@@ -1361,7 +1361,7 @@ name   | description  | default
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
-**pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1`, `tlsv1_2`, or `tlsv1_3`. | `tlsv1`
+**pg_ssl_version** | When using ssl between Kong and PostgreSQL, the version of tls to use. Accepted values are `tlsv1_2`, or `tlsv1_3`. | `tlsv1_2`
 **pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. It aborts the connection if the server does not support SSL connections. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_ssl_cert** | The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set. | none
@@ -1710,6 +1710,34 @@ each individual worker.
 
 **Default:** `5`
 
+
+### router_flavor
+
+Selects the router implementation to use when performing request routing.
+Incremental router rebuild is available when the flavor is set to either
+`expressions` or `traditional_compatible` which could significantly shorten
+rebuild time for large number of routes.
+
+Accepted values are:
+
+- `traditional_compatible`: the DSL based expression router engine will be used
+  under the hood. However the router config interface will be the same as
+  `traditional` and expressions are automatically generated at router build
+  time. The `expression` field on the `Route` object is not visible.
+- `expressions`: the DSL based expression router engine will be used under the
+  hood. Traditional router config interface is not visible and you must write
+  Router Expression manually and provide them in the `expression` field on the
+  `Route` object.
+- `traditional`: the pre-3.0 Router engine will be used. Config interface will
+  be the same as pre-3.0 Kong and the `expression` field on the `Route` object
+  is not visible.
+
+Deprecation warning: In Kong 3.0, `traditional` mode should be avoided and only
+be used in case `traditional_compatible` did not work as expected.
+
+This flavor of router will be removed in the next major release of Kong.
+
+**Default:** `traditional_compatible`
 
 ---
 
@@ -3577,6 +3605,7 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
 
 ### untrusted_lua
+{:.badge .enterprise}
 
 Controls loading of Lua functions from admin-supplied sources such as the Admin
 API. LuaJIT bytecode loading is always disabled.
@@ -3624,6 +3653,7 @@ and `untrusted_lua_sandbox_environment` parameters below.
 
 
 ### untrusted_lua_sandbox_requires
+{:.badge .enterprise}
 
 Comma-separated list of modules allowed to be loaded with `require` inside the
 sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -3650,6 +3680,7 @@ sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 
 
 ### untrusted_lua_sandbox_environment
+{:.badge .enterprise}
 
 Comma-separated list of global Lua variables that should be made available
 inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.

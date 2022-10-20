@@ -12,13 +12,13 @@ benchmarking efforts should be undertaken for performance-critical environments.
 
 ## General resource guidelines
 
-### Kong Gateway resources
+### {{site.base_gateway}} resources
 
 {{site.base_gateway}} is designed to operate in a variety of deployment
 environments. It has no minimum system requirements to operate.
 
 Resource requirements vary substantially based on configuration. The following
-high-level matricies offer a guideline for determining system requirements
+high-level matrices offer a guideline for determining system requirements
 based on overall configuration and performance requirements.
 
 Consider the following simplified examples, where latency and throughput requirements are considered on a per-node basis. This table has rough usage requirement estimates:
@@ -58,7 +58,7 @@ There are [settings](/gateway/{{page.kong_version}}/reference/configuration/#dat
 that you can adjust to keep database access minimal (also see [in-memory caching](#in-memory-caching)), or
 [keep {{site.base_gateway}} operational](https://support.konghq.com/support/s/article/Keeping-Kong-Functional-During-DB-Down-Times)
 if the DB is down for maintenance. If you choose to keep the database
-operational during downtimes, vitals data is not written to the
+operational during downtime, vitals data is not written to the
 database during this time.
 
 ### Cluster resource allocations

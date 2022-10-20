@@ -3,14 +3,14 @@ title: Hosting Single Page App out of Kong Dev Portal
 badge: enterprise
 ---
 
-The Kong Developer Portal ships with a default server-side rendered theme; however, it is possible to replace this with a Single Page App (SPA). This example is in Angular using the Angular CLI Tool, but you can follow along with any other JavaScript framework with just a few tweaks.
+The Kong Dev Portal ships with a default server-side rendered theme; however, it is possible to replace this with a Single Page App (SPA). This example is in Angular using the Angular CLI Tool, but you can follow along with any other JavaScript framework with just a few tweaks.
 
 To view the basic example Angular template from this guide, visit the [`example/spa-angular`](https://github.com/Kong/kong-portal-templates/tree/example/spa-angular) branch from the `kong-portal-templates branch`.
 
 ## Prerequisites
 
 * Portal Legacy is turned off
-* The Developer Portal is enabled and running
+* The Dev Portal is enabled and running
 * kong-portal-cli tool is installed locally
 
 ## What is a SPA
@@ -80,7 +80,7 @@ To load our JS, we need to mount it. Let's create a new layout page.
 
 Create a file called `spa.html` in `workspaces/default/themes/layouts`.
 
-This file will need to contain the html element that the SPA will mount to as well as the scripts necessary to do this.
+This file will need to contain the HTML element that the SPA will mount to as well as the scripts necessary to do this.
 For reference, view the `index.html` inside the build folder created by the build step of the SPA.
 
 The example uses `layouts/_base.html` as the base for the layout template.
@@ -117,7 +117,7 @@ This is the resulting layout:
 ```
 {% endraw %}
 
-If the SPA build process creates a css file, edit the `head.html` partial to include your css file.
+If the SPA build process creates a CSS file, edit the `head.html` partial to include your CSS file.
 
 ### Loading your layout
 

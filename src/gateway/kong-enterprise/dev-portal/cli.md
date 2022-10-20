@@ -1,12 +1,12 @@
 ---
-title: Developer Portal CLI
+title: Dev Portal CLI
 badge: enterprise
 ---
 
-The Kong Developer Portal CLI is used to manage your Developer Portals from the
+The Kong Dev Portal CLI is used to manage your Dev Portals from the
 command line. It is built using [clipanion][clipanion].
 
-This is the next generation TypeScript based Developer Portal CLI. The goal of
+This is the next generation TypeScript based Dev Portal CLI. The goal of
 this project is to make a higher quality CLI tool over the initial sync script.
 
 
@@ -40,7 +40,7 @@ Where `<command>` is one of:
 * `fetch`    Fetches content and themes from the given workspace.
 * `wipe`     Deletes all content and themes from upstream workspace
 
-Where <workspace> indicates the directory/workspace pairing you would like to operate on.
+Where `<workspace>` indicates the directory/workspace pairing you would like to operate on.
 
 #### For `deploy`
 - Add `-W` or `--watch` to make changes reactive.

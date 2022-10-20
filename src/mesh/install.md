@@ -37,7 +37,7 @@ links to cloud marketplace integrations.
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="Docker" />
+    <img class="install-icon" src="/assets/images/icons/documentation/docker.png" alt="Docker" />
     <div class="install-text">Docker</div>
   </a>
 
@@ -53,7 +53,7 @@ links to cloud marketplace integrations.
 <div class="docs-grid-install">
 
   <a href="/mesh/{{page.kong_version}}/installation/centos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/centos.gif" alt="CentOS" />
+    <img class="install-icon" src="/assets/images/icons/documentation/centos.gif" alt="CentOS" />
     <div class="install-text">CentOS</div>
   </a>
 
@@ -63,7 +63,7 @@ links to cloud marketplace integrations.
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/amazonlinux" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="AWS" />
+    <img class="install-icon" src="/assets/images/icons/documentation/amazon-linux.png" alt="AWS" />
     <div class="install-text">Amazon Linux</div>
   </a>
 
@@ -73,7 +73,7 @@ links to cloud marketplace integrations.
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/ubuntu" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/ubuntu.png" alt="Ubuntu" />
+    <img class="install-icon" src="/assets/images/icons/documentation/ubuntu.png" alt="Ubuntu" />
     <div class="install-text">Ubuntu</div>
   </a>
 

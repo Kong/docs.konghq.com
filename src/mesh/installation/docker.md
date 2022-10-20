@@ -29,12 +29,12 @@ executables, hosted on Docker Hub:
 * **kuma-prometheus-sd**: at [`kong/kuma-prometheus-sd:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-prometheus-sd)
 
 {:.note}
-> **Note**: {{site.mesh_product_name}} also has UBI images, image names are prefixed with "ubi". For example `kong/ubi-kuma-cp` instead of `kong/kuma-cp`.
+> **Note**: {{site.mesh_product_name}} also has UBI images, image names are prefixed with `ubi`. For example `kong/ubi-kuma-cp` instead of `kong/kuma-cp`.
 
 `docker pull` each image that you need. For example:
 
 ```sh
-$ docker pull kong/kuma-cp:{{page.kong_latest.version}}
+docker pull kong/kuma-cp:{{page.kong_latest.version}}
 ```
 
 ## 2. Run {{site.mesh_product_name}}
@@ -42,7 +42,7 @@ $ docker pull kong/kuma-cp:{{page.kong_latest.version}}
 Run the control plane with:
 
 ```sh
-$ docker run \
+docker run \
   -p 5681:5681 \
   -v /path/to/license.json:/license.json \
   -e "KMESH_LICENSE_PATH=/license.json" \
@@ -92,7 +92,7 @@ You can use the `kumactl` CLI to perform **read and write** operations on
 the {{site.mesh_product_name}} HTTP API. For example:
 
 ```sh
-$ docker run \
+docker run \
   --net="host" \
   kong/kumactl:{{page.kong_latest.version}} kumactl get meshes
 
@@ -103,13 +103,12 @@ Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
 $ echo "type: Mesh
-  name: default
-  mtls:
-    enabledBackend: ca-1
-    backends:
-    - name: ca-1
-      type: builtin" | docker run -i --net="host" \
-    kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
+name: default
+mtls:
+  enabledBackend: ca-1
+  backends:
+  - name: ca-1
+    type: builtin" | docker run -i --net="host" kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
 ```
 
 This runs `kumactl` from the Docker

@@ -29,11 +29,7 @@ performance and consistency.
 
 ## Single node Kong clusters
 
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
-A single Kong node connected to a database (Cassandra or PostgreSQL) creates a
+A single Kong node connected to a database creates a
 Kong cluster of one node. Any changes applied via the Admin API of this node
 will instantly take effect. Example:
 
@@ -61,7 +57,7 @@ All nodes perform a periodic background job to synchronize with changes that
 may have been triggered by other nodes. The frequency of this job can be
 configured via:
 
-* [db_update_frequency][db_update_frequency] (default: 5 seconds)
+* [`db_update_frequency`][db_update_frequency] (default: 5 seconds)
 
 Every `db_update_frequency` seconds, all running Kong nodes will poll the
 database for any update, and will purge the relevant entities from their cache
@@ -73,7 +69,7 @@ If we delete a Service from node `A`, this change will not be effective in node
 
 This makes Kong clusters **eventually consistent**.
 
-### Use read-only replicas when deploying Kong clusters with Postgres
+### Use read-only replicas when deploying Kong clusters with PostgresSQL
 
 When using Postgres as the backend storage, you can optionally enable
 Kong to serve read queries from a separate database instance.
@@ -296,6 +292,6 @@ If the node is receiving a lot of traffic, purging its cache at the same time
 will trigger many requests to your database, and could cause a
 [dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
 
-[db_update_frequency]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency
-[db_update_propagation]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation
-[db_cache_ttl]: /gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl
+[`db_update_frequency`]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency
+[`db_update_propagation`]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation
+[`db_cache_ttl`]: /gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl

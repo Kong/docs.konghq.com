@@ -142,7 +142,7 @@ Note also the presence of the `workspace` field. This is the UUID of the Workspa
 
 It may be desirable to ignore audit log generation for certain Admin API
 requests such as innocuous requests to the `/status` endpoint for
-healthchecking or to ignore requests for a given path prefix (e.g. a given
+health checking or to ignore requests for a given path prefix (e.g. a given
 Workspace). To this end, the `audit_log_ignore_methods` and
 `audit_log_ignore_paths` configuration options are presented:
 
@@ -155,7 +155,7 @@ audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams
 
 The values of `audit_log_ignore_paths` are matched via a Perl-compatible regular expression.
 
-For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the databse:
+For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the database:
 
 - `/status`
 - `/status/`
@@ -413,7 +413,7 @@ cat canonical_record.txt
 
 <div class="alert alert-warning">
 Ensure that the contents of the canonical record file on disk match the expected
-canonical record format exactly. The presence of any addditional bytes, such as
+canonical record format exactly. The presence of any additional bytes, such as
 a trailing newline `\n`, will cause a validation failure in the next step.
 </div>
 

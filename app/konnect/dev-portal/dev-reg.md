@@ -5,6 +5,8 @@ no_version: true
 
 Anyone that wants to access the {{site.konnect_short_name}} Dev Portal needs to register and request access to that specific Dev Portal, including {{site.konnect_short_name}} admins. Admins will have separate credentials for [{{site.konnect_short_name}}](https://cloud.konghq.com/) and the Dev Portal.
 
+If your organization has multiple [geographic regions](/konnect/regions/), developers must register and request access to the Dev Portal in each region separately. Dev Portals in different regions don't share any data, including developer information.
+
 Developer registrations can be manually approved by {{site.konnect_short_name}} admins, or automatically approved by configuring your [auto-approve settings](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
 
@@ -12,19 +14,21 @@ Developer registrations can be manually approved by {{site.konnect_short_name}} 
 
 All developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
 
-To register as a developer, navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
+To register as a developer, follow these steps: 
 
-1. Click **Sign Up**.
+1. Navigate to the {{site.konnect_short_name}} Dev Portal.
 
-2. Fill out the registration form, then click **Create Account**.
+2. Click **Sign Up**.
 
-3. A registration link will be sent to the email address you registered. Click the verification link in the the registration email. 
+3. Fill out the registration form, then click **Create Account**.
 
-4. Create a password for your account.
+4. A registration link will be sent to the email address you registered. Click the verification link in the registration email. 
+
+5. Create a password for your account.
 
 If your admin has enabled auto-approve, you can log into the Dev Portal immediately after setting a password. For more information on auto-approving registration, read the [set up auto-approval for developer access as an admin](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) documentation.
 
-If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. To learn more about about the manual approval process, read the [manual approval](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg) documentation.
+If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. To learn more about the manual approval process, read the [manual approval](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg) documentation.
 
 ## Login/Register with SSO {#sso}
 {:.badge .enterprise}

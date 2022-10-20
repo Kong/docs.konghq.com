@@ -75,27 +75,32 @@ endcapture %}
 {% capture config_required_fields_k8s
 %}config: {%
 for field in include.params.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
-if field.value_in_examples != nil %}{%
-  if field.value_in_examples.first %}{%
+assign example = field.value_in_examples
+%}{%
+if field.value_in_examples_serialized%}{%
+assign example = field.value_in_examples_serialized
+%}{% endif %}{%
+if example != nil %}{%
+  if example.first %}{%
       if field.name contains "." %}{%
         assign names = field.name | split: "." %}
   {{ names[0] }}:{%
     for name in names offset:1 %}
     {{ name }}:{% endfor %}{%
-    for value in field.value_in_examples %}
+    for value in example %}
     - {{ value }}{%
     endfor %}{% else %}
   {{ field.name }}:{%
-  for value in field.value_in_examples %}
+  for value in example %}
   - {{ value }}{%
   endfor %}{% endif %}{%
   elsif field.name contains "." %}{%
         assign names = field.name | split: "." %}
   {{ names[0] }}:{%
     for name in names offset:1 %}
-    {{ name }}:{% endfor %} {{ field.value_in_examples }}{%
+    {{ name }}:{% endfor %} {{ example }}{%
   else %}
-  {{ field.name }}: {{ field.value_in_examples }}{%
+  {{ field.name }}: {{ example }}{%
   endif %}{%
 endif %}{% endif_plugin_version %}{% endfor
 %}{% endcapture %}

@@ -20,7 +20,7 @@ If you are using the stock YAML manifests to install and setup Kong for
 Kubernetes, then you can set up the admission webhook using a single command:
 
 ```bash
-curl -sL https://bit.ly/install-kong-admission-webhook | bash
+curl -sL https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/main/hack/deploy-admission-controller.sh | bash
 ```
 The output is similar to the following:
 ```
@@ -119,6 +119,11 @@ to supply a CA certificate (in the `caBunde` parameter)
 as part of the Validation Webhook configuration
 as the API-server already trusts the internal CA.
 
+{% capture failure_policy %}
+{% if_version gte:2.5.x %}Ignore{% endif_version %}
+{% if_version lte:2.4.x %}Fail{% endif_version %}
+{% endcapture %}
+
 ```bash
 echo "apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
@@ -132,7 +137,7 @@ webhooks:
       operator: NotIn
       values:
       - helm
-  failurePolicy: Fail
+  failurePolicy: {{ failure_policy | strip }}
   sideEffects: None
   admissionReviewVersions: ["v1", "v1beta1"]
   rules:
