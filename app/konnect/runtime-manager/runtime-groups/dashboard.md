@@ -31,7 +31,7 @@ The following describes the different metrics that display for a runtime group o
 * **P99 latency**: This displays the latency, in milliseconds, of the 99th percentile of requests proxied through this runtime group or instance.
 
     {:.note}
-    > **Note**: Available only for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+    > **Note**: Latency data is only available for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
 
 * **Active gateway services**: This displays the total number of active services associated with the runtime group. Active services are services that have received at least one request during the defined time period.
 

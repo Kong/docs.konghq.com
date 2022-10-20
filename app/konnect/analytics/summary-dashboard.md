@@ -32,9 +32,9 @@ You can view a graph for each category by clicking **Traffic**, **Errors**, or *
 Admins can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
 
     {:.note}
-    > **Note**: Available only for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+    > **Note**: Latency data is only available for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
 
-   ![latency analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
+   ![latency analytics graph](/assets/images/docs/konnect/konnect-analytics-latency.png)
   > _**Figure 3:** Graph showing latency as a percentage over the past 15 minutes._
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
