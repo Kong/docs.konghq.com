@@ -1,11 +1,11 @@
 ---
-title: Overview Dashboard
+title: Summary Dashboard
 no_version: true
 content_type: reference
 badge: plus
 ---
 
-The Overview Dashboard provides metrics for services cataloged by Service Hub within a selected time interval for the following categories:
+The Summary Dashboard provides metrics for services cataloged by Service Hub within a selected time interval for the following categories:
 
 * **Traffic**: Total number of HTTP requests.
 * **Errors**: Percentage of failed HTTP requests.

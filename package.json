@@ -44,14 +44,13 @@
     "gulp-resource-hints": "0.2.1",
     "gulp-size": "4.0.1",
     "gulp-sourcemaps": "3.0.0",
-    "jest": "29.1.2",
+    "jest": "29.2.0",
     "jpegtran": "2.0.0",
     "list-assets": "0.0.2",
     "lodash": "4.17.21",
     "node-fetch": "2.6.7",
     "run-sequence": "2.2.1",
-    "skeleton-css": "2.0.4",
-    "standard": "16.0.4"
+    "skeleton-css": "2.0.4"
   },
   "jest": {
     "testMatch": [
@@ -66,6 +65,6 @@
     ]
   },
   "dependencies": {
-    "@segment/analytics-next": "^1.43.0"
+    "@segment/analytics-next": "1.43.0"
   }
 }

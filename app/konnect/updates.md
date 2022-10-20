@@ -15,12 +15,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ### 2022.09.28
 
 **Analytics custom reports** 
-: Analytics custom reports are now general availability in {{site.konnect_saas}}. This release focused on stability and minor usability improvements. 
+: [Analytics custom reports](/konnect/analytics/generate-reports/) are now generally available in {{site.konnect_saas}}. This release focuses on stability and minor usability improvements. 
 
 : Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
 
 **Runtime groups dashboard**
-: In {{site.konnect_saas}}, you now have insights into your runtime groups usage across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
+: In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](/konnect/runtime-manager/runtime-groups/dashboard/) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
 
 **Custom plugin instantiation**
 : {{site.konnect_saas}} now allows you to discover, configure, and apply Kong approved custom plugins to your control planes directly through the plugin hub in Runtime Manager. You can do this by submitting your custom plugin schemas for approval through the CRE teams. This allows you to expand Kong's functionality in your environment by using custom plugins, while reducing the operational overhead of working with your CRE teams to discover, configure, and apply custom plugins.
@@ -30,22 +30,24 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Support for multiple versions of runtime instances**
 : {{site.konnect_saas}} now supports running multiple runtime instances versions at the same time with the same control plane configuration. This makes it easier for you to test and validate new runtime instance versions, such as patch, minor, and major upgrades.
-This release includes a new user interface that provides information about which runtime instances are incompatible with the current gateway configuration and provides actionable insights onto the corrective steps to fix the issue.
+This release includes a new user interface that provides information about which runtime instances are incompatible with the current gateway configuration and provides actionable insights into the corrective steps to fix the issue.
 
 **Quick start for new {{site.konnect_saas}} org admins**
-: {{site.konnect_saas}} now supports the ability to launch a quick start that will automatically create a runtime group, service package, and gateway service, apply the CORS plug-in, and show analytics for that service with the click of a button. Users will become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation, throughout the onboarding process. 
+: {{site.konnect_saas}} now includes an optional quick start that automatically creates a runtime group, service package, and gateway service, applies the CORS plugin, and shows analytics for that service with the click of a button. You can use the quick start to become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation throughout the onboarding process. 
 
 **Organization Admin (Read Only) predefined team**
-: A new predefined team was introduced in {{site.konnect_saas}}. This allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
+: A new predefined team has been introduced in {{site.konnect_saas}}. This team allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
 
 **Multi-runtime group app registration support <span class="badge alpha"></span>**
-: You can enable app registration to services in all the runtime groups. This feature only supports versions in the non-default runtime group that use Kong Gateway 3.0. As part of this release, API key credentials will no longer be stored in the dev portal. Portal developers will need to store their credentials immediately after creation.
+: You can now enable app registration to services in all runtime groups. This feature only supports versions in the non-default runtime group that use {{site.base_gateway}} 3.0. 
 
-**Dynamic client registration**
-:{{site.konnect_saas}} dev portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows dev portal developers to automatically create applications in Okta and receive credentials to access services proxied through Kong Gateway. 
+: As part of this release, API key credentials are no longer stored in the Dev Portal. Portal developers will need to store their credentials immediately after creation.
+
+**Dynamic client registration <span class="badge beta"></span>**
+: {{site.konnect_saas}} Dev Portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows Dev Portal developers to automatically create applications in Okta and receive credentials to access services proxied through {{site.base_gateway}}. 
 
 **Service version lifecycle**
-: You can identify the life stage of your APIs and notify dev portal developers if a particular API will be deprecated soon.  
+: You can identify the [lifecycle stage](/konnect/servicehub/service-versions/#manage-the-service-version-lifecycle) of your APIs and notify Dev Portal developers if a particular API will be deprecated soon.  
 
 
 ### 2022.09.09
