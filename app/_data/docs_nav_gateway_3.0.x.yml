@@ -553,7 +553,7 @@ items:
       - text: Targets
         url: /admin-api/#target-object
       - text: Vaults
-        url: /admin-api/#vaults-entity
+        url: /admin-api/#vaults-object
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces
