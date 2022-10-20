@@ -79,3 +79,82 @@ items:
       - text: Windows Support
         url: /features/windows
         generate: false
+
+  - title: Policies
+    icon: /assets/images/icons/documentation/icn-learning.svg
+    items:
+      - text: Overview
+        url: /policies/
+        src: /.repos/kuma/src/policies/introduction
+      - text: General notes about Kuma policies
+        url: /policies/general-notes-about-kuma-policies/
+        src: /.repos/kuma/src/policies/general-notes-about-kuma-policies
+      - text: Applying Policies
+        url: /policies/applying-policies/
+        src: /.repos/kuma/src/policies/applying-policies
+      - text: How Kuma chooses the right policy to apply
+        url: /policies/how-kuma-chooses-the-right-policy-to-apply/
+        src: /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply
+      - text: Protocol support in Kuma
+        url: /policies/protocol-support-in-kuma/
+        src: /.repos/kuma/src/policies/protocol-support-in-kuma
+      - text: Mesh
+        url: /policies/mesh/
+        src: /.repos/kuma/src/policies/mesh
+      - text: Mutual TLS
+        url: /policies/mutual-tls/
+        src: /.repos/kuma/src/policies/mutual-tls
+      - text: Traffic Permissions
+        url: /policies/traffic-permissions/
+        src: /.repos/kuma/src/policies/traffic-permissions
+      - text: Traffic Route
+        url: /policies/traffic-route/
+        src: /.repos/kuma/src/policies/traffic-route
+      - text: Traffic Metrics
+        url: /policies/traffic-metrics/
+        src: /.repos/kuma/src/policies/traffic-metrics
+      - text: Traffic Trace
+        url: /policies/traffic-trace/
+        src: /.repos/kuma/src/policies/traffic-trace
+      - text: Traffic Log
+        url: /policies/traffic-log/
+        src: /.repos/kuma/src/policies/traffic-log
+      - text: Locality-aware Load Balancing
+        url: /policies/locality-aware/
+        src: /.repos/kuma/src/policies/locality-aware
+      - text: Fault Injection
+        url: /policies/fault-injection/
+        src: /.repos/kuma/src/policies/fault-injection
+      - text: Health Check
+        url: /policies/health-check/
+        src: /.repos/kuma/src/policies/health-check
+      - text: Circuit Breaker
+        url: /policies/circuit-breaker/
+        src: /.repos/kuma/src/policies/circuit-breaker
+      - text: Proxy Template
+        url: /policies/proxy-template/
+        src: /.repos/kuma/src/policies/proxy-template
+      - text: External Service
+        url: /policies/external-services/
+        src: /.repos/kuma/src/policies/external-services
+      - text: Retry
+        url: /policies/retry/
+        src: /.repos/kuma/src/policies/retry
+      - text: Timeout
+        url: /policies/timeout/
+        src: /.repos/kuma/src/policies/timeout
+      - text: Rate Limit
+        url: /policies/rate-limit/
+        src: /.repos/kuma/src/policies/rate-limit
+      - text: Virtual Outbound
+        url: /policies/virtual-outbound/
+        src: /.repos/kuma/src/policies/virtual-outbound
+      - text: MeshGateway
+        url: /policies/mesh-gateway/
+        src: /.repos/kuma/src/policies/mesh-gateway
+      - text: MeshGatewayRoute
+        url: /policies/mesh-gateway-route/
+        src: /.repos/kuma/src/policies/mesh-gateway-route
+      - text: Service Health Probes
+        url: /policies/service-health-probes/
+        src: /.repos/kuma/src/policies/service-health-probes
