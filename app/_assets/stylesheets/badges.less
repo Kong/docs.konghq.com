@@ -1,116 +1,115 @@
 .badge {
   &:after {
-      display: inline-block;
-      font-weight: 600;
-      font-size: 11px;
-      vertical-align: middle;
-      text-align: center;
-      max-width: 200px;
-      line-height: 15px;
-      height: 15px;
-      width: auto;
-      padding: 2px 8px;
-      font-family: @family-display;
-      border-radius: 10px;
-      position: relative;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 11px;
+    vertical-align: middle;
+    text-align: center;
+    max-width: 200px;
+    line-height: 15px;
+    height: 15px;
+    width: auto;
+    padding: 2px 8px;
+    font-family: @family-display;
+    border-radius: 10px;
+    position: relative;
   }
 
   &.plus::after {
-      content: "PLUS";
-      color: white;
-      border-color: @blue-500;
-      background-color: @blue-500;
-
-    }
+    content: "PLUS";
+    color: white;
+    border-color: @blue-500;
+    background-color: @blue-500;
+  }
 
   &.konnect::after {
-      content: "KONNECT COMPATIBLE";
-      color: black;
-      border-color: @blue-200;
-      background-color: @blue-200;
-    }
+    content: "KONNECT COMPATIBLE";
+    color: black;
+    border-color: @blue-200;
+    background-color: @blue-200;
+  }
 
   &.enterprise::after {
-      content: "ENTERPRISE";
-      color: white;
-      border-color: @black-80;
-      background-color: @black-80;
-    }
+    content: "ENTERPRISE";
+    color: white;
+    border-color: @black-80;
+    background-color: @black-80;
+  }
 
   &.free::after {
-      content: "FREE";
-      color: black;
-      border-color: @black-20;
-      background-color: @black-20;
-    }
+    content: "FREE";
+    color: black;
+    border-color: @black-20;
+    background-color: @black-20;
+  }
 
   &.dbless::after {
-      content: "DB-LESS COMPATIBLE";
-      color: white;
-      border-color: @green-500;
-      background-color: @green-500;
-    }
+    content: "DB-LESS COMPATIBLE";
+    color: white;
+    border-color: @green-500;
+    background-color: @green-500;
+  }
 
   &.beta::after {
-      content: "BETA";
-      color: white;
-      border-color: @red-700;
-      background-color: @red-700;
-      text-align: center;
-    }
+    content: "BETA";
+    color: white;
+    border-color: @red-700;
+    background-color: @red-700;
+    text-align: center;
+  }
 
   &.alpha::after {
-      content: "TECH PREVIEW";
-      color: white;
-      border-color: @steel-400;
-      background-color: @steel-400;
-      text-align: center;
-    }
+    content: "TECH PREVIEW";
+    color: white;
+    border-color: @steel-400;
+    background-color: @steel-400;
+    text-align: center;
+  }
 
   &.oss::after {
-      content: "OSS ONLY";
+    content: "OSS ONLY";
+    color: white;
+    border-color: #6e30bf;
+    background-color: #6e30bf;
+    text-align: center;
+  }
+
+  // Tooltip container
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+  }
+
+  // Tooltip text styling
+  .tooltiptext {
+    font-family: @family-display;
+    width: 150px;
+    display: none;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 0.1rem;
+    color: #fff;
+    top: 100%;
+    background-color: @black-80;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 10;
+
+    a {
       color: white;
-      border-color: #6e30bf;
-      background-color: #6e30bf;
-      text-align: center;
     }
+  }
 
-
-    // Tooltip container
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      padding: 0;
-    }
-
-    // Tooltip text styling
+  &:hover,
+  &:focus {
     .tooltiptext {
-      font-family: @family-display;
-      width: 150px;
-      display: none;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 20px;
-      margin-top: 0.1rem;
-      color: #fff;
-      top: 100%;
-      background-color: @black-80;
-      text-align: center;
-      padding: 5px;
-      border-radius: 4px;
-      position: absolute;
-      z-index: 10;
-
-      a {
-        color: white;
-      }
+      display: block;
     }
-
-    &:hover, &:focus {
-       .tooltiptext {
-        display: block;
-      }
-    }
+  }
 }
 
 span.badge {
@@ -118,12 +117,16 @@ span.badge {
   display: inline-flex;
 }
 
-h2.badge, h3.badge, h4.badge, h5.badge {
-    &:after {
-      margin-left: 7px;
-    }
+h2.badge,
+h3.badge,
+h4.badge,
+h5.badge {
+  &:after {
+    margin-left: 7px;
+  }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .tooltiptext {
       left: 7px;
     }
@@ -132,11 +135,12 @@ h2.badge, h3.badge, h4.badge, h5.badge {
 
 // badges and tooltips on page titles
 h1.badge {
-    &:after {
-      margin-left: 7px;
-    }
+  &:after {
+    margin-left: 7px;
+  }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .tooltiptext {
       right: 0;
       top: 0;
@@ -145,7 +149,8 @@ h1.badge {
 }
 
 h2.badge {
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .tooltiptext {
       top: 3px;
     }
@@ -153,15 +158,18 @@ h2.badge {
 }
 
 h3.badge {
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .tooltiptext {
       top: 4px;
     }
   }
 }
 
-h4.badge, h5.badge {
-  &:hover, &:focus {
+h4.badge,
+h5.badge {
+  &:hover,
+  &:focus {
     .tooltiptext {
       top: 5px;
     }
@@ -171,15 +179,16 @@ h4.badge, h5.badge {
 a.badge {
   margin-top: 6px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     opacity: 1;
     text-decoration: none;
   }
 }
 
 .badge-container {
-    a > .tooltip > .tooltiptext {
-      margin-top: 0.5em;
+  a > .tooltip > .tooltiptext {
+    margin-top: 0.5em;
   }
 }
 
@@ -188,13 +197,14 @@ a.badge {
 table > tbody > tr {
   &:last-of-type {
     .badge {
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         .tooltiptext {
           left: 100%;
           bottom: 105%;
           top: unset;
-          }
         }
       }
     }
   }
+}

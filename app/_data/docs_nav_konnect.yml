@@ -99,7 +99,7 @@
           url: /servicehub/enable-service-plugin
         - text: Configure a Plugin on a Route
           url: /servicehub/enable-route-plugin
-          
+
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
@@ -189,7 +189,6 @@
       url: /org-management/deactivation
     - text: Troubleshoot
       url: /org-management/troubleshoot
-
 
 - title: Legacy content
   items:
