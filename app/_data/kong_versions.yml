@@ -167,9 +167,10 @@
     libyaml: "0.2.5"
     pcre: "8.45"
   lua_doc: true
-- release: "3.0.x"
-  ee-version: "3.0.0.0"
-  ce-version: "3.0.0"
+-
+  release: "3.0.x"
+  ee-version: "3.0.1.0"
+  ce-version: "3.0.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
