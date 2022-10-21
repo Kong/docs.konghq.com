@@ -16,7 +16,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Latency reporting**
 : The Analytics dashboard now includes a [latency tab](/konnect/analytics/summary-dashboard/), which lets you track
-request latency for the P90, P95, and P99 percentiles.
+request latency for the P50, P95, and P99 percentiles.
 P99 latency data also appears in runtime groups and on service overview pages in the Service Hub.
 
 : This feature is available for runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
