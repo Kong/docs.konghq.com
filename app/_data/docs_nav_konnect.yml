@@ -11,8 +11,6 @@
       url: /network
     - text: Compatibility
       url: /compatibility
-    - text: Konnect API
-      url: /konnect-api
     - text: Stages of Software Availability
       url: /availability-stages
     - text: Release Notes

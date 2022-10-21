@@ -1,5 +1,5 @@
 ---
-title: Konnect API
+title: Identity Management API
 no_version: true
 toc: false
 layout: default
