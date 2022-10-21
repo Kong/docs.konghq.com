@@ -9,7 +9,7 @@ The Summary Dashboard provides metrics for services cataloged by Service Hub wit
 
 * **Traffic**: Total number of HTTP requests.
 * **Errors**: Percentage of failed HTTP requests.
-* **Latency**: Request latency at P90, P95, and P99 percentiles.
+* **Latency**: Request latency at P50, P95, and P99 percentiles.
 
 These categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
 
@@ -28,7 +28,7 @@ You can view a graph for each category by clicking **Traffic**, **Errors**, or *
     ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
     > _**Figure 2:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
-* **Latency**: This graph displays request latency, in milliseconds, of the 99th, 95th, and 90th percentiles.
+* **Latency**: This graph displays request latency, in milliseconds, of the 99th, 95th, and 50th percentiles.
 Admins can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
 
     {:.note}
