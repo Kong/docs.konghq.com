@@ -48,7 +48,7 @@ descriptions.
 
 1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
-1. Select **Documentation**, then **Add Page**. Upload the `.md` file and **Save**.
+1. Select **Documentation**, then **Add Page**. Upload the `.md` file and click **Save**.
 
     {% konnect_icon servicehub %} may automatically populate fields from the uploaded documentation.
 

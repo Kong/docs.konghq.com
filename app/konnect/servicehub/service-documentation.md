@@ -48,7 +48,7 @@ You can delete an existing document from the Dev Portal. Deleting a service desc
 
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then follow these steps:
 
-* From the **Documentation Page**, click the context menu icon, then **Delete**.
+* From the **Documentation Page**, click the context menu icon, then click **Delete**.
 
 ## API specification
 
@@ -97,7 +97,7 @@ Publish a service and its API specs to the Dev Portal. Publishing a service make
 > **Note**: You can only publish services in your [geographic region](/konnect/regions) to the Dev Portal in your region. If you want to publish services to a Dev Portal in another region, switch to the new region in the top-right of {{site.konnect_product_name}}.
 
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service. 
-Then use the **Service actions** drop-down menu to select **Publish to portal** or **Unpublish from portal**.
+Then, use the **Service actions** drop-down menu to select **Publish to portal** or **Unpublish from portal**.
 
 
 ### Publishing Service Documentation
