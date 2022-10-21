@@ -196,7 +196,7 @@
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   items: 
     - text: Identity Management API
-      url: /konnect-api
+      url: /identity-management-api
 
 
 - title: Legacy content
