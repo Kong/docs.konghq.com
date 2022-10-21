@@ -38,8 +38,13 @@ instances.
 The Runtime Manager aims to simplify this process by providing a
 script to provision a {{site.base_gateway}} runtime in a Docker container,
 eliminating any confusion about initial configuration or setup. You can also
-choose to manually configure runtime instances on Linux or Kubernetes, or
-create custom Docker containers without the script.
+choose to manually configure runtime instances on the following:
+* Linux 
+* Kubernetes
+* AWS
+* Azure
+
+Runtime manager provides pre-populated templates for AWS and Azure that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}.
 
 A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected
@@ -64,9 +69,19 @@ Choose an installation type below:
     <div class="install-text">Kubernetes (Helm)</div>
   </a>
 
-    <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
-      <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
-      <div class="install-text">Universal (kong.conf)</div>
-    </a>
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-aws" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/aws.svg" alt="AWS" />
+    <div class="install-text">AWS</div>
+  </a>
+
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-azure" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/azure.svg" alt="Azure" />
+    <div class="install-text">Azure</div>
+  </a>
+
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
+    <div class="install-text">Universal (kong.conf)</div>
+  </a>
 
 </div>
