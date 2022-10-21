@@ -50,7 +50,7 @@ descriptions.
 
 1. Select **Documentation**, then **Add Page**. Upload the `.md` file and click **Save**.
 
-    {% konnect_icon servicehub %} may automatically populate fields from the uploaded documentation.
+    {% konnect_icon servicehub %} will automatically populate fields from the uploaded file.
 
 
 ## Upload an API spec
