@@ -72,6 +72,7 @@ params:
         - `service` (The `service.id` or `service.name` configuration must be provided if you're adding the plugin to a service through the top-level `/plugins` endpoint.)
         - `header` (The `header_name` configuration must be provided.)
         - `path` (The `path` configuration must be provided.)
+        
         If the entity value for aggregating the limits cannot be determined, the system falls back to `ip`.
     - name: header_name
       required: semi
