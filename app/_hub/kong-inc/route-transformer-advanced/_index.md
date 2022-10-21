@@ -41,9 +41,10 @@ params:
     - name: escape_path
       required: false
       datatype: boolean
-      dafault: false
+      default: false
       description: |
-        If set to true, the path after being transformed will be escaped.
+        If set to true, the path is escaped after being transformed.
+      minimum_version: "3.1.0"
 ---
 
 _NOTE_: The advanced label is only attached because this is an Enterprise-only
