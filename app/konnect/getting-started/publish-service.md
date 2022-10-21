@@ -48,14 +48,14 @@ descriptions.
 
 1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
-1. Select **Documentation**, then **Add Page**, upload the `.md` file and **save**.
+1. Select **Documentation**, then **Add Page**. Upload the `.md` file and **Save**.
 
-    {% konnect_icon servicehub %} may automatically populate fields from the uploaded documentaion.
+    {% konnect_icon servicehub %} may automatically populate fields from the uploaded documentation.
 
 
 ## Upload an API spec
 
-Open API specifications, or specs, can be uploaded and attached to a specific service version within your Dev Portal.
+OpenAPI specifications, or specs, can be uploaded and attached to a specific service version within your Dev Portal.
 Every version can have one OpenAPI spec associated with it, in JSON or YAML format.
 
 If you have a spec, use it in the following steps. Otherwise, you can

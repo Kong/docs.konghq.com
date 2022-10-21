@@ -11,7 +11,7 @@ Once the service is published and available to developers, they can apply for ac
 
 ## Service descriptions
 
-You can provide extended descriptions of your services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. All service  descriptions are managed from the **Documentation Page** for a particular service. Service descriptions can be any markdown document that describes your service: 
+You can provide extended descriptions of your services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. All service descriptions are managed from the **Documentation Page** for a particular service. Service descriptions can be any markdown document that describes your service: 
 
 * Release notes
 * Support and SLA 
@@ -21,7 +21,7 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
 
 ### Upload a service description
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, select **Documentation** then follow these steps:
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, select **Documentation**, then follow these steps:
 
 1. Click **Add Page**
 
@@ -33,13 +33,13 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 
 You can upload a new document to replace an existing service document.
 
-From the **Documentation Page** select a service document, then follow these steps:
+From the **Documentation Page**, select a service document, then follow these steps:
 
-1. Click the context menu icon for a service document, select **Edit**. 
+1. Click the context menu icon for a service document and select **Edit**. 
 
 1. Upload a new `.md` file, or update information about the service document. 
 
-1. Optional: publish or unpublish a the service document.
+1. Optional: publish or unpublish the service document.
 
 
 ### Delete a service description
@@ -105,5 +105,6 @@ Then use the **Service actions** drop-down menu to select **Publish to portal** 
 Publishing and unpublishing service documentation in {{site.konnect_product_name}} controls what document is displayed for a particular service.
 Publishing is managed from a specific service's **Documentation Page**. 
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, and click the **Documentation** page. 
-From the **Documentation page**, click the context menu for a specific service document, select **edit**, and toggle the **published page** button to the desired state.
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, and click the **Documentation** page. 
+
+1. From the **Documentation** page, click the context menu for a specific service document, select **edit**, and toggle the **published page** button to the desired state.
