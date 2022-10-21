@@ -16,6 +16,7 @@ daos
 datastore
 datastores
 endpoint_key
+escape_path
 foogineer
 if_version
 included_status_codes
