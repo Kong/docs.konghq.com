@@ -1,0 +1,10 @@
+product: mesh
+release: 2.0.x
+generate: true
+items:
+  - title: Policies
+    icon: /assets/images/icons/documentation/icn-learning.svg
+    items:
+      - text: Overview
+        url: /policies/
+        src: /.repos/kuma/src/policies/introduction
