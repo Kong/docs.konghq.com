@@ -65,6 +65,6 @@
     ]
   },
   "dependencies": {
-    "@segment/analytics-next": "1.43.0"
+    "@segment/analytics-next": "1.45.0"
   }
 }
