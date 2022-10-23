@@ -5,7 +5,7 @@ items:
   - title: Introduction
     items:
       - text: Overview of Kong Mesh
-        url: /introduction/what-is-kong-mesh/
+        url: /introduction/what-is-kong-mesh
         src: /.repos/kuma/src/introduction/what-is-kuma
       - text: About service meshes
         url: /introduction/what-is-a-service-mesh/
@@ -264,14 +264,18 @@ items:
             src: /.repos/kuma/src/security/certificates
           - text: Configure a Vault policy
             url: /features/zero-trust/vault
+            src: /features/vault
           - text: Configure a ACM private CA policy
-            url: /features/zero-trust/acmpca
+            url: /features/zero-trust/acmpca/
+            src: /features/acmpca/
           - text: Configure a Kubernetes cert-manager CA policy
-            url: /features/zero-trust/cert-manager
+            url: /features/zero-trust/cert-manager/
+            src: /features/cert-manager/
           - text: Rotate your CA
-            url: /features/zero-trust/ca-rotation
+            url: /features/zero-trust/ca-rotation/
+            src: /features/ca-rotation/
           - text: Configure the OPA policy
-            url: /features/zero-trust/opa
+            url: /features/zero-trust/opa/
       - text: Policy enforcement
         items:
           - text: Overview
@@ -347,12 +351,16 @@ items:
         items:
           - text: Configure a Vault policy
             url: /features/zero-trust/vault
+            src: /features/vault
           - text: Configure a ACM private CA policy
-            url: /features/zero-trust/acmpca
+            url: /features/zero-trust/acmpca/
+            src: /features/acmpca/
           - text: Configure a Kubernetes cert-manager CA policy
-            url: /features/zero-trust/cert-manager
+            url: /features/zero-trust/cert-manager/
+            src: /features/cert-manager/
           - text: Rotate your CA
-            url: /features/zero-trust/ca-rotation
+            url: /features/zero-trust/ca-rotation/
+            src: /features/ca-rotation/
       - text: Configure the OPA policy
         url: /features/zero-trust/opa
       - text: Configure multi-zone authentication
