@@ -4,1125 +4,492 @@ generate: true
 items:
   - title: Introduction
     items:
-      - text: Introduction to Kong Mesh
+      - text: Overview of Kong Mesh
         url: /introduction/what-is-kong-mesh/
         src: /.repos/kuma/src/introduction/what-is-kuma
-      - text: What is Service Mesh?
+      - text: About service meshes
         url: /introduction/what-is-a-service-mesh/
         src: /.repos/kuma/src/introduction/what-is-a-service-mesh
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
-        items:
-          - text: Dependencies
-            url: /introduction/how-kong-mesh-works/#dependencies
-            src: /.repos/kuma/src/introduction/how-kuma-works/#dependencies
-          - text: VM and K8s support
-            url: /introduction/how-kong-mesh-works/#vm-and-k8s-support
-            src: /.repos/kuma/src/introduction/how-kuma-works/#vm-and-k8s-support
-          - text: Kong Mesh vs XYZ
-            url: /introduction/how-kong-mesh-works/#kuma-vs-xyz
-            src: /.repos/kuma/src/introduction/how-kuma-works/#kuma-vs-xyz
         src: /.repos/kuma/src/introduction/how-kuma-works
-      - text: Deployments
-        url: /introduction/deployments/
-        src: /.repos/kuma/src/introduction/deployments
-      - text: Enterprise
-        url: /introduction/enterprise/
-        src: /.repos/kuma/src/introduction/enterprise
-  - title: Install
-    items:
-      - text: Kubernetes
-        url: /installation/kubernetes/
-        src: /.repos/kuma/src/installation/kubernetes
-      - text: Helm
-        url: /installation/helm/
-        items:
-          - text: Argo CD
-            url: /installation/helm/#argo-cd
-            src: /.repos/kuma/src/installation/helm/#argo-cd
-        src: /.repos/kuma/src/installation/helm
-      - text: OpenShift
-        url: /installation/openshift/
-        src: /.repos/kuma/src/installation/openshift
-      - text: Docker
-        url: /installation/docker/
-        src: /.repos/kuma/src/installation/docker
-      - text: Amazon Linux
-        url: /installation/amazonlinux/
-        src: /.repos/kuma/src/installation/amazonlinux
-      - text: Debian
-        url: /installation/redhat/
-        src: /.repos/kuma/src/installation/redhat
-      - text: CentOS
-        url: /installation/centos/
-        src: /.repos/kuma/src/installation/centos
-      - text: Debian
-        url: /installation/debian/
-        src: /.repos/kuma/src/installation/debian
-      - text: Ubuntu
-        url: /installation/ubuntu/
-        src: /.repos/kuma/src/installation/ubuntu
-      - text: macOS
-        url: /installation/macos/
-        src: /.repos/kuma/src/installation/macos
-  - title: Deploy
-    items:
-      - text: Explore Kong Mesh with the Kubernetes demo app
-        url: /quickstart/kubernetes/
-        items:
-          - text: Prerequisites
-            url: /quickstart/kubernetes/#prerequisites
-            src: /.repos/kuma/src/quickstart/kubernetes/#prerequisites
-          - text: Set up and run
-            url: /quickstart/kubernetes/#set-up-and-run
-            src: /.repos/kuma/src/quickstart/kubernetes/#set-up-and-run
-          - text: Explore the mesh
-            url: /quickstart/kubernetes/#explore-the-mesh
-            src: /.repos/kuma/src/quickstart/kubernetes/#explore-the-mesh
-          - text: Enable Mutual TLS and Traffic Permissions
-            url: /quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions
-            src: >-
-              /.repos/kuma/src/quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions
-          - text: Builtin gateways
-            url: /quickstart/kubernetes/#builtin-gateways
-            src: /.repos/kuma/src/quickstart/kubernetes/#builtin-gateways
-          - text: Explore Observability features
-            url: /quickstart/kubernetes/#explore-observability-features
-            src: >-
-              /.repos/kuma/src/quickstart/kubernetes/#explore-observability-features
-          - text: Next steps
-            url: /quickstart/kubernetes/#next-steps
-            src: /.repos/kuma/src/quickstart/kubernetes/#next-steps
-        src: /.repos/kuma/src/quickstart/kubernetes
-      - text: Explore Kong Mesh with the Universal demo app
-        url: /quickstart/universal/
-        items:
-          - text: Prerequisites
-            url: /quickstart/universal/#prerequisites
-            src: /.repos/kuma/src/quickstart/universal/#prerequisites
-          - text: Set up
-            url: /quickstart/universal/#set-up
-            src: /.repos/kuma/src/quickstart/universal/#set-up
-          - text: Generate tokens
-            url: /quickstart/universal/#generate-tokens
-            src: /.repos/kuma/src/quickstart/universal/#generate-tokens
-          - text: Create a data plane proxy for each service
-            url: /quickstart/universal/#create-a-data-plane-proxy-for-each-service
-            src: >-
-              /.repos/kuma/src/quickstart/universal/#create-a-data-plane-proxy-for-each-service
-          - text: Run
-            url: /quickstart/universal/#run
-            src: /.repos/kuma/src/quickstart/universal/#run
-          - text: Explore the mesh
-            url: /quickstart/universal/#explore-the-mesh
-            src: /.repos/kuma/src/quickstart/universal/#explore-the-mesh
-          - text: Enable Mutual TLS and Traffic Permissions
-            url: /quickstart/universal/#enable-mutual-tls-and-traffic-permissions
-            src: >-
-              /.repos/kuma/src/quickstart/universal/#enable-mutual-tls-and-traffic-permissions
-          - text: Explore Traffic Metrics
-            url: /quickstart/universal/#explore-traffic-metrics
-            src: /.repos/kuma/src/quickstart/universal/#explore-traffic-metrics
-          - text: Next steps
-            url: /quickstart/universal/#next-steps
-            src: /.repos/kuma/src/quickstart/universal/#next-steps
-        src: /.repos/kuma/src/quickstart/universal
-      - text: Standalone deployment
-        url: /deployments/stand-alone/
-        items:
-          - text: About
-            url: /deployments/stand-alone/#about
-            src: /.repos/kuma/src/deployments/stand-alone/#about
-          - text: Limitations
-            url: /deployments/stand-alone/#limitations
-            src: /.repos/kuma/src/deployments/stand-alone/#limitations
-          - text: Usage
-            url: /deployments/stand-alone/#usage
-            src: /.repos/kuma/src/deployments/stand-alone/#usage
-          - text: Failure modes
-            url: /deployments/stand-alone/#failure-modes
-            src: /.repos/kuma/src/deployments/stand-alone/#failure-modes
-        src: /.repos/kuma/src/deployments/stand-alone
-      - text: Multi-zone deployment
-        url: /deployments/multi-zone/
-        items:
-          - text: About
-            url: /deployments/multi-zone/#about
-            src: /.repos/kuma/src/deployments/multi-zone/#about
-          - text: Usage
-            url: /deployments/multi-zone/#usage
-            src: /.repos/kuma/src/deployments/multi-zone/#usage
-          - text: Failure modes
-            url: /deployments/multi-zone/#failure-modes
-            src: /.repos/kuma/src/deployments/multi-zone/#failure-modes
-          - text: Delete a zone
-            url: /deployments/multi-zone/#delete-a-zone
-            src: /.repos/kuma/src/deployments/multi-zone/#delete-a-zone
-          - text: Disable a zone
-            url: /deployments/multi-zone/#disable-a-zone
-            src: /.repos/kuma/src/deployments/multi-zone/#disable-a-zone
-        src: /.repos/kuma/src/deployments/multi-zone
-  - title: Explore
+      - text: Architecture
+        url: /introduction/architecture/
+        src: /.repos/kuma/src/explore/overview
+      - text: Version support policy
+        url: /support-policy/
+      - text: Stability
+        url: /availability-stages/
+      - text: Kong Mesh requirements
+        url: /introduction/requirements/
+        src: /.repos/kuma/src/documentation/requirements
+      - text: Release notes
+        url: https://github.com/kumahq/kuma/blob/master/CHANGELOG.md
+        absolute_url: true
+        target_blank: true
+  - title: Get Started
     items:
       - text: Overview
-        url: /explore/overview/
+        url: /get-started/
+        src: /.repos/kuma/src/get-started/overview
+      - text: Set up the Kubernetes demo app
+        url: /get-started/kubernetes-demo/
+        src: /.repos/kuma/src/quickstart/kubernetes
+      - text: Set up the Universal demo app
+        url: /get-started/universal-demo/
+        src: /.repos/kuma/src/quickstart/universal
+      - text: Setup a hybrid mesh app
+        url: /get-started/hybrid/
+        src: /.repos/kuma/src/quickstart/hybrid
+      - text: Get started with observability
+        url: /get-started/observability/
+        src: /.repos/kuma/src/explore/observability/#demo-setup
+  - title: Kong Mesh in Production
+    items:
+      - text: Overview
+        url: /production/
+        src: /.repos/kuma/src/production/
+      - text: Deployment topologies
+        items: 
+          - text: Overview
+            url: /production/deployment-topologies/
+            src: /.repos/kuma/src/introduction/deployments
+          - text: Standalone deployment
+            url: /production/deployment-topologies/standalone/
+            src: /.repos/kuma/src/deployments/stand-alone/
+          - text: Multi-zone deployment
+            url: /production/deployment-topologies/multi-zone/
+            src: /.repos/kuma/src/deployments/multi-zone/
+      - title: Install Kong Mesh
         items:
-          - text: Components
-            url: /explore/overview/#components
-            src: /.repos/kuma/src/explore/overview/#components
-          - text: Kubernetes mode
-            url: /explore/overview/#kubernetes-mode
-            src: /.repos/kuma/src/explore/overview/#kubernetes-mode
-          - text: Universal mode
-            url: /explore/overview/#universal-mode
-            src: /.repos/kuma/src/explore/overview/#universal-mode
-        src: /.repos/kuma/src/explore/overview
-      - text: Data plane proxy
-        url: /explore/dpp/
+          - text: Kubernetes
+            items:
+            - text: Kubernetes
+              url: /production/install/kubernetes/
+              src: /.repos/kuma/src/installation/kubernetes
+            - text: Helm
+              url: /production/install/helm/
+              src: /.repos/kuma/src/installation/helm
+            - text: OpenShift
+              url: /production/install/openshift/
+              src: /.repos/kuma/src/installation/openshift
+          - text: Docker
+            url: /production/install/docker/
+            src: /.repos/kuma/src/installation/docker
+          - text: Linux
+            url: /production/install/linux/
+            src: /.repos/kuma/src/installation/linux
+          - text: macOS
+            url: /production/install/macos/
+            src: /.repos/kuma/src/installation/macos
+          - text: Windows
+            url: /production/install/windows/
+            src: /installation/windows
+      - title: Deploy
         items:
-          - text: Concepts
-            url: /explore/dpp/#concepts
-            src: /.repos/kuma/src/explore/dpp/#concepts
-          - text: Dataplane entity
-            url: /explore/dpp/#dataplane-entity
-            src: /.repos/kuma/src/explore/dpp/#dataplane-entity
-          - text: Dynamic configuration of the data plane proxy
-            url: /explore/dpp/#dynamic-configuration-of-the-data-plane-proxy
-            src: >-
-              /.repos/kuma/src/explore/dpp/#dynamic-configuration-of-the-data-plane-proxy
-        src: /.repos/kuma/src/explore/dpp
-      - text: Data plane on Kubernetes
-        url: /explore/dpp-on-kubernetes/
+          - text: Overview
+            url: /production/deploy/
+            src: /.repos/kuma/src/production/deploy/
+          - text: Deploy Kong Mesh in standalone mode
+            url: /production/deploy/standalone/
+            src: /.repos/kuma/src/deployments/stand-alone/
+          - text: Deploy Kong Mesh in multi-zone mode
+            url: /production/deploy/universal/
+            src: /.repos/kuma/src/deployments/multi-zone/
+          - text: Create multiple service meshes in a cluster
+            url: /production/deploy/cluster/
+            src: /.repos/kuma/src/policies/mesh
+      - title: Configure the control plane
+        url: /production/cp/
+        src: /.repos/kuma/src/documentation/configuration/
+      - title: Data plane
         items:
-          - text: Tag generation
-            url: /explore/dpp-on-kubernetes/#tag-generation
-            src: /.repos/kuma/src/explore/dpp-on-kubernetes/#tag-generation
-          - text: Lifecycle
-            url: /explore/dpp-on-kubernetes/#lifecycle
-            src: /.repos/kuma/src/explore/dpp-on-kubernetes/#lifecycle
-          - text: Custom Container Configuration
-            url: /explore/dpp-on-kubernetes/#custom-container-configuration
-            src: >-
-              /.repos/kuma/src/explore/dpp-on-kubernetes/#custom-container-configuration
-          - text: Direct access to services
-            url: /explore/dpp-on-kubernetes/#direct-access-to-services
-            src: >-
-              /.repos/kuma/src/explore/dpp-on-kubernetes/#direct-access-to-services
-        src: /.repos/kuma/src/explore/dpp-on-kubernetes
-      - text: Data plane on Universal
-        url: /explore/dpp-on-universal/
+          - title: Overview
+            url: /production/dp/
+            src: /.repos/kuma/src/explore/dpp
+          - title: Configure the data plane on Kubernetes
+            url: /production/dp/kubernetes-dp/
+            src: /.repos/kuma/src/explore/dpp-on-kubernetes/
+          - title: Configure the data plane on Universal
+            url: /production/dp/universal-dp/
+            src: /.repos/kuma/src/explore/dpp-on-universal/
+      - title: Networking
         items:
-          - text: Lifecycle
-            url: /explore/dpp-on-universal/#lifecycle
-            src: /.repos/kuma/src/explore/dpp-on-universal/#lifecycle
-          - text: Envoy
-            url: /explore/dpp-on-universal/#envoy
-            src: /.repos/kuma/src/explore/dpp-on-universal/#envoy
-        src: /.repos/kuma/src/explore/dpp-on-universal
-      - text: Gateway
-        url: /explore/gateway/
+          - text: Service discovery
+            url: /production/networking/service-discovery/
+            src: /.repos/kuma/src/networking/service-discovery
+          - text: Default ports
+            url: /production/networking/default-ports/
+            src: /.repos/kuma/src/networking/networking
+          - text: DNS
+            url: /production/networking/dns/
+            src: /.repos/kuma/src/networking/dns
+          - text: Configure the Kong Mesh CNI
+            url: /production/networking/cni/
+            src: /.repos/kuma/src/networking/cni
+          - text: Configure transparent proxying
+            url: /production/networking/transparent-proxying/
+            src: /.repos/kuma/src/networking/transparent-proxying
+          - text: IPv6 support
+            url: /production/networking/ipv6/
+            src: /.repos/kuma/src/networking/ipv6
+          - text: Configure outbound communication
+            url: /production/networking/outbound-communication/
+            src: /.repos/kuma/src/policies/virtual-outbound/
+          - text: Enable external service consumption
+            url: /production/networking/external-services/
+            src: /.repos/kuma/src/policies/external-services
+      - title: Security
         items:
-          - text: Delegated
-            url: /explore/gateway/#delegated
+          - text: Manage secrets
+            url: /production/security/manage-secrets/
+            src: /.repos/kuma/src/security/secrets
+          - text: Kong Mesh API access control
+            url: /production/security/api-access-control/
+            src: /.repos/kuma/src/security/api-access-control
+          - text: Authenticate with the API server
+            url: /production/security/api-server-auth/
+            src: /.repos/kuma/src/security/api-server-auth
+          - text: Authenticate with the data plane proxy
+            url: /production/security/dp-auth/
+            src: /.repos/kuma/src/security/dp-auth
+          - text: Configure data plane proxy membership
+            url: /production/security/dp-membership/
+            src: /.repos/kuma/src/security/dp-membership
+          - text: Kong Mesh RBAC
+            url: /production/security/mesh-rbac/
+            src: /features/rbac
+          - text: FIPS support
+            url: /production/security/fips/
+            src: /features/fips-support
+      - title: Kong Mesh license
+        url: /production/license/
+        src: /plan-and-deploy/license
+      - title: Gateway
+        items:
+          - title: Overview
+            url: /production/gateway/
+            src: /.repos/kuma/src/explore/gateway
+          - text: Configure a delegated gateway
+            url: /production/gateway/delegated
             src: /.repos/kuma/src/explore/gateway/#delegated
-          - text: Builtin
-            url: /explore/gateway/#builtin
+          - text: Configure a built-in gateway
+            url: /production/gateway/builtin
             src: /.repos/kuma/src/explore/gateway/#builtin
-        src: /.repos/kuma/src/explore/gateway
-      - text: Zone Ingress
-        url: /explore/zone-ingress/
-        src: /.repos/kuma/src/explore/zone-ingress
-      - text: Zone Egress
-        url: /explore/zoneegress/
-        items:
-          - text: Configuration
-            url: /explore/zoneegress/#configuration
-            src: /.repos/kuma/src/explore/zoneegress/#configuration
-        src: /.repos/kuma/src/explore/zoneegress
-      - text: CLI
-        url: /explore/cli/
-        items:
-          - text: kumactl
-            url: /explore/cli/#kong-meshctl
-            src: /.repos/kuma/src/explore/cli/#kumactl
-        src: /.repos/kuma/src/explore/cli
-      - text: GUI
-        url: /explore/gui/
-        items:
-          - text: Getting Started
-            url: /explore/gui/#getting-started
-            src: /.repos/kuma/src/explore/gui/#getting-started
-          - text: Mesh Overview
-            url: /explore/gui/#mesh-overview
-            src: /.repos/kuma/src/explore/gui/#mesh-overview
-          - text: Mesh Details
-            url: /explore/gui/#mesh-details
-            src: /.repos/kuma/src/explore/gui/#mesh-details
-          - text: What’s to come
-            url: /explore/gui/#what-s-to-come
-            src: /.repos/kuma/src/explore/gui/#what-s-to-come
+          - text: Configure built-in gateway listeners
+            url: /production/gateway/builtin-listeners/
+            src: /.repos/kuma/src/policies/mesh-gateway
+          - text: Configure built-in gateway routes
+            url: /production/gateway/builtin-routes/
+            src: /.repos/kuma/src/policies/mesh-gateway-route
+          - text: Configure Kong Ingress Controller as a gateway
+            url: /production/gateway/kic/
+            src: /production/gateway/kic
+          - text: Use the Kubernetes Gateway API
+            url: /production/gateway/gateway-api/
+            src: /.repos/kuma/src/explore/gateway-api
+      - text: Kong Mesh user interface
+        url: /production/gui/
         src: /.repos/kuma/src/explore/gui
-      - text: Observability
-        url: /explore/observability/
+      - text: Upgrade Kong Mesh
+        url: /production/upgrades/
+        src: /.repos/kuma/src/documentation/upgrades
+  - text: Features
+    items:
+      - text: Multi-zone
         items:
-          - text: Demo setup
-            url: /explore/observability/#demo-setup
-            src: /.repos/kuma/src/explore/observability/#demo-setup
-          - text: Control plane metrics
-            url: /explore/observability/#control-plane-metrics
-            src: /.repos/kuma/src/explore/observability/#control-plane-metrics
+          - text: Overview
+            url: /features/multi-zone/
+            src: /.repos/kuma/src/features/multi-zone
+          - text: Configuring multi-zone services
+            url: /features/multi-zone/multi-zone-services/
+            src: /.repos/kuma/src/features/multi-zone/multi-zone-services
+          - text: Configure multi-zone authentication
+            url: /features/multi-zone/multi-zone-auth/
+            src: /features/kds-auth
+          - text: Zone Ingress
+            url: /features/multi-zone/zone-ingress/
+            src: /.repos/kuma/src/explore/zone-ingress
+          - text: Zone ingress authentication
+            url: /features/multi-zone/zone-ingress-auth/
+            src: /.repos/kuma/src/security/zone-ingress-auth
+          - text: Zone Egress
+            url: /features/multi-zone/zone-egress/
+            src: /.repos/kuma/src/explore/zoneegress
+          - text: Zone Egress authentication
+            url: /features/multi-zone/zone-egress-auth/
+            src: /.repos/kuma/src/security/zoneegress-auth
+          - text: Enable locality-aware load balancing
+            url: /features/multi-zone/locality-aware/
+            src: /.repos/kuma/src/policies/locality-aware
+      - text: Observability
+        items:
+          - text: Overview
+            url: /features/observability/
+            src: /features/observability/
           - text: Configuring Prometheus
-            url: /explore/observability/#configuring-prometheus
+            url: /features/observability/prometheus
             src: /.repos/kuma/src/explore/observability/#configuring-prometheus
           - text: Configuring Grafana
-            url: /explore/observability/#configuring-grafana
+            url: /features/observability/grafana
             src: /.repos/kuma/src/explore/observability/#configuring-grafana
           - text: Configuring Datadog
-            url: /explore/observability/#configuring-datadog
+            url: /features/observability/datadog
             src: /.repos/kuma/src/explore/observability/#configuring-datadog
-          - text: Observability in multi-zone
-            url: /explore/observability/#observability-in-multi-zone
-            src: >-
-              /.repos/kuma/src/explore/observability/#observability-in-multi-zone
-        src: /.repos/kuma/src/explore/observability
-      - text: Inspect API
-        url: /explore/inspect-api/
+          - text: Configure Honeycomb
+            url: /features/observability/honeycomb/
+            src: /.repos/kuma/src/features/observability/honeycomb
+          - text: Configure multi-zone observability
+            url: /features/observability/multi-zone/
+            src: /.repos/kuma/src/explore/observability/#observability-in-multi-zone
+          - text: Configure traffic metrics
+            url: /features/observability/traffic-metrics/
+            src: /.repos/kuma/src/policies/traffic-metrics
+          - text: Configure traffic tracing
+            url: /features/observability/traffic-tracing/
+            src: /.repos/kuma/src/policies/traffic-trace
+          - text: Configure New Relic tracing with Zipkin
+            url: /features/observability/zipkin/
+            src: /.repos/kuma/src/features/observability/zipkin
+      - text: Zero trust
         items:
-          - text: Matched policies
-            url: /explore/inspect-api/#matched-policies
-            src: /.repos/kuma/src/explore/inspect-api/#matched-policies
-          - text: Affected data plane proxies
-            url: /explore/inspect-api/#affected-data-plane-proxies
-            src: /.repos/kuma/src/explore/inspect-api/#affected-data-plane-proxies
-          - text: Envoy proxy configuration
-            url: /explore/inspect-api/#envoy-proxy-configuration
-            src: /.repos/kuma/src/explore/inspect-api/#envoy-proxy-configuration
-        src: /.repos/kuma/src/explore/inspect-api
-      - text: Kubernetes Gateway API
-        url: /explore/gateway-api/
+          - text: Overview
+            url: /features/zero-trust/
+            src: /.repos/kuma/src/features/zero-trust/
+          - text: Enable mutual TLS
+            url: /features/zero-trust/mutual-tls/
+            src: /.repos/kuma/src/policies/mutual-tls 
+          - text: Secure access across services
+            url: /features/zero-trust/certificates/
+            src: /.repos/kuma/src/security/certificates
+          - text: Configure a Vault policy
+            url: /features/zero-trust/vault
+          - text: Configure a ACM private CA policy
+            url: /features/zero-trust/acmpca
+          - text: Configure a Kubernetes cert-manager CA policy
+            url: /features/zero-trust/cert-manager
+          - text: Rotate your CA
+            url: /features/zero-trust/ca-rotation
+          - text: Configure the OPA policy
+            url: /features/zero-trust/opa
+      - text: Policy enforcement
         items:
-          - text: Installation
-            url: /explore/gateway-api/#installation
-            src: /.repos/kuma/src/explore/gateway-api/#installation
-          - text: Usage
-            url: /explore/gateway-api/#usage
-            src: /.repos/kuma/src/explore/gateway-api/#usage
-          - text: TLS termination
-            url: /explore/gateway-api/#tls-termination
-            src: /.repos/kuma/src/explore/gateway-api/#tls-termination
-          - text: Customization
-            url: /explore/gateway-api/#customization
-            src: /.repos/kuma/src/explore/gateway-api/#customization
-          - text: Multi-mesh
-            url: /explore/gateway-api/#multi-mesh
-            src: /.repos/kuma/src/explore/gateway-api/#multi-mesh
-          - text: Multi-zone
-            url: /explore/gateway-api/#multi-zone
-            src: /.repos/kuma/src/explore/gateway-api/#multi-zone
-          - text: How it works
-            url: /explore/gateway-api/#how-it-works
-            src: /.repos/kuma/src/explore/gateway-api/#how-it-works
-        src: /.repos/kuma/src/explore/gateway-api
-  - title: Networking
-    items:
-      - text: Networking
-        url: /networking/networking/
+          - text: Overview
+            url: /features/policy-enforcement/
+            src: /.repos/kuma/src/policies/general-notes-about-kuma-policies
+          - text: Apply policies
+            url: /features/policy-enforcement/applying-policies/
+            src: /.repos/kuma/src/policies/applying-policies
+          - text: How Kong Mesh chooses the right policy to apply
+            url: /features/policy-enforcement/how-kong-mesh-chooses-the-right-policy-to-apply/
+            src: /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply
+      - text: Health check
         items:
-          - text: kuma-cp ports
-            url: /networking/networking/#kong-mesh-cp-ports
-            src: /.repos/kuma/src/networking/networking/#kuma-cp-ports
-          - text: kuma-dp ports
-            url: /networking/networking/#kong-mesh-dp-ports
-            src: /.repos/kuma/src/networking/networking/#kuma-dp-ports
-        src: /.repos/kuma/src/networking/networking
-      - text: Service Discovery
-        url: /networking/service-discovery/
-        src: /.repos/kuma/src/networking/service-discovery
-      - text: DNS
-        url: /networking/dns/
-        items:
-          - text: How it works
-            url: /networking/dns/#how-it-works
-            src: /.repos/kuma/src/networking/dns/#how-it-works
-          - text: Installation
-            url: /networking/dns/#installation
-            src: /.repos/kuma/src/networking/dns/#installation
-          - text: Configuration
-            url: /networking/dns/#configuration
-            src: /.repos/kuma/src/networking/dns/#configuration
-          - text: Usage
-            url: /networking/dns/#usage
-            src: /.repos/kuma/src/networking/dns/#usage
-        src: /.repos/kuma/src/networking/dns
-      - text: Kong Mesh CNI
-        url: /networking/cni/
-        items:
-          - text: Installation
-            url: /networking/cni/#installation
-            src: /.repos/kuma/src/networking/cni/#installation
-          - text: Kong Mesh CNI v2
-            url: /networking/cni/#kong-mesh-cni-v2
-            src: /.repos/kuma/src/networking/cni/#kuma-cni-v2
-          - text: Merbridge CNI with eBPF
-            url: /networking/cni/#merbridge-cni-with-ebpf
-            src: /.repos/kuma/src/networking/cni/#merbridge-cni-with-ebpf
-        src: /.repos/kuma/src/networking/cni
-      - text: Transparent Proxying
-        url: /networking/transparent-proxying/
-        items:
-          - text: Kubernetes
-            url: /networking/transparent-proxying/#kubernetes
-            src: /.repos/kuma/src/networking/transparent-proxying/#kubernetes
-          - text: Universal
-            url: /networking/transparent-proxying/#universal
-            src: /.repos/kuma/src/networking/transparent-proxying/#universal
-          - text: Configuration
-            url: /networking/transparent-proxying/#configuration
-            src: /.repos/kuma/src/networking/transparent-proxying/#configuration
-        src: /.repos/kuma/src/networking/transparent-proxying
-      - text: IPv6 Support
-        url: /networking/ipv6/
-        items:
-          - text: Disabling IPv6
-            url: /networking/ipv6/#disabling-ipv6
-            src: /.repos/kuma/src/networking/ipv6/#disabling-ipv6
-        src: /.repos/kuma/src/networking/ipv6
-  - title: Security
-    items:
-      - text: Secure access across services
-        url: /security/certificates/
-        items:
-          - text: Data plane proxy to control plane communication
-            url: >-
-              /security/certificates/#data-plane-proxy-to-control-plane-communication
-            src: >-
-              /.repos/kuma/src/security/certificates/#data-plane-proxy-to-control-plane-communication
-          - text: User to control plane communication
-            url: /security/certificates/#user-to-control-plane-communication
-            src: >-
-              /.repos/kuma/src/security/certificates/#user-to-control-plane-communication
-          - text: Control plane to control plane (Multizone)
-            url: /security/certificates/#control-plane-to-control-plane-multizone
-            src: >-
-              /.repos/kuma/src/security/certificates/#control-plane-to-control-plane-multizone
-          - text: Control plane to Postgres communication
-            url: /security/certificates/#control-plane-to-postgres-communication
-            src: >-
-              /.repos/kuma/src/security/certificates/#control-plane-to-postgres-communication
-        src: /.repos/kuma/src/security/certificates
-      - text: Secrets
-        url: /security/secrets/
-        items:
-          - text: Scope of the Secret
-            url: /security/secrets/#scope-of-the-secret
-            src: /.repos/kuma/src/security/secrets/#scope-of-the-secret
-          - text: Usage
-            url: /security/secrets/#usage
-            src: /.repos/kuma/src/security/secrets/#usage
-        src: /.repos/kuma/src/security/secrets
-      - text: Kong Mesh API Access Control
-        url: /security/api-access-control/
-        items:
-          - text: Manage admin resources
-            url: /security/api-access-control/#manage-admin-resources
-            src: >-
-              /.repos/kuma/src/security/api-access-control/#manage-admin-resources
-          - text: Generate dataplane token
-            url: /security/api-access-control/#generate-dataplane-token
-            src: >-
-              /.repos/kuma/src/security/api-access-control/#generate-dataplane-token
-          - text: Generate user token
-            url: /security/api-access-control/#generate-user-token
-            src: /.repos/kuma/src/security/api-access-control/#generate-user-token
-          - text: Generate zone token
-            url: /security/api-access-control/#generate-zone-token
-            src: /.repos/kuma/src/security/api-access-control/#generate-zone-token
-          - text: View Envoy config dump
-            url: /security/api-access-control/#view-envoy-config-dump
-            src: >-
-              /.repos/kuma/src/security/api-access-control/#view-envoy-config-dump
-          - text: View Envoy stats
-            url: /security/api-access-control/#view-envoy-stats
-            src: /.repos/kuma/src/security/api-access-control/#view-envoy-stats
-          - text: View Envoy clusters
-            url: /security/api-access-control/#view-envoy-clusters
-            src: /.repos/kuma/src/security/api-access-control/#view-envoy-clusters
-        src: /.repos/kuma/src/security/api-access-control
-      - text: API server authentication
-        url: /security/api-server-auth/
-        items:
-          - text: User token
-            url: /security/api-server-auth/#user-token
-            src: /.repos/kuma/src/security/api-server-auth/#user-token
-          - text: Admin client certificates
-            url: /security/api-server-auth/#admin-client-certificates
-            src: >-
-              /.repos/kuma/src/security/api-server-auth/#admin-client-certificates
-          - text: Multizone
-            url: /security/api-server-auth/#multizone
-            src: /.repos/kuma/src/security/api-server-auth/#multizone
-        src: /.repos/kuma/src/security/api-server-auth
-      - text: Data plane proxy authentication
-        url: /security/dp-auth/
-        items:
-          - text: Service Account Token
-            url: /security/dp-auth/#service-account-token
-            src: /.repos/kuma/src/security/dp-auth/#service-account-token
-          - text: Data plane proxy token
-            url: /security/dp-auth/#data-plane-proxy-token
-            src: /.repos/kuma/src/security/dp-auth/#data-plane-proxy-token
-          - text: None
-            url: /security/dp-auth/#none
-            src: /.repos/kuma/src/security/dp-auth/#none
-        src: /.repos/kuma/src/security/dp-auth
-      - text: Zone ingress authentication
-        url: /security/zone-ingress-auth/
-        items:
-          - text: Service Account Token
-            url: /security/zone-ingress-auth/#service-account-token
-            src: /.repos/kuma/src/security/zone-ingress-auth/#service-account-token
-          - text: Zone ingress token
-            url: /security/zone-ingress-auth/#zone-ingress-token
-            src: /.repos/kuma/src/security/zone-ingress-auth/#zone-ingress-token
-          - text: None
-            url: /security/zone-ingress-auth/#none
-            src: /.repos/kuma/src/security/zone-ingress-auth/#none
-        src: /.repos/kuma/src/security/zone-ingress-auth
-      - text: Zone Egress authentication
-        url: /security/zoneegress-auth/
-        items:
-          - text: Service Account Token
-            url: /security/zoneegress-auth/#service-account-token
-            src: /.repos/kuma/src/security/zoneegress-auth/#service-account-token
-          - text: Zone Token
-            url: /security/zoneegress-auth/#zone-token
-            src: /.repos/kuma/src/security/zoneegress-auth/#zone-token
-          - text: None
-            url: /security/zoneegress-auth/#none
-            src: /.repos/kuma/src/security/zoneegress-auth/#none
-        src: /.repos/kuma/src/security/zoneegress-auth
-      - text: Data plane proxy membership
-        url: /security/dp-membership/
-        items:
-          - text: Usage
-            url: /security/dp-membership/#usage
-            src: /.repos/kuma/src/security/dp-membership/#usage
-          - text: Example use cases
-            url: /security/dp-membership/#example-use-cases
-            src: /.repos/kuma/src/security/dp-membership/#example-use-cases
-        src: /.repos/kuma/src/security/dp-membership
-  - title: Monitor & manage
-    items:
-      - text: Dataplane Health
-        url: /documentation/health/
-        items:
-          - text: Circuit Breaker Policy
-            url: /documentation/health/#circuit-breaker-policy
-            src: /.repos/kuma/src/documentation/health/#circuit-breaker-policy
-          - text: Kubernetes and Universal Service Probes
-            url: /documentation/health/#kubernetes-and-universal-service-probes
-            src: >-
-              /.repos/kuma/src/documentation/health/#kubernetes-and-universal-service-probes
-          - text: Health Check Policy
-            url: /documentation/health/#health-check-policy
+          - text: Enable data plane proxy health check
+            url: /features/health-check/health-check-policy/
             src: /.repos/kuma/src/documentation/health/#health-check-policy
-        src: /.repos/kuma/src/documentation/health
-      - text: Fine-tuning
-        url: /documentation/fine-tuning/
+          - text: Configure service health probes
+            url: /features/health-check/service-health-probes/
+            src: /.repos/kuma/src/policies/service-health-probes
+          - text: Enable failed request retry
+            url: /features/health-check/retry/
+            src: /.repos/kuma/src/policies/retry
+      - text: Traffic
         items:
-          - text: Reachable services
-            url: /documentation/fine-tuning/#reachable-services
-            src: /.repos/kuma/src/documentation/fine-tuning/#reachable-services
-          - text: Postgres
-            url: /documentation/fine-tuning/#postgres
-            src: /.repos/kuma/src/documentation/fine-tuning/#postgres
-          - text: Snapshot Generation
-            url: /documentation/fine-tuning/#snapshot-generation
-            src: /.repos/kuma/src/documentation/fine-tuning/#snapshot-generation
-          - text: Profiling
-            url: /documentation/fine-tuning/#profiling
-            src: /.repos/kuma/src/documentation/fine-tuning/#profiling
-          - text: Kubernetes outbounds in central place
-            url: /documentation/fine-tuning/#kubernetes-outbounds-in-central-place
-            src: >-
-              /.repos/kuma/src/documentation/fine-tuning/#kubernetes-outbounds-in-central-place
-          - text: Envoy
-            url: /documentation/fine-tuning/#envoy
-            src: /.repos/kuma/src/documentation/fine-tuning/#envoy
-        src: /.repos/kuma/src/documentation/fine-tuning
-      - text: Control Plane Configuration
-        url: /documentation/configuration/
+          - text: Configure traffic permissions
+            url: /features/traffic/permissions/
+            src: /.repos/kuma/src/policies/traffic-permissions
+          - text: Configure traffic logging
+            url: /features/traffic/log/
+            src: /.repos/kuma/src/policies/traffic-log
+          - text: Configure routing rules
+            url: /features/traffic/route/
+            src: /.repos/kuma/src/policies/traffic-route
+          - text: Configure protocol support
+            url: /features/traffic/protocol-support/
+            src: /.repos/kuma/src/policies/protocol-support-in-kuma
+      - text: Performance
         items:
-          - text: Modifying the configuration
-            url: /documentation/configuration/#modifying-the-configuration
-            src: >-
-              /.repos/kuma/src/documentation/configuration/#modifying-the-configuration
-          - text: Inspecting the configuration
-            url: /documentation/configuration/#inspecting-the-configuration
-            src: >-
-              /.repos/kuma/src/documentation/configuration/#inspecting-the-configuration
-          - text: Store
-            url: /documentation/configuration/#store
-            src: /.repos/kuma/src/documentation/configuration/#store
-        src: /.repos/kuma/src/documentation/configuration
-      - text: Upgrades
-        url: /documentation/upgrades/
+          - text: Configure fault injection
+            url: /features/performance/fault-injection/
+            src: /.repos/kuma/src/policies/fault-injection
+          - text: Enable rate limiting
+            url: /features/performance/rate-limit/
+            src: /.repos/kuma/src/policies/rate-limit
+          - text: Enable circuit breaker
+            url: /features/performance/circuit-breaker/
+            src: /.repos/kuma/src/policies/circuit-breaker
+          - text: Set timeouts
+            url: /features/performance/timeout/
+            src: /.repos/kuma/src/policies/timeout
+          - text: Performance fine-tuning
+            url: /features/performance/fine-tuning/
+            src: /.repos/kuma/src/documentation/fine-tuning
+      - text: Debug
         items:
-          - text: Standalone
-            url: /documentation/upgrades/#standalone
-            src: /.repos/kuma/src/documentation/upgrades/#standalone
-          - text: Multizone
-            url: /documentation/upgrades/#multizone
-            src: /.repos/kuma/src/documentation/upgrades/#multizone
-        src: /.repos/kuma/src/documentation/upgrades
-      - text: Requirements
-        url: /documentation/requirements/
-        items:
-          - text: Architecture
-            url: /documentation/requirements/#architecture
-            src: /.repos/kuma/src/documentation/requirements/#architecture
-          - text: Kubernetes
-            url: /documentation/requirements/#kubernetes
-            src: /.repos/kuma/src/documentation/requirements/#kubernetes
-          - text: Envoy
-            url: /documentation/requirements/#envoy
-            src: /.repos/kuma/src/documentation/requirements/#envoy
-          - text: Sizing your control-plane
-            url: /documentation/requirements/#sizing-your-control-plane
-            src: >-
-              /.repos/kuma/src/documentation/requirements/#sizing-your-control-plane
-        src: /.repos/kuma/src/documentation/requirements
-  - title: Policies
+          - text: Debug policies
+            url: /features/debug/inspect-api/
+            src: /.repos/kuma/src/explore/inspect-api
+  - text: Envoy Filters
     items:
-      - text: Introduction
-        url: /policies/introduction/
-        src: /.repos/kuma/src/policies/introduction
-      - text: General notes about Kong Mesh policies
-        url: /policies/general-notes-about-kong-mesh-policies/
-        src: /.repos/kuma/src/policies/general-notes-about-kuma-policies
-      - text: Applying Policies
-        url: /policies/applying-policies/
-        src: /.repos/kuma/src/policies/applying-policies
-      - text: How Kong Mesh chooses the right policy to apply
-        url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply/
+      - text: Log request and response body
+        url: /envoy-filters/log-request/
+        src: /.repos/kuma/src/envoy-filters/log-request/
+      - text: Configure mirror traffic
+        url: /envoy-filters/mirror-traffic/
+        src: /.repos/kuma/src/envoy-filters/mirror-traffic/
+  - text: Kong Mesh Enterprise
+    items:
+      - text: Kubernetes annotations and labels
+        url: /reference/kubernetes-annotations/
+        src: /.repos/kuma/src/reference/kubernetes-annotations
+      - text: Certificates
         items:
-          - text: General rules
-            url: >-
-              /policies/how-kong-mesh-chooses-the-right-policy-to-apply/#general-rules
-            src: >-
-              /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply/#general-rules
-          - text: Combine Policies to Avoid Overriding
-            url: >-
-              /policies/how-kong-mesh-chooses-the-right-policy-to-apply/#combine-policies-to-avoid-overriding
-            src: >-
-              /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply/#combine-policies-to-avoid-overriding
-          - text: Dataplane Policy
-            url: >-
-              /policies/how-kong-mesh-chooses-the-right-policy-to-apply/#dataplane-policy
-            src: >-
-              /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply/#dataplane-policy
-          - text: Connection policies
-            url: >-
-              /policies/how-kong-mesh-chooses-the-right-policy-to-apply/#connection-policies
-            src: >-
-              /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply/#connection-policies
-          - text: Outbound Connection Policy
-            url: >-
-              /policies/how-kong-mesh-chooses-the-right-policy-to-apply/#outbound-connection-policy
-            src: >-
-              /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply/#outbound-connection-policy
-          - text: Inbound Connection Policy
-            url: >-
-              /policies/how-kong-mesh-chooses-the-right-policy-to-apply/#inbound-connection-policy
-            src: >-
-              /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply/#inbound-connection-policy
-        src: /.repos/kuma/src/policies/how-kuma-chooses-the-right-policy-to-apply
-      - text: Protocol support in Kong Mesh
-        url: /policies/protocol-support-in-kong-mesh/
-        items:
-          - text: HTTP/2 support
-            url: /policies/protocol-support-in-kong-mesh/#http-2-support
-            src: /.repos/kuma/src/policies/protocol-support-in-kuma/#http-2-support
-          - text: TLS support
-            url: /policies/protocol-support-in-kong-mesh/#tls-support
-            src: /.repos/kuma/src/policies/protocol-support-in-kuma/#tls-support
-          - text: Websocket support
-            url: /policies/protocol-support-in-kong-mesh/#websocket-support
-            src: >-
-              /.repos/kuma/src/policies/protocol-support-in-kuma/#websocket-support
-        src: /.repos/kuma/src/policies/protocol-support-in-kuma
-      - text: Mesh
-        url: /policies/mesh/
-        items:
-          - text: Usage
-            url: /policies/mesh/#usage
-            src: /.repos/kuma/src/policies/mesh/#usage
-        src: /.repos/kuma/src/policies/mesh
-      - text: Mutual TLS
-        url: /policies/mutual-tls/
-        items:
-          - text: Usage of "builtin" CA
-            url: /policies/mutual-tls/#usage-of-builtin-ca
-            src: /.repos/kuma/src/policies/mutual-tls/#usage-of-builtin-ca
-          - text: Usage of "provided" CA
-            url: /policies/mutual-tls/#usage-of-provided-ca
-            src: /.repos/kuma/src/policies/mutual-tls/#usage-of-provided-ca
-          - text: Permissive mTLS
-            url: /policies/mutual-tls/#permissive-mtls
-            src: /.repos/kuma/src/policies/mutual-tls/#permissive-mtls
-          - text: Certificate Rotation
-            url: /policies/mutual-tls/#certificate-rotation
-            src: /.repos/kuma/src/policies/mutual-tls/#certificate-rotation
-        src: /.repos/kuma/src/policies/mutual-tls
-      - text: Traffic Permissions
-        url: /policies/traffic-permissions/
-        items:
-          - text: Usage
-            url: /policies/traffic-permissions/#usage
-            src: /.repos/kuma/src/policies/traffic-permissions/#usage
-          - text: Access to External Services
-            url: /policies/traffic-permissions/#access-to-external-services
-            src: >-
-              /.repos/kuma/src/policies/traffic-permissions/#access-to-external-services
-        src: /.repos/kuma/src/policies/traffic-permissions
-      - text: Traffic Route
-        url: /policies/traffic-route/
-        items:
-          - text: Usage
-            url: /policies/traffic-route/#usage
-            src: /.repos/kuma/src/policies/traffic-route/#usage
-        src: /.repos/kuma/src/policies/traffic-route
-      - text: Traffic Metrics
-        url: /policies/traffic-metrics/
-        items:
-          - text: Expose metrics from data plane proxies
-            url: /policies/traffic-metrics/#expose-metrics-from-data-plane-proxies
-            src: >-
-              /.repos/kuma/src/policies/traffic-metrics/#expose-metrics-from-data-plane-proxies
-          - text: Expose metrics from applications
-            url: /policies/traffic-metrics/#expose-metrics-from-applications
-            src: >-
-              /.repos/kuma/src/policies/traffic-metrics/#expose-metrics-from-applications
-          - text: Override Prometheus settings per data plane proxy
-            url: >-
-              /policies/traffic-metrics/#override-prometheus-settings-per-data-plane-proxy
-            src: >-
-              /.repos/kuma/src/policies/traffic-metrics/#override-prometheus-settings-per-data-plane-proxy
-          - text: Filter Envoy metrics
-            url: /policies/traffic-metrics/#filter-envoy-metrics
-            src: /.repos/kuma/src/policies/traffic-metrics/#filter-envoy-metrics
-          - text: Secure data plane proxy metrics
-            url: /policies/traffic-metrics/#secure-data-plane-proxy-metrics
-            src: >-
-              /.repos/kuma/src/policies/traffic-metrics/#secure-data-plane-proxy-metrics
-        src: /.repos/kuma/src/policies/traffic-metrics
-      - text: Traffic Trace
-        url: /policies/traffic-trace/
-        items:
-          - text: Add a tracing backend to the mesh
-            url: /policies/traffic-trace/#add-a-tracing-backend-to-the-mesh
-            src: >-
-              /.repos/kuma/src/policies/traffic-trace/#add-a-tracing-backend-to-the-mesh
-          - text: Add TrafficTrace resource
-            url: /policies/traffic-trace/#add-traffictrace-resource
-            src: /.repos/kuma/src/policies/traffic-trace/#add-traffictrace-resource
-        src: /.repos/kuma/src/policies/traffic-trace
-      - text: Traffic Log
-        url: /policies/traffic-log/
-        items:
-          - text: Add a logging backend
-            url: /policies/traffic-log/#add-a-logging-backend
-            src: /.repos/kuma/src/policies/traffic-log/#add-a-logging-backend
-          - text: Add a TrafficLog resource
-            url: /policies/traffic-log/#add-a-trafficlog-resource
-            src: /.repos/kuma/src/policies/traffic-log/#add-a-trafficlog-resource
-          - text: Logging external services
-            url: /policies/traffic-log/#logging-external-services
-            src: /.repos/kuma/src/policies/traffic-log/#logging-external-services
-          - text: Builtin Gateway support
-            url: /policies/traffic-log/#builtin-gateway-support
-            src: /.repos/kuma/src/policies/traffic-log/#builtin-gateway-support
-          - text: Access Log Format
-            url: /policies/traffic-log/#access-log-format
-            src: /.repos/kuma/src/policies/traffic-log/#access-log-format
-        src: /.repos/kuma/src/policies/traffic-log
-      - text: Locality-aware Load Balancing
-        url: /policies/locality-aware/
-        items:
-          - text: Enabling locality-aware load balancing
-            url: /policies/locality-aware/#enabling-locality-aware-load-balancing
-            src: >-
-              /.repos/kuma/src/policies/locality-aware/#enabling-locality-aware-load-balancing
-        src: /.repos/kuma/src/policies/locality-aware
-      - text: Fault Injection
-        url: /policies/fault-injection/
-        items:
-          - text: Usage
-            url: /policies/fault-injection/#usage
-            src: /.repos/kuma/src/policies/fault-injection/#usage
-          - text: Matching
-            url: /policies/fault-injection/#matching
-            src: /.repos/kuma/src/policies/fault-injection/#matching
-        src: /.repos/kuma/src/policies/fault-injection
-      - text: Health Check
-        url: /policies/health-check/
-        items:
-          - text: Usage
-            url: /policies/health-check/#usage
-            src: /.repos/kuma/src/policies/health-check/#usage
-          - text: Matching
-            url: /policies/health-check/#matching
-            src: /.repos/kuma/src/policies/health-check/#matching
-        src: /.repos/kuma/src/policies/health-check
-      - text: Circuit Breaker
-        url: /policies/circuit-breaker/
-        items:
-          - text: Usage
-            url: /policies/circuit-breaker/#usage
-            src: /.repos/kuma/src/policies/circuit-breaker/#usage
-          - text: Matching
-            url: /policies/circuit-breaker/#matching
-            src: /.repos/kuma/src/policies/circuit-breaker/#matching
-          - text: Builtin Gateway support
-            url: /policies/circuit-breaker/#builtin-gateway-support
-            src: /.repos/kuma/src/policies/circuit-breaker/#builtin-gateway-support
-        src: /.repos/kuma/src/policies/circuit-breaker
-      - text: Proxy Template
-        url: /policies/proxy-template/
-        items:
-          - text: Usage
-            url: /policies/proxy-template/#usage
-            src: /.repos/kuma/src/policies/proxy-template/#usage
-          - text: How Kong Mesh handles the proxy template
-            url: /policies/proxy-template/#how-kong-mesh-handles-the-proxy-template
-            src: >-
-              /.repos/kuma/src/policies/proxy-template/#how-kuma-handles-the-proxy-template
-          - text: Lua filter example
-            url: /policies/proxy-template/#lua-filter-example
-            src: /.repos/kuma/src/policies/proxy-template/#lua-filter-example
-          - text: Matching
-            url: /policies/proxy-template/#matching
-            src: /.repos/kuma/src/policies/proxy-template/#matching
-          - text: Builtin Gateway support
-            url: /policies/proxy-template/#builtin-gateway-support
-            src: /.repos/kuma/src/policies/proxy-template/#builtin-gateway-support
-        src: /.repos/kuma/src/policies/proxy-template
-      - text: External Service
-        url: /policies/external-services/
-        items:
-          - text: Usage
-            url: /policies/external-services/#usage
-            src: /.repos/kuma/src/policies/external-services/#usage
-          - text: Builtin Gateway support
-            url: /policies/external-services/#builtin-gateway-support
-            src: >-
-              /.repos/kuma/src/policies/external-services/#builtin-gateway-support
-        src: /.repos/kuma/src/policies/external-services
-      - text: Retry
-        url: /policies/retry/
-        items:
-          - text: Usage
-            url: /policies/retry/#usage
-            src: /.repos/kuma/src/policies/retry/#usage
-          - text: Matching
-            url: /policies/retry/#matching
-            src: /.repos/kuma/src/policies/retry/#matching
-          - text: Builtin Gateway support
-            url: /policies/retry/#builtin-gateway-support
-            src: /.repos/kuma/src/policies/retry/#builtin-gateway-support
-        src: /.repos/kuma/src/policies/retry
-      - text: Timeout
-        url: /policies/timeout/
-        items:
-          - text: Usage
-            url: /policies/timeout/#usage
-            src: /.repos/kuma/src/policies/timeout/#usage
-          - text: Configuration
-            url: /policies/timeout/#configuration
-            src: /.repos/kuma/src/policies/timeout/#configuration
-          - text: Default general-purpose Timeout policy
-            url: /policies/timeout/#default-general-purpose-timeout-policy
-            src: >-
-              /.repos/kuma/src/policies/timeout/#default-general-purpose-timeout-policy
-          - text: Matching
-            url: /policies/timeout/#matching
-            src: /.repos/kuma/src/policies/timeout/#matching
-          - text: Builtin Gateway support
-            url: /policies/timeout/#builtin-gateway-support
-            src: /.repos/kuma/src/policies/timeout/#builtin-gateway-support
-          - text: Inbound timeouts
-            url: /policies/timeout/#inbound-timeouts
-            src: /.repos/kuma/src/policies/timeout/#inbound-timeouts
-        src: /.repos/kuma/src/policies/timeout
-      - text: Rate Limit
-        url: /policies/rate-limit/
-        items:
-          - text: Usage
-            url: /policies/rate-limit/#usage
-            src: /.repos/kuma/src/policies/rate-limit/#usage
-          - text: Matching destinations
-            url: /policies/rate-limit/#matching-destinations
-            src: /.repos/kuma/src/policies/rate-limit/#matching-destinations
-          - text: Builtin Gateway support
-            url: /policies/rate-limit/#builtin-gateway-support
-            src: /.repos/kuma/src/policies/rate-limit/#builtin-gateway-support
-        src: /.repos/kuma/src/policies/rate-limit
-      - text: Virtual Outbound
-        url: /policies/virtual-outbound/
-        items:
-          - text: Examples
-            url: /policies/virtual-outbound/#examples
-            src: /.repos/kuma/src/policies/virtual-outbound/#examples
-        src: /.repos/kuma/src/policies/virtual-outbound
-      - text: MeshGateway
-        url: /policies/mesh-gateway/
-        items:
-          - text: TLS Termination
-            url: /policies/mesh-gateway/#tls-termination
-            src: /.repos/kuma/src/policies/mesh-gateway/#tls-termination
-        src: /.repos/kuma/src/policies/mesh-gateway
-      - text: MeshGatewayRoute
-        url: /policies/mesh-gateway-route/
-        items:
-          - text: Listener tags
-            url: /policies/mesh-gateway-route/#listener-tags
-            src: /.repos/kuma/src/policies/mesh-gateway-route/#listener-tags
-          - text: Matching
-            url: /policies/mesh-gateway-route/#matching
-            src: /.repos/kuma/src/policies/mesh-gateway-route/#matching
-          - text: Filters
-            url: /policies/mesh-gateway-route/#filters
-            src: /.repos/kuma/src/policies/mesh-gateway-route/#filters
-          - text: Reference
-            url: /policies/mesh-gateway-route/#reference
-            src: /.repos/kuma/src/policies/mesh-gateway-route/#reference
-        src: /.repos/kuma/src/policies/mesh-gateway-route
-      - text: Service Health Probes
-        url: /policies/service-health-probes/
-        items:
-          - text: Kubernetes
-            url: /policies/service-health-probes/#kubernetes
-            src: /.repos/kuma/src/policies/service-health-probes/#kubernetes
-          - text: Universal probes
-            url: /policies/service-health-probes/#universal-probes
-            src: /.repos/kuma/src/policies/service-health-probes/#universal-probes
-        src: /.repos/kuma/src/policies/service-health-probes
-  - title: Reference docs
+          - text: Configure a Vault policy
+            url: /features/zero-trust/vault
+          - text: Configure a ACM private CA policy
+            url: /features/zero-trust/acmpca
+          - text: Configure a Kubernetes cert-manager CA policy
+            url: /features/zero-trust/cert-manager
+          - text: Rotate your CA
+            url: /features/zero-trust/ca-rotation
+      - text: Configure the OPA policy
+        url: /features/zero-trust/opa
+      - text: Configure multi-zone authentication
+        url: /features/multi-zone/multi-zone-auth/
+        src: /features/kds-auth
+      - text: FIPS support
+        url: /production/security/fips/
+        src: /features/fips-support
+      - text: Kong Mesh RBAC
+        url: /production/security/mesh-rbac/
+        src: /features/rbac
+      - text: Use Red Hat UBI
+        url: /enterprise/ubi/
+        src: /features/ubi-images
+      - text: Install Kong Mesh with Windows
+        url: /production/install/windows/
+        src: /installation/windows
+  - text: Guides
+    items:
+      - text: Blue green and canary deployments
+        url: /guides/blue-green-canary/
+        src: /.repos/kuma/src/guides/blue-green-canary
+      - text: End-to-end zero trust
+        url: /guides/zero-trust/
+        src: /.repos/kuma/src/guides/zero-trust
+      - text: Full observability reference architecture
+        url: /guides/observability-architecture/
+        src: /.repos/kuma/src/guides/observability-architecture
+      - text: High-availability control plane across regions with Kubernetes
+        url: /guides/kubernetes-region-cp/
+        src: /.repos/kuma/src/guides/kubernetes-region-cp
+      - text: Locally verify a JWT with an OIDC provider 
+        url: /guides/local-jwt/
+        src: /.repos/kuma/src/guides/local-jwt
+      - text: Remotely verify a JWT with an OIDC provider
+        url: /guides/remote-jwt/
+        src: /.repos/kuma/src/guides/remote-jwt
+      - text: Create an Envoy WASM proxy extension
+        url: /guides/wasm/
+        src: /.repos/kuma/src/guides/wasm
+      - text: Change images for components in Helm
+        url: /guides/helm-images/
+        src: /.repos/kuma/src/guides/helm-images
+      - text: End-to-end Prometheus monitoring
+        url: /guides/prometheus-monitoring/
+        src: /.repos/kuma/src/guides/prometheus-monitoring
+  - text: Reference
     items:
       - text: HTTP API
         url: /reference/http-api/
-        items:
-          - text: Pagination
-            url: /reference/http-api/#pagination
-            src: /.repos/kuma/src/reference/http-api/#pagination
-          - text: Control Plane configuration
-            url: /reference/http-api/#control-plane-configuration
-            src: /.repos/kuma/src/reference/http-api/#control-plane-configuration
-          - text: Supported Envoy versions
-            url: /reference/http-api/#supported-envoy-versions
-            src: /.repos/kuma/src/reference/http-api/#supported-envoy-versions
-          - text: Meshes
-            url: /reference/http-api/#meshes
-            src: /.repos/kuma/src/reference/http-api/#meshes
-          - text: Mesh Insights
-            url: /reference/http-api/#mesh-insights
-            src: /.repos/kuma/src/reference/http-api/#mesh-insights
-          - text: Dataplanes
-            url: /reference/http-api/#dataplanes
-            src: /.repos/kuma/src/reference/http-api/#dataplanes
-          - text: Dataplane Overviews
-            url: /reference/http-api/#dataplane-overviews
-            src: /.repos/kuma/src/reference/http-api/#dataplane-overviews
-          - text: Health Check
-            url: /reference/http-api/#health-check
-            src: /.repos/kuma/src/reference/http-api/#health-check
-          - text: Proxy Template
-            url: /reference/http-api/#proxy-template
-            src: /.repos/kuma/src/reference/http-api/#proxy-template
-          - text: Traffic Permission
-            url: /reference/http-api/#traffic-permission
-            src: /.repos/kuma/src/reference/http-api/#traffic-permission
-          - text: Traffic Log
-            url: /reference/http-api/#traffic-log
-            src: /.repos/kuma/src/reference/http-api/#traffic-log
-          - text: Traffic Route
-            url: /reference/http-api/#traffic-route
-            src: /.repos/kuma/src/reference/http-api/#traffic-route
-          - text: Traffic Trace
-            url: /reference/http-api/#traffic-trace
-            src: /.repos/kuma/src/reference/http-api/#traffic-trace
-          - text: Fault Injection
-            url: /reference/http-api/#fault-injection
-            src: /.repos/kuma/src/reference/http-api/#fault-injection
-          - text: Retry
-            url: /reference/http-api/#retry
-            src: /.repos/kuma/src/reference/http-api/#retry
-          - text: Timeout
-            url: /reference/http-api/#timeout
-            src: /.repos/kuma/src/reference/http-api/#timeout
-          - text: Zones
-            url: /reference/http-api/#zones
-            src: /.repos/kuma/src/reference/http-api/#zones
-          - text: Zone Overview
-            url: /reference/http-api/#zone-overview
-            src: /.repos/kuma/src/reference/http-api/#zone-overview
-          - text: Zone Ingresses
-            url: /reference/http-api/#zone-ingresses
-            src: /.repos/kuma/src/reference/http-api/#zone-ingresses
-          - text: Zone Ingress Overviews
-            url: /reference/http-api/#zone-ingress-overviews
-            src: /.repos/kuma/src/reference/http-api/#zone-ingress-overviews
-          - text: Zone Egresses
-            url: /reference/http-api/#zone-egresses
-            src: /.repos/kuma/src/reference/http-api/#zone-egresses
-          - text: Zone Egress Overviews
-            url: /reference/http-api/#zone-egress-overviews
-            src: /.repos/kuma/src/reference/http-api/#zone-egress-overviews
-          - text: External Services
-            url: /reference/http-api/#external-services
-            src: /.repos/kuma/src/reference/http-api/#external-services
-          - text: Service Insights
-            url: /reference/http-api/#service-insights
-            src: /.repos/kuma/src/reference/http-api/#service-insights
-          - text: Secrets
-            url: /reference/http-api/#secrets
-            src: /.repos/kuma/src/reference/http-api/#secrets
-          - text: Global Secrets
-            url: /reference/http-api/#global-secrets
-            src: /.repos/kuma/src/reference/http-api/#global-secrets
-          - text: Multi-zone
-            url: /reference/http-api/#multi-zone
-            src: /.repos/kuma/src/reference/http-api/#multi-zone
-          - text: Dataplane Proxy Tokens
-            url: /reference/http-api/#dataplane-proxy-tokens
-            src: /.repos/kuma/src/reference/http-api/#dataplane-proxy-tokens
-          - text: Zone Ingress Tokens
-            url: /reference/http-api/#zone-ingress-tokens
-            src: /.repos/kuma/src/reference/http-api/#zone-ingress-tokens
-          - text: Global Insights
-            url: /reference/http-api/#global-insights
-            src: /.repos/kuma/src/reference/http-api/#global-insights
-          - text: Inspect API
-            url: /reference/http-api/#inspect-api
-            src: /.repos/kuma/src/reference/http-api/#inspect-api
         src: /.repos/kuma/src/reference/http-api
-      - text: Annotations and labels in Kubernetes mode
+      - text: Kubernetes annotations and labels
         url: /reference/kubernetes-annotations/
-        items:
-          - text: Labels
-            url: /reference/kubernetes-annotations/#labels
-            src: /.repos/kuma/src/reference/kubernetes-annotations/#labels
-          - text: Annotations
-            url: /reference/kubernetes-annotations/#annotations
-            src: /.repos/kuma/src/reference/kubernetes-annotations/#annotations
         src: /.repos/kuma/src/reference/kubernetes-annotations
       - text: Kong Mesh data collection
         url: /reference/data-collection/
-        items:
-          - text: Enabling data collection
-            url: /reference/data-collection/#enabling-data-collection
-            src: >-
-              /.repos/kuma/src/reference/data-collection/#enabling-data-collection
-          - text: What data is collected
-            url: /reference/data-collection/#what-data-is-collected
-            src: /.repos/kuma/src/reference/data-collection/#what-data-is-collected
         src: /.repos/kuma/src/reference/data-collection
-      - text: License
-        url: /reference/license/
-        src: /.repos/kuma/src/reference/license
+      - text: Control plane configuration reference 
+        url: /reference/cp-config/
+        src: /.repos/kuma/src/generated/kuma-cp
+      - text: Envoy proxy template
+        url: /reference/proxy-template/
+        src: /.repos/kuma/src/policies/proxy-template
+      - text: Kubernetes RBAC
+        url: /reference/kubernetes-rbac/
+        src: /.repos/kuma/src/reference/kubernetes-rbac
       - title: Resources
         items:
           - text: Mesh
-            url: /generated/resources/other_mesh/
+            url: /reference/resources/other_mesh/
             src: /.repos/kuma/src/generated/resources/other_mesh
           - text: CircuitBreaker
-            url: /generated/resources/policy_circuit-breaker/
+            url: /reference/resources/policy_circuit-breaker/
             src: /.repos/kuma/src/generated/resources/policy_circuit-breaker
           - text: ExternalService
-            url: /generated/resources/policy_external-service/
+            url: /reference/resources/policy_external-service/
             src: /.repos/kuma/src/generated/resources/policy_external-service
           - text: FaultInjection
-            url: /generated/resources/policy_fault-injection/
+            url: /reference/resources/policy_fault-injection/
             src: /.repos/kuma/src/generated/resources/policy_fault-injection
           - text: HealthCheck
-            url: /generated/resources/policy_health-check/
+            url: /reference/resources/policy_health-check/
             src: /.repos/kuma/src/generated/resources/policy_health-check
           - text: MeshGateway
-            url: /generated/resources/policy_meshgateway/
+            url: /reference/resources/policy_meshgateway/
             src: /.repos/kuma/src/generated/resources/policy_meshgateway
           - text: MeshGatewayRoute
-            url: /generated/resources/policy_meshgatewayroute/
+            url: /reference/resources/policy_meshgatewayroute/
             src: /.repos/kuma/src/generated/resources/policy_meshgatewayroute
           - text: ProxyTemplate
-            url: /generated/resources/policy_proxy-template/
+            url: /reference/resources/policy_proxy-template/
             src: /.repos/kuma/src/generated/resources/policy_proxy-template
           - text: RateLimit
-            url: /generated/resources/policy_rate-limit/
+            url: /reference/resources/policy_rate-limit/
             src: /.repos/kuma/src/generated/resources/policy_rate-limit
           - text: Retry
-            url: /generated/resources/policy_retry/
+            url: /reference/resources/policy_retry/
             src: /.repos/kuma/src/generated/resources/policy_retry
           - text: Timeout
-            url: /generated/resources/policy_timeout/
+            url: /reference/resources/policy_timeout/
             src: /.repos/kuma/src/generated/resources/policy_timeout
           - text: TrafficLog
-            url: /generated/resources/policy_traffic-log/
+            url: /reference/resources/policy_traffic-log/
             src: /.repos/kuma/src/generated/resources/policy_traffic-log
           - text: TrafficPermission
-            url: /generated/resources/policy_traffic-permissions/
+            url: /reference/resources/policy_traffic-permissions/
             src: /.repos/kuma/src/generated/resources/policy_traffic-permissions
           - text: TrafficRoute
-            url: /generated/resources/policy_traffic-route/
+            url: /reference/resources/policy_traffic-route/
             src: /.repos/kuma/src/generated/resources/policy_traffic-route
           - text: TrafficTrace
-            url: /generated/resources/policy_traffic-trace/
+            url: /reference/resources/policy_traffic-trace/
             src: /.repos/kuma/src/generated/resources/policy_traffic-trace
           - text: VirtualOutbound
-            url: /generated/resources/policy_virtual-outbound/
+            url: /reference/resources/policy_virtual-outbound/
             src: /.repos/kuma/src/generated/resources/policy_virtual-outbound
           - text: Dataplane
-            url: /generated/resources/proxy_dataplane/
+            url: /reference/resources/proxy_dataplane/
             src: /.repos/kuma/src/generated/resources/proxy_dataplane
           - text: ZoneEgress
-            url: /generated/resources/proxy_zoneegress/
+            url: /reference/resources/proxy_zoneegress/
             src: /.repos/kuma/src/generated/resources/proxy_zoneegress
           - text: ZoneIngress
-            url: /generated/resources/proxy_zoneingress/
+            url: /reference/resources/proxy_zoneingress/
             src: /.repos/kuma/src/generated/resources/proxy_zoneingress
       - title: Commands
         items:
           - text: kuma-cp
-            url: /generated/cmd/kong-mesh-cp/kuma-cp/
+            url: /reference/cmd/kong-mesh-cp/kuma-cp/
             src: /.repos/kuma/src/generated/cmd/kuma-cp/kuma-cp
           - text: kuma-dp
-            url: /generated/cmd/kong-mesh-dp/kuma-dp/
+            url: /reference/cmd/kong-mesh-dp/kuma-dp/
             src: /.repos/kuma/src/generated/cmd/kuma-dp/kuma-dp
           - text: kuma-prometheus-sd
-            url: /generated/cmd/kong-mesh-prometheus-sd/kuma-prometheus-sd/
+            url: /reference/cmd/kong-mesh-prometheus-sd/kuma-prometheus-sd/
             src: >-
               /.repos/kuma/src/generated/cmd/kuma-prometheus-sd/kuma-prometheus-sd
           - text: kumactl
-            url: /generated/cmd/kong-meshctl/kumactl/
+            url: /reference/cmd/kong-meshctl/kumactl/
             src: /.repos/kuma/src/generated/cmd/kumactl/kumactl
-  - title: Contribute
-    items:
-      - text: Introduction
-        url: /contribute/introduction/
-        items:
-          - text: Community
-            url: /contribute/introduction/#community
-            src: /.repos/kuma/src/contribute/introduction/#community
-          - text: Documentation
-            url: /contribute/introduction/#documentation
-            src: /.repos/kuma/src/contribute/introduction/#documentation
-          - text: Core Code
-            url: /contribute/introduction/#core-code
-            src: /.repos/kuma/src/contribute/introduction/#core-code
-          - text: GUI Code
-            url: /contribute/introduction/#gui-code
-            src: /.repos/kuma/src/contribute/introduction/#gui-code
-          - text: Testing unreleased versions
-            url: /contribute/introduction/#testing-unreleased-versions
-            src: >-
-              /.repos/kuma/src/contribute/introduction/#testing-unreleased-versions
-        src: /.repos/kuma/src/contribute/introduction
