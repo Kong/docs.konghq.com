@@ -118,9 +118,11 @@ dockerfile
 downsample
 downsampled
 drilldown
+ElastiCache
 elbs
 enum
 env
+Equinix
 etcd
 favicon
 filepath
@@ -281,6 +283,10 @@ statsd
 stderr
 stdin
 stdout
+Styra
+subnet
+subtree
+Bagdi
 subcommand
 subcommands
 submodule
