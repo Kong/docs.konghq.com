@@ -316,5 +316,5 @@ HTTP requests with /bar -> Kong enforces rate-limit +   -> echo-server
 * The [External Services Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster.
 {% if_version gte:2.6.x %}
 * [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
-configuring networking in Kubernetes. Now the kubernetes ingress controller supports Gateway API by default. To learn how to use Gateway API supported by the kubernetes ingress controller, please refer to [this guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api).
+configuring networking in Kubernetes. The Kubernetes Ingress Controller supports Gateway API by default. To learn how to use Gateway API supported by the Kubernetes Ingress Controller, see [Using Gateway API](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api).
 {% endif_version %}
