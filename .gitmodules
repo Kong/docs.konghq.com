@@ -1,4 +1,0 @@
-[submodule "src/.repos/kuma-website-jekyll"]
-	path = src/.repos/kuma
-	url = https://github.com/Kong/kuma-website-jekyll.git
-	branch = jekyll-replatform
