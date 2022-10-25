@@ -55,6 +55,8 @@
           url: /runtime-manager/runtime-groups/declarative-config
     - text: Runtime Instances
       items:
+        - text: Installation Options
+          url: /runtime-manager/runtime-instances/
         - text: Install with Docker
           url: /runtime-manager/runtime-instances/gateway-runtime-docker
         - text: Install on Kubernetes

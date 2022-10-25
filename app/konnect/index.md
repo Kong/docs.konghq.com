@@ -20,9 +20,9 @@ breadcrumb: Overview
     <div class="install-text">Get Started</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-groups" class="docs-grid-install-block no-description">
+  <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Runtime Groups</div>
+    <div class="install-text">Set up Runtime Instance</div>
   </a>
 
   <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
