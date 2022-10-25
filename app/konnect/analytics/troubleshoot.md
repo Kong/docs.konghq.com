@@ -1,7 +1,6 @@
 ---
 title: Troubleshoot Analytics
-no_version: true
-content-type: reference
+content_type: reference
 ---
 
 This page covers issues you may run into with {{site.konnect_short_name}} Analytics.

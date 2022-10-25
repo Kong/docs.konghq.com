@@ -1,7 +1,6 @@
 ---
 title: Manage Developer Access
-no_version: true
-content-type: reference
+content_type: reference
 ---
 
 In the {% konnect_icon dev-portal %} **Dev Portal** section, there are three ways to manage access and authorization settings for the Dev Portal: 

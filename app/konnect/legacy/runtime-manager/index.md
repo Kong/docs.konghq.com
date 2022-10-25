@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Runtime Manager Overview
-no_version: true
 ---
 <!-- vale off -->
 The Runtime Manager is a {{site.konnect_saas}} functionality module

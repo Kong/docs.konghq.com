@@ -1,6 +1,5 @@
 ---
 title: Summary Dashboard
-no_version: true
 content_type: reference
 badge: plus
 ---

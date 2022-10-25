@@ -1,6 +1,5 @@
 ---
 title: (Legacy) ServiceHub Overview
-no_version: true
 ---
 <!-- vale off -->
 ServiceHub is a {{site.konnect_saas}} functionality module that

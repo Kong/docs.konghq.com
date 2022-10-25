@@ -1,7 +1,6 @@
 ---
 title: Upgrade a Runtime Instance to a New Version
-no_version: true
-content-type: how-to
+content_type: how-to
 ---
 
 You can upgrade runtimes to a new {{site.base_gateway}} version by bringing

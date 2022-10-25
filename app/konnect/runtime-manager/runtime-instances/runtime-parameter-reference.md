@@ -1,7 +1,6 @@
 ---
 title: Runtime Configuration Parameters
-no_version: true
-content-type: reference
+content_type: reference
 ---
 
 ## Advanced parameters for {{site.base_gateway}}

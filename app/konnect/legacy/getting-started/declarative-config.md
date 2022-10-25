@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Konnect Cloud with decK
-no_version: true
 ---
 <!-- vale off -->
 You can manage entities in your {{site.konnect_saas}} org using configuration

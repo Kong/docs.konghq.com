@@ -1,7 +1,6 @@
 ---
 title: Kong Konnect
 subtitle: The SaaS API Platform
-no_version: true
 breadcrumb: Overview
 ---
 

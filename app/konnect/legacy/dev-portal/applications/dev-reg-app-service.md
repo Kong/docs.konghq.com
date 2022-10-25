@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Register or Unregister an Application for a Service
-no_version: true
 toc: true
 ---
 <!-- vale off -->

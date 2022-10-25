@@ -1,6 +1,5 @@
 ---
 title: Runtime Groups Dashboard
-no_version: true
 content_type: reference
 ---
 

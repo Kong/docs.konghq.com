@@ -1,6 +1,5 @@
 ---
 title: Ports and Network Requirements
-no_version: true
 ---
 
 ## Control plane ports

@@ -1,6 +1,5 @@
 ---
 title: Customize the Konnect Dev Portal
-no_version: true
 content_type: how-to
 ---
 

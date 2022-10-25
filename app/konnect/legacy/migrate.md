@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Migrate from Kong Gateway to Konnect Cloud
-no_version: true
 ---
 <!-- vale off -->
 You can migrate any edition of self-managed {{site.base_gateway}} to

@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Set up a Kong Gateway Runtime with Docker
-no_version: true
 ---
 <!-- vale off -->
 Set up a Docker [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)

@@ -1,6 +1,5 @@
 ---
 title: Set Up SSO with Okta
-no_version: true
 badge: enterprise
 ---
 

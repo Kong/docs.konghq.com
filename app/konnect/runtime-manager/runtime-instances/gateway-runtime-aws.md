@@ -1,6 +1,5 @@
 ---
 title: Set up a Kong Gateway Runtime with AWS
-no_version: true
 content_type: how-to
 alpha: true
 ---

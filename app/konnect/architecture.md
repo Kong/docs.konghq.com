@@ -1,6 +1,5 @@
 ---
 title: Konnect Architecture
-no_version: true
 ---
 
 The {{site.konnect_product_name}} platform provides a cloud control plane (CP),

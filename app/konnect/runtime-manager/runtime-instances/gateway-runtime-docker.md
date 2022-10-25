@@ -1,6 +1,5 @@
 ---
 title: Set up a Kong Gateway Runtime with Docker
-no_version: true
 content_type: how-to
 ---
 Set up a Docker runtime instance through the
