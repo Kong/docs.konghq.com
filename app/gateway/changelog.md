@@ -2,6 +2,7 @@
 title: Kong Gateway Changelog
 no_version: true
 ---
+
 <!-- vale off -->
 
 ## 3.0.1.0
@@ -37,13 +38,13 @@ This endpoint was erroneously appearing in the endpoints list, and didn't config
   * Fixed an RBAC issue where the roles page listed deleted roles.
   * Fixed an issue where the orphaned roles would remain after deleting a workspace and cause the **Teams** > **Admins** page to break.
   * Added the missing **Copy JSON** button for plugin configuration.
-  * Fixed an issue where the **New Workspace** button on the globl workspace dashboard wasn't clickable on the first page load.
+  * Fixed an issue where the **New Workspace** button on the global workspace dashboard wasn't clickable on the first page load.
   * Removed the ability to add multiple documents per service from the UI.
   Each service only supports one document, so the UI now reflects that.
   * The Upstream Timeout plugin now has an icon and is part of the Traffic Control category.
   * Fixed an error that would occur when attempting to delete ACL credentials
   from the consumer credentials list.
-  This happened because the the name of the plugin, `acl`, and its endpoint, `/acls`, don't match.
+  This happened because the name of the plugin, `acl`, and its endpoint, `/acls`, don't match.
   * Fixed a caching issue with Dev Portal, where enabling or disabling the Dev Portal for a workspace wouldn't change the Kong Manager menu.
 
 * Unpinned the version of `alpine` used in the `kong/kong-gateway` Docker image.
@@ -66,9 +67,8 @@ Nginx was started with a relative path prefix.
 
 ### Deprecations and removals
 
-* The deprecated `/oas-config` endpoint and the `openapi2kong` cli tool have been removed from Kong Gateway.
+* The deprecated `/oas-config` endpoint and the `openapi2kong` CLI tool have been removed from Kong Gateway.
 Use [Insomnia's declarative configuration generator](https://docs.insomnia.rest/inso-cli/cli-command-reference/inso-generate-config) instead.
-
 
 ## 3.0.0.0
 **Release Date** 2022/09/09
