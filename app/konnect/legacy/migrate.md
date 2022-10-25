@@ -56,7 +56,7 @@ a warning if this occurs.
 
 ### Import the configuration into Konnect Cloud
 
-1. Preview the import with the [`deck konnect diff`](/deck/latest/reference/deck_konnect_diff) command:
+1. Preview the import with the [`deck konnect diff`](/deck/1.13.x/reference/deck_konnect_diff) command:
 
     ```sh
     deck konnect diff \
@@ -70,10 +70,10 @@ a warning if this occurs.
     by storing your password in a file, then either calling it with
     `--konnect-password-file pass.txt`, or adding it to your decK configuration
     under the `konnect-password` option. See the
-    [`deck konnect`](/deck/latest/reference/deck_konnect) reference for more
+    [`deck konnect`](/deck/1.13.x/reference/deck_konnect) reference for more
     information about the flag.
 
-2. If you're satisfied with the preview, run [`deck konnect sync`](/deck/latest/reference/deck_konnect_sync):
+2. If you're satisfied with the preview, run [`deck konnect sync`](/deck/1.13.x/reference/deck_konnect_sync):
 
     ```sh
     deck konnect sync \
