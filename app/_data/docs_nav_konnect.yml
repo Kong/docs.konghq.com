@@ -192,9 +192,15 @@
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
-  items: 
-    - text: Identity Management API
-      url: /identity-management-api
+  items:
+    - text: Overview
+      url: /api/
+    - text: Identity Management
+      items:
+      - text: Identity Management API 
+        url: /identity-management-api
+      - text: Identity Integration Guide
+        url: /api/identity-management/identity-integration
 
 
 - title: Legacy content

@@ -1335,20 +1335,6 @@ components:
         entity_id: 817d0422-45c9-4d88-8d64-45aef05c1ae7
         entity_type: runtime_groups
         entity_region: eu
-    team-collection-example:
-      value:
-        meta:
-          page:
-            number: 2
-            size: 1
-            total: 10
-        data:
-          - id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-            name: IDM - Developers
-            description: The developers for the IDM API.
-            system_team: false
-            created_at: '2022-02-07T17:46:57.52Z'
-            updated_at: '2022-09-25T13:00:00.00Z'
     group-collection-example:
       value:
         meta:
