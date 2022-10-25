@@ -55,7 +55,8 @@ When this setting has multiple tag values, entities must match every tag.
 This flag can be specified multiple times for multiple files.
 Use `-` to read from stdin. (Default: `[kong.yaml]`)
 
-`--workspace`
+
+{% if_version gte:1.16.x %} `-w`,{% endif_version %} `--workspace`
 :  Sync configuration to a specific workspace (Kong Enterprise only).
 This takes precedence over `_workspace` fields in state files.
 
