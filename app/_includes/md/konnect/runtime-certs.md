@@ -4,14 +4,14 @@
 
 1. Select a runtime group.
 
-1. Click **New Runtime Instance**.
+1. Click **Create Runtime Instance**.
 
-1. Open the tab for either **Linux** or **Kubernetes**.
+1. Click the tile for either **Linux** or **Kubernetes**.
 
     For an advanced **Docker** setup using custom configuration values, use
-    either tab. Do not use the **Quick Setup** tab.
+    either tile. Don't use the **MacOS**, **Windows**, or **Linux (Docker)** tiles.
 
-1. Click **Generate Certificate**.
+1. Click **Generate certificate**.
 
     Two new fields appear: a certificate and a private key.
     The contents of these fields are unique to each runtime configuration.
