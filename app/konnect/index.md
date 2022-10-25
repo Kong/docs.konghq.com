@@ -22,7 +22,7 @@ breadcrumb: Overview
 
   <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Set up Runtime Instance</div>
+    <div class="install-text">Set up Runtime Instances</div>
   </a>
 
   <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">

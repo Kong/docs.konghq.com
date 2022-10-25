@@ -46,10 +46,10 @@ generate new certificates and replace them on the existing nodes.
 ### Generate new certificates
 
 1. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group, and
-click **+ New Runtime Instance**.
-2. Open the tab that suits your environment: **Linux** or **Kubernetes**.
+click **Create Runtime Instance**.
+2. Click the tile that suits your environment: **Linux** or **Kubernetes**.
 
-    If you're running a Docker container, you can use either of these tabs to
+    If you're running a Docker container, you can use either of these tiles to
     complete the following steps.
 
 3. Click **Generate Certificate**.

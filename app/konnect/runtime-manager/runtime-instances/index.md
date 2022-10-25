@@ -11,10 +11,6 @@ serving traffic for the proxy. Data plane nodes are not directly connected
 to a database. Instead, they receive configuration from their runtime group,
 which stores and manages the configuration in {{site.konnect_saas}}.
 
-{{site.base_gateway}} runtime instances can be installed on many different systems.
-From bare metal, to virtual machines, and cloud native Kubernetes environments,
-{{site.base_gateway}} is a low-demand, high-performing API gateway.
-
 We recommend running one major version (2.x or 3.x) of a runtime instance per
 runtime group, unless you are in the middle of version upgrades to the data plane.
 Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
