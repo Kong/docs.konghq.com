@@ -167,4 +167,4 @@ If [single sign on](/konnect/org-management/okta-idp/) is enabled, an organizati
 ## More Information
 
 * [IdP API documentation](/konnect/identity-management-api)
-* [Filtering Reference](/konnect/filtering/)
+* [Filtering Reference](/konnect/api/filtering/)

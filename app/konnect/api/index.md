@@ -31,4 +31,4 @@ The recommended method of authentication for {{site.konnect_short_name}} is Pers
 
 ## More Information
 
-* [Filtering reference](/konnect/filtering/)
+* [Filtering reference](/konnect/api/filtering/)
