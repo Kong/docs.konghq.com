@@ -1,7 +1,7 @@
 ---
 title: deck konnect diff
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content-type: reference
+content_type: reference
 ---
 
 The {{site.konnect_short_name}} diff command is similar to a dry run of the `deck konnect sync` command.

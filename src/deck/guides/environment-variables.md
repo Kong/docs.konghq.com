@@ -1,6 +1,6 @@
 ---
 title: Using environment variables with decK
-content-type: how-to
+content_type: how-to
 ---
 
 When you use decK to apply configurations to {{site.base_gateway}},

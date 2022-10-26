@@ -1,6 +1,6 @@
 ---
 title: Best Practices when using decK
-content-type: explanation
+content_type: explanation
 ---
 
 - Always ensure that you have one decK process running at any time. Multiple

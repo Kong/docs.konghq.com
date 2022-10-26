@@ -1,7 +1,7 @@
 ---
 title: deck konnect sync
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content-type: reference
+content_type: reference
 ---
 
 The {{site.konnect_short_name}} sync command reads the state file and performs operations in {{site.konnect_short_name}}

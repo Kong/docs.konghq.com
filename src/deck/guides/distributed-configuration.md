@@ -1,6 +1,6 @@
 ---
 title: Distributed Configuration for Kong using decK
-content-type: explanation
+content_type: explanation
 ---
 
 decK can operate on a subset of configuration instead of taking care

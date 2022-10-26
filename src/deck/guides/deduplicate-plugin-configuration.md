@@ -1,6 +1,6 @@
 ---
 title: De-duplicate Plugin Configuration
-content-type: how-to
+content_type: how-to
 ---
 
 In some use cases, you might want to create a number of plugins associated with
