@@ -14,6 +14,8 @@ jobs:
       # Increase number of watchers to fix tests
       - run: sudo sysctl -w fs.inotify.max_user_watches=524288 
       - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
 
       # Configure Ruby to build Jekyll site
       - name: Set up Ruby
