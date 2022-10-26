@@ -8,12 +8,8 @@ info:
     email: konnect-noreply@konghq.com
     url: 'https://cloud.konghq.com'
 servers:
-  - url: 'http://localhost:8000/v2'
-    description: Local
-  - url: 'https://global.api.konghq.tech/v2'
-    description: Development
   - url: 'https://global.api.konghq.com/v2'
-    description: Production
+    description: Global Base URL
 paths:
   /identity-provider/team-mappings:
     put:
@@ -67,6 +63,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: string
+            example: 'filter[name]=Organization+Admins'
+          in: query
+          name: 'filter[field]'
+          description: 'A field to filter on. Supported fields: name'
       tags:
         - Teams
     parameters: []
@@ -209,7 +211,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       description: |-
-        Remove a user from a team. 
+        Remove a user from a team.
         If the user was removed successfully, returns a 204 empty response.
       tags:
         - Team Membership
@@ -234,6 +236,12 @@ paths:
           $ref: '#/components/responses/NotFound'
       operationId: list-team-roles
       description: List the roles belonging to a team.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[field]'
+          description: 'A field to filter on. Supported fields: name, entity_type'
     post:
       summary: Assign Role
       operationId: teams-assign-role
@@ -301,6 +309,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: string
+            example: 'filter[active]=true'
+          in: query
+          name: 'filter[field]'
+          description: 'A field to filter on. Supported fields: email, full_name, preferred_name, active, created_at, updated_at'
   '/users/{userId}':
     parameters:
       - schema:
@@ -395,6 +409,12 @@ paths:
           $ref: '#/components/responses/NotFound'
       operationId: list-user-roles
       description: List the roles assigned to a user.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[field]'
+          description: 'A field to filter on. Supported fields: name, entity_type'
     post:
       summary: Assign Role
       operationId: users-assign-role
@@ -1226,18 +1246,8 @@ components:
       bearerFormat: Token
       description: |
         You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/tokens/) in the Konnect dashboard.
-        The PAT token must be passed in the header of a request, for example: 
+        The PAT token must be passed in the header of a request, for example:
          `curl -X GET 'https://global.api.konghq.tech/v2/users/' --header 'Authorization: Bearer kpat_xgfT'`
-    konnectAccessCookie:
-      name: konnectAccessToken
-      type: apiKey
-      in: cookie
-      description: Konnect Access Cookie
-    konnectAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Konnect Access Token
   examples:
     400-request-format-is-invalid:
       value:
@@ -1428,8 +1438,6 @@ components:
         id: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
 security:
   - personalAccessToken: []
-  - konnectAccessCookie: []
-  - konnectAccessToken: []
 tags:
   - name: IdPs
   - name: Roles

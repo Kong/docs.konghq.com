@@ -9,7 +9,7 @@ There are two types of base URLs that are used in {{site.konnect_short_name}} AP
 
 * Global: https://global.api.konghq.com 
 
-* Region specific: https://{region_code}.api.konghq.com (eg: https://us.api.konghq.com)
+* Region specific: https://{region_code}.api.konghq.com
 
 The global endpoint is used to manage region agnostic {{site.konnect_short_name}} entities that live in a global database. These APIs interact with entities that are not region specific and therefore do not have any regional boundaries. For example, identity management and IdP settings are all region agnostic configurations applied to the organization as a whole.
 
