@@ -130,6 +130,12 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "konnect"
+    values:
+      layout: "docs-v2"
+      no_version: true
+
+  - scope:
       path: "gateway"
     values:
       layout: "docs-v2"

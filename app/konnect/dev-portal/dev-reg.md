@@ -1,6 +1,5 @@
 ---
 title: Sign Up for a Dev Portal Account
-no_version: true
 ---
 
 Anyone that wants to access the {{site.konnect_short_name}} Dev Portal needs to register and request access to that specific Dev Portal, including {{site.konnect_short_name}} admins. Admins will have separate credentials for [{{site.konnect_short_name}}](https://cloud.konghq.com/) and the Dev Portal.

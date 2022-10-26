@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Create, Edit, and Delete an Application
-no_version: true
 toc: true
 ---
 <!-- vale off -->

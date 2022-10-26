@@ -1,6 +1,5 @@
 ---
 title: Kong Konnect Updates
-no_version: true
 ---
 
 <!-- vale off -->

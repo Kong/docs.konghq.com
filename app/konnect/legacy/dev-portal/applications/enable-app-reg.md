@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Enable Application Registration for a Service
-no_version: true
 toc: true
 ---
 <!-- vale off -->

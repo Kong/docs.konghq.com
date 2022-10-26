@@ -1,6 +1,5 @@
 ---
 title: Manage Teams and Roles
-no_version: true
 content_type: how-to
 ---
 

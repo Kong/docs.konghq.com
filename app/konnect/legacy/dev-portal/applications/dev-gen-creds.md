@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Generate Credentials for an Application
-no_version: true
 toc: true
 ---
 <!-- vale off -->

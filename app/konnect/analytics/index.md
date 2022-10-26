@@ -1,6 +1,5 @@
 ---
 title: Introduction to Monitoring Health with Analytics
-no_version: true
 ---
 
 You can monitor the health and performance of any service, service version,

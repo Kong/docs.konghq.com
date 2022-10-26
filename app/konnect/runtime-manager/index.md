@@ -1,6 +1,5 @@
 ---
 title: Runtime Manager Overview
-no_version: true
 ---
 
 The [Runtime Manager](https://cloud.konghq.com/runtime-manager)

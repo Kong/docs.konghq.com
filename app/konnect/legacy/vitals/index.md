@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Monitoring Health with Vitals
-no_version: true
 ---
 <!-- vale off -->
 Use {{site.konnect_short_name}} Vitals (Vitals) to monitor the health and

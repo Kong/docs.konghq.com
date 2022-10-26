@@ -1,6 +1,5 @@
 ---
 title: Teams Reference
-no_version: true
 content_type: reference
 ---
 

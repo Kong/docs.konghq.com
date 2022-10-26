@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Shared Config
-no_version: true
 ---
 <!-- vale off -->
 Use the ![icon](/assets/images/icons/konnect/konnect-shared-config.svg){:.inline .no-image-expand}

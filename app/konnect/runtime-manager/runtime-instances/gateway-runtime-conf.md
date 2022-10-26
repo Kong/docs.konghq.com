@@ -1,6 +1,5 @@
 ---
 title: Set up a Kong Gateway Runtime on Linux
-no_version: true
 content_type: how-to
 ---
 Using `kong.conf`, set up a runtime instance through the

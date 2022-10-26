@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Dev Portal Overview
-no_version: true
 ---
 <!-- vale off -->
 The Dev Portal is an API Catalog that allows Admin roles to

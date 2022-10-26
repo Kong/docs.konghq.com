@@ -1,6 +1,5 @@
 ---
 title: Set Up SSO with Okta
-no_version: true
 badge: enterprise
 ---
 
@@ -54,7 +53,7 @@ back to Okta for details
 
 Create a new application in Okta to manage {{site.konnect_saas}} account integration.
 
-1. Sign in to your [Okta admin account](https://admin.okta.com/).
+1. Sign in to your [Okta admin account](https://okta.com/login/).
 1. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
 1. Select the application type:
 
@@ -297,7 +296,7 @@ admin account.
 If you want your users to have easy access to {{site.konnect_saas}} alongside their other apps,
 you can add it to your Okta dashboard.
 
-1. Log in to your [Okta admin account](https://admin.okta.com/).
+1. Log in to your [Okta admin account](https://okta.com/login/).
 1. Click **Applications > Applications**, then select your {{site.konnect_saas}} Okta application.
 1. On **General** tab, click **Edit** for the **General Settings** pane.
 1. In the **Application** section, click the **Implicit (hybrid)** checkbox for the **Grant type**.

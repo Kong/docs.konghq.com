@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Application Overview
-no_version: true
 toc: true
 ---
 <!-- vale off -->
