@@ -10,6 +10,12 @@ When listing resources it is desirable to filter over the collection and
 only return results that the user is interested in.
 This reference document explains how filtering works in {{site.konnect_short_name}} APIs.
 
+### Available fields
+
+* **Users**: `id`, `email`, `full_name`, `active`
+* **Teams**: `id`, `name`, `system_team`
+* **Assigned Roles**: `role`,`entity_type`, `entity_region`, `entity_id`
+
 ### Numeric & Timestamp Fields
 
 When matching against both numeric and timestamp fields, the API supports filtering in the following formats:
@@ -34,16 +40,16 @@ Given a response schema of:
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Charlie@konghq.com",
-      "name": "Charlie Cruz",
-      "preferred_name": "Charles",
+      "name": "Charlie",
+      "full_name": "Charlie Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z"
     },
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Alex@konghq.com",
-      "name": "Alex Cruz",
-      "preferred_name": "Al",
+      "name": "Alex",
+      "full_name": "Alex Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z",
       "updated_at": "2022-10-19T15:33:02Z"
@@ -63,8 +69,8 @@ results are:
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Charlie@konghq.com",
-      "name": "Charlie Cruz",
-      "preferred_name": "Charles",
+      "name": "Charlie",
+      "full_name": "Charlie Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z"
     }
@@ -72,7 +78,7 @@ results are:
 }
 ```
 
-With a single filter parameter, `?filter[name]=Charlie%20Cruz`, the expected
+With a single filter parameter, `?filter[full_name]=Charlie%20Cruz`, the expected
 results are the same:
 
 ```json
@@ -81,8 +87,8 @@ results are the same:
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Charlie@konghq.com",
-      "name": "Charlie Cruz",
-      "preferred_name": "Charles",
+      "name": "Charlie",
+      "full_name": "Charlie Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z"
     }
@@ -93,7 +99,7 @@ results are the same:
 ### Multiple Filters
 
 With multiple filter parameters,
-`?filter[name][contains]=Cruz&filter[preferred_name]=Al`, the expected
+`?filter[name][contains]=Cruz&filter[full_name]=Alex%Cruz`, the expected
 results are:
 
 ```json
@@ -102,8 +108,8 @@ results are:
      {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Alex@konghq.com",
-      "name": "Alex Cruz",
-      "preferred_name": "Al",
+      "name": "Alex",
+      "full_name": "Alex Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z",
       "updated_at": "2022-10-19T15:33:02Z"
@@ -115,7 +121,7 @@ results are:
 ### Key Existence Filter
 
 In order to verify a key in the schema is present, we can provide the following
-filter parameters, `?filter[updated_at]&filter[name][contains]=Cruz`, the
+filter parameters, `?filter[updated_at]&filter[full_name][contains]=Cruz`, the
 expected results are:
 
 ```json
@@ -124,8 +130,8 @@ expected results are:
      {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Alex@konghq.com",
-      "name": "Alex Cruz",
-      "preferred_name": "Al",
+      "name": "Alex",
+      "full_name": "Alex Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z",
       "updated_at": "2022-10-19T15:33:02Z"
@@ -138,7 +144,7 @@ expected results are:
 
 To filter based on number equivalence, we can provide the following
 filter parameters,
-`?filter[name]=Alex%Cruz&filter[email][contains]=@konghq.com&filter[updated_at]`,
+`?filter[full_name]=Alex%Cruz&filter[email][contains]=@konghq.com&filter[updated_at]`,
 the expected results are:
 
 ```json
@@ -147,8 +153,8 @@ the expected results are:
      {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
       "email": "Alex@konghq.com",
-      "name": "Alex Cruz",
-      "preferred_name": "Al",
+      "name": "Alex",
+      "full_name": "Alex Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z",
       "updated_at": "2022-10-19T15:33:02Z"
