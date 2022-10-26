@@ -1,7 +1,6 @@
 ---
 title: Konnect APIs
 content-type: explanation
-no_version: true
 ---
 
 ## Base URLs
@@ -27,3 +26,9 @@ The recommended method of authentication for {{site.konnect_short_name}} is Pers
 ## APIs
 
 * [Identity Management API](/konnect/identity-management-api/) - Interface for management of users, teams, team memberships and role assignments.
+
+
+
+## More Information
+
+* [Filtering reference](/konnect/filtering/)
