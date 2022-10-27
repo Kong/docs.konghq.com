@@ -37,7 +37,6 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 - [`ReferenceGrant`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
 {% endif_version %}
 
-
 ## Enable the feature
 
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
@@ -327,9 +326,14 @@ Hostname: echo-758859bbfb-cnfmx
 ...
 ```
 
+{% if_version lte: 2.5.x %}
 ## Alpha limitations
+{% endif_version %}
+{% if_version gte: 2.6.x %}
+## Beta limitations
+{% endif_version %}
 
-The KIC Gateway API alpha is a work in progress, and not all features of
+{{site.kic_product_name}} Gateway API support is a work in progress, and not all features of
 Gateway APIs are supported. In particular:
 
 {% if_version lte: 2.3.x %}
