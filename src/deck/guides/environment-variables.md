@@ -14,7 +14,7 @@ Create environment variables with the `DECK_` prefix and reference them as
 
 {:.note}
 > For storing {{site.base_gateway}} secrets in environment variables, see [Secrets Management with decK](/deck/latest/guides/vaults/).
-The reference format is _not_ the same as environment variables used by decK.
+The reference format for secrets is _not_ the same as references for environment variables used by decK.
 
 The following example demonstrates how to apply an API key stored in an environment variable.
 You can use this method for any sensitive content.
