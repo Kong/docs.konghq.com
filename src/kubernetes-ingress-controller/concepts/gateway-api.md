@@ -89,7 +89,7 @@ KONG_STREAM_LISTEN="0.0.0.0:9901 reuseport backlog=16384, 0.0.0.0:9902 reuseport
 ```
 
 [The Helm chart](https://github.com/Kong/charts/tree/main/charts/kong) manages
-both of these for you from the `proxy` configuration block:
+both of these from the `proxy` configuration block:
 
 ```
 proxy:
