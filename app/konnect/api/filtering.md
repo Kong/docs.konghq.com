@@ -5,8 +5,8 @@ content-type: reference
 
 
 
-When listing resources, you can filter over the collection and
-only return results that the user is interested in.
+The Konnect API supports the ability to filter over the collection and
+only return results that you are interested in.
 This reference document explains how filtering works in {{site.konnect_short_name}} APIs.
 
 ### Available fields
