@@ -13,8 +13,8 @@ Create environment variables with the `DECK_` prefix and reference them as
 `{%raw%}${{ env "DECK_*" }}{%endraw%}` in your state file.
 
 {:.note}
-> For storing secrets in environment variables, see [Secrets Management with decK](/deck/latest/guides/vaults/).
-The reference format is _not_ the same as for unencoded values.
+> For storing {{site.base_gateway}} secrets in environment variables, see [Secrets Management with decK](/deck/latest/guides/vaults/).
+The reference format is _not_ the same as environment variables used by decK.
 
 The following example demonstrates how to apply an API key stored in an environment variable.
 You can use this method for any sensitive content.
