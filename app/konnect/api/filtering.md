@@ -4,9 +4,8 @@ content-type: reference
 ---
 
 
-## Filtering
 
-When listing resources it is desirable to filter over the collection and
+When listing resources, you can filter over the collection and
 only return results that the user is interested in.
 This reference document explains how filtering works in {{site.konnect_short_name}} APIs.
 
@@ -16,9 +15,9 @@ This reference document explains how filtering works in {{site.konnect_short_nam
 * **Teams**: `id`, `name`, `system_team`
 * **Assigned Roles**: `role`,`entity_type`, `entity_region`, `entity_id`
 
-### Numeric & Timestamp Fields
+### Numeric and timestamp fields
 
-When matching against both numeric and timestamp fields, the API supports filtering in the following formats:
+When matching against both numeric and timestamp fields, you can filter in the following formats:
 
 * **Equal**: `?filter[field][eq]=value` or `?filter[field]=value`
 * **Contains**: `?filter[field][contains]=value`
@@ -120,8 +119,8 @@ results are:
 
 ### Key Existence Filter
 
-In order to verify a key in the schema is present, we can provide the following
-filter parameters, `?filter[updated_at]&filter[full_name][contains]=Cruz`, the
+To verify a key in the schema is present, you can provide the following
+filter parameters, `?filter[updated_at]&filter[full_name][contains]=Cruz`. The
 expected results are:
 
 ```json
@@ -140,12 +139,12 @@ expected results are:
 }
 ```
 
-### Mix of Standard and Number Filters
+### Mix of standard and number filters
 
-To filter based on number equivalence, we can provide the following
+To filter based on number equivalence, you can provide the following
 filter parameters,
-`?filter[full_name]=Alex%Cruz&filter[email][contains]=@konghq.com&filter[updated_at]`,
-the expected results are:
+`?filter[full_name]=Alex%Cruz&filter[email][contains]=@konghq.com&filter[updated_at]`.
+The expected results are:
 
 ```json
 {
@@ -163,6 +162,6 @@ the expected results are:
 }
 ```
 
-## APIs
+## API reference documentation
 
 * [Identity Management API](/konnect/identity-management-api/) - Interface for management of users, teams, team memberships and role assignments.

@@ -1,14 +1,14 @@
 ---
-title: End to End Identity Integration
+title: End-to-End Identity Integration
 content-type: how-to
 ---
 
 
 ## Create a custom team
 
-Custom Teams serve as a primary way for organizations to provision access of users to different entities in the organization. Custom teams are used to mirror the organizational structure in an organization, any user who is a member of a custom team will inherit all of the roles of this team.
+Custom teams serve as a primary way for organizations to provision access of users to different entities in the organization. Custom teams are used to mirror the organizational structure in an organization, any user who is a member of a custom team will inherit all of the roles of this team.
 
-You will need to authenticate with the API, for information about authentication read the [API authentication](/konnect/api/index/#authentication) instructions.
+You must authenticate with the API, for information about authentication read the [API authentication](/konnect/api/index/#authentication) instructions.
 Create a custom team by sending a `POST` request containing the `name` and `description` of your team in the response body: 
 ```
 curl --request POST \
@@ -37,9 +37,9 @@ Save the `id` value, so that you can reference this team throughout the guide.
 
 ### Assign a role to a custom team
 
-In order for a custom team to be useful, roles must be assigned to the team. All custom teams start with 0 roles and each role must be added to the team in order for members of the team to inherit the roles. Roles define a set of permissions or actions that a user is allowed to perform on a {{site.konnect_short_name}} entity. 
+You must assign roles to a custom team to use the team. Roles define a set of permissions or actions that a user is allowed to perform on a {{site.konnect_short_name}} entity. All custom teams start with no roles and each role must be added to the team for members of the team to inherit the roles. 
 
-1. Obtain a list of available roles by issuing a `GET` a request:
+1. Obtain a list of available roles by issuing a `GET` request:
 
         curl --request GET \
         --url https://global.api.konghq.tech/v2/roles
@@ -76,14 +76,14 @@ In order for a custom team to be useful, roles must be assigned to the team. All
         "entity_type": "runtime_groups",
         "entity_region": "eu"
         }'
-    If the information in the request was correct, the response body will return a `200`, and the `id` value for the new role. 
+    If the information in the request was correct, the response body will return a `200` and the `id` value for the new role. 
 
     {:.note}
     > `entity_id` can be found in the {{site.konnect_short_name}} in the **Runtime Instances** section. 
 
 ## Assign a user to a custom team
 
-In order for a user to access the roles assigned to a custom team, the user must become a member of the team. A user may be a part of multiple teams and will inherit all of the roles from the teams they belong to.
+For a user to access the roles assigned to a custom team, the user must become a member of the team. A user may be a part of multiple teams and will inherit all of the roles from the teams they belong to.
 
 1. Obtain a list of users by issuing a `GET` request:
 
@@ -164,7 +164,7 @@ If [single sign on](/konnect/org-management/okta-idp/) is enabled, an organizati
             ]
             }]}
 
-## More Information
+## More information
 
 * [IdP API documentation](/konnect/identity-management-api)
 * [Filtering Reference](/konnect/api/filtering/)
