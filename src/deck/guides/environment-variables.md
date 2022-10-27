@@ -12,11 +12,18 @@ variables and apply it.
 Create environment variables with the `DECK_` prefix and reference them as
 `{%raw%}${{ env "DECK_*" }}{%endraw%}` in your state file.
 
+{:.note}
+> For storing secrets in environment variables, see [Secrets Management with decK](/deck/latest/guides/vaults/).
+The reference format is _not_ the same as for unencoded values.
+
 The following example demonstrates how to apply an API key stored in an environment variable.
 You can use this method for any sensitive content.
 
 1. Create an environment variable:
-    <div class="copy-code-snippet"><pre><code>export DECK_API_KEY=<div contenteditable="true">{API_KEY}</div></code></pre></div>
+
+    ```sh
+    export DECK_API_KEY={YOUR_API_KEY}
+    ```
 
 2. Save the following snippet into a `env-demo.yaml` file:
 
