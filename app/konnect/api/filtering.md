@@ -38,17 +38,26 @@ Given a response schema of:
   "data": [
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Charlie@konghq.com",
+      "email": "CharlieCruz@konghq.com",
       "name": "Charlie",
       "full_name": "Charlie Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z"
     },
     {
-      "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Alex@konghq.com",
+      "id": "500d74f4-37e1-4b13-b51a-8cf7c7903692",
+      "email": "AlexCruz@konghq.com",
       "name": "Alex",
       "full_name": "Alex Cruz",
+      "active": true,
+      "created_at": "2022-05-10T15:10:25Z",
+      "updated_at": "2022-10-19T15:33:02Z"
+    },
+    {
+      "id": "500d74f4-37e1-4d13-b51a-8cf7c7903692",
+      "email": "AlexGarcia@konghq.com",
+      "name": "Alex",
+      "full_name": "Alex Garcia",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z",
       "updated_at": "2022-10-19T15:33:02Z"
@@ -67,11 +76,37 @@ results are:
   "data": [
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Charlie@konghq.com",
+      "email": "CharlieCruz@konghq.com",
       "name": "Charlie",
       "full_name": "Charlie Cruz",
       "active": true,
       "created_at": "2022-05-10T15:10:25Z"
+    }
+  ]
+}
+```
+
+A single filter parameter can return multiple results. Using `?filter[name][contains]=Cruz`, 
+
+```json
+{
+  "data": [
+    {
+      "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
+      "email": "CharlieCruz@konghq.com",
+      "name": "Charlie",
+      "full_name": "Charlie Cruz",
+      "active": true,
+      "created_at": "2022-05-10T15:10:25Z"
+    },
+    {
+      "id": "500d74f4-37e1-4b13-b51a-8cf7c7903692",
+      "email": "AlexCruz@konghq.com",
+      "name": "Alex",
+      "full_name": "Alex Cruz",
+      "active": true,
+      "created_at": "2022-05-10T15:10:25Z",
+      "updated_at": "2022-10-19T15:33:02Z"
     }
   ]
 }
@@ -85,7 +120,7 @@ results are the same:
   "data": [
     {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Charlie@konghq.com",
+      "email": "CharlieCruz@konghq.com",
       "name": "Charlie",
       "full_name": "Charlie Cruz",
       "active": true,
@@ -106,7 +141,7 @@ results are:
   "data": [
      {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Alex@konghq.com",
+      "email": "AlexCruz@konghq.com",
       "name": "Alex",
       "full_name": "Alex Cruz",
       "active": true,
@@ -128,30 +163,7 @@ expected results are:
   "data": [
      {
       "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Alex@konghq.com",
-      "name": "Alex",
-      "full_name": "Alex Cruz",
-      "active": true,
-      "created_at": "2022-05-10T15:10:25Z",
-      "updated_at": "2022-10-19T15:33:02Z"
-    }
-  ]
-}
-```
-
-### Mix of standard and number filters
-
-To filter based on number equivalence, you can provide the following
-filter parameters,
-`?filter[full_name]=Alex%Cruz&filter[email][contains]=@konghq.com&filter[updated_at]`.
-The expected results are:
-
-```json
-{
-  "data": [
-     {
-      "id": "500d74f4-37e1-4f59-b51a-8cf7c7903692",
-      "email": "Alex@konghq.com",
+      "email": "AlexCruz@konghq.com",
       "name": "Alex",
       "full_name": "Alex Cruz",
       "active": true,

@@ -203,9 +203,9 @@
   items:
     - text: Overview
       url: /api/
-    - text: Identity Management
+    - text: Konnect Identity API
       items:
-      - text: Identity Management API 
+      - text: API Documentation
         url: /identity-management-api
       - text: Identity Integration Guide
         url: /api/identity-management/identity-integration
