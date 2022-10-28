@@ -89,7 +89,7 @@ Result:
 {:.note}
 > Secrets management is supported in decK 1.16 and later.
 
-Add the following snippet into your declarative configuration file:
+Add the following snippet to your declarative configuration file:
 
 ```yaml
 _format_version: "3.0"
