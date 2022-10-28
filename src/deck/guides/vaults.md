@@ -16,14 +16,16 @@ With decK, you can manage secrets using one of the following options:
 Option | Description | Why use this method?
 -------|-------------|---------------------
 [decK environment variables](/deck/latest/guides/environment-variables) | Store values as environment variables and access them directly through decK. | • You can use this option for environment-specific values. <br><br> • This method can store any configuration values used by {{site.base_gateway}} entities. <br><br> • Available for all {{site.base_gateway}} packages: open-source, Enterprise Free mode, and Enterprise licensed mode.
-Secrets in {{site.base_gateway}} | Store values as secrets in a vault, then reference the secrets with a vault reference. In this case, {{site.base_gateway}} manages the secrets with a `vaults` entity. | • This option is more secure. <br><br> • You can use secrets to store many sensitive values, including parameters in Kong's configuration (`kong.conf`). See [Secrets Management in {{site.base_gateway}}](/gateway/latest/kong-enterprise/secrets-management/#what-can-be-stored-as-a-secret) for a full list. <br><br> • Secrets management is only available for {{site.base_gateway}} Enterprise packages. It is not available for open-source {{site.base_gateway}}. <br>The environment variable vault can be used in Free mode without a license, while all other vault backends require a license.
+Secrets in {{site.base_gateway}} | Store values as secrets in a vault, then reference the secrets with a `vault` reference. In this case, the {{site.base_gateway}} data plane manages the secrets with a `vaults` entity. <br>The environment variable vault can be used in Free mode without a license, while all other vault backends require a license. | • Is a secure way to manage sensitive information in one of the following vaults: AWS, GCP, HashiCorp Vault, or environment variables. <br><br> • You can use secrets to store many sensitive values, including parameters in Kong's configuration (`kong.conf`). See [Secrets Management in {{site.base_gateway}}](/gateway/latest/kong-enterprise/secrets-management/#what-can-be-stored-as-a-secret) for a full list. <br><br> • Secrets management is only available for {{site.base_gateway}} Enterprise packages. It is not available for open-source {{site.base_gateway}}.
 
 ## Configure a secret vault
 
 Set up a secret vault using the {{site.base_gateway}} `vaults` entity.
 
-For example, to set up a vault using environment variables as the backend,
-configure a prefix for the vault, and a prefix for the reference:
+For example, add the following snippet to your
+declarative configuration file (`kong.yaml` by default) to set up a vault using
+environment variables as the backend, configure a prefix for the vault, and a
+prefix for the reference:
 
 ```yaml
 _format_version: "3.0"
@@ -44,12 +46,9 @@ vaults.prefix | The reference prefix. You need this prefix to access secrets sto
 
 {{site.base_gateway}} also supports HashiCorp Vault, GCP, and AWS as [vault backends](/gateway/latest/kong-enterprise/secrets-management/backends/).
 
-{:.note}
-> **Note**: We recommend splitting out `vault` declarative configuration using [distributed configuration](/deck/latest/guides/distributed-configuration).
-
 ## Store and reference secrets
 
-Store your sensitive values as a secret:
+Store your sensitive values as secrets on the node running the {{site.base_gateway}} instance:
 
 ```sh
 export MY_SECRET_CERT="<cert data>" \
@@ -69,3 +68,7 @@ certificates:
 > **Important**: If a vault reference changes, it can cause {{site.base_gateway}} to not function correctly.
 If changing references, make sure to update both the vault configuration and all places
 that the reference is used in.
+
+## Best practices
+
+Split out `vault` entity configuration using [distributed configuration](/deck/latest/guides/distributed-configuration).
