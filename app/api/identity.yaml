@@ -11,6 +11,40 @@ servers:
   - url: 'https://global.api.konghq.com/v2'
     description: Global Base URL
 paths:
+  /accept-invite:
+    post:
+      summary: Accept Invite
+      description: Manually accept the Konnect invitation. This endpoint allows you to manually accept the invitation to join a Konnect organization. Upon accepting the invitation, the user's name and password are set and the active state is set to true. This can be used as an alternative to the https://cloud.konghq.com/login link in the email which will finish the registration process in a web browser.
+      operationId: accept-invite
+      requestBody:
+        $ref: '#/components/requestBodies/AcceptInvite'
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Invites
+  /invites:
+    post:
+      summary: Invite User
+      description: Send an invitation email to invite a user to the Konnect organization. The email contains a link with a one time token to accept the invitation. Upon accepting the invitation, the user is directed to https://cloud.konghq.com/login to complete registration.
+      operationId: invite-user
+      requestBody:
+        $ref: '#/components/requestBodies/InviteUser'
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      tags:
+        - Invites
   /identity-provider/team-mappings:
     put:
       summary: Update Team Mappings
@@ -48,6 +82,20 @@ paths:
       tags:
         - IdPs
       description: Fetch the IdP group to Konnect team mapping.
+  /roles:
+    get:
+      summary: Get Predfined Roles
+      description: 'Retrieve the predefined, or system managed, roles.'
+      operationId: get-predefined-roles
+      responses:
+        '200':
+          $ref: '#/components/responses/Roles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+      tags:
+        - Roles
   /teams:
     get:
       summary: List Teams
@@ -591,7 +639,7 @@ components:
     BadRequest:
       description: Bad Request
       content:
-        application/json:
+        application/problem+json:
           schema:
             type: object
             description: The error object
@@ -629,10 +677,37 @@ components:
               $ref: '#/components/examples/400-valid-uuid'
             System teams cannot be modified:
               $ref: '#/components/examples/400-systems-team-modified'
+    Conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            description: The error object
+            properties:
+              status:
+                type: integer
+                description: The HTTP response code
+                example: 409
+              title:
+                type: string
+                example: Resource Conflict
+                description: The Error response
+              instance:
+                type: string
+                description: The Konnect traceback ID.
+                example: 'konnect:trace:3674017986744198214'
+              detail:
+                type: string
+                description: Detailed explanation of the error response.
+                example: User is already active
+          examples:
+            User is Already Active:
+              $ref: '#/components/examples/409-user-is-already-active'
     PermissionDenied:
       description: Permission denied
       content:
-        application/json:
+        application/problem+json:
           schema:
             type: object
             x-examples:
@@ -669,7 +744,7 @@ components:
     PreconditionFailed:
       description: Precondition Failed
       content:
-        application/json:
+        application/problem+json:
           schema:
             type: object
             x-examples:
@@ -733,10 +808,37 @@ components:
                 title: Precondition Failed
                 instance: 'konnect:trace:1896611024257578096'
                 detail: IdP configuration not found
+    RateLimited:
+      description: Rate Limited
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            description: The error object
+            properties:
+              status:
+                type: integer
+                description: The HTTP response code
+                example: 429
+              title:
+                type: string
+                example: Rate Limited
+                description: The Error response
+              instance:
+                type: string
+                description: The Konnect traceback ID.
+                example: 'konnect:trace:3674017986744198214'
+              detail:
+                type: string
+                description: Detailed explanation of the error response.
+                example: Too many requests
+          examples:
+            Rate Limited:
+              $ref: '#/components/examples/429-rate-limited'
     Unauthenticated:
       description: Unauthenticated
       content:
-        application/json:
+        application/problem+json:
           schema:
             type: object
             x-examples:
@@ -769,7 +871,7 @@ components:
     NotFound:
       description: Not Found
       content:
-        application/json:
+        application/problem+json:
           schema:
             type: object
             x-examples:
@@ -876,6 +978,411 @@ components:
           examples:
             Group Collection:
               $ref: '#/components/examples/group-collection-example'
+    Roles:
+      description: 'The predefined, or system managed, roles.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              runtime_groups:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Runtime Groups
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to all entities within a runtime group.
+                            enum:
+                              - This role grants full write access to all entities within a runtime group.
+                      certificate_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Certificate Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer certificates.
+                            enum:
+                              - This role grants full write access to administer certificates.
+                      consumer_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Consumer Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer consumers.
+                            enum:
+                              - This role grants full write access to administer consumers.
+                      creator:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Creator
+                          description:
+                            type: string
+                            example: Creates a new Runtime Group in an organization. The creator becomes the owner of the Runtimegroup they create.
+                            enum:
+                              - Creates a new Runtime Group in an organization. The creator becomes the owner of the Runtimegroup they create.
+                      deployer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Deployer
+                          description:
+                            type: string
+                            example: 'This role grants full write access to administer services, routes and plugins necessary to deploy services in Service Hub.'
+                            enum:
+                              - 'This role grants full write access to administer services, routes and plugins necessary to deploy services in Service Hub.'
+                      gateway_service_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Gateway Service Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer gateway services.
+                            enum:
+                              - This role grants full write access to administer gateway services.
+                      plugin_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Plugin Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer plugins.
+                            enum:
+                              - This role grants full write access to administer plugins.
+                      route_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Route Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer routes.
+                            enum:
+                              - This role grants full write access to administer routes.
+                      sni_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - SNI Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer SNIs.
+                            enum:
+                              - This role grants full write access to administer SNIs.
+                      upstream_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Upstream Admin
+                          description:
+                            type: string
+                            example: This role grants full write access to administer upstreams.
+                            enum:
+                              - This role grants full write access to administer upstreams.
+                      viewer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Viewer
+                          description:
+                            type: string
+                            example: This role grants read only access to all entities within a runtime group.
+                            enum:
+                              - This role grants read only access to all entities within a runtime group.
+              services:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Services
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: 'Admin of an existing Service. The admins have all write access permissions related to a Service, service version, service package etc.'
+                            enum:
+                              - 'Admin of an existing Service. The admins have all write access permissions related to a Service, service version, service package etc.'
+                      application_registration:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Application Registration
+                          description:
+                            type: string
+                            example: This role grants permission to enable and disable application registration on a service.
+                            enum:
+                              - This role grants permission to enable and disable application registration on a service.
+                      creator:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Creator
+                          description:
+                            type: string
+                            example: 'This access is required to create a service. In addition the creators are granted Admin access to the service they create. This access is not for creating sub-entities such as service versions, implementations, API specs etc.'
+                            enum:
+                              - 'This access is required to create a service. In addition the creators are granted Admin access to the service they create. This access is not for creating sub-entities such as service versions, implementations, API specs etc.'
+                      deployer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Deployer
+                          description:
+                            type: string
+                            example: This role grants permission to deploy and remove a service from a runtime group.
+                            enum:
+                              - This role grants permission to deploy and remove a service from a runtime group.
+                      maintainer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Maintainer
+                          description:
+                            type: string
+                            example: This role grants all write permission to manage a service and to administer plugins.
+                            enum:
+                              - This role grants all write permission to manage a service and to administer plugins.
+                      plugins_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Plugins Admin
+                          description:
+                            type: string
+                            example: This role grants full write permission to administer plugins.
+                            enum:
+                              - This role grants full write permission to administer plugins.
+                      publisher:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Publisher
+                          description:
+                            type: string
+                            example: This role grants permission to publish a service to one or more portals.
+                            enum:
+                              - This role grants permission to publish a service to one or more portals.
+                      viewer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Viewer
+                          description:
+                            type: string
+                            example: 'Viewer has read-only access to all the configurations of a service, attributes, versions, reports, vitals and plugins.'
+                            enum:
+                              - 'Viewer has read-only access to all the configurations of a service, attributes, versions, reports, vitals and plugins.'
+          examples:
+            Predefined Roles:
+              value:
+                runtime_groups:
+                  name: Runtime Groups
+                  roles:
+                    admin:
+                      name: Admin
+                      description: This role grants full write access to all entities within a runtime group.
+                    certificate_admin:
+                      name: Certificate Admin
+                      description: This role grants full write access to administer certificates.
+                    consumer_admin:
+                      name: Consumer Admin
+                      description: This role grants full write access to administer consumers.
+                    creator:
+                      name: Creator
+                      description: Creates a new Runtime Group in an organization. The creator becomes the owner of the Runtimegroup they create.
+                    deployer:
+                      name: Deployer
+                      description: 'This role grants full write access to administer services, routes and plugins necessary to deploy services in Service Hub.'
+                    gateway_service_admin:
+                      name: Gateway Service Admin
+                      description: This role grants full write access to administer gateway services.
+                    plugin_admin:
+                      name: Plugin Admin
+                      description: This role grants full write access to administer plugins.
+                    route_admin:
+                      name: Route Admin
+                      description: This role grants full write access to administer routes.
+                    sni_admin:
+                      name: SNI Admin
+                      description: This role grants full write access to administer SNIs.
+                    upstream_admin:
+                      name: Upstream Admin
+                      description: This role grants full write access to administer upstreams.
+                    viewer:
+                      name: Viewer
+                      description: This role grants read only access to all entities within a runtime group.
+                services:
+                  name: Services
+                  roles:
+                    admin:
+                      name: Admin
+                      description: 'Admin of an existing Service. The admins have all write access permissions related to a Service, service version, service package etc.'
+                    application_registration:
+                      name: Application Registration
+                      description: This role grants permission to enable and disable application registration on a service.
+                    creator:
+                      name: Creator
+                      description: 'This access is required to create a service. In addition the creators are granted Admin access to the service they create. This access is not for creating sub-entities such as service versions, implementations, API specs etc.'
+                    deployer:
+                      name: Deployer
+                      description: This role grants permission to deploy and remove a service from a runtime group.
+                    maintainer:
+                      name: Maintainer
+                      description: This role grants all write permission to manage a service and to administer plugins.
+                    plugins_admin:
+                      name: Plugins Admin
+                      description: This role grants full write permission to administer plugins.
+                    publisher:
+                      name: Publisher
+                      description: This role grants permission to publish a service to one or more portals.
+                    viewer:
+                      name: Viewer
+                      description: 'Viewer has read-only access to all the configurations of a service, attributes, versions, reports, vitals and plugins.'
   requestBodies:
     UpdateUser:
       description: The request schema for the update user request.
@@ -1041,6 +1548,56 @@ components:
             Assigned Roles Global:
               $ref: '#/components/examples/Assign-Roles-Global'
       description: Assign a role to a user or a team.
+    AcceptInvite:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+                example: TestPassword123!!
+                format: password
+                writeOnly: true
+                description: Sets the password for the user.
+              full_name:
+                type: string
+                example: James C. Woods
+                writeOnly: true
+                description: Full name of the user.
+              preferred_name:
+                type: string
+                example: Tiger
+                description: Preferred name of the user.
+              token:
+                type: string
+                format: uuid
+                example: 7690d649-86fc-4d10-8771-c094d2efbd85
+                writeOnly: true
+                description: The one time token in accept-invitation link. 
+            required:
+              - password
+              - full_name
+              - preferred_name
+              - token
+      description: The request schema for the accept invite request.
+    InviteUser:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+                example: james.c.woods@example.com
+                writeOnly: true
+            required:
+              - email
+      description: |-
+        The request schema for the invite user request.
+
+        If you pass an `email` that is not already an active user in the request, a fresh invitation email will be created and sent to the new user.
   schemas:
     PaginatedMeta:
       type: object
@@ -1314,12 +1871,24 @@ components:
         title: Invalid Permissions
         detail: 'You must have the [administrator] role to perform this action'
         instance: 'konnect:trace:6c1ef33ae5bce33634d7d7d695c7f203'
+    409-user-is-already-active:
+      value:
+        status: 409
+        title: Resource Conflict
+        instance: 'konnect:trace:6644808935508571943'
+        detail: User is already active
     412-precondition-failed:
       value:
         status: 412
         title: Precondition Failed
         instance: 'konnect:trace:1896611024257578096'
         detail: IdP configuration not found
+    429-rate-limited:
+      value:
+        status: 429
+        title: Rate Limited
+        instance: 'konnect:trace:6644808935508571943'
+        detail: Too many requests
     collection-example:
       value:
         meta:
@@ -1440,6 +2009,7 @@ security:
   - personalAccessToken: []
 tags:
   - name: IdPs
+  - name: Invites
   - name: Roles
   - name: Team Membership
   - name: Teams
