@@ -19,7 +19,7 @@ curl --request POST \
   "description": "The Identity Management (IDM) team."}'
 ```
 
-You will receive a `200` response code, and a response body containing information about your team: 
+You will receive a `201` response code, and a response body containing information about your team: 
 
 ```
 {
@@ -47,36 +47,37 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
    The response body will contain a list of available roles: 
 
     ```
-    {
-	"analytics": {
-		"name": "Analytics",
-		"roles": {
-			"analytics_admin": {
-				"name": "Analytics Admin",
-				"description": "Allows users to view, create, modify, and delete all content in Konnect Analytics."
-			},
-			"analytics_viewer": {
-				"name": "Analytics Viewer",
-				"description": "Allows users to view all but not modify any content in Konnect Analytics."
-			}
-		}
+{
+      "runtime_groups": {
+        "name": "Runtime Groups",
+        "roles": {
+          "admin": {
+            "name": "Admin",
+            "description": "This role grants full write access to all entities within a runtime group."
+          },
+          "certificate_admin": {
+            "name": "Certificate Admin",
+            "description": "This role grants full write access to administer certificates."
+          },
+          ...
+        }
 	}
     ```
 
 2. Assign a role to a team by issuing  a `POST` request:
     
-    The request should contain the `id` as a parameter in the URL. This request requires a JSON response body that contains `role`, `entity_id`, `entity_type`, and `entity_region`. 
+    The request must contain a `TEAM_ID` parameter in the URL. This request requires a JSON body that contains `role`, `entity_id`, `entity_type`, and `entity_region`. 
 
         curl --request POST \
         --url https://global.api.konghq.tech/v2/teams/TEAM_ID/assigned-roles \
         --header 'Content-Type: application/json' \
         --data '{
-        "role": "analytics_viewer",
+        "role": "admin",
         "entity_id": "e67490ce-44dc-4cbd-b65e-b52c746fc26a",
         "entity_type": "runtime_groups",
         "entity_region": "eu"
         }'
-    If the information in the request was correct, the response body will return a `200` and the `id` value for the new role. 
+    If the information in the request was correct, the response will return a `200` and the `id` of the new assigned role. 
 
     {:.note}
     > `entity_id` can be found in the {{site.konnect_short_name}} in the **Runtime Instances** section. 
@@ -125,12 +126,12 @@ You will receive a `200` with no response body confirming that the user was adde
 
 If [single sign on](/konnect/org-management/okta-idp/) is enabled, an organization can optionally enable groups to team mappings. This mapping allows {{site.konnect_short_name}} to automatically map a user to a team according to the group claims provided by the IdP upon login.
 
-1. To update a team mapping, first view all of the available groups:  
+1. To update a team mapping, first view all of the existing mappings:  
 
         curl --request GET \
         --url https://us.api.konghq.com/v2/identity-provider/team-mappings
 
-    The response body will return a paginated object containing information about available groups:
+    The response body will return a paginated object containing information about current mappings:
 
         
             
@@ -150,7 +151,7 @@ If [single sign on](/konnect/org-management/okta-idp/) is enabled, an organizati
             }
         ]
         
-2. Update the team mappings by issuing a `POST` request containing the `team_ids` in the request body: 
+2. Update the team mappings by issuing a `PUT` request containing the `team_ids` in the request body: 
 
         curl --request PUT \
         --url https://us.api.konghq.com/v2/identity-provider/team-mappings \
