@@ -46,6 +46,10 @@ vaults.prefix | The reference prefix. You need this prefix to access secrets sto
 
 {{site.base_gateway}} also supports HashiCorp Vault, GCP, and AWS as [vault backends](/gateway/latest/kong-enterprise/secrets-management/backends/).
 
+{:.important}
+> **Important**: Manage your vault configuration separately from other {{site.base_gateway}}
+entities. See [Best Practices](#best-practices) in this topic for more information.
+
 ## Store and reference secrets
 
 Store your sensitive values as secrets on the node running the {{site.base_gateway}} instance:
@@ -71,4 +75,57 @@ that the reference is used in.
 
 ## Best practices
 
-Split out `vault` entity configuration using [distributed configuration](/deck/latest/guides/distributed-configuration).
+When managing vaults with declarative configuration, you need to take certain precautions.
+For larger teams with many contributors, or organizations with multiple teams,
+we recommend splitting vault configuration and managing it separately.
+
+**Why split out vault configuration?**
+
+* Vault are closer to infrastructure than other {{site.base_gateway}} configurations.
+Separation of routing policies from infrastructure-specific configurations helps
+keep configuration organized.
+* Vaults may be shared across teams. In this case, one specific team shouldn't
+control the vault's configuration. One team changing the vault a can have
+disastrous impact on another team.
+* If a vault is deleted while in use -- that is, if there are still references to
+secrets in a vault in configuration -- it can lead to total loss of proxy capabilities.
+Those secrets would be unrecoverable.
+
+**How should I manage my vault configuration with decK?**
+
+To keep your environment secure and avoid taking down your proxies by accident, make sure to:
+
+* Manage vaults with distributed configuration via tags.
+* Use a separate [RBAC role, user, and token](/gateway/latest/admin-api/rbac/reference)
+to manage vaults. Don't use a generic admin user.
+* Set up a separate CI pipeline for vaults.
+
+### Manage vaults with distributed configuration
+
+Avoid mixing vault configuration with other {{site.base_gateway}} entities.
+Instead, manage vaults with [distributed configuration](/deck/latest/guides/distributed-configuration) via tags.
+
+Tag your vault in the declarative configuration file:
+
+```yaml
+_format_version: "3.0"
+vaults:
+- config:
+    prefix: MY_SECRET_
+  description: ENV vault for secrets
+  name: env
+  prefix: my-env-vault
+  tags:
+    - env-vault
+```
+
+When updating the vault, `deck dump` the configuration with the `--select-tag` flag:
+
+```sh
+deck dump --select-tag env-vault
+```
+
+Make your changes to the vault, then push it back up with `deck sync`.
+You don't need to specify `--select-tag` in this case, as decK recognizes the
+tag in the declarative configuration file that you're syncing and updates
+those entities accordingly.
