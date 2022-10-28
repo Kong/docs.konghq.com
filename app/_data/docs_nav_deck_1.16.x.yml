@@ -48,10 +48,14 @@ items:
         url: /guides/deduplicate-plugin-configuration
       - text: Set Up Object Defaults
         url: /guides/defaults
-      - text: Using Environment Variables with decK
-        url: /guides/environment-variables
-      - text: Secret Management with decK
-        url: /guides/vaults
+      - text: Security
+        items:
+          - text: Overview
+            url: /guides/security
+          - text: Secret Management with decK
+            url: /guides/vaults
+          - text: Using Environment Variables with decK
+            url: /guides/environment-variables
 
   - title: decK CLI Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
