@@ -9,7 +9,7 @@ if you change anything in the configuration of the plugin, you will have to
 repeat it for each instance of the plugin.
 
 In other use cases, the plugin configuration could be decided by a different
-team (Operations in some cases), while the main {{site.base_gateway}}
+team, while the main {{site.base_gateway}}
 configuration is directly used by an API owner.
 
 decK supports both of these use cases.
