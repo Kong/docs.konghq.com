@@ -15,7 +15,8 @@ Role-Based Access Control (RBAC) lets you restrict access to resources and actio
 
 `AccessRole` defines a role that is assigned separately to users.
 It is global-scoped, which means it is not bound to a mesh.
-
+{% navtabs %}
+{% navtab Old policies %}
 {% navtabs %}
 {% navtab Kubernetes %}
 ```yaml
@@ -69,6 +70,57 @@ rules:
       - name: kuma.io/service
         value: web
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Policies 2.0 %}
+Policies 2.0 don't use old selectors like sources and destinations. They are based on targetRef selector. You can specify to which targetRef kinds users should have access.
+
+{% navtabs %}
+{% navtab Kubernetes %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: role-1
+spec:
+  rules:
+  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # list of types to which access is granted. If empty, then access is granted to all types
+    names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
+    mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
+    access: ["CREATE", "UPDATE", "DELETE"] # an action that is bound to a type.
+    when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
+    - tagetRef: # a condition on targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+        kind: MeshService
+        name: backend
+    - targetRef:
+        kind: MeshSubset
+        tags: 
+        - name: k8s.kuma.io/namespace
+          value: kuma-demo
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+type: AccessRole
+name: role-1
+rules:
+- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # list of types to which access is granted. If empty, then access is granted to all types
+  names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
+  mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
+  access: ["CREATE", "UPDATE", "DELETE"] # an action that is bound to a type.
+  when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
+  - tagetRef: # a condition on targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: MeshSubset
+      tags: 
+      - name: k8s.kuma.io/namespace
+        value: kuma-demo
+```
+{% endnavtab %}
+{% endnavtabs %}
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -416,6 +468,8 @@ roles:
 Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
 
 {% navtabs %}
+{% navtab Old Policies %}
+{% navtabs %}
 {% navtab Kubernetes %}
 
 1.  Create a backend-owner Kubernetes user and configure kubectl:
@@ -670,6 +724,285 @@ In order for this example to work you must either run the control plane with `KU
     Error: Access Denied (user "backend-owner/mesh-system:authenticated" cannot access the resource)
     ```
 
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Policies 2.0 %}
+{% navtabs %}
+{% navtab Kubernetes %}
+
+1.  Create a backend-owner Kubernetes user and configure kubectl:
+
+    ```sh
+    $ mkdir -p /tmp/k8s-certs
+    $ cd /tmp/k8s-certs
+    $ openssl genrsa -out backend-owner.key 2048 # generate client key
+    $ openssl req -new -key backend-owner.key -subj "/CN=backend-owner" -out backend-owner.csr # generate client certificate request
+    $ CSR=$(cat backend-owner.csr | base64 | tr -d "\n") && echo "apiVersion: certificates.k8s.io/v1
+    kind: CertificateSigningRequest
+    metadata:
+      name: backend-owner
+    spec:
+      request: $CSR
+      signerName: kubernetes.io/kube-apiserver-client
+      usages:
+      - client auth" | kubectl apply -f -
+    $ kubectl certificate approve backend-owner
+    $ kubectl get csr backend-owner -o jsonpath='{.status.certificate}'| base64 -d > backend-owner.crt
+    $ kubectl config set-credentials backend-owner \
+    --client-key=/tmp/k8s-certs/backend-owner.key \
+    --client-certificate=/tmp/k8s-certs/backend-owner.crt \
+    --embed-certs=true
+    $ kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
+    ```
+
+1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
+
+    ```sh
+    $ echo "
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: kuma-policy-management
+    rules:
+    - apiGroups:
+      - kuma.io
+      resources:
+      - meshtrafficpermissions
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: kuma-policy-management-backend-owner
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: kuma-policy-management
+    subjects:
+    - kind: User
+      name: backend-owner
+      apiGroup: rbac.authorization.k8s.io
+    " | kubectl apply -f -
+    ```
+
+1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+
+    ```sh
+    $ echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: AccessRoleBinding
+    metadata:
+      name: default
+    spec:
+      subjects:
+      - type: Group
+        name: mesh-system:admin
+      - type: Group
+        name: system:masters
+      - type: Group
+        name: system:serviceaccounts:kube-system
+      roles:
+      - admin
+    " | kubectl apply -f -
+    ```
+
+1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
+
+    ```sh
+    $ echo '
+    ---
+    apiVersion: kuma.io/v1alpha1
+    kind: AccessRole
+    metadata:
+      name: backend-owner
+    spec:
+      rules:
+      - types: ["MeshTrafficPermission"]
+        mesh: default
+        access: ["CREATE", "UPDATE", "DELETE"]
+        when:
+        - targetRef:
+            kind: MeshService
+            name: backend
+    ---
+    apiVersion: kuma.io/v1alpha1
+    kind: AccessRoleBinding
+    metadata:
+      name: backend-owners
+    spec:
+      subjects:
+      - type: User
+        name: backend-owner
+      roles:
+      - backend-owner
+    ' | kubectl apply -f -
+    ```
+
+1.  Change the service to test user access:
+
+    ```sh
+    $ kubectl config use-context backend-owner
+    $ echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: MeshTrafficPermission
+    metadata:
+      name: web-to-backend
+      namespace: kong-mesh-system
+      labels:
+        kuma.io/mesh: default
+    spec:
+      targetRef:
+        kind: MeshService
+        name: backend
+      from:
+        - targetRef:
+            kind: MeshService
+            name: web
+          default:
+            action: ALLOW
+    " | kubectl apply -f -
+    # operation should succeed, access to backend service access is granted
+
+    $ echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: MeshTrafficPermission
+    metadata:
+      name: web-to-backend
+      namespace: kong-mesh-system
+      labels:
+        kuma.io/mesh: default
+    spec:
+      targetRef:
+        kind: MeshService
+        name: not-backend # access to this service is not granted
+      from:
+        - targetRef:
+            kind: MeshService
+            name: web
+          default:
+            action: ALLOW
+    " | kubectl apply -f -
+    # operation should not succeed
+    ```
+{% endnavtab %}
+{% navtab Universal %}
+
+{:.note}
+> **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
+In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
+
+1.  Extract admin token and configure kumactl with admin:
+
+    ```sh
+    $ export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
+    $ kumactl config control-planes add \
+    --name=cp-admin \
+    --address=https://localhost:5682 \
+    --skip-verify=true \
+    --auth-type=tokens \
+    --auth-conf token=$ADMIN_TOKEN
+    ```
+
+1.  Configure backend-owner:
+
+    ```sh
+    $ export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
+    $ kumactl config control-planes add \
+    --name=cp-backend-owner \
+    --address=https://localhost:5682 \
+    --skip-verify=true \
+    --auth-type=tokens \
+    --auth-conf token=$BACKEND_OWNER_TOKEN
+    $ kumactl config control-planes switch --name cp-admin # switch back to admin
+    ```
+
+1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+
+    ```sh
+    $ echo "type: AccessRoleBinding
+    name: default
+    subjects:
+    - type: Group
+      name: mesh-system:admin
+    roles:
+    - admin" | kumactl apply -f -
+    ```
+
+1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
+
+    ```sh
+    $ echo '
+    type: AccessRole
+    name: backend-owner
+    rules:
+    - types: ["MeshTrafficPermission"]
+      mesh: default
+      access: ["CREATE", "UPDATE", "DELETE"]
+      when:
+      - targetRef:
+          kind: MeshService
+          name: backend
+    ' | kumactl apply -f -
+    $ echo '
+    type: AccessRoleBinding
+    name: backend-owners
+    subjects:
+    - type: User
+      name: backend-owner
+    roles:
+    - backend-owner' | kumactl apply -f -
+    ```
+
+1.  Change the user and test RBAC:
+
+    ```sh
+    $ kumactl config control-planes switch --name cp-backend-owner
+    $ echo "
+    type: MeshTrafficPermission
+    mesh: default
+    name: web-to-backend
+    spec:
+      targetRef:
+        kind: MeshService
+        name: backend
+      from:
+        - targetRef:
+            kind: MeshService
+            name: web
+          default:
+            action: ALLOW
+    " | kumactl apply -f -
+    # this operation should succeed
+
+    $ echo "
+    type: MeshTrafficPermission
+    mesh: default
+    name: web-to-backend
+    spec:
+      targetRef:
+        kind: MeshService
+        name: not-backend
+      from:
+        - targetRef:
+            kind: MeshService
+            name: web
+          default:
+            action: ALLOW
+    " | kumactl apply -f -
+    Error: Access Denied (user "backend-owner/mesh-system:authenticated" cannot access the resource)
+    ```
+
+{% endnavtab %}
+{% endnavtabs %}
 {% endnavtab %}
 {% endnavtabs %}
 
