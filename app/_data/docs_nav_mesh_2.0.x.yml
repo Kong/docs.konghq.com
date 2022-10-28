@@ -55,7 +55,7 @@ items:
         url: /production/
         src: /.repos/kuma/src/production/
       - text: Deployment topologies
-        items: 
+        items:
           - text: Overview
             url: /production/deployment-topologies/
             src: /.repos/kuma/src/production/deployment-topologies/
@@ -271,7 +271,7 @@ items:
           - text: Configure a Vault policy
             url: /features/zero-trust/vault
             src: features/vault
-          - text: Configure a ACM private CA policy
+          - text: Configure an ACM private CA policy
             url: /features/zero-trust/acmpca/
             src: features/acmpca/
           - text: Configure a Kubernetes cert-manager CA policy
@@ -358,7 +358,7 @@ items:
           - text: Configure a Vault policy
             url: /features/zero-trust/vault
             src: features/vault
-          - text: Configure a ACM private CA policy
+          - text: Configure an ACM private CA policy
             url: /features/zero-trust/acmpca/
             src: features/acmpca/
           - text: Configure a Kubernetes cert-manager CA policy
@@ -400,7 +400,7 @@ items:
       - text: High-availability control plane across regions with Kubernetes
         url: /guides/kubernetes-region-cp/
         src: /.repos/kuma/src/guides/kubernetes-region-cp
-      - text: Locally verify a JWT with an OIDC provider 
+      - text: Locally verify a JWT with an OIDC provider
         url: /guides/local-jwt/
         src: /.repos/kuma/src/guides/local-jwt
       - text: Remotely verify a JWT with an OIDC provider
@@ -427,7 +427,7 @@ items:
       - text: Kong Mesh data collection
         url: /reference/data-collection/
         src: /.repos/kuma/src/reference/data-collection
-      - text: Control plane configuration reference 
+      - text: Control plane configuration reference
         url: /reference/cp-config/
         src: /.repos/kuma/src/generated/cp-config/
       - text: Envoy proxy template

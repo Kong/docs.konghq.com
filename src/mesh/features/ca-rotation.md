@@ -1,14 +1,14 @@
 ---
-title: Certificate Authority rotation
+title: Rotate your CA
 ---
 
 ## Overview
 
-{{site.mesh_product_name}} lets you provide secure communication between applications with mTLS. You can change the mTLS backend with 
-Certificate Authority rotation, to support a scenario such as migrating from the builtin CA to a Vault CA.
+{{site.mesh_product_name}} lets you provide secure communication between applications with mTLS. You can change the mTLS backend with
+Certificate Authority (CA) rotation, to support a scenario such as migrating from the builtin CA to a Vault CA.
 
-You can define many backends in the `mtls` section of the Mesh configuration. The data plane proxy is configured to support 
-certificates signed by the CA of each defined backend. However, the proxy uses only one certificate, specified by the `enabledBackend` 
+You can define many backends in the `mtls` section of the Mesh configuration. The data plane proxy is configured to support
+certificates signed by the CA of each defined backend. However, the proxy uses only one certificate, specified by the `enabledBackend`
 tag. For example:
 
 {% navtabs %}
@@ -86,7 +86,7 @@ mtls:
 {% endnavtabs %}
 
 Then, follow the steps to rotate certificates to a new `provided` backend named `ca-2`.
-Each step can take some time, but {{site.mesh_product_name}} provides validators to prevent you from 
+Each step can take some time, but {{site.mesh_product_name}} provides validators to prevent you from
 continuing too soon.
 
 {% navtabs %}
