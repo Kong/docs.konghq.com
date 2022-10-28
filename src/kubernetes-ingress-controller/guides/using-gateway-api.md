@@ -95,10 +95,10 @@ This is expected, as Kong does not yet know how to proxy the request.
 Set up an echo service to demonstrate how to use the {{site.kic_product_name}}:
 
 ```bash
-$ kubectl apply -f {{site.links.web}}/kubernetes-ingress-controller/{{page.kong_version}}/examples/echo-service.yaml
+kubectl apply -f {{site.links.web}}/kubernetes-ingress-controller/{{page.kong_version}}/examples/echo-service.yaml
 ```
 
-## Add a `GatewayClass` and `Gateway`
+## Add a GatewayClass and Gateway
 
 The `Gateway` resource represents the proxy instance that handles traffic for a
 set of Gateway API routes, and a `GatewayClass` describes characteristics shared
@@ -235,7 +235,7 @@ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
 ]
 ```
 
-## Add an `HTTPRoute`
+## Add an HTTPRoute
 
 `HTTPRoute` resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
@@ -305,7 +305,7 @@ After creating an `HTTPRoute`, accessing `/echo/hostname` forwards a request to 
 echo service's `/hostname` path, which yields the name of the pod that served the request:
 
 ```bash
-$ curl -i http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl -i http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
 ```
 
 ```
@@ -322,28 +322,28 @@ echo-658c5ff5ff-8cvgj%
 ```
 
 {% if_version gte: 2.6.x %}
-## Traffic splitting with `HTTPRoute`
+## Traffic splitting with HTTPRoute
 
 `HTTPRoute` contains a [`BackendRefs`][gateway-api-backendref] field, which allows
 users to specify `weight` parameters for echo `BackendRef`.
 This can be used to perform traffic splitting.
 
-In order to do so let's deploy a second echo `Service` so that we have
-an second `BackendRef` to use for traffic splitting.
+To do so, you can deploy a second echo `Service` so that you have
+a second `BackendRef` to use for traffic splitting.
 
 ```bach
-$ kubectl apply -f {{site.links.web}}/kubernetes-ingress-controller/{{page.kong_version}}/examples/echo-services.yaml
+kubectl apply -f {{site.links.web}}/kubernetes-ingress-controller/{{page.kong_version}}/examples/echo-services.yaml
 ```
-
-> NOTE: This example contains the previous echo `Service` so you may deploy
-> it without deploying the previous example from
+{:.note}
+> **Note**: This example contains the previous echo `Service` so you may deploy
+> it without deploying the previous example from the
 > [Set up an echo service](#set-up-an-echo-service) section.
 
-Having those 2 `Services` deployed we can now deploy our `HTTPRoute` which will
+Now that those two `Services` are deployed, you can now deploy your `HTTPRoute`. This will
 perform the traffic splitting between them using the weight parameters:
 
 ```bash
-$ echo 'apiVersion: gateway.networking.k8s.io/v1beta1
+echo 'apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
 metadata:
   name: echo
@@ -373,13 +373,13 @@ Now, accessing `/echo/hostname` should distribute around 75% of requests to `Ser
 echo and around 25% of requests to `Service` echo2.
 
 ```bash
-$ curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
 echo2-7cb798f47-gh4xg%
-$ curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
 echo-658c5ff5ff-8cvgj%
-$ curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
 echo-658c5ff5ff-8cvgj%
-$ curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
 echo-658c5ff5ff-8cvgj%
 ```
 
