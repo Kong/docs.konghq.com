@@ -64,7 +64,7 @@ jobs:
           node run.js
 
       # Upload build PDFs
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: pdfs
           path: pdf-generation/pdfs/*.pdf
