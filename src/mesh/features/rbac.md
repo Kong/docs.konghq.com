@@ -1,5 +1,5 @@
 ---
-title: Role-Based Access Control
+title: Kong Mesh RBAC
 ---
 
 Role-Based Access Control (RBAC) lets you restrict access to resources and actions to specified users or groups, based on user roles.
@@ -113,7 +113,7 @@ roles: # a list of roles that will be assigned to the list of subjects.
 
 Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
 
-### Kong Mesh operator (admin)
+### {{site.mesh_product_name}} operator (admin)
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
