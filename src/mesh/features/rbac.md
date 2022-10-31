@@ -471,7 +471,7 @@ roles:
 Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
 
 {% navtabs %}
-{% navtab Old Policies %}
+{% navtab Source and Destination selectors %}
 {% navtabs %}
 {% navtab Kubernetes %}
 
