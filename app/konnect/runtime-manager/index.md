@@ -1,6 +1,5 @@
 ---
 title: Runtime Manager Overview
-no_version: true
 ---
 
 The [Runtime Manager](https://cloud.konghq.com/runtime-manager)
@@ -46,10 +45,12 @@ choose to manually configure runtime instances on the following:
 
 Runtime manager provides pre-populated templates for AWS and Azure that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}.
 
-A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
-serving traffic for the proxy. Data plane nodes are not directly connected
-to a database. Instead, they receive configuration from their runtime group,
-which stores and manages the configuration in {{site.konnect_saas}}.
+You can also
+choose to manually configure runtime instances on the following:
+* Linux
+* Kubernetes
+* AWS
+* Azure
 
 We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
 
@@ -69,19 +70,9 @@ Choose an installation type below:
     <div class="install-text">Kubernetes (Helm)</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-aws" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/aws.svg" alt="AWS" />
-    <div class="install-text">AWS</div>
-  </a>
-
-  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-azure" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/azure.svg" alt="Azure" />
-    <div class="install-text">Azure</div>
-  </a>
-
-  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
-    <div class="install-text">Universal (kong.conf)</div>
-  </a>
+    <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
+      <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
+      <div class="install-text">Universal (kong.conf)</div>
+    </a>
 
 </div>

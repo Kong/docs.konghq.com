@@ -1,6 +1,5 @@
 ---
 title: Publish and Consume Services
-no_version: true
 ---
 
 The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} services

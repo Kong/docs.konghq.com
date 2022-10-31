@@ -1,6 +1,5 @@
 ---
 title: Network Resiliency and Availability
-no_version: true
 toc: false
 ---
 

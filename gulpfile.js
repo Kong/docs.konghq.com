@@ -80,6 +80,8 @@ function styles() {
 function js() {
   return gulp
     .src(sources.js)
+    // Add Segment write key
+    .pipe($.replace(/__WRITE_KEY__/, 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'))
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe(

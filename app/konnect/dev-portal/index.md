@@ -1,7 +1,6 @@
 ---
 title: Dev Portal Overview
-no_version: true
-content-type: explanation
+content_type: explanation
 ---
 
 The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, test API endpoints, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from the same {{site.konnect_short_name}} instance.

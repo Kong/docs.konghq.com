@@ -1,6 +1,5 @@
 ---
 title: Troubleshoot Account and Org Issues
-no_version: true
 ---
 
 ## Identity Provider Errors

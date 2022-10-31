@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Configuring a Service
-no_version: true
 ---
 <!-- vale off -->
 Using the [ServiceHub](/konnect/legacy/servicehub), you can create, manage, and

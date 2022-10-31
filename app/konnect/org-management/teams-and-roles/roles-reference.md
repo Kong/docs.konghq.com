@@ -1,6 +1,5 @@
 ---
 title: Roles reference
-no_version: true
 content_type: reference
 ---
 

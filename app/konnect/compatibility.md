@@ -1,6 +1,5 @@
 ---
 title: Compatibility
-no_version: true
 ---
 
 ## Supported browsers

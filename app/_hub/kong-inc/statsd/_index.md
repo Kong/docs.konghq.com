@@ -9,7 +9,7 @@ description: |
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 type: plugin
 categories:
-  - logging
+  - analytics-monitoring
 kong_version_compatibility:
   community_edition:
     compatible: true

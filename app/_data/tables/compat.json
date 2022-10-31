@@ -2,8 +2,8 @@
   "2.8.x": {
     "os": {
       "amazon-linux": "1, 2",
-      "centos": "8",
-      "rhel": "8",
+      "centos": "7-2009, 8",
+      "rhel": "7.9, 8",
       "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
       "debian": "9 Stretch, 10 Buster, 11 Bullseye"
     },
@@ -22,8 +22,8 @@
   "2.7.x": {
     "os": {
       "amazon-linux": "1, 2",
-      "centos": "8",
-      "rhel": "8",
+      "centos": "7-2009, 8",
+      "rhel": "7.9, 8",
       "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
       "debian": "9 Stretch, 10 Buster, 11 Bullseye"
     },
@@ -42,8 +42,8 @@
   "2.6.x": {
     "os": {
       "amazon-linux": "1, 2",
-      "centos": "8",
-      "rhel": "8",
+      "centos": "7-2009, 8",
+      "rhel": "7.9, 8",
       "ubuntu": "16.04 Xenial, 18.04 Bionic, 20.04 Focal",
       "debian": "9 Stretch"
     },

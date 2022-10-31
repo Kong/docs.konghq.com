@@ -1,7 +1,6 @@
 ---
 title: Runtime Configuration Parameters
-no_version: true
-content-type: reference
+content_type: reference
 ---
 
 ## Advanced parameters for {{site.base_gateway}}
@@ -23,3 +22,6 @@ For further customization, see the
  [`cluster_telemetry_server_name`](/gateway/latest/reference/configuration/#cluster_telemetry_server_name) | n/a | The SNI (Server Name Indication extension) to use for Analytics telemetry data.
  [`cluster_cert`](/gateway/latest/reference/configuration/#cluster_cert) | **Certificate** | The certificate used for mTLS between CP/DP nodes.
  [`cluster_cert_key`](/gateway/latest/reference/configuration/#cluster_cert_key) | **Private Key** | The private key used for mTLS between CP/DP nodes.
+ [`lua_ssl_trusted_certificate`](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate) | n/a | Either a comma-separated list of paths to certificate authority (CA) files in PEM format, or `system`. We recommend using the value `system` to let {{site.konnect_short_name}} search for the default provided by each distribution.
+ [`konnect_mode`](/gateway/latest/reference/configuration/#konnect_mode) | n/a | Set to `on` for any runtime instance connected to {{site.konnect_short_name}}.
+ [`vitals`](/gateway/latest/reference/configuration/#vitals) | n/a | Set to `off` to stop collecting Analytics data, or set to `on` to collect data and send it to the control plane for Analytics dashboards and metrics.

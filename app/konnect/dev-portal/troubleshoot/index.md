@@ -1,6 +1,5 @@
 ---
 title: Troubleshooting
-no_version: true
 ---
 
 This document contains frequently asked questions. 

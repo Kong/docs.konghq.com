@@ -1,6 +1,5 @@
 ---
 title: Register an Application to a Service
-no_version: true
 ---
 
 Along with hosting API documentation, the Dev Portal can let your developers

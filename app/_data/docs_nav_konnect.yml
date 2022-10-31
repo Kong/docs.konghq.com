@@ -57,6 +57,8 @@
           url: /runtime-manager/runtime-groups/declarative-config
     - text: Runtime Instances
       items:
+        - text: Installation Options
+          url: /runtime-manager/runtime-instances/
         - text: Install with Docker
           url: /runtime-manager/runtime-instances/gateway-runtime-docker
         - text: Install on Kubernetes
@@ -105,7 +107,7 @@
           url: /servicehub/enable-service-plugin
         - text: Configure a Plugin on a Route
           url: /servicehub/enable-route-plugin
-          
+
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
@@ -159,6 +161,8 @@
       url: /analytics/services-and-routes/
     - text: Generate Reports
       url: /analytics/generate-reports
+    - text: Troubleshoot
+      url: /analytics/troubleshoot/
 
 - title: Administer
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg

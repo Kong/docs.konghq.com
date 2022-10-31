@@ -1,8 +1,7 @@
 ---
 title: Create, Edit, and Delete Applications
-no_version: true
 toc: true
-content-type: how-to
+content_type: how-to
 ---
 
 
