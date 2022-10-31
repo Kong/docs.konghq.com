@@ -84,7 +84,7 @@ paths:
       description: Fetch the IdP group to Konnect team mapping.
   /roles:
     get:
-      summary: Get Predfined Roles
+      summary: Get Predefined Roles
       description: 'Retrieve the predefined, or system managed, roles.'
       operationId: get-predefined-roles
       responses:
