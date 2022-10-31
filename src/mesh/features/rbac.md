@@ -73,7 +73,7 @@ rules:
 {% endnavtab %}
 {% endnavtabs %}
 {% endnavtab %}
-{% navtab Policies 2.0 %}
+{% navtab `targetRef` selectors %}
 Policies 2.0 don't use old selectors like sources and destinations. They are based on targetRef selector. You can specify to which targetRef kinds users should have access.
 
 {% navtabs %}
