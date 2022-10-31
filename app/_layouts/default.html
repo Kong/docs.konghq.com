@@ -30,7 +30,7 @@
     {% include_cached footer.html %} {% include_cached anchor_links.html %}
 
     <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
-    {% if jekyll.environment != "production" %}
+    {% if jekyll.environment == "production" %}
       <script>
         (function stp(){
           if (typeof analytics == "undefined"){
