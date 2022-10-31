@@ -279,7 +279,7 @@ This way a service owners can:
 * Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
 
 {:.note}
-> **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if user have only access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Also, when a user has only access to `targetRef` kind `MeshService` they won't be able to update policy to use different `targetRef` kind.
+> **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if user have only access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Likewise, when a user has only access to `targetRef` kind `MeshService` they won't be able to update policy to use different `targetRef` kind.
 
 ### Observability operator
 
