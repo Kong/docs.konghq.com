@@ -278,6 +278,9 @@ This way a service owners can:
   It's useful because the service owner of backend has the best knowledge what (`Timeout`, `HealthCheck`) should be applied when communicating with their service.
 * Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
 
+{:.note}
+> **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if user have only access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Also, when a user has only access to `targetRef` kind `MeshService` they won't be able to update policy to use different `targetRef` kind.
+
 ### Observability operator
 
 We may also have an infrastructure team which is responsible for the logging/metrics/tracing systems in the organization.
@@ -559,7 +562,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
 1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
 
     ```sh
-    $ echo "
+    $ echo '
     ---
     apiVersion: kuma.io/v1alpha1
     kind: AccessRole
@@ -585,7 +588,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
         name: backend-owner
       roles:
       - backend-owner
-    " | kubectl apply -f -
+    ' | kubectl apply -f -
     ```
 
 1.  Change the service to test user access:
