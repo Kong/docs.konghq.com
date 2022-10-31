@@ -15,6 +15,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
+[IdP API documentation](/konnect/identity-management-api)
 
 ## October 2022
 
