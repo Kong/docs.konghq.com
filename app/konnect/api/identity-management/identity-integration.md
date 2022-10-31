@@ -121,7 +121,7 @@ For a user to access the roles assigned to a custom team, the user must become a
         "id": "USER_ID"
         }'
 
-You will receive a `200` with no response body confirming that the user was added to the custom team. 
+You will receive a `201` with no response body confirming that the user was added to the custom team. 
 
 
 ## Mapping IdP groups to teams
