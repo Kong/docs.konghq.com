@@ -16,7 +16,7 @@ Role-Based Access Control (RBAC) lets you restrict access to resources and actio
 `AccessRole` defines a role that is assigned separately to users.
 It is global-scoped, which means it is not bound to a mesh.
 {% navtabs %}
-{% navtab Old policies %}
+{% navtab Source and Destination selectors %}
 {% navtabs %}
 {% navtab Kubernetes %}
 ```yaml
