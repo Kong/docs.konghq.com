@@ -469,3 +469,7 @@
 
     - text: Plugins in Other Languages
       url: /reference/external-plugins
+    - text: File Permissions Reference
+      url: /gateway/3.0.x/reference/file-access-permissions
+      absolute_url: /gateway/3.0.x/reference/file-access-permissions
+

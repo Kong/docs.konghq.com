@@ -579,6 +579,8 @@ items:
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
+      - text: File Permissions Reference
+        url: /reference/file-access-permissions
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
       - text: Router Expressions Language
