@@ -730,7 +730,7 @@ In order for this example to work you must either run the control plane with `KU
 {% endnavtab %}
 {% endnavtabs %}
 {% endnavtab %}
-{% navtab Policies 2.0 %}
+{% navtab `targetRef` selectors %}
 {% navtabs %}
 {% navtab Kubernetes %}
 
