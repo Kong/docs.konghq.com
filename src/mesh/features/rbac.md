@@ -74,7 +74,7 @@ rules:
 {% endnavtabs %}
 {% endnavtab %}
 {% navtab `targetRef` selectors %}
-Policies 2.0 don't use old selectors like sources and destinations. They are based on targetRef selector. You can specify to which targetRef kinds users should have access.
+For policies using `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
 
 {% navtabs %}
 {% navtab Kubernetes %}
