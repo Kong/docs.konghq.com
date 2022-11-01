@@ -169,7 +169,7 @@ the whole configuration in the referenced YAML file.
 
 By default, data planes store their configuration to the file system
 in an unencrypted LMDB database, `dbless.lmdb`, in {{site.base_gateway}}'s
-`prefix` path. <<You can also choose to encrypt this database (TODO in progress)>>.
+`prefix` path. You can also choose to encrypt this database.
 
 If encrypted, the data plane uses the cluster certificate key to decrypt the
 LMDB database on startup.
