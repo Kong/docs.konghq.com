@@ -340,7 +340,7 @@ items:
             src: /.repos/kuma/app/docs/dev/explore/gateway-api/#how-it-works
   - title: Networking
     icon: /assets/images/icons/documentation/icn-brain-color.svg
-    items: 
+    items:
       - text: Networking
         url: /networking/networking/
         src: /.repos/kuma/app/docs/dev/networking/networking/
@@ -581,8 +581,8 @@ items:
             url: "/documentation/requirements/#sizing-your-control-plane"
             src: /.repos/kuma/app/docs/dev/documentation/requirements/#sizing-your-control-plane
   - title: Policies
-    icon: /assets/images/icons/documentation/icn-documentation.svg
-    items: 
+    icon: /assets/images/icons/documentation/icn-documentation-small.svg
+    items:
       - text: Introduction
         url: /policies/introduction/
         src: /.repos/kuma/app/docs/dev/policies/introduction/
@@ -1340,13 +1340,3 @@ unlisted:
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_uninstall_transparent-proxy/
   - url: /generated/cmd/kumactl/kumactl_version/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_version/
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
