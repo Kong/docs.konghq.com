@@ -2,7 +2,7 @@
 title: Configuring Okta for Dynamic Client Registration
 breadcrumb: Okta
 content_type: how-to
-badge: beta
+beta: true
 ---
 
 
@@ -13,7 +13,7 @@ badge: beta
 
 ### Issuer URL
 
-Using your Okta credentials, log in to the Okta portal and follow these steps: 
+Using your Okta credentials, log in to the Okta portal and follow these steps:
 
 1. Select **Security** from the menu.
 
@@ -82,13 +82,13 @@ Once you have Okta configured, you can set up the Dev Portal to use Okta for dyn
 
 ## Create an application with DCR
 
-From the **My Apps** page in the Dev Portal, follow these instructions: 
+From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click the **New App** button.
 
 2. Fill out the **Create New Application** form with your application name, redirect URI, and a description.
 
-3. Click **Create** to save your application. 
+3. Click **Create** to save your application.
 
 After your application has been created, you will see the **Client ID** and **Client Secret**. Please store these values, they will only be shown once. Click **Proceed** to continue to the application's details page.
 
