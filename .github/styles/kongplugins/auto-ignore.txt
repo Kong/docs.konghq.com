@@ -45,6 +45,7 @@ role_entity
 search_by_username
 search_by_username
 ssl_client_verify
+ssl_server_name
 start_cmd
 stream_listen
 stringified
