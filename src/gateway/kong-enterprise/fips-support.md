@@ -6,7 +6,7 @@ content_type: reference
 
 The Federal Information Processing Standard (FIPS) 140-2 standard is a federal standard defined by the National Institute of Standards and Technology that specifies the security requirements that must be satisfied by a cryptographic module. **The core {{site.base_gateway}} product is (FIPS) 140-2 compliant** with the FIPS package that is available for **Ubuntu 20.04**. 
 
-The {{site.base_gateway}} FIPS 140-2 compliant package is FIPS-compliant **not** "FIPS-validated". Like most enterprise software {{site.base_gateway}} seeks to be FIPS 140-2 compliant. FIPS 140-2 compliance is understood to mean that the software has met all of the rules of FIPS 140-2, but has not been submitted to a NIST testing lab for validation. For FIPS 140-2 compliance, {{site.base_gateway}} replaces the non-FIPS compliant OpenSSL with the FIPS validated library [BoringSSL](https://boringssl.googlesource.com/boringssl/) for encryption. 
+For FIPS 140-2 compliance, {{site.base_gateway}} replaces the non-FIPS compliant OpenSSL with the FIPS validated library [BoringSSL](https://boringssl.googlesource.com/boringssl/) for encryption. 
 
 {:.note}
 >**Note**: As of {{site.base_gateway}} 3.0, {{site.base_gateway}} plugins can't be considered FIPS-compliant. Future {{site.base_gateway}} releases aim to support plugins as well as distributions other than Ubuntu 20.04. 
