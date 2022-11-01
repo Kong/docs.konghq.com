@@ -1,5 +1,4 @@
--
-  name: Amazon Linux 1
+- name: Amazon Linux 1
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -11,8 +10,7 @@
   status: deprecated
   deprecation_date: December 31, 2020
   eol_link: https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life
--
-  name: Amazon Linux 2
+- name: Amazon Linux 2
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -24,8 +22,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: CentOS 6
+- name: CentOS 6
   enterprise: true
   enterprise_versions:
     first_version: null
@@ -37,8 +34,7 @@
   status: deprecated
   deprecation_date: November 30, 2020
   eol_link: https://endoflife.software/operating-systems/linux/centos
--
-  name: CentOS 7
+- name: CentOS 7
   enterprise: true
   enterprise_versions:
     first_version: 2.1.x
@@ -51,8 +47,7 @@
   deprecation_date: December 31, 2021
   eol_link: https://www.centos.org/centos-linux-eol/
 
--
-  name: CentOS 8
+- name: CentOS 8
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -64,8 +59,7 @@
   status: deprecated
   deprecation_date: December 31, 2021
   eol_link: https://www.centos.org/centos-linux-eol/
--
-  name: Debian 8 (Jessie)
+- name: Debian 8 (Jessie)
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -77,8 +71,7 @@
   status: deprecated
   deprecation_date: June 30th, 2020
   eol_link: https://www.debian.org/News/2020/20200709
--
-  name: Debian 9 (Stretch)
+- name: Debian 9 (Stretch)
   enterprise: true
   enterprise_versions:
     first_version: 2.1.x
@@ -90,8 +83,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: Debian 10 (Buster)
+- name: Debian 10 (Buster)
   enterprise: true
   enterprise_versions:
     first_version: 2.7.x
@@ -103,8 +95,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: Debian 11 (Bullseye)
+- name: Debian 11 (Bullseye)
   enterprise: true
   enterprise_versions:
     first_version: 2.7.x
@@ -116,8 +107,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: RHEL 6
+- name: RHEL 6
   enterprise: false
   enterprise_versions:
     first_version: null
@@ -129,8 +119,7 @@
   status: deprecated
   deprecation_date: November 30, 2020
   eol_link: https://access.redhat.com/support/policy/updates/errata
--
-  name: RHEL 7
+- name: RHEL 7
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -142,8 +131,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: RHEL 8
+- name: RHEL 8
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -155,8 +143,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: Ubuntu 16.04 (Xenial)
+- name: Ubuntu 16.04 (Xenial)
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -168,8 +155,7 @@
   status: deprecated
   deprecation_date: April 2021
   eol_link: https://wiki.ubuntu.com/Releases
--
-  name: Ubuntu 18.04 (Bionic)
+- name: Ubuntu 18.04 (Bionic)
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
@@ -181,8 +167,7 @@
   status: active
   deprecation_date: null
   eol_link: null
--
-  name: Ubuntu 20.04 (Focal)
+- name: Ubuntu 20.04 (Focal)
   enterprise: true
   enterprise_versions:
     first_version: 2.1.x
