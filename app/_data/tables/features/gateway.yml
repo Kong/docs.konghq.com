@@ -32,11 +32,11 @@ features:
   - name: Traffic Management and Transformations
     items:
       - name: Basic Traffic Control Plugins
-        tooltip: Manage ACME certificates, basic rate limiting, and lightweight caching 
+        tooltip: Manage ACME certificates, basic rate limiting, and lightweight caching
         oss: true
         enterprise: true
       - name: Simple Data Transformations
-        tooltip: Add or remove headers, JSON data, or query strings 
+        tooltip: Add or remove headers, JSON data, or query strings
         oss: true
         enterprise: true
       - name: gRPC Transformations
@@ -110,7 +110,7 @@ features:
   - name: Enterprise Support and Services
     items:
       - name: Enterprise support
-        tooltip: 24/7 x 365 technical support SLAs 
+        tooltip: 24/7 x 365 technical support SLAs
         oss: false
         enterprise: true
       - name: Security CVE and Bug Fix Backports

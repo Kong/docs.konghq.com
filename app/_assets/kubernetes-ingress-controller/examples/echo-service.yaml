@@ -4,10 +4,10 @@ metadata:
   name: echo
 spec:
   ports:
-  - protocol: TCP
-    name: http
-    port: 80
-    targetPort: http
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: http
   selector:
     app: echo
 ---
@@ -28,32 +28,32 @@ spec:
         app: echo
     spec:
       containers:
-      - name: echo
-        image: registry.k8s.io/e2e-test-images/agnhost:2.40
-        command:
-        - /agnhost
-        - netexec
-        - --http-port=8080
-        ports:
-        - containerPort: 8080
-          name: http
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        resources:
-          requests:
-            cpu: 10m
+        - name: echo
+          image: registry.k8s.io/e2e-test-images/agnhost:2.40
+          command:
+            - /agnhost
+            - netexec
+            - --http-port=8080
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          resources:
+            requests:
+              cpu: 10m
