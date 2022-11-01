@@ -62,6 +62,8 @@ items:
       - text: Docker
         url: /installation/docker/
         src: /.repos/kuma/app/docs/dev/installation/docker/
+      - text: Amazon ECS
+        url: /installation/ecs
       - text: Amazon Linux
         url: /installation/amazonlinux/
         src: /.repos/kuma/app/docs/dev/installation/amazonlinux/
