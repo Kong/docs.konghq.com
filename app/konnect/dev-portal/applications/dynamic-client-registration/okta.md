@@ -1,8 +1,8 @@
 ---
 title: Configuring Okta for Dynamic Client Registration
-toc: true
 breadcrumb: Okta
 content_type: how-to
+badge: beta
 ---
 
 
@@ -58,9 +58,9 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 ## Configure the Dev Portal
 
-Once you have Okta configured, you can setup the Dev Portal to use Okta for DCR.
+Once you have Okta configured, you can set up the Dev Portal to use Okta for dynamic client registration (DCR).
 
-1. Sign in to {{site.konnect_short_name}}, and select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
+1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
 2. Click **Settings** to open the Dev Portal settings.
 
@@ -72,13 +72,12 @@ Once you have Okta configured, you can setup the Dev Portal to use Okta for DCR.
 
    {:.note}
    > **Note:** You can use any of the existing scopes besides **`openid`**, as using the `openid`
-   scope will prevent you from using client credentials. If this input field is left empty, `openid`
+   scope prevents you from using client credentials. If the **Scopes** field is empty, `openid`
    will be used.
 
 6. Click **Save**.
 
-   {:.note}
-   > **Note:**  If you previously configured any DCR settings, this will
+   If you previously configured any DCR settings, this will
    overwrite them.
 
 ## Create an application with DCR
