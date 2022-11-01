@@ -204,4 +204,4 @@ Field         | Description                                             | Dataty
   * The metric name that is related to the service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
   * The metric `kong.<service_identifier>.request.status.<status>.count` from metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
   * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
-  * The metric `kong.<service_identifier>.request_size` and `kong.<service_identifier>.response_size` stat type has changed to `counter` from `timer`.
+  * The metric `kong.<service_identifier>.request_size` and `kong.<service_identifier>.response_size` stat type has been changed to `counter` from `timer`.
