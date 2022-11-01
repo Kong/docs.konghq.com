@@ -899,6 +899,7 @@ items:
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
+        src: installation/windows
   - title: Reference docs
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
@@ -1112,12 +1113,12 @@ unlisted:
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_apply/
   - url: /generated/cmd/kumactl/kumactl_completion/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_completion/
-  - url: /generated/cmd/kumactl/kumactl_bash/
-    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_bash/
-  - url: /generated/cmd/kumactl/kumactl_fish/
-    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_fish/
-  - url: /generated/cmd/kumactl/kumactl_zsh/
-    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_zsh/
+  - url: /generated/cmd/kumactl/kumactl_completion_bash/
+    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_completion_bash/
+  - url: /generated/cmd/kumactl/kumactl_completion_fish/
+    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_completion_fish/
+  - url: /generated/cmd/kumactl/kumactl_completion_zsh/
+    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_completion_zsh/
   - url: /generated/cmd/kumactl/kumactl_config/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_config/
   - url: /generated/cmd/kumactl/kumactl_config_control-planes/
@@ -1243,9 +1244,9 @@ unlisted:
   - url: /generated/cmd/kumactl/kumactl_get_zone-ingresses/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zone-ingresses/
   - url: /generated/cmd/kumactl/kumactl_get_zoneegress/
-    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zoneengress/
+    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zoneegress/
   - url: /generated/cmd/kumactl/kumactl_get_zoneegresses/
-    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zoneengresses/
+    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zoneegresses/
   - url: /generated/cmd/kumactl/kumactl_get_zones/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zones/
   - url: /generated/cmd/kumactl/kumactl_inspect/
