@@ -198,6 +198,22 @@
     - text: Troubleshoot
       url: /org-management/troubleshoot
 
+- title: API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  items:
+    - text: Overview
+      url: /api/
+    - text: Konnect Identity API
+      items:
+      - text: API Documentation
+        url: /identity-management-api
+      - text: Identity Integration Guide
+        url: /api/identity-management/identity-integration
+    - text: Reference
+      items: 
+        - text: Filtering
+          url: /api/filtering
+
 
 - title: Legacy content
   items:
