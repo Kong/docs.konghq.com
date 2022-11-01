@@ -48,7 +48,7 @@ HTTPRoutes
 TCPRoute
 TCPRoutes
 TLSRoute
-TLSROutes
+TLSRoutes
 UDPRoute
 UDPRoutes
 GRPCRoute
