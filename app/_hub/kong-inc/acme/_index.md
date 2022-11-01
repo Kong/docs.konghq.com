@@ -513,7 +513,7 @@ own certificate.
 {% if_plugin_version gte:3.1.x %}
 **{{site.base_gateway}}  3.1.x**
 
-* Added the `config.storage_config.ssl`, `config.storage_config.ssl_verify`, and `config.storage_config.ssl_server_name`. configuration parameters.
+* Added the `config.storage_config.ssl`, `config.storage_config.ssl_verify`, and `config.storage_config.ssl_server_name` configuration parameters.
 
 {% endif_plugin_version %}
 
