@@ -82,6 +82,8 @@ items:
       - text: macOS
         url: /installation/macos/
         src: /.repos/kuma/app/docs/dev/installation/macos/
+      - text: Windows
+        url: /installation/windows
   - title: Deploy
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
@@ -906,7 +908,7 @@ items:
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
-        src: installation/windows
+        generate: false
   - title: Reference docs
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
