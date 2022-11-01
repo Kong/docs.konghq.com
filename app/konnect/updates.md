@@ -19,6 +19,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## October 2022
 
+### 2022.10.27
+
+**Dynamic client registration <span class="badge beta"></span>**
+: Dynamic client registration with Okta is now in public beta. 
+[Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
+
 ### 2022.10.21
 
 **Latency reporting**
