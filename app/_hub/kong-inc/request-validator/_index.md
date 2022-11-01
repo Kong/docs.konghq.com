@@ -36,8 +36,10 @@ params:
       datatype: Set of string elements
       description: |
         List of allowed content types. The value can be configured with the `charset` parameter(e.g. `application/json; charset=UTF-8`).
-        <br>**Note:** Body validation is only done for `application/json` and skipped for any other allowed content types.
-        
+        <br>**Note:** 
+        Body validation is only done for `application/json` and skipped for any other allowed content types. 
+        Only supports one parameter at most. If a request is sending more than one with the Content-Type header, only the first parameter will be evaluated and the rest will be truncated. (Please note that `application/json` is not match with `application/json; charset=UTF-8`)
+        The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explaination.
     - name: version
       required: true
       default: kong
