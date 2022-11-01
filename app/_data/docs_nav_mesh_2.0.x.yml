@@ -73,10 +73,10 @@ items:
   - title: Deploy
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
-      - text: Explore Kuma with the Kubernetes demo app
+      - text: Explore Kong Mesh with the Kubernetes demo app
         url: /quickstart/kubernetes/
         src: /.repos/kuma/app/docs/dev/quickstart/kubernetes/
-      - text: Explore Kuma with the Universal demo app
+      - text: Explore Kong Mesh with the Universal demo app
         url: /quickstart/universal/
         src: /.repos/kuma/app/docs/dev/quickstart/universal/
       - text: Standalone deployment
@@ -139,7 +139,7 @@ items:
       - text: DNS
         url: /networking/dns/
         src: /.repos/kuma/app/docs/dev/networking/dns/
-      - text: Kuma CNI
+      - text: Kong Mesh CNI
         url: /networking/cni/
         src: /.repos/kuma/app/docs/dev/networking/cni/
       - text: Transparent Proxying
@@ -151,13 +151,13 @@ items:
   - title: Security
     icon: /assets/images/icons/konnect/icn-organizations-nav.svg
     items:
-      - text: Secure access across Kuma components
+      - text: Secure access across Kong Mesh components
         url: /security/certificates/
         src: /.repos/kuma/app/docs/dev/security/certificates/
       - text: Secrets
         url: /security/secrets/
         src: /.repos/kuma/app/docs/dev/security/secrets/
-      - text: Kuma API Access Control
+      - text: Kong Mesh API Access Control
         url: /security/api-access-control/
         src: /.repos/kuma/app/docs/dev/security/api-access-control/
       - text: API server authentication
@@ -196,16 +196,16 @@ items:
       - text: Introduction
         url: /policies/introduction/
         src: /.repos/kuma/app/docs/dev/policies/introduction/
-      - text: General notes about Kuma policies
+      - text: General notes about Kong Mesh policies
         url: /policies/general-notes-about-kuma-policies/
         src: /.repos/kuma/app/docs/dev/policies/general-notes-about-kuma-policies/
       - text: Applying Policies
         url: /policies/applying-policies/
         src: /.repos/kuma/app/docs/dev/policies/applying-policies/
-      - text: How Kuma chooses the right policy to apply
+      - text: How Kong Mesh chooses the right policy to apply
         url: /policies/how-kuma-chooses-the-right-policy-to-apply/
         src: /.repos/kuma/app/docs/dev/policies/how-kuma-chooses-the-right-policy-to-apply/
-      - text: Protocol support in Kuma
+      - text: Protocol support in Kong Mesh
         url: /policies/protocol-support-in-kuma/
         src: /.repos/kuma/app/docs/dev/policies/protocol-support-in-kuma/
       - text: Mesh
@@ -307,7 +307,7 @@ items:
       - text: Kuma data collection
         url: /reference/data-collection/
         src: /.repos/kuma/app/docs/dev/reference/data-collection/
-      - title: Resources
+      - text: Resources
         items:
           - text: Mesh
             url: /generated/resources/other_mesh/
@@ -366,7 +366,7 @@ items:
           - text: ZoneIngress
             url: /generated/resources/proxy_zoneingress/
             src: /.repos/kuma/app/docs/dev/generated/resources/proxy_zoneingress/
-      - title: Commands
+      - text: Commands
         items:
           - text: kuma-cp
             url: /generated/cmd/kuma-cp/kuma-cp/
