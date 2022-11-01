@@ -500,7 +500,7 @@ items:
             url: "/security/dp-membership/#example-use-cases"
             src: /.repos/kuma/app/docs/dev/security/dp-membership/#example-use-cases
   - title: Monitor and Manage
-    icon: /assets/images/icons/documentation/icn-analytics-nav.svg
+    icon: /assets/images/icons/konnect/icn-analytics-nav.svg
     items:
       - text: Dataplane Health
         url: /documentation/health/
