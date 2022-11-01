@@ -44,6 +44,7 @@ items:
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     url: /gettingstarted
   - title: Install
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
       - text: Kubernetes
         url: /installation/kubernetes/
@@ -80,7 +81,7 @@ items:
         url: /installation/macos/
         src: /.repos/kuma/app/docs/dev/installation/macos/
   - title: Deploy
-    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
       - text: Explore Kuma with the Kubernetes demo app
         url: /quickstart/kubernetes/
@@ -176,7 +177,7 @@ items:
       - text: License
         url: /plan-and-deploy/license
   - title: Explore
-    icon: /assets/images/icons/documentation/icn-manager-color.svg
+    icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
       - text: Overview
         url: /explore/overview/
@@ -334,7 +335,7 @@ items:
             url: "/explore/gateway-api/#how-it-works"
             src: /.repos/kuma/app/docs/dev/explore/gateway-api/#how-it-works
   - title: Networking
-    items:
+    items: /assets/images/icons/documentation/icn-brain-color.svg
       - text: Networking
         url: /networking/networking/
         src: /.repos/kuma/app/docs/dev/networking/networking/
@@ -398,6 +399,7 @@ items:
             url: "/networking/ipv6/#disabling-ipv6"
             src: /.repos/kuma/app/docs/dev/networking/ipv6/#disabling-ipv6
   - title: Security
+    icon: /assets/images/icons/konnect/icn-organizations-nav.svg
     items:
       - text: Secure access across Kuma components
         url: /security/certificates/
@@ -496,7 +498,8 @@ items:
           - text: Example use cases
             url: "/security/dp-membership/#example-use-cases"
             src: /.repos/kuma/app/docs/dev/security/dp-membership/#example-use-cases
-  - title: Monitor & manage
+  - title: Monitor and Manage
+    icon: /assets/images/icons/documentation/icn-analytics-nav.svg
     items:
       - text: Dataplane Health
         url: /documentation/health/
@@ -573,7 +576,7 @@ items:
             url: "/documentation/requirements/#sizing-your-control-plane"
             src: /.repos/kuma/app/docs/dev/documentation/requirements/#sizing-your-control-plane
   - title: Policies
-    items:
+    items: /assets/images/icons/documentation/icn-documentation.svg
       - text: Introduction
         url: /policies/introduction/
         src: /.repos/kuma/app/docs/dev/policies/introduction/
