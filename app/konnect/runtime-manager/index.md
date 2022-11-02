@@ -60,17 +60,17 @@ Choose an installation type below:
 
 <div class="docs-grid-install">
 
-  <a href="https://cloud.konghq.com/us/runtime-manager" class="docs-grid-install-block no-description">
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-docker" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/docker.png" alt="Docker" />
     <div class="install-text">Docker</div>
   </a>
 
-  <a href="https://cloud.konghq.com/us/runtime-manager" class="docs-grid-install-block no-description">
+  <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/kubernetes-logo.png" alt="Kubernetes" />
     <div class="install-text">Kubernetes (Helm)</div>
   </a>
 
-    <a href="https://cloud.konghq.com/us/runtime-manager" class="docs-grid-install-block no-description">
+    <a href="/konnect/runtime-manager/runtime-instances/gateway-runtime-conf" class="docs-grid-install-block no-description">
       <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-markdown-editor.svg" alt="config file" />
       <div class="install-text">Universal (kong.conf)</div>
     </a>
