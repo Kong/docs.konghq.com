@@ -986,7 +986,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kumactl apply -f -
     # this operation should succeed
 
-    $ echo "
+    echo "
     type: MeshTrafficPermission
     mesh: default
     name: web-to-backend
