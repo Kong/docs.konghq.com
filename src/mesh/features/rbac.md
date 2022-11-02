@@ -968,8 +968,8 @@ In order for this example to work you must either run the control plane with `KU
 1.  Change the user and test RBAC:
 
     ```sh
-    $ kumactl config control-planes switch --name cp-backend-owner
-    $ echo "
+    kumactl config control-planes switch --name cp-backend-owner
+    echo "
     type: MeshTrafficPermission
     mesh: default
     name: web-to-backend
