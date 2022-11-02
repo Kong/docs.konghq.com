@@ -821,7 +821,7 @@ In order for this example to work you must either run the control plane with `KU
 1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
 
     ```sh
-    $ echo '
+    echo '
     ---
     apiVersion: kuma.io/v1alpha1
     kind: AccessRole
