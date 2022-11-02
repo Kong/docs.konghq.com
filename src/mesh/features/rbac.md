@@ -900,7 +900,7 @@ In order for this example to work you must either run the control plane with `KU
 {% navtab Universal %}
 
 {:.note}
-> **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
+> **Note**: By default, all requests that originate from localhost are authenticated as the `admin` user in the `mesh-system:admin` group.
 In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
 
 1.  Extract admin token and configure kumactl with admin:
