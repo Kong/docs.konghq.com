@@ -875,7 +875,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kubectl apply -f -
     # operation should succeed, access to backend service access is granted
 
-    $ echo "
+    echo "
     apiVersion: kuma.io/v1alpha1
     kind: MeshTrafficPermission
     metadata:
