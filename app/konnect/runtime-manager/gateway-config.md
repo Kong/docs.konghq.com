@@ -92,15 +92,12 @@ for all configuration options.
 
 The **Certificates** configuration page lists public certificates
 that enable encrypted requests and peer certification validation.
-
-This configuration page _does not_ manage runtime instance certificates. If you
-need to update a runtime instance certificate, see
-[Renew Certificates](/konnect/runtime-manager/runtime-instances/renew-certificates).
-
 A certificate object represents a public certificate and can be paired with a
 corresponding private key. Certificates handle SSL/TLS termination for encrypted
 requests, and can be used as a trusted CA store when validating the peer
 certificate of a client or service.
+
+You can manage runtime instance certificates from this page, including the creation, renewal, and removal of certificates, as well as uploading certificates for up to  16 certificates per runtime group. 
 
 See the [certificate object API reference](/gateway/latest/admin-api/#certificate-object)
 for all configuration options.
