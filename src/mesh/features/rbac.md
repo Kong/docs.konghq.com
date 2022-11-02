@@ -955,7 +955,7 @@ In order for this example to work you must either run the control plane with `KU
           kind: MeshService
           name: backend
     ' | kumactl apply -f -
-    $ echo '
+    echo '
     type: AccessRoleBinding
     name: backend-owners
     subjects:
