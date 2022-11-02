@@ -853,8 +853,8 @@ In order for this example to work you must either run the control plane with `KU
 1.  Change the service to test user access:
 
     ```sh
-    $ kubectl config use-context backend-owner
-    $ echo "
+    kubectl config use-context backend-owner
+    echo "
     apiVersion: kuma.io/v1alpha1
     kind: MeshTrafficPermission
     metadata:
