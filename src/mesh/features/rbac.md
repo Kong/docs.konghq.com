@@ -906,8 +906,8 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 1.  Extract admin token and configure kumactl with admin:
 
     ```sh
-    $ export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
-    $ kumactl config control-planes add \
+    export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
+    kumactl config control-planes add \
     --name=cp-admin \
     --address=https://localhost:5682 \
     --skip-verify=true \
