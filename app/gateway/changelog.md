@@ -19,10 +19,9 @@ no_version: true
 
 #### Enterprise
 
-* Removed the endpoint `all_routes` from configurable RBAC endpoint permissions.
-This endpoint was erroneously appearing in the endpoints list, and didn't configure anything.
-
 * **Kong Manager**:
+  * Removed the endpoint `all_routes` from configurable RBAC endpoint permissions.
+  This endpoint was erroneously appearing in the endpoints list, and didn't configure anything.
   * Fixed an issue that allowed unauthorized IDP users to log in to Kong Manager.
   These users had no access to any resources in Kong Manager, but were able to go beyond the login screen.
   * Fixed an issue where, in an environment with a valid Enterprise license, admins with no access to the `default` workspace would see a message prompting them to upgrade to Kong Enterprise.
@@ -56,6 +55,8 @@ Previously, the version was pinned to 3.10, which was creating outdated `alpine`
 previously using `ngx.config.prefix()` to determine the listening socket
 path to provide to the resty.events module. This caused breakage when
 Nginx was started with a relative path prefix.
+This meant that you couldn't start 3.0.x with the same default configuration as
+2.8.x.
 
     Instead of using `ngx.config.prefix()`, Kong will now prefer the
     `kong.configuration.prefix` when available, as it is already normalized
@@ -63,12 +64,9 @@ Nginx was started with a relative path prefix.
     result of `ngx.config.prefix()` will be used after resolving it to an
     absolute path. [#9337](https://github.com/Kong/kong/pull/9337)
 
-* Fixed an issue with secret management references. By default, Kong passes secrets to Nginx using environment variables when using `kong start`. Nginx was being started directly without calling `kong start`, so the secrets were not available at initialization. [#9478](https://github.com/Kong/kong/pull/9478)
+* Fixed an issue with secret management references for HashiCorp Vault. By default, Kong passes secrets to the Nginx using environment variables when using `kong start`. Nginx was being started directly without calling `kong start`, so the secrets were not available at initialization. [#9478](https://github.com/Kong/kong/pull/9478)
 
-### Deprecations and removals
-
-* The deprecated `/oas-config` endpoint and the `openapi2kong` CLI tool have been removed from Kong Gateway.
-Use [Insomnia's declarative configuration generator](https://docs.insomnia.rest/inso-cli/cli-command-reference/inso-generate-config) instead.
+* Fixed the Amazon Linux RPM installation instructions.
 
 ## 3.0.0.0
 **Release Date** 2022/09/09
