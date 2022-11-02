@@ -1,10 +1,10 @@
 ---
-title: Kong Mesh - ACM Private CA Policy
+title: ACM Private CA Policy
 ---
 
 ## Amazon Certificate Manager Private CA Backend
 
-The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/policies/mutual-tls/)
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
@@ -67,9 +67,9 @@ AWS credentials may also be supplied as secrets stored by {{site.mesh_product_na
 AWS credentials and CA Certificate may be supplied inline, as a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. Inline specification of credentials should
 be used for testing purposes only.
-When using a `secret`, it should be a mesh-scoped 
-secret (see [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/) for details 
-on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored 
+When using a `secret`, it should be a mesh-scoped
+secret (see [the {{site.mesh_product_name}} Secrets documentation](/mesh/{{page.kong_version}}/security/secrets/) for details
+on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
 Here's an example of a configuration with a `acmpca`-backed CA:
@@ -133,7 +133,7 @@ mtls:
             file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](/mesh/{{page.kong_version}}/reference/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}

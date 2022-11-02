@@ -1,3 +1,4 @@
+# Language: Ruby, Level: Level 3
 # frozen_string_literal: true
 
 module KumaToKongMesh
@@ -12,9 +13,6 @@ module KumaToKongMesh
         # Links can end with a " (html) or ) (markdown)
         page.content = page.content.gsub(%r{/([^\s]*)kuma([^\s]*)([)"])}, '/\1kong-mesh\2\3')
         page.content = page.content.gsub("kong-mesh.io", "kuma.io")
-
-        # Replace Kuma with Kong Mesh in prose
-        page.content = page.content.gsub("Kuma", "Kong Mesh")
 
         # Replace the base url from Kuma
         page.content = page.content.gsub(%r{/docs/{{ page.version }}}, '/mesh/{{ page.kong_version }}')

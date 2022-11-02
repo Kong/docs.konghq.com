@@ -69,7 +69,7 @@ networking:
 {% endnavtab %}
 {% endnavtabs %}
 
-For more information, see [the Kuma documentation about protocol support](https://kuma.io/docs/latest/policies/protocol-support-in-kuma/).
+For more information, see [the {{site.mesh_product_name}} documentation about protocol support](/mesh/{{page.kong_version}}/policies/protocol-support-in-kuma/).
 
 ### Inline
 
@@ -173,7 +173,7 @@ conf:
 
 ### With Secrets
 
-Encoding the policy in a [Secret](https://kuma.io/docs/latest/security/secrets/) provides some security for policies that contain sensitive data.
+Encoding the policy in a [Secret](/mesh/{{page.kong_version}}/security/secrets/) provides some security for policies that contain sensitive data.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -336,7 +336,7 @@ spec:
     metadata:
       ...
       annotations:
-        # indicate to Kuma that this Pod doesn't need a sidecar
+        # indicate to {{site.mesh_product_name}} that this Pod doesn't need a sidecar
         kuma.io/sidecar-env-vars: "KMESH_OPA_ENABLED=false;KMESH_OPA_ADDR=:8888;KMESH_OPA_CONFIG_OVERRIDES=config1:x,config2:y"
 ```
 

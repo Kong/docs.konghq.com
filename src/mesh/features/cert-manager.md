@@ -4,7 +4,7 @@ title: Kong Mesh - Kubernetes cert-manager CA Policy
 
 ## cert-manager CA Backend
 
-The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/policies/mutual-tls/)
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
