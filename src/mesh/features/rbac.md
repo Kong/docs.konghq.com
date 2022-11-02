@@ -940,7 +940,7 @@ In order for this example to work you must either run the control plane with `KU
     - admin" | kumactl apply -f -
     ```
 
-1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
+1.  Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `TrafficPermission` for backend:
 
     ```sh
     echo '
