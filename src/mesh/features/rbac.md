@@ -943,7 +943,7 @@ In order for this example to work you must either run the control plane with `KU
 1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
 
     ```sh
-    $ echo '
+    echo '
     type: AccessRole
     name: backend-owner
     rules:
