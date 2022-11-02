@@ -89,7 +89,7 @@ spec:
     names: ["res-1"] # List of allowed type names that are granted access. If empty, then access is granted to resources regardless of the name.
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
-    when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
+    when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
     - tagetRef: # a condition on targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
