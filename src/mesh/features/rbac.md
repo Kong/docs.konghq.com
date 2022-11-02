@@ -762,7 +762,7 @@ In order for this example to work you must either run the control plane with `KU
 1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
 
     ```sh
-    $ echo "
+    echo "
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
