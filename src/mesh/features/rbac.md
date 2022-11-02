@@ -918,14 +918,14 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 1.  Configure backend-owner:
 
     ```sh
-    $ export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
-    $ kumactl config control-planes add \
+    export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
+    kumactl config control-planes add \
     --name=cp-backend-owner \
     --address=https://localhost:5682 \
     --skip-verify=true \
     --auth-type=tokens \
     --auth-conf token=$BACKEND_OWNER_TOKEN
-    $ kumactl config control-planes switch --name cp-admin # switch back to admin
+    kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
 1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
