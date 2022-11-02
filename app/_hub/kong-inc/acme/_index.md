@@ -154,7 +154,10 @@ the `eab_kid` or `eab_hmac_key`:
         "auth": null,
         "port": 6379,
         "database": 0,
-        "host": "127.0.0.1"
+        "host": "127.0.0.1",
+        "ssl": false,
+        "ssl_verify": false,
+        "ssl_server_name": null
       },
        "consul": {
           "host": "127.0.0.1",
@@ -506,6 +509,13 @@ own certificate.
 ---
 
 ## Changelog
+
+{% if_plugin_version gte:3.1.x %}
+**{{site.base_gateway}}  3.1.x**
+
+* Added the `config.storage_config.redis.ssl`, `config.storage_config.redis.ssl_verify`, and `config.storage_config.redis.ssl_server_name` configuration parameters.
+
+{% endif_plugin_version %}
 
 {% if_plugin_version gte:3.0.x %}
 
