@@ -85,7 +85,7 @@ metadata:
   name: role-1
 spec:
   rules:
-  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # list of types to which access is granted. If empty, then access is granted to all types
+  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If empty, then access is granted to all types.
     names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
     mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # an action that is bound to a type.
