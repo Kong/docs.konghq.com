@@ -289,12 +289,12 @@ paths:
             type: string
           in: query
           name: 'filter[field]'
-          description: 'A field to filter on. Supported fields: name, entity_type'
+          description: 'A field to filter on. Supported fields: role, entity_type'
     post:
       summary: Assign Role
       operationId: teams-assign-role
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/AssignedRoleSingle'
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -304,7 +304,9 @@ paths:
           $ref: '#/components/responses/PermissionDenied'
         '404':
           $ref: '#/components/responses/NotFound'
-      description: Assign a role to a team.
+        '409':
+          $ref: '#/components/responses/Conflict'
+      description: Assign a role to a team. Returns 409 if role is already assigned.
       requestBody:
         $ref: '#/components/requestBodies/AssignRole'
       tags:
@@ -462,12 +464,12 @@ paths:
             type: string
           in: query
           name: 'filter[field]'
-          description: 'A field to filter on. Supported fields: name, entity_type'
+          description: 'A field to filter on. Supported fields: role, entity_type'
     post:
       summary: Assign Role
       operationId: users-assign-role
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/AssignedRoleSingle'
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -477,7 +479,9 @@ paths:
           $ref: '#/components/responses/PermissionDenied'
         '404':
           $ref: '#/components/responses/NotFound'
-      description: Assign a role to a user.
+        '409':
+          $ref: '#/components/responses/NotFound'
+      description: Assign a role to a user.  Returns 409 if role is already assigned.
       requestBody:
         $ref: '#/components/requestBodies/AssignRole'
       tags:
@@ -542,7 +546,7 @@ components:
             $ref: '#/components/schemas/User'
           examples:
             Example:
-              $ref: '#/components/examples/Get-User-Resposne'
+              $ref: '#/components/examples/Get-User-Response'
     UserCollection:
       description: A paginated list response for a collection of users.
       content:
@@ -1574,7 +1578,7 @@ components:
                 format: uuid
                 example: 7690d649-86fc-4d10-8771-c094d2efbd85
                 writeOnly: true
-                description: The one time token in accept-invitation link. 
+                description: The one time token in accept-invitation link.
             required:
               - password
               - full_name
@@ -1963,12 +1967,12 @@ components:
             active: true
             created_at: '2022-08-17T17:46:57.52Z'
             updated_at: '2022-10-03T17:00:00.00Z'
-    Get-User-Resposne:
+    Get-User-Response:
       value:
         id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-        email: iamnande@konghq.com
-        full_name: Nicholas L Anderson
-        preferred_name: iamnande
+        email: james.woods@email.com
+        full_name: James Woods
+        preferred_name: Jimmy
         active: true
         created_at: '1992-02-07T17:46:57.52Z'
         updated_at: '2022-02-07T17:00:00.52Z'
