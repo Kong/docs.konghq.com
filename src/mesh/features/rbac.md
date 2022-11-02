@@ -90,7 +90,7 @@ spec:
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
     when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-    - tagetRef: # a condition on targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+    - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
     - targetRef:
