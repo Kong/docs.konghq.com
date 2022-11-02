@@ -737,11 +737,11 @@ In order for this example to work you must either run the control plane with `KU
 1.  Create a backend-owner Kubernetes user and configure kubectl:
 
     ```sh
-    $ mkdir -p /tmp/k8s-certs
-    $ cd /tmp/k8s-certs
-    $ openssl genrsa -out backend-owner.key 2048 # generate client key
-    $ openssl req -new -key backend-owner.key -subj "/CN=backend-owner" -out backend-owner.csr # generate client certificate request
-    $ CSR=$(cat backend-owner.csr | base64 | tr -d "\n") && echo "apiVersion: certificates.k8s.io/v1
+    mkdir -p /tmp/k8s-certs
+    cd /tmp/k8s-certs
+    openssl genrsa -out backend-owner.key 2048 # generate client key
+    openssl req -new -key backend-owner.key -subj "/CN=backend-owner" -out backend-owner.csr # generate client certificate request
+    CSR=$(cat backend-owner.csr | base64 | tr -d "\n") && echo "apiVersion: certificates.k8s.io/v1
     kind: CertificateSigningRequest
     metadata:
       name: backend-owner
@@ -750,13 +750,13 @@ In order for this example to work you must either run the control plane with `KU
       signerName: kubernetes.io/kube-apiserver-client
       usages:
       - client auth" | kubectl apply -f -
-    $ kubectl certificate approve backend-owner
-    $ kubectl get csr backend-owner -o jsonpath='{.status.certificate}'| base64 -d > backend-owner.crt
-    $ kubectl config set-credentials backend-owner \
+    kubectl certificate approve backend-owner
+    kubectl get csr backend-owner -o jsonpath='{.status.certificate}'| base64 -d > backend-owner.crt
+    kubectl config set-credentials backend-owner \
     --client-key=/tmp/k8s-certs/backend-owner.key \
     --client-certificate=/tmp/k8s-certs/backend-owner.crt \
     --embed-certs=true
-    $ kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
+    kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
 1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
