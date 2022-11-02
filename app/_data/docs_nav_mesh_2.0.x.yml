@@ -8,13 +8,13 @@ items:
     absolute_url: true
     items:
       - text: Introduction to Kong Mesh
-        url: /introduction/what-is-kuma/
+        url: /introduction/what-is-kong-mesh/
         src: /.repos/kuma/app/docs/dev/introduction/what-is-kuma/
       - text: What is Service Mesh?
         url: /introduction/what-is-a-service-mesh/
         src: /.repos/kuma/app/docs/dev/introduction/what-is-a-service-mesh/
       - text: How Kong Mesh works
-        url: /introduction/how-kuma-works/
+        url: /introduction/how-kong-mesh-works/
         src: /.repos/kuma/app/docs/dev/introduction/how-kuma-works/
       - text: Deployments
         url: /introduction/deployments/
@@ -197,16 +197,16 @@ items:
         url: /policies/introduction/
         src: /.repos/kuma/app/docs/dev/policies/introduction/
       - text: General notes about Kong Mesh policies
-        url: /policies/general-notes-about-kuma-policies/
+        url: /policies/general-notes-about-kong-mesh-policies/
         src: /.repos/kuma/app/docs/dev/policies/general-notes-about-kuma-policies/
       - text: Applying Policies
         url: /policies/applying-policies/
         src: /.repos/kuma/app/docs/dev/policies/applying-policies/
       - text: How Kong Mesh chooses the right policy to apply
-        url: /policies/how-kuma-chooses-the-right-policy-to-apply/
+        url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply/
         src: /.repos/kuma/app/docs/dev/policies/how-kuma-chooses-the-right-policy-to-apply/
       - text: Protocol support in Kong Mesh
-        url: /policies/protocol-support-in-kuma/
+        url: /policies/protocol-support-in-kong-mesh/
         src: /.repos/kuma/app/docs/dev/policies/protocol-support-in-kuma/
       - text: Mesh
         url: /policies/mesh/
@@ -391,7 +391,7 @@ unlisted:
   - url: /generated/cmd/kuma-cp/kuma-cp_version/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kuma-cp/kuma-cp_version/
   - url: /generated/cmd/kuma-dp/kuma-dp_run/
-  # Kuma DP
+    # Kuma DP
     src: /.repos/kuma/app/docs/dev/generated/cmd/kuma-dp/kuma-dp_run/
   - url: /generated/cmd/kuma-dp/kuma-dp_version/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kuma-dp/kuma-dp_version/
