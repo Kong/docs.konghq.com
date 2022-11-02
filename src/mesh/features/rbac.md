@@ -931,7 +931,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
-    $ echo "type: AccessRoleBinding
+    echo "type: AccessRoleBinding
     name: default
     subjects:
     - type: Group
