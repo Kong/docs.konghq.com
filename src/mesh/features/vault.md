@@ -4,7 +4,7 @@ title: Kong Mesh - Vault Policy
 
 ## Vault CA Backend
 
-The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/policies/mutual-tls/)
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
@@ -197,7 +197,7 @@ You can authenticate with the `token`, with client certificates by providing `cl
 
 You can provide these values inline for testing purposes only, as a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a mesh-scoped 
-secret (see [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/) for details 
+secret (see [the {{site.mesh_product_name}} Secrets documentation](/mesh/{{page.kong_version}}/security/secrets/) for details 
 on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored 
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
@@ -292,7 +292,7 @@ mtls:
               iamServerIdHeader: example.com # Optional server ID header value
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](/mesh/{{page.kong_version}}/reference/http-api).
 
 {% endnavtab %}
 {% endnavtabs %}

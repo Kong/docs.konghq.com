@@ -71,7 +71,7 @@ Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
+deployment, but there are more advanced [deployment modes](/mesh/{{page.kong_version}}/introduction/deployments/)
 like _multi-zone_.
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
@@ -186,9 +186,5 @@ entity with the name `default`.
 
 ## 4. Quickstart
 
-The Kuma quickstart documentation
-is fully compatible with {{site.mesh_product_name}}, except that you are
-running {{site.mesh_product_name}} containers instead of Kuma containers.
-
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments](/mesh/{{page.kong_version}}/quickstart/kubernetes/).

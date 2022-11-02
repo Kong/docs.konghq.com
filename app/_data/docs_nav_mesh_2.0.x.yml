@@ -36,38 +36,30 @@ items:
   - title: Install
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
+      - text: Installation Options
+        url: /install/
       - text: Kubernetes
         url: /installation/kubernetes/
-        src: /.repos/kuma/app/docs/dev/installation/kubernetes/
       - text: Helm
         url: /installation/helm/
-        src: /.repos/kuma/app/docs/dev/installation/helm/
       - text: OpenShift
         url: /installation/openshift/
-        src: /.repos/kuma/app/docs/dev/installation/openshift/
       - text: Docker
         url: /installation/docker/
-        src: /.repos/kuma/app/docs/dev/installation/docker/
       - text: Amazon ECS
         url: /installation/ecs
       - text: Amazon Linux
         url: /installation/amazonlinux/
-        src: /.repos/kuma/app/docs/dev/installation/amazonlinux/
       - text: Debian
         url: /installation/redhat/
-        src: /.repos/kuma/app/docs/dev/installation/redhat/
       - text: CentOS
         url: /installation/centos/
-        src: /.repos/kuma/app/docs/dev/installation/centos/
       - text: Debian
         url: /installation/debian/
-        src: /.repos/kuma/app/docs/dev/installation/debian/
       - text: Ubuntu
         url: /installation/ubuntu/
-        src: /.repos/kuma/app/docs/dev/installation/ubuntu/
       - text: macOS
         url: /installation/macos/
-        src: /.repos/kuma/app/docs/dev/installation/macos/
       - text: Windows
         url: /installation/windows
   - title: Deploy
@@ -304,7 +296,7 @@ items:
       - text: Annotations and labels in Kubernetes mode
         url: /reference/kubernetes-annotations/
         src: /.repos/kuma/app/docs/dev/reference/kubernetes-annotations/
-      - text: Kuma data collection
+      - text: Data collection
         url: /reference/data-collection/
         src: /.repos/kuma/app/docs/dev/reference/data-collection/
       - text: Resources

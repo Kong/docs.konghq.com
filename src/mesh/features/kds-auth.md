@@ -4,7 +4,7 @@ title: Multi-zone authentication
 
 To add to the security of your deployments, Kong Mesh provides authentication of zone control planes to the global control plane.
 Authentication is based on the Zone Token which is also used to authenticate the zone proxy.
-See [zone proxy authentication](https://kuma.io/docs/dev/security/zoneproxy-auth/) to learn about token characteristics, revocation, rotation, and more.
+See [zone proxy authentication](/mesh/{{page.kong_version}}/security/zoneproxy-auth/) to learn about token characteristics, revocation, rotation, and more.
 {{site.mesh_product_name}} introduces additional `cp` scope. Only tokens with `cp` scope can be used to authenticate with the zone control plane.
 
 ## Set up tokens
@@ -17,7 +17,7 @@ To generate the tokens you need and configure your clusters:
 
 ### Generate token for each zone
 
-On the global control plane, [authenticate](https://kuma.io/docs/latest/security/certificates/#user-to-control-plane-communication) and run the following command:
+On the global control plane, [authenticate](/mesh/{{page.kong_version}}/security/certificates/#user-to-control-plane-communication) and run the following command:
 
 ```
 kumactl generate zone-token --zone=west --scope=cp --valid-for=720h > /tmp/token
@@ -45,7 +45,7 @@ $ kumactl install control-plane \
   --zone=<zone name> \
   --cp-token-path=/tmp/token \
   --ingress-enabled \
-  --kds-global-address grpcs://`<global-kds-address>` | kubectl apply -f - 
+  --kds-global-address grpcs://`<global-kds-address>` | kubectl apply -f -
 ```
 
 {% endnavtab %}
@@ -146,7 +146,7 @@ Verify the zone control plane is connected with authentication by looking at the
 
 ## Additional security
 
-By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.
+By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane](/mesh/{{page.kong_version}}/security/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.
 
 ## Legacy Control Plane Token
 

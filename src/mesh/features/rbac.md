@@ -451,7 +451,7 @@ spec:
   roles:
   - admin
 ```
-`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage Kuma resources -- for example, to remove data plane objects when a namespace is removed.
+`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage {{site.mesh_product_name}} resources -- for example, to remove data plane objects when a namespace is removed.
 {% endnavtab %}
 {% navtab Universal %}
 ```yaml

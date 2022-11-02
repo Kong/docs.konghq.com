@@ -136,8 +136,7 @@ hybrid Kubernetes/VMs:
      organization.</i>
 </center>
 <br>
-[Learn more](https://kuma.io/docs/latest/introduction/deployments/) about the
-standalone and multi-zone deployment modes in the Kuma documentation.
+Learn more about the [standalone and multi-zone deployment modes](/mesh/{{page.kong_version}}/introduction/deployments/).
 
 ## Support policy
 Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
