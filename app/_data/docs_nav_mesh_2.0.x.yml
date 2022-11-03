@@ -30,7 +30,7 @@ items:
         url: /mesh/changelog
         generate: false
         absolute_url: true
-  - title: Geting Started
+  - title: Getting Started
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     url: /gettingstarted
   - title: Install
@@ -186,8 +186,7 @@ items:
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
       - text: Introduction
-        url: /policies/introduction/
-        src: /.repos/kuma/app/docs/dev/policies/introduction/
+        url: /policies/
       - text: General notes about Kong Mesh policies
         url: /policies/general-notes-about-kong-mesh-policies/
         src: /.repos/kuma/app/docs/dev/policies/general-notes-about-kuma-policies/
