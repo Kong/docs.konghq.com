@@ -856,40 +856,44 @@ openid-connect
 * Hybrid mode: Fixed an issue with consumer groups, where the control plane wasn't sending the correct number of consumer entries to data planes.
 * Targets with a weight of `0` are no longer included in health checks, and checking their status via the `upstreams/<upstream>/health` endpoint results in the status `HEALTHCHECK_OFF`.
 Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting targets with `weight=0` as `HEALTHY`, and the health check was reporting the same targets as `UNDEFINED`.
-* Hybrid mode: Fixed an issue where sending a `PATCH` request to update a route after a control plane is restarted caused a 500 error response to be returned.
+* Hybrid mode: Fixed an issue where sending a `PATCH` request to update a route after restarting a control plane caused a 500 error response.
 
 #### Plugins
+
+* [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * Fixed an issue where the plugin couldn't read environment variables in the ECS environment, causing permission errors.
 
 * [Azure Functions](/hub/kong-inc/azure-functions/) (`azure-functions`)
   * Fixed an issue where calls made by this plugin would fail in the following situations:
     * The plugin was associated with a route that had no service.
     * The route's associated service had a `path` value.
 
-* [Route Transformer Advanced](/hub/kong-inc/route-transformer-advanced/) (`route-transformer-advanced`)
-  * Fixed an issue where URIs that included `%20` or a whitespace would return a `400 Bad Request`.
+* [Forward Proxy](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  * If the `https_proxy` configuration parameter is not set, it now defaults to `http_proxy` to avoid DNS errors.
+
+* [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced/) (`graphql-proxy-cache-advanced`) and [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
+  * Fixed the error `function cannot be called in access phase (only in: log)`, which was preventing the plugin from working consistently.
 
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
   * The plugin now returns a `500` error when using the `cluster` strategy in hybrid or DB-less modes instead of crashing.
-
-* [Request Transformer](/hub/kong-inc/request-transformer/) (`request-transformer`) and [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
-  * Fixed an issue where empty arrays were being converted to empty objects.
-  Empty arrays are now preserved.
 
 * [HTTP Log](/hub/kong-inc/http-log/) (`http-log`)
   * Fixed the `could not update kong admin` internal error caused by empty headers.
   This error occurred when using this plugin with the Kubernetes Ingress Controller.
 
-* [GraphQL Proxy Cache Advanced](/hub/kong-inc/graphql-proxy-cache-advanced/) (`graphql-proxy-cache-advanced`) and [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
-  * Fixed the error `function cannot be called in access phase (only in: log)`, which was preventing the plugin from working consistently.
-
-* [Forward Proxy](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
-  * If the `https_proxy` configuration parameter is not set, it now defaults to `http_proxy` to avoid DNS errors.
+* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * The characters `.` and `:` are now allowed in group attributes.
 
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed issues with OIDC role mapping where admins couldn't be added to more than one workspace, and permissions were not being updated.
 
-* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/)
-  * The characters `.` and `:` are now allowed in group attributes.
+* [Request Transformer](/hub/kong-inc/request-transformer/) (`request-transformer`) and [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
+  * Fixed an issue where empty arrays were being converted to empty objects.
+  Empty arrays are now preserved.
+
+* [Route Transformer Advanced](/hub/kong-inc/route-transformer-advanced/) (`route-transformer-advanced`)
+  * Fixed an issue where URIs that included `%20` or a whitespace would return a `400 Bad Request`.
+
 
 ## 2.8.1.4
 **Release Date** 2022/08/23
@@ -2108,6 +2112,8 @@ effect on the following plugins and fields:
 
 * Consumer groups are not supported in declarative configuration with
 decK. If you have consumer groups in your configuration, decK will ignore them.
+
+* If you are using SSL certificates with custom plugins, you may need to set certificate phase in `ngc.ctx`.
 
 ## 2.6.1.0
 **Release Date** 2022/04/07

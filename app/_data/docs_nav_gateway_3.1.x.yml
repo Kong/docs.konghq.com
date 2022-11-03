@@ -1,5 +1,5 @@
 product: gateway
-release: 3.0.x
+release: 3.1.x
 generate: true
 assume_generated: true
 items:
@@ -7,7 +7,7 @@ items:
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview of Kong Gateway
-        url: /gateway/3.0.x/
+        url: /gateway/3.1.x/
         absolute_url: true
       - text: Version Support Policy
         url: /support-policy
@@ -553,7 +553,7 @@ items:
       - text: Targets
         url: /admin-api/#target-object
       - text: Vaults
-        url: /admin-api/#vaults-object
+        url: /admin-api/#vaults-entity
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces
