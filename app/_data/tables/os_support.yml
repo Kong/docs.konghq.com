@@ -119,7 +119,7 @@
   status: deprecated
   deprecation_date: November 30, 2020
   eol_link: https://access.redhat.com/support/policy/updates/errata
-- name: RHEL 7
+- name: RHEL 7.9
   enterprise: true
   enterprise_versions:
     first_version: 1.5.x
