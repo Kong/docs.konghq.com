@@ -66,7 +66,7 @@ suggest `kong-mesh-system`.
     ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-    deployment, but there are more advanced [deployment modes](/mesh/{{page.kong_version}}/introduction/deployments/)
+    deployment, but there are more advanced [deployment modes][deployments]
     like _multi-zone_.
 
     You can see all possible parameters of the charts by running `helm show values kong-mesh/kong-mesh`.
@@ -180,4 +180,15 @@ entity with the name `default`.
 ## 4. Quickstart
 
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](/mesh/{{page.kong_version}}/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments][get-started-k8s].
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/latest/introduction/deployments/
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+{% endif_version %}

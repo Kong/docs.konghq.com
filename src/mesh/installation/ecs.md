@@ -35,7 +35,7 @@ join the cluster, the controller requests a new data plane token scoped to that 
 
 With Kong Mesh on ECS, each service enumerates
 other services it contacts in the mesh and
-[exposes them in `Dataplane` specification](/mesh/{{page.kong_version}}/reference/dpp-specification).
+[exposes them in `Dataplane` specification][dpp-spec].
 
 ## Deployment
 
@@ -108,7 +108,7 @@ Services are bootstrapped with a `Dataplane` specification.
 
 Transparent proxy is not supported on ECS, so the `Dataplane` resource for a
 service must enumerate all other mesh services this service contacts and include them
-[in the `Dataplane` specification as `outbounds`](/mesh/{{page.kong_version}}/reference/dpp-specification).
+[in the `Dataplane` specification as `outbounds`][dpp-spec].
 
 See the example repository to learn
 [how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L30-L46).
@@ -144,3 +144,12 @@ When a task starts, the following happens:
 1. The controller sees an empty secret and generates a new data plane token via the
    mesh API, saving the result as `token` in the secret.
 1. Finally, ECS is able to fetch the `token` value and starts the task successfully.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[dpp-spec]: https://kuma.io/docs/latest/generated/resources/proxy_dataplane/
+{% endif_version %}

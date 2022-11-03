@@ -121,7 +121,7 @@ Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](/mesh/{{page.kong_version}}/introduction/deployments/)
+deployment, but there are more advanced [deployment modes][deployments]
 like _multi-zone_.
 
 It may take a while for OpenShift to start the
@@ -258,4 +258,15 @@ One of the components in the demo requires root access, therefore it uses the
 `anyuid` instead of the `nonroot` permission.
 
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](/mesh/{{page.kong_version}}/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments][get-started-k8s].
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/latest/introduction/deployments/
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+{% endif_version %}
