@@ -155,7 +155,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       operationId: list-team-users
-      description: Returns a paginated list of users that belong to the team specified in the path paramater.
+      description: Returns a paginated list of users that belong to the team specified in the path parameter.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -171,11 +171,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
-        '409':
-          description: |-
-            Conflict
-
-            This error response is returned when trying to add a user to a team that doesn't exist.
       description: Add a user to a team.
       requestBody:
         $ref: '#/components/requestBodies/AddUserToTeam'
@@ -289,7 +284,7 @@ paths:
             type: string
           in: query
           name: 'filter[field]'
-          description: 'A field to filter on. Supported fields: role, entity_type'
+          description: 'A field to filter on. Supported fields: role_name, entity_type_name'
     post:
       summary: Assign Role
       operationId: teams-assign-role
@@ -364,7 +359,7 @@ paths:
             example: 'filter[active]=true'
           in: query
           name: 'filter[field]'
-          description: 'A field to filter on. Supported fields: email, full_name, preferred_name, active, created_at, updated_at'
+          description: 'A field to filter on. Supported fields: id, email, full_name, active'
   '/users/{userId}':
     parameters:
       - schema:
@@ -387,7 +382,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       operationId: get-user
-      description: Returns the user object for the user ID specified as a path paramater.
+      description: Returns the user object for the user ID specified as a path parameter.
     patch:
       summary: Update User
       operationId: update-user
@@ -432,7 +427,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       operationId: list-user-teams
-      description: Returns a paginated list of a teams that the belong to the user ID paramater.
+      description: Returns a paginated list of a teams that the belong to the user ID parameter.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -464,7 +459,7 @@ paths:
             type: string
           in: query
           name: 'filter[field]'
-          description: 'A field to filter on. Supported fields: role, entity_type'
+          description: 'A field to filter on. Supported fields: role_name, entity_type_name'
     post:
       summary: Assign Role
       operationId: users-assign-role
@@ -1514,29 +1509,29 @@ components:
             x-examples:
               US Example:
                 id: 11e342b4-cdc4-463c-b47c-78ff927e7514
-                role: viewer
+                role_name: Viewer
                 entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-                entity_type: runtime_groups
+                entity_type_name: Runtime Groups
                 entity_region: us
               All Regions Example:
                 id: 8f7fff49-de9d-4a77-8669-33216744ce2d
-                role: admin
+                role_name: Admin
                 entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-                entity_type: reports
+                entity_type_name: Reports
                 entity_region: '*'
             properties:
-              role:
+              role_name:
                 type: string
-                example: viewer
+                example: Viewer
                 description: The desired role.
               entity_id:
                 type: string
                 format: uuid
                 example: e67490ce-44dc-4cbd-b65e-b52c746fc26a
                 description: The ID of the entity.
-              entity_type:
+              entity_type_name:
                 type: string
-                example: runtime_groups
+                example: Runtime Groups
                 description: The type of entity.
               entity_region:
                 type: string
@@ -1616,7 +1611,7 @@ components:
       properties:
         page:
           type: object
-          description: Contains pagination query paramaters and the total number of objects that returned.
+          description: Contains pagination query parameters and the total number of objects returned.
           properties:
             number:
               type: integer
@@ -1763,15 +1758,15 @@ components:
       x-examples:
         US Example:
           id: 54cc6168-ebb1-4300-8168-d62a0dd08fc8
-          role: viewer
+          role_name: Viewer
           entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-          entity_type: runtime_groups
+          entity_type_name: Runtime Groups
           entity_region: us
         All Regions Example:
           id: 745bc744-7a3d-46c0-a9ea-04302e44fb44
-          role: admin
+          role_name: Admin
           entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-          entity_type: services
+          entity_type_name: Services
           entity_region: '*'
       properties:
         id:
@@ -1779,19 +1774,19 @@ components:
           format: uuid
           example: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
           description: The ID of the role assignment.
-        role:
+        role_name:
           type: string
-          example: viewer
+          example: Viewer
           description: Name of the role being assigned.
         entity_id:
           type: string
           format: uuid
           example: 817d0422-45c9-4d88-8d64-45aef05c1ae7
           description: A RBAC entity ID.
-        entity_type:
+        entity_type_name:
           type: string
-          example: runtime_groups
-          description: Entity type the role is being assigned to.
+          example: Runtime Groups
+          description: Name of the entity type the role is being assigned to.
         entity_region:
           type: string
           enum:
@@ -1902,21 +1897,21 @@ components:
             total: 100
         data:
           - id: b02e23c5-8ee4-4e5a-99f4-43329923adcd
-            role: viewer
+            role_name: Viewer
             entity_id: 437c7192-fea0-4f35-8478-c8d57783f8c1
-            entity_type: runtime_groups
+            entity_type_name: Runtime Groups
             entity_region: eu
           - id: 869d9402-f117-4f9a-840f-69acaf70a81a
-            role: admin
+            role_name: Admin
             entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-            entity_type: services
+            entity_type_name: Services
             entity_region: '*'
     Assigned-Role-Example:
       value:
         id: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
-        role: viewer
+        role_name: Viewer
         entity_id: 817d0422-45c9-4d88-8d64-45aef05c1ae7
-        entity_type: runtime_groups
+        entity_type_name: Runtime Groups
         entity_region: eu
     group-collection-example:
       value:
@@ -1978,15 +1973,15 @@ components:
         updated_at: '2022-02-07T17:00:00.52Z'
     Assign-Roles-US:
       value:
-        role: viewer
+        role_name: Viewer
         entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-        entity_type: runtime_groups
+        entity_type_name: runtime_groups
         entity_region: us
     Assign-Roles-Global:
       value:
-        role: admin
+        role_name: Admin
         entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-        entity_type: services
+        entity_type_name: services
         entity_region: '*'
     CreateTeamExample:
       value:
