@@ -2,7 +2,7 @@
 title: Kong Gateway Configuration in Konnect
 ---
 
-You can manage any {{site.base_gateway}} services, routes, consumer-scoped
+You can manage any {{site.base_gateway}} services, routes, certificates, consumer-scoped
 configuration, and global configuration from within a runtime group.
 
 A **global** object is a set of configurations that apply to, or can be used
@@ -96,8 +96,7 @@ A certificate object represents a public certificate and can be paired with a
 corresponding private key. Certificates handle SSL/TLS termination for encrypted
 requests, and can be used as a trusted CA store when validating the peer
 certificate of a client or service.
-
-You can manage runtime instance certificates from this page, including the creation, renewal, and removal of certificates, as well as uploading certificates for up to  16 certificates per runtime group. 
+Data plane certificates can be managed from the **Data plane certificates** dashboard that is available as a **Runtime group action**. Here you can manage data plane certificates, including the creation, renewal, and removal of certificates, as well as uploading up to 16 certificates per runtime group. 
 
 See the [certificate object API reference](/gateway/latest/admin-api/#certificate-object)
 for all configuration options.
