@@ -53,7 +53,7 @@ Routing, Ingress, Failover
 
   <a href="/mesh/{{page.kong_version}}/explore/gateway/" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/policies/icon-kong-logo.png" alt="" />
-    <div class="install-text">Kong Gateway</div>
+    <div class="install-text">{{site.base_gateway}}</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/policies/external-services/" class="docs-grid-install-block no-description">
