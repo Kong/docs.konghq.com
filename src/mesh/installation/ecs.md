@@ -147,9 +147,9 @@ When a task starts, the following happens:
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[dpp-spec]: /mesh/{{page.kong_version}}/reference/dpp-specification
+[dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[dpp-spec]: https://kuma.io/docs/latest/reference/dpp-specification
+[dpp-spec]: https://kuma.io/docs/latest/generated/resources/proxy_dataplane/
 {% endif_version %}

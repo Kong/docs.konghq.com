@@ -141,14 +141,14 @@ If you are entirely using Docker, you may also be interested in checking out the
 <!-- links -->
 {% if_version gte:2.0.x %}
 [deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
-[backends]: /mesh/{{page.kong_version}}/explore/backends/
+[backends]: /mesh/{{page.kong_version}}/documentation/configuration/
 [get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
 [get-started-universal]: /mesh/{{page.kong_version}}/quickstart/universal/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
 [deployments]: https://kuma.io/docs/latest/introduction/deployments/
-[backends]: https://kuma.io/docs/latest/explore/backends/
+[backends]: https://kuma.io/docs/latest/documentation/configuration/
 [get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
 [get-started-universal]: https://kuma.io/docs/latest/quickstart/universal/
 {% endif_version %}

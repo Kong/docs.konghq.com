@@ -79,10 +79,10 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 <!-- links -->
 {% if_version gte:2.0.x %}
 [deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
-[backends]: /mesh/{{page.kong_version}}/explore/backends/
+[backends]: /mesh/{{page.kong_version}}/documentation/configuration/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
 [deployments]: https://kuma.io/docs/latest/introduction/deployments/
-[backends]: https://kuma.io/docs/latest/explore/backends/
+[backends]: https://kuma.io/docs/latest/documentation/configuration/
 {% endif_version %}

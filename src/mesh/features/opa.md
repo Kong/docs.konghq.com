@@ -11,7 +11,7 @@ The agent is included in the data plane proxy sidecar, instead of the more commo
 When `OPAPolicy` is applied, the control plane configures:
 
 - the embedded policy agent, with the specified policy
-- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/ext_authz/v2/ext_authz.proto) that points to the embedded policy agent
+- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_authz/v3/ext_authz.proto) that points to the embedded policy agent
 
 ## Usage
 
@@ -636,7 +636,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[protocols]: /mesh/{{page.kong_version}}/policies/protocol-support-in-kuma/
+[protocols]: /mesh/{{page.kong_version}}/policies/protocol-support-in-kong-mesh/
 [secrets]: /mesh/{{page.kong_version}}/security/secrets/
 {% endif_version %}
 
