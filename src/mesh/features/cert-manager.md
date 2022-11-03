@@ -4,7 +4,7 @@ title: Kong Mesh - Kubernetes cert-manager CA Policy
 
 ## cert-manager CA Backend
 
-The default [mTLS policy in {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}][mtls-policy]
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
@@ -110,3 +110,12 @@ Universal and Kubernetes cannot be used together in a multi-zone environment whi
 You must also ensure the global control plan can access cert-manager.
 When a new `certmanager`backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate.
 In a multi-zone environment, validation is performed on the global control plane.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[mtls-policy]: /mesh/{{page.kong_version}}/policies/mutual-tls/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[mtls-policy]: https://kuma.io/docs/latest/policies/mutual-tls/
+{% endif_version %}

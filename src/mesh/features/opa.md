@@ -11,11 +11,11 @@ The agent is included in the data plane proxy sidecar, instead of the more commo
 When `OPAPolicy` is applied, the control plane configures:
 
 - the embedded policy agent, with the specified policy
-- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/ext_authz/v2/ext_authz.proto) that points to the embedded policy agent
+- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_authz/v3/ext_authz.proto) that points to the embedded policy agent
 
 ## Usage
 
-To apply a policy with OPA: 
+To apply a policy with OPA:
 
 - Specify the group of data plane proxies to apply the policy to with the `selectors` property.
 - Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
@@ -57,7 +57,7 @@ type: Dataplane
 mesh: default
 name: web
 networking:
-  address: 192.168.0.1 
+  address: 192.168.0.1
   inbound:
   - port: 80
     servicePort: 8080
@@ -69,7 +69,7 @@ networking:
 {% endnavtab %}
 {% endnavtabs %}
 
-For more information, see [the {{site.mesh_product_name}} documentation about protocol support](/mesh/{{page.kong_version}}/policies/protocol-support-in-kuma/).
+For more information, see [the {{site.mesh_product_name}} documentation about protocol support][protocols].
 
 ### Inline
 
@@ -140,28 +140,28 @@ conf:
   policies: # optional
     - inlineString: | # one of: inlineString, secret
         package envoy.authz
-  
+
         import input.attributes.request.http as http_request
-  
+
         default allow = false
-  
+
         token = {"valid": valid, "payload": payload} {
             [_, encoded] := split(http_request.headers.authorization, " ")
             [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
         }
-  
+
         allow {
             is_token_valid
             action_allowed
         }
-  
+
         is_token_valid {
           token.valid
           now := time.now_ns() / 1000000000
           token.payload.nbf <= now
           now < token.payload.exp
         }
-  
+
         action_allowed {
           http_request.method == "GET"
           token.payload.role == "admin"
@@ -173,7 +173,7 @@ conf:
 
 ### With Secrets
 
-Encoding the policy in a [Secret](/mesh/{{page.kong_version}}/security/secrets/) provides some security for policies that contain sensitive data.
+Encoding the policy in a [Secret][secrets] provides some security for policies that contain sensitive data.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -259,7 +259,7 @@ The following environment variables are available:
 
 You can customize the agent in either of the following ways:
 
-- Override variables in the data plane proxy config: 
+- Override variables in the data plane proxy config:
 {% navtabs %}
 {% navtab kumactl %}
 
@@ -311,12 +311,12 @@ The `run` command on the data plane proxy accepts the following equivalent param
 
 
 ```
---opa-addr 
---opa-config-path 
---opa-diagnostic-addr 
+--opa-addr
+--opa-config-path
+--opa-diagnostic-addr
 --opa-enabled                    
---opa-ext-authz-addr 
---opa-set strings 
+--opa-ext-authz-addr
+--opa-set strings
 ```
 
 {% endnavtab %}
@@ -428,7 +428,7 @@ spec:
             credentials:
               bearer:
                 token: "bGFza2RqZmxha3NkamZsa2Fqc2Rsa2ZqYWtsc2RqZmtramRmYWxkc2tm"
-        
+
         discovery:
           name: example
           resource: /configuration/example/discovery
@@ -489,7 +489,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     > Host: backend:3001
     > User-Agent: curl/7.67.0
     > Accept: */*
-    > 
+    >
     * Mark bundle as not supporting multiuse
     < HTTP/1.1 200 OK
     < x-powered-by: Express
@@ -507,7 +507,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     < date: Tue, 16 Mar 2021 15:33:18 GMT
     < x-envoy-upstream-service-time: 1521
     < server: envoy
-    < 
+    <
     * Connection #0 to host backend left intact
     Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.
     ```
@@ -515,7 +515,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 1.  Apply an OPA Policy that requires a valid JWT token:
 
     ```
-    echo " 
+    echo "
     apiVersion: kuma.io/v1alpha1
     kind: OPAPolicy
     mesh: default
@@ -609,7 +609,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     > Host: backend:3001
     > User-Agent: curl/7.67.0
     > Accept: */*
-    > 
+    >
     * Mark bundle as not supporting multiuse
     < HTTP/1.1 200 OK
     < x-powered-by: Express
@@ -627,9 +627,20 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     < date: Tue, 16 Mar 2021 17:26:00 GMT
     < x-envoy-upstream-service-time: 261
     < server: envoy
-    < 
+    <
     * Connection #0 to host backend left intact
     Hello World! Marketplace with sales and reviews made with <3 by the OCTO team at Kong Inc.
     ```
 
     The request is valid again because the token is signed with the `secret` private key, its payload includes the admin role, and it is not expired.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[protocols]: /mesh/{{page.kong_version}}/policies/protocol-support-in-kong-mesh/
+[secrets]: /mesh/{{page.kong_version}}/security/secrets/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[protocols]: https://kuma.io/docs/latest/policies/protocol-support-in-kuma/
+[secrets]: https://kuma.io/docs/latest/security/secrets/
+{% endif_version %}
