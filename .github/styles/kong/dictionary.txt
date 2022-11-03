@@ -121,6 +121,7 @@ elbs
 enum
 env
 etcd
+failover
 favicon
 filepath
 filetype
