@@ -54,10 +54,10 @@ license file on the host that will be mounted as `/license.json` into the
 container.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](/mesh/{{page.kong_version}}/introduction/deployments/)
+deployment, but there are more advanced [deployment modes][deployments]
 like _multi-zone_.
 
-This runs {{site.mesh_product_name}} with a [memory backend](/mesh/{{page.kong_version}}/explore/backends/),
+This runs {{site.mesh_product_name}} with a [memory backend][backends],
 but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-cp.conf` file.
 
 ## 3. Verify the Installation
@@ -134,6 +134,21 @@ entity with the name `default`.
 ## 4. Quickstart
 
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Universal deployments](/mesh/{{page.kong_version}}/quickstart/universal/).
+[quickstart guide for Universal deployments][get-started-universal].
 If you are entirely using Docker, you may also be interested in checking out the
-[Kubernetes quickstart](/mesh/{{page.kong_version}}/quickstart/kubernetes/) as well.
+[Kubernetes quickstart][get-started-k8s] as well.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[backends]: /mesh/{{page.kong_version}}/explore/backends/
+[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+[get-started-universal]: /mesh/{{page.kong_version}}/quickstart/universal/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/latest/introduction/deployments/
+[backends]: https://kuma.io/docs/latest/explore/backends/
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+[get-started-universal]: https://kuma.io/docs/latest/quickstart/universal/
+{% endif_version %}

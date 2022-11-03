@@ -4,7 +4,7 @@ title: ACM Private CA Policy
 
 ## Amazon Certificate Manager Private CA Backend
 
-The default [mTLS policy in {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}][mtls-policy]
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
@@ -68,7 +68,7 @@ AWS credentials and CA Certificate may be supplied inline, as a path to a file o
 same host as `kuma-cp`, or contained in a `secret`. Inline specification of credentials should
 be used for testing purposes only.
 When using a `secret`, it should be a mesh-scoped
-secret (see [the {{site.mesh_product_name}} Secrets documentation](/mesh/{{page.kong_version}}/security/secrets/) for details
+secret (see [the {{site.mesh_product_name}} Secrets documentation][secrets] for details
 on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
@@ -133,7 +133,7 @@ mtls:
             file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](/mesh/{{page.kong_version}}/reference/http-api).
+Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API][http-api].
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -143,3 +143,16 @@ Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](/me
 In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane can communicate with ACM Private CA. This is because certificates for data plane proxies are requested from ACM Private CA by the zone control plane, not the global control plane.
 
 You must also make sure the global control plane can communicate with ACM Private CA. When a new `acmpca` backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[mtls-policy]: /mesh/{{page.kong_version}}/policies/mutual-tls/
+[secrets]: /mesh/{{page.kong_version}}/security/secrets/
+[http-api]: /mesh/{{page.kong_version}}/reference/http-api/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[mtls-policy]: https://kuma.io/docs/latest/policies/mutual-tls/
+[secrets]: https://kuma.io/docs/latest/security/secrets/
+[http-api]: https://kuma.io/docs/latest/reference/http-api
+{% endif_version %}
