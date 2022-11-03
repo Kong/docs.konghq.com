@@ -4,12 +4,10 @@ generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
-    url: /mesh/2.0.x/
-    absolute_url: true
     items:
       - text: Introduction to Kong Mesh
-        url: /introduction/what-is-kong-mesh/
-        src: /.repos/kuma/app/docs/dev/introduction/what-is-kuma/
+        url: /mesh/2.0.x/
+        absolute_url: true
       - text: What is Service Mesh?
         url: /introduction/what-is-a-service-mesh/
         src: /.repos/kuma/app/docs/dev/introduction/what-is-a-service-mesh/
@@ -19,9 +17,6 @@ items:
       - text: Deployments
         url: /introduction/deployments/
         src: /.repos/kuma/app/docs/dev/introduction/deployments/
-      - text: Enterprise
-        url: /introduction/enterprise/
-        src: /.repos/kuma/app/docs/dev/introduction/enterprise/
       - text: Version support policy
         url: /support-policy/
       - text: Stability
@@ -50,7 +45,7 @@ items:
         url: /installation/ecs
       - text: Amazon Linux
         url: /installation/amazonlinux/
-      - text: Debian
+      - text: Red Hat
         url: /installation/redhat/
       - text: CentOS
         url: /installation/centos/
