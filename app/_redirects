@@ -613,6 +613,8 @@
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
 /mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
+/mesh/:version/policies/introduction/  /mesh/:version/policies/
+/mesh/latest/policies/introduction/    /mesh/latest/policies/
 
 
 # ABOUT
