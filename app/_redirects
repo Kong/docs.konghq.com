@@ -613,6 +613,7 @@
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
 /mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
+/mesh/latest/security/zone-ingress-auth/    /mesh/latest/security/zoneproxy-auth/
 
 
 # ABOUT
