@@ -27,8 +27,8 @@ Download and install {{site.mesh_product_name}} from the
 After you install, follow the getting started guides to get
 {{site.mesh_product_name}} up and running:
 
-* [Getting started with Kubernetes](/mesh/{{page.kong_version}}/quickstart/kubernetes/){:target="_blank"}
-* [Getting started with Universal](/mesh/{{page.kong_version}}/quickstart/universal/){:target="_blank"}
+* [Getting started with Kubernetes][get-started-k8s]
+* [Getting started with Universal][get-started-universal]
 
 ## 3. Learn more
 
@@ -36,6 +36,17 @@ Learn about enterprise features:
   * [Support for HashiCorp Vault CA](/mesh/{{page.kong_version}}/features/vault)
   * [Support for Amazon Certificate Manager Private CA](/mesh/{{page.kong_version}}/features/acmpca)
   * [Support for Kubernetes cert-manager CA](/mesh/{{page.kong_version}}/features/cert-manager)
+ 
+<!-- links -->
+{% if_version gte:2.0.x %}
+[get-started-k8s]: (/mesh/{{page.kong_version}}/quickstart/kubernetes/)
+[get-started-universal]: (/mesh/{{page.kong_version}}/quickstart/universal/)
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+[get-started-universal]: https://kuma.io/docs/latest/quickstart/universal/
+{% endif_version %}
   * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa)
   * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth)
   * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support)
