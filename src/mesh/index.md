@@ -138,6 +138,13 @@ hybrid Kubernetes/VMs:
 <br>
 Learn more about the [standalone and multi-zone deployment modes][deployments].
 
+Example of a multi-zone deployment for multiple Kubernetes clusters, or a
+hybrid Kubernetes/VM cluster:
+
+<center>
+  <img src="/assets/images/diagrams/gslides/kuma_multizone.svg" alt="Kuma service mesh multi zone deployment" style="padding-top: 20px; padding-bottom: 10px;">
+</center>
+
 ## Support policy
 Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
@@ -147,7 +154,7 @@ For the latest version support information for
 
 ## Contribute
 
-You can contribute to the development of {{site.mesh_product_name}} by contributing to [Kuma](https://kuma.io/). 
+You can contribute to the development of {{site.mesh_product_name}} by contributing to [Kuma](https://kuma.io/).
 For more information, see the [contribution guide](https://kuma.io/docs/latest/contribute/introduction/#community).
 
 <!-- links -->

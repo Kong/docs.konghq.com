@@ -4,7 +4,7 @@ title: Multi-zone authentication
 
 To add to the security of your deployments, Kong Mesh provides authentication of zone control planes to the global control plane.
 Authentication is based on the Zone Token which is also used to authenticate the zone proxy.
-See [zone proxy authentication][zoneproxy] to learn about token characteristics, revocation, rotation, and more.
+See [zone proxy authentication][zone-proxy] to learn about token characteristics, revocation, rotation, and more.
 {{site.mesh_product_name}} introduces additional `cp` scope. Only tokens with `cp` scope can be used to authenticate with the zone control plane.
 
 ## Set up tokens

@@ -615,6 +615,9 @@
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
 /mesh/latest/policies/introduction/    /mesh/latest/policies/
+/mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
+/mesh/:version/introduction/what-is-kong-mesh   /mesh/:version/
+/install/:version/  /mesh/:version/install/
 
 
 # ABOUT

@@ -96,7 +96,7 @@ spec:
         name: backend
     - targetRef:
         kind: MeshSubset
-        tags: 
+        tags:
         - name: k8s.kuma.io/namespace
           value: kuma-demo
 ```
@@ -116,7 +116,7 @@ rules:
         name: backend
   - targetRef:
       kind: MeshSubset
-      tags: 
+      tags:
       - name: k8s.kuma.io/namespace
         value: kuma-demo
 ```
@@ -1008,7 +1008,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 {% endnavtab %}
 {% endnavtabs %}
 {% endnavtab %}
-{% endnavtabs %}óļ
+{% endnavtabs %}
 
 ## Multi-zone
 
