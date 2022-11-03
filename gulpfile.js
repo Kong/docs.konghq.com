@@ -40,6 +40,7 @@ var sources = {
     paths.assets + "javascripts/copy-code-snippet-support.js"
   ],
   images: paths.assets + "images/**/*",
+  manifests: paths.assets + "manifests/**/*",
   fonts: [
     paths.modules + "font-awesome/fonts/**/*.*",
     paths.assets + "fonts/*.*",
@@ -107,6 +108,14 @@ function images() {
     .src(sources.images)
     .pipe($.plumber())
     .pipe(gulp.dest(paths.dist + "assets/images"))
+    .pipe($.if(!dev, $.size()));
+}
+
+function manifests() {
+  return gulp
+    .src(sources.manifests)
+    .pipe($.plumber())
+    .pipe(gulp.dest(paths.dist + "assets"))
     .pipe($.if(!dev, $.size()));
 }
 
@@ -396,6 +405,7 @@ gulp.task("js_min", js);
 gulp.task("css", css);
 gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
+gulp.task("manifests", gulp.series(set_dev, manifests));
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
 
@@ -418,7 +428,7 @@ function build_site(steps, append) {
   // These are the steps that always run for every build
   // If set_dev is called, some of these methods behave differently
   steps = steps.concat([
-    gulp.parallel(js, images, fonts, css),
+    gulp.parallel(js, images, manifests, fonts, css),
     jekyll,
     styles,
   ]);
