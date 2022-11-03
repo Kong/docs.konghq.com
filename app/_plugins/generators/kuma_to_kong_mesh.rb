@@ -16,7 +16,7 @@ module KumaToKongMesh
         page.content = page.content.gsub('kong-mesh.io', 'kuma.io')
 
         # Replace the base url from Kuma
-        page.content = page.content.gsub(%r{/docs/{{ page.version }}}, '/mesh/{{ page.kong_version }}')
+        page.content = page.content.gsub(%r{/docs/{{\s*page.version\s*}}}, '/mesh/{{ page.kong_version }}')
       end
     end
   end
