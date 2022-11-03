@@ -5,8 +5,7 @@ info:
   description: The management API for Kong Konnect Identity resources.
   contact:
     name: Kong
-    email: konnect-noreply@konghq.com
-    url: 'https://cloud.konghq.com'
+    url: 'https://konghq.com'
 servers:
   - url: 'https://global.api.konghq.com/v2'
     description: Global Base URL
