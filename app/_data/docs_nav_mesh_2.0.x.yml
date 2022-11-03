@@ -295,7 +295,7 @@ items:
       - text: Annotations and labels in Kubernetes mode
         url: /reference/kubernetes-annotations/
         src: /.repos/kuma/app/docs/dev/reference/kubernetes-annotations/
-      - text: Data collection
+      - text: Kong Mesh data collection
         url: /reference/data-collection/
         src: /.repos/kuma/app/docs/dev/reference/data-collection/
       - text: Resources
@@ -517,6 +517,8 @@ unlisted:
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_virtual-outbound/
   - url: /generated/cmd/kumactl/kumactl_get_virtual-outbounds/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_virtual-outbounds/
+  - url: /generated/cmd/kumactl/kumactl_get_zone/
+    src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zone/ 
   - url: /generated/cmd/kumactl/kumactl_get_zone-ingress/
     src: /.repos/kuma/app/docs/dev/generated/cmd/kumactl/kumactl_get_zone-ingress/
   - url: /generated/cmd/kumactl/kumactl_get_zone-ingresses/
