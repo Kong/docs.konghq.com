@@ -614,7 +614,6 @@
 /mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
 
-
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
 /about/faq/*               https://konghq.com/faqs/:splat

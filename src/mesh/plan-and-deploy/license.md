@@ -30,7 +30,7 @@ A license file with a valid signature typically looks like the following example
 ```
 
 When installing Kong Mesh, the license file can be passed to `kuma-cp` with the 
-[following instructions](#Configure-the-license). 
+[following instructions](#configure-the-license). 
 
 If running Kong Mesh in a multi-zone deployment, the file must be passed to the global `kuma-cp`.
 In this mode, Kong Mesh automatically synchronizes the license to the remote 
