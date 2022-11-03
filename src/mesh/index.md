@@ -144,3 +144,8 @@ model for its products.
 
 For the latest version support information for
 {{site.mesh_product_name}}, see our [version support policy](/mesh/latest/support-policy).
+
+
+## Contribute
+
+You can contribute to the development of {{site.mesh_product_name}} by contributing to [Kuma](https://kuma.io/). For more information, see the [contribution guide](https://kuma.io/docs/latest/contribute/introduction/#community).
