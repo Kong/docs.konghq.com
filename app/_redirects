@@ -615,7 +615,7 @@
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
 /mesh/latest/policies/introduction/    /mesh/latest/policies/
-/mesh/:version/documentation/introduction/  /mesh/:version//introduction/what-is-kong-mesh/
+/mesh/:version/documentation/introduction/  /mesh/:version/
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
