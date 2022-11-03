@@ -30,7 +30,7 @@ items:
         url: /mesh/changelog
         generate: false
         absolute_url: true
-  - title: Geting Started
+  - title: Getting Started
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     url: /gettingstarted
   - title: Install
