@@ -616,7 +616,6 @@
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
 /mesh/latest/policies/introduction/    /mesh/latest/policies/
 
-
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
 /about/faq/*               https://konghq.com/faqs/:splat
