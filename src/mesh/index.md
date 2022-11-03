@@ -148,4 +148,4 @@ For the latest version support information for
 
 ## Contribute
 
-You can contribute to the development of {{site.mesh_product_name}} by contributing to [Kuma](https://kuma.io/). For more information see the [contribution guide](https://kuma.io/docs/1.8.x/contribute/introduction/#community).
+You can contribute to the development of {{site.mesh_product_name}} by contributing to [Kuma](https://kuma.io/). For more information, see the [contribution guide](https://kuma.io/docs/latest/contribute/introduction/#community).
