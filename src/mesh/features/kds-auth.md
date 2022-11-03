@@ -152,15 +152,18 @@ By default, a connection from the zone control plane to the global control plane
 
 You can still authenticate a control plane using the separate [Control Plane Token](/mesh/{{page.kong_version}}/features/kds-auth), but it is deprecated and will be removed in the future.
 
+<!-- vale off -->
 <!-- links -->
 {% if_version gte:2.0.x %}
-[zoneproxy]: /mesh/{{page.kong_version}}/security/zoneproxy-auth/
+[zone-proxy]: /mesh/{{page.kong_version}}/security/zoneproxy-auth/
 [auth]: /mesh/{{page.kong_version}}/security/certificates/#user-to-control-plane-communication
 [certs]: /mesh/{{page.kong_version}}/security/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[zoneproxy]: https://kuma.io/docs/dev/security/zoneproxy-auth/
+[zone-proxy]: https://kuma.io/docs/dev/security/zoneproxy-auth/
 [auth]: https://kuma.io/docs/latest/security/certificates/#user-to-control-plane-communication
 [certs]: https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
+
+<!-- vale on -->
