@@ -425,6 +425,14 @@ function build_site(steps, append) {
   steps = steps || [];
   append = append || [];
 
+  if (process.env.JEKYLL_ENV == "preview") {
+    var linksWebOverride = `
+links:
+  web: ${process.env.DEPLOY_PRIME_URL}
+`;
+    fs.appendFileSync("./jekyll.yml", linksWebOverride);
+  }
+
   // These are the steps that always run for every build
   // If set_dev is called, some of these methods behave differently
   steps = steps.concat([
