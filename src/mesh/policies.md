@@ -1,5 +1,6 @@
 ---
 title: Kong Mesh Policies
+disable_image_expand: true
 ---
 
 Bundled policies for your service traffic and network configuration.
