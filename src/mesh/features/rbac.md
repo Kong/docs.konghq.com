@@ -75,7 +75,7 @@ rules:
 {% endnavtabs %}
 {% endnavtab %}
 {% navtab `targetRef` selectors %}
-For policies using `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
+For policies using the `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -86,8 +86,8 @@ metadata:
   name: role-1
 spec:
   rules:
-  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If empty, then access is granted to all types.
-    names: ["res-1"] # List of allowed type names that are granted access. If empty, then access is granted to resources regardless of the name.
+  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+    names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
     when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
@@ -106,8 +106,8 @@ spec:
 type: AccessRole
 name: role-1
 rules:
-- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If empty, then access is granted to all types.
-  names: ["res-1"] # List of allowed type names that are granted access. If empty, then access is granted to resources regardless of the name.
+- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+  names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
@@ -280,7 +280,7 @@ This way a service owners can:
 * Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
 
 {:.note}
-> **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if a user only has access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Likewise, when a user only has access to `targetRef` kind `MeshService`, they won't be able to update the policy to use a different `targetRef` kind.
+> **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if a user only has access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Likewise, when a user only has access to the `targetRef` kind `MeshService`, they won't be able to update the policy to use a different `targetRef` kind.
 
 ### Observability operator
 
