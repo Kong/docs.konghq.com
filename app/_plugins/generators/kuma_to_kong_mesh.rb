@@ -12,7 +12,7 @@ module KumaToKongMesh
 
         # Replace kuma with kong-mesh in links
         # Links can end with a " (html) or ) (markdown)
-        page.content = page.content.gsub(%r{([("]/.+*(?=kuma))kuma(?!(?:cp|dp|ctl))([^\s]*)([)"])}, '\1kong-mesh\2\3')
+        page.content = page.content.gsub(%r{([("]/.+*)kuma(?!(?:cp|dp|ctl))([^\s]*)([)"])}, '\1kong-mesh\2\3')
         page.content = page.content.gsub('kong-mesh.io', 'kuma.io')
 
         # Replace the base url from Kuma
