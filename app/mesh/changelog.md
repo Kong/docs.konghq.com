@@ -3,6 +3,18 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 2.0.0
+
+### Upgrading
+
+The Zone Token that was previously used for authenticating Zone Egress can now be used to authenticate the zone control plane.
+If you use zone control plane authentication, regenerate token for zone control plane using `kumactl generate zone-token --scope=cp --zone=<zone>`.
+For now, you can still use the old Control Plane Token and Zone Token with scope `cp`.
+However, Control Plane Token is now deprecated and will be removed in the future.
+
+### Breaking changes and deprecations
+Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
+
 ## 1.9.0
 > Release on **2022/08/23**
 

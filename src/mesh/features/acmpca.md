@@ -1,10 +1,10 @@
 ---
-title: Kong Mesh - ACM Private CA Policy
+title: ACM Private CA Policy
 ---
 
 ## Amazon Certificate Manager Private CA Backend
 
-The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}][mtls-policy]
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
@@ -17,12 +17,12 @@ plane certificates.
 * [`vault`](/mesh/{{page.kong_version}}/features/vault): {{site.mesh_product_name}} generates data plane certificates
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
-
 * `acmpca`: {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
-
+{% if_version gte:1.8.x %}
 * [`certmanager`](/mesh/{{page.kong_version}}/features/cert-manager): {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
+{% endif_version %}
 
 ## ACM Private CA mode
 
@@ -67,9 +67,8 @@ AWS credentials may also be supplied as secrets stored by {{site.mesh_product_na
 AWS credentials and CA Certificate may be supplied inline, as a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. Inline specification of credentials should
 be used for testing purposes only.
-When using a `secret`, it should be a mesh-scoped 
-secret (see [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/) for details 
-on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored 
+When using a `secret`, it should be a [mesh-scoped secret][secrets].
+On Kubernetes, this mesh-scoped secret should be stored
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
 Here's an example of a configuration with a `acmpca`-backed CA:
@@ -104,8 +103,6 @@ spec:
                 file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kubectl apply -f [..]`.
-
 {% endnavtab %}
 {% navtab Universal %}
 
@@ -133,13 +130,28 @@ mtls:
             file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
-
 {% endnavtab %}
 {% endnavtabs %}
+
+Apply the configuration with `kumactl apply -f [..]`.
+
+If you're running in Universal mode, you can also use the [HTTP API][http-api] to apply configuration.
 
 ## multi-zone and ACM Private CA
 
 In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane can communicate with ACM Private CA. This is because certificates for data plane proxies are requested from ACM Private CA by the zone control plane, not the global control plane.
 
 You must also make sure the global control plane can communicate with ACM Private CA. When a new `acmpca` backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[mtls-policy]: /mesh/{{page.kong_version}}/policies/mutual-tls/
+[secrets]: /mesh/{{page.kong_version}}/security/secrets/
+[http-api]: /mesh/{{page.kong_version}}/reference/http-api/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[mtls-policy]: https://kuma.io/docs/latest/policies/mutual-tls/
+[secrets]: https://kuma.io/docs/latest/security/secrets/
+[http-api]: https://kuma.io/docs/latest/reference/http-api
+{% endif_version %}

@@ -52,11 +52,11 @@ suggest `kong-mesh-system`.
 3. Deploy the {{site.mesh_product_name}} Helm chart.
 
    By default, the license option is disabled, so you need to enable it for the license to take effect.
-   The easiest option is to override each field on the CLI. The only 
-   downside to this method is that you need to supply these values every time you run a 
-   `helm upgrade`, otherwise they will be reverted back to what the chart's default values are 
+   The easiest option is to override each field on the CLI. The only
+   downside to this method is that you need to supply these values every time you run a
+   `helm upgrade`, otherwise they will be reverted back to what the chart's default values are
    for those fields, i.e. disabled.
-    
+
     ```sh
     $ helm repo update
     $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
@@ -66,7 +66,7 @@ suggest `kong-mesh-system`.
     ```
 
     This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-    deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
+    deployment, but there are more advanced [deployment modes][deployments]
     like _multi-zone_.
 
     You can see all possible parameters of the charts by running `helm show values kong-mesh/kong-mesh`.
@@ -179,9 +179,16 @@ entity with the name `default`.
 
 ## 4. Quickstart
 
-The Kuma quickstart documentation
-is fully compatible with {{site.mesh_product_name}}, except that you are
-running {{site.mesh_product_name}} containers instead of Kuma containers.
-
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments][get-started-k8s].
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/latest/introduction/deployments/
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+{% endif_version %}
