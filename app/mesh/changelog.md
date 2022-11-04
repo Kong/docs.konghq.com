@@ -5,6 +5,9 @@ no_version: true
 
 
 ## 2.0.0
+> Release on **2022/11/04**
+
+Built on top of [Kuma 2.0.0](https://github.com/kumahq/kuma/releases/tag/2.0.0)
 
 ### Upgrading
 
