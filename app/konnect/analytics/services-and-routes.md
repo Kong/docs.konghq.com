@@ -1,6 +1,5 @@
 ---
 title: Analyze Services and Routes
-no_version: true
 content_type: how-to
 ---
 

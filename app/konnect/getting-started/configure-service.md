@@ -1,6 +1,5 @@
 ---
 title: Configuring a Service
-no_version: true
 ---
 
 Using the [Service Hub](/konnect/servicehub), you can create, manage, and

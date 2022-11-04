@@ -43,12 +43,23 @@ metadata:
   namespace: <object namespace>
 disabled: <boolean>  # optionally disable the plugin in Kong
 config:              # configuration for the plugin
-    key: value
+  key: value
 configFrom:
-    secretKeyRef:
-       name: <Secret name>
-       key: <Secret key>
+  secretKeyRef:
+     name: <Secret name>
+     key: <Secret key>
 plugin: <name-of-plugin> # like key-auth, rate-limiting etc
+{% if_version gte:2.6.x %}
+ordering:
+  before:
+    <phase>:
+    - <plugin>
+    - <plugin>
+  after:
+    <phase>:
+    - <plugin>
+    - <plugin>
+{% endif_version %}
 ```
 
 - `config` contains a list of `key` and `value`
@@ -66,6 +77,14 @@ plugin: <name-of-plugin> # like key-auth, rate-limiting etc
   or `configFrom` may be used in a KongPlugin, not both at once.
 - `plugin` field determines the name of the plugin in Kong.
   This field was introduced in {{site.kic_product_name}} 0.2.0.
+{% if_version gte:2.6.x %}
+- `ordering` is only available on {{site.ee_product_name}}. `<phase>` is a
+  request processing phase (for example, `access` or `body_filter`) and
+  `<plugin>` is the name of the plugin that will run before or after the
+  KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and
+  `before.access: ["key-auth"]` will create a rate limiting plugin that limits
+  requests _before_ they are authenticated.
+{% endif_version %}
 
 **Please note:** validation of the configuration fields is left to the user
 by default. It is advised to setup and use the admission validating controller
@@ -204,6 +223,17 @@ configFrom:
        key: <Secret key>
        namespace: <Secret namespace>
 plugin: correlation-id
+{% if_version gte:2.6.x %}
+ordering:
+  before:
+    <phase>:
+    - <plugin>
+    - <plugin>
+  after:
+    <phase>:
+    - <plugin>
+    - <plugin>
+{% endif_version %}
 ```
 
 As with KongPlugin, only one of `config` or `configFrom` can be used.
@@ -212,6 +242,15 @@ Setting the label `global` to `"true"` will apply the plugin globally in Kong,
 meaning it will be executed for every request that is proxied via Kong.
 
 ## KongIngress
+
+{:.note}
+> **Note:** Many fields available on KongIngress are also available as
+> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
+> You can add these annotations directly to Service and Ingress resources
+> without creating a separate KongIngress resource. When an annotation is
+> available, it is the preferred means of configuring that setting, and the
+> annotation value will take precedence over a KongIngress value if both set
+> the same setting.
 
 Ingress resource spec in Kubernetes can define routing policies
 based on HTTP Host header and paths.
@@ -257,7 +296,7 @@ kind: KongIngress
 metadata:
   name: configuration-demo
 upstream:
-  slots: 10
+  slots: 10000
   hash_on: none
   hash_fallback: none
   healthchecks:

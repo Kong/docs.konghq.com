@@ -1,6 +1,5 @@
 ---
 title: Accessing a Kong Konnect Account
-no_version: true
 ---
 
 Sign up for {{site.konnect_short_name}} to receive a 30 day free

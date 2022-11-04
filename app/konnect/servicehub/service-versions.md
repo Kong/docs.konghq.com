@@ -1,6 +1,5 @@
 ---
 title: Manage Konnect Service Versions
-no_version: true
 ---
 
 Every {{site.konnect_short_name}} service version is associated with one [runtime group](/konnect/runtime-manager/runtime-groups/).
@@ -24,6 +23,14 @@ ready to test, you'd create v2 in `staging` before finally creating v2 in
 > **Note:** You can't move a service version from one runtime group to another.
 Instead, create a new version of the service in the new environment when you're
 ready to move to it.
+
+Each service version is in one of the states:
+* **Published**: This indicates that the service version is ready to be shared with API consumers. It displays in the Dev Portal where developers can request access to consume it via {{site.base_gateway}}. This is the default state.
+* **Deprecated**: This indicates that the service version will be deprecated soon. It is still displayed in the Dev Portal and can receive API request via {{site.base_gateway}}. A banner with information about the deprecation is displayed at the top of the service version page in the Dev Portal and developers are notified via email that the version is deprecated.
+* **Unpublished:** This indicates that the service version no longer displays in the Dev Portal, but it can still be accessed by existing Dev Portal applications via {{site.base_gateway}}.
+
+{:.note}
+> **Note:** If the service package associated with a service version is unpublished, the service version won't display in the Dev Portal.
 
 ## Create a service version
 
@@ -57,10 +64,29 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 
 1. Click **Create** to save.
 
+
+## Manage the service version lifecycle
+
+The service version lifecycle determines how and if a service version is displayed in the Dev Portal. 
+
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), choose the service you want to manage the lifecycle of.
+
+2. Select the service version you want to manage.
+
+3. Click  **Service version actions** > **Edit version status**.
+
+4. Select a service version status.
+   
+    1. Deprecation only: Click **Save** on the dialog to deprecate the service version and send consumers an email notification.
+
+5. Click **Save**.
+
 ## Delete a service version
 
 Deleting a service version permanently removes it and its implementation, routes, and plugins from the Service Hub.
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then delete it:
+1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select the service version you want to delete.
 
-* From the **Version actions** drop-down menu, select **Delete**, then confirm deletion in the dialog.
+2. Click **Service version actions** > **Delete service version**.
+
+3. Confirm the deletion by typing the name of the service version and clicking **Yes, delete**.

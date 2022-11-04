@@ -1,6 +1,5 @@
 ---
 title: Manage Payment Methods and Invoices
-no_version: true
 content_type: how-to
 ---
 

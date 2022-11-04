@@ -81,39 +81,39 @@ items:
         url: /explore/overview/
         src: /.repos/kuma/app/docs/dev/explore/overview/
         items:
-      - text: Data plane proxy
-        url: /explore/dpp/
-        src: /.repos/kuma/app/docs/dev/explore/dpp/
-      - text: Data plane on Kubernetes
-        url: /explore/dpp-on-kubernetes/
-        src: /.repos/kuma/app/docs/dev/explore/dpp-on-kubernetes/
-      - text: Data plane on Universal
-        url: /explore/dpp-on-universal/
-        src: /.repos/kuma/app/docs/dev/explore/dpp-on-universal/
-      - text: Gateway
-        url: /explore/gateway/
-        src: /.repos/kuma/app/docs/dev/explore/gateway/
-      - text: Zone Ingress
-        url: /explore/zone-ingress/
-        src: /.repos/kuma/app/docs/dev/explore/zone-ingress/
-      - text: Zone Egress
-        url: /explore/zoneegress/
-        src: /.repos/kuma/app/docs/dev/explore/zoneegress/
-      - text: CLI
-        url: /explore/cli/
-        src: /.repos/kuma/app/docs/dev/explore/cli/
-      - text: GUI
-        url: /explore/gui/
-        src: /.repos/kuma/app/docs/dev/explore/gui/
-      - text: Observability
-        url: /explore/observability/
-        src: /.repos/kuma/app/docs/dev/explore/observability/
-      - text: Inspect API
-        url: /explore/inspect-api/
-        src: /.repos/kuma/app/docs/dev/explore/inspect-api/
-      - text: Kubernetes Gateway API
-        url: /explore/gateway-api/
-        src: /.repos/kuma/app/docs/dev/explore/gateway-api/
+          - text: Data plane proxy
+            url: /explore/dpp/
+            src: /.repos/kuma/app/docs/dev/explore/dpp/
+          - text: Data plane on Kubernetes
+            url: /explore/dpp-on-kubernetes/
+            src: /.repos/kuma/app/docs/dev/explore/dpp-on-kubernetes/
+          - text: Data plane on Universal
+            url: /explore/dpp-on-universal/
+            src: /.repos/kuma/app/docs/dev/explore/dpp-on-universal/
+          - text: Gateway
+            url: /explore/gateway/
+            src: /.repos/kuma/app/docs/dev/explore/gateway/
+          - text: Zone Ingress
+            url: /explore/zone-ingress/
+            src: /.repos/kuma/app/docs/dev/explore/zone-ingress/
+          - text: Zone Egress
+            url: /explore/zoneegress/
+            src: /.repos/kuma/app/docs/dev/explore/zoneegress/
+          - text: CLI
+            url: /explore/cli/
+            src: /.repos/kuma/app/docs/dev/explore/cli/
+          - text: GUI
+            url: /explore/gui/
+            src: /.repos/kuma/app/docs/dev/explore/gui/
+          - text: Observability
+            url: /explore/observability/
+            src: /.repos/kuma/app/docs/dev/explore/observability/
+          - text: Inspect API
+            url: /explore/inspect-api/
+            src: /.repos/kuma/app/docs/dev/explore/inspect-api/
+          - text: Kubernetes Gateway API
+            url: /explore/gateway-api/
+            src: /.repos/kuma/app/docs/dev/explore/gateway-api/
   - title: Networking
     icon: /assets/images/icons/documentation/icn-brain-color.svg
     items:

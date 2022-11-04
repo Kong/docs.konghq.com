@@ -22,7 +22,6 @@ items:
   - title: Installation
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     url: /installation
-    
 
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg

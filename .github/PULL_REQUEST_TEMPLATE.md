@@ -13,6 +13,8 @@ Trello card, etc. -->
 
 <!--
 
+!!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!!
+
 When raising a pull request, it's useful to indicate what type of review you're looking for from the team. To help with this, we've added three labels that can be applied:
 
     review:copyedit: Request for writer review.

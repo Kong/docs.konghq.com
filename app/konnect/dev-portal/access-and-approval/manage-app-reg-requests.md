@@ -1,7 +1,6 @@
 ---
 title: Manage Application Registration Requests
-no_version: true
-content-type: how-to
+content_type: how-to
 ---
 
 When a developer [registers an application with a service](/konnect/dev-portal/applications/dev-reg-app-service),

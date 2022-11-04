@@ -27,12 +27,12 @@ Install {{site.base_gateway}} on RHEL from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rhel%{rhel}.amd64.rpm")
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel%{rhel}.amd64.rpm")
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-{{page.kong_versions[page.version-index].ce-version}}.rhel%{rhel}.amd64.rpm")
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-{{page.versions.ce}}.rhel%{rhel}.amd64.rpm")
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -50,12 +50,12 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.rpm $(rpm --
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}.rpm
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
+sudo yum install kong-{{page.versions.ce}}.rpm
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -66,7 +66,7 @@ sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
 > The `rpm` method is only available for open-source packages. For the `kong-enterprise-edition` package, use `yum`.
 
 ```bash
-rpm -iv kong-{{page.kong_versions[page.version-index].ce-version}}.rpm
+rpm -iv kong-{{page.versions.ce}}.rpm
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -91,12 +91,12 @@ Install the YUM repository from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo yum install kong-{{page.kong_versions[page.version-index].ce-version}}
+sudo yum install kong-{{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}

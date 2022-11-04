@@ -120,7 +120,7 @@
       items:
         - text: Securing the Admin API
           url: /secure-admin-api
-        - text : Keyring and Data Encryption
+        - text: Keyring and Data Encryption
           url: /db-encryption
         - text: Start Kong Gateway Securely
           url: /start-kong-securely
@@ -248,75 +248,75 @@
           url: /pdk/kong.table
     - text: Plugins in Go and Other Languages
       url: /external-plugins
-    - text : Control Kong Gateway through systemd
+    - text: Control Kong Gateway through systemd
       url: /systemd
 
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api
   items:
-  - text: DB-less Mode
-    url: /admin-api/#db-less-mode
-  - text: Declarative Configuration
-    url: /admin-api/#declarative-configuration
-  - text: Supported Content Types
-    url: /admin-api/#supported-content-types
-  - text: Information Routes
-    url: /admin-api/#information-routes
-  - text: Health Routes
-    url: /admin-api/#health-routes
-  - text: Tags
-    url: /admin-api/#tags
-  - text: Service Object
-    url: /admin-api/#service-object
-  - text: Route Object
-    url: /admin-api/#route-object
-  - text: Consumer Object
-    url: /admin-api/#consumer-object
-  - text: Plugin Object
-    url: /admin-api/#plugin-object
-  - text: Certificate Object
-    url: /admin-api/#certificate-object
-  - text: CA Certificate Object
-    url: /admin-api/#ca-certificate-object
-  - text: SNI Object
-    url: /admin-api/#sni-object
-  - text: Upstream Object
-    url: /admin-api/#upstream-object
-  - text: Target Object
-    url: /admin-api/#target-object
-  - text: Licenses
-    url: /admin-api/licenses/reference
-    items:
-      - text: Licenses Reference
-        url: /admin-api/licenses/reference
-      - text: Licenses Examples
-        url: /admin-api/licenses/examples
-  - text: Workspaces
-    url: /admin-api/workspaces/reference
-    items:
-      - text: Workspaces Reference
-        url: /admin-api/workspaces/reference
-      - text: Workspace Examples
-        url: /admin-api/workspaces/examples
-  - text: RBAC
-    url: /admin-api/rbac/reference
-    items:
-      - text: RBAC Reference
-        url: /admin-api/rbac/reference
-      - text: RBAC Examples
-        url: /admin-api/rbac/examples
-  - text: Admins
-    url: /admin-api/admins/reference
-    items:
-      - text: API Reference
-        url: /admin-api/admins/reference
-      - text: Examples
-        url: /admin-api/admins/examples
-  - text: Audit Logging
-    url: /admin-api/audit-log
-  - text: Keyring and Data Encryption
-    url: /admin-api/db-encryption
+    - text: DB-less Mode
+      url: /admin-api/#db-less-mode
+    - text: Declarative Configuration
+      url: /admin-api/#declarative-configuration
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+    - text: Information Routes
+      url: /admin-api/#information-routes
+    - text: Health Routes
+      url: /admin-api/#health-routes
+    - text: Tags
+      url: /admin-api/#tags
+    - text: Service Object
+      url: /admin-api/#service-object
+    - text: Route Object
+      url: /admin-api/#route-object
+    - text: Consumer Object
+      url: /admin-api/#consumer-object
+    - text: Plugin Object
+      url: /admin-api/#plugin-object
+    - text: Certificate Object
+      url: /admin-api/#certificate-object
+    - text: CA Certificate Object
+      url: /admin-api/#ca-certificate-object
+    - text: SNI Object
+      url: /admin-api/#sni-object
+    - text: Upstream Object
+      url: /admin-api/#upstream-object
+    - text: Target Object
+      url: /admin-api/#target-object
+    - text: Licenses
+      url: /admin-api/licenses/reference
+      items:
+        - text: Licenses Reference
+          url: /admin-api/licenses/reference
+        - text: Licenses Examples
+          url: /admin-api/licenses/examples
+    - text: Workspaces
+      url: /admin-api/workspaces/reference
+      items:
+        - text: Workspaces Reference
+          url: /admin-api/workspaces/reference
+        - text: Workspace Examples
+          url: /admin-api/workspaces/examples
+    - text: RBAC
+      url: /admin-api/rbac/reference
+      items:
+        - text: RBAC Reference
+          url: /admin-api/rbac/reference
+        - text: RBAC Examples
+          url: /admin-api/rbac/examples
+    - text: Admins
+      url: /admin-api/admins/reference
+      items:
+        - text: API Reference
+          url: /admin-api/admins/reference
+        - text: Examples
+          url: /admin-api/admins/examples
+    - text: Audit Logging
+      url: /admin-api/audit-log
+    - text: Keyring and Data Encryption
+      url: /admin-api/db-encryption
 
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
@@ -356,20 +356,20 @@
           url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
           items:
-          - text: RBAC in Kong Manager
-            url: /kong-manager/administration/rbac
-          - text: Create a New Role
-            url: /kong-manager/administration/rbac/new-role
-          - text: Create an RBAC User
-            url: /kong-manager/administration/rbac/add-user
-          - text: Add a Role and Permissions
-            url: /kong-manager/administration/rbac/add-role
+            - text: RBAC in Kong Manager
+              url: /kong-manager/administration/rbac
+            - text: Create a New Role
+              url: /kong-manager/administration/rbac/new-role
+            - text: Create an RBAC User
+              url: /kong-manager/administration/rbac/add-user
+            - text: Add a Role and Permissions
+              url: /kong-manager/administration/rbac/add-role
         - text: Admins
           items:
-          - text: Invite an Admin
-            url: /kong-manager/administration/admins/invite
-          - text: Add an Admin
-            url: /kong-manager/administration/admins/add-admin
+            - text: Invite an Admin
+              url: /kong-manager/administration/admins/invite
+            - text: Add an Admin
+              url: /kong-manager/administration/admins/add-admin
     - text: How-Tos
       items:
         - text: Add a Service and Route

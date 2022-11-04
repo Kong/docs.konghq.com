@@ -148,3 +148,6 @@ items:
         url: /references/feature-gates
       - text: Gateway API Support
         url: /references/gateway-api-support
+      - text: File Permissions Reference
+        url: /gateway/3.0.x/reference/file-access-permissions
+        absolute_url: /gateway/3.0.x/reference/file-access-permissions

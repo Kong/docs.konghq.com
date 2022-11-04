@@ -6,9 +6,6 @@ badge: enterprise
 ## Overview
 
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
 This library is designed to provide an efficient, scalable, eventually-consistent sliding window rate limiting library. It relies on atomic operations in shared ngx memory zones to track window counters within a given node, periodically syncing this data to a central data store.
 
 A sliding window rate limiting implementation tracks the number of hits assigned to a specific key (such as an IP address, Consumer, Credential, etc) within a given time window, taking into account previous hit rates to smooth out a calculated rate, while still providing a familiar windowing interface that modern developers are used to (e.g., n hits per second/minute/hour). This is similar to a fixed window implementation, in which request rates reset at the beginning of the window, but without the "reset bump" from which fixed window implementations suffer, while providing a more intuitive interface beyond what leaky bucket or token bucket implementations can offer. Note that we use the term "hit" instead of "request" when referring to incrementing values for rate limit keys, because this library provides an abstract rate limiting interface; a sliding window implementation may have uses outside of HTTP request rate limiting, thus, we describe this library in a more abstract sense.
@@ -58,7 +55,10 @@ Define configurations for a new namespace. The following options are accepted:
 
 - `dict`: Name of the shared dictionary to use
 - `sync_rate`: Rate, in seconds, to sync data diffs to the storage server.
-- `strategy`: Storage strategy to use. currently Cassandra, PostgresSQL, and redis are supported. Strategies must provide several public—functions defined below.
+- `strategy`: Storage strategy to use. Cassandra, PostgresSQL, and Redis are supported. Strategies must provide several public—functions defined below.
+
+    {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+
 - `strategy_opts`: A table of options used by the storage strategy. Currently only applicable for the 'redis' strategy.
 - `namespace`: String defining these config values. A namespace may only be defined once; if a namespace has already been defined on this worker, an error is thrown. If no namespace is defined, the literal string "default" will be used.
 - `window_sizes`: A list of window sizes used by this configuration.

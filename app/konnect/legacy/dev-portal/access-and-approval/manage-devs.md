@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Developer Access
-no_version: true
 ---
 <!-- vale off -->
 Manage developers and developer registration requests to

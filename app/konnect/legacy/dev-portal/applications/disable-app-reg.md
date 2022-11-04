@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Disable App Registration for a Service
-no_version: true
 ---
 <!-- vale off -->
 You can disable app registration for a Service when an API

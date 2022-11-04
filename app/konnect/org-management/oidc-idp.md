@@ -1,7 +1,6 @@
 ---
 title: Set up SSO with OpenID Connect
 content_type: how-to
-no_version: true
 ---
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set
