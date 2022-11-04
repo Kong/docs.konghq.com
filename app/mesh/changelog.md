@@ -6,6 +6,16 @@ no_version: true
 
 ## 2.0.0
 
+### Changes
+
+#### Amazon ECS
+
+You can now configure the sidecar to authenticate using the IAM role of the ECS task it's running as instead of using a data plane token. 
+The control plane interprets the tags on the role similar to how it interprets the data plane token.
+This simplifies the deployment and management of Kong Mesh on ECS.
+
+For more information, see [Kong Mesh on Amazon ECS](/mesh/latest/installation/ecs/).
+
 ### Upgrading
 
 The Zone Token that was previously used for authenticating Zone Egress can now be used to authenticate the zone control plane.
