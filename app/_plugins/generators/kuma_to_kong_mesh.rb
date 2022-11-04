@@ -4,7 +4,7 @@
 module KumaToKongMesh
   class Generator < Jekyll::Generator
     priority :lowest
-    def generate(site) # rubocop:disable Metrics/AbcSize
+    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       site.pages.each do |page|
         next unless page.data['path']&.include?('docs_nav_mesh')
 
@@ -20,8 +20,8 @@ module KumaToKongMesh
           '/enterprise/?' => '/mesh/{{ page.kong_version }}/',
           '/community/?' => 'https://konghq.com/community'
         }
-        exact_link_transforms.each do |k,v|
-          page.content = page.content.gsub(%r{([("])#{k}([)"])}, "\\1#{v}\\2")
+        exact_link_transforms.each do |k, v|
+          page.content = page.content.gsub(/([("])#{k}([)"])/, "\\1#{v}\\2")
         end
 
         # Replace the base url from Kuma
