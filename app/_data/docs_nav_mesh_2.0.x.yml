@@ -80,7 +80,6 @@ items:
       - text: Overview
         url: /explore/overview/
         src: /.repos/kuma/app/docs/2.0.x/explore/overview/
-        items:
       - text: Data plane proxy
         url: /explore/dpp/
         src: /.repos/kuma/app/docs/2.0.x/explore/dpp/
