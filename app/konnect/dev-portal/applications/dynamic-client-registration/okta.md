@@ -96,3 +96,15 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
    Click **Proceed** to continue to the application's details page.
 
 5. Once your application is created, you will see it in Okta. From your Okta organization select **Applications** from the menu. You will see your application that was created in the Dev Portal, and its corresponding Client ID.
+
+## How to make successful request using DCR
+
+In previous steps we obtained the **Client ID** and **Client Secret**. To authorize request we need to properly attach them in header of that request. We can do it using API Client like Insomnia.
+
+![Insomnia DCR usage example](/assets/images/docs/konnect/dev-portal/insomnia_dcr_example.png)
+
+We can also do it via command line 
+
+```sh
+curl <address_to_your_running_runtime_instance>/<route_you_registed> -H "Authorization: Basic <client_id>:<client_secret>"
+```
