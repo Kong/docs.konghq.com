@@ -14,7 +14,7 @@ You can now configure the sidecar to authenticate using the IAM role of the ECS 
 The control plane interprets the tags on the role similar to how it interpets the data plane token.
 This simplifies the deployment and management of Kong Mesh on ECS.
 
-For more information, see [Kong Mesh on Amazon ECS](/mesh/{{page.kong_version}}/installation/ecs/).
+For more information, see [Kong Mesh on Amazon ECS](/mesh/{{ page.latest_version }}/installation/ecs/).
 
 ### Upgrading
 
