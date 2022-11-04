@@ -127,6 +127,7 @@ elbs
 enum
 env
 etcd
+failover
 favicon
 filepath
 filetype
@@ -142,6 +143,7 @@ grpc
 grpcs
 gui
 guis
+gzip
 hardcoded
 hardcoding
 hashicorp
