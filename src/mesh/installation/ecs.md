@@ -230,8 +230,8 @@ The ECS task IAM role must also have some tags set in order to authenticate.
 It must always have the `kuma.io/type` tag set to either `"dataplane"`,
 `"ingress"`, or `"egress"`.
 
-If it's a `"dataplane"` type then it must also have the `kuma.io/mesh` tag set.
-Additionally, it can have the `kuma.io/service` tag set to further restrict its identity.
+If it's a `"dataplane"` type, then it must also have the `kuma.io/mesh` tag set.
+Additionally, you can set the `kuma.io/service` tag to further restrict its identity.
 
 ### Sidecar
 
