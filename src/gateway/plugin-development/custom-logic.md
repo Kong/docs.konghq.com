@@ -452,8 +452,8 @@ session                     | 1900
 oauth2-introspection        | 1700
 acme                        | 1705
 mtls-auth                   | 1600
-jwt                         | 1450
 degraphql                   | 1500
+jwt                         | 1450
 oauth2                      | 1400
 vault-auth                  | 1350
 key-auth                    | 1250

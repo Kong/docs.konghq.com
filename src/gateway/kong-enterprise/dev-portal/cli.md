@@ -40,7 +40,7 @@ Where `<command>` is one of:
 * `fetch`    Fetches content and themes from the given workspace.
 * `wipe`     Deletes all content and themes from upstream workspace
 
-Where <workspace> indicates the directory/workspace pairing you would like to operate on.
+Where `<workspace>` indicates the directory/workspace pairing you would like to operate on.
 
 #### For `deploy`
 - Add `-W` or `--watch` to make changes reactive.

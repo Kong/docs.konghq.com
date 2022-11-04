@@ -16,21 +16,22 @@
   font-size: @px / 16rem;
   line-height: @line / 16rem;
 }
-.font-size(@px, @line, @scale) { // scales with page font size
+.font-size(@px, @line, @scale) {
+  // scales with page font size
   font-size: (@px / 16rem) / (@scale / 16);
   line-height: (@line / 16rem) / (@scale / 16);
 }
 
-@standard-fonts: 'Helvetica', 'Segoe', 'Arial', sans-serif;
+@standard-fonts: "Helvetica", "Segoe", "Arial", sans-serif;
 
 // Font Sources
 .font-source-sans(@weight: 400) {
-  font-family: 'Source Sans Pro', @standard-fonts;
+  font-family: "Source Sans Pro", @standard-fonts;
   font-weight: @weight;
   text-rendering: optimizeLegibility;
 }
 .font-source-sans-sc() {
-  font-family: 'Source Sans Pro', @standard-fonts;
+  font-family: "Source Sans Pro", @standard-fonts;
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.4px;
@@ -38,7 +39,7 @@
   text-rendering: optimizeLegibility;
 }
 .font-titillium-web(@weight: 400) {
-  font-family: 'Titillium Web', @standard-fonts;
+  font-family: "Titillium Web", @standard-fonts;
   font-weight: @weight;
 }
 

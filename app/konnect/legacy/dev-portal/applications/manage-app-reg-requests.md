@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Application Registration Requests
-no_version: true
 ---
 <!-- vale off -->
 When a developer [registers an application with a Service](/konnect/legacy/dev-portal/applications/dev-reg-app-service),

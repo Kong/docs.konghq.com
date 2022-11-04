@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Payment Methods and Invoices
-no_version: true
 ---
 
 <!-- vale off -->

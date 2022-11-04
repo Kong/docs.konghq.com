@@ -1,6 +1,5 @@
 ---
 title: Set up a Kong Gateway Runtime on Linux
-no_version: true
 content_type: how-to
 ---
 Using `kong.conf`, set up a runtime instance through the
@@ -21,7 +20,7 @@ runtime instances.
 
 Configure a {{site.base_gateway}} runtime instance using the
 certificate, the private key, and the remaining configuration details on the
-runtime instance configuration page: 
+runtime instance configuration page:
 
 1. Find the documentation for
 [your platform](/gateway/latest/install-and-run),
@@ -34,9 +33,7 @@ and follow the instructions in steps 1 and 2 **only** to download and install
     database.
 
 2. Return to {{site.konnect_short_name}} and copy the
-code block in the **Step 2. Configuration Parameters** section.
-
-    ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+code block in the **Configuration Parameters** section.
 
 3. Open your instance's `kong.conf` file. Add the parameters you just copied
 to the file.
@@ -55,6 +52,8 @@ to the file.
     cluster_cert = /{PATH_TO_FILE}/tls.crt
     cluster_cert_key = /{PATH_TO_FILE}/tls.key
     lua_ssl_trusted_certificate = system
+    konnect_mode = on
+    vitals = off
     ```
 
     See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
@@ -66,7 +65,7 @@ to the file.
 5. Restart {{site.base_gateway}} for the settings to take effect:
 
     ```sh
-    $ kong restart
+    kong restart
     ```
 
 6. In {{site.konnect_short_name}}, click **Done** to go to the Runtime Instances overview, where

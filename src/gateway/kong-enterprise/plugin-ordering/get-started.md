@@ -48,6 +48,27 @@ http -f post :8001/plugins \
 <!-- end codeblock tabs -->
 
 {% endnavtab %}
+{% navtab  Kubernetes %}
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: limit-before-key-auth
+  labels:
+    global: "true"
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+config:
+  minute: 5
+  policy: local
+  limit_by: ip
+plugin: rate-limiting
+ordering:
+  before:
+    access:
+    - key-auth
+```
+{% endnavtab %}
 {% navtab decK (YAML) %}
 
 1. Add a new `plugins` section to the bottom of your `kong.yaml` file. Enable
@@ -148,6 +169,23 @@ http -f post :8001/plugins \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
+{% endnavtab %}
+{% navtab  Kubernetes %}
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: auth-after-transform
+  labels:
+    global: "true"
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+plugin: basic-auth
+ordering:
+  after:
+    access:
+    - request-transformer
+```
 {% endnavtab %}
 {% navtab decK (YAML) %}
 

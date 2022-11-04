@@ -1,6 +1,5 @@
 ---
 title: Set up a Kong Gateway Runtime with Docker
-no_version: true
 content_type: how-to
 ---
 Set up a Docker runtime instance through the
@@ -22,42 +21,42 @@ runtime instances.
 
 ### Prerequisites
 
-* The quick setup script requires Docker and a Unix shell
+* The quick setup script requires [Docker](https://docs.docker.com/get-docker/) and a Unix shell
 
 * Platform-specific tools and permissions:
-  * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
+  * **MacOS**: [Docker Desktop](https://docs.docker.com/docker-for-mac/install/)
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
-  * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). If you can't set up a WSL 2 backend, see the [advanced](#advanced-setup) instructions for
+  * **Windows:** [Docker Desktop installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/).
+  If you can't set up a WSL 2 backend, see the [advanced](#custom-setup) instructions for
   a custom Docker setup instead.
 
 ### Run the quick setup script
 
 1. Open the {% konnect_icon runtimes %} **Runtime Manager**.
 
-2. Select a runtime group.
+1. Select a runtime group.
 
-2. Click **+ New Runtime Instance**.
+1. Click **Create runtime instance**.
 
-3. Click **Copy Script**.
+1. Choose the tile for your platform: MacOS, Windows, or Linux (Docker).
 
-4. Replace the placeholder for `<your-password>` with your own
-{{site.konnect_saas}} password.
+1. Click **Generate script**, then click **Copy** to copy it to your clipboard.
 
-5. Run the script on any host you choose.
+1. Run the script on any host you choose.
 
     This script creates a Docker container running a simple
     {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
-6. Click **Done** to go to the Runtime Instances overview, where you will
+1. Click **Done** to go to the Runtime Instances overview, where you will
 see a new entry for your instance.
 
-## Advanced setup
+## Custom setup
 
 ### Prerequisites
 
 Tools and permissions:
-* **All platforms:** [Docker](https://docs.docker.com/get-docker/) installed
+* **All platforms:** [Docker](https://docs.docker.com/get-docker/) and a Unix shell
 * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
 * **[Windows](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [MacOS](https://docs.docker.com/docker-for-mac/install/):** Docker Desktop installed
 
@@ -82,9 +81,11 @@ $ docker run -d --name kong-dp \
   -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" \
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" \
   -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" \
+  -e "KONG_KONNECT_MODE=on" \
+  -e "KONG_VITALS=off" \
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
-  kong/kong-gateway:3.0.0.0-alpine
+  kong/kong-gateway:3.0.0.0
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
@@ -100,9 +101,11 @@ docker run -d --name kong-dp `
   -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" `
   -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" `
   -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" `
+  -e "KONG_KONNECT_MODE=on" `
+  -e "KONG_VITALS=off" `
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
-  kong/kong-gateway:3.0.0.0-alpine
+  kong/kong-gateway:3.0.0.0
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -110,12 +113,10 @@ docker run -d --name kong-dp `
 1. Replace the values in `KONG_CLUSTER_CERT` and
 `KONG_CLUSTER_CERT_KEY` with the paths to your certificate and key files.
 
-2. Check the **Linux** or **Kubernetes** tabs in the {{site.konnect_short_name}} UI to find the values for
+2. Check the **Linux** or **Kubernetes** tiles in the {{site.konnect_short_name}} UI to find the values for
         `KONG_CLUSTER_CONTROL_PLANE`, `KONG_CLUSTER_SERVER_NAME`,
         `KONG_CLUSTER_TELEMETRY_ENDPOINT`, and `KONG_CLUSTER_TELEMETRY_SERVER_NAME`,
-        then substitute them in the example below.
-
-    ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
+        then substitute them in the command sample.
 
     See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
     descriptions and the matching fields in {{site.konnect_short_name}}.

@@ -5,8 +5,8 @@ title: Kong Mesh with OpenShift
 To install and run {{site.mesh_product_name}} on OpenShift:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
-1. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
-1. [Verify the Installation](#3-verify-the-installation)
+2. [Run {{site.mesh_product_name}}](#2-run-kong-mesh)
+3. [Verify the Installation](#3-verify-the-installation)
 
 Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
@@ -28,7 +28,7 @@ You can run the following script to automatically detect the operating system
 and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh -
 ```
 
 {% endnavtab %}
@@ -38,16 +38,16 @@ You can also download the distribution manually. Download a distribution for
 the **client host** from where you will be executing the commands to access
 Kubernetes:
 
-* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
-* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-rhel-amd64.tar.gz)
-* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-debian-amd64.tar.gz)
-* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
-* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
+* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
+* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-rhel-amd64.tar.gz)
+* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
+* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
+* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-amd64.tar.gz)
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -56,18 +56,12 @@ $ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
 
 ## 2. Run {{site.mesh_product_name}}
 
-Navigate to the `bin` folder:
-
-```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
-```
-
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
 available in every working directory. Alternatively, you can also create a link
 in `/usr/local/bin/` by executing:
 
 ```sh
-$ ln -s ./kumactl /usr/local/bin/kumactl
+ln -s kong-mesh-{{page.version}}/bin/kumactl /usr/local/bin/kumactl
 ```
 
 Then, run the control plane on OpenShift with:
@@ -111,7 +105,7 @@ After updating `master-config.yaml`, restart the cluster and install
 `control-plane`:
 
 ```sh
-$ ./kumactl install control-plane --license-path=/path/to/license.json | oc apply -f -
+./kumactl install control-plane --license-path=/path/to/license.json | oc apply -f -
 ```
 
 {% endnavtab %}
@@ -128,7 +122,7 @@ It may take a while for OpenShift to start the
 {{site.mesh_product_name}} resources. You can check the status by running:
 
 ```sh
-$ oc get pod -n kong-mesh-system
+oc get pod -n kong-mesh-system
 ```
 
 ## 3. Verify the Installation
@@ -144,7 +138,7 @@ the API port `5681` and defaults to `:5681/gui`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Navigate to `127.0.0.1:5681/gui` to see the GUI.
@@ -156,7 +150,7 @@ You can use {{site.mesh_product_name}} with `oc` to perform
 example:
 
 ```sh
-$ oc get meshes
+oc get meshes
 
 NAME          AGE
 default       1m
@@ -165,16 +159,16 @@ default       1m
 Or, you can enable mTLS on the `default` Mesh with:
 
 ```sh
-$ echo "apiVersion: kuma.io/v1alpha1
-  kind: Mesh
-  metadata:
-    name: default
-  spec:
-    mtls:
-      enabledBackend: ca-1
-      backends:
-      - name: ca-1
-        type: builtin" | oc apply -f -
+echo "apiVersion: kuma.io/v1alpha1
+kind: Mesh
+metadata:
+  name: default
+spec:
+  mtls:
+    enabledBackend: ca-1
+    backends:
+    - name: ca-1
+      type: builtin" | oc apply -f -
 ```
 
 {% endnavtab %}
@@ -187,7 +181,7 @@ the HTTP API listens on port `5681`.
 To access {{site.mesh_product_name}}, port-forward the API service with:
 
 ```sh
-$ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Now you can navigate to `127.0.0.1:5681` to see the HTTP API.
@@ -201,13 +195,13 @@ the {{site.mesh_product_name}} HTTP API. To use it, first port-forward the API
 service with:
 
 ```sh
-$ oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
+oc port-forward svc/kong-mesh-control-plane -n kong-mesh-system 5681:5681
 ```
 
 Then run `kumactl`. For example:
 
 ```sh
-$ kumactl get meshes
+kumactl get meshes
 
 NAME          mTLS      METRICS      LOGGING   TRACING
 default       off       off          off       off
@@ -216,7 +210,7 @@ default       off       off          off       off
 You can configure `kumactl` to point to any remote `kuma-cp` instance by running:
 
 ```
-$ kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
+kumactl config control-planes add --name=XYZ --address=http://{address-to-kong-mesh}:5681
 ```
 
 {% endnavtab %}
@@ -232,7 +226,7 @@ for the `kuma-dp` sidecar to avoid capturing traffic from
 to the application namespace:
 
 ```sh
-$ oc adm policy add-scc-to-group nonroot system:serviceaccounts:<app-namespace>
+oc adm policy add-scc-to-group nonroot system:serviceaccounts:<app-namespace>
 ```
 
 If the namespace is not configured properly, you will see the following error
@@ -251,7 +245,7 @@ Before running the demo in the Quickstart guide,
 run the following command:
 
 ```sh
-$ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
+oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
 ```
 
 One of the components in the demo requires root access, therefore it uses the

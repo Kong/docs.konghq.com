@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Set up a Kong Gateway Runtime on Kubernetes
-no_version: true
 ---
 <!-- vale off -->
 Set up a Kubernetes [runtime](/konnect/legacy/#konnect-key-concepts-and-terminology)

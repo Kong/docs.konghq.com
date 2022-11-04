@@ -614,10 +614,12 @@
 /mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
+/policies/  /mesh/:version/policies/   
 /mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
 /mesh/:version/introduction/what-is-kong-mesh   /mesh/:version/
 /install/:version/  /mesh/:version/install/
 /mesh/:version/documentation/introduction/  /mesh/:version/
+/mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/

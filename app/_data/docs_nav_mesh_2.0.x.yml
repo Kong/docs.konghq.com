@@ -81,39 +81,39 @@ items:
         url: /explore/overview/
         src: /.repos/kuma/app/docs/dev/explore/overview/
         items:
-      - text: Data plane proxy
-        url: /explore/dpp/
-        src: /.repos/kuma/app/docs/dev/explore/dpp/
-      - text: Data plane on Kubernetes
-        url: /explore/dpp-on-kubernetes/
-        src: /.repos/kuma/app/docs/dev/explore/dpp-on-kubernetes/
-      - text: Data plane on Universal
-        url: /explore/dpp-on-universal/
-        src: /.repos/kuma/app/docs/dev/explore/dpp-on-universal/
-      - text: Gateway
-        url: /explore/gateway/
-        src: /.repos/kuma/app/docs/dev/explore/gateway/
-      - text: Zone Ingress
-        url: /explore/zone-ingress/
-        src: /.repos/kuma/app/docs/dev/explore/zone-ingress/
-      - text: Zone Egress
-        url: /explore/zoneegress/
-        src: /.repos/kuma/app/docs/dev/explore/zoneegress/
-      - text: CLI
-        url: /explore/cli/
-        src: /.repos/kuma/app/docs/dev/explore/cli/
-      - text: GUI
-        url: /explore/gui/
-        src: /.repos/kuma/app/docs/dev/explore/gui/
-      - text: Observability
-        url: /explore/observability/
-        src: /.repos/kuma/app/docs/dev/explore/observability/
-      - text: Inspect API
-        url: /explore/inspect-api/
-        src: /.repos/kuma/app/docs/dev/explore/inspect-api/
-      - text: Kubernetes Gateway API
-        url: /explore/gateway-api/
-        src: /.repos/kuma/app/docs/dev/explore/gateway-api/
+          - text: Data plane proxy
+            url: /explore/dpp/
+            src: /.repos/kuma/app/docs/dev/explore/dpp/
+          - text: Data plane on Kubernetes
+            url: /explore/dpp-on-kubernetes/
+            src: /.repos/kuma/app/docs/dev/explore/dpp-on-kubernetes/
+          - text: Data plane on Universal
+            url: /explore/dpp-on-universal/
+            src: /.repos/kuma/app/docs/dev/explore/dpp-on-universal/
+          - text: Gateway
+            url: /explore/gateway/
+            src: /.repos/kuma/app/docs/dev/explore/gateway/
+          - text: Zone Ingress
+            url: /explore/zone-ingress/
+            src: /.repos/kuma/app/docs/dev/explore/zone-ingress/
+          - text: Zone Egress
+            url: /explore/zoneegress/
+            src: /.repos/kuma/app/docs/dev/explore/zoneegress/
+          - text: CLI
+            url: /explore/cli/
+            src: /.repos/kuma/app/docs/dev/explore/cli/
+          - text: GUI
+            url: /explore/gui/
+            src: /.repos/kuma/app/docs/dev/explore/gui/
+          - text: Observability
+            url: /explore/observability/
+            src: /.repos/kuma/app/docs/dev/explore/observability/
+          - text: Inspect API
+            url: /explore/inspect-api/
+            src: /.repos/kuma/app/docs/dev/explore/inspect-api/
+          - text: Kubernetes Gateway API
+            url: /explore/gateway-api/
+            src: /.repos/kuma/app/docs/dev/explore/gateway-api/
   - title: Networking
     icon: /assets/images/icons/documentation/icn-brain-color.svg
     items:
@@ -191,6 +191,9 @@ items:
       - text: How Kong Mesh chooses the right policy to apply
         url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply/
         src: /.repos/kuma/app/docs/dev/policies/how-kuma-chooses-the-right-policy-to-apply/
+      - text: Policy matching
+        url: /policies/matching/
+        src: /.repos/kuma/app/docs/dev/policies/matching/
       - text: Protocol support in Kong Mesh
         url: /policies/protocol-support-in-kong-mesh/
         src: /.repos/kuma/app/docs/dev/policies/protocol-support-in-kuma/
@@ -268,7 +271,7 @@ items:
         url: /features/acmpca
       - text: cert-manager Private CA
         url: /features/cert-manager
-      - text: OPAPolicy Support
+      - text: OPA policy support
         url: /features/opa
       - text: Multi-zone authentication
         url: /features/kds-auth
@@ -283,6 +286,8 @@ items:
       - text: Windows Support
         url: /features/windows
         generate: false
+      - text: Auditing
+        url: /features/access-audit
   - title: Reference docs
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

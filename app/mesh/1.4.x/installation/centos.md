@@ -29,23 +29,23 @@ Run the following script to automatically detect the operating system and
 download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh -
 ```
 
 {% endnavtab %}
 {% navtab Manually %}
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/install-universal-run.md %}
+{% include_cached /md/mesh/install-universal-run.md version=page.version %}
 
 {% include /md/mesh/install-universal-verify.md %}
 

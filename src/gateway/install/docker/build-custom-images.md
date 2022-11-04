@@ -12,7 +12,7 @@ If you would like to build your own images to further customise the base image a
 
 1. Download the [docker-entrypoint.sh](https://raw.githubusercontent.com/Kong/docker-kong/master/docker-entrypoint.sh) script from `docker-kong` and make it executable with `chmod +x docker-entrypoint.sh`
 
-1. Download the [.deb]({{ site.links.download }}/gateway-3.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{ page.kong_versions[page.version-index].ee-version }}_amd64.deb), [.rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rhel8.amd64.rpm) or .apk ([amd64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.amd64.apk.tar.gz), [arm64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.arm64.apk.tar.gz)) as required
+1. Download the [.deb]({{ site.links.download }}/gateway-3.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb), [.rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.amd64.rpm) or .apk ([amd64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.amd64.apk.tar.gz), [arm64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.arm64.apk.tar.gz)) as required
 
 1. Create a `Dockerfile` with the following contents:
 

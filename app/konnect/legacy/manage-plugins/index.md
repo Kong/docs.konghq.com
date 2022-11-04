@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Plugins
-no_version: true
 ---
 <!-- vale off -->
 Any {{site.base_gateways}} plugins supported in a self-managed hybrid mode

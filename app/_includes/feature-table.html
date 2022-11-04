@@ -28,7 +28,9 @@
           <span>{{ f.name }}</span>
         </td>
         <td class="no-mobile"></td>
-        <td class="no-mobile"></td>
+        {% unless include.columns == "2" %}
+          <td class="no-mobile"></td>
+        {% endunless %}
       </tr>
       {% for i in f.items %}
         <tr>

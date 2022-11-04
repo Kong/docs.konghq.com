@@ -1,6 +1,5 @@
 ---
 title: Konnect Plans, Billing, and Usage
-no_version: true
 content_type: explanation
 ---
 

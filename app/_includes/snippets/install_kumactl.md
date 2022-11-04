@@ -1,4 +1,4 @@
-To run Kuma on Kubernetes, you need to download the Kuma cli (`kumactl`) on your machine.
+To run Kuma on Kubernetes, you need to download the Kuma CLI (`kumactl`) on your machine.
 
 {% tabs install_kumactl useUrlFragment=false %}
 {% tab install_kumactl Script %}
@@ -16,7 +16,7 @@ You can omit the `VERSION` variable to install the latest version.
 You can also download the distribution manually. Download a distribution for the **client host** from where you will be executing the commands to access Kubernetes:
 
 * <a href="https://download.konghq.com/mesh-alpine/kuma-{{ page.latest_version }}-centos-amd64.tar.gz">CentOS</a>
-* <a href="https://download.konghq.com/mesh-alpine/kuma-{{ page.latest_version }}-rhel-amd64.tar.gz">RedHat</a>
+* <a href="https://download.konghq.com/mesh-alpine/kuma-{{ page.latest_version }}-rhel-amd64.tar.gz">Red Hat</a>
 * <a href="https://download.konghq.com/mesh-alpine/kuma-{{ page.latest_version }}-debian-amd64.tar.gz">Debian</a>
 * <a href="https://download.konghq.com/mesh-alpine/kuma-{{ page.latest_version }}-ubuntu-amd64.tar.gz">Ubuntu</a>
 * <a href="https://download.konghq.com/mesh-alpine/kuma-{{ page.latest_version }}-darwin-amd64.tar.gz">macOS</a> or run `brew install kumactl`

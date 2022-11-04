@@ -28,7 +28,7 @@ You can run the following script to automatically detect the operating system
 and download {{site.mesh_product_name}}:
 
 ```sh
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh -
 ```
 
 {% endnavtab %}
@@ -38,16 +38,16 @@ You can also download the distribution manually. Download a distribution for
 the **client host** from where you will be executing the commands to access
 Kubernetes:
 
-* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-centos-amd64.tar.gz)
-* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-rhel-amd64.tar.gz)
-* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-debian-amd64.tar.gz)
-* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-ubuntu-amd64.tar.gz)
-* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_latest.version}}-darwin-amd64.tar.gz)
+* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
+* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-rhel-amd64.tar.gz)
+* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
+* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
+* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-amd64.tar.gz)
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 
 {% endnavtab %}
@@ -66,7 +66,7 @@ control plane process in the next step &mdash; which is served by the
 Navigate to the `bin` folder:
 
 ```sh
-$ cd kong-mesh-{{page.kong_latest.version}}/bin
+$ cd kong-mesh-{{page.version}}/bin
 ```
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always

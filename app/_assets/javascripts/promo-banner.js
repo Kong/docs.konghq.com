@@ -1,8 +1,6 @@
 jQuery(document).ready(function () {
   var closed = localStorage.getItem("closebanner-summit-2022");
-  if (
-    closed !== "closebanner"
-  ) {
+  if (closed !== "closebanner") {
     $(".navbar-v2").removeClass("closed");
     $("body").addClass("banner");
     $("#mosaic-provider-react-aria-0-1").addClass("banner-offset");

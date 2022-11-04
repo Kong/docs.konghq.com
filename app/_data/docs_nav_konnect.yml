@@ -55,12 +55,18 @@
           url: /runtime-manager/runtime-groups/declarative-config
     - text: Runtime Instances
       items:
+        - text: Installation Options
+          url: /runtime-manager/runtime-instances/
         - text: Install with Docker
           url: /runtime-manager/runtime-instances/gateway-runtime-docker
         - text: Install on Kubernetes
           url: /runtime-manager/runtime-instances/gateway-runtime-kubernetes
         - text: Install on Linux
           url: /runtime-manager/runtime-instances/gateway-runtime-conf
+        - text: Install on AWS
+          url: /runtime-manager/runtime-instances/gateway-runtime-aws
+        - text: Install on Azure
+          url: /runtime-manager/runtime-instances/gateway-runtime-azure
         - text: Upgrade a Runtime Instance to a New Version
           url: /runtime-manager/runtime-instances/upgrade
         - text: Renew Certificates
@@ -99,7 +105,7 @@
           url: /servicehub/enable-service-plugin
         - text: Configure a Plugin on a Route
           url: /servicehub/enable-route-plugin
-          
+
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
@@ -147,12 +153,14 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Overview Dashboard
-      url: /analytics/overview-dashboard/
+    - text: Summary Dashboard
+      url: /analytics/summary-dashboard/
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
     - text: Generate Reports
       url: /analytics/generate-reports
+    - text: Troubleshoot
+      url: /analytics/troubleshoot/
 
 - title: Administer
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
@@ -190,6 +198,21 @@
     - text: Troubleshoot
       url: /org-management/troubleshoot
 
+- title: API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  items:
+    - text: Overview
+      url: /api/
+    - text: Konnect Identity API
+      items:
+        - text: API Documentation
+          url: /identity-management-api
+        - text: Identity Integration Guide
+          url: /api/identity-management/identity-integration
+    - text: Reference
+      items:
+        - text: Filtering
+          url: /api/filtering
 
 - title: Legacy content
   items:

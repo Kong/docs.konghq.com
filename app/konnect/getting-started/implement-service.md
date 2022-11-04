@@ -1,6 +1,5 @@
 ---
 title: Implement and Test a Service
-no_version: true
 ---
 
 Create a service implementation to expose your {{site.konnect_short_name}} service to clients.
