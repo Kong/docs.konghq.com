@@ -54,4 +54,4 @@ See the [UBI documentation](/mesh/{{page.kong_version}}/features/ubi-images) for
 
 ## Windows Support
 
-You can [install {{site.mesh_product_name}} on Windows](/mesh/{{page.kong_version}}/features/windows).
+You can [install {{site.mesh_product_name}} on Windows](/mesh/{{page.kong_version}}/installation/windows).
