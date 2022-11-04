@@ -426,11 +426,11 @@ function build_site(steps, append) {
   append = append || [];
 
   if (process.env.JEKYLL_ENV == "preview") {
-    var linksWebOverride = `
-links:
-  web: ${process.env.DEPLOY_PRIME_URL}
-`;
-    fs.appendFileSync("./jekyll.yml", linksWebOverride);
+    var configFilePath = "./jekyll.yml";
+    var doc = fs.readFileSync(configFilePath, "utf8");
+    var newDoc = doc.replace(/  web: https:\/\/docs.konghq.com/, `  web: ${process.env.DEPLOY_PRIME_URL}`);
+
+    fs.writeFileSync(configFilePath, newDoc);
   }
 
   // These are the steps that always run for every build
