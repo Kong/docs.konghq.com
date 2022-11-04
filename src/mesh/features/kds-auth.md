@@ -2,9 +2,10 @@
 title: Multi-zone authentication
 ---
 
-To add to the security of your deployments, Kong Mesh provides authentication of zone control planes to the global control plane.
+To add to the security of your deployments, {{site.mesh_product_name}} provides authentication of zone control planes to the global control plane.
 Authentication is based on the Zone Token which is also used to authenticate the zone proxy.
 See [zone proxy authentication][zone-proxy] to learn about token characteristics, revocation, rotation, and more.
+
 {{site.mesh_product_name}} introduces additional `cp` scope. Only tokens with `cp` scope can be used to authenticate with the zone control plane.
 
 ## Set up tokens
@@ -19,9 +20,13 @@ To generate the tokens you need and configure your clusters:
 
 On the global control plane, [authenticate][auth] and run the following command:
 
-```
+```sh
 kumactl generate zone-token --zone=west --scope=cp --valid-for=720h > /tmp/token
-$ cat /tmp/token
+```
+
+View the token:
+```sh
+cat /tmp/token
 ```
 
 The generated token looks like:
@@ -39,8 +44,8 @@ For authentication to the global control plane on Kubernetes, you can port-forwa
 
 If you install the zone control plane with `kumactl install control-plane`, pass the `--cp-token-path` argument, where the value is the path to the file where the token is stored:
 
-```
-$ kumactl install control-plane \
+```sh
+kumactl install control-plane \
   --mode=zone \
   --zone=<zone name> \
   --cp-token-path=/tmp/token \
@@ -53,8 +58,8 @@ $ kumactl install control-plane \
 
 Create a secret with a token in the same namespace where Kong Mesh is installed:
 
-```
-$ kubectl create secret generic cp-token -n kong-mesh-system --from-file=/tmp/token
+```sh
+kubectl create secret generic cp-token -n kong-mesh-system --from-file=/tmp/token
 ```
 
 Add the following to `Values.yaml`:
@@ -76,22 +81,22 @@ Either:
 - Set the token as an inline value in a `KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE` environment variable:
 
 ```sh
-$ KUMA_MODE=zone \
-  KUMA_MULTIZONE_ZONE_NAME=<zone-name> \
-  KUMA_MULTIZONE_ZONE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
-  KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE="eyJhbGciOiJSUzI1NiIsImtpZCI6IjEiLCJ0eXAiOiJKV1QifQ.eyJab25lIjoid2VzdCIsIlNjb3BlIjpbImNwIl0sImV4cCI6MTY2OTU0NjkzOSwibmJmIjoxNjY2OTU0NjM5LCJpYXQiOjE2NjY5NTQ5MzksImp0aSI6IjZiYWYyYzkwLTBlODYtNGM2Mi05N2E3LTc4MzU4NTU4MzRiYyJ9.DJfA0M6uUfO4oytp8jHtzngiVggQWQR88YQxWVU1ujc0Zv-XStRDwvpdEoFGOzWVn4EUfI3gcv9qS2MxqIzQjJ83k5Jq85w4hkPyLGr-0jNS1UZF6yXz7lB_As8f91gMVHbRAoFuoybV5ndDtfYzwZknyzott7doxk-SjTes2GDvpg0-kFNGc4MBR2EprGl7YKO0vhFxQjln5AyCAhmAA7-PM7WRCzhmS-pUXacfZtP2VulWYhmTAuLPnkJrJN-ZWPkIpnV1MZmsgWbzTpnW-PhmCMQfD5m2im1c_3OlFwa9P9rZQQhdhbTp0ofMvW-cdCAcG_lOJI5j60cqPh2DGg" \
-  ./kuma-cp run
+KUMA_MODE=zone \
+KUMA_MULTIZONE_ZONE_NAME=<zone-name> \
+KUMA_MULTIZONE_ZONE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
+KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE="eyJhbGciOiJSUzI1NiIsImtpZCI6IjEiLCJ0eXAiOiJKV1QifQ.eyJab25lIjoid2VzdCIsIlNjb3BlIjpbImNwIl0sImV4cCI6MTY2OTU0NjkzOSwibmJmIjoxNjY2OTU0NjM5LCJpYXQiOjE2NjY5NTQ5MzksImp0aSI6IjZiYWYyYzkwLTBlODYtNGM2Mi05N2E3LTc4MzU4NTU4MzRiYyJ9.DJfA0M6uUfO4oytp8jHtzngiVggQWQR88YQxWVU1ujc0Zv-XStRDwvpdEoFGOzWVn4EUfI3gcv9qS2MxqIzQjJ83k5Jq85w4hkPyLGr-0jNS1UZF6yXz7lB_As8f91gMVHbRAoFuoybV5ndDtfYzwZknyzott7doxk-SjTes2GDvpg0-kFNGc4MBR2EprGl7YKO0vhFxQjln5AyCAhmAA7-PM7WRCzhmS-pUXacfZtP2VulWYhmTAuLPnkJrJN-ZWPkIpnV1MZmsgWbzTpnW-PhmCMQfD5m2im1c_3OlFwa9P9rZQQhdhbTp0ofMvW-cdCAcG_lOJI5j60cqPh2DGg" \
+./kuma-cp run
 ```
 
 OR
 
 - Store the token in a file, then set the path to the file in a `KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_INLINE` environment variable.
 ```sh
-$ KUMA_MODE=zone \
-  KUMA_MULTIZONE_ZONE_NAME=<zone-name> \
-  KUMA_MULTIZONE_ZONE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
-  KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_PATH="/tmp/token" \
-  ./kuma-cp run
+KUMA_MODE=zone \
+KUMA_MULTIZONE_ZONE_NAME=<zone-name> \
+KUMA_MULTIZONE_ZONE_GLOBAL_ADDRESS=grpcs://<global-kds-address> \
+KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_PATH="/tmp/token" \
+./kuma-cp run
 ```
 
 {% endnavtab %}
@@ -107,7 +112,7 @@ If you are starting from scratch and not securing existing Kong Mesh deployment,
 If you install the zone control plane with `kumactl install control-plane`, pass the `--cp-auth` argument with the value `cpToken`:
 
 ```sh
-$ kumactl install control-plane \
+kumactl install control-plane \
   --mode=global \
   --cp-auth=cpToken | kubectl apply -f -
 ```
@@ -130,9 +135,9 @@ kuma:
 Set `KMESH_MULTIZONE_GLOBAL_KDS_AUTH_TYPE` to `cpToken`:
 
 ```sh
-$ KUMA_MODE=global \
-  KMESH_MULTIZONE_GLOBAL_KDS_AUTH_TYPE=cpToken \
-  ./kuma-cp run
+KUMA_MODE=global \
+KMESH_MULTIZONE_GLOBAL_KDS_AUTH_TYPE=cpToken \
+./kuma-cp run
 ```
 
 {% endnavtab %}

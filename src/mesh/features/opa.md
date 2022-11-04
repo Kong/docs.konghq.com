@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh - OPA Policy Integration
+title: OPA Policy Integration
 ---
 
 ## OPA policy plugin
@@ -10,7 +10,7 @@ The agent is included in the data plane proxy sidecar, instead of the more commo
 
 When `OPAPolicy` is applied, the control plane configures:
 
-- the embedded policy agent, with the specified policy
+- The embedded policy agent, with the specified policy
 - Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_authz/v3/ext_authz.proto) that points to the embedded policy agent
 
 ## Usage
@@ -252,7 +252,7 @@ The following environment variables are available:
 | KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
 | KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
-| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | [plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow] |
+| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | `[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]` |
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -324,7 +324,7 @@ The `run` command on the data plane proxy accepts the following equivalent param
 
 - Override the config for individual data plane proxies by placing the appropriate annotations on the Pod:
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -467,14 +467,14 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 
 1.  Deploy the example application:
 
-    ```
+    ```sh
     kubectl apply -f https://bit.ly/demokuma
     ```
 
 1.  Make a request from the frontend to the backend:
 
-    ```
-    $ kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+    ```sh
+    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
     ```
 
     The output looks like:
@@ -514,7 +514,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 
 1.  Apply an OPA Policy that requires a valid JWT token:
 
-    ```
+    ```sh
     echo "
     apiVersion: kuma.io/v1alpha1
     kind: OPAPolicy
@@ -560,8 +560,8 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 
 1.  Make an invalid request from the frontend to the backend:
 
-    ```
-    $ kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+    ```sh
+    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
     ```
     The output looks like:
 
@@ -590,11 +590,16 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 
     The policy can take up to 30 seconds to propagate, so if this request succeeds the first time, wait and then try again.
 
-1.  Make a valid request from the frontend to the backend:
+1.  Make a valid request from the frontend to the backend.
 
+    Export the token into an environment variable:
+    ```sh
+    export ADMIN_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJzdWIiOiJZbTlpIiwibmJmIjoxNTE0ODUxMTM5LCJleHAiOjI1MjQ2MDgwMDB9.H0-42LYzoWyQ_4MXAcED30u6lA5JE087eECV2nxDfXo"
     ```
-    $ export ADMIN_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJzdWIiOiJZbTlpIiwibmJmIjoxNTE0ODUxMTM5LCJleHAiOjI1MjQ2MDgwMDB9.H0-42LYzoWyQ_4MXAcED30u6lA5JE087eECV2nxDfXo"
-    $ kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl -H "Authorization: Bearer $ADMIN_TOKEN" backend:3001
+
+    Make the request:
+    ```sh
+    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl -H "Authorization: Bearer $ADMIN_TOKEN" backend:3001
     ```
 
     The output looks like:

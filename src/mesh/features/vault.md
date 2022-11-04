@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh - Vault Policy
+title: Vault Policy
 ---
 
 ## Vault CA Backend
@@ -17,8 +17,7 @@ plane certificates.
 * `vault`: {{site.mesh_product_name}} generates data plane certificates
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
-
-* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca) {{site.mesh_product_name}} generates data plane certificates
+* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 {% if_version gte:1.8.x %}
 * [`certmanager`](/mesh/{{page.kong_version}}/features/cert-manager): {{site.mesh_product_name}} generates data plane certificates
@@ -197,9 +196,9 @@ Vault, you must provide credentials in the configuration of the `mesh` object of
 You can authenticate with the `token`, with client certificates by providing `clientKey` and `clientCert`, or by AWS role-based authentication.
 
 You can provide these values inline for testing purposes only, as a path to a file on the
-same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a mesh-scoped
-secret (see [the {{site.mesh_product_name}} Secrets documentation][secrets] for details
-on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored
+same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a
+[mesh-scoped secret][secrets].
+On Kubernetes, this mesh-scoped secret should be stored
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
 Here's an example of a configuration with a `vault`-backed CA:
@@ -250,8 +249,6 @@ spec:
                 iamServerIdHeader: example.com # Optional server ID header value
 ```
 
-Apply the configuration with `kubectl apply -f [..]`.
-
 {% endnavtab %}
 {% navtab Universal %}
 
@@ -293,16 +290,22 @@ mtls:
               iamServerIdHeader: example.com # Optional server ID header value
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API][http-api].
-
 {% endnavtab %}
 {% endnavtabs %}
+
+Apply the configuration with `kumactl apply -f [..]`.
+
+If you're running in Universal mode, you can also use the [HTTP API][http-api] to apply configuration.
 
 ## Common name
 
 Kong Mesh uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
 You may need to set a common name in the certificate, for compliance reasons. To do this, set the `commonName` field in the Vault mTLS backend configuration.
-The value contains the template that will be used to generate the name. For example, assuming that the template is `{% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}`, a data plane proxy with `kuma.io/service: backend` tag will receive a certificate with the `backend.mesh` common name. You can also use the `replace` function to replace `_` with `-`, for example `{% raw %}'{{ tag "kuma.io/service" | replace "_" "-" }}.mesh'{% endraw %}` changes the common name of `kuma.io/service: my_backend` from `my_backend.mesh` to `my-backend.mesh`.
+The value contains the template that will be used to generate the name.
+
+For example, assuming that the template is `{% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}`, a data plane proxy with `kuma.io/service: backend` tag will receive a certificate with the `backend.mesh` common name.
+
+You can also use the `replace` function to replace `_` with `-`. For example, `{% raw %}'{{ tag "kuma.io/service" | replace "_" "-" }}.mesh'{% endraw %}` changes the common name of `kuma.io/service: my_backend` from `my_backend.mesh` to `my-backend.mesh`.
 
 ## Multi-zone and Vault
 
