@@ -17,7 +17,6 @@ plane certificates.
 * [`vault`](/mesh/{{page.kong_version}}/features/vault): {{site.mesh_product_name}} generates data plane certificates
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
-
 * `acmpca`: {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 {% if_version gte:1.8.x %}
@@ -68,9 +67,8 @@ AWS credentials may also be supplied as secrets stored by {{site.mesh_product_na
 AWS credentials and CA Certificate may be supplied inline, as a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. Inline specification of credentials should
 be used for testing purposes only.
-When using a `secret`, it should be a mesh-scoped
-secret (see [the {{site.mesh_product_name}} Secrets documentation][secrets] for details
-on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored
+When using a `secret`, it should be a [mesh-scoped secret][secrets].
+On Kubernetes, this mesh-scoped secret should be stored
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
 Here's an example of a configuration with a `acmpca`-backed CA:
@@ -105,8 +103,6 @@ spec:
                 file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kubectl apply -f [..]`.
-
 {% endnavtab %}
 {% navtab Universal %}
 
@@ -134,10 +130,12 @@ mtls:
             file: /tmp/accesss_key.txt # one of file, secret or inline.
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API][http-api].
-
 {% endnavtab %}
 {% endnavtabs %}
+
+Apply the configuration with `kumactl apply -f [..]`.
+
+If you're running in Universal mode, you can also use the [HTTP API][http-api] to apply configuration.
 
 ## multi-zone and ACM Private CA
 

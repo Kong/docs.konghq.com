@@ -260,6 +260,8 @@ items:
   - title: Enterprise Features
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
+      - text: Overview
+        url: /features/
       - text: HashiCorp Vault CA
         url: /features/vault
       - text: Amazon ACM Private CA
