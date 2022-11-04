@@ -1013,3 +1013,95 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 ## Multi-zone
 
 In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
+
+## Wildcard tag value matching
+
+{:.note}
+> **Note**: This feature is available starting in Kong Mesh 1.9.1
+
+You can perform partial tag value matching using `*` wildcards.
+
+For example, the following role:
+
+{% navtabs %}
+{% navtab Kubernetes %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: role-wildcard
+spec:
+  rules:
+  - types: ["TrafficRoute"]
+    mesh: default
+    access: ["CREATE", "UPDATE", "DELETE"]
+    when:
+    - sources:
+        match:
+          k8s.kuma.io/namespace: orders
+      destinations:
+        match:
+          kuma.io/service: '*_orders_*'
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+type: AccessRole
+name: role-wildcard
+rules:
+- types: ["TrafficRoute"]
+  mesh: default
+  access: ["CREATE", "UPDATE", "DELETE"]
+  when:
+  - sources:
+      match:
+        k8s.kuma.io/namespace: orders
+    destinations:
+      match:
+        kuma.io/service: '*_orders_*'
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+would allow a subject to create the following resource:
+
+{% navtabs %}
+{% navtab Kubernetes %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: TrafficRoute
+metadata:
+  name: tr-orders
+spec:
+  sources:
+    - match:
+        k8s.kuma.io/namespace: 'orders'
+  destinations:
+    - match:
+        kuma.io/service: web_orders_svc_1000
+    - match:
+        kuma.io/service: backend_orders_svc_1000
+  conf:
+    destination:
+      kuma.io/service: '*'
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+type: TrafficRoute
+mesh: default
+name: tr-orders
+sources:
+  - match:
+      k8s.kuma.io/namespace: 'orders'
+destinations:
+  - match:
+      kuma.io/service: web_orders_svc_1000
+  - match:
+      kuma.io/service: backend_orders_svc_1000
+conf:
+  destination:
+    kuma.io/service: '*'
+```
+{% endnavtab %}
+{% endnavtabs %}
