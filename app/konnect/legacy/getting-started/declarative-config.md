@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Konnect Cloud with decK
-no_version: true
 ---
 <!-- vale off -->
 You can manage entities in your {{site.konnect_saas}} org using configuration
@@ -261,6 +260,6 @@ No API key found in request.
 
 ## See also
 
-* [decK CLI reference](/deck/latest/reference/deck_konnect): decK commands for {{site.konnect_short_name}}
+* [decK CLI reference](/deck/1.13.x/reference/deck_konnect): decK commands for {{site.konnect_short_name}}
 <!-- * [Migrate from a self-managed {{site.base_gateway}} deployment](/konnect/legacy/deployment/migrate-from-self-managed):
 Use decK to migrate {{site.base_gateway}} entities to {{site.konnect_saas}} -->

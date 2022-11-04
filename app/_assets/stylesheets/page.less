@@ -1,7 +1,7 @@
 // styling for API documentation using the default layout
 
 elements-api h1 {
-  padding-top:40px;
+  padding-top: 40px;
 }
 
 .sl-py-16 {
@@ -22,7 +22,7 @@ elements-api h1 {
 }
 
 .submenu-section {
-   .docs-dropdown-li {
+  .docs-dropdown-li {
     margin-left: 17px;
   }
 }
@@ -192,7 +192,8 @@ ul.navbar-item-submenu {
           font-size: 16px;
         }
 
-        .content-edition, .content-version {
+        .content-edition,
+        .content-version {
           display: none;
           visibility: hidden;
         }
@@ -218,7 +219,8 @@ ul.navbar-item-submenu {
             font: 700 12px/16px Roboto;
           }
 
-          .content-edition, .content-version {
+          .content-edition,
+          .content-version {
             display: block;
             visibility: visible;
           }
@@ -472,7 +474,7 @@ ul.navbar-item-submenu {
   cursor: pointer;
   width: 24px;
   height: 26px;
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
   background: center no-repeat url(/assets/images/icons/icn-frame.svg);
 
   @media (max-width: 800px) {
@@ -539,25 +541,26 @@ ul.navbar-item-submenu {
           font-size: 14px;
           color: @blue-500;
 
-            img, i {
-              float: left;
-              padding-right: 12px;
-              display: inline-block;
-              width: 16px;
-              opacity: 0.4;
-              position: relative;
-              top: 6px;
-              }
+          img,
+          i {
+            float: left;
+            padding-right: 12px;
+            display: inline-block;
+            width: 16px;
+            opacity: 0.4;
+            position: relative;
+            top: 6px;
+          }
 
-            i {
-              opacity: 1;
-              font-size: 14px;
-              left: 1.5px;
-            }
+          i {
+            opacity: 1;
+            font-size: 14px;
+            left: 1.5px;
           }
         }
       }
     }
+  }
 
   h5 {
     .font-source-sans-sc();
@@ -598,7 +601,7 @@ ul.navbar-item-submenu {
     color: @blue-500;
 
     &:hover {
-    opacity: 0.5;
+      opacity: 0.5;
     }
   }
 
@@ -673,7 +676,6 @@ ul.navbar-item-submenu {
 
 .page-content-container {
   .page-content {
-
     @media (max-width: 800px) {
       padding: 0;
       border-right: none;
@@ -751,7 +753,8 @@ ul.navbar-item-submenu {
     text-decoration: none;
     color: @blue-500;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       text-decoration: underline;
       opacity: 0.7;
     }
@@ -806,7 +809,7 @@ ul.navbar-item-submenu {
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(0,0,0,0.25);
+      background-color: rgba(0, 0, 0, 0.25);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -870,7 +873,9 @@ Generic Styling for Desktop
     font-size: 14px;
   }
 
-  tr, th, td {
+  tr,
+  th,
+  td {
     border: none;
   }
 
@@ -900,8 +905,6 @@ Generic Styling for Desktop
     background-color: @steel-100;
     border: 1px solid @steel-100;
   }
-
-
 
   @media only screen and (max-width: 1099px) {
     table,
@@ -954,16 +957,16 @@ Generic Styling for Desktop
       background-color: @yellow-100;
       border-left: solid 3px @yellow-400;
 
-        &::before {
-          content: "\f071";
-          font-family: "Font Awesome", FontAwesome;
-          color: @yellow-400;
-          display: inline-block;
-          font-weight: 600;
-          font-size: 17px;
-          padding: 0 5px 0 0;
-        }
+      &::before {
+        content: "\f071";
+        font-family: "Font Awesome", FontAwesome;
+        color: @yellow-400;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 0 5px 0 0;
       }
+    }
 
     &.alert-red {
       background-color: @red-100;
@@ -980,13 +983,14 @@ Generic Styling for Desktop
       }
 
       &.no-icon {
-      &::before {
-        display: none;
+        &::before {
+          display: none;
+        }
       }
     }
-    }
 
-    ol, li {
+    ol,
+    li {
       margin-bottom: 0;
       margin-top: 0.5em;
     }
@@ -1151,18 +1155,21 @@ Generic Styling for Desktop
     opacity: 0.7;
     font-size: 15px;
 
-    ol, ul {
+    ol,
+    ul {
       margin-top: 0.5em;
       margin-bottom: 0;
     }
 
-    pre, code {
+    pre,
+    code {
       background-color: #fff;
       border: none;
       padding: 3px;
     }
 
-    b, strong {
+    b,
+    strong {
       padding: 0;
       margin: 0;
       display: inline;
@@ -1174,7 +1181,10 @@ Generic Styling for Desktop
       display: block;
     }
 
-    &.warning, &.important, &.note, &.install-banner {
+    &.warning,
+    &.important,
+    &.note,
+    &.install-banner {
       margin-bottom: 1em;
       padding: 15px 18px;
       opacity: 1;
@@ -1235,7 +1245,6 @@ Generic Styling for Desktop
       background-color: @blue-100;
       border: none;
 
-
       &:not(.no-icon)::before {
         content: "\f019";
         font-family: "Font Awesome", FontAwesome;
@@ -1247,7 +1256,9 @@ Generic Styling for Desktop
         float: left;
       }
 
-      > p, ul, li {
+      > p,
+      ul,
+      li {
         margin-left: 25px;
       }
 
@@ -1298,7 +1309,8 @@ Generic Styling for Desktop
         }
       }
 
-      p, a {
+      p,
+      a {
         display: block;
         padding-left: 15px;
       }
@@ -1339,8 +1351,8 @@ Generic Styling for Desktop
       justify-content: flex-start;
       padding: 16px;
       text-decoration: none;
-      transition: opacity .3s ease;
-      background-color: #FFF;
+      transition: opacity 0.3s ease;
+      background-color: #fff;
       box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.12);
       border-radius: 8px;
       max-width: 300px;
@@ -1379,23 +1391,25 @@ Generic Styling for Desktop
         justify-content: center;
       }
 
-      &:hover, &.focus {
+      &:hover,
+      &.focus {
         .install-text {
           color: @blue-500;
         }
       }
     }
 
-    .docs-grid-install-block:hover, .docs-grid-install-block:focus {
-      background-color: #F8F9FC;
+    .docs-grid-install-block:hover,
+    .docs-grid-install-block:focus {
+      background-color: #f8f9fc;
     }
 
     @media (max-width: 991px) {
       .docs-grid-install {
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
     }
   }
-}
   .endpoint {
     line-height: 41px;
     margin-bottom: 1em;
@@ -1550,7 +1564,8 @@ Generic Styling for Desktop
   font-size: 16px;
   padding: 15px 18px;
 
-  pre, code {
+  pre,
+  code {
     background-color: #fff;
     border: none;
   }
@@ -1582,15 +1597,15 @@ Generic Styling for Desktop
     .breadcrumb-item {
       display: inline-block;
       margin: 0;
-      }
     }
+  }
 
   .sidebar-toggle {
     margin: 0;
     display: none;
     padding: 0 8px;
     font-size: 16px;
-    margin-bottom: .2rem;
+    margin-bottom: 0.2rem;
 
     @media screen and (max-width: 800px) {
       display: block;

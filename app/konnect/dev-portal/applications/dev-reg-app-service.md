@@ -1,7 +1,6 @@
 ---
 title: Register or Unregister an Application to a Service
-no_version: true
-content-type: reference
+content_type: reference
 ---
 Dev Portal users can request to use {{site.konnect_short_name}} services with their application by submitting an application registration request. All registration requests go through an approval process. A {{site.konnect_short_name}} admin can manually approve requests, or enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) and have all application requests be automatically approved. 
 

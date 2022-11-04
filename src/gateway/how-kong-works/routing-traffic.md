@@ -495,87 +495,38 @@ This allow you to define two routes with two paths: `/service` and
 
 #### Using Regex in paths
 
-{{site.base_gateway}} supports regular expression pattern matching for an route's `paths` field
-via [PCRE](http://pcre.org/) (Perl Compatible Regular Expression). You can
-assign paths as both prefixes and Regex to a route at the same time.
-
-For a path to be considered as Regex, it must fall **outside** of the following regex:
+For a path to be considered a regular expression, it must be prefixed with a `~`: 
 
 ```
-^[a-zA-Z0-9\.\-_~/%]*$
+paths: ["~/foo/bar$"]
+```
+Any path that isn't prefixed with a `~` will be considered plain text: 
+
+```
+"paths": ["/users/\d+/profile", "/following"]
 ```
 
-In other words, if a path contains any character that is **not** alphanumerical, dot (`.`),
-dash (`-`), underscore (`_`), tilde (`~`), forward-slash (`/`), or percent (`%`), then
-it will be considered a Regex path. This determination is done on a per-path basis
-and it is allowed to mix plain text and regex paths inside the same `paths` array of the same
-route object.
-
-For example, if we consider the following route:
-
-```json
-{
-    "paths": ["/users/\d+/profile", "/following"]
-}
-```
-
-The following requests would be matched by this route:
-
-```http
-GET /following HTTP/1.1
-Host: ...
-```
-
-```http
-GET /users/123/profile HTTP/1.1
-Host: ...
-```
-
-The provided Regex are evaluated with the `a` PCRE flag (`PCRE_ANCHORED`),
-meaning that they will be constrained to match at the first matching point
-in the path (the root `/` character).
-
-**Note**: Regex matching is in general very fast, but it is possible to
-construct expressions that take a very long time to determine that they don't
-actually match.  This happens when the expression results in a "backtrace
-exponential explosion", which means that there's an astronomical number of
-tests to be performed before it's conclusive that they're all negative.
-If undetected, this could take hours to finish with a single regular expression.
-The [PCRE](http://pcre.org/) engine automatically detects most types of this
-and replaces with more direct approaches, but there are more complex expressions
-that could result in this scenario.
-
-To limit the worst-case scenario, {{site.base_gateway}} applies the OpenResty
-[`lua_regex_match_limit`](https://github.com/openresty/lua-nginx-module#lua_regex_match_limit)
-to ensure that any regex operation terminates in around two seconds in the
-worst case.  Apart from that, a smaller limit is applied to some "critical"
-regex operations, like those for path selection, in order to terminate them
-within two milliseconds, at most.
+For more information about how the router processes regular expressions, see [performance considerations when using Expressions](/gateway/latest/key-concepts/routes/expressions/#performance-considerations-when-using-expressions).
 
 ##### Evaluation order
 
-As previously mentioned, {{site.base_gateway}} evaluates prefix paths by length, the longest
-prefix paths are evaluated first. However, {{site.base_gateway}} will evaluate Regex paths based
-on the `regex_priority` attribute of routes from highest priority to lowest.
-Regex paths are furthermore evaluated before prefix paths.
-
-Consider the following routes:
+The router evaluates routes using the `regex_priority` field of the `Route` where a route is configured.
 
 ```json
 [
     {
-        "paths": ["/status/\d+"],
+        "paths": ["~/status/\d+"],
         "regex_priority": 0
     },
     {
-        "paths": ["/version/\d+/status/\d+"],
+        "paths": ["~/version/\d+/status/\d+"],
         "regex_priority": 6
     },
     {
-        "paths": ["/version"],
+        "paths": /version,
     },
     {
-        "paths": ["/version/any/"],
+        "paths": ["~/version/any/"],
     }
 ]
 ```
@@ -588,10 +539,11 @@ defined URIs, in this order:
 3. `/version/any/`
 4. `/version`
 
-Take care to avoid writing Regex rules that are overly broad and may consume
-traffic intended for a prefix rule. Adding a rule with the path `/version/.*` to
-the ruleset above would likely consume some traffic intended for the `/version`
-prefix path. If you see unexpected behavior, sending `Kong-Debug: 1` in your
+Routers with a large number of regexes can consume traffic intended for other rules. Regular expressions are much more expensive to build and execute and can't be optimized easily. 
+You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
+request headers will indicate the matched route ID in the response headers for
+troubleshooting purposes.
+You can avoid creating complex regexes using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
 request headers will indicate the matched route ID in the response headers for
 troubleshooting purposes.
 

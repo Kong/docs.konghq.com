@@ -3,6 +3,7 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+
 ## 2.0.0
 
 ### Upgrading
@@ -14,6 +15,19 @@ However, Control Plane Token is now deprecated and will be removed in the future
 
 ### Breaking changes and deprecations
 Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
+
+## 1.9.1
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.8.1](https://github.com/kumahq/kuma/releases/tag/1.8.1)
+
+### Changes
+
+- Gateway: Added support for `retryOn` in retry policies.
+- Added support for evicted Pods.
+- Added support for wildcard tag value match in RBAC.
+- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
+
 
 ## 1.9.0
 > Release on **2022/08/23**
@@ -31,6 +45,16 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 ### Upgrading
 
 - You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
+
+## 1.8.3
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.7.2](https://github.com/kumahq/kuma/releases/tag/1.7.2)
+
+### Changes
+
+- Added support for evicted Pods.
+- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
 
 ## 1.8.2
 
@@ -52,6 +76,16 @@ Built on top of [Kuma 1.7.1](https://github.com/kumahq/kuma/releases/tag/1.7.1)
 ### Changes
 
 - Check both old and new spec on Update
+
+## 1.7.4
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.6.2](https://github.com/kumahq/kuma/releases/tag/1.6.2)
+
+### Changes
+
+- Added support for evicted Pods.
+- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
 
 ## 1.7.2
 

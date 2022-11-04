@@ -1,6 +1,5 @@
 ---
 title: Runtime Groups
-no_version: true
 ---
 
 {{site.konnect_short_name}} manages runtime configuration in runtime groups. Each runtime group acts

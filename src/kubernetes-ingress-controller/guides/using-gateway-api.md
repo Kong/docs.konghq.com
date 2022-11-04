@@ -1,6 +1,13 @@
 ---
 title: Using Gateway API
-alpha: true
+alpha: false # This is the default, but is here for completeness
+content_type: tutorial
+
+overrides:
+  alpha:
+    true:
+      gte: 2.2.x
+      lte: 2.5.x
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
@@ -31,15 +38,22 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 - [`ReferenceGrant`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
 {% endif_version %}
 
-
 ## Enable the feature
 
 The Gateway API CRDs are not yet available by default in Kubernetes. You must
 first [install them](https://gateway-api.sigs.k8s.io/guides/getting-started/#installing-gateway-api-crds-manually).
 
-The default controller configuration disables Gateway API handling. To enable
-it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
+{% if_version gte:2.4.x lte:2.5.x %}
+The default controller configuration disables Gateway API handling.
+To enable it, set `ingressController.env.feature_gates: Gateway=true` in your Helm
 `values.yaml`, or set `CONTROLLER_FEATURE_GATES=Gateway=true` if not using Helm.
+{% endif_version %}
+{% if_version gte:2.6.x %}
+The default controller configuration enables Gateway API handling, however the
+alpha features of Gateway API are still behind a feature flag in {{site.kic_product_name}}.
+To enable it, set `ingressController.env.feature_gates: GatewayAlpha=true` in your Helm
+`values.yaml`, or set `CONTROLLER_FEATURE_GATES=GatewayAlpha=true` if not using Helm.
+{% endif_version %}
 Note that you must restart Pods with this flag set _after_ installing the
 Gateway API CRDs.
 
@@ -76,22 +90,21 @@ Server: kong/1.2.1
 
 This is expected, as Kong does not yet know how to proxy the request.
 
-## Set up an echo-server
+## Set up an echo service
 
-Set up an echo-server application to demonstrate how
-to use the {{site.kic_product_name}}:
+Set up an echo service to demonstrate how to use the {{site.kic_product_name}}:
 
 ```bash
-$ kubectl apply -f https://bit.ly/echo-service
+kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
 ```
 
-## Add a Gateway class and gateway
+## Add a GatewayClass and Gateway
 
-The Gateway resource represents the proxy instance that handles traffic for a
-set of Gateway API routes, and a GatewayClass describes characteristics shared
-by all Gateways of a given type.
+The `Gateway` resource represents the proxy instance that handles traffic for a
+set of Gateway API routes, and a `GatewayClass` describes characteristics shared
+by all `Gateway`s of a given type.
 
-Add a GatewayClass:
+Add a `GatewayClass`:
 
 {% if_version lte: 2.5.x %}
 ```bash
@@ -109,24 +122,22 @@ spec:
 {% if_version gte: 2.6.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
-apiVersion: gateway.networking.k8s.io/v1beta1
 kind: GatewayClass
 metadata:
   name: kong
   annotations:
-    konghq.com/gateway-unmanaged: true
+    konghq.com/gatewayclass-unmanaged: 'true'
 spec:
   controllerName: konghq.com/kic-gateway-controller
 " | kubectl apply -f -
 ```
 {% endif_version %}
 
-
 ```
 gatewayclass.gateway.networking.k8s.io/kong created
 ```
 
-Add a Gateway: 
+Add a `Gateway`:
 
 {% if_version lte: 2.5.x %}
 ```bash
@@ -198,7 +209,7 @@ that {{site.base_gateway}} resource with listener and status information.
 
 {% if_version gte: 2.6.x %}
 To configure KIC to reconcile the `Gateway` resource, you must set the 
-`konghq.com/gateway-unmanaged` annotation as the example in `GatewayClass` resource used in 
+`konghq.com/gatewayclass-unmanaged` annotation as the example in `GatewayClass` resource used in 
 `spec.gatewayClassName` in `Gateway` resource. Also, the 
 `spec.controllerName` of `GatewayClass` needs to be same as the value of the
 `--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
@@ -219,16 +230,12 @@ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
   },
   {
     "type": "IPAddress",
-    "value": "10.96.179.122"
-  },
-  {
-    "type": "IPAddress",
     "value": "172.18.0.240"
   }
 ]
 ```
 
-## Add an HTTP Route
+## Add an HTTPRoute
 
 `HTTPRoute` resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
@@ -240,6 +247,8 @@ $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
 metadata:
   name: echo
+  annotations:
+    konghq.com/strip-path: "true"
 spec:
   parentRefs:
   - group: gateway.networking.k8s.io
@@ -268,6 +277,8 @@ $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
 metadata:
   name: echo
+  annotations:
+    konghq.com/strip-path: 'true'
 spec:
   parentRefs:
   - group: gateway.networking.k8s.io
@@ -290,33 +301,99 @@ spec:
 ```
 {% endif_version %}
 
-After creating an HTTP Route, accessing `/echo` forwards a request to the
-echo service:
+After creating an `HTTPRoute`, accessing `/echo/hostname` forwards a request to the
+echo service's `/hostname` path, which yields the name of the pod that served the request:
 
 ```bash
-$ curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+curl -i http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
 ```
 
 ```
 HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Transfer-Encoding: chunked
+Content-Type: text/plain; charset=utf-8
+Content-Length: 21
 Connection: keep-alive
-Date: Fri, 21 Jun 2019 18:09:02 GMT
-Server: echoserver
+Date: Fri, 28 Oct 2022 08:18:18 GMT
 X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 1
-Via: kong/1.1.2
+X-Kong-Proxy-Latency: 0
+Via: kong/3.0.0
 
-
-
-Hostname: echo-758859bbfb-cnfmx
-...
+echo-658c5ff5ff-8cvgj%
 ```
 
-## Alpha limitations
+{% if_version gte: 2.6.x %}
+## Traffic splitting with HTTPRoute
 
-The KIC Gateway API alpha is a work in progress, and not all features of
+`HTTPRoute` contains a [`BackendRefs`][gateway-api-backendref] field, which allows
+users to specify `weight` parameters for echo `BackendRef`.
+This can be used to perform traffic splitting.
+
+To do so, you can deploy a second echo `Service` so that you have
+a second `BackendRef` to use for traffic splitting.
+
+```bach
+kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-services.yaml
+```
+{:.note}
+> **Note**: This example contains the previous echo `Service` so you may deploy
+> it without deploying the previous example from the
+> [Set up an echo service](#set-up-an-echo-service) section.
+
+Now that those two `Services` are deployed, you can now deploy your `HTTPRoute`. This will
+perform the traffic splitting between them using the weight parameters:
+
+```bash
+echo 'apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: echo
+  annotations:
+    konghq.com/strip-path: "true"
+spec:
+  parentRefs:
+  - name: kong
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /echo
+    backendRefs:
+    - name: echo
+      kind: Service
+      port: 80
+      weight: 75
+    - name: echo2
+      kind: Service
+      port: 80
+      weight: 25
+' | kubectl apply -f -
+```
+
+Now, accessing `/echo/hostname` should distribute around 75% of requests to `Service`
+echo and around 25% of requests to `Service` echo2.
+
+```bash
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+echo2-7cb798f47-gh4xg%
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+echo-658c5ff5ff-8cvgj%
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+echo-658c5ff5ff-8cvgj%
+curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+echo-658c5ff5ff-8cvgj%
+```
+
+[gateway-api-backendref]: https://gateway-api.sigs.k8s.io/v1alpha2/references/spec/#gateway.networking.k8s.io/v1beta1.BackendRef
+{% endif_version %}
+
+{% if_version lte: 2.5.x %}
+## Alpha limitations
+{% endif_version %}
+{% if_version gte: 2.6.x %}
+## Beta limitations
+{% endif_version %}
+
+{{site.kic_product_name}} Gateway API support is a work in progress, and not all features of
 Gateway APIs are supported. In particular:
 
 {% if_version lte: 2.3.x %}
@@ -338,3 +415,5 @@ Gateway APIs are supported. In particular:
 - Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
 - Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
 {% endif_version %}
+- HTTPRoutes cannot be bound to a specific port using a [ParentReference](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1beta1.ParentReference).
+  Kong serves all HTTP routes on all HTTP listeners.

@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Authentication and Authorization
-no_version: true
 ---
 <!-- vale off -->
 Secure your {{site.konnect_saas}} organization by setting up roles and

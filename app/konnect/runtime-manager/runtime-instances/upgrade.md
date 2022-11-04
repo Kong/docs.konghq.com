@@ -1,7 +1,6 @@
 ---
 title: Upgrade a Runtime Instance to a New Version
-no_version: true
-content-type: how-to
+content_type: how-to
 ---
 
 You can upgrade runtimes to a new {{site.base_gateway}} version by bringing
@@ -11,6 +10,9 @@ old node is removed. It is the cleanest and safest way to upgrade with no
 proxy downtime.
 
 We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
+
+{:.important}
+> **Important:** Upgrading a runtime instance version isn't supported for runtime instances created in cloud providers, such as AWS and Azure.
 
 ## Prerequisites
 

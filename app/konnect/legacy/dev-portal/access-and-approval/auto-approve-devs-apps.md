@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Auto Approve Developer and Application Registrations
-no_version: true
 ---
 <!-- vale off -->
 When auto approval is enabled, {{site.konnect_short_name}} admins don't

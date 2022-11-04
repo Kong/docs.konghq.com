@@ -1,6 +1,5 @@
 ---
 title: Auto Approve Developer and Application Registrations
-no_version: true
 content_type: how-to
 ---
 

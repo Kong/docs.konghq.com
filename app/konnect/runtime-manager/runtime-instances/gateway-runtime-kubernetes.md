@@ -1,6 +1,5 @@
 ---
 title: Set up a Kong Gateway Runtime on Kubernetes
-no_version: true
 content_type: how-to
 ---
 Set up a Kubernetes runtime instance through the
@@ -28,17 +27,17 @@ On your runtime instance's system, create a namespace and pull down the `kong` H
 
 1. Create a namespace:
     ```sh
-    $ kubectl create namespace kong
+    kubectl create namespace kong
     ```
 
 2. Add the Kong charts repository:
     ```bash
-    $ helm repo add kong https://charts.konghq.com
+    helm repo add kong https://charts.konghq.com
     ```
 
 3. Update Helm:
     ```bash
-    $ helm repo update
+    helm repo update
     ```
 
 ## Generate certificates
@@ -60,7 +59,7 @@ Create a `tls` secret using the `tls.cert` and `tls.key` files
 you saved earlier:
 
 ```bash
-$ kubectl create secret tls kong-cluster-cert -n kong \
+kubectl create secret tls kong-cluster-cert -n kong \
   --cert=/{PATH_TO_FILE}/tls.crt \
   --key=/{PATH_TO_FILE}/tls.key
 ```
@@ -73,15 +72,13 @@ $ kubectl create secret tls kong-cluster-cert -n kong \
 2. Return to {{site.konnect_short_name}} and copy the
 code block in the **Configuration Parameters** section.
 
-    ![{{site.konnect_short_name}} Runtime Parameters](/assets/images/docs/konnect/konnect-runtime-manager.png)
-
 3. Paste the code block into your `values.yaml` file. It should look something
 like this:
 
     ```yaml
     image:
       repository: kong/kong-gateway
-      tag: "3.0.0.0-alpine"
+      tag: "3.0.0.0"
 
     secretVolumes:
     - kong-cluster-cert
@@ -100,6 +97,8 @@ like this:
       cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
       cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
       lua_ssl_trusted_certificate: system
+      konnect_mode: "on"
+      vitals: "off"
 
     ingressController:
       enabled: false
@@ -119,7 +118,7 @@ with your specific values from {{site.konnect_short_name}}.
 5. Apply the `values.yaml`:
 
     ```bash
-    $ helm install my-kong kong/kong -n kong \
+    helm install my-kong kong/kong -n kong \
       --values ./values.yaml
     ```
 
@@ -132,7 +131,7 @@ If you configured everything above but don't see your runtime instance in the
 list, check your deployment logs:
 
 ```bash
-$ kubectl logs deployment/my-kong-kong -n kong
+kubectl logs deployment/my-kong-kong -n kong
 ```
 
 If you find any errors and need to update `values.yaml`, make your changes,
@@ -140,8 +139,8 @@ save the file, then reapply the configuration by running the Helm `upgrade`
 command:
 
 ```bash
-$ helm upgrade my-kong kong/kong -n kong \
-    --values ./values.yaml
+helm upgrade my-kong kong/kong -n kong \
+  --values ./values.yaml
 ```
 
 ## Access services using the proxy
@@ -152,7 +151,7 @@ address, a port, and a route.
 1. To find the address and port, run:
 
     ```bash
-    $ kubectl get service my-kong-kong-proxy -n kong
+    kubectl get service my-kong-kong-proxy -n kong
     ```
 
 2. In the output, the IP in the `EXTERNAL_IP` column is the access point for

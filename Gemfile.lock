@@ -36,6 +36,8 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 2.0)
+    jekyll-generator-single-source (0.0.2)
+      jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.16.0)
@@ -108,6 +110,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   jekyll (= 4.2.2)
+  jekyll-generator-single-source
   jekyll-include-cache
   jekyll-redirect-from
   kramdown-parser-gfm
@@ -119,4 +122,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.3.7
+   2.3.24

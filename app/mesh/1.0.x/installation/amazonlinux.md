@@ -30,24 +30,24 @@ download the latest version of {{site.mesh_product_name}}:
 
 ```sh
 $ yum install -y tar gzip
-$ curl -L https://docs.konghq.com/mesh/installer.sh | sh -
+$ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh -
 ```
 
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.kong_versions[0].version}}-centos-amd64.tar.gz)
+You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:
 
 ```sh
-$ tar xvzf kong-mesh-{{page.kong_latest.version}}*.tar.gz
+$ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include /md/mesh/install-universal-run.md kong_latest=page.kong_latest %}
+{% include_cached /md/mesh/install-universal-run.md version=page.version %}
 
 {% include /md/mesh/install-universal-verify.md %}
 

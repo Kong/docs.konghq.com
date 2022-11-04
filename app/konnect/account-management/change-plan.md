@@ -1,6 +1,5 @@
 ---
 title: Change to a Different Plan
-no_version: true
 content_type: how-to
 ---
 
