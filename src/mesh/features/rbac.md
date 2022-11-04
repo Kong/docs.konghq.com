@@ -1016,11 +1016,12 @@ In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized
 
 ## Wildcard tag value matching
 
-_Note: This feature is available since Kong Mesh 1.9.1_
+{:.note}
+> **Note**: This feature is available starting in Kong Mesh 1.9.1
 
-You can also do partial tag value matching using `*` (wildcards).
+You can perform partial tag value matching using `*` wildcards.
 
-For example, the following role
+For example, the following role:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -1062,7 +1063,7 @@ rules:
 {% endnavtab %}
 {% endnavtabs %}
 
-would allow a subject to create the following resource
+would allow a subject to create the following resource:
 
 {% navtabs %}
 {% navtab Kubernetes %}
