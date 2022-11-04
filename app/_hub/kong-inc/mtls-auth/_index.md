@@ -148,6 +148,15 @@ params:
         The TCP port of the HTTPS proxy.
 
         Required if `https_proxy_host` is set.
+    - name: send_ca_dn
+      minimum_version: "3.1.x"
+      required: false
+      default: false
+      value_in_examples:
+      datatype: boolean
+      description: |
+        Send the DN(Distinguished Name)s of the configured CA list in TLS
+        handshake message.
 ---
 
 ## Usage
@@ -230,6 +239,41 @@ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certifi
 {% endnavtab %}
 {% endnavtabs %}
 The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
+
+### Sending the CA DN(Distinguished Name)s during TLS handshake
+
+By default, Kong won't send CA DN list during TLS handshake. More specifically,
+the `certificate_authorities` in the CertificateRequest message is empty.
+
+In some cases, the client may need this `certificate_authorities` to guide
+certificate selection. Setting `config.send_ca_dn` to `true` will add the
+ca certificates configured in the `config.ca_certificate` to the list(s) of
+the corresponding SNIs.
+
+As memtioned above in section [Client certificate request](#Client certificate request),
+due to the phase gap, Kong does not know the route information in the
+`ssl_certificate_by_lua` phase, which is decided in the later `access` phase.
+Therefore Kong builds an in-memory map of SNIs. The CA DN list will eventually
+be associated to the SNIs. If multiple `mtls-auth` plugins with different
+`config.ca_certificate` are associated to the same SNI, the CA DNs will be
+merged. Specifically,
+
+- When the plugin is enabled in **global** Workspace scope, the CA DNs will be
+  associated to a special SNI "\*"
+- When the plugin is applied at the **service** level, the CA DNs will be
+  associated to every SNI of every route to this service. If a route has no
+  SNIs been set, then the CA DNs will be associated to a special SNI "\*"
+- When the plugin is applied at the **route** level, the CA DNs will be
+  associated to every SNI configured on this route. If the route has no SNIs
+  been set, then the CA DNs will be associated to a special SNI "\*"
+
+During mTLS handshake, if the client sends a SNI in the ClientHello message and
+the SNI is found in the in-memory map of SNIs, then the corresponding CA DN list
+will be sent in CertificatRequest message.
+
+If the client sends no SNIs in the ClientHello message or the SNI sent is
+unknown to Kong, then the CA DN list associated with "\*" will be sent. (Only
+when client certificate is requested.)
 
 ### Create manual mappings between certificate and consumer object
 
