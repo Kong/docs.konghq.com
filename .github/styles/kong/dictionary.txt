@@ -143,6 +143,7 @@ grpc
 grpcs
 gui
 guis
+gzip
 hardcoded
 hardcoding
 hashicorp
