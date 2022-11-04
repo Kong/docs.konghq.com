@@ -1,4 +1,5 @@
 
+
 ACLs
 Alertmanager
 Arya
@@ -137,6 +138,7 @@ grpc
 grpcs
 gui
 guis
+gzip
 hardcoded
 hardcoding
 hashicorp
