@@ -36,6 +36,22 @@ $ sudo cp /tmp/deck /usr/local/bin/
 ```
 {% endif_version %}
 
+## Windows
+
+If you are Windows, you can either use the compressed archive from
+the Github [release page](https://github.com/kong/deck/releases)
+or install using **CMD** by entering the target installation folder and downloading a compressed archive, which contains the binary:
+
+{% if_version leq:1.12.x %}
+```shell
+curl -sL https://github.com/kong/deck/releases/download/v{{page.version}}/deck_{{page.version}}_linux_amd64.tar.gz -o deck.tar.gz
+mkdir deck
+tar -xf deck.tar.gz -C deck
+powershell -command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + [IO.Path]::PathSeparator + $pwd + '\deck', 'User')"
+
+```
+{% endif_version %}
+
 ## Docker image
 
 If your workflow requires a Docker image, then you can use `kong/deck` Docker
