@@ -20,6 +20,13 @@ kong_version_compatibility:
 params:
   name: kafka-log
   dbless_compatible: 'yes'
+  protocols:
+    - http
+    - https
+    - grpc
+    - grpcs
+    - ws
+    - wss
   config:
     - name: bootstrap_servers
       required: true
