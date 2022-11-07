@@ -250,7 +250,7 @@ certificate selection. Setting `config.send_ca_dn` to `true` will add the
 ca certificates configured in the `config.ca_certificate` to the list(s) of
 the corresponding SNIs.
 
-As memtioned above in section [Client certificate request](#Client certificate request),
+As mentioned above in section [Client certificate request](#Client certificate request),
 due to the phase gap, Kong does not know the route information in the
 `ssl_certificate_by_lua` phase, which is decided in the later `access` phase.
 Therefore Kong builds an in-memory map of SNIs. The CA DN list will eventually
