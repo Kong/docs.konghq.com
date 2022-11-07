@@ -25,7 +25,7 @@ description: |
   - Issuer [issuer]
     Unique identifier of the IdP application.
 
-  The plugin supports Microsoft Azure Active Directory. See https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml for further information on SAML authentication with Azure AD.
+  The plugin supports Microsoft Azure Active Directory. Please refer to [Microsoft AzureAD SAML documentation] (https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml) for further information on SAML authentication with Azure AD.
 
 enterprise: true
 plus: true
@@ -46,6 +46,13 @@ params:
     - https
   dbless_compatible: 'yes'
   config:
+    - name: anonymous
+      required: false
+      default: null
+      value_in_examples: anonymous
+      datatype: string
+      description:
+        An optional string (consumer UUID or username) value to use as an “anonymous” consumer. If not set, a Kong Consumer must exist for the SAML IdP user credentials, mapping the username format to the Kong Consumer username.
     - name: assertion_consumer_path
       required: true
       datatype: url
@@ -143,11 +150,12 @@ params:
         - `Unspecified`
         - `EmailAddress`
         - `Persistent`
-        - `Transient`.
+        - `Transient`
     - name: disable_signature_validation
       required: false
       datatype: boolean
       default: false
+      value_in_examples: true
       description: |
         Disable signature validation in SAML responses.
     - group: Session Cookie
@@ -215,7 +223,6 @@ params:
       default: '(auto-generated is no value supplied)'
       datatype: string
       encrypted: true
-      value_in_examples: <session-secret>
       referenceable: true
       description: |
         The session secret.
@@ -411,23 +418,27 @@ HTTP/1.1 200 OK
 
 ### Setup Microsoft AzureAD 
 
-1. Create a SAML Enterprise Application. Refer to https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal for further information.
-2. Note the `Identifier (Entity ID)` and and `Sign on URL` parameters
-3. For the `Reply URL (Assertion Consumer Service URL)`, use "https://<proxy_host>:<proxy_port>/saml/consume"
+1. Create a SAML Enterprise Application. Refer to [Microsoft AzureAD documentation](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) for further information.
+2. Note the `Identifier (Entity ID)` and `Sign on URL` parameters
+3. Configre the `Reply URL (Assertion Consumer Service URL)`, for example, "https://kong-proxy:8443/saml/consume"
 4. Assign users to the SAML Enterprise Application
 
 ### Create a Plugin on a Service
 
 Validation of the SAML response Assertion is disabled in the plugin configuration below. This configuration should not be used in a production environment.
 
-Replace `Kong_Anonymous_Consumer_UUID` below with the Anonymous Consumer UUID. 
-Replace `Azure_Identity_ID` with the value of `Identity (Entity ID)` from the Single sign-on - Basic SAML Configuration from the Manage sectio of the Microsoft AzureAD Enterprise Application.
-Replace `AzureAD_Sign_on_URL` with the value of `Sign on URL` from the Single sign-on - Basic SAML Configuration from the Manage sectio of the Microsoft AzureAD Enterprise Application.
+Replace the `Azure_Identity_ID` value below, with the value of `Identity (Entity ID)` from the Single sign-on - Basic SAML Configuration from the Manage sectio of the Microsoft AzureAD Enterprise Application:
+
+<img src="/assets/images/docs/saml/azuread_basic_config.png">
+
+Replace the `AzureAD_Sign_on_URL` value below, with the value of `Login URL` from the Signke sign-on - Set up Service Provider section from the Manage section of the Microsoft AzureAD Enterprise Application:
+
+<img src="/assets/images/docs/saml/azuread_sso_url.png">
 
 ```bash
 http -f post :8001/services/saml-service/plugins                                                  \
   name=saml                                                                                       \
-  config.anonymous=Kong_Anonymous_Consumer_UUID                                                   \
+  config.anonymous=anonymous                                                                      \
   service.name=saml-service                                                                       \
   config.issuer=AzureAD_Identity_ID                                                               \
   config.idp_sso_url=AzureAD_Sign_on_URL                                                          \
@@ -455,7 +466,7 @@ HTTP/1.1 200 OK
 
 ### Test the SAML plugin
 
-1. Using a browser, go to the URL "https://<proxy-host>:8443/saml" 
+1. Using a browser, go to the URL (https://kong:8443/saml)
 2. The browser is redirected to the AzureAD Sign in page. Enter the user credentials of a user configured in AzureAD
 3. If user credentials are valid, the brower will be redirected to https://httpbin.org/anything
 4. If the user credentials are invalid, a 401 Unauthorized HTTP Status code is returned
