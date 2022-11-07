@@ -554,6 +554,7 @@ kongmap
 konnect_examples
 konnect_icon
 kty
+kv
 kv_path
 latency_metrics
 latency_gateway
