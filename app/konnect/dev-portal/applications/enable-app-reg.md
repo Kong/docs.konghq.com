@@ -33,6 +33,13 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 > **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
 
 
+### Support for Kong Gateways less than version 3.0
+
+Enabling application registration requires the service version to be proxied with a version of Kong Gateway that is greater than or equal to version 3.0.
+
+If you need to use version of Kong Gateway less than 3.0, then you can opt-in for support by using the `default` runtime group. Non-default runtime groups
+are only compatible with Kong Gateway 3.0 and higher.
+
 ## Enable app registration with key authentication {#key-auth-flow}
 
 To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
@@ -48,8 +55,13 @@ service, and follow these steps:
 
 5. Click **Enable**.
 
-    All versions of this service now include
-    read-only entries for the `acl` and `key-auth` plugins.
+    This version of the service package now includes a
+    read-only entry for the `konnect-application-auth` plugin.
+
+{:.note}
+> **Note:** If the service version is in the `default` runtime group, it will
+instead receive read-only entries for the `acl` and `key-auth` plugins to provide
+support for Kong Gateway versions less than 3.0.
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
@@ -68,8 +80,13 @@ service, and follow these steps:
 
 4. Click **Enable**.
 
-    All versions of this service now include
-    read-only entries for the  `acl` and `oidc` plugins.
+    This versions of this service packages now includes
+    read-only entries for the  `konnect-application-auth` and `openid-connect` plugins.
+
+{:.note}
+> **Note:** If the service version is in the `default` runtime group, it will
+instead receive read-only entries for the `acl` and `openid-connect` plugins to provide
+support for Kong Gateway versions less than 3.0.
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
 
