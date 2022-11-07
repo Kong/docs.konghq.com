@@ -1,4 +1,4 @@
----
+git push --set-upstream origin dynatrace---
 name: Dynatrace  
 publisher: Dynatrace, Inc.
 
@@ -13,8 +13,8 @@ description: |
   With Dynatrace you can bring your infrastructure, applications and user behaviour monitoring into a single platform powered with atrificial intelligence.
   One of the monitoring pillars is metrics. Dynatrace integrates counter, gauge, and summary metrics and enables charting, alerting and various ways of anaysis.
   To collect Kong Gateway metrics on Dynatrace, you can use the [Kong Prometheus plugin](https://docs.konghq.com/hub/kong-inc/prometheus/)
-  and [Dynatrace OneAgent](https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent)
-  or [Dynatrace Operator](https://www.dynatrace.com/support/help/how-to-use-dynatrace/infrastructure-monitoring/container-platform-monitoring/kubernetes-monitoring/monitor-prometheus-metrics) (on Kubernetes).
+  and [Dynatrace OneAgent](https://www.dynatrace.com/support/help/shortlink/oneagent-hub)
+  or [Dynatrace Operator](https://www.dynatrace.com/support/help/shortlink/monitor-prometheus-metrics) (on Kubernetes).
 
 support_url: https://support.dynatrace.com/
 
@@ -39,4 +39,4 @@ To try Dynatrace for free, please register for a free trial [here](https://www.d
 
 ### Installation
 
-Specific instructions are provided on the [Dynatrace documentation portal](https://www.dynatrace.com/support/help/technology-support/application-software/nginx/kong-gateway).
+Specific instructions are provided on the [Dynatrace documentation portal](https://www.dynatrace.com/support/help/shortlink/kong-gateway).
