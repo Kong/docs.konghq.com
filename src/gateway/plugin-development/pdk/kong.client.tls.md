@@ -85,6 +85,49 @@ end
 
 
 
+## kong.client.tls.set_client_ca_list()
+
+Sets the CA DN list to the underlying SSL structure, which will be sent in the
+Certificate Request Message of downstram TLS handshake.
+
+The downstream client then can use this DN information to filter certificates,
+and chooses an appropriate certificate issued by a CA in the list.
+
+The type of `ca_list` paramter is `STACK_OF(X509) *` which can be created by
+using the API of `resty.openssl.x509.chain` or `parse_pem_cert()` of `ngx.ssl`
+
+**Phases**
+
+* certificate
+
+**Returns**
+
+1.  `true|nil`:  Returns `true` if successful, `nil` if it fails.
+
+1.  `nil|err`:  Returns `nil` if successful, or an error message if it fails.
+
+
+**Usage**
+
+``` lua
+local x509_lib = require "resty.openssl.x509"
+local chain_lib = require "resty.openssl.x509.chain"
+local res, err
+local chain = chain_lib.new()
+-- err check
+local x509, err = x509_lib.new(pem_cert, "PEM")
+-- err check
+res, err = chain:add(x509)
+-- err check
+-- `chain.ctx` is the raw data of the chain, i.e. `STACK_OF(X509) *`
+res, err = kong.client.tls.set_client_ca_list(chain.ctx)
+if not res then
+  -- do something with err
+end
+```
+
+
+
 ## kong.client.tls.get_full_client_certificate_chain()
 
 Returns the PEM encoded downstream client certificate chain with the
