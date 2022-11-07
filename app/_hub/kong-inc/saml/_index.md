@@ -448,8 +448,7 @@ HTTP/1.1 200 OK
         "assertion_consumer_path": "/consume",
         "disable_signature_validation": true,
         "idp_sso_url": "https://login.microsoftonline.com/f177c1d6-50cf-49e0-818a-a0585cbafd8d/saml2",
-        "issuer": "https://samltoolkit.azurewebsites.net/kong_saml",
-        ...
+        "issuer": "https://samltoolkit.azurewebsites.net/kong_saml"
     }
 }
 ```
