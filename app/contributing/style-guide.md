@@ -36,6 +36,16 @@ no_version: true
 
 ## Formatting standards
 
+### Automatic Formatting
+
+[Prettier](https://prettier.io/) is used to format all prose and code files. There are three ways to meet this standard:
+
+* Install the [Prettier plugin](https://prettier.io/docs/en/editors.html) for your editor
+* Run `npx prettier --write ./your/edited/files.md` in the terminal
+* (Maintainers only) Add the `ci:autofix:prettier` label to a Pull Request
+
+All files in `src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
+
 ### Admonitions
 
 - Do not stack admonitions, in other words, list several admonitions one after the other.<br/>
@@ -158,7 +168,7 @@ Screenshots are used to support documentation and do not _replace_ documentation
 - In situations that require it a `1px` black border can be used.
 - **Do not** use GIFs.
 - Limit image file size to ~2MB.
-- Add files to the corresponding product folder by navigating in the repo from **app > _assets > images > docs**.
+- Add files to the corresponding product folder by navigating in the repo from `app > _assets > images > docs`.
 - Use lowercase letters and dashes when naming an image file.
 
 ### Icons

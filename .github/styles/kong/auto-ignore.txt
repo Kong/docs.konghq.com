@@ -44,10 +44,15 @@ trusted_ips
 Gateway
 GatewayClass
 HTTPRoute
+HTTPRoutes
 TCPRoute
+TCPRoutes
 TLSRoute
+TLSRoutes
 UDPRoute
+UDPRoutes
 GRPCRoute
+GRPCRoutes
 ReferenceGrant
 KongIngress
 TCPIngress

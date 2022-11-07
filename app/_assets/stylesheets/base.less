@@ -30,7 +30,7 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary {
   border: 0 none;
   padding: 1px 14px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   background-color: @green;
   background-image: linear-gradient(to bottom, #29af65, #20a659);
@@ -44,7 +44,7 @@ input[type="button"].button-primary {
   &:active {
     background-image: linear-gradient(to bottom, #0c803c, #149651);
     box-shadow: inset 0 1px 0 #085e2c;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -78,11 +78,15 @@ input[type="button"] {
 
   &:focus-visible {
     color: @blue-500;
-    transition: all .15s ease;
+    transition: all 0.15s ease;
   }
 
   &:hover {
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, .15), rgba(189, 230, 207, .15));
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15),
+      rgba(189, 230, 207, 0.15)
+    );
   }
 
   &:active {
@@ -102,7 +106,7 @@ select {
   .font-source-sans();
   border-radius: 3px;
   border-color: #ced2d6;
-  box-shadow: inset 1px 2px 0 0 rgba(242, 242, 242, .5);
+  box-shadow: inset 1px 2px 0 0 rgba(242, 242, 242, 0.5);
   height: 36px;
   font-size: 14px;
 
@@ -112,7 +116,7 @@ select {
   }
 
   &:focus-visible {
-    transition: all .15s ease;
+    transition: all 0.15s ease;
   }
 }
 
@@ -160,45 +164,45 @@ code {
   font-family: @family-code;
 }
 
-[contenteditable='true'] {
+[contenteditable="true"] {
+  color: @green-400;
+  font-weight: bold;
+  margin: 0 1px 0 -3px;
+  padding: 0 0 0 5px;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 16px;
+  border-radius: 2px;
+  -webkit-user-modify: read-write-plaintext-only;
+
+  &::after {
+    content: "\f040";
+    font-family: "Font Awesome", FontAwesome;
+    font-weight: 100;
     color: @green-400;
-    font-weight: bold;
-    margin: 0 1px 0 -3px;
-    padding: 0 0 0 5px;
-    font-size: 14px;
     display: inline-block;
-    line-height: 16px;
-    border-radius: 2px;
-    -webkit-user-modify: read-write-plaintext-only;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 5px;
+    position: relative;
+  }
 
-    &::after {
-      content: "\f040";
-      font-family: "Font Awesome", FontAwesome;
-      font-weight: 100;
-      color: @green-400;
-      display: inline-block;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 5px;
-      position: relative;
-    }
-
-    br {
+  br {
     display: none;
     visibility: hidden;
-    }
+  }
 
-    &:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
 
-    &:active {
-      border: none;
-      outline: none;
-    }
+  &:active {
+    border: none;
+    outline: none;
+  }
 
-    &:focus {
+  &:focus {
     border: 1px solid @green-300;
     background: #fff;
     outline: 0;
@@ -226,21 +230,32 @@ a.navbar-item {
   }
 }
 
-h1, h2, h3, h4, h5, h6, .page-header-section-title {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.page-header-section-title {
   margin-top: 0;
   margin-bottom: 2rem;
   letter-spacing: 0;
   color: #262e33;
 }
 
-h1, .page-header-section-title {
+h1,
+.page-header-section-title {
   font-size: 4rem;
   font-weight: 500;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: @family-display;
   margin-bottom: 1rem;
 }
@@ -275,7 +290,8 @@ h6 {
   color: @steel-500;
 }
 
-h2+h3, h3+h4 {
+h2 + h3,
+h3 + h4 {
   margin-top: 1rem;
 }
 
@@ -301,7 +317,7 @@ ul {
 
 dl {
   dd {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -321,7 +337,7 @@ nav {
     text-decoration: none;
     display: block;
     font-size: 13px;
-    transition: all .2s linear;
+    transition: all 0.2s linear;
 
     &:hover {
       color: #2c3033;
@@ -352,23 +368,23 @@ nav {
 
 .hiring-badge span {
   font-size: 13px;
-  text-transform:uppercase;
-  color:#1456cb;
-  background:#ecf6ff;
-  border-radius:5px;
-  display:inline-block;
-  padding:5px 15px;
+  text-transform: uppercase;
+  color: #1456cb;
+  background: #ecf6ff;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 5px 15px;
   vertical-align: text-top;
 }
 
 .hiring-badge span:hover {
-  background:#1456cb;
-  color:#ffffff;
-  transition: ease-in-out color .25s;
+  background: #1456cb;
+  color: #ffffff;
+  transition: ease-in-out color 0.25s;
 }
 
 @media (min-width: 1080px) {
-  .hiring-badge{
+  .hiring-badge {
     display: inline-block;
   }
 

@@ -13,8 +13,8 @@
 
   .feature-cta {
     display: inline-block;
-    padding: .5em;
-    border-radius: 5px; 
+    padding: 0.5em;
+    border-radius: 5px;
     border: 1px solid @blue;
     color: @blue;
     width: 11em;
@@ -28,7 +28,8 @@
   }
 
   // Undo old styling
-  &:not(.mobile) tr:nth-child(2n), &:not(.mobile) tr:nth-child(2n+1) {
+  &:not(.mobile) tr:nth-child(2n),
+  &:not(.mobile) tr:nth-child(2n + 1) {
     background-color: transparent;
     border: 0;
   }
@@ -37,7 +38,8 @@
     width: 12em;
   }
 
-  tbody tr:first-child, &.mobile {
+  tbody tr:first-child,
+  &.mobile {
     .header-row {
       margin-top: 0px;
     }
@@ -65,15 +67,16 @@
     }
   }
 
-  td, th {
+  td,
+  th {
     text-align: center;
   }
 
-  td:nth-child(1){
+  td:nth-child(1) {
     text-align: left;
   }
 
-  &:not(.mobile) td:nth-child(3){
+  &:not(.mobile) td:nth-child(3) {
     background: #eff2f8;
   }
 
@@ -82,5 +85,4 @@
       display: none;
     }
   }
-
 }

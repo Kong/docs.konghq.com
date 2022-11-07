@@ -2,57 +2,59 @@
 title: Kong Mesh on Amazon ECS
 ---
 
-This page describes running Kong Mesh on ECS and offers guidelines
-for integrating Kong Mesh into your deployment process.
+This page describes running {{site.mesh_product_name}} on ECS and offers guidelines
+for integrating {{site.mesh_product_name}} into your deployment process.
 
-For a demo of Kong Mesh on ECS, see the [example repository for Cloudformation](https://github.com/Kong/kong-mesh-ecs).
-This demo covers bootstrapping an ECS cluster from scratch, deploying Kong Mesh, and deploying some services into the mesh.
+For a demo of {{site.mesh_product_name}} on ECS, see the [example repository for Cloudformation](https://github.com/Kong/kong-mesh-ecs).
+This demo covers bootstrapping an ECS cluster from scratch, deploying {{site.mesh_product_name}}, and deploying some services into the mesh.
 
 ## Overview
 
-On ECS, Kong Mesh runs in Universal mode. Every ECS task runs with an Envoy sidecar.
-Kong Mesh supports tasks on the following launch types:
+On ECS, {{site.mesh_product_name}} runs in Universal mode. Every ECS task runs with an Envoy sidecar.
+{{site.mesh_product_name}} supports tasks on the following launch types:
 
 - Fargate
 - EC2
 
 The control plane itself also runs as an ECS service in the cluster.
 
+{% if_version lte:1.9.x %}
 ### Data plane tokens
 
 As part of joining and synchronizing with the mesh, every sidecar needs to authenticate with
-the control plane. On Kong Mesh, this is accomplished by using a data plane token.
+the control plane. On {{site.mesh_product_name}}, this is accomplished by using a data plane token.
 Typically on Universal mode, creating and managing data plane tokens is a manual step for the mesh operator.
-However, Kong Mesh on ECS handles automatically provisioning data plane tokens for your services.
+However, {{site.mesh_product_name}} on ECS handles automatically provisioning data plane tokens for your services.
 
 An additional ECS token controller runs in the cluster with permissions to use
-the Kong Mesh API to create data plane tokens and put them in AWS secrets.
+the {{site.mesh_product_name}} API to create data plane tokens and put them in AWS secrets.
 
 New ECS services are given access to an AWS secret. When they
 join the cluster, the controller requests a new data plane token scoped to that service.
 
 ### Mesh communication
 
-With Kong Mesh on ECS, each service enumerates
+With {{site.mesh_product_name}} on ECS, each service enumerates
 other services it contacts in the mesh and
-[exposes them in `Dataplane` specification](https://kuma.io/docs/latest/generated/resources/proxy_dataplane/).
+
+[exposes them in `Dataplane` specification][dpp-spec].
 
 ## Deployment
 
-This section covers ECS-specific parts of running Kong Mesh, using the
+This section covers ECS-specific parts of running {{site.mesh_product_name}}, using the
 [example Cloudformation](https://github.com/Kong/kong-mesh-ecs) as a guide.
 
-### Kong Mesh control plane
+### Control plane
 
-Kong Mesh runs in Universal mode on ECS. The example setup repository uses an AWS RDS
+{{site.mesh_product_name}} runs in Universal mode on ECS. The example setup repository uses an AWS RDS
 database as a PostgreSQL backend. It also uses ECS service discovery to enable ECS
-tasks to communicate with Kong Mesh the control plane.
+tasks to communicate with {{site.mesh_product_name}} the control plane.
 
 The example Cloudformation includes two Cloudformation stacks for
 [creating a cluster](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/vpc.yaml) and
-[deploying Kong Mesh](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml)
+[deploying {{site.mesh_product_name}}](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml)
 
-### Kong Mesh ECS controller
+### ECS controller
 
 The controller is published as a docker image
 `docker.io/kong/kong-mesh-ecs-controller:0.1.0`.
@@ -60,7 +62,7 @@ The controller is published as a docker image
 #### API permissions
 
 To generate data plane tokens, the controller
-needs to authenticate with the Kong Mesh API and be authorized to create
+needs to authenticate with the {{site.mesh_product_name}} API and be authorized to create
 new data plane tokens.
 
 The example repository [launches the control plane with two additional containers](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml#L358-L387)
@@ -81,7 +83,7 @@ Configure the controller using the environment variables:
 
 - `KUMA_API_TOKEN`: the API token
 - `KUMA_API_CA_BYTES`: the CA used to verify the TLS certificates presented by the API.
-  We recommend communicating with the Kong Mesh API over TLS (served on port `5682` by default).
+  We recommend communicating with the {{site.mesh_product_name}} API over TLS (served on port `5682` by default).
 
 #### IAM permissions
 
@@ -108,7 +110,7 @@ Services are bootstrapped with a `Dataplane` specification.
 
 Transparent proxy is not supported on ECS, so the `Dataplane` resource for a
 service must enumerate all other mesh services this service contacts and include them
-[in the `Dataplane` specification as `outbounds`](https://kuma.io/docs/latest/reference/dpp-specification).
+[in the `Dataplane` specification as `outbounds`][dpp-spec].
 
 See the example repository to learn
 [how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L30-L46).
@@ -144,3 +146,108 @@ When a task starts, the following happens:
 4. The controller sees an empty secret and generates a new data plane token via the
    mesh API, saving the result as `token` in the secret.
 5. Finally, ECS is able to fetch the `token` value and starts the task successfully.
+{% endif_version %}
+{% if_version gte:2.0.x %}
+### Data plane authentication
+
+As part of joining and synchronizing with the mesh, every sidecar needs to authenticate with
+the control plane.
+
+With {{site.mesh_product_name}}, this is typically accomplished by using a data plane token.
+In Universal mode, creating and managing data plane tokens is a manual step for the mesh operator.
+
+With {{site.mesh_product_name}} 2.0.0, you can instead configure the sidecar to authenticate
+using the identity of the ECS task it's running as.
+
+### Mesh communication
+
+With {{site.mesh_product_name}} on ECS, each service enumerates
+other mesh services it contacts
+[in the `Dataplane` specification][dpp-spec].
+
+## Deployment
+
+This section covers ECS-specific parts of running {{site.mesh_product_name}}, using the
+[example Cloudformation](https://github.com/Kong/kong-mesh-ecs) as a guide.
+
+### Control plane
+
+{{site.mesh_product_name}} runs in Universal mode on ECS. The example setup repository uses an AWS RDS
+database as a PostgreSQL backend. It also uses ECS service discovery to enable ECS
+tasks to communicate with the {{site.mesh_product_name}} control plane.
+
+The example Cloudformation includes two Cloudformation stacks for
+[creating a cluster](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/vpc.yaml) and
+[deploying {{site.mesh_product_name}}](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/controlplane.yaml)
+
+#### Workload identity
+
+The data plane proxy attempts to authenticate using the IAM role of the ECS task
+it's running under. The control plane assumes that if this role has been tagged
+with certain `kuma.io/` tags, it can be authorized to run as the
+corresponding Kuma resource identity.
+
+In particular, every role must be tagged at a minimum with `kuma.io/type` set to
+either `dataplane`, `ingress`, or `egress`. For `dataplane`, i.e. a normal data
+plane proxy, the `kuma.io/mesh` tag is also required to be set.
+
+This means that the setting of these two tags on IAM roles
+must be restricted accordingly for your AWS account
+(which must be explicitly given to the CP, see below).
+
+The control plane must have the following options enabled. The example
+Cloudformation [sets them via environment variables](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/controlplane.yaml#L334-L337):
+
+```yaml
+- Name: KUMA_DP_SERVER_AUTH_TYPE
+  Value: aws-iam
+- Name: KUMA_DP_SERVER_AUTH_USE_TOKEN_PATH
+  Value: "true"
+- Name: KMESH_AWSIAM_AUTHORIZEDACCOUNTIDS
+  Value: !Ref AWS::AccountId # this tells the CP which accounts can be used by DPs to authenticate
+```
+
+Every sidecar must have the [`--auth-type=aws` flag set as well](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/counter-demo/demo-app.yaml#L255).
+
+## Services
+
+When deploying an ECS task to be included in the mesh, the following must be
+considered.
+
+### Outbounds
+
+Services are bootstrapped with a `Dataplane` specification.
+
+Transparent proxy is not supported on ECS, so the `Dataplane` resource for a
+service must enumerate all other mesh services this service contacts and include them
+[in the `Dataplane` specification as `outbounds`][dpp-spec].
+
+See the example repository to learn
+[how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/counter-demo/demo-app.yaml#L31-L46).
+
+### IAM role
+
+The ECS task IAM role must also have some tags set in order to authenticate.
+It must always have the `kuma.io/type` tag set to either `"dataplane"`,
+`"ingress"`, or `"egress"`.
+
+If it's a `"dataplane"` type, then it must also have the `kuma.io/mesh` tag set.
+Additionally, you can set the `kuma.io/service` tag to further restrict its identity.
+
+### Sidecar
+
+The sidecar must run as a container in the ECS task.
+
+See the example repository for [an example container
+definition](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/counter-demo/demo-app.yaml#L213-L261).
+{% endif_version %}
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[dpp-spec]: https://kuma.io/docs/latest/generated/resources/proxy_dataplane/
+{% endif_version %}
+

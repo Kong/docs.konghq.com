@@ -4,16 +4,16 @@ badge: enterprise
 content_type: reference
 ---
 
-{{site.base_gateway}} provides support for the Federal Information Processing Standard (FIPS 140-2). Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
+The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that the software has met all of the rules of FIPS 140-2, but has not been submitted to a NIST testing lab for validation.
 
-{{site.base_gateway}} offers a FIPS package. The package replaces the primary library in {{site.base_gateway}}, OpenSSL, with the [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
+{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04**. This package provides compliance for the core {{site.base_gateway}} product only. 
 
-{{site.base_gateway}} uses BoringSSL algorithms in all core components when configured.
+The package replaces the primary library in {{site.base_gateway}}, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 validated BoringCrypto for cryptographic operations.
 
-{:.note .no-icon}
-> {{site.base_gateway}} and the {{site.base_gateway}} FIPS package are not FIPS-validated or certified.
+{:.note}
+>**Note**: As of {{site.base_gateway}} 3.0, {{site.base_gateway}} plugins can't be considered FIPS-compliant. Future {{site.base_gateway}} releases aim to support plugins as well as distributions other than Ubuntu 20.04, such as RHEL. 
 
-## Install the {{site.base_gateway}} FIPS package
+## Installing the {{site.base_gateway}} FIPS compliant Ubuntu package
 
 The only supported {{site.base_gateway}} distribution is based on Ubuntu 20.04 and can be installed with the package distinctively named `kong-enterprise-edition-fips`.
 
@@ -21,8 +21,6 @@ To install the {{site.base_gateway}} FIPS package use:
 
     apt install kong-enterprise-edition-fips
 
-{:.note .no-icon}
-> FIPS mode is only supported in Ubuntu 20.04
 
 ### Configure FIPS
 
