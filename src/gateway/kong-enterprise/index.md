@@ -16,6 +16,7 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 
 Kong Enterprise also natively supports gRPC and REST, WebSockets, and integrates with Apollo GraphQL server and Apache Kafka services. These plugins can be leveraged to provide advanced connectivity features and solutions to {{site.base_gateway}} such as:
 
+* [OpenID Connect (OIDC)](/hub/kong-inc/openid-connect/)
 * [Event gateways with Kafka](/hub/kong-inc/kafka-upstream/)
 * [GraphQL](/hub/kong-inc/graphql-proxy-cache-advanced/)
 * [Mocking](/hub/kong-inc/mocking/)
