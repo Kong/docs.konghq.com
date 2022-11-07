@@ -9,6 +9,15 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2022
+
+### 2022.11.xx
+
+**New Analytics predefined roles**
+: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin roles. These roles allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. The Analytics Viewer role only allows users to view and export analytics. The Analytics Admin role allows users to view, create, edit, and delete all analytics. 
+
+: For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
+
 ## October 2022
 
 ### 2022.10.21

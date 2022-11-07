@@ -18,5 +18,7 @@ Keywords:
 | Runtime Admin                  | Users can configure runtimes for the organization and fully manage related global configurations: Gateway services, routes, plugins, upstreams, SNIs, and certificates.
 | Service Admin                  | Users can fully manage services and versions, manage application registration, publish services to the Dev Portal, and manage global configuration for consumers and plugins.|  
 | Service Developer              | Users can view {{site.konnect_short_name}} services, and fully manage versions of existing services and their Dev Portal specs. |
+| Analytics Admin | Users can fully manage all Analytics content, which includes creating, editing, and deleting analytics summary and reports data. |
+| Analytics Viewer | Users can view analytics summary and report data.|
 
 To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles).
