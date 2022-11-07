@@ -32,14 +32,6 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 {:.note}
 > **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
 
-
-### Support for Kong Gateways less than version 3.0
-
-Enabling application registration requires the service version to be proxied with a version of Kong Gateway that is greater than or equal to version 3.0.
-
-If you need to use version of Kong Gateway less than 3.0, then you can opt-in for support by using the `default` runtime group. Non-default runtime groups
-are only compatible with Kong Gateway 3.0 and higher.
-
 ## Enable app registration with key authentication {#key-auth-flow}
 
 To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
