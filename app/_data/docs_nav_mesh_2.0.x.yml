@@ -259,6 +259,12 @@ items:
       - text: MeshTrace (Beta)
         url: /policies/meshtrace/
         src: /.repos/kuma/app/docs/2.0.x/policies/meshtrace/
+      - text: MeshAccessLog (Beta)
+        url: /policies/meshaccesslog/
+        src: /.repos/kuma/app/docs/2.0.x/policies/meshaccesslog/
+      - text: MeshTrafficPermission (Beta)
+        url: /policies/meshtrafficpermission/
+        src: /.repos/kuma/app/docs/2.0.x/policies/meshtrafficpermission/
   - title: Enterprise Features
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
