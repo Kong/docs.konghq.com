@@ -59,13 +59,14 @@ kong-mesh-{{page.version}}/bin/kumactl install control-plane --license-path=/pat
 ```
 
 {:.note}
-> **Note**: {{site.mesh_product_name}} also has UBI images. To use these images instead checkout the [UBI documentation](../../features/ubi-images).
+> **Note**: {{site.mesh_product_name}} also has UBI images.
+To use these images instead, check out the [UBI documentation](/mesh/{{page.kong_version}}/features/ubi-images).
 
 Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
+deployment, but there are more advanced [deployment modes][deployments]
 like _multi-zone_.
 
 We suggest adding the `kumactl` executable to your `PATH` so that it's always
@@ -180,9 +181,16 @@ entity with the name `default`.
 
 ## 4. Quickstart
 
-The Kuma quickstart documentation
-is fully compatible with {{site.mesh_product_name}}, except that you are
-running {{site.mesh_product_name}} containers instead of Kuma containers.
-
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments][get-started-k8s].
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/latest/introduction/deployments/
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+{% endif_version %}

@@ -11,6 +11,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2022
 
+
 ### 2022.11.xx
 
 **New Analytics predefined teams**
@@ -18,7 +19,20 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
+### 2022.11.01
+
+**Konnect APIs for identity management**
+: Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
+[IdP API documentation](/konnect/identity-management-api)
+
+
 ## October 2022
+
+### 2022.10.27
+
+**Dynamic client registration <span class="badge beta"></span>**
+: Dynamic client registration with Okta is now in public beta. 
+[Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
 
 ### 2022.10.21
 

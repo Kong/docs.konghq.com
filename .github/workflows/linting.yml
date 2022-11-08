@@ -4,12 +4,32 @@ on:
     types: [synchronize, ready_for_review, opened]
 
 jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: npm ci
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v32
+        with:
+          sha: ${{ github.sha }}
+          files: |
+            src/**
+            app/_assets/**
+      - run: npx prettier --check ${{ steps.changed-files.outputs.all_changed_files }}
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Configure Ruby to build Jekyll site
       - name: Set up Ruby
@@ -17,7 +37,7 @@ jobs:
         with:
           ruby-version: .ruby-version
       - name: Ruby gem cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -35,7 +55,7 @@ jobs:
     name: Vale
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: errata-ai/vale-action@v2
         with:
           # path where vale checks checking only modified files.

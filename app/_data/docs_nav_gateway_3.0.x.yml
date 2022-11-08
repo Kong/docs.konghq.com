@@ -69,10 +69,10 @@ items:
             url: /production/deployment-topologies/
           - text: Hybrid Mode
             items:
-            - text: Overview
-              url: /production/deployment-topologies/hybrid-mode/
-            - text: Deploy Kong Gateway in Hybrid mode
-              url: /production/deployment-topologies/hybrid-mode/setup
+              - text: Overview
+                url: /production/deployment-topologies/hybrid-mode/
+              - text: Deploy Kong Gateway in Hybrid mode
+                url: /production/deployment-topologies/hybrid-mode/setup
           - text: DB-less Deployment
             url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
@@ -375,16 +375,16 @@ items:
             url: /kong-manager/auth/sessions
           - text: RBAC
             items:
-            - text: Overview
-              url: /kong-manager/auth/rbac
-            - text: Enable RBAC
-              url: /kong-manager/auth/rbac/enable
-            - text: Add a Role and Permissions
-              url: /kong-manager/auth/rbac/add-role
-            - text: Create a User
-              url: /kong-manager/auth/rbac/add-user
-            - text: Create an Admin
-              url: /kong-manager/auth/rbac/add-admin
+              - text: Overview
+                url: /kong-manager/auth/rbac
+              - text: Enable RBAC
+                url: /kong-manager/auth/rbac/enable
+              - text: Add a Role and Permissions
+                url: /kong-manager/auth/rbac/add-role
+              - text: Create a User
+                url: /kong-manager/auth/rbac/add-user
+              - text: Create an Admin
+                url: /kong-manager/auth/rbac/add-admin
       - text: Networking Configuration
         url: /kong-manager/networking
       - text: Workspaces
@@ -417,48 +417,48 @@ items:
         url: /plugin-development/distribution
       - text: Plugin Development Kit
         items:
-        - text: Overview
-          url: /plugin-development/pdk/
-        - text: kong.client
-          url: /plugin-development/pdk/kong.client
-        - text: kong.client.tls
-          url: /plugin-development/pdk/kong.client.tls
-        - text: kong.cluster
-          url: /plugin-development/pdk/kong.cluster
-        - text: kong.ctx
-          url: /plugin-development/pdk/kong.ctx
-        - text: kong.ip
-          url: /plugin-development/pdk/kong.ip
-        - text: kong.log
-          url: /plugin-development/pdk/kong.log
-        - text: kong.nginx
-          url: /plugin-development/pdk/kong.nginx
-        - text: kong.node
-          url: /plugin-development/pdk/kong.node
-        - text: kong.request
-          url: /plugin-development/pdk/kong.request
-        - text: kong.response
-          url: /plugin-development/pdk/kong.response
-        - text: kong.router
-          url: /plugin-development/pdk/kong.router
-        - text: kong.service
-          url: /plugin-development/pdk/kong.service
-        - text: kong.service.request
-          url: /plugin-development/pdk/kong.service.request
-        - text: kong.service.response
-          url: /plugin-development/pdk/kong.service.response
-        - text: kong.table
-          url: /plugin-development/pdk/kong.table
-        - text: kong.tracing
-          url: /plugin-development/pdk/kong.tracing
-        - text: kong.vault
-          url: /plugin-development/pdk/kong.vault
+          - text: Overview
+            url: /plugin-development/pdk/
+          - text: kong.client
+            url: /plugin-development/pdk/kong.client
+          - text: kong.client.tls
+            url: /plugin-development/pdk/kong.client.tls
+          - text: kong.cluster
+            url: /plugin-development/pdk/kong.cluster
+          - text: kong.ctx
+            url: /plugin-development/pdk/kong.ctx
+          - text: kong.ip
+            url: /plugin-development/pdk/kong.ip
+          - text: kong.log
+            url: /plugin-development/pdk/kong.log
+          - text: kong.nginx
+            url: /plugin-development/pdk/kong.nginx
+          - text: kong.node
+            url: /plugin-development/pdk/kong.node
+          - text: kong.request
+            url: /plugin-development/pdk/kong.request
+          - text: kong.response
+            url: /plugin-development/pdk/kong.response
+          - text: kong.router
+            url: /plugin-development/pdk/kong.router
+          - text: kong.service
+            url: /plugin-development/pdk/kong.service
+          - text: kong.service.request
+            url: /plugin-development/pdk/kong.service.request
+          - text: kong.service.response
+            url: /plugin-development/pdk/kong.service.response
+          - text: kong.table
+            url: /plugin-development/pdk/kong.table
+          - text: kong.tracing
+            url: /plugin-development/pdk/kong.tracing
+          - text: kong.vault
+            url: /plugin-development/pdk/kong.vault
 
-        - text: kong.websocket.client
-          url: /plugin-development/pdk/kong.websocket.client
+          - text: kong.websocket.client
+            url: /plugin-development/pdk/kong.websocket.client
 
-        - text: kong.websocket.upstream
-          url: /plugin-development/pdk/kong.websocket.upstream
+          - text: kong.websocket.upstream
+            url: /plugin-development/pdk/kong.websocket.upstream
 
       - text: Plugins in Other Languages
         items:
@@ -500,15 +500,15 @@ items:
       - text: Rate Limiting Plugin
         url: /kong-plugins/rate-limiting/algorithms/rate-limiting
         #items:
-          #- text: Overview
-            #url: /kong-plugins/rate-limiting/ commenting these lines out for 3.0
-            #url: /kong-plugins/rate-limiting/algorithms/rate-limiting
-          #- text: Algorithms
-           # items:
-            #  - text: Configuring sliding-window
-             #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
-              #- text: Configuring Fixed bucket
-               # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
+        #- text: Overview
+        #url: /kong-plugins/rate-limiting/ commenting these lines out for 3.0
+        #url: /kong-plugins/rate-limiting/algorithms/rate-limiting
+        #- text: Algorithms
+        # items:
+        #  - text: Configuring sliding-window
+        #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
+        #- text: Configuring Fixed bucket
+        # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
       - text: Request Transformer
         items:
           - text: Add a Body Value
@@ -518,10 +518,10 @@ items:
         url: /kong-plugins/graphql
       - text: gRPC
         items:
-        - text: gRPC Plugins
-          url: /kong-plugins/grpc
-        - text: Configure a gRPC service
-          url: /kong-plugins/configuring-a-grpc-service
+          - text: gRPC Plugins
+            url: /kong-plugins/grpc
+          - text: Configure a gRPC service
+            url: /kong-plugins/configuring-a-grpc-service
 
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg

@@ -2,41 +2,41 @@ columns:
   - name: Production Ready
     key: ga
 features:
-  - name: 'Docker'
+  - name: "Docker"
     items:
-      - name: 'Docker on MacOS'
+      - name: "Docker on MacOS"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
-      - name: 'Docker on Windows'
+      - name: "Docker on Windows"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
-      - name: 'Docker on Linux'
+      - name: "Docker on Linux"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
-      - name: 'Custom Docker configuration'
+      - name: "Custom Docker configuration"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
 
-  - name: 'Packages'
+  - name: "Packages"
     items:
-      - name: 'Linux'
+      - name: "Linux"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-conf/
         ga: true
 
-  - name: 'Kubernetes'
+  - name: "Kubernetes"
     items:
-      - name: 'Kubernetes (Helm)'
+      - name: "Kubernetes (Helm)"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes/
         ga: true
 
-  - name: 'Cloud Providers'
+  - name: "Cloud Providers"
     items:
-      - name: 'AWS'
+      - name: "AWS"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-aws/
         ga: false
-      - name: 'Azure'
+      - name: "Azure"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-azure/
         ga: false
-      - name: 'Google Cloud (coming soon)'
+      - name: "Google Cloud (coming soon)"
         url: null
         ga: false

@@ -69,7 +69,9 @@ For example, you can not perform string comparisons on a integer type field.
 
 ## String transformations
 
-| lower() | Lowercase |
+| Transformation | Meaning |
+| -------------- | ------- |
+| lower()        | turn the uppercase letters into lowercase |
 
 ## Integer
 

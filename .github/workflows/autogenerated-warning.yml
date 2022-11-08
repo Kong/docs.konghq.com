@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Add warning if needed
         run: |
           cd check-generated-content
@@ -20,7 +20,7 @@ jobs:
   prevent-merge-if-labeled:
     runs-on: ubuntu-latest
     steps:
-      - uses: mheap/github-action-required-labels@v1
+      - uses: mheap/github-action-required-labels@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

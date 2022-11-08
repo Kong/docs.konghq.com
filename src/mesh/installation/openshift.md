@@ -115,7 +115,7 @@ Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.
 
 This example will run {{site.mesh_product_name}} in standalone mode for a _flat_
-deployment, but there are more advanced [deployment modes](https://kuma.io/docs/latest/introduction/deployments/)
+deployment, but there are more advanced [deployment modes][deployments]
 like _multi-zone_.
 
 It may take a while for OpenShift to start the
@@ -221,7 +221,7 @@ entity with the name `default`.
 
 {{site.mesh_product_name}} explicitly specifies a UID
 for the `kuma-dp` sidecar to avoid capturing traffic from
-`kuma-dp` itself. You must grant a `nonroot` 
+`kuma-dp` itself. You must grant a `nonroot`
 [Security Context Constraint](https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html)
 to the application namespace:
 
@@ -241,7 +241,7 @@ on the `Deployment` or `DeploymentConfig`:
 
 Congratulations! You have successfully installed {{site.mesh_product_name}}.
 
-Before running the Kuma Demo in the Quickstart guide,
+Before running the demo in the Quickstart guide,
 run the following command:
 
 ```sh
@@ -251,9 +251,16 @@ oc adm policy add-scc-to-group anyuid system:serviceaccounts:kuma-demo
 One of the components in the demo requires root access, therefore it uses the
 `anyuid` instead of the `nonroot` permission.
 
-The Kuma quickstart documentation
-is fully compatible with {{site.mesh_product_name}}, except that you are
-running {{site.mesh_product_name}} containers instead of Kuma containers.
-
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments][get-started-k8s].
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/latest/introduction/deployments/
+[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+{% endif_version %}
