@@ -113,7 +113,7 @@ that a plugin doesn't need to provide functions for all phases.
 
 ```lua
 local CustomHandler = {
-  VERSION  = "1.0.0"
+  VERSION  = "1.0.0",
   PRIORITY = 10
 }
 

@@ -63,6 +63,7 @@ Styra
 Syslog
 Terraform
 Terraform's
+UIs
 Unicode
 Valero
 Vue
@@ -321,7 +322,6 @@ transpiled
 truthy
 ttl
 txt
-UIs
 udpingress
 unary
 uncheck
@@ -336,6 +336,8 @@ unprocessable
 unpublish
 unregister
 unregistering
+unshorten
+unshortened
 updated_at
 upsert
 upstream
