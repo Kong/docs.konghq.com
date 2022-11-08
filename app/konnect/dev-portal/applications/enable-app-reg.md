@@ -94,8 +94,8 @@ support for {{site.base_gateway}} versions less than 3.0.
    | `Hide Credentials` |**Default: disabled**<br>  Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
    | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
 
-   {:.note}
-   > **Note:** In the `default` runtime group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` runtime groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider.
+{:.note}
+> **Note:** In the `default` runtime group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` runtime groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider.
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
