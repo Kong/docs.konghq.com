@@ -4,7 +4,6 @@ badge: enterprise
 content-type: reference
 ---
 
-The support for {{site.ee_product_name}} software versions is explained in this topic.
 
 {% include_cached /md/support-policy.md %}
 
