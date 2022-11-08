@@ -4,8 +4,8 @@ content_type: how-to
 ---
 
 To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
-When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and your choice of [Key Authentication](/hub/kong-inc/key-auth)
-or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
+When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either Key Auth or OIDC (using the [`openid-connect` plugin](/hub/kong-inc/key-auth)).
+These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the service and are managed automatically by
 {{site.konnect_saas}}.
 
 ## Support for any runtime group
@@ -129,6 +129,6 @@ at any time.
 
 If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
 
-In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your data planes to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
+In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
 
 The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.
