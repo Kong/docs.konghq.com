@@ -13,8 +13,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ### 2022.11.xx
 
-**New Analytics predefined roles**
-: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin roles. These roles allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. The Analytics Viewer role only allows users to view and export analytics. The Analytics Admin role allows users to view, create, edit, and delete all analytics. 
+**New Analytics predefined teams**
+: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. The Analytics Viewer team only allows users to view and export analytics. The Analytics Admin team allows users to view, create, edit, and delete all analytics. 
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
