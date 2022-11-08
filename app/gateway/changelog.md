@@ -1047,6 +1047,7 @@ Previously, the SNI list was empty after sorting by the SSL certificate ID field
 * Fixed a timer leak that occurred when `worker_consistency` was set to `eventual` in `kong.conf`.
 This issue caused timers to be exhausted and failed to start any other timers used by Kong Gateway, resulting in a `too many pending timers` error.
 * Fixed memory leaks coming from `lua-resty-lock`.
+* Fixed global plugins can operate out of the workspace scope
 
 #### Kong Manager and Dev Portal
 
