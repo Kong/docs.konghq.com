@@ -6,8 +6,6 @@ Welcome to the official documentation for Kuma, a modern distributed **Control P
 
 The word "Kuma" means "bear" in Japanese (クマ).
 
-The core maintainer of Kuma is **Kong**, the maker of the popular open-source Kong Gateway 🦍.
-
 ## Get started
 
 [Read about service mesh](/docs/{{ page.version }}/introduction/what-is-a-service-mesh)
