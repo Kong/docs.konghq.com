@@ -105,4 +105,4 @@ In the previous steps, you obtained the **Client ID** and **Client Secret**. To 
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
 ```
 
-Where example.com is the address of the runtime instance you are running.
+Where `example.com` is the address of the runtime instance you are running.
