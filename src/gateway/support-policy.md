@@ -8,7 +8,7 @@ The support for {{site.ee_product_name}} software versions is explained in this 
 
 {% include_cached /md/support-policy.md %}
 
-## See als
+## See also
 
 * [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy)
 * [Version support policy for {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/support-policy)
