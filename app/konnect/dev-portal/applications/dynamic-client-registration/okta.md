@@ -90,6 +90,9 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 3. Click **Create** to save your application.
 
-After your application has been created, you will see the **Client ID** and **Client Secret**. Please store these values, they will only be shown once. Click **Proceed** to continue to the application's details page.
+4. After your application has been created, you will see the **Client ID** and **Client Secret**. 
+   Please store these values, they will only be shown once. 
+   
+   Click **Proceed** to continue to the application's details page.
 
-4. Once your application is created, you will see it in Okta. From your Okta organization select **Applications** from the menu. You will see your application that was created in the Dev Portal, and its corresponding Client ID.
+5. Once your application is created, you will see it in Okta. From your Okta organization select **Applications** from the menu. You will see your application that was created in the Dev Portal, and its corresponding Client ID.
