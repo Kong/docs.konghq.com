@@ -63,11 +63,13 @@ Styra
 Syslog
 Terraform
 Terraform's
+UIs
 Unicode
 Valero
 Vue
 Wireshark
 Zipkin
+acl
 admin's
 allowlist
 anonymized
@@ -230,6 +232,7 @@ opa
 openresty
 outbounds
 passthrough
+pdk
 pdks
 perf
 performant
@@ -321,7 +324,6 @@ transpiled
 truthy
 ttl
 txt
-UIs
 udpingress
 unary
 uncheck
@@ -336,6 +338,8 @@ unprocessable
 unpublish
 unregister
 unregistering
+unshorten
+unshortened
 updated_at
 upsert
 upstream
