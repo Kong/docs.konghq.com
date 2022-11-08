@@ -22,7 +22,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 - A service that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
-- The service version can be in any runtime group.
+- The service version can be in any runtime group, as long as the following conditions are met:
 
   - Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
 
