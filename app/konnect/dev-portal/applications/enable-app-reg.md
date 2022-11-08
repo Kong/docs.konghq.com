@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
-When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either Key Auth or OIDC.
+When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
 These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the service and are managed by
 {{site.konnect_saas}}.
 
