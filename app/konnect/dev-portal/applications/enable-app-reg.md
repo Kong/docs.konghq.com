@@ -15,9 +15,9 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 
 - The service version can be in any runtime group.
 
-  - Service versions **not** in the `default` runtime group must be proxied with a version of Kong Gateway >= 3.0
+  - Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
 
-  - Service versions in the `default` runtime group can be proxied with any version of Kong Gateway
+  - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
 
 - The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
@@ -53,7 +53,7 @@ service, and follow these steps:
 {:.note}
 > **Note:** If the service version is in the `default` runtime group, it will
 instead receive read-only entries for the `acl` and `key-auth` plugins to provide
-support for Kong Gateway versions less than 3.0.
+support for {{site.base_gateway}} versions less than 3.0.
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
@@ -78,7 +78,7 @@ service, and follow these steps:
 {:.note}
 > **Note:** If the service version is in the `default` runtime group, it will
 instead receive read-only entries for the `acl` and `openid-connect` plugins to provide
-support for Kong Gateway versions less than 3.0.
+support for {{site.base_gateway}} versions less than 3.0.
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
 
