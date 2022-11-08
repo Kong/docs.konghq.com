@@ -44,6 +44,9 @@ Access these secrets from `my-secret-name` like this:
 
 The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
+{% navtabs %}
+{% navtab Admin API %}
+
 {% navtabs codeblock %}
 {% navtab cURL %}
 
@@ -82,6 +85,26 @@ Result:
     "updated_at": 1644942689
 }
 ```
+{% endnavtab %}
+{% navtab Declarative configuration %}
+
+{:.note}
+> Secrets management is supported in decK 1.16 and later.
+
+Add the following snippet into your declarative configuration file:
+
+```yaml
+_format_version: "3.0"
+vaults:
+- config:
+    region: us-east-1
+  description: Storing secrets in AWS Secrets Manager
+  name: aws
+  prefix: my-aws-sm-vault
+```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 With the Vault entity in place, you can now reference the secrets. This allows you to drop the `AWS_REGION`
 environment variable.
