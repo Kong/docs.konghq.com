@@ -7,14 +7,9 @@ categories:
 
 type: integration
 
-desc: Scap and visualize metrics on Dynatrace
+desc: Intelligently monitor, analyze, and optimize your Kong Gateway and its managed APIs.
 description: | 
-  Dynatrace is a software monitoring solution that supports cloud and managed systems and accelerates digital transformation.
-  With Dynatrace you can bring your infrastructure, applications and user behaviour monitoring into a single platform powered with atrificial intelligence.
-  One of the monitoring pillars is metrics. Dynatrace integrates counter, gauge, and summary metrics and enables charting, alerting and various ways of anaysis.
-  To collect Kong Gateway metrics on Dynatrace, you can use the [Kong Prometheus plugin](https://docs.konghq.com/hub/kong-inc/prometheus/)
-  and [Dynatrace OneAgent](https://www.dynatrace.com/support/help/shortlink/oneagent-hub/)
-  or [Dynatrace Operator](https://www.dynatrace.com/support/help/shortlink/monitor-prometheus-metrics/) (on Kubernetes).
+  With AI and complete automation, the Dynatrace platform provides answers, not just data, about the performance of applications, the underlying infrastructure, and users’ experience. That’s why many of the world’s largest enterprises trust Dynatrace to modernize and automate enterprise cloud operations, release better software faster, and deliver unrivaled digital experiences.  
 
 support_url: https://support.dynatrace.com/
 
@@ -35,9 +30,11 @@ params:
   
 ---
 
-To try Dynatrace for free, please register for a free trial [here](https://www.dynatrace.com/trial/).
+Start your [free trial](https://www.dynatrace.com/trial/).
 
-### Installation
+### Set up monitoring
 
-Specific instructions are provided on the [Dynatrace documentation portal](https://www.dynatrace.com/support/help/shortlink/kong-gateway/).
-
+With Dynatrace, you can get full observability for your Kong Gateway and its managed APIs.
+To get trace insights, install [Dynatrace OneAgent]( https://www.dynatrace.com/support/help/shortlink/oneagent-hub/) or [set up Dynatrace on Kubernetes/OpenShift](https://www.dynatrace.com/support/help/shortlink/kubernetes-hub).
+To get metric insights, use the [Kong Prometheus plugin]( https://docs.konghq.com/hub/kong-inc/prometheus/) in conjunction with [Dynatrace OneAgent]( https://www.dynatrace.com/support/help/shortlink/oneagent-hub/) or [Dynatrace Operator]( https://www.dynatrace.com/support/help/shortlink/monitor-prometheus-metrics/) (on Kubernetes).
+For detailed instructions on Kong Gateway monitoring, see the [Dynatrace documentation](https://www.dynatrace.com/support/help/shortlink/kong-gateway).
