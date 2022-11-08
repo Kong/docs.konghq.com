@@ -76,7 +76,7 @@ service, and follow these steps:
 4. Click **Enable**.
 
     This versions of this service packages now includes
-    read-only entries for the  `konnect-application-auth` and `openid-connect` plugins.
+    read-only entries for the `konnect-application-auth` and `openid-connect` plugins.
 
 {:.note}
 > **Note:** If the service version is in the `default` runtime group, it will
@@ -122,7 +122,7 @@ at any time.
 
 ### Differences between runtime groups
 
-If you need to use version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
+If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
 
 In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your data planes to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
 
