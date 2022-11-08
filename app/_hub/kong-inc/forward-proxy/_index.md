@@ -161,7 +161,7 @@ params:
         The field should be set to one of the below:
           - "append": append information of this hop to those headers;
           - "transparent": leave those headers unchanged, as if we were not a proxy;
-          - "delete": remove all those headers, as if we were the originating client.
+          - "delete": remove all those headers including those should be added for this hop, as if we were the originating client.
 
         Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
 
