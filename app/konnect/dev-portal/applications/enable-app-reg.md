@@ -8,6 +8,14 @@ When you enable application registration, {{site.konnect_saas}} enables two plug
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
 {{site.konnect_saas}}.
 
+## {:.badge .alpha} Support for any runtime group
+
+App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
+We are rolling out full support in any non-`default` runtime group, using the `konnect-application-auth` plugin that was created for {{site.base_gateway}} 3.0.
+
+{:.note}
+> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#default-runtime-group) for additional context.
+
 ## Prerequisites
 
 - A service that is versioned and published to the
@@ -18,9 +26,6 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
   - Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
 
   - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
-
-{:.note}
-> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#default-runtime-group) for additional context.
 
 - The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
