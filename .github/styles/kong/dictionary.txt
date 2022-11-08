@@ -1,5 +1,4 @@
 ACLs
-acl
 Alertmanager
 Amberflo
 Arya
@@ -70,6 +69,7 @@ Valero
 Vue
 Wireshark
 Zipkin
+acl
 admin's
 allowlist
 anonymized
@@ -232,6 +232,7 @@ opa
 openresty
 outbounds
 passthrough
+pdk
 pdks
 perf
 performant
