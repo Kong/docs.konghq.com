@@ -8,9 +8,9 @@ When you enable application registration, {{site.konnect_saas}} enables two plug
 or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
 {{site.konnect_saas}}.
 
-## {:.badge .alpha} Support for any runtime group
+## Support for any runtime group
 
-App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
+{:.badge .alpha} App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
 We are rolling out full support in any non-`default` runtime group, using the `konnect-application-auth` plugin that was created for {{site.base_gateway}} 3.0.
 
 {:.note}
