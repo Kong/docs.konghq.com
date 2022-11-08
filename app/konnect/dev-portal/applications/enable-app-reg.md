@@ -19,6 +19,9 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 
   - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
 
+{:.note}
+> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region.
+
 - The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
