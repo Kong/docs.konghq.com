@@ -361,3 +361,4 @@ yaml
 yml
 zipkin
 zsh
+x-headers
