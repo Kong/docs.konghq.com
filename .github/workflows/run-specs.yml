@@ -1,0 +1,19 @@
+name: Run Specs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [synchronize, ready_for_review, opened]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+      - name: Run specs
+        run: bundle exec rspec
