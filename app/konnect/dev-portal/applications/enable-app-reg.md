@@ -15,7 +15,7 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 
 - The service version can be in any runtime group.
 
-  - {:.badge .alpha} Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
+  - Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
 
   - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
 
@@ -122,8 +122,8 @@ at any time.
 
 ### Differences between runtime groups
 
-If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher, and support is currently in {:.badge .alpha}.
+If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
 
 In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your data planes to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
 
-The `konnect-application-auth` plugin {:.badge .alpha} is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.
+The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.
