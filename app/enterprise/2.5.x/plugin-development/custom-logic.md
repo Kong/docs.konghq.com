@@ -185,7 +185,7 @@ end
 ```
 
 The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
-It can be be split into several Lua files (also called *modules*).
+It can be split into several Lua files (also called *modules*).
 The `handler.lua` module can use `require` to include other modules in your plugin.
 
 For example, the following plugin splits the functionality into three files.
@@ -237,7 +237,7 @@ execute various gateway operations in a way that is guaranteed to be
 forward-compatible with future releases of {{site.ee_product_name}}.
 
 When you are trying to implement some logic that needs to interact with {{site.ee_product_name}}
-(such as retrieving request headers, producing a response from a plugin, or ogging
+(such as retrieving request headers, producing a response from a plugin, or logging
 some error or debug information), you should consult the [Plugin Development
 Kit Reference][pdk].
 
