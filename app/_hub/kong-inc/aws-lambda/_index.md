@@ -383,12 +383,11 @@ routes. Even though the service will not be used, you must configure a
 placeholder service for routes using this plugin. Versions after 2.x allow you
 to omit service configuration.
 
-When using {{site.kic_product_name}}, Kubernetes Ingresses require a Service.
-Even on {{site.ce_product_name}} versions that support empty services, you will
-still need to configure a placeholder Service for the Ingress. An [ExternalName
-Service](https://kubernetes.io/docs/concepts/services-networking/service/#externalname)
-for an unresolvable domain (for example, `fake.example`) will satisfy this
-requirement without requiring a Deployment associated with the Service.
+When using {{site.kic_product_name}}, Kubernetes Ingresses require a service.
+Even on {{site.ce_product_name}} versions that support empty services, you must still configure a placeholder service for the Ingress. An [ExternalName
+service](https://kubernetes.io/docs/concepts/services-networking/service/#externalname)
+for an unresolvable domain (for example, `fake.example`) satisfies this
+requirement without requiring a Deployment associated with the service.
 
 #### Response plugins
 
