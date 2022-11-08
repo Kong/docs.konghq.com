@@ -15,7 +15,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ### 2022.11.xx
 
 **Certificate Management functionality added to the {{site.konnect_saas}} manager **
-: Konnect now allows customers to handle the complexity of creating, storing, and organizing certificates needed for runtime instances connected to Runtime Groups in Konnect. This reduces operational complexity on customers while ensuring that the security is not compromised.
+: {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. This reduces operational complexity for customers while ensuring that security is not compromised.
 
 ## October 2022
 

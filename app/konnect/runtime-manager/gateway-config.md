@@ -96,6 +96,7 @@ A certificate object represents a public certificate and can be paired with a
 corresponding private key. Certificates handle SSL/TLS termination for encrypted
 requests, and can be used as a trusted CA store when validating the peer
 certificate of a client or service.
+
 Data plane certificates can be managed from the **Data plane certificates** dashboard that is available as a **Runtime group action**. Here you can manage data plane certificates, including the creation, renewal, and removal of certificates, as well as uploading up to 16 certificates per runtime group. 
 
 See the [certificate object API reference](/gateway/latest/admin-api/#certificate-object)
