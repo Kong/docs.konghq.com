@@ -15,4 +15,5 @@ group :development do
   gem 'puma'
   gem 'reek'
   gem 'rubocop'
+  gem 'rspec'
 end
