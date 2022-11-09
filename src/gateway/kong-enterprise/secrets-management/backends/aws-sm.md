@@ -12,6 +12,7 @@ configuring via environment variables.
 export AWS_ACCESS_KEY_ID=<access_key_id>
 export AWS_SECRET_ACCESS_KEY=<secrets_access_key>
 export AWS_REGION=<aws-region>
+export AWS_SESSION_TOKEN=<token>
 ```
 
 Region used by default with references, can also be specified with:
