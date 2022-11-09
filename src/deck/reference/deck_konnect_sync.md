@@ -26,6 +26,11 @@ deck konnect sync [command-specific flags] [global flags]
 `--include-consumers`
 :  export consumers, associated credentials and any plugins associated with consumers. (Default: `false`)
 
+{% if_version gte:1.16.x %}
+`--no-mask-deck-env-vars-value`
+:  do not mask DECK_ environment variable values at diff output. (Default: `false`)
+{% endif_version %}
+
 `--parallelism`
 :  Maximum number of concurrent operations. (Default: `100`)
 

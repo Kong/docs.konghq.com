@@ -22,6 +22,11 @@ deck diff [command-specific flags] [global flags]
 `-h`, `--help`
 :  help for diff (Default: `false`)
 
+{% if_version gte:1.16.x %}
+`--no-mask-deck-env-vars-value`
+:  do not mask DECK_ environment variable values at diff output. (Default: `false`)
+{% endif_version %}
+
 `--non-zero-exit-code`
 :  return exit code 2 if there is a diff present,
 exit code 0 if no diff is found,
