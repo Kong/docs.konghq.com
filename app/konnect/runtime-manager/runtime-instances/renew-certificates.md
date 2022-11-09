@@ -50,12 +50,12 @@ You can generate a new data plane certificate from the {% konnect_icon runtimes 
 1. Click **Runtime group actions** and select **Data Plane Certificates**. 
 1. Click **Generate Certificate**.
 
-2. Save the new certificate and key into separate files:
+1. Save the new certificate and key into separate files:
 
     * certificate: `tls.crt`
     * private key: `tls.key`
 
-3. Store the files on the local file system.
+1. Store the files on the local file system.
 
 ### Update data plane
 
