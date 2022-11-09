@@ -1,18 +1,19 @@
 ---
 name: XML Threat Protection
 publisher: Kong Inc.
+version: 3.1.x
 desc: Apply structural and size checks on XML payloads
 description: |
   Reduce the risk of XML attacks by checking the structure of XML payloads. This
-  will validate maximum complexity (depth of the tree), maximum size of elements
-  and attributes, etc.
+  validates maximum complexity (depth of the tree), maximum size of elements
+  and attributes.
 enterprise: true
 type: plugin
 categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible: true
+    compatible: 3.1.x
 params:
   name: xml-threat-protection
   service_id: true
@@ -26,22 +27,22 @@ params:
       value_in_examples: null
       datatype: array of strings
       description: |
-        A list of Content-Type values that have payloads that need to be validated
+        A list of Content-Type values with payloads that must be validated.
     - name: allowed_content_types
       required: true
       default: [ ]
       value_in_examples: null
       datatype: array of strings
       description: |
-        A list of Content-Type values that have payloads that are allowed, but will not be validated.
-        For example if the API also accepts JSON, then `"application/json"` can be added.
+        A list of Content-Type values with payloads that are allowed, but aren't validated.
+        For example, if the API also accepts JSON, you can add `"application/json"`.
     - name: allow_dtd
       required: true
       default: false
       value_in_examples: null
       datatype: boolean
       description: |
-        Indicating whether an XML Document Type Definition (DTD) section is allowed.
+        Indicates whether an XML Document Type Definition (DTD) section is allowed.
     - name: namespace_aware
       required: true
       default: true
@@ -55,7 +56,7 @@ params:
       value_in_examples: 50
       datatype: number
       description: |
-        Maximum depth of tags, child elements like Text or Comments are not counted as another level.
+        Maximum depth of tags. Child elements such as Text or Comments are not counted as another level.
     - name: max_children
       required: true
       default: 100
@@ -63,15 +64,15 @@ params:
       datatype: number
       description: |
         Maximum number of children allowed (Element, Text, Comment, ProcessingInstruction, CDATASection).
-        NOTE: adjacent text/CDATA sections are counted as 1 (such that text-cdata-text-cdata is 1 child).
+        Note: Adjacent text and CDATA sections are counted as one. For example, `text-cdata-text-cdata` is one child.
     - name: max_attributes
       required: true
       default: 100
       value_in_examples: null
       datatype: number
       description: |
-        Maximum number of attributes allowed on a tag (including default ones).
-        NOTE: if not parsing namespace-aware, then the namespaces definitions will be counted as attributes.
+        Maximum number of attributes allowed on a tag, including default ones.
+        Note: If namespace-aware parsing is disabled, then the namespaces definitions are counted as attributes.
     - name: max_namespaces
       required: semi
       default: 20
@@ -85,7 +86,7 @@ params:
       value_in_examples: null
       datatype: number
       description: |
-        Maximum size of entire document
+        Maximum size of the entire document.
     - name: buffer
       required: true
       default: 1048576 (1 mb)
@@ -107,7 +108,7 @@ params:
       datatype: number
       description: |
         Maximum size of the localname. This applies to tags and attributes.
-        NOTE: If not parsing namespace-aware, this limit will count against the full name (prefix + localname).
+        Note: If parsing isn't namespace-aware, this limit counts against the full name (prefix + localname).
     - name: prefix
       required: semi
       default: 1024 (1 kb)
@@ -121,7 +122,7 @@ params:
       value_in_examples: 1024
       datatype: number
       description: |
-        Maximum size of the namespace uri. This value is required if parsing is namespace-aware.
+        Maximum size of the namespace URI. This value is required if parsing is namespace-aware.
     - name: attribute
       required: true
       default: 1024 (1 kb)
@@ -177,7 +178,7 @@ params:
       value_in_examples: null
       datatype: number
       description: |
-        Sets the maximum amplification to be allowed. This protects against the Billion Laughs Attack.
+        Sets the maximum allowed amplification. This protects against the Billion Laughs Attack.
     - name: bla_threshold
       required: true
       default: 8388608 (8 mb)
@@ -190,39 +191,32 @@ params:
 
 ### Usage
 
-The XML Threat Protection plugin will protect against excessive complex or large payloads.
+The XML Threat Protection plugin protects against excessive complex or large payloads.
 The checks are implemented using a streaming [SAX parser](http://www.saxproject.org/). This ensures that even very large
 payloads can be validated safely.
 
-### Using the `unparsed buffer` setting
+### Using the unparsed buffer setting
 
-Due to the way SAX parsers work, a bad input would first need to be parsed before a SAX callback
-allows the plugin to check its size. Specifically for elements with attributes this is even
-a bigger problem since the element name plus all its attributes are returned in a single
-callback. So passing in 100 attributes each having a 1GB value, could still overwhelm the
-system and have it run out of resources.
+Due to the way SAX parsers work, a bad input needs to be parsed first before a SAX callback
+allows the plugin to check its size. This is even
+a bigger problem for elements with attributes because the element name with all its attributes are returned in a single
+callback. So passing in 100 attributes, each with a 1GB value, could still overwhelm the
+system and run out of resources.
 
-To mitigate this the unparsed buffer size setting is used. The buffer is counted from the
-last byte parsed (eg. the closing tag on the previous element), to the last byte passed
+To mitigate this, the unparsed buffer size setting is used. The buffer is counted from the
+last byte parsed (for example, the closing tag on the previous element), to the last byte passed
 into the parser. If the buffer size is greater than the allowed value, the request is rejected.
 
-An example;
-- following limits defined:
-  - localname: 1 kb
-  - attribute value: 10 kb
-  - max attributes: 10
-- A request comes in with an element having 100 attributes, each 1 gb in size
-- The parser will read the payload, and try to fire a callback for a new element
-  of at least 100 gb in size, since it also contains all attributes. This will fail
-  because the system will run out of resources.
+For example, if the following limits are defined:
+- localname: 1 KB
+- attribute value: 10 KB
+- max attributes: 10
+If a request comes in with an element with 100 attributes, each 1 GB, the parser reads the payload, and tries to fire a callback for a new element of at least 100 GB in size, since it also contains all attributes. This fails because the system runs out of resources.
 
-To mitigate this using the unparsed buffer size:
-- the maximum expected size is: 1 element name (1 kb), 10 attribute names (10 kb),
-  10 attribute values (100 kb), so a total of 111 kb.
-- set the maximum unparser buffer to 113 kb (adding 2 kb for overhead and XML whitespace)
-- when validating the element with 100 1 gb attributes again, the plugin will now
-  detect that the unparsed buffer will exceed the expected maximum of 113 kb, and will
-  reject the request before parsing the entire 100 gb body.
+You can mitigate this by using the unparsed buffer size:
+- The maximum expected size is 111KB (one element name (1 KB), 10 attribute names (10 KB), 10 attribute values (100 KB)).
+- Set the maximum unparsed buffer to 113 KB, adding 2 KB for overhead and XML whitespace.
+- When validating the element with 100 one GB attributes again, the plugin now detects that the unparsed buffer exceeds the expected maximum of 113 KB and rejects the request before parsing the entire 100 GB body.
 
 ---
 
