@@ -1,10 +1,10 @@
 ---
-title: Kong Mesh - Vault Policy
+title: Vault Policy
 ---
 
 ## Vault CA Backend
 
-The default [mTLS policy in Kuma](https://kuma.io/docs/latest/policies/mutual-tls/)
+The default [mTLS policy in {{site.mesh_product_name}}][mtls-policy]
 supports the following backends:
 
 * `builtin`: {{site.mesh_product_name}} automatically generates the Certificate
@@ -17,12 +17,12 @@ plane certificates.
 * `vault`: {{site.mesh_product_name}} generates data plane certificates
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
-
-* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca) {{site.mesh_product_name}} generates data plane certificates
+* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
-
+{% if_version gte:1.8.x %}
 * [`certmanager`](/mesh/{{page.kong_version}}/features/cert-manager): {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
+{% endif_version %}
 
 ## Vault mode
 
@@ -178,12 +178,12 @@ vault token create -format=json -policy="kmesh-default-dataplane-proxies" | jq -
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
 {:.note}
-> **Note:** There are some failure modes where the `vault` CLI still returns a token 
-even though an error was encountered and the token is invalid. For example, if the 
-policy creation fails in the previous step, then the `vault token create` command 
-both returns a token and exposes an error. In such situations, using `jq` to parse 
-the output hides the error message provided in the `vault` CLI output. Manually 
-parse the output instead of using `jq` so that the full output of the `vault` CLI 
+> **Note:** There are some failure modes where the `vault` CLI still returns a token
+even though an error was encountered and the token is invalid. For example, if the
+policy creation fails in the previous step, then the `vault token create` command
+both returns a token and exposes an error. In such situations, using `jq` to parse
+the output hides the error message provided in the `vault` CLI output. Manually
+parse the output instead of using `jq` so that the full output of the `vault` CLI
 command is available.
 
 {{site.mesh_product_name}} also supports AWS Instance Role authentication to Vault. Vault must be configured to accept EC2 or IAM role authentication. See [Vault documentation](https://www.vaultproject.io/docs/auth/aws) for details.  With Vault configured, select AWS authentication in the `Mesh` object by setting `conf.fromCp.auth.aws`. {{site.mesh_product_name}} will authenticate using the instance or IRSA role available within the environment.
@@ -196,9 +196,9 @@ Vault, you must provide credentials in the configuration of the `mesh` object of
 You can authenticate with the `token`, with client certificates by providing `clientKey` and `clientCert`, or by AWS role-based authentication.
 
 You can provide these values inline for testing purposes only, as a path to a file on the
-same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a mesh-scoped 
-secret (see [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/) for details 
-on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored 
+same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a
+[mesh-scoped secret][secrets].
+On Kubernetes, this mesh-scoped secret should be stored
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 
 Here's an example of a configuration with a `vault`-backed CA:
@@ -249,8 +249,6 @@ spec:
                 iamServerIdHeader: example.com # Optional server ID header value
 ```
 
-Apply the configuration with `kubectl apply -f [..]`.
-
 {% endnavtab %}
 {% navtab Universal %}
 
@@ -292,19 +290,38 @@ mtls:
               iamServerIdHeader: example.com # Optional server ID header value
 ```
 
-Apply the configuration with `kumactl apply -f [..]`, or with the [HTTP API](https://kuma.io/docs/latest/reference/http-api).
-
 {% endnavtab %}
 {% endnavtabs %}
+
+Apply the configuration with `kumactl apply -f [..]`.
+
+If you're running in Universal mode, you can also use the [HTTP API][http-api] to apply configuration.
 
 ## Common name
 
 Kong Mesh uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
 You may need to set a common name in the certificate, for compliance reasons. To do this, set the `commonName` field in the Vault mTLS backend configuration.
-The value contains the template that will be used to generate the name. For example, assuming that the template is {% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}, a data plane proxy with `kuma.io/service: backend` tag will receive a certificate with the `backend.mesh` common name. You can also use the `replace` function to replace `_` with `-`, for example {% raw %}'{{ tag "kuma.io/service" | replace "_" "-" }}.mesh'{% endraw %} will change the common name of `kuma.io/service: my_backend` from `my_backend.mesh` to `my-backend.mesh`.
+The value contains the template that will be used to generate the name.
+
+For example, assuming that the template is `{% raw %}'{{ tag "kuma.io/service" }}.mesh'{% endraw %}`, a data plane proxy with `kuma.io/service: backend` tag will receive a certificate with the `backend.mesh` common name.
+
+You can also use the `replace` function to replace `_` with `-`. For example, `{% raw %}'{{ tag "kuma.io/service" | replace "_" "-" }}.mesh'{% endraw %}` changes the common name of `kuma.io/service: my_backend` from `my_backend.mesh` to `my-backend.mesh`.
 
 ## Multi-zone and Vault
 
 In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
 
 You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.
+
+<!-- links -->
+{% if_version gte:2.0.x %}
+[mtls-policy]: /mesh/{{page.kong_version}}/policies/mutual-tls/
+[secrets]: /mesh/{{page.kong_version}}/security/secrets/
+[http-api]: /mesh/{{page.kong_version}}/reference/http-api/
+{% endif_version %}
+
+{% if_version lte:1.9.x %}
+[mtls-policy]: https://kuma.io/docs/latest/policies/mutual-tls/
+[secrets]: https://kuma.io/docs/latest/security/secrets/
+[http-api]: https://kuma.io/docs/latest/reference/http-api
+{% endif_version %}

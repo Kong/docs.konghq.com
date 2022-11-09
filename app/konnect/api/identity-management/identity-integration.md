@@ -19,7 +19,7 @@ curl --request POST \
   "description": "The Identity Management (IDM) team."}'
 ```
 
-You will receive a `200` response code, and a response body containing information about your team: 
+You will receive a `201` response code, and a response body containing information about your team: 
 
 ```
 {
@@ -47,36 +47,37 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
    The response body will contain a list of available roles: 
 
     ```
-    {
-	"analytics": {
-		"name": "Analytics",
-		"roles": {
-			"analytics_admin": {
-				"name": "Analytics Admin",
-				"description": "Allows users to view, create, modify, and delete all content in Konnect Analytics."
-			},
-			"analytics_viewer": {
-				"name": "Analytics Viewer",
-				"description": "Allows users to view all but not modify any content in Konnect Analytics."
-			}
-		}
+{
+      "runtime_groups": {
+        "name": "Runtime Groups",
+        "roles": {
+          "admin": {
+            "name": "Admin",
+            "description": "This role grants full write access to all entities within a runtime group."
+          },
+          "certificate_admin": {
+            "name": "Certificate Admin",
+            "description": "This role grants full write access to administer certificates."
+          },
+          ...
+        }
 	}
     ```
 
 2. Assign a role to a team by issuing  a `POST` request:
     
-    The request should contain the `id` as a parameter in the URL. This request requires a JSON response body that contains `role`, `entity_id`, `entity_type`, and `entity_region`. 
+    The request must contain a `TEAM_ID` parameter in the URL. This request requires a JSON body that contains `role`, `entity_id`, `entity_type`, and `entity_region`. 
 
         curl --request POST \
         --url https://global.api.konghq.tech/v2/teams/TEAM_ID/assigned-roles \
         --header 'Content-Type: application/json' \
         --data '{
-        "role": "analytics_viewer",
+        "role": "admin",
         "entity_id": "e67490ce-44dc-4cbd-b65e-b52c746fc26a",
         "entity_type": "runtime_groups",
         "entity_region": "eu"
         }'
-    If the information in the request was correct, the response body will return a `200` and the `id` value for the new role. 
+    If the information in the request was correct, the response will return a `200` and the `id` of the new assigned role. 
 
     {:.note}
     > `entity_id` can be found in the {{site.konnect_short_name}} in the **Runtime Instances** section. 
@@ -118,51 +119,40 @@ For a user to access the roles assigned to a custom team, the user must become a
         "id": "USER_ID"
         }'
 
-You will receive a `200` with no response body confirming that the user was added to the custom team. 
+You will receive a `201` with no response body confirming that the user was added to the custom team. 
 
 
 ## Mapping IdP groups to teams
 
 If [single sign on](/konnect/org-management/okta-idp/) is enabled, an organization can optionally enable groups to team mappings. This mapping allows {{site.konnect_short_name}} to automatically map a user to a team according to the group claims provided by the IdP upon login.
 
-1. To update a team mapping, first view all of the available groups:  
+Update the team mappings by issuing a `PUT` request containing `team_ids` in the request body: 
 
-        curl --request GET \
-        --url https://us.api.konghq.com/v2/identity-provider/team-mappings
-
-    The response body will return a paginated object containing information about available groups:
-
-        
-            
-        "meta": {
-            "page": {
-                "number": 1,
-                "size": 10,
-                "total": 1
-            }
-        },
-        "data": [
-            {
-                "group": "Service Developers",
-                "team_ids": [
-                    "af91db4c-6e51-403e-a2bf-33d27ae50c0a"
-                ]
-            }
+    curl --request PUT \
+    --url https://us.api.konghq.com/v2/identity-provider/team-mappings \
+    --header 'Content-Type: application/json' \
+    --data '{
+    "mappings": [
+        {
+        "group": "team-idm",
+        "team_ids": [
+            "af91db4c-6e51-403e-a2bf-33d27ae50c0a",
+            "bc46c7ca-f300-41fe-a9b6-5dbc1257208e"
         ]
-        
-2. Update the team mappings by issuing a `POST` request containing the `team_ids` in the request body: 
+    }]}
 
-        curl --request PUT \
-        --url https://us.api.konghq.com/v2/identity-provider/team-mappings \
-        --header 'Content-Type: application/json' \
-        --data '{
-        "mappings": [
-            {
-            "group": "Service Developers",
-            "team_ids": [
-                "af91db4c-6e51-403e-a2bf-33d27ae50c0a"
-            ]
-            }]}
+If you were successful, you will receive a `200` response code, and the response body will contain a `data` object reflecting the new mappings: 
+
+    "data": [
+    {
+        "group": "Service Developers",
+        "team_ids": [
+            "af91db4c-6e51-403e-a2bf-33d27ae50c0a",
+            "bc46c7ca-f300-41fe-a9b6-5dbc1257208e"
+        ]
+    }]}
+    
+
 
 ## More information
 

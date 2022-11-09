@@ -95,7 +95,7 @@ This is expected, as Kong does not yet know how to proxy the request.
 Set up an echo service to demonstrate how to use the {{site.kic_product_name}}:
 
 ```bash
-kubectl apply -f {{site.links.web}}/kubernetes-ingress-controller/{{page.kong_version}}/examples/echo-service.yaml
+kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
 ```
 
 ## Add a GatewayClass and Gateway
@@ -332,7 +332,7 @@ To do so, you can deploy a second echo `Service` so that you have
 a second `BackendRef` to use for traffic splitting.
 
 ```bach
-kubectl apply -f {{site.links.web}}/kubernetes-ingress-controller/{{page.kong_version}}/examples/echo-services.yaml
+kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-services.yaml
 ```
 {:.note}
 > **Note**: This example contains the previous echo `Service` so you may deploy
@@ -415,3 +415,5 @@ Gateway APIs are supported. In particular:
 - Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
 - Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
 {% endif_version %}
+- HTTPRoutes cannot be bound to a specific port using a [ParentReference](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1beta1.ParentReference).
+  Kong serves all HTTP routes on all HTTP listeners.

@@ -3,6 +3,7 @@ Alertmanager
 Amberflo
 Arya
 Bagdi
+Bagdi
 Bintray
 Bitnami
 CAs
@@ -15,6 +16,8 @@ DAOs
 DPP
 DPPs
 Datadog
+ElastiCache
+Equinix
 Equinix
 Fargate
 Github
@@ -56,14 +59,17 @@ Resty
 Splunk
 Stap
 Styra
+Styra
 Syslog
 Terraform
 Terraform's
+UIs
 Unicode
 Valero
 Vue
 Wireshark
 Zipkin
+acl
 admin's
 allowlist
 anonymized
@@ -84,6 +90,7 @@ body_filter
 bool
 boolean
 booleans
+certificate_admin
 cleartext
 client_payload
 client_status
@@ -118,12 +125,11 @@ dockerfile
 downsample
 downsampled
 drilldown
-ElastiCache
 elbs
 enum
 env
-Equinix
 etcd
+failover
 favicon
 filepath
 filetype
@@ -139,6 +145,7 @@ grpc
 grpcs
 gui
 guis
+gzip
 hardcoded
 hardcoding
 hashicorp
@@ -225,6 +232,7 @@ opa
 openresty
 outbounds
 passthrough
+pdk
 pdks
 perf
 performant
@@ -264,6 +272,7 @@ rockspecs
 routable
 ruleset
 runtime
+runtime_groups
 runtimes
 sandboxed
 sandboxing
@@ -284,15 +293,13 @@ statsd
 stderr
 stdin
 stdout
-Styra
-subnet
-subtree
-Bagdi
 subcommand
 subcommands
 submodule
 submodule's
+subnet
 substring
+subtree
 subtree
 sudo
 svg
@@ -332,6 +339,8 @@ unpublish
 unpublishing
 unregister
 unregistering
+unshorten
+unshortened
 updated_at
 upsert
 upstream

@@ -200,7 +200,7 @@ You don't need to add a `:new()` method or call any of the `CustomHandler.super.
 methods.
 
 The plugin's logic doesn't need to be all defined inside the `handler.lua` file.
-It can be be split into several Lua files (also called *modules*).
+It can be split into several Lua files (also called *modules*).
 The `handler.lua` module can use `require` to include other modules in your plugin.
 
 For example, the following plugin splits the functionality into three files.

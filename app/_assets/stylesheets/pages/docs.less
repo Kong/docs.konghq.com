@@ -17,7 +17,8 @@
     }
 
     &:not(.active) {
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         border-bottom: 2px solid @black-40;
         margin-bottom: -2px;
         transition: all 0.1s;
@@ -114,7 +115,8 @@
       font-size: 13px;
     }
 
-    ol, ul {
+    ol,
+    ul {
       // avoid nested lists and lists elements to have smaller and smaller
       // font sizes
       font-size: inherit;
@@ -132,7 +134,8 @@
         }
       }
 
-      ol, ul {
+      ol,
+      ul {
         // avoid nested lists to have too much margin
         margin-left: 1.3rem;
         margin-top: 0.7rem;
@@ -354,7 +357,11 @@
     font: 500 15.5px/26px Roboto;
 
     &:hover {
-      background-image: linear-gradient(to bottom,rgba(255,255,255,.15),rgba(189,230,207,.15))
+      background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.15),
+        rgba(189, 230, 207, 0.15)
+      );
     }
 
     span {
@@ -392,7 +399,7 @@
     height: 0;
     padding: 0;
     overflow: hidden;
-    color: rgba(0, 0, 0, 0.20);
+    color: rgba(0, 0, 0, 0.2);
     font-size: 20px;
     text-align: right;
 
@@ -452,7 +459,6 @@
   }
 
   .accordion-container {
-
     #accordion-opened {
       display: none;
     }
@@ -554,7 +560,7 @@
     right: 0;
     top: 0;
     padding: 16px;
-    color: rgba(0, 0, 0, 0.20);
+    color: rgba(0, 0, 0, 0.2);
     font-size: 20px;
   }
 
@@ -564,7 +570,7 @@
     right: 0;
     top: 24px;
     padding: 8px;
-    color: rgba(0, 0, 0, .35);
+    color: rgba(0, 0, 0, 0.35);
     font-size: 22px;
     cursor: pointer;
   }
@@ -584,12 +590,12 @@
     font: normal 14px/16px Roboto;
 
     a {
-    color: @black-90;
-    opacity: 1;
-    transition: opacity 0.2s;
+      color: @black-90;
+      opacity: 1;
+      transition: opacity 0.2s;
 
-    &:hover {
-      opacity: 0.6;
+      &:hover {
+        opacity: 0.6;
       }
     }
   }
@@ -605,32 +611,34 @@
       padding-bottom: 6px;
       vertical-align: text-top;
 
-        a, .oss-ee-toggle-inner {
-          font: normal 14px/22px Roboto;
+      a,
+      .oss-ee-toggle-inner {
+        font: normal 14px/22px Roboto;
 
-            img, i {
-              float: left;
-              padding-right: 12px;
-              display: inline-block;
-              width: 16px;
-              opacity: 0.4;
-              position: relative;
-              top: 6px;
-              }
+        img,
+        i {
+          float: left;
+          padding-right: 12px;
+          display: inline-block;
+          width: 16px;
+          opacity: 0.4;
+          position: relative;
+          top: 6px;
+        }
 
-            i {
-              opacity: 1;
-              font-size: 14px;
-              left: 1.5px;
-            }
+        i {
+          opacity: 1;
+          font-size: 14px;
+          left: 1.5px;
+        }
 
-            &:hover {
-            color: @blue-500;
-            text-decoration: underline;
-            }
-          }
+        &:hover {
+          color: @blue-500;
+          text-decoration: underline;
         }
       }
+    }
+  }
 
   ul {
     margin: 0 0 0 4px;
@@ -669,7 +677,8 @@
     }
 
     &:not(.about-extn-table, #about-extn) {
-      ul > li, li {
+      ul > li,
+      li {
         &:before {
           content: "";
           width: 8px;
@@ -699,28 +708,28 @@
   }
 
   @media screen and (min-width: 1101px) {
-      &.collapsed {
-        width: 50px;
-        overflow-y: hidden;
+    &.collapsed {
+      width: 50px;
+      overflow-y: hidden;
 
-        .github-links {
-          visibility: hidden;
-        }
-
-        .docs-toc-title,
-        > ul {
-          transform: translateX(200%);
-          opacity: 0;
-        }
-
-        .collapse-toc {
-          visibility: hidden;
-        }
-
-        .expand-toc {
-          visibility: visible;
-        }
+      .github-links {
+        visibility: hidden;
       }
+
+      .docs-toc-title,
+      > ul {
+        transform: translateX(200%);
+        opacity: 0;
+      }
+
+      .collapse-toc {
+        visibility: hidden;
+      }
+
+      .expand-toc {
+        visibility: visible;
+      }
+    }
   }
 
   @media screen and (max-width: 1100px) {
@@ -761,35 +770,39 @@
 }
 
 // External link icons in both left and right sidebars
-.docs-sidebar, .landing-page {
-  a:not([href^='https://konghq.com']):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after {
-      font-family: 'FontAwesome';
-      content: " \f35d";
-      margin-left: 0.4rem;
-      font-size: 12px;
+.docs-sidebar,
+.landing-page {
+  a:not([href^='https://konghq.com']):not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):after
+  {
+    font-family: "FontAwesome";
+    content: " \f35d";
+    margin-left: 0.4rem;
+    font-size: 12px;
   }
 }
 
 // External icons in content body, excluding badges
 .content {
-  a:not(.badge, .install-link, .install-listing-link, .feature-cta):not([href^='https://docs.konghq.com']):not([href^='https://insomnia.rest/run']):not([href^='#']):not([href^='/']):not([data-filter]):after {
-      font-family: 'FontAwesome';
-      content: " \f35d";
-      margin-left: 0.2rem;
-      margin-right: 0.2rem;
-      vertical-align: middle;
-      font-size: 12px;
-      font-weight: lighter;
+  a:not(.badge, .install-link, .install-listing-link, .feature-cta):not([href^='https://docs.konghq.com']):not([href^='https://insomnia.rest/run']):not([href^='#']):not([href^='/']):not([data-filter]):after
+  {
+    font-family: "FontAwesome";
+    content: " \f35d";
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: lighter;
   }
 }
 
 // External link icons in top site navbar
 .navbar-item-submenu {
-  a:not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):not([class='navbar-button']):after {
-      font-family: 'FontAwesome';
-      content: " \f35d";
-      margin-left: 0.2rem;
-      font-size: 11px;
+  a:not([href^='https://docs.konghq.com']):not([href^='#']):not([href^='/']):not([data-filter]):not([class='navbar-button']):after
+  {
+    font-family: "FontAwesome";
+    content: " \f35d";
+    margin-left: 0.2rem;
+    font-size: 11px;
   }
 }
 
@@ -801,7 +814,6 @@
 
 .book-nav {
   width: 48%;
-
 
   .direction {
     display: block;

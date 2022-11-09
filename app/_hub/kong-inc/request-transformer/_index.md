@@ -115,13 +115,6 @@ params:
         List of `paramname:value` pairs. Rename the parameter name if and only if
         content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]
         and the parameter is present.
-    - name: replace.body
-      required: false
-      datatype: array of string elements
-      description: |
-        List of `paramname:value` pairs. If and only if content-type is one the following
-        [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter
-        is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: add.headers
       required: false
       value_in_examples:
