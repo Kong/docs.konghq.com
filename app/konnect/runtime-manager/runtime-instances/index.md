@@ -21,4 +21,4 @@ Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubl
 > **Note:** Kong does not host runtimes. You must install and host your own
 runtime instances.
 
-{% include install.html config=site.data.tables.install_options_konnect %}
+{% include install.html config=site.data.tables.install_options_konnect header='no-header' %}

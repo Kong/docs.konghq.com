@@ -15,6 +15,8 @@ items:
             url: /support-policy
           - text: Supported Installation Options
             url: /install-support
+          - text: Supported Linux Distributions
+            url: /os-support
       - text: Stability
         url: /stability
       - text: Release Notes
@@ -103,8 +105,6 @@ items:
                 url: /install/docker/build-custom-images/
           - text: Linux
             items:
-              - text: Supported Distributions
-                url: /install/linux/os-support
               - text: Amazon Linux
                 url: /install/linux/amazon-linux
               - text: Debian
