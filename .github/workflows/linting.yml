@@ -4,12 +4,32 @@ on:
     types: [synchronize, ready_for_review, opened]
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if manual review has been performed
+        uses: actions/github-script@v6
+        id: labels
+        with:
+          result-encoding: string
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              ...context.repo,
+              issue_number: context.issue.number
+            });
+            return labels.map(l => l.name).includes('ci:manual-approve:linting')
+    outputs:
+      result: ${{ steps.labels.outputs.result }}
   prettier:
+    needs: check
+    if: needs.check.outputs.result == 'false'
     name: Prettier
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 100
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -17,7 +37,7 @@ jobs:
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v32
+        uses: tj-actions/changed-files@v34
         with:
           sha: ${{ github.sha }}
           files: |
@@ -25,6 +45,8 @@ jobs:
             app/_assets/**
       - run: npx prettier --check ${{ steps.changed-files.outputs.all_changed_files }}
   rubocop:
+    needs: check
+    if: needs.check.outputs.result == 'false'
     name: Rubocop
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -52,6 +74,8 @@ jobs:
         run: |
           bundle exec rubocop app
   vale:
+    needs: check
+    if: needs.check.outputs.result == 'false'
     name: Vale
     runs-on: ubuntu-latest
     steps:

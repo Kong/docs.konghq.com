@@ -11,6 +11,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2022
 
+### 2022.11.08
+
+**Editing the default runtime group**
+: You can now edit the name of the default runtime group.
+The group still retains its status as the default group, and can't be deleted.
+
 ### 2022.11.01
 
 **Konnect APIs for identity management**
@@ -22,7 +28,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ### 2022.10.27
 
 **Dynamic client registration <span class="badge beta"></span>**
-: Dynamic client registration with Okta is now in public beta. 
+: Dynamic client registration with Okta is now in public beta.
 [Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
 
 ### 2022.10.21
