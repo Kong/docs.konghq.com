@@ -28,6 +28,11 @@ deck reset [command-specific flags] [global flags]
 `-h`, `--help`
 :  help for reset (Default: `false`)
 
+{% if_version gte:1.16.x %}
+`--no-mask-deck-env-vars-value`
+:  do not mask `DECK_` environment variable values at diff output. (Default: `false`)
+{% endif_version %}
+
 `--rbac-resources-only`
 :  reset only the RBAC resources (Kong Enterprise only). (Default: `false`)
 

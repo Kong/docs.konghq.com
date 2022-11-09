@@ -23,6 +23,11 @@ See `db_update_propagation` in `kong.conf`. (Default: `0`)
 `-h`, `--help`
 :  help for sync (Default: `false`)
 
+{% if_version gte:1.16.x %}
+`--no-mask-deck-env-vars-value`
+:  do not mask `DECK_` environment variable values at diff output. (Default: `false`)
+{% endif_version %}
+
 `--parallelism`
 :  Maximum number of concurrent operations. (Default: `10`)
 
