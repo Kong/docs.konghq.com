@@ -1,5 +1,5 @@
 ---
-title: How to <phrase with a verb ending in -ing>
+title: <phrase with a verb>
 content_type: how-to
 
 # Optional values. Uncomment any that apply to your document.

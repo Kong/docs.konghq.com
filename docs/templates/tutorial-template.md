@@ -1,5 +1,5 @@
 ---
-title: Start with a verb ending in -ing
+title: Phrase starting with a verb
 content_type: tutorial
 
 # Optional values. Uncomment any that apply to your document.
