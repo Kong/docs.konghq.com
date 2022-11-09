@@ -11,6 +11,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2022
 
+### 2022.11.14
+
+**Multiple runtime groups**
+: All the runtime groups in Konnect including default and non default runtime groups will be eligible for application registration.
+
 ### 2022.11.08
 
 **Editing the default runtime group**
