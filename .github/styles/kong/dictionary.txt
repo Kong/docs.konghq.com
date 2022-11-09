@@ -63,6 +63,7 @@ Styra
 Syslog
 Terraform
 Terraform's
+UIs
 Unicode
 Valero
 Vue
@@ -152,6 +153,7 @@ headmatter
 healthchecks
 hostname
 hostnames
+href
 http
 httpbin
 https
@@ -321,7 +323,6 @@ transpiled
 truthy
 ttl
 txt
-UIs
 udpingress
 unary
 uncheck
