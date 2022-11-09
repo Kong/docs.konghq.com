@@ -13,7 +13,7 @@ features:
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/docker.png
+        icon: /assets/images/icons/documentation/alpinelinux-icon.svg
       - name: "Debian"
         url: /gateway/VERSION/install/linux/debian/
         oss: true
