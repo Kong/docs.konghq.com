@@ -15,6 +15,10 @@
       url: /availability-stages
     - text: Release Notes
       url: /updates
+    - text: Support
+      items:
+        - text: Supported Installation Options
+          url: /install-support
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg

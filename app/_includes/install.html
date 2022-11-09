@@ -1,0 +1,12 @@
+<div class="docs-grid-install">
+{% for f in include.config.features %}
+    {% for i in f.items %}
+      {% if i.url %}
+      <a href="{{ i.url | replace: 'VERSION', page.kong_version}}" class="docs-grid-install-block no-description">
+        <img class="install-icon" src="{{ i.icon }}" alt="" />
+        <div class="install-text">{{ i.name }}</div>
+      </a>
+      {% endif %}
+  {% endfor %}
+{% endfor %}
+</div>

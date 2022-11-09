@@ -3,7 +3,7 @@ columns:
     key: oss
   - name: Kong Enterprise
     key: enterprise
-  - name: Production Ready
+  - name: Officially Supported
     key: support
 features:
   - name: "Packages"
@@ -13,26 +13,31 @@ features:
         oss: true
         enterprise: true
         support: true
+        icon: /assets/images/icons/documentation/docker.png
       - name: "Debian"
         url: /gateway/VERSION/install/linux/debian/
         oss: true
         enterprise: true
         support: true
+        icon: /assets/images/icons/documentation/debian-logo.jpg
       - name: "Ubuntu"
         url: /gateway/VERSION/install/linux/ubuntu/
         oss: true
         enterprise: true
         support: true
+        icon: /assets/images/icons/documentation/ubuntu.png
       - name: "RedHat"
         url: /gateway/VERSION/install/linux/rhel/
         oss: true
         enterprise: true
         support: true
+        icon: /assets/images/icons/documentation/rhel.jpg
       - name: "Amazon Linux 2"
         url: /gateway/VERSION/install/linux/amazon-linux/
         oss: true
         enterprise: true
         support: true
+        icon: /assets/images/icons/documentation/amazon-linux.png
   - name: "Kubernetes"
     items:
       - name: "Kubernetes (YAML Manifests)"
@@ -40,16 +45,19 @@ features:
         oss: true
         enterprise: true
         support: false
+        icon: /assets/images/icons/documentation/kubernetes-logo.png
       - name: "Kubernetes (Helm)"
         url: /gateway/VERSION/install/kubernetes/helm-quickstart/
         oss: true
         enterprise: true
         support: true
+        icon: /assets/images/icons/documentation/helm-icon-color.svg
       - name: "OpenShift"
         url: /gateway/VERSION/install/kubernetes/openshift/
         oss: true
         enterprise: true
-        support: false
+        support: true
+        icon: /assets/images/icons/documentation/openshift-logo.png
 
   - name: "Docker"
     items:
@@ -57,6 +65,8 @@ features:
         oss: true
         enterprise: true
         support: true
+        url: /gateway/VERSION/install/docker/
+        icon: /assets/images/icons/documentation/docker.png
       - name: "RHEL (8-ubi)"
         oss: true
         enterprise: true
@@ -73,3 +83,4 @@ features:
         oss: true
         enterprise_text: N/A
         support: false
+        icon: /assets/images/icons/documentation/macos-logo.png
