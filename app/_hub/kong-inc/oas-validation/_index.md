@@ -69,7 +69,7 @@ params:
       datatype: boolean
       default: false
       description: |
-        If set to true, validates the response from the upstream services against the API specification. If validation fails, this will result in a 406 HTTP "Not Acceptable" Status code.
+        If set to true, validates the response from the upstream services against the API specification. If validation fails, this will result in a HTTP 406 "Not Acceptable" status code.
     - name: notify_only_response_body_validation_failure
       required: false
       datatype: boolean
