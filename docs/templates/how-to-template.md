@@ -29,7 +29,7 @@ For example, if you were writing about how to install a certain type software on
 
 ## Task section <!-- Header optional if there's only one task section in the article -->
 
-Task sections break down the task into steps that the user completes in sequential order. The title for a how-to task section is task-based and generally starts with a verb. Examples include "Install Kubernetes", "Configure the security settings", and "Create a microservice".
+Task sections break down the task into steps that the user completes in sequential order. The title for a how-to task section directs the user to perform an action and generally starts with a verb. Examples include "Install Kubernetes", "Configure the security settings", and "Create a microservice".
 
 Continuing the previous example of installing software, here's an example:
 
@@ -56,6 +56,8 @@ Continuing the previous example of installing software, here's an example:
         ```
 
 ## Second task section <!-- Optional -->
+
+Adding additional sections can be helpful if you have to switch from working in one product to another or if you switch from one task, like installing to configuring.
 
 1. First step.
 1. Second step.
