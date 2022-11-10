@@ -136,7 +136,9 @@ params: # Metadata about your plugin
   protocols:
     # List of protocols this plugin is compatible with, in array format.
     # Valid values: "http", "https", "tcp", "tls"
-    # Example: ["http", "https"]
+    # Example:
+    # - name: http
+    # - name: https
   dbless_compatible:
     # Degree of compatibility with DB-less mode. Three values allowed:
     # 'yes', 'no' or 'partially'.
