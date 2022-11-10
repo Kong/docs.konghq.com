@@ -215,6 +215,10 @@ The input to OPA has the following JSON structure:
           "accept-encoding": "gzip, deflate",
           "connection": "keep-alive",
           "accept": "*\\/*"
+        },
+        "uri_captures": {      # The regex capture groups captured on the Kong Gateway Route's path field in the current request. Injected only if `include_uri_captures_in_opa_input` is set to `true`.
+          "named": {},
+          "unnamed": []
         }
       }
     },
