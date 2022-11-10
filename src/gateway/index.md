@@ -56,7 +56,7 @@ entire organization.
 
 <blockquote class="note no-icon" id="nurture-signup">
   <p>Looking for additional help? Free training and curated content, just for you:</p>
-  <form action="http://go.konghq.com/l/392112/2022-09-19/cfr97r" method="post">
+  <form action="https://go.konghq.com/l/392112/2022-09-19/cfr97r" method="post">
     <input class="button" name="email" placeholder="you@yourcompany.com" />
     <button class="button" type="submit">Sign up now</button>
   </form>
