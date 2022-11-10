@@ -26,9 +26,19 @@ The {{site.kic_product_name}} supports the following resources and features in t
 
 - Supported `v1alpha2` version of Gateways and GatewayClasses.
 
+### v2.5.x
+
+- Added support for `TLSConfig` section to load certificates for HTTPRoutes and
+  TLSRoutes attached to the Gateway.
+
 ### v2.6.x
 
 - Supported `v1beta1` version of Gateways and GatewayClasses, and removed support of `v1alpha2` version of Gateways and GatewayClasses.
+
+### Unsupported
+
+- Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
+- Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
 
 ## HTTP Routes
 
@@ -50,6 +60,8 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ### Unsupported
 - Does not support `queryParam` in route matches.
 - Does not support `requestRedirect` in filters.
+- HTTPRoutes cannot be bound to a specific port using a [ParentReference](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1beta1.ParentReference).
+  Kong serves all HTTP routes on all HTTP listeners.
 
 ## TCP Routes
 

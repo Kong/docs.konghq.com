@@ -125,10 +125,10 @@ items:
         url: /guides/using-rewrites
       - text: Preserving Client IP Address
         url: /guides/preserve-client-ip
-      - text: Using Gateway API
-        url: /guides/using-gateway-api
       - text: Using Kong with Knative
         url: /guides/using-kong-with-knative
+      - text: Using ultiple Backend Services
+        url: /guides/using-multiple-backends
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:
@@ -150,5 +150,5 @@ items:
         url: /references/prometheus
       - text: Feature Gates
         url: /references/feature-gates
-      - text: Gateway API Support
+      - text: Supported Gateway API Features
         url: /references/gateway-api-support

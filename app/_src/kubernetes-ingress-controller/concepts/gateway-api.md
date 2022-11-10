@@ -126,7 +126,7 @@ message: no Kong listen with the requested protocol is configured for the
 reason: PortUnavailable
 ```
 
-## Listener compatibility and handling multiple Gateways
+### Listener compatibility and handling multiple Gateways
 
 During the alpha, without automatic Gateway Deployment provisioning, Kong's
 implementation can only handle a single GatewayClass, and only one Gateway in
@@ -154,3 +154,41 @@ If there is a conflict between listeners on a Gateway, the controller will mark
 the conflict in the Gateway status and not add routes that require the
 conflicting listener. The controller cannot, however, perform these same
 validity checks across separate Gateway resources.
+
+### Binding {{site.base_gateway}} to a Gateway resource
+
+{% if_version lte: 2.5.x %}
+Because {{site.kic_product_name}} and {{site.base_gateway}} instances are
+installed independent of their Gateway resource, we set the
+`konghq.com/gateway-unmanaged` annotation to the `<namespace>/<name>` of the
+Kong proxy Service. This instructs KIC to populate that {{site.base_gateway}}
+resource with listener and status information.
+{% endif_version %}
+
+{% if_version gte: 2.6.x %}
+To configure KIC to reconcile the `Gateway` resource, you must set the 
+`konghq.com/gatewayclass-unmanaged` annotation as the example in `GatewayClass` resource used in 
+`spec.gatewayClassName` in `Gateway` resource. Also, the 
+`spec.controllerName` of `GatewayClass` needs to be same as the value of the
+`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
+{% endif_version %}
+
+You can check to confirm if KIC has updated the bound `Gateway` by 
+inspecting the list of associated addresses:
+
+```bash
+kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
+```
+
+```
+[
+  {
+    "type": "IPAddress",
+    "value": "10.96.179.122"
+  },
+  {
+    "type": "IPAddress",
+    "value": "172.18.0.240"
+  }
+]
+```
