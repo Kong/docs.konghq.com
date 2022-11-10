@@ -15,22 +15,26 @@ async function loadNavEntries(pattern) {
 }
 
 // Take a file in src and output the URLs that it renders
-async function srcToUrls(src, pattern) {
+async function srcToUrls(pattern, src) {
   let urls = [];
 
   const navEntries = await loadNavEntries(pattern);
 
   for (const entry of navEntries) {
     const r = extractNavWithMeta(entry.items, ``, `src/${entry.product}`);
+
+    // If we provided a specific source, only match that file
+    if (src) {
+      r = r.filter((u) => u.src == src);
+    }
+
     urls = urls.concat(
-      r
-        .filter((u) => u.src == src)
-        .map((u) => {
-          return {
-            source: src,
-            url: `/${entry.product}/${entry.release}${u.url}`,
-          };
-        })
+      r.map((u) => {
+        return {
+          source: src,
+          url: `/${entry.product}/${entry.release}${u.url}`,
+        };
+      })
     );
   }
 

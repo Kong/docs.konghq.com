@@ -14,18 +14,36 @@ const octokit = new Octokit({
   const type = argv._[0];
   const baseUrl = argv.base_url || "http://localhost:8888";
 
-  const is_fork =
-    argv.is_fork !== undefined
-      ? argv.is_fork
-      : github.context.payload.pull_request.head.repo.fork;
+  if (
+    baseUrl.includes("https://docs.konghq.com") ||
+    baseUrl.includes("http://docs.konghq.com")
+  ) {
+    console.log("This tool can not be run against production");
+    process.exit(1);
+  }
 
-  const options = {};
+  // Are there any additional patterns to ignore failures on?
+  let ignore = argv.ignore || [];
+  if (typeof ignore === "string") {
+    ignore = [ignore];
+  }
+  const ignoreFailures = ignore.map(i => new RegExp(i))
+
+  const options = {
+    ignore: ignoreFailures
+  };
   let changes; // This will be set by one of the implementations
 
   if (type == "pr") {
-    // Extract PR info from argv
     options.pull_number = argv.pr || github.context.issue.number;
+    options.is_fork =
+      argv.is_fork !== undefined
+        ? argv.is_fork
+        : github.context.payload.pull_request.head.repo.fork;
     changes = await buildPrUrls(options);
+  } else if (type == "product") {
+    options.nav = argv.nav;
+    changes = await buildProductUrls(options);
   } else {
     console.log(`Unsupported check type: ${type}`);
   }
@@ -33,7 +51,7 @@ const octokit = new Octokit({
   // Run the check
   if (changes.length) {
     // Remove any ignored paths
-    const ignoredPaths = require("./ignored_paths.json").map(
+    const ignoredPaths = require("./config/ignored_paths.json").map(
       (r) => new RegExp(r)
     );
     const ignoredUrls = [];
@@ -53,7 +71,7 @@ const octokit = new Octokit({
       );
     }
 
-    // Run the check
+    // List the URLs to be checked
     console.log(
       `Checking the following URLs on ${baseUrl}:\n\n${changes
         .map((u) => u.url)
@@ -70,7 +88,8 @@ const octokit = new Octokit({
 
     // Check all the URLs provided
     const r = await checkUrls(changes, {
-      skip_edit_link: is_fork,
+      skip_edit_link: options.is_fork,
+      ignore: options.ignore
     });
 
     // Output report
@@ -86,6 +105,7 @@ const octokit = new Octokit({
   }
 })();
 
+// Implementations for each mode
 async function buildPrUrls(options) {
   // Get pages that have changed in the PR
   const filenames = (
@@ -127,7 +147,7 @@ async function buildPrUrls(options) {
 
     // Any changes in src
     else if (f.startsWith("src/")) {
-      urlsToAdd = await fileToUrls(f, "*");
+      urlsToAdd = await fileToUrls("*", f);
     }
 
     // Add the URLs
@@ -135,4 +155,12 @@ async function buildPrUrls(options) {
   }
 
   return Array.from(new Set(urls));
+}
+
+async function buildProductUrls(options) {
+  if (!options.nav) {
+    console.log("Provide a nav file e.g. 'gateway_3.0.x' using --nav");
+    process.exit(1);
+  }
+  return fileToUrls(options.nav);
 }

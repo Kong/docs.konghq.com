@@ -32,7 +32,7 @@ npm ci
 To scan a specific product, run the following (editing the `nav` and `ignore` options as needed):
 
 ```bash
-node product.js --nav gateway_2.8.x --ignore github.com
+node run.js product --nav gateway_2.8.x --ignore github.com
 ```
 
 The `--ignore` option can be provided multiple times, and should be used to ignore false positives e.g. when running on a non-main branch you'll want to provide `--ignore docs.konghq.com/edit` to prevent the "Edit this page" URL from returning an error.

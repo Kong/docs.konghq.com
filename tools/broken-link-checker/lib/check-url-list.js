@@ -3,7 +3,7 @@ module.exports = function (changes, opts) {
   return new Promise((resolve) => {
     // These are URLs that we might link to, but we don't want to
     // check for validity
-    const ignoredTargets = require("../ignored_targets.json");
+    const ignoredTargets = require("../config/ignored_targets.json");
     const brokenLinks = new Set();
     const checker = new HtmlUrlChecker(
       {
@@ -18,6 +18,13 @@ module.exports = function (changes, opts) {
             // Handle HTTP 308 which is a valid response
             if (result.brokenReason === "HTTP_308") {
               return;
+            }
+
+            // Ignore any broken links in the opts.ignore list
+            for (b of opts.ignore) {
+              if (result.url.resolved.match(b)) {
+                return;
+              }
             }
 
             // Don't report on the "Edit this page" links for forks as
