@@ -56,6 +56,8 @@ items:
             url: /guides/vaults
           - text: Using Environment Variables with decK
             url: /guides/environment-variables
+      - text: Run decK with Docker
+        url: /guides/run-with-docker
 
   - title: decK CLI Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg

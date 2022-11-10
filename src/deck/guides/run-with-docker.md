@@ -1,5 +1,5 @@
 ---
-title: Managing decK with Docker
+title: Run decK with Docker
 content_type: how-to
 ---
 
@@ -16,7 +16,7 @@ docker run -i \
 -v $(pwd):/deck \
 kong/deck --kong-addr http://example:KONG_ADMIN_PORT --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml dump
 ```
-In this example, `kong.yaml` is generated in `$(pwd)/kong.yaml`.
+Where `$(pwd)/kong.yaml` is the path to a `kong.yaml` file.
 
 ## Export objects from all workspaces
 Run this command to export objects from all the workspaces:
