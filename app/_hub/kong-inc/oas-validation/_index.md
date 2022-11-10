@@ -2,9 +2,9 @@
 name: OAS Validation
 publisher: Kong Inc.
 version: 0.1.x
-desc: Validate HTTP requests and responses based on an OpenApi 3.0 or Swagger API Specification
+desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification
 description: |
-  Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and Open API v3 specifications JSON request & response bodies, with support for schema definitions described using JSONSchema draft v4. For "JSON schema draft 4" type schema's please see the [JSON schema website](https://json-schema.org/) for details on the format and examples.
+  Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and OpenAPI v3 specifications JSON request & response bodies, with support for schema definitions described using JSONSchema draft v4. For "JSON schema draft 4" type schema's please see the [JSON schema website](https://json-schema.org/) for details on the format and examples.
 
   {:.note}
   > To use this plugin in Konnect Cloud,
