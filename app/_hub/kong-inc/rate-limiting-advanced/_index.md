@@ -405,9 +405,7 @@ params:
       value_in_examples: null
       datatype: boolean
       description: |
-        If set to `true`, then won't count the denied requests (status = `429`),
-        while by default all requests including denied ones will be counted.
-        This parameter only has an effect on `sliding` window_type.
+        If set to `true`, this doesn't count denied requests (status = `429`). If set to `false`, all requests, including denied ones, are counted. This parameter only affects the `sliding` window_type.
 
   extra: |
     **Notes:**
