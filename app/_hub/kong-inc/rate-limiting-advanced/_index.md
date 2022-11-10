@@ -398,6 +398,17 @@ params:
         group override, but does not clear the list of consumer groups.
         You can then flip `enforce_consumer_groups` to `true` to re-enforce the
         groups.
+    - name: disable_penalty
+      minimum_version: "3.1.x"
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        If set to `true`, then won't count the denied requests (status = `429`),
+        while by default all requests including denied ones will be counted.
+        This parameter only has an effect on `sliding` window_type.
+
   extra: |
     **Notes:**
 
