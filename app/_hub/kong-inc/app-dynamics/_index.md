@@ -1,10 +1,20 @@
 ---
 name: AppDynamics
 publisher: Kong Inc.
-version: 3.1.0
 desc: Integrate Kong with the AppDynamics APM Platform
 description: |
-  Report requests proxied by Kong to the AppDynamics APM Platform.
+  This plugin integrates Kong with the AppDynamics APM platform so that
+  proxy requests handled by Kong can be identified and analyzed in
+  AppDynamics.  The plugin reports request and response timestamps as
+  well as error information to the AppDynamics platform so that they can
+  be analyzed in the AppDynamics flow map and correlated with other
+  systems participating in handling application API requests.
+
+  The plugin utilizes the
+  [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435),
+  which must be downloaded and installed on the machine or in the
+  container that is running Kong Gateway.  Please refer to the
+  AppDynamics SDK web page for platform support information.
 enterprise: true
 type: plugin
 categories:
@@ -27,22 +37,7 @@ params:
 
 ---
 
-# Kong Plugin for AppDynamics
-
-This plugin integrates Kong with the AppDynamics APM platform so that
-proxy requests handled by Kong can be identified and analyzed in
-AppDynamics.  The plugin reports request and response timestamps as
-well as error information to the AppDynamics platform so that they can
-be analyzed in the AppDynamics flow map and correlated with other
-systems participating in handling application API requests.
-
-The plugin utilizes the
-[AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435),
-which must be downloaded and installed on the machine or in the
-container that is running Kong Gateway.  Please refer to the
-AppDynamics SDK web page for platform support information.
-
-# Installation
+## Installation
 
 To use the AppDynamics plugin in Kong Gateway, the AppDynamics C/C++
 SDK must be installed on all nodes running Kong Gateway.  The SDK is
@@ -61,9 +56,11 @@ If the AppDynamics plugin is enabled in the configuration, Kong
 Gateway will refuse to start if the **libappdynamics.so** file cannot
 be loaded.  The error message will be similar to this:
 
-```kong/plugins/app-dynamics/appdynamics.lua:74: libappdynamics.so: cannot open shared object file: No such file or directory```
+```
+kong/plugins/app-dynamics/appdynamics.lua:74: libappdynamics.so: cannot open shared object file: No such file or directory
+```
 
-# Configuration
+## Configuration
 
 The AppDynamics plugin is configured through environment variables
 that need to be set when Kong Gateway is started.  The environment
@@ -76,7 +73,7 @@ information to the AppDynamics controller.  Please refer to the
 [AppDynamics C/C++ SDK documentation](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/c-c++-sdk/use-the-c-c++-sdk)
 to get further information on the configuration parameters.
 
-## Environment variables
+### Environment variables
 
 | Name | Description | Type | Default |
 |--|--|--|--|
@@ -96,7 +93,7 @@ to get further information on the configuration parameters.
 | KONG_APPD_CONTROLLER_HTTP_PROXY_USERNAME | Username to use to identify to proxy | SECRET_STRING | "" |
 | KONG_APPD_CONTROLLER_HTTP_PROXY_PASSWORD | Password to use to identify to proxy | SECRET_STRING | "" |
 
-### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
+#### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
 
 The `KONG_APPD_LOGGING_LEVEL` environment variable can be set to
 define the minimum log level.  It needs to be specified as a numeric
@@ -111,7 +108,7 @@ value with the following meanings:
 | 4 | ERROR | Errors, could indicate data loss |
 | 5 | FATAL | Fatal errors that prevent the agent from operating |
 
-# Agent logging
+## Agent logging
 
 The AppDynamics agent logs information into separate log files that it
 manages on its own and that are independent of the logs of Kong
@@ -123,7 +120,7 @@ When problems occur with the AppDynamics integration, make sure that
 you inspect the AppDynamics agent's log files in addition to the Kong
 Gateway logs.
 
-# AppDynamics node name considerations
+## AppDynamics node name considerations
 
 The AppDynamics plugin defaults the `KONG_APPD_NODE_NAME` to the local
 host name, which typically reflects the container ID in containerized
