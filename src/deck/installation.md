@@ -52,4 +52,4 @@ If you're integrating decK into your CI system, you can either install decK
 into the system itself, use the Docker based environment, or pull the binaries
 from [Github](https://github.com/Kong/deck/releases) for each job.
 
-For more information about how to manage decK using the Docker image, see [Run decK with Docker](/guides/run-with-docker.md).
+For more information about how to manage decK using the Docker image, see [Run decK with Docker](/deck/{{page.kong_version}}/guides/run-with-docker).
