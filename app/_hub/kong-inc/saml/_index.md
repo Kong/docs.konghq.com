@@ -7,24 +7,24 @@ description: |
 
   The SAML specification defines three roles:
 
-  * The principal, generally a user
-  * The identity provider (IdP)
-  * The service provider (SP)
+  * A principal
+  * An identity provider (IdP)
+  * A service provider (SP)
 
-  The Kong SAML plugin acts as the SP and is responsible for initiating a login to the IdP. In SAML terminology, this is called a SP Initiated Login.
+  The Kong SAML plugin acts as the SP and is responsible for initiating a login to the IdP. This is called an SP Initiated Login.
 
   The minimum configuration required is:
 
-  - Certificate [idp_certificate]
-    The SP needs to obtain the public certificate from the IdP to validate the signature. The certificate is stored on the SP side and used whenever a SAML response arrives.
-  - ACS Endpoint [assertion_consumer_path]
+  - An IdP certificate `idp_certificate`.
+    The SP needs to obtain the public certificate from the IdP to validate the signature. The certificate is stored on the SP and is to verify that a response is coming from the IdP.
+  - ACS Endpoint `assertion_consumer_path`
     This is the endpoint provided by the SP where SAML responses are posted. The SP needs to provide this information to the IdP.
-  - IdP Sign-in URL [idp_sso_url]
-    This is the endpoint on the IdP side where SAML requests are posted. The SP needs to obtain this information from the IdP.
-  - Issuer [issuer]
+  - IdP Sign-in URL `idp_sso_url`
+    This is the IdP endpoint where SAML will issue `POST` requests. The SP needs to obtain this information from the IdP.
+  - Issuer `issuer`
     Unique identifier of the IdP application.
 
-  The plugin supports Microsoft Azure Active Directory. Please refer to [Microsoft AzureAD SAML documentation] (https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml) for further information on SAML authentication with Azure AD.
+  The plugin supports Microsoft Azure Active Directory. Please refer to the [Microsoft AzureAD SAML documentation](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml) for more information about SAML authentication with Azure AD.
 
 enterprise: true
 plus: true
@@ -57,14 +57,14 @@ params:
       default: null
       value_in_examples: <acs-uri>
       description: |
-        The is the relative path that the SAML IdP provider will use when responding with an authenication response.
+        The relative path the SAML IdP provider uses when responding with an authentication response.
     - name: idp_sso_url
       required: true
       datatype: url
       default: null
       value_in_examples: <sso-uri>
       description: |
-        The Sign Sign On URL exposed by the IdP provider. This is where SAML requests are posted. The IdP will provide this information.
+        The Single Sign-On URL exposed by the IdP provider. This is where SAML requests are posted. The IdP provides this information.
     - name: idp_certificate
       required: true
       datatype: string
@@ -78,13 +78,13 @@ params:
       default: null
       referenceable: true
       description: |
-        The private encrytion key required to decrypt encrypted assertions.
+        The private encryption key required to decrypt encrypted assertions.
     - name: request_is_signed
       required: false
       datatype: boolean
       default: false
       description: |
-        Indicates if the plugin should sign requests. If set to true, then `request_signing_key` and `request_signing_certificate` values will be required.
+        Indicates if the plugin should sign requests. If set to true, then `request_signing_key` and `request_signing_certificate` values are required.
     - name: request_signing_key
       required: false
       datatype: string
@@ -102,35 +102,35 @@ params:
     - name: request_signature_method
       required: false
       datatype: string
-      default: '"SHA256"'
+      default: SHA256
       description: |
-        The signature method for signing Authn requests. Options are:
+        The signature method for signing Authn requests. Options available are:
         - `SHA256`
         - `SHA384`
         - `SHA512`
     - name: request_digest_algorithm
       required: false
       datatype: string
-      default: '"SHA256"'
+      default: SHA256
       description: |
-        The digest algorithm to use for Authn requests:
+        The digest algorithm for Authn requests:
         - `SHA256`
         - `SHA1`
     - name: response_signature_method
       required: false
       datatype: string
-      default: '"SHA256"'
+      default: SHA256
       description: |
-        The algorithm to use for validating signatures in SAML responses. Options are:
+        The algorithm for validating signatures in SAML responses. Options available are:
         - `SHA256`
         - `SHA384`
         - `SHA512`
     - name: response_digest_algorithm
       required: false
       datatype: string
-      default: '"SHA256"'
+      default: SHA256
       description: |
-        The algorithm to use for verify digest in SAML responses:
+        The algorithm for verifying digest in SAML responses:
         - `SHA256`
         - `SHA1`
     - name: issuer
@@ -138,13 +138,13 @@ params:
       datatype: string
       default: null
       description: |
-        Unique identifier of the IdP application. Formatted as a URL containing information about the IdP so the SP can validate that the SAML assertions it receives are issued from the correct IdP.
+        The unique identifier of the IdP application. Formatted as a URL containing information about the IdP so the SP can validate that the SAML assertions it receives are issued from the correct IdP.
     - name: nameid_format
       required: false
       datatype: string
-      default: '"EmailAddress"'
+      default: EmailAddress
       description: |
-        The requested NameId format. Options are:
+        The requested `NameId` format. Options available are:
         - `Unspecified`
         - `EmailAddress`
         - `Persistent`
@@ -155,12 +155,12 @@ params:
       default: false
       value_in_examples: true
       description: |
-        Disable signature validation in SAML responses.
-    - group: Session Cookie
-      description: Parameters used with the session cookie authentication.
+        Disable signature validation for SAML responses.
+    - group: Session cookie
+      description: Parameters used with session cookie authentication.
     - name: session_cookie_name
       required: false
-      default: '"session"'
+      default: session
       datatype: string
       description: The session cookie name.
     - name: session_cookie_lifetime
@@ -177,76 +177,76 @@ params:
       required: false
       default: 600
       datatype: integer
-      description: The session cookie renew time.
+      description: The session cookie renew time in seconds.
     - name: session_cookie_path
       required: false
-      default: '"/"'
+      default: /
       datatype: string
-      description: The session cookie Path flag.
+      description: The session cookie path flag.
     - name: session_cookie_domain
       required: false
       default: null
       datatype: string
-      description: The session cookie Domain flag.
+      description: The session cookie domain flag.
     - name: session_cookie_samesite
       required: false
-      default: '"Lax"'
+      default: Lax
       datatype: string
       description: |
         Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
         - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
-        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
-        - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
+        - `Lax`: Cookies are not sent on normal cross-site subrequests, like loading images or frames into a third party site, but are sent when a user is navigating to the origin site, like when they are following a link.
+        - `None`: Cookies will be sent in all contexts, including responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie secure attribute must also be set or the cookie will be blocked.
         - `off`: Do not set the Same-Site flag.
     - name: session_cookie_httponly
       required: false
       default: true
       datatype: boolean
-      description: 'Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.'
+      description: Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
     - name: session_cookie_secure
       required: false
       default: (from the request scheme)
       datatype: boolean
       description: |
-        Cookie is only sent to the server when a request is made with the https: scheme (except on localhost),
+        The cookie is only sent to the server when a request is made with the https:scheme (except on localhost),
         and therefore is more resistant to man-in-the-middle attacks.
     - name: session_cookie_maxsize
       required: false
       default: 4000
       datatype: integer
-      description: The maximum size of each cookie chunk in bytes.
+      description: The maximum size of each cookie in bytes.
     - group: Session Settings
     - name: session_secret
       required: false
-      default: '(auto-generated is no value supplied)'
+      default: auto-generated
       datatype: string
       encrypted: true
       referenceable: true
       description: |
-        The session secret.
+        The session secret.  This value is auto-generated if no value is set.
     - name: session_strategy
       required: false
-      default: '"default"'
+      default: default
       datatype: string
       description: |
         The session strategy:
         - `default`:  reuses session identifiers over modifications (but can be problematic with single-page applications with a lot of concurrent asynchronous requests)
-        - `regenerate`: generates a new session identifier on each modification and does not use expiry for signature verification (useful in single-page applications or SPAs)
+        - `regenerate`: generates a new session identifier on each modification and does not use expiry for signature verification. This is useful in single-page applications or SPAs.
     - name: session_compressor
       required: false
-      default: '"none"'
+      default: none
       datatype: string
       description: |
         The session strategy:
-        - `none`: no compression
-        - `zlib`: use zlib to compress cookie data
+        - `none`: no compression.
+        - `zlib`: use Zlib to compress cookie data.
     - name: session_storage
       required: false
-      default: '"cookie"'
+      default: cookie
       datatype: string
       description: |
         The session storage for session data:
-        - `cookie`: stores session data with the session cookie (the session cannot be invalidated or revoked without changing session secret, but is stateless, and doesn't require a database)
+        - `cookie`: stores session data with the session cookie. The session cannot be invalidated or revoked without changing the session secret, but is stateless, and doesn't require a database.
         - `memcache`: stores session data in memcached
         - `redis`: stores session data in Redis
     - name: reverify
@@ -257,7 +257,7 @@ params:
     - group: Session Settings for Memcached
     - name: session_memcache_prefix
       required: false
-      default: '"sessions"'
+      default: sessions
       datatype: string
       description: The memcached session key prefix.
     - name: session_memcache_socket
@@ -267,7 +267,7 @@ params:
       description: The memcached unix socket path.
     - name: session_memcache_host
       required: false
-      default: '"127.0.0.1"'
+      default: 127.0.0.1
       datatype: string
       description: The memcached host.
     - name: session_memcache_port
@@ -278,7 +278,7 @@ params:
     - group: Session Settings for Redis
     - name: session_redis_prefix
       required: false
-      default: '"sessions"'
+      default: sessions
       datatype: string
       description: The Redis session key prefix.
     - name: session_redis_socket
@@ -288,9 +288,9 @@ params:
       description: The Redis unix socket path.
     - name: session_redis_host
       required: false
-      default: '"127.0.0.1"'
+      default: 127.0.0.1
       datatype: string
-      description: The Redis host
+      description: The Redis host IP.
     - name: session_redis_port
       required: false
       default: 6379
@@ -302,7 +302,7 @@ params:
       datatype: string
       referenceable: true
       description: |
-        Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
+        Redis username if the `redis` session storage is defined and ACL authentication is desired.
         If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
     - name: session_redis_password
       required: false
@@ -312,7 +312,7 @@ params:
       referenceable: true
       description: |
         Password to use for Redis connection when the `redis` session storage is defined.
-        If undefined, no AUTH commands are sent to Redis.
+        If undefined, no auth commands are sent to Redis. This value is pulled from
     - name: session_redis_connect_timeout
       required: false
       default: (from kong)
@@ -332,17 +332,17 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Use SSL/TLS for Redis connection.
+      description: Use SSL/TLS for the Redis connection.
     - name: session_redis_ssl_verify
       required: false
       default: false
       datatype: boolean
-      description: Verify Redis server certificate.
+      description: Verify the Redis server certificate.
     - name: session_redis_server_name
       required: false
       default: null
       datatype: string
-      description: The SNI used for connecting the Redis server.
+      description: The SNI used for connecting to the Redis server.
     - name: session_redis_cluster_nodes
       required: false
       default: null
@@ -354,7 +354,7 @@ params:
       required: false
       default: null
       datatype: integer
-      description: The Redis cluster maximum redirects.
+      description: The Redis cluster's maximum redirects.
 ---
 
 ## Kong Configuration
@@ -362,11 +362,10 @@ params:
 ### Create an Anonymous Consumer:
 
 ```bash
-http -f put :8001/consumers/anonymous
+curl --request PUT \
+  --url http://localhost:8001/consumers/anonymous
 ```
-```http
-HTTP/1.1 200 OK
-```
+
 ```json
 {
     "created_at": 1667352450,
@@ -382,11 +381,11 @@ HTTP/1.1 200 OK
 ### Create a Service
 
 ```bash
-http -f put :8001/services/saml-service url=https://httpbin.org/anything
+curl --request PUT \
+  --url http://localhost:8001/services/saml-service \
+  --data url=https://httpbin.org/anything
 ```
-```http
-HTTP/1.1 200 OK
-```
+
 ```json
 {
     "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd",
@@ -401,11 +400,11 @@ HTTP/1.1 200 OK
 ### Create a Route
 
 ```bash
-http -f put :8001/services/saml-service/routes/saml-route paths=/saml
+curl --request PUT \
+  --url http://localhost:8001/services/saml-service/routes/saml-route \
+  --data paths=/saml
 ```
-```http
-HTTP/1.1 200 OK
-```
+
 ```json
 {
     "id": "ac1e86bd-4bce-4544-9b30-746667aaa74a",
@@ -416,36 +415,36 @@ HTTP/1.1 200 OK
 
 ### Setup Microsoft AzureAD
 
-1. Create a SAML Enterprise Application. Refer to [Microsoft AzureAD documentation](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) for further information.
-2. Note the `Identifier (Entity ID)` and `Sign on URL` parameters
-3. Configre the `Reply URL (Assertion Consumer Service URL)`, for example, "https://kong-proxy:8443/saml/consume"
-4. Assign users to the SAML Enterprise Application
+1. Create a SAML Enterprise Application. Refer to the [Microsoft AzureAD documentation](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) for more information.
+2. Note the identifier (entity ID) and sign on URL parameters
+3. Configure the reply URL (Assertion Consumer Service URL), for example, `https://kong-proxy:8443/saml/consume`
+4. Assign users to the SAML enterprise application
 
 ### Create a Plugin on a Service
 
-Validation of the SAML response Assertion is disabled in the plugin configuration below. This configuration should not be used in a production environment.
+Validation of the SAML response assertion is disabled in the plugin configuration below. This configuration should not be used in a production environment.
 
-Replace the `Azure_Identity_ID` value below, with the value of `Identity (Entity ID)` from the Single sign-on - Basic SAML Configuration from the Manage sectio of the Microsoft AzureAD Enterprise Application:
+Replace the `Azure_Identity_ID` value below, with the `identifier` value from the single sign-on - basic SAML configuration from the Manage section of the Microsoft AzureAD enterprise application:
 
 <img src="/assets/images/docs/saml/azuread_basic_config.png">
 
-Replace the `AzureAD_Sign_on_URL` value below, with the value of `Login URL` from the Signke sign-on - Set up Service Provider section from the Manage section of the Microsoft AzureAD Enterprise Application:
+Replace the `AzureAD_Sign_on_URL` value below, with the `Login URL` value from the single sign-on - Set up Service Provider section from the Manage section of the Microsoft AzureAD enterprise application:
 
 <img src="/assets/images/docs/saml/azuread_sso_url.png">
 
 ```bash
-http -f post :8001/services/saml-service/plugins                                                  \
-  name=saml                                                                                       \
-  config.anonymous=anonymous                                                                      \
-  service.name=saml-service                                                                       \
-  config.issuer=AzureAD_Identity_ID                                                               \
-  config.idp_sso_url=AzureAD_Sign_on_URL                                                          \
-  config.assertion_consumer_path=/consume                                                         \
-  config.disable_signature_validation=true
+curl --request POST \
+  --url http://localhost:8001/services/saml-service/plugins \
+  --header 'Content-Type: multipart/form-data' \
+  --form name=saml \
+  --form config.anonymous=anonymous \
+  --form service.name=saml-service \
+  --form config.issuer=AzureAD_Identity_ID \
+  --form config.idp_sso_url=AzureAD_Sign_on_URL \
+  --form config.assertion_consumer_path=/consume \
+  --form config.disable_signature_validation=true
 ```
-```http
-HTTP/1.1 200 OK
-```
+
 ```json
 {
     "id": "a8655ba0-de99-48fc-b52f-d7ed030a755c",
@@ -466,5 +465,5 @@ HTTP/1.1 200 OK
 
 1. Using a browser, go to the URL (https://kong:8443/saml)
 2. The browser is redirected to the AzureAD Sign in page. Enter the user credentials of a user configured in AzureAD
-3. If user credentials are valid, the brower will be redirected to https://httpbin.org/anything
-4. If the user credentials are invalid, a 401 Unauthorized HTTP Status code is returned
+3. If user credentials are valid, the browser will be redirected to https://httpbin.org/anything
+4. If the user credentials are invalid, a `401` unauthorized HTTP status code is returned
