@@ -658,7 +658,7 @@ jQuery(function () {
   // Signup confirmation for nurture campaigns
   if (getParams.signup == "nurture") {
     $("#nurture-signup").html(
-      "Thanks for signing up! Check your emails to see the first step of your learning journey"
+      "Thanks for signing up! Check your emails to see the first step of your learning journey."
     );
   }
 
@@ -667,7 +667,7 @@ jQuery(function () {
       .removeClass("note")
       .addClass("warning")
       .prepend(
-        '<span style="color:red;font-weight:800;">There was an error adding your free training. Please try again</span>'
+        '<span class="cta-error">There was an error adding your free training. Please try again.</span>'
       );
   }
 
