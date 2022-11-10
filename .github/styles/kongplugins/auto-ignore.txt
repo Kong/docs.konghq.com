@@ -16,6 +16,7 @@ dao
 daos
 datastore
 datastores
+disable_penalty
 endpoint_key
 escape_path
 foogineer
