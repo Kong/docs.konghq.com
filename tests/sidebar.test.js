@@ -115,7 +115,7 @@ describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/latest/",
-      link_text: "Supported Distributions",
+      link_text: "Supported Linux Distributions",
       expected_url: "/gateway/latest/os-support",
     },
     {
@@ -127,7 +127,7 @@ describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Supported Distributions",
+      link_text: "Supported Linux Distributions",
       expected_url: "/gateway/latest/os-support",
     },
     {
