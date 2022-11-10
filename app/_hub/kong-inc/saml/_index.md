@@ -1,7 +1,6 @@
 ---
 name: SAML
 publisher: Kong Inc.
-version: 3.1.0
 desc: Provides SAML v2.0 authentication and authorization between a Service Provider (Kong) and an Identity Provider
 description: |
   Security Assertion Markup Language (SAML) is an open standard for exchanging authentication and authorization data between an identity provider and a service provider.
@@ -34,8 +33,7 @@ categories:
   - security
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 3.x
+    compatible: true
 params:
   name: saml
   service_id: true
@@ -416,7 +414,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Setup Microsoft AzureAD 
+### Setup Microsoft AzureAD
 
 1. Create a SAML Enterprise Application. Refer to [Microsoft AzureAD documentation](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) for further information.
 2. Note the `Identifier (Entity ID)` and `Sign on URL` parameters
@@ -470,5 +468,3 @@ HTTP/1.1 200 OK
 2. The browser is redirected to the AzureAD Sign in page. Enter the user credentials of a user configured in AzureAD
 3. If user credentials are valid, the brower will be redirected to https://httpbin.org/anything
 4. If the user credentials are invalid, a 401 Unauthorized HTTP Status code is returned
-
-
