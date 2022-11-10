@@ -20,14 +20,14 @@ params:
   consumer_id: true
   konnect_examples: false
   protocols:
-    - http
-    - https
-    - tcp
-    - tls
-    - tls_passthrough
-    - udp
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+    - name: udp
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: host

@@ -19,8 +19,8 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   config:
     - name: origins

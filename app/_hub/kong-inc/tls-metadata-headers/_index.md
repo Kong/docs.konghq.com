@@ -27,9 +27,9 @@ params:
   consumer_id: false
   route_id: true
   protocols:
-    - https
-    - grpcs
-    - tls
+    - name: https
+    - name: grpcs
+    - name: tls
   dbless_compatible: 'yes'
   konnect_examples: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
 

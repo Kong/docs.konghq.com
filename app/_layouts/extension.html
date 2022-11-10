@@ -363,7 +363,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
           <td>
               {% for protocol in page.params.protocols %}
                 <div class="protocol">
-                  <code>{{ protocol }}</code>
+                  <code>{{ protocol.name }}</code>
                 </div>
               {% endfor %}
           </td>

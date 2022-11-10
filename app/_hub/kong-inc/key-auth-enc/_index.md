@@ -28,10 +28,10 @@ params:
   consumer_id: false
   konnect_examples: false
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and credentials can be created with declarative configuration.
