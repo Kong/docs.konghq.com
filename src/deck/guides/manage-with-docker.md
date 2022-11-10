@@ -9,7 +9,7 @@ If you used the `kong/deck` Docker image to install decK, you can use the Docker
 decK must be installed using a [Docker image](/deck/latest/installation/#docker-image).
 
 ## Export the configuration
-Run a command similar to the following to export the `kong.yaml` file:
+Run this command to export the `kong.yaml` file:
 
 ```bash
 docker run -i \
@@ -19,7 +19,7 @@ kong/deck --kong-addr http://example:KONG_ADMIN_PORT --headers kong-admin-token:
 In this example, `kong.yaml` is generated in `$(pwd)/kong.yaml`.
 
 ## Export objects from all workspaces
-Run a command similar to the following to export the objects from all the workspaces:
+Run this command to export objects from all the workspaces:
 
 ```bash
 docker run -i \
@@ -29,7 +29,7 @@ kong/deck --kong-addr http://example:KONG_ADMIN_PORT:8001 --headers kong-admin-t
 ```
 
 ## Reset the configuration
-Run a command similar to the following to initial Kong objects:
+Run this command to initialize Kong objects:
 
 ```bash
 docker run -i \
@@ -38,7 +38,7 @@ kong/deck --kong-addr http://example:KONG_ADMIN_PORT:8001 --headers kong-admin-t
 ```
 
 ## Import the configuration
-Run a command similar to the following to import `kong.yaml`:
+Run this command to import `kong.yaml`:
 
 ```bash
 docker run -i \
@@ -48,7 +48,7 @@ kong/deck --kong-addr http://example:KONG_ADMIN_PORT:8001 --headers kong-admin-t
 In this example, `kong.yaml` is in `$(pwd)/kong.yaml`.
 
 ## View help manual pages
-Run a command similar to the following to view available commands:
+Run this command to view all available commands:
 
 ```bash
 docker run kong/deck --help
