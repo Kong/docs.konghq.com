@@ -9,7 +9,7 @@ content_type: reference
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
 
-Add an introduction paragraph here. Good introductions explain who this reference guide is for and what this guide will help the user accomplish.
+Add an optional 1-2 sentence introduction here. An introduction to a reference topic explains what the reference is documenting, but doesn't go into background detail.
 
 Reference material should not explain basic concepts. You can add links to explanation articles if needed.
 

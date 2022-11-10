@@ -32,7 +32,7 @@ Keep the conceptual information to a minimum; the user should be learning by doi
 
 ## Task section <!-- Header optional if there's only one task section in the article -->
 
-<!-- Title must be tasked-based and start with a verb -->
+<!-- Title must be task-based and start with a verb -->
 <!-- Steps should break down the tasks the user will complete in sequential order -->
 
 1. First step.
