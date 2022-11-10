@@ -1,7 +1,6 @@
 ---
 name: XML Threat Protection
 publisher: Kong Inc.
-version: 3.1.x
 desc: Apply structural and size checks on XML payloads
 description: |
   Reduce the risk of XML attacks by checking the structure of XML payloads. This
@@ -13,7 +12,7 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible: 3.1.x
+    compatible: true
 params:
   name: xml-threat-protection
   service_id: true
