@@ -26,6 +26,8 @@ description: |
 
   The plugin supports Microsoft Azure Active Directory. Please refer to the [Microsoft AzureAD SAML documentation](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml) for more information about SAML authentication with Azure AD.
 
+  **This plugin is only compatible with SAML 2.0**
+
 enterprise: true
 plus: true
 type: plugin
