@@ -86,11 +86,11 @@ for more information about the configuration parameters.
 | `KONG_APPD_APP_NAME` | Application name to report to AppDynamics. | String | `Kong` |
 | `KONG_APPD_NODE_NAME` | Node name to report to AppDynamics. This value defaults to the system's hostname.| String | `hostname` |
 | `KONG_APPD_INIT_TIMEOUT_MS` | Maximum time to wait for a controller connection when starting, in milliseconds. | Integer | `5000` |
-| `KONG_APPD_CONTROLLER_USE_SSL` | Use SSL encryption in controller communication. | Boolean | `on` |
+| `KONG_APPD_CONTROLLER_USE_SSL` | Use SSL encryption in controller communication. `true`, `on`, or `1` are all interpreted as `True`, any other value is considered `false`.| Boolean | `on` |
 | `KONG_APPD_CONTROLLER_HTTP_PROXY_HOST` | Hostname of proxy to use to communicate with controller. | String |  |
-| `KONG_APPD_CONTROLLER_HTTP_PROXY_PORT` | Port number of controller proxy. | Integer | `0` |
-| `KONG_APPD_CONTROLLER_HTTP_PROXY_USERNAME` | Username to use to identify to proxy. | `SECRET_STRING` |  |
-| `KONG_APPD_CONTROLLER_HTTP_PROXY_PASSWORD` | Password to use to identify to proxy. | `SECRET_STRING` |  |
+| `KONG_APPD_CONTROLLER_HTTP_PROXY_PORT` | Port number of controller proxy. | Integer |  |
+| `KONG_APPD_CONTROLLER_HTTP_PROXY_USERNAME` | Username to use to identify to proxy. This value is a string that is never shown in logs. This value can be specified as a vault reference.| String |  |
+| `KONG_APPD_CONTROLLER_HTTP_PROXY_PASSWORD` | Password to use to identify to proxy. This value is a string that is never shown in logs. This value can be specified as a vault reference.| String |  |
 
 #### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
 
