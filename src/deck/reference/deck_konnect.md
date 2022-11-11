@@ -1,7 +1,7 @@
 ---
 title: deck konnect
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content-type: reference
+content_type: reference
 ---
 
 The {{site.konnect_short_name}} command prints subcommands that can be used to

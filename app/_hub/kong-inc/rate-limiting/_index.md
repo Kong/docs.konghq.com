@@ -25,8 +25,8 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or

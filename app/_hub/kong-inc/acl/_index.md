@@ -25,8 +25,8 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and ACLs can be created with declarative configuration.

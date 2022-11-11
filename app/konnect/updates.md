@@ -21,7 +21,7 @@ The group still retains its status as the default group, and can't be deleted.
 
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
-[IdP API documentation](/konnect/identity-management-api)
+[IdP API documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
 
 ## October 2022
 

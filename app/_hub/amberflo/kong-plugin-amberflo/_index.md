@@ -41,8 +41,8 @@ params:
   service_id: true
   route_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   dbless_explanation: The plugin is compatible with any with DB-less mode, including `local`, `cluster`, and `redis`.
   config:

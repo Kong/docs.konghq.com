@@ -1,4 +1,4 @@
-name: Run Smoke Tests
+name: Run Tests
 on:
   push:
    branches:
@@ -54,8 +54,20 @@ jobs:
           npm ci
           ./node_modules/.bin/gulp build
 
-      - name: Run tests
+      - name: Run Smoke Tests
         run: |
           npm install -g wait-on netlify-cli
           netlify dev & wait-on http://localhost:8888
           npm test
+
+  rspec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+      - name: Run specs
+        run: bundle exec rspec

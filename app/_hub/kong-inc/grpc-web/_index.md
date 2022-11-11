@@ -18,8 +18,8 @@ params:
   name: grpc-web
   route_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   config:
     - name: proto
@@ -77,7 +77,7 @@ services:
   port: 9000
   routes:
   - protocols:
-    - http
+    - name: http
     paths:
     - /
     plugins:
@@ -151,7 +151,7 @@ services:
   port: 9000
   routes:
   - protocols:
-    - http
+    - name: http
     paths:
     - /
     plugins:

@@ -51,13 +51,6 @@ To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Port
 
 5. Click **Confirm** to begin the domain verification process.
 
-### Supported TLDs
-
-The Custom URL feature currently supports domain names with the following top-level domains (TLDs):
-`.io`, `.com`, `.tech`, `.net`, `.dev`, `.org`, `.edu`, `.gov`, `.fr`, `.se`, `.us`, `.au`, `.uk`, `.cloud`, `.site`.
-
-If you need to use a different domain [contact support](https://support.konghq.com).
-
 ### Domain name restrictions
 
 Because of SSL certificate authority restrictions, {{site.konnect_short_name}} can't generate SSL certificates

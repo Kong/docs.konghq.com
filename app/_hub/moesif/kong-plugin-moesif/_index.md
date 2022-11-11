@@ -86,14 +86,14 @@ params:
   consumer_id: true
   route_id: true
   protocols:
-    - http
-    - https
-    - tcp
-    - tls
-    - tls_passthrough
-    - udp
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+    - name: udp
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   dbless_explanation: The plugin is compatible with any with DB-less mode including `local`, `cluster`, and `redis`
   config:

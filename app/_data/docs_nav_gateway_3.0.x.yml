@@ -9,8 +9,14 @@ items:
       - text: Overview of Kong Gateway
         url: /gateway/3.0.x/
         absolute_url: true
-      - text: Version Support Policy
-        url: /support-policy
+      - text: Support
+        items:
+          - text: Version Support Policy
+            url: /support-policy
+          - text: Supported Installation Options
+            url: /install-support
+          - text: Supported Linux Distributions
+            url: /os-support
       - text: Stability
         url: /stability
       - text: Release Notes
@@ -99,8 +105,6 @@ items:
                 url: /install/docker/build-custom-images/
           - text: Linux
             items:
-              - text: Supported Distributions
-                url: /install/linux/os-support
               - text: Amazon Linux
                 url: /install/linux/amazon-linux
               - text: Debian
@@ -314,8 +318,9 @@ items:
             url: /kong-enterprise/dev-portal/workspaces
           - text: Helpers CLI
             url: /kong-enterprise/dev-portal/cli
-          - text: Portal API
-            url: /kong-enterprise/dev-portal/portal-api
+          - text: Portal API Documentation
+            url: https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
+            absolute_url: true
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption

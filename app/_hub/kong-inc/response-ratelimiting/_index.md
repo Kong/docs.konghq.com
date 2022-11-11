@@ -54,8 +54,8 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
@@ -88,11 +88,11 @@ params:
     - name: 'limits.{limit_name}.month'
       required: semi
       datatype: number
-      description: The amount of HTTP requests the developer can make per month. At least one limit must exist.
+      description: The number of HTTP requests the developer can make per month. A month is defined as a 30-day interval of time, not a calendar month. At least one limit must exist.
     - name: 'limits.{limit_name}.year'
       required: semi
       datatype: number
-      description: The amount of HTTP requests the developer can make per year. At least one limit must exist.
+      description: The number of HTTP requests the developer can make per year. A year is defined as a 365-day interval of time, not a calendar year. At least one limit must exist.
     - name: header_name
       required: false
       default: '`X-Kong-Limit`'
