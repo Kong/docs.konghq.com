@@ -88,11 +88,11 @@ params:
     - name: 'limits.{limit_name}.month'
       required: semi
       datatype: number
-      description: The amount of HTTP requests the developer can make per month. Here a month is defined as 30 days instead of a natural month. At least one limit must exist.
+      description: The number of HTTP requests the developer can make per month. A month is defined as a 30-day interval of time, not a literal month. At least one limit must exist.
     - name: 'limits.{limit_name}.year'
       required: semi
       datatype: number
-      description: The amount of HTTP requests the developer can make per year. Here a year is defined as 365 days instead of a natural year. At least one limit must exist.
+      description: The number of HTTP requests the developer can make per year. A year is defined a 365-day interval of time, instead of a literal year. At least one limit must exist.
     - name: header_name
       required: false
       default: '`X-Kong-Limit`'
