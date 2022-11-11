@@ -88,6 +88,13 @@ basic mistakes but it can't detect all potentially dangerous configurations.
 If using dynamic ordering, manually test all configurations, and handle this
 feature with care.
 
+{% if_version lte:3.0.x %}
+### Kong Manager
+
+Kong Manager doesn't support dynamic plugin ordering configuration through the
+UI. Use the Kong Admin API or a declarative configuration file to set
+plugin ordering.
+{% endif_version %}
 ## See also
 
 Check out the examples in the
