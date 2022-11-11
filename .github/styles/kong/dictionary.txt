@@ -277,7 +277,6 @@ ssl_cert_key
 ssl_certificate
 sso
 SAML
-sectio
 stapxx
 statsd
 stderr

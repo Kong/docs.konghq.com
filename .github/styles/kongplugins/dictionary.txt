@@ -1,5 +1,4 @@
 SAML
-sectio
 Alertmanager
 Amberflo
 Amberflo.io
