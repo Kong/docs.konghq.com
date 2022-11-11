@@ -64,6 +64,8 @@ params:
     - https
     - gprc
     - grpcs
+    - ws
+    - wss
   dbless_compatible: 'yes'
   config:
     - name: hide_credentials
