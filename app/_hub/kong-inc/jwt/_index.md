@@ -29,10 +29,10 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and JWT secrets can be created with declarative configuration.

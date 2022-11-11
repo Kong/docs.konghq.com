@@ -53,10 +53,10 @@ params:
   route_id: false
   konnect_examples: false
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'no'
   config:
     - name: auto_approve

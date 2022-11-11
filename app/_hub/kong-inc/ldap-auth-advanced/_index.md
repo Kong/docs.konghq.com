@@ -29,10 +29,10 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
-    - gprc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: ldap_host

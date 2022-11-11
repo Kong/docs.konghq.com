@@ -24,8 +24,8 @@ params:
   consumer_id: false
   route_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: yes
   config:
     - name: connect_timeout

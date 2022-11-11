@@ -35,8 +35,8 @@ params:
   consumer_id: false
   konnect_examples: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: partially
   dbless_explanation: |
     The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.
