@@ -14,6 +14,9 @@ module.exports = function (changes, opts) {
       },
       {
         link: (result, data) => {
+          if (opts.verbose) {
+            console.log(`${result.base.resolved} :: ${result.url.resolved}`);
+          }
           if (result.broken) {
             // Handle HTTP 308 which is a valid response
             if (result.brokenReason === "HTTP_308") {
