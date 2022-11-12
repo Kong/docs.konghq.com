@@ -222,11 +222,11 @@ is accessing any of the defined APIs.
 
 Finally, this annotation can also be applied on a combination of the
 following resources:
-- **Ingress and KongConsumer**  
+- **Ingress and KongConsumer**
   If an Ingress resource and a KongConsumer resource share a plugin in the
   `konghq.com/plugins` annotation then the plugin will be created for the
   combination of those to resources in Kong.
-- **Service and KongConsumer**  
+- **Service and KongConsumer**
   Same as the above case, if you would like to give a specific consumer or
   client of your service some special treatment, you can do so by applying
   the same annotation to both of the resources.

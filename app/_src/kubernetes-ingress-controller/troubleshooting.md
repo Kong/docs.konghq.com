@@ -30,19 +30,19 @@ The Ingress controller needs information from API server to configure Kong.
 Therefore, authentication is required, which can be achieved in two different ways:
 
 1. **Service Account**: This is recommended
-   because nothing has to be configured.  
+   because nothing has to be configured.
    The Ingress controller will use information provided by the system
-   to communicate with the API server.  
+   to communicate with the API server.
    See 'Service Account' section for details.
 1. **Kubeconfig file**: In some Kubernetes environments
-   service accounts are not available.  
+   service accounts are not available.
    In this case, a manual configuration is required.
    The Ingress controller binary can be started with the `--kubeconfig` flag.
    The value of the flag is a path to a file specifying how
    to connect to the API server. Using the `--kubeconfig`
-   does not require the flag `--apiserver-host`.  
+   does not require the flag `--apiserver-host`.
    The format of the file is identical to `~/.kube/config`
-   which is used by `kubectl` to connect to the API server.  
+   which is used by `kubectl` to connect to the API server.
    See 'kubeconfig' section for details.
 
 ## Discovering API-server
@@ -167,15 +167,15 @@ If it is not working, there are two possible reasons:
 
     It will automatically be recreated.
 1. You have a non-standard Kubernetes installation
-   and the file containing the token may not be present.  
+   and the file containing the token may not be present.
 
 The API server will mount a volume containing this file,
 but only if the API server is configured to use
-the ServiceAccount admission controller.  
+the ServiceAccount admission controller.
 If you experience this error,
-verify that your API server is using the ServiceAccount admission controller.  
+verify that your API server is using the ServiceAccount admission controller.
 If you are configuring the API server by hand,
-you can set this with the `--admission-control` parameter.  
+you can set this with the `--admission-control` parameter.
 Please note that you should use other admission controllers as well.
 Before configuring this option, please read about admission controllers.
 

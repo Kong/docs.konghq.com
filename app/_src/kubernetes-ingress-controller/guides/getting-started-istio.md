@@ -51,7 +51,7 @@ Your Kubernetes cluster must provision
   `LoadBalancer` type [Services][svc]. Cloud providers generally
   automate `LoadBalancer` type Service provisioning with their default
   settings, but if you run your cluster elsewhere you might need to check
-  the relevant documentation for details. See also the Kubernetes documentation  
+  the relevant documentation for details. See also the Kubernetes documentation
   for [external load balancers][svc-lb].
 
 Some of the `kubectl` calls in this guide assume your test

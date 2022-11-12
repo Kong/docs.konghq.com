@@ -89,7 +89,7 @@ The main concepts here are:
   may handle more than one GatewayClass.
 - [HTTPRoute][gateway-api-httproute] can be attached to a Gateway which will
   configure the HTTP routing behavior.
-  
+
 You can find more details about Gateway API concepts supported by {{site.kic_product_name}}
 [here](/kubernetes-ingress-controller/latest/references/gateway-api-support).
 
