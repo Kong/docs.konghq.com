@@ -81,7 +81,7 @@ params:
       referenceable: true
       description: |
         The private encryption key required to decrypt encrypted assertions.
-    - name: request_is_signed
+    - name: sign_requests
       required: false
       datatype: boolean
       default: false
@@ -101,12 +101,12 @@ params:
       referenceable: true
       description: |
         The certificate for signing requests.
-    - name: request_signature_method
+    - name: request_signature_algorithm
       required: false
       datatype: string
       default: SHA256
       description: |
-        The signature method for signing Authn requests. Options available are:
+        The signature algorithm for signing Authn requests. Options available are:
         - `SHA256`
         - `SHA384`
         - `SHA512`
@@ -118,7 +118,7 @@ params:
         The digest algorithm for Authn requests:
         - `SHA256`
         - `SHA1`
-    - name: response_signature_method
+    - name: response_signature_algorithm
       required: false
       datatype: string
       default: SHA256
