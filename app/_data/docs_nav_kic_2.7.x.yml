@@ -109,10 +109,10 @@ items:
         url: /guides/using-ingress-with-grpc
       - text: Setting up Upstream mTLS
         url: /guides/upstream-mtls
-      - text: Exposing a TCP-based Service
+      - text: Exposing a TCP Service
         url: /guides/using-tcpingress
         generate: false # Generated in the CustomResources section above
-      - text: Exposing a UDP-based Service
+      - text: Exposing a UDP Service
         url: /guides/using-udpingress
         generate: false # Generated in the CustomResources section above
       - text: Using the mTLS Auth Plugin

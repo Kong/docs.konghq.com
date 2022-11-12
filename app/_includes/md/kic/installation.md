@@ -20,6 +20,27 @@ deployment.apps/DEPLOYMENT_NAME restarted
 {% endnavtab %}
 {% endnavtabs %}
 
+Layer 4 routes (TCPRoute, UDPRoute, TLSRoute) are currently only available in
+the Gateway APIs experimental channel. To use them, install the experimental
+channel CRDs and enable the corresponding feature gate in
+{{site.kic_product_name}}:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl set env -n kong deployment/ingress-kong CONTROLLER_FEATURE_GATES="GatewayAlpha=true" -c ingress-controller
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+deployment.apps/ingress-kong env updated
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+If you also use other feature gates, include them as well. The command above
+replaces the entire `CONTROLLER_FEATURE_GATES` value.
+
 ## Testing connectivity to Kong
 
 This guide assumes that `PROXY_IP` environment variable is

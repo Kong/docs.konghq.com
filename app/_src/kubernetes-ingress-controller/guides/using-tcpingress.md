@@ -1,70 +1,45 @@
 ---
-title: TCPIngress with Kong
+title: Exposing a TCP Service
+content_type: tutorial
 ---
-
-This guide walks through using the TCPIngress Custom Resource to expose TCP-based
-services running in Kubernetes to the outside world.
 
 ## Overview
 
-TCP-based Ingress means that Kong simply forwards the TCP stream to a Pod
-of a Service that's running inside Kubernetes. Kong will not perform any
+This guide walks through creating TCP routing configuration for
+{{site.base_gateway}} in Kubernetes using either the TCPIngress custom
+resource or TCPRoute and TLSRoute Gateway APIs resource.
+
+TCP-based Ingress means that {{site.base_gateway}} simply forwards the TCP stream to a Pod
+of a Service that's running inside Kubernetes. {{site.base_gateway}} will not perform any
 sort of transformations.
 
 There are two modes available:
-- **Port based routing**: In this mode, Kong simply proxies all traffic it
+- **Port based routing**: In this mode, {{site.base_gateway}} simply proxies all traffic it
   receives on a specific port to the Kubernetes Service. TCP connections are
   load balanced across all the available pods of the Service.
-- **SNI based routing**: In this mode, Kong accepts a TLS-encrypted stream
+- **SNI based routing**: In this mode, {{site.base_gateway}} accepts a TLS-encrypted stream
   at the specified port and can route traffic to different services based on
-  the `SNI` present in the TLS handshake. Kong will also terminate the TLS
+  the `SNI` present in the TLS handshake. {{site.base_gateway}} will also terminate the TLS
   handshake and forward the TCP stream to the Kubernetes Service.
 
-## Installation
+{% include /md/kic/installation.md %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
+{% include /md/kic/class.md %}
 
-> **Note**: This feature works with Kong versions 2.0.4 and above.
+## Add TLS configuration
 
-> **Note**: This feature is available in Controller versions 0.8 and above.
+{% include /md/kic/add-certificate.md hostname=tls9443.kong.example %}
 
-## Testing Connectivity to Kong
+## Adding TCP listens
 
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+{{site.base_gateway}} does not include any TCP listen configuration by default.
+To expose TCP listens, update the Deployment's environment variables and port
+configuration:
 
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-{:.note}
-> **Note**: If you are running the example using Minikube on MacOS, you may need 
-to run [`minikube tunnel`](https://minikube.sigs.k8s.io/docs/handbook/accessing/#loadbalancer-access)
-in a separate terminal window.  This exposes LoadBalancer services 
-externally, which is not enabled by default.
-
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Configure Kong for new ports
-
-First, we will configure Kong's Deployment and Service to expose two new ports
-9000 and 9443. Port 9443 expects a TLS connection from the client.
-
-```shell
-$ kubectl patch deploy -n kong ingress-kong --patch '{
+kubectl patch deploy -n kong ingress-kong --patch '{
   "spec": {
     "template": {
       "spec": {
@@ -95,11 +70,27 @@ $ kubectl patch deploy -n kong ingress-kong --patch '{
     }
   }
 }'
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 deployment.extensions/ingress-kong patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-```shell
-$ kubectl patch service -n kong kong-proxy --patch '{
+The `ssl` parameter after the 9443 listen instructs {{site.base_gateway}} to
+expect TLS-encrypted TCP traffic on that port. The 9000 listen has no
+parameters, and expects plain TCP traffic.
+
+## Update the proxy Service
+
+The proxy Service also needs to indicate the new ports:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl patch service -n kong kong-proxy --patch '{
   "spec": {
     "ports": [
       {
@@ -117,29 +108,89 @@ $ kubectl patch service -n kong kong-proxy --patch '{
     ]
   }
 }'
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 service/kong-proxy patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
+
+## Update the Gateway
+
+If you are using Gateway APIs (TCPRoute) option, your Gateway needs additional
+configuration under `listeners`. If you are using TCPIngress, skip this step.
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl patch --type=json gateway kong -p='[
+    {
+        "op":"add",
+        "path":"/spec/listeners/-",
+        "value":{
+            "name":"stream9000",
+            "port":9000,
+            "protocol":"TCP"
+        }
+    },
+    {
+        "op":"add",
+        "path":"/spec/listeners/-",
+        "value":{
+            "name":"stream9443",
+            "port":9443,
+            "protocol":"TLS",
+            "hostname":"tls9443.kong.example",
+			"tls": {
+                "certificateRefs":[{
+                    "group":"",
+                    "kind":"Secret",
+                    "name":"tls9443.kong.example"
+                }]
+			}
+        }
+    }
+]'
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+gateway.gateway.networking.k8s.io/kong patched
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Install TCP echo service
 
-Next, we will install an example TCP service.
+Next, install an example TCP service:
 
-```shell
-$ kubectl apply -f https://bit.ly/tcp-echo
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/tcp-echo-service.yaml
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 deployment.apps/tcp-echo created
 service/tcp-echo created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-Now, we have a TCP echo service running in Kubernetes.
-We will now expose this on plain-text and a TLS based port.
+## Route TCP traffic by port
 
-## TCP port based routing
-
-To expose our service to the outside world, create the following
+To expose  service to the outside world, create the following
 TCPIngress resource:
 
-```shell
-$ echo "apiVersion: configuration.konghq.com/v1beta1
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "apiVersion: configuration.konghq.com/v1beta1
 kind: TCPIngress
 metadata:
   name: echo-plaintext
@@ -152,21 +203,87 @@ spec:
       serviceName: tcp-echo
       servicePort: 2701
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 tcpingress.configuration.konghq.com/echo-plaintext created
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: echo-plaintext
+spec:
+  parentRefs:
+  - name: kong
+  rules:
+  - backendRefs:
+    - name: tcp-echo
+      port: 9000
+" | kubectl apply -f -
+```
+{% endnavtab %}
 
-Here we are instructing Kong to forward all traffic it receives on port
-9000 to `tcp-echo` service on port 2701.
+{:.note}
+> v1alpha2 TCPRoutes do not support separate proxy and upstream ports. Traffic
+> is redirected to `2701` upstream via Service configuration.
 
-Once created, we can see the IP address at which this is available:
+{% navtab Response %}
+```text
+tcproute.gateway.networking.k8s.io/echo-plaintext created
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-```shell
-$ kubectl get tcpingress
+This configuration instructs {{site.base_gateway}} to forward all traffic it
+receives on port 9000 to `tcp-echo` service on port 2701.
+
+## Test the configuration
+
+Status will populate with an IP or Accepted condition once the route is ready:
+
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl get tcpingress
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 NAME             ADDRESS        AGE
 echo-plaintext   <PROXY_IP>   3m18s
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+{"lastTransitionTime":"2022-11-14T19:48:51Z","message":"","observedGeneration":2,"reason":"Accepted","status":"True","type":"Accepted"}
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-Lets connect to this service using `telnet`:
+Connect to this service using `telnet`:
 
 ```shell
 $ telnet $PROXY_IP 9000
@@ -175,7 +292,7 @@ Connected to 35.247.39.83.
 Escape character is '^]'.
 Welcome, you are connected to node gke-harry-k8s-dev-pool-1-e9ebab5e-c4gw.
 Running on Pod tcp-echo-844545646c-gvmkd.
-In namespace default.
+gtIn namespace default.
 With IP address 10.60.1.17.
 This text will be echoed back.
 This text will be echoed back.
@@ -184,71 +301,99 @@ telnet> Connection closed.
 ```
 
 We can see here that the `tcp-echo` service is now available outside the
-Kubernetes cluster via Kong.
+Kubernetes cluster via {{site.base_gateway}}.
 
-## TLS SNI based routing
+## Route TLS traffic by SNI
 
-Next, we will demonstrate how Kong can help expose the `tcp-echo` service
-in a secure manner to the outside world.
+Next, we will demonstrate how {{site.base_gateway}} can route TLS-encrypted
+traffic to the `tcp-echo` service.
 
 Create the following TCPIngress resource:
 
-```
-$ echo "apiVersion: configuration.konghq.com/v1beta1
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "apiVersion: configuration.konghq.com/v1beta1
 kind: TCPIngress
 metadata:
   name: echo-tls
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
+  tls:
+  - hosts:
+    - tls9443.kong.example
+    secretName: tls9443.kong.example
   rules:
-  - host: example.com
+  - host: tls9443.kong.example
     port: 9443
     backend:
       serviceName: tcp-echo
       servicePort: 2701
 " | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 tcpingress.configuration.konghq.com/echo-tls created
 ```
-
-Now, we can access the `tcp-echo` service on port 9443, on SNI `example.com`.
-
-You should setup a DNS record for a Domain that you control
-to point to PROXY_IP and then access
-the service via that for production usage.
-
-In our contrived demo example, we can connect to the service via TLS
-using `openssl`'s `s_client` command:
-
-```shell
-$ openssl s_client -connect $PROXY_IP:9443 -servername example.com -quiet
-openssl s_client -connect 35.247.39.83:9443 -servername foo.com -quiet
-depth=0 C = US, ST = California, L = San Francisco, O = Kong, OU = IT Department, CN = localhost
-verify error:num=18:self signed certificate
-verify return:1
-depth=0 C = US, ST = California, L = San Francisco, O = Kong, OU = IT Department, CN = localhost
-verify return:1
-Welcome, you are connected to node gke-harry-k8s-dev-pool-1-e9ebab5e-c4gw.
-Running on Pod tcp-echo-844545646c-gvmkd.
-In namespace default.
-With IP address 10.60.1.17.
-This text will be echoed back.
-This text will be echoed back.
-^C
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: tlsecho
+spec:
+  parentRefs:
+  - name: kong
+  hostnames:
+  - tls9443.kong.example
+  rules:
+  - backendRefs:
+    - name: tcp-echo
+      port: 9443
+" | kubectl apply -f -
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-Since Kong is not configured with a TLS cert-key pair for `example.com`, Kong
-is returning a self-signed default certificate, which is not trusted.
-You can also see that the echo service is running as expected.
+## Test the configuration
 
-## Bonus
+You can now access the `tcp-echo` service on port 9443 with SNI
+`tls9443.kong.example`.
 
-Scale the `tcp-echo` Deployment to have multiple replicas and observe how
-Kong load-balances the TCP-connections between pods.
+In real-world usage, you would create a DNS record for `tls9443.kong.example`
+pointing to your proxy Service's public IP address, which causes TLS clients to
+add SNI automatically. For this demo, you'll add it manually using the OpenSSL
+CLI:
 
-## Conclusion
-
-In this guide, we see how to use Kong's TCP routing capabilities using
-TCPIngress Custom Resource. This can be very useful if you have services
-running inside Kubernetes that have custom protocols instead of the more
-popular HTTP or gRPC protocols.
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "hello" | openssl s_client -connect $PROXY_IP:9443 -servername tls9443.kong.example -quiet 2>/dev/null 
+```
+Press Ctrl+C to exit after.
+{% endnavtab %}
+{% navtab Response %}
+```text
+Welcome, you are connected to node kind-control-plane.
+Running on Pod tcp-echo-5f44d4c6f9-krnhk.
+In namespace default.
+With IP address 10.244.0.26.
+hello
+```
+{% endnavtab %}
+{% endnavtabs %}

@@ -130,45 +130,7 @@ inside Kubernetes.
 
 ## Add TLS configuration
 
-Routing configuration can include a certificate to present when clients connect
-over HTTPS. This is not required, as {{site.base_gateway}} will serve a default
-certificate if it cannot find another, but including TLS configuration along
-with routing configuration is typical.
-
-First, create a test certificate for the `kong.example` hostname:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-openssl req -subj '/CN=kong.example' -new -newkey rsa:2048 -sha256 \
-  -days 365 -nodes -x509 -keyout server.key -out server.crt \
-  -addext "subjectAltName = DNS:kong.example" \
-  -addext "keyUsage = digitalSignature" \
-  -addext "extendedKeyUsage = serverAuth" 2> /dev/null;
-  openssl x509 -in server.crt -subject -noout
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-subject=CN = kong.example
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-Second, create a Secret containing the certificate:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl create secret tls kong-example --cert=./server.crt --key=./server.key
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-secret/kong-example created
-```
-{% endnavtab %}
-{% endnavtabs %}
+{% include /md/kic/add-certificate.md hostname=kong.example %}
 
 Finally, update your routing configuration to use this certificate:
 
