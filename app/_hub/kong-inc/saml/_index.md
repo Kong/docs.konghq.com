@@ -81,19 +81,15 @@ params:
       referenceable: true
       description: |
         The private encryption key required to decrypt encrypted assertions.
-    - name: sign_requests
-      required: false
-      datatype: boolean
-      default: false
-      description: |
-        Indicates if the plugin should sign requests. If set to true, then `request_signing_key` and `request_signing_certificate` values are required.
     - name: request_signing_key
       required: false
       datatype: string
       default: null
       referenceable: true
       description: |
-        The private key for signing requests.
+        The private key for signing requests.  If this parameter is
+        set, requests sent to the IdP are signed.  The
+        `request_signing_certificate` parameter must be set as well.
     - name: request_signing_certificate
       required: false
       datatype: string
@@ -151,13 +147,13 @@ params:
         - `EmailAddress`
         - `Persistent`
         - `Transient`
-    - name: disable_signature_validation
+    - name: validate_assertion_signature
       required: false
       datatype: boolean
-      default: false
+      default: true
       value_in_examples: true
       description: |
-        Disable signature validation for SAML responses.
+        Enable signature validation for SAML responses.
     - group: Session cookie
       description: Parameters used with session cookie authentication.
     - name: session_cookie_name
@@ -444,7 +440,7 @@ curl --request POST \
   --form config.issuer=AzureAD_Identity_ID \
   --form config.idp_sso_url=AzureAD_Sign_on_URL \
   --form config.assertion_consumer_path=/consume \
-  --form config.disable_signature_validation=true
+  --form config.validate_assertion_signature=false
 ```
 
 ```json
@@ -456,7 +452,7 @@ curl --request POST \
     },
     "config": {
         "assertion_consumer_path": "/consume",
-        "disable_signature_validation": true,
+        "validate_assertion_signature": true,
         "idp_sso_url": "https://login.microsoftonline.com/f177c1d6-50cf-49e0-818a-a0585cbafd8d/saml2",
         "issuer": "https://samltoolkit.azurewebsites.net/kong_saml"
     }
