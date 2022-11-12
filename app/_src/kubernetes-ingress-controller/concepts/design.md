@@ -70,7 +70,7 @@ An [Ingress][ingress] resource in Kubernetes defines a set of rules for proxying
 These rules correspond to the concept of a route in Kong.
 
 The following image describes the relationship between Kubernetes concepts and Kong's
-`Ingress` configuration.
+Ingress configuration.
 
 ![translating Kubernetes to Kong](/assets/images/docs/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
 
@@ -81,13 +81,13 @@ and configurations for {{site.base_gateway}}.
 
 The main concepts here are:
 
-- A [`Gateway`][gateway-api-gateway] resource in Kubernetes describes how traffic
+- A [Gateway][gateway-api-gateway] resource in Kubernetes describes how traffic
   can be translated to services within the cluster.
-- A [`GatewayClass`][gateway-api-gatewayclass] defines a set of Gateways that share
+- A [GatewayClass][gateway-api-gatewayclass] defines a set of Gateways that share
   a common configuration and behaviour.
-  Each `GatewayClass` will be handled by a single controller, although controllers
-  may handle more than one `GatewayClass`.
-- [`HTTPRoute`][gateway-api-httproute] can be attached to a Gateway which will
+  Each GatewayClass will be handled by a single controller, although controllers
+  may handle more than one GatewayClass.
+- [HTTPRoute][gateway-api-httproute] can be attached to a Gateway which will
   configure the HTTP routing behavior.
   
 You can find more details about Gateway API concepts supported by {{site.kic_product_name}}

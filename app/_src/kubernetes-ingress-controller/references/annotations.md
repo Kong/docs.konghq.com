@@ -197,7 +197,7 @@ the request and response or impose certain policies on the requests as they
 are proxied to your service.
 
 With the {{site.kic_product_name}}, plugins can be configured by creating
-`KongPlugin` Custom Resources and then associating them with an Ingress, Service,
+KongPlugin Custom Resources and then associating them with an Ingress, Service,
 KongConsumer or a combination of those.
 
 Following is an example of how to use the annotation:
@@ -550,7 +550,7 @@ konghq.com/host-header: "test.example.com"
 > Available since controller 0.6
 
 By default, the {{site.kic_product_name}} distributes traffic amongst all the
-Pods of a Kubernetes `Service` by forwarding the requests directly to
+Pods of a Kubernetes Service by forwarding the requests directly to
 Pod IP addresses. One can choose the load-balancing strategy to use
 by specifying a KongIngress resource.
 
@@ -567,7 +567,7 @@ traffic accordingly. If a sidecar intercepts the traffic from the controller,
 it can also route traffic as it sees fit in this case.
 
 Following is an example snippet you can use to configure this annotation
-on a `Service` resource in Kubernetes, (please note the quotes around `true`):
+on a Service resource in Kubernetes, (please note the quotes around `true`):
 
 ```yaml
 annotations:

@@ -50,7 +50,7 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ### v2.4.x
 
 - Supported weights of `BackendRefs`. Multiple `BackendRefs` with a round-robin load-balancing strategy 
-  is applied by default across the `Endpoints` or the `Services`. Configuring weights of `BackendRefs`
+  is applied by default across the Endpoints or the Services. Configuring weights of `BackendRefs`
   can allow you to fine-tune the load-balancing between those backend services.
 
 ### v2.6.x
@@ -68,12 +68,14 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ### v2.4.x
 
 - Supported `v1alpha2` of TCPRoute.
+- Added support for multiple, weighted `BackendRef` entities.
 
 ## UDP Routes
 
 ### v2.4.x
 
 - Supported `v1alpha2` of UDPRoute.
+- Added support for multiple, weighted `BackendRef` entities.
 
 ### Unsupported
 - Does not support [GEP-957](https://gateway-api.sigs.k8s.io/geps/gep-957/) port matching.

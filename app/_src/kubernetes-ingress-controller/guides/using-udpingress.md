@@ -20,8 +20,8 @@ addresses by name.
 For this example, you will:
 * Deploy your own [CoreDNS][coredns] server, which is the default
 DNS server Kubernetes uses for internal DNS
-* Deploy a CoreDNS `Pod` and `Service`
-* Route UDP traffic to it using `UDPIngress`
+* Deploy a CoreDNS `Pod` and Service
+* Route UDP traffic to it using UDPIngress
 
 This guide assumes that you've deployed the Kong Kubernetes Ingress Controller (KIC)
 using the [Helm Chart][chart]. If you have deployed the KIC in a different way, you
@@ -44,7 +44,7 @@ the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Create a namespace
 
-First, create a namespace for testing DNS services and `UDPIngress`.
+First, create a namespace for testing DNS services and UDPIngress.
 
 {% navtabs %}
 {% navtab Manifest %}
@@ -176,7 +176,7 @@ $ kubectl apply -f coredns-deployment.yaml
 
 Watch the pods with `kubectl -n udpingress-example get pods`. Once they are
 running, you can move on to the next sections: exposing the pods through
-`Service` and `UDPIngress`.
+Service and UDPIngress.
 
 [corefile]:https://coredns.io/manual/toc/#configuration
 [nameservers]:https://datatracker.ietf.org/doc/html/rfc1035#section-6
@@ -186,7 +186,7 @@ running, you can move on to the next sections: exposing the pods through
 ## Expose CoreDNS through a Service
 
 A Kubernetes [Service][svc] is a fundamental network abstraction layer
-that allows you to load-balance traffic to pods in the cluster. `Services` are
+that allows you to load-balance traffic to pods in the cluster. Services are
 ultimately the DNS names that the {{site.base_gateway}} will be routing our UDP traffic to.
 
 The following manifest exposes the CoreDNS Deployment from the previous section via a service.
@@ -217,8 +217,8 @@ Apply the manifest:
 $ kubectl apply -f coredns-service.yaml
 ```
 
-Now that you have a `Service` to expose the pods, you can expose this
-DNS server outside of the cluster using Kong's `UDPIngress` resource.
+Now that you have a Service to expose the pods, you can expose this
+DNS server outside of the cluster using Kong's UDPIngress resource.
 
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [dns-port]:https://datatracker.ietf.org/doc/html/rfc1035#section-4.2.1
@@ -227,8 +227,8 @@ DNS server outside of the cluster using Kong's `UDPIngress` resource.
 
 The Kong Kubernetes Ingress Controller (KIC) doesn't have a
 mechanism to automatically enable new UDP ports for exposing your
-Kubernetes UDP `Services`, so you need to explicitly configure {{site.base_gateway}} to expose
-these ports prior to deploying any `UDPIngress` resources.
+Kubernetes UDP Services, so you need to explicitly configure {{site.base_gateway}} to expose
+these ports prior to deploying any UDPIngress resources.
 
 If you're maintaining a `values.yaml` configuration for your Helm deployment of {{site.base_gateway}},
 add a section under `udpProxy` to enable the new UDP listener:
@@ -265,11 +265,11 @@ $ helm upgrade --namespace {NAMESPACE} --version {CHART_VERSION} {RELEASE_NAME} 
 
 Watch the services using `kubectl get services` and wait for the `LoadBalancer` service to be ready for the Gateway.
 Once the service up, {{site.base_gateway}} is ready to serve UDP traffic on the external port `9999`
-using `UDPIngress` resources.
+using UDPIngress resources.
 
 ## Deploying UDPIngress
 
-Now that {{site.base_gateway}} is listening on `9999`, you can create a `UDPIngress` resource which will attach
+Now that {{site.base_gateway}} is listening on `9999`, you can create a UDPIngress resource which will attach
 the CoreDNS service to that port so you can make DNS requests to it from outside the cluster.
 
 Save the following file as `coredns-udpingress.yaml`:
@@ -290,7 +290,7 @@ spec:
     port: 9999
 ```
 
-This configuration binds the {{site.base_gateway}} port `9999` to the `Service` port `53` for our DNS server.
+This configuration binds the {{site.base_gateway}} port `9999` to the Service port `53` for our DNS server.
 
 Apply the `coredns-udpingress.yaml` manifests:
 
@@ -322,7 +322,7 @@ you originally provided to `helm install` in your own environment.
 
 Now that you've stored the IP in the environment variable `KONG_UDP_ENDPOINT`, you can use
 that with `dig` to do a DNS lookup through the CoreDNS server you set up and exposed
-using `UDPIngress`:
+using UDPIngress:
 
 {% navtabs codeblock %}
 {% navtab Command %}

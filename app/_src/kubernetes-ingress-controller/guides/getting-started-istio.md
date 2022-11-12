@@ -25,7 +25,7 @@ This guide shows how to:
 
 * Install Istio and {{site.base_gateway}} with {{site.kic_product_name}} in your cluster.
 * Deploy an example Istio-enabled application.
-* Deploy an `Ingress` customized with a Kong plugin for the example application.
+* Deploy an Ingress customized with a Kong plugin for the example application.
 * Make requests to the sample application via Kong and Istio.
 * Explore the observability features of Istio to visualize cluster traffic.
 
@@ -49,7 +49,7 @@ tools such as [Minikube][minikube] or [Microk8s][microk8s].
 
 Your Kubernetes cluster must provision
   `LoadBalancer` type [Services][svc]. Cloud providers generally
-  automate `LoadBalancer` type `Service` provisioning with their default
+  automate `LoadBalancer` type Service provisioning with their default
   settings, but if you run your cluster elsewhere you might need to check
   the relevant documentation for details. See also the Kubernetes documentation  
   for [external load balancers][svc-lb].
@@ -371,7 +371,7 @@ service. The plugin adds rate limiting to the `BookInfo` application and limits 
     kubectl apply -f bookinfo-ratelimiter.yaml
     ```
 
-1.  Add an annotation to the `Ingress` resource to attach rate limiting:
+1.  Add an annotation to the Ingress resource to attach rate limiting:
 
     ```console
     kubectl -n bookinfo patch ingress productpage -p '{"metadata":{"annotations":{"konghq.com/plugins":"rate-limit"}}}'

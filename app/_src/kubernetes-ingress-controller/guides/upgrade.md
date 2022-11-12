@@ -116,7 +116,7 @@ Support for deprecated `classless` ingress types has been removed:
 
 #### Changed flags
 
-The following `Ingress` controller toggles have been replaced:
+The following Ingress controller toggles have been replaced:
 
 - `--disable-ingress-extensionsv1beta1` has been replaced by `--enable-controller-ingress-extensionsv1beta1=false`
 - `--disable-ingress-networkingv1` has been replaced by `--enable-controller-ingress-networkingv1=false`
@@ -152,7 +152,7 @@ time="2021-08-25T14:48:55Z" level=info msg="no configuration change, skipping sy
 ```
 
 This previous architecture had a single controller that was responsible for all
-supported resources (for example, `Ingress` or `TCPIngress`) and logged for them.
+supported resources (for example, Ingress or TCPIngress) and logged for them.
 
 In addition to increasing logging output to help identify problems
 and conditions during the controller manager runtime, v2.0.0 introduced

@@ -3,7 +3,7 @@ title: Using KongPlugin resource
 ---
 
 This guide walks you through using the {{site.kic_product_name}} 
-`KongPlugin` Custom Resource to control proxied requests, including
+KongPlugin Custom Resource to control proxied requests, including
 restricting paths and transforming requests.
 
 ## Installation
@@ -272,14 +272,14 @@ Via: kong/2.8.1
 ```
 
 Here, we have successfully set up a plugin which is executed only when a
-request matches a specific `Ingress` rule.
+request matches a specific Ingress rule.
 
 ## Configuring plugins on Service resource
 
 Next, we will see how we can configure Kong to execute plugins for requests
 which are sent to a specific service.
 
-Let's add a `KongPlugin` resource for authentication on the httpbin service:
+Let's add a KongPlugin resource for authentication on the httpbin service:
 
 ```sh
 echo "apiVersion: configuration.konghq.com/v1
@@ -306,7 +306,7 @@ service/httpbin patched
 ```
 
 Now, any request sent to the service will require authentication,
-no matter which `Ingress` rule it matched:
+no matter which Ingress rule it matched:
 
 ```sh
 curl -I $PROXY_IP/baz
@@ -340,7 +340,7 @@ Server: kong/2.8.1
 ```
 
 You can also see how the `demo` header was injected only for `/foo`,
-as the request matched one of the rules defined in the `Ingress`
+as the request matched one of the rules defined in the Ingress
 resource, but not for `/baz` because that request does not match.
 
 ## Configure consumer and credential
@@ -394,10 +394,10 @@ Follow the [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{p
 
 Now, let's say we would like to give a specific consumer a higher rate-limit.
 
-For this, we can create a `KongPlugin` resource and then associate it with
+For this, we can create a KongPlugin resource and then associate it with
 a specific consumer.
 
-First, create the `KongPlugin` resource:
+First, create the KongPlugin resource:
 
 ```sh
 echo "
@@ -436,7 +436,7 @@ credentials:
 kongconsumer.configuration.konghq.com/harry configured
 ```
 
-Note the annotation being added to the `KongConsumer` resource.
+Note the annotation being added to the KongConsumer resource.
 
 Now, if the request is made as the `harry` consumer, the client
 is rate-limited differently:

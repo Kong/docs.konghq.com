@@ -25,17 +25,17 @@ before their initial general availability release.
 
 Currently, the {{site.kic_product_name}}'s implementation of the Gateway API supports the following resources:
 
-- [`Gateway` and `GatewayClass`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses)
-- [`HTTPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes)
-- [`TCPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes)
-- [`UDPRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes)
-- [`TLSRoute`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes)
+- [Gateway and GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses)
+- [HTTPRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes)
+- [TCPRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes)
+- [UDPRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes)
+- [TLSRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes)
 {% endif_version %}
 {% if_version gte:2.4.x lte:2.6.x %}
 - [`ReferencePolicy`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies)
 {% endif_version %}
 {% if_version gte:2.6.x %}
-- [`ReferenceGrant`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
+- [ReferenceGrant](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
 {% endif_version %}
 
 ## Enable the feature
@@ -100,11 +100,11 @@ kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/example
 
 ## Add a GatewayClass and Gateway
 
-The `Gateway` resource represents the proxy instance that handles traffic for a
-set of Gateway API routes, and a `GatewayClass` describes characteristics shared
-by all `Gateway`s of a given type.
+The Gateway resource represents the proxy instance that handles traffic for a
+set of Gateway API routes, and a GatewayClass describes characteristics shared
+by all Gateways of a given type.
 
-Add a `GatewayClass`:
+Add a GatewayClass:
 
 {% if_version lte: 2.5.x %}
 ```bash
@@ -137,7 +137,7 @@ spec:
 gatewayclass.gateway.networking.k8s.io/kong created
 ```
 
-Add a `Gateway`:
+Add a Gateway:
 
 {% if_version lte: 2.5.x %}
 ```bash
@@ -208,14 +208,14 @@ that {{site.base_gateway}} resource with listener and status information.
 {% endif_version %}
 
 {% if_version gte: 2.6.x %}
-To configure KIC to reconcile the `Gateway` resource, you must set the 
-`konghq.com/gatewayclass-unmanaged` annotation as the example in `GatewayClass` resource used in 
-`spec.gatewayClassName` in `Gateway` resource. Also, the 
-`spec.controllerName` of `GatewayClass` needs to be same as the value of the
+To configure KIC to reconcile the Gateway resource, you must set the 
+`konghq.com/gatewayclass-unmanaged` annotation as the example in GatewayClass resource used in 
+`spec.gatewayClassName` in Gateway resource. Also, the 
+`spec.controllerName` of GatewayClass needs to be same as the value of the
 `--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
 {% endif_version %}
 
-You can check to confirm if KIC has updated the bound `Gateway` by 
+You can check to confirm if KIC has updated the bound Gateway by 
 inspecting the list of associated addresses:
 
 ```bash
@@ -237,7 +237,7 @@ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
 
 ## Add an HTTPRoute
 
-`HTTPRoute` resources are similar to Ingress resources: they contain a set of
+HTTPRoute resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
 requests to.
 
@@ -301,7 +301,7 @@ spec:
 ```
 {% endif_version %}
 
-After creating an `HTTPRoute`, accessing `/echo/hostname` forwards a request to the
+After creating an HTTPRoute, accessing `/echo/hostname` forwards a request to the
 echo service's `/hostname` path, which yields the name of the pod that served the request:
 
 ```bash
@@ -324,22 +324,22 @@ echo-658c5ff5ff-8cvgj%
 {% if_version gte: 2.6.x %}
 ## Traffic splitting with HTTPRoute
 
-`HTTPRoute` contains a [`BackendRefs`][gateway-api-backendref] field, which allows
+HTTPRoute contains a [`BackendRefs`][gateway-api-backendref] field, which allows
 users to specify `weight` parameters for echo `BackendRef`.
 This can be used to perform traffic splitting.
 
-To do so, you can deploy a second echo `Service` so that you have
+To do so, you can deploy a second echo Service so that you have
 a second `BackendRef` to use for traffic splitting.
 
 ```bach
 kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-services.yaml
 ```
 {:.note}
-> **Note**: This example contains the previous echo `Service` so you may deploy
+> **Note**: This example contains the previous echo Service so you may deploy
 > it without deploying the previous example from the
 > [Set up an echo service](#set-up-an-echo-service) section.
 
-Now that those two `Services` are deployed, you can now deploy your `HTTPRoute`. This will
+Now that those two Services are deployed, you can now deploy your HTTPRoute. This will
 perform the traffic splitting between them using the weight parameters:
 
 ```bash
@@ -369,8 +369,8 @@ spec:
 ' | kubectl apply -f -
 ```
 
-Now, accessing `/echo/hostname` should distribute around 75% of requests to `Service`
-echo and around 25% of requests to `Service` echo2.
+Now, accessing `/echo/hostname` should distribute around 75% of requests to Service
+echo and around 25% of requests to Service echo2.
 
 ```bash
 curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
@@ -397,9 +397,9 @@ echo-658c5ff5ff-8cvgj%
 Gateway APIs are supported. In particular:
 
 {% if_version lte: 2.3.x %}
-- `HTTPRoute` is the only supported route type. `TCPRoute`, `UDPRoute`, and `TLSRoute`
+- HTTPRoute is the only supported route type. TCPRoute, UDPRoute, and TLSRoute
   are not yet implemented.
-- `HTTPRoute` does not yet support multiple `backendRefs`. You cannot distribute
+- HTTPRoute does not yet support multiple `backendRefs`. You cannot distribute
   requests across multiple Services.
 {% endif_version %}
 - `queryParam` matches are not supported.

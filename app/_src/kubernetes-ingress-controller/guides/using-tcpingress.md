@@ -136,7 +136,7 @@ We will now expose this on plain-text and a TLS based port.
 ## TCP port based routing
 
 To expose our service to the outside world, create the following
-`TCPIngress` resource:
+TCPIngress resource:
 
 ```shell
 $ echo "apiVersion: configuration.konghq.com/v1beta1

@@ -6,7 +6,7 @@ beta: true
 
 ## Overview
 
-`HTTPRoute` supports adding multiple Services under its
+HTTPRoute supports adding multiple Services under its
 [`BackendRefs`][gateway-api-backendref] field. When you add multiple Services,
 requests through the HTTPRoute are distributed across the Services. This guide
 walks through creating an HTTPRoute with multiple backend Services.
