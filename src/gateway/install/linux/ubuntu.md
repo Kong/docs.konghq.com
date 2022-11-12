@@ -116,3 +116,11 @@ apt install -y kong={{page.versions.ce}}
 {% endnavtabs %}
 
 {% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+
+## Uninstall
+
+To remove the package completely, run following command.
+
+```bash
+ sudo apt remove kong-enterprise-edition
+ ```
