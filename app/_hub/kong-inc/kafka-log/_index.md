@@ -21,12 +21,12 @@ params:
   name: kafka-log
   dbless_compatible: 'yes'
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
-    - ws
-    - wss
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: ws
+    - name: wss
   config:
     - name: bootstrap_servers
       required: true

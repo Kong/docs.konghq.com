@@ -36,7 +36,9 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["ws", "wss"]
+  protocols:
+    - name: ws
+    - name: wss
   dbless_compatible: 'yes'
   config:
 
