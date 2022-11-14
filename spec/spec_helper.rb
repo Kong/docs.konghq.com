@@ -18,7 +18,7 @@ Dir[File.expand_path('../app/_plugins/**/*.rb', __dir__)].each do |file|
   require file
 end
 
-require_relative './support/shared_contexts/site'
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
