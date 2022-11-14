@@ -15,7 +15,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ### 2022.11.xx
 
 **New Analytics predefined teams**
-: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. The Analytics Viewer team only allows users to view and export analytics. The Analytics Admin team allows users to view, create, edit, and delete all analytics. 
+: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities. 
+
+: {{site.konnect_short_name}} now includes the following predefined Analytics teams:
+* Analytics Admin: Users can fully manage all Analytics content, which includes creating, editing, and deleting reports, as well as viewing the analytics summary.
+* Analytics Viewer: Users can only view the analytics summary and report data. 
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
