@@ -159,9 +159,9 @@ params:
         `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
 
         The field should be set to one of the following values:
-          - "append": append information from this hop to the headers.
-          - "transparent": leave headers unchanged, as if we were not a proxy.
-          - "delete": remove all headers including those that should be added for this hop, as if you are the originating client.
+          - `append`: Append information from this hop to the headers.
+          - `transparent`: Leave headers unchanged, as if not using a proxy.
+          - `delete`: Remove all headers including those that should be added for this hop, as if you are the originating client.
 
         All options respect the trusted IP setting and will ignore last hop headers if they are not from clients with trusted IPs.
 
@@ -175,15 +175,15 @@ params:
 ---
 ## Changelog
 
-**{{site.base_gateway}} 3.0.x**
+**{{site.base_gateway}} 3.1.x**
 
 - **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
   `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
 
-  The field should be set to one of the below and is default to "append":
-  - "append": append information of this hop to those headers;
-  - "transparent": leave those headers unchanged, as if we were not a proxy;
-  - "delete": remove all those headers, as if we were the originating client.
+  The field is set to `append` by default, but can be set to one of the following options:
+  - `append`: Append information from this hop to the headers.
+  - `transparent`: Leave headers unchanged, as if not using a proxy.
+  - `delete`: Remove all headers including those that should be added for this hop, as if you are the originating client.
 
   Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
 
