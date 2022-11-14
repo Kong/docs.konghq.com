@@ -149,6 +149,21 @@ params:
         Whether the server certificate will be verified according to the CA certificates
         specified in
         [lua_ssl_trusted_certificate](https://www.nginx.com/resources/wiki/modules/lua/#lua-ssl-trusted-certificate).
+    - name: x_headers
+      required: false
+      default: append
+      value_in_examples: transparent
+      datatype: string
+      description: |
+        How the plugin handles the following headers:
+        `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
+
+        The field should be set to one of the following values:
+          - `append`: Append information from this hop to the headers.
+          - `transparent`: Leave headers unchanged, as if not using a proxy.
+          - `delete`: Remove all headers including those that should be added for this hop, as if you are the originating client.
+
+        All options respect the trusted IP setting and will ignore last hop headers if they are not from clients with trusted IPs.
 
   extra: |
 
@@ -159,6 +174,18 @@ params:
 
 ---
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+
+- **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
+  `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
+
+  The field is set to `append` by default, but can be set to one of the following options:
+  - `append`: Append information from this hop to the headers.
+  - `transparent`: Leave headers unchanged, as if not using a proxy.
+  - `delete`: Remove all headers including those that should be added for this hop, as if you are the originating client.
+
+  Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
 
 **{{site.base_gateway}} 2.8.x**
 
