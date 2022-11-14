@@ -1,7 +1,7 @@
 ---
 title: deck konnect ping
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content-type: reference
+content_type: reference
 ---
 
 The {{site.konnect_short_name}} ping command can be used to verify if decK

@@ -1,0 +1,74 @@
+RSpec.describe KumaToKongMesh::Generator do
+  let(:page) do
+    site.pages.detect { |p| p.relative_path == 'kuma-to-kong-mesh.md' }
+  end
+
+  before do
+    page.data['path'] = 'GENERATED:nav=docs_nav_mesh'
+  end
+
+  describe '#generate' do
+    subject! { described_class.new.generate(site) }
+
+    it 'replaces `Kuma` with `Kong Mesh` in the title' do
+      expect(page.data['title']).to eq('Welcome to Kong Mesh')
+    end
+
+    context 'updates the page\'s content' do
+      context 'links containing `kuma` in them' do
+        it 'replaces `kuma` with `kong-mesh`' do
+          expect(page.content)
+            .not_to include('[Read about Kuma](/docs/{{ page.version }}/introduction/what-is-kuma)')
+
+          expect(page.content)
+            .to include('[Read about Kuma](/mesh/{{ page.kong_version }}/introduction/what-is-kong-mesh)')
+        end
+
+        it 'replaces any `kong-mesh.io` with `kuma.io`' do
+          expect(page.content).not_to include('https://kong-mesh.io')
+          expect(page.content).to include('https://kuma.io').twice
+        end
+
+        it 'does not modify absolute urls' do
+          expect(page.content).to include(
+            '[Demo app downloaded from GitHub](https://github.com/kumahq/kuma-counter-demo)'
+          )
+        end
+
+        it 'does not replace `kuma` in links that contain kuma commands' do
+          expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kuma-cp/kuma-cp_migrate')
+          expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kuma-dp/kuma-dp_run')
+          expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kumactl/kumactl_apply')
+        end
+      end
+
+      context 'transforms specific links' do
+        it 'replaces `/install` and `/install/` with `/mesh/{{ page.kong_version }}/install/`' do
+          expect(page.content).not_to include('[Install Kuma](/install)')
+
+          expect(page.content).to include('[Install Kuma](/mesh/{{ page.kong_version }}/install/)').twice
+        end
+
+        it 'replaces `/community` and `/community/` with `https://konghq.com/community`' do
+          expect(page.content).not_to include('[Community](/community)')
+
+          expect(page.content).to include('[Community](https://konghq.com/community)').twice
+        end
+
+        it 'replaces `/enterprise` and `/enterprise/` with `/mesh/{{ page.kong_version }}/`' do
+          expect(page.content).not_to include('[Enterprise Support](/enterprise)')
+
+          expect(page.content).to include('[Enterprise Support](/mesh/{{ page.kong_version }}/)').twice
+        end
+      end
+
+      context 'replaces the base url from Kuma' do
+        it 'replaces `/docs/{{ page.version }}` with `/mesh/{{ page.kong_version }}`' do
+          expect(page.content).not_to include('/docs/{{ page.version }}')
+
+          expect(page.content).to include('/mesh/{{ page.kong_version }}').exactly(10).times
+        end
+      end
+    end
+  end
+end

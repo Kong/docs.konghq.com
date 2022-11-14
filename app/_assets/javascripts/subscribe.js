@@ -12,7 +12,7 @@ $(document).ready(function () {
       async: false,
       data: jQuery("#subscribe-input").serialize(),
       xhrFields: {
-        withCredentials: true
+        withCredentials: true,
       },
       success: function () {
         $("#subscribe-form").css("display", "none");
@@ -24,9 +24,11 @@ $(document).ready(function () {
           $("#form-response").html("<br>Thank you for signing up!<br><br>");
         } else {
           $("#subscribe-form").css("display", "none");
-          $("#form-response").html("<br>There was an error. Please try again.<br><br>");
+          $("#form-response").html(
+            "<br>There was an error. Please try again.<br><br>"
+          );
         }
-      }
-    })
-  })
+      },
+    });
+  });
 });

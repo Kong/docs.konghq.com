@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Network Resiliency and Availability
-no_version: true
 ---
 <!-- vale off -->
 {{site.konnect_saas}} deployments run in hybrid mode, which means that there is

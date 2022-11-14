@@ -1,0 +1,51 @@
+columns:
+  - name: Officially Supported
+    key: ga
+features:
+  - name: "Docker"
+    items:
+      - name: "Docker on MacOS"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
+        ga: true
+        icon: /assets/images/icons/documentation/macos-logo.png
+      - name: "Docker on Windows"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
+        ga: true
+        icon: /assets/images/icons/documentation/windows-logo.svg
+      - name: "Docker on Linux"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
+        ga: true
+        icon: /assets/images/icons/documentation/docker.png
+      - name: "Custom Docker configuration"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
+        ga: true
+        icon: /assets/images/icons/documentation/docker.png
+
+  - name: "Packages"
+    items:
+      - name: "Linux"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-conf/
+        ga: true
+        icon: /assets/images/icons/documentation/linux-logo.svg
+
+  - name: "Kubernetes"
+    items:
+      - name: "Kubernetes (Helm)"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes/
+        ga: true
+        icon: /assets/images/icons/documentation/helm-icon-color.svg
+
+  - name: "Cloud Providers"
+    items:
+      - name: "AWS <span class=\"badge alpha\"></span>"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-aws/
+        ga: false
+        icon: /assets/images/icons/documentation/aws.svg
+      - name: "Azure <span class=\"badge alpha\"></span>"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-azure/
+        ga: false
+        icon: /assets/images/icons/documentation/azure.svg
+      - name: "Google Cloud (coming soon)"
+        url: null
+        ga: false
+        icon: /assets/images/icons/documentation/cloud-icon-color.png

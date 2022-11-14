@@ -135,10 +135,10 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
-    - grpc (depends on the grant)
-    - grpcs (depends on the grant)
+    - name: http
+    - name: https
+    - name: grpc (depends on the grant)
+    - name: grpcs (depends on the grant)
   dbless_compatible: 'yes'
   config:
     - group: Authentication Grants

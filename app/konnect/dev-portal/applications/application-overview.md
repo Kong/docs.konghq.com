@@ -1,8 +1,7 @@
 ---
 title: Applications Overview
-no_version: true
 toc: true
-content-type: explanation
+content_type: explanation
 ---
 
 Multiple services can be registered to a single application. In the {{site.konnect_short_name}} Dev Portal, services registered to an application are listed in an application's detail page. You can find all applications in your account by clicking  **My Apps** from the dropdown menu beneath your login email in the Dev Portal.
@@ -20,7 +19,7 @@ You can perform the following actions from an application's details page:
 - View a catalog of services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service), if no services are registered yet.
 - View the status of an application registration to a Service.
 
-The guides within this section cover these topics: 
+The guides within this section cover these topics:
 
 * [How to create, edit and delete applications](/konnect/dev-portal/applications/dev-apps)
 * [How to enable and disable app registration](/konnect/dev-portal/applications/enable-app-reg)

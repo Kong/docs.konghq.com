@@ -1,6 +1,5 @@
 ---
 title: Import Kong Gateway Entities into Konnect
-no_version: true
 content_type: how-to
 ---
 

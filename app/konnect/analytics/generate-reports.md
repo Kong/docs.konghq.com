@@ -1,6 +1,5 @@
 ---
 title: Generate Reports
-no_version: true
 content_type: how-to
 badge: plus
 ---

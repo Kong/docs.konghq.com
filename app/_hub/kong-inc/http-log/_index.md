@@ -18,16 +18,17 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
-    - tcp
-    - tls
-    - tls_passthrough
-    - udp
-    - grpc
-    - grpcs
-    - ws
-    - wss
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: grpc
+    - name: grpcs
+    - name: ws
+    - name: wss
   dbless_compatible: 'yes'
   config:
     - name: http_endpoint

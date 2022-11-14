@@ -1,6 +1,5 @@
 ---
 title: (Legacy) License Management in Konnect Cloud
-no_version: true
 ---
 <!-- vale off -->
 When you create a {{site.konnect_saas}} account, a license is

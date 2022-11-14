@@ -1,6 +1,5 @@
 ---
 title: Manage Plugins
-no_version: true
 content_type: reference
 ---
 

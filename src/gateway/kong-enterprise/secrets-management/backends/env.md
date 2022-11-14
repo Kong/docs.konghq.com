@@ -42,13 +42,16 @@ This allows you to do
 {:.note}
 > The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
 
+{% navtabs %}
+{% navtab Admin API %}
+
 {% navtabs codeblock %}
 {% navtab cURL %}
 
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault \
-        --data name=env \
-        --data description="Store secrets in environment variables"
+  --data name=env \
+  --data description="Store secrets in environment variables"
 ```
 
 {% endnavtab %}
@@ -79,6 +82,28 @@ Result:
     "updated_at": 1644942689
 }
 ```
+
+{% endnavtab %}
+{% navtab Declarative configuration %}
+
+{:.note}
+> Secrets management is supported in decK 1.16 and later.
+
+Add the following snippet to your declarative configuration file:
+
+```yaml
+_format_version: "3.0"
+vaults:
+- config:
+    prefix: null
+  description: Store secrets in environment variables
+  name: env
+  prefix: my-env-vault
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
 
 With the entity in place you can reference secrets like this:
 

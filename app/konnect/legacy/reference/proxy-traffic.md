@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Proxy Traffic
-no_version: true
 ---
 <!-- vale off -->
 Use the proxy URL to access a Service. By default, the URL takes the

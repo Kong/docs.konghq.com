@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Runtime Configuration Parameters
-no_version: true
 ---
 <!-- vale off -->
 ## Advanced parameters for {{site.base_gateway}}

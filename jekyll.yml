@@ -82,6 +82,7 @@ include:
 plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
+  - jekyll-generator-single-source
 
 defaults:
   - scope:
@@ -128,6 +129,7 @@ defaults:
       path: "konnect"
     values:
       layout: "docs-v2"
+      no_version: true
 
   - scope:
       path: "gateway"
@@ -153,18 +155,6 @@ defaults:
       version-index: 2
 
   - scope:
-      path: "gateway/3.0.x/"
-    values:
-      layout: "docs-v2"
-      version-index: 3
-
-  - scope:
-      path: "gateway/3.1.x/"
-    values:
-      layout: "docs-v2"
-      version-index: 4
-
-  - scope:
       path: "about"
     values:
       layout: "about"
@@ -187,9 +177,14 @@ ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
+default_namespace: kong-mesh-system
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
 konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
+
+jekyll-generator-single-source:
+  versions_file: '_data/kong_versions.yml'
+  docs_nav_folder: '_data'

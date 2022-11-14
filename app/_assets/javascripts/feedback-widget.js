@@ -2,8 +2,7 @@
 function sendFeedback(result, comment = "") {
   $.ajax({
     type: "POST",
-    url:
-      "https://script.google.com/macros/s/AKfycbzA9EgTcX2aEcfHoChlTNA-MKX75DAOt4gtwx9WMcuMBNHHAQ4/exec",
+    url: "https://script.google.com/macros/s/AKfycbzA9EgTcX2aEcfHoChlTNA-MKX75DAOt4gtwx9WMcuMBNHHAQ4/exec",
     data: JSON.stringify([result, comment, window.location.pathname]),
   });
 
@@ -34,4 +33,3 @@ $(".feedback-options-button").on("click", function () {
     $(".feedback-comment").css("visibility", "visible");
   }
 });
-  

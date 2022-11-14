@@ -1,6 +1,6 @@
 ---
 title: De-duplicate Plugin Configuration
-content-type: how-to
+content_type: how-to
 ---
 
 In some use cases, you might want to create a number of plugins associated with
@@ -9,10 +9,12 @@ if you change anything in the configuration of the plugin, you will have to
 repeat it for each instance of the plugin.
 
 In other use cases, the plugin configuration could be decided by a different
-team (Operations in some cases), and the configuration is directly used by
-an API owner.
+team, while the main {{site.base_gateway}}
+configuration is directly used by an API owner.
 
-decK has support for both of these use cases.
+decK supports both of these use cases.
+
+## Set up de-deduplicated plugin configuration
 
 Let's take an example configuration file:
 
@@ -133,8 +135,7 @@ server, then we have to edit the configuration of each and every instance of
 the plugin.
 
 To reduce this repetition, you can de-duplicate plugin configuration and
-reference it where we you need to use it.
-Please do note that this works across multiple files as well.
+reference it where we you need to use it. This works across multiple files as well.
 
 The above file now becomes:
 
@@ -220,3 +221,50 @@ effect across multiple entities. Under the hood, decK takes the change and
 applies it to each entity which references the plugin configuration that has
 been changed. As always, use `deck diff` to inspect the changes before you
 apply those to your Kong clusters.
+
+## Overriding fields in plugin configs
+
+Settings configured in `_plugin_configs` are applied to all plugins with the same tag.
+While those settings provide the baseline configuration, you can change specific
+fields as needed for the entities that consume them.
+
+Specific values set for entities take precedence over values defined in `_plugin_configs`.
+
+For example, say that consumer `fub` in the previous example is still in the
+`gold-tier-limit`, but needs a rate limit of `50` minutes instead of `20`.
+You can change this value just for that specific consumer:
+
+```yaml
+- username: fub
+  tags:
+  - gold-tier
+  plugins:
+  - name: rate-limiting
+    _config: gold-tier-limit
+    config:
+      minute: 50
+    enabled: true
+    protocols:
+    - http
+    - https
+```
+
+Now compare the two gold tier consumers, `baz` and `fub`.
+
+First check `baz`:
+
+```sh
+curl -i -X http://localhost:8001/consumers/baz/plugins
+```
+
+Find the `minute` configuration in the result. This consumer picks up the
+setting of the `gold-tier-limit`, which is `minute: 20`.
+
+Now check `fub`:
+
+```sh
+curl -i -X http://localhost:8001/consumers/fub/plugins
+```
+
+Find the `minute` configuration in the result.
+This consumer has its own rate limit, `minute: 50`.

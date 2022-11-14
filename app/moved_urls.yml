@@ -153,3 +153,4 @@
 /gateway/VERSION/plugin-development/plugin-configuration/: "/gateway/VERSION/plugin-development/configuration/"
 /gateway/VERSION/reference/external-plugins/: "/gateway/VERSION/plugin-development/pluginserver/go/"
 /gateway/VERSION/get-started/secure-services/: "/gateway/VERSION/get-started/key-authentication/"
+/gateway/VERSION/install/linux/os-support/: "/gateway/VERSION/os-support/"

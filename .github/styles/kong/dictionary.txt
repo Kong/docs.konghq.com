@@ -3,6 +3,7 @@ Alertmanager
 Amberflo
 Arya
 Bagdi
+Bagdi
 Bintray
 Bitnami
 CAs
@@ -15,6 +16,8 @@ DAOs
 DPP
 DPPs
 Datadog
+ElastiCache
+Equinix
 Equinix
 Fargate
 Github
@@ -56,14 +59,17 @@ Resty
 Splunk
 Stap
 Styra
+Styra
 Syslog
 Terraform
 Terraform's
+UIs
 Unicode
 Valero
 Vue
 Wireshark
 Zipkin
+acl
 admin's
 allowlist
 anonymized
@@ -84,6 +90,7 @@ body_filter
 bool
 boolean
 booleans
+certificate_admin
 cleartext
 client_payload
 client_status
@@ -96,6 +103,7 @@ configurability
 conntrack
 cors
 crds
+created_at
 datadog
 datagram
 datagrams
@@ -121,6 +129,7 @@ elbs
 enum
 env
 etcd
+failover
 favicon
 filepath
 filetype
@@ -136,6 +145,7 @@ grpc
 grpcs
 gui
 guis
+gzip
 hardcoded
 hardcoding
 hashicorp
@@ -144,6 +154,7 @@ headmatter
 healthchecks
 hostname
 hostnames
+href
 http
 httpbin
 https
@@ -222,12 +233,14 @@ opa
 openresty
 outbounds
 passthrough
+pdk
 pdks
 perf
 performant
 petstore
 pgdump
 plaintext
+preferred_name
 prepend
 prepended
 prepending
@@ -260,6 +273,7 @@ rockspecs
 routable
 ruleset
 runtime
+runtime_groups
 runtimes
 sandboxed
 sandboxing
@@ -284,7 +298,9 @@ subcommand
 subcommands
 submodule
 submodule's
+subnet
 substring
+subtree
 subtree
 sudo
 svg
@@ -323,6 +339,9 @@ unprocessable
 unpublish
 unregister
 unregistering
+unshorten
+unshortened
+updated_at
 upsert
 upstream
 upstream's

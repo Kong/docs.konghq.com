@@ -1,7 +1,6 @@
 ---
 title: Manage Application Service Connections
-no_version: true
-content-type: reference
+content_type: reference
 ---
 
 When a developer

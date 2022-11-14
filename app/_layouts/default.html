@@ -29,17 +29,17 @@
 
     {% include_cached footer.html %} {% include_cached anchor_links.html %}
 
+    <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
     {% if jekyll.environment == "production" %}
       <script>
-        // Segment
-        window.analytics = window.analytics || {};
-        window.analytics._writeKey = "X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ";
-        setTimeout(function(){
+        (function stp(){
+          if (typeof analytics == "undefined"){
+            return setTimeout(stp, 30);
+          }
           analytics.page();
-        }, 500);
+        })();
       </script>
     {% endif %}
-    <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
 
     <div id="fb-root"></div>
     <script

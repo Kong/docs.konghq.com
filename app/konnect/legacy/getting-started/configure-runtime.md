@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Configure a Runtime
-no_version: true
 ---
 <!-- vale off -->
 Set up your first runtime through the

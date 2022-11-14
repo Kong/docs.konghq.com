@@ -1,6 +1,5 @@
 ---
 title: Kong Konnect Updates
-no_version: true
 ---
 
 <!-- vale off -->
@@ -10,14 +9,45 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2022
+
+### 2022.11.08
+
+**Editing the default runtime group**
+: You can now edit the name of the default runtime group.
+The group still retains its status as the default group, and can't be deleted.
+
+### 2022.11.01
+
+**Konnect APIs for identity management**
+: Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
+[IdP API documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
+
+## October 2022
+
+### 2022.10.27
+
+**Dynamic client registration <span class="badge beta"></span>**
+: Dynamic client registration with Okta is now in public beta.
+[Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
+
+### 2022.10.21
+
+**Latency reporting**
+: The Analytics dashboard now includes a [latency tab](/konnect/analytics/summary-dashboard/), which lets you track
+request latency for the P50, P95, and P99 percentiles.
+P99 latency data also appears in runtime groups and on service overview pages in the Service Hub.
+
+: This feature is available for runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+
 ## September 2022
 
 ### 2022.09.28
 
-**Analytics custom reports** 
-: [Analytics custom reports](/konnect/analytics/generate-reports/) are now generally available in {{site.konnect_saas}}. This release focuses on stability and minor usability improvements. 
+**Analytics custom reports**
+: [Analytics custom reports](/konnect/analytics/generate-reports/) are now generally available in {{site.konnect_saas}}. This release focuses on stability and minor usability improvements.
 
-: Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file. 
+: Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file.
 
 **Runtime groups dashboard**
 : In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](/konnect/runtime-manager/runtime-groups/dashboard/) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
@@ -33,18 +63,18 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 This release includes a new user interface that provides information about which runtime instances are incompatible with the current gateway configuration and provides actionable insights into the corrective steps to fix the issue.
 
 **Quick start for new {{site.konnect_saas}} org admins**
-: {{site.konnect_saas}} now includes an optional quick start that automatically creates a runtime group, service package, and gateway service, applies the CORS plugin, and shows analytics for that service with the click of a button. You can use the quick start to become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation throughout the onboarding process. 
+: {{site.konnect_saas}} now includes an optional quick start that automatically creates a runtime group, service package, and gateway service, applies the CORS plugin, and shows analytics for that service with the click of a button. You can use the quick start to become familiar with the different aspects of {{site.konnect_saas}} via text and call-outs to key documentation throughout the onboarding process.
 
 **Organization Admin (Read Only) predefined team**
 : A new predefined team has been introduced in {{site.konnect_saas}}. This team allows you to grant users read-only access to all features and functions in {{site.konnect_saas}}. As always, permissions are additive, so a user in the Organization Admin (Read Only) team may also have write access to various features if they are assigned additional permissions.
 
 **Multi-runtime group app registration support <span class="badge alpha"></span>**
-: You can now enable app registration to services in all runtime groups. This feature only supports versions in the non-default runtime group that use {{site.base_gateway}} 3.0. 
+: You can now enable app registration to services in all runtime groups. This feature only supports versions in the non-default runtime group that use {{site.base_gateway}} 3.0.
 
 : As part of this release, API key credentials are no longer stored in the Dev Portal. Portal developers will need to store their credentials immediately after creation.
 
 **Dynamic client registration <span class="badge beta"></span>**
-: {{site.konnect_saas}} Dev Portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows Dev Portal developers to automatically create applications in Okta and receive credentials to access services proxied through {{site.base_gateway}}. 
+: {{site.konnect_saas}} Dev Portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows Dev Portal developers to automatically create applications in Okta and receive credentials to access services proxied through {{site.base_gateway}}.
 
 **Service version lifecycle**
 : You can identify the [lifecycle stage](/konnect/servicehub/service-versions/#manage-the-service-version-lifecycle) of your APIs and notify Dev Portal developers if a particular API will be deprecated soon.  

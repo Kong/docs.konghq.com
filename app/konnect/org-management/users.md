@@ -1,6 +1,5 @@
 ---
 title: Manage Users
-no_version: true
 content_type: how-to
 ---
 

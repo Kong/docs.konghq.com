@@ -1,6 +1,6 @@
 ---
 title: CI-driven Configuration
-content-type: explanation
+content_type: explanation
 ---
 
 ## Configuration as code

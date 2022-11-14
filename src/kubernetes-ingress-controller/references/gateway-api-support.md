@@ -22,6 +22,7 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ## Gateways and GatewayClasses
 
 ### Supported Versions
+
 {% if_version gte: 2.6.x %}
 - `v1beta1`
 {% endif_version %}
@@ -31,11 +32,10 @@ The {{site.kic_product_name}} supports the following resources and features in t
 
 ## HTTP Routes
 
-{{site.kic_product_name}}'s implementation of `HTTPRoute` supports multiple `BackendRefs` with a 
-round-robin load-balancing strategy applied by default across the 
-`Endpoints` or the `Services`. `BackendRefs` weights are now supported 
-to allow you to fine-tune the load-balancing between those backend 
-services.
+{{site.kic_product_name}}'s implementation of `HTTPRoute` supports multiple `BackendRefs` with a
+round-robin load-balancing strategy applied by default across the
+`Endpoints` or the `Services`. `BackendRefs` weights are now supported
+to allow you to fine-tune the load-balancing between those backend services.
 
 ### Supported Versions
 
@@ -55,7 +55,7 @@ services.
 
 ## TCP Routes
 
-The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `BackendRefs` in 
+The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `BackendRefs` in
 `TCPRoute` resources for load balancing.
 
 ### Supported Versions
@@ -77,7 +77,7 @@ The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `
 {% if_version gte:2.6.x %}
 ## Reference Grants
 
-Kong implementation supports `ReferenceGrant` to allow routes to 
+Kong implementation supports `ReferenceGrant` to allow routes to
 reference backends in other namespaces in `BackendRefs`.
 
 ### Supported Versions
@@ -85,9 +85,9 @@ reference backends in other namespaces in `BackendRefs`.
 {% endif_version %}
 
 {% if_version gte:2.4.x lte:2.5.x %}
-## Reference Policies 
+## Reference Policies
 
-The {{site.kic_product_name}}'s implementation supports using `ReferencePolicy` to allow routes to 
+The {{site.kic_product_name}}'s implementation supports using `ReferencePolicy` to allow routes to
 reference backends in other namespaces in `BackendRefs`.
 
 ### Supported Versions

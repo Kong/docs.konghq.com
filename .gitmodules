@@ -1,0 +1,3 @@
+[submodule "src/.repos/kuma"]
+	path = src/.repos/kuma
+	url = https://github.com/kumahq/kuma-website

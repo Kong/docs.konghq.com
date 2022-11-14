@@ -23,12 +23,12 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
-    - ws
-    - wss
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: ws
+    - name: wss
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.

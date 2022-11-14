@@ -27,10 +27,10 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
