@@ -47,8 +47,8 @@ generate new certificates and replace them on the existing nodes.
 You can generate a new data plane certificate from the {% konnect_icon runtimes %} **Runtime Manager**.
 
 1. Select a runtime instance
-1. Click **Runtime group actions** and select **Data Plane Certificates**. 
-1. Click **Generate Certificate**.
+1. Click **Runtime group actions** and select **Data plane certificates**. 
+1. Click **Generate certificate**.
 
 1. Save the new certificate and key into separate files:
 
