@@ -11,6 +11,13 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2022
 
+### 2022.11.17
+
+**Migration to cloud.konghq.com is completed**
+: All active accounts have been migrated from `konnect.konghq.com` 
+to [cloud.konghq.com](https://cloud.konghq.com).
+The deprecated environment at `konnect.konghq.com` is no longer available.
+
 ### 2022.11.08
 
 **Editing the default runtime group**
