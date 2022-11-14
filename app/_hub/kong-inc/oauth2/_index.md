@@ -34,6 +34,8 @@ params:
     - https
     - grpc
     - grpcs
+    - ws
+    - wss
   yaml_examples: false
   konnect_examples: false
   dbless_compatible: 'no'

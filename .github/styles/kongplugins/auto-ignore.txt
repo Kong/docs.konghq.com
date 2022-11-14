@@ -16,6 +16,7 @@ dao
 daos
 datastore
 datastores
+disable_penalty
 endpoint_key
 escape_path
 foogineer
@@ -45,6 +46,7 @@ role_endpoint
 role_entity
 search_by_username
 search_by_username
+send_ca_dn
 ssl_client_verify
 ssl_server_name
 start_cmd

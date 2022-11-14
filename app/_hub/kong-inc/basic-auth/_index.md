@@ -23,6 +23,8 @@ params:
     - https
     - grpc
     - grpcs
+    - ws
+    - wss
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
