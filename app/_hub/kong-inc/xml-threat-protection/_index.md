@@ -48,7 +48,7 @@ params:
       value_in_examples: null
       datatype: boolean
       description: |
-        If not parsing namespace aware, all prefixes and namesapce attributes will be counted as regular attributes and element names, and validated as such.
+        If not parsing namespace aware, all prefixes and namespace attributes will be counted as regular attributes and element names, and validated as such.
     - name: max_depth
       required: true
       default: 50
