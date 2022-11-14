@@ -36,15 +36,16 @@ $ sudo cp /tmp/deck /usr/local/bin/
 ```
 {% endif_version %}
 
+{% if_version lte:1.12.x %}
+
 ## Windows
 
-If you are Windows, you can either use the compressed archive from
+If you are on Windows, you can either use the compressed archive from
 the Github [release page](https://github.com/kong/deck/releases)
 or install using **CMD** by entering the target installation folder and downloading a compressed archive, which contains the binary:
 
-{% if_version leq:1.12.x %}
 ```shell
-curl -sL https://github.com/kong/deck/releases/download/v{{page.version}}/deck_{{page.version}}_linux_amd64.tar.gz -o deck.tar.gz
+curl -sL https://github.com/kong/deck/releases/download/v{{page.version}}/deck_{{page.version}}_windows_amd64.tar.gz -o deck.tar.gz
 mkdir deck
 tar -xf deck.tar.gz -C deck
 powershell -command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + [IO.Path]::PathSeparator + $pwd + '\deck', 'User')"
