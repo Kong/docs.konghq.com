@@ -33,7 +33,9 @@ params:
     - name: grpc
     - name: grpcs
     - name: ws
+      minimum_version: "3.0.x"
     - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and credentials can be created with declarative configuration.
