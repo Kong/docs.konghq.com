@@ -9,13 +9,29 @@ badge: enterprise
 
 ## Environment variables
 
+Using static Vault token authentication:
+
+
 ```bash
 export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
 export KONG_VAULT_HCV_HOST=<hostname>
 export KONG_VAULT_HCV_PORT=<portnumber>
 export KONG_VAULT_HCV_MOUNT=<mountpoint>
 export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_AUTH_METHOD=token
 export KONG_VAULT_HCV_TOKEN=<tokenstring>
+```
+
+Or, using Kubernetes service-account role authentication:
+
+```bash
+export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
+export KONG_VAULT_HCV_HOST=<hostname>
+export KONG_VAULT_HCV_PORT=<portnumber>
+export KONG_VAULT_HCV_MOUNT=<mountpoint>
+export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_AUTH_METHOD=kubernetes
+export KONG_VAULT_HCV_KUBE_ROLE=<rolename>
 ```
 
 You can also store this information in an entity.
@@ -79,6 +95,32 @@ Result:
     "updated_at": 1645008893
 }
 ```
+
+{% endnavtab %}
+{% navtab Declarative configuration %}
+
+{:.note}
+> Secrets management is supported in decK 1.16 and later.
+
+Add the following snippet to your declarative configuration file:
+
+```yaml
+_format_version: "3.0"
+vaults:
+- config:
+    host: localhost
+    kv: v2
+    mount: secret
+    port: 8200
+    protocol: https
+    token: <mytoken>
+  description: Storing secrets in HashiCorp Vault
+  name: hcv
+  prefix: my-hashicorp-vault
+```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Examples
 
