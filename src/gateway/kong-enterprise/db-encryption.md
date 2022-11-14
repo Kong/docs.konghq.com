@@ -407,7 +407,7 @@ To provide a new key, add a new version to the Vault secrets engine at the confi
 In order to communicate with Vault, Kong must be provided with either:
 
 * A Vault token
-* A role mapped to the Kubernetes service account of the running pod
+* A Vault role granted to the Kubernetes service-account of the running pod
 
 The token or Kubernetes auth role must be associated with a policy that allows the `read` and `list` actions on the path where keyring secrets are stored. Kong does not write keyring material to the Vault cluster.
 
