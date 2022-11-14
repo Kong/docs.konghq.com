@@ -108,6 +108,7 @@ allPeople
 allowBoolean
 allowDetailed
 allow_any_domain
+allow_dtd
 allow_origin_header
 allow_paths
 allow_status_codes
@@ -175,6 +176,8 @@ baz
 bearer_token_cookie_name
 bearer_token_param_type
 bind_dn
+bla_max_amplification
+bla_threshold
 block_on_first_violation
 body_bytes_sent
 body_or_err
@@ -201,6 +204,7 @@ cacheable
 canary_by_header_name
 cargoCapacity
 cass
+CDATASection
 cert_cache_ttl
 cert_type
 certicate
@@ -227,6 +231,7 @@ channel_token_scopes_required
 channel_token_signing_algorithm
 channel_token_upstream_header
 channel_token_upstream_leeway
+checked_content_types
 cid
 claims_to_verify
 client_alg
@@ -361,6 +366,8 @@ endraw
 enforce_consumer_groups
 enforce_headers
 enterprise_edition
+entityproperty
+entityname
 event_queue_size
 example_pass
 example_user
@@ -565,6 +572,7 @@ lifecyles
 limit_by
 liveconnect
 local_service_name
+localname
 log_format
 log_id
 log_level
@@ -590,9 +598,13 @@ luarocks
 manager_examples
 mandatory_scope
 max_age
+max_attributes
 max_callback_time_spent
+max_children
 max_cost
 max_delay_time
+max_depth
+max_namespaces
 maximum_expiration
 maximum_version
 memcached
@@ -606,6 +618,8 @@ missing_name
 moesif
 mtls_auth_credentials
 mv
+namespace_aware
+namespaceuri
 navtab
 nbf
 new_body
@@ -613,6 +627,7 @@ no_proxy
 no_version
 not_after
 not_before
+notationName
 num_total_data_points
 oic_jwks
 oidcplugin
@@ -645,7 +660,9 @@ pcall
 pdk
 per_consumer
 pid
+pidata
 pingfederate
+pitarget
 pkce
 pluginserver_amberflo_query_cmd
 pluginserver_amberflo_start_cmd
@@ -679,6 +696,7 @@ proxy_scheme
 proxy_url
 pubkey_type
 public_key
+publicId
 query_arg
 query_string
 queue_size
@@ -852,6 +870,7 @@ supersecretvalue
 superset
 support_url
 sync_rate
+systemId
 tags_header
 talbe
 terms_of_service
@@ -902,6 +921,7 @@ unauthorized_redirect_uri
 unconfigured
 unexpected_redirect_uri
 unhandled_status
+unparsed
 updated_at
 upstream_access_token_header
 upstream_access_token_jwk_header
