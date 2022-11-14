@@ -33,8 +33,8 @@ params:
   consumer_id: true
   route_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   dbless_explanation: |
     Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly

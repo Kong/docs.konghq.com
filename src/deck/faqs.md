@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions (FAQs)
-content-type: reference
+content_type: reference
 ---
 
 ### I use Terraform to configure Kong, why should I care about decK?

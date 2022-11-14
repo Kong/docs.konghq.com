@@ -63,11 +63,13 @@ Styra
 Syslog
 Terraform
 Terraform's
+UIs
 Unicode
 Valero
 Vue
 Wireshark
 Zipkin
+acl
 admin's
 allowlist
 anonymized
@@ -152,6 +154,7 @@ headmatter
 healthchecks
 hostname
 hostnames
+href
 http
 httpbin
 https
@@ -230,6 +233,7 @@ opa
 openresty
 outbounds
 passthrough
+pdk
 pdks
 perf
 performant
@@ -321,7 +325,6 @@ transpiled
 truthy
 ttl
 txt
-UIs
 udpingress
 unary
 uncheck
@@ -337,6 +340,8 @@ unpublish
 unpublishing
 unregister
 unregistering
+unshorten
+unshortened
 updated_at
 upsert
 upstream

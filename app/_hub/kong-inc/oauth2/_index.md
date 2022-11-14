@@ -30,10 +30,10 @@ params:
   route_id: false
   consumer_id: false
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   yaml_examples: false
   konnect_examples: false
   dbless_compatible: 'no'

@@ -18,7 +18,7 @@ From `workspaces/default`, you can see the different elements that make up a sin
 - **specs/**
   - Specs are similar to content in that they contain the data needed to render dynamic content on the page.  In the case of `specs`, the files contain valid OAS or Swagger to be rendered as a spec.
 - **themes/**
-  - The theme directory contains different themes to be applied to the content of the portal. Each theme contains html templates, assets, and a config file that sets global styles available to the theme.
+  - The theme directory contains different themes to be applied to the content of the portal. Each theme contains HTML templates, assets, and a config file that sets global styles available to the theme.
 - **portal.conf.yaml**
   - This config file determines which theme the portal uses to render, the name of the portal, as well configuration for special behavior such as redirect paths for user actions like login/logout.
 - **router.conf.yaml (optional)**
@@ -133,7 +133,7 @@ The first thing to notice in the example files contents are the two sets of `---
 - `layout`
   - **required**: true
   - **type**: `string`
-  - **description**: The layout attribute is required for each piece of content, and determines what html layout to use in order to render the page.  This attribute assumes a root of the current themes layout directory (`themes/<theme-name>/layouts`).
+  - **description**: The layout attribute is required for each piece of content, and determines what HTML layout to use in order to render the page.  This attribute assumes a root of the current themes layout directory (`themes/<theme-name>/layouts`).
   - **example**: `bio.html` or `team/about.html`
 - `readable_by`
   - **required**: false
@@ -218,22 +218,22 @@ If you want to overwrite the hardcoded spec collection config, you can do so by
 including your own in `portal.conf.yaml`. Check out the Collections section of
 our `Working with Templates` guide to learn more.
 
-You can also use the [Portal Files API](/gateway/{{page.kong_version}}/developer-portal/portal-api/)
+You can also use the [Portal Files API](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1)
 to `POST`, `GET`, `PATCH`, and `DELETE` content, spec, and theme files.
 
 ## Theme Files
 ### Themes Directory Structure
-The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via html/css/js.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`. Setting `theme.name` to `best-theme` causes the portal to load theme files under `themes/best-theme/**`.
+The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via HTML/CSS/JS.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`. Setting `theme.name` to `best-theme` causes the portal to load theme files under `themes/best-theme/**`.
 
 Each theme file is composed of a few different folders:
 - **assets/**
   - The assets directory contains static assets that layouts/partials will reference at time of render. Includes CSS, JS, font, and image files.
 - **layouts/**
-  - The layouts directory contains html page templates that `content` reference via the `layout` attribute in headmatter (see `content` section).
+  - The layouts directory contains HTML page templates that `content` reference via the `layout` attribute in headmatter (see `content` section).
 - **partials/**
-  - The partials directory contains html partials to be referenced by layouts. Can be compared to how layouts and partials interacted in the legacy portal.
+  - The partials directory contains HTML partials to be referenced by layouts. Can be compared to how layouts and partials interacted in the legacy portal.
 - **theme.conf.yaml**
-  - This config file sets color and font defaults available to templates for reference as css variables. It also determines what options are available in the Kong Manager Appearance page.
+  - This config file sets color and font defaults available to templates for reference as CSS variables. It also determines what options are available in the Kong Manager Appearance page.
 
 ### Theme Assets
 
@@ -241,7 +241,7 @@ Each theme file is composed of a few different folders:
 - **format:** `theme/*/assets/**/*`
 
 #### Description
-The asset folder contains css/js/fonts/images for your templates to reference.
+The asset folder contains CSS/JS/fonts/images for your templates to reference.
 
 To access asset files from your templates, keep in mind that Kong assumes a path from the root of your selected theme.
 
@@ -260,7 +260,7 @@ To access asset files from your templates, keep in mind that Kong assumes a path
 - **file extensions:** `.html`
 
 #### Description
-Layouts act as the html skeleton of the page you want to render. Each file within the layouts directory must have an `html` filetype. They can exist as vanilla `html`, or can reference partials and parent layouts via the portals templating syntax. Layouts also have access to the `headmatter` and `body` attributes set in `content`.
+Layouts act as the HTML skeleton of the page you want to render. Each file within the layouts directory must have an `html` filetype. They can exist as vanilla `html`, or can reference partials and parent layouts via the portals templating syntax. Layouts also have access to the `headmatter` and `body` attributes set in `content`.
 
 The example below shows what a typical layout could look like.
 

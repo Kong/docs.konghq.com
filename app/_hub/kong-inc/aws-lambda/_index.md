@@ -20,8 +20,8 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   config:
     - name: aws_key
@@ -375,11 +375,19 @@ will be thrown.
 #### Use a fake upstream service
 
 When using the AWS Lambda plugin, the response will be returned by the plugin
-itself without proxying the request to any upstream service. This means that
-a service's `host`, `port`, and `path` properties will be ignored, but must
-still be specified for the entity to be validated by Kong. The `host` property
-in particular must either be an IP address, or a hostname that gets resolved by
-your nameserver.
+itself without proxying the request to any upstream service. The service
+configured for a route is ignored when using this plugin.
+
+Versions of {{site.ce_product_name}} prior to 2.x require a service on all
+routes. Even though the service will not be used, you must configure a
+placeholder service for routes using this plugin. Versions after 2.x allow you
+to omit service configuration.
+
+When using {{site.kic_product_name}}, Kubernetes Ingresses require a service.
+Even on {{site.ce_product_name}} versions that support empty services, you must still configure a placeholder service for the Ingress. An [ExternalName
+service](https://kubernetes.io/docs/concepts/services-networking/service/#externalname)
+for an unresolvable domain (for example, `fake.example`) satisfies this
+requirement without requiring a Deployment associated with the service.
 
 #### Response plugins
 
