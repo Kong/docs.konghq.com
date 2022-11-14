@@ -30,6 +30,8 @@ params:
     - tcp
     - tls
     - udp
+    - ws
+    - wss
   dbless_compatible: 'yes'
   config:
     - name: path

@@ -26,6 +26,8 @@ params:
     - udp
     - grpc
     - grpcs
+    - ws
+    - wss
   dbless_compatible: 'yes'
   config:
     - name: successful_severity

@@ -33,6 +33,8 @@ params:
     - https
     - gprc
     - grpcs
+    - ws
+    - wss
   dbless_compatible: 'yes'
   config:
     - name: ldap_host
