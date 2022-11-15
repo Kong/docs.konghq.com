@@ -298,22 +298,22 @@ port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pp
 ## Translation failures
 
 {{site.kic_product_name}} translates Kubernetes resources into {{site.base_gateway}} configuration.
-It implements a set of validation rules that prevent a faulty Kong configuration to be created.
-In most cases, once the validation fails, a causing Kubernetes object is going to get excluded
-from the translation and a corresponding translation failure warning event is going to be recorded for it.
+It implements a set of validation rules that prevent a faulty {{site.base_gateway}} configuration from being created.
+In most cases, once the validation fails, the Kubernetes object that caused the failure is excluded
+from the translation and a corresponding translation failure warning event is recorded.
 
-In order to determine if there are any translation failures that you might want to fix, you
+To determine if there are any translation failures that you might want to fix, you
 can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
 
-To get a deeper insight into what went wrong during the translation, you might want to look into Kubernetes
-events with a `KongConfigurationTranslationFailed` reason. There's going to be one event created for every
-object that was associated with the failure. An event's message is going to be populated with a human-readable
-explanation of the exact reason for the failure which should help you identify the root cause.
+To get a deeper insight into what went wrong during the translation, you can look into Kubernetes
+events with a `KongConfigurationTranslationFailed` reason. There's one event created for every
+object that was associated with the failure. An event's message is populated with an
+explanation of the exact reason for the failure, which should help you identify the root cause.
 
 ### Example
-In the example, we create a Service with a single port number `80`. In the Ingress definition, we specify a backend
-service that refers to a port number `8080` which does not match the one defined in the Service.
-{{site.kic_product_name}} will skip the affected path and record warning events for both Service and Ingress objects.
+In the following example, we create a service with a single port number `80`. In the Ingress definition, we specify a backend
+service that refers to a port number `8080` which does not match the one defined in the service.
+{{site.kic_product_name}} will skip the affected path and record warning events for both the service and Ingress objects.
 
 ```yaml
 apiVersion: v1
@@ -340,11 +340,11 @@ spec:
               service:
                 name: my-service
                 port:
-                  number: 8080 # there's no matching port in my-service
+                  number: 8080 # doesn't match the port in my-service
 ```
 
 ```console
-$ kubectl get events --sort-by='.lastTimestamp' --field-selector=reason=KongConfigurationTranslationFailed
+kubectl get events --sort-by='.lastTimestamp' --field-selector=reason=KongConfigurationTranslationFailed
 LAST SEEN   TYPE      REASON                               OBJECT               MESSAGE
 4s          Warning   KongConfigurationTranslationFailed   ingress/my-ingress   can't find port for backend kubernetes service: no suitable port found
 4s          Warning   KongConfigurationTranslationFailed   service/my-service   can't find port for backend kubernetes service: no suitable port found
