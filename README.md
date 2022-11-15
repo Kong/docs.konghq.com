@@ -34,6 +34,9 @@ For anything other than minor changes, [clone the repository onto your local mac
 # Install dependencies
 make install
 
+# Make sure to update submodules
+git submodule update --init --recursive
+
 # Build the site and watch for changes 
 make run
 ```
