@@ -65,7 +65,9 @@ params:
     - name: grpc
     - name: grpcs
     - name: ws
+      minimum_version: "3.0.x"
     - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: hide_credentials
