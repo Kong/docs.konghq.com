@@ -31,11 +31,6 @@ ingressclass.networking.k8s.io/kong configured
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
-{{site.kic_product_name}} recognizes the `kong` IngressClass by default.
-Setting the `CONTROLLER_INGRESS_CLASS` environment variable to another value
-overrides this.
-
 {% endnavtab %}
 {% navtab Gateway APIs %}
 {% navtabs codeblock %}
@@ -82,15 +77,27 @@ gateway.gateway.networking.k8s.io/kong created
 {% endnavtab %}
 {% endnavtabs %}
 
-{{site.kic_product_name}} recognizes GatewayClasses with `controllerName:
-konghq.com/kic-gateway-controller` by default. Setting the
-`CONTROLLER_GATEWAY_API_CONTROLLER_NAME` environment variable to another value
-overrides this.
+Once the controller has acknowledged the Gateway, it will show the proxy IP in
+its status:
 
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl get gateway kong
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+NAME   CLASS   ADDRESS        READY   AGE
+kong   kong    203.0.113.42   True    4m46s
+```
+{% endnavtab %}
+{% endnavtabs %}
 {% endnavtab %}
 {% endnavtabs %}
 
 {{site.kic_product_name}} recognizes the `kong` IngressClass and
 `konghq.com/kic-gateway-controller` GatewayClass
-by default. Setting the `CONTROLLER_INGRESS_CLASS` environment variable to
-another value overrides this.
+by default. Setting the `CONTROLLER_INGRESS_CLASS` or
+`CONTROLLER_GATEWAY_API_CONTROLLER_NAME` environment variable to
+another value overrides these defaults.

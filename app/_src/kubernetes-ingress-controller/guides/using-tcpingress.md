@@ -22,13 +22,13 @@ There are two modes available:
   the `SNI` present in the TLS handshake. {{site.base_gateway}} will also terminate the TLS
   handshake and forward the TCP stream to the Kubernetes Service.
 
-{% include /md/kic/installation.md %}
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-{% include /md/kic/class.md %}
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
 ## Add TLS configuration
 
-{% include /md/kic/add-certificate.md hostname=tls9443.kong.example %}
+{% include_cached /md/kic/add-certificate.md hostname='tls9443.kong.example' kong_version=page.kong_version %}
 
 ## Adding TCP listens
 

@@ -3,7 +3,7 @@ over HTTPS. This is not required, as {{site.base_gateway}} will serve a default
 certificate if it cannot find another, but including TLS configuration along
 with routing configuration is typical.
 
-First, create a test certificate for the `{{ include.hostname}}` hostname:
+First, create a test certificate for the `{{ include.hostname }}` hostname:
 
 {% navtabs codeblock %}
 {% navtab Command %}
@@ -15,9 +15,8 @@ openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
   -addext "extendedKeyUsage = serverAuth" 2> /dev/null;
   openssl x509 -in server.crt -subject -noout
 ```
-{:.note}
-> Older OpenSSL versions, including the version provided with OS X Monterey,
-> require using the alternative version of this command.
+Older OpenSSL versions, including the version provided with OS X Monterey,
+require using the alternative version of this command.
 
 {% endnavtab %}
 {% navtab Alternative Command %}

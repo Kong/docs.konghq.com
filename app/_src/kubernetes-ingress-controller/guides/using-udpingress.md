@@ -13,9 +13,9 @@ For this example, you will:
 * Deploy a [CoreDNS][coredns] to serve DNS requests over UDP.
 * Route UDP traffic to it using UDPIngress or UDPRoute.
 
-{% include /md/kic/installation.md %}
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-{% include /md/kic/class.md %}
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
 [dns]:https://datatracker.ietf.org/doc/html/rfc1035
 [kubedns]:https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/

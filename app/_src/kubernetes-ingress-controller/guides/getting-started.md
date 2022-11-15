@@ -8,11 +8,11 @@ content_type: tutorial
 This guide walks through setting up an HTTP(S) route and plugin using
 {{site.base_gateway}} and {{site.kic_product_name}}.
 
-{% include /md/kic/installation.md %}
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-{% include /md/kic/http-test-service.md %}
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-{% include /md/kic/class.md %}
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
 ## Add routing configuration
 
@@ -130,7 +130,7 @@ inside Kubernetes.
 
 ## Add TLS configuration
 
-{% include /md/kic/add-certificate.md hostname=kong.example %}
+{% include_cached /md/kic/add-certificate.md hostname='kong.example' kong_version=page.kong_version %}
 
 Finally, update your routing configuration to use this certificate:
 
@@ -173,7 +173,7 @@ kubectl patch --type=json gateway kong -p='[{
 	    "certificateRefs":[{
 		    "group":"",
 			"kind":"Secret",
-			"name":"kong-example"
+			"name":"kong.example"
 		}]
     }
 }]'
