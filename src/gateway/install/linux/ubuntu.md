@@ -66,8 +66,8 @@ sudo dpkg -i kong-{{page.versions.ce}}.amd64.deb
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
-3. Optional: prevent accidental upgrade by marking the package as `hold`.
-{% capture optional %}
+3. Optional: prevent accidental s by marking the package as `hold`.
+{% capture optional %}upgrade
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
 ```bash
