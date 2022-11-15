@@ -30,8 +30,8 @@ params:
   consumer_id: true
   konnect_examples: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
 ---
 
