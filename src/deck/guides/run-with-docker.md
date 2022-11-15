@@ -14,7 +14,7 @@ Run this command to export the `kong.yaml` file:
 ```bash
 docker run -i \
 -v $(pwd):/deck \
-kong/deck --kong-addr http://example:KONG_ADMIN_PORT --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml dump
+kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml dump
 ```
 Where `$(pwd)/kong.yaml` is the path to a `kong.yaml` file.
 
@@ -25,7 +25,7 @@ Run this command to export objects from all the workspaces:
 docker run -i \
 -v $(pwd):/deck \
 --workdir /deck \
-kong/deck --kong-addr http://example:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN dump --all-workspaces
+kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN dump --all-workspaces
 ```
 
 ## Reset the configuration
@@ -34,7 +34,7 @@ Run this command to initialize Kong objects:
 ```bash
 docker run -i \
 -v $(pwd):/deck \
-kong/deck --kong-addr http://example:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN reset
+kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN reset
 ```
 
 ## Import the configuration
@@ -43,7 +43,7 @@ Run this command to import `kong.yaml`:
 ```bash
 docker run -i \
 -v $(pwd):/deck \
-kong/deck --kong-addr http://example:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN -s /deck/kong.yaml sync
+kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN -s /deck/kong.yaml sync
 ```
 In this example, `kong.yaml` is in `$(pwd)/kong.yaml`.
 

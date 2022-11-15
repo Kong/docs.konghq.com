@@ -51,8 +51,6 @@ items:
       - text: Using environment variables with decK
         url: /guides/environment-variables
 
-
-
   - title: decK CLI Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     url: /reference/deck
