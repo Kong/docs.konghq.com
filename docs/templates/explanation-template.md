@@ -4,7 +4,6 @@ content_type: explanation
 
 # Optional values. Uncomment any that apply to your document.
 
-# no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
 # alpha: true # Labels the page as alpha; adds a banner to the top of the page.
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
@@ -15,7 +14,7 @@ Explanation topics should start with an introduction paragraph. Good explanation
 
 For example, you could start an explanation introduction paragraph about computers like the following:
 
-"Computers are a digital machines that are used to perform operations, both arithmetic and logical, automatically. They can be useful in a variety of situations, such as to type a document, code software, or watch a video. This guide is for users who are new to computers and explains what computers are, their history, the benefits of using a computer, and drawbacks of using computers."
+"Computers are digital machines that are used to perform operations, both arithmetic and logical, automatically. They can be useful in a variety of situations, such as typing a document, coding software, or watching a video. This guide is for users who are new to computers and explains what computers are, their history, the benefits of using a computer, and drawbacks of using computers."
 
 ## First context section <!-- Header optional if there's only one section in the article -->
 

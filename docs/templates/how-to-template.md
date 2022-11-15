@@ -1,10 +1,9 @@
 ---
-title: <phrase with a verb>
+title: <phrase with a verb> # e.g. Enable Kong Manager
 content_type: how-to
 
 # Optional values. Uncomment any that apply to your document.
 
-# no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
 # alpha: true # Labels the page as alpha; adds a banner to the top of the page.
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---

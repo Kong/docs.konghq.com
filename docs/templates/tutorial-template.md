@@ -1,10 +1,9 @@
 ---
-title: Phrase starting with a verb
+title: Phrase starting with a verb # e.g. Get started with dynamic plugin ordering
 content_type: tutorial
 
 # Optional values. Uncomment any that apply to your document.
 
-# no_version: true # Disables the version selector dropdown. Set this on pages that belong to doc sets without versions like /konnect/.
 # alpha: true # Labels the page as alpha; adds a banner to the top of the page.
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
@@ -62,7 +61,7 @@ Continuing the previous example of installing software, here's an example:
 
 ### Explanation of instructions <!-- Optional, but recommended -->
 
-This section should contain a brief, 2-3 sentences that summarizes what the user accomplished in these steps and what the outcome was. For example, "The software is now installed on your computer. You can't use it yet because the settings haven't been configured. In the next section, you will configure the basic settings so you can start using the software." 
+This section should contain a brief, 2-3 sentence paragraph that summarizes what the user accomplished in these steps and what the outcome was. For example, "The software is now installed on your computer. You can't use it yet because the settings haven't been configured. In the next section, you will configure the basic settings so you can start using the software." 
 
 ## Second task section <!-- Optional -->
 
