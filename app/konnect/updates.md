@@ -17,6 +17,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Certificate Management functionality added to the {{site.konnect_saas}} manager **
 : {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. This reduces operational complexity for customers while ensuring that security is not compromised.
 
+### 2022.11.17
+
+**New Analytics predefined teams**
+: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities. 
+
+: {{site.konnect_short_name}} now includes the following predefined Analytics teams:
+* Analytics Admin: Users can fully manage all Analytics content, which includes creating, editing, and deleting reports, as well as viewing the analytics summary.
+* Analytics Viewer: Users can only view the analytics summary and report data. 
+
+: For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
+
 ### 2022.11.08
 
 **Editing the default runtime group**
@@ -28,6 +39,7 @@ The group still retains its status as the default group, and can't be deleted.
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
 [IdP API documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
+
 
 ## October 2022
 
