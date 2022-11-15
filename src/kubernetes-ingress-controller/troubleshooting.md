@@ -300,7 +300,7 @@ port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pp
 {{site.kic_product_name}} translates Kubernetes resources into {{site.base_gateway}} configuration.
 It implements a set of validation rules that prevent a faulty Kong configuration to be created.
 In most cases, once the validation fails, a causing Kubernetes object is going to get excluded
-from the translation and a corresponding translation, failure is going to be reported for it.
+from the translation and a corresponding translation failure warning event is going to be recorded for it.
 
 In order to determine if there are any translation failures that you might want to fix, you
 can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
