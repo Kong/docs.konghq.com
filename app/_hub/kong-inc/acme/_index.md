@@ -19,12 +19,12 @@ params:
   route_id: false
   consumer_id: false
   protocols:
-    - http
-    - https
-    - tcp
-    - tls
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: account_email
@@ -226,7 +226,7 @@ services:
     routes:
       - name: acme-dummy
         protocols:
-          - http
+          - name: http
         paths:
           - /.well-known/acme-challenge
 plugins:

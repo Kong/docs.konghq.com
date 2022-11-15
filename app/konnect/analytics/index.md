@@ -1,6 +1,5 @@
 ---
 title: Introduction to Monitoring Health with Analytics
-no_version: true
 ---
 
 You can monitor the health and performance of any service, service version,
@@ -29,15 +28,12 @@ routes, the graphs show requests broken down by status codes.
 For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page <span class="badge plus"></span>.
 
 From Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
-* View the [Analytics dashboard](/konnect/analytics/summary-dashboard) to track traffic and errors by error code across all services in your organization.
+* View the [Analytics dashboard](/konnect/analytics/summary-dashboard) to track traffic, errors by error code, and latency across all services in your organization.
 * [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
 > _**Figure 2:** Graph showing successful and failed requests over the past three hours._
-
- ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
-> _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
 ## Time intervals
 

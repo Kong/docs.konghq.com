@@ -3,74 +3,88 @@ columns:
     key: oss
   - name: Kong Enterprise
     key: enterprise
-  - name: Production Ready
+  - name: Officially Supported
     key: support
 features:
-  - name: 'Packages'
+  - name: "Packages"
     items:
-      - name: 'Alpine'
-        url: /gateway/VERSION/install/docker/build-custom-images/
+      - name: "Alpine"
+        url: https://download.konghq.com/gateway-3.x-alpine/
         oss: true
         enterprise: true
         support: true
-      - name: 'Debian'
+        icon: /assets/images/icons/documentation/alpinelinux-icon.svg
+      - name: "Debian"
         url: /gateway/VERSION/install/linux/debian/
         oss: true
         enterprise: true
         support: true
-      - name: 'Ubuntu'
+        icon: /assets/images/icons/documentation/debian-logo.jpg
+      - name: "Ubuntu"
         url: /gateway/VERSION/install/linux/ubuntu/
         oss: true
         enterprise: true
         support: true
-      - name: 'RedHat'
+        icon: /assets/images/icons/documentation/ubuntu.png
+      - name: "RedHat"
         url: /gateway/VERSION/install/linux/rhel/
         oss: true
         enterprise: true
         support: true
-      - name: 'Amazon Linux 2'
+        icon: /assets/images/icons/documentation/rhel.jpg
+      - name: "Amazon Linux 2"
         url: /gateway/VERSION/install/linux/amazon-linux/
         oss: true
         enterprise: true
         support: true
-  - name: 'Kubernetes'
+        icon: /assets/images/icons/documentation/amazon-linux.png
+  - name: "Kubernetes"
     items:
-      - name: 'Kubernetes (YAML Manifests)'
+      - name: "Kubernetes (YAML Manifests)"
         url: /gateway/VERSION/install/kubernetes/kubectl/
         oss: true
         enterprise: true
         support: false
-      - name: 'Kubernetes (Helm)'
+        icon: /assets/images/icons/documentation/kubernetes-logo.png
+      - name: "Kubernetes (Helm)"
         url: /gateway/VERSION/install/kubernetes/helm-quickstart/
         oss: true
         enterprise: true
         support: true
-      - name: 'OpenShift'
+        icon: /assets/images/icons/documentation/helm-icon-color.svg
+      - name: "OpenShift"
         url: /gateway/VERSION/install/kubernetes/openshift/
         oss: true
         enterprise: true
-        support: false
- 
-  - name: 'Docker'
+        support: true
+        icon: /assets/images/icons/documentation/openshift-logo.png
+
+  - name: "Docker"
     items:
-      - name: 'Debian (bullseye-slim)'
+      - name: "Debian (bullseye-slim)"
         oss: true
         enterprise: true
         support: true
-      - name: 'RHEL (8-ubi)'
+        url: /gateway/VERSION/install/docker/
+        icon: /assets/images/icons/documentation/debian-logo.jpg
+      - name: "RHEL (8-ubi)"
         oss: true
         enterprise: true
         support: true
-      - name: 'Alpine'
+        url: /gateway/VERSION/install/docker/build-custom-images/
+        icon: /assets/images/icons/documentation/rhel.jpg
+      - name: "Alpine"
         oss: true
         enterprise: true
         support: false
- 
-  - name: 'Other'
+        url: /gateway/VERSION/install/docker/build-custom-images/
+        icon: /assets/images/icons/documentation/alpinelinux-icon.svg
+
+  - name: "Other"
     items:
-      - name: 'MacOS (Homebrew)'
+      - name: "MacOS (Homebrew)"
         url: /gateway/VERSION/install/macos/
         oss: true
         enterprise_text: N/A
         support: false
- 
+        icon: /assets/images/icons/documentation/macos-logo.png

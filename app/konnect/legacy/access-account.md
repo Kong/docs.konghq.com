@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Accessing a Kong Konnect Cloud Account
-no_version: true
 ---
 <!-- vale off -->
 Sign up for {{site.konnect_short_name}} to receive a 30 day free

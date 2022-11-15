@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Key Concepts and Terminology
-no_version: true
 ---
 <!-- vale off -->
 ### Service

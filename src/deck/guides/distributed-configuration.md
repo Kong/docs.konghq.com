@@ -1,6 +1,6 @@
 ---
 title: Distributed Configuration for Kong using decK
-content-type: explanation
+content_type: explanation
 ---
 
 decK can operate on a subset of configuration instead of taking care
@@ -74,7 +74,7 @@ configuration of other teams. You no longer need to maintain Kong's
 configuration in a single repository, where multiple teams need to
 co-ordinate.
 
-> The `--select-tag` flag is present on those two commands for use cases where
+The `--select-tag` flag is present on those two commands for use cases where
 the file cannot have `select_tags` defined inside it. It is strongly advised
 that you do not supply select-tags to sync and diff commands via flags.
 This is because the tag information should be part of the declarative

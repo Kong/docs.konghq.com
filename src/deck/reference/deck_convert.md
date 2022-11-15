@@ -1,7 +1,7 @@
 ---
 title: deck convert
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content-type: reference
+content_type: reference
 ---
 
 The convert command changes configuration files from one format
@@ -29,12 +29,17 @@ deck convert [command-specific flags] [global flags]
 
 `--output-file`
 :  file to write configuration to after conversion. Use `-` to write to stdout.
+   {% if_version gte:1.16.x %} (Default: `"kong.yaml"`){% endif_version %}
 
 `--to`
 :  desired format of the output, allowed formats:
 {% if_version gte:1.15.x %}[`konnect` `kong-gateway-3.x`]{% endif_version %}{%
    if_version gte:1.7.x lte:1.14.x %}`konnect`{% endif_version %}
 
+{% if_version gte: 1.16.x %}
+`--yes`
+:  assume `yes` to prompts and run non-interactively. (Default: `false`)
+{% endif_version %}
 
 {% if_version gte:1.7.x %}
 

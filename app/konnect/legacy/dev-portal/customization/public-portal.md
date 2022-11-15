@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Enable Public Dev Portal
-no_version: true
 ---
 <!-- vale off -->
 When Public Portal is enabled, anyone can access your Dev Portal without a

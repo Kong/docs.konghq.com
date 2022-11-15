@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Configure a Plugin on a Route
-no_version: true
 ---
 <!-- vale off -->
 Enable, update, disable, or delete a plugin for a Route.

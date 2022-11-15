@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Konnect Cloud Updates
-no_version: true
 ---
 <!-- vale off -->
 The updates contained in this topic apply to {{site.konnect_saas}},

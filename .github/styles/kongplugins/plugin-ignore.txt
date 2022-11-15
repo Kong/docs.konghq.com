@@ -12,11 +12,8 @@ Cleafy
 Convensions
 Coreresponding
 Crypto
-customerHeader
 Datatypes
-dimensionHeaders
 Gruce
-hostDimension
 Inspur
 intervalSeconds
 assertion_consumer_path
@@ -38,8 +35,6 @@ Lorem
 request_signing_key
 MBs
 Memcache
-methodDimension
-mv
 NATs
 OAuth
 request_is_signed
@@ -47,14 +42,9 @@ Openwhisk
 Optum
 PASETOs
 Paseto
-pluginserver_amberflo_query_cmd
-pluginserver_amberflo_start_cmd
-pluginserver_names
 Reedelk
-routeDimension
 SQLi
 Seifchen
-serviceDimension
 TLDs
 TTLs
 WAFs
@@ -135,6 +125,7 @@ allPeople
 allowBoolean
 allowDetailed
 allow_any_domain
+allow_dtd
 allow_origin_header
 allow_paths
 allow_status_codes
@@ -193,6 +184,7 @@ bandwidth_metrics
 basePath
 base_dn
 basicauth_credentials
+batchSize
 batch_flush_delay
 batch_max_size
 batch_size
@@ -201,6 +193,8 @@ baz
 bearer_token_cookie_name
 bearer_token_param_type
 bind_dn
+bla_max_amplification
+bla_threshold
 block_on_first_violation
 body_bytes_sent
 body_or_err
@@ -227,6 +221,7 @@ cacheable
 canary_by_header_name
 cargoCapacity
 cass
+CDATASection
 cert_cache_ttl
 cert_type
 certicate
@@ -253,6 +248,7 @@ channel_token_scopes_required
 channel_token_signing_algorithm
 channel_token_upstream_header
 channel_token_upstream_leeway
+checked_content_types
 cid
 claims_to_verify
 client_alg
@@ -323,6 +319,7 @@ custom_fields_by_lua
 custom_id
 custom_introspection_headers
 custom_plugins
+customerHeader
 customformat
 datatype
 dbless_compatible
@@ -333,6 +330,7 @@ description
 dest
 dex
 dictionary_name
+dimensionHeaders
 disable_capture_request_body
 disable_capture_response_body
 disable_gzip_payload_decompression
@@ -385,6 +383,8 @@ endraw
 enforce_consumer_groups
 enforce_headers
 enterprise_edition
+entityproperty
+entityname
 event_queue_size
 example_pass
 example_user
@@ -447,6 +447,7 @@ hide_credentials
 hide_groups_header
 hmac
 hmacauth_credentials
+hostDimension
 hostdomain
 hostname_in_prefix
 html
@@ -486,6 +487,7 @@ include_route_in_opa_input
 include_service_in_opa_input
 independantly
 inject_client_cert_details
+intervalSeconds
 introspect_jwt_tokens
 introspect_request
 introspection_accept
@@ -568,9 +570,10 @@ kongmap
 konnect_examples
 konnect_icon
 kty
+kv
 kv_path
-latency_metrics
 latency_gateway
+latency_metrics
 latency_proxy
 latency_request
 ldap
@@ -586,6 +589,7 @@ lifecyles
 limit_by
 liveconnect
 local_service_name
+localname
 log_format
 log_id
 log_level
@@ -611,13 +615,18 @@ luarocks
 manager_examples
 mandatory_scope
 max_age
+max_attributes
 max_callback_time_spent
+max_children
 max_cost
 max_delay_time
+max_depth
+max_namespaces
 maximum_expiration
 maximum_version
 memcached
 meta_data
+methodDimension
 metrics_
 microsensor
 min_delay_time
@@ -625,6 +634,10 @@ minimum_version
 missing_name
 moesif
 mtls_auth_credentials
+mv
+myapikey
+namespace_aware
+namespaceuri
 navtab
 nbf
 new_body
@@ -632,6 +645,7 @@ no_proxy
 no_version
 not_after
 not_before
+notationName
 num_total_data_points
 oic_jwks
 oidcplugin
@@ -664,8 +678,13 @@ pcall
 pdk
 per_consumer
 pid
+pidata
 pingfederate
+pitarget
 pkce
+pluginserver_amberflo_query_cmd
+pluginserver_amberflo_start_cmd
+pluginserver_names
 possiblities
 preconfigured
 preferred_username
@@ -695,6 +714,7 @@ proxy_scheme
 proxy_url
 pubkey_type
 public_key
+publicId
 query_arg
 query_string
 queue_size
@@ -765,6 +785,7 @@ revocation_endpoint_auth_method
 roles_claim
 roles_required
 root_span
+routeDimension
 route_groups
 route_id
 routeprefix
@@ -791,6 +812,7 @@ serial_number
 server_errors_severity
 server_name
 service.name
+serviceDimension
 service_id
 service_identifier_default
 service_name_or_host
@@ -866,6 +888,7 @@ supersecretvalue
 superset
 support_url
 sync_rate
+systemId
 tags_header
 talbe
 terms_of_service
@@ -916,6 +939,7 @@ unauthorized_redirect_uri
 unconfigured
 unexpected_redirect_uri
 unhandled_status
+unparsed
 updated_at
 upstream_access_token_header
 upstream_access_token_jwk_header
@@ -993,6 +1017,7 @@ ws_id
 wsk
 wskhttpMethod
 wss
+x_headers
 xml
 xpcall
 yaml_examples

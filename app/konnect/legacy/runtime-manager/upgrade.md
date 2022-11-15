@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Upgrade a Runtime to a New Version
-no_version: true
 ---
 <!-- vale off -->
 You can upgrade runtimes to a new {{site.base_gateway}} version by bringing

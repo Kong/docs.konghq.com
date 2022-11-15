@@ -1,6 +1,5 @@
 ---
 title: Configure Azure IdP for Dev Portal
-no_version: true
 content_type: how-to
 ---
 

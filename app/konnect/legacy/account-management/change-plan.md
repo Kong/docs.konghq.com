@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Change to a Different Plan
-no_version: true
 ---
 
 <!-- vale off -->

@@ -1,6 +1,5 @@
 ---
 title: Summary Dashboard
-no_version: true
 content_type: reference
 badge: plus
 ---
@@ -9,23 +8,33 @@ The Summary Dashboard provides metrics for services cataloged by Service Hub wit
 
 * **Traffic**: Total number of HTTP requests.
 * **Errors**: Percentage of failed HTTP requests.
+* **Latency**: Request latency at P50, P95, and P99 percentiles.
 
-Both categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
+These categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
 
-You can view a graph for each category by clicking **Traffic** or **Errors**, and switching between the two views.
+You can view a graph for each category by clicking **Traffic**, **Errors**, or **Latency**, and switching between the views.
 
 * **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval.
     * Successful requests contain all requests that returned a **1xx-3xx** status code.
     * Failed requests contain all requests that returned a **4xx-5xx** status code.
     * Custom 6xx status codes are not tracked.
 
-    ![traffic vitals graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
+    ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
     > _**Figure 1:** Graph showing successful and failed requests over the past three hours._
 
 * **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
-    ![errors vitals graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
+    ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png)
     > _**Figure 2:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
+
+* **Latency**: This graph displays request latency, in milliseconds, of the 99th, 95th, and 50th percentiles.
+Admins can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
+
+    {:.note}
+    > **Note**: Latency data is only available for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+
+   ![latency analytics graph](/assets/images/docs/konnect/konnect-analytics-latency.png)
+  > _**Figure 3:** Graph showing latency as a percentage over the past 15 minutes._
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
 

@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Implement and Test a Service
-no_version: true
 ---
 <!-- vale off -->
 Create a Service implementation to expose your Service to clients.

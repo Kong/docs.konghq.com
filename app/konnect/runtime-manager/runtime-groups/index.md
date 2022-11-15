@@ -1,6 +1,5 @@
 ---
 title: Runtime Groups
-no_version: true
 ---
 
 {{site.konnect_short_name}} manages runtime configuration in runtime groups. Each runtime group acts
@@ -27,11 +26,10 @@ manage runtime instances and their configuration in any groupings you want.
 
 ## Default runtime group
 
-The default runtime group is the foundational group in {{site.konnect_short_name}}. Every
-organization starts with one default group.
+The default runtime group is the foundational group in {{site.konnect_short_name}}.
+Every region in every organization starts with one default group.
 
-This group can't be renamed or deleted, and its status as the default
-group can't be changed.
+This group can't be deleted, and its status as the default group can't be changed.
 
 ### Application registration in the Dev Portal
 
@@ -89,7 +87,7 @@ entity-specific permissions.
 
 ## Runtime group dashboard
 
-For each runtime group, you can view traffic, error rate, and {{site.base_gateway}} service analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display. 
+For each runtime group, you can view traffic, error rate, and {{site.base_gateway}} service analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display.
 
 [Runtime group dashboard &rarr;](/konnect/runtime-manager/runtime-groups/dashboard)
 

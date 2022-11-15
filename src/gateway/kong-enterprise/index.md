@@ -11,9 +11,12 @@ It is the only solution that helps you accelerate your cloud journey by managing
 ## Enterprise Plugins
 
 Kong Enterprise offers access to 400+ out-of-box enterprise and community plugins. 
-It offers exclusive versions of OSS plugins like the [Rate-Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/) with added functionality such as the use of consumer groups, and database specific strategy. 
+It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/) with added functionality such as the use of consumer groups, and database specific strategy. It also provides Enterprise-exclusive functionality, such as authentication with 
+[OpenID Connect](/hub/kong-inc/openid-connect/), which lets you standardize identity provider (IdP) integrations.
+
 Kong Enterprise also natively supports gRPC and REST, WebSockets, and integrates with Apollo GraphQL server and Apache Kafka services. These plugins can be leveraged to provide advanced connectivity features and solutions to {{site.base_gateway}} such as:
 
+* [OpenID Connect (OIDC)](/hub/kong-inc/openid-connect/)
 * [Event gateways with Kafka](/hub/kong-inc/kafka-upstream/)
 * [GraphQL](/hub/kong-inc/graphql-proxy-cache-advanced/)
 * [Mocking](/hub/kong-inc/mocking/)

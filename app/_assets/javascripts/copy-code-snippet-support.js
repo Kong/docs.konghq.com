@@ -57,10 +57,10 @@ jQuery(function () {
 
       copyInput.text(
         snippet.data("copy-code") ||
-        snippet
-          .find("code")
-          .text()
-          .replace(/^\s*\$\s*/gim, "")
+          snippet
+            .find("code")
+            .text()
+            .replace(/^\s*\$\s*/gim, "")
       );
       copyInput.select();
       document.execCommand("copy");

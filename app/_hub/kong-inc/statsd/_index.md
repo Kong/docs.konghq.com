@@ -9,7 +9,7 @@ description: |
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 type: plugin
 categories:
-  - logging
+  - analytics-monitoring
 kong_version_compatibility:
   community_edition:
     compatible: true
@@ -23,14 +23,15 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
-    - tcp
-    - tls
-    - tls_passthrough
-    - udp
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: host
@@ -204,3 +205,4 @@ Field         | Description                                             | Dataty
   * The metric name that is related to the service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
   * The metric `kong.<service_identifier>.request.status.<status>.count` from metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
   * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
+  * The metric `kong.<service_identifier>.request_size` and `kong.<service_identifier>.response_size` stat type has been changed from `timer` to `counter`.

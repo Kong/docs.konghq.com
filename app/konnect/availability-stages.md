@@ -1,7 +1,6 @@
 ---
 title: Stages of software availability
-content-type: reference
-no_version: true
+content_type: reference
 ---
 
 {% include_cached /md/availability-stages.md %}

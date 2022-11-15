@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Ports and Network Requirements
-no_version: true
 ---
 <!-- vale off -->
 ## Konnect Cloud ports

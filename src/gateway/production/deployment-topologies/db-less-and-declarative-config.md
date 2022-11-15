@@ -12,12 +12,12 @@ specify the use of the database and its [various settings](/gateway/{{page.kong_
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
 
-* reduced number of dependencies: no need to manage a database installation
-  if the entire setup for your use-cases fits in memory
-* it is a good fit for automation in CI/CD scenarios: configuration for
+* Reduced number of dependencies: No need to manage a database installation
+  if the entire setup for your use-cases fits in memory.
+* Automation in CI/CD scenarios: Configuration for
   entities can be kept in a single source of truth managed via a Git
-  repository
-* it enables more deployment options for Kong
+  repository.
+* Enables more deployment options for {{site.base_gateway}}.
 
 ## Declarative configuration
 
@@ -37,9 +37,9 @@ side-effect that *intermediate states* happen. In the above example, there is
 a window of time in between creating a Route and adding the Plugin in which
 the Route did not have the Plugin applied.
 
-A declarative configuration file, on the other hand, will contain the settings
-for all desired entities in a single file, and once that file is loaded into
-Kong, it replaces the entire configuration. When incremental changes are
+A declarative configuration file, on the other hand, contains the settings
+for all desired entities in a single file. Once that file is loaded into
+{{site.base_gateway}}, it replaces the entire configuration. When incremental changes are
 desired, they are made to the declarative configuration file, which is then
 reloaded in its entirety. At all times, the configuration described in the
 file loaded into Kong is the configured state of the system.
@@ -86,9 +86,9 @@ Server: kong/2.1.0
 }
 ```
 
-{{site.base_gateway}} is running, but no declarative configuration was loaded yet. This
-means that the configuration of this node is empty. There are no Routes,
-Services or entities of any kind.
+{{site.base_gateway}} is running, but no declarative configuration has been loaded yet. This
+means that the configuration of this node is empty. There are no routes,
+services, or entities of any kind.
 
 Command:
 
@@ -119,8 +119,8 @@ Server: kong/2.1.0
 > **Note:** We recommend using decK to manage your declarative configuration.
 See the [decK documentation](/deck) for more information.
 
-To load entities into DB-less Kong, we need a declarative configuration
-file. The following command will create a skeleton file to get you
+To load entities into DB-less Kong, you need a declarative configuration
+file. The following command creates a skeleton file to get you
 started:
 
 ```
@@ -159,6 +159,9 @@ consumers:
   - key: my-key
 ```
 
+See the [declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+for all configuration options.
+
 The only mandatory piece of metadata is `_format_version: "3.0"`, which
 specifies the version number of the declarative configuration syntax format.
 This also matches the minimum version of Kong required to parse the file.
@@ -173,22 +176,22 @@ the encryption does not happen twice.
 
 At the top level, you can specify any Kong entity, be it a core entity such as
 `services` and `consumers` as in the above example, or custom entities created
-by Plugins, such as `keyauth_credentials`. This makes the declarative
+by plugins, such as `keyauth_credentials`. This makes the declarative
 configuration format inherently extensible, and it is the reason why `kong
 config` commands that process declarative configuration require `kong.conf` to
 be available, so that the `plugins` directive is taken into account.
 
-When entities have a relationship, such as a Route that points to a Service,
+When entities have a relationship, such as a route that points to a service,
 this relationship can be specified via nesting.
 
-Only one-to-one relationships can be specified by nesting: a Plugin that is
-applied to a Service can have its relationship depicted via nesting, as in the
+Only one-to-one relationships can be specified by nesting: a plugin that is
+applied to a service can have its relationship depicted via nesting, as in the
 example above. Relationships involving more than two entities, such as a
-Plugin that is applied to both a Service and a Consumer must be done via a
-top-level entry, where the entities can be identified by their primary keys
+plugin that is applied to both a service and a consumer, must be done via a
+top-level entry. In that case, the entities can be identified by their primary keys
 or identifying names (the same identifiers that can be used to refer to them
-in the Admin API). This is an example of a plugin applied to a Service and
-a Consumer:
+in the Admin API). This is an example of a plugin applied to a service and
+a consumer:
 
 ```yml
 plugins:
@@ -199,8 +202,8 @@ plugins:
 
 ## Check the file
 
-Once you are done editing the file, it is possible to check the syntax
-for any errors before attempting to load it into Kong:
+Once you are done editing the file, you can check the syntax
+for any errors before attempting to load it into {{site.base_gateway}}:
 
 ```
 kong config -c kong.conf parse kong.yml
@@ -218,7 +221,7 @@ There are two ways to load a declarative configuration file into Kong: using
 
 To load a declarative configuration file at Kong start-up, use the
 `declarative_config` directive in `kong.conf` (or, as usual to all `kong.conf`
-entries, the equivalent `KONG_DECLARATIVE_CONFIG` environment variable).
+entries, the equivalent `KONG_DECLARATIVE_CONFIG` environment variable):
 
 ```
 export KONG_DATABASE=off \
@@ -235,12 +238,12 @@ http :8001/config config=@kong.yml
 ```
 
 {:.important}
-The `/config` endpoint replaces the entire set of entities in memory
+> The `/config` endpoint replaces the entire set of entities in memory
 with the ones specified in the given file.
 
-Or another way you can start Kong in DB-less mode is with a
+Another way you can start Kong in DB-less mode is by including the entire
 declarative configuration in a string using the `KONG_DECLARATIVE_CONFIG_STRING`
-environment variable.
+environment variable:
 
 ```
 export KONG_DATABASE=off
@@ -279,13 +282,18 @@ for inspecting entities work as usual, but attempts to `POST`, `PATCH`
 `HTTP 405 Not Allowed`.
 
 This restriction is limited to what would be otherwise database operations. In
-particular, using `POST` to set the health state of Targets is still enabled,
+particular, using `POST` to set the health state of targets is still enabled,
 since this is a node-specific in-memory operation.
 
 #### Plugin compatibility
 
-Not all Kong plugins are compatible with DB-less mode since some of them
-by design require a central database coordination or dynamic creation of
+Not all Kong plugins are compatible with DB-less mode. By design, some plugins
+require central database coordination or dynamic creation of
 entities.
 
-For current plugin compatibility, see [Plugin compatibility](/konnect-platform/compatibility/plugins/).  
+For current plugin compatibility, see [Plugin compatibility](/hub/plugins/compatibility/).
+
+## See also
+* [Declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+* [decK documentation](/deck/latest/)
+* [Using decK with {{site.ee_product_name}}](/deck/latest/guides/kong-enterprise/)
