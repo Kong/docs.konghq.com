@@ -10,17 +10,13 @@ This guide walks through deploying a simple [Service][svc] that listens for
 {{site.base_gateway}}.
 
 For this example, you will:
-* Deploy a [CoreDNS][coredns] to serve DNS requests over UDP.
+* Deploy a UDP test application.
 * Route UDP traffic to it using UDPIngress or UDPRoute.
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
-[dns]:https://datatracker.ietf.org/doc/html/rfc1035
-[kubedns]:https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-[pods]:https://kubernetes.io/docs/concepts/workloads/pods/
-[coredns]:https://coredns.io/
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
 
@@ -42,7 +38,8 @@ namespace/udp-example created
 {% endnavtabs %}
 
 Other examples in this guide will use this namespace. When you've completed
-this guide, `kubectl delete namespace udp-example` will clean them up.
+this guide, `kubectl delete namespace udp-example` will clean those resources
+up.
 
 ## Adding UDP listens
 
@@ -109,7 +106,7 @@ metadata:
 spec:
   ports:
   - name: stream9999
-    port: 53
+    port: 9999
     protocol: UDP
     targetPort: 9999
   selector:
@@ -163,52 +160,9 @@ gateway.gateway.networking.k8s.io/kong patched
 {% endnavtabs %}
 
 
-## Deploy CoreDNS
+## Deploy a UDP test application
 
-First, create a basic CoreDNS configuration ConfigMap:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-echo "apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: coredns
-  namespace: udp-example
-data:
-  Corefile: |-
-    .:53 {
-        errors
-        health {
-           lameduck 5s
-        }
-        ready
-        kubernetes cluster.local in-addr.arpa ip6.arpa {
-           pods insecure
-           fallthrough in-addr.arpa ip6.arpa
-           ttl 30
-        }
-        forward . /etc/resolv.conf {
-           max_concurrent 1000
-        }
-        cache 30
-        loop
-        reload
-        loadbalance
-    }
-" | kubectl apply -f -
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-configmap/coredns created
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-This simple configuration tells CoreDNS pods to forward all requests to the
-default nameservers configured on its host. With configuration in place, create
-a CoreDNS Deployment and Service:
+Create a test application Deployment and an associated Service:
 
 {% navtabs codeblock %}
 {% navtab Command %}
@@ -217,75 +171,64 @@ echo "---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coredns
+  name: tftp
   namespace: udp-example
   labels:
-    app: coredns
+    app: tftp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: coredns
+      app: tftp
   template:
     metadata:
       labels:
-        app: coredns
+        app: tftp
     spec:
       containers:
-      - args:
-        - -conf
-        - /etc/coredns/Corefile
-        image: coredns/coredns
-        imagePullPolicy: IfNotPresent
-        name: coredns
+      - name: tftp
+        image: cilium/echoserver-udp:latest
+        args:
+        - --listen
+        - :9999
         ports:
-        - containerPort: 53
-          protocol: UDP
-        volumeMounts:
-        - mountPath: /etc/coredns
-          name: config-volume
-      volumes:
-      - configMap:
-          defaultMode: 420
-          items:
-          - key: Corefile
-            path: Corefile
-          name: coredns
-        name: config-volume
+        - containerPort: 9999
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: coredns
+  name: tftp
   namespace: udp-example
 spec:
   ports:
-  - port: 53
-    name: udp-53
-    protocol: UDP
-    targetPort: 53
   - port: 9999
-    name: udp-9999
+    name: tftp
     protocol: UDP
-    targetPort: 53
+    targetPort: 9999
   selector:
-    app: coredns
+    app: tftp
   type: ClusterIP
 " | kubectl apply -f -
 ```
 {% endnavtab %}
 {% navtab Response %}
 ```text
-deployment.apps/coredns created
-service/coredns created
+deployment.apps/tftp created
+service/tftp created
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
+[echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
+test server that accepts UDP TFTP requests and returns basic request
+information. As curl supports TFTP, it is a convenient option for
+testing UDP routing.
+
 ## Route UDP traffic
 
-Now that {{site.base_gateway}} is listening on `9999`, you can create a UDPIngress resource which will attach
-the CoreDNS service to that port so you can make DNS requests to it from outside the cluster.
+Now that {{site.base_gateway}} is listening on `9999` and the test application
+is running, you can create UDP routing configuration that proxies traffic to
+the application:
 
 {% navtabs api %}
 {% navtab Ingress %}
@@ -295,22 +238,22 @@ the CoreDNS service to that port so you can make DNS requests to it from outside
 echo "apiVersion: configuration.konghq.com/v1beta1
 kind: UDPIngress
 metadata:
-  name: coredns
+  name: tftp
   namespace: udp-example
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
   rules:
   - backend:
-      serviceName: coredns
-      servicePort: 53
+      serviceName: tftp
+      servicePort: 9999
     port: 9999
 " | kubectl apply -f -
 ```
 {% endnavtab %}
 {% navtab Response %}
 ```text
-udpingress.configuration.konghq.com/coredns created
+udpingress.configuration.konghq.com/tftp created
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -322,7 +265,7 @@ udpingress.configuration.konghq.com/coredns created
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: UDPRoute
 metadata:
-  name: coredns
+  name: tftp
   namespace: udp-example
 spec:
   parentRefs:
@@ -330,7 +273,7 @@ spec:
     namespace: default
   rules:
   - backendRefs:
-    - name: coredns
+    - name: tftp
       port: 9999
 " | kubectl apply -f -
 ```
@@ -344,19 +287,12 @@ spec:
 {% endnavtabs %}
 
 This configuration routes traffic to UDP port `9999` on the
-{{site.base_gateway}} proxy to port `53` for our DNS server.
+{{site.base_gateway}} proxy to port `9999` on the TFTP test server.
 
 ## Test the configuration
 
-Now that setup is complete, all that's left to do is verify that everything is working
-by making a DNS request to our CoreDNS server.
-
-> **Note:** This example assumes you have the `dig` command available on your local
- system. If you don't, refer to your operating system documentation for a similar DNS
- lookup tool.
-
-First, retrieve the IP address of the UDP load balancer service that we
-configured in previous sections:
+First, retrieve the external IP address of the UDP proxy Service you created
+previously:
 
 {% navtabs codeblock %}
 {% navtab Command %}
@@ -370,30 +306,23 @@ No output.
 {% endnavtab %}
 {% endnavtabs %}
 
-Now that you've stored the IP in the environment variable `KONG_UDP_ENDPOINT`, you can use
-that with `dig` to do a DNS lookup through the CoreDNS server you set up and exposed
-using UDPIngress:
+After, use curl to send a TFTP request through the proxy:
 
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-dig @${KONG_UDP_ENDPOINT} -p 9999 konghq.com
+curl -s tftp://${KONG_UDP_ENDPOINT}:9999/hello
 ```
 {% endnavtab %}
 {% navtab Response %}
 ```text
-;; ANSWER SECTION:
-konghq.com.		30	IN	A	34.83.126.248
+Hostname: tftp-5849bfd46f-nqk9x
 
-;; Query time: 60 msec
-;; SERVER: <KONG_UDP_ENDPOINT>#9999
-;; WHEN: Thu Aug 19 08:39:16 EDT 2021
-;; MSG SIZE  rcvd: 77
+Request Information:
+	client_address=10.244.0.1
+	client_port=39364
+	real path=/hello
+	request_scheme=tftp
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
-Verify that the `{KONG_UDP_ENDPOINT}` in the `SERVER` section of the response above ends
-up being equal to your `${KONG_UDP_ENDPOINT}` value.
-
-Now you're equipped to route UDP traffic into your Kubernetes cluster with {{site.base_gateway}}!
