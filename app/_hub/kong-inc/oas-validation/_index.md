@@ -1,10 +1,9 @@
 ---
 name: OAS Validation
 publisher: Kong Inc.
-version: 0.1.x
 desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification
 description: |
-  Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and OpenAPI v3 specifications JSON request & response bodies, with support for schema definitions described using JSONSchema draft v4. For "JSON schema draft 4" type schema's please see the [JSON schema website](https://json-schema.org/) for details on the format and examples.
+  Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
 
   {:.note}
   > To use this plugin in Konnect Cloud,
@@ -17,21 +16,21 @@ categories:
   - traffic-control
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 3.x
+    compatible: true
 params:
   name: oas-validation
   service_id: true
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   config:
     - name: api_spec
       required: true
       datatype: string
+      value_in_examples: <your API specification>
       description: |
         The API specification defined using either Swagger or the OpenAPI. This can be either a JSON or YAML based file. If using a YAML file, this will need to be URL encoded to preserve the YAML format.
     - name: validate_request_uri_params
@@ -45,13 +44,13 @@ params:
       datatype: boolean
       default: true
       description: |
-        If set to true, validates HTTP Header parameters against the API specification.
+        If set to true, validates HTTP header parameters against the API specification.
     - name: validate_request_query_params
       required: false
       datatype: boolean
       default: true
       description: |
-        If set to true, validate Query parameters against the API specification.
+        If set to true, validates query parameters against the API specification.
     - name: validate_request_body
       required: false
       datatype: boolean
@@ -75,68 +74,43 @@ params:
       datatype: boolean
       default: false
       description: |
-        If set to true, notifications via event hooks are enabled, but response validation failures do not effect the response flow.
+        If set to true, notifications via event hooks are enabled, but response validation failures don't affect the response flow.
     - name: header_parameter_check
       required: true
       datatype: boolean
       default: false
       description: |
-        If set to true, check if HTTP Header parameters in the request exist in the API specification.
+        If set to true, checks if HTTP header parameters in the request exist in the API specification.
     - name: query_parameter_check
       required: true
       datatype: boolean
       default: false
       description: |
-        If set to true, check if Query parameters in the request exist in the API specification.
+        If set to true, checks if query parameters in the request exist in the API specification.
     - name: allowed_header_parameters
       required: false
       datatype: string
       default: '`Host,Content-Type,User-Agent,Accept,Content-Length`'
       description: |
-        Header parameters in the request that will be ignored when performing HTTP Header validation. These are additional headers added to an API request beyond those defined in the API specification. Example HTTP Headers include 'User-Agent' which lets servers and network peers identify the application, operating system, vendor, and/or of the requesting user agent.
+        List of header parameters in the request that will be ignored when performing HTTP header validation. These are additional headers added to an API request beyond those defined in the API specification.
+
+        For example, you might include the HTTP header `User-Agent`, which lets servers and network peers identify the application, operating system, vendor, and/or of the requesting user agent.
     - name: verbose_response
       required: false
       datatype: boolean
       default: false
+      value_in_examples: true
       description: |
         If set to true, returns a detailed error message for invalid requests & responses. This is useful while testing.
 ---
 
-## Configuration
+## Tutorial
 
-### Enable the plugin on a Service
+This example tutorial steps you through ensuring an API request conforms to the associated API specification. This example uses the [sample Petstore spec](https://petstore.swagger.io/).
 
-Configure this plugin on a [service](/gateway/latest/admin-api/#service-object):
+### Create the Petstore service
 
-```bash
-curl -X POST http://<admin-hostname>:8001/services/<service>/plugins \
-    --data "name=oas-validation"  \
-    --data "config.api_spec={your API specification}" \
-    --data "config.verbose_response=true"
-```
-
-The `<service>` is the id or name of the service that this plugin configuration will target.
-
-### Enable the plugin on a Route
-
-Configure this plugin on a [route](/gateway/latest/admin-api/#route-object):
-
-```bash
-curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
-    --data "name=oas-validation"  \
-    --data "config.api_spec={your API specification}" \
-    --data "config.verbose_response=true"
-```
-
-The `<route>` is the id or name of the route that this plugin configuration will target.
-
-## Tutorial Example
-
-This example tutorial steps you through ensuring an API request conforms to the associated API specification. For this example we will be using https://petstore.swagger.io/.
-
-### Step 1. Create the Petstore Service
-
-This example creates a Service called `Petstore-Service`.
+Creates a service called `Petstore-Service`:
 
 {% navtabs %}
 {% navtab cURL %}
@@ -157,9 +131,9 @@ http -f <admin-hostname>:8001/services/ name='Petstore-Service' url="https://pet
 {% endnavtab %}
 {% endnavtabs %}
 
-### Step 2. Create a Petstore Route
+### Create a Petstore route
 
-This example creates a wildcard Route called `Petstore-Route`.
+Creates a wildcard route called `Petstore-Route`:
 
 {% navtabs %}
 {% navtab cURL %}
@@ -180,9 +154,9 @@ http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Ro
 {% endnavtab %}
 {% endnavtabs %}
 
-### Step 3. Enable the Validation plugin
+### Enable the Validation plugin
 
-Enable the Validation plugin on the Service previously configured. 
+Enable the Validation plugin on the service you configured:
 
 {% navtabs %}
 {% navtab cURL %}
@@ -204,7 +178,7 @@ http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Ro
 {% endnavtab %}
 {% endnavtabs %}
 
-### Step 4. Test the Validation plugin
+### Test the Validation plugin
 
 The request resource expects a Status Query Parameter which is missing from the request.
 
@@ -226,7 +200,7 @@ http <proxy-host>:8000/pet/findByStatus accept:application/json
 {% endnavtab %}
 {% endnavtabs %}
 
-The response will include a verbose error response, since we have enabled this option in the plugin configuration:
+The response includes a verbose error response, since we have enabled this option in the plugin configuration:
 
 ```
 HTTP/1.1 400 Bad Request
@@ -241,21 +215,24 @@ X-Kong-Response-Latency: 2
 }
 ```
 
-## Event Hooks
+## Event hooks
 
-Event hooks are outbound calls from Kong Gateway. With event hooks, Kong Gateway can communicate with target services or resources, letting the target know that an event was triggered. Refer to the following for more information on Event Hooks - `https://docs.konghq.com/gateway/2.8.x/admin-api/event-hooks/examples/#main`
+Event hooks are outbound calls from {{site.base_gateway}}. With event hooks, {{site.base_gateway}} can communicate with target services or resources, letting the target know that an event was triggered. Refer to the [event hooks example documentation](/gateway/latest/kong-enterprise/event-hooks/) for more information on event hooks.
 
-For the Validation plugin, Event Hook events can be enabled when a Validation fails for all Request parameters, that is URI, Header, & Query parameters and Request body, and/or for Response body from the Upstream Service.
+For the Validation plugin, event hook events can be enabled when a Validation fails for all request parameters, that is URI, Header, & Query parameters and Request body, and/or for Response body from the Upstream Service.
 
-1.  Add an Event Hook for the Validation plugin
+1.  Add an event hook for the Validation plugin:
 
-    ```
+    ```sh
     curl -i -X POST http://{HOSTNAME}:8001/event-hooks \
-    -d source=oas-validation \
-    -d event=validation-failed \
-    -d handler=webhook \
-    -d config.url={WEBHOOK_URL}
+      -d source=oas-validation \
+      -d event=validation-failed \
+      -d handler=webhook \
+      -d config.url={WEBHOOK_URL}
+    ```
 
+    Response:
+    ```json
     HTTP/1.1 201 Created
     ..
 
@@ -276,7 +253,9 @@ For the Validation plugin, Event Hook events can be enabled when a Validation fa
      }
     ```
 
-2. Force a validation failure to a Service or Route to which the Validation plugin is applied. The Webhook URL will receive a response with the following JSON payload. The following is an example JSON response which includes Forwared IP address, Service, Consumer, and Error Message
+2. Force a validation failure to a service or route to which the Validation plugin is applied. The Webhook URL will receive a response with JSON payload.
+
+    The following is an example JSON response which includes the forwarded IP address, service, consumer, and and error message:
 
     ```json
     {
