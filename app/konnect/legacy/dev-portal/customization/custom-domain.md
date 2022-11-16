@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Add a Custom Domain
-no_version: true
 ---
 <!-- vale off -->
 All Dev Portals have an auto-generated default Dev Portal URL. To further customize your Dev Portal, you can add a custom domain. When set up properly, users can access both the default URL and the custom URL.

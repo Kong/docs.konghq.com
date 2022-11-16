@@ -3,11 +3,28 @@ on:
   pull_request:
     types: [opened, synchronize, labeled, unlabeled]
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if manual review has been performed
+        uses: actions/github-script@v6
+        id: labels
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              ...context.repo,
+              issue_number: context.issue.number
+            });
+            return labels.map(l => l.name).includes('ci:manual-approve:generated-files')
+    outputs:
+      result: ${{ steps.labels.outputs.result }}
   add-comment:
+    needs: [check]
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Add warning if needed
         run: |
           cd check-generated-content
@@ -15,12 +32,13 @@ jobs:
           node run.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
 
   prevent-merge-if-labeled:
+    needs: [check]
+    if: needs.check.outputs.result == 'false'
     runs-on: ubuntu-latest
     steps:
-      - uses: mheap/github-action-required-labels@v1
+      - uses: mheap/github-action-required-labels@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

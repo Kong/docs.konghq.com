@@ -15,35 +15,35 @@ header.navbar-v2 {
     margin-bottom: 15px;
   }
 
-
   a.skip-main {
-    left:-999px;
-    position:absolute;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-    z-index:-999;
+    left: -999px;
+    position: absolute;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: -999;
     font-weight: 400;
     float: left;
     border-left: 2px solid transparent;
   }
 
-  a.skip-main:focus, a.skip-main:active {
-      color: black;
-      background-color:white;
-      left: auto;
-      top: auto;
-      width: 30%;
-      height: auto;
-      overflow:auto;
-      margin: 10px 35%;
-      padding: 5px;
-      border-radius: 10px;
-      border: 2px solid black;
-      text-align: center;
-      font-size: 1em;
-      z-index: 999;
+  a.skip-main:focus,
+  a.skip-main:active {
+    color: black;
+    background-color: white;
+    left: auto;
+    top: auto;
+    width: 30%;
+    height: auto;
+    overflow: auto;
+    margin: 10px 35%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 1em;
+    z-index: 999;
   }
 
   .docs-dropdown-li {
@@ -167,7 +167,7 @@ header.navbar-v2 {
         font-size: 16px;
         line-height: 22px;
         color: #043558;
-        transition: color .25s;
+        transition: color 0.25s;
         margin-right: 40px;
         padding: 18px 0;
         white-space: nowrap;
@@ -175,7 +175,7 @@ header.navbar-v2 {
         font-weight: 400;
         color: #043558;
         font: 500 16px/24px Roboto;
-        transition: color .25s;
+        transition: color 0.25s;
 
         a:hover {
           text-decoration: underline;
@@ -212,7 +212,7 @@ header.navbar-v2 {
           max-height: 0;
           background: white;
           box-shadow: 0 8px 24px rgba(4, 53, 88, 0.1);
-          transition: max-height .25s, padding-top .25s, padding-bottom .25s;
+          transition: max-height 0.25s, padding-top 0.25s, padding-bottom 0.25s;
 
           .submenu-section {
             display: flex;
@@ -245,10 +245,10 @@ header.navbar-v2 {
 
         &:hover,
         &.submenu-opened {
-          color: #1155CB;
+          color: #1155cb;
 
           > a {
-            color: #1155CB;
+            color: #1155cb;
           }
 
           .navbar-item-submenu {
@@ -269,12 +269,12 @@ header.navbar-v2 {
         font-weight: 500;
         font-size: 16px;
         line-height: 22px;
-        transition: background-color .25s, color .25s;
+        transition: background-color 0.25s, color 0.25s;
         color: #fff;
         margin-left: 24px;
 
         &:hover {
-          background: #1155CB;
+          background: #1155cb;
           color: white;
         }
       }
@@ -317,7 +317,8 @@ header.navbar-v2 {
     }
   }
 
-  &.menu-opened, &.search-opened {
+  &.menu-opened,
+  &.search-opened {
     #navbar-menu-toggle-button {
       div {
         &:nth-of-type(1) {
@@ -370,7 +371,7 @@ header.navbar-v2 {
           align-items: stretch;
           flex-direction: column;
           transform: translateX(0);
-          transition: transform .25s;
+          transition: transform 0.25s;
 
           &:not(.submenu-opened) {
             .navbar-item-submenu {
@@ -399,7 +400,7 @@ header.navbar-v2 {
 
               &:after {
                 content: "\f054";
-                font-family: FontAwesome,"Font Awesome",FontAwesome;
+                font-family: FontAwesome, "Font Awesome", FontAwesome;
                 font-size: 11px;
                 color: #043558;
                 position: absolute;
@@ -425,7 +426,7 @@ header.navbar-v2 {
           padding: 8px 24px;
           margin-top: 12px;
           margin-right: 0;
-          transition: transform .25s;
+          transition: transform 0.25s;
 
           > a {
             pointer-events: none;
@@ -469,8 +470,8 @@ header.navbar-v2 {
 
     &.search-opened {
       .navbar-content {
-
-        .navbar-brand, .logo-divider {
+        .navbar-brand,
+        .logo-divider {
           display: none;
         }
 

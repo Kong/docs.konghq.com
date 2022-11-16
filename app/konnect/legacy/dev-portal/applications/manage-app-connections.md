@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Manage Application Service Connections
-no_version: true
 ---
 <!-- vale off -->
 Revoke, reinstate, or delete an application's connection to a Service. When a developer

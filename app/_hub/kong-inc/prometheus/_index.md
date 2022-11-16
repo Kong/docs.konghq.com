@@ -17,12 +17,12 @@ params:
   service_id: true
   route_id: false
   protocols:
-    - http
-    - https
-    - tcp
-    - tls
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   dbless_explanation: |
     The database will always be reported as reachable in Prometheus with DB-less.

@@ -15,6 +15,10 @@
       url: /availability-stages
     - text: Release Notes
       url: /updates
+    - text: Support
+      items:
+        - text: Supported Installation Options
+          url: /install-support
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -55,12 +59,18 @@
           url: /runtime-manager/runtime-groups/declarative-config
     - text: Runtime Instances
       items:
+        - text: Installation Options
+          url: /runtime-manager/runtime-instances/
         - text: Install with Docker
           url: /runtime-manager/runtime-instances/gateway-runtime-docker
         - text: Install on Kubernetes
           url: /runtime-manager/runtime-instances/gateway-runtime-kubernetes
         - text: Install on Linux
           url: /runtime-manager/runtime-instances/gateway-runtime-conf
+        - text: Install on AWS
+          url: /runtime-manager/runtime-instances/gateway-runtime-aws
+        - text: Install on Azure
+          url: /runtime-manager/runtime-instances/gateway-runtime-azure
         - text: Upgrade a Runtime Instance to a New Version
           url: /runtime-manager/runtime-instances/upgrade
         - text: Renew Certificates
@@ -99,7 +109,7 @@
           url: /servicehub/enable-service-plugin
         - text: Configure a Plugin on a Route
           url: /servicehub/enable-route-plugin
-          
+
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
@@ -153,6 +163,8 @@
       url: /analytics/services-and-routes/
     - text: Generate Reports
       url: /analytics/generate-reports
+    - text: Troubleshoot
+      url: /analytics/troubleshoot/
 
 - title: Administer
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
@@ -190,6 +202,22 @@
     - text: Troubleshoot
       url: /org-management/troubleshoot
 
+- title: API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  items:
+    - text: Overview
+      url: /api/
+    - text: Konnect Identity API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
+          absolute_url: true
+        - text: Identity Integration Guide
+          url: /api/identity-management/identity-integration
+    - text: Reference
+      items:
+        - text: Filtering
+          url: /api/filtering
 
 - title: Legacy content
   items:

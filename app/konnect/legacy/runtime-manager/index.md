@@ -1,6 +1,5 @@
 ---
 title: (Legacy) Runtime Manager Overview
-no_version: true
 ---
 <!-- vale off -->
 The Runtime Manager is a {{site.konnect_saas}} functionality module
@@ -43,7 +42,7 @@ Choose an installation type below:
 <div class="docs-grid-install">
 
   <a href="/konnect/legacy/runtime-manager/gateway-runtime-docker" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="Docker" />
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/docker.png" alt="Docker" />
     <div class="install-text">Docker</div>
   </a>
 

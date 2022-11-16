@@ -25,10 +25,10 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: response_code

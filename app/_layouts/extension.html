@@ -361,11 +361,11 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         <tr>
           <td>Compatible protocols</td>
           <td>
-              {% for protocol in page.params.protocols %}
+              {% for protocol in page.params.protocols %}{% if_plugin_version gte:protocol.minimum_version lte:protocol.maximum_version %}
                 <div class="protocol">
-                  <code>{{ protocol }}</code>
+                  <code>{{ protocol.name }}</code>
                 </div>
-              {% endfor %}
+              {% endif_plugin_version %}{% endfor %}
           </td>
         </tr>
         {% endif %}

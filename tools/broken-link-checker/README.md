@@ -27,12 +27,17 @@ cd broken-link-checker
 npm ci
 ```
 
+All of the commands below support the following flags:
+
+* `--base_url https://example.com`
+* `--verbose` (show each link being checked)
+
 ### Running a per-product scan
 
 To scan a specific product, run the following (editing the `nav` and `ignore` options as needed):
 
 ```bash
-node product.js --nav gateway_2.8.x --ignore github.com
+node run.js product --nav gateway_2.8.x --ignore github.com
 ```
 
 The `--ignore` option can be provided multiple times, and should be used to ignore false positives e.g. when running on a non-main branch you'll want to provide `--ignore docs.konghq.com/edit` to prevent the "Edit this page" URL from returning an error.
@@ -57,8 +62,6 @@ The available flags are:
 | --------- | -------------------------------------------------------------------------------------- | ------------------------------------------- |
 | --host    | Set the URL to run the checks against                                                  | `http://localhost:8888`                     |
 | --nav     | The name of the nav file to load e.g. `gateway_2.8.x`                                  |                                             |
-| --page    | The number of pages to skip when scanning                                              | N/A. Runs against all pages if not provided |
-| --perPage | How many URLs to scan at one time                                                      | 10                                          |
 | --ignore  | A URL pattern to ignore when checking for broken links. May be provided multiple times |                                             |
 
 ### Running a full-site scan
@@ -72,3 +75,20 @@ node full.js --host http://localhost:8888
 ```
 
 Finally, be patient. The run will take at least 10 minutes, and up to 60 minutes to complete.
+
+## Checking Plugins
+
+Links in the `_index` file of plugins will be checked automatically when a PR is raised.
+
+To check all plugins on your local machine, run `netlify dev` then use one of the following commands:
+
+```bash
+# Check the index file of Kong plugins
+node run.js plugins --pattern "kong-inc/**/_index"
+
+# Check all versions of Kong plugins
+node run.js plugins --pattern "kong-inc/**/*"
+
+# Check ALL plugins
+node run.js plugins --pattern "**/*"
+```

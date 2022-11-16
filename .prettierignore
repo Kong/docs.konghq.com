@@ -1,0 +1,7 @@
+# Things that we're not ready to lint yet
+*.md
+*.html
+
+# Build artifacts
+dist
+.vendor

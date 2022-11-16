@@ -1,6 +1,5 @@
 ---
 title: Account and Organization Deactivation
-no_version: true
 ---
 
 A free {{site.konnect_saas}} organization is automatically deactivated after 30

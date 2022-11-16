@@ -1,6 +1,5 @@
 ---
 title: Service Hub Overview
-no_version: true
 ---
 
 The Service Hub is a {{site.konnect_saas}} functionality module that

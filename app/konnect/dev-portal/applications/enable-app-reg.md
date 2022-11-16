@@ -1,7 +1,6 @@
 ---
 title: Enable or Disable Application Registration for a Service
-no_version: true
-content-type: how-to
+content_type: how-to
 ---
 
 To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
@@ -32,7 +31,7 @@ or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to 
 ## Enable app registration with key authentication {#key-auth-flow}
 
 To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
-service, and follow these steps: 
+service, and follow these steps:
 
 1. Click **Versions** to select a version.
 
@@ -50,7 +49,7 @@ service, and follow these steps:
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
 To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
-service, and follow these steps: 
+service, and follow these steps:
 
 
 1. Click **Versions** to select a version.
@@ -84,9 +83,9 @@ service, and follow these steps:
 ## Disable application registration for a service {#disable}
 
 Disabling application registration removes all plugins that were initially enabled through application registration for this service.
-To remove a plugin by disabling application registration, follow these steps: 
+To remove a plugin by disabling application registration, follow these steps:
 
-1. Click a service to open the **Service** menu. 
+1. Click a service to open the **Service** menu.
 
 2. From the **Service** menu, select **Version** to display all of the registered versions.
 
@@ -94,7 +93,7 @@ To remove a plugin by disabling application registration, follow these steps:
 
 4. From the **Version actions** drop-down menu, select **Disable app registration**.
 
-5. Click **Disable** from the pop-up modal. 
+5. Click **Disable** from the pop-up modal.
 
 
 You can

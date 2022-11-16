@@ -1,6 +1,5 @@
 ---
 title: Manage Konnect Services
-no_version: true
 ---
 
 Through the [Service Hub](https://cloud.konghq.com/servicehub/), you can

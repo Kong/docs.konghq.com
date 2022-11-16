@@ -1,6 +1,5 @@
 ---
 title: Kong Gateway Configuration in Konnect
-no_version: true
 ---
 
 You can manage any {{site.base_gateway}} services, routes, consumer-scoped

@@ -60,7 +60,7 @@ Note that both the provider (`gcp`) as well as the GCP project ID
 (`my_project_id`) need to be specified. You can configure the project ID
 with an environment variable before starting {{site.base_gateway}}:
 
-```bash 
+```bash
 export KONG_VAULT_GCP_PROJECT_ID=my_project_id
 ```
 
@@ -75,6 +75,9 @@ Then you don't need to repeat it in references:
 
 Once the database is initialized, a Vault entity can be created
 that encapsulates the provider and the GCP project ID:
+
+{% navtabs %}
+{% navtab Admin API %}
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -115,6 +118,26 @@ Result:
     "updated_at": 1657874961
 }
 ```
+{% endnavtab %}
+{% navtab Declarative configuration %}
+
+{:.note}
+> Secrets management is supported in decK 1.16 and later.
+
+Add the following snippet to your declarative configuration file:
+
+```yaml
+_format_version: "3.0"
+vaults:
+- config:
+    project_id: my_project_id
+  description: Storing secrets in GCP Secrets Manager
+  name: gcp
+  prefix: my-gcp-sm-vault
+```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 With the Vault entity in place, you can reference the GCP secrets
 through it:

@@ -87,8 +87,9 @@ and matching Kong `proxy_listen` configuration in the container environment:
 KONG_PROXY_LISTEN="0.0.0.0:8000 reuseport backlog=16384, 0.0.0.0:8443 http2 ssl reuseport backlog=16384 http2"
 KONG_STREAM_LISTEN="0.0.0.0:9901 reuseport backlog=16384, 0.0.0.0:9902 reuseport backlog=16384 udp", 0.0.0.0:9903 reuseport backlog=16384 ssl"
 ```
-The Helm chart manages both of these for you from the `proxy` configuration
-block:
+
+[The Helm chart](https://github.com/Kong/charts/tree/main/charts/kong) manages
+both of these from the `proxy` configuration block:
 
 ```
 proxy:
@@ -115,6 +116,7 @@ proxy:
       parameters:
         - "ssl"
 ```
+
 Ports missing appropriate Kong-side configuration will result in an error
 condition in the Gateway's status:
 

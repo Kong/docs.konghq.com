@@ -61,7 +61,7 @@ $ helm repo update
 
 
 # Helm 3
-$ helm install kong/kong --generate-name --set ingressController.installCRDs=false --create-namespace=kong
+$ helm install kong/kong --generate-name --set ingressController.installCRDs=false -n kong --create-namespace
 ```
 
 Once installed, set an environment variable, $PROXY_IP with the External IP address of

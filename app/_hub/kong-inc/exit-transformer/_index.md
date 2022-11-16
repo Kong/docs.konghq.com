@@ -22,8 +22,8 @@ params:
   yaml_examples: false
   konnect_examples: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   config:
     - name: functions
