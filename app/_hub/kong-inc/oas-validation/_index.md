@@ -30,9 +30,9 @@ params:
     - name: api_spec
       required: true
       datatype: string
-      value_in_examples: <your API specification>
+      value_in_examples: '{your API specification}'
       description: |
-        The API specification defined using either Swagger or the OpenAPI. This can be either a JSON or YAML based file. If using a YAML file, this will need to be URL encoded to preserve the YAML format.
+        The API specification defined using either Swagger or the OpenAPI. This can be either a JSON or YAML based file. If using a YAML file, the spec needs to be URL encoded to preserve the YAML format.
     - name: validate_request_uri_params
       required: false
       datatype: boolean
@@ -62,13 +62,13 @@ params:
       datatype: boolean
       default: false
       description: |
-        If set to true, notifications via event hooks are enabled, but request based validation failures do not effect the request flow.
+        If set to true, notifications via event hooks are enabled, but request based validation failures don't affect the request flow.
     - name: validate_response_body
       required: false
       datatype: boolean
       default: false
       description: |
-        If set to true, validates the response from the upstream services against the API specification. If validation fails, this will result in a HTTP 406 "Not Acceptable" status code.
+        If set to true, validates the response from the upstream services against the API specification. If validation fails, it results in an `HTTP 406 Not Acceptable` status code.
     - name: notify_only_response_body_validation_failure
       required: false
       datatype: boolean
@@ -94,7 +94,7 @@ params:
       description: |
         List of header parameters in the request that will be ignored when performing HTTP header validation. These are additional headers added to an API request beyond those defined in the API specification.
 
-        For example, you might include the HTTP header `User-Agent`, which lets servers and network peers identify the application, operating system, vendor, and/or of the requesting user agent.
+        For example, you might include the HTTP header `User-Agent`, which lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
     - name: verbose_response
       required: false
       datatype: boolean
@@ -108,112 +108,53 @@ params:
 
 This example tutorial steps you through ensuring an API request conforms to the associated API specification. This example uses the [sample Petstore spec](https://petstore.swagger.io/).
 
-### Create the Petstore service
+1. Create a service called `Petstore-Service`:
 
-Creates a service called `Petstore-Service`:
+    ```bash
+    curl -X POST http://<admin-hostname>:8001/services/ \
+        --data name='Petstore-Service' \
+        --data url='https://petstore.swagger.io/v2'
+    ```
 
-{% navtabs %}
-{% navtab cURL %}
+2. Create a wildcard route called `Petstore-Route`:
 
-```bash
-curl -X POST http://<admin-hostname>:8001/services/ \
-    --data name='Petstore-Service' \
-    --data url='https://petstore.swagger.io/v2'
-```
+    ```bash
+    curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/routes \
+        --data name='Petstore-Route' \
+        --data paths='/.*'
+    ```
 
-{% endnavtab %}
-{% navtab HTTPie %}
+3. Enable the Validation plugin on the service you configured:
 
-```bash
-http -f <admin-hostname>:8001/services/ name='Petstore-Service' url="https://petstore.swagger.io/v2"
-```
+    ```bash
+    curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/plugins \
+        --data name='oas-validation' \
+        --data config.api_spec='<copy contents of https://petstore.swagger.io/v2/swagger.json here>' \
+        --data config.verbose_response=true
+    ```
 
-{% endnavtab %}
-{% endnavtabs %}
+4. Test the Validation plugin. The request resource expects a status query parameter,
+ which is missing from the following request:
 
-### Create a Petstore route
+    ```bash
+    curl -X GET "http://<proxy-host>:8000/pet/findByStatus" \
+      -H "accept: application/json"
+    ```
 
-Creates a wildcard route called `Petstore-Route`:
+    The response includes a verbose error response, since we have enabled this option in the plugin configuration:
 
-{% navtabs %}
-{% navtab cURL %}
+    ```
+    HTTP/1.1 400 Bad Request
+    Content-Length: 106
+    Content-Type: application/json; charset=utf-8
+    Date: Tue, 03 May 2022 20:45:00 GMT
+    Server: kong/2.8.0.0-internal-preview-enterprise-edition
+    X-Kong-Response-Latency: 2
 
-```bash
-curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/routes \
-    --data name='Petstore-Route' \
-    --data paths='/.*'
-```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Route' paths="/.*"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-### Enable the Validation plugin
-
-Enable the Validation plugin on the service you configured:
-
-{% navtabs %}
-{% navtab cURL %}
-
-```bash
-curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/plugins \
-    --data name='oas-validation' \
-    --data config.api_spec='<copy contents of https://petstore.swagger.io/v2/swagger.json here>' \
-    --data config.verbose_response=true
-```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f <admin-hostname>:8001/services/Petstore-Service/routes name='Petstore-Route' paths="/.*"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-### Test the Validation plugin
-
-The request resource expects a Status Query Parameter which is missing from the request.
-
-{% navtabs %}
-{% navtab cURL %}
-
-```bash
-curl -X GET "http://<proxy-host>:8000/pet/findByStatus" \
-  -H "accept: application/json"
-```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http <proxy-host>:8000/pet/findByStatus accept:application/json
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-The response includes a verbose error response, since we have enabled this option in the plugin configuration:
-
-```
-HTTP/1.1 400 Bad Request
-Content-Length: 106
-Content-Type: application/json; charset=utf-8
-Date: Tue, 03 May 2022 20:45:00 GMT
-Server: kong/2.8.0.0-internal-preview-enterprise-edition
-X-Kong-Response-Latency: 2
-
-{
-  "message": "query 'status' validation failed with error: 'required parameter value not found in request'"
-}
-```
+    {
+      "message": "query 'status' validation failed with error: 'required parameter value not found in request'"
+    }
+    ```
 
 ## Event hooks
 
