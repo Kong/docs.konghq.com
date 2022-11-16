@@ -468,6 +468,7 @@ include_credential
 include_parsed_json_body_in_opa_input
 include_route_in_opa_input
 include_service_in_opa_input
+include_uri_captures_in_opa_input
 independantly
 inject_client_cert_details
 intervalSeconds
@@ -948,6 +949,7 @@ upstream_uri
 upstream_url
 upstream_user_info_header
 upstream_user_info_jwt_header
+uri_captures
 uri_param_names
 urlencode_in_examples
 use_tcp
