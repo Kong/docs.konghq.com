@@ -385,7 +385,7 @@ objects. For information on which plugin fields are encrypted, see
 
 Kong's keyring mechanism can integrate directly with [HashiCorp Vault](https://www.vaultproject.io/) for keyring storage and versioning. In this model, Kong nodes read keyring material directly from a Vault KV secrets engine, rather than generating and disseminating keyring material around the cluster.
 
-To configure Kong to use Vault for keyring storage, set the `keyring_strategy` configuration value to `vault`. Leveraging Vault also requires defining a host, mount point, and token or [Kubernetes service account role](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for Vault access. See the Kong configuration reference for more details.
+To configure Kong to use Vault for keyring storage, set the `keyring_strategy` configuration value to `vault`. Leveraging Vault also requires defining a host, mount point, and token or [Kubernetes service account role](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for Vault access. See the [configuration reference](/gateway/latest/reference/configuration/#keyring_vault_kube_api_token_file) for more details.
 
 ### Key Format
 
