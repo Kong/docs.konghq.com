@@ -18,6 +18,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 to [cloud.konghq.com](https://cloud.konghq.com).
 The deprecated environment at `konnect.konghq.com` is no longer available.
 
+### 2022.11.15
+
+**Multiple runtime groups**
+: All the runtime groups in {{site.konnect_short_name}}, including default and non-default runtime groups, are eligible for application registration.
+
 ### 2022.11.08
 
 **Editing the default runtime group**

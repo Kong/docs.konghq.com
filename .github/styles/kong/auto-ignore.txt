@@ -17,6 +17,9 @@ datastores
 endpoint_key
 foogineer
 if_version
+ingress_controller_configuration_push_count
+ingress_controller_configuration_push_duration_milliseconds
+ingress_controller_translation_count
 kuma
 max_args
 max_headers
