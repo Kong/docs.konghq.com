@@ -254,6 +254,21 @@ and add the following under the `containers` section of the Pod spec:
     - infinity
 ```
 
+```bash
+kubectl patch --type=json -n kong deployments.apps ingress-kong -p='[{
+    "op":"add",
+	"path":"/spec/template/spec/containers/-",
+	"value":{
+	    "name":"tcpdump",
+		"securityContext":{
+		    "runAsUser":0
+		},
+		"image":"corfr/tcpdump",
+		"command":["/bin/sleep","infinity"]
+	}
+}]'
+```
+
 If you are using the Kong Helm chart, you can alternately add this to the
 `sidecarContainers` section of values.yaml.
 
