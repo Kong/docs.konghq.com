@@ -9,7 +9,7 @@ badge: enterprise
 
 ## Environment variables
 
-Using static Vault token authentication:
+Static Vault token authentication:
 
 
 ```bash
@@ -22,7 +22,7 @@ export KONG_VAULT_HCV_AUTH_METHOD=token
 export KONG_VAULT_HCV_TOKEN=<tokenstring>
 ```
 
-Or, using Kubernetes service-account role authentication:
+Kubernetes service account role authentication:
 
 ```bash
 export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
