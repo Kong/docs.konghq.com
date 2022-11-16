@@ -113,12 +113,14 @@ allow_origin_header
 allow_paths
 allow_status_codes
 allowed_content_types
+allowed_header_parameters
 allowed_payload_size
 anonymous_users
 api_address
 api_endpoint
 api_id
 api_name
+api_spec
 api_specification
 api_specification_filename
 api_uri
@@ -420,6 +422,7 @@ handle_unknown
 hash_header
 header_name
 header_names
+header_parameter_check
 header_present
 header_title
 header_type
@@ -630,10 +633,13 @@ no_version
 not_after
 not_before
 notationName
+notify_only_request_validation_failure
+notify_only_response_body_validation_failure
 num_total_data_points
 oic_jwks
 oidcplugin
 okta
+on_change
 onelogin
 opa_host
 opa_path
@@ -700,6 +706,7 @@ pubkey_type
 public_key
 publicId
 query_arg
+query_parameter_check
 query_string
 queue_size
 random_auto_generated_string
@@ -968,6 +975,10 @@ userinfo_query_args_values
 username_lower
 utils
 validate_request_body
+validate_request_header_params
+validate_request_query_params
+validate_request_uri_params
+validate_response_body
 value_in_examples
 value_in_examples_serialized
 vary_headers
