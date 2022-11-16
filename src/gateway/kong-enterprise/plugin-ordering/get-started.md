@@ -131,6 +131,11 @@ ordering:
     ```
 
 {% endnavtab %}
+{% navtab Kong Manager UI %}
+
+1. In Kong Manager, ?
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## Authentication after request transformation
@@ -235,5 +240,9 @@ ordering:
     deck sync
     ```
 
+{% endnavtab %}
+{% navtab Kong Manager UI %}
+
+1. In Kong Manager, ?
 {% endnavtab %}
 {% endnavtabs %}
