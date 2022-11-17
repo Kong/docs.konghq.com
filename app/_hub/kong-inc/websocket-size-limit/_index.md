@@ -21,8 +21,7 @@ description: |
 
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
 
 cloud: true
 
