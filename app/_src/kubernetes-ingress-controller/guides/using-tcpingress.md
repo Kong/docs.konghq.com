@@ -247,7 +247,7 @@ tcproute.gateway.networking.k8s.io/echo-plaintext created
 This configuration instructs {{site.base_gateway}} to forward all traffic it
 receives on port 9000 to `tcp-echo` service on port 2701.
 
-## Test the configuration
+### Test the configuration
 
 Status will populate with an IP or Accepted condition once the route is ready:
 
@@ -292,7 +292,7 @@ Connected to 35.247.39.83.
 Escape character is '^]'.
 Welcome, you are connected to node gke-harry-k8s-dev-pool-1-e9ebab5e-c4gw.
 Running on Pod tcp-echo-844545646c-gvmkd.
-gtIn namespace default.
+In namespace default.
 With IP address 10.60.1.17.
 This text will be echoed back.
 This text will be echoed back.
@@ -370,7 +370,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-## Test the configuration
+### Test the configuration
 
 You can now access the `tcp-echo` service on port 9443 with SNI
 `tls9443.kong.example`.
