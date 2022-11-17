@@ -897,7 +897,7 @@ openid-connect
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
 ## 2.8.2.1
-**Release Date** 2022/11/17
+**Release Date** 2022/11/18
 
 ### Fixes
 
@@ -948,22 +948,11 @@ Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting
     * The plugin was associated with a route that had no service.
     * The route's associated service had a `path` value.
 
-* [HTTP Log](/hub/kong-inc/http-log/) (`http-log`)
-  * Fixed the `could not update kong admin` internal error caused by empty headers.
-  This error occurred when using this plugin with the Kubernetes Ingress Controller.
-
 * [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
   * Fixed an issue where operational attributes referenced by `group_member_attribute` weren't returned in search query results.
 
 ## 2.8.2.0
 **Release Date** 2022/10/12
-
-### Features
-
-#### Plugins
-
-* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
-  * Values stored in `key:value` pairs in this plugin's configuration are now referenceable, which means they can be stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/) in a vault.
 
 ### Fixes
 
