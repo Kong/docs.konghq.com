@@ -459,12 +459,12 @@ With this method, the consumers in the group aren't deleted and are still in the
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
+curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http DELETE :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
+http DELETE :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced
 ```
 {% endnavtab %}
 {% endnavtabs %}
