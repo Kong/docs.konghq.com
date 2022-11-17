@@ -1,23 +1,10 @@
 ---
-title: Logging Reference
+title: How to Customize Gateway Logs
+content-type: how-to
 ---
 
-## Log Levels
 
-Log levels are set in [Kong's configuration](/gateway/{{page.kong_version}}/reference/configuration/#log_level). Following are the log levels in increasing order of their severity: `debug`, `info`,
-`notice`, `warn`, `error` and `crit`.
-
-- *`debug`:* It provides debug information about the plugin's run loop and each individual plugin or other components. This should only be used during debugging, the `debug` option, if left on for extended periods of time, can result in excess disk space consumption.
-- *`info`/`notice`:* Kong does not make a big difference between both these levels. Provides information about normal behavior most of which can be ignored.
-- *`warn`:* To log any abnormal behavior that doesn't result in dropped transactions but requires further investigation, `warn` level should be used.
-- *`error`:* Used for logging errors that result in a request being dropped (for example getting  an HTTP 500 error). The rate of such logs need to be monitored.
-- *`crit`:* This level is used when Kong is working under critical conditions and not working properly thereby affecting several clients. Nginx also provides `alert` and `emerg` levels but currently Kong doesn't make use of these levels making `crit` the highest severity log level.
-
-`notice` is the default and recommended log level. However if the logs turn out to be too chatty, they can be bumped up to a higher level like `warn`.
-
-## Removing Certain Elements From Your Kong Logs
-
-With new regulations surrounding protecting private data like GDPR, there is a chance you may need to change your logging habits. If you use Kong as your API Gateway, this can be done in a single location to take effect on all of your Services. This guide will walk you through one approach to accomplishing this, but there are always different approaches for different needs. Please note, these changes will effect the output of the NGINX access logs. This will not have any effect on Kong's logging plugins.
+With new regulations surrounding protecting private data like GDPR, there is a chance you may need customize what {{site.base_gateway}} is logging. If you use Kong as your API Gateway, this can be done in a single location to take effect on all of your Services. This guide will walk you through one approach to accomplishing this, but there are always different approaches for different needs. Please note, these changes will effect the output of the NGINX access logs. This will not have any effect on Kong's logging plugins.
 
 For this example, let’s say you want to remove any instances of an email address from your Kong logs. The emails addresses may come through in different ways, for example something like `/servicename/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. In order to keep these from being added to the logs, we will need to use a custom NGINX template.
 

@@ -187,7 +187,14 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Logging Reference
+      - text: Logging
+        items:
+          - text: Log Reference
+            url: /production/logging/log-reference
+          - text: Dynamic log level updates
+            url: /production/logging/update-log-level-dynamically
+          - text: Customize Gateway Logs
+            url: /production/logging/customize-gateway-logs
         url: /production/logging
       - text: Upgrade and Migration
         items:

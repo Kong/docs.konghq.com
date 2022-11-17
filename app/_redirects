@@ -826,3 +826,6 @@
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
 /gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
+
+# 3.1
+/gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
