@@ -3,21 +3,31 @@ title: Enable or Disable Application Registration for a Service
 content_type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version. 
-When you enable application registration, {{site.konnect_saas}} enables two plugins automatically: [ACL](/hub/kong-inc/acl), and your choice of [Key Authentication](/hub/kong-inc/key-auth)
-or [OIDC](/hub/kong-inc/openid-connect). These plugins run in the background to support application registration for the service and are managed by
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
+When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
+These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the service and are managed by
 {{site.konnect_saas}}.
 
-Enabling application registration is specific to the [geographic region](/konnect/regions). 
-You must enable application registration in each region that you want to allow developers to register with.
-Each region has their own API keys and specifications for application registration in their respective region.
+## Support for any runtime group
+{:.badge .alpha}
+
+App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
+We are rolling out full support in any non-`default` runtime group, using the `konnect-application-auth` plugin that was created for {{site.base_gateway}} 3.0.
+
+{:.note}
+> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#default-runtime-group) for additional context.
 
 ## Prerequisites
 
 - A service that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
-- The service version must be in the `default` runtime group.
+- The service version can be in any runtime group, as long as the following conditions are met:
+
+  - Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
+
+  - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
+
 - The service version must have an [implementation](/konnect/servicehub/service-implementations).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
@@ -30,7 +40,6 @@ Each region has their own API keys and specifications for application registrati
 
 {:.note}
 > **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
-
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
@@ -47,8 +56,13 @@ service, and follow these steps:
 
 5. Click **Enable**.
 
-    All versions of this service now include
-    read-only entries for the `acl` and `key-auth` plugins.
+    This version of the service package now includes a
+    read-only entry for the `konnect-application-auth` plugin.
+
+{:.note}
+> **Note:** If the service version is in the `default` runtime group, it will
+instead receive read-only entries for the `acl` and `key-auth` plugins to provide
+support for {{site.base_gateway}} versions less than 3.0.
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
@@ -67,8 +81,13 @@ service, and follow these steps:
 
 4. Click **Enable**.
 
-    All versions of this service now include
-    read-only entries for the  `acl` and `oidc` plugins.
+    This versions of this service packages now includes
+    read-only entries for the `konnect-application-auth` and `openid-connect` plugins.
+
+{:.note}
+> **Note:** If the service version is in the `default` runtime group, it will
+instead receive read-only entries for the `acl` and `openid-connect` plugins to provide
+support for {{site.base_gateway}} versions less than 3.0.
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
 
@@ -76,10 +95,13 @@ service, and follow these steps:
    |:---------------|:----------------------------------------------------------------------------------|--|
    | `Issuer` | The issuer URL from which the OpenID Connect configuration can be discovered. For example: `https://dev-1234567.okta.com/oauth2/default`.  |**True** |
    | `Scopes` | The scopes to be requested from the OpenID Provider. Enter one or more scopes separated by spaces, for example: `open_id` `myscope1`.  | **False**
-   | `Consumer claims` |  Name of the claim that is used to find a consumer. | **True**
+   | `Credential claims` |  Name of the claim that maps to the unique client id in the identity provider. | **True**
    | `Auth method` | The supported authentication method(s) you want to enable. This field should contain only the authentication methods that you need to use. Individual entries must be separated by commas. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. | **True**
    | `Hide Credentials` |**Default: disabled**<br>  Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
    | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
+
+{:.note}
+> **Note:** In the `default` runtime group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` runtime groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider.
 
    For more background information about OpenID Connect plugin parameters, see
    [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
@@ -103,3 +125,11 @@ To remove a plugin by disabling application registration, follow these steps:
 You can
 [re-enable application registration](/konnect/dev-portal/applications/enable-app-reg)
 at any time.
+
+### Differences between runtime groups
+
+If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
+
+In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
+
+The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.

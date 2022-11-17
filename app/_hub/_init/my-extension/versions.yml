@@ -1,0 +1,10 @@
+# Duplicate this file into your own plugin doc directory under app/_hub/.
+# If you're adding a Kong-owned plugin, add it to app/_hub/kong-inc/<plugin-name>.
+
+strategy: gateway
+
+releases:
+# Array of Kong Gateway releases that this plugin is compatible with.
+# If you're adding a new plugin for a specific release, only list that release.
+# For example:
+  - 3.0.x

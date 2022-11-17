@@ -30,7 +30,8 @@ This metric provides the following labels:
 ### ingress_controller_translation_count
 `ingress_controller_translation_count` (type: `counter`) provides the number of translations from the Kubernetes state to the {{site.base_gateway}} state. 
 
-This metric provides the `success` label. `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the translation succeeded with no errors.
+This metric provides the `success` label. `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred. 
+If `success` is `true`, the translation succeeded with no errors.
 
 ### ingress_controller_configuration_push_duration_milliseconds
 `ingress_controller_configuration_push_duration_milliseconds` (type: `histogram`) is the amount of time, in milliseconds, that it takes to push the configuration to {{site.base_gateway}}. 
