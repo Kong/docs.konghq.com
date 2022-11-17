@@ -449,9 +449,9 @@ http DELETE :8001/consumers/DianaPrince/consumer_groups/JL
 
 ## Delete consumer group configurations
 
-If you still need the consumer group but wanted to delete the configuations, 
-you can delete it. This removes configurations for the consumer group.
-The consumers in the group are not deleted and are still in the consumer group.
+You can also clear the configuration of a consumer group without deleting the consumer group itself.
+
+With this method, the consumers in the group aren't deleted and are still in the consumer group.
 
 1. Delete the consumer group configuration using the following request:
 
@@ -470,7 +470,7 @@ http DELETE :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
 {% endnavtabs %}
 {% endcapture %}
 
-{{ delete_consumer_group_config| indent | replace: " </code>", "</code>" }}
+{{ delete_consumer_group_config | indent | replace: " </code>", "</code>" }}
 
     If successful, you receive see the following response:
     ```
@@ -481,7 +481,7 @@ http DELETE :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
 
 {{ check_group1 | indent | replace: " </code>", "</code>" }}
 
-    Response, notice the plugins object in the response is gone.
+    Response, without a `plugins` object:
 
     ```json
     {
