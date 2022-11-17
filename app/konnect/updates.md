@@ -22,6 +22,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
+### 2022.11.15
+
+**Multiple runtime groups**
+: All the runtime groups in {{site.konnect_short_name}}, including default and non-default runtime groups, are eligible for application registration.
+
 ### 2022.11.08
 
 **Editing the default runtime group**
