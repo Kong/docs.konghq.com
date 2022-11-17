@@ -5,15 +5,9 @@
 # Your publisher path is relative to app/_hub/.
 # The path must consist only of alphanumeric characters and hyphens (-).
 #
-# 2. Create a versions.yml file in your new plugin directory.
+# 2. Duplicate the versions.yml file into your new plugin directory.
 # Set the Kong Gateway version that the plugin is being added to.
-# Use the following format in that file (see docs/single-sourced-plugins.md for more info):
-#
-# strategy: gateway
-#
-# releases: # Fill in the Gateway version that this plugin is being added in.
-#   - 3.0.x
-#
+
 # 3. Add a 64x64px icon for the plugin to app/_assets/images/icons/hub.
 # The name of the file must be in the following format: <publisher>_<plugin-directory-name>.png
 # For example, for the rate limiting plugin the icon name is kong-inc_rate-limiting.png
@@ -135,7 +129,8 @@ params: # Metadata about your plugin
     # Affects generation of examples and config table.
   protocols:
     # List of protocols this plugin is compatible with, in array format.
-    # Valid values: "http", "https", "tcp", "tls"
+    # Valid values: "http", "https", "tcp", "tls", "tls-passthrough", "grpc",
+    # "grpcs", "udp", "ws", and "wss".
     # Example:
     # - name: http
     # - name: https
@@ -215,7 +210,8 @@ examples, limitations, use cases, etc. -->
 
 <!-- Add a changelog entry in the following format for every change to the plugin:
 
-### Kong Gateway <version number>
+**Kong Gateway <version number>**
+
 * Added X parameter for doing XYZ.
 * Removed the deprecated Z parameter.
 -->
