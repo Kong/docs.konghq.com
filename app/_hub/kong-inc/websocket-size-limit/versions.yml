@@ -1,4 +1,5 @@
 strategy: gateway
 
 releases:
+  - 3.1.x
   - 3.0.x
