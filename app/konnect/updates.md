@@ -13,6 +13,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ### 2022.11.17
 
+**Certificate management functionality added to the {{site.konnect_saas}} runtime manager**
+: {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, 
+and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. 
+This reduces operational complexity for customers while ensuring that security is not compromised.
+
 **New Analytics predefined teams**
 : {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities. 
 

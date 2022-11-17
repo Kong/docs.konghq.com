@@ -42,22 +42,20 @@ If your runtime instances are running on Linux or Kubernetes, or if you have a
 Docker container that was _not_ created using the quick setup script, you must
 generate new certificates and replace them on the existing nodes.
 
-### Generate new certificates
+### Generate new data plane certificate
 
-1. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group, and
-click **Create Runtime Instance**.
-2. Click the tile that suits your environment: **Linux** or **Kubernetes**.
+You can generate a new data plane certificate from the {% konnect_icon runtimes %} **Runtime Manager**.
 
-    If you're running a Docker container, you can use either of these tiles to
-    complete the following steps.
+1. Select a runtime instance
+1. Click **Runtime group actions** and select **Data plane certificates**. 
+1. Click **Generate certificate**.
 
-3. Click **Generate Certificate**.
-4. Save the new certificate and key into separate files:
+1. Save the new certificate and key into separate files:
 
     * certificate: `tls.crt`
     * private key: `tls.key`
 
-5. Store the files on the local file system.
+1. Store the files on the local file system.
 
 ### Update data plane
 
