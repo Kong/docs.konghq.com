@@ -13,6 +13,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ### 2022.11.17
 
+**My changelog entry**
+: Now this changelog contains my changelog entry. 
+
 **New Analytics predefined teams**
 : {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities. 
 
