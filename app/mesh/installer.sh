@@ -20,6 +20,6 @@
 
 curl -L https://kuma.io/installer.sh | \
   PRODUCT_NAME="Kong Mesh" \
-  REPO_PREFIX="kong-mesh" \
+  REPO="kong/kong-mesh" \
   LATEST_VERSION="https://docs.konghq.com/mesh/latest_version/" \
   sh -

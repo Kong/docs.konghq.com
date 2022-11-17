@@ -66,14 +66,31 @@ sudo dpkg -i kong-{{page.versions.ce}}.amd64.deb
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
+3. (Optional) Prevent accidental upgrades by marking the package as `hold`:
+{% capture optional %}
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+```bash
+sudo apt-mark hold kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo apt-mark hold kong
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+{{ optional | indent | replace: " </code>", "</code>" }}
+
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
 {:.note .no-icon}
-> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong-enterprise-edition`. This will prevent an accidental upgrade to a new version.
+> To uninstall the package, run: `sudo apt remove kong-enterprise-edition`.
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 {:.note .no-icon}
-> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong`. This will prevent an accidental upgrade to a new version.
+> To uninstall the package, run: `sudo apt remove kong`.
 {% endnavtab %}
 {% endnavtabs_ee %}
 
@@ -116,3 +133,5 @@ apt install -y kong={{page.versions.ce}}
 {% endnavtabs %}
 
 {% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+
+

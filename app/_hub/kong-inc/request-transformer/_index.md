@@ -132,7 +132,7 @@ params:
       datatype: array of string elements
       description: |
         List of `queryname:value` pairs. If and only if the querystring is not already set, set a new
-        querystring with the given value. Ignored if the header is already set.
+        querystring with the given value. Ignored if the querystring is already set.
     - name: add.body
       required: false
       value_in_examples:
