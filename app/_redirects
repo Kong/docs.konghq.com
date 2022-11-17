@@ -229,6 +229,7 @@
 /hub/kong-inc/vault-auth/0.*                       /hub/kong-inc/udp-log/
 /hub/kong-inc/zipkin/1.*                           /hub/kong-inc/zipkin/
 /hub/tomkerkhove/*                                 /hub/
+/hub/justeat/*                                     /hub/
 
 # KONNECT
 
