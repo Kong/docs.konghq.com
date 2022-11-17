@@ -447,6 +447,53 @@ http DELETE :8001/consumers/DianaPrince/consumer_groups/JL
     }
     ```
 
+## Delete consumer group configurations
+
+If you still need the consumer group but wanted to delete the configuations, 
+you can delete it. This removes configurations for the consumer group.
+The consumers in the group are not deleted and are still in the consumer group.
+
+1. Delete the consumer group configuration using the following request:
+
+{% capture delete_consumer_group_config %}
+{% navtabs codeblock %}
+{% navtab cURL %}
+```bash
+curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```bash
+http DELETE :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+
+{{ delete_consumer_group_config| indent | replace: " </code>", "</code>" }}
+
+    If successful, you receive see the following response:
+    ```
+    HTTP/1.1 204 No Content
+    ```
+    
+1. To verify, check the consumer object configuration:
+
+{{ check_group1 | indent | replace: " </code>", "</code>" }}
+
+    Response, notice the plugins object in the response is gone.
+
+    ```json
+    {
+        "consumer_group": {
+            "created_at": 1638917780,
+            "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
+            "name": "JL"
+        }
+    }
+    ```
+
+
 
 ## Delete consumer group
 
@@ -743,3 +790,4 @@ http DELETE :8001/consumers/BarryAllen/consumer_groups
     ```
     HTTP/1.1 204 No Content
     ```
+
