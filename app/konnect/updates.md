@@ -22,6 +22,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
+**Migration to cloud.konghq.com is completed**
+: All active accounts have been migrated from `konnect.konghq.com` 
+to [cloud.konghq.com](https://cloud.konghq.com).
+The deprecated environment at `konnect.konghq.com` is no longer available.
+
 ### 2022.11.15
 
 **Multiple runtime groups**
