@@ -14,7 +14,7 @@ no_version: true
 #### Core
 
 * **Kong Manager**:
-* You can now specify the root path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}, for example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager root path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
+* You can now configure the root path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager root path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
 
 
 ## 3.0.1.0
