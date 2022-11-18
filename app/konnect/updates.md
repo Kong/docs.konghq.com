@@ -9,6 +9,18 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2022
+
+### 2022.12.15
+
+**New chart types and metrics added to {{site.konnect_saas}} Analytics custom reports**
+: {{site.konnect_short_name}} users can now choose between different chart types when creating their own custom reports. This feature allows them to more easily understand traffic patterns, user behavior, or trends over time.
+
+: The new additions include:
+* New chart types: You can now select between either horizontal or vertical bar charts, as well as line charts.
+* New metrics: `Request per minute`, `Response latency` represented as percentiles, and `Response size` and `Request size` also represented as percentiles.
+* New time picker that allows using relative time periods which avoids manually adjusting your reports for, for example, weekly reports.
+
 ## November 2022
 
 ### 2022.11.17

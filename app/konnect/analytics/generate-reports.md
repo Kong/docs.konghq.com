@@ -32,12 +32,13 @@ To set up a new report, open {% konnect_icon analytics %} [Analytics](https://cl
 
 1. Choose a time frame to display.
 
-    You can choose a preset time frame ranging from 1 day to 1 year, or
-    select **Custom** to set any date range.
+    Select between **Relative** or **Custom** to set any date range.
 
-    All time frames are static. The report will capture a snapshot of data
-    in whichever time frame you choose, but the range always stops at the time
-    that the report was created. You can see a preview of the exact range below
+    **Relative** time frames are dynamic and the report will capture a snapshot of data
+    relatively from the time a user views the report.
+
+    **Custom** time frames are static and the report will capture a snapshot of data
+    in whichever time frame you choose. You can see a preview of the exact range below
     the time frame selector. For example:
 
     ```
@@ -45,20 +46,21 @@ To set up a new report, open {% konnect_icon analytics %} [Analytics](https://cl
     ```
 
 
-1. Choose a report type.
+1. Choose an entity type.
 
-   * **Service Report**: Generate a report based on services cataloged in Service Hub.
-   * **Route Report**: Generate a report based on routes.
-   * **Application Report**: Generate a report based on applications registered on your Dev Portal.
+   * **Service**: Generate a report based on services cataloged in Service Hub.
+   * **Route**: Generate a report based on routes.
+   * **Application**: Generate a report based on applications registered on your Dev Portal.
 
    Depending on the report type you choose, the available metrics and entities
    will change.
 
-1. Choose a [metric](#metrics) to group the data by.
 1. Choose the entities to focus on in your report.
 
     Route entity names are composed of multiple elements.
     See [route entity format](#route-entity-format) for the breakdown.
+
+1. Choose a [metric](#metrics) to group the data by.
 
 1. Click **Create** to open the report details page.
 
@@ -103,15 +105,15 @@ select **Delete Report**, then confirm deletion in the dialog.
 
 ## Metrics
 
-Each metric depends on a time frame and a primary entity (report type).
+Metric | Description
+-------|------------
+Request count | Total number of API calls within the selected time frame.
+Requests per minute | Number of API calls per minute within the selected time frame.
+Response latency | The amount of time, in milliseconds, that it takes to process an API request. The time starts when the Kong Gateway receives a request and ends when it forwards the response back to the original caller. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from request received until response returned. 
+Request size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
+Response size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
 
-Metric | Report type | Description
--------|------------|------------
-Total traffic | Service, route, application | Total number of API calls within the selected time frame.
-Total traffic by status code | Service, route, application | Number of API calls grouped by status code.
-Total traffic by service | Route, application | Number of API calls filtered by services or service versions and grouped by service.
-Total traffic by route | Service, application | Number of API calls grouped by route.
-Total traffic by application | Service, route | Number of API calls grouped by application.
+{{site.konnect_saas}} Analytics Analytics is using percentiles to enable users to understand the real performance characteristics of their APIs. They have the advantage of distinguishing users who have a good experience from those that have a bad experience. Percentiles can show you a more accurate picture of what most users experience using your API as opposed to hiding critical experiences in an average.
 
 ## Route entity format
 
