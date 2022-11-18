@@ -113,7 +113,8 @@ Response latency | The amount of time, in milliseconds, that it takes to process
 Request size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
 Response size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
 
-{{site.konnect_saas}} Analytics Analytics is using percentiles to enable users to understand the real performance characteristics of their APIs. They have the advantage of distinguishing users who have a good experience from those that have a bad experience. Percentiles can show you a more accurate picture of what most users experience using your API as opposed to hiding critical experiences in an average.
+{:.note}
+> **Note:** {{site.konnect_saas}} Analytics Analytics is using percentiles to enable users to understand the real performance characteristics of their APIs. They have the advantage of distinguishing users who have a good experience from those that have a bad experience. Percentiles can show you a more accurate picture of what most users experience using your API as opposed to hiding critical experiences in an average.
 
 ## Route entity format
 
