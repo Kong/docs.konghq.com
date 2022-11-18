@@ -63,4 +63,4 @@ for the following parameters:
     cluster_telemetry_server_name = example.us.tp0.konghq.com
     ```
 {:.note}
-> **Note:** Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json] for the list of IPs associated to regional hostnames. You can also subscribe to [ https://ip-addresses.origin.konghq.com/rss] for updates.  
+> **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates.  
