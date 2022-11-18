@@ -32,13 +32,13 @@ To set up a new report, open {% konnect_icon analytics %} [Analytics](https://cl
 
 1. Choose a time frame to display.
 
-    Select between **Relative** or **Custom** to set any date range.
+    You can choose **Relative** or **Custom** to set any date range.
 
-    **Relative** time frames are dynamic and the report will capture a snapshot of data
-    relatively from the time a user views the report.
+    **Relative** time frames are dynamic and the report captures a snapshot of data
+    relative to when a user views the report.
 
-    **Custom** time frames are static and the report will capture a snapshot of data
-    in whichever time frame you choose. You can see a preview of the exact range below
+    **Custom** time frames are static and the report captures a snapshot of data
+    during the specified time frame. You can see a preview of the exact range below
     the time frame selector. For example:
 
     ```
@@ -109,12 +109,12 @@ Metric | Description
 -------|------------
 Request count | Total number of API calls within the selected time frame.
 Requests per minute | Number of API calls per minute within the selected time frame.
-Response latency | The amount of time, in milliseconds, that it takes to process an API request. The time starts when the Kong Gateway receives a request and ends when it forwards the response back to the original caller. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from request received until response returned. 
+Response latency | The amount of time, in milliseconds, that it takes to process an API request. The time starts when {{site.base_gateway}} receives a request and ends when it forwards the response back to the original caller. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from request received until response returned. 
 Request size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
 Response size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
 
 {:.note}
-> **Note:** {{site.konnect_saas}} Analytics Analytics is using percentiles to enable users to understand the real performance characteristics of their APIs. They have the advantage of distinguishing users who have a good experience from those that have a bad experience. Percentiles can show you a more accurate picture of what most users experience using your API as opposed to hiding critical experiences in an average.
+> **Note:** {{site.konnect_saas}} Analytics uses percentiles to enable you to understand the real performance characteristics of your APIs. Percentiles depict a more accurate picture of what most end users experience using your API instead of hiding critical experiences by displaying averages.
 
 ## Route entity format
 
