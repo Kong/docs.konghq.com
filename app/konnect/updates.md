@@ -11,6 +11,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2022
 
+### 2022.11.18
+
+**Dev portal Dynamic Client Registration**
+
+: As part of this release, we have improved the UI for DCR to provide a more polished experience for users.
+
 ### 2022.11.17
 
 **Certificate management functionality added to the {{site.konnect_saas}} runtime manager**
