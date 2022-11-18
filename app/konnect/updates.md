@@ -15,7 +15,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Dev portal Dynamic Client Registration**
 
-: As part of this release, we have improved the UI for DCR to provide a more polished experiences for users.
+: As part of this release, we have improved the UI for DCR to provide a more polished experience for users.
 
 ### 2022.11.17
 
