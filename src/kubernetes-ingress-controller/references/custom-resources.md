@@ -9,10 +9,9 @@ Following CRDs enables users to declaratively configure all aspects of Kong:
 
 - [**KongPlugin**](#kongplugin): This resource corresponds to
   the [Plugin][kong-plugin] entity in Kong.
-- [**KongIngress**](#kongingress): This resource provides fine-grained control
-  over all aspects of proxy behaviour like routing, load-balancing,
-  and health checking. It serves as an "extension" to the Ingress resources
-  in Kubernetes.
+- [**KongIngress**](#kongingress): {% if_version gte:2.8.x -%}**(Partially deprecated)**{% endif_version %}This resource provides fine-grained control over all aspects of proxy
+  behaviour like routing, load-balancing, and health checking. It serves as an
+  "extension" to the Ingress resources in Kubernetes.
 - [**KongConsumer**](#kongconsumer):
   This resource maps to the [Consumer][kong-consumer] entity in Kong.
 - [**TCPIngress**](#tcpingress):
@@ -243,6 +242,8 @@ meaning it will be executed for every request that is proxied via Kong.
 
 ## KongIngress
 
+{% if_version lte:2.7.x -%}
+
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
 > [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
@@ -251,6 +252,26 @@ meaning it will be executed for every request that is proxied via Kong.
 > available, it is the preferred means of configuring that setting, and the
 > annotation value will take precedence over a KongIngress value if both set
 > the same setting.
+{% endif_version %}
+{% if_version gte:2.8.x -%}
+
+{:.note}
+> As of version 2.8, KongIngress sections other than `upstream` are
+> [deprecatedi](https://github.com/Kong/kubernetes-ingress-controller/issues/3018).
+> All settings in the `proxy` and `route` sections are now available with
+> dedicated annotations, and these annotations will become the only means of
+> configuring those settings in a future release. For example, if you had set
+> `proxy.connect_timeout: 30000` in a KongIngress and applied an
+> `konghq.com/override` annotation for that KongIngress to a Service, you will
+> need to instead apply a `konghq.com/connect-timeout: 30000` annotation to the
+> Service.
+> 
+> Plans are to replace the `upstream` section of KongIngress with [a new
+> resource](https://github.com/Kong/kubernetes-ingress-controller/issues/3174),
+> but this is still in development and `upstream` is not yet officially
+> deprecated.
+
+{% endif_version %}
 
 Ingress resource spec in Kubernetes can define routing policies
 based on HTTP Host header and paths.

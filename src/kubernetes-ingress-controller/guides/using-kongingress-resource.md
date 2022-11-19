@@ -5,6 +5,8 @@ title: Using KongIngress resource
 In this guide, we will learn how to use KongIngress resource to control
 proxy behavior.
 
+{% if_version lte:2.7.x %}
+
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
 > [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
@@ -14,6 +16,27 @@ proxy behavior.
 > annotation value will take precedence over a KongIngress value if both set
 > the same setting. This guide focuses on settings that can only be set using
 > KongIngress.
+
+{% endif_version %}
+{% if_version gte:2.8.x %}
+
+{:.note}
+> As of version 2.8, KongIngress sections other than `upstream` are
+> [deprecatedi](https://github.com/Kong/kubernetes-ingress-controller/issues/3018).
+> All settings in the `proxy` and `route` sections are now available with
+> dedicated annotations, and these annotations will become the only means of
+> configuring those settings in a future release. For example, if you had set
+> `proxy.connect_timeout: 30000` in a KongIngress and applied an
+> `konghq.com/override` annotation for that KongIngress to a Service, you will
+> need to instead apply a `konghq.com/connect-timeout: 30000` annotation to the
+> Service.
+> 
+> The `upstream` section of KongIngress will be replaced with [a new
+> resource](https://github.com/Kong/kubernetes-ingress-controller/issues/3174),
+> but this is still in development and `upstream` is not officially
+> deprecated yet.
+
+{% endif_version %}
 
 ## Installation
 
@@ -341,6 +364,14 @@ KongIngress reference](/kubernetes-ingress-controller/{{page.kong_version}}/refe
 for the health check fields.
 
 ## Use KongIngress with Ingress resource
+
+{% if_version gte:2.8.x %}
+{:.note}
+> As of version 2.8, this configuration is deprecated in favor of the
+> `konghq.com/headers` annotation. The [Routing by Header](/kubernetes-ingress-controller/{{page.kong_version}}/guides/routing-by-header)
+> guide covers the modern version of this configuration.
+
+{% endif_version %}
 
 Kong can match routes based on request headers. For example, you can have two
 separate routes for `/foo`, one that matches requests which include an
