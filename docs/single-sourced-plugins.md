@@ -42,18 +42,21 @@ This would result in the following:
 
 ### Automatic Plugin Versioning
 
-If you do not want to specify every Gateway release using `releases`, you can set `delegate_releases: true` which will read all available Gateway versions from `kong_versions.yml`:
-
+If you do not want to specify every Gateway release using `releases`, you can set
 ```yaml
 strategy: gateway
-delegate_releases: true
+delegate_releases:
+  min: '2.1.x'
+  max: '3.0.x' # optional
 ```
+which will read all available Gateway versions from `kong_versions.yml` and select those that are in the range specified.
 
 This can also be used with `overrides`:
 
 ```yaml
 strategy: gateway
-delegate_releases: true
+delegate_releases:
+  min: '2.1.x'
 overrides:
   2.8.x: 0.13.x
   2.7.x: 0.12.x
@@ -86,7 +89,8 @@ If you want to use `delegate_releases` but have one or two versions that you nee
 
 ```yaml
 strategy: gateway
-delegate_releases: true
+delegate_releases:
+  min: '2.1.x'
 replacements:
   2.3.x:
     - 2.3.x-CE
