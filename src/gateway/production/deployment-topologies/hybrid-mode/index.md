@@ -18,7 +18,7 @@ and receive the latest configuration.
 ![Hybrid mode topology](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
 
 When you create a new data plane node, it establishes a connection to the
-control plane. The control plane listens on port 8005 for connections and
+control plane. The control plane listens on port `8005` for connections and
 tracks any incoming data from its data planes.
 
 Once connected, every Admin API or Kong Manager action on the control plane

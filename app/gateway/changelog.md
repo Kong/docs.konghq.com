@@ -51,6 +51,8 @@ Previously, the version was pinned to 3.10, which was creating outdated `alpine`
 
 #### Core
 
+* Data planes can now fetch fallback configuration when starting if the control plane is not avaliable. [#3954](https://github.com/Kong/kong-ee/pull/3954)
+
 * Fixed an issue with how Kong initializes `resty.events`. The code was
 previously using `ngx.config.prefix()` to determine the listening socket
 path to provide to the resty.events module. This caused breakage when
