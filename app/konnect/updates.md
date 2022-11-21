@@ -16,7 +16,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Application Registration support in any runtime group**
 : {{site.konnect_short_name}} now officially supports the [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-runtime-group). Portal developers will be able to register the application to consume services proxied through gateway services in both default and non default runtime groups.
 
-Currently, this feature is only available for {{site.base_gateway}} 3.0.0.0 or later.
+:  Currently, this feature is only available for services being proxied through {{site.base_gateway}} 3.0.0.0 or later.
 
 ### 2022.11.18
 
