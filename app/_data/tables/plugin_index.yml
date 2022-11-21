@@ -41,6 +41,14 @@
       notes: --
       url: /hub/kong-inc/jwt-signer
 
+    - name: JWE Decrypt
+      free: No
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/jwe-decrypt
+
     - name: Key Auth
       free: Yes
       plus: Yes
