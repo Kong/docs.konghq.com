@@ -135,5 +135,5 @@ In the `default` runtime group, applications are still linked to {{site.base_gat
 The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.
 
 {:.note}
-> **Note:** If you are not in the `default` runtime group, consumer-based plugins (e.g. rate-limiting) are not compatible
+> **Note:** If you are not in the `default` runtime group, consumer-based plugins, like rate-limiting, are not compatible
 with applications, as they do not use consumers.
