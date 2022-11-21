@@ -37,7 +37,17 @@ module PluginSingleSource
       end
 
       def specified_or_delegated_releases
-        (data['delegate_releases'] && KongVersions.gateway) || data['releases']
+        (data['delegate_releases'] && delegated_releases) || data['releases']
+      end
+
+      def delegated_releases
+        min, max = data['delegate_releases'].values_at('min', 'max')
+        raise ArgumentError, '`delegate_releases` must have a `min` version set' unless min
+
+        KongVersions
+          .gateway
+          .select { |v| Gem::Version.new(v) >= Gem::Version.new(min) }
+          .select { |v| max.nil? || Gem::Version.new(v) <= Gem::Version.new(max) }
       end
 
       def replacements

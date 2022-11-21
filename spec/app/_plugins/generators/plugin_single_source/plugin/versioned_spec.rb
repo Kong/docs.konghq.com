@@ -18,13 +18,41 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
   end
 
   describe '#releases' do
-    context 'when `delegate_releases` is set to `true`' do
+    context 'when `delegate_releases` is set' do
       let(:name) { 'jwt-signer' }
 
-      it 'returns the versions defined in `kong_versions.yml`, replacements apply' do
-        expect(subject.releases).to eq(
-          ['3.0.x', '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE', '2.2.x', '2.1.x']
-        )
+      context 'when a `max` is set' do
+        it 'returns the versions defined in `kong_versions.yml` in the `min` `max` range, replacements apply' do
+          expect(subject.releases).to eq(
+            ['2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
+          )
+        end
+      end
+
+      context 'when `max` is not set' do
+        let(:data) do
+          data = SafeYAML.load(
+            File.read('spec/fixtures/app/_hub/acme/jwt-signer/versions.yml')
+          )
+          data['delegate_releases'].delete('max')
+          data
+        end
+
+        before { allow(subject).to receive(:data).and_return(data) }
+
+        it 'returns the versions defined in `kong_versions.yml` greater than and equal to `min`, replacements apply' do
+          expect(subject.releases).to eq(
+            ['3.0.x', '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
+          )
+        end
+      end
+
+      context 'when `min` is not present' do
+        let(:data) { { 'delegate_releases' => {} } }
+
+        before { allow(subject).to receive(:data).and_return(data) }
+
+        it { expect{ subject.releases }.to raise_error }
       end
     end
 
@@ -84,11 +112,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
       it 'creates a page for each version of the plugin, except for those for which a .md file exist' do
         expect(PluginSingleSource::SingleSourcePage)
           .to receive(:new)
-          .with(site:, version: '3.0.x', is_latest: true, plugin: subject, source: '_index')
-          .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
-          .to receive(:new)
-          .with(site:, version: '2.8.x', is_latest: false, plugin: subject, source: '_index')
+          .with(site:, version: '2.8.x', is_latest: true, plugin: subject, source: '_index')
           .and_call_original
         expect(PluginSingleSource::SingleSourcePage)
           .to receive(:new)
@@ -114,16 +138,8 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
           .to receive(:new)
           .with(site:, version: '2.3.x-CE', is_latest: false, plugin: subject, source: '_index')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
-          .to receive(:new)
-          .with(site:, version: '2.2.x', is_latest: false, plugin: subject, source: '_2.2.x')
-          .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
-          .not_to receive(:new)
-          .with(site:, version: '2.1.x', is_latest: false, plugin: subject, source: anything)
-          .and_call_original
 
-        expect(subject.create_pages.size).to eq(9)
+        expect(subject.create_pages.size).to eq(7)
       end
     end
   end
@@ -137,7 +153,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
 
     it 'includes the `releases`' do
       expect(subject.ext_data['releases']).to eq([
-        '3.0.x', '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE', '2.2.x', '2.1.x'
+        '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE'
       ])
     end
 
