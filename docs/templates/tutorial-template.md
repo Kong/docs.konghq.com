@@ -59,9 +59,29 @@ Continuing the previous example of installing software, here's an example:
         ```
         Explanation of the variables used in the sample code, like "Where `example` is the file name."
 
+You can also use tabs in a section. For example, if you can install the software with macOS or Docker, you might have a tab with instructions for macOS and a tab with instructions for Docker.
+
+{% navtabs %}
+{% navtab macOS %}
+
+1. Open Terminal...
+1. Run....
+
+{% endnavtab %}
+{% navtab Docker %}
+
+1. Open Docker...
+1. Run....
+
+{% endnavtab %}
+{% endnavtabs %}
+
 ### Explanation of instructions <!-- Optional, but recommended -->
 
 This section should contain a brief, 2-3 sentence paragraph that summarizes what the user accomplished in these steps and what the outcome was. For example, "The software is now installed on your computer. You can't use it yet because the settings haven't been configured. In the next section, you will configure the basic settings so you can start using the software." 
+
+{:.note}
+> **Note**: You can also use notes to highlight important information. Try to keep them short.
 
 ## Second task section <!-- Optional -->
 

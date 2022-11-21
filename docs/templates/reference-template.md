@@ -33,6 +33,9 @@ You can also use bulleted lists and paragraphs for longer descriptions. For exam
 * If ___ is also enabled, then...
 * The time parameter is used to...
 
+{:.note}
+> **Note**: You can also use notes to highlight important information. Try to keep them short.
+
 ## Second section <!-- Optional -->
 
 If you have more subtopics or categories about your main topic, you can keep adding headers and sections until you've completed your doc. 

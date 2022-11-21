@@ -54,6 +54,26 @@ Continuing the previous example of installing software, here's an example:
         example code
         ```
 
+{:.note}
+> **Note**: You can also use notes to highlight important information. Try to keep them short.
+
+You can also use tabs in a section. For example, if you can install the software with macOS or Docker, you might have a tab with instructions for macOS and a tab with instructions for Docker.
+
+{% navtabs %}
+{% navtab macOS %}
+
+1. Open Terminal...
+1. Run....
+
+{% endnavtab %}
+{% navtab Docker %}
+
+1. Open Docker...
+1. Run....
+
+{% endnavtab %}
+{% endnavtabs %}
+
 ## Second task section <!-- Optional -->
 
 Adding additional sections can be helpful if you have to switch from working in one product to another or if you switch from one task, like installing to configuring.

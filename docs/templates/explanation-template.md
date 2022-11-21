@@ -22,6 +22,9 @@ The first section should be about the main idea of the topic. The title for an e
 
 For example, if you were writing about computers, you could go into more detail about what they do, how they work, and so on. This would expand on the information that was in the introduction paragraph. 
 
+{:.note}
+> **Note**: You can also use notes to highlight important information. Try to keep them short. 
+
 ### Subsection with more details <!-- Optional --> 
 
 Subsections go into more detail about some aspect of the functionality, concept, or bigger picture context of the topic. Subsection titles should also start with a noun. For example, "Computers and the internet".
