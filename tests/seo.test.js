@@ -49,7 +49,7 @@ describe("Canonical links", () => {
       await expect($("head link[rel='canonical']").attr("href")).toBe(
         `https://docs.konghq.com${t.href}`
       );
-    });
+    }, 7000);
   });
 });
 
