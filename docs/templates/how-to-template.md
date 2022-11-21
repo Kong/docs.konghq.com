@@ -66,6 +66,6 @@ Adding additional sections can be helpful if you have to switch from working in 
 This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
 
 See the following examples of how-to documentation:
-* https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/
-* https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/
-* https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/
+* [Analytics reports](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/)
+* [Service directory mapping](https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/)
+* [Custom entities](https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/)

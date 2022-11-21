@@ -79,6 +79,6 @@ Adding additional sections can be helpful if you have to switch from working in 
 This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
 
 See the following examples of tutorial documentation:
-* https://docs.konghq.com/gateway/latest/get-started/services-and-routes/
-* https://docs.konghq.com/gateway/latest/migrate-ce-to-ke/
-* https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/influx-strategy/ 
+* [Get started with services and routes](https://docs.konghq.com/gateway/latest/get-started/services-and-routes/)
+* [Migrate from OSS to Enterprise](https://docs.konghq.com/gateway/latest/migrate-ce-to-ke/)
+* [Set up Vitals with InfluxDB](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/influx-strategy/)

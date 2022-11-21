@@ -42,6 +42,6 @@ If you have more subtopics or categories about your main topic, you can keep add
 This section should include a list of tutorials or how-to guides that a user can visit to extend their learning from this reference article.
 
 See the following examples of reference documentation:
-* https://docs.konghq.com/gateway/latest/reference/router-expressions-language/ 
-* https://docs.konghq.com/gateway/latest/reference/configuration/
-* https://docs.konghq.com/gateway/latest/glossary/
+* [Router expressions language](https://docs.konghq.com/gateway/latest/reference/router-expressions-language/)
+* [Configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration/)
+* [Glossary](https://docs.konghq.com/gateway/latest/glossary/)
