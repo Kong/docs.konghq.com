@@ -896,15 +896,63 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
-## 2.8.2.0
-**Release Date** 2022/10/12
+## 2.8.2.1
+**Release Date** 2022/11/21
 
-### Features
+### Fixes
+
+#### Enterprise
+
+* **Kong Manager:**
+  * Fixed an issue where admins needed the specific `rbac/role` permission to edit RBAC roles.
+  Now, admins can edit RBAC roles with the `/admins` permission.
+  * Fixed an issue where the client certificate ID didn't display properly in the upstream update form.
+  * Fixed an issue in the service documents UI which allowed users to upload multiple documents. Since each service
+  only supports one document, the documents would not display correctly. Uploading a new document now overrides the previous document.
+  * Fixed an issue where the **New Workspace** button on the global workspace dashboard wasn't clickable on the first page load.
+  * Fixed an RBAC issue where the roles page listed deleted roles.
+  * Removed New Relic from Kong Manager. Previously, `VUE_APP_NEW_RELIC_LICENSE_KEY` and
+  `VUE_APP_SEGMENT_WRITE_KEY` were being exposed in Kong Manager with invalid values.
+  * Fixed an RBAC issue where permissions applied to specific endpoints (for example, an individual service or route) were not reflected in the Kong Manager UI.
+  * Fixed an issue with group to role mapping, where it didn't support group names with spaces.
+  * Fixed an issue with individual workspace dashboards, where right-clicking on **View All** and choosing "Open Link in New Tab" or "Copy Link" for services, routes, and plugins redirected to the default workspace and caused an `HTTP 404` error.
+
+* **Dev Portal**: Fixed an issue where Dev Portal response examples weren't rendered when media type was vendor-specific.
+
+#### Core
+
+* Fixed the timer error `lua_max_running_timers are not enough`.
+
+* Targets with a weight of `0` are no longer included in health checks, and checking their status via the `upstreams/<upstream>/health` endpoint results in the status `HEALTHCHECK_OFF`.
+Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting targets with `weight=0` as `HEALTHY`, and the health check was reporting the same targets as `UNDEFINED`.
+
+* Fixed the default `logrotate` configuration, which lacked permissions to access logs.
 
 #### Plugins
 
-* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
-  * Values stored in `key:value` pairs in this plugin's configuration are now referenceable, which means they can be stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/) in a vault.
+* [Kafka Upstream](/hub/kong-inc/kafka-upstream/) (`kafka-upstream`)
+  * Fixed the `Bad Gateway` error that would occur when using the Kafka Upstream plugin with the configuration `producer_async=false`.
+
+* [Response Transformer](/hub/kong-inc/response-transformer/) (`response-transformer`)
+  * Fixed an issue where the plugin couldn't process string responses.
+
+* [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * Fixed an issue where the plugin was causing requests to silently fail on Kong Gateway data planes.
+
+* [Request Transformer](/hub/kong-inc/request-transformer/) (`request-transformer`)
+  * Fixed an issue where empty arrays were being converted to empty objects.
+  Empty arrays are now preserved.
+
+* [Azure Functions](/hub/kong-inc/azure-functions/) (`azure-functions`)
+  * Fixed an issue where calls made by this plugin would fail in the following situations:
+    * The plugin was associated with a route that had no service.
+    * The route's associated service had a `path` value.
+
+* [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced) (`ldap-auth-advanced`)
+  * Fixed an issue where operational attributes referenced by `group_member_attribute` weren't returned in search query results.
+
+## 2.8.2.0
+**Release Date** 2022/10/12
 
 ### Fixes
 
@@ -919,19 +967,12 @@ openid-connect
 
 * Fixed OpenSSL vulnerabilities [CVE-2022-2097](https://nvd.nist.gov/vuln/detail/CVE-2022-2097) and [CVE-2022-2068](https://nvd.nist.gov/vuln/detail/CVE-2022-2068).
 * Hybrid mode: Fixed an issue with consumer groups, where the control plane wasn't sending the correct number of consumer entries to data planes.
-* Targets with a weight of `0` are no longer included in health checks, and checking their status via the `upstreams/<upstream>/health` endpoint results in the status `HEALTHCHECK_OFF`.
-Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting targets with `weight=0` as `HEALTHY`, and the health check was reporting the same targets as `UNDEFINED`.
 * Hybrid mode: Fixed an issue where sending a `PATCH` request to update a route after restarting a control plane caused a 500 error response.
 
 #### Plugins
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
   * Fixed an issue where the plugin couldn't read environment variables in the ECS environment, causing permission errors.
-
-* [Azure Functions](/hub/kong-inc/azure-functions/) (`azure-functions`)
-  * Fixed an issue where calls made by this plugin would fail in the following situations:
-    * The plugin was associated with a route that had no service.
-    * The route's associated service had a `path` value.
 
 * [Forward Proxy](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
   * If the `https_proxy` configuration parameter is not set, it now defaults to `http_proxy` to avoid DNS errors.
@@ -942,17 +983,13 @@ Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
   * The plugin now returns a `500` error when using the `cluster` strategy in hybrid or DB-less modes instead of crashing.
 
-* [HTTP Log](/hub/kong-inc/http-log/) (`http-log`)
-  * Fixed the `could not update kong admin` internal error caused by empty headers.
-  This error occurred when using this plugin with the Kubernetes Ingress Controller.
-
 * [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * The characters `.` and `:` are now allowed in group attributes.
 
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed issues with OIDC role mapping where admins couldn't be added to more than one workspace, and permissions were not being updated.
 
-* [Request Transformer](/hub/kong-inc/request-transformer/) (`request-transformer`) and [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
+* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
   * Fixed an issue where empty arrays were being converted to empty objects.
   Empty arrays are now preserved.
 
