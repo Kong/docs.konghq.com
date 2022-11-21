@@ -757,6 +757,7 @@ request_jq_program_options
 request_max_body_size_limit
 request_method
 request_query_masks
+request_signature_algorithm
 request_template
 request_transformer
 require_content_length
@@ -772,6 +773,7 @@ response_jq_program
 response_jq_program_options
 response_max_body_size_limit
 response_mode
+response_signature_algorithm
 response_template
 response_transformer
 response_type
@@ -982,6 +984,7 @@ userinfo_query_args_names
 userinfo_query_args_values
 username_lower
 utils
+validate_assertion_signature
 validate_request_body
 value_in_examples
 value_in_examples_serialized

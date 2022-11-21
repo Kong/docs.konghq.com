@@ -70,7 +70,7 @@ description: |
   finishes, the IdP sends the `RelayState` back to the plugin.  After
   decryption, the plugin then responds back to the web browser with
   another automatically self-submitting form containing the original
-  form parameters as hidden parameters.  This feauture is only
+  form parameters as hidden parameters.  This feature is only
   available with forms that use "application/x-www-form-urlencoded" as
   their content type.  Forms that use "text/plain" or
   "multipart/form-data" are not supported.
