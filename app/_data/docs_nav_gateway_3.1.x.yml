@@ -339,6 +339,10 @@ items:
         url: /kong-enterprise/consumer-groups
       - text: Event Hooks
         url: /kong-enterprise/event-hooks
+      - text: How to Manage New Data Planes during Control Plane Outages
+        url: /kong-enterprise/cp-outage-handling
+      - text: Control Plane Outage Management FAQ
+        url: /kong-enterprise/cp-outage-handling-faq
       - text: FIPS 140-2
         url: /kong-enterprise/fips-support
   - title: Kong Manager
