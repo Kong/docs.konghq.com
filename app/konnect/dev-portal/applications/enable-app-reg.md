@@ -9,7 +9,6 @@ These plugins run inside the {{site.base_gateway}} runtime instances to support 
 {{site.konnect_saas}}.
 
 ## Support for any runtime group
-{:.badge .alpha}
 
 App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
 We are rolling out full support in any non-`default` runtime group, using the `konnect-application-auth` plugin that was created for {{site.base_gateway}} 3.0.
