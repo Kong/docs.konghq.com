@@ -70,7 +70,7 @@ Result:
     "config": {
         "host": "localhost",
         "kv": "v2",
-        "mount": "vault",
+        "mount": "secret",
         "port": 8200,
         "protocol": "https",
         "token": "<mytoken>"
