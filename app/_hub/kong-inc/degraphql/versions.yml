@@ -1,5 +1,6 @@
 strategy: gateway
-delegate_releases: true
+delegate_releases:
+  min: '2.1.x'
 
 overrides:
   2.8.x: 0.1.2
