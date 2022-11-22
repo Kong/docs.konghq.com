@@ -195,6 +195,14 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/acl
+    
+    - name: AppDynamics
+      free: no
+      plus: no
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/app-dynamics
 
     - name: Canary
       free: No
