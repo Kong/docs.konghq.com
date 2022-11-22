@@ -11,13 +11,13 @@ We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically gene
 ### Automatic Plugin Versioning
 
 Each `versions.yml` is expected to contain a `strategy` (either `matrix` for the original rendering, or `gateway` for plugins that have versions pinned to the Gateway version)
-and `delegate_releases` like so: 
+and a list of `releases` like so: 
 
 ```yaml
 strategy: gateway
-delegate_releases:
-  min: '2.1.x'
-  max: '3.0.x' # optional
+releases:
+  minimum_version: '2.1.x'
+  maximum_version: '3.0.x' # optional
 ```
 which will read all available Gateway versions from `kong_versions.yml` and select those that are in the range specified.
 
@@ -25,8 +25,8 @@ This can also be used with `overrides`:
 
 ```yaml
 strategy: gateway
-delegate_releases:
-  min: '2.1.x'
+releases:
+  minimum_version: '2.1.x'
 overrides:
   2.8.x: 0.13.x
   2.7.x: 0.12.x
@@ -38,8 +38,8 @@ In some cases, the version of a plugin is different between the Community Editio
 
 ```yaml
 strategy: gateway
-delegate_releases:
-  min: 2.2.x
+releases:
+  minimum_version: 2.2.x
 replacements:
   2.3.x:
     - 2.3.x-CE
@@ -56,12 +56,12 @@ overrides:
 
 `2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
 
-If you want to use `delegate_releases` but have one or two versions that you need to override, you can use `replacements` like so:
+If you want to use `releases` but have one or two versions that you need to override, you can use `replacements` like so:
 
 ```yaml
 strategy: gateway
-delegate_releases:
-  min: '2.1.x'
+releases:
+  minimum_version: '2.1.x'
 replacements:
   2.3.x:
     - 2.3.x-CE
