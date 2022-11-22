@@ -109,7 +109,7 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/openid-connect
-    
+
     - name: SAML
       free: no
       plus: Yes
@@ -203,14 +203,6 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/acl
-    
-    - name: AppDynamics
-      free: no
-      plus: no
-      enterprise: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/app-dynamics
 
     - name: Canary
       free: No
@@ -245,6 +237,22 @@
         In DB-less and hybrid modes, the <code>cluster</code> config strategy
         is not supported. Use <code>redis</code> instead.
       url: /hub/kong-inc/graphql-rate-limiting-advanced
+
+    - name: Mocking
+      free: No
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/mocking
+
+    - name: OAS Validation
+      free: No
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/oas-validation/
 
     - name: Proxy Caching
       free: Yes
@@ -356,13 +364,14 @@
       notes: --
       url: /hub/kong-inc/websocket-validator
 
-    - name: Mocking
+    - name: XML Threat Protection
       free: No
-      plus: Yes
+      plus: No
       enterprise: Yes
       network_config_opts: All
       notes: --
-      url: /hub/kong-inc/mocking
+      url: /hub/kong-inc/xml-threat-protection/
+
 
 - category:
   name: Serverless
@@ -405,6 +414,14 @@
 - category:
   name: Analytics and Monitoring
   plugins:
+    - name: AppDynamics
+      free: No
+      plus: No
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/app-dynamics
+
     - name: Datadog
       free: Yes
       plus: Yes
