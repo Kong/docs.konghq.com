@@ -71,3 +71,7 @@ days resolution data.
 **Traffic metrics**
 : Provide insight into which of your services and service versions are being
 used and how they are responding.
+
+## Team permissions
+
+You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This gives you the ability to allow certain users to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).

@@ -229,6 +229,7 @@
 /hub/kong-inc/vault-auth/0.*                       /hub/kong-inc/udp-log/
 /hub/kong-inc/zipkin/1.*                           /hub/kong-inc/zipkin/
 /hub/tomkerkhove/*                                 /hub/
+/hub/justeat/*                                     /hub/
 
 # KONNECT
 
@@ -273,6 +274,7 @@
 /konnect/shared-config                               /konnect/runtime-manager/gateway-config/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/legacy/*                                    /konnect/
 
 
 #API Redirects
@@ -621,7 +623,7 @@
 /mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
-/policies/  /mesh/:version/policies/   
+/policies/  /mesh/:version/policies/
 /mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
 /mesh/:version/introduction/what-is-kong-mesh   /mesh/:version/
 /install/:version/  /mesh/:version/install/
