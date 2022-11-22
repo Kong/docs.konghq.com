@@ -4,7 +4,28 @@ subtitle: The SaaS API Platform
 breadcrumb: Overview
 ---
 
-## Quick Links
+## Introducing {{site.konnect_short_name}}
+
+{{site.konnect_short_name}} is an API lifecycle
+management platform designed from the ground up for the cloud native era
+and delivered as a service. This platform lets you build modern applications
+better, faster, and more securely. The management plane is hosted
+in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's
+lightweight, fast, and flexible API gateway  — is managed by you within your
+preferred network environment.
+
+<p align="center">
+  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" />
+</p>
+
+{{site.konnect_short_name}} helps simplify multi-cloud API management by:
+
+* Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines.
+
+* Instantly applying authentication, API security, and traffic control policies consistently across all your services using powerful enterprise and community plugins.
+
+* Providing a real-time, centralized view of all your services. Monitor golden signals such as error rate and latency for each service and route to gain deep insights into your API products.
+
 
 <div class="docs-grid-install">
 
@@ -14,7 +35,7 @@ breadcrumb: Overview
     <div class="install-text">Features</div>
   </a> -->
 
-  <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
+  <a href="https://cloud.konghq.com/quick-start" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
     <div class="install-text">Get Started</div>
   </a>
@@ -34,27 +55,6 @@ breadcrumb: Overview
     <div class="install-text">Plugins</div>
   </a>
 </div>
-
-## Introducing {{site.konnect_short_name}}
-
-{{site.konnect_short_name}} is an API lifecycle
-management platform designed from the ground up for the cloud native era
-and delivered as a service. This platform lets you build modern applications
-better, faster, and more securely. The management plane is hosted
-in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's
-lightweight, fast, and flexible API gateway  — is managed by you within your
-preferred network environment.
-
-{{site.konnect_short_name}} helps simplify multi-cloud API management by:
-
-* Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines.
-
-* Instantly applying authentication, API security, and traffic control policies consistently across all your services using powerful enterprise and community plugins.
-
-* Providing a real-time, centralized view of all your services. Monitor golden signals such as error rate and latency for each service and route to gain deep insights into your API products.
-
-[Get started](https://cloud.konghq.com/quick-start) with {{ site.konnect_short_name }} for free today!
-
 ## {{site.konnect_short_name}} modules
 
 ### Service Hub
