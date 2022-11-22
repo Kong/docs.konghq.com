@@ -1,6 +1,6 @@
 ---
 title: Logging Reference
-content-type: reference
+content_type: reference
 ---
 
 ## Log Levels
