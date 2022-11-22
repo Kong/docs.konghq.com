@@ -9,6 +9,14 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2022
+
+**{{site.base_gateway}} 3.1 support**
+: {{site.konnect_short_name}} users can now use Kong Gateway 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to get access to the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
+
+**Support for all {{site.base_gateway}} 3.1 plugins**
+: {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins review our [compatibility documentation](/compatibility/#plugin-compatibility)
+
 ## November 2022
 
 ### 2022.11.21
