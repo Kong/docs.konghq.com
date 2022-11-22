@@ -46,7 +46,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
       end
     end
 
-    context 'when `min` is not present' do
+    context 'when `minimum_version` is not present' do
       let(:data) { { 'releases' => {} } }
 
       before { allow(subject).to receive(:data).and_return(data) }

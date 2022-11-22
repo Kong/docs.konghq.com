@@ -4,4 +4,4 @@
 strategy: gateway
 
 releases:
-  min: 3.0.x
+  minimum_version: 3.0.x
