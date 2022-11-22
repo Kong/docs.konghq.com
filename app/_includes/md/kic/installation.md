@@ -3,43 +3,10 @@
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
 the {{site.kic_product_name}} onto your Kubernetes cluster.
 
-If you wish to use the Gateway APIs examples, you must first [install the
-Gateway API resources](https://gateway-api.sigs.k8s.io/guides/#installing-gateway-api)
-and restart your Deployment after:
+## Installing the Gateway APIs
 
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl rollout restart -n NAMESPACE deployment DEPLOYMENT_NAME
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-deployment.apps/DEPLOYMENT_NAME restarted
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-Layer 4 routes (TCPRoute, UDPRoute, TLSRoute) are currently only available in
-the Gateway APIs experimental channel. To use them, install the experimental
-channel CRDs and enable the corresponding feature gate in
-{{site.kic_product_name}}:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl set env -n kong deployment/ingress-kong CONTROLLER_FEATURE_GATES="GatewayAlpha=true" -c ingress-controller
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-deployment.apps/ingress-kong env updated
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-If you also use other feature gates, include them as well. The command above
-replaces the entire `CONTROLLER_FEATURE_GATES` value.
+If you wish to use the Gateway APIs examples, please follow the [supplemental
+Gateway APIs installation instructions](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
 
 ## Testing connectivity to Kong
 

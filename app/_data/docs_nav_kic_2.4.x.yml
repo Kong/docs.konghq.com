@@ -53,6 +53,8 @@ items:
         url: /deployment/gke
       - text: Admission Controller
         url: /deployment/admission-webhook
+      - text: Installing Gateway APIs
+        url: /deployment/install-gateway-apis
   - title: Guides
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /guides/overview

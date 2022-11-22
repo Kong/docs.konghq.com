@@ -182,7 +182,7 @@ service/tcp-echo created
 
 ## Route TCP traffic by port
 
-To expose  service to the outside world, create the following
+To expose the service to the outside world, create the following
 TCPIngress resource:
 
 {% navtabs api %}
