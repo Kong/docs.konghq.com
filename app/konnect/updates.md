@@ -9,12 +9,16 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2022
+
+**Runtime Groups API**
+: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. 
 
 ## November 2022
 
 ### 2022.11.21
 
-**Certificate Management functionality added to the {{site.konnect_saas}} manager **
+**Certificate Management functionality added to the {{site.konnect_saas}} manager**
 : {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. This reduces operational complexity for customers while ensuring that security is not compromised.
 
 
