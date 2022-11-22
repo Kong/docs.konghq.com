@@ -18,50 +18,40 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
   end
 
   describe '#releases' do
-    context 'when `delegate_releases` is set' do
-      let(:name) { 'jwt-signer' }
+    let(:name) { 'jwt-signer' }
 
-      context 'when a `max` is set' do
-        it 'returns the versions defined in `kong_versions.yml` in the `min` `max` range, replacements apply' do
-          expect(subject.releases).to eq(
-            ['2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
-          )
-        end
-      end
-
-      context 'when `max` is not set' do
-        let(:data) do
-          data = SafeYAML.load(
-            File.read('spec/fixtures/app/_hub/acme/jwt-signer/versions.yml')
-          )
-          data['delegate_releases'].delete('max')
-          data
-        end
-
-        before { allow(subject).to receive(:data).and_return(data) }
-
-        it 'returns the versions defined in `kong_versions.yml` greater than and equal to `min`, replacements apply' do
-          expect(subject.releases).to eq(
-            ['3.0.x', '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
-          )
-        end
-      end
-
-      context 'when `min` is not present' do
-        let(:data) { { 'delegate_releases' => {} } }
-
-        before { allow(subject).to receive(:data).and_return(data) }
-
-        it { expect{ subject.releases }.to raise_error }
+    context 'when a `maximum_version` is set' do
+      it 'returns the versions defined in `kong_versions.yml` in the `minimum_version` `maximum_version` range, replacements apply' do
+        expect(subject.releases).to eq(
+          ['2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
+        )
       end
     end
 
-    context 'when it is not set or is set to `false`' do
-      let(:name) { 'jq' }
-
-      it 'returns the versions defined in the file, replacements do not apply' do
-        expect(subject.releases).to eq(['3.0.x', '2.8.x', '2.7.x', '2.6.x'])
+    context 'when `maximum_version` is not set' do
+      let(:data) do
+        data = SafeYAML.load(
+          File.read('spec/fixtures/app/_hub/acme/jwt-signer/versions.yml')
+        )
+        data['releases'].delete('maximum_version')
+        data
       end
+
+      before { allow(subject).to receive(:data).and_return(data) }
+
+      it 'returns the versions defined in `kong_versions.yml` greater than and equal to `minimum_version`, replacements apply' do
+        expect(subject.releases).to eq(
+          ['3.0.x', '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
+        )
+      end
+    end
+
+    context 'when `min` is not present' do
+      let(:data) { { 'releases' => {} } }
+
+      before { allow(subject).to receive(:data).and_return(data) }
+
+      it { expect{ subject.releases }.to raise_error }
     end
   end
 

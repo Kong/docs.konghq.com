@@ -9,7 +9,7 @@ module PluginSingleSource
 
       def releases
         @releases ||= ReleasesGenerator.call(
-          releases: delegated_releases,
+          releases: supported_releases,
           replacements:
         )
       end
@@ -36,9 +36,9 @@ module PluginSingleSource
         )
       end
 
-      def delegated_releases
-        min, max = data['delegate_releases'].values_at('min', 'max')
-        raise ArgumentError, '`delegate_releases` must have a `min` version set' unless min
+      def supported_releases
+        min, max = data['releases'].values_at('minimum_version', 'maximum_version')
+        raise ArgumentError, '`releases` must have a `minimum_version` version set' unless min
 
         KongVersions
           .gateway

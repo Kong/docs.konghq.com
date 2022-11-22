@@ -1,7 +1,7 @@
 strategy: gateway
 
-delegate_releases:
-  min: '3.0.x'
+releases:
+  minimum_version: '3.0.x'
 
 overrides:
   3.0.x: 0.1.0

@@ -1,6 +1,6 @@
 strategy: gateway
-delegate_releases:
-  min: '2.1.x'
+releases:
+  minimum_version: '2.1.x'
 
 sources:
   2.8.x: _1.6.0
