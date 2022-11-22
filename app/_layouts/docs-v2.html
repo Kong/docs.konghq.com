@@ -115,15 +115,6 @@ id: documentation
             </blockquote>
             {% endif %}
 
-            <!-- temporary banner for Legacy Konnect docs; remove when old environment is retired and all users are migrated -->
-            {% if page.url contains '/konnect/legacy' %}
-            <blockquote class="important">
-            This documentation is for the legacy {{site.konnect_short_name}} environment at
-            <a href="https://konnect.konghq.com">konnect.konghq.com</a>. For the
-            <a href="https://cloud.konghq.com">cloud.konghq.com</a> environment, see the
-            <a href="/konnect/">current {{site.konnect_short_name}} documentation</a>.
-            </blockquote>
-            {% endif %}
             {{ content }}
 
             {% if page.book %}

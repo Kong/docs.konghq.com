@@ -59,7 +59,7 @@ Kong Studio enables spec-first development for all REST and GraphQL services. Wi
 {{site.ee_product_name}} is bundled with {{site.konnect_product_name}}.
 There are a few ways to test out the gateway's Plus or Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://cloud.konghq.com/register).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally, the
 Kong sales team manages evaluation licenses as part of a formal sales process.

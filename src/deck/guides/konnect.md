@@ -153,14 +153,6 @@ To target the EU region, set `konnect-addr` to `"https://eu.api.konghq.com"`.
 
 {% endif_version %}
 
-### Target the legacy {{site.konnect_short_name}} environment
-
-If your account is in the `konnect.konghq.com` environment, use this flag to target the relevant API:
-
-```sh
-deck ping --konnect-addr https://konnect.konghq.com
-```
-
 ## Runtime groups
 
 Each [state file](/deck/{{page.kong_version}}/terminology/#state-files) targets one runtime group.

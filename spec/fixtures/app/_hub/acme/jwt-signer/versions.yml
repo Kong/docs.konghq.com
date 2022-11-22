@@ -1,0 +1,22 @@
+strategy: gateway
+delegate_releases: true
+sources:
+  2.5.x: _2.2.x
+  2.4.x: _2.2.x
+  2.3.x: _2.2.x
+  2.2.x: _2.2.x
+
+replacements:
+  2.3.x:
+    - 2.3.x-CE
+    - 2.3.x-EE
+
+overrides:
+  2.8.x: 1.9.1
+  2.7.x: 1.9.0
+  2.6.x: 1.8.0
+  2.5.x: 1.7.0
+  2.4.x: 1.7.0
+  2.3.x: 1.7.0
+  2.2.x: 1.7.0
+  2.1.x: 1.7.0

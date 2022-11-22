@@ -9,17 +9,27 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-
 ## November 2022
 
 ### 2022.11.21
 
-**Certificate Management functionality added to the {{site.konnect_saas}} manager **
-: {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. This reduces operational complexity for customers while ensuring that security is not compromised.
+**Application registration support in any runtime group**
+: {{site.konnect_short_name}} now officially supports [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-runtime-group). Portal developers can register their applications to consume services proxied through gateway services in both default and non-default runtime groups.
 
+:  Currently, this feature is only available for services being proxied through {{site.base_gateway}} 3.0.0.0 or later.
 
+### 2022.11.18
+
+**Dev portal Dynamic Client Registration**
+
+: As part of this release, we have improved the UI for DCR to provide a more polished experience for users.
 
 ### 2022.11.17
+
+**Certificate management functionality added to the {{site.konnect_saas}} runtime manager**
+: {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, 
+and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. 
+This reduces operational complexity for customers while ensuring that security is not compromised.
 
 **New Analytics predefined teams**
 : {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities. 
@@ -30,10 +40,16 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
+**Migration to cloud.konghq.com is completed**
+: All active accounts have been migrated from `konnect.konghq.com` 
+to [cloud.konghq.com](https://cloud.konghq.com).
+The deprecated environment at `konnect.konghq.com` is no longer available.
+
 ### 2022.11.15
 
 **Multiple runtime groups**
 : All the runtime groups in {{site.konnect_short_name}}, including default and non-default runtime groups, are eligible for application registration.
+
 ### 2022.11.08
 
 **Editing the default runtime group**
