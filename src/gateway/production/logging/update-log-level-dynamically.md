@@ -14,7 +14,7 @@ The log level change is propagated to all NGINX worker nodes, including the newl
 
 ## View current log level
 
-To view the log level of an individual node issue a `GET` request passing the desired `node` as a path parameter: 
+To view the log level of an individual node, issue a `GET` request passing the desired `node` as a path parameter: 
 
 ```bash
 curl --request GET \

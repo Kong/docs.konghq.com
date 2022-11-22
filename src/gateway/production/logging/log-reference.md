@@ -19,7 +19,7 @@ Log levels are set in [Kong's configuration](/gateway/{{page.kong_version}}/refe
 
 ## More Information
 
-* [Remove elements from {{site.base_gateway}} logs](/gateway/latest/logging/customize-gateway-logs/).
+* [Remove elements from {{site.base_gateway}} logs](/gateway/{{page.kong_version}}/production/logging/customize-gateway-logs/)
 {% if_version gte:3.1.x %}
-* [Dynamic log level updates](/gateway/latest/logging/update-log-level-dynamically)
+* [Dynamic log level updates](/gateway/{{page.kong_version}}/production/logging/update-log-level-dynamically/)
 {% endif_version %}
