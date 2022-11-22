@@ -6,55 +6,54 @@ content_type: reference
 Note that this is an OSS feature.
 
 
-This page describes Kong Gateway's capabilities to manage asymmetric keys and key-sets in {{site.base_gateway}}.
+This page describes {{site.base_gateway}}'s capabilities to manage asymmetric keys and key-sets in {{site.base_gateway}}.
 
-
-### Keys and Key Sets
-
-For some operations it is required to have access to public and/or private keys. This document describes how to achieve that with Kong Gateway.
+For some operations, access to public and private keys is required. This document also describes how to grant access to those keys using {{site.base_gateway}}.
 
 
 ### Use cases
 
-Some Kong plugins offer a custom endpoint to configure JSON Web Keys today. This new endpoint aims to replace the custom endpoints for each plugin with this, a more generic endpoint. Affected plugins will gradually receive supported. TODO: table below where all plugins that _could_ use this feature and whether they already have support for it.
+Some {{site.base_gateway}} plugins offer a custom endpoint to configure JSON Web Keys. The new generic endpoint replaces the custom endpoints for each plugin. The following table lists the plugins that support the new endpoint:  
 
 
-| plugin name    | keys/key-sets support |
-|----------------|-----------------------|
-| openid-connect | no                    |
-| jwt-signer     | no                    |
-| jwt            | no                    |
-| jwe-decrypt    | yes                   |
+| Plugin                                         | Keys/Key Sets supported |
+| ---------------------------------------------- | --------------------- |
+| [OpenID Connect](/hub/kong-inc/openid-connect) | No                    |
+| [JWT Signer](/hub/kong-inc/jwt-signer)         | No                    |
+| [JWT](/hub/kong-inc/jwt)                       | No                    |
+| [JWE Decrypt](/hub/kong-inc/jwe-decrypt)       | Yes                   |
 
-### Keys
+### Keys endpoint
 
-The generic `Keys` endpoint allows you to store asymmetric keys (public and or private key, note that also only a public key or only a private key can be stored) in different formats (ref to Formats section maybe?). A freely configurable `kid` string is required to identify the key. The `kid` attribute is a common way to identify the key that should be used to verify or decrypt a token in the JWT world but could be used in other scenarios where identifying a key is required.
-
-
-### Key Sets
-
-You can assign one or many keys to a key-set. This can be useful to logically group multiple keys. (A group of keys used for a specific application or service). Key-sets are also the preferred way to expose keys to plugins. (meaning; telling plugins where to look for keys -or- have a scoping mechanism to restrict plugins to just _some_ keys.). You will find instructions in the respective plugins docs on how to configure them using a key-set.
-Note: Deleting a Key-set will remove all associated keys.
+The generic `Keys` endpoint allows you to store asymmetric keys, either a public or private key, as a JWK or PEM. A configurable `kid` string is required to identify the key. The `kid` attribute is a common way to identify the key that should be used to verify or decrypt a token, but it can be used in other scenarios when you must identify a key.
 
 
-### Formats
+### Key Sets endpoint
 
-Currently there is support for two common formats
+You can assign one or many keys to a JSON Web Key Set. This can be useful to logically group multiple keys to use for a specific application or service. Key Sets are also the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to just _some_ keys.
+
+See the following plugins documentation for more information about how to configure them using a Key Set:
+* [OpenID Connect](/hub/kong-inc/openid-connect)
+* [JWT Signer](/hub/kong-inc/jwt-signer)
+* [JWT](/hub/kong-inc/jwt)                       
+* [JWE Decrypt](/hub/kong-inc/jwe-decrypt)
+
+{:.note}
+> **Note:** Deleting a Key Set will remove all associated keys.
+
+
+### Key formats
+
+Currently two common formats are supported:
 
 * JWK
 * PEM
 
-Note that the formats carry the same base information (public and/or private key exponents) but may allow to specify additional meta information. (JWK carries more information than PEM/DER). This means that one keypair can have multiple different representations (JWK, PEM) while being the same key.
+Both formats carry the same base information, such as the public or private key exponents, but may allow you to specify additional meta information. For example, the JWK format carries more information than PEM. This means that one key pair can have multiple different representations (JWK or PEM) while being the same key.
 
+### Create a key using the JWK format and associate it with a Key Set
 
-### Examples
-
-
-#### Create a Key using the JWK format and associate it with a Key Set.
-
-TODO: Also add a reference to a the admin api for keys/keysets
-
-First create a Key-set
+1. Create a Key Set:
 
 
 {% navtabs codeblock %}
@@ -76,20 +75,19 @@ http -f PUT :8001/key-sets \
 {% endnavtab %}
 {% endnavtabs %}
 
-Result:
+  Result:
 
-``` json
-{
-  "created_at": 1669029622,
-  "id": "2033cb3d-ef3b-4f6d-8395-bc3c2d5a0e4f",
-  "name": "my-set",
-  "tags": null,
-  "updated_at": 1669029622
-}
+  ``` json
+  {
+    "created_at": 1669029622,
+    "id": "2033cb3d-ef3b-4f6d-8395-bc3c2d5a0e4f",
+    "name": "my-set",
+    "tags": null,
+    "updated_at": 1669029622
+  }
 ```
 
-
-Now create a Key and associate it with the just created set.
+1. Create a key and associate it with the Key Set:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -118,51 +116,50 @@ http -f PUT :8001/keys \
 {% endnavtab %}
 {% endnavtabs %}
 
-Result:
+  Result:
 
-```json
-{
-        "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
-        "jwk":
-                { kty":"RSA",
-                  "kid":"42",
-                  "use":"enc",
-                  ..."},
-        "created_at":1669029250,
-        "updated_at":1669029250,
-        "name":"my-first-jwk",
-        "tags":null,
-        "set":
-                { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
-        "kid":"42",
-        "pem":null
-}
-```
+  ```json
+  {
+          "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
+          "jwk":
+                  { kty":"RSA",
+                    "kid":"42",
+                    "use":"enc",
+                    ..."},
+          "created_at":1669029250,
+          "updated_at":1669029250,
+          "name":"my-first-jwk",
+          "tags":null,
+          "set":
+                  { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
+          "kid":"42",
+          "pem":null
+  }
+  ```
 
-#### Create a Key using PEM format and associate with key-set
-
-
-Create a Key-Set first.
+### Create a Key using the PEM format and associate with a Key Set
 
 
-{% navtabs codeblock %}
-{% navtab cURL %}
+1. Create a Key Set:
+  
+  {% navtabs codeblock %}
+  {% navtab cURL %}
 
-```bash
-curl -i -X PUT http://HOSTNAME:8001/key-sets  \
-  --data name=my-other-set \
-```
+  ```bash
+  curl -i -X PUT http://HOSTNAME:8001/key-sets  \
+    --data name=my-other-set \
+  ```
 
-{% endnavtab %}
-{% navtab HTTPie %}
+  {% endnavtab %}
+  {% navtab HTTPie %}
 
-```bash
-http -f PUT :8001/key-sets \
-  name=my-other-set \
-```
+  ```bash
+  http -f PUT :8001/key-sets \
+    name=my-other-set \
+  ```
 
-{% endnavtab %}
-{% endnavtabs %}
+  {% endnavtab %}
+  {% endnavtabs %}
 
 Result:
 
@@ -176,8 +173,7 @@ Result:
 }
 ```
 
-
-Now create a PEM encoded key and associate it with the just created set.
+1. Create a PEM-encoded key and associate it with the Key Set:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -208,22 +204,22 @@ http -f PUT :8001/keys \
 {% endnavtab %}
 {% endnavtabs %}
 
-Result:
+  Result:
 
-```json
-{
-        "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
-        "jwk": null
-        "pem": {
-                "public_key": "----BEGIN...",
-                "private_key": "----BEGIN...."
-        }
-        "created_at":1669029250,
-        "updated_at":1669029250,
-        "name":"my-first-pem-key",
-        "tags":null,
-        "set":
-                { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
-        "kid":"23",
-}
-```
+  ```json
+  {
+          "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
+          "jwk": null
+          "pem": {
+                  "public_key": "----BEGIN...",
+                  "private_key": "----BEGIN...."
+          }
+          "created_at":1669029250,
+          "updated_at":1669029250,
+          "name":"my-first-pem-key",
+          "tags":null,
+          "set":
+                  { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
+          "kid":"23",
+  }
+  ```
