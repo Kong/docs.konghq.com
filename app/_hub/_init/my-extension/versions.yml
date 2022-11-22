@@ -3,8 +3,5 @@
 
 strategy: gateway
 
-releases:
-# Array of Kong Gateway releases that this plugin is compatible with.
-# If you're adding a new plugin for a specific release, only list that release.
-# For example:
-  - 3.0.x
+delegate_releases:
+  min: 3.0.x

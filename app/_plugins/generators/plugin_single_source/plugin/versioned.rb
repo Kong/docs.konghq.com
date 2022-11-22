@@ -9,7 +9,7 @@ module PluginSingleSource
 
       def releases
         @releases ||= ReleasesGenerator.call(
-          releases: specified_or_delegated_releases,
+          releases: delegated_releases,
           replacements:
         )
       end
@@ -34,10 +34,6 @@ module PluginSingleSource
             File.join(site.source, Generator::PLUGINS_FOLDER, dir, 'versions.yml')
           )
         )
-      end
-
-      def specified_or_delegated_releases
-        (data['delegate_releases'] && delegated_releases) || data['releases']
       end
 
       def delegated_releases
