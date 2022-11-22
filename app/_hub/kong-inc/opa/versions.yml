@@ -1,12 +1,7 @@
 strategy: gateway
 
 releases:
-  - 3.0.x
-  - 2.8.x
-  - 2.7.x
-  - 2.6.x
-  - 2.5.x
-  - 2.4.x
+  minimum_version: '2.4.x'
 
 overrides:
   2.8.x: 0.2.0
