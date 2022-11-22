@@ -109,6 +109,14 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/openid-connect
+    
+    - name: SAML
+      free: no
+      plus: Yes
+      enterprise: Yes
+      network_config_opts: All
+      notes: --
+      url: /hub/kong-inc/saml
 
     - name: Session
       free: Yes
