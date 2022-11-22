@@ -12,7 +12,7 @@ description: |
   The plugin utilizes the
   [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435),
   which must be downloaded and installed on the machine or within the
-  container running {{site.base_gateway}}. Please refer to the
+  container running Kong Gateway. Refer to the
   [AppDynamics SDK documentation](https://docs.appdynamics.com/) for platform support information.
 enterprise: true
 type: plugin
@@ -50,8 +50,8 @@ Alternatively, the `LD_LIBRARY_PATH` environment variable can be set
 to the directory containing the `libappdynamics.so` file when
 starting {{site.base_gateway}}.
 
-If the AppDymanics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start. 
-You will receive an error message like this: 
+If the AppDymanics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
+You will receive an error message like this:
 
 ```
 kong/plugins/app-dynamics/appdynamics.lua:74: libappdynamics.so: cannot open shared object file: No such file or directory
@@ -61,14 +61,13 @@ kong/plugins/app-dynamics/appdynamics.lua:74: libappdynamics.so: cannot open sha
 
 The AppDynamics plugin is configured through environment variables
 that need to be set when {{site.base_gateway}} is started. The environment
-variables used by the plugin are shown in the table below. Note that
-if an environment variable listed in the table does not have a `default` value, the value must be set, or the plugin may not operate correctly.
+variables used by the plugin are shown in the table below.
 
 {:.note}
-> if an environment variable listed in the table does not have a `default` value, you must set the value for that variable, or the plugin may not operate correctly.
+> If an environment variable listed in the table does not have a `default` value, you must set the value for that variable, or the plugin may not operate correctly.
 
 The AppDynamics plugin makes use of the AppDynamics C/C++ SDK to send
-information to the AppDynamics controller. Please refer to the
+information to the AppDynamics controller. Refer to the
 [AppDynamics C/C++ SDK documentation](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/c-c++-sdk/use-the-c-c++-sdk)
 for more information about the configuration parameters.
 
@@ -95,7 +94,7 @@ for more information about the configuration parameters.
 #### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
 
 The `KONG_APPD_LOGGING_LEVEL` environment variable is a numeric value that controls the desired logging level.
-Each value corresponds to a specific level: 
+Each value corresponds to a specific level:
 
 | Value | Name | Description |
 |--|--|--|
