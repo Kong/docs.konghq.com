@@ -1,4 +1,4 @@
 strategy: gateway
 
-releases:
-  - 3.0.x
+delegate_releases:
+  min: '3.0.x'
