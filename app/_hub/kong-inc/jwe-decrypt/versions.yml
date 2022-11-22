@@ -1,4 +1,2 @@
 strategy: gateway
 delegate_releases: true
-sources:
-  3.1.x: _3.1.x

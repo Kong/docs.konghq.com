@@ -55,6 +55,28 @@ params:
 
 ## Manage keys and keysets
 
-Ref to new keys and key-sets entity
+Ref to new keys and key-sets entity (when https://github.com/Kong/docs.konghq.com/pull/4804 is merged)
 
 
+## Supported Content Encryption Algorithms
+
+Currently we support
+
+* A256GCM
+
+more is planned.
+
+
+## Failure modes
+
+This section describes the behavior of this plugin in case of an error.
+
+request                        | proxied to upstream service | response status code
+--------                       |--------------------------|---------------------
+has no JWE with strict=true    | no                       | 403
+has no JWE with strict=false   | yes                      | x
+failed to decode JWE           | no                       | 400
+failed to decode JWE           | no                       | 400
+missing mandatory header values| no                       | 400
+references key-set not found   | no                       | 403
+failed to decrypt              | no                       | 403
