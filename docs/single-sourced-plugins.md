@@ -7,53 +7,26 @@ We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically gene
 - If not, read `app/_hub/[vendor]/[name]/_index.md` and generate a version of the page
 - The latest version is always generated as `index.html`, while older versions are generated as `[version].html`
 
-## Plugin Versions
-
-Each `versions.yml` is expected to contain a `strategy` (either `matrix` for the original rendering, or `gateway` for plugins that have versions pinned to the Gateway version) and a list of `releases` like so:
-
-```yaml
-strategy: gateway
-releases:
-  - 3.0.x
-  - 2.8.x
-  - 2.7.x
-```
-
-If the gateway release does not match the plugin release, you can set an override for that version. Here's an example that sets explicit plugin values for 2.7 and 2.8:
-
-```yaml
-strategy: gateway
-releases:
-  - 3.0.x
-  - 2.8.x
-  - 2.7.x
-overrides:
-  2.8.x: 0.13.x
-  2.7.x: 0.12.x
-```
-
-This would result in the following:
-
-| Release | Plugin Version |
-|---------|----------------|
-| 3.0.x   | 3.0.x          |
-| 2.8.x   | 0.13.x         |
-| 2.7.x   | 0.12.x         |
 
 ### Automatic Plugin Versioning
 
-If you do not want to specify every Gateway release using `releases`, you can set `delegate_releases: true` which will read all available Gateway versions from `kong_versions.yml`:
+Each `versions.yml` is expected to contain a `strategy` (either `matrix` for the original rendering, or `gateway` for plugins that have versions pinned to the Gateway version)
+and a list of `releases` like so: 
 
 ```yaml
 strategy: gateway
-delegate_releases: true
+releases:
+  minimum_version: '2.1.x'
+  maximum_version: '3.0.x' # optional
 ```
+which will read all available Gateway versions from `kong_versions.yml` and select those that are in the range specified.
 
 This can also be used with `overrides`:
 
 ```yaml
 strategy: gateway
-delegate_releases: true
+releases:
+  minimum_version: '2.1.x'
 overrides:
   2.8.x: 0.13.x
   2.7.x: 0.12.x
@@ -66,10 +39,11 @@ In some cases, the version of a plugin is different between the Community Editio
 ```yaml
 strategy: gateway
 releases:
-  - 2.4.x
-  - 2.3.x-CE
-  - 2.3.x-EE
-  - 2.2.x
+  minimum_version: 2.2.x
+replacements:
+  2.3.x:
+    - 2.3.x-CE
+    - 2.3.x-EE
 sources:
   2.2.x-CE: _1.0
   2.2.x: _1.0
@@ -82,11 +56,12 @@ overrides:
 
 `2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
 
-If you want to use `delegate_releases` but have one or two versions that you need to override, you can use `replacements` like so:
+If you want to use `releases` but have one or two versions that you need to override, you can use `replacements` like so:
 
 ```yaml
 strategy: gateway
-delegate_releases: true
+releases:
+  minimum_version: '2.1.x'
 replacements:
   2.3.x:
     - 2.3.x-CE
