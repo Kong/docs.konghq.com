@@ -7,6 +7,11 @@ plugins in Kong.
 The guide will cover configuring a plugin for services across different
 namespaces.
 
+{:.important}
+> The controller does not validate configuration by default. Although not required for this guide, production instances
+> should [enable the admission controller](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook)
+> to validate plugins.
+
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
@@ -224,6 +229,69 @@ add-response-header   response-transformer   4s
 If you send requests to `PROXY_IP` now, you will see that the header is not
 injected in the responses. The reason being that we have created a
 resource but we have not told Kong when to execute the plugin.
+
+## Storing plugin configuration in a Secret
+
+You can store plugin configuration in a Secret to secure sensitive configuration. A secret can be stored in any
+namespace.
+
+First, create a namespace in which we will create the secret:
+```sh
+kubectl create namespace secret-ns
+```
+
+The output is similar to the following:
+```
+namespace/secrets-ns created
+```
+
+Next, create a Secret with a key for each field you wish to configure:
+```sh
+echo '
+apiVersion: v1
+kind: Secret
+metadata:
+  name: plugin-conf-secret
+  namespace: secrets-ns
+stringData:
+  add-response-header: |
+    add:
+      headers:
+        - "demo: injected-by-kong"
+type: Opaque
+' | kubectl apply -f -
+```
+
+The output is similar to the following:
+```
+secret/plugin-conf-secret created
+```
+
+{:.note}
+> KongClusterPlugin is a cluster-level resource, therefore specifying a secret's namespace is
+> required while referring it in the `configFrom` field.
+
+Now, create a KongClusterPlugin with a `configFrom` field referring that Secret:
+
+```sh
+echo '
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: add-response-header
+configFrom:
+  secretKeyRef:
+    name: plugin-conf-secret
+    namespace: secret-ns
+    key: add-response-header
+plugin: response-transformer
+' | kubectl apply -f -
+```
+
+The output is similar to the following:
+```
+kongclusterplugin.configuration.konghq.com/add-response-header created
+```
 
 ## Configuring plugins on Ingress resources
 

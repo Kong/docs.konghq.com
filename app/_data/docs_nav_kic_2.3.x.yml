@@ -130,6 +130,7 @@ items:
         url: /references/cli-arguments
       - text: Custom Resource Definitions
         url: /references/custom-resources
+        src: references/custom-resources-lte-2.6.x
       - text: Plugin Compatibility
         url: /references/plugin-compatibility
       - text: Version Compatibility
