@@ -32,12 +32,12 @@ Task sections break down the task into steps that the user completes in sequenti
 
 Continuing the previous example of installing software, here's an example:
 
-1. On your computer, open Terminal.
-1. Install ____ with Terminal:
+1. On your computer, open the terminal.
+1. Install ____ with the terminal:
     ```sh
     example code
     ```
-1. Optional: To also install ____ to manage documents, install it using Terminal:
+1. Optional: To also install ____ to manage documents, install it using the terminal:
     ```sh
     example code
     ```

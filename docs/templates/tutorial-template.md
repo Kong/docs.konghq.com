@@ -8,7 +8,7 @@ content_type: tutorial
 # beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
 
-Tutorials are content that is for beginners and helps them learn by doing. The goal of a tutorial is to guide the user, step-by-step through a series of tasks that help them achieve a certain goal. Keep in mind that the goal and the steps should be achievable for a beginner. 
+Tutorials are docs that help users learn by doing. The goal of a tutorial is to guide the user, step-by-step through a series of tasks that help them achieve a certain goal. Keep in mind that the goal and the steps should be achievable even for a beginner. 
 
 Tutorials should include an introduction paragraph here. Good introductions explain who this tutorial is for and what this tutorial will help the user accomplish and learn. For example, if you were writing a tutorial about how to get started with a software product, your tutorial could include information about a general overview of what steps the user would be going through, what this software will help them accomplish, and that the end result of this tutorial will be that the software is installed with the basic settings configured. 
 
@@ -38,12 +38,12 @@ Continuing the previous example of installing software, here's an example:
     ```sh
     example code
     ```
-    Explanation of the variables used in the sample code, like "Where `example` is the file name."
+    Explanation of the variables used in the sample code, like "Where `example` is the filename."
 1. Optional: To also install ____ to manage documents, install it using Terminal:
     ```sh
     example code
     ```
-    Explanation of the variables used in the sample code, like "Where `example` is the file name."
+    Explanation of the variables used in the sample code, like "Where `example` is the filename."
 1. To ______, do the following:
     1. Click **Start**.
     1. Click **Stop**.
@@ -52,12 +52,12 @@ Continuing the previous example of installing software, here's an example:
         ```sh
         example code
         ```
-        Explanation of the variables used in the sample code, like "Where `example` is the file name."
+        Explanation of the variables used in the sample code, like "Where `example` is the filename."
     * If you are using Docker, start the software:
         ```sh
         example code
         ```
-        Explanation of the variables used in the sample code, like "Where `example` is the file name."
+        Explanation of the variables used in the sample code, like "Where `example` is the filename."
 
 You can also use tabs in a section. For example, if you can install the software with macOS or Docker, you might have a tab with instructions for macOS and a tab with instructions for Docker.
 
