@@ -41,7 +41,7 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
     kong restart -c {PATH_TO_KONG.CONF_FILE}
     ```
 
-3. Access Kong Manager on port `8002` at the path you specified in `KONG_ADMIN_GUI_PATH`.
+3. Access Kong Manager on port `8002` at the path you specified in `admin_gui_path`.
 
 {% endnavtab %}
 {% endnavtabs %}
