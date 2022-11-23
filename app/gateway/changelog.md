@@ -4,6 +4,18 @@ no_version: true
 ---
 
 <!-- vale off -->
+## 3.1.0.0
+**Release Date** 2022/12/xx
+
+### Features
+
+### Fixes
+
+#### Core
+
+* **Kong Manager**:
+* You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
+
 
 ## 3.0.1.0
 **Release Date** 2022/11/02
