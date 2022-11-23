@@ -131,6 +131,8 @@ ordering:
     ```
 
 {% endnavtab %}
+
+{% if_version gte:3.1.x %}
 {% navtab Kong Manager UI %}
 
 1. In Kong Manager, open the **default** workspace.
@@ -153,6 +155,8 @@ ordering:
 The rate limiting plugin now limits the amount of requests against all services and routes in the default workspace *before* {{site.base_gateway}} requests authentication.
 
 {% endnavtab %}
+{% endif_version %}
+
 {% endnavtabs %}
 
 ## Authentication after request transformation
@@ -258,6 +262,8 @@ ordering:
     ```
 
 {% endnavtab %}
+
+{% if_version gte:3.1.x %}
 {% navtab Kong Manager UI %}
 
 1. In Kong Manager, open the **default** workspace.
@@ -273,4 +279,6 @@ ordering:
 
 The basic authentication plugin now requests authentication after the request is transformed.
 {% endnavtab %}
+{% endif_version %}
+
 {% endnavtabs %}
