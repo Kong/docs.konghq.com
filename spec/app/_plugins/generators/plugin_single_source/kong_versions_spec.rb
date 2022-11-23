@@ -32,12 +32,12 @@ RSpec.describe PluginSingleSource::KongVersions do
       allow(File).to receive(:read).and_call_original
       allow(File)
         .to receive(:read)
-        .with('app/_data/kong_versions.yml')
+        .with(File.join(site.source, '_data/kong_versions.yml'))
         .and_return(yaml)
     end
 
     it 'returns the `release` for each gateway version and replaces `-x` with `x`' do
-      expect(described_class.gateway).to match_array(['2.1.x', '2.1.0.x', '2.2.x', '3.0.x'])
+      expect(described_class.gateway(site)).to match_array(['2.1.x', '2.1.0.x', '2.2.x', '3.0.x'])
     end
   end
 

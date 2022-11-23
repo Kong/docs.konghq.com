@@ -41,7 +41,7 @@ module PluginSingleSource
         raise ArgumentError, '`releases` must have a `minimum_version` version set' unless min
 
         KongVersions
-          .gateway
+          .gateway(site)
           .select { |v| Gem::Version.new(v) >= Gem::Version.new(min) }
           .select { |v| max.nil? || Gem::Version.new(v) <= Gem::Version.new(max) }
       end
