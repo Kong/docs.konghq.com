@@ -3,7 +3,7 @@ name: Kong JWE Decrypt
 publisher: Kong Inc.
 desc: Decrypt a JWE token in a request
 description: |
-  The Kong Jwe Decrypt plugin makes it possible to decrypt an inbound token(JWE) in a request.
+  The Kong JWE Decrypt plugin makes it possible to decrypt an inbound token(JWE) in a request.
 
 enterprise: true
 plus: true
@@ -38,45 +38,41 @@ params:
       default: Authorization
       datatype: string
       description: |
-        The name of the header that is used to set the decrypted value to.
+        The name of the header that is used to set the decrypted value.
     - name: strict
       required: false
       default: false
       datatype: boolean
       description: |
-        Defines how the plugin behaves in cases where no token was found in the request. When using `strict` mode the request requires a token to be present and subsequently raise an error if none could be found.
+        Defines how the plugin behaves in cases where no token was found in the request. When using `strict` mode, the request requires a token to be present and subsequently raise an error if none could be found.
     - name: key-sets
       required: true
       datatype: array of string elements
       description: |
-        Denote the name(s) of all keysets that should be inspected when trying to find a suitable key to decrypt the JWE token.
+        Denote the name or names of all Key Sets that should be inspected when trying to find a suitable key to decrypt the JWE token.
 ---
 
 
-## Manage keys and keysets
+## Manage keys and Key Sets
 
-Ref to new keys and key-sets entity (when https://github.com/Kong/docs.konghq.com/pull/4804 is merged)
+For more information, see [Key and Key Set Management in Kong Gateway](/gateway/{{page.kong_version}}/reference/key-management/).
 
 
 ## Supported Content Encryption Algorithms
 
-Currently we support
-
-* A256GCM
-
-more is planned.
+Currently, A256GCM is supported. More encryption algorithms will be supported in future releases.
 
 
 ## Failure modes
 
-This section describes the behavior of this plugin in case of an error.
+The following table describes the behavior of this plugin in the event of an error.
 
-request                        | proxied to upstream service | response status code
---------                       |--------------------------|---------------------
-has no JWE with strict=true    | no                       | 403
-has no JWE with strict=false   | yes                      | x
-failed to decode JWE           | no                       | 400
-failed to decode JWE           | no                       | 400
-missing mandatory header values| no                       | 400
-references key-set not found   | no                       | 403
-failed to decrypt              | no                       | 403
+| Request message                | Proxied to upstream service? | Response status code |
+| --------                       | ---------------------------- |--------------------- |
+| Has no JWE with strict=true    | No                           | 403                  |
+| Has no JWE with strict=false   | Yes                          | x                    |
+| Failed to decode JWE           | No                           | 400                  |
+| Failed to decode JWE           | No                           | 400                  |
+| Missing mandatory header values| No                           | 400                  |
+| References key-set not found   | No                           | 403                  |
+| Failed to decrypt              | No                           | 403                  |

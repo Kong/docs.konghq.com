@@ -411,6 +411,7 @@ forward_request_body
 forward_request_headers
 forward_request_method
 forward_request_uri
+forward_token_name
 forward_uri
 function_name
 functionname
@@ -613,6 +614,7 @@ logout_revoke
 logout_revoke_access_token
 logout_revoke_refresh_token
 logout_uri_suffix
+lookup_token_name
 lua_ssl_trusted_certificate
 lua_ssl_verify_depth
 luarocks
