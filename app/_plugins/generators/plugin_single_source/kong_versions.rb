@@ -4,12 +4,18 @@ module PluginSingleSource
   class KongVersions
     GATEWAY_VERSIONS = %w[gateway gateway-oss enterprise].freeze
 
-    def self.gateway
-      new.gateway
+    def self.gateway(site)
+      new(site).gateway
     end
 
     def self.to_semver(version)
       version.gsub('-x', '.x').gsub(/\.x/, '.0')
+    end
+
+    attr_reader :site
+
+    def initialize(site)
+      @site = site
     end
 
     def gateway
@@ -20,7 +26,9 @@ module PluginSingleSource
     end
 
     def versions
-      @versions ||= SafeYAML.load(File.read('app/_data/kong_versions.yml'))
+      @versions ||= SafeYAML.load(
+        File.read(File.join(site.source, '_data/kong_versions.yml'))
+      )
     end
   end
 end
