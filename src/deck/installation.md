@@ -44,7 +44,7 @@ or install using **CMD** by entering the target installation folder and download
 curl -sL https://github.com/kong/deck/releases/download/v{{page.version}}/deck_{{page.version}}_windows_amd64.tar.gz -o deck.tar.gz
 mkdir deck
 tar -xf deck.tar.gz -C deck
-powershell -command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + [IO.Path]::PathSeparator + $pwd + '\deck', 'User')"
+powershell -command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + [IO.Path]::PathSeparator + [System.IO.Directory]::GetCurrentDirectory() + '\deck', 'User')"
 ```
 
 ## Docker image
