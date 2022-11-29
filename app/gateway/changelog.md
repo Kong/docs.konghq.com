@@ -27,8 +27,11 @@ no_version: true
 
 ### Kong Manager
 
-- **Kong Manager base path**:
-  You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
+- **Kong Manager**:
+  - You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
+  - Adding `key-auth-enc` credentials to a consumer is now supported.
+  - More authorization variables have been added to the **Authorization** tab.
+  - The Kong Manager overview tab has been optimized for performance.
 
 ### Plugins
 
@@ -47,6 +50,17 @@ no_version: true
 - **Mocking**: Added the `included_status_codes` and `random_status_code` fields. These allow you to configure the HTTP status codes for the plugin. 
 - **OPA**: `include_uri_captures_in_opa_input` field added. When this field is set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
 - **XML Threat Protection**: This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes. For more information, see [XML Threat Protection](/hub/kong-inc/xml-threat-protection/).
+
+- [Mocking](/hub/kong-inc/mocking) plugin refactored to include:
+
+  - MIME types priority match support.
+  - Support for all HTTP codes.
+  - `$ref` support.
+  - Schema definition mocking support.
+  - Behavioral headers control feature.
+
+- **Proxy Cache**: add support for integrating with Redis clusters through the `config.redis.cluster_addresses` configuration property.
+- **Request Validator**: Support `config.allowed_content_types` to be configured with parameter.
 
 #### Core
 
@@ -134,6 +148,9 @@ no_version: true
   worker.
   [#9616](https://github.com/Kong/kong/pull/9616)
 
+### Kong Manager
+
+- Added logging for all Kong Manager access logs. 
 ### CLI
 
 - Fix slow CLI performance due to pending timer jobs
@@ -143,9 +160,7 @@ no_version: true
 
 #### Enterprise
 
-- RBAC token hash value is not updated when modifying the user. Making
-  the user unable to authenticate if the token was ever updated after
-  creation.
+- Fixed an issue where RBAC user tokens were not rehashed after being updated.
 
 #### Core
 - Increase the maximum request argument number from `100` to `1000`,
