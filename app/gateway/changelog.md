@@ -8,7 +8,6 @@ no_version: true
 **Release Date** 2022/12/01
 
 ## Features
-#### Core
 
 - Allow `kong.conf` ssl properties to be stored in vaults or environment
   variables. Allow such properties to be configured directly as content
@@ -24,6 +23,11 @@ no_version: true
   [#9737](https://github.com/Kong/kong/pull/9737)
 - Add `key-sets` entity to group and manage `keys`
   [#9737](https://github.com/Kong/kong/pull/9737)
+
+### Kong Manager
+
+- **Kong Manager**:
+  You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
 
 ### Plugins
 
