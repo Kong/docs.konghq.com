@@ -102,11 +102,6 @@ features:
       - name: Containers, Kubernetes & OpenShift
         kuma: true
         mesh: true
-      - name: Kubernetes Operator
-        tooltip: |
-          Allows you to simplify the operational cost of running Kong Mesh on Kubernetes by providing a native Kubernetes operator to fully manage the deployment, upgrades, and roll outs of a cluster on Kubernetes.
-        kuma: false
-        mesh: true
       - name: Virtual Machine Support
         kuma: true
         mesh: true
