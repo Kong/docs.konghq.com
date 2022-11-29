@@ -5,16 +5,193 @@ no_version: true
 
 <!-- vale off -->
 ## 3.1.0.0
-**Release Date** 2022/12/xx
+**Release Date** 2022/12/01
 
-### Features
+## Features
+#### Core
 
-### Fixes
+- Allow `kong.conf` ssl properties to be stored in vaults or environment
+  variables. Allow such properties to be configured directly as content
+  or base64 encoded content.
+  [#9253](https://github.com/Kong/kong/pull/9253)
+- Add support for full entity transformations in schemas
+  [#9431](https://github.com/Kong/kong/pull/9431)
+- Allow schema `map` type field being marked as referenceable.
+  [#9611](https://github.com/Kong/kong/pull/9611)
+- Add support for dynamically changing the log level
+  [#9744](https://github.com/Kong/kong/pull/9744)
+- Add `keys` entity to store and manage asymmetric keys.
+  [#9737](https://github.com/Kong/kong/pull/9737)
+- Add `key-sets` entity to group and manage `keys`
+  [#9737](https://github.com/Kong/kong/pull/9737)
+
+### Plugins
+
+#### Enterprise 
+
+- **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
+  `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
+
+  The field should be set to one of the below and is default to "append":
+  - "append": append information of this hop to those headers;
+  - "transparent": leave those headers unchanged, as if we were not a proxy;
+  - "delete": remove all those headers, as if we were the originating client.
+
+  Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
 
 #### Core
 
-* **Kong Manager**:
-* You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
+- **Rate-limiting**: The HTTP status code and response body for rate-limited
+  requests can now be customized. Thanks, [@utix](https://github.com/utix)!
+  [#8930](https://github.com/Kong/kong/pull/8930)
+- **Zipkin**: add `response_header_for_traceid` field in Zipkin plugin.
+  The plugin will set the corresponding header in the response
+  if the field is specified with a string value.
+  [#9173](https://github.com/Kong/kong/pull/9173)
+- **AWS Lambda**: add `requestContext` field into `awsgateway_compatible` input data
+  [#9380](https://github.com/Kong/kong/pull/9380)
+- **ACME**: add support for Redis SSL, through configuration properties
+  `config.storage_config.redis.ssl`, `config.storage_config.redis.ssl_verify`,
+  and `config.storage_config.redis.ssl_server_name`.
+  [#9626](https://github.com/Kong/kong/pull/9626)
+- **Session**: Add new config `cookie_persistent` that allows browser to persist
+  cookies even if browser is closed. This defaults to `false` which means
+  cookies are not persistend across browser restarts. Thanks [@tschaume](https://github.com/tschaume)
+  for this contribution!
+  [#8187](https://github.com/Kong/kong/pull/8187)
+- **Response-rate-limiting**: add support for Redis SSL, through configuration properties
+  `redis_ssl` (can be set to `true` or `false`), `ssl_verify`, and `ssl_server_name`.
+  [#8595](https://github.com/Kong/kong/pull/8595)
+  Thanks [@dominikkukacka](https://github.com/dominikkukacka)!
+- **OpenTelemetry**: add referenceable attribute to the `headers` field
+  that could be stored in vaults.
+  [#9611](https://github.com/Kong/kong/pull/9611)
+
+### Hybrid Mode
+
+- Data plane node IDs will now persist across restarts.
+  [#9067](https://github.com/Kong/kong/pull/9067)
+- Add HTTP CONNECT forward proxy support for Hybrid Mode connections. New configuration
+  options `cluster_use_proxy`, `proxy_server` and `proxy_server_ssl_verify` are added.
+  [#9758](https://github.com/Kong/kong/pull/9758)
+  [#9773](https://github.com/Kong/kong/pull/9773)
+
+### Performance
+
+- Data plane's connection to control plane is moved to a privileged worker process
+  [#9432](https://github.com/Kong/kong/pull/9432)
+- Increase the default value of `lua_regex_cache_max_entries`, a warning will be thrown
+  when there are too many regex routes and `router_flavor` is `traditional`.
+  [#9624](https://github.com/Kong/kong/pull/9624)
+- Add batch queue into the Datadog and StatsD plugin to reduce timer usage.
+  [#9521](https://github.com/Kong/kong/pull/9521)
+
+### PDK
+
+- Extend `kong.client.tls.request_client_certificate` to support setting
+  the Distinguished Name (DN) list hints of the accepted CA certificates.
+  [#9768](https://github.com/Kong/kong/pull/9768)
+
+## Fixes
+### Core
+
+- Fix issue where external plugins crashing with unhandled exceptions
+  would cause high CPU utilization after the automatic restart.
+  [#9384](https://github.com/Kong/kong/pull/9384)
+- Fix issue where Zipkin plugin cannot parse OT baggage headers
+  due to invalid OT baggage pattern. [#9280](https://github.com/Kong/kong/pull/9280)
+- Add `use_srv_name` options to upstream for balancer.
+  [#9430](https://github.com/Kong/kong/pull/9430)
+- Fix issue in `header_filter` instrumentation where the span was not
+  correctly created.
+  [#9434](https://github.com/Kong/kong/pull/9434)
+- Fix issue in router building where when field contains an empty table,
+  the generated expression is invalid.
+  [#9451](https://github.com/Kong/kong/pull/9451)
+- Fix issue in router rebuilding where when paths field is invalid,
+  the router's mutex is not released properly.
+  [#9480](https://github.com/Kong/kong/pull/9480)
+- Fixed an issue where `kong docker-start` would fail if `KONG_PREFIX` was set to
+  a relative path.
+  [#9337](https://github.com/Kong/kong/pull/9337)
+- Fixed an issue with error-handling and process cleanup in `kong start`.
+  [#9337](https://github.com/Kong/kong/pull/9337)
+
+### Hybrid Mode
+
+- Fixed a race condition that can cause configuration push events to be dropped
+  when the first data-plane connection is established with a control-plane
+  worker.
+  [#9616](https://github.com/Kong/kong/pull/9616)
+
+### CLI
+
+- Fix slow CLI performance due to pending timer jobs
+  [#9536](https://github.com/Kong/kong/pull/9536)
+
+### Admin API
+
+#### Enterprise
+
+- RBAC token hash value is not updated when modifying the user. Making
+  the user unable to authenticate if the token was ever updated after
+  creation.
+
+#### Core
+- Increase the maximum request argument number from `100` to `1000`,
+  and return `400` error if request parameters reach the limitation to
+  avoid being truncated.
+  [#9510](https://github.com/Kong/kong/pull/9510)
+- Paging size parameter is now propogated to next page if specified
+  in current request.
+  [#9503](https://github.com/Kong/kong/pull/9503)
+
+### PDK
+
+- Added support for `kong.request.get_uri_captures`
+  (`kong.request.getUriCaptures`)
+  [#9512](https://github.com/Kong/kong/pull/9512)
+- Fixed parameter type of `kong.service.request.set_raw_body`
+  (`kong.service.request.setRawBody`), return type of
+  `kong.service.response.get_raw_body`(`kong.service.request.getRawBody`),
+  and body parameter type of `kong.response.exit` to bytes. Note that old
+  version of go PDK is incompatible after this change.
+  [#9526](https://github.com/Kong/kong/pull/9526)
+
+### Plugins
+
+- Add missing `protocols` field to various plugin schemas.
+  [#9525](https://github.com/Kong/kong/pull/9525)
+- **AWS Lambda**: Fix an issue that is causing inability to
+  read environment variables in ECS environment.
+  [#9460](https://github.com/Kong/kong/pull/9460)
+- **Request-Transformer**: fix a bug when header renaming will override
+  existing header and cause unpredictable result.
+  [#9442](https://github.com/Kong/kong/pull/9442)
+- **OpenTelemetry**:
+  - Fix an issue that the default propagation header
+    is not configured to `w3c` correctly.
+    [#9457](https://github.com/Kong/kong/pull/9457)
+  - Replace the worker-level table cache with
+    `BatchQueue` to avoid data race.
+    [#9504](https://github.com/Kong/kong/pull/9504)
+  - Fix an issue that the `parent_id` is not set
+    on the span when propagating w3c traceparent.
+    [#9628](https://github.com/Kong/kong/pull/9628)
+- **Response-Transformer**: Fix the bug that Response-Transformer plugin
+  breaks when receiving an unexcepted body.
+  [#9463](https://github.com/Kong/kong/pull/9463)
+- **HTTP-Log**: Fix an issue where queue id serialization
+  does not include `queue_size` and `flush_timeout`.
+  [#9789](https://github.com/Kong/kong/pull/9789)
+
+## Changed
+
+### Hybrid Mode
+
+- The legacy hybrid configuration protocol has been removed in favor of the wRPC
+  protocol introduced in 3.0.
+  [#9740](https://github.com/Kong/kong/pull/9740)
 
 
 ## 3.0.1.0
