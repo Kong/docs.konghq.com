@@ -187,8 +187,12 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Logging Reference
-        url: /production/logging
+      - text: Logging
+        items:
+          - text: Log Reference
+            url: /production/logging/log-reference
+          - text: Customize Gateway Logs
+            url: /production/logging/customize-gateway-logs
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway
