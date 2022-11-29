@@ -1,9 +1,8 @@
 ---
 title: Key and Key Set Management in Kong Gateway
 content_type: reference
+badge: free
 ---
-
-Note that this is an OSS feature.
 
 
 This page describes {{site.base_gateway}}'s capabilities to manage asymmetric keys and key-sets in {{site.base_gateway}}.
