@@ -33,9 +33,9 @@ no_version: true
   `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
 
   The field should be set to one of the below and is default to "append":
-  - "append": append information of this hop to those headers;
-  - "transparent": leave those headers unchanged, as if we were not a proxy;
-  - "delete": remove all those headers, as if we were the originating client.
+  - `append`: append information of this hop to those headers;
+  - `transparent`: leave those headers unchanged, as if we were not a proxy;
+  - `delete`: remove all those headers, as if we were the originating client.
 
   Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
 
@@ -5920,7 +5920,7 @@ repository will allow you to do both easily.
   the request will be handled by the
   [ngx\_http\_grpc\_module](https://nginx.org/en/docs/http/ngx_http_grpc_module.html),
   and proxied to the upstream Service according to the gRPC protocol
-  specifications.  :warning: Note that not all Kong plugins are compatible with
+  specifications. Not all Kong plugins are compatible with
   gRPC requests yet.  [#4801](https://github.com/Kong/kong/pull/4801)
 - **Mutual TLS** handshake with upstream services. The Service
   entity now has a new `client_certificate` attribute, which is a foreign key
