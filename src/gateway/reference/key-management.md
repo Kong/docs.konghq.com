@@ -52,8 +52,7 @@ Both formats carry the same base information, such as the public or private key 
 
 ### Create a key using the JWK format and associate it with a Key Set
 
-1. Create a Key Set:
-
+Create a Key Set:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -74,19 +73,19 @@ http -f PUT :8001/key-sets \
 {% endnavtab %}
 {% endnavtabs %}
 
-  Result:
+Result:
 
-  ``` json
-  {
-    "created_at": 1669029622,
-    "id": "2033cb3d-ef3b-4f6d-8395-bc3c2d5a0e4f",
-    "name": "my-set",
-    "tags": null,
-    "updated_at": 1669029622
+``` json
+{
+  "created_at": 1669029622,
+  "id": "2033cb3d-ef3b-4f6d-8395-bc3c2d5a0e4f",
+  "name": "my-set",
+  "tags": null,
+  "updated_at": 1669029622
   }
 ```
 
-1. Create a key and associate it with the Key Set:
+Create a key and associate it with the Key Set:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -97,7 +96,6 @@ curl -i -X POST http://HOSTNAME:8001/keys  \
   --data jwk='{"kty":"RSA","kid":"42","use":"enc","n":"pjdss8ZaDfEH6K6U7GeW2nxDqR4IP049fk1fK0lndimbMMVBdPv_hSpm8T8EtBDxrUdi1OHZfMhUixGaut-3nQ4GG9nM249oxhCtxqqNvEXrmQRGqczyLxuh-fKn9Fg--hS9UpazHpfVAFnB5aCfXoNhPuI8oByyFKMKaOVgHNqP5NBEqabiLftZD3W_lsFCPGuzr4Vp0YS7zS2hDYScC2oOMu4rGU1LcMZf39p3153Cq7bS2Xh6Y-vw5pwzFYZdjQxDn8x8BG3fJ6j8TGLXQsbKH1218_HcUJRvMwdpbUQG5nvA2GXVqLqdwp054Lzk9_B_f1lVrmOKuHjTNHq48w","e":"AQAB","d":"ksDmucdMJXkFGZxiomNHnroOZxe8AmDLDGO1vhs-POa5PZM7mtUPonxwjVmthmpbZzla-kg55OFfO7YcXhg-Hm2OWTKwm73_rLh3JavaHjvBqsVKuorX3V3RYkSro6HyYIzFJ1Ek7sLxbjDRcDOj4ievSX0oN9l-JZhaDYlPlci5uJsoqro_YrE0PRRWVhtGynd-_aWgQv1YzkfZuMD-hJtDi1Im2humOWxA4eZrFs9eG-whXcOvaSwO4sSGbS99ecQZHM2TcdXeAs1PvjVgQ_dKnZlGN3lTWoWfQP55Z7Tgt8Nf1q4ZAKd-NlMe-7iqCFfsnFwXjSiaOa2CRGZn-Q","p":"4A5nU4ahEww7B65yuzmGeCUUi8ikWzv1C81pSyUKvKzu8CX41hp9J6oRaLGesKImYiuVQK47FhZ--wwfpRwHvSxtNU9qXb8ewo-BvadyO1eVrIk4tNV543QlSe7pQAoJGkxCia5rfznAE3InKF4JvIlchyqs0RQ8wx7lULqwnn0","q":"ven83GM6SfrmO-TBHbjTk6JhP_3CMsIvmSdo4KrbQNvp4vHO3w1_0zJ3URkmkYGhz2tgPlfd7v1l2I6QkIh4Bumdj6FyFZEBpxjE4MpfdNVcNINvVj87cLyTRmIcaGxmfylY7QErP8GFA-k4UoH_eQmGKGK44TRzYj5hZYGWIC8","dp":"lmmU_AG5SGxBhJqb8wxfNXDPJjf__i92BgJT2Vp4pskBbr5PGoyV0HbfUQVMnw977RONEurkR6O6gxZUeCclGt4kQlGZ-m0_XSWx13v9t9DIbheAtgVJ2mQyVDvK4m7aRYlEceFh0PsX8vYDS5o1txgPwb3oXkPTtrmbAGMUBpE","dq":"mxRTU3QDyR2EnCv0Nl0TCF90oliJGAHR9HJmBe__EjuCBbwHfcT8OG3hWOv8vpzokQPRl5cQt3NckzX3fs6xlJN4Ai2Hh2zduKFVQ2p-AF2p6Yfahscjtq-GY9cB85NxLy2IXCC0PF--Sq9LOrTE9QV988SJy_yUrAjcZ5MmECk","qi":"ldHXIrEmMZVaNwGzDF9WG8sHj2mOZmQpw9yrjLK9hAsmsNr5LTyqWAqJIYZSwPTYWhY4nu2O0EY9G9uYiqewXfCKw_UngrJt8Xwfq1Zruz0YY869zPN4GiE9-9rzdZB33RBw8kIOquY3MK74FMwCihYx_LiU2YTHkaoJ3ncvtvg"}' \
   --data kid=42 \
   --data set.name=my-set
-
 ```
 
 {% endnavtab %}
@@ -109,56 +107,55 @@ http -f PUT :8001/keys \
   jwk='{"kty":"RSA","kid":"42","use":"enc","n":"pjdss8ZaDfEH6K6U7GeW2nxDqR4IP049fk1fK0lndimbMMVBdPv_hSpm8T8EtBDxrUdi1OHZfMhUixGaut-3nQ4GG9nM249oxhCtxqqNvEXrmQRGqczyLxuh-fKn9Fg--hS9UpazHpfVAFnB5aCfXoNhPuI8oByyFKMKaOVgHNqP5NBEqabiLftZD3W_lsFCPGuzr4Vp0YS7zS2hDYScC2oOMu4rGU1LcMZf39p3153Cq7bS2Xh6Y-vw5pwzFYZdjQxDn8x8BG3fJ6j8TGLXQsbKH1218_HcUJRvMwdpbUQG5nvA2GXVqLqdwp054Lzk9_B_f1lVrmOKuHjTNHq48w","e":"AQAB","d":"ksDmucdMJXkFGZxiomNHnroOZxe8AmDLDGO1vhs-POa5PZM7mtUPonxwjVmthmpbZzla-kg55OFfO7YcXhg-Hm2OWTKwm73_rLh3JavaHjvBqsVKuorX3V3RYkSro6HyYIzFJ1Ek7sLxbjDRcDOj4ievSX0oN9l-JZhaDYlPlci5uJsoqro_YrE0PRRWVhtGynd-_aWgQv1YzkfZuMD-hJtDi1Im2humOWxA4eZrFs9eG-whXcOvaSwO4sSGbS99ecQZHM2TcdXeAs1PvjVgQ_dKnZlGN3lTWoWfQP55Z7Tgt8Nf1q4ZAKd-NlMe-7iqCFfsnFwXjSiaOa2CRGZn-Q","p":"4A5nU4ahEww7B65yuzmGeCUUi8ikWzv1C81pSyUKvKzu8CX41hp9J6oRaLGesKImYiuVQK47FhZ--wwfpRwHvSxtNU9qXb8ewo-BvadyO1eVrIk4tNV543QlSe7pQAoJGkxCia5rfznAE3InKF4JvIlchyqs0RQ8wx7lULqwnn0","q":"ven83GM6SfrmO-TBHbjTk6JhP_3CMsIvmSdo4KrbQNvp4vHO3w1_0zJ3URkmkYGhz2tgPlfd7v1l2I6QkIh4Bumdj6FyFZEBpxjE4MpfdNVcNINvVj87cLyTRmIcaGxmfylY7QErP8GFA-k4UoH_eQmGKGK44TRzYj5hZYGWIC8","dp":"lmmU_AG5SGxBhJqb8wxfNXDPJjf__i92BgJT2Vp4pskBbr5PGoyV0HbfUQVMnw977RONEurkR6O6gxZUeCclGt4kQlGZ-m0_XSWx13v9t9DIbheAtgVJ2mQyVDvK4m7aRYlEceFh0PsX8vYDS5o1txgPwb3oXkPTtrmbAGMUBpE","dq":"mxRTU3QDyR2EnCv0Nl0TCF90oliJGAHR9HJmBe__EjuCBbwHfcT8OG3hWOv8vpzokQPRl5cQt3NckzX3fs6xlJN4Ai2Hh2zduKFVQ2p-AF2p6Yfahscjtq-GY9cB85NxLy2IXCC0PF--Sq9LOrTE9QV988SJy_yUrAjcZ5MmECk","qi":"ldHXIrEmMZVaNwGzDF9WG8sHj2mOZmQpw9yrjLK9hAsmsNr5LTyqWAqJIYZSwPTYWhY4nu2O0EY9G9uYiqewXfCKw_UngrJt8Xwfq1Zruz0YY869zPN4GiE9-9rzdZB33RBw8kIOquY3MK74FMwCihYx_LiU2YTHkaoJ3ncvtvg"}' \
   kid=42 \
   set.name=my-set
-
 ```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-  Result:
+Result:
 
-  ```json
-  {
-          "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
-          "jwk":
-                  { kty":"RSA",
-                    "kid":"42",
-                    "use":"enc",
-                    ..."},
-          "created_at":1669029250,
-          "updated_at":1669029250,
-          "name":"my-first-jwk",
-          "tags":null,
-          "set":
-                  { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
-          "kid":"42",
-          "pem":null
+```json
+{
+  "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
+  "jwk":
+          { kty":"RSA",
+            "kid":"42",
+            "use":"enc",
+            ..."},
+  "created_at":1669029250,
+  "updated_at":1669029250,
+  "name":"my-first-jwk",
+  "tags":null,
+  "set":
+          { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
+  "kid":"42",
+  "pem":null
   }
-  ```
+```
 
 ### Create a Key using the PEM format and associate with a Key Set
 
 
-1. Create a Key Set:
+Create a Key Set:
   
-  {% navtabs codeblock %}
-  {% navtab cURL %}
+{% navtabs codeblock %}
+{% navtab cURL %}
 
-  ```bash
-  curl -i -X PUT http://HOSTNAME:8001/key-sets  \
-    --data name=my-other-set \
-  ```
+```bash
+curl -i -X PUT http://HOSTNAME:8001/key-sets  \
+  --data name=my-other-set \
+```
 
-  {% endnavtab %}
-  {% navtab HTTPie %}
+{% endnavtab %}
+{% navtab HTTPie %}
 
-  ```bash
-  http -f PUT :8001/key-sets \
-    name=my-other-set \
-  ```
+```bash
+http -f PUT :8001/key-sets \
+  name=my-other-set \
+```
 
-  {% endnavtab %}
-  {% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 Result:
 
@@ -169,10 +166,10 @@ Result:
   "name": "my-other-set",
   "tags": null,
   "updated_at": 1669029622
-}
+  }
 ```
 
-1. Create a PEM-encoded key and associate it with the Key Set:
+Create a PEM-encoded key and associate it with the Key Set:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -184,7 +181,6 @@ curl -i -X POST http://HOSTNAME:8001/keys  \
   --data pem.public_key=@path/to/public_key.pem
   --data kid=23 \
   --data set.name=my-other-set
-
 ```
 
 {% endnavtab %}
@@ -203,22 +199,22 @@ http -f PUT :8001/keys \
 {% endnavtab %}
 {% endnavtabs %}
 
-  Result:
+Result:
 
-  ```json
-  {
-          "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
-          "jwk": null
-          "pem": {
-                  "public_key": "----BEGIN...",
-                  "private_key": "----BEGIN...."
-          }
-          "created_at":1669029250,
-          "updated_at":1669029250,
-          "name":"my-first-pem-key",
-          "tags":null,
-          "set":
-                  { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
-          "kid":"23",
+```json
+{
+  "id":"92a245af-8cb6-4175-b3a9-9383cbb9848f",
+  "jwk": null
+  "pem": {
+          "public_key": "----BEGIN...",
+          "private_key": "----BEGIN...."
   }
-  ```
+  "created_at":1669029250,
+  "updated_at":1669029250,
+  "name":"my-first-pem-key",
+  "tags":null,
+  "set":
+          { "id":"cb5b5df8-0161-4fdf-a2ce-cefc9481d5f9"},
+  "kid":"23",
+  }
+```
