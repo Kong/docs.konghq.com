@@ -9,6 +9,7 @@ no_version: true
 
 ## Features
 
+### Core
 - Allow `kong.conf` ssl properties to be stored in vaults or environment
   variables. Allow such properties to be configured directly as content
   or base64 encoded content.
@@ -23,6 +24,7 @@ no_version: true
   [#9737](https://github.com/Kong/kong/pull/9737)
 - Add `key-sets` entity to group and manage `keys`
   [#9737](https://github.com/Kong/kong/pull/9737)
+- Add support for HashiCorp Vault backends to retrieve a vault token from a Kubernetes service account.
 
 ### Kong Manager
 
@@ -36,6 +38,9 @@ no_version: true
 
 #### Enterprise 
 
+- **New plugin:** [AppDynamics](/hub/kong-inc/appdynamics).
+- **New plugin:**[SAML](/hub/kong-inc/saml).
+- **New plugin:** [XML Threat Protection](/hub/kong-inc/xml-threat-protection).
 - **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
   `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
 
@@ -56,6 +61,16 @@ no_version: true
 
 - **Proxy Cache**: add support for integrating with Redis clusters through the `config.redis.cluster_addresses` configuration property.
 - **Request Validator**: Support `config.allowed_content_types` to be configured with parameter.
+- **Vault-Auth**: Added support for KV Secrets Engine v2.
+- **Rate-limiting Afvanced**: Added support for deleting customer groups using the API.
+- WebSocket service/route support was added logging plugins:
+  - http-log
+  - file-log
+  - udp-log
+  - tcp-log
+  - loggly
+  - syslog
+  - kafka-log
 
 #### Core
 
@@ -134,6 +149,7 @@ no_version: true
   [#9337](https://github.com/Kong/kong/pull/9337)
 - Fixed an issue with error-handling and process cleanup in `kong start`.
   [#9337](https://github.com/Kong/kong/pull/9337)
+- Fixed issue with prefix path normalization. [#9760](https://github.com/Kong/kong/pull/9760)
 
 ### Hybrid Mode
 
@@ -203,6 +219,10 @@ no_version: true
 - **HTTP-Log**: Fix an issue where queue id serialization
   does not include `queue_size` and `flush_timeout`.
   [#9789](https://github.com/Kong/kong/pull/9789)
+- [Mocking](/hub/kong-inc/mocking):
+  - Fix an issue with `accept` headers not being split and not working with wildcards. The `;q=` (q-factor weighting) of `accept` headers is now supported.
+- Websockets 
+  - Redirect `ws` requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS
 
 ## Changed
 
