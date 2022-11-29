@@ -14,17 +14,14 @@ no_version: true
   variables. Allow such properties to be configured directly as content
   or base64 encoded content.
   [#9253](https://github.com/Kong/kong/pull/9253)
-- Add support for full entity transformations in schemas
+- Added support for full entity transformations in schemas
   [#9431](https://github.com/Kong/kong/pull/9431)
 - Allow schema `map` type field being marked as referenceable.
   [#9611](https://github.com/Kong/kong/pull/9611)
-- Add support for dynamically changing the log level
+- Added support for dynamically changing the log level
   [#9744](https://github.com/Kong/kong/pull/9744)
-- Add `keys` entity to store and manage asymmetric keys.
-  [#9737](https://github.com/Kong/kong/pull/9737)
-- Add `key-sets` entity to group and manage `keys`
-  [#9737](https://github.com/Kong/kong/pull/9737)
-- Add support for HashiCorp Vault backends to retrieve a vault token from a Kubernetes service account.
+- Added support for HashiCorp Vault backends to retrieve a vault token from a Kubernetes service account.
+- Added support for the `keys` and `key-sets` entities. These are used for managing asymmetric keys in various formats (JWK, PEM). For more information, see [Key management](/gateway/latest/reference/key-management/). [#9737](https://github.com/Kong/kong/pull/9737)
 
 ### Kong Manager
 
@@ -50,6 +47,10 @@ no_version: true
   - `delete`: remove all those headers, as if we were the originating client.
 
   Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
+- **JWE Decrypt**: This new plugin allows you to decrypt an inbound token (JWE) in a request. For more information, see [Kong JWE Decrypt](/hub/kong-inc/jwe-decrypt/).
+- **Mocking**: Added the `included_status_codes` and `random_status_code` fields. These allow you to configure the HTTP status codes for the plugin. 
+- **OPA**: `include_uri_captures_in_opa_input` field added. When this field is set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
+- **XML Threat Protection**: This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes. For more information, see [XML Threat Protection](/hub/kong-inc/xml-threat-protection/).
 
 - [Mocking](/hub/kong-inc/mocking) plugin refactored to include:
 
@@ -87,6 +88,7 @@ no_version: true
   `config.storage_config.redis.ssl`, `config.storage_config.redis.ssl_verify`,
   and `config.storage_config.redis.ssl_server_name`.
   [#9626](https://github.com/Kong/kong/pull/9626)
+- **Basic Authentication**: The `anonymous` field can now be configured as the username of the consumer. This field allows you to configure a string to use as an “anonymous” consumer if authentication fails.
 - **Session**: Add new config `cookie_persistent` that allows browser to persist
   cookies even if browser is closed. This defaults to `false` which means
   cookies are not persistend across browser restarts. Thanks [@tschaume](https://github.com/tschaume)
