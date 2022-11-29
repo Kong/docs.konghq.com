@@ -11,6 +11,7 @@ Through a runtime group, you can configure the following [{{site.base_gateway}} 
 * Upstreams
 * Certificates
 * SNIs
+* Vaults
 
 Services are region-specific and are not shared between [geographic regions](/konnect/regions/).
 
