@@ -3,152 +3,48 @@
 module PluginSingleSource
   class Generator < Jekyll::Generator
     priority :highest
-    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
+    PLUGINS_FOLDER = '_hub'
+    SAMPLE_PLUGIN = '_init/my-extension'
+
+    def generate(site)
       site.data['ssg_hub'] = []
       site.data['extensions'] ||= {}
-      seen = []
 
-      # Fetch Kong versions in case the plugin has delegate_releases set
-      # (this means it's compatible with all known releases)
-      kong_versions = SafeYAML.load(File.read('app/_data/kong_versions.yml')).select do |v|
-        v['edition'] == 'gateway' || v['edition'] == 'gateway-oss' || v['edition'] == 'enterprise'
-      end
-
-      kong_versions = kong_versions.map do |v|
-        v['release'].gsub('-x', '.x')
-      end.uniq
-
-      # Iterate over every versions.yml file and create a page for each release contained in there
-      Dir.glob('app/_hub/*/*/versions.yml').each do |f|
-        name = f.gsub('app/_hub/', '').gsub('/versions.yml', '')
-        seen << name
-        data = SafeYAML.load(File.read(f))
-
-        # Clean up old versions.yml files to match the new structure
-        unless data.is_a?(Hash)
-          data = {
-            'strategy' => 'matrix',
-            'releases' => data.map { |d| d['release'] }
-          }
-        end
-
-        # If we have delegate_releases: true, then we assume that the plugin
-        # works with all existing Gateway releases
-        data['releases'] = kong_versions if data['delegate_releases']
-
-        # Are there any replacements required? e.g. 2.8.x => [2.8.x-CE, 2.8.x-EE]
-        data['replacements']&.each do |k, v|
-          data['releases'][data['releases'].index(k)] = v if data['releases'].index(k)
-        end
-
-        # Make sure the releases are in the correct order
-        data['releases'] = data['releases'].flatten.sort_by { |v| Gem::Version.new(v) }.reverse
-
-        # Populate site.data so that our existing version listing will work
-        p = name.split('/')
-        data['publisher'] = p[0]
-        data['name'] = p[0]
-        site.data['extensions'][p[0]] ||= {}
-        site.data['extensions'][p[0]][p[1]] ||= data
-
-        create_pages(data, site, name)
-      end
-
-      # Add any files that did not have a corresponding versions.yml
-      Dir.glob('app/_hub/*/*/_index.md').each do |f|
-        name = f.gsub('app/_hub/', '').gsub('/_index.md', '')
-        next if seen.include?(name)
-
-        # Don't generate the sample file
-        next if name == '_init/my-extension'
-
-        create_pages(
-          {
-            'strategy' => 'matrix',
-            'releases' => ['1.0.0'] # If there's no version, assume it's 1.0.0
-          },
-          site,
-          name
-        )
-      end
+      generate_pages(site)
+      generate_extension_data(site)
     end
 
-    def create_pages(data, site, name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      version_strings = data['releases'].map do |v|
-        v.gsub('-x', '.x').gsub(/\.x/, '.0')
-      end
-      max_version = version_strings.max_by { |v| Gem::Version.new(v) }
-      set_version = data['releases'].size > 1
-      data['releases'].each do |v, _k|
-        current_version = v.gsub('-x', '.x').gsub(/\.x/, '.0')
-        # Skip if a markdown file exists for this version
-        # and we're not generating the index version
-        next if File.exist?("app/_hub/#{name}/#{v}.md") && current_version != max_version
+    def generate_pages(site)
+      plugins(site).map do |plugin|
+        pages = plugin.create_pages
 
-        # Otherwise duplicate the source file, fallback to _index.md
-        source = data['sources'][v] if data['sources']
-        source ||= '_index'
-
-        unless source.start_with?('_')
-          raise "Plugin source files must start with an _ to prevent Jekyll from rendering them directly. Please fix [#{source}] in [#{name}]" # rubocop:disable Layout/LineLength
-        end
-
-        plugin = name.split('/')
-        source_path = "app/_hub/#{name}/#{source}.md"
-
-        # Add the index page rendering if we're on the latest release too
-        permalink = v
-        permalink = 'index' if current_version == max_version
-
-        page = SingleSourcePage.new(site, v, plugin[0], plugin[1], source, source_path, permalink,
-                                    set_version)
-        site.pages << page
+        site.pages.concat(pages)
 
         # Make sure we add the page to site.hub for later iteration
-        site.data['ssg_hub'] << page if permalink == 'index'
+        site.data['ssg_hub'].concat(pages.select { |p| p.data['is_latest'] })
       end
     end
-  end
 
-  class SingleSourcePage < Jekyll::Page
-    def initialize(site, version, author, plugin_name, source_file, source_path, permalink_name, set_version) # rubocop:disable Lint/MissingSuper, Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists
-      # Configure variables that Jekyll depends on
-      @site = site
-
-      # Make sure the source path is still index.md to generate the extension listing
-      @path = source_path.gsub(source_file, permalink_name)
-
-      # Set self.ext and self.basename by extracting information from the page filename
-      process("#{version}.md")
-
-      # This is the directory that we're going to write the output file to
-      @dir = "hub/#{author}/#{plugin_name}"
-
-      content = File.read(source_path)
-
-      # Load content + frontmatter from the file
-      if content =~ Jekyll::Document::YAML_FRONT_MATTER_REGEXP
-        @content = Regexp.last_match.post_match
-        @data = SafeYAML.load(Regexp.last_match(1))
+    def generate_extension_data(site)
+      # Populate site.data so that our existing version listing will work
+      plugins(site).select(&:extension?).each do |plugin|
+        site.data['extensions'][plugin.vendor] ||= {}
+        site.data['extensions'][plugin.vendor][plugin.name] ||= plugin.ext_data
       end
+    end
 
-      @data['version'] = version if set_version
-      @data['is_latest'] = permalink_name == 'index'
+    private
 
-      @data['canonical_url'] = "/hub/#{author}/#{plugin_name}/" unless @data['is_latest']
-      @data['seo_noindex'] = true unless @data['is_latest']
+    def plugins(site)
+      @plugins ||=
+        Dir.glob(File.join(site.source, "#{PLUGINS_FOLDER}/*/*/")).map do |dir_path|
+          dir = dir_path.gsub("#{site.source}/#{PLUGINS_FOLDER}/", '').chomp('/')
 
-      # We need to set the path so that some of the conditionals in templates
-      # continue to work.
-      @data['path'] = "_hub/#{author}/#{plugin_name}/#{permalink_name}.md"
+          next if dir == SAMPLE_PLUGIN
 
-      # The plugin hub uses version.html as the filename unless it's the most
-      # recent version, in which case it uses index
-      @data['permalink'] = "#{@dir}/"
-      @data['permalink'] = "#{@data['permalink']}#{permalink_name}.html" unless permalink_name == 'index'
-
-      # Set the layout if it's not already provided
-      @data['layout'] = 'extension' unless data['layout']
+          Plugin::Base.make_for(dir:, site:)
+        end.compact
     end
   end
 end

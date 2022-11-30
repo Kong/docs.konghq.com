@@ -21,7 +21,6 @@ JSONschema
 JWTs
 Kiran
 Kongmap
-Kongverge
 Lorem
 MBs
 Memcache
