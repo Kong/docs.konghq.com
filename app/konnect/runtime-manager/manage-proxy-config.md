@@ -11,6 +11,7 @@ Through a runtime group, you can configure the following [{{site.base_gateway}} 
 * Upstreams
 * Certificates
 * SNIs
+* Vaults
 
 ## Configure a {{site.base_gateway}} object
 
