@@ -3,9 +3,14 @@ title: Advanced Secrets Configuration
 ---
 
 Vault implementations offer a variety of advanced configuration options.
+For specific configuration parameters for your vault backend, see the [backend reference](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/).
+
+{% if_version lte:3.0.x %}
 
 {:.warning}
 > Kong Manager currently doesn't support configuring vault entities.
+
+{% endif_version %}
 
 ## Query arguments
 
@@ -124,3 +129,13 @@ vaults:
 
 For more information on configuring vaults and using secret references in declarative
 configuration files, see [Secret Management with decK](/deck/latest/guides/vaults).
+
+## Shared configuration parameters
+
+Every vault supports the following configuration parameters:
+
+Parameter | UI field name | Description
+----------|---------------|------------
+`vaults.description` *optional* | Description | An optional description for your vault.
+`vaults.name` | N/A | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`.
+`vaults.prefix` | Prefix | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-env-vault/<some-secret>}`.
