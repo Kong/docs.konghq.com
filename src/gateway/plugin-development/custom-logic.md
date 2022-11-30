@@ -443,11 +443,13 @@ The current order of execution for the bundled plugins is:
 Plugin                      | Priority
 ----------------------------|----------
 pre-function                | 1000000
+app-dynamics                | 999999
 correlation-id              | 100001 <!--  CE priority is 1, EE priority is 100001 -->
 zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
 cors                        | 2000
+jwe-decrypt                 | 1999
 session                     | 1900
 oauth2-introspection        | 1700
 acme                        | 1705
@@ -467,6 +469,7 @@ jwt-signer                  | 1020
 request-validator           | 999
 websocket-size-limit        | 999
 websocket-validator         | 999
+xml-threat-protection       | 999
 grpc-gateway                | 998
 tls-handshake-modifier      | 997
 tls-metadata-headers        | 996
@@ -479,6 +482,8 @@ rate-limiting               | 910
 rate-limiting-advanced      | 910
 graphql-rate-limiting-advanced | 902
 response-ratelimiting       | 900
+saml                        | 900
+oas-validation              | 850
 route-by-header             | 850
 jq                          | 811
 request-transformer-advanced | 802
