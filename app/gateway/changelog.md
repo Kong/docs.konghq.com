@@ -32,86 +32,6 @@ no_version: true
   - The Kong Manager overview tab has been optimized for performance.
   - You can now configure vaults for managing secrets through Kong Manager.
 
-### Plugins
-
-#### Enterprise 
-
-**New plugins:** 
-- [AppDynamics](/hub/kong-inc/app-dynamics) (`app-dynamics`)
-  - Integrate Kong Gateway with the AppDynamics APM Platform.
-- [JWE Decrypt](/hub/kong-inc/jwe-decrypt) (`jwe-decrypt`)
-  - Allows you to decrypt an inbound token (JWE) in a request.
-- [OAS Validation](/hub/kong-inc/oas-validation) (`oas-validation`)
-  - Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification.
-- [SAML](/hub/kong-inc/saml) (`saml`)
-  - Provides SAML v2.0 authentication and authorization between a service provider (Kong) and an identity provider (IdP).
-- [XML Threat Protection](/hub/kong-inc/xml-threat-protection) (`xml-threat-protection`)
-  - Apply structural and size checks on XML payloads.
-
-** Updates to existing plugins:**
-- **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
-  `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
-
-  The field should be set to one of the below and is default to "append":
-  - `append`: append information of this hop to those headers;
-  - `transparent`: leave those headers unchanged, as if we were not a proxy;
-  - `delete`: remove all those headers, as if we were the originating client.
-
-  Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
-- **Mocking**: Added the `included_status_codes` and `random_status_code` fields. These allow you to configure the HTTP status codes for the plugin. 
-- **OPA**: `include_uri_captures_in_opa_input` field added. When this field is set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
-- **XML Threat Protection**: This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes. For more information, see [XML Threat Protection](/hub/kong-inc/xml-threat-protection/).
-
-- [Mocking](/hub/kong-inc/mocking) plugin refactored to include:
-
-  - MIME types priority match support.
-  - Support for all HTTP codes.
-  - `$ref` support.
-  - Schema definition mocking support.
-  - Behavioral headers control feature.
-
-- **Proxy Cache**: add support for integrating with Redis clusters through the `config.redis.cluster_addresses` configuration property.
-- **Request Validator**: Support `config.allowed_content_types` to be configured with parameter.
-- **Vault-Auth**: Added support for KV Secrets Engine v2.
-- **Rate-limiting Afvanced**: Added support for deleting customer groups using the API.
-- WebSocket service/route support was added logging plugins:
-  - http-log
-  - file-log
-  - udp-log
-  - tcp-log
-  - loggly
-  - syslog
-  - kafka-log
-
-#### Core
-
-- **Rate-limiting**: The HTTP status code and response body for rate-limited
-  requests can now be customized. Thanks, [@utix](https://github.com/utix)!
-  [#8930](https://github.com/Kong/kong/pull/8930)
-- **Zipkin**: add `response_header_for_traceid` field in Zipkin plugin.
-  The plugin will set the corresponding header in the response
-  if the field is specified with a string value.
-  [#9173](https://github.com/Kong/kong/pull/9173)
-- **AWS Lambda**: add `requestContext` field into `awsgateway_compatible` input data
-  [#9380](https://github.com/Kong/kong/pull/9380)
-- **ACME**: add support for Redis SSL, through configuration properties
-  `config.storage_config.redis.ssl`, `config.storage_config.redis.ssl_verify`,
-  and `config.storage_config.redis.ssl_server_name`.
-  [#9626](https://github.com/Kong/kong/pull/9626)
-- **Basic Authentication**: The `anonymous` field can now be configured as the username of the consumer. This field allows you to configure a string to use as an “anonymous” consumer if authentication fails.
-- **Session**: Add new config `cookie_persistent` that allows browser to persist
-  cookies even if browser is closed. This defaults to `false` which means
-  cookies are not persistend across browser restarts. Thanks [@tschaume](https://github.com/tschaume)
-  for this contribution!
-  [#8187](https://github.com/Kong/kong/pull/8187)
-- **Response-rate-limiting**: add support for Redis SSL, through configuration properties
-  `redis_ssl` (can be set to `true` or `false`), `ssl_verify`, and `ssl_server_name`.
-  [#8595](https://github.com/Kong/kong/pull/8595)
-  Thanks [@dominikkukacka](https://github.com/dominikkukacka)!
-- **OpenTelemetry**: add referenceable attribute to the `headers` field
-  that could be stored in vaults.
-  [#9611](https://github.com/Kong/kong/pull/9611)
-
 ### Hybrid Mode
 
 - Data plane node IDs will now persist across restarts.
@@ -137,6 +57,96 @@ no_version: true
   the Distinguished Name (DN) list hints of the accepted CA certificates.
   [#9768](https://github.com/Kong/kong/pull/9768)
 
+### Plugins
+
+**New plugins:** 
+- [AppDynamics](/hub/kong-inc/app-dynamics) (`app-dynamics`)
+  - Integrate Kong Gateway with the AppDynamics APM Platform.
+- [JWE Decrypt](/hub/kong-inc/jwe-decrypt) (`jwe-decrypt`)
+  - Allows you to decrypt an inbound token (JWE) in a request.
+- [OAS Validation](/hub/kong-inc/oas-validation) (`oas-validation`)
+  - Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification.
+- [SAML](/hub/kong-inc/saml) (`saml`)
+  - Provides SAML v2.0 authentication and authorization between a service provider (Kong) and an identity provider (IdP).
+- [XML Threat Protection](/hub/kong-inc/xml-threat-protection) (`xml-threat-protection`)
+  - This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes.
+
+** Updates to existing plugins:**
+
+- [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
+  - The HTTP status code and response body for rate-limited
+  requests can now be customized. Thanks, [@utix](https://github.com/utix)!
+  [#8930](https://github.com/Kong/kong/pull/8930)
+- [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
+  - Added `response_header_for_traceid` field in Zipkin plugin.
+  The plugin will set the corresponding header in the response
+  if the field is specified with a string value.
+  [#9173](https://github.com/Kong/kong/pull/9173)
+- [**AWS Lambda**](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  - Added `requestContext` field into `awsgateway_compatible` input data
+  [#9380](https://github.com/Kong/kong/pull/9380)
+- [**ACME**](/hub/kong-inc/acme/) (`acme`)
+  - Added support for Redis SSL, through configuration properties
+  `config.storage_config.redis.ssl`, `config.storage_config.redis.ssl_verify`,
+  and `config.storage_config.redis.ssl_server_name`.
+  [#9626](https://github.com/Kong/kong/pull/9626)
+- [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
+  - The `anonymous` field can now be configured as the username of the consumer. 
+  This field allows you to configure a string to use as an “anonymous” consumer if authentication fails.
+- [**Session**](/hub/kong-inc/session/) (`session`) 
+  - Added new config `cookie_persistent`, which allows the browser to persist
+  cookies even if the browser is closed. This defaults to `false` which means
+  cookies are not persisted across browser restarts. Thanks [@tschaume](https://github.com/tschaume)
+  for this contribution!
+  [#8187](https://github.com/Kong/kong/pull/8187)
+- [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  - Added support for Redis SSL, through configuration properties
+  `redis_ssl` (can be set to `true` or `false`), `ssl_verify`, and `ssl_server_name`.
+  [#8595](https://github.com/Kong/kong/pull/8595)
+  Thanks [@dominikkukacka](https://github.com/dominikkukacka)!
+- [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`) 
+  - Added referenceable attribute to the `headers` field
+  that could be stored in vaults.
+  [#9611](https://github.com/Kong/kong/pull/9611)
+  
+- [**Forward Proxy**](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  - `x_headers` field added. This field indicates how the plugin handles the headers
+  `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
+
+    The field should be set to one of the below and is default to "append":
+    - `append`: append information of this hop to those headers;
+    - `transparent`: leave those headers unchanged, as if we were not a proxy;
+    - `delete`: remove all those headers, as if we were the originating client.
+
+    Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
+- [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)
+  - Added the `included_status_codes` and `random_status_code` fields. These allow you to configure the HTTP status codes for the plugin. 
+  - Plugin refactored to include:
+    - MIME types priority match support.
+    - Support for all HTTP codes.
+    - `$ref` support.
+    - Schema definition mocking support.
+    - Behavioral headers control feature.
+- [**OPA**](/hub/kong-inc/opa/) (`OPA`)
+  - Added the `include_uri_captures_in_opa_input` field. When this field is set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
+
+- [**Proxy Cache**](/hub/kong-inc/proxy-cache/) (`proxy-cache`)
+  - Added support for integrating with Redis clusters through the `config.redis.cluster_addresses` configuration property.
+- [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  - The plugin now supports `config.allowed_content_types` to be configured with parameter.
+- [**Vault Authentication**](/hub/kong-inc/vault-auth/) (`vault-auth`)
+  - Added support for KV Secrets Engine v2.
+- *[**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  - Added support for deleting customer groups using the API.
+- WebSocket service/route support was added for logging plugins:
+  - http-log
+  - file-log
+  - udp-log
+  - tcp-log
+  - loggly
+  - syslog
+  - kafka-log
+ 
 ## Fixes
 ### Core
 
@@ -207,38 +217,42 @@ no_version: true
 
 ### Plugins
 
-- Add missing `protocols` field to various plugin schemas.
+- Added the missing `protocols` field to various plugin schemas.
   [#9525](https://github.com/Kong/kong/pull/9525)
-- **AWS Lambda**: Fix an issue that is causing inability to
+- [**AWS Lambda**](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  - Fixed an issue that was causing inability to
   read environment variables in ECS environment.
   [#9460](https://github.com/Kong/kong/pull/9460)
-- **Request-Transformer**: fix a bug when header renaming will override
-  existing header and cause unpredictable result.
+- [**Request Transformer**](/hub/kong-inc/request-transformer/) (`request-transformer`)
+  - Fixed a bug when header renaming would override
+   the existing header and cause unpredictable results.
   [#9442](https://github.com/Kong/kong/pull/9442)
-- **OpenTelemetry**:
-  - Fix an issue that the default propagation header
-    is not configured to `w3c` correctly.
+- [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  - Fixed an issue that the default propagation header
+    was not configured to `w3c` correctly.
     [#9457](https://github.com/Kong/kong/pull/9457)
-  - Replace the worker-level table cache with
+  - Replaced the worker-level table cache with
     `BatchQueue` to avoid data race.
     [#9504](https://github.com/Kong/kong/pull/9504)
-  - Fix an issue that the `parent_id` is not set
+  - Fixed an issue that the `parent_id` was not set
     on the span when propagating w3c traceparent.
     [#9628](https://github.com/Kong/kong/pull/9628)
-- **Response-Transformer**: Fix the bug that Response-Transformer plugin
-  breaks when receiving an unexcepted body.
+- [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`)
+  - Fixed the bug that the plugin would
+  break when receiving an unexcepted body.
   [#9463](https://github.com/Kong/kong/pull/9463)
-- **HTTP-Log**: Fix an issue where queue id serialization
-  does not include `queue_size` and `flush_timeout`.
+- [**HTTP Log**](/hub/kong-inc/http-log/) (`http-log`)
+  - Fixed an issue where queue ID serialization
+  did not include `queue_size` and `flush_timeout`.
   [#9789](https://github.com/Kong/kong/pull/9789)
-- [Mocking](/hub/kong-inc/mocking):
-  - Fix an issue with `accept` headers not being split and not working with wildcards. The `;q=` (q-factor weighting) of `accept` headers is now supported.
+- [**Mocking**](/hub/kong-inc/mocking) (`mocking`)
+  - Fixed an issue with `accept` headers not being split and not working with wildcards. The `;q=` (q-factor weighting) of `accept` headers is now supported.
 - Websockets 
   - Redirect `ws` requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS
 
-## Changed
+## Breaking changes
 
-### Hybrid Mode
+### Hybrid mode
 
 - The legacy hybrid configuration protocol has been removed in favor of the wRPC
   protocol introduced in 3.0.
