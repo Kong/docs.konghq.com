@@ -214,6 +214,11 @@
           absolute_url: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration
+    - text: Runtime Groups API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
+          absolute_url: true
     - text: Reference
       items:
         - text: Filtering
