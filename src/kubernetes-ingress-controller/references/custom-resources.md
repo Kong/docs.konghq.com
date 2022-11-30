@@ -1,458 +1,429 @@
 ---
-title: Custom Resource Definitions
+title: Custom Resource Definitions API Reference
 ---
+<!-- vale off -->
 
-The Ingress Controller can configure Kong specific features
-using several [Custom Resource Definitions(CRDs)][k8s-crd].
-
-Following CRDs enables users to declaratively configure all aspects of Kong:
-
-- [**KongPlugin**](#kongplugin): This resource corresponds to
-  the [Plugin][kong-plugin] entity in Kong.
-- [**KongIngress**](#kongingress): This resource provides fine-grained control
-  over all aspects of proxy behaviour like routing, load-balancing,
-  and health checking. It serves as an "extension" to the Ingress resources
-  in Kubernetes.
-- [**KongConsumer**](#kongconsumer):
-  This resource maps to the [Consumer][kong-consumer] entity in Kong.
-- [**TCPIngress**](#tcpingress):
-  This resource can configure TCP-based routing in Kong for non-HTTP
-  services running inside Kubernetes.
-- [**UDPIngress**](#udpingress):
-  This resource can configure UDP-based routing in Kong.
-- [**KongCredential (Deprecated)**](#kongcredential-deprecated):
-  This resource maps to
-  a credential (key-auth, basic-auth, jwt, hmac-auth) that is associated with
-  a specific KongConsumer.
-
-## KongPlugin
-
-This resource provides an API to configure plugins inside Kong using
-Kubernetes-style resources.
-
-Please see the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
-document for how the resource should be used.
-
-The following snippet shows the properties available in KongPlugin resource:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: <object name>
-  namespace: <object namespace>
-disabled: <boolean>  # optionally disable the plugin in Kong
-config:              # configuration for the plugin
-  key: value
-configFrom:
-  secretKeyRef:
-     name: <Secret name>
-     key: <Secret key>
-plugin: <name-of-plugin> # like key-auth, rate-limiting etc
-{% if_version gte:2.6.x %}
-ordering:
-  before:
-    <phase>:
-    - <plugin>
-    - <plugin>
-  after:
-    <phase>:
-    - <plugin>
-    - <plugin>
-{% endif_version %}
-```
-
-- `config` contains a list of `key` and `value`
-  required to configure the plugin.
-  All configuration values specific to the type of plugin go in here.
-  Please read the documentation of the plugin being configured to set values
-  in here. For any plugin in Kong, anything that goes in the `config` JSON
-  key in the Admin API request, goes into the  `config` YAML key in this resource.
-  Please use a valid JSON to YAML convertor and place the content under the
-  `config` key in the YAML above.
-- `configFrom` contains a reference to a Secret and key, where the key contains
-  a complete JSON or YAML configuration. This should be used when the plugin
-  configuration contains sensitive information, such as AWS credentials in the
-  Lambda plugin or the client secret in the OIDC plugin. Only one of `config`
-  or `configFrom` may be used in a KongPlugin, not both at once.
-- `plugin` field determines the name of the plugin in Kong.
-  This field was introduced in {{site.kic_product_name}} 0.2.0.
-{% if_version gte:2.6.x %}
-- `ordering` is only available on {{site.ee_product_name}}. `<phase>` is a
-  request processing phase (for example, `access` or `body_filter`) and
-  `<plugin>` is the name of the plugin that will run before or after the
-  KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and
-  `before.access: ["key-auth"]` will create a rate limiting plugin that limits
-  requests _before_ they are authenticated.
-{% endif_version %}
-
-**Please note:** validation of the configuration fields is left to the user
-by default. It is advised to setup and use the admission validating controller
-to catch user errors.
-
-The plugins can be associated with Ingress
-or Service object in Kubernetes using `konghq.com/plugins` annotation.
-
-### Examples
-
-#### Applying a plugin to a service
-
-Given the following plugin:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: request-id
-config:
-  header_name: my-request-id
-  echo_downstream: true
-plugin: correlation-id
-```
-
-It can be applied to a service by annotating like:
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: myapp-service
-  labels:
-     app: myapp-service
-  annotations:
-     konghq.com/plugins: request-id
-spec:
-  ports:
-  - port: 80
-    targetPort: 80
-    protocol: TCP
-    name: myapp-service
-  selector:
-    app: myapp-service
-```
-
-#### Applying a plugin to an ingress
-
-The KongPlugin above can be applied to a specific ingress (route or routes):
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-example-com
-  annotations:
-    konghq.com/plugins: request-id
-spec:
-  ingressClassName: kong
-  rules:
-  - host: example.com
-    http:
-      paths:
-      - path: /bar
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: echo
-            port:
-              number: 80
-```
-
-A plugin can also be applied to a specific KongConsumer by adding
-`konghq.com/plugins` annotation to the KongConsumer resource.
-
-Please follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
-guide for details on how to use this resource.
-
-#### Applying a plugin with a secret configuration
-
-The plugin above can be modified to store its configuration in a secret:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: request-id
-configFrom:
-  secretKeyRef:
-    name: plugin-conf-secret
-    key: request-id
-plugin: correlation-id
-```
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: plugin-conf-secret
-stringData:
-  request-id: |
-    header_name: my-request-id
-    echo_downstream: true
-type: Opaque
-```
-
-## KongClusterPlugin
-
-A `KongClusterPlugin` is same as `KongPlugin` resource. The only differences
-are that it is a Kubernetes cluster-level resource instead of a namespaced
-resource, and can be applied as a global plugin using labels.
-
-Please consult the [KongPlugin](#kongplugin) section for details.
-
-*Example:*
-
-KongClusterPlugin example:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongClusterPlugin
-metadata:
-  name: request-id
-  annotations:
-    kubernetes.io/ingress.class: <controller ingress class, "kong" by default>
-  labels:
-    global: "true"   # optional, if set, then the plugin will be executed
-                     # for every request that Kong proxies
-                     # please note the quotes around true
-config:
-  header_name: my-request-id
-configFrom:
-    secretKeyRef:
-       name: <Secret name>
-       key: <Secret key>
-       namespace: <Secret namespace>
-plugin: correlation-id
-{% if_version gte:2.6.x %}
-ordering:
-  before:
-    <phase>:
-    - <plugin>
-    - <plugin>
-  after:
-    <phase>:
-    - <plugin>
-    - <plugin>
-{% endif_version %}
-```
-
-As with KongPlugin, only one of `config` or `configFrom` can be used.
-
-Setting the label `global` to `"true"` will apply the plugin globally in Kong,
-meaning it will be executed for every request that is proxied via Kong.
-
-## KongIngress
-
-{:.note}
-> **Note:** Many fields available on KongIngress are also available as
-> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
-> You can add these annotations directly to Service and Ingress resources
-> without creating a separate KongIngress resource. When an annotation is
-> available, it is the preferred means of configuring that setting, and the
-> annotation value will take precedence over a KongIngress value if both set
-> the same setting.
-
-Ingress resource spec in Kubernetes can define routing policies
-based on HTTP Host header and paths.
-While this is sufficient in most cases,
-sometimes, users may want more control over routing at the Ingress level.
-`KongIngress` serves as an "extension" to Ingress resource.
-It is not meant as a replacement to the
-`Ingress` resource in Kubernetes.
-
-Please read the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#kongingress)
-document for why this resource exists and how it relates to the existing
-Ingress resource.
-
-Using `KongIngress`, all properties of [Upstream][kong-upstream],
-[Service][kong-service], and
-[Route][kong-route] entities in Kong related to an Ingress resource
-can be modified.
-
-Once a `KongIngress` resource is created, it needs to be associated with
-an Ingress or Service resource using the following annotation:
-
-```yaml
-konghq.com/override: kong-ingress-resource-name
-```
-
-Specifically,
-
-- To override any properties related to health-checking, load-balancing,
-  or details specific to a service, add the annotation to the Kubernetes
-  Service that is being exposed via the Ingress API.
-- To override routing configuration (like protocol or method based routing),
-  add the annotation to the Ingress resource.
-
-Please follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
-guide for details on how to use this resource.
-
-For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/latest/admin-api/#upstream-object), [Service](/gateway/latest/admin-api/#service-object) and [Route](/gateway/latest/admin-api/#route-object] entities))
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongIngress
-metadata:
-  name: configuration-demo
-upstream:
-  slots: 10000
-  hash_on: none
-  hash_fallback: none
-  healthchecks:
-    threshold: 25
-    active:
-      concurrency: 10
-      healthy:
-        http_statuses:
-        - 200
-        - 302
-        interval: 0
-        successes: 0
-      http_path: "/"
-      timeout: 1
-      unhealthy:
-        http_failures: 0
-        http_statuses:
-        - 429
-        interval: 0
-        tcp_failures: 0
-        timeouts: 0
-    passive:
-      healthy:
-        http_statuses:
-        - 200
-        successes: 0
-      unhealthy:
-        http_failures: 0
-        http_statuses:
-        - 429
-        - 503
-        tcp_failures: 0
-        timeouts: 0
-proxy:
-  protocol: http
-  path: /
-  connect_timeout: 10000
-  retries: 10
-  read_timeout: 10000
-  write_timeout: 10000
-route:
-  methods:
-  - POST
-  - GET
-  regex_priority: 0
-  strip_path: false
-  preserve_host: true
-  protocols:
-  - http
-  - https
-```
-
-## TCPIngress
-
-The Ingress resource in Kubernetes is HTTP-only.
-This custom resource is modeled similar to the Ingress resource but for
-TCP and TLS SNI based routing purposes:
-
-```yaml
-apiVersion: configuration.konghq.com/v1beta1
-kind: TCPIngress
-metadata:
-  name: <object name>
-  namespace: <object namespace>
-  annotations:
-    kubernetes.io/ingress.class: <controller ingress class, "kong" by default>
-spec:
-  rules:
-  - host: <SNI, optional>
-    port: <port on which to expose this service, required>
-    backend:
-      serviceName: <name of the kubernetes service, required>
-      servicePort: <port number to forward on the service, required>
-```
-
-If `host` is not specified, then port-based TCP routing is performed. Kong
-doesn't care about the content of TCP stream in this case.
-
-If `host` is specified, then Kong expects the TCP stream to be TLS-encrypted
-and Kong will terminate the TLS session based on the SNI.
-Also note that, the port in this case should be configured with `ssl` parameter
-in Kong.
-
-## UDPIngress
-
-The `UDPIngress` API makes it possible to route traffic to your [UDP][udp] services
-using Kong (e.g. DNS, Game Servers, e.t.c.).
-
-```yaml
-apiVersion: configuration.konghq.com/v1beta1
-kind: UDPIngress
-metadata:
-  name: <object name>
-  namespace: <object namespace>
-  annotations:
-    kubernetes.io/ingress.class: <controller ingress class, "kong" by default>
-spec:
-  rules:
-  - port: <port on which to expose this service, required>
-    backend:
-      serviceName: <name of the kubernetes service, required>
-      servicePort: <port number to forward on the service, required>
-```
-
-For each rule provided in the spec the Kong proxy environment must be updated to
-listen to UDP on that port as well.
-
-[udp]:https://datatracker.ietf.org/doc/html/rfc768
-
-## KongConsumer
-
-This custom resource configures a consumer in Kong:
-
-The following snippet shows the field available in the resource:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: <object name>
-  namespace: <object namespace>
-  annotations:
-    kubernetes.io/ingress.class: <controller ingress class, "kong" by default>
-username: <user name>
-custom_id: <custom ID>
-```
-
-An example:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: consumer-team-x
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: team-X
-credentials:
-  - secretRef1
-  - secretRef2
-```
-
-When this resource is created, a corresponding consumer entity will be
-created in Kong.
-
-Consumers' `username` and `custom_id` values must be unique across the Kong
-cluster. While KongConsumers exist in a specific Kubernetes namespace,
-KongConsumers from all namespaces are combined into a single Kong
-configuration, and no KongConsumers with the same `kubernetes.io/ingress.class`
-may share the same `username` or `custom_id` value.
-
-For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
-
-[k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-route]: /gateway/latest/admin-api/#route-object
+[This document is generated by KIC's 'generate.docs' make target, DO NOT EDIT]: #
+
+## Packages
+- [configuration.konghq.com/v1](#configurationkonghqcomv1)
+- [configuration.konghq.com/v1alpha1](#configurationkonghqcomv1alpha1)
+- [configuration.konghq.com/v1beta1](#configurationkonghqcomv1beta1)
+
+
+## configuration.konghq.com/v1
+
+Package v1 contains API Schema definitions for the konghq.com v1 API group.
+
+- [KongClusterPlugin](#kongclusterplugin)
+- [KongConsumer](#kongconsumer)
+- [KongIngress](#kongingress)
+- [KongPlugin](#kongplugin)
+
+
+
+### ConfigSource
+
+
+
+ConfigSource is a wrapper around SecretValueFromSource.
+
+| Field | Description |
+| --- | --- |
+| `secretKeyRef` _[SecretValueFromSource](#secretvaluefromsource)_ |  |
+
+
+_Appears in:_
+- [KongPlugin](#kongplugin)
+
+### KongClusterPlugin
+
+
+
+KongClusterPlugin is the Schema for the  API. The only differences between KongPlugin and KongClusterPlugin are that KongClusterPlugin is a Kubernetes cluster-level resource instead of a namespaced resource, and can be applied as a global plugin using `global` label.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1`
+| `kind` _string_ | `KongClusterPlugin`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `consumerRef` _string_ | ConsumerRef is a reference to a particular consumer. |
+| `disabled` _boolean_ | Disabled set if the plugin is disabled or not. |
+| `config` _[JSON](#json)_ | Config contains the plugin configuration. It's a list of keys and values required to configure the plugin. Please read the documentation of the plugin being configured to set values in here. For any plugin in Kong, anything that goes in the `config` JSON key in the Admin API request, goes into this property. Only one of `config` or `configFrom` may be used in a KongClusterPlugin, not both at once. |
+| `configFrom` _[NamespacedConfigSource](#namespacedconfigsource)_ | ConfigFrom references a secret containing the plugin configuration. This should be used when the plugin configuration contains sensitive information, such as AWS credentials in the Lambda plugin or the client secret in the OIDC plugin. Only one of `config` or `configFrom` may be used in a KongClusterPlugin, not both at once. |
+| `plugin` _string_ | PluginName is the name of the plugin to which to apply the config. |
+| `run_on` _string_ | RunOn configures the plugin to run on the first or the second or both nodes in case of a service mesh deployment. |
+| `protocols` _[KongProtocol](#kongprotocol) array_ | Protocols configures plugin to run on requests received on specific protocols. |
+| `ordering` _PluginOrdering_ | Ordering overrides the normal plugin execution order. It's only available on Kong Enterprise. `<phase>` is a request processing phase (for example, `access` or `body_filter`) and `<plugin>` is the name of the plugin that will run before or after the KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and `before.access: ["key-auth"]` will create a rate limiting plugin that limits requests _before_ they are authenticated. |
+
+
+
+
+### KongConsumer
+
+
+
+KongConsumer is the Schema for the kongconsumers API. When this resource is created, a corresponding consumer entity will be created in Kong. 
+ While KongConsumer exists in a specific Kubernetes namespace, KongConsumers from all namespaces are combined into a single Kong configuration, and no KongConsumers with the same `kubernetes.io/ingress.class` may share the same Username or CustomID value.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1`
+| `kind` _string_ | `KongConsumer`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `username` _string_ | Username is a Kong cluster-unique username of the consumer. |
+| `custom_id` _string_ | CustomID is a Kong cluster-unique existing ID for the consumer - useful for mapping Kong with users in your existing database. |
+| `credentials` _string array_ | Credentials are references to secrets containing a credential to be provisioned in Kong. |
+
+
+
+
+### KongIngress
+
+
+
+KongIngress is the Schema for the kongingresses API. It serves as an "extension" to Ingress resource. It is not meant as a replacement to the Ingress resource in Kubernetes. Ingress resource spec in Kubernetes can define routing policies based on HTTP Host header and paths. While this is sufficient in most cases, sometimes, users may want more control over routing at the Ingress level. 
+ Once a `KongIngress` resource is created, it needs to be associated with an Ingress or Service resource using the `konghq.com/override` annotation. 
+ Many fields available on KongIngress are also available as annotations. When an annotation is available, it is the preferred means of configuring that setting, and the annotation value will take precedence over a KongIngress value if both set the same setting.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1`
+| `kind` _string_ | `KongIngress`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `upstream` _[KongIngressUpstream](#kongingressupstream)_ | Upstream represents a virtual hostname and can be used to loadbalance incoming requests over multiple targets (e.g. Kubernetes `Services` can be a target, OR `Endpoints` can be targets). |
+| `proxy` _[KongIngressService](#kongingressservice)_ | Proxy defines additional connection options for the routes to be configured in the Kong Gateway, e.g. `connection_timeout`, `retries`, etc. |
+| `route` _[KongIngressRoute](#kongingressroute)_ | Route define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. |
+
+
+
+
+### KongIngressRoute
+
+
+
+KongIngressRoute contains KongIngress route configuration. It contains the subset of `go-kong.kong.Route` fields supported by `kongstate.Route.overrideByKongIngress`.
+
+| Field | Description |
+| --- | --- |
+| `methods` _string array_ | Methods is a list of HTTP methods that match this Route. |
+| `headers` _object (keys:string, values:string array)_ | Headers contains one or more lists of values indexed by header name that will cause this Route to match if present in the request. The Host header cannot be used with this attribute. |
+| `protocols` _[KongProtocol](#kongprotocol) array_ | Protocols is an array of the protocols this Route should allow. |
+| `regex_priority` _integer_ | RegexPriority is a number used to choose which route resolves a given request when several routes match it using regexes simultaneously. |
+| `strip_path` _boolean_ | StripPath sets When matching a Route via one of the paths strip the matching prefix from the upstream request URL. |
+| `preserve_host` _boolean_ | PreserveHost sets When matching a Route via one of the hosts domain names, use the request Host header in the upstream request headers. If set to false, the upstream Host header will be that of the Service’s host. |
+| `https_redirect_status_code` _integer_ | HTTPSRedirectStatusCode is the status code Kong responds with when all properties of a Route match except the protocol. |
+| `path_handling` _string_ | PathHandling controls how the Service path, Route path and requested path are combined when sending a request to the upstream. |
+| `snis` _string array_ | SNIs is a list of SNIs that match this Route when using stream routing. |
+| `request_buffering` _boolean_ | RequestBuffering sets whether to enable request body buffering or not. |
+| `response_buffering` _boolean_ | ResponseBuffering sets whether to enable response body buffering or not. |
+
+
+_Appears in:_
+- [KongIngress](#kongingress)
+
+### KongIngressService
+
+
+
+KongIngressService contains KongIngress service configuration.
+
+| Field | Description |
+| --- | --- |
+| `protocol` _string_ | The protocol used to communicate with the upstream. |
+| `path` _string_ | (optional) The path to be used in requests to the upstream server. |
+| `retries` _integer_ | The number of retries to execute upon failure to proxy. |
+| `connect_timeout` _integer_ | The timeout in milliseconds for establishing a connection to the upstream server. |
+| `read_timeout` _integer_ | The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server. |
+| `write_timeout` _integer_ | The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server. |
+
+
+_Appears in:_
+- [KongIngress](#kongingress)
+
+### KongIngressUpstream
+
+
+
+KongIngressUpstream contains KongIngress upstream configuration. It contains the subset of `go-kong.kong.Upstream` fields supported by `kongstate.Upstream.overrideByKongIngress`.
+
+| Field | Description |
+| --- | --- |
+| `host_header` _string_ | HostHeader is The hostname to be used as Host header when proxying requests through Kong. |
+| `algorithm` _string_ | Algorithm is the load balancing algorithm to use. |
+| `slots` _integer_ | Slots is the number of slots in the load balancer algorithm. |
+| `healthchecks` _Healthcheck_ | Healthchecks defines the health check configurations in Kong. |
+| `hash_on` _string_ | HashOn defines what to use as hashing input. Accepted values are: "none", "consumer", "ip", "header", "cookie", "path", "query_arg", "uri_capture". |
+| `hash_fallback` _string_ | HashFallback defines What to use as hashing input if the primary hash_on does not return a hash. Accepted values are: "none", "consumer", "ip", "header", "cookie". |
+| `hash_on_header` _string_ | HashOnHeader defines the header name to take the value from as hash input. Only required when "hash_on" is set to "header". |
+| `hash_fallback_header` _string_ | HashFallbackHeader is the header name to take the value from as hash input. Only required when "hash_fallback" is set to "header". |
+| `hash_on_cookie` _string_ | The cookie name to take the value from as hash input. Only required when "hash_on" or "hash_fallback" is set to "cookie". |
+| `hash_on_cookie_path` _string_ | The cookie path to set in the response headers. Only required when "hash_on" or "hash_fallback" is set to "cookie". |
+| `hash_on_query_arg` _string_ | HashOnQueryArg is the query string parameter whose value is the hash input when "hash_on" is set to "query_arg". |
+| `hash_fallback_query_arg` _string_ | HashFallbackQueryArg is the "hash_fallback" version of HashOnQueryArg. |
+| `hash_on_uri_capture` _string_ | HashOnURICapture is the name of the capture group whose value is the hash input when "hash_on" is set to "uri_capture". |
+| `hash_fallback_uri_capture` _string_ | HashFallbackURICapture is the "hash_fallback" version of HashOnURICapture. |
+
+
+_Appears in:_
+- [KongIngress](#kongingress)
+
+### KongPlugin
+
+
+
+KongPlugin is the Schema for the kongplugins API. Plugins can be associated with Ingress or Service object in Kubernetes using `konghq.com/plugins` annotation.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1`
+| `kind` _string_ | `KongPlugin`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `consumerRef` _string_ | ConsumerRef is a reference to a particular consumer. |
+| `disabled` _boolean_ | Disabled set if the plugin is disabled or not. |
+| `config` _[JSON](#json)_ | Config contains the plugin configuration. It's a list of keys and values required to configure the plugin. Please read the documentation of the plugin being configured to set values in here. For any plugin in Kong, anything that goes in the `config` JSON key in the Admin API request, goes into this property. Only one of `config` or `configFrom` may be used in a KongPlugin, not both at once. |
+| `configFrom` _[ConfigSource](#configsource)_ | ConfigFrom references a secret containing the plugin configuration. This should be used when the plugin configuration contains sensitive information, such as AWS credentials in the Lambda plugin or the client secret in the OIDC plugin. Only one of `config` or `configFrom` may be used in a KongPlugin, not both at once. |
+| `plugin` _string_ | PluginName is the name of the plugin to which to apply the config. |
+| `run_on` _string_ | RunOn configures the plugin to run on the first or the second or both nodes in case of a service mesh deployment. |
+| `protocols` _[KongProtocol](#kongprotocol) array_ | Protocols configures plugin to run on requests received on specific protocols. |
+| `ordering` _[PluginOrdering](#pluginordering)_ | Ordering overrides the normal plugin execution order. It's only available on Kong Enterprise. `<phase>` is a request processing phase (for example, `access` or `body_filter`) and `<plugin>` is the name of the plugin that will run before or after the KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and `before.access: ["key-auth"]` will create a rate limiting plugin that limits requests _before_ they are authenticated. |
+
+
+
+
+### KongProtocol
+
+_Underlying type:_ `string`
+
+
+
+
+
+_Appears in:_
+- [KongClusterPlugin](#kongclusterplugin)
+- [KongIngressRoute](#kongingressroute)
+- [KongPlugin](#kongplugin)
+
+### NamespacedConfigSource
+
+
+
+NamespacedConfigSource is a wrapper around NamespacedSecretValueFromSource.
+
+| Field | Description |
+| --- | --- |
+| `secretKeyRef` _[NamespacedSecretValueFromSource](#namespacedsecretvaluefromsource)_ |  |
+
+
+_Appears in:_
+- [KongClusterPlugin](#kongclusterplugin)
+
+### NamespacedSecretValueFromSource
+
+
+
+NamespacedSecretValueFromSource represents the source of a secret value specifying the secret namespace.
+
+| Field | Description |
+| --- | --- |
+| `namespace` _string_ | The namespace containing the secret. |
+| `name` _string_ | The secret containing the key. |
+| `key` _string_ | The key containing the value. |
+
+
+_Appears in:_
+- [NamespacedConfigSource](#namespacedconfigsource)
+
+### SecretValueFromSource
+
+
+
+SecretValueFromSource represents the source of a secret value.
+
+| Field | Description |
+| --- | --- |
+| `name` _string_ | The secret containing the key. |
+| `key` _string_ | The key containing the value. |
+
+
+_Appears in:_
+- [ConfigSource](#configsource)
+
+
+## configuration.konghq.com/v1alpha1
+
+Package v1alpha1 contains API Schema definitions for the configuration.konghq.com v1alpha1 API group.
+
+- [IngressClassParameters](#ingressclassparameters)
+
+
+
+### IngressClassParameters
+
+
+
+IngressClassParameters is the Schema for the IngressClassParameters API.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1alpha1`
+| `kind` _string_ | `IngressClassParameters`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `spec` _[IngressClassParametersSpec](#ingressclassparametersspec)_ |  |
+
+
+
+
+### IngressClassParametersSpec
+
+
+
+
+
+| Field | Description |
+| --- | --- |
+| `serviceUpstream` _boolean_ | Offload load-balancing to kube-proxy or sidecar. |
+| `enableLegacyRegexDetection` _boolean_ | EnableLegacyRegexDetection automatically detects if ImplementationSpecific Ingress paths are regular expression paths using the legacy 2.x heuristic. The controller adds the "~" prefix to those paths if the Kong version is 3.0 or higher. |
+
+
+_Appears in:_
+- [IngressClassParameters](#ingressclassparameters)
+
+
+## configuration.konghq.com/v1beta1
+
+Package v1beta1 contains API Schema definitions for the configuration.konghq.com v1beta1 API group.
+
+- [TCPIngress](#tcpingress)
+- [UDPIngress](#udpingress)
+
+
+
+### IngressBackend
+
+
+
+IngressBackend describes all endpoints for a given service and port.
+
+| Field | Description |
+| --- | --- |
+| `serviceName` _string_ | Specifies the name of the referenced service. |
+| `servicePort` _integer_ | Specifies the port of the referenced service. |
+
+
+_Appears in:_
+- [IngressRule](#ingressrule)
+- [UDPIngressRule](#udpingressrule)
+
+### IngressRule
+
+
+
+IngressRule represents a rule to apply against incoming requests. Matching is performed based on an (optional) SNI and port.
+
+| Field | Description |
+| --- | --- |
+| `host` _string_ | Host is the fully qualified domain name of a network host, as defined by RFC 3986. If a Host is not specified, then port-based TCP routing is performed. Kong doesn't care about the content of the TCP stream in this case. If a Host is specified, the protocol must be TLS over TCP. A plain-text TCP request cannot be routed based on Host. It can only be routed based on Port. |
+| `port` _integer_ | Port is the port on which to accept TCP or TLS over TCP sessions and route. It is a required field. If a Host is not specified, the requested are routed based only on Port. |
+| `backend` _[IngressBackend](#ingressbackend)_ | Backend defines the referenced service endpoint to which the traffic will be forwarded to. |
+
+
+_Appears in:_
+- [TCPIngressSpec](#tcpingressspec)
+
+### IngressTLS
+
+
+
+IngressTLS describes the transport layer security.
+
+| Field | Description |
+| --- | --- |
+| `hosts` _string array_ | Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified. |
+| `secretName` _string_ | SecretName is the name of the secret used to terminate SSL traffic. |
+
+
+_Appears in:_
+- [TCPIngressSpec](#tcpingressspec)
+
+### TCPIngress
+
+
+
+TCPIngress is the Schema for the tcpingresses API. The Ingress resource in Kubernetes is HTTP-only. This custom resource is modeled similar to the Ingress resource but for TCP and TLS SNI based routing purposes.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1beta1`
+| `kind` _string_ | `TCPIngress`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `spec` _[TCPIngressSpec](#tcpingressspec)_ |  |
+
+
+
+
+### TCPIngressSpec
+
+
+
+TCPIngressSpec defines the desired state of TCPIngress.
+
+| Field | Description |
+| --- | --- |
+| `rules` _[IngressRule](#ingressrule) array_ | A list of rules used to configure the Ingress. |
+| `tls` _[IngressTLS](#ingresstls) array_ | TLS configuration. This is similar to the `tls` section in the Ingress resource in networking.v1beta1 group. The mapping of SNIs to TLS cert-key pair defined here will be used for HTTP Ingress rules as well. Once can define the mapping in this resource or the original Ingress resource, both have the same effect. |
+
+
+_Appears in:_
+- [TCPIngress](#tcpingress)
+
+
+
+### UDPIngress
+
+
+
+UDPIngress is the Schema for the udpingresses API. It makes it possible to route traffic to your UDP services using Kong (e.g. DNS, Game Servers, etc.). For each rule provided in the spec the Kong proxy environment must be updated to listen to UDP on that port as well.
+
+| Field | Description |
+| --- | --- |
+| `apiVersion` _string_ | `configuration.konghq.com/v1beta1`
+| `kind` _string_ | `UDPIngress`
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `spec` _[UDPIngressSpec](#udpingressspec)_ |  |
+
+
+
+
+### UDPIngressRule
+
+
+
+UDPIngressRule represents a rule to apply against incoming requests wherein no Host matching is available for request routing, only the port is used to match requests.
+
+| Field | Description |
+| --- | --- |
+| `port` _integer_ | Port indicates the port for the Kong proxy to accept incoming traffic on, which will then be routed to the service Backend. |
+| `backend` _[IngressBackend](#ingressbackend)_ | Backend defines the Kubernetes service which accepts traffic from the listening Port defined above. |
+
+
+_Appears in:_
+- [UDPIngressSpec](#udpingressspec)
+
+### UDPIngressSpec
+
+
+
+UDPIngressSpec defines the desired state of UDPIngress.
+
+| Field | Description |
+| --- | --- |
+| `rules` _[UDPIngressRule](#udpingressrule) array_ | A list of rules used to configure the Ingress. |
+
+
+_Appears in:_
+- [UDPIngress](#udpingress)
+
+
+
+<!-- vale on -->
