@@ -564,6 +564,8 @@ items:
         url: /admin-api/#target-object
       - text: Vaults
         url: /admin-api/#vaults-entity
+      - text: Keys
+        url: /admin-api/#keys-entity
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces
