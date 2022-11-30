@@ -7,7 +7,7 @@ content_type: reference
 The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that the software has met all of the rules of FIPS 140-2, but has not been submitted to a NIST testing lab for validation.
 
 
-{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** {% if_version gte:3.1.x %} and **Red Hat Enterprise 8** {% endif_version %} . This package provides compliance for the core {{site.base_gateway}} product {% if_version gte:3.1.x %} and all out of the box plugins {% endif_version %}. 
+{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** {% if_version gte:3.1.x %} and **Red Hat Enterprise 8** {% endif_version %}. This package provides compliance for the core {{site.base_gateway}} product {% if_version gte:3.1.x %} and all out of the box plugins {% endif_version %}. 
 
 The package replaces the primary library in {{site.base_gateway}}, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 validated BoringCrypto for cryptographic operations.
 
@@ -16,7 +16,7 @@ The package replaces the primary library in {{site.base_gateway}}, OpenSSL, with
 
 The FIPS compliant Ubuntu 20.04 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
 
-1. Setup the Kong APT repository:
+1. Set up the Kong APT repository:
     ```bash
     echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
     default all" | sudo tee /etc/apt/sources.list.d/kong.list
@@ -27,7 +27,7 @@ The FIPS compliant Ubuntu 20.04 package can be installed using the package disti
     sudo apt-get update
     ```
 
-3. Install install the {{site.base_gateway}} FIPS package:
+3. Install the {{site.base_gateway}} FIPS package:
  
         apt install kong-enterprise-edition-fips
 
@@ -40,7 +40,7 @@ The FIPS compliant Ubuntu 20.04 package can be installed using the package disti
 
 The FIPS compliant Ubuntu 20.04 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
 
-1. Setup the Kong APT repository:
+1. Set up the Kong APT repository:
     ```bash
     echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
     default all" | sudo tee /etc/apt/sources.list.d/kong.list
@@ -51,7 +51,7 @@ The FIPS compliant Ubuntu 20.04 package can be installed using the package disti
     sudo apt-get update
     ```
 
-3. Install install the {{site.base_gateway}} FIPS package:
+3. Install the {{site.base_gateway}} FIPS package:
  
         apt install kong-enterprise-edition-fips
 
@@ -62,7 +62,7 @@ The FIPS compliant Ubuntu 20.04 package can be installed using the package disti
 The FIPS compliant Red Hat 8 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions: 
 
 
-1. Setup the Kong Yum repository
+1. Set up the Kong Yum repository:
     
     ```bash
     curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
