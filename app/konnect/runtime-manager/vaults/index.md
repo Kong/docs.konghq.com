@@ -3,10 +3,9 @@ title: Secrets Management in Konnect
 content_type: explanation
 ---
 
-Secure your {{site.konnect_short_name}} environment with centralized secrets,
-making it easier to manage and build governance.
+Secrets management in {{site.konnect_short_name}} allows you to store secrets in centralized vaults, making it easier to manage security and governance policies. 
 
-Secrets may be part of the core gateway configuration,
+Secrets can be part of the core gateway configuration,
 or part of gateway configuration associated with APIs serviced by the gateway.
 Some of the most common types of secrets include:
 * Certificates
@@ -17,13 +16,10 @@ Some of the most common types of secrets include:
 
 You can use vaults to safely store and retrieve secrets used in {{site.base_gateway}}
 deployments, improving the fundamental security of your applications.
-In configuration, you can then reference the secrets stored in vaults instead
-of displaying the actual value of the secret.
-
-This ensures that secrets are not stored in plaintext throughout the platform,
-in places such as `kong.conf` files, in declarative configuration files, logs,
-or in the {{site.konnect_short_name}} UI. This way, the {{site.konnect_short_name}}
+In the configuration, you can reference the secrets stored in vaults as variables instead
+of displaying the actual value of the secret in plaintext. This way, the {{site.konnect_short_name}}
 platform never stores sensitive credentials. 
+
 
 ## Vaults interface in {{site.konnect_short_name}}
 

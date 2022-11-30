@@ -31,9 +31,9 @@ uses to recognize relevant values on the data plane.
 
 1. Optionally, add a description for the vault, and tag it.
 
-    Although setting tags is optional, it is recommended. If you ever want to manage
+    Setting tags is optional, but recommended. If you want to manage
     your vault configuration declaratively, tagging your vaults and managing subsets of configuration
-    via tags lets you protect your vaults from accidental change or deletion.
+    with tags lets you protect your vaults from accidental change or deletion.
     See the [declarative configuration guide for vaults](/deck/latest/guides/vaults/#best-practices)
     for more information and best practices.
 
@@ -45,8 +45,7 @@ Now that you have your environment variables set up, you can define references f
 This next step has to be configured on the runtime instance.
 
 For each runtime instance that needs to use this vault,
-define your environment variable and assign a secret value to it. For this example,
-paste in your personal access token as the value:
+define an environment variable key and assign a secret to it. 
 
 ```bash
 export MY_SECRET_CERT="<cert data>" \
@@ -55,7 +54,7 @@ export MY_SECRET_KEY="<key data>"
 
 Restart the runtime instance to load the values.
 
-Next, set up references to this environment variable in URL format so that {{site.base_gateway}} can find this secret.
+Next, set up references to these environment variables in URL format so {{site.base_gateway}} can recognize these secrets.
 
 In this case, the references would look like this:
 
@@ -66,9 +65,9 @@ In this case, the references would look like this:
 
 Where:
 
-* `vault` is the scheme (protocol) that indicates that this is a secret.
-* `env` is the name of the backend, since you're storing the secret in an [environment variable](/gateway/latest/kong-enterprise/secrets-management/backends/env).
-* `my-secret-key` and `my-secret-cert` correspond to the environment variables that you just defined.
+* `vault` is a scheme that indicates that the value is a secret.
+* `env` defines the backend because you're storing the secret in an [environment variable](/gateway/latest/kong-enterprise/secrets-management/backends/env).
+* `my-secret-key` and `my-secret-cert` correspond to the previously defined environment variables.
 
 
 ## Use the reference in configuration
