@@ -59,7 +59,7 @@ The FIPS compliant Ubuntu 20.04 package can be installed using the package disti
 {% navtab RHEL %}
 ## Installing the {{site.base_gateway}} FIPS compliant RHEL package
 
-The FIPS compliant RedHat 8 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions: 
+The FIPS compliant Red Hat 8 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions: 
 
 
 1. Setup the Kong Yum repository
