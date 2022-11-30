@@ -136,7 +136,7 @@ no_version: true
   - The plugin now supports `config.allowed_content_types` to be configured with parameter.
 - [**Vault Authentication**](/hub/kong-inc/vault-auth/) (`vault-auth`)
   - Added support for KV Secrets Engine v2.
-- *[**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+- [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   - Added support for deleting customer groups using the API.
 - WebSocket service/route support was added for logging plugins:
   - http-log
