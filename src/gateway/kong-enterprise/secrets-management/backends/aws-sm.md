@@ -140,7 +140,7 @@ This lets you source secrets from different regions:
 
 ## Vault configuration options
 
-Use the following configuration options to configure the vaults entity through
+Use the following configuration options to configure the `vaults` entity through
 any of the supported tools:
 * Admin API
 * Declarative configuration
