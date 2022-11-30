@@ -42,13 +42,13 @@ In this section, you will create the Bronze tier consumer group with a consumer 
 1. From the menu, click **Consumers**, then click **New Consumer**.
 1. Enter a **Username** and **Custom ID**. For this example, you can use `Amal` for each field.
 1. Click **Create**.
-1. From the menu, click **Consumers**, then click the **Groups** tab.
+1. From the menu, click the **Groups** tab.
 1. Click the `Bronze` consumer group you just created.
-1. Add the `Amal` consumer you created to the `Bronze` consumer group.
+1. Click **Consumers** and **Add consumers** to add the `Amal` consumer you created to the `Bronze` consumer group.
 
-## Configure the Rate Limiting Advanced plugin
+## Configure the Rate Limiting Advanced plugin for all consumers
 
-In this section, you will configure the Rate Limiting Advanced plugin to 
+In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 5 requests every 30 seconds for all consumers.
 
 1. Open the **default** workspace.
 1. From the menu, open **Plugins**, then click **Install Plugin**.
@@ -61,17 +61,30 @@ In this section, you will configure the Rate Limiting Advanced plugin to
     You can also toggle the **This plugin is Enabled** button to configure the plugin without enabling it.
     For this example, keep the plugin enabled.
 1. Complete only the following fields with the following parameters.
-    1. data config.limit: `6`
+    1. data config.limit: `5`
     1. data config.window_size: `30`
     1. data config.window_type: `sliding`
     1. data config.retry_after_jitter_max: `0`
     1. data config.enforce_consumer_groups: `true` 
-    1. data config.consumer_groups: `Bronze`
+   
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
 1. Click **Install**.
 
-This configuration sets the rate limit to 6 requests (`config.limit`) every 30 seconds (`config.window_size`) for consumers in the Bronze tier consumer group (`consumer_groups`).
+## Configure rate limiting for consumer groups
+
+In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 6 requests every 30 seconds for only consumers in the Bronze tier.
+
+1. Open the **default** workspace.
+1. From the menu, open **Consumers**, then click the **Groups** tab.
+1. Click the `Bronze` consumer group you just created.
+1. Click the **Policy** tab.
+1. Complete only the following fields with the following parameters.
+    1. data config.limit: `6`
+    1. data config.window_size: `30`
+    1. data config.window_type: `sliding`
+    1. data config.retry_after_jitter_max: `0`
+1. Click **Save**.
 
 ## Validate consumer group rate limiting
 
