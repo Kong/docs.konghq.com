@@ -84,3 +84,7 @@ Set up a cert and key using these references:
 
 The {{site.konnect_short_name}} control plane can now access the certificates
 on the runtime instances using the references you provided.
+
+You can also store secrets in a secure vault backend.
+For a list of supported vault backend implementations, see the
+[Backends Overview](https://github.com/gateway/latest/kong-enterprise/secrets-management/backends).
