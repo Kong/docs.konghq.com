@@ -4,12 +4,12 @@
 
   &.parent {
     > .navtab-contents {
-       .navtabs {
-         .navtab-contents {
-             border: 1px solid @grey-300;
-             border-radius: 3px;
-             padding: 15px;
-           }
+      .navtabs {
+        .navtab-contents {
+          border: 1px solid @grey-300;
+          border-radius: 3px;
+          padding: 15px;
+        }
 
         .navtab-titles {
           border-bottom: none;
@@ -21,7 +21,7 @@
             font-size: 14px;
             font-weight: 600;
             opacity: 0.7;
-            border-radius: 3px 3px 0 0  ;
+            border-radius: 3px 3px 0 0;
 
             &:hover {
               color: @blue-500;
@@ -41,7 +41,6 @@
     }
   }
 
-
   .external-trigger {
     .navtab-titles {
       display: none !important;
@@ -60,51 +59,51 @@
     }
   }
 
-    &.codeblock {
-      background-color: @grey-300;
-      border: 1px solid @grey-200;
-      border-radius: 3px;
-      line-height: 24px;
+  &.codeblock {
+    background-color: @grey-300;
+    border: 1px solid @grey-200;
+    border-radius: 3px;
+    line-height: 24px;
 
-      pre {
-        border: none;
-        margin-bottom: 0;
+    pre {
+      border: none;
+      margin-bottom: 0;
 
-        code {
-          padding: 0;
-        }
-      }
-
-      .navtab-titles {
-        background-color: @grey-300;
-        color: rgba(black, 0.6);
-        opacity: 1;
-        displaY: flex;
-
-        .navtab-title {
-          font-size: 14px;
-          z-index: 10;
-          padding: 6px 16px;
-
-          &:not(.active):hover {
-            color: rgba(black, 1);
-          }
-        }
-      }
-
-      .navtab-contents {
+      code {
         padding: 0;
-        margin-top: -20px;
-        margin-bottom: 0;
-        border: none;
+      }
+    }
 
-        .copy-code-snippet {
-          .copy-action {
-            margin-top: -35px;
-          }
+    .navtab-titles {
+      background-color: @grey-300;
+      color: rgba(black, 0.6);
+      opacity: 1;
+      display: flex;
+
+      .navtab-title {
+        font-size: 14px;
+        z-index: 10;
+        padding: 6px 16px;
+
+        &:not(.active):hover {
+          color: rgba(black, 1);
         }
       }
     }
+
+    .navtab-contents {
+      padding: 0;
+      margin-top: -20px;
+      margin-bottom: 0;
+      border: none;
+
+      .copy-code-snippet {
+        .copy-action {
+          margin-top: -35px;
+        }
+      }
+    }
+  }
 
   .navtab-titles {
     display: flex;
@@ -149,7 +148,7 @@
 
     @media (max-width: 575px) {
       display: inline;
-      }
+    }
   }
 
   .navtab-contents {

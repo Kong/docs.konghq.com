@@ -10,7 +10,7 @@ description: |
 support_url: https://github.com/kakascx/apig-response-transform/issues
 source_code: https://github.com/kakascx/apig-response-transform
 license_type: Apache-2.0
-license_url: https://github.com/kakascx/apig-response-transform/blob/master/LICENSE 
+license_url: https://github.com/kakascx/apig-response-transform/blob/master/LICENSE
 
 kong_version_compatibility:
   community_edition:
@@ -20,27 +20,29 @@ kong_version_compatibility:
 
 
 params:
-  name: apig-response-transform 
+  name: apig-response-transform
   api_id: False
   service_id: True
   consumer_id: False
   route_id: True
-  protocols: ["http","https"]
+  protocols:
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   dbless_explanation: It is recommended to use in dbless mode.
   config:
     - name: format
       required: true
       default: xml
-      value_in_examples: xml 
+      value_in_examples: xml
       description: |
         Describe the format of the response format.
 ---
-### Installation 
-Recommended: 
- 
-```bash 
-$ git clone https://github.com/kakascx/apig-response-transform /opt/kong/plugins 
-$ cd /opt/kong/plugins/apig-response-transform 
-$ luarocks make 
-``` 
+### Installation
+Recommended:
+
+```bash
+$ git clone https://github.com/kakascx/apig-response-transform /opt/kong/plugins
+$ cd /opt/kong/plugins/apig-response-transform
+$ luarocks make
+```

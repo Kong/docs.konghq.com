@@ -1,6 +1,5 @@
 ---
 title: Import Kong Gateway Entities into Konnect
-no_version: true
 content_type: how-to
 ---
 
@@ -9,7 +8,7 @@ as your cloud-hosted control plane, you can use [decK](/deck/) to import your
 {{site.base_gateway}} entity configuration into a runtime group in your
 {{site.konnect_short_name}} organization.
 
-You can also use this guide to migrate from `konnect.konghq.com` to `cloud.konghq.com`.
+You can also use this method to migrate between {{site.konnect_short_name}} organizations.
 
 Afterward, you must manually move over:
 * Dev Portal files, developer accounts, and applications
@@ -35,7 +34,6 @@ To use decK to import entity configurations, we recommend that you use a persona
 Use decK to import entity configurations into a runtime group.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
-If you want to target the `konnect.konghq.com` environment instead, use the [`--konnect-addr`](/deck/latest/guides/konnect/#target-a-konnect-api) flag.
 
 1. Make sure that decK can connect to your {{site.konnect_short_name}} account:
 
@@ -68,32 +66,11 @@ If you want to target the `konnect.konghq.com` environment instead, use the [`--
     The following steps all use a `.deck.yaml` file to store the
     {{site.konnect_short_name}} credentials instead of flags.
 
-1. Export configuration:
+1. Run [`deck dump`](/deck/latest/reference/deck_dump) to export configuration into a file:
 
-{% capture export_config %}
-{% navtabs %}
-{% navtab From Kong Gateway %}
-
-Run [`deck dump`](/deck/latest/reference/deck_dump):
-
-```sh
-deck dump
-```
-{% endnavtab %}
-{% navtab From konnect.konghq.com %}
-
-Run [`deck dump`](/deck/latest/reference/deck_dump) and point decK at the `konnect.konghq.com` environment:
-
-```sh
-deck dump \
-  --konnect-addr https://konnect.konghq.com \
-  --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ export_config | indent | replace: " </code>", "</code>" }}
+    ```sh
+    deck dump
+    ```
 
     This command outputs {{site.base_gateway}}'s object configuration into
     `kong.yaml` by default. You can also set `--output-file /path/{FILENAME}.yaml`

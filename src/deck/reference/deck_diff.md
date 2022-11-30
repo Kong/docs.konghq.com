@@ -1,7 +1,7 @@
 ---
 title: deck diff
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content-type: reference
+content_type: reference
 ---
 
 The diff command is similar to a dry run of the 'decK sync' command.
@@ -21,6 +21,11 @@ deck diff [command-specific flags] [global flags]
 
 `-h`, `--help`
 :  help for diff (Default: `false`)
+
+{% if_version gte:1.16.x %}
+`--no-mask-deck-env-vars-value`
+:  do not mask `DECK_` environment variable values at diff output. (Default: `false`)
+{% endif_version %}
 
 `--non-zero-exit-code`
 :  return exit code 2 if there is a diff present,

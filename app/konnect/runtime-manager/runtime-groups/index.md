@@ -1,6 +1,5 @@
 ---
 title: Runtime Groups
-no_version: true
 ---
 
 {{site.konnect_short_name}} manages runtime configuration in runtime groups. Each runtime group acts
@@ -27,40 +26,10 @@ manage runtime instances and their configuration in any groupings you want.
 
 ## Default runtime group
 
-The default runtime group is the foundational group in {{site.konnect_short_name}}. Every
-organization starts with one default group.
+The default runtime group is the foundational group in {{site.konnect_short_name}}.
+Every region in every organization starts with one default group.
 
-This group can't be renamed or deleted, and its status as the default
-group can't be changed.
-
-### Application registration in the Dev Portal
-
-When publishing documentation from the Service Hub to the Dev Portal, you can
-publish API specs from any version -- no matter which runtime group the version
-is in. However, application registration is only supported for service versions
-running in the default runtime group.
-
-So, if you want a service version to be available for application registration,
-create the version in the *default* runtime group. This means that you can have a
-mix of service versions running in different groups for different purposes.
-
-For example, you might have:
-
-* The latest version of a service published to the Dev Portal with the latest
-spec, running in the *default* group with application registration enabled.
-
-* A previous version of the service published to the Dev Portal,
-running in the *default* group, but with application registration disabled.
-Any app with existing credentials can continue using them, but the version is
-not available for new registrations.
-
-* Another previous version of the service, published to the Dev Portal, and
-running in a *custom* runtime group. This version would only have the documentation
-available, and developers would not have access to application registration for
-this version.
-
-Out of these three scenarios, only the service version in the first scenario
-would be available for application registration.
+This group can't be deleted, and its status as the default group can't be changed.
 
 ## Multiple runtime groups
 {:.badge .enterprise}
@@ -89,7 +58,7 @@ entity-specific permissions.
 
 ## Runtime group dashboard
 
-For each runtime group, you can view traffic, error rate, and {{site.base_gateway}} service analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display. 
+For each runtime group, you can view traffic, error rate, and {{site.base_gateway}} service analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display.
 
 [Runtime group dashboard &rarr;](/konnect/runtime-manager/runtime-groups/dashboard)
 

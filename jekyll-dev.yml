@@ -21,7 +21,7 @@ name: Kong Docs
 title: Kong Docs
 description: "Documentation for Kong, the Cloud Connectivity Company for APIs and Microservices."
 links:
-  web: https://docs.konghq.com
+  web: http://localhost:3000
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://download.konghq.com
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
@@ -86,6 +86,7 @@ include:
 plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
+  - jekyll-generator-single-source
 
 defaults:
   - scope:
@@ -129,6 +130,12 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "konnect"
+    values:
+      layout: "docs-v2"
+      no_version: true
+
+  - scope:
       path: "gateway"
     values:
       layout: "docs-v2"
@@ -152,10 +159,10 @@ defaults:
       version-index: 2
 
   - scope:
-      path: "gateway/3.0.x/"
+      path: "gateway/2.8.x/"
     values:
       layout: "docs-v2"
-      version-index: 3
+      version-index: 2
 
   - scope:
       path: "gateway/3.1.x/"
@@ -186,9 +193,14 @@ ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 mesh_product_name: Kong Mesh
+default_namespace: kong-mesh-system
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
 konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
+
+jekyll-generator-single-source:
+  versions_file: '_data/kong_versions.yml'
+  docs_nav_folder: '_data'

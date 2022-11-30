@@ -1,6 +1,5 @@
 ---
 title: Dev Portal Service Documentation
-no_version: true
 ---
 
 A core function of the Dev Portal is publishing service descriptions and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your services.

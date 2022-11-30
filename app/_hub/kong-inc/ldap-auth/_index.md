@@ -60,12 +60,14 @@ params:
   route_id: true
   consumer_id: false
   protocols:
-    - http
-    - https
-    - gprc
-    - grpcs
-    - ws
-    - wss
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: hide_credentials

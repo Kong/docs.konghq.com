@@ -12,7 +12,7 @@ You can administer a Dev Portal instance through the Kong Admin API. Use the
 {:.note}
 > **Note:** The `/developers` API is part of the Kong Admin API, and is meant
 for bulk developer administration.
-This is not the same as the Dev Portal API [`/developer`](/gateway/{{page.kong_version}}/developer-portal/portal-api/#/operations/get-developer) endpoints,
+This is not the same as the Dev Portal API [`/developer`](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1#/developer/get-developer) endpoints,
 which return data on the logged-in developer.
 
 ## Using the API in workspaces
@@ -123,11 +123,11 @@ account as you're creating it by setting the developer's status manually.
 
 Attribute                     | Description
 ---------:                    | --------   
-`meta`                        | Metadata for the account in JSON format. Accepts fields defined in the Dev Portal settings. <br><br> By default, the meta attribute requires a `full_name` field. You can remove this requirement, or add other fields as neccessary. <br><br> For example: `meta: {"full_name":"<NAME>"}`.
+`meta`                        | Metadata for the account in JSON format. Accepts fields defined in the Dev Portal settings. <br><br> By default, the meta attribute requires a `full_name` field. You can remove this requirement, or add other fields as necessary. <br><br> For example: `meta: {"full_name":"<NAME>"}`.
 `email` <br>*required*        | The email of the developer to create. This becomes their login username.
 `password`<br>*semi-optional* | Create a password for the developer. Required if basic authentication is enabled.
 `key` <br>*semi-optional*     | Assign an API key to the developer. Required if key authentication is enabled.
-`id`                          | The developer entity ID. You can set your own UUID for this value, or leave it out to let Kong Gateway autogenerate a UUID.
+`id`                          | The developer entity ID. You can set your own UUID for this value, or leave it out to let {{site.base_gateway}} autogenerate a UUID.
 `status`                      | The account approval status. If not provided, the status is set to `1` by default and developers are automatically placed in the **Requested Access** queue. <br><br>Accepts one of the following integers: <br> &#8226; `0` - Approved  <br> &#8226; `1` - Requested access  <br> &#8226; `2` - Rejected  <br> &#8226; `3` - Revoked
 
 Example request:
@@ -260,7 +260,7 @@ Attribute                     | Description
 
 Attribute                     | Description
 ---------:                    | --------   
-`meta`                        | Metadata for the account in JSON format. Accepts fields defined in the Dev Portal settings. <br><br> By default, the meta attribute requires a `full_name` field. You can remove this requirement, or add other fields as neccessary. <br><br> For example: `meta: {"full_name":"<NAME>"}`.
+`meta`                        | Metadata for the account in JSON format. Accepts fields defined in the Dev Portal settings. <br><br> By default, the meta attribute requires a `full_name` field. You can remove this requirement, or add other fields as necessary. <br><br> For example: `meta: {"full_name":"<NAME>"}`.
 `email`       | The email of the developer to create. This becomes their login username.
 `status`      | The account approval status. <br><br>Accepts one of the following integers: <br> &#8226; `0` - Approved  <br> &#8226; `1` - Requested access  <br> &#8226; `2` - Rejected  <br> &#8226; `3` - Revoked
 
@@ -694,7 +694,7 @@ HTTP/1.1 204 No Content
 
 ### View all instances of an application
 
-View all application instances that are connected to a Service in the Kong Gateway.
+View all application instances that are connected to a Service in the {{site.base_gateway}}.
 
 
 **Endpoint**
@@ -758,7 +758,7 @@ HTTP/1.1 200 OK
 
 ### Create an application instance
 
-Connect an application to a Service in the Kong Gateway.
+Connect an application to a Service in the {{site.base_gateway}}.
 
 **Endpoint**
 
@@ -1474,8 +1474,8 @@ Attribute                         | Description
 
 Attribute                    | Description
 ---------:                   | --------   
-`client_id` | You can optionally set your own unique client_id. If not provided, the plugin will generate one.
-`client_secret` | You can optionally set your own unique client_secret. If not provided, the plugin will generate one.
+`client_id` | You can optionally set your own unique `client_id`. If not provided, the plugin will generate one.
+`client_secret` | You can optionally set your own unique `client_secret`. If not provided, the plugin will generate one.
 `redirect_uris` | An array with one or more URLs in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2](https://tools.ietf.org/html/rfc6749#section-3.1.2)).
 `hash_secret` | A boolean flag that indicates whether the `client_secret` field will be stored in hashed form. If enabled on existing plugin instances, client secrets are hashed on the fly upon first usage. <br>Default: `false`
 

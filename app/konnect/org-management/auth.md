@@ -1,6 +1,5 @@
 ---
 title: Authentication and Authorization
-no_version: true
 content_type: explanation
 ---
 

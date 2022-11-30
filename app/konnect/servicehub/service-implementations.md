@@ -1,6 +1,5 @@
 ---
 title: Manage Services through Service Hub
-no_version: true
 ---
 
 An implementation is a Gateway service. By implementing a {{site.konnect_short_name}} service

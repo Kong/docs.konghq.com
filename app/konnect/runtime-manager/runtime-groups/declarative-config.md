@@ -1,6 +1,5 @@
 ---
 title: Manage Runtime Groups with decK
-no_version: true
 content_type: how-to
 ---
 

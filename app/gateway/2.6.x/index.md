@@ -157,7 +157,7 @@ own data planes.
 
 There are a few ways to test out the Gateway's Plus or Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://cloud.konghq.com/register).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong

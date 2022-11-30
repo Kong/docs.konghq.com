@@ -1,7 +1,6 @@
 ---
 title: Kong Konnect
 subtitle: The SaaS API Platform
-no_version: true
 breadcrumb: Overview
 ---
 
@@ -20,9 +19,9 @@ breadcrumb: Overview
     <div class="install-text">Get Started</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-groups" class="docs-grid-install-block no-description">
+  <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Runtime Groups</div>
+    <div class="install-text">Set up Runtime Instances</div>
   </a>
 
   <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
@@ -56,15 +55,6 @@ preferred network environment.
 
 [Get started](https://cloud.konghq.com/quick-start) with {{ site.konnect_short_name }} for free today!
 
-<!-- vale off -->
-
-{:.note}
-> This documentation is for the {{site.konnect_short_name}} environment at
-[`cloud.konghq.com`](https://cloud.konghq.com). To view documentation for the legacy
-[`konnect.konghq.com`](https://konnect.konghq.com) environment, see the
-[legacy {{site.konnect_short_name}} documentation](/konnect/legacy).
-
-<!-- vale on -->
 ## {{site.konnect_short_name}} modules
 
 ### Service Hub

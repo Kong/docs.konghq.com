@@ -184,8 +184,9 @@
           url: /developer-portal/enable-dev-portal
         - text: Structure and File Types
           url: /developer-portal/structure-and-file-types
-        - text: Portal API
-          url: /developer-portal/portal-api
+        - text: Portal API Documentation
+          url: https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
+          absolute_url: true
         - text: Working with Templates
           url: /developer-portal/working-with-templates
         - text: Using the Editor
@@ -388,51 +389,50 @@
     - text: Plugin Development Kit
       url: /pdk
       items:
+        - text: kong.client
+          url: /pdk/kong.client
 
-      - text: kong.client
-        url: /pdk/kong.client
+        - text: kong.client.tls
+          url: /pdk/kong.client.tls
 
-      - text: kong.client.tls
-        url: /pdk/kong.client.tls
+        - text: kong.cluster
+          url: /pdk/kong.cluster
 
-      - text: kong.cluster
-        url: /pdk/kong.cluster
+        - text: kong.ctx
+          url: /pdk/kong.ctx
 
-      - text: kong.ctx
-        url: /pdk/kong.ctx
+        - text: kong.ip
+          url: /pdk/kong.ip
 
-      - text: kong.ip
-        url: /pdk/kong.ip
+        - text: kong.log
+          url: /pdk/kong.log
 
-      - text: kong.log
-        url: /pdk/kong.log
+        - text: kong.nginx
+          url: /pdk/kong.nginx
 
-      - text: kong.nginx
-        url: /pdk/kong.nginx
+        - text: kong.node
+          url: /pdk/kong.node
 
-      - text: kong.node
-        url: /pdk/kong.node
+        - text: kong.request
+          url: /pdk/kong.request
 
-      - text: kong.request
-        url: /pdk/kong.request
+        - text: kong.response
+          url: /pdk/kong.response
 
-      - text: kong.response
-        url: /pdk/kong.response
+        - text: kong.router
+          url: /pdk/kong.router
 
-      - text: kong.router
-        url: /pdk/kong.router
+        - text: kong.service
+          url: /pdk/kong.service
 
-      - text: kong.service
-        url: /pdk/kong.service
+        - text: kong.service.request
+          url: /pdk/kong.service.request
 
-      - text: kong.service.request
-        url: /pdk/kong.service.request
+        - text: kong.service.response
+          url: /pdk/kong.service.response
 
-      - text: kong.service.response
-        url: /pdk/kong.service.response
-
-      - text: kong.table
-        url: /pdk/kong.table
+        - text: kong.table
+          url: /pdk/kong.table
 
     - text: Plugin Development Guide
       url: /plugin-development
@@ -469,3 +469,6 @@
 
     - text: Plugins in Other Languages
       url: /reference/external-plugins
+    - text: File Permissions Reference
+      url: /gateway/3.0.x/reference/file-access-permissions
+      absolute_url: /gateway/3.0.x/reference/file-access-permissions

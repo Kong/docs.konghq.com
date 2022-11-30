@@ -1,6 +1,5 @@
 ---
 title: Configure a Runtime
-no_version: true
 ---
 
 Set up your first runtime through the

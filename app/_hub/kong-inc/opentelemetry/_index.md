@@ -10,17 +10,15 @@ categories:
   - analytics-monitoring
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
 params:
   name: opentelemetry
   konnect_examples: false
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: 'yes'
   config:
     - name: endpoint

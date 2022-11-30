@@ -22,7 +22,6 @@ items:
   - title: Installation
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     url: /installation
-    
 
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
@@ -39,6 +38,8 @@ items:
         url: /guides/best-practices
       - text: Using decK with Kong Gateway (Enterprise)
         url: /guides/kong-enterprise
+      - text: Run decK with Docker
+        url: /guides/run-with-docker
       - text: Using Multiple Files to Store Configuration
         url: /guides/multi-file-state
       - text: De-duplicate Plugin Configuration

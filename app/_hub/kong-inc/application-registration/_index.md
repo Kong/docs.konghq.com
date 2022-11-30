@@ -23,9 +23,9 @@ description: |
   Portal authorization provider. Either Kong Gateway (`kong-oauth2`) or a third-party OAuth provider
   (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
   information, see
-  [Configure an Authorization Provider Strategy](/gateway/latest/kong-enterprise/developer-portal/applications/auth-provider-strategy/).
+  [Configure an Authorization Provider Strategy](/gateway/latest/kong-enterprise/dev-portal/applications/auth-provider-strategy/).
 
-  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/kong-enterprise/developer-portal/applications/enable-key-auth-plugin/).
+  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/kong-enterprise/dev-portal/applications/enable-key-auth-plugin/).
 
   Supported authorization plugins for use with application registration:
 
@@ -36,7 +36,7 @@ description: |
   | [OIDC](/hub/kong-inc/openid-connect)| `external-oauth2` |
 
   If you plan to use the external OAuth option with OIDC, review the
-  [supported OAuth workflows](/gateway/latest/kong-enterprise/developer-portal/applications/3rd-party-oauth).
+  [supported OAuth workflows](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth).
 enterprise: true
 cloud: false
 type: plugin
@@ -53,10 +53,10 @@ params:
   route_id: false
   konnect_examples: false
   protocols:
-    - http
-    - https
-    - grpc
-    - grpcs
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'no'
   config:
     - name: auto_approve
@@ -118,9 +118,9 @@ curl -X PATCH http://<DNSorIP>:8001/plugins/{plugin_id} \
 
 Enable `show_issuer` to expose the **Issuer URL** in the **Service Details** dialog.
 
-**Note:** Exposing the [Issuer URL](/gateway/latest/kong-enterprise/developer-portal/applications/enable-application-registration#show-url-issuer) is essential
+**Note:** Exposing the [Issuer URL](/gateway/latest/kong-enterprise/dev-portal/applications/enable-application-registration#show-url-issuer) is essential
 for the
-[Authorization Code Flow](/gateway/latest/kong-enterprise/developer-portal/applications/3rd-party-oauth/#ac-flow) configured for third-party identity providers.
+[Authorization Code Flow](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth/#ac-flow) configured for third-party identity providers.
 
 Update your current configuration by running a PATCH command. Replace `{plugin_id}` with the `id` of your plugin.
 

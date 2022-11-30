@@ -3,6 +3,32 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+
+## 2.0.0
+> Release on **2022/11/04**
+
+Built on top of [Kuma 2.0.0](https://github.com/kumahq/kuma/releases/tag/2.0.0)
+
+### Changes
+
+#### Amazon ECS
+
+You can now configure the sidecar to authenticate using the IAM role of the ECS task it's running as instead of using a data plane token. 
+The control plane interprets the tags on the role similar to how it interprets the data plane token.
+This simplifies the deployment and management of Kong Mesh on ECS.
+
+For more information, see [Kong Mesh on Amazon ECS](/mesh/latest/installation/ecs/).
+
+### Upgrading
+
+The Zone Token that was previously used for authenticating Zone Egress can now be used to authenticate the zone control plane.
+If you use zone control plane authentication, regenerate token for zone control plane using `kumactl generate zone-token --scope=cp --zone=<zone>`.
+For now, you can still use the old Control Plane Token and Zone Token with scope `cp`.
+However, Control Plane Token is now deprecated and will be removed in the future.
+
+### Breaking changes and deprecations
+Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
+
 ## 1.9.1
 > Release on **2022/10/10**
 
@@ -15,25 +41,6 @@ Built on top of [Kuma 1.8.1](https://github.com/kumahq/kuma/releases/tag/1.8.1)
 - Added support for wildcard tag value match in RBAC.
 - Prevents a potential data race by creating a deep copy of tags when generating outbounds.
 
-## 1.8.3
-> Release on **2022/10/10**
-
-Built on top of [Kuma 1.7.2](https://github.com/kumahq/kuma/releases/tag/1.7.2)
-
-### Changes
-
-- Added support for evicted Pods.
-- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
-
-## 1.7.4
-> Release on **2022/10/10**
-
-Built on top of [Kuma 1.6.2](https://github.com/kumahq/kuma/releases/tag/1.6.2)
-
-### Changes
-
-- Added support for evicted Pods.
-- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
 
 ## 1.9.0
 > Release on **2022/08/23**
@@ -51,6 +58,16 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 ### Upgrading
 
 - You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
+
+## 1.8.3
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.7.2](https://github.com/kumahq/kuma/releases/tag/1.7.2)
+
+### Changes
+
+- Added support for evicted Pods.
+- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
 
 ## 1.8.2
 
@@ -72,6 +89,16 @@ Built on top of [Kuma 1.7.1](https://github.com/kumahq/kuma/releases/tag/1.7.1)
 ### Changes
 
 - Check both old and new spec on Update
+
+## 1.7.4
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.6.2](https://github.com/kumahq/kuma/releases/tag/1.6.2)
+
+### Changes
+
+- Added support for evicted Pods.
+- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
 
 ## 1.7.2
 

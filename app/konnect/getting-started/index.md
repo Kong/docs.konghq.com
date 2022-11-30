@@ -1,6 +1,5 @@
 ---
 title: Get started with Konnect
-no_version: true
 ---
 
 ## Quickstart guide

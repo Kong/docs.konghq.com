@@ -25,8 +25,8 @@ params:
   route_id: true
   consumer_id: true
   protocols:
-    - http
-    - https
+    - name: http
+    - name: https
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
@@ -65,11 +65,15 @@ params:
       default: '`consumer`'
       datatype: string
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`, `path`. If the value for the entity chosen to aggregate the limit cannot be determined, the system will always fallback to `ip`. If value `service` is chosen, the `service_id` configuration must be provided. If value `header` is chosen, the `header_name` configuration must be provided. If value `path` is chosen, the `path` configuration must be provided.
-    - name: service_id
-      required: semi
-      datatype: string
-      description: The service id to be used if `limit_by` is set to `service`.
+        The entity that is used when aggregating the limits. Available values are:
+        - `consumer`
+        - `credential`
+        - `ip`
+        - `service` (The `service.id` or `service.name` configuration must be provided if you're adding the plugin to a service through the top-level `/plugins` endpoint.)
+        - `header` (The `header_name` configuration must be provided.)
+        - `path` (The `path` configuration must be provided.)
+        
+        If the entity value for aggregating the limits cannot be determined, the system falls back to `ip`.
     - name: header_name
       required: semi
       datatype: string

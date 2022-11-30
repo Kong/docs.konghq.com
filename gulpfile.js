@@ -28,6 +28,7 @@ var sources = {
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
     "node_modules/@segment/analytics-next/dist/umd/standalone.js",
+    "node_modules/js-cookie/dist/js.cookie.js",
     paths.assets + "javascripts/app.js",
     paths.assets + "javascripts/compat-dropdown.js",
     paths.assets + "javascripts/subscribe.js",
@@ -37,9 +38,11 @@ var sources = {
     // uncomment the path to promo-banner.js when adding a new promo banner
     // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
     // paths.assets + "javascripts/promo-banner.js",
-    paths.assets + "javascripts/copy-code-snippet-support.js"
+    paths.assets + "javascripts/copy-code-snippet-support.js",
+    paths.assets + "javascripts/ab-test.js"
   ],
   images: paths.assets + "images/**/*",
+  manifests: paths.assets + "manifests/**/*",
   fonts: [
     paths.modules + "font-awesome/fonts/**/*.*",
     paths.assets + "fonts/*.*",
@@ -80,6 +83,8 @@ function styles() {
 function js() {
   return gulp
     .src(sources.js)
+    // Add Segment write key
+    .pipe($.replace(/__WRITE_KEY__/, 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'))
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe(
@@ -105,6 +110,14 @@ function images() {
     .src(sources.images)
     .pipe($.plumber())
     .pipe(gulp.dest(paths.dist + "assets/images"))
+    .pipe($.if(!dev, $.size()));
+}
+
+function manifests() {
+  return gulp
+    .src(sources.manifests)
+    .pipe($.plumber())
+    .pipe(gulp.dest(paths.dist + "assets"))
     .pipe($.if(!dev, $.size()));
 }
 
@@ -394,6 +407,7 @@ gulp.task("js_min", js);
 gulp.task("css", css);
 gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
+gulp.task("manifests", gulp.series(set_dev, manifests));
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
 
@@ -413,10 +427,18 @@ function build_site(steps, append) {
   steps = steps || [];
   append = append || [];
 
+  if (process.env.JEKYLL_ENV == "preview") {
+    var configFilePath = "./jekyll.yml";
+    var doc = fs.readFileSync(configFilePath, "utf8");
+    var newDoc = doc.replace(/  web: https:\/\/docs.konghq.com/, `  web: ${process.env.DEPLOY_PRIME_URL}`);
+
+    fs.writeFileSync(configFilePath, newDoc);
+  }
+
   // These are the steps that always run for every build
   // If set_dev is called, some of these methods behave differently
   steps = steps.concat([
-    gulp.parallel(js, images, fonts, css),
+    gulp.parallel(js, images, manifests, fonts, css),
     jekyll,
     styles,
   ]);

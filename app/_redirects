@@ -170,6 +170,7 @@
 /hub/kong-inc/jwt/2.1-x.html                       /hub/kong-inc/jwt/
 /hub/kong-inc/jwt-signer/0.*                       /hub/kong-inc/jwt-signer/
 /hub/kong-inc/jwt-signer/1.*                       /hub/kong-inc/jwt-signer/
+/hub/kong-inc/jwe-decrypt/3.*                      /hub/kong-inc/jwe-decrypt/
 /hub/kong-inc/kafka-log/0.*                        /hub/kong-inc/kafka-log/
 /hub/kong-inc/kafka-upstream/0.*                   /hub/kong-inc/kafka-upstream/
 /hub/kong-inc/key-auth/0.*                         /hub/kong-inc/key-auth/
@@ -229,6 +230,7 @@
 /hub/kong-inc/vault-auth/0.*                       /hub/kong-inc/udp-log/
 /hub/kong-inc/zipkin/1.*                           /hub/kong-inc/zipkin/
 /hub/tomkerkhove/*                                 /hub/
+/hub/justeat/*                                     /hub/
 
 # KONNECT
 
@@ -273,6 +275,14 @@
 /konnect/shared-config                               /konnect/runtime-manager/gateway-config/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/legacy/*                                    /konnect/
+
+
+#API Redirects
+
+/konnect/identity-management-api/   https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
+/gateway/*/kong-enterprise/dev-portal/portal-api/ https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
+
 
 # COMMUNITY DOC REBRANDING
 /community                                  https://konghq.com/community-resources/
@@ -613,7 +623,13 @@
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
 /mesh/*/features/windows/     /mesh/latest/installation/windows/
 /mesh/latest/features/windows/ /mesh/latest/installation/windows/
-
+/mesh/:version/policies/introduction/  /mesh/:version/policies/
+/policies/  /mesh/:version/policies/
+/mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
+/mesh/:version/introduction/what-is-kong-mesh   /mesh/:version/
+/install/:version/  /mesh/:version/install/
+/mesh/:version/documentation/introduction/  /mesh/:version/
+/mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
@@ -811,3 +827,6 @@
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
 /gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
+
+# 3.1
+/gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/

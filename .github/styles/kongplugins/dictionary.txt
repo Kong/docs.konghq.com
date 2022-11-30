@@ -2,11 +2,13 @@ Alertmanager
 Amberflo
 Amberflo.io
 amberflo
+Authn
 Arya
 Bagdi
 Bintray
 Bitnami
 CloudFormation
+Signke
 Cloudformation
 Cognito
 Curity
@@ -258,6 +260,7 @@ routable
 ruleset
 runtime
 runtimes
+SAML
 sandboxed
 sandboxing
 schema's

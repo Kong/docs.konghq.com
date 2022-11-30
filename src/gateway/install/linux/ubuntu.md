@@ -34,12 +34,12 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_amd64.deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.versions.ce}}_amd64.deb"
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -53,12 +53,12 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo dpkg -i kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb
+sudo dpkg -i kong-enterprise-edition-{{page.versions.ee}}.all.deb
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb
+sudo dpkg -i kong-{{page.versions.ce}}.amd64.deb
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -66,14 +66,31 @@ sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.de
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
+3. (Optional) Prevent accidental upgrades by marking the package as `hold`:
+{% capture optional %}
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+```bash
+sudo apt-mark hold kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo apt-mark hold kong
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+{{ optional | indent | replace: " </code>", "</code>" }}
+
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
 {:.note .no-icon}
-> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong-enterprise-edition`. This will prevent an accidental upgrade to a new version.
+> To uninstall the package, run: `sudo apt remove kong-enterprise-edition`.
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 {:.note .no-icon}
-> Once {{ site.base_gateway }} is installed, you may want to run `sudo apt-mark hold kong`. This will prevent an accidental upgrade to a new version.
+> To uninstall the package, run: `sudo apt remove kong`.
 {% endnavtab %}
 {% endnavtabs_ee %}
 
@@ -99,12 +116,12 @@ Install the APT repository from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
+sudo apt install -y kong-enterprise-edition={{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
+apt install -y kong={{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -116,3 +133,5 @@ apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
 {% endnavtabs %}
 
 {% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+
+

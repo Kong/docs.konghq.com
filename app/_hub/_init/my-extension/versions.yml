@@ -1,0 +1,9 @@
+# Duplicate this file into your own plugin doc directory under app/_hub/.
+# If you're adding a Kong-owned plugin, add it to app/_hub/kong-inc/<plugin-name>.
+
+strategy: gateway
+
+releases:
+  minimum_version: 3.0.x
+  # Set the version that your plugin is introduced in. This will generate a doc
+  # for every subsequent gateway version, starting with the one you specify.

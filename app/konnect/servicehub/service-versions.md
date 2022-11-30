@@ -1,6 +1,5 @@
 ---
 title: Manage Konnect Service Versions
-no_version: true
 ---
 
 Every {{site.konnect_short_name}} service version is associated with one [runtime group](/konnect/runtime-manager/runtime-groups/).

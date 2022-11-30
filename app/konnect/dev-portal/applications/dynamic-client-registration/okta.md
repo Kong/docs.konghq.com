@@ -1,9 +1,7 @@
 ---
 title: Configuring Okta for Dynamic Client Registration
-no_version: true
-toc: true
 breadcrumb: Okta
-content-type: how-to
+content_type: how-to
 ---
 
 
@@ -14,7 +12,7 @@ content-type: how-to
 
 ### Issuer URL
 
-Using your Okta credentials, log in to the Okta portal and follow these steps: 
+Using your Okta credentials, log in to the Okta portal and follow these steps:
 
 1. Select **Security** from the menu.
 
@@ -59,9 +57,9 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 ## Configure the Dev Portal
 
-Once you have Okta configured, you can setup the Dev Portal to use Okta for DCR.
+Once you have Okta configured, you can set up the Dev Portal to use Okta for dynamic client registration (DCR).
 
-1. Sign in to {{site.konnect_short_name}}, and select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
+1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
 2. Click **Settings** to open the Dev Portal settings.
 
@@ -73,25 +71,37 @@ Once you have Okta configured, you can setup the Dev Portal to use Okta for DCR.
 
    {:.note}
    > **Note:** You can use any of the existing scopes besides **`openid`**, as using the `openid`
-   scope will prevent you from using client credentials. If this input field is left empty, `openid`
+   scope prevents you from using client credentials. If the **Scopes** field is empty, `openid`
    will be used.
 
 6. Click **Save**.
 
-   {:.note}
-   > **Note:**  If you previously configured any DCR settings, this will
+   If you previously configured any DCR settings, this will
    overwrite them.
 
 ## Create an application with DCR
 
-From the **My Apps** page in the Dev Portal, follow these instructions: 
+From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click the **New App** button.
 
 2. Fill out the **Create New Application** form with your application name, redirect URI, and a description.
 
-3. Click **Create** to save your application. 
+3. Click **Create** to save your application.
 
-After your application has been created, you will see the **Client ID** and **Client Secret**. Please store these values, they will only be shown once. Click **Proceed** to continue to the application's details page.
+4. After your application has been created, you will see the **Client ID** and **Client Secret**. 
+   Please store these values, they will only be shown once. 
+   
+   Click **Proceed** to continue to the application's details page.
 
-4. Once your application is created, you will see it in Okta. From your Okta organization select **Applications** from the menu. You will see your application that was created in the Dev Portal, and its corresponding Client ID.
+5. Once your application is created, you will see it in Okta. From your Okta organization select **Applications** from the menu. You will see your application that was created in the Dev Portal, and its corresponding Client ID.
+
+## Make a successful request
+
+In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, you must attach this client secret pair in the header. You can do this by using any API product, such as [Insomnia](https://insomnia.rest/), or directly using the command line:
+
+```sh
+curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
+```
+
+Where `example.com` is the address of the runtime instance you are running.

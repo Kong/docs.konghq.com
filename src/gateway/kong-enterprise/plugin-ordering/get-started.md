@@ -48,6 +48,27 @@ http -f post :8001/plugins \
 <!-- end codeblock tabs -->
 
 {% endnavtab %}
+{% navtab  Kubernetes %}
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: limit-before-key-auth
+  labels:
+    global: "true"
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+config:
+  minute: 5
+  policy: local
+  limit_by: ip
+plugin: rate-limiting
+ordering:
+  before:
+    access:
+    - key-auth
+```
+{% endnavtab %}
 {% navtab decK (YAML) %}
 
 1. Add a new `plugins` section to the bottom of your `kong.yaml` file. Enable
@@ -110,6 +131,31 @@ http -f post :8001/plugins \
     ```
 
 {% endnavtab %}
+{% navtab Kong Manager UI %}
+
+{:.note}
+> **Note:** Kong Manager support for dynamic plugin ordering is available starting in {{site.base_gateway}} 3.1.x.
+
+1. In Kong Manager, open the **default** workspace.
+2. From the menu, open **Plugins**, then click **Install Plugin**.
+3. Find the **Rate Limiting** plugin, then click **Enable**.
+4. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every service and route in the workspace.
+5. Complete only the following fields with the following parameters.
+    1. config.minute: `5`
+    2. config.policy: `local`
+    3. config.limit_by: `ip`
+    
+    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
+6. Click **Install**.
+7. From the **Rate Limiting** plugin page, click the **Ordering** tab.
+8. Click **Add ordering**.
+9. For **Before access**, click **Add plugin**.
+10. Choose **Key Auth** from the **Plugin 1** dropdown menu.
+11. Click **Update**.
+
+The rate limiting plugin now limits the amount of requests against all services and routes in the default workspace *before* {{site.base_gateway}} requests authentication.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## Authentication after request transformation
@@ -148,6 +194,23 @@ http -f post :8001/plugins \
 {% endnavtabs %}
 <!-- end codeblock tabs -->
 
+{% endnavtab %}
+{% navtab  Kubernetes %}
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: auth-after-transform
+  labels:
+    global: "true"
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+plugin: basic-auth
+ordering:
+  after:
+    access:
+    - request-transformer
+```
 {% endnavtab %}
 {% navtab decK (YAML) %}
 
@@ -197,5 +260,23 @@ http -f post :8001/plugins \
     deck sync
     ```
 
+{% endnavtab %}
+{% navtab Kong Manager UI %}
+
+{:.note}
+> **Note:** Kong Manager support for dynamic plugin ordering is available starting in {{site.base_gateway}} 3.1.x.
+
+1. In Kong Manager, open the **default** workspace.
+2. From the menu, open **Plugins**, then click **Install Plugin**.
+3. Find the **Basic Authentication** plugin, then click **Enable**.
+4. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every service and route in the workspace.
+6. Click **Install**.
+7. From the **Basic Authentication** plugin page, click the **Ordering** tab.
+8. Click **Add ordering**.
+9. For **After access**, click **Add plugin**.
+10. Choose **Request Transformer** from the **Plugin 1** dropdown menu.
+11. Click **Update**.
+
+The basic authentication plugin now requests authentication after the request is transformed.
 {% endnavtab %}
 {% endnavtabs %}

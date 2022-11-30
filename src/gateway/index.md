@@ -54,6 +54,14 @@ With {{site.base_gateway}}, users can:
 * Secure and govern APIs/services, and improve API visibility across the
 entire organization.
 
+<blockquote class="note no-icon" id="nurture-signup">
+  <p>Looking for additional help? Free training and curated content, just for you:</p>
+  <form action="https://go.konghq.com/l/392112/2022-09-19/cfr97r" method="post">
+    <input class="button" name="email" placeholder="you@yourcompany.com" />
+    <button class="button" type="submit">Sign up now</button>
+  </form>
+</blockquote>
+
 ## Extending the {{site.base_gateway}}
 
 {{site.base_gateway}} is a Lua application running in Nginx. {{site.base_gateway}}
@@ -192,7 +200,7 @@ own data planes.
 
 There are a few ways to test out the Gateway's Plus or Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://cloud.konghq.com/register).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong

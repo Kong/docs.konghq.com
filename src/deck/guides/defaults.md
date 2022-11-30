@@ -1,6 +1,6 @@
 ---
 title: Object Defaults
-content-type: how-to
+content_type: how-to
 ---
 
 {{site.base_gateway}} sets some default values for most objects, including Kong

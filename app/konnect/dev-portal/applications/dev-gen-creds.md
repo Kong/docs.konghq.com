@@ -1,8 +1,7 @@
 ---
 title: Generate Credentials for an Application
-no_version: true
 toc: true
-content-type: reference
+content_type: reference
 ---
 
 The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. From the Dev Portal, a user can generate API credentials to use with their applications. 
