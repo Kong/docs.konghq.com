@@ -19,6 +19,8 @@ with any of the following backends:
 * HashiCorp Vault
 * GCP Secret Manager
 
+: See the [vaults documentation](/konnect/runtime-manager/vaults) to get started.
+
 **{{site.base_gateway}} 3.1 support**
 : {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
 
@@ -27,10 +29,6 @@ with any of the following backends:
 
 **Runtime Groups API**
 : Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
-
-## November 2022
-
-: See the [vaults documentation](/konnect/runtime-manager/vaults) to get started.
 
 ## November 2022
 
