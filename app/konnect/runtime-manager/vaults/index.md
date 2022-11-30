@@ -7,7 +7,7 @@ Secrets management in {{site.konnect_short_name}} allows you to store secrets in
 
 Secrets can be part of the core gateway configuration,
 or part of gateway configuration associated with APIs serviced by the gateway.
-Some of the most common types of secrets include:
+The most common types of secrets include:
 * Certificates
 * API keys
 * Personal access tokens

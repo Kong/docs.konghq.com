@@ -63,7 +63,6 @@ In this case, the references would look like this:
 {vault://env/my-secret-key}
 ```
 
-Where:
 
 * `vault` is a scheme that indicates that the value is a secret.
 * `env` defines the backend because you're storing the secret in an [environment variable](/gateway/latest/kong-enterprise/secrets-management/backends/env).
