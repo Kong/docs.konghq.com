@@ -3,15 +3,10 @@ title: Set Up and Use a Vault in Konnect
 content_type: how-to
 ---
 
-The following example uses the most basic form of secrets management:
-storing secrets in environment variables.
-
-You can also store secrets in a secure vault backend.
-For a list of supported vault backend implementations, see the
-[Backends Overview](/gateway/latest/kong-enterprise/secrets-management/backends).
 
 The following example shows you how to replace certificates used in {{site.base_gateway}}
-runtime instances with a reference. You can do the same thing with any [supported fields](/gateway/latest/kong-enterprise/secrets-management/).
+runtime instances with a reference. You can do the same thing with any [supported fields](/gateway/latest/kong-enterprise/secrets-management/). This is the most basic form of secrets management. 
+
 
 ## Set up a vault
 
@@ -22,9 +17,9 @@ Open the **Vaults** page in {{site.konnect_short_name}}:
 1. Select a runtime group.
 1. From the expanded runtime group menu, open **Vaults**.
 
-Set up a new vault:
+Set up a new vault. For this example, we're going to use the environment variable vault. 
 1. Click **Add vault**.
-1. Choose a vault type. For this example, we're going to use the environment variable vault.
+1. Choose a vault type. 
 1. Enter an environment variable prefix. This will be the prefix that the vault
 uses to recognize relevant values on the data plane.
 
@@ -46,7 +41,7 @@ uses to recognize relevant values on the data plane.
 
 ## Define a reference
 
-Now that you have your environment variables set up, you can define references to them.
+Now that you have your environment variables set up, you can define references for them.
 This next step has to be configured on the runtime instance.
 
 For each runtime instance that needs to use this vault,
@@ -75,7 +70,6 @@ Where:
 * `env` is the name of the backend, since you're storing the secret in an [environment variable](/gateway/latest/kong-enterprise/secrets-management/backends/env).
 * `my-secret-key` and `my-secret-cert` correspond to the environment variables that you just defined.
 
-Note that the reference is wrapped in curly braces.
 
 ## Use the reference in configuration
 

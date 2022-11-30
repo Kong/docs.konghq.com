@@ -6,7 +6,6 @@ content_type: explanation
 Secure your {{site.konnect_short_name}} environment with centralized secrets,
 making it easier to manage and build governance.
 
-A secret is a sensitive piece of information required for proper gateway operations.
 Secrets may be part of the core gateway configuration,
 or part of gateway configuration associated with APIs serviced by the gateway.
 Some of the most common types of secrets include:
@@ -24,8 +23,7 @@ of displaying the actual value of the secret.
 This ensures that secrets are not stored in plaintext throughout the platform,
 in places such as `kong.conf` files, in declarative configuration files, logs,
 or in the {{site.konnect_short_name}} UI. This way, the {{site.konnect_short_name}}
-platform never stores or sees sensitive credentials, letting you use the security controls
-that you already have around sensitive information.
+platform never stores sensitive credentials. 
 
 ## Vaults interface in {{site.konnect_short_name}}
 
@@ -36,23 +34,24 @@ Number | Item | Description
 -------|------|------------
 1 | **Vaults menu link** | Main link to the vaults configuration for a runtime group. Appears when you select a runtime group.
 2 | **Add vault** | Click the **Add vault** button to set up any supported Konnect vault backend.
-3 | **Table entries for vaults** | Select a table entry to see the configuration for a particular vault. On each vault's configuration page, you can edit or delete the vault, or copy the entire configuration as JSON.
-4 | **Vault ID** | The vault's UUID. You can click the copy icon to copy the ID for use in configuration.
-5 | **Vault action menu** | Interact with a configured vault. From this menu, you can <b>view</b>, <b>edit</b>, or <b>delete</b> a vault's configuration. <br><br> <b>Be careful when deleting a configured vault!</b> Once deleted, a vault can't be restored, and all vault references will fail if not updated.
+3 | **Vault entry** | Select a vault entry to open the configuration page for the particular vault. On each vault's configuration page, you can edit or delete the vault, or copy the entire configuration as JSON.
+4 | **Vault ID** | The vault's UUID. 
+5 | **Vault action menu** | From this menu, you can <b>view</b>, <b>edit</b>, or <b>delete</b> a vault's configuration. 
 
-## Benefits
+## Use cases
 
-Use vaults for the following benefits:
+Vaults have several use cases: 
 * Storing secrets securely
-* Managing access to secrets with fine grained policies
+* Managing access to secrets with fine-grained policies
+* Applying internal security policies
 * Automation of secrets rotation
-* Audits of secrets usage
+* Auditing secrets usage
 * Encryption of secrets at rest
 
-Be aware that {{site.konnect_short_name}} **does not**:
+{{site.konnect_short_name}} **does not**:
 * Store credentials to access the vault itself.
 You must provide those credentials to the {{site.base_gateway}} data plane directly.
-* Update or modify the secrets in the 3rd party vaults.
+* Update or modify the secrets in 3rd party vaults.
 
 Vaults are configurable per runtime group. You can't use the same vault across
 multiple runtime groups.
@@ -60,12 +59,12 @@ multiple runtime groups.
 ## Supported vaults in {{site.konnect_short_name}}
 
 Konnect supports the following vault backends:
-* Environment variables
 * AWS Secrets Manager
 * HashiCorp Vault
 * GCP Secret Manager
+* Environment variables
 
-You can manage all of these vaults through the [Konnect UI](/konnect/runtime-manager/vaults/how-to) or with [decK](/deck/latest/guides/vaults/).
+You can manage all of these vaults through the [Runtime Manager](/konnect/runtime-manager/vaults/how-to) or with [decK](/deck/latest/guides/vaults/).
 
 ## See also
 
