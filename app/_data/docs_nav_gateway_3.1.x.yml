@@ -213,8 +213,6 @@ items:
             url: /kong-enterprise/analytics/
           - text: Metrics
             url: /kong-enterprise/analytics/metrics
-          - text: Reports
-            url: /kong-enterprise/analytics/reports
           - text: Analytics with InfluxDB
             url: /kong-enterprise/analytics/influx-strategy
           - text: Analytics with Prometheus
