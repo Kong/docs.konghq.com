@@ -30,14 +30,25 @@ no_version: true
   - Adding `key-auth-enc` credentials to a consumer is now supported.
   - More authorization variables have been added to the **Authorization** tab.
   - The Kong Manager overview tab has been optimized for performance.
+  - You can now configure vaults for managing secrets through Kong Manager.
 
 ### Plugins
 
 #### Enterprise 
 
-- **New plugin:** [AppDynamics](/hub/kong-inc/appdynamics).
-- **New plugin:**[SAML](/hub/kong-inc/saml).
-- **New plugin:** [XML Threat Protection](/hub/kong-inc/xml-threat-protection).
+**New plugins:** 
+- [AppDynamics](/hub/kong-inc/app-dynamics) (`app-dynamics`)
+  - Integrate Kong Gateway with the AppDynamics APM Platform.
+- [JWE Decrypt](/hub/kong-inc/jwe-decrypt) (`jwe-decrypt`)
+  - Allows you to decrypt an inbound token (JWE) in a request.
+- [OAS Validation](/hub/kong-inc/oas-validation) (`oas-validation`)
+  - Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification.
+- [SAML](/hub/kong-inc/saml) (`saml`)
+  - Provides SAML v2.0 authentication and authorization between a service provider (Kong) and an identity provider (IdP).
+- [XML Threat Protection](/hub/kong-inc/xml-threat-protection) (`xml-threat-protection`)
+  - Apply structural and size checks on XML payloads.
+
+** Updates to existing plugins:**
 - **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
   `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
 
@@ -47,7 +58,6 @@ no_version: true
   - `delete`: remove all those headers, as if we were the originating client.
 
   Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
-- **JWE Decrypt**: This new plugin allows you to decrypt an inbound token (JWE) in a request. For more information, see [Kong JWE Decrypt](/hub/kong-inc/jwe-decrypt/).
 - **Mocking**: Added the `included_status_codes` and `random_status_code` fields. These allow you to configure the HTTP status codes for the plugin. 
 - **OPA**: `include_uri_captures_in_opa_input` field added. When this field is set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
 - **XML Threat Protection**: This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes. For more information, see [XML Threat Protection](/hub/kong-inc/xml-threat-protection/).
