@@ -6,21 +6,52 @@ content_type: reference
 
 The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that the software has met all of the rules of FIPS 140-2, but has not been submitted to a NIST testing lab for validation.
 
-{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04**. This package provides compliance for the core {{site.base_gateway}} product only. 
+{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** and **Red Hat Enterprise 8**. This package provides compliance for the core {{site.base_gateway}} product and all out of the box plugins. 
 
 The package replaces the primary library in {{site.base_gateway}}, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 validated BoringCrypto for cryptographic operations.
 
-{:.note}
->**Note**: As of {{site.base_gateway}} 3.0, {{site.base_gateway}} plugins can't be considered FIPS-compliant. Future {{site.base_gateway}} releases aim to support plugins as well as distributions other than Ubuntu 20.04, such as RHEL. 
+
+{% navtabs %}
+{% navtab Ubuntu %}
 
 ## Installing the {{site.base_gateway}} FIPS compliant Ubuntu package
 
-The only supported {{site.base_gateway}} distribution is based on Ubuntu 20.04 and can be installed with the package distinctively named `kong-enterprise-edition-fips`.
+The FIPS compliant Ubuntu 20.04 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
 
-To install the {{site.base_gateway}} FIPS package use:
+1. Setup the Kong APT repository:
+    ```bash
+    echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
+    default all" | sudo tee /etc/apt/sources.list.d/kong.list
+    ```
 
-    apt install kong-enterprise-edition-fips
+2. Update the repository:
+    ```bash
+    sudo apt-get update
+    ```
 
+3. Install install the {{site.base_gateway}} FIPS package:
+ 
+        apt install kong-enterprise-edition-fips
+
+{% endnavtab %}
+{% navtab RHEL %}
+## Installing the {{site.base_gateway}} FIPS compliant RHEL package
+
+The FIPS compliant RedHat 8 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions: 
+
+
+1. Setup the Kong Yum repository
+    
+    ```bash
+    curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
+    ```
+
+2. Install the {{site.base_gateway}} FIPS package:
+
+        yum install kong-enterprise-edition-fips
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Configure FIPS
 
