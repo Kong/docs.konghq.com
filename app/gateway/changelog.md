@@ -60,18 +60,18 @@ no_version: true
 ### Plugins
 
 **New plugins:** 
-- [AppDynamics](/hub/kong-inc/app-dynamics) (`app-dynamics`)
+- [**AppDynamics**](/hub/kong-inc/app-dynamics) (`app-dynamics`)
   - Integrate Kong Gateway with the AppDynamics APM Platform.
-- [JWE Decrypt](/hub/kong-inc/jwe-decrypt) (`jwe-decrypt`)
+- [**JWE Decrypt**](/hub/kong-inc/jwe-decrypt) (`jwe-decrypt`)
   - Allows you to decrypt an inbound token (JWE) in a request.
-- [OAS Validation](/hub/kong-inc/oas-validation) (`oas-validation`)
+- [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`)
   - Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification.
-- [SAML](/hub/kong-inc/saml) (`saml`)
+- [**SAML**](/hub/kong-inc/saml) (`saml`)
   - Provides SAML v2.0 authentication and authorization between a service provider (Kong) and an identity provider (IdP).
-- [XML Threat Protection](/hub/kong-inc/xml-threat-protection) (`xml-threat-protection`)
+- [**XML Threat Protection**](/hub/kong-inc/xml-threat-protection) (`xml-threat-protection`)
   - This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes.
 
-** Updates to existing plugins:**
+**Updates to existing plugins:**
 
 - [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
   - The HTTP status code and response body for rate-limited
