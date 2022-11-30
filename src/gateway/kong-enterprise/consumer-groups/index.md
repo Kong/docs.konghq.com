@@ -52,15 +52,6 @@ curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
 http POST :8001/consumer_groups name=Gold
 ```
 {% endnavtab %}
-{% navtab Kong Manager %}
-{:.note}
-> **Note:** Kong Manager support for consumer groups is available starting in {{site.base_gateway}} 3.1.x.
-
-1. Open the **default** workspace.
-1. From the menu, open **Consumers**, then click the **Groups** tab.
-1. Click **New Consumer Groups**.
-1. Enter `Gold` for the consumer group name and click **Create**.
-{% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
 
@@ -91,14 +82,6 @@ curl -i -X POST http://{HOSTNAME}:8001/consumers \
 http POST :8001/consumers username=Amal
 ```
 {% endnavtab %}
-{% navtab Kong Manager %}
-{:.note}
-> **Note:** Kong Manager support for consumer groups is available starting in {{site.base_gateway}} 3.1.x.
-
-1. Open the **default** workspace.
-1. From the menu, open **Consumers**, then click **New Consumer**.
-1. Enter a **Username** and **Custom ID**. For this example, you can use `Amal` for each field.
-1. Click **Create**.
 {% endnavtabs %}
 {% endcapture %}
 
@@ -132,15 +115,6 @@ curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Gold/consumers \
 ```bash
 http POST :8001/consumer_groups/Gold/consumers consumer=Amal
 ```
-{% endnavtab %}
-{% navtab Kong Manager %}
-{:.note}
-> **Note:** Kong Manager support for consumer groups is available starting in {{site.base_gateway}} 3.1.x.
-
-1. Open the **default** workspace.
-1. From the menu, open **Consumers**, then click the **Groups** tab.
-1. Click the `Gold` consumer group you just created.
-1. ?
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
