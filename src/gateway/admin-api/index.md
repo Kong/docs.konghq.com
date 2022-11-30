@@ -14,20 +14,20 @@ service_body: |
     ---:| ---
     `name`<br>*optional* | The Service name.
     `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Default: `5`.
-    `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"tls_passthrough"`, `"udp"`.  Default: `"http"`.
+    `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`, `"tls_passthrough"`, `"udp"`, `"ws"` <span class="badge enterprise"></span>, `"wss"` <span class="badge enterprise"></span>.  Default: `"http"`.
     `host` | The host of the upstream server. Note that the host value is case sensitive.
     `port` | The upstream server port. Default: `80`.
     `path`<br>*optional* | The path to be used in requests to the upstream server.
     `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Default: `60000`.
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Default: `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Default: `60000`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering.
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
-    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
     `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
     `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
     `enabled` |  Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.  Default: `true`.
-    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL). 
+    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL).
 
 service_json: |
     {
@@ -97,21 +97,21 @@ route_body: |
     ---:| ---
     `name`<br>*optional* | The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
     `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
-    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. 
+    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
-    `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
-    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression. 
+    `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
+    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. Note: This config applies only if the Route is configured to only accept the `https` protocol.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Default: `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Default: `0`.
     `strip_path` |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Default: `true`.
     `path_handling`<br>*optional* |  Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.  Accepted values are: `"v0"`, `"v1"`.  Default: `"v0"`.
-    `preserve_host` |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`. 
+    `preserve_host` |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
     `request_buffering` |  Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.  Default: `true`.
     `response_buffering` |  Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.  Default: `true`.
-    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. 
-    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
-    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
-    `tags`<br>*optional* |  An optional set of strings associated with the Route for grouping and filtering. 
+    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing.
+    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
+    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
+    `tags`<br>*optional* |  An optional set of strings associated with the Route for grouping and filtering.
     `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
 
 route_json: |
@@ -179,9 +179,9 @@ route_data: |
 consumer_body: |
     Attributes | Description
     ---:| ---
-    `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request. 
-    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering. 
+    `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request.
+    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
+    `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering.
 
 consumer_json: |
     {
@@ -210,14 +210,15 @@ consumer_data: |
 plugin_body: |
     Attributes | Description
     ---:| ---
-    `name` |  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately. 
+    `name` |  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
-    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
+    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering.
+    `ordering`<br>*optional* <span class="badge enterprise"></span> | Describes a dependency to another plugin to determine plugin ordering during the `access` phase. <br> --`before`: The plugin will be executed _before_ a specified plugin or list of plugins. <br> -- `after`: The plugin will be executed _after_ a specified plugin or list of plugins.
 
 plugin_json: |
     {
@@ -230,7 +231,8 @@ plugin_json: |
         "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "ordering": {"before":["plugin-name"]}
     }
 
 plugin_data: |
@@ -244,7 +246,8 @@ plugin_data: |
         "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "ordering": {"before":["plugin-name"]}
     }, {
         "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "name": "rate-limiting",
@@ -255,18 +258,19 @@ plugin_data: |
         "config": {"hour":500, "minute":20},
         "protocols": ["tcp", "tls"],
         "enabled": true,
-        "tags": ["admin", "high-priority", "critical"]
+        "tags": ["admin", "high-priority", "critical"],
+        "ordering": {"after":["plugin-name"]}
     }],
 
 certificate_body: |
     Attributes | Description
     ---:| ---
-    `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format). 
-    `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format). 
-    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format). 
-    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format). 
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
+    `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
 
 certificate_json: |
     {
@@ -303,7 +307,7 @@ ca_certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate of the CA.
     `cert_digest`<br>*optional* | SHA256 hex digest of the public certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
 
 ca_certificate_json: |
     {
@@ -333,7 +337,7 @@ sni_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the SNIs for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the SNIs for grouping and filtering.
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use "`"certificate":{"id":"<certificate id>"}`.
 
 sni_json: |
@@ -399,7 +403,7 @@ upstream_body: |
     `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Default: `"/"`.
     `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Default: `0`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering.
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
     `client_certificate`<br>*optional* | If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
     `use_srv_name`<br>*optional* | If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream `Host`.
@@ -563,9 +567,9 @@ upstream_data: |
 target_body: |
     Attributes | Description
     ---:| ---
-    `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
+    `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.
     `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Default: `100`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Target for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Target for grouping and filtering.
 
 target_json: |
     {
@@ -597,11 +601,11 @@ target_data: |
 vault_body: |
     Attributes | Description
     ---:| ---
-    `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities. 
-    `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance. 
-    `description`<br>*optional* |  The description of the Vault entity. 
-    `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering. 
+    `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
+    `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
+    `description`<br>*optional* |  The description of the Vault entity.
+    `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
+    `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
 vault_json: |
     {
@@ -641,10 +645,10 @@ key_body: |
     ---:| ---
     `set`<br>*optional* |  The id (an UUID) of the key-set with which to associate the key. With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use "`"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}`.
     `name`<br>*optional* | The name to associate with the given keys.
-    `kid` |  A unique identifier for a key. 
-    `jwk`<br>*optional* |  A JSON Web Key represented as a string. 
-    `pem`<br>*optional* |  A keypair in PEM format. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Key for grouping and filtering. 
+    `kid` |  A unique identifier for a key.
+    `jwk`<br>*optional* |  A JSON Web Key represented as a string.
+    `pem`<br>*optional* |  A keypair in PEM format.
+    `tags`<br>*optional* |  An optional set of strings associated with the Key for grouping and filtering.
 
 key_json: |
     {
@@ -695,7 +699,7 @@ key_set_body: |
     Attributes | Description
     ---:| ---
     `name`<br>*optional* | The name to associate with the given key-set.
-    `tags`<br>*optional* |  An optional set of strings associated with the Key for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Key for grouping and filtering.
 
 key_set_json: |
     {
@@ -742,7 +746,8 @@ key_set_data: |
 ## DB-less Mode
 
 
-In [DB-less mode](../reference/db-less-and-declarative-config), the Admin API can be used to load a new declarative
+In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config),
+the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
 of that particular Kong node. This is the case because there is no database
@@ -789,7 +794,7 @@ are erased from memory, and the entities specified in the
 given file take their place.
 
 To learn more about the file format, see the
-[declarative configuration](../reference/db-less-and-declarative-config) documentation.
+[declarative configuration](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
 
 
 <div class="endpoint post indent">/config</div>
@@ -1241,7 +1246,7 @@ HTTP 200 OK
   * `id`: The ordinal number of the current Nginx worker processes (starting from number 0).
   * `count`: The total number of the Nginx worker processes.
 * `stats.flamegraph`: String-encoded timer-related flamegraph data.
-  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph svgs.
+  You can use [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph) to generate flamegraph SVGs.
 * `stats.sys`: List the number of different type of timers.
   * `running`: number of running timers.
   * `pending`: number of pending timers.
@@ -2008,17 +2013,6 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
 
-
-##### Delete Service Associated to a Specific Route
-
-<div class="endpoint delete indent">/routes/{route name or id}/service</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be deleted.
-
-
 #### Response
 
 ```
@@ -2051,7 +2045,9 @@ following attributes must be set:
 * For `tls`, at least one of `sources`, `destinations` or `snis`;
 * For `tls_passthrough`, set `snis`;
 * For `grpc`, at least one of `hosts`, `headers` or `paths`;
-* For `grpcs`, at least one of `hosts`, `headers`, `paths` or `snis`.
+* For `grpcs`, at least one of `hosts`, `headers`, `paths` or `snis`;
+* For `ws`, at least one of `hosts`, `headers` or `paths`; <span class="badge enterprise"></span>
+* For `wss`, at least one of `hosts`, `headers`, `paths` or `snis`. <span class="badge enterprise"></span>
 
 A route can't have both `tls` and `tls_passthrough` protocols at same time.
 
@@ -2064,18 +2060,18 @@ The router adds:
 
 Learn more about the router:
 
-[Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
-[Router Expressions language reference](/gateway/3.0.x/reference/router-expressions-language/)
+[Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
+[Router Expressions language reference](/gateway/{{page.kong_version}}/reference/router-expressions-language/)
 
 
 #### Path handling algorithms
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will not be configurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
-> will support path_handling `"v1'` behavior.
+> will support `path_handling` `"v1'` behavior.
 
 `"v0"` is the behavior used in Kong 0.x, 2.x and 3.x. It treats `service.path`, `route.path` and request path as
 *segments* of a URL. It will always join them via slashes. Given a service path `/s`, route path `/r`
@@ -3960,17 +3956,6 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
-
-##### Retrieve Upstream Associated to a Specific Target
-
-<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
-
-
 #### Response
 
 ```
@@ -4010,17 +3995,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
-
-
-##### Update Upstream Associated to a Specific Target
-
-<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
-
 
 #### Request Body
 
@@ -4066,17 +4040,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
-
-
-##### Create Or Update Upstream Associated to a Specific Target
-
-<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
-
 
 #### Request Body
 
@@ -4135,16 +4098,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
-
-
-##### Delete Upstream Associated to a Specific Target
-
-<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
 
 
 #### Response
@@ -5354,7 +5307,7 @@ HTTP 204 No Content
 
 [clustering]: /gateway/{{page.kong_version}}/reference/clustering
 [cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/reference/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/reference/health-checks-circuit-breakers
-[secure-admin-api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/reference/proxy
+[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
+[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
