@@ -55,7 +55,7 @@ params:
 
 ## Manage keys and Key Sets
 
-For more information, see [Key and Key Set Management in Kong Gateway](/gateway/{{page.kong_version}}/reference/key-management/).
+For more information, see [Key and Key Set Management in Kong Gateway](/gateway/latest/reference/key-management/).
 
 
 ## Supported Content Encryption Algorithms
