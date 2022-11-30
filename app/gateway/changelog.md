@@ -22,6 +22,7 @@ no_version: true
   [#9744](https://github.com/Kong/kong/pull/9744)
 - Added support for HashiCorp Vault backends to retrieve a vault token from a Kubernetes service account.
 - Added support for the `keys` and `key-sets` entities. These are used for managing asymmetric keys in various formats (JWK, PEM). For more information, see [Key management](/gateway/latest/reference/key-management/). [#9737](https://github.com/Kong/kong/pull/9737)
+- Added support for “Kubernetes” authentication method when using Hashicorp Vault backend for secret references, or for Keyring strategy.
 
 ### Kong Manager
 
@@ -31,7 +32,10 @@ no_version: true
   - More authorization variables have been added to the **Authorization** tab.
   - The Kong Manager overview tab has been optimized for performance.
   - You can now configure vaults for managing secrets through Kong Manager.
-
+  - Added support for secrets management.
+  - Added support for interfacing with dynamic plugin ordering.
+  - Added the ability to view details about certificates.
+  - Added tooltips to plugin UI.
 ### Hybrid Mode
 
 - Data plane node IDs will now persist across restarts.
@@ -183,6 +187,12 @@ no_version: true
 ### Kong Manager
 
 - Added logging for all Kong Manager access logs. 
+- Fixed an issue where the **New Workspace** button was unusable occasionally.
+- Fixed the name display of plugin configurations in Kong Manager.
+- Fixed an issue where some items were missing from the suggestion list when there are many items present.
+- Remove the deprecated Vitals Reports feature from Kong Manager.
+- Fixed an issue where admins with permissions to scoped entites could not perform operations as expected.
+- Fixed an issue where admins with `/admins` permission were forced to logout after signing in. 
 ### CLI
 
 - Fix slow CLI performance due to pending timer jobs
@@ -202,7 +212,15 @@ no_version: true
 - Paging size parameter is now propogated to next page if specified
   in current request.
   [#9503](https://github.com/Kong/kong/pull/9503)
-
+- Fixed an issue where Admin GUI logs were not stored in the correct log file.
+- Fixed an issue where the RBAC token was not re-hashed after an update on the user_token field.
+- Fixed an issue where Kong was unable to start in free enterprise mode while using vault.
+- Updated the response body for `TRACE` method request.
+- Fixed the health status of target with weight=0 reported via endpoint of `/upstreams/<upstream>/health` from `HEALTHY` to `HEALTHCHECK_OFF`. 
+- Fixed the status code from 500 to 200 from admin api when database is down.
+- Fixed an issue when passing a license from the CP to the DP using the Admin API (`/licenses`).
+- Fix entity validation fails when license entity is not processed first.
+- Remove `/oas-config` from Admin API 
 ### PDK
 
 - Added support for `kong.request.get_uri_captures`
