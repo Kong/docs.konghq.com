@@ -13,11 +13,18 @@ no_version: true
 
 - You can now specify the namespaces of HashiCorp Vaults for secrets management.
 
-- Added support for the `Kubernetes` authentication method when using the
-HashiCorp Vault backend for secret references or for keyring encryption.
+- Added support for HashiCorp Vault backends to retrieve a vault token from a
+Kubernetes service account. See the following configuration parameters:
+  - [`keyring_vault_auth_method`](/gateway/latest/reference/configuration/#keyring_vault_auth_method)
+  - [`keyring_vault_kube_role`](/gateway/latest/reference/configuration/#keyring_vault_kube_role)
+  - [`keyring_vault_kube_api_token_file`](/gateway/latest/reference/configuration/#keyring_vault_kube_api_token_file)
+
+- FIPS 140-2 packages:
+  - Kong Gateway Enterprise now provides a [FIPS 140-2 compliant package for Red Hat Enterprise 8](/gateway/latest/kong-enterprise/fips-support).
+  - All out of the box Kong plugins are now supported in the Ubuntu 20.04 and RHEL 8 FIPS-compliant packages.
 
 - **Kong Manager**:
-  - You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addtion, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
+  - You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addition, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
   - You can now create consumer groups in Kong Manager. This allows you to define any number of rate limiting tiers and apply them to subsets of consumers instead of managing each consumer individually. For more information, see [Create Consumer Groups in Kong Manager](/gateway/latest/kong-manager/consumer-groups/).
   - You can now add `key-auth-enc` credentials to a consumer.
   - OpenID Connect plugin: More authorization variables have been added to the **Authorization** tab.
@@ -33,37 +40,38 @@ HashiCorp Vault backend for secret references or for keyring encryption.
   more options for page sizes.
 
 ### Core
-- Allow `kong.conf` ssl properties to be stored in vaults or environment
+- Allow `kong.conf` SSL properties to be stored in vaults or environment
   variables. Allow such properties to be configured directly as content
   or base64 encoded content.
   [#9253](https://github.com/Kong/kong/pull/9253)
-- Added support for full entity transformations in schemas
+- Added support for full entity transformations in schemas.
   [#9431](https://github.com/Kong/kong/pull/9431)
-- Allow schema `map` type field being marked as referenceable.
+- The schema `map` type field can now be marked as referenceable.
   [#9611](https://github.com/Kong/kong/pull/9611)
-- Added support for dynamically changing the log level
+- Added support for dynamically changing the log level.
   [#9744](https://github.com/Kong/kong/pull/9744)
-- Added support for HashiCorp Vault backends to retrieve a vault token from a Kubernetes service account.
-- Added support for the `keys` and `key-sets` entities. These are used for managing asymmetric keys in various formats (JWK, PEM). For more information, see [Key management](/gateway/latest/reference/key-management/). [#9737](https://github.com/Kong/kong/pull/9737)
-- Added support for “Kubernetes” authentication method when using Hashicorp Vault backend for secret references, or for Keyring strategy.
+- Added support for the `keys` and `key-sets` entities. These are used for
+managing asymmetric keys in various formats (JWK, PEM). For more information,
+see [Key management](/gateway/latest/reference/key-management/).
+[#9737](https://github.com/Kong/kong/pull/9737)
 
 ### Hybrid Mode
 
 - Data plane node IDs will now persist across restarts.
   [#9067](https://github.com/Kong/kong/pull/9067)
-- Add HTTP CONNECT forward proxy support for Hybrid Mode connections. New configuration
+- Added HTTP CONNECT forward proxy support for hybrid mode connections. New configuration
   options `cluster_use_proxy`, `proxy_server` and `proxy_server_ssl_verify` are added.
   [#9758](https://github.com/Kong/kong/pull/9758)
   [#9773](https://github.com/Kong/kong/pull/9773)
 
 ### Performance
 
-- Data plane's connection to control plane is moved to a privileged worker process
+- Data plane's connection to control plane is moved to a privileged worker process.
   [#9432](https://github.com/Kong/kong/pull/9432)
-- Increase the default value of `lua_regex_cache_max_entries`, a warning will be thrown
+- Increase the default value of `lua_regex_cache_max_entries`. A warning will be thrown
   when there are too many regex routes and `router_flavor` is `traditional`.
   [#9624](https://github.com/Kong/kong/pull/9624)
-- Add batch queue into the Datadog and StatsD plugin to reduce timer usage.
+- Add batch queue into the Datadog and StatsD plugins to reduce timer usage.
   [#9521](https://github.com/Kong/kong/pull/9521)
 
 ### PDK
@@ -82,7 +90,7 @@ HashiCorp Vault backend for secret references or for keyring encryption.
 - [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`)
   - Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification.
 - [**SAML**](/hub/kong-inc/saml) (`saml`)
-  - Provides SAML v2.0 authentication and authorization between a service provider (Kong) and an identity provider (IdP).
+  - Provides SAML v2.0 authentication and authorization between a service provider (Kong Gateway) and an identity provider (IdP).
 - [**XML Threat Protection**](/hub/kong-inc/xml-threat-protection) (`xml-threat-protection`)
   - This new plugin allows you to reduce the risk of XML attacks by checking the structure of XML payloads. This validates maximum complexity (depth of the tree), maximum size of elements and attributes.
 
@@ -215,7 +223,6 @@ Previously, the `upstreams/<upstream>/health` endpoint was incorrectly reporting
   the license entity was not processed first.
 - Fixed a Websockets issue with redirects. Now, Kong Gateway redirects `ws`
 requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
-
 - **Kong Manager**:
   - Added logging for all Kong Manager access logs.
   - Fixed an issue where the **New Workspace** button was occasionally unusable.
@@ -235,15 +242,15 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
 - Fixed an issue where external plugins crashing with unhandled exceptions
   would cause high CPU utilization after the automatic restart.
   [#9384](https://github.com/Kong/kong/pull/9384)
-- Add `use_srv_name` options to upstream for balancer.
+- Added `use_srv_name` options to upstream for balancer.
   [#9430](https://github.com/Kong/kong/pull/9430)
-- Fix issue in `header_filter` instrumentation where the span was not
+- Fixed an issue in `header_filter` instrumentation where the span was not
   correctly created.
   [#9434](https://github.com/Kong/kong/pull/9434)
-- Fix issue in router building in `traditional_compatible` mode.
+- Fixed an issue in router building in `traditional_compatible` mode.
   When the field contained an empty table, the generated expression was invalid.
   [#9451](https://github.com/Kong/kong/pull/9451)
-- Fix issue in router rebuilding where when paths field is invalid,
+- Fixed an issue in router rebuilding where when the `paths` field is invalid,
   the router's mutex is not released properly.
   [#9480](https://github.com/Kong/kong/pull/9480)
 - Fixed an issue where `kong docker-start` would fail if `KONG_PREFIX` was set to
@@ -251,19 +258,20 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
   [#9337](https://github.com/Kong/kong/pull/9337)
 - Fixed an issue with error-handling and process cleanup in `kong start`.
   [#9337](https://github.com/Kong/kong/pull/9337)
-- Fixed issue with prefix path normalization. [#9760](https://github.com/Kong/kong/pull/9760)
+- Fixed issue with prefix path normalization.
+  [#9760](https://github.com/Kong/kong/pull/9760)
 - Increased the maximum request argument number of the Admin API from 100 to 1000.
   The Admin API now returns a `400` error if request parameters reach the
   limitation instead of truncating any parameters over the limit.
   [#9510](https://github.com/Kong/kong/pull/9510)
-- Paging size parameter is now propogated to next page if specified
+- Paging size parameter is now propagated to next page if specified
   in current request.
   [#9503](https://github.com/Kong/kong/pull/9503)
 
 ### Hybrid Mode
 
-- Fixed a race condition that can cause configuration push events to be dropped
-  when the first data-plane connection is established with a control plane
+- Fixed a race condition that could cause configuration push events to be dropped
+  when the first data plane connection was established with a control plane
   worker.
   [#9616](https://github.com/Kong/kong/pull/9616)
 
@@ -280,8 +288,8 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
 - Fixed parameter type of `kong.service.request.set_raw_body`
   (`kong.service.request.setRawBody`), return type of
   `kong.service.response.get_raw_body`(`kong.service.request.getRawBody`),
-  and body parameter type of `kong.response.exit` to bytes. Note that old
-  version of go PDK is incompatible after this change.
+  and body parameter type of `kong.response.exit` to bytes. Note that the old
+  version of the go PDK is incompatible after this change.
   [#9526](https://github.com/Kong/kong/pull/9526)
 
 ### Plugins
