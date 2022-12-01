@@ -269,13 +269,16 @@ params:
       description: The maximum size of each cookie in bytes.
     - group: Session Settings
     - name: session_secret
-      required: false
-      default: auto-generated
+      required: true
       datatype: string
       encrypted: true
       referenceable: true
       description: |
-        The session secret.  This value is auto-generated if no value is set.
+        The session secret.  This must be a (random) string of 32
+        characters from the base64 alphabet (letters, numbers, /, _
+        and +).  It is used as the secret key for encrypting session
+        data as well as state information that is sent to the IdP in
+        the authentication exchange.
     - name: session_strategy
       required: false
       default: default
