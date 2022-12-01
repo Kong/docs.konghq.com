@@ -124,12 +124,12 @@ see [Key management](/gateway/latest/reference/key-management/).
   - `x_headers` field added. This field indicates how the plugin handles the headers
   `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
 
-    The field should be set to one of the below and is default to "append":
-    - `append`: append information of this hop to those headers;
-    - `transparent`: leave those headers unchanged, as if we were not a proxy;
-    - `delete`: remove all those headers, as if we were the originating client.
+    The field can take one of the following options:
+    - `append`: append information from this hop in the chain to those headers. This is the default setting.
+    - `transparent`: leave the headers unchanged, as if the the Kong Gateway was not a proxy.
+    - `delete`: remove all the headers, as if the Kong Gateway was the originating client.
 
-    Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
+    Note that all options respect the trusted IP setting, and will ignore headers from the last hop in the chain if they are not from clients with trusted IPs.
 
 - [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)
   - Added the `included_status_codes` and `random_status_code` fields. These allow you to configure the HTTP status codes for the plugin.
