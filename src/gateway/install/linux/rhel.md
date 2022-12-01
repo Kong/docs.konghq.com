@@ -29,6 +29,10 @@ Install {{site.base_gateway}} on RHEL from the command line.
 ```bash
 curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel%{rhel}.amd64.rpm")
 ```
+For the FIPS package (only supported in RHEL 8):
+```
+curl -Lo kong-enterprise-edition-fips-{{page.versions.ee}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-fips-{{page.versions.ee}}.rhel%{rhel}.amd64.rpm")
+```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
@@ -92,6 +96,10 @@ Install the YUM repository from the command line.
 {% navtab Kong Gateway %}
 ```bash
 sudo yum install kong-enterprise-edition-{{page.versions.ee}}
+```
+For the FIPS package (only supported in RHEL 8):
+```
+sudo yum install kong-enterprise-edition-fips-{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}

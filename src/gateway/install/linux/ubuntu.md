@@ -36,6 +36,10 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 ```bash
 curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb"
 ```
+For the FIPS package (only supported in Ubuntu 20.04 and Ubuntu 22.04):
+```
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition-fips/kong-enterprise-edition-fips_{{page.versions.ee}}_amd64.deb"
+```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
@@ -117,6 +121,10 @@ Install the APT repository from the command line.
 {% navtab Kong Gateway %}
 ```bash
 sudo apt install -y kong-enterprise-edition={{page.versions.ee}}
+```
+For the FIPS package (only supported in Ubuntu 20.04 and Ubuntu 22.04):
+```
+sudo apt install -y kong-enterprise-edition-fips={{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
