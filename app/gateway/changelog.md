@@ -367,10 +367,10 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
 
 ### Hybrid mode
 
-- The legacy hybrid configuration protocol has been removed in favor of the wRPC
-  protocol introduced in 3.0.
+- The legacy hybrid configuration protocol has been removed in favor of the wRPC protocol 
+introduced in 3.0.0.0. Rolling upgrades from 2.8.x.y to 3.1.0.0 are not supported. 
+Operators must upgrade to 3.0.x.x before they can perform a rolling upgrade to 3.1.0.0. 
   [#9740](https://github.com/Kong/kong/pull/9740)
-
 
 ## 3.0.1.0
 **Release Date** 2022/11/02
