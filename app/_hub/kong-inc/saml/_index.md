@@ -274,7 +274,7 @@ params:
       encrypted: true
       referenceable: true
       description: |
-        The session secret.  This must be a (random) string of 32
+        The session secret. This must be a random string of 32
         characters from the base64 alphabet (letters, numbers, /, _
         and +).  It is used as the secret key for encrypting session
         data as well as state information that is sent to the IdP in
