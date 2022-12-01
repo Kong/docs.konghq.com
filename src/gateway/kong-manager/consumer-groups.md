@@ -87,11 +87,3 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
     1. config.retry_after_jitter_max: `0`
 1. Click **Save**.
 
-## Validate consumer group rate limiting
-
-1. Enter `https://localhost:8000/mock` in your browser address bar, then refresh your browser six times.
-    After the 6th request, you’ll receive an error message.
-
-1. Wait at least 30 seconds and try again.
-    The service will be accessible until the sixth (6th) access attempt within a 30-second window.
-
