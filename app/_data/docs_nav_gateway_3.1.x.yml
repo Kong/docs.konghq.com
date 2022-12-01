@@ -151,6 +151,8 @@ items:
             url: /production/networking/dns-considerations
           - text: Network and Firewall
             url: /production/networking/firewall
+          - text: CP/DP Communication through a Forward Proxy
+            url: /production/networking/cp-dp-proxy
       - text: Kong Configuration File
         url: /production/kong-conf
       - text: Environment Variables
