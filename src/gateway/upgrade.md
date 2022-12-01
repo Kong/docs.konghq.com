@@ -21,10 +21,8 @@ The upgrade to 3.0.x is a **major** upgrade.
 The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
 
 {:.important}
-> **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
-The upcoming 2.8.2 release will include blue-green migration support. If you want
-to perform migrations for traditional mode with no downtime, please wait for the upcoming 2.8.2 patch release,
-upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
+> **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported. The upcoming 2.8.2 release will include blue-green migration support. If you want
+to perform migrations for traditional mode with no downtime, please upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
 
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
@@ -51,9 +49,12 @@ Amazon Linux 1 and Debian 8 (Jessie) containers and packages are deprecated and 
 #### Blue-green deployments
 
 **Traditional mode**: Blue-green upgrades from versions of 2.8.1 and below to 3.0.0 are not currently supported.
-This is a known issue planned to be fixed in the next 2.8 release. When that version is released, 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
+This is fixed in the 2.8.2 release. 2.x users should upgrade to that version before beginning a blue-green upgrade to 3.0.
 
 **Hybrid mode**: See the [upgrade instructions](#migrate-db) below.
+
+{:.important}
+> **Important**: The legacy hybrid configuration protocol has been removed in favor of [the wRPC protocol introduced in 3.0.0.0](/gateway/changelog/#hybrid-mode). Strictly speaking, this is not a breaking change, but it does have the side effect that rolling upgrades from 2.8.x.y to 3.1.0.0 are not supported. You must upgrade to 3.0.x.y before you can perform a rolling upgrade to 3.1.0.0.  
 
 ### Dependencies
 
@@ -418,9 +419,6 @@ Once you have migrated to 2.8.x, you can follow the instructions in the section
 below to migrate to 3.0.x.
 
 ### Upgrade from 2.8.x (x>=2) to 3.0.x for traditional mode
-
-{:.note}
-> These instructions will only work once 2.8.2 is available.
 
 1. Clone your database.
 2. Download 3.0.x, and configure it to point to the cloned data store.
