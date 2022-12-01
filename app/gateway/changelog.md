@@ -23,7 +23,7 @@ Kubernetes service account. See the following configuration parameters:
   - Kong Gateway Enterprise now provides [FIPS 140-2 compliant packages for Red Hat Enterprise 8 and Ubuntu 22.04](/gateway/latest/kong-enterprise/fips-support).
   - All out of the box Kong plugins are now supported in the Ubuntu and RHEL 8 FIPS-compliant packages.
 
-- You can now [delete consumer group configurations](src/gateway/kong-enterprise/consumer-groups/#delete-consumer-group-configurations)
+- You can now [delete consumer group configurations](/gateway/latest/kong-enterprise/consumer-groups/#delete-consumer-group-configurations)
  without deleting the group or the consumers in it.
 
 - **Kong Manager**:
@@ -34,7 +34,7 @@ Kubernetes service account. See the following configuration parameters:
   - The Kong Manager overview tab has been optimized for performance.
   - You can now configure vaults for managing secrets through Kong Manager.
     Use the new Vaults menu to set up and manage any vaults that Kong Gateway supports.
-    See the [Vault Backends references](/gateway/latest/kong-enteprise/secrets-management/backends/)
+    See the [Vault Backends references](/gateway/latest/kong-enterprise/secrets-management/backends/)
     for descriptions of all the configuration options.
   - Added support for interfacing with dynamic plugin ordering.
   - Added the ability to view details about certificates.
@@ -64,6 +64,7 @@ see [Key management](/gateway/latest/reference/key-management/).
   [#9067](https://github.com/Kong/kong/pull/9067)
 - Added HTTP CONNECT forward proxy support for hybrid mode connections. New configuration
   options `cluster_use_proxy`, `proxy_server` and `proxy_server_ssl_verify` are added.
+  For more information, see [CP/DP Communication through a Forward Proxy](/gateway/latest/production/networking/cp-dp-proxy/).
   [#9758](https://github.com/Kong/kong/pull/9758)
   [#9773](https://github.com/Kong/kong/pull/9773)
 
@@ -140,13 +141,13 @@ see [Key management](/gateway/latest/reference/key-management/).
     - All HTTP codes
     - `$ref`
 
-- [mTLS Authentication](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+- [**mTLS Authentication**](/hub/kong-inc/mtls-auth) (`mtls-auth`)
   - Added the `config.send_ca_dn` configuration parameter to support sending CA
-   DNs in the `CertificateRequest` Message during SSL handshakes.
+   DNs in the `CertificateRequest` message during SSL handshakes.
   - Added the `allow_partial_chain` configuration parameter to allow certificate verification with only an intermediate certificate.
 
 - [**OPA**](/hub/kong-inc/opa/) (`OPA`)
-  - Added the `include_uri_captures_in_opa_input` field. When this field is set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
+  - Added the `include_uri_captures_in_opa_input` field. When this field is set to true, the [regex capture groups](/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway route's path field in the current request (if any) are included as input to OPA.
 
 - [**Proxy Cache**](/hub/kong-inc/proxy-cache/) (`proxy-cache`)
   - Added support for integrating with Redis clusters through the `config.redis.cluster_addresses` configuration property.
@@ -172,8 +173,8 @@ see [Key management](/gateway/latest/reference/key-management/).
 - [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
   - Added support for Redis SSL through configuration properties
   `redis_ssl` (can be set to `true` or `false`), `ssl_verify`, and `ssl_server_name`.
-  [#8595](https://github.com/Kong/kong/pull/8595)
-  Thanks [@dominikkukacka](https://github.com/dominikkukacka)!
+   Thanks, [@dominikkukacka](https://github.com/dominikkukacka)!
+   [#8595](https://github.com/Kong/kong/pull/8595)
 
 - [**Route Transformer Advanced**](/hub/kong-inc/route-transformer-advanced/) (`route-transformer-advanced`)
   - Added the `config.escape_path` configuration parameter, which lets you
@@ -182,7 +183,8 @@ see [Key management](/gateway/latest/reference/key-management/).
 - [**Session**](/hub/kong-inc/session/) (`session`)
   - Added new config `cookie_persistent`, which allows the browser to persist
   cookies even if the browser is closed. This defaults to `false` which means
-  cookies are not persisted across browser restarts. Thanks [@tschaume](https://github.com/tschaume)
+  cookies are not persisted across browser restarts. 
+  Thanks [@tschaume](https://github.com/tschaume)
   for this contribution!
   [#8187](https://github.com/Kong/kong/pull/8187)
 
@@ -308,7 +310,7 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
   now results in a more obvious error log entry with a `502` code.
   [#9598](https://github.com/Kong/kong/pull/9598)
 
-* [Azure Functions](/hub/kong-inc/azure-functions/) (`azure-functions`)
+* [**Azure Functions**](/hub/kong-inc/azure-functions/) (`azure-functions`)
   * Fixed an issue where calls made by this plugin would fail in the following situations:
     * The plugin was associated with a route that had no service.
     * The route's associated service had a `path` value.
@@ -336,10 +338,10 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
     on the span when propagating w3c traceparent.
     [#9628](https://github.com/Kong/kong/pull/9628)
 
-- [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced) (`proxy-cached-advanced`)
+- [**Proxy Cache Advanced**](/hub/kong-inc/proxy-cache-advanced) (`proxy-cached-advanced`)
   - The plugin now catches the error when Kong Gateway connects to Redis SSL port `6379` with `config.ssl=false`.
 
-- [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+- [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
   - The plugin now ensures that shared dict TTL is higher than `config.sync_rate`, otherwise Kong Gateway would lose all request counters in shared dict.
 
 - [**Request Transformer**](/hub/kong-inc/request-transformer/) (`request-transformer`)
@@ -349,6 +351,7 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
 
 - [**Request Termination**](/hub/kong-inc/request-termination/) (`request-termination`)
   - The plugin no longer allows setting `status_code` to `null`.
+  [#9400](https://github.com/Kong/kong/pull/9400)
 
 - [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`)
   - Fixed the bug that the plugin would break when receiving an unexpected body.
