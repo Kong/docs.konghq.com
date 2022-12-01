@@ -23,6 +23,9 @@ Kubernetes service account. See the following configuration parameters:
   - Kong Gateway Enterprise now provides a [FIPS 140-2 compliant package for Red Hat Enterprise 8](/gateway/latest/kong-enterprise/fips-support).
   - All out of the box Kong plugins are now supported in the Ubuntu 20.04 and RHEL 8 FIPS-compliant packages.
 
+- You can now [delete consumer group configurations](src/gateway/kong-enterprise/consumer-groups/#delete-consumer-group-configurations)
+ without deleting the group or the consumers in it.
+
 - **Kong Manager**:
   - You can now configure the base path for Kong Manager, for example: `localhost:8445/manager`. This allows you to proxy all traffic through {{site.base_gateway}}. For example, you can proxy both API and Kong Manager traffic from one port. In addition, using the new Kong Manager base path allows you to add plugins to control access to Kong Manager. For more information, see [Enable Kong Manager](/gateway/latest/kong-manager/enable/).
   - You can now create consumer groups in Kong Manager. This allows you to define any number of rate limiting tiers and apply them to subsets of consumers instead of managing each consumer individually. For more information, see [Create Consumer Groups in Kong Manager](/gateway/latest/kong-manager/consumer-groups/).
