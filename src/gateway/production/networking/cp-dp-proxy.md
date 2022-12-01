@@ -1,5 +1,6 @@
 ---
 title: Control Plane and Data Plane Communication through a Forward Proxy
+content_type: reference
 ---
 
 If your control plane and data planes run on different sides of a firewall
@@ -7,7 +8,7 @@ that runs external communications through a proxy, you can configure
 {{site.base_gateway}} to authenticate with the proxy server and allow
 traffic through.
 
-{{site.base_gateway}} only supports HTTP CONNECT proxies.
+{{site.base_gateway}} only supports [HTTP CONNECT](https://httpwg.org/specs/rfc9110.html#CONNECT) proxies. 
 
 {:.important}
 > This feature does not support mTLS termination.
@@ -31,14 +32,14 @@ only use this option if any component is explicitly configured to use the proxy.
 `proxy_server` is in HTTPS. Set to `on` if using HTTPS (default), or `off` if
 using HTTP.
 
-* `lua_ssl_trusted_certificate` (*Optional*): If using HTTPS, you can also
-specify a custom certificate authority with `lua_ssl_trusted_certificate`. If
-using the [system default CA](src/gateway/reference/configuration/#lua_ssl_trusted_certificate),
-you don't need to change this value.
-
 * `cluster_use_proxy`: Tell the cluster to use HTTP CONNECT proxy support for
 hybrid mode connections. If turned on, {{site.base_gateway}} will use the
 URL defined in `proxy_server` to connect.
+
+* `lua_ssl_trusted_certificate` (*Optional*): If using HTTPS, you can also
+specify a custom certificate authority with `lua_ssl_trusted_certificate`. If
+using the [system default CA](/gateway/reference/configuration/#lua_ssl_trusted_certificate),
+you don't need to change this value.
 
 Reload {{site.base_gateway}} for the connection to take effect:
 
