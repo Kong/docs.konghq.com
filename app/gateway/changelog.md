@@ -22,6 +22,7 @@ Kubernetes service account. See the following configuration parameters:
 - FIPS 140-2 packages:
   - Kong Gateway Enterprise now provides [FIPS 140-2 compliant packages for Red Hat Enterprise 8 and Ubuntu 22.04](/gateway/latest/kong-enterprise/fips-support).
   - All out of the box Kong plugins are now supported in the Ubuntu and RHEL 8 FIPS-compliant packages.
+  - Kong Gateway FIPS distributions now support TLS connections to the PostgreSQL database.
 
 - You can now [delete consumer group configurations](/gateway/latest/kong-enterprise/consumer-groups/#delete-consumer-group-configurations)
  without deleting the group or the consumers in it.
