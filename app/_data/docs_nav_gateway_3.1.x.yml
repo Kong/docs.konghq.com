@@ -399,6 +399,8 @@ items:
         url: /kong-manager/networking
       - text: Workspaces
         url: /kong-manager/workspaces
+      - text: Create Consumer Groups
+        url: /kong-manager/consumer-groups
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
 
