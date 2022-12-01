@@ -20,8 +20,8 @@ Kubernetes service account. See the following configuration parameters:
   - [`keyring_vault_kube_api_token_file`](/gateway/latest/reference/configuration/#keyring_vault_kube_api_token_file)
 
 - FIPS 140-2 packages:
-  - Kong Gateway Enterprise now provides a [FIPS 140-2 compliant package for Red Hat Enterprise 8](/gateway/latest/kong-enterprise/fips-support).
-  - All out of the box Kong plugins are now supported in the Ubuntu 20.04 and RHEL 8 FIPS-compliant packages.
+  - Kong Gateway Enterprise now provides [FIPS 140-2 compliant packages for Red Hat Enterprise 8 and Ubuntu 22.04](/gateway/latest/kong-enterprise/fips-support).
+  - All out of the box Kong plugins are now supported in the Ubuntu and RHEL 8 FIPS-compliant packages.
 
 - You can now [delete consumer group configurations](src/gateway/kong-enterprise/consumer-groups/#delete-consumer-group-configurations)
  without deleting the group or the consumers in it.
