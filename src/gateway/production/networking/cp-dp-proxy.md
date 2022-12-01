@@ -32,7 +32,7 @@ only use this option if any component is explicitly configured to use the proxy.
 `proxy_server` is in HTTPS. Set to `on` if using HTTPS (default), or `off` if
 using HTTP.
 
-* `cluster_use_proxy`: Tell the cluster to use HTTP CONNECT proxy support for
+* `cluster_use_proxy`: Tells the cluster to use HTTP CONNECT proxy support for
 hybrid mode connections. If turned on, {{site.base_gateway}} will use the
 URL defined in `proxy_server` to connect.
 
