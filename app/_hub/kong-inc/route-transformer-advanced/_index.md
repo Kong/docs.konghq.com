@@ -44,7 +44,7 @@ params:
       default: false
       description: |
         If set to true, the path is escaped after being transformed.
-      minimum_version: "3.1.0"
+      minimum_version: "3.1.x"
 ---
 
 _NOTE_: The advanced label is only attached because this is an Enterprise-only
