@@ -5195,21 +5195,12 @@ Attributes | Description
 
  ``` json
 {
-   "data": [
-     {
-       "id": "46CA83EE-671C-11ED-BFAB-2FE47512C77A",
-       "name": "my-key_set",
-       "tags": ["google-keys", "mozilla-keys"],
-       "created_at": 1422386534,
-       "updated_at": 1422386534
-   }, {
-       "id": "57532ECE-6720-11ED-9297-279D4320B841",
-       "name": "my-key_set",
-       "tags": ["production", "staging", "development"],
-       "created_at": 1422386534,
-       "updated_at": 1422386534
-   }]
- }
+  "id": "46CA83EE-671C-11ED-BFAB-2FE47512C77A",
+  "name": "my-key_set",
+  "tags": ["google-keys", "mozilla-keys"],
+  "created_at": 1422386534,
+  "updated_at": 1422386534
+}
  ```
 
 
