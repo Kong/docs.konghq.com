@@ -2,7 +2,6 @@
 title: Supported Kong Router Flavors
 ---
 
-## Supported Kong Router Flavors
 
 {{site.base_gateway}} (open-source and enterprise edition) includes an [expression-based router][gateway-expression-router] in versions 3.0 and later. 
 The router can be configured in the following [modes][gateway-router-flavor]:
