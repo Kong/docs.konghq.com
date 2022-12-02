@@ -438,9 +438,6 @@ Note that this endpoint purges all cache entities across all `proxy-cache-advanc
 
 ## Changelog
 
-**{{site.base_gateway}} 3.1.x**
-* Added support for integrating with redis clusters using the `config.redis.cluster_addresses` configuration parameter.
-
 **{{site.base_gateway}} 2.8.x**
 
 * Added the `redis.sentinel_username` and `redis.sentinel_password` configuration

@@ -23,14 +23,7 @@ Here are some of the things you can do with Kong Manager:
 
 ## Kong Manager interface
 
-{% if_version lte:3.0.x %}
-![Kong Manager interface](/assets/images/docs/gateway/km_workspace_3.0.png)
-{% endif_version %}
-
-{% if_version gte:3.1.x %}
-![Kong Manager interface](/assets/images/docs/gateway/km_workspace_3.1.png)
-{% endif_version %}
-
+![Kong Manager interface](/assets/images/docs/gateway/km_workspace.png)
 > Figure 1: Kong Manager individual workspace dashboard
 
 ### Top menu
@@ -52,26 +45,11 @@ Number | Item | Description
 8 | **Dev Portal** | Workspace-specific Dev Portal configuration. If you enable Dev Portal for the current workspace, the menu will have additional items: <br> &nbsp;&nbsp;&bull; Settings: General settings for the Dev Portal instance in this workspace <br> &nbsp;&nbsp;&bull; Appearance: Customize your Dev Portal colors, fonts, and branding <br> &nbsp;&nbsp;&bull; Developers: Manage developer requests and access <br> &nbsp;&nbsp;&bull; Applications: Manage application requests and access <br> &nbsp;&nbsp;&bull; Permissions: Manage roles and content permissions <br> &nbsp;&nbsp;&bull; Editor: Access the Dev Portal files editor to configure layouts, documentation, and specs
 9 | **Vitals** | Monitor requests by access code for all services in the workspace.
 
-{% if_version gte:3.1.x %}
-10 | **Vaults** | Manage secret vaults in your environment.
-{% endif_version %}
-
 ### Workspace dashboard
 
-{% if_version lte:3.0.x %}
 Number | Item | Description
 -------|------|------------
 10 | **Settings** | Edit the workspace avatar or delete the workspace.
 11 | **Overview panel** | Overview of key statistics for the workspace: number of services, consumers, and API requests, as well as the license validity information.
 12 | **Total traffic graph** | Total traffic in the workspace by status code within a selected time frame.
 13 | **Time frame selector** | Choose the time frame for the traffic graph, from the last 5 minutes to the last 12 hours.
-{% endif_version %}
-
-{% if_version gte:3.1.x %}
-Number | Item | Description
--------|------|------------
-11 | **Settings** | Edit the workspace avatar or delete the workspace.
-12 | **Overview panel** | Overview of key statistics for the workspace: number of services, consumers, and API requests, as well as the license validity information.
-13 | **Total traffic graph** | Total traffic in the workspace by status code within a selected time frame.
-14 | **Time frame selector** | Choose the time frame for the traffic graph, from the last 5 minutes to the last 12 hours.
-{% endif_version %}

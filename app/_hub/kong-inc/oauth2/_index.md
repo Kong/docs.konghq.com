@@ -34,10 +34,6 @@ params:
     - name: https
     - name: grpc
     - name: grpcs
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
   yaml_examples: false
   konnect_examples: false
   dbless_compatible: 'no'
@@ -129,18 +125,8 @@ params:
       required: false
       default: null
       datatype: string
-      description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request fails with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
-      minimum_version: "3.1.0"
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string      
       description: |
-        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
-        If empty (default), the request fails with an authentication failure `4xx`. Note that this value
-        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
-      maximum_version: "3.0.0"
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
     - name: global_credentials
       required: true
       default: '`false`'
@@ -332,14 +318,14 @@ You can use this information on your side to implement additional logic. You can
 ## OAuth 2.0 Flows
 
 ### Client Credentials
-
-The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow works out of the box, without building any authorization page.
+  
+The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow works out of the box, without building any authorization page. 
 The clients need to use the `/oauth2/token` endpoint to request an access token.  
-
+  
 You can access the `/oauth2/token` endpoint to retrieve the `access_token` in the following ways:
 
 * Using a POST request, set `Content-Type` to `application/x-www-form-urlencoded` and send the credentials as form data:
-
+    
     ```bash  
     curl -i -X POST 'https://example.service.com/oauth2/token' \
       --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -347,18 +333,18 @@ You can access the `/oauth2/token` endpoint to retrieve the `access_token` in th
       --data-urlencode 'client_secret=XXXX' \
       --data-urlencode 'grant_type=client_credentials'
     ```
-
+    
 * Using a POST request, set `_Content-Type` to `application/json` and send the credentials as a JSON body:
-
-    ```bash
+    
+    ```bash 
     curl -i -X POST 'https://example.service.com/oauth2/token' \
       --header 'Content-Type: application/json' \
       --data-raw '{ "client_id": "XXXXX", "client_secret": "XXXX", "grant_type": "client_credentials" }'
     ```
-
+    
 * Using a POST request, send the credentials in URL query parameters:
-
-    ```bash
+    
+    ```bash 
     curl -i -X POST 'https://example.service.com/oauth2/token?client_id=XXXX&client_secret=XXXX&grant_type=client_credentials'
     ```
 

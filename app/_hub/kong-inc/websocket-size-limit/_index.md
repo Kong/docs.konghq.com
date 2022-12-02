@@ -21,7 +21,8 @@ description: |
 
 kong_version_compatibility:
   enterprise_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
 
 cloud: true
 
@@ -35,13 +36,11 @@ params:
   route_id: true
   consumer_id: false
   dbless_compatible: 'yes'
-  protocols:
-    - name: ws
-    - name: wss
+  protocols: ["ws", "wss"]
   config:
     - name: client_max_payload
       required: semi
-      value_in_examples: 1024
+      value_in_examples: '''1024'''
       datatype: integer
       default: null
       encrypted: false
@@ -53,7 +52,7 @@ params:
         required.
     - name: upstream_max_payload
       required: semi
-      value_in_examples: 16384
+      value_in_examples: '''16384'''
       datatype: integer
       default: null
       encrypted: false

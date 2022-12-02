@@ -404,18 +404,3 @@ HTTP/1.1 201 Created
     "plugin": "rate-limiting-advanced"
 }
 ```
-
-## Delete the configurations for a consumer group
-
-Delete custom rate limiting settings for a consumer group. 
-<div class="endpoint delete">/consumer_groups/{GROUP_NAME|GROUP_ID}/overrides/plugins/rate-limiting-advanced</div>
-
-Attribute                             | Description
----------:                            | --------    
-`GROUP_NAME|GROUP_ID`<br>*required*   | The name or UUID of the consumer group to configure.
-
-**Response**
-
-```
-HTTP/1.1 204 No Content
-```

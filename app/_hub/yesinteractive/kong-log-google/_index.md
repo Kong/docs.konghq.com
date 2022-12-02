@@ -36,7 +36,7 @@ kong_version_compatibility:
       - 1.5.x
       - 1.3-x
 
-params:
+params: 
   name: kong-log-google
   api_id: false
     # boolean - whether this plugin can be applied to an API [[this needs more]]
@@ -49,9 +49,7 @@ params:
   route_id: true
     # whether this plugin can be applied to a Route.
     # Affects generation of examples and config table.
-  protocols:
-    - name: http
-    - name: https
+  protocols: ["http", "https"]
     # List of protocols this plugin is compatible with.
     # Valid values: "http", "https", "tcp", "tls"
     # Example: ["http", "https"]
@@ -61,7 +59,7 @@ params:
   dbless_explanation: Fully compatible with DB and DB-less (K8s, Declarative) Kong implementations.
     # Optional free-text explanation, usually containing details about the degree of
     # compatibility with DB-less.
-
+    
   config:
     - name: tid
       required: yes

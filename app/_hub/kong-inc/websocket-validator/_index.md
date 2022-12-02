@@ -22,7 +22,8 @@ description: |
 
 kong_version_compatibility:
   enterprise_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
 
 cloud: true
 
@@ -35,9 +36,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
-  protocols:
-    - name: ws
-    - name: wss
+  protocols: ["ws", "wss"]
   dbless_compatible: 'yes'
   config:
 

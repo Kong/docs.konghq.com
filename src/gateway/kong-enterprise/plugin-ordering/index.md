@@ -4,11 +4,11 @@ badge: enterprise
 content_type: explanation
 ---
 
-The order in which plugins are executed in {{site.base_gateway}} is determined by their
+The order in which plugins are executed in Kong is determined by their
 `static priority`. As the name suggests, this value is _static_ and can't be
  easily changed by the user.
 
-You can override the priority for any {{site.base_gateway}} plugin using each plugin's
+You can override the priority for any Kong plugin using each plugin's
 `ordering` field. This determines plugin ordering during the `access` phase,
 and lets you create _dynamic_ dependencies between plugins.
 
@@ -88,20 +88,11 @@ basic mistakes but it can't detect all potentially dangerous configurations.
 If using dynamic ordering, manually test all configurations, and handle this
 feature with care.
 
-{% if_version lte:3.0.x %}
 ### Kong Manager
 
 Kong Manager doesn't support dynamic plugin ordering configuration through the
 UI. Use the Kong Admin API or a declarative configuration file to set
 plugin ordering.
-{% endif_version %}
-
-{% if_version gte:3.1.x %}
-### Kong Manager
-
-Kong Manager also supports dynamic plugin ordering configuration through the
-UI. For more information, see [Get Started with Dynamic Plugin Ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/get-started)
-{% endif_version %}
 
 ## See also
 

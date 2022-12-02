@@ -32,10 +32,6 @@ params:
     - name: https
     - name: grpc
     - name: grpcs
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and credentials can be created with declarative configuration.
@@ -84,18 +80,10 @@ params:
       required: false
       default: null
       datatype: string
-      description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
-      minimum_version: "3.1.0"
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string
       description: |
-        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
-        If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
-        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
-      maximum_version: "3.0.0"
+        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails. If empty (default),
+        the request will fail with an authentication failure `4xx`. Note that this value
+        must refer to the consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
       required: false
       default: '`true`'
@@ -185,9 +173,9 @@ Response:
 HTTP/1.1 201 Created
 
 {
-    "consumer":
-       {
-           "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007"
+    "consumer": 
+       { 
+           "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007" 
            },
     "created_at": 1443371053000,
     "id": "62a7d3b7-b995-49f9-c9c8-bac4d781fb59",
@@ -209,7 +197,7 @@ HTTP/1.1 201 Created
 
 {
     "consumer": {
-      "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007"
+      "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007" 
     },
     "created_at": 1443371053000,
     "id": "62a7d3b7-b995-49f9-c9c8-bac4d781fb59",
@@ -334,24 +322,24 @@ Response:
          "id":"17ab4e95-9598-424f-a99a-ffa9f413a821",
          "created_at":1507941267000,
          "key":"Qslaip2ruiwcusuSUdhXPv4SORZrfj4L",
-         "consumer": {
-              "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+         "consumer": { 
+              "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" 
          }
       },
       {
          "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
          "created_at":1507936652000,
          "key":"nCztu5Jrz18YAWmkwOGJkQe9T8lB99l4",
-         "consumer": {
-              "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+         "consumer": { 
+              "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" 
          }
       },
       {
          "id":"b1d87b08-7eb6-4320-8069-efd85a4a8d89",
          "created_at":1507941307000,
          "key":"26WUW1VEsmwT1ORBFsJmLHZLDNAxh09l",
-         "consumer": {
-              "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+         "consumer": { 
+              "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" 
          }
       }
    ]
@@ -377,8 +365,8 @@ Response:
          "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
          "created_at":1507936652000,
          "key":"nCztu5Jrz18YAWmkwOGJkQe9T8lB99l4",
-         "consumer": {
-              "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+         "consumer": { 
+              "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" 
          }
        }
     ]
