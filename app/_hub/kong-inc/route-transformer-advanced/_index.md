@@ -38,6 +38,13 @@ params:
       datatype: string
       description: |
         Updates the upstream request Port with given value/template. Note that the port as set may be overridden again by DNS resolution (in case of SRV records,or an Upstream) One of `config.path` or `config.host` or `config.port` must be specified.
+    - name: escape_path
+      required: false
+      datatype: boolean
+      default: false
+      description: |
+        If set to true, the path is escaped after being transformed.
+      minimum_version: "3.1.0"
 ---
 
 _NOTE_: The advanced label is only attached because this is an Enterprise-only

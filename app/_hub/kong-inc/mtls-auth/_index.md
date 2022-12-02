@@ -27,6 +27,14 @@ params:
   config:
     - name: anonymous
       required: false
+      default: null
+      datatype: string
+      description:
+        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request fails with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+      minimum_version: "3.1.0"
+    - name: anonymous
+      required: false
+      default: null
       datatype: string
       description: |
         An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails.
@@ -34,6 +42,7 @@ params:
         `HTTP 495` if the client presented a certificate that is not acceptable, or `HTTP 496` if the client failed
         to present certificate as requested. Please note that this value must refer to the consumer `id`
         attribute, which is internal to Kong, and **not** its `custom_id`.
+      maximum_version: "3.0.0"
     - name: consumer_by
       required: false
       default: '`[ "username", "custom_id" ]`'
@@ -139,6 +148,14 @@ params:
         The TCP port of the HTTPS proxy.
 
         Required if `https_proxy_host` is set.
+    - name: send_ca_dn
+      minimum_version: "3.1.x"
+      required: false
+      default: false
+      value_in_examples:
+      datatype: boolean
+      description: |
+        Sends the distinguished names (DN) of the configured CA list in the TLS handshake message.
 ---
 
 ## Usage
@@ -221,6 +238,40 @@ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certifi
 {% endnavtab %}
 {% endnavtabs %}
 The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
+
+{% if_plugin_version gte:3.1.x %}
+### Sending the CA DNs during TLS handshake
+
+By default, {{site.base_gateway}} won't send the CA DN list during the TLS handshake. More specifically,
+the `certificate_authorities` in the CertificateRequest message is empty.
+
+In some cases, the client may need this `certificate_authorities` to guide
+certificate selection. Setting `config.send_ca_dn` to `true` will add the
+CA certificates configured in the `config.ca_certificate` to the lists of
+the corresponding SNIs.
+
+As mentioned in [Client certificate request](#client-certificate-request),
+due to the phase gap, {{site.base_gateway}} doesn't know the route information in the
+`ssl_certificate_by_lua` phase, which is decided in the later `access` phase.
+Therefore {{site.base_gateway}} builds an in-memory map of SNIs. The CA DN list will eventually
+be associated with the SNIs. If multiple `mtls-auth` plugins with different
+`config.ca_certificate` are associated to the same SNI, the CA DNs will be
+merged. For example:
+
+- When the plugin is enabled in the **global** Workspace scope, the CA DNs 
+  are associated with a special SNI, "\*".
+- When the plugin is applied at the **service** level, the CA DNs are
+  associated with every SNI of every route to this service. If a route has no
+  SNIs set, then the CA DNs are associated with a special SNI, "\*".
+- When the plugin is applied at the **route** level, the CA DNs are
+  associated with every SNI configured on this route. If the route has no SNIs set, then the CA DNs are associated with a special SNI, "\*".
+
+During the mTLS handshake, if the client sends a SNI in the ClientHello message and
+the SNI is found in the in-memory map of SNIs, then the corresponding CA DN list is sent in CertificatRequest message.
+
+If the client doesn't send SNIs in the ClientHello message or the SNI sent is
+unknown to {{site.base_gateway}}, then the CA DN list associated with "\*" is sent only when the client certificate is requested.
+{% endif_plugin_version %}
 
 ### Create manual mappings between certificate and consumer object
 

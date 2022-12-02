@@ -3,11 +3,14 @@ title: HashiCorp Vault
 badge: enterprise
 ---
 
-## Configuration
-
 [HashiCorp Vault](https://www.vaultproject.io/) can be configured with environment variables or with a Vault entity.
 
-## Environment variables
+## Configuration via environment variables
+
+Configure the following environment variables on your {{site.base_gateway}} data plane:
+
+Static Vault token authentication:
+
 
 ```bash
 export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
@@ -15,12 +18,25 @@ export KONG_VAULT_HCV_HOST=<hostname>
 export KONG_VAULT_HCV_PORT=<portnumber>
 export KONG_VAULT_HCV_MOUNT=<mountpoint>
 export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_AUTH_METHOD=token
 export KONG_VAULT_HCV_TOKEN=<tokenstring>
+```
+
+Kubernetes service account role authentication:
+
+```bash
+export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
+export KONG_VAULT_HCV_HOST=<hostname>
+export KONG_VAULT_HCV_PORT=<portnumber>
+export KONG_VAULT_HCV_MOUNT=<mountpoint>
+export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_AUTH_METHOD=kubernetes
+export KONG_VAULT_HCV_KUBE_ROLE=<rolename>
 ```
 
 You can also store this information in an entity.
 
-## Entity
+## Configuration via vaults entity
 
 {:.note}
 The Vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the Vaults entity.
@@ -131,8 +147,39 @@ Access these secrets like this:
 {vault://hcv/hello/foo}
 ```
 
-Or if you configured an entity
+Or, if you configured an entity:
 
 ```bash
 {vault://my-hashicorp-vault/hello/foo}
 ```
+
+## Vault configuration options
+
+Use the following configuration options to configure the vaults entity through
+any of the supported tools:
+* Admin API
+* Declarative configuration
+{% if_version gte:3.1.x %}
+* Kong Manager
+* {{site.konnect_short_name}}
+{% endif_version %}
+
+
+Configuration options for a HashiCorp vault in {{site.base_gateway}}:
+
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`.
+`vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault.
+`vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault.
+`vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
+`vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
+`vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
+
+Common options:
+
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.description` <br> *optional* | **Description** | An optional description for your vault.
+`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `hcv` for HashiCorp Vault.
+`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-hcv-vault/<some-secret>}`.
