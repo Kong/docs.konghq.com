@@ -79,6 +79,10 @@ see [Key management](/gateway/latest/reference/key-management/).
 - Add batch queue into the Datadog and StatsD plugins to reduce timer usage.
   [#9521](https://github.com/Kong/kong/pull/9521)
 
+### OS support
+
+- Kong Gateway now supports Amazon Linux 2022 with Enterprise packages.
+
 ### PDK
 
 - Extend `kong.client.tls.request_client_certificate` to support setting
