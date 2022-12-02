@@ -7,7 +7,7 @@ description: |
   through the Kong API Gateway. It provides configuration and management for
   session data storage, encryption, renewal, expiry, and sending browser cookies.
   It is built using
-  <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>.
+  [lua-resty-session](https://github.com/bungle/lua-resty-session).
 
   For information about configuring and using the Sessions plugin with the Dev
   Portal, see [Sessions in the Dev Portal](/gateway/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
@@ -103,6 +103,14 @@ params:
       default: 10
       datatype: number
       description: The duration in seconds after which an old session’s TTL is updated that an old cookie is discarded.
+    - name: cookie_persistent
+      minimum_version: "3.1.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        Allows the browser to persist cookies even if the browser is closed.
+        By default, cookies are not persisted across browser restarts.
     - name: storage
       required: false
       default: cookie
@@ -427,6 +435,11 @@ _not_ a problem during session renewal period as renew happens in `access` phase
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+*  Added the new configuration parameter `cookie_persistent`, which allows the
+browser to persist cookies even if the browser is closed. This defaults to `false`,
+which means cookies are not persisted across browser restarts.
 
 **{{site.base_gateway}} 2.7.x**
 
