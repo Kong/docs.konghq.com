@@ -22,9 +22,8 @@ The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
 
 {:.important}
 > **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
-The upcoming 2.8.2 release will include blue-green migration support. If you want
-to perform migrations for traditional mode with no downtime, please wait for the upcoming 2.8.2 patch release,
-upgrade to 2.8.2, [then migrate to 3.0.x](#migrate-db).
+The 2.8.2.x release includes blue-green migration support. If you want
+to perform migrations for traditional mode with no downtime, please upgrade to at least 2.8.2.0, [then migrate to 3.0.x](#migrate-db).
 
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
@@ -417,10 +416,10 @@ If you are migrating from 2.7.x or lower versions, first [migrate to 2.8.1](#upg
 Once you have migrated to 2.8.x, you can follow the instructions in the section
 below to migrate to 3.0.x.
 
-### Upgrade from 2.8.x (x>=2) to 3.0.x for traditional mode
+### Upgrade from 2.8.x (x>=2) to 3.0.x for traditional mode (blue-green)
 
 {:.note}
-> These instructions will only work once 2.8.2 is available.
+> These instructions only work with 2.8.2.x.
 
 1. Clone your database.
 2. Download 3.0.x, and configure it to point to the cloned data store.
