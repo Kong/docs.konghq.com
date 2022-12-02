@@ -150,7 +150,7 @@ see [Key management](/gateway/latest/reference/key-management/).
 - [**OPA**](/hub/kong-inc/opa/) (`OPA`)
   - Added the `include_uri_captures_in_opa_input` field. When this field is set to true, the [regex capture groups](/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway route's path field in the current request (if any) are included as input to OPA.
 
-- [**Proxy Cache**](/hub/kong-inc/proxy-cache/) (`proxy-cache`)
+- [**Proxy Cache Advanced**](/hub/kong-inc/proxy-cache-advanced/) (`proxy-cache-advanced`)
   - Added support for integrating with Redis clusters through the `config.redis.cluster_addresses` configuration property.
 
 - [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
@@ -184,7 +184,7 @@ see [Key management](/gateway/latest/reference/key-management/).
 - [**Session**](/hub/kong-inc/session/) (`session`)
   - Added new config `cookie_persistent`, which allows the browser to persist
   cookies even if the browser is closed. This defaults to `false` which means
-  cookies are not persisted across browser restarts. 
+  cookies are not persisted across browser restarts.
   Thanks [@tschaume](https://github.com/tschaume)
   for this contribution!
   [#8187](https://github.com/Kong/kong/pull/8187)
@@ -367,9 +367,9 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
 
 ### Hybrid mode
 
-- The legacy hybrid configuration protocol has been removed in favor of the wRPC protocol 
-introduced in 3.0.0.0. Rolling upgrades from 2.8.x.y to 3.1.0.0 are not supported. 
-Operators must upgrade to 3.0.x.x before they can perform a rolling upgrade to 3.1.0.0. 
+- The legacy hybrid configuration protocol has been removed in favor of the wRPC protocol
+introduced in 3.0.0.0. Rolling upgrades from 2.8.x.y to 3.1.0.0 are not supported.
+Operators must upgrade to 3.0.x.x before they can perform a rolling upgrade to 3.1.0.0.
   [#9740](https://github.com/Kong/kong/pull/9740)
 
 ## 3.0.1.0
