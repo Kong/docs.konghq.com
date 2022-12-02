@@ -302,6 +302,7 @@ cookie_lifetime
 cookie_name
 cookie_names
 cookie_path
+cookie_persistent
 cookie_renew
 cookie_samesite
 cookie_secure
@@ -387,6 +388,8 @@ enforce_headers
 enterprise_edition
 entityproperty
 entityname
+error_code
+error_message
 event_queue_size
 example_pass
 example_user
@@ -776,6 +779,7 @@ resource_attributes
 response_body_masks
 response_buffering
 response_code
+response_header_for_traceid
 response_header_masks
 response_if_media_type
 response_if_status_code

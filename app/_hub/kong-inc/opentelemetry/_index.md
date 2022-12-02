@@ -28,14 +28,30 @@ params:
       description: |
         The full HTTP(S) endpoint that Kong Gateway should send OpenTelemetry spans to.
         The endpoint must be a [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) endpoint.
-    - name: headers
+
+    - name: headers # old version of headers parameter without 'referenceable' attribute
+      maximum_version: "3.0.x"
       required: false
       datatype: map
       value_in_examples:
         - X-Auth-Token:secret-token
       description: |
         The custom headers to be added in the HTTP request sent to the OTLP server.
-        It's useful to add the authentication headers (token) for the APM backend.
+        This setting is useful for adding the authentication headers (token)
+        for the APM backend.
+
+    - name: headers  # current version of headers parameter
+      minimum_version: "3.1.x"
+      referenceable: true
+      required: false
+      datatype: map
+      value_in_examples:
+        - X-Auth-Token:secret-token
+      description: |
+        The custom headers to be added in the HTTP request sent to the OTLP server.
+        This setting is useful for adding the authentication headers (token)
+        for the APM backend.
+
     - name: resource_attributes
       required: false
       datatype: map
@@ -281,3 +297,10 @@ Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.2
 - May impact the performance of {{site.base_gateway}}.
   It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
+
+## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+* The `headers` field is now marked as referenceable, which means it can be securely stored as a
+[secret](/gateway/latest/kong-enterprise/secrets-management/)
+in a vault.

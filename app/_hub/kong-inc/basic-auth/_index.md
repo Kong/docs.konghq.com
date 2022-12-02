@@ -46,7 +46,7 @@ params:
       datatype: string
       description:
         An optional string (Consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` or `username` attribute, and **not** its `custom_id`.
-      minimum_version: "3.1.0"
+      minimum_version: "3.1.x"
     - name: anonymous
       required: false
       default: null
@@ -55,7 +55,7 @@ params:
         An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
         must refer to the consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
-      maximum_version: "3.0.0"
+      maximum_version: "3.0.x"
   extra: |
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some of the authenticated users, also add the
