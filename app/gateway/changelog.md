@@ -899,12 +899,25 @@ openid-connect
 ## 2.8.2.2
 **Release Date** 2022/12/01
 
-### Fixes 
+### Fixes
 
 #### Core
 
-* Fixed the timer error `lua_max_running_timers are not enough`.
+Timer issue fixes:
+* Added batch queues for the Datadog and StatsD plugins to reduce timer usage,
+fixing a `lua_max_running_timers are not enough` timer error.
 
+    Whenever a request was processed, a new running timer was instantly
+    created during the log phase. This was causing a shortage
+    of timers under heavy traffic and led to unpredictable consequences, where
+    internal timers were killed randomly and couldn't recover automatically.
+    This would then trigger a `lua_max_running_timers are not enough` timer
+    error and cause data planes to crash.
+
+    [#9521](https://github.com/Kong/kong/pull/9521)
+
+* Fixed a timer leak that occurred whenever the generic messaging protocol
+connection would break in hybrid mode.
 
 ## 2.8.2.1
 **Release Date** 2022/11/21
