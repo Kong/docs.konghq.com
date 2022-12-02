@@ -10,9 +10,11 @@ categories:
   - analytics-monitoring
 kong_version_compatibility:
   community_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
   enterprise_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
 params:
   name: opentelemetry
   konnect_examples: false

@@ -18,7 +18,8 @@ categories:
   - security
 kong_version_compatibility:
   enterprise_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
 params:
   name: tls-handshake-modifier
   service_id: true

@@ -187,12 +187,8 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Logging
-        items:
-          - text: Log Reference
-            url: /production/logging/log-reference
-          - text: Customize Gateway Logs
-            url: /production/logging/customize-gateway-logs
+      - text: Logging Reference
+        url: /production/logging
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway
@@ -537,7 +533,6 @@ items:
     items:
       - text: Overview
         url: /admin-api/
-        src: admin-api/admin-api-3.0.x
       - text: Information Routes
         url: /admin-api/#information-routes
       - text: Health Routes
@@ -563,7 +558,7 @@ items:
       - text: Targets
         url: /admin-api/#target-object
       - text: Vaults
-        url: /admin-api/#vaults-object
+        url: /admin-api/#vaults-entity
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces

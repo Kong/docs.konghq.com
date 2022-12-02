@@ -30,9 +30,7 @@ params:
   service_id: false
   consumer_id: false
   route_id: false
-  protocols:
-    - name: http
-    - name: https
+  protocols: ["http", "https"]
   dbless_compatible: yes
 
   config:

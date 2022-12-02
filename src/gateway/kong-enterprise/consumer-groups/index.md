@@ -37,19 +37,19 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## Set up consumer group
 
-1. Create a consumer group named `Gold`:
+1. Create a consumer group named `JL`:
 
 {% capture create_consumer_group %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
-  --data name=Gold
+  --data name=JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http POST :8001/consumer_groups name=Gold
+http POST :8001/consumer_groups name=JL
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -63,23 +63,23 @@ http POST :8001/consumer_groups name=Gold
     {
         "created_at": 1638915521,
         "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-        "name": "Gold"
+        "name": "JL"
     }
     ```
 
-1. Create a consumer, `Amal`:
+1. Create a consumer, `DianaPrince`:
 
 {% capture create_consumer %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumers \
-  --data username=Amal
+  --data username=DianaPrince
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http POST :8001/consumers username=Amal
+http POST :8001/consumers username=DianaPrince
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -96,24 +96,24 @@ http POST :8001/consumers username=Amal
         "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
         "tags": null,
         "type": 0,
-        "username": "Amal",
-        "username_lower": "amal"
+        "username": "DianaPrince",
+        "username_lower": "dianaprince"
     }
     ```
 
-1. Add `Amal` to the `Gold` consumer group:
+1. Add `DianaPrince` to the `JL` consumer group:
 
 {% capture add_consumer %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Gold/consumers \
-  --data consumer=Amal
+curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/JL/consumers \
+  --data consumer=DianaPrince
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http POST :8001/consumer_groups/Gold/consumers consumer=Amal
+http POST :8001/consumer_groups/JL/consumers consumer=DianaPrince
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -128,15 +128,15 @@ http POST :8001/consumer_groups/Gold/consumers consumer=Amal
       "consumer_group": {
       "created_at": 1638915521,
       "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-      "name": "Gold"
+      "name": "JL"
       },
       "consumers": [
         {
             "created_at": 1638915577,
             "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
             "type": 0,
-            "username": "Amal",
-            "username_lower": "amal"
+            "username": "DianaPrince",
+            "username_lower": "dianaprince"
         }
       ]
     }
@@ -159,7 +159,7 @@ curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
   --data config.window_type=sliding \
   --data config.retry_after_jitter_max=0 \
   --data config.enforce_consumer_groups=true \
-  --data config.consumer_groups=Gold
+  --data config.consumer_groups=JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -171,7 +171,7 @@ http -f :8001/plugins/  \
   config.window_type=sliding \
   config.retry_after_jitter_max=0 \
   config.enforce_consumer_groups=true \
-  config.consumer_groups=Gold
+  config.consumer_groups=JL
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -181,7 +181,7 @@ http -f :8001/plugins/  \
 
     For consumer groups, the following parameters are required:
     * `config.enforce_consumer_groups=true`: enables consumer groups for this plugin.
-    * `config.consumer_groups=Gold`: specifies a list of groups that this plugin allows overrides for.
+    * `config.consumer_groups=JL`: specifies a list of groups that this plugin allows overrides for.
 
     {:.note}
     > **Note:** In this example, you're configuring the plugin globally, so it
@@ -191,14 +191,14 @@ http -f :8001/plugins/  \
     for more granular control.
 
 1. The plugin you just set up applies to all consumers in the cluster. Change
-the rate limiting configuration for the `Gold` consumer group only, setting
+the rate limiting configuration for the `JL` consumer group only, setting
 the limit to ten requests for every ten seconds:
 
 {% capture override %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
+curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
   --data config.limit=10 \
   --data config.window_size=10 \
   --data config.retry_after_jitter_max=1
@@ -206,7 +206,7 @@ curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rat
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http PUT :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
+http PUT :8001/consumer_groups/JL/overrides/plugins/rate-limiting-advanced \
   config.limit=10 \
   config.window_size=10 \
   config.retry_after_jitter_max=1
@@ -230,23 +230,23 @@ http PUT :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
               10
           ]
       },
-      "consumer_group": "Gold",
+      "consumer_group": "JL",
       "plugin": "rate-limiting-advanced"
     }
     ```
 
-1. Check that it worked by looking at the `Gold` consumer group object:
+1. Check that it worked by looking at the `JL` consumer group object:
 
 {% capture check_group1 %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http :8001/consumer_groups/Gold
+http :8001/consumer_groups/JL
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -262,15 +262,15 @@ http :8001/consumer_groups/Gold
         "consumer_group": {
             "created_at": 1638915521,
             "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-            "name": "Gold"
+            "name": "JL"
         },
         "consumers": [
             {
                 "created_at": 1638915577,
                 "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
                 "type": 0,
-                "username": "Amal",
-                "username_lower": "amal"
+                "username": "DianaPrince",
+                "username_lower": "dianaprince"
             }
         ],
         "plugins": [
@@ -301,7 +301,7 @@ http :8001/consumer_groups/Gold
 You can remove a consumer from a group by accessing `/consumers` or
 `/consumer_groups`. The following steps use `/consumer_groups`.
 
-1. Check the `Gold` consumer group for the consumer name:
+1. Check the `JL` consumer group for the consumer name:
 
 {{ check_group1 | indent | replace: " </code>", "</code>" }}
 
@@ -312,33 +312,33 @@ You can remove a consumer from a group by accessing `/consumers` or
         "consumer_group": {
             "created_at": 1638915521,
             "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-            "name": "Gold"
+            "name": "JL"
         },
         "consumers": [
             {
                 "created_at": 1638915577,
                 "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
                 "type": 0,
-                "username": "Amal",
-                "username_lower": "amal"
+                "username": "DianaPrince",
+                "username_lower": "dianaprince"
             }
         ]
       }
       ```
 
-1. Using the username or ID of the consumer (`Amal` in this example),
+1. Using the username or ID of the consumer (`DianaPrince` in this example),
 remove the consumer from the group:
 
 {% capture delete_consumer1 %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/consumers/Amal
+curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL/consumers/DianaPrince
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http DELETE :8001/consumer_groups/Gold/consumers/Amal
+http DELETE :8001/consumer_groups/JL/consumers/DianaPrince
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -362,7 +362,7 @@ http DELETE :8001/consumer_groups/Gold/consumers/Amal
         "consumer_group": {
             "created_at": 1638917780,
             "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-            "name": "Gold"
+            "name": "JL"
         }
     }
     ```
@@ -379,12 +379,12 @@ you can look up the group through the consumer:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal/consumer_groups
+curl -i -X GET http://{HOSTNAME}:8001/consumers/DianaPrince/consumer_groups
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http :8001/consumers/Amal/consumer_groups
+http :8001/consumers/DianaPrince/consumer_groups
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -400,25 +400,25 @@ http :8001/consumers/Amal/consumer_groups
             {
                 "created_at": 1638915521,
                 "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-                "name": "Gold"
+                "name": "JL"
             }
         ]
     }
     ```
 
-1. Using the username or ID of the group (`Gold` in this example),
+1. Using the username or ID of the group (`JL` in this example),
 remove the consumer from the group:
 
 {% capture delete_consumer2 %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumers/Amal/consumer_groups/Gold
+curl -i -X DELETE http://{HOSTNAME}:8001/consumers/DianaPrince/consumer_groups/JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http DELETE :8001/consumers/Amal/consumer_groups/Gold
+http DELETE :8001/consumers/DianaPrince/consumer_groups/JL
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -442,57 +442,10 @@ http DELETE :8001/consumers/Amal/consumer_groups/Gold
         "consumer_group": {
             "created_at": 1638917780,
             "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-            "name": "Gold"
+            "name": "JL"
         }
     }
     ```
-
-## Delete consumer group configurations
-
-You can also clear the configuration of a consumer group without deleting the consumer group itself.
-
-With this method, the consumers in the group aren't deleted and are still in the consumer group.
-
-1. Delete the consumer group configuration using the following request:
-
-{% capture delete_consumer_group_config %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ delete_consumer_group_config | indent | replace: " </code>", "</code>" }}
-
-    If successful, you receive see the following response:
-    ```
-    HTTP/1.1 204 No Content
-    ```
-    
-1. To verify, check the consumer object configuration:
-
-{{ check_group1 | indent | replace: " </code>", "</code>" }}
-
-    Response, without a `plugins` object:
-
-    ```json
-    {
-        "consumer_group": {
-            "created_at": 1638917780,
-            "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-            "name": "Gold"
-        }
-    }
-    ```
-
 
 
 ## Delete consumer group
@@ -507,12 +460,12 @@ the group are not deleted.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold
+curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/JL
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http DELETE :8001/consumer_groups/Gold
+http DELETE :8001/consumer_groups/JL
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -525,7 +478,7 @@ http DELETE :8001/consumer_groups/Gold
     HTTP/1.1 204 No Content
     ```
 
-1. Check the list of consumer groups to verify that the `Gold` group is gone:
+1. Check the list of consumer groups to verify that the `JL` group is gone:
 
 {% capture check_all_groups %}
 {% navtabs codeblock %}
@@ -558,12 +511,12 @@ http :8001/consumer_groups
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal
+curl -i -X GET http://{HOSTNAME}:8001/consumers/DianaPrince
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http :8001/consumers/Amal
+http :8001/consumers/DianaPrince
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -578,7 +531,7 @@ http :8001/consumers/Amal
 
 You can perform many `/consumer_groups` operations in bulk.
 
-1. Assuming you deleted the group `Gold` in the previous section, create it again,
+1. Assuming you deleted the group `JL` in the previous section, create it again,
 along with another group named `Speedsters`:
 
 {% capture create_consumer_group2 %}
@@ -586,7 +539,7 @@ along with another group named `Speedsters`:
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
-  --data name=Gold
+  --data name=JL
 
 curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
   --data name=Speedsters
@@ -594,7 +547,7 @@ curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http POST :8001/consumer_groups name=Gold
+http POST :8001/consumer_groups name=JL
 
 http POST :8001/consumer_groups name=Speedsters
 ```
@@ -717,21 +670,21 @@ http DELETE :8001/consumer_groups/Speedsters/consumers
     * Otherwise, whichever group is specified in the Rate Limiting Advanced
     plugin becomes active.
 
-    Add `BarryAllen` to two groups, `Gold` and `Speedsters`:
+    Add `BarryAllen` to two groups, `JL` and `Speedsters`:
 
 {% capture add_consumer_many_groups %}
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
 curl -i -X POST http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups \
-  --data group=Gold \
+  --data group=JL \
   --data group=Speedsters
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
 http POST :8001/consumers/BarryAllen/consumer_groups \
-  group:='["Gold", "Speedsters"]'
+  group:='["JL", "Speedsters"]'
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -756,7 +709,7 @@ http POST :8001/consumers/BarryAllen/consumer_groups \
           {
               "created_at": 1639432267,
               "id": "a905151a-5767-40e8-804e-50eec4d0235b",
-              "name": "Gold"
+              "name": "JL"
           },
           {
               "created_at": 1639436107,
@@ -790,4 +743,3 @@ http DELETE :8001/consumers/BarryAllen/consumer_groups
     ```
     HTTP/1.1 204 No Content
     ```
-

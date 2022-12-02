@@ -19,7 +19,8 @@ categories:
   - security
 kong_version_compatibility:
   enterprise_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
 params:
   name: tls-metadata-headers
   service_id: true

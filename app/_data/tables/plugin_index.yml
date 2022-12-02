@@ -41,14 +41,6 @@
       notes: --
       url: /hub/kong-inc/jwt-signer
 
-    - name: JWE Decrypt
-      free: No
-      plus: Yes
-      enterprise: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/jwe-decrypt
-
     - name: Key Auth
       free: Yes
       plus: Yes
@@ -117,14 +109,6 @@
       network_config_opts: All
       notes: --
       url: /hub/kong-inc/openid-connect
-
-    - name: SAML
-      free: no
-      plus: Yes
-      enterprise: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/saml
 
     - name: Session
       free: Yes
@@ -246,22 +230,6 @@
         is not supported. Use <code>redis</code> instead.
       url: /hub/kong-inc/graphql-rate-limiting-advanced
 
-    - name: Mocking
-      free: No
-      plus: Yes
-      enterprise: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/mocking
-
-    - name: OAS Validation
-      free: No
-      plus: Yes
-      enterprise: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/oas-validation/
-
     - name: Proxy Caching
       free: Yes
       plus: Yes
@@ -372,14 +340,13 @@
       notes: --
       url: /hub/kong-inc/websocket-validator
 
-    - name: XML Threat Protection
+    - name: Mocking
       free: No
-      plus: No
+      plus: Yes
       enterprise: Yes
       network_config_opts: All
       notes: --
-      url: /hub/kong-inc/xml-threat-protection/
-
+      url: /hub/kong-inc/mocking
 
 - category:
   name: Serverless
@@ -422,14 +389,6 @@
 - category:
   name: Analytics and Monitoring
   plugins:
-    - name: AppDynamics
-      free: No
-      plus: No
-      enterprise: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/app-dynamics
-
     - name: Datadog
       free: Yes
       plus: Yes

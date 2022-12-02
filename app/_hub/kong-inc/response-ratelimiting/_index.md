@@ -172,26 +172,6 @@ params:
       default: '`0`'
       datatype: number
       description: 'When using the `redis` policy, this property specifies Redis database to use.'
-    - name: redis_ssl
-      minimum_version: "3.1.x"
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        When using the `redis` policy, this property specifies if SSL is used to connect to the Redis server.
-    - name: redis_ssl_verify
-      minimum_version: "3.1.x"
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies if the server SSL certificate is validated. Note that you need to configure the `lua_ssl_trusted_certificate` to specify the CA (or server) certificate used by your Redis server. You may also need to configure `lua_ssl_verify_depth` accordingly.
-    - name: redis_server_name
-      minimum_version: "3.1.x"
-      required: false
-      datatype: string
-      description: |
-        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies the server name for the TLS extension Server Name Indication (SNI) 
 ---
 
 ## Configuring Quotas
@@ -257,10 +237,6 @@ X-RateLimit-Remaining-Images: 0
 
 ---
 ## Changelog
-
-**{{site.base_gateway}}  3.1.x**
-
-* Added the `redis_ssl`, `redis_ssl_verify`, and `redis_server_name` configuration parameters.
 
 **{{site.base_gateway}} 2.8.x**
 

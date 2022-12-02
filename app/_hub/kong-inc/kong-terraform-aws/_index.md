@@ -12,9 +12,39 @@ source_code: 'https://github.com/kong/kong-terraform-aws'
 license_type: Apache-2.0
 kong_version_compatibility:
   community_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
+      - 2.8.x
+      - 2.7.x
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+      - 0.13.x
   enterprise_edition:
-    compatible: true
+    compatible:
+      - 3.0.x
+      - 2.8.x
+      - 2.7.x
+      - 2.6.x
+      - 2.5.x
+      - 2.4.x
+      - 2.3.x
+      - 2.2.x
+      - 2.1.x
+      - 1.5.x
+      - 1.3-x
+      - 0.36-x
 ---
 
 ### Documentation

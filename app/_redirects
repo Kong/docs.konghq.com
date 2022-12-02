@@ -170,7 +170,6 @@
 /hub/kong-inc/jwt/2.1-x.html                       /hub/kong-inc/jwt/
 /hub/kong-inc/jwt-signer/0.*                       /hub/kong-inc/jwt-signer/
 /hub/kong-inc/jwt-signer/1.*                       /hub/kong-inc/jwt-signer/
-/hub/kong-inc/jwe-decrypt/3.*                      /hub/kong-inc/jwe-decrypt/
 /hub/kong-inc/kafka-log/0.*                        /hub/kong-inc/kafka-log/
 /hub/kong-inc/kafka-upstream/0.*                   /hub/kong-inc/kafka-upstream/
 /hub/kong-inc/key-auth/0.*                         /hub/kong-inc/key-auth/
@@ -827,6 +826,3 @@
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
 /gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
-
-# 3.1
-/gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
