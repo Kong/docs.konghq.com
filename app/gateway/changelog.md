@@ -212,6 +212,10 @@ see [Key management](/gateway/latest/reference/key-management/).
   - syslog
   - kafka-log
 
+## Known limitations
+
+- With Dynamic log levels, if you set log-level to `alert` you will still see `info` and `error` entries in the logs. 
+
 ## Fixes
 
 ### Enterprise
