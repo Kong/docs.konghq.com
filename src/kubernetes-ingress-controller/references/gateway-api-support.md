@@ -14,82 +14,68 @@ overrides:
 The {{site.kic_product_name}} supports the following resources and features in the
 [Gateway API](https://gateway-api.sigs.k8s.io/). By default:
 
-- Core features are supported. If a core feature is not supported in the
-  current version, it will be listed in `Unsupported Core Features`.
+- Core features are supported. If a core feature is not supported in the any
+  of the released versions yet, it will be listed in `Unsupported` section.
 - Extended features are not supported. If an extended feature is supported in 
-  current version, it will be listed in `Supported Extended Features`.
+  any of the released versions, it will be listed in the section of the 
+  first version that support the feature.
 
 ## Gateways and GatewayClasses
 
-### Supported Versions
+### v2.2.x
 
-{% if_version gte: 2.6.x %}
-- `v1beta1`
-{% endif_version %}
-{% if_version lte: 2.5.x %}
-- `v1alpha2`
-{% endif_version %}
+- Supported `v1alpha2` version of Gateways and GatewayClasses.
+
+### v2.6.x
+
+- Supported `v1beta1` version of Gateways and GatewayClasses, and removed support of `v1alpha2` version of Gateways and GatewayClasses.
 
 ## HTTP Routes
 
-{{site.kic_product_name}}'s implementation of `HTTPRoute` supports multiple `BackendRefs` with a
-round-robin load-balancing strategy applied by default across the
-`Endpoints` or the `Services`. `BackendRefs` weights are now supported
-to allow you to fine-tune the load-balancing between those backend services.
+### v2.2.x
 
-### Supported Versions
+- Supported `v1alpha2` version of HTTPRoute.
+- Supported extended feature: supported `method` in route matches.
 
-{% if_version gte: 2.6.x %}
-- `v1beta1`
-{% endif_version %}
-{% if_version lte: 2.5.x %}
-- `v1alpha2`
-{% endif_version %}
+### v2.4.x
 
-### Supported Extended Features
-- Supports `method` in route matches.
+- Supported weights of `BackendRefs`. Multiple `BackendRefs` with a round-robin load-balancing strategy 
+  is applied by default across the `Endpoints` or the `Services`. configuring weights of `BackendRefs`
+  can allow you to fine-tune the load-balancing between those backend services.
 
-### Unsupported Core Features
+### v2.6.x
+
+- Supported `v1beta1` version of HTTPRoute and removed support of `v1alpha2` version of HTTPRoute.
+
+### Unsupported
 - Does not support `queryParam` in route matches.
 - Does not support `requestRedirect` in filters.
 
 ## TCP Routes
 
-The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `BackendRefs` in
-`TCPRoute` resources for load balancing.
+### v2.4.x
 
-### Supported Versions
-- `v1alpha2`
+- Supported `v1alpha2` of TCPRoute.
 
 ## UDP Routes
 
-The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `BackendRefs` in
-`UDPRoute` resources for load balancing.
+### v2.4.x
 
-### Supported Versions
-- `v1alpha2`
+- Supported `v1alpha2` of UDPRoute.
 
 ## TLS Routes
 
-### Supported Versions
-- `v1alpha2`
+### v2.4.x
 
-{% if_version gte:2.6.x %}
-## Reference Grants
+- Supported `v1alpha2` of TLSRoute.
 
-Kong implementation supports `ReferenceGrant` to allow routes to
-reference backends in other namespaces in `BackendRefs`.
+## Reference Grants and Reference Policies
 
-### Supported Versions
-- `v1alpha2`
-{% endif_version %}
+### v2.4.x
 
-{% if_version gte:2.4.x lte:2.5.x %}
-## Reference Policies
+- Supported `v1alpha2` version of ReferencePolicy to allow routes to
+  reference backends in other namespaces in `BackendRefs`.
 
-The {{site.kic_product_name}}'s implementation supports using `ReferencePolicy` to allow routes to
-reference backends in other namespaces in `BackendRefs`.
+### v2.6.x
 
-### Supported Versions
-- `v1alpha2`
-{% endif_version %}
+- Supported `v1alpha2` version of ReferenceGrant and removed support of ReferencePolicy.
