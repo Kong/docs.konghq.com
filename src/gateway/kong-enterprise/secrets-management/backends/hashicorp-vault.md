@@ -167,14 +167,20 @@ any of the supported tools:
 
 Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
-Parameter | Field name | Description
-----------|------------|------------
-`vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`.
-`vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault.
-`vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault.
-`vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
-`vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
-`vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
+| Parameter | Field name | Description |
+| ----------|------------|------------ |
+| `vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`. |
+| `vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault. |
+| `vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault. |
+| `vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point. |
+| `vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`. |
+| `vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string. |
+
+{% if_version gte:3.1.x %}
+| `vaults.config.namespace` | **namespace** | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
+| `vaults.config.auth_method` | **auth-method** | Defines the authentication mechanism when connecting to the Hashicorp Vault service. Accepted values are: `token`, or `kubernetes`.  |
+| `vaults.config.kube_role` | **kube-role** | Defines the HashiCorp Vault role for the Kubernetes service account of the running pod. `keyring_vault_auth_method` must be set to `kubernetes` for this to activate. |
+{% endif_version %}
 
 Common options:
 
