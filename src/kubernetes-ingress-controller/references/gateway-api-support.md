@@ -14,21 +14,19 @@ overrides:
 The {{site.kic_product_name}} supports the following resources and features in the
 [Gateway API](https://gateway-api.sigs.k8s.io/). By default:
 
-- Core features are supported. If a core feature is not supported in the
-  current version, it will be listed in `Unsupported Core Features`.
-- Extended features are not supported. If an extended feature is supported in 
-  current version, it will be listed in `Supported Extended Features`.
+- Core features are supported. If a core feature is not supported in at least one of listed versions,
+  it will be listed in the `Core Feature Support` section.
+- Extended features are not supported. If an extended feature is supported in at least one of listed versions, 
+  it will be listed in the `Extended Feature Support` section.
 
 ## Gateways and GatewayClasses
 
 ### Supported Versions
 
-{% if_version gte: 2.6.x %}
-- `v1beta1`
-{% endif_version %}
-{% if_version lte: 2.5.x %}
-- `v1alpha2`
-{% endif_version %}
+| {{site.kic_product_name}} | 2.2.x                       | 2.3.x                       | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `v1beta1`                 | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| `v1alpha2`                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
 
 ## HTTP Routes
 
@@ -39,19 +37,29 @@ to allow you to fine-tune the load-balancing between those backend services.
 
 ### Supported Versions
 
-{% if_version gte: 2.6.x %}
-- `v1beta1`
-{% endif_version %}
-{% if_version lte: 2.5.x %}
-- `v1alpha2`
-{% endif_version %}
+| {{site.kic_product_name}} | 2.2.x                       | 2.3.x                       | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `v1beta1`                 | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| `v1alpha2`                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
 
-### Supported Extended Features
-- Supports `method` in route matches.
 
-### Unsupported Core Features
-- Does not support `queryParam` in route matches.
-- Does not support `requestRedirect` in filters.
+### Core Feature Support
+
+Core features not listed here are supported by all listed versions of {{site.kic_product_name}}.
+
+| {{site.kic_product_name}}     | 2.2.x                       | 2.3.x                       | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:------------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `queryParam` in route matches | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
+| `requestRedirect` in filters  | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
+
+
+### Extended Feature Support
+
+Extended features not listed here are not supported by any of listed versions of {{site.kic_product_name}}.
+
+| {{site.kic_product_name}} | 2.2.x                       | 2.3.x                       | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `method` in route matches | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ## TCP Routes
 
@@ -59,7 +67,10 @@ The {{site.kic_product_name}}'s implementation of `TCPRoute` supports multiple `
 `TCPRoute` resources for load balancing.
 
 ### Supported Versions
-- `v1alpha2`
+
+| {{site.kic_product_name}} | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `v1alpha2`                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ## UDP Routes
 
@@ -67,29 +78,32 @@ The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `
 `UDPRoute` resources for load balancing.
 
 ### Supported Versions
-- `v1alpha2`
+
+| {{site.kic_product_name}} | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `v1alpha2`                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+
 
 ## TLS Routes
 
 ### Supported Versions
-- `v1alpha2`
 
-{% if_version gte:2.6.x %}
-## Reference Grants
+| {{site.kic_product_name}} | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `v1alpha2`                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
-Kong implementation supports `ReferenceGrant` to allow routes to
-reference backends in other namespaces in `BackendRefs`.
 
-### Supported Versions
-- `v1alpha2`
-{% endif_version %}
+## Reference Grants & Reference Policies
 
-{% if_version gte:2.4.x lte:2.5.x %}
-## Reference Policies
+The {{site.kic_product_name}}'s implementation supports using `ReferenceGrant` or `ReferencePolicy` 
+to allow routes to reference backends in other namespaces in `BackendRefs`.
 
-The {{site.kic_product_name}}'s implementation supports using `ReferencePolicy` to allow routes to
-reference backends in other namespaces in `BackendRefs`.
 
 ### Supported Versions
-- `v1alpha2`
-{% endif_version %}
+
+| {{site.kic_product_name}}    | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
+|:-----------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| `ReferenceGrant` `v1alpha2`  | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | 
+| `ReferencePolicy` `v1alpha2` | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | 
+
+
