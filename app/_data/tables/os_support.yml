@@ -196,9 +196,9 @@
   enterprise_versions:
     first_version: 3.1.x
     last_version: null
-  oss: false
+  oss: true
   oss_versions:
-    first_version: null
+    first_version: 3.1.x
     last_version: null
   status: active
   deprecation_date: null
