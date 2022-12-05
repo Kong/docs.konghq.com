@@ -5,7 +5,7 @@ no_version: true
 
 <!-- vale off -->
 ## 3.1.0.0
-**Release Date** 2022/12/01
+**Release Date** 2022/12/06
 
 ## Features
 
