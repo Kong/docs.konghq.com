@@ -510,7 +510,6 @@
 /gateway-oss/2.6.x/performance-testing-framework/   /gateway/2.6.x/plan-and-deploy/performance-testing-framework
 /gateway-oss/2.7.x/performance-testing-framework/   /gateway/2.7.x/plan-and-deploy/performance-testing-framework
 /gateway-oss/latest/performance-testing-framework/  /gateway/latest/plan-and-deploy/performance-testing-framework
-/gateway/latest/upgrade/    /gateway/latest/upgrade-31x/
 
 
 # KONG MANAGER
