@@ -39,6 +39,19 @@ If you are running 1.x, upgrade to 2.8.2 and then 3.0.x first at minimum, then u
 In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
 then follow the [database migration](#migrate-db) instructions.
 
+## Upgrade path for {{site.base_gateway}} 3.1.x 
+
+The following table outlines various upgrade path scenarios to 3.1.x depending on the {{site.base_gateway}} version you are currently using:
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x | Traditional | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+
 ## Upgrade considerations and breaking changes
 
 Before upgrading, review this list for any configuration or breaking changes that
@@ -159,18 +172,6 @@ diff the files to identify any changes, and apply them as needed.
 
 {% endnavtab %}
 {% endnavtabs %}
-
-## Upgrade path for {{site.base_gateway}} 3.1.x 
-
-The following table outlines various upgrade path scenarios to 3.1.x depending on the {{site.base_gateway}} version you are currently using:
-
-| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
-| 2.x | Traditional | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
 
 ## Upgrade from 3.0.x to 3.1.x
 
