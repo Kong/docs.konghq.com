@@ -160,51 +160,17 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Upgrade from 1.x/2.x to 3.1.x
+## Upgrade path for {{site.base_gateway}} 3.1.x 
 
-### Traditional mode
+The following table outlines various upgrade path scenarios to 3.1.x depending on the {{site.base_gateway}} version you are currently using:
 
-Due to the changes in 3.1.x, you must upgrade from 2.8.2 or later to 3.0.x, then 3.1.x.
-
-
-1. Clone your database.
-2. Download 2.8.2, and configure it to point to the cloned data store.
-   Run `kong migrations up` and `kong migrations finish`.
-3. Start the 2.8.2 cluster.
-4. Now both the old (1.x/2.x) and new (2.8.2)
-   clusters can now run simultaneously. Start provisioning 2.8.2 nodes.
-3. Gradually divert traffic away from your old nodes, and into
-   your 2.8.2 cluster. Monitor your traffic to make sure everything
-   is going smoothly.
-4. When your traffic is fully migrated to the 2.8.2 cluster,
-   decommission your old nodes.
-5. Clone your database.
-6. Download 3.0.x, and configure it to point to the cloned data store.
-   Run `kong migrations up` and `kong migrations finish`.
-7. Start the 3.0.x cluster.
-8. Now both the old (2.8.2) and new (3.0.x)
-   clusters can now run simultaneously. Start provisioning 3.0.x nodes.
-9. Gradually divert traffic away from your old nodes, and into
-   your 3.1.x cluster. Monitor your traffic to make sure everything
-   is going smoothly.
-10. When your traffic is fully migrated to the 3.0.x cluster,
-   decommission your old nodes.
-11. Clone your database.
-12. Download 3.1.x, and configure it to point to the cloned data store.
-   Run `kong migrations up` and `kong migrations finish`.
-13. Start the 3.1.x cluster.
-14. Now both the old (3.0.x) and new (3.1.x)
-   clusters can now run simultaneously. Start provisioning 3.1.x nodes.
-15. Gradually divert traffic away from your old nodes, and into
-   your 3.1.x cluster. Monitor your traffic to make sure everything
-   is going smoothly.
-16. When your traffic is fully migrated to the 3.1.x cluster,
-   decommission your old nodes.
-
-### Hybrid mode
-
-Rolling upgrades from 1.x or 2.x to 3.1.x for hybrid mode are not supported.
-To upgrade to 3.1.x, you must first [upgrade to 3.0.x](/gateway/3.0.x/upgrade).
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| 2.x | Traditional | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
 
 ## Upgrade from 3.0.x to 3.1.x
 
