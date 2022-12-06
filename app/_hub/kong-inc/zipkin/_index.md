@@ -212,6 +212,16 @@ params:
       datatype: number
       description: The timeout, in milliseconds, between two
         successive read operations when receiving a response from the Zipkin server.
+    - name: response_header_for_traceid
+      minimum_version: "3.1.x"
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Set a header name to append to responses. This header name
+        is sent to the client, making it possible to trace the ID of the
+        correlated request.
 
 ---
 ## How it Works
@@ -288,6 +298,9 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 
 ## Changelog
 
+**{{site.base_gateway}} 3.1.x**
+* Added the parameter `response_header_for_traceid`.
+
 **{{site.base_gateway}} 3.0.x**
 
 * Added support for including the HTTP path in the span name with the
@@ -301,8 +314,8 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 
 **{{site.base_gateway}} 2.7.x**
 
-* Added a new parameter: `local_service_name`
-* Added a new `ignore` option for the `header_type` parameter
+* Added a new parameter: `local_service_name`.
+* Added a new `ignore` option for the `header_type` parameter.
 
 **{{site.base_gateway}} 2.5.x**
 * The plugin now includes the following tags: `kong.route`, `kong.service_name`, and `kong.route_name`.

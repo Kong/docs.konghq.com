@@ -4,8 +4,6 @@ badge: enterprise
 content-type: how-to
 ---
 
-## Configuration
-
 The current version of {{site.base_gateway}}'s implementation supports
 configuring
 [GCP Secrets Manager](https://cloud.google.com/secret-manager/) in two
@@ -13,6 +11,8 @@ ways:
 
 * Environment variables
 * Workload Identity
+
+## Configure GCP Secrets Manager
 
 To configure GCP Secrets Manager, the `GCP_SERVICE_ACCOUNT`
 environment variable must be set to the JSON document referring to the
@@ -35,7 +35,7 @@ documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-i
 {:.note}
 > With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` isn't necessary.
 
-## Examples
+### Examples
 
 To use a GCP Secret Manager
 [secret](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
@@ -71,7 +71,7 @@ Then you don't need to repeat it in references:
 {vault://gcp/my-secret-name/snip}
 ```
 
-## Entity
+## Configuration via vaults entity
 
 Once the database is initialized, a Vault entity can be created
 that encapsulates the provider and the GCP project ID:
@@ -146,3 +146,29 @@ through it:
 {vault://my-gcp-sm-vault/my-secret-name/foo}
 {vault://my-gcp-sm-vault/my-secret-name/snip}
 ```
+
+## Vault entity configuration options
+
+Use the following configuration options to configure the vaults entity through
+any of the supported tools:
+* Admin API
+* Declarative configuration
+{% if_version gte:3.1.x %}
+* Kong Manager
+* {{site.konnect_short_name}}
+{% endif_version %}
+
+
+Configuration options for a GCP Secrets Manager vault in {{site.base_gateway}}:
+
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.config.project_id` | **Google Project ID** | The project ID from your Google API Console. Visit your Google API Console and select **Manage all projects** in the projects list to see your project ID.
+
+Common options:
+
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.description` <br> *optional* | **Description** | An optional description for your vault.
+`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `gcp` for GCP Secrets Manager.
+`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-gcp-sm-vault/<some-secret>}`.

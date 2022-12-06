@@ -1,13 +1,14 @@
-
 Alertmanager
 Amberflo
 Amberflo.io
 amberflo
+Authn
 Arya
 Bagdi
 Bintray
 Bitnami
 CloudFormation
+Signke
 Cloudformation
 Cognito
 Curity
@@ -16,11 +17,13 @@ DAOs
 Datadog
 DPP
 DPPs
+DNs
 Equinix
 Fargate
 Github
 Goroutine
 Grafana
+Hao
 HTTPie
 Istio
 Istio
@@ -257,6 +260,7 @@ routable
 ruleset
 runtime
 runtimes
+SAML
 sandboxed
 sandboxing
 schema's

@@ -3,7 +3,6 @@ Alertmanager
 Amberflo
 Arya
 Bagdi
-Bagdi
 Bintray
 Bitnami
 CAs
@@ -195,6 +194,7 @@ kubectl
 kubernetes
 kumactl
 kustomization
+kv
 lapis
 loggly
 lookup
@@ -289,6 +289,7 @@ ssl
 ssl_cert_key
 ssl_certificate
 sso
+SAML
 stapxx
 statsd
 stderr

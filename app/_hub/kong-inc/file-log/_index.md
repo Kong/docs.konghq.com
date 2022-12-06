@@ -30,6 +30,10 @@ params:
     - name: tcp
     - name: tls
     - name: udp
+    - name: ws
+      minimum_version: "3.1.x"
+    - name: wss
+      minimum_version: "3.1.x"
   dbless_compatible: 'yes'
   config:
     - name: path

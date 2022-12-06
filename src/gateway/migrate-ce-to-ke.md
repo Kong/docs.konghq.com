@@ -15,16 +15,16 @@ supports the same {{site.ce_product_name}} version.
    recommended to back up your production data before migrating from
    {{site.ce_product_name}} to {{site.ee_product_name}}.
 
-If running a version of {{site.ce_product_name}} earlier than 3.0.x,
-[upgrade to {{site.ce_product_name}} 3.0.x](/gateway/{{page.kong_version}}/upgrade/) before migrating
-{{site.ce_product_name}} to {{site.ee_product_name}} 3.0.x.
+If running a version of {{site.ce_product_name}} earlier than {{page.kong_version}},
+[upgrade to {{site.ce_product_name}} {{page.kong_version}}](/gateway/{{page.kong_version}}/upgrade/) before migrating
+{{site.ce_product_name}} to {{site.ee_product_name}} {{page.kong_version}}.
 
 ## Migration steps
 
 The following steps guide you through the migration process.
 
 1. [Download](/gateway/{{page.kong_version}}/install) the {{site.base_gateway}}
-3.0.x Enterprise package and configure it to point to the same data store as your
+{{page.kong_version}} Enterprise package and configure it to point to the same data store as your
 {{site.ce_product_name}} 2.8.x node. The migration command expects the data store
 to be up to date on any pending migration:
 
