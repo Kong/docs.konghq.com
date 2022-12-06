@@ -22,7 +22,7 @@ The lowest version that Kong {{page.kong_version}} supports migrating from is 3.
 
 {:.important}
 > **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
-The upcoming 2.8.2 release will include blue-green migration support. If you want
+The 2.8.2 release includes blue-green migration support. If you want
 to perform migrations for traditional mode with no downtime,
 upgrade to 2.8.2, [then migrate to {{page.kong_version}}](#migrate-db).
 
@@ -166,8 +166,6 @@ diff the files to identify any changes, and apply them as needed.
 
 Due to the changes in 3.1.x, you must upgrade from 2.8.2 or later to 3.0.x, then 3.1.x.
 
-{:.note}
-> These instructions will only work once 3.1.x is available.
 
 1. Clone your database.
 2. Download 2.8.2, and configure it to point to the cloned data store.
@@ -212,8 +210,6 @@ To upgrade to 3.1.x, you must first [upgrade to 3.0.x](/gateway/3.0.x/upgrade).
 
 ### Traditional mode
 
-{:.note}
-> These instructions will only work once 3.1.x is available.
 
 1. Clone your database.
 2. Download 3.1.x, and configure it to point to the cloned data store.
