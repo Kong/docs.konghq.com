@@ -197,6 +197,11 @@ params:
       datatype: integer
       description: |
         The TCP port that the plugin uses to connect to the server.
+    - name: https
+      required: false
+      default: true
+      datatype: boolean
+      description: Whether to use HTTPS to connect with the AWS Lambda Function service endpoint. This is useful for local test scenarios by using the [AWS SAM CLI tool](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html).
     - name: keepalive
       required: true
       default: '`60000`'
