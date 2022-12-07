@@ -85,4 +85,4 @@ on the runtime instances using the references you provided.
 
 You can also store secrets in a secure vault backend.
 For a list of supported vault backend implementations, see the
-[Backends Overview](https://github.com/gateway/latest/kong-enterprise/secrets-management/backends).
+[Backends Overview](/gateway/latest/kong-enterprise/secrets-management/backends).

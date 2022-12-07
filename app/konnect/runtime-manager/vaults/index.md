@@ -68,7 +68,7 @@ Check out the example use case for [storing certificates in a vault](/konnect/ru
 
 For detailed vault configuration references and guides, see the {{site.base_gateway}}
 documentation:
-* [AWS Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm)
-* [GCP Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm)
-* [HashiCorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault)
-* [Environment variables](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/env)
+* [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm)
+* [GCP Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm)
+* [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault)
+* [Environment variables](/gateway/latest/kong-enterprise/secrets-management/backends/env)
