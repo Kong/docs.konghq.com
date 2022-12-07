@@ -22,7 +22,7 @@ proxy behavior.
 
 {:.note}
 > As of version 2.8, KongIngress sections other than `upstream` are
-> [deprecatedi](https://github.com/Kong/kubernetes-ingress-controller/issues/3018).
+> [deprecated](https://github.com/Kong/kubernetes-ingress-controller/issues/3018).
 > All settings in the `proxy` and `route` sections are now available with
 > dedicated annotations, and these annotations will become the only means of
 > configuring those settings in a future release. For example, if you had set
