@@ -14,7 +14,7 @@ overrides:
 The {{site.kic_product_name}} supports the following resources and features in the
 [Gateway API](https://gateway-api.sigs.k8s.io/). By default:
 
-- Core features are supported. If a core feature is not supported in the any
+- Core features are supported. If a core feature is not supported in any
   of the released versions yet, it will be listed in `Unsupported` section.
 - Extended features are not supported. If an extended feature is supported in 
   any of the released versions, it will be listed in the section of the 
@@ -40,7 +40,7 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ### v2.4.x
 
 - Supported weights of `BackendRefs`. Multiple `BackendRefs` with a round-robin load-balancing strategy 
-  is applied by default across the `Endpoints` or the `Services`. configuring weights of `BackendRefs`
+  is applied by default across the `Endpoints` or the `Services`. Configuring weights of `BackendRefs`
   can allow you to fine-tune the load-balancing between those backend services.
 
 ### v2.6.x
