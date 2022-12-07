@@ -49,6 +49,7 @@ Core features not listed here are supported by all listed versions of {{site.kic
 
 | {{site.kic_product_name}}     | 2.2.x                       | 2.3.x                       | 2.4.x                       | 2.5.x                       | 2.6.x                       | 2.7.x                       |
 |:------------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+|  weight in `backendRefs`      | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | `queryParam` in route matches | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
 | `requestRedirect` in filters  | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
 
