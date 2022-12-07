@@ -84,28 +84,31 @@ You can use `ExternalTrafficPolicy: Local` to preserve the Client IP address.
 
 ### EKS
 
-You have two options:
+You have three options:
 
-- L4 Load Balancer
-  In this case, you need to use the Proxy Protocol method to preserve Client IP
-  address.
+- L4 Network Load Balancer, with [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller)
+  In this case, you can use the Proxy Protocol method to preserve Client IP
+  address together with `ExternalTrafficPolicy: Cluster`.
+- L4 in-tree Network Load Balancer with the `service.beta.kubernetes.io/aws-load-balancer-type: nlb` annotation
+  In this case you need to use `ExternalTrafficPolicy: Local` to preserve the Client IP address.
 - L7 Load Balancer
   In this case, you need to use the HTTP headers method to preserve the Client
   IP address.
 
-The recommend Load Balancer type for AWS is NLB.
-You can choose the type of Load Balancer using the following annotation:
+The recommended Load Balancer type for AWS is the Network Load Balancer deployed with AWS Load Balancer Controller.
+You can choose this type of Load Balancer using the following annotations:
 
 ```
-service.beta.kubernetes.io/aws-load-balancer-type: nlb
+service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+service.beta.kubernetes.io/aws-load-balancer-type: "external"
+service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
 ```
 
-Other useful annotations for AWS are:
+To enable proxy protocol with the AWS Load Balancer Controller, you need to set the following annotations:
 
 ```
-service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
-service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
 ```
 
-A complete list can be found
-[here](https://gist.github.com/mgoodness/1a2926f3b02d8e8149c224d25cc57dc1).
+A list of annotations for the AWS Load Balancer Controller can be found
+[here](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/).
