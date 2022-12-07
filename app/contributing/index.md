@@ -4,6 +4,8 @@ no_version: true
 layout: 'docs-v2'
 ---
 
+<!-- vale off -->
+
 Hello, and welcome! Thanks for thinking about contributing to the Kong documentation.
 
 This section of the docs is here to help you help us, so read on to learn how to ask questions and help effectively.
