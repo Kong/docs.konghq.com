@@ -598,7 +598,9 @@ items:
         url: /reference/cli
       - text: Key management
         url: /reference/key-management
-      - text: Performance Testing Framework
+      - text: Performance Benchmarks
+        url: /reference/performance-benchmarks
+      - text: OSS Performance Testing Framework
         url: /reference/performance-testing-framework
       - text: Router Expressions Language
         url: /reference/router-expressions-language
