@@ -543,9 +543,6 @@ Routers with a large number of regexes can consume traffic intended for other ru
 You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
 request headers will indicate the matched route ID in the response headers for
 troubleshooting purposes.
-You can avoid creating complex regexes using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
-request headers will indicate the matched route ID in the response headers for
-troubleshooting purposes.
 
 As usual, a request must still match a route's `hosts` and `methods` properties
 as well, and {{site.base_gateway}} traverses your routes until it finds one that [matches

@@ -37,6 +37,10 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: partially
   dbless_explanation: |
     The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.

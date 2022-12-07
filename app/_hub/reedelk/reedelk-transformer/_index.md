@@ -45,7 +45,9 @@ params:
   service_id: true
   consumer_id: false
   route_id: true
-  protocols: ["http", "https"]
+  protocols:
+    - name: http
+    - name: https
   dbless_compatible: yes
   dbless_explanation:
 
@@ -210,10 +212,10 @@ downstream transformer.
    `Hello World John`
 
 For more information about this example, including testing the IntelliJ Flow
-Designer Plugin workflow with [Insomnia](https://insomnia.rest/){:target="_blank"}{:rel="noopener noreferrer"}, see: 
+Designer Plugin workflow with [Insomnia](https://insomnia.rest/){:target="_blank"}{:rel="noopener noreferrer"}, see:
 * Reedelk [Getting Started](https://www.reedelk.com/documentation/getting-started){:target="_blank"}{:rel="noopener noreferrer"}
 documentation.
-* [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world){:target="_blank"}{:rel="noopener noreferrer"} 
-on GitHub. 
-* [Kong Reedelk Transformer Plugin Demo](https://www.youtube.com/watch?v=c5Aw2XpwKos&amp;feature=youtu.be){:target="_blank"}{:rel="noopener noreferrer"} 
+* [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world){:target="_blank"}{:rel="noopener noreferrer"}
+on GitHub.
+* [Kong Reedelk Transformer Plugin Demo](https://www.youtube.com/watch?v=c5Aw2XpwKos&amp;feature=youtu.be){:target="_blank"}{:rel="noopener noreferrer"}
 video on Youtube.

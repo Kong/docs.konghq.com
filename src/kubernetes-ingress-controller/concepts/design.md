@@ -47,7 +47,7 @@ There exist 2 flavors of objects in Kubernetes that can be used with
 
 ### Generic Kubernetes resources
 
-In Kubernetes, there are several main concepts that are use to logically identify
+In Kubernetes, there are several main concepts that are used to logically identify
 workloads and route traffic between them. Some of them are:
 
 - A [Service][k8s-service] inside Kubernetes is a way to abstract an application that is running on a set of pods.

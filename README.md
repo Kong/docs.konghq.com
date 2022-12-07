@@ -22,7 +22,7 @@ All pull requests for these docs should be opened in the [Kong/kong](https://git
 
 For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration), open an issue on this repo and we'll update the docs.
 
-* **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/).
+* **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/) and our [documentation templates](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates).
 
 * We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
