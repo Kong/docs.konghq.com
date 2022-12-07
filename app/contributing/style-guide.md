@@ -60,10 +60,10 @@ For more information about formatting admonitions see [markdown-rules](/contribu
 
 At Kong, we use the four following standard content types when we write our documentation:
 
-- [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md): Documentation that is understanding-oriented because it clarifies and discuss a particular topic.
-- [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md): Documentation that is goal-oriented and prescriptive that takes readers through the steps to complete a real-world problem.
+- [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md): Documentation that is understanding-oriented because it clarifies and discusses a particular topic.
+- [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md): Documentation that is goal-oriented and prescriptive and that takes readers through the steps to complete a real-world problem.
 - [Reference](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/reference-template.md): Documentation that explains the technology, like API or command line documentation.
-- [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Documentation that help users learn about a topic by going step-by-step through a series of tasks.
+- [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Documentation that helps users learn about a topic by going step-by-step through a series of tasks.
 
 Every documentation page should fit one of these four content types.
 
