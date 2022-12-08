@@ -84,6 +84,8 @@ The {{site.kic_product_name}}'s implementation of `UDPRoute` supports multiple `
 |:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
 | `v1alpha2`                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
+### Unsupported
+- Does not support [GEP-957](https://gateway-api.sigs.k8s.io/geps/gep-957/) port matching.
 
 ## TLS Routes
 
@@ -106,5 +108,3 @@ to allow routes to reference backends in other namespaces in `BackendRefs`.
 |:-----------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
 | `ReferenceGrant` `v1alpha2`  | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | 
 | `ReferencePolicy` `v1alpha2` | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | 
-
-
