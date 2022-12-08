@@ -94,7 +94,7 @@ params:
   name: saml
   service_id: true
   route_id: true
-  consumer_id: false
+  consumer_id: true
   protocols:
     - name: http
     - name: https
