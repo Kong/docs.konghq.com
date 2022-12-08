@@ -89,6 +89,36 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
           expect(subject.data['extn_release']).to eq('2.2.x')
         end
       end
+
+      context 'does not override versions missing from "frontmatter"' do
+        let(:plugin) do
+          PluginSingleSource::Plugin::Base.make_for(dir: 'acme/unbundled-plugin', site:)
+        end
+        let(:source) { '_index' }
+        let(:version) { '2.8.x' }
+
+        it 'sets the corresponding attributes' do
+          expect(subject.instance_variable_get(:@dir)).to eq('hub/acme/unbundled-plugin')
+
+          expect(subject.data['version']).to eq('2.8.x')
+          expect(subject.data['bundled']).to eq(nil)
+        end
+      end
+
+      context 'uses the "frontmatter" overrides where applicable' do
+        let(:plugin) do
+          PluginSingleSource::Plugin::Base.make_for(dir: 'acme/unbundled-plugin', site:)
+        end
+        let(:source) { '_index' }
+        let(:version) { '3.0.x' }
+
+        it 'sets the corresponding attributes' do
+          expect(subject.instance_variable_get(:@dir)).to eq('hub/acme/unbundled-plugin')
+
+          expect(subject.data['version']).to eq('3.0.x')
+          expect(subject.data['bundled']).to eq(false)
+        end
+      end
     end
   end
 end

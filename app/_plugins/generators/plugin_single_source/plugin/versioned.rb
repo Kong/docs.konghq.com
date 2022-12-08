@@ -22,7 +22,8 @@ module PluginSingleSource
         {
           'releases' => releases,
           'strategy' => data['strategy'],
-          'overrides' => data['overrides']
+          'overrides' => data['overrides'],
+          'frontmatter' => data['frontmatter']
         }
       end
 
