@@ -161,6 +161,19 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         </div>
       {% endunless %}
     {% endif %}
+      {% if page.bundled == false %}
+      <blockquote class="important">
+        <details>
+        <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
+
+        <ul>
+          <li>Package install: Set <strong>plugins=bundled,{{ page.params.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+          <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.params.name }}</strong> in the environment</li>
+          <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.params.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+        </ul>
+        </details>
+      </blockquote>
+      {% endif %}
       {% if page.alpha %}
       <blockquote class="warning no-icon">
         This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
