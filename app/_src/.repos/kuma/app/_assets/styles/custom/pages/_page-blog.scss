@@ -1,0 +1,387 @@
+//
+// Blog
+//
+
+:root {
+  --blog-width: 75rem;
+  --blog-width-narrow: 800px;
+  --blog-wrapper-margin: 2rem 0 0 0;
+  --blog-title-margin: 0 0 var(--spacing-xxs) 0;
+  --blog-article-margin: 0 0 var(--spacing-lg) 0;
+  --blog-article-padding: 0 0 var(--spacing-sm) 0;
+  --blog-article-border: 1px solid #{$color-7};
+  --blog-content-padding: var(--spacing-lg) var(--spacing-xxl);
+  --blog-content-padding-small: var(--spacing-md) var(--spacing-lg);
+  --blog-summary-padding: 0 var(--spacing-lg);
+  --blog-summary-radius: 12px;
+}
+
+@mixin narrow-blog-content {
+  max-width: var(--blog-width-narrow);
+  margin: 0 auto;
+  padding: var(--blog-content-padding-small);
+
+  @media (min-width: 920px) {
+    padding: var(--blog-content-padding);
+  }
+}
+
+@mixin featured-image-content {
+  margin-top: -60px;
+  background-color: #fff;
+  border-radius: var(--blog-summary-radius);
+  // box-shadow: 0 -15px 18px 0 rgba(#000, 0.07);
+}
+
+//
+// Blog page general
+//
+
+.blog-page {
+}
+
+.page-container--blog {
+  max-width: var(--blog-width);
+  margin: 0 auto;
+}
+
+.pagination-wrapper {
+  margin: var(--blog-wrapper-margin);
+  text-align: center;
+  border-top: var(--blog-article-border);
+
+  .pagination {
+  }
+}
+
+.blog-post__info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--type-sm);
+  color: var(--tblack-70);
+
+  .date {
+    font-weight: 700;
+    color: $color-5;
+  }
+
+  .separator {
+    margin: 0 0.75rem;
+  }
+
+  .reading-time {
+  }
+}
+
+.blog-page__main-title-wrapper {
+  max-width: 64rem;
+  margin-top: 2rem;
+}
+
+//
+// Blog sidebar
+//
+
+.blog-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+
+  .newsletter-form {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+
+    input[type='email'] {
+      background-color: #fff;
+      border-radius: 0;
+    }
+
+    form {
+      background: none;
+      border-radius: 0;
+    }
+
+    button.is-sending {
+      position: relative;
+      background-color: $green-base !important;
+      cursor: not-allowed;
+
+      span:not(.is-hidden) {
+        display: block;
+        position: absolute;
+        left: calc(50% - 12px);
+      }
+    }
+
+    .is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+//
+// Blog page index
+//
+
+.blog-article {
+  padding: var(--blog-article-padding);
+
+  &:not(:last-of-type) {
+    margin: var(--blog-article-margin);
+  }
+
+  a {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.blog-index__post-title {
+  border: 0;
+  margin: var(--blog-title-margin);
+}
+
+.blog-index__post-header {
+  .blog-post__info {
+    justify-content: start;
+
+    .date {
+      font-weight: normal;
+      color: inherit;
+    }
+  }
+}
+
+.blog-index__post-footer {
+}
+
+.blog-index__post-summary {
+}
+
+.blog-index__post-header__content {
+}
+
+.blog-article__post-inner {
+  @include narrow-blog-content;
+}
+
+// when a blog index item has a featured image
+.has-image {
+}
+
+.blog-post__header-image {
+  padding-top: 25%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--blog-summary-radius);
+  min-height: 200px;
+  // box-shadow: 0 10px 0 0 $color-5;
+}
+
+//
+// Blog detail pages
+//
+
+.blog-detail__content {
+}
+
+.blog-post__detail-content {
+  @include narrow-blog-content;
+
+  ul,
+  ol {
+    margin: var(--spacing-xl) 0;
+
+    li {
+      position: relative;
+      margin-left: 20px;
+
+      &:before {
+        position: absolute;
+        left: -20px;
+        top: 0;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      &:before {
+        content: '• ';
+        color: $color-4;
+        font-size: 18px;
+        font-weight: 700;
+        // vertical-align: middle;
+      }
+    }
+  }
+
+  ol {
+    counter-reset: list-counter;
+    list-style: none;
+
+    li {
+      counter-increment: list-counter;
+
+      &:before {
+        content: counter(list-counter) '. ';
+        color: $color-4;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// when a blog detail page has a featured image
+.has-image {
+}
+
+//
+// Blog nav
+//
+
+.blog-nav {
+  text-align: left;
+  font-size: var(--type-sm);
+  // text-transform: uppercase;
+  margin-top: var(--spacing-md);
+  padding: 0 var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+  border-bottom: var(--blog-article-border);
+
+  a {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (min-width: 920px) {
+  .has-image {
+    .blog-post__detail-content,
+    .blog-article__post-inner {
+      @include featured-image-content;
+    }
+  }
+}
+
+.post-summary {
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Pagination */
+/*
+ * extracted from https://github.com/vuepress/vuepress-plugin-blog/blob/master/src/client/components/Pagination.vue
+*/
+.pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 20px 0;
+	border-radius: 4px;
+	& > li {
+		display: inline;
+		outline: none;
+	}
+}
+.pagination > li > a,
+.pagination > li > span {
+	transition: color 0.2s, background-color 0.2s;
+	outline: none;
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: $accentColor;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+	z-index: 3;
+	color: $accentColor;
+	background-color: #eee;
+	border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: $accentColor;
+	border-color: $accentColor;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+	color: #ddd;
+	cursor: not-allowed;
+	background-color: #fff;
+	border-color: #ddd;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}

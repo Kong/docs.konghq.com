@@ -1,0 +1,70 @@
+source: app
+destination: dist
+permalink: pretty
+timezone: America/San_Francisco
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    guess_lang: true
+incremental: true
+
+# Site settings
+logo: "/assets/images/brand/kuma-logo-new.svg"
+repo: "https://github.com/kumahq/kuma"
+title: "Kuma"
+description: "Build, Secure and Observe your modern Service Mesh"
+links:
+  web: https://kuma.io
+fb:
+  app_id: 682375632267551
+twitter:
+  handle: '@KumaMesh'
+
+defaults:
+  -
+    scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
+      permalink: "/blog/:year/:slug/"
+  -
+    scope:
+      path: "docs"
+    values:
+      layout: "page"
+
+# Pagination
+pagination:
+  # Site-wide kill switch, disabled here it doesn't run at all
+  enabled: true
+  per_page: 5
+  title: 'Page :num | :title'
+  sort_reverse: true
+  trail:
+    before: 1
+    after: 1
+
+# Pardot
+pardot:
+  communityCallFormEndpoint: 'https://go.pardot.com/l/392112/2020-07-09/bmmgqv'
+  communityCallInvite: 'https://calendar.google.com/calendar?cid=a29uZ2hxLmNvbV8xbWE5NnNzZGdnZmg5ZnJyY3M5N2VwdTM4b0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t'
+  newsletterFormEndpoint: 'https://go.pardot.com/l/392112/2020-01-14/bkwzrx'
+  serviceMeshConFormEndpoint: 'https://go.konghq.com/l/392112/2020-11-16/bnlpqv'
+
+# Analytics
+gtag:
+  tracking_id: ''
+
+jekyll-generator-single-source:
+  versions_file: '_data/versions.yml'
+  docs_nav_folder: '_data'
+  layout: 'page'
+  multiple_products: false
+  base_dest_path: 'docs'
+
+# Product name variables
+mesh_product_name: Kuma
+default_namespace: kuma-system

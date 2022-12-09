@@ -1,0 +1,13 @@
+//
+// Request A Demo page
+//
+
+@media (min-width: $MQMobileMid) {
+  // sticky form
+  .demo-request-form {
+
+    .sticky {
+      top: $navbarHeight;
+    }
+  }
+}

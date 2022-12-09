@@ -1,0 +1,65 @@
+//
+// Card
+//
+
+$card-bg-color: #F6F7F8;
+$card-header-padding: 1rem 1.875rem;
+$card-header-bg-color: #fff;
+$card-header-min-height: 5rem;
+$card-title-font-size: 1.188rem;
+$card-content-padding: 1.25rem 1.875rem;
+$card-radius: 3px;
+$card-shadow: $base-border-shadow;
+$card-icon-margin: 1rem;
+
+.card {
+  overflow: hidden;
+  background-color: $card-bg-color;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+
+  // we don't need anchor headers in this component
+  .header-anchor {
+    display: none !important;
+  }
+}
+
+.card__header {
+  background-color: $card-header-bg-color;
+  padding: $card-header-padding;
+  display: flex;
+  align-items: center;
+  min-height: $card-header-min-height;
+}
+
+.card__title {
+
+  h3 {
+    font-size: $card-title-font-size;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.card__icon {
+  margin-right: $card-icon-margin;
+
+  img {
+    display: block;
+    margin: 0;
+  }
+}
+
+.card__content {
+  padding: $card-content-padding;
+
+  *:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  *:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,104 @@
+---
+layout: default
+---
+
+<div class="page-container page-container--community">
+  {% include page_header.html %}
+
+  <div class="inner flex flex-wrap items-stretch -mx-4">
+
+    <div class="w-full sm:w-1/2 mb-8 px-4">
+      <div class="card">
+        <header class="card__header">
+          <div class="card__icon">
+            <img src="{{ page.card1Icon }}" alt="{{ page.card1IconAlt }}">
+          </div>
+          <div class="card__title">
+            {% contentblock card-1-title %}
+          </div>
+        </header>
+        <div class="card__content">
+          <div class="content__card-1-content">
+            {% contentblock card-1-content %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /card 1 -->
+
+    <div class="w-full sm:w-1/2 mb-8 px-4">
+      <div class="card">
+        <header class="card__header">
+          <div class="card__icon">
+            <img src="{{ page.card2Icon }}" alt="{{ page.card2IconAlt }}">
+          </div>
+          <div class="card__title">
+            {% contentblock card-2-title %}
+          </div>
+        </header>
+        <div class="card__content">
+          <div class="content__card-2-content">
+            {% contentblock card-2-content %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /card 2 -->
+
+    <div class="w-full sm:w-1/2 mb-8 px-4">
+      <div class="card">
+        <header class="card__header">
+          <div class="card__icon">
+            <img src="{{ page.card3Icon }}" alt="{{ page.card3IconAlt }}">
+          </div>
+          <div class="card__title">
+            {% contentblock card-3-title %}
+          </div>
+        </header>
+        <div class="card__content">
+          <div class="content__card-3-content">
+            {% contentblock card-3-content %}
+          </div>
+
+          <ul class="inline-list">
+            <li>
+              <a href="https://tny.sh/NXs6EVO" class="no-outbound">
+                <span class="icon">📝</span>  Agenda
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/playlist?list=PLg_AhYkg50viOMrea6Nm3t9JCempVyLcj" class="no-outbound">
+                <span class="icon">🎥</span> Past Recordings
+              </a>
+            </li>
+          </ul>
+          <div class="community-form">
+            {% include community_call_form.html %}
+          </div>
+        </div>
+      </div>
+      <Car>
+    </div>
+    <!-- /card 3 -->
+
+    <div class="w-full sm:w-1/2 mb-8 px-4">
+      <div class="card">
+        <header class="card__header">
+          <div class="card__icon">
+            <img src="{{ page.card4Icon }}" alt="{{ page.card4IconAlt }}">
+          </div>
+          <div class="card__title">
+            {% contentblock card-4-title %}
+          </div>
+        </header>
+        <div class="card__content">
+          <div class="content__card-4-content">
+            {% contentblock card-4-content %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /card 4 -->
+  </div>
+  <!-- .inner -->
+</div>

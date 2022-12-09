@@ -1,0 +1,42 @@
+<div class="form-wrapper {% if include.stacked %} form-wrapper--stacked {% endif %} {% if include.compact %} form-wrapper--compact {% endif %}">
+  <span>
+    <form class="form-horizontal">
+      <input name="utm_content" type="hidden">
+      <input name="utm_medium" type="hidden">
+      <input name="utm_source" type="hidden" value="kuma-website">
+      <input name="utm_campaign" type="hidden">
+      <input name="utm_term" type="hidden">
+      <input name="utm_ad_group" type="hidden">
+      <input type="hidden" name="pardot-link" value="{{ site.pardot.newsletterFormEndpoint }}">
+
+      <label for="input_email" class="sr-only" >Email</label>
+      <span class="form-note-wrapper">
+        <input id="email" name="email" type="email" placeholder="Work Email" required />
+      </span>
+      <button
+          type="submit"
+          name="submit"
+          class="btn"
+          >
+          <span class="spinner hidden">
+            {% include spinner.html %}
+          </span>
+          <span class="submit_text">{{ include.submit_text }}</span>
+      </button>
+    </form>
+
+    <div class="form-success tip custom-block hidden">
+      <p class="custom-block-title">Thank you!</p>
+      {% if include.success %}
+        <p>{{ include.sucess }}</p>
+      {% else %}
+        <p>You're now signed up for the {{ site.title }} newsletter.</p>
+      {% endif %}
+    </div>
+
+    <div class="form-error danger custom-block hidden">
+      <p class="custom-block-title">Whoops!</p>
+      <p>Something went wrong! Please try again later.</p>
+    </div>
+  </span>
+</div>

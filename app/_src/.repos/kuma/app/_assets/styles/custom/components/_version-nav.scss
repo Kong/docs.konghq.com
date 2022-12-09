@@ -1,0 +1,36 @@
+// 
+// Version navigation
+// 
+
+$version-nav-padding: 1.563rem 1.563rem 0 1.563rem;
+$version-nav-select-color: $color-5;
+$version-nav-select-font: $base-mono-family;
+
+.version-nav {
+  padding: $version-nav-padding;
+
+  label {
+    @include sr-only;
+  }
+
+  select {
+    display: block;
+    width: 100%;
+  }
+}
+
+.version-selector {
+  
+}
+
+.version-selector--large {
+  font-size: 1.3rem;
+  padding-right: 2.25rem;
+  padding-left: 1.25rem;
+}
+
+// hide the version selector outside of the docs pages
+// @todo find a more reliable way to handle this
+.theme-container.no-sidebar .version-nav {
+  display: none;
+}

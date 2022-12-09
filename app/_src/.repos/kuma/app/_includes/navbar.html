@@ -1,0 +1,34 @@
+<header class="navbar">
+  <div class="navbar-inner">
+
+    <div class="sidebar-button">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512">
+        <path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class=""></path>
+      </svg>
+    </div>
+
+    <div class="logo-wrap">
+      <a href="/" class="home-link">
+        <img
+          class="logo"
+          src="{{ site.logo }}"
+          alt="{{ site.title }}"
+        >
+        <span
+          ref="siteName"
+          class="site-name can-hide"
+          >{{ site.title }}
+        </span>
+      </a>
+
+      <span class="repo-button">
+        <a class="github-button" href="https://github.com/kumahq/kuma" data-icon="octicon-star" aria-label="Star kumahq/kuma on GitHub">Star</a>
+      </span>
+    </div>
+
+    <div class="links">
+      {% include nav_links.html can_hide=true %}
+    </div>
+
+  </div>
+</header>

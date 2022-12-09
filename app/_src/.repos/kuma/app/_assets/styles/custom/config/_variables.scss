@@ -1,0 +1,122 @@
+//
+
+// Variables
+//
+
+$root-font-size: 100%;
+$base-font-size: 16px;
+
+// Branding (todo: clean up)
+$color-1: #3fb764;
+$color-2: #008aeb;
+$color-3: #4d4d4d;
+$color-4: #17a956;
+$color-5: #1155cb;
+$color-6: #2b303b;
+$color-7: #eaecef;
+$color-8: #ff5d8c;
+$color-9: #1b1326;
+$color-10: #c6bcd3;
+$color-11: #4e1999;
+$color-12: #b6b1e3;
+$color-13: #290b53;
+
+$gray-1: #fdfdfd;
+$gray-2: #bfbfbf;
+$gray-3: lighten(#949494, 22);
+$gray-4: #e1e1e1;
+$gray-5: #49494b;
+$gray-6: #f7f8f9;
+$gray-7: #4b4f59;
+$gray-8: #e5eaed;
+
+$navy: #062f4d;
+$navy-alt: #20242c;
+$navy-light: lighten($navy-alt, 74);
+$sky: #e6edfa;
+$sky-light: #f1f5fc;
+
+$green-base: #3fa66a;
+$green-dark: #318153;
+$green-light: #e7f6ee;
+$pale-blue: #f5f8fc;
+$pale-blue-2: #668295;
+
+// Misc
+$image-path: '/assets/images/';
+$container-width-compact: 65rem; // 1040px
+$container-width-wide: 76rem; // 1216px
+$container-width: $container-width-wide;
+$gutter: 1.875rem; // 30px
+$base-soft-shadow: 0 3px 6px 0 rgba($color-7, 18%);
+$base-border-shadow: 0 0 0 1px $gray-3, $base-soft-shadow;
+$gradient-1: linear-gradient(0deg, #fbfcfe 0%, $pale-blue 55%);
+$gradient-2: linear-gradient(0deg, rgba(#fbfcfe, 0) 0%, #fbfcfe 55%);
+$gradient-3: linear-gradient(180deg, #fff 0%, rgba(#fff, 0) 100%);
+$gradient-4: linear-gradient(0deg, #fff 0%, $pale-blue 55%);
+$gradient-5: linear-gradient(to top, #fff 0%, $pale-blue 50%);
+
+$btn-height-base: 40px;
+$btn-radius: $btn-height-base / 2;
+$btn-height-base-large: 50px;
+$btn-radius-large: $btn-height-base-large / 2;
+$btn-font-size-large: 18px;
+
+$navbar-height-large: 5.5rem;
+
+// Cubic-bezier and easing settings
+$cb-1: cubic-bezier(0.47, 0.37, 0.36, 0.92);
+
+// code block text color
+$code-text-color: #333;
+
+// Custom breakpoints
+$MQMobileMid: 639px;
+$MQNarrowMid: 840px;
+$MQLargeMid: 767px;
+$MQLarge: 1023px;
+
+//
+// VuePress default theme variables
+//
+// these are carried over from the
+// default theme Stylus files
+//
+
+$MQMobile: 719px;
+$MQMobileNarrow: 419px;
+$MQNarrow: 959px;
+$navbarHeight: 4.688rem;
+$accentColor: #3eaf7c;
+$textColor: #2c3e50;
+$borderColor: #eaecef;
+$codeBgColor: rgb(251, 251, 251);
+// $codeBgColor: #282c34;
+$sidebarWidth: 16rem; // VuePress default is 20
+// $contentWidth: 740px;
+$contentWidth: 920px;
+$wrapper: '.content';
+$contentClass: '.theme-default-content';
+$arrowBgColor: #ccc;
+$lineNumbersWrapperWidth: 3.5rem;
+$codeLang: (
+  js,
+  ts,
+  html,
+  md,
+  vue,
+  css,
+  sass,
+  scss,
+  less,
+  stylus,
+  go,
+  java,
+  c,
+  sh,
+  yaml,
+  py,
+  docker,
+  dockerfile,
+  makefile
+);
