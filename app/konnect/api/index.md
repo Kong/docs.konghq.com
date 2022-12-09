@@ -19,7 +19,7 @@ The region-specific endpoints are used to manage {{site.konnect_short_name}} ent
 
 The recommended method of authentication for {{site.konnect_short_name}} is [Personal Access Token (PAT)](/konnect/runtime-manager/runtime-groups/declarative-config/#generate-a-personal-access-token), which can be obtained from the [personal access token page](https://cloud.konghq.com/global/tokens) in {{site.konnect_short_name}}. The PAT must be passed in the `Authorization` header of all requests, for example: 
 
-`curl -X GET 'https://global.api.konghq.tech/v2/users/' --header 'Authorization: Bearer kpat_xgfT'`
+`curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT'`
 
 
 ## API reference documentation
