@@ -12,12 +12,12 @@ We now use a Jekyll plugin (`single_source_generator.rb`) to dynamically generat
   - If `assume_generated` is not set at the top level, or it is set to `true` then all items will be generated
   - If `assume_generated` is set to `false` then each item in the navigation that should be generated will need `generate: true` to be set
 - Each file that should be generated goes through the following process:
-  - Build up the base directory: `src/<product>` by default, but if the `src` starts with a `/` it will be treated as a full path within `src`. e.g. `/shared/license` would be `/src/shared/license` whilst `shared/license` would be `/src/<product>/shared/license`
+  - Build up the base directory: `app/_src/<product>` by default, but if the `src` starts with a `/` it will be treated as a full path within `app/_src/`. e.g. `/shared/license` would be `app/_src/shared/license` whilst `shared/license` would be `app/_src/<product>/shared/license`
   - If `src` is set on the item, we'll use that as the source file
   - If `src` is _not_ set on the item:
     - If `absolute_url` is set, skip the item. We assume it's generated another way (unless the `url` is equal to `/<product>/`, which is a special case and is always generated)
     - Else use the `url` and set `src` to be `url`
-  - Read `src/<product>/<src>.md` or `src/<product>/<src>/index.md` and generate a file at `<product>/<version>/<url>` using that content
+  - Read `app/_src/<product>/<src>.md` or `app/_src/<product>/<src>/index.md` and generate a file at `<product>/<version>/<url>` using that content
 
 ## Concepts
 
