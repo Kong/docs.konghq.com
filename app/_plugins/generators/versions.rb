@@ -72,15 +72,12 @@ module Jekyll
       # Add a `version` property to every versioned page
       # Also create aliases under /latest/ for all x.x.x doc pages
       site.pages.each do |page| # rubocop:disable Metrics/BlockLength
-        path = page.path
-
         # Remove the generated prefix if it's present
-        # It's in the format GENERATED:nav=nav/product_1.2.x:src=src/path/here:/output/path
-        if path.start_with?('GENERATED:')
-          path = path.split(':')
-          path.shift(3)
-          path = path.join(':')
-        end
+        path = if page.relative_path.start_with?('_src')
+                 page.dir.delete_prefix('/')
+               else
+                 page.path
+               end
 
         parts = Pathname(path).each_filename.to_a
 
@@ -97,6 +94,7 @@ module Jekyll
           gateway
           gateway-oss
         ].any? { |p| parts[0] == p }
+
         has_version = parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/)
         next unless is_product || has_version
 
