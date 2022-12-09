@@ -13,13 +13,13 @@
 
 1. Click **Generate certificate**.
 
-    Two new fields appear: a certificate and a private key.
+    Two new fields appear: a cluster certificate and a certificate key.
     The contents of these fields are unique to each runtime configuration.
 
 1. Save the contents of each field into a separate file in a safe location:
 
-    * Certificate: `tls.crt`
-    * Private key: `tls.key`
+    * Cluster certificate: `tls.crt`
+    * Certificate key: `tls.key`
 
     If you navigate away from this page before saving all of the
     certificate and key files, you will need to regenerate them.

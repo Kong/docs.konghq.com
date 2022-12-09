@@ -70,48 +70,48 @@ Use the following `docker run` command sample as a guide to compile your actual 
 {% navtabs codeblock %}
 {% navtab Any Unix shell %}
 ```sh
-$ docker run -d --name kong-dp \
-  -e "KONG_ROLE=data_plane" \
-  -e "KONG_DATABASE=off" \
-  -e "KONG_CLUSTER_MTLS=pki" \
-  -e "KONG_CLUSTER_CONTROL_PLANE={example.cp.konnect.foo}:443" \
-  -e "KONG_CLUSTER_SERVER_NAME={kong-cpoutlet-example.service}" \
-  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT={example.tp.konnect.foo}:443" \
-  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME={kong-telemetry-example.service}" \
-  -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" \
-  -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" \
-  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" \
-  -e "KONG_KONNECT_MODE=on" \
-  -e "KONG_VITALS=off" \
-  --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
-  -p 8000:8000 \
-  kong/kong-gateway:3.0.0.0
+docker run -d \
+        -e "KONG_ROLE=data_plane" \
+        -e "KONG_DATABASE=off" \
+        -e "KONG_ANONYMOUS_REPORTS=off" \
+        -e "KONG_VITALS_TTL_DAYS=723" \
+        -e "KONG_CLUSTER_MTLS=pki" \
+        -e "KONG_CLUSTER_CONTROL_PLANE=91288f8ed2.us.cp0.konghq.com:443" \
+        -e "KONG_CLUSTER_SERVER_NAME=91288f8ed2.us.cp0.konghq.com" \
+        -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=91288f8ed2.us.tp0.konghq.com:443" \
+        -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=91288f8ed2.us.tp0.konghq.com" \
+        -e "KONG_CLUSTER_CERT_STRING='-----BEGIN PRIVATE KEY-----\-----END PRIVATE KEY-----\r\n'" \
+        -e "KONG_CLUSTER_CERT_KEY_STRING='-----BEGIN CERTIFICATE-----\-----END CERTIFICATE-----\r\n'" \
+        -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/cluster.crt" \
+        -p "$KONNECT_RUNTIME_PORT":8000 \
+        -p "$KONNECT_RUNTIME_PORT_SECURE":8443 \
+        kong/kong-gateway:3.1.0
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
 ```powershell
-docker run -d --name kong-dp `
-  -e "KONG_ROLE=data_plane" `
-  -e "KONG_DATABASE=off" `
-  -e "KONG_CLUSTER_MTLS=pki" `
-  -e "KONG_CLUSTER_CONTROL_PLANE={EXAMPLE.CP.KONNECT.FOO}:443" `
-  -e "KONG_CLUSTER_SERVER_NAME={KONG-CPOUTLET-EXAMPLE.SERVICE}" `
-  -e "KONG_CLUSTER_TELEMETRY_ENDPOINT={EXAMPLE.TP.KONNECT.FOO}:443" `
-  -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME={KONG-TELEMETRY-EXAMPLE.SERVICE}" `
-  -e "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt" `
-  -e "KONG_CLUSTER_CERT_KEY=/{PATH_TO_FILE}/tls.key" `
-  -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system" `
-  -e "KONG_KONNECT_MODE=on" `
-  -e "KONG_VITALS=off" `
-  --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
-  -p 8000:8000 `
-  kong/kong-gateway:3.0.0.0
+docker run -d \
+        -e "KONG_ROLE=data_plane" \
+        -e "KONG_DATABASE=off" \
+        -e "KONG_ANONYMOUS_REPORTS=off" \
+        -e "KONG_VITALS_TTL_DAYS=723" \
+        -e "KONG_CLUSTER_MTLS=pki" \
+        -e "KONG_CLUSTER_CONTROL_PLANE=91288f8ed2.us.cp0.konghq.com:443" \
+        -e "KONG_CLUSTER_SERVER_NAME=91288f8ed2.us.cp0.konghq.com" \
+        -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=91288f8ed2.us.tp0.konghq.com:443" \
+        -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=91288f8ed2.us.tp0.konghq.com" \
+        -e "KONG_CLUSTER_CERT_STRING='-----BEGIN PRIVATE KEY-----\-----END PRIVATE KEY-----\r\n'" \
+        -e "KONG_CLUSTER_CERT_KEY_STRING='-----BEGIN CERTIFICATE-----\-----END CERTIFICATE-----\r\n'" \
+        -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/cluster.crt" \
+        -p "$KONNECT_RUNTIME_PORT":8000 \
+        -p "$KONNECT_RUNTIME_PORT_SECURE":8443 \
+        kong/kong-gateway:3.1.0
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
-1. Replace the values in `KONG_CLUSTER_CERT` and
-`KONG_CLUSTER_CERT_KEY` with the paths to your certificate and key files.
+1. Replace the values in `KONG_CLUSTER_CERT_STRING` and
+`KONG_CLUSTER_CERT_KEY_STRING` with the path to your certificate and key files.
 
 2. Check the **Linux** or **Kubernetes** tiles in the {{site.konnect_short_name}} UI to find the values for
         `KONG_CLUSTER_CONTROL_PLANE`, `KONG_CLUSTER_SERVER_NAME`,
