@@ -4,7 +4,7 @@ RSpec.describe KumaToKongMesh::Generator do
   end
 
   before do
-    page.data['path'] = 'GENERATED:nav=docs_nav_mesh'
+    page.data['path'] = "_src/.repos/kuma/#{page.relative_path}"
   end
 
   describe '#generate' do
