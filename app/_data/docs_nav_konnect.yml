@@ -219,6 +219,11 @@
         - text: API Documentation
           url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
           absolute_url: true
+    - text: Portal Auth API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/edcaaf42-777b-47f9-aa80-797327a4b8b2/
+          absolute_url: true
     - text: Reference
       items:
         - text: Filtering

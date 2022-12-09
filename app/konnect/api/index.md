@@ -28,6 +28,8 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/) - Interface for managing runtime groups and certificates.
 
+* [Portal Auth API Documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/edcaaf42-777b-47f9-aa80-797327a4b8b2/) - Interface for portal developers, teams, and RBAC rules.
+
 
 ## More information
 
