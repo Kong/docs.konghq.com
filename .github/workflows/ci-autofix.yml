@@ -22,7 +22,7 @@ jobs:
         with:
           sha: ${{  github.event.pull_request.head.sha }}
           files: |
-            src/**
+            app/_src/**
             app/_assets/**
       - run: npx prettier --write ${{ steps.changed-files.outputs.all_changed_files }}
       - name: Commit changes

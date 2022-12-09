@@ -41,7 +41,7 @@ jobs:
         with:
           sha: ${{ github.sha }}
           files: |
-            src/**
+            app/_src/**
             app/_assets/**
       - run: npx prettier --check ${{ steps.changed-files.outputs.all_changed_files }}
   rubocop:
