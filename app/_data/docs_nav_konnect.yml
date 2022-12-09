@@ -197,6 +197,8 @@
           url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+        - text: Create System Accounts
+          url: /org-management/system-account
     - text: Account and Org Deactivation
       url: /org-management/deactivation
     - text: Troubleshoot
