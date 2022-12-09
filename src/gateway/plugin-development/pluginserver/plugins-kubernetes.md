@@ -20,13 +20,13 @@ USER root
 COPY your-go-plugin /usr/local/bin/your-go-plugin
 # Example for JavaScript:
 RUN apk update && apk add nodejs npm && npm install -g kong-pdk
-COPY you-js-plugin /path/to/your/js-plugins/you-js-plugin
+COPY your-js-plugin /path/to/your/js-plugins/your-js-plugin
 # Example for Python
 # PYTHONWARNINGS=ignore is needed to build gevent on Python 3.9
 RUN apk update && \
     apk add python3 py3-pip python3-dev musl-dev libffi-dev gcc g++ file make && \
     PYTHONWARNINGS=ignore pip3 install kong-pdk
-COPY you-py-plugin /path/to/your/py-plugins/you-py-plugin
+COPY your-py-plugin /path/to/your/py-plugins/your-py-plugin
 # reset back the defaults
 USER kong
 ENTRYPOINT ["/docker-entrypoint.sh"]
