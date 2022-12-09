@@ -4,6 +4,9 @@ no_version: true
 ---
 
 <!-- vale off -->
+## 3.1.1.0 
+
+Placeholder
 ## 3.1.0.0
 **Release Date** 2022/12/06
 
@@ -379,6 +382,9 @@ introduced in 3.0.0.0. Rolling upgrades from 2.8.x.y to 3.1.0.0 are not supporte
 Operators must upgrade to 3.0.x.x before they can perform a rolling upgrade to 3.1.0.0. For more information, see [Upgrade Kong Gateway 3.1.x](/gateway/3.1.x/upgrade).
   [#9740](https://github.com/Kong/kong/pull/9740)
 
+## 3.0.2.0
+
+Placeholder
 ## 3.0.1.0
 **Release Date** 2022/11/02
 
