@@ -60,14 +60,13 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
     By default, the plugin is automatically enabled when the form is submitted.
     You can also toggle the **This plugin is Enabled** button to configure the plugin without enabling it.
     For this example, keep the plugin enabled.
-1. Complete only the following fields with the following parameters.
+1. Complete only the following fields with the following parameters:
     1. Config.limit: `5`
     1. Config.window_size: `30`
-    1. Config.window_type: `sliding`
+    1. Config.window_type: `Sliding`
     1. Config.retry_after_jitter_max: `0`
     1. Config.enforce_consumer_groups: `true` 
     1. Config.consumer_groups: `Bronze`
-   
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
 1. Click **Save**.
@@ -76,14 +75,15 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
 
 In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 6 requests every 30 seconds only for consumers in the Bronze tier.
 
-1. Open the **default** workspace.
-1. From the menu, open **Consumers**, then click the **Groups** tab.
-1. Click the `Bronze` consumer group you just created.
-1. Click the **Policy** tab.
-1. Complete only the following fields with the following parameters.
-    1. config.limit: `6`
-    1. config.window_size: `30`
-    1. config.window_type: `sliding`
-    1. config.retry_after_jitter_max: `0`
+1. In {{site.base_short_name}}, click **Runtime Manager** in the sidebar.
+1. Click the **default** runtime group.
+1. From the menu, open **Consumers**, then click the **Consumer Groups** tab.
+1. Click the **Bronze** consumer group you just created.
+1. Click **Add Configuration**.
+1. In the dialog, complete only the following fields with the following parameters:
+    1. Window Size: 30
+    1. Window Type: Sliding
+    1. Limit: 6
+    1. Retry After Jitter Max: 0
 1. Click **Save**.
 
