@@ -728,6 +728,248 @@ key_set_data: |
 
 ---
 
+{% unless page.edition == "gateway" %}
+
+The API for configurating Kong Konnect Runtime Groups
+
+## Servers
+
+| URL                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `https://us.api.konghq.com/v2/runtime-groups/`                   | US Region Konnect Platform Base URL page.                                                                                                                 |
+| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
+| `https://us.kong-admin.konghq.com/v1/{runtime_group_id}` | US Region Kong Admin Base URL |
+|`https://eu.kong-admin.konghq.com/v1/{runtime_group_id}` | EU Region Kong Admin Base URL|
+       
+
+You can generate a Personal Access Token (PAT) from the personal access token page in the Konnect dashboard. The PAT token must be passed in the header of a request, for example: `curl -X GET https://global.api.konghq.tech/v2/users/' --header 'Authorization: Bearer kpat_xgfT`
+
+Provide your bearer token in the Authorization header when making requests to protected resources.
+
+Example: `Authorization: Bearer 123`
+
+This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few major differences:
+
+* No `PATCH` methods.
+* Non-backwards compatible error responses.
+* `POST` methods do not support URL encoded forms.
+
+
+--- 
+## Nodes
+### List Runtime Instance Records
+
+Returns a list of runtime instance records that are associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
+
+**Endpoint**
+
+<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/nodes</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `page.size`                   | The number of items to include in a page.                                                                                                                 |
+| `page.number` | The specific page number in the collection results. |
+       
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+### Fetch Runtime Instance Record
+
+Retrieve a specific runtime instance record associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
+
+**Endpoint**
+
+<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/nodes/{node_id}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `node_id`                   | The unique identifier for the runtime instance.                                                                                                                 |
+
+
+**Response**
+
+```
+HTTP 204 OK
+```
+
+### Delete Runtime Instance Record
+
+Remove a specific runtime instance record associated to this runtime group. Deleting this record does not prevent the runtime instance from re-connecting to the runtime group.
+
+**Endpoint**
+
+<div class="endpoint post">/v2/runtime-groups/{runtime_group_id}/nodes/{node_id}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `node_id`                   | The unique identifier for the runtime instance.                                                                                                                 |
+
+
+**Response**
+
+```
+HTTP 204 No Content
+```
+
+## Data plane certificates
+### List data plane client certificates
+
+Returns a list of pinned dataplane client certificates that are associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+
+**Endpoint**
+
+<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/</div>
+
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+### Pin new data plane client certificates
+
+Pin a new DP Client Certificate to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+
+**Endpoint**
+
+<div class="endpoint post">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/</div>
+
+**Response**
+
+```
+HTTP 201 Created
+```
+
+### Fetch data plane client certificate
+
+Retrieve a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+
+**Endpoint**
+
+<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/{certificate_id}</div>
+
+**Response**
+
+```
+HTTP 200 Created
+```
+
+### Replace data plane client certificate
+
+Update a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+**Endpoint**
+
+<div class="endpoint put">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/{certificate_id}</div>
+
+
+**Response**
+
+```
+HTTP 200 Created
+```
+
+### Delete DP Client Certificate
+
+Remove a pinned dataplane client certificate associated to this runtime group. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this runtime group using this certificate.
+**Endpoint**
+
+<div class="endpoint delete">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/{certificate_id}</div>
+
+**Response**
+```
+HTTP 200 Ok
+```
+
+## Core Entities
+
+### Core Entity GET Endpoint
+
+Get operation on a gateway core entity based on the `entity_endpoint`.
+
+**Endpoint**
+
+<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint.    
+
+**Responses**
+```
+HTTP 204 No Content
+```
+
+### Core Entity POST Endpoint
+
+POST operation on a gateway core entity based on the `entity_endpoint`.
+
+**Endpoint**
+
+<div class="endpoint post">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint.    
+
+**Response**
+```
+HTTP 201 Created
+```
+
+### Core Entity PUT Endpoint
+
+PUT operation on a gateway core entity based on the entity_endpoint.
+**Endpoint**
+
+<div class="endpoint put">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint. 
+
+**Response**
+
+```
+HTTP 200 Ok
+```
+
+### Core Entity DELETE Endpoint
+
+DELETE operation on a gateway core entity based on the `entity_endpoint`.
+
+**Endpoint**
+<div class="endpoint delete">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint.    
+
+**Response**
+```
+HTTP 204 Created
+```
+
+{% endunless %}
+
+{% unless page.edition == "konnect" %}
+
 {{site.base_gateway}} comes with an **internal** RESTful Admin API for administration purposes.
  Requests to the Admin API can be sent to any node in the cluster, and Kong will
  keep the configuration consistent across all nodes.
@@ -741,6 +983,7 @@ key_set_data: |
  of methods to secure the Admin API.
 
 ---
+
 
 
 ## DB-less Mode
@@ -764,6 +1007,7 @@ related to handling the declarative config, including:
 
 
 ---
+
 
 
 ## Declarative Configuration
@@ -1047,6 +1291,8 @@ HTTP 200 OK
 
 ---
 
+{% endunless %}
+
 ### Validate A Configuration against A Schema
 {:.badge .dbless}
 
@@ -1186,6 +1432,8 @@ HTTP 200 OK
 
 
 ---
+
+{% unless page.edition == "konnect" %}
 
 ### Retrieve Runtime Debugging Info of Kong's Timers
 {:.badge .dbless}
@@ -1378,8 +1626,11 @@ HTTP 200 OK
   or data-plane mode. The special return value "00000000000000000000000000000000"
   means Kong does not currently have a valid configuration loaded.
 
+{% endunless %}
 
 ---
+
+{% unless page.edition == "konnect" %}
 
 ## Tags
 
@@ -1684,8 +1935,11 @@ HTTP 200 OK
 }
 ```
 
+{% endunless %}
 
 ---
+
+
 
 ## Service Object
 
@@ -1843,7 +2097,7 @@ HTTP 200 OK
 
 ### Update Service
 
-
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -1906,7 +2160,7 @@ HTTP 200 OK
 
 
 ---
-
+{% endunless %}
 ### Update Or Create Service
 
 
@@ -2234,7 +2488,7 @@ HTTP 200 OK
 
 
 ---
-
+{% unless page.edition == "konnect" %}
 ### Update Route
 
 
@@ -2288,7 +2542,7 @@ HTTP 200 OK
 {{ page.route_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Route
@@ -2369,7 +2623,7 @@ See POST and PATCH responses.
 
 ##### Delete Route
 
-<div class="endpoint delete indent">/routes/{route name or id}</div>
+<div class="endpoint delete indent">/routes/{route name or id}</div>#
 
 {:.indent}
 Attributes | Description
@@ -2500,6 +2754,7 @@ HTTP 200 OK
 
 
 ---
+{% unless page.edition == "konnect" %}
 
 ### Update Consumer
 
@@ -2545,7 +2800,7 @@ HTTP 200 OK
 
 
 ---
-
+{% endunless %}
 ### Update Or Create Consumer
 
 
@@ -2866,6 +3121,7 @@ HTTP 200 OK
 
 
 ---
+{% unless page.edition == "konnect" %}
 
 ### Update Plugin
 
@@ -2935,6 +3191,7 @@ HTTP 200 OK
 
 ---
 
+{% endunless %}
 ### Update Or Create Plugin
 
 
@@ -3124,6 +3381,7 @@ HTTP 200 OK
 
 ---
 
+
 ## Certificate Object
 
 A certificate object represents a public certificate, and can be optionally paired with the
@@ -3240,6 +3498,7 @@ HTTP 200 OK
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
+{% unless page.edition == "konnect" %}
 ##### Update Certificate
 
 <div class="endpoint patch indent">/certificates/{certificate id}</div>
@@ -3275,7 +3534,7 @@ HTTP 200 OK
 {{ page.certificate_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Certificate
@@ -3471,6 +3730,7 @@ HTTP 200 OK
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
+{% unless page.edition == "konnect" %}
 ##### Update CA Certificate
 
 <div class="endpoint patch indent">/ca_certificates/{ca_certificate id}</div>
@@ -3496,7 +3756,7 @@ HTTP 200 OK
 {{ page.ca_certificate_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create CA Certificate
@@ -3705,6 +3965,7 @@ HTTP 200 OK
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
+{% unless page.edition == "konnect" %}
 ##### Update SNI
 
 <div class="endpoint patch indent">/snis/{sni name or id}</div>
@@ -3741,7 +4002,7 @@ HTTP 200 OK
 {{ page.sni_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create SNI
@@ -3976,6 +4237,8 @@ HTTP 200 OK
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
+{% unless page.edition == "konnect" %}
+
 ##### Update Upstream
 
 <div class="endpoint patch indent">/upstreams/{upstream name or id}</div>
@@ -4011,6 +4274,7 @@ HTTP 200 OK
 {{ page.upstream_json }}
 ```
 
+{% endunless %}
 
 ---
 
@@ -4228,6 +4492,8 @@ Targets can be both [tagged and filtered by tags](#tags).
 {{ page.target_json }}
 ```
 
+{% unless page.edition == "konnect" %}
+
 ### Update Target
 
 
@@ -4253,7 +4519,7 @@ Attributes | Description
 HTTP 201 Created
 ```
 
-
+{% endunless %}
 ---
 
 ### Delete Target
@@ -4597,7 +4863,7 @@ HTTP 200 OK
 ### Update Vault
 
 
-
+{% unless page.edition == "konnect" %}
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
@@ -4626,7 +4892,7 @@ HTTP 200 OK
 {{ page.vault_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Vault
@@ -4702,7 +4968,7 @@ HTTP 204 No Content
 
 
 ---
-
+{% unless page.edition == "konnect" %}
 ## Keys Entity
 
 A Key object holds a representation of asymmetric keys in various formats.
@@ -4829,7 +5095,7 @@ HTTP 200 OK
 
 ### Update Key
 
-
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -4870,7 +5136,7 @@ HTTP 200 OK
 {{ page.key_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Key
@@ -5064,6 +5330,7 @@ HTTP 200 OK
 ### Update Key Set
 
 
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -5093,7 +5360,7 @@ HTTP 200 OK
 {{ page.key_set_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Key Set
@@ -5217,7 +5484,7 @@ Attributes | Description
 
 ### Updates A Key Within A Key-set
 
-
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -5241,7 +5508,7 @@ Attributes | Description
 ```
 HTTP 201 Created
 ```
-
+{% endunless %}
 
 ---
 
@@ -5311,3 +5578,5 @@ HTTP 204 No Content
 [healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
 [secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
 [proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+
+{% endunless %}

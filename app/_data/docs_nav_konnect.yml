@@ -219,10 +219,12 @@
         - text: API Documentation
           url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
           absolute_url: true
-    - text: Runtime Groups Configuration API
+    - text: Runtime Configuration API
       items: 
-        - text: API Documentation
-          url: /api/runtime-groups-config/
+        - text: Nodes
+          url: /api/runtime-groups-config/#nodes
+        - text: Konnect Core Entities
+          url: /api/#core-entities
         - text: Services
           url: /api/runtime-groups-config/#service-object
         - text: Routes
@@ -233,6 +235,8 @@
           url: /api/runtime-groups-config/#plugin-object
         - text: Certificates
           url: /api/runtime-groups-config/#certificate-object
+        - text: Data Plane Certificiates
+          url: /api/#data-plane-certificates
         - text: CA Certificates
           url: /api/runtime-groups-config/#ca-certificate-object
         - text: SNIs
