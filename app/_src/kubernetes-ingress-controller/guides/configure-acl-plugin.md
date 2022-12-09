@@ -1,157 +1,35 @@
 ---
 title: Configuring ACL Plugin
+content_type: tutorial
 ---
 
 This guide walks through configuring the Kong ACL Plugin. The ACL Plugin
-requires the use of at least one Authentication plugin. This example will use
-the JWT Auth Plugin
+requires the use of at least one Authentication plugin. This example uses
+the JWT Auth Plugin.
 
-## Installation
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-## Testing Connectivity to Kong
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
 
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
+Once the first route is working, create a second pointing to the same Service:
 
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Setup a Sample Service
-
-For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
-
-```bash
-$ kubectl apply -f https://bit.ly/k8s-httpbin
-service/httpbin created
-deployment.apps/httpbin created
-```
-
-Create two Ingress rules to proxy the httpbin service we just created:
-
-```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-get
-  annotations:
-    konghq.com/strip-path: "false"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /get
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-post
-  annotations:
-    konghq.com/strip-path: "false"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /post
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-```
-
-Test the Ingress rules:
-
-```bash
-$ curl -i $PROXY_IP/get
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 19:25:32 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
-
-$ curl -i --data "foo=bar" -X POST $PROXY_IP/post
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 19:25:32 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
-
-{
-  "args": {},
-  "data": "",
-  "files": {},
-  "form": {
-    "foo": "bar"
-  },
-  "headers": {
-    "Accept": "*/*",
-    "Connection": "keep-alive",
-    "Content-Length": "7",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "json": null,
-  "origin": "192.168.0.3",
-  "url": "http://some.url/post"
-}
-
-```
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' %}
 
 ## Add JWT authentication to the service
 
 With Kong, adding authentication in front of an API is as simple as
-enabling a plugin. Let's enable JWT authentication
+enabling a plugin. To start, create a KongPlugin resource:
 
 ```bash
-$ echo "
+```
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -159,139 +37,85 @@ metadata:
 plugin: jwt
 " | kubectl apply -f -
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/app-jwt
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now let's associate the plugin to the Ingress rules we created earlier.
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-get
-  annotations:
-    konghq.com/plugins: app-jwt
-    konghq.com/strip-path: "false"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /get
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-post
-  annotations:
-    konghq.com/plugins: app-jwt
-    konghq.com/strip-path: "false"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /post
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
+kubectl annotate service echo konghq.com/plugins=app-jwt
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+service.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 Any requests matching the proxying rules for `demo-get` and `demo` post will
 now require a valid JWT and the consumer for the JWT to be associate with the
 right ACL.
 
+Requests without credentials are now rejected:
+
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i $PROXY_IP/get
-
-HTTP/1.1 401 Unauthorized
-Date: Mon, 06 Apr 2020 07:27:44 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 50
-X-Kong-Response-Latency: 2
-Server: kong/2.0.2
-
-
-{"message":"Unauthorized"}
-
-$ curl -i --data "foo=bar" -X POST $PROXY_IP/post
-
-HTTP/1.1 401 Unauthorized
-Date: Mon, 06 Apr 2020 07:27:44 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 50
-X-Kong-Response-Latency: 2
-Server: kong/2.0.2
-
-
-{"message":"Unauthorized"}
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+HTTP/1.1 401 Unauthorized
+Date: Fri, 09 Dec 2022 23:51:35 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Content-Length: 26
+X-Kong-Response-Latency: 1
+Server: kong/3.0.1
 
-You should get a 401 response telling you that the request is not authorized.
+{"message":"Unauthorized"
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Provision Consumers
 
-Let's provision 2 KongConsumer resources:
+To access the protected endpoints, create two consumers:
 
+{% include_cached /md/kic/consumer.md kong_version=page.kong_version name=admin %}
+
+{% include_cached /md/kic/consumer.md kong_version=page.kong_version name=user %}
+
+## Provision JWT credentials
+
+JWT is a standard for tokens stored in JSON. They include a metadata section
+about the algorithms used to construct the JWT, information ("claims") about
+the token and its bearer, and a cryptographic signature that recipients can use
+to verify the validity of the token.
+
+As valid JWTs are not easily constructed by hand, you can use the
+[jwt.io](https://jwt.io) tool to generate cryptographic keys and sign your
+JWTs. Select the `RS256` option from the Algorithm dropdown for this guide.
+
+### Create Secrets
+
+Credentials are stored in Secrets with a `kongCredType` key whose value
+indicates the type of credential:
+
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: admin
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: admin
-" | kubectl apply -f -
-
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: plain-user
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: plain-user
-" | kubectl apply -f -
-```
-
-## Secrets
-
-Next, let's provision some Secrets for the KongConsumers to reference. Each
-ACL will need its own Secret and each JWT public key will need its own Secret.
-The credential type is specified in the `kongCredType` field. In this
-case we'll be using `jwt` and `acl`. You can create a secret using any other
-method as well.
-
-The JWT signing algorithm is set in the `algorithm` field. The if using a
-public key like this example it is stored in the `rsa_pulic_key` field. If you
-are using a secret signing key, use the `secret` field. The last field to set
-if you are using `RS256` or `ES256` is the `key` field. This should match the
-`iss` field in the JWT you will be sending. You can check this value by
-decoding your JWT over at [https://jwt.io](https://jwt.io)
-
-Since we are using the Secret resource, Kubernetes will encrypt and store the
-JWT signing key and ACL group for us.
-
-### JWT signing key
-
-```bash
-# create secret for jwt public key
-$ kubectl create secret \
-  generic app-admin-jwt  \
+kubectl create secret \
+  generic admin-jwt  \
   --from-literal=kongCredType=jwt  \
   --from-literal=key="admin-issuer" \
   --from-literal=algorithm=RS256 \
@@ -299,470 +123,302 @@ $ kubectl create secret \
   MIIBIjA....
   -----END PUBLIC KEY-----"
 
-# create a second secret with a different key
-$ kubectl create secret \
-  generic app-user-jwt  \
+kubectl create secret \
+  generic user-jwt  \
   --from-literal=kongCredType=jwt  \
   --from-literal=key="user-issuer" \
   --from-literal=algorithm=RS256 \
   --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
-  qwerlkjqer....
+  MIIBIjA....
   -----END PUBLIC KEY-----"
 ```
-
-## Assign the credentials
-
-In order to for the ACL and JWT to be validated by Kong, the secrets will need
-to be referenced by the KongConsumers we created earlier. Let's update those.
-
-```bash
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: admin
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: admin
-credentials:
-  - app-admin-jwt
-" | kubectl apply -f -
-
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: plain-user
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: plain-user
-credentials:
-  - app-user-jwt
-" | kubectl apply -f -
+{% endnavtab %}
+{% navtab Response %}
+```text
+secret/admin-jwt created
+secret/user-jwt created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-## Use the credential
+Replace the RSA key strings with your own from jwt.io.
 
-Now to use a JWT to pass authentication. Let's store the user and admin JWT's
-in some environment variables. `USER_JWT` and `ADMIN_JWT`. If you are using
-an identity provider, you should be able to login and get out a JWT from their
-API. If you are generating your own, go through the process of generating your
-own.
+### Assign the credentials
 
-Let's test the get route
+To associate the JWT Secrets with your consumers, you must add their name to
+the `credentials` array in the KongConsumers:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/get
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 947
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 06:45:45 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 7
-X-Kong-Proxy-Latency: 2
-Via: kong/2.0.2
-
-{
-  "args": {},
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Id": "393611c3-aea9-510d-9be4-ac429ecc53f4",
-    "X-Consumer-Username": "plain-user",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "origin": "192.168.0.3",
-  "url": "http://some.url/get"
-}
-
-
-
-$ curl -i -H "Authorization: Bearer ${ADMIN_JWT}" $PROXY_IP/get
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 947
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 06:45:45 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 7
-X-Kong-Proxy-Latency: 2
-Via: kong/2.0.2
-
-{
-  "args": {},
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Id": "a6edc906-2f9f-5fb2-a373-efac406f0ef2",
-    "X-Consumer-Username": "admin",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "origin": "192.168.0.3",
-  "url": "http://some.url/get"
-}
-
+kubectl patch --type json kongconsumer admin \
+  -p='[{
+    "op":"add",
+    "path":"/credentials",
+    "value":["admin-jwt"]
+  }]'
 ```
-
-Now let's test the post route
-
-```bash
-$ curl -i -X POST --data "foo=bar" \
--H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/post
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 947
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 06:45:45 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 7
-X-Kong-Proxy-Latency: 2
-Via: kong/2.0.2
-
-{
-  "args": {},
-  "data": "",
-  "files": {},
-  "form": {
-    "foo": "bar"
-  },
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Content-Length": "7",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Id": "393611c3-aea9-510d-9be4-ac429ecc53f4",
-    "X-Consumer-Username": "plain-user",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "json": null,
-  "origin": "192.168.0.3",
-  "url": "http://some.url/post"
-}
-
-$ curl -i -X POST --data "foo=bar" \
--H "Authorization: Bearer ${ADMIN_JWT}" $PROXY_IP/post
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 947
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 06:45:45 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 7
-X-Kong-Proxy-Latency: 2
-Via: kong/2.0.2
-
-{
-  "args": {},
-  "data": "",
-  "files": {},
-  "form": {
-    "foo": "bar"
-  },
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Content-Length": "7",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Id": "393611c3-aea9-510d-9be4-ac429ecc53f4",
-    "X-Consumer-Username": "admin",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "json": null,
-  "origin": "192.168.0.3",
-  "url": "http://some.url/post"
-}
-
-
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongconsumer.configuration.konghq.com/admin patched
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-## Adding ACL's
-
-The JWT plugin doesn't provide the ability to authorize a given issuer to a
-given ingress. To do this we need to use the ACL plugin. Let's create an admin
-ACL config
-
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+kubectl patch --type json kongconsumer user \
+  -p='[{
+    "op":"add",
+    "path":"/credentials",
+    "value":["user-jwt"]
+  }]'
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongconsumer.configuration.konghq.com/user patched
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+### Send authenticated requests
+
+To send an authenticated request, you'll need to create signed JWTs for your
+users. On jwt.io, add an issuer matching the `key` field from your Secrets to
+the JWT payload (for example, `"iss":"admin-isuer",` for the `admin-jwt`
+Secret). The "Encoded" output will update automatically. Copy the "Encoded"
+value and store it in an environment variable:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+export ADMIN_JWT=eyJhbG...
+```
+{% endnavtab %}
+{% navtab Response %}
+No output.
+{% endnavtab %}
+{% endnavtabs %}
+
+Do the same for `USER_JWT` for the `user-jwt` Secret.
+
+Once you have the JWTs stored, you can send them in an `Authorization` header:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -I -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/lemon
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 947
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Date: Mon, 06 Apr 2020 06:45:45 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 7
+X-Kong-Proxy-Latency: 2
+Via: kong/3.0.1
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+## Adding access control
+
+The JWT plugin (and other Kong authentication plugins) only provide
+_authentication_, not _authorization_. They can identify a consumer, and will
+reject any unidentified requests, but will not restrict which consumers can
+access which protected URLs. Any consumer with a JWT credential can access any
+JWT-protected URL, even when the JWT plugins for those URLs are configured
+separately.
+
+### Create ACL plugins
+
+To provide _authorization_, or restrictions on which consumers can access which
+URLs, you need to also add the ACL plugin, which can assign groups to consumers
+and restrict access to URLs by group. Create two plugins, one which allows only
+an `admin` group, and one which allows both `admin` and `user`:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: admin-acl
 plugin: acl
 config:
-  allowlist: ['app-admin']
+  allowlist: ['admin']
 " | kubectl apply -f -
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/admin-acl created
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-Then let's create a user ACL config. We want our admin to be able to access
-the same resources as the user, so let's make sure we include them in the
-allowlist.
-
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: plain-user-acl
+  name: anyone-acl
 plugin: acl
 config:
-  allowlist: ['app-user','app-admin']
+  allowlist: ['admin','user']
 " | kubectl apply -f -
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/anyone-acl created
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-Next let's create the secrets that will define the ACL groups.
+### Configure plugins on routing configuration
 
+After creating plugins, add them to the routing configuration you created
+earlier:
+
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-# create secrets for acl groups
-$ kubectl create secret \
-  generic app-admin-acl \
+kubectl annotate ingress lemon konghq.com/plugins=admin-acl
+kubectl annotate ingress lime konghq.com/plugins=anyone-acl
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+ingress.networking.k8s.io/lemon annotated
+ingress.networking.k8s.io/lime annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate httproute lemon konghq.com/plugins=admin-acl
+kubectl annotate httproute lime konghq.com/plugins=anyone-acl
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+httproute.gateway.networking.k8s.io/lemon annotated
+httproute.gateway.networking.k8s.io/lime annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
+
+### Add consumers to groups
+
+Group assignments are handled via credentials:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl create secret \
+  generic admin-acl \
   --from-literal=kongCredType=acl  \
-  --from-literal=group=app-admin
+  --from-literal=group=admin
 
-$ kubectl create secret \
-  generic app-user-acl \
+kubectl create secret \
+  generic user-acl \
   --from-literal=kongCredType=acl  \
-  --from-literal=group=app-user
+  --from-literal=group=user
 ```
-
-After we create the secrets, the consumers need to be updated to reference the
-ACL credentials
-
-```bash
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: admin
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: admin
-credentials:
-  - app-admin-jwt
-  - app-admin-acl
-" | kubectl apply -f -
-
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: plain-user
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: plain-user
-credentials:
-  - app-user-jwt
-  - app-user-acl
-" | kubectl apply -f -
+{% endnavtab %}
+{% navtab Response %}
+```text
+secret/admin-acl created
+secret/user-acl created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-The last thing to configure is the ingress to use the new plugins. Note, if you
-set more than one ACL plugin, the last one supplied will be the only one
-evaluated.
+Like the authentication credentials, these need to be bound to their consumers
+via their `credentials` array:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-get
-  annotations:
-    konghq.com/plugins: app-jwt,plain-user-acl
-    konghq.com/strip-path: "false"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /get
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-post
-  annotations:
-    konghq.com/plugins: app-jwt,admin-acl
-    konghq.com/strip-path: "false"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /post
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
+kubectl patch --type json kongconsumer admin \
+  -p='[{
+    "op":"add",
+    "path":"/credentials/-",
+    "value":"admin-acl" 
+  }]'
+kubectl patch --type json kongconsumer user \
+  -p='[{
+    "op":"add",
+    "path":"/credentials/-",
+    "value":"user-acl" 
+  }]'
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-Now let's test it.
+### Send authorized requests
 
+The `admin` consumer can now access either URL:
+
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/get
-
+curl -sI http://kong.example/lemon -H "Authorization: Bearer ${ADMIN_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
+curl -sI http://kong.example/lime -H "Authorization: Bearer ${ADMIN_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 947
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 06:45:45 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 7
-X-Kong-Proxy-Latency: 2
-Via: kong/2.0.2
-
-{
-  "args": {},
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Groups": "app-user",
-    "X-Consumer-Id": "393611c3-aea9-510d-9be4-ac429ecc53f4",
-    "X-Consumer-Username": "plain-user",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "origin": "192.168.0.3",
-  "url": "http://some.url/get"
-}
-
-
-
-$ curl -i -H "Authorization: Bearer ${ADMIN_JWT}" $PROXY_IP/get
-
 HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 947
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 06:45:45 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 7
-X-Kong-Proxy-Latency: 2
-Via: kong/2.0.2
-
-{
-  "args": {},
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Groups": "app-admin",
-    "X-Consumer-Id": "a6edc906-2f9f-5fb2-a373-efac406f0ef2",
-    "X-Consumer-Username": "admin",
-    "X-Credential-Identifier": "localhost",
-    "X-Forwarded-Host": "localhost"
-  },
-  "origin": "192.168.0.3",
-  "url": "http://some.url/get"
-}
-
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-Now let's test the post route
+`user`, however, can only access the URL that permits the `user` group:
 
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ curl -i -X POST --data "foo=bar" \
--H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/post
+curl -sI http://kong.example/lemon -H "Authorization: Bearer ${USER_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
+curl -sI http://kong.example/lime -H "Authorization: Bearer ${USER_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
 HTTP/1.1 403 Forbidden
-Date: Mon, 06 Apr 2020 07:11:59 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 45
-X-Kong-Response-Latency: 1
-Server: kong/2.0.2
-
-{"message":"You cannot consume this service"}
-```
-
-The `plain-user` user is not in the `admin-acl` allowlist, and is therefore
-unauthorized to access the resource
-
-```bash
-$ curl -i -X POST --data "foo=bar" \
--H "Authorization: Bearer ${ADMIN_JWT}" $PROXY_IP/post
-
 HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 1156
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Mon, 06 Apr 2020 07:20:35 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 4
-X-Kong-Proxy-Latency: 4
-Via: kong/2.0.2
+```
+{% endnavtab %}
+{% endnavtabs %}
 
-{
-  "args": {},
-  "data": "",
-  "files": {},
-  "form": {
-    "foo": "bar"
-  },
-  "headers": {
-    "Accept": "*/*",
-    "Authorization": "Bearer eyJ...",
-    "Connection": "keep-alive",
-    "Content-Length": "7",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Host": "localhost",
-    "User-Agent": "curl/7.54.0",
-    "X-Consumer-Groups": "app-admin",
-    "X-Consumer-Id": "393611c3-aea9-510d-9be4-ac429ecc53f4",
-    "X-Consumer-Username": "admin",
     "X-Credential-Identifier": "localhost",
     "X-Forwarded-Host": "localhost"
   },
-  "json": null,
   "origin": "192.168.0.3",
-  "url": "http://some.url/post"
+  "url": "http://some.url/get"
 }
-```

@@ -1,490 +1,555 @@
 ---
-title: Using KongPlugin resource
+title: Using Plugin Resources
 ---
 
-This guide walks you through using the {{site.kic_product_name}} 
-KongPlugin Custom Resource to control proxied requests, including
-restricting paths and transforming requests.
+This guide walks you through applying the {{site.kic_product_name}} 
+KongPlugin and KongClusterPlugin custom resources other configuration. These
+resources change how {{site.base_gateway}} handles proxied requests. This guide
+configures plugins that modify headers and enforce authentication requirements.
 
-## Installation
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} onto your Kubernetes cluster.
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-## Testing connectivity to Kong
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
-This guide assumes that `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-If you've not done so, please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
 
-If everything is set up correctly, making a request to Kong should return
-`HTTP 404 Not Found`.
+Once the first route is working, create a second pointing to the same Service:
 
-```sh
-curl -i $PROXY_IP
-```
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' %}
 
-In this document, the expected output follows each command:
+## Configuring plugins for routing configuration
 
-```sh
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-X-Kong-Response-Latency: 1
-Server: kong/2.8.1
+{{site.base_gateway}} plugins can apply to a variety of resources. Plugins
+apply to different sets of requests depending on what type of resource they are
+applied to. Applying a plugin an Ingress or HTTPRoute will modify requests that
+match that resource's routing rules.
 
-{"message":"no Route matched with those values"}
-```
+### Create a plugin
 
-This message is expected as Kong does not yet know how to proxy the request.
+To try this out, first create a KongPlugin resource that adds a response
+header:
 
-## Installing sample services
-
-Start by installing two services. First, install an `httpbin` service:
-
-```sh
-kubectl apply -f https://bit.ly/k8s-httpbin
-```
-
-```sh
-service/httpbin created
-deployment.apps/httpbin created
-```
-
-And then an `echo` service:
-
-```sh
-kubectl apply -f https://bit.ly/echo-service
-```
-
-```sh
-service/echo created
-deployment.apps/echo created
-```
-
-## Setup Ingress rules
-
-Let's expose these services outside the Kubernetes cluster
-by defining Ingress rules.
-
-```sh
-echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-      - path: /bar
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: echo
-            port:
-              number: 80
-' | kubectl apply -f -
-```
-
-```sh
-ingress.networking.k8s.io/demo created
-```
-
-Let's test these endpoints. First the `/foo` route:
-
-```sh
-curl -i $PROXY_IP/foo/status/200
-```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 0
-Via: kong/2.8.1
-```
-
-Next the `/bar` route:
-
-```sh
-curl -i $PROXY_IP/bar
-```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Transfer-Encoding: chunked
-Connection: keep-alive
-Server: echoserver
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 0
-Via: kong/2.8.1
-
-Hostname: echo-5fc5b5bc84-n7lhg
-...
-```
-
-Let's add another Ingress resource which proxies requests to `/baz` to httpbin
-service:
-
-```sh
-echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-2
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /baz
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-```
-
-```sh
-ingress.networking.k8s.io/demo-2 created
-```
-
-We will use this Ingress path later.
-
-## Configuring plugins on Ingress resource
-
-Next, we will configure two plugins on the Ingress resource.
-
-First, we will create a KongPlugin resource:
-
-```sh
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
 echo '
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: add-response-header
+  name: add-header-route
 config:
   add:
     headers:
-    - "demo: injected-by-kong"
+    - "x-added-route: demo"
 plugin: response-transformer
 ' | kubectl apply -f -
 ```
-
-```sh
-kongplugin.configuration.konghq.com/add-response-header created
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/add-header-route created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-Next, we will associate it with our Ingress rules:
+### Associate the plugin with routing configuration
 
-```sh
-kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/plugins":"add-response-header"}}}'
+After creating the plugin, associate it with other resources by adding a
+`konghq.com/plugins` annotation whose value is the KongPlugin's name:
+
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate ingress lemon konghq.com/plugins=add-header-route
 ```
-
-```sh
-ingress.networking.k8s.io/demo patched
+{% endnavtab %}
+{% navtab Response %}
+```text
+ingress.networking.k8s.io/lemon annotated
 ```
-
-Here, we are asking the {{site.kic_product_name}} to execute the response-transformer
-plugin whenever a request matching the Ingress rule is processed.
-
-Let's test it out, first on `/foo`:
-
-```sh
-curl -i $PROXY_IP/foo/status/200
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate httproute lemon konghq.com/plugins=add-header-route
 ```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-demo:  injected-by-kong
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 0
-Via: kong/2.8.1
+{% endnavtab %}
+{% navtab Response %}
+```text
+httproute.gateway.networking.k8s.io/lemon annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-Then on `/bar`:
+### Test the plugin
 
-```sh
-curl -I $PROXY_IP/bar
+Requests that match the `lemon` rules will now include the plugin header:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-route
 ```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Connection: keep-alive
-Server: echoserver
-demo:  injected-by-kong
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 0
-Via: kong/2.8.1
+{% endnavtab %}
+{% navtab Response %}
+```text
+x-added-route: demo
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-As can be seen in the output, the `demo` header is injected by Kong when
-the request matches the Ingress rules defined in the `demo` Ingress resource.
+Requests to the `lime` rules will not:
 
-If we send a request to `/baz`, then we can see that the header is not injected
-by Kong:
-
-```sh
-curl -I $PROXY_IP/baz
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-route | wc -l
 ```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 9593
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 13
-X-Kong-Proxy-Latency: 1
-Via: kong/2.8.1
+{% endnavtab %}
+{% navtab Response %}
+```text
+0
 ```
-
-Here, we have successfully set up a plugin which is executed only when a
-request matches a specific Ingress rule.
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Configuring plugins on Service resource
 
-Next, we will see how we can configure Kong to execute plugins for requests
-which are sent to a specific service.
+Associating a plugin with a Service will apply it to any requests that match a
+routing rule that uses that Service as a backend.
 
-Let's add a KongPlugin resource for authentication on the httpbin service:
+### Create a plugin
 
-```sh
-echo "apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: httpbin-auth
-plugin: key-auth
-" | kubectl apply -f -
-```
+To try this out, first create a KongPlugin resource that adds a response
+header:
 
-```
-kongplugin.configuration.konghq.com/httpbin-auth created
-```
-
-Next, we will associate this plugin to the httpbin service running in our
-cluster:
-
-```sh
-kubectl patch service httpbin -p '{"metadata":{"annotations":{"konghq.com/plugins":"httpbin-auth"}}}'
-```
-
-```sh
-service/httpbin patched
-```
-
-Now, any request sent to the service will require authentication,
-no matter which Ingress rule it matched:
-
-```sh
-curl -I $PROXY_IP/baz
-```
-
-```sh
-HTTP/1.1 401 Unauthorized
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-WWW-Authenticate: Key realm="kong"
-Content-Length: 45
-X-Kong-Response-Latency: 1
-Server: kong/2.8.1
-```
-
-`/foo` also requires authentication:
-
-```sh
-curl -I $PROXY_IP/foo
-```
-
-```sh
-HTTP/1.1 401 Unauthorized
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-WWW-Authenticate: Key realm="kong"
-Content-Length: 45
-demo:  injected-by-kong
-X-Kong-Response-Latency: 1
-Server: kong/2.8.1
-```
-
-You can also see how the `demo` header was injected only for `/foo`,
-as the request matched one of the rules defined in the Ingress
-resource, but not for `/baz` because that request does not match.
-
-## Configure consumer and credential
-
-Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
-guide to provision a user and an `apikey`.
-
-Use the API key to pass authentication. Try it with `/baz`:
-
-```sh
-curl -I $PROXY_IP/baz -H 'apikey: my-super-secret-key'
-```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 9593
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/2.8.1
-```
-
-Then use the API key with `/foo`:
-```sh
-curl -I $PROXY_IP/foo -H 'apikey: my-super-secret-key'
-```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 9593
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-demo:  injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 0
-Via: kong/2.8.1
-```
-
-## Configure a global plugin
-
-Follow the [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongclusterplugin-resource/#configure-a-global-plugin) guide to configure a rate limiting plugin to throttle requests coming from the same client. 
-
-## Configure a plugin for a specific consumer
-
-Now, let's say we would like to give a specific consumer a higher rate-limit.
-
-For this, we can create a KongPlugin resource and then associate it with
-a specific consumer.
-
-First, create the KongPlugin resource:
-
-```sh
-echo "
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo '
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: harry-rate-limit
+  name: add-header-service
 config:
-  minute: 10
-  limit_by: consumer
-  policy: local
-plugin: rate-limiting
+  add:
+    headers:
+    - "x-added-service: demo"
+plugin: response-transformer
+' | kubectl apply -f -
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/add-header-service created
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+### Associate the plugin with the Service
+
+After creating the second plugin, annotate the Service to apply it:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate service echo konghq.com/plugins=add-header-service
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+service/echo annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+### Test the plugin
+
+With the Service plugin in place, send requests through the `lemon` and `lime`
+routes:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+x-added-route: demo
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+x-added-service: demo
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+Although both routes use the `echo` Service, only the `lime` route applies the
+`echo` Service's plugin. This is because only one instance of a particular
+plugin can execute on a request, determined by a [precedence order](/gateway/latest/admin-api/#precedence).
+Route plugins take precedence over service plugins, so the `lemon` route still
+uses the header from the first plugin you created.
+
+### Remove a plugin
+
+Removing the plugin annotation will remove plugin(s) from a resource:
+
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate ingress lemon konghq.com/plugins-
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+ingress.networking.k8s.io/lemon annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate httproute lemon konghq.com/plugins-
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+httproute.gateway.networking.k8s.io/lemon annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
+
+Requests through the `lemon` route now use the Service's plugin:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+x-added-service: demo
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+## Configuring global plugins
+
+Global plugins apply to _all_ requests, regardless of which resources they
+match. Because this applies across Kubernetes namespaces, global plugins
+require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
+
+{:.note}
+> Although not shown in this guide, you can also apply a KongClusterPlugin
+> to resources using `konghq.com/plugins` annotations, to reuse plugin
+> configurations across namespaces.
+
+### Create a cluster plugin
+
+KongClusterPlugin configuration is largely the same as KongPlugin
+configuration, though this resource uses a different plugin and therefore uses
+different configuration inside its `config` key:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: auth
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+  labels:
+    global: 'true'
+plugin: key-auth
+config:
+  key_in_header: true
+  key_in_body: false
+  key_in_query: false
 " | kubectl apply -f -
 ```
-
-```sh
-kongplugin.configuration.konghq.com/harry-rate-limit created
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongclusterplugin.configuration.konghq.com/auth created
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-Next, associate this with the consumer:
+The `global='true'` label tells {{site.kic_product_name}} to create a global
+plugin. These plugins do not need annotations on other resources for them to
+take effect, but they do need [an `ingress.class` annotation](/kubernetes-ingress-controller/{{ page.kong_version }}/concepts/ingress-classes/)
+for the controller to recognize them.
 
-```sh
-echo "apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: harry
-  annotations:
-    kubernetes.io/ingress.class: kong
-    konghq.com/plugins: harry-rate-limit
-username: harry
-credentials:
-- harry-apikey" | kubectl apply -f -
+{{site.base_gateway}} will now reject requests to any route, because the global
+plugin requires authentication for all of them:
+
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+HTTP/1.1 401 Unauthorized
+Date: Fri, 09 Dec 2022 20:10:11 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+WWW-Authenticate: Key realm="kong"
+Content-Length: 45
+x-added-service:  demo
+X-Kong-Response-Latency: 0
+Server: kong/3.0.1
 
+{
+  "message":"No API key found in request"
+}
 ```
-kongconsumer.configuration.konghq.com/harry configured
+{% endnavtab %}
+{% endnavtabs %}
+
+Note that the earlier header plugins are still applied. Plugins that affect
+responses can modify both proxied responses and responses generated by
+{{site.base_gateway}}.
+
+## Configure a consumer and credential
+
+First, create a credential Secret:
+
+{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='kotenok-key-auth' %}
+
+Second, create a KongConsumer resource that uses the Secret:
+
+{% include_cached /md/kic/consumer.md kong_version=page.kong_version credName='kotenok-key-auth' %}
+
+Including this key will now satisfy the authentication requirement enforced by
+the global plugin:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -sI http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
 ```
-
-Note the annotation being added to the KongConsumer resource.
-
-Now, if the request is made as the `harry` consumer, the client
-is rate-limited differently:
-
-```sh
-curl -I $PROXY_IP/foo -H 'apikey: my-super-secret-key'
-```
-
-```
+{% endnavtab %}
+{% navtab Response %}
+```text
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 9593
 Connection: keep-alive
-X-RateLimit-Remaining-Minute: 9
-X-RateLimit-Limit-Minute: 10
-RateLimit-Remaining: 9
-RateLimit-Reset: 42
-RateLimit-Limit: 10
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-demo:  injected-by-kong
+x-added-service: demo
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/2.8.1
+Via: kong/3.0.1
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-And a regular unauthenticated request:
+## Configure a plugins for consumers and multiple resources
 
-```sh
-curl -I $PROXY_IP/bar
+Plugins can match requests made by a consumer and match requests that meet
+multiple criteria, such as requests made by a consumer for a specific route.
+
+### Create plugins
+
+First, create two additional header KongPlugins:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo '
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: add-header-consumer
+config:
+  add:
+    headers:
+    - "x-added-consumer: demo"
+plugin: response-transformer
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: add-header-multi
+config:
+  add:
+    headers:
+    - "x-added-multi: demo"
+plugin: response-transformer
+' | kubectl apply -f -
 ```
-
-```sh
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Connection: keep-alive
-X-RateLimit-Remaining-Minute: 4
-X-RateLimit-Limit-Minute: 5
-RateLimit-Remaining: 4
-RateLimit-Reset: 11
-RateLimit-Limit: 5
-Server: echoserver
-demo:  injected-by-kong
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 1
-Via: kong/2.8.1
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/add-header-consumer created
+kongplugin.configuration.konghq.com/add-header-multi created
 ```
+{% endnavtab %}
+{% endnavtabs %}
+
+### Associate a plugin with a consumer
+
+Similar to the other resources, consumers can use the `konghq.com/plugins`
+annotation to associate a plugin:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate kongconsumer kotenok konghq.com/plugins=add-header-consumer
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongconsumer.configuration.konghq.com/kotenok annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+Requests made by the `kotenok` consumer will now include this header, since
+consumer plugins take precedence over both route and service plugins:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H "apikey: gav" | grep x-added
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+x-added-consumer: demo
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+### Associate a plugin with a consumer and route
+
+Plugins can be associated with more than one resource. Although routing and
+Service configuration is implicitly linked (a routing rule cannot proxy to
+multiple Services), consumers are not. Assigning plugins to multiple resources
+allows a consumer to use different plugin configuration depending on which
+route they hit.
+
+First, add the `add-header-multi` plugin to a route:
+
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate ingress lemon konghq.com/plugins=add-header-multi
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+ingress.networking.k8s.io/lemon annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate httproute lemon konghq.com/plugins=add-header-multi
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+httproute.gateway.networking.k8s.io/lemon annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
+
+Then, update the consumer configuration to include both plugins:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate kongconsumer kotenok konghq.com/plugins=add-header-consumer,add-header-multi --overwrite
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongconsumer.configuration.konghq.com/kotenok annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+The header returned now depend on which route the consumer uses:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+echo "lemon\!"; curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H "apikey: gav" | grep x-added
+echo "lime\!"; curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H "apikey: gav" | grep x-added
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+lemon!
+x-added-multi: demo
+lime!
+x-added-consumer: demo
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+Sending a request to the `lemon` route without the consumer credentials will
+_not_ activate the multi-resource plugin, and will instead fall back to the
+Service plugin. When plugins are associated with multiple resources, requests
+must match _all_ of them:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added 
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+x-added-service:  demo
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+More specific plugins (for example, a route and consumer, versus just a
+consumer or just a route) always take precedence over less specific plugins.
 
 ## Next steps
 

@@ -4,37 +4,11 @@ title: Expose an external application
 
 This example shows how we can expose a service located outside the Kubernetes cluster using an Ingress.
 
-## Installation
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
+## Create a Kubernetes Service
 
-## Testing Connectivity to Kong
-
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
-
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Create a Kubernetes service
-
-First we need to create a Kubernetes Service [type=ExternalName][0] using the hostname of the application we want to expose.
+First we need to create a Kubernetes Service [type=ExternalName][0] using the hostname of the application we want to expose:
 
 ```bash
 echo "
@@ -50,36 +24,50 @@ spec:
   externalName: httpbin.org
 " | kubectl create -f -
 ```
-
-## Create an Ingress to expose the service at the path `/foo`
-
-```bash
-echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: proxy-from-k8s-to-httpbin
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: proxy-to-httpbin
-            port:
-              number: 80
-' | kubectl create -f -
+Response:
+```
+service/echo created
 ```
 
-## Test the service
+## Create an Ingress to expose the service at the path `/anything`
+
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/anything' name='proxy-from-k8s-to-httpbin' %}
+
+## Test the Service
 
 ```bash
-$ curl -i $PROXY_IP/foo -H "Host: httpbin.org"
+curl -si http://kong.example/anything --resolve kong.example:80:$PROXY_IP
+```
+Response:
+```
+HTTP/1.1 200 OK
+Date: Thu, 15 Dec 2022 21:31:47 GMT
+Content-Type: application/json
+Content-Length: 341
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: kong/3.0.1
+
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/7.86.0",
+    "X-Amzn-Trace-Id": "Root=1-639b9243-7cdb670008b8189a5948d619"
+  },
+  "json": null,
+  "method": "GET",
+  "origin": "136.25.153.9",
+  "url": "http://httpbin.org/anything"
+}
 ```
 
 [0]: https://kubernetes.io/docs/concepts/services-networking/service/#services-without-selectors

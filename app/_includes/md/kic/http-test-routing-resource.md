@@ -1,0 +1,65 @@
+{%- assign path = include.path | default: '/echo' %}
+{%- assign hostname = include.hostname | default: 'kong.example' %}
+{%- assign name = include.name | default: 'echo' %}
+{% navtabs api %}
+{% navtab Ingress %}
+```bash
+echo "
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ name }}
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  ingressClassName: kong
+  rules:
+  - host: {{ hostname }}
+    http:
+      paths:
+      - path: {{ path }}
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: echo
+            port:
+              number: 80
+" | kubectl apply -f -
+```
+Response:
+```text
+ingress.networking.k8s.io/{{ name }} created
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
+```bash
+echo "
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: {{ name }}
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  parentRefs:
+  - name: kong
+  hostnames:
+  - '{{ hostname }}'
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: {{ path }}
+    backendRefs:
+    - name: echo
+      kind: Service
+      port: 80
+" | kubectl apply -f -
+```
+Response:
+```text
+httproute.gateway.networking.k8s.io/{{ name }} created
+```
+{% endnavtab %}
+{% endnavtabs %}
+

@@ -1,226 +1,144 @@
 ---
 title: Provisioning Consumers and Credentials
+content_type: tutorial
 ---
 
 This guide walks through how to use the KongConsumer custom
 resource and use Secret resources to associate credentials with those
 consumers.
 
-## Installation
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-## Testing Connectivity to Kong
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
-
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Setup a Sample Service
-
-For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
-
-```bash
-$ kubectl apply -f https://bit.ly/k8s-httpbin
-service/httpbin created
-deployment.apps/httpbin created
-```
-
-Create an Ingress rule to proxy the httpbin service we just created:
-
-```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-ingress.extensions/demo created
-```
-
-Test the Ingress rule:
-
-```bash
-$ curl -i $PROXY_IP/foo/status/200
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
-```
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
 
 ## Add authentication to the service
 
 With Kong, adding authentication in front of an API is as simple as
-enabling a plugin.
+enabling a plugin. To enforce authentication requirements on the on the route
+you've created, create a KongPlugin resource with an authentication plugin,
+such as `key-auth`:
 
-Let's add a KongPlugin resource to protect the API:
-
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: httpbin-auth
+  name: example-auth
 plugin: key-auth
 " | kubectl apply -f -
-kongplugin.configuration.konghq.com/httpbin-auth created
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+kongplugin.configuration.konghq.com/example-auth created
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, associate this plugin with the previous Ingress rule we created
 using the `konghq.com/plugins` annotation:
 
+{% navtabs api %}
+{% navtab Ingress %}
+{% navtabs codeblock %}
+{% navtab Command %}
 ```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-    konghq.com/plugins: httpbin-auth
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
+kubectl annotate ingress echo konghq.com/plugins=example-auth
 ```
+{% endnavtab %}
+{% navtab Response %}
+```text
+ingress.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Gateway APIs %}
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl annotate httproute echo konghq.com/plugins=example-auth
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+httproute.gateway.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-Any request matching the proxying rules defined in the `demo` ingress will
-now require a valid API key:
+Any request matching the proxying rules defined in the `echo` routing
+configuration will now require a valid API key:
 
 ```bash
-$ curl -i $PROXY_IP/foo/status/200
+$ curl -i $PROXY_IP/echo
 HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key realm="kong"
 Content-Length: 41
-Server: kong/1.2.1
+Server: kong/3.0.1
 
 {"message":"No API key found in request"}
 ```
 
-As you can see above, Kong returns back a `401 Unauthorized` because
-we didn't provide an API key.
+Requests that do not include a key receive a 401 Unauthorized response.
 
-## Provision a Consumer
+## Provision a consumer and credential
 
-Let's create a KongConsumer resource:
+First, create a credential Secret:
 
-```bash
-$ echo "apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: harry
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: harry" | kubectl apply -f -
-kongconsumer.configuration.konghq.com/harry created
-```
+{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='kotenok-key-auth' %}
 
-Now, let's provision an API-key associated with
-this consumer so that we can pass the authentication imposed by Kong:
+Second, create a KongConsumer resource that uses the Secret:
 
-Next, we will create a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/)
-resource with an API-key inside it:
+{% include_cached /md/kic/consumer.md kong_version=page.kong_version credName='kotenok-key-auth' %}
 
-```bash
-$ kubectl create secret generic harry-apikey  \
-  --from-literal=kongCredType=key-auth  \
-  --from-literal=key=my-sooper-secret-key
-secret/harry-apikey created
-```
-
-The type of credential is specified via `kongCredType`.
-You can create the Secret using any other method as well.
-
-Since we are using the Secret resource,
-Kubernetes will encrypt and store this API-key for us.
-
-Next, we will associate this API-key with the consumer we created previously.
-
-Please note that we are not re-creating the KongConsumer resource but
-only updating it to add the `credentials` array:
-
-```bash
-$ echo "apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: harry
-  annotations:
-    kubernetes.io/ingress.class: kong
-username: harry
-credentials:
-- harry-apikey" | kubectl apply -f -
-kongconsumer.configuration.konghq.com/harry configured
-```
+Credential Secrets include a `kongCredType` key, whose value indicates what
+authentication plugin the credential is for, and keys corresponding to the
+fields necessary to configure that credential type (`key` for `key-auth`
+credentials).
 
 ## Use the credential
 
-Now, use the credential to pass authentication:
+Now, send a request including the credential (`key-auth` expects an `apikey`
+header with the key by default):
 
-```bash
-$ curl -i -H 'apikey: my-sooper-secret-key' $PROXY_IP/foo/status/200
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 3
-X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
 ```
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+HTTP/1.1 200 OK                
+Content-Type: text/plain; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Date: Fri, 09 Dec 2022 22:16:24 GMT
+Server: echoserver
+x-added-service:  demo
+X-Kong-Upstream-Latency: 0
+X-Kong-Proxy-Latency: 1
+Via: kong/3.0.1
 
-In this guide, we learned how to leverage an authentication plugin in Kong
+Hostname: echo-fc6fd95b5-8tn52
+...
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+In this guide, you learned how to leverage an authentication plugin in Kong
 and provision credentials. This enables you to offload authentication into
 your Ingress layer and keeps the application logic simple.
 
