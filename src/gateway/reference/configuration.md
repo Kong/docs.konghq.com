@@ -765,10 +765,12 @@ The following suffix can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
   address/port be made with TLS enabled.
+- `http2` will allow for clients to open HTTP/2 connections to
+   Kong's proxy server.
 
 This value can be set to `off`, disabling the Status API for this node.
 
-Example: `status_listen = 0.0.0.0:8100`
+Example: `status_listen = 0.0.0.0:8100 ssl http2`
 
 **Default:** `off`
 
