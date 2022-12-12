@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   description: Vitals API
   version: 2.4.0
@@ -17,21 +17,21 @@ paths:
       tags:
         - vitals
       summary: Get information about stats collected
-      description: ''
+      description: ""
       operationId: getVitalsInfo
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/VitalsInfo'
+            $ref: "#/definitions/VitalsInfo"
   /vitals/cluster:
     get:
       tags:
         - health
       summary: Get health stats for this Kong cluster
-      description: ''
+      description: ""
       operationId: getClusterStats
       produces:
         - application/json
@@ -52,11 +52,11 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/ClusterVitalsTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/ClusterVitalsTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
   /vitals/cluster/status_codes:
     get:
@@ -85,18 +85,18 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/ClusterVitalsStatusCodesWithMetadata'
-        '400':
+            $ref: "#/definitions/ClusterVitalsStatusCodesWithMetadata"
+        "400":
           description: Invalid query params
   /vitals/nodes:
     get:
       tags:
         - health
       summary: Get health stats for all nodes
-      description: ''
+      description: ""
       operationId: getAllNodeStats
       produces:
         - application/json
@@ -117,18 +117,18 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/NodeVitalsTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/NodeVitalsTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-  '/vitals/nodes/{node_id}':
+  "/vitals/nodes/{node_id}":
     get:
       tags:
         - health
       summary: Get stats for a specific node by UUID
-      description: ''
+      description: ""
       operationId: getNodeStatsByID
       produces:
         - application/json
@@ -154,15 +154,15 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/NodeVitalsTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/NodeVitalsTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested node
-  '/{workspace_name}/vitals/consumers/{consumer_id}/cluster':
+  "/{workspace_name}/vitals/consumers/{consumer_id}/cluster":
     get:
       tags:
         - traffic
@@ -199,20 +199,20 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/ClusterConsumersTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/ClusterConsumersTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested consumer
   /{workspace_name}/vitals/status_code_classes:
     get:
       tags:
         - traffic
       summary: Get status code classes for a cluster or workspace.
-      description: ''
+      description: ""
       operationId: getStatusCodeClassesByWorkspace
       produces:
         - application/json
@@ -240,20 +240,20 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/StatusCodesByEntityMetadata'
-        '400':
+            $ref: "#/definitions/StatusCodesByEntityMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested consumer
   /{workspace_name}/vitals/status_codes/by_service:
     get:
       tags:
         - traffic
       summary: Get a time series of status codes returned by a given service
-      description: ''
+      description: ""
       operationId: getStatusCodesByService
       produces:
         - application/json
@@ -284,20 +284,20 @@ paths:
           description: Workspace containing the requested service.
           required: true
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/StatusCodesByEntityTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/StatusCodesByEntityTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested service
   /{workspace_name}/vitals/status_codes/by_route:
     get:
       tags:
         - traffic
       summary: Get cluster-wide count of status for a given route
-      description: ''
+      description: ""
       operationId: getStatusCodesByRoute
       produces:
         - application/json
@@ -328,20 +328,20 @@ paths:
           description: Workspace containing the requested route.
           required: true
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/StatusCodesByEntityTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/StatusCodesByEntityTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested route
   /{workspace_name}/vitals/status_codes/by_consumer:
     get:
       tags:
         - traffic
       summary: Get cluster-wide count of status for a given consumer
-      description: ''
+      description: ""
       operationId: getStatusCodesByRoute
       produces:
         - application/json
@@ -372,22 +372,22 @@ paths:
           description: Workspace containing the requested consumer.
           required: true
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/StatusCodesByEntityTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/StatusCodesByEntityTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested route
-  '/{workspace_name}/vitals/status_codes/by_consumer_and_route':
+  "/{workspace_name}/vitals/status_codes/by_consumer_and_route":
     get:
       tags:
         - traffic
       summary: >-
         Get status codes for all the routes called by the given consumer in the
         given timeframe
-      description: ''
+      description: ""
       operationId: getStatusCodesByConsumerAndRoute
       produces:
         - application/json
@@ -418,13 +418,13 @@ paths:
           description: Workspace containing the requested consumer and route.
           required: true
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/StatusCodesByEntityTimeSeriesWithMetadata'
-        '400':
+            $ref: "#/definitions/StatusCodesByEntityTimeSeriesWithMetadata"
+        "400":
           description: Invalid query params
-        '404':
+        "404":
           description: Unable to find requested consumer
 definitions:
   ClusterVitalsMetadata:
@@ -510,9 +510,9 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/StatusCodesByEntityMetadata'
+        $ref: "#/definitions/StatusCodesByEntityMetadata"
       stats:
-        $ref: '#/definitions/StatusCodesByEntityStats'
+        $ref: "#/definitions/StatusCodesByEntityStats"
   ClusterVitalsStatusCodesMetadata:
     properties:
       level:
@@ -598,16 +598,16 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/ClusterVitalsMetadata'
+        $ref: "#/definitions/ClusterVitalsMetadata"
       stats:
-        $ref: '#/definitions/ClusterVitalsStats'
+        $ref: "#/definitions/ClusterVitalsStats"
   ClusterVitalsStatusCodesWithMetadata:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/ClusterVitalsStatusCodesMetadata'
+        $ref: "#/definitions/ClusterVitalsStatusCodesMetadata"
       stats:
-        $ref: '#/definitions/ClusterVitalsStatusCodesStats'
+        $ref: "#/definitions/ClusterVitalsStatusCodesStats"
   ClusterConsumersMetadata:
     properties:
       level:
@@ -653,9 +653,9 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/ClusterConsumersMetadata'
+        $ref: "#/definitions/ClusterConsumersMetadata"
       stats:
-        $ref: '#/definitions/ClusterConsumersStats'
+        $ref: "#/definitions/ClusterConsumersStats"
   NodeVitalsMetadata:
     properties:
       level:
@@ -739,9 +739,9 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/NodeVitalsMetadata'
+        $ref: "#/definitions/NodeVitalsMetadata"
       stats:
-        $ref: '#/definitions/NodeVitalsStats'
+        $ref: "#/definitions/NodeVitalsStats"
   VitalsInfo:
     type: object
     example:
