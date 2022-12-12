@@ -11,11 +11,17 @@ content_type: how-to
 * A [Curity account](https://developer.curity.io/)
 * A [Curity instance](https://curity.io/resources/getting-started/) that can be publicly accessed over the internet, or from within the network your Kong Gateways are installed in.
 
-### Issuer URL
+## Configuring Curity
 
-Using your Curity credentials, log in to your Curity dashboard and follow these steps:
+To use dynamic client registration (DCR) with Curity as the identity provider (IdP), there are three important configurations to prepare in Curity. In the following sections you will see how to configure the token issuer, create a client, and enable dynamic client registration for the client.
+
+To get started configuring Curity, log in to your Curity dashboard and complete the following:
 
 1. Select the **Profiles** tab near the top of the dashboard.
+
+2. Select an existing **Token Service Profile** in the **Profiles** diagram, or create a new one if necessary.
+
+3. Complete the following sections using the **Token Service Profile** you have selected.
 
 ### Configure token issuer
 
