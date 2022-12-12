@@ -11,11 +11,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2022
 
-### 2022.11.28
-
-**Konnect Overview dashboard improvements**
-
-: The Overview page gives org admins the ability to see easily see a high-level summary of their entire {{site.konnect_short_name}} ecosystem, news updates, learning opportunities, and most significantly easily create a new gateway service implementation. By clicking **Add a Service**, Org Admins can create a gateway service implementation top down. This means, setting up a service package, version, uploading and publishing docs to the Dev Portal, and applying plug-ins all within a three-step workflow!
 ### 2022.11.21
 
 **Application registration support in any runtime group**
