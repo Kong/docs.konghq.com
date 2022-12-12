@@ -18,7 +18,7 @@ Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and
 have a default behavior for consumers without groups.
 
-To use consumer groups for rate limiting, you need to:
+To use consumer groups for rate limiting, you must:
 * Create one or more consumer groups
 * Create consumers
 * Assign consumers to groups
@@ -27,9 +27,6 @@ and `consumer_groups` parameters, setting up the list of consumer groups that
 the plugin accepts
 * Configure a rate limiting policy for each consumer group, overriding the 
 plugin's global configuration
-
-For all possible requests, see the
-[Consumer Groups reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
 
 ## Set up a consumer group with consumers
 

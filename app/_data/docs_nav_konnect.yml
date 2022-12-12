@@ -83,6 +83,8 @@
           url: /runtime-manager/gateway-config
         - text: Runtime Configuration
           url: /runtime-manager/manage-proxy-config
+    - text: Create Consumer Groups
+      url: /runtime-manager/consumer-groups
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
 
