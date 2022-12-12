@@ -43,6 +43,8 @@ jobs:
           files: |
             app/_src/**
             app/_assets/**
+          files_ignore: |
+            app/_src/.repos/kuma/**
       - run: npx prettier --check ${{ steps.changed-files.outputs.all_changed_files }}
   rubocop:
     needs: check
