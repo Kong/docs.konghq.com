@@ -2164,10 +2164,10 @@ HTTP 200 OK
 ### Update Or Create Service
 
 
-
+{% unless page.edition == "konnect" %}
 {:.note}
 > **Note**: This API is not available in DB-less mode.
-
+{% endunless %}
 ##### Create Or Update Service
 
 <div class="endpoint put indent">/services/{service name or id}</div>
@@ -2234,10 +2234,10 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
 
-
+{% endunless %}
 ---
 
 ### Delete Service
@@ -2608,9 +2608,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -2854,8 +2854,9 @@ body is not allowed.
 HTTP 200 OK
 ```
 
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -3267,9 +3268,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -3590,7 +3591,9 @@ body is not allowed.
 HTTP 200 OK
 ```
 
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
+{% endunless %}
 
 
 ---
@@ -3802,7 +3805,9 @@ body is not allowed.
 HTTP 200 OK
 ```
 
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
+{% endunless %}
 
 
 ---
@@ -4058,9 +4063,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -4330,10 +4335,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
-
+{% endunless %}
 ---
 
 ### Delete Upstream
@@ -4892,9 +4896,9 @@ HTTP 200 OK
 {{ page.vault_json }}
 ```
 
-{% endunless %}
----
 
+---
+{% endunless %}
 ### Update Or Create Vault
 
 
@@ -4937,9 +4941,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 

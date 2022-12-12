@@ -220,33 +220,35 @@
           url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
           absolute_url: true
     - text: Runtime Configuration API
-      items: 
+      items:
+        - text: Overview
+          url: /api/runtime-groups-config/
         - text: Nodes
           url: /api/runtime-groups-config/#nodes
-        - text: Konnect Core Entities
-          url: /api/#core-entities
-        - text: Services
-          url: /api/runtime-groups-config/#service-object
-        - text: Routes
-          url: /api/runtime-groups-config/#route-object
-        - text: Consumers
-          url: /api/runtime-groups-config/#consumer-object
-        - text: Plugins
-          url: /api/runtime-groups-config/#plugin-object
-        - text: Certificates
-          url: /api/runtime-groups-config/#certificate-object
         - text: Data Plane Certificiates
-          url: /api/#data-plane-certificates
-        - text: CA Certificates
-          url: /api/runtime-groups-config/#ca-certificate-object
-        - text: SNIs
-          url: /api/runtime-groups-config/#sni-object
-        - text: Upstreams
-          url: /api/runtime-groups-config/#upstream-object
-        - text: Targets
-          url: /api/runtime-groups-config/#target-object
-        - text: Vaults
-          url: /api/runtime-groups-config/#vaults-entity
+          url: /api/runtime-groups-config/#data-plane-certificates
+        - text: Konnect Core Entities
+          items:
+          - text: Services
+            url: /api/runtime-groups-config/#service-object
+          - text: Routes
+            url: /api/runtime-groups-config/#route-object
+          - text: Consumers
+            url: /api/runtime-groups-config/#consumer-object
+          - text: Plugins
+            url: /api/runtime-groups-config/#plugin-object
+          - text: Upstreams
+            url: /api/runtime-groups-config/#upstream-object
+          - text: Certificates
+            url: /api/runtime-groups-config/#certificate-object
+          - text: CA Certificates
+            url: /api/runtime-groups-config/#ca-certificate-object
+          - text: SNIs
+            url: /api/runtime-groups-config/#sni-object
+          - text: Targets
+            url: /api/runtime-groups-config/#target-object
+          - text: Vaults
+            url: /api/runtime-groups-config/#vaults-entity
     - text: Reference
       items:
         - text: Filtering
