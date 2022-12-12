@@ -44,7 +44,7 @@ no_version: true
 * Run `npx prettier --write ./your/edited/files.md` in the terminal
 * (Maintainers only) Add the `ci:autofix:prettier` label to a Pull Request
 
-All files in `src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
+All files in `app/_src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
 
 ### Admonitions
 
