@@ -21,14 +21,19 @@ this project is to make a higher quality CLI tool over the initial sync script.
 The easiest way to start is by cloning the [portal-templates repo][templates]
 master branch locally.
 
-Next, edit `workspaces/default/cli.conf.yaml` to set workspace `name` and `rbac_token`
+Next, edit `workspaces/default/cli.conf.yaml` to set the workspace `kong_admin_url` and `kong_admin_token`
 to match your setup.
+
+You can also override the values set in `workspaces/default/cli.conf.yaml` by using the environment variables `KONG_ADMIN_URL` and `KONG_ADMIN_TOKEN`.
 
 Make sure Kong is running and portal is on.
 
 Now, from the root folder of the templates repo, you can run:
 
 ```portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
+
+or, including environment variables:
+```KONG_ADMIN_URL=<kong_admin_base_url> KONG_ADMIN_TOKEN=<kong_admin_token> portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
 
 Where `<command>` is one of:
 
