@@ -33,9 +33,6 @@ Now, from the root folder of the templates repo, you can run:
 
 ```portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
 
-or, including environment variables:
-```KONG_ADMIN_URL=<kong_admin_base_url> KONG_ADMIN_TOKEN=<kong_admin_token> portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
-
 Where `<command>` is one of:
 
 * `config`   Output or change configuration of the portal on the given
