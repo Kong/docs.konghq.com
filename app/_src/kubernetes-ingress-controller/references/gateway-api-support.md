@@ -63,6 +63,9 @@ The {{site.kic_product_name}} supports the following resources and features in t
 
 - Supported `v1alpha2` of UDPRoute.
 
+### Unsupported
+- Does not support [GEP-957](https://gateway-api.sigs.k8s.io/geps/gep-957/) port matching.
+
 ## TLS Routes
 
 ### v2.4.x

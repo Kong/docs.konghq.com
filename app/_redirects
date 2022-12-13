@@ -501,6 +501,7 @@
 /gateway-oss/2.6.x/external-plugins/    /gateway/2.6.x/reference/external-plugins
 /gateway-oss/2.7.x/external-plugins/    /gateway/2.7.x/reference/external-plugins
 /gateway-oss/latest/external-plugins/   /gateway/latest/reference/external-plugins
+/gateway/3.0.x/reference/external-plugins/#performance-for-external-plugins /gateway/3.0.x/plugin-development/pluginserver/performance
 /enterprise/2.6.x/systemd/              /gateway/2.6.x/plan-and-deploy/systemd
 /enterprise/2.7.x/systemd/              /gateway/2.7.x/plan-and-deploy/systemd
 /enterprise/latest/systemd/             /gateway/latest/plan-and-deploy/systemd

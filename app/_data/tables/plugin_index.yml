@@ -54,7 +54,9 @@
       plus: Yes
       enterprise: Yes
       network_config_opts: All
-      notes: --
+      notes: |
+        The time-to-live (ttl) does not work in hybrid mode. This setting
+        determines the length of time a credential remains valid.
       url: /hub/kong-inc/key-auth
 
     - name: Key Auth Encrypted

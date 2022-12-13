@@ -4,6 +4,7 @@ no_version: true
 ---
 
 <!-- vale off -->
+
 ## 3.1.0.0
 **Release Date** 2022/12/06
 
@@ -52,7 +53,7 @@ Kubernetes service account. See the following configuration parameters:
   [#9431](https://github.com/Kong/kong/pull/9431)
 - The schema `map` type field can now be marked as referenceable.
   [#9611](https://github.com/Kong/kong/pull/9611)
-- Added support for dynamically changing the log level.
+- Added support for [dynamically changing the log level](/gateway/latest/production/logging/update-log-level-dynamically/).
   [#9744](https://github.com/Kong/kong/pull/9744)
 - Added support for the `keys` and `key-sets` entities. These are used for
 managing asymmetric keys in various formats (JWK, PEM). For more information,
