@@ -37,7 +37,8 @@ params:
     Gateway in DB-less or hybrid mode, use the `redis` strategy.
 
     {:.note}
-    > **Note**: When using DB-less mode, it is recommended to have the `namespace` field configured manually instead of auto-generating.
+    > **Note**: We recommend setting `namespace` to a static value in DB-less mode.
+    > The `namespace` will be regenerated on every configuration change if not explicitly set, resetting counters to zero.
 
   config:
     - name: limit
@@ -100,9 +101,10 @@ params:
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
-        data and sync configuration is shared in a namespace. Note that in DB-less mode,
-        this field will be generated automatically on every configuration change, so it
-        is recommended to be set to a unique value to keeps it stable in DB-less mode.
+        data and sync configuration is shared in a namespace.
+
+        In DB-less mode, this field will be generated automatically on every configuration change.
+        We recommended setting `namespace` explicitly when using DB-less mode.
     - name: strategy # old version of param description
       maximum_version: "2.8.x"
       required: true
