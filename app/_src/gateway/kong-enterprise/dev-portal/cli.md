@@ -24,7 +24,8 @@ master branch locally.
 Next, edit `workspaces/default/cli.conf.yaml` to set the workspace `kong_admin_url` and `kong_admin_token`
 to match your setup.
 
-You can also override the values set in `workspaces/default/cli.conf.yaml` by using the environment variables `KONG_ADMIN_URL` and `KONG_ADMIN_TOKEN`.
+You can also override the values set in `workspaces/default/cli.conf.yaml` by using the environment variables
+`KONG_ADMIN_URL` and `KONG_ADMIN_TOKEN`.
 
 Make sure Kong is running and portal is on.
 
@@ -46,6 +47,16 @@ Where `<command>` is one of:
 * `wipe`     Deletes all content and themes from upstream workspace
 
 Where `<workspace>` indicates the directory/workspace pairing you would like to operate on.
+
+You can set environment variables to override the values in the `workspaces/default/cli.conf.yaml` file:
+
+```sh
+KONG_ADMIN_URL=<kong_admin_base_url> \
+KONG_ADMIN_TOKEN=<kong_admin_token> \
+portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>
+```
+
+Where `<kong_admin_base_url>` is the location of the Kong Admin API that manages the developer portal and `<kong_admin_token>` is an RBAC token that has access to the manage the portal.
 
 #### For `deploy`
 - Add `-W` or `--watch` to make changes reactive.
