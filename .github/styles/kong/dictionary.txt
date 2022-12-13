@@ -60,6 +60,7 @@ Stap
 Styra
 Styra
 Syslog
+Templatized
 Terraform
 Terraform's
 UIs
