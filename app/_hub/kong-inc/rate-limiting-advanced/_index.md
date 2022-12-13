@@ -35,6 +35,11 @@ params:
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
     Gateway in DB-less or hybrid mode, use the `redis` strategy.
+
+    {:.note}
+    > **Note**: We recommend setting `namespace` to a static value in DB-less mode.
+    > The `namespace` will be regenerated on every configuration change if not explicitly set, resetting counters to zero.
+
   config:
     - name: limit
       required: true
@@ -98,6 +103,8 @@ params:
         The rate limiting library namespace to use for this plugin instance. Counter
         data and sync configuration is shared in a namespace.
 
+        In DB-less mode, this field will be generated automatically on every configuration change.
+        We recommended setting `namespace` explicitly when using DB-less mode.
     - name: strategy # old version of param description
       maximum_version: "2.8.x"
       required: true
