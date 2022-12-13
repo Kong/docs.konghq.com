@@ -10,6 +10,8 @@
       url: /style-guide
     - text: Word choice and naming
       url: /word-choice
+    - text: Contribution Templates
+      url: /contribution-templates
 
 - title: Markdown rules and formatting
   icon: /assets/images/icons/documentation/icn-references-color.svg
