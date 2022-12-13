@@ -1,0 +1,159 @@
+//
+// Typography
+//
+
+// Headings
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $base-heading-font-family;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: $fw-medium;
+}
+
+h5,
+h6 {
+  font-weight: $fw-bold;
+}
+
+// Helper classes
+
+.page-sub-title {
+  font-size: 1.188rem;
+  color: $gray-5;
+  text-align: center;
+  line-height: 1.688rem;
+}
+
+// Links
+
+a {
+  color: $color-5;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Code blocks
+
+div[class*='language-'].line-numbers-mode pre {
+  // small fix for an invalid style attribute on the core VuePress styles
+  padding-left: 4.5rem;
+}
+
+div[class*='language-'] {
+  background-color: $codeBgColor;
+  color: #333;
+
+  &::before {
+    position: absolute;
+    z-index: 3;
+    top: 0.35em;
+    right: 0.8em;
+    font-size: 0.75rem;
+    color: #888;
+  }
+
+  &.line-numbers-mode .line-numbers-wrapper {
+    z-index: 1;
+    height: 100%;
+    color: #333;
+    background-color: #fbfbfb;
+  }
+
+  &.line-numbers-mode:after {
+    background-color: transparent;
+    border: 1px solid #ddd;
+  }
+}
+
+#{$contentClass},
+#{$blogIndexContentClass},
+#{$blogDetailContentClass} {
+  code {
+    font-size: inherit;
+  }
+
+  pre,
+  pre[class*='language-'],
+  div[class*='language-'] {
+    background-color: $codeBgColor;
+
+    code {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #333;
+    }
+  }
+}
+
+// shell label
+div[class~='language-sh']:before {
+  content: 'sh';
+}
+
+// yaml label
+div[class~='language-yaml']:before {
+  content: 'yaml';
+}
+
+.code-copy {
+  // Positions the copy button container out of the document flow so that it doesn’t add extra height to the code block.
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  // Ensures the doesn’t occlude the scrollbar or content of the code block.
+  pointer-events: all;
+}
+
+.code-copy .hover {
+  // Resets pointer events as they have been disabled on the `.code-copy` element.
+  pointer-events: all;
+
+  // Used important as it has to override the inline style from vuepress-plugin-code-copy
+  bottom: 0 !important;
+
+  // Used to fix the overlap of the scroll bar as due to the
+  // above property and hence we set it manually below
+  margin-bottom: 25px;
+  margin-right: 15px;
+}
+
+.code-copy-added {
+  position: static !important;
+}
+
+div[class~='language-sh'],
+div[class~='language-shell'],
+div[class~='language-bash'] {
+  > pre > code:before {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    content: '$';
+    margin-right: 6px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace !important;
+}
+
+.blog-page .content-wrapper, .page-container--community, .doc {
+  a[target="_blank"][rel="noopener noreferrer"]:not(.no-outbound):after {
+    content: url('/assets/images/icons/icon-outbound.svg');
+    vertical-align: middle;
+  }
+}

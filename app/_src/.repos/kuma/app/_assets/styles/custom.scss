@@ -1,0 +1,39 @@
+//
+// Custom styles
+//
+
+// setup
+@import '@/styles/custom/config/fonts',
+        '@/styles/custom/config/mixins';
+
+// base
+@import '@/styles/custom/base/structure',
+        '@/styles/custom/base/forms',
+        '@/styles/custom/base/type-and-content';
+
+// pages
+@import '@/styles/custom/pages/page',
+        '@/styles/custom/pages/page-home',
+        '@/styles/custom/pages/page-install',
+        '@/styles/custom/pages/page-request-demo',
+        '@/styles/custom/pages/page-servicemeshcon',
+        '@/styles/custom/pages/page-policies',
+        '@/styles/custom/pages/page-enterprise',
+        '@/styles/custom/pages/page-community',
+        '@/styles/custom/pages/page-blog';
+
+// components
+@import '@/styles/custom/components/version-nav',
+        '@/styles/custom/components/version-alert',
+        '@/styles/custom/components/navbar',
+        '@/styles/custom/components/sidebar',
+        '@/styles/custom/components/footer',
+        '@/styles/custom/components/newsletter-form',
+        '@/styles/custom/components/form-popup',
+        '@/styles/custom/components/card',
+        '@/styles/custom/components/tower',
+        '@/styles/custom/components/tiny-tabs',
+        '@/styles/custom/components/newsbar',
+        '@/styles/custom/components/distribution-dropdown',
+        '@/styles/custom/components/vuepress-tabs',
+        '@/styles/custom/components/spinner';

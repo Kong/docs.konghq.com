@@ -41,8 +41,10 @@ jobs:
         with:
           sha: ${{ github.sha }}
           files: |
-            src/**
+            app/_src/**
             app/_assets/**
+          files_ignore: |
+            app/_src/.repos/kuma/**
       - run: npx prettier --check ${{ steps.changed-files.outputs.all_changed_files }}
   rubocop:
     needs: check
@@ -84,5 +86,6 @@ jobs:
         with:
           # path where vale checks checking only modified files.
           filter_mode: file
+          vale_flags: "--glob=!app/_src/.repos/kuma/**"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

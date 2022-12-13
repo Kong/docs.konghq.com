@@ -1,0 +1,120 @@
+// 
+// Tiny Tabs
+//
+
+$tinytabs-close-padding: 0 0 0 5px;
+$tinytabs-selected-tab-bg: #f1f1f1;
+$tinytabs-selected-tab-text-color: #333;
+$tinytabs-tab-section-bg: #000;
+$tinytabs-tab-section-padding: 1rem;
+$tinytabs-tab-section-radius: 3px;
+
+.tinytabs {
+
+  // tabs
+  .tabs {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;  
+    margin: 0 0 2rem 0;
+    // border-bottom: 5px solid rgba(#000, .4);
+  }
+
+  // individual tab
+  .tab {
+    display: block;
+    text-decoration: none;
+    font-family: $base-font-family;
+    font-weight: $fw-medium;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: rgba(#000, .4);
+    margin: 0 .5rem 0 0;
+    padding: .2rem 1.5rem;
+    // border-radius: 3px 3px 0 0;
+    border-radius: 3px;
+
+    > * {
+      padding: 0;
+      margin: 0;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+    }
+
+    // tab close button (not in use)
+    .close {
+      padding-left: $tinytabs-close-padding;
+    }
+
+    // selected tab
+    &.sel {
+      background-color: $green-base;
+    }
+  }
+
+  // tab content section
+  .section {
+    // background: $tinytabs-tab-section-bg;
+    overflow: hidden;
+    // padding: $tinytabs-tab-section-padding;
+    clear: both;
+    // border-radius: $tinytabs-tab-section-radius;
+    // font-size: .85rem;
+    font-size: 0.9375rem;
+
+    a {
+      color: inherit;
+      font-weight: $fw-bold;
+      color: $green-base;
+      // text-decoration: underline;
+    }
+
+    .steps-items__content > li:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+
+    // code blocks
+    div[class*="language"] {
+      background-color: darken($color-6, 8);
+      border: 0 !important;
+    }
+
+    code[class*="language-"],
+    pre[class*="language-"] {
+      border: 0;
+      
+      &, span {
+        color: rgb(204, 204, 204) !important;
+      }
+    }
+
+    // hide the line numbers on code blocks
+    .line-numbers-mode:after,
+    .line-numbers-wrapper {
+      display: none !important;
+    }
+
+    .line-numbers-mode pre {
+      padding: 1rem !important;
+      // making these code blocks wrap so that they
+      // more responsive
+      white-space: pre-wrap !important;
+      // @include scrollbar-h;
+    }
+
+    .steps-items__content {
+
+      > li {
+        align-items: flex-start;
+
+        > div > h3:first-of-type {
+          font-size: 1.1rem;
+          margin-top: 0;
+          padding-top: 0;
+        }
+      }
+    }
+  }
+}

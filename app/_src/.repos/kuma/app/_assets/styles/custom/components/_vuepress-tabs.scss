@@ -1,0 +1,136 @@
+//
+// vuepress-plugin-tabs style overrides
+// https://www.npmjs.com/package/vuepress-plugin-tabs
+//
+
+
+// Extracted from
+// https://github.com/pskordilakis/vuepress-plugin-tabs/blob/master/dist/themes/default.styl
+//
+
+.tabs-component {
+  margin: 2em 0;
+}
+
+.tabs-component-tabs {
+  border: solid 1px #ddd;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  padding-left: 0;
+}
+
+.tabs-component-tab {
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 0;
+  list-style: none;
+  background-color: #fff;
+  border: solid 1px #ddd;
+  border-radius: 3px 3px 0 0;
+  margin-right: 0.25em;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    color: #666;
+  }
+
+  &.is-active {
+    color: $accentColor;
+  }
+
+  &.is-disabled {
+    * {
+      color: #cdcdcd;
+      cursor: not-allowed !important;
+    }
+  }
+}
+.tabs-component-tab-a {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+}
+
+.tabs-component-panels {
+  padding: 1em 0;
+  border-top-left-radius: 0;
+  background-color: #fff;
+  border: solid 1px #ddd;
+  border-radius: 0 6px 6px 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  padding: 1em 1em;
+}
+
+@media (min-width: 700px) {
+  .tabs-component-tabs {
+    border: 0;
+    align-items: stretch;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: -1px;
+  }
+
+  .is-active {
+    border-bottom: solid 1px #fff;
+    z-index: 2;
+    transform: translateY(0);
+  }
+}
+
+.k-tabs {
+  ul {
+    display: flex;
+    margin-bottom: 16px;
+    padding-left: 0;
+    list-style: none;
+    font-size: 18px;
+    line-height: 20px;
+
+    .tab-item {
+      position: relative;
+      padding: 12px;
+      cursor: pointer;
+      &:not(:first-of-type) { margin-left: 8px; }
+      &:not(:last-of-type) { margin-right: 8px; }
+      &:after {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        display: block;
+        content: '';
+      }
+    }
+    .tab-link {
+      display: block;
+      &:hover {
+        text-decoration: none;
+        border: none;
+      }
+    }
+  }
+}
+
+.tabs-component-tabs {
+
+}
+
+.tabs-component-tab {
+  margin-right: 0.85rem;
+  font-size: 0.85rem;
+
+  &.is-active {
+
+    .tabs-component-tab-a {
+      color: #3fa66a;
+    }
+  }
+}
+
+.tabs-component-tab-a {
+  padding: 0.5rem 0.75rem;
+}

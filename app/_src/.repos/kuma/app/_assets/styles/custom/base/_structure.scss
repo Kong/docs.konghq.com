@@ -1,0 +1,50 @@
+// 
+// Structure
+// 
+// The framework of the page containers
+// and everything outside of page-specific
+// styling and elemtns.
+// 
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+}
+
+html {
+  font-size: $root-font-size;
+  @include clear-text;
+}
+
+body {
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+  font-style: normal;
+  line-height: 2.4;
+  min-height: 100vh;
+}
+
+.theme-container:not(.no-sidebar) .content-wrapper {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+// Helpers
+
+.bg-gradient {
+  background-image: $gradient-2;
+  background-size: 100%;
+}
+
+@media (min-width: $MQMobile + 1) {
+  .theme-container:not(.no-sidebar) .content-wrapper {
+    display: flex;
+  }
+}
+
+.theme-default-content code {
+  padding: 0.15rem 0.5rem;
+}

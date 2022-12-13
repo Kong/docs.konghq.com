@@ -10,7 +10,7 @@ jobs:
       - name: Submodule Sync
         uses: mheap/submodule-sync-action@v1
         with:
-          path: src/.repos/kuma
+          path: app/_src/.repos/kuma
           ref: release/kuma-2.0
           pr_branch: automated-kuma-update
           base_branch: release/mesh-2.0

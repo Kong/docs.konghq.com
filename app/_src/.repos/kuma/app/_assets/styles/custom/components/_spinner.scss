@@ -1,0 +1,16 @@
+.kong-icon-spinner {
+  g {
+    transform-box: fill-box;
+    animation: spin 1.2s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+}

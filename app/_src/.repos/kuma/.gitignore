@@ -1,0 +1,24 @@
+.DS_Store
+node_modules
+.idea
+docs/.vuepress/dist
+yarn-error.log
+
+# Created with `vale sync`
+.github/styles/Google
+
+# Jekyll
+dist
+.jekyll-cache
+.jekyll-metadata
+
+# Vite Ruby
+/public/vite*
+node_modules
+# Vite uses dotenv and suggests to ignore local-only env files. See
+# https://vitejs.dev/guide/env-and-mode.html#env-files
+*.local
+
+
+# Local Netlify folder
+.netlify

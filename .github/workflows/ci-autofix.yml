@@ -22,8 +22,10 @@ jobs:
         with:
           sha: ${{  github.event.pull_request.head.sha }}
           files: |
-            src/**
+            app/_src/**
             app/_assets/**
+          files_ignore: |
+            app/_src/.repos/kuma/**
       - run: npx prettier --write ${{ steps.changed-files.outputs.all_changed_files }}
       - name: Commit changes
         uses: EndBug/add-and-commit@v9

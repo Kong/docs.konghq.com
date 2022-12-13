@@ -1,0 +1,155 @@
+//
+// Installation page
+//
+
+$install-masthead-bg-image: url('#{$image-path}bg-lines.svg');
+$install-masthead-bg-position: 50% 0, 0 0;
+
+$install-tile-bg-color: #fff;
+$install-tile-border: 1px solid $color-7;
+$install-tile-border-hover: 1px solid $green-base;
+$install-tile-shadow: $base-soft-shadow;
+$install-tile-radius: 5px;
+$install-tile-min-height: 6rem;
+
+$install-page-header-padding: 1rem;
+$install-page-header-max-width: 36rem;
+$install-page-header-bg-color: rgba(#fff, .9);
+$install-page-header-radius: 3px;
+$install-page-header-shadow: $base-border-shadow;
+
+.page-container--install {
+  background-image: $install-masthead-bg-image;
+  background-position: $install-masthead-bg-position;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .version-alert {
+    margin: 1rem auto 0 auto;
+    padding: 0;
+    text-align: left;
+
+    .custom-block-title {
+      font-size: inherit;
+    }
+  }
+
+  .page-header {
+    background: none;
+
+    .inner {
+      max-width: $install-page-header-max-width;
+      background-color: $install-page-header-bg-color;
+      border-radius: $install-page-header-radius;
+      box-shadow: $install-page-header-shadow;
+      padding: $install-page-header-padding;
+    }
+  }
+
+  .content__newsletter-title h2 {
+    border: 0;
+  }
+
+  .theme-container.no-sidebar:not(.is-home):not(.home) .page-footer {
+    margin-top: 0;
+  }
+
+  .newsletter-form-wrap {
+    margin-top: 3rem;
+  }
+}
+
+.install-methods {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.install-methods__item {
+
+}
+
+.install-methods__item-link {
+  padding: 1.3rem;
+  background-color: $install-tile-bg-color;
+  box-shadow: $install-tile-shadow;
+  border-radius: $install-tile-radius;
+  border: $install-tile-border;
+  min-height: $install-tile-min-height;
+
+  will-change: transform;
+  transform-origin: center;
+  transform: translateZ(0); // prep
+  transition:
+    color 200ms $cb-1,
+    border 200ms $cb-1,
+    transform 200ms $cb-1;
+
+  &:hover {
+    transform: scale(1.05);
+    border: $install-tile-border-hover;
+    color: $green-base;
+  }
+
+  @media (min-width: $MQMobileMid + 1) {
+    &:hover .install-methods__item-logo {
+      border-right: $install-tile-border-hover !important;
+    }
+  }
+}
+
+.install-methods__item-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.install-methods__item-title {
+
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: $MQMobileMid + 1) {
+  .page-container--install {
+    background-size: 100% auto;
+  }
+
+  .install-methods__item-logo {
+    will-change: border;
+    transition: border 200ms $cb-1;
+    border-right: $install-tile-border;
+  }
+}
+
+@media (max-width: $MQMobileMid) {
+  .install-methods {
+    text-align: center;
+  }
+
+  .install-methods__item-logo {
+    border-bottom: $install-tile-border;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    img {
+      max-width: 70%;
+      max-height: 4rem;
+    }
+  }
+
+  .install-methods__item-link {
+
+  }
+}
+
+.waves--type-2 {
+  opacity: 0;
+}

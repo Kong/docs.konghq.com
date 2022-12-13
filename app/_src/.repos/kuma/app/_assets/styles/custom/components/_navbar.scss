@@ -1,0 +1,154 @@
+//
+// NavBar.vue
+//
+
+$navbar-width: $container-width;
+$navbar-logo-height: 2.563rem;
+$navbar-vertical-padding: 1.5rem;
+$navbar-horizontal-padding: 1.5rem;
+$navbar-link-border: 2px solid $color-5;
+$navbar-link-font-size: $base-font-size;
+$navbar-link-font-family: $base-font-family;
+$navbar-link-margin: 3rem; // the spacing between navbar links
+
+.navbar {
+  height: $navbarHeight;
+  padding: 0 $navbar-horizontal-padding;
+  // padding: $navbar-vertical-padding $navbar-horizontal-padding;
+  line-height: 0;
+  // line-height: $navbarHeight - 1.4rem;
+  display: flex;
+  align-items: center;
+
+  // these styles override ones found
+  // in `vuepress-core/index.scss`
+  height: $navbar-height-large;
+  border-bottom: 0;
+  background: transparent linear-gradient(to bottom, #f5f8fc 80%, rgba(#f5f8fc, 0));
+
+  a,
+  span,
+  img {
+    display: inline-block;
+  }
+
+  .logo {
+    max-height: $navbar-logo-height;
+    margin-right: 0.8rem;
+
+    // IE doesn't respect SVG images unless they have explicit dimensions
+    @include target-ie {
+      width: 136px;
+      height: 41px;
+    }
+  }
+
+  .site-name {
+    // font-size: 1.3rem;
+    // font-weight: 600;
+    // color: $textColor;
+    // position: relative;
+    display: none;
+  }
+
+  // container for links in the navbar
+  .links {
+    padding-left: 1.5rem;
+    box-sizing: border-box;
+    background: none;
+    white-space: nowrap;
+    font-size: $navbar-link-font-size;
+    font-family: $navbar-link-font-family;
+    // position: absolute;
+    // right: $navbar-horizontal-padding;
+    // top: $navbar-vertical-padding;
+    display: flex;
+    margin-left: auto;
+  }
+
+  .home-link {
+    display: flex;
+    align-items: center;
+  }
+
+  // custom additions to navbar
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 1072px) and (min-width: 841px) {
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+  }
+
+  .repo-button {
+    // visually-centers the repo button next to the logo
+    margin-top: 11px;
+  }
+
+  // nav item links
+
+  .nav-item {
+    margin-left: $navbar-link-margin;
+  }
+
+  // install button
+
+  .nav-item--install > a:not(.external),
+  .nav-item--install > a.router-link-active {
+    @include button-base;
+
+    &,
+    &:hover {
+      border: 0 !important;
+    }
+  }
+}
+
+.navbar-inner {
+  max-width: $navbar-width;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item > a {
+  padding: $navbar-vertical-padding 0;
+}
+
+@media (min-width: $MQMobile) {
+  .nav-item > a:not(.external):hover,
+  .nav-item > a:not(.external).router-link-active {
+    border-bottom: $navbar-link-border;
+    color: $color-5;
+  }
+}
+
+@media (max-width: $MQNarrowMid) {
+  .navbar {
+    padding-left: 4rem;
+
+    .can-hide {
+      display: none;
+    }
+  }
+
+  .links {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (max-width: 1072px) and (min-width: 841px) {
+  .navbar {
+    .links {
+      padding-left: 0;
+    }
+
+    .nav-item {
+      margin-left: 1.5rem;
+    }
+  }
+}

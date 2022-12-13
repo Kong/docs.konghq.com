@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<div class="page-container page-container--enterprise">
+  {% include page_header.html %}
+
+  <div class="company-list-wrapper">
+    <div class="inner">
+      <ul class="company-list md:flex md:flex-wrap -mx-2">
+        {% for company in page.companies %}
+          <li class="px-2 mx-auto md:w-1/2 mb-4 md:mb-0">
+            <a href="{{ company.url }}" class="company-list__link block md:flex">
+              {% if company.image %}
+              <div class="w-full md:w-1/5 md:mx-0 md:mr-6 text-center">
+                <img src="{{ company.image }}" alt="Logo image for {{ company.name }}" class="w-24 mx-auto md:w-full">
+              </div>
+              {% endif %}
+              <div class="w-full md:w-4/5 text-center md:text-left">
+                <h3 class="mb-2">{{ company.name }}</h3>
+                {% if company.summary %}
+                  <p class="m-0">
+                    {{ company.summary }}
+                  </p>
+                {% endif %}
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  {% if page.pullRequestUrl %}
+    <div class="pull-request-cta mt-8 mb-4 py-8">
+      <div class="inner text-center">
+        <h3>Are you offering a Kuma enterprise package?</h3>
+        <p>
+        <a href="{{ page.pullRequestUrl }}" class="btn" target="_blank">
+            Create a Pull Request
+          </a>
+        </p>
+      </div>
+    </div>
+  {% endif %}
+</div>

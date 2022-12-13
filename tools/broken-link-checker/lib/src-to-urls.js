@@ -21,7 +21,7 @@ async function srcToUrls(pattern, src) {
   const navEntries = await loadNavEntries(pattern);
 
   for (const entry of navEntries) {
-    let r = extractNavWithMeta(entry.items, ``, `src/${entry.product}`);
+    let r = extractNavWithMeta(entry.items, ``, `app/_src/${entry.product}`);
 
     // If we provided a specific source, only match that file
     if (src) {

@@ -1,0 +1,30 @@
+<div class="tabs-component" data-tab="<%= SecureRandom.uuid %>" data-tab-use-url-fragment="<%= options['useUrlFragment'] %>">
+  <ul role="tablist" class="tabs-component-tabs">
+    <% environment['tabs'][file_path][@name].each_with_index do |(hash, value), index| %>
+      <li class="tabs-component-tab <%= index == 0 ? 'is-active' : '' %>" role="presentation">
+        <a
+          aria-controls="<%= hash.rstrip.gsub(' ', '-') %>"
+          aria-selected="<%= index == 0 %>"
+          href="#<%= hash.rstrip.gsub(' ', '-') %>"
+          class="tabs-component-tab-a"
+          role="tab"
+          >
+            <%= hash %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="tabs-component-panels">
+    <% environment['tabs'][file_path][@name].each_with_index do |(key, value), index| %>
+      <section
+        aria-hidden="<%= index != 0 %>"
+        class="tabs-component-panel <%= index != 0 ? 'hidden' : '' %>"
+        id="<%= key.rstrip.gsub(' ', '-') %>"
+        role="tabpanel"
+      >
+        <%= value %>
+      </section>
+    <% end %>
+  </div>
+</div>

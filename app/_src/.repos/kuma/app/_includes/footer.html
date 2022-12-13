@@ -1,0 +1,41 @@
+<footer class="page-footer">
+  <div class="cncf-banner">
+    <h4>{{ site.title }} is a CNCF Sandbox project</h4>
+    <img src="/assets/images/CNCF_Alternate_Pantone.png" alt="Cloud Native Computing Foundation Logo" loading="lazy">
+    <br>
+    <p>Kuma was originally created by <a href="https://konghq.com/">Kong, Inc.</a> and made successful by its open <a href="/community">community</a>.</p>
+  </div>
+
+  <div class="page-footer__sublinks">
+    <div class="inner flex flex-wrap -mx-2">
+
+      <div class="copyright-wrap w-full md:w-3/4 px-2">
+        <ul>
+          <li class="copyright">&copy; Copyright The Kuma Authors.</li>
+          <li>
+            <a href="https://github.com/kumahq/kuma/blob/master/CODE_OF_CONDUCT.md">Code Of Conduct</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="social-links w-full md:w-1/4 px-2">
+        <ul>
+          {% for item in site.data.footer %}
+            <li>
+              <a href="{{ item.url }}">
+                <img src="{{ item.icon }}" alt="{{ item.label }}">
+                <span class="sr-only">{{ item.label }}</span>
+              </a>
+            </li>
+          {% endfor %}
+          <li>
+            <span class="repo-button">
+              <a class="github-button" href="https://github.com/kumahq/kuma" data-icon="octicon-star" aria-label="Star kumahq/kuma on GitHub">Star</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</footer>

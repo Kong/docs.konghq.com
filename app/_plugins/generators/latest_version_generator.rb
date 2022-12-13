@@ -19,7 +19,7 @@ module LatestVersion
 
       # Load config file
       site.pages.each do |page|
-        page_path = remove_generated_prefix(page.path)
+        page_path = remove_generated_prefix(page)
         parts = Pathname(page_path).each_filename.to_a
 
         products_with_latest.each do |product|
@@ -50,26 +50,25 @@ module LatestVersion
             page.content,
             page.data,
             @page_index["#{product_name}/#{release_path}/"],
-            page_path
+            page_path,
+            page.relative_path
           )
           site.pages << page
         end
       end
     end
 
-    def remove_generated_prefix(path)
-      # Remove the generated prefix if it's present
-      # It's in the format GENERATED:nav=nav/product_1.2.x:src=src/path/here:/output/path
-      return path unless path.start_with?('GENERATED:')
-
-      path = path.split(':')
-      path.shift(3)
-      path.join(':')
+    def remove_generated_prefix(page)
+      if page.relative_path.start_with?('_src')
+        page.dir.delete_prefix('/')
+      else
+        page.path
+      end
     end
   end
 
   class DuplicatePage < ::Jekyll::Page
-    def initialize(site, base_dir, url, content, data, page_index, path) # rubocop:disable Lint/MissingSuper, Metrics/ParameterLists, Metrics/MethodLength
+    def initialize(site, base_dir, url, content, data, page_index, path, relative_path) # rubocop:disable Lint/MissingSuper, Metrics/ParameterLists, Metrics/MethodLength
       @site = site
       @base = base_dir
       @content = content
@@ -84,6 +83,8 @@ module LatestVersion
       @data['edit_link'] = "app/#{path}" unless @data['edit_link']
 
       @data['alias'] = [@dir.sub('latest/', '')] if @dir.end_with?('/latest/')
+
+      @relative_path = relative_path
     end
   end
 end
