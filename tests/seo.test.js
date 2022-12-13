@@ -46,10 +46,10 @@ describe("Canonical links", () => {
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src);
-      expect($("link[rel='canonical']").attr("href")).toBe(
+      await expect($("head link[rel='canonical']").attr("href")).toBe(
         `https://docs.konghq.com${t.href}`
       );
-    });
+    }, 7000);
   });
 });
 

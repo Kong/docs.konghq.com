@@ -12,18 +12,27 @@ Following annotations are supported on Ingress resources:
 | Annotation name | Description |
 |-----------------|-------------|
 | REQUIRED [`kubernetes.io/ingress.class`](#kubernetesioingressclass) | Restrict the Ingress rules that Kong should satisfy |
-| [`konghq.com/plugins`](#konghqcomplugins) | Run plugins for specific Ingress. |
-| [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource. |
-| [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service. |
-| [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service. |
-| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received. |
-| [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority. |
-| [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress. |
-| [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
-| [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set request buffering on routes created from this Ingress. |
-| [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set response buffering on routes created from this Ingress. |
-| [`konghq.com/host-aliases`](#konghqcomhostaliases) | Additional hosts for routes created from this Ingress's rules. |
-| [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via `KongIngress` resource. |
+| [`konghq.com/plugins`](#konghqcomplugins) | Run plugins for specific Ingress |
+| [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource |
+| [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service |
+| [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service |
+| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received |
+| [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority |
+| [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress |
+| [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress |
+| [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set request buffering on routes created from this Ingress |
+| [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set response buffering on routes created from this Ingress |
+| [`konghq.com/host-aliases`](#konghqcomhostaliases) | Additional hosts for routes created from this Ingress's rules |
+
+{%- if_version lte:2.7.x -%}
+| [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via KongIngress resource |
+{%- endif_version -%}
+
+{%- if_version gte:2.8.x %}
+| [`konghq.com/override`](#konghqcomoverride) | (Deprecated, replace with per-setting annotations) Control other routing attributes with a KongIngress resource |
+| [`konghq.com/path-handling`](#konghqcompathhandling) | Sets the path handling algorithm |
+| [`konghq.com/headers.*`](#konghqcomheaders) | Set header values required to match rules in this Ingress |
+{%- endif_version %}
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
 the value of the `--ingress-class` controller argument (`kong` by default).
@@ -39,8 +48,19 @@ Following annotations are supported on Service resources:
 | [`konghq.com/path`](#konghqcompath) | HTTP Path that is always prepended to each request that is forwarded to a Kubernetes service |
 | [`konghq.com/client-cert`](#konghqcomclient-cert) | Client certificate and key pair Kong should use to authenticate itself to a specific Kubernetes service |
 | [`konghq.com/host-header`](#konghqcomhost-header) | Set the value sent in the `Host` header when proxying requests upstream |
-| [`konghq.com/override`](#konghqcomoverride) | Fine grained routing and load-balancing |
 | [`ingress.kubernetes.io/service-upstream`](#ingresskubernetesioservice-upstream) | Offload load-balancing to kube-proxy or sidecar |
+
+{%- if_version lte:2.7.x -%}
+| [`konghq.com/override`](#konghqcomoverride) | Fine grained routing and load-balancing |
+{%- endif_version -%}
+
+{%- if_version gte:2.8.x -%}
+| [`konghq.com/override`](#konghqcomoverride) | (Deprecated for non-upstream fields, replace with per-setting annotations) Control load balancing behavior with a KongIngress resource |
+| [`konghq.com/connect-timeout`](#konghqcomconnecttimeout) | Set the timeout for completing a TCP connection |
+| [`konghq.com/read-timeout`](#konghqcomreadtimeout) | Set the timeout for receiving an HTTP response after sending a request |
+| [`konghq.com/write-timeout`](#konghqcomwritetimeout) | Set the timeout for writing data |
+| [`konghq.com/retries`](#konghqcomretries) | Set the number of times to retry requests that failed |
+{%- endif_version %}
 
 ## KongConsumer resource
 
@@ -427,6 +447,24 @@ Results in two routes:
 
 > Available since controller 0.8
 
+{% if_version gte:2.8.x -%}
+{:.note}
+> As of version 2.8, KongIngress sections other than `upstream` are
+> [deprecated](https://github.com/Kong/kubernetes-ingress-controller/issues/3018).
+> All settings in the `proxy` and `route` sections are now available with
+> dedicated annotations, and these annotations will become the only means of
+> configuring those settings in a future release. For example, if you had set
+> `proxy.connect_timeout: 30000` in a KongIngress and applied an
+> `konghq.com/override` annotation for that KongIngress to a Service, you will
+> need to instead apply a `konghq.com/connect-timeout: 30000` annotation to the
+> Service.
+> 
+> The `upstream` section of KongIngress will be replaced with [a new
+> resource](https://github.com/Kong/kubernetes-ingress-controller/issues/3174),
+> but this is still in development and `upstream` is not officially
+> deprecated yet.
+{% endif_version %}
+
 This annotation can associate a KongIngress resource with
 an Ingress or a Service resource.
 It serves as a way to bridge the gap between a sparse Ingress API in Kubernetes
@@ -509,6 +547,8 @@ konghq.com/host-header: "test.example.com"
 
 ### ingress.kubernetes.io/service-upstream
 
+> Available since controller 0.6
+
 By default, the {{site.kic_product_name}} distributes traffic amongst all the
 Pods of a Kubernetes `Service` by forwarding the requests directly to
 Pod IP addresses. One can choose the load-balancing strategy to use
@@ -534,4 +574,59 @@ annotations:
   ingress.kubernetes.io/service-upstream: "true"
 ```
 
-You need {{site.kic_product_name}} >= 0.6 for this annotation.
+{% if_version gte:2.8.x %}
+### konghq.com/path-handling
+
+> Available since controller 2.8
+
+Sets the [path handling algorithm](/gateway/latest/admin-api/#path-handling-algorithms),
+which controls how {{site.base_gateway}} combines the service and route `path`
+fields (the Service's [path annotation](#konghqcompath) value and Ingress
+rule's `path` field) are combined into the path sent upstream.
+
+### konghq.com/headers.*
+
+> Available since controller 2.8
+
+Sets header values that are required for requests to match rules in an Ingress.
+
+Unlike most annotations, `konghq.com/headers.*` includes part of the
+configuration in the annotation name. The string after the `.` in the
+annotation name is the header, and the value is a CSV of allowed header values.
+
+For example, setting `konghq.com/headers.x-routing: alpha,bravo` will only
+match requests that include an `x-routing` header whose value is either `alpha`
+or `bravo`.
+
+### konghq.com/connect-timeout
+
+> Available since controller 2.8
+
+Sets the connect timeout, in milliseconds. For example, setting this annotation
+to `60000` will instruct the proxy to wait up to 60 seconds to complete the
+initial TCP connection to the upstream service.
+
+### konghq.com/read-timeout
+
+> Available since controller 2.8
+
+Sets the read timeout, in milliseconds. For example, setting this annotation
+to `60000` will instruct the proxy to wait up to 60 seconds after sending a
+request before timing out and returning a 504 response to the client.
+
+### konghq.com/write-timeout
+
+> Available since controller 2.8
+
+Sets the write timeout, in milliseconds. For example, setting this annotation
+to `60000` will instruct the proxy to wait up to 60 seconds without writing
+data before closing a kept-alive connection.
+
+### konghq.com/retries
+
+> Available since controller 2.8
+
+Sets the max retries on a request. For example, setting this annotation to `3`
+will re-send the request up to three times if it encounters a failure, such as
+a timeout.
+{% endif_version %}

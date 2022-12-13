@@ -13,9 +13,6 @@ module PluginSingleSource
 
       permalink_name = is_latest ? 'index' : version
 
-      # Make sure the source path is still index.md to generate the extension listing
-      @path = File.join(site.source, Generator::PLUGINS_FOLDER, plugin.dir, "#{permalink_name}.md")
-
       # Set self.ext and self.basename by extracting information from the page filename
       process("#{version}.md")
 
@@ -37,10 +34,6 @@ module PluginSingleSource
       @data['canonical_url'] = "/hub/#{plugin.dir}/" unless is_latest
       @data['seo_noindex'] = true unless is_latest
 
-      # We need to set the path so that some of the conditionals in templates
-      # continue to work.
-      @data['path'] = "_hub/#{plugin.dir}/#{permalink_name}.md"
-
       # The plugin hub uses version.html as the filename unless it's the most
       # recent version, in which case it uses index
       @data['permalink'] = "#{@dir}/"
@@ -48,6 +41,26 @@ module PluginSingleSource
 
       # Set the layout if it's not already provided
       @data['layout'] = 'extension' unless data['layout']
+
+      @data['source_file'] = source_path
+      @data['extn_slug'] = plugin.name
+      @data['extn_publisher'] = plugin.vendor
+      @data['extn_icon'] = @data['header_icon'] || "/assets/images/icons/hub/#{plugin.vendor}_#{plugin.name}.png"
+      @data['extn_release'] = version
+
+      # Needed so that regeneration works for single sourced pages
+      # It must be set to the source file
+      # Also, @path MUST NOT be set, it falls back to @relative_path
+      @relative_path = File.expand_path(source_path, site.source)
+
+      # Override any frontmatter as required
+      unless plugin.respond_to?(:ext_data) && plugin.ext_data['frontmatter'] && plugin.ext_data['frontmatter'][version]
+        return
+      end
+
+      plugin.ext_data['frontmatter'][version].each do |k, v|
+        @data[k] = v
+      end
     end
   end
 end

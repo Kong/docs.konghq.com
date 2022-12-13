@@ -7,7 +7,7 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 * Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including creating dashboards of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
 
-* Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
+* Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes.
 
 ![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
 
@@ -47,7 +47,7 @@ When you log in to Kong Manager, the Workspaces page displays by default. The to
 On the Workspaces page, beneath the Overview Dashboard, the Workspaces section displays each Workspace with a chart showing Vitals for the most recently added services, consumers, and plugins for that Workspace. Hover over a coordinate to view the exact number of successes and errors at a given timestamp, or drilldown into the Workspace chart for more details.
 
 ## Vitals tab
-The Vitals tab, or Vitals view, displays metrics about the health and performance of Kong nodes and Kong-proxied APIs. The Vitals View displays total requests, latency, and cache information. You also can generate reports from the Vitals view.
+The Vitals tab, or Vitals view, displays metrics about the health and performance of Kong nodes and Kong-proxied APIs. The Vitals View displays total requests, latency, and cache information.
 
 Options to populate the Vitals view, or areas in the chart, include:
 

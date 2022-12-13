@@ -142,6 +142,8 @@ items:
         url: /references/plugin-compatibility
       - text: Version Compatibility
         url: /references/version-compatibility
+      - text: Supported Kong Router Flavors
+        url: /references/supported-router-flavors
       - text: Troubleshooting
         url: /troubleshooting
       - text: Prometheus Metrics

@@ -4,6 +4,8 @@ no_version: true
 layout: 'docs-v2'
 ---
 
+<!-- vale off -->
+
 Hello, and welcome! Thanks for thinking about contributing to the Kong documentation.
 
 This section of the docs is here to help you help us, so read on to learn how to ask questions and help effectively.
@@ -45,6 +47,7 @@ Before you change anything except for typos or grammatical errors, explore these
 * Our set of [markdown rules](/contributing/markdown-rules) for making your content work with our Jekyll implementation. Specifies how you must
 work with certain kinds of content - includes, variables, new pages.
 * Our [list of Kong-specific terms](/contributing/terms). Includes product names and other terms the Kong docs use in specific ways.
+* Our [documentation templates](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates). You can use these templates to create new documentation pages. 
 
 ### Build locally
 

@@ -11,8 +11,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
-### 2022.12.15
-
 **New {{site.konnect_saas}} Analytics custom report chart types and metrics**
 : You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
 
@@ -23,7 +21,26 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
 
+**{{site.base_gateway}} 3.1 support**
+: {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
+
+**Support for all {{site.base_gateway}} 3.1 plugins**
+: {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins. review our [compatibility documentation](/konnect/compatibility/#plugin-compatibility).
+
 ## November 2022
+
+### 2022.11.21
+
+**Application registration support in any runtime group**
+: {{site.konnect_short_name}} now officially supports [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-runtime-group). Portal developers can register their applications to consume services proxied through gateway services in both default and non-default runtime groups.
+
+:  Currently, this feature is only available for services being proxied through {{site.base_gateway}} 3.0.0.0 or later.
+
+### 2022.11.18
+
+**Dev portal Dynamic Client Registration**
+
+: As part of this release, we have improved the UI for DCR to provide a more polished experience for users.
 
 ### 2022.11.17
 

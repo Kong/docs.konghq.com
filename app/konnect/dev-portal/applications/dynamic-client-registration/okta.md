@@ -2,7 +2,6 @@
 title: Configuring Okta for Dynamic Client Registration
 breadcrumb: Okta
 content_type: how-to
-beta: true
 ---
 
 
