@@ -8,9 +8,9 @@ apply them to subsets of consumers, instead of managing each consumer
 individually.
 
 For example, you could define three consumer groups:
-* A "gold tier" with 1000 requests per minute
-* A "silver tier" with 10 requests per second
-* A "bronze tier" with 6 requests per 30 seconds
+* **gold tier** with 1000 requests per minute
+* **silver tier** with 10 requests per second
+* **bronze tier** with 6 requests per 30 seconds
 
 The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced).
 
@@ -32,11 +32,10 @@ plugin's global configuration
 
 In this section, you will create the Bronze tier consumer group with a consumer assigned to the group.
 
-1. In {{site.base_short_name}}, click **Runtime Manager** in the sidebar.
-1. Click the **default** runtime group.
+1. From the {{site.konnect_short_name}} sidebar, open the **Runtime Manager** section.
+1. Select the **default** runtime group.
 1. From the menu, click **Consumers**, then click **Add consumer**.
 1. Enter a **Username** and **Custom ID**. For this example, you can use "Amal" for each field.
-1. Click **Save**.
 1. Click the **Consumer Groups** tab.
 1. Click **Add Consumer Group**.
 1. Enter "Bronze" for the consumer group name and select the "Amal" consumer you just created from the drop-down. 
@@ -46,11 +45,12 @@ In this section, you will create the Bronze tier consumer group with a consumer 
 
 In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 5 requests every 30 seconds for all consumers.
 
-1. In {{site.base_short_name}}, click **Runtime Manager** in the sidebar.
+1. In {{site.konnect_short_name}}, click **Runtime Manager** in the sidebar.
 1. Click the **default** runtime group.
 1. From the menu, open **Plugins**, then click **Add plugin**.
 1. Find the **Rate Limiting** plugin, then click **Select**.
-1. Apply the plugin as **Global**, which means the rate limiting applies to all requests, including every service and route in the workspace.
+1. Apply the plugin as **Global**
+    This means the rate-limiting applies to all requests, including every service and route in the workspace.
 
     If you switched it to **Scoped**, the rate limiting would apply the plugin to only one service, route, or consumer.
 
@@ -72,8 +72,8 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
 
 In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 6 requests every 30 seconds only for consumers in the Bronze tier.
 
-1. In {{site.base_short_name}}, click **Runtime Manager** in the sidebar.
-1. Click the **default** runtime group.
+1. In {{site.konnect_short_name}}, click **Runtime Manager** in the sidebar.
+1. Select the **default** runtime group.
 1. From the menu, open **Consumers**, then click the **Consumer Groups** tab.
 1. Click the **Bronze** consumer group you just created.
 1. Click **Add Configuration**.
