@@ -19,25 +19,29 @@ plugin’s configuration, so you can define tier groups for some users and
 have a default behavior for consumers without groups.
 
 To use consumer groups for rate limiting, you must:
-* Create one or more consumer groups
-* Create consumers
-* Assign consumers to groups
+* Create a consumer group and create or add consumers to it
 * Configure the Rate Limiting Advanced plugin globally with the `enforce_consumer_groups`
 and `consumer_groups` parameters, setting up the list of consumer groups that
 the plugin accepts
 * Configure a rate limiting policy for each consumer group, overriding the 
 plugin's global configuration
 
-## Set up a consumer group with consumers
+## Create a consumer
 
-In this section, you will create the Bronze tier consumer group with a consumer assigned to the group.
+In this section, you will create a consumer.
 
 1. From the {{site.konnect_short_name}} sidebar, open the **Runtime Manager** section.
 1. Select the **default** runtime group.
-1. From the menu, click **Consumers**, then click **Add consumer**.
-1. Enter a **Username** and **Custom ID**. For this example, you can use "Amal" for each field.
-1. Click the **Consumer Groups** tab.
-1. Click **Add Consumer Group**.
+1. Open the **Consumers** tab, click **Add consumer**, and enter the following consumer information into the form:
+    * **Username**: Amal
+    * **Custom ID**: Amal
+
+## Assign a consumer to a consumer group
+
+In this section, you will assign the consumer you just created to the Bronze tier consumer group. 
+
+1. From the **Runtime Manager** section in the **default** {{site.konnect_short_name}} workspace, open the **Consumers** tab.
+1. Click the **Consumer Groups** tab, and then click **Add Consumer Group**.
 1. Enter "Bronze" for the consumer group name and select the "Amal" consumer you just created from the drop-down. 
 1. Click **Create**.
 
@@ -58,12 +62,12 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
     You can also toggle the **This plugin is Enabled** button to configure the plugin without enabling it.
     For this example, keep the plugin enabled.
 1. Complete only the following fields with the following parameters:
-    1. Config.limit: `5`
-    1. Config.window_size: `30`
-    1. Config.window_type: `Sliding`
-    1. Config.retry_after_jitter_max: `0`
-    1. Config.enforce_consumer_groups: `true` 
-    1. Config.consumer_groups: `Bronze`
+    * **Config.limit:** 5
+    * **Config.window_size:** 30
+    * **Config.window_type:** Sliding
+    * **Config.retry_after_jitter_max:** 0
+    * **Config.enforce_consumer_groups:** true 
+    * **Config.consumer_groups:** Bronze
 
     Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
 1. Click **Save**.
@@ -78,9 +82,12 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
 1. Click the **Bronze** consumer group you just created.
 1. Click **Add Configuration**.
 1. In the dialog, complete only the following fields with the following parameters:
-    1. Window Size: 30
-    1. Window Type: Sliding
-    1. Limit: 6
-    1. Retry After Jitter Max: 0
+    * **Window Size:** 30
+    * **Window Type:** Sliding
+    * **Limit:** 6
+    * **Retry After Jitter Max:** 0
 1. Click **Save**.
 
+## Conclusion
+
+You have now set up a Bronze tier consumer group with one consumer, Amal, assigned to the group. Whenever the consumer Amal sends requests, they can make up to six requests every 30 seconds before hitting the rate limit. All other consumers are limited to only five requests every 30 seconds. 
