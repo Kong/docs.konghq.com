@@ -1,0 +1,7 @@
+
+Kong Gateway {{ include.data.version }} supports the following deployment targets:
+
+| OS | Version | Artifacts | ARM support | FIPS compliant | EOL |
+| -- | ------- | --------- | ----------- | -------------- | --- |
+{% for d in include.data.distributions %}| {{ d.os }} | {{ d.version }} | {{ d.artifacts | to_badges }} | {{ d.arm | to_check }} | {{ d.fips | to_check }} | {{ d.eol }} |
+{% endfor %}

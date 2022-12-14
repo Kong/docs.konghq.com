@@ -1,0 +1,42 @@
+
+## Data Stores
+
+{% for d in include.data.third-party.datastore %}
+* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
+  {% endif %}
+{% endfor %}
+
+## Vaults
+
+{% for d in include.data.third-party.vault %}
+* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
+  {% endif %}
+{% endfor %}
+
+## Identity Providers
+
+{% for d in include.data.third-party.identity_provider %}
+* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
+  {% endif %}
+{% endfor %}
+
+## Service Mesh
+
+{% for d in include.data.third-party.service_mesh %}
+* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
+  {% endif %}
+{% endfor %}
+
+## Log Providers
+
+{% for d in include.data.third-party.log_provider %}
+* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
+  {% endif %}
+{% endfor %}
+
+## S3 Compatible APIs
+
+{% for d in include.data.third-party.s3_api %}
+* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
+  {% endif %}
+{% endfor %}

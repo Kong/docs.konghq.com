@@ -1,0 +1,168 @@
+version: 3.x
+lts: false
+distributions:
+  - os: RHEL
+    version: 8.x
+    artifacts:
+      - package
+      - docker
+    arm: false
+    fips: false
+    eol: March 2025
+  - os: RHEL
+    version: 9.x
+    artifacts:
+      - package
+    arm: false
+    fips: false
+    eol: March 2025
+  - os: Amazon Linux
+    version: 2
+    artifacts:
+      - package
+    arm: true
+    fips: false
+    eol: March 2025
+  - os: Amazon Linux
+    version: 2022
+    artifacts:
+      - package
+    arm: true
+    fips: false
+    eol: March 2025
+  - os: Debian
+    version: 10
+    artifacts:
+      - package
+    arm: false
+    fips: false
+    eol: June 2024
+  - os: Debian
+    version: 11
+    artifacts:
+      - package
+      - docker
+    arm: true
+    fips: false
+    eol: March 2025
+  - os: Debian
+    version: stable
+    artifacts:
+      - package
+    arm: false
+    fips: false
+    eol: March 2025
+  - os: Ubuntu
+    version: 20.04
+    artifacts:
+      - package
+    arm: false
+    fips: false
+    eol: March 2025
+  - os: Ubuntu
+    version: 22.04
+    artifacts:
+      - package
+      - docker
+    arm: true
+    fips: true
+    eol: March 2025
+third-party:
+  datastore:
+    - name: Postgres
+      versions:
+        - 13
+        - 12
+        - 11
+        - Amazon RDS
+    - name: Cassandra
+      versions:
+        - 3.11
+    - name: Redis
+      versions:
+        - 6
+        - 7
+        - AWS Elasticache
+    - name: InfluxDB
+      versions:
+        - 1
+    - name: Kafka
+      versions:
+        - 3.3
+        - 3.2
+        - Confluent Cloud
+  metrics:
+    - name: Prometheus
+      versions:
+        - 2.40
+        - 2.37
+    - name: statsd
+      versions:
+        - 0.9
+    - name: OpenTelemetry
+    - name: Zipkin
+      versions:
+        - 2.23
+        - 2.22
+  vault:
+    - name: Hashicorp Vault
+      versions:
+        - 1.12
+    - name: AWS Secrets Manager
+    - name: Google Secrets Manager
+  identity_provider:
+    - name: Auth0
+    - name: AWS Cognito
+    - name: Connect2id
+    - name: Curity
+    - name: Dex
+    - name: Gluu
+    - name: Google
+    - name: IdentityServer
+    - name: Keycloak
+    - name: Microsoft Azure Active Directory
+    - name: Microsoft Active Directory Federation Services
+    - name: Microsoft Live Connect
+    - name: Okta
+    - name: OneLogin
+    - name: OpenAM
+    - name: Paypal
+    - name: PingFederate
+    - name: Salesforce
+    - name: WSO2
+    - name: Yahoo!
+  service_mesh:
+    - name: Kong Mesh
+      versions:
+        - 2.0
+    - name: Istio
+      versions:
+        - 1.16
+        - 1.15
+        - 1.14
+  log_provider:
+    - name: Splunk
+    - name: Datadog
+    - name: Loggly
+  s3_api:
+    - name: AWS S3
+    - name: MinIO
+
+browsers:
+  - name: Edge
+    versions:
+      - 107
+      - 106 (Extended)
+  - name: Chrome
+    versions:
+      - 107
+      - 106 (Extended)
+  - name: Firefox
+    versions:
+      - 102 (Extended)
+      - 105
+      - 106
+  - name: Safari
+    versions:
+      - 15
+      - 16
