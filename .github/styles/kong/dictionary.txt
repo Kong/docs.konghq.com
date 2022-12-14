@@ -1,5 +1,6 @@
 ACLs
 Alertmanager
+Amal
 Amberflo
 Arya
 Bagdi

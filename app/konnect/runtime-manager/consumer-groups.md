@@ -26,6 +26,8 @@ the plugin accepts
 * Configure a rate limiting policy for each consumer group, overriding the 
 plugin's global configuration
 
+This tutorial will walk through creating a bronze tier consumer group that allows consumers in the group to make five requests every 30 seconds. 
+
 ## Create a consumer
 
 In this section, you will create a consumer.
@@ -87,7 +89,5 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
     * **Limit:** 6
     * **Retry After Jitter Max:** 0
 1. Click **Save**.
-
-## Conclusion
 
 You have now set up a Bronze tier consumer group with one consumer, Amal, assigned to the group. Whenever the consumer Amal sends requests, they can make up to six requests every 30 seconds before hitting the rate limit. All other consumers are limited to only five requests every 30 seconds. 
