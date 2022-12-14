@@ -51,7 +51,8 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
 
       before { allow(subject).to receive(:data).and_return(data) }
 
-      it { expect{ subject.releases }.to raise_error }
+      it { expect{ subject.releases }
+        .to raise_error(ArgumentError, '`releases` must have a `minimum_version` version set') }
     end
   end
 
