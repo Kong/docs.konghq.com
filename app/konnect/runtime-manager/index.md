@@ -46,3 +46,11 @@ choose to manually configure runtime instances on the following:
 * Azure
 
 See the [runtime instance installation options](/konnect/runtime-manager/runtime-instances/) for more detail.
+
+## Plugins
+
+You can extend {{site.konnect_short_name}} by using plugins. Kong provides a set of standard Lua plugins that get bundled with {{site.konnect_short_name}}. The set of plugins you have access to depends on your installation.
+
+Custom plugins can also be developed by the Kong Community and are supported and maintained by the plugin creators. If they are published on the Kong Plugin Hub, they are called Community or Third-Party plugins.
+
+See the [{{site.konnect_short_name}} plugin documentation](/konnect/runtime-manager/plugins/) for more information.

@@ -83,8 +83,8 @@
           url: /runtime-manager/gateway-config
         - text: Runtime Configuration
           url: /runtime-manager/manage-proxy-config
-    - text: Configure Dynamic Plugin Ordering
-      url: /runtime-manager/plugin-ordering
+    - text: Plugins
+      url: /runtime-manager/plugins
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
 
