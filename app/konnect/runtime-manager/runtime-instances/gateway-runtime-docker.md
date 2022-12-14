@@ -91,20 +91,20 @@ docker run -d \
 {% navtab Windows PowerShell %}
 ```powershell
 docker run -d \
-        -e "KONG_ROLE=data_plane" \
-        -e "KONG_DATABASE=off" \
-        -e "KONG_ANONYMOUS_REPORTS=off" \
-        -e "KONG_VITALS_TTL_DAYS=723" \
-        -e "KONG_CLUSTER_MTLS=pki" \
-        -e "KONG_CLUSTER_CONTROL_PLANE=91288f8ed2.us.cp0.konghq.com:443" \
-        -e "KONG_CLUSTER_SERVER_NAME=91288f8ed2.us.cp0.konghq.com" \
-        -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=91288f8ed2.us.tp0.konghq.com:443" \
-        -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=91288f8ed2.us.tp0.konghq.com" \
-        -e "KONG_CLUSTER_CERT_STRING='-----BEGIN PRIVATE KEY-----\-----END PRIVATE KEY-----\r\n'" \
-        -e "KONG_CLUSTER_CERT_KEY_STRING='-----BEGIN CERTIFICATE-----\-----END CERTIFICATE-----\r\n'" \
-        -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/cluster.crt" \
-        -p "$KONNECT_RUNTIME_PORT":8000 \
-        -p "$KONNECT_RUNTIME_PORT_SECURE":8443 \
+        -e "KONG_ROLE=data_plane" `
+        -e "KONG_DATABASE=off" `
+        -e "KONG_ANONYMOUS_REPORTS=off" `
+        -e "KONG_VITALS_TTL_DAYS=723" `
+        -e "KONG_CLUSTER_MTLS=pki" `
+        -e "KONG_CLUSTER_CONTROL_PLANE=91288f8ed2.us.cp0.konghq.com:443" `
+        -e "KONG_CLUSTER_SERVER_NAME=91288f8ed2.us.cp0.konghq.com" `
+        -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=91288f8ed2.us.tp0.konghq.com:443" `
+        -e "KONG_CLUSTER_TELEMETRY_SERVER_NAME=91288f8ed2.us.tp0.konghq.com" `
+        -e "KONG_CLUSTER_CERT_STRING='-----BEGIN PRIVATE KEY-----\-----END PRIVATE KEY-----\r\n'" `
+        -e "KONG_CLUSTER_CERT_KEY_STRING='-----BEGIN CERTIFICATE-----\-----END CERTIFICATE-----\r\n'" `
+        -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/cluster.crt" `
+        -p "$KONNECT_RUNTIME_PORT":8000 `
+        -p "$KONNECT_RUNTIME_PORT_SECURE":8443 `
         kong/kong-gateway:3.1.0
 ```
 {% endnavtab %}
