@@ -90,6 +90,15 @@ module Jekyll
       end
 
       def render(context)
+        # Add support for variable titles
+        path = @title.split('.')
+        # 0 is the page scope, 1 is the local scope
+        [0,1].each do |k|
+          next unless context.scopes[k]
+          ref = context.scopes[k].dig(*path)
+          @title = ref if ref
+        end
+
         site = context.registers[:site]
         converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
         environment = context.environments.first
