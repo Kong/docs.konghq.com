@@ -53,7 +53,7 @@ KONG_ADMIN_TOKEN=<kong_admin_token> \
 portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>
 ```
 
-Where `<kong_admin_base_url>` is the location of the Kong Admin API that manages the developer portal and `<kong_admin_token>` is an RBAC token that has access to the manage the portal.
+Where `<kong_admin_base_url>` is the location of the Kong Admin API that manages the developer portal and `<kong_admin_token>` is an RBAC token that has access to manage the portal.
 
 #### For `deploy`
 - Add `-W` or `--watch` to make changes reactive.
