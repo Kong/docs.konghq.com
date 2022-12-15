@@ -247,6 +247,8 @@ Request Headers:
 	my-request-id=ea87894d-7f97-4710-84ae-cbc608bb8107#2
 ...
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Requests that match the `echo` Ingress or HTTPRoute now include a
 `my-request-id` header with a unique ID in both their request headers upstream

@@ -41,7 +41,7 @@ Response:
 subject=CN = {{ include.hostname }}
 ```
 {% endnavtab %}
-{% endnavtab %}
+{% endnavtabs %}
 
 Then, create a Secret containing the certificate:
 ```bash

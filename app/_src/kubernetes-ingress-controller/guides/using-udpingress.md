@@ -253,6 +253,8 @@ spec:
 Response:
 ```text
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 This configuration routes traffic to UDP port `9999` on the
 {{site.base_gateway}} proxy to port `9999` on the TFTP test server.
