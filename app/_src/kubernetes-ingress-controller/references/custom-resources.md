@@ -193,7 +193,7 @@ type: Opaque
 
 ## KongClusterPlugin
 
-A `KongClusterPlugin` is same as `KongPlugin` resource. The only differences
+A KongClusterPlugin is same as KongPlugin resource. The only differences
 are that it is a Kubernetes cluster-level resource instead of a namespaced
 resource, and can be applied as a global plugin using labels.
 
@@ -277,20 +277,20 @@ Ingress resource spec in Kubernetes can define routing policies
 based on HTTP Host header and paths.
 While this is sufficient in most cases,
 sometimes, users may want more control over routing at the Ingress level.
-`KongIngress` serves as an "extension" to Ingress resource.
+KongIngress serves as an "extension" to Ingress resource.
 It is not meant as a replacement to the
-`Ingress` resource in Kubernetes.
+Ingress resource in Kubernetes.
 
 Please read the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#kongingress)
 document for why this resource exists and how it relates to the existing
 Ingress resource.
 
-Using `KongIngress`, all properties of [Upstream][kong-upstream],
+Using KongIngress, all properties of [Upstream][kong-upstream],
 [Service][kong-service], and
 [Route][kong-route] entities in Kong related to an Ingress resource
 can be modified.
 
-Once a `KongIngress` resource is created, it needs to be associated with
+Once a KongIngress resource is created, it needs to be associated with
 an Ingress or Service resource using the following annotation:
 
 ```yaml
@@ -403,7 +403,7 @@ in Kong.
 
 ## UDPIngress
 
-The `UDPIngress` API makes it possible to route traffic to your [UDP][udp] services
+The UDPIngress API makes it possible to route traffic to your [UDP][udp] services
 using Kong (e.g. DNS, Game Servers, e.t.c.).
 
 ```yaml
@@ -469,7 +469,7 @@ KongConsumers from all namespaces are combined into a single Kong
 configuration, and no KongConsumers with the same `kubernetes.io/ingress.class`
 may share the same `username` or `custom_id` value.
 
-For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
+For help configuring credentials for the KongConsumer Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object

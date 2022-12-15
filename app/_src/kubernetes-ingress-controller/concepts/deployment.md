@@ -139,7 +139,7 @@ If a database is being deployed, then following resources are required:
 
 - A `StatefulSet` which runs a PostgreSQL pod backed with a `PersistentVolume`
   to store Kong's configuration.
-- An internal `Service` which resolves to the PostgreSQL pod. This ensures
+- An internal Service which resolves to the PostgreSQL pod. This ensures
   that Kong can find the PostgreSQL instance using DNS inside
   the Kubernetes cluster.
 - A batch `Job` to run schema migrations. This is required to be executed once
@@ -168,7 +168,7 @@ Following are the difference options to consider while deploying the
 
 Once deployed, any Ingress Controller needs to be exposed outside the
 Kubernetes cluster to start accepting external traffic.
-In Kubernetes, `Service` abstraction is used to expose any application
+In Kubernetes, Service abstraction is used to expose any application
 to the rest of the cluster or outside the cluster.
 
 If your Kubernetes cluster is running in a cloud environment, where

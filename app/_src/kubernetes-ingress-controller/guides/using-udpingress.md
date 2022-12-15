@@ -1,353 +1,291 @@
 ---
-title: UDPIngress with Kong Gateway
+title: Exposing a UDP Service
+content_type: tutorial
 ---
 
-This guide walks you through deploying a simple [Service][svc] that
-listens for [UDP datagrams][udp], and exposes this service outside
-of the cluster using {{site.base_gateway}}.
+## Overview
+
+This guide walks through deploying a simple [Service][svc] that listens for
+[UDP datagrams][udp], and exposes this service outside of the cluster using
+{{site.base_gateway}}.
+
+For this example, you will:
+* Deploy a UDP test application.
+* Route UDP traffic to it using UDPIngress or UDPRoute.
+
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
 
-## Overview
-
-Some of the most common UDP-based services available on the internet are
-[DNS servers][dns]. These servers are an important part of the infrastructure
-of the internet, and are also [present by default][kubedns] in Kubernetes
-clusters to allow [Pods][pods] within the cluster to look up other pods' IP
-addresses by name.
-
-For this example, you will:
-* Deploy your own [CoreDNS][coredns] server, which is the default
-DNS server Kubernetes uses for internal DNS
-* Deploy a CoreDNS `Pod` and `Service`
-* Route UDP traffic to it using `UDPIngress`
-
-This guide assumes that you've deployed the Kong Kubernetes Ingress Controller (KIC)
-using the [Helm Chart][chart]. If you have deployed the KIC in a different way, you
-may need to make some manual adjustments to some of the provided instructions.
-
-[dns]:https://datatracker.ietf.org/doc/html/rfc1035
-[kubedns]:https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-[pods]:https://kubernetes.io/docs/concepts/workloads/pods/
-[coredns]:https://coredns.io/
-[chart]:https://github.com/kong/charts
-
-## Installation
-
-Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
-
-> **Note**: This feature is compatible with:
-> * {{site.base_gateway}} versions 2.0.0 and above.
-> * Kong Ingress Controller versions 2.0.0 and above.
-
 ## Create a namespace
 
-First, create a namespace for testing DNS services and `UDPIngress`.
+First, create a namespace:
 
-{% navtabs %}
-{% navtab Manifest %}
-
-Apply the following manifest to the cluster to create the namespace:
-
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: udpingress-example
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl create namespace udp-example
 ```
-
 {% endnavtab %}
-{% navtab kubectl %}
-
-Use the shorthand version with `kubectl` to deploy the namespace:
-
-```shell
-$ kubectl create namespace udpingress-example
+{% navtab Response %}
+```text
+namespace/udp-example created
 ```
-
 {% endnavtab %}
 {% endnavtabs %}
 
-You'll be using this namespace in the upcoming sections, and when you're done testing
-you can delete it.
+Other examples in this guide will use this namespace. When you've completed
+this guide, `kubectl delete namespace udp-example` will clean those resources
+up.
 
-## Deploy CoreDNS
+## Adding UDP listens
 
-For this example, deploy a default CoreDNS server that only serves up DNS requests.
+{{site.base_gateway}} does not include any UDP listen configuration by default.
+To expose UDP listens, update the Deployment's environment variables and port
+configuration:
 
-First, you need to configure CoreDNS with a [Core File][corefile].
-
-Save the following [ConfigMap][cfgmap] as `corefile.yaml`:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: coredns
-  namespace: udpingress-example
-data:
-  Corefile: |-
-    .:53 {
-        errors
-        health {
-           lameduck 5s
-        }
-        ready
-        kubernetes cluster.local in-addr.arpa ip6.arpa {
-           pods insecure
-           fallthrough in-addr.arpa ip6.arpa
-           ttl 30
-        }
-        forward . /etc/resolv.conf {
-           max_concurrent 1000
-        }
-        cache 30
-        loop
-        reload
-        loadbalance
+```bash
+kubectl patch deploy -n kong ingress-kong --patch '{
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "name": "proxy",
+            "env": [
+              {
+                "name": "KONG_STREAM_LISTEN",
+                "value": "0.0.0.0:9999 udp"
+              }
+            ],
+            "ports": [
+              {
+                "containerPort": 9999,
+                "name": "stream9999",
+                "protocol": "UDP"
+              }
+            ]
+          }
+        ]
+      }
     }
+  }
+}'
+```
+Response:
+```text
+deployment.extensions/ingress-kong patched
 ```
 
-This simple configuration tells our CoreDNS pods to forward all DNS requests to [name servers][nameservers] present in `/etc/resolv.conf`.
+## Add a UDP proxy Service
 
-By default, `/etc/resolve.conf` points to the standard kube-dns service provided by the cluster.
+LoadBalancer Services only support a single transport protocol in [Kubernetes
+versions prior to 1.26](https://github.com/kubernetes/enhancements/issues/1435).
+To direct UDP traffic to the proxy Service, you'll need to create a second
+Service:
 
-Next, apply the `corefile.yaml`:
-
-```shell
-$ kubectl apply -f corefile.yaml
+```bash
+echo "apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: udp
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  name: kong-udp-proxy
+  namespace: kong
+spec:
+  ports:
+  - name: stream9999
+    port: 9999
+    protocol: UDP
+    targetPort: 9999
+  selector:
+    app: ingress-kong
+  type: LoadBalancer
+" | kubectl apply -f -
+```
+Response:
+```text
+service/kong-udp-proxy created
 ```
 
-Now the cluster is ready for the [Deployment][deployment] manifest.
+Note that this Service is typically added via the Kong Helm chart's `udpProxy`
+configuration. This guide creates it manually to demonstrate the resources the
+chart normally manages for you and for compatibility with non-Helm installs.
 
-Save the following file as `coredns-deployment.yaml`:
+## Update the Gateway
 
-```yaml
+If you are using Gateway APIs (UDPRoute) option, your Gateway needs additional
+configuration under `listeners`. If you are using UDPIngress, skip this step.
+
+```bash
+kubectl patch --type=json gateway kong -p='[
+    {
+        "op":"add",
+        "path":"/spec/listeners/-",
+        "value":{
+            "name":"stream9999",
+            "port":9999,
+            "protocol":"UDP",
+			"allowedRoutes": {
+			    "namespaces": {
+				     "from": "All"
+				}
+			}
+        }
+    }
+]'
+```
+Response:
+```text
+gateway.gateway.networking.k8s.io/kong patched
+```
+
+
+## Deploy a UDP test application
+
+Create a test application Deployment and an associated Service:
+
+```bash
+echo "---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coredns
-  namespace: udpingress-example
+  name: tftp
+  namespace: udp-example
   labels:
-    app: coredns
+    app: tftp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: coredns
+      app: tftp
   template:
     metadata:
       labels:
-        app: coredns
+        app: tftp
     spec:
       containers:
-      - args:
-        - -conf
-        - /etc/coredns/Corefile
-        image: coredns/coredns
-        imagePullPolicy: IfNotPresent
-        name: coredns
+      - name: tftp
+        image: cilium/echoserver-udp:latest
+        args:
+        - --listen
+        - :9999
         ports:
-        - containerPort: 53
-          protocol: UDP
-        volumeMounts:
-        - mountPath: /etc/coredns
-          name: config-volume
-      volumes:
-      - configMap:
-          defaultMode: 420
-          items:
-          - key: Corefile
-            path: Corefile
-          name: coredns
-        name: config-volume
-```
-
-Note that this `Deployment` mounts the `corefile` configuration data
-we created above into the pods so that CoreDNS can load them.
-
-Apply the `Deployment` configuration file:
-
-```shell
-$ kubectl apply -f coredns-deployment.yaml
-```
-
-Watch the pods with `kubectl -n udpingress-example get pods`. Once they are
-running, you can move on to the next sections: exposing the pods through
-`Service` and `UDPIngress`.
-
-[corefile]:https://coredns.io/manual/toc/#configuration
-[nameservers]:https://datatracker.ietf.org/doc/html/rfc1035#section-6
-[cfgmap]:https://kubernetes.io/docs/concepts/configuration/configmap/
-[deployment]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-
-## Expose CoreDNS through a Service
-
-A Kubernetes [Service][svc] is a fundamental network abstraction layer
-that allows you to load-balance traffic to pods in the cluster. `Services` are
-ultimately the DNS names that the {{site.base_gateway}} will be routing our UDP traffic to.
-
-The following manifest exposes the CoreDNS Deployment from the previous section via a service.
-
-Save this manifest as `coredns-service.yaml`:
-
-```yaml
+        - containerPort: 9999
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: coredns
-  namespace: udpingress-example
+  name: tftp
+  namespace: udp-example
 spec:
   ports:
-  - port: 53
+  - port: 9999
+    name: tftp
     protocol: UDP
-    targetPort: 53
+    targetPort: 9999
   selector:
-    app: coredns
+    app: tftp
   type: ClusterIP
+" | kubectl apply -f -
+```
+Response:
+```text
+deployment.apps/tftp created
+service/tftp created
 ```
 
-This configuration uses UDP port 53, which is [the default port for DNS][dns-port].
+[echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
+test server that accepts UDP TFTP requests and returns basic request
+information. As curl supports TFTP, it is a convenient option for
+testing UDP routing.
 
-Apply the manifest:
+## Route UDP traffic
 
-```shell
-$ kubectl apply -f coredns-service.yaml
-```
+Now that {{site.base_gateway}} is listening on `9999` and the test application
+is running, you can create UDP routing configuration that proxies traffic to
+the application:
 
-Now that you have a `Service` to expose the pods, you can expose this
-DNS server outside of the cluster using Kong's `UDPIngress` resource.
-
-[svc]:https://kubernetes.io/docs/concepts/services-networking/service/
-[dns-port]:https://datatracker.ietf.org/doc/html/rfc1035#section-4.2.1
-
-## Exposing UDP Ports on Kong
-
-The Kong Kubernetes Ingress Controller (KIC) doesn't have a
-mechanism to automatically enable new UDP ports for exposing your
-Kubernetes UDP `Services`, so you need to explicitly configure {{site.base_gateway}} to expose
-these ports prior to deploying any `UDPIngress` resources.
-
-If you're maintaining a `values.yaml` configuration for your Helm deployment of {{site.base_gateway}},
-add a section under `udpProxy` to enable the new UDP listener:
-
-```yaml
-udpProxy:
-  enabled: true
-  type: LoadBalancer
-  stream:
-  - containerPort: 9999
-    servicePort: 9999
-    protocol: UDP
-```
-
-Once you've made the necessary configurations you can apply your changes:
-
-```
-$ helm upgrade --namespace {NAMESPACE} --version {CHART_VERSION} -f values.yaml {RELEASE_NAME} kong/kong
-```
-
-Replace `{NAMESPACE}`, `{CHART_VERSION}` and `{RELEASE_NAME}` with the values you deployed {{site.base_gateway}} with.
-
-Alternatively, if you are using command line flags to deploy and manage {{site.base_gateway}},
-the same configuration can be achieved with flags:
-
-```shell
-$ helm upgrade --namespace {NAMESPACE} --version {CHART_VERSION} {RELEASE_NAME} kong/kong \
-  --set "udpProxy.enabled=true" \
-  --set "udpProxy.type=LoadBalancer" \
-  --set "udpProxy.stream[0].containerPort=9999"
-  --set "udpProxy.stream[0].servicePort=9999"
-  --set "udpProxy.stream[0].protocol=UDP"
-```
-
-Watch the services using `kubectl get services` and wait for the `LoadBalancer` service to be ready for the Gateway.
-Once the service up, {{site.base_gateway}} is ready to serve UDP traffic on the external port `9999`
-using `UDPIngress` resources.
-
-## Deploying UDPIngress
-
-Now that {{site.base_gateway}} is listening on `9999`, you can create a `UDPIngress` resource which will attach
-the CoreDNS service to that port so you can make DNS requests to it from outside the cluster.
-
-Save the following file as `coredns-udpingress.yaml`:
-
-```yaml
-apiVersion: configuration.konghq.com/v1beta1
+{% navtabs api %}
+{% navtab Ingress %}
+```bash
+echo "apiVersion: configuration.konghq.com/v1beta1
 kind: UDPIngress
 metadata:
-  name: minudp
-  namespace: udpingress-example
+  name: tftp
+  namespace: udp-example
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
   rules:
   - backend:
-      serviceName: coredns
-      servicePort: 53
+      serviceName: tftp
+      servicePort: 9999
     port: 9999
+" | kubectl apply -f -
 ```
-
-This configuration binds the {{site.base_gateway}} port `9999` to the `Service` port `53` for our DNS server.
-
-Apply the `coredns-udpingress.yaml` manifests:
-
-```shell
-$ kubectl apply -f coredns-udpingress.yaml
+Response:
+```text
+udpingress.configuration.konghq.com/tftp created
 ```
-
-You can now make DNS requests via {{site.base_gateway}}.
-
-## Verification
-
-Now that setup is complete, all that's left to do is verify that everything is working
-by making a DNS request to our CoreDNS server.
-
-> **Note:** This example assumes you have the `dig` command available on your local
- system. If you don't, refer to your operating system documentation for a similar DNS
- lookup tool.
-
-First, retrieve the IP address of the UDP load balancer service that we
-configured in previous sections:
-
-```shell
-$ export KONG_UDP_ENDPOINT="$(kubectl -n {NAMESPACE} get service {RELEASE_NAME}-kong-udp-proxy \
-    -o=go-template='{% raw %}{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}{% endraw %}')"
-```
-
-Replace `{NAMESPACE}` and `{RELEASE_NAME}` with the values
-you originally provided to `helm install` in your own environment.
-
-Now that you've stored the IP in the environment variable `KONG_UDP_ENDPOINT`, you can use
-that with `dig` to do a DNS lookup through the CoreDNS server you set up and exposed
-using `UDPIngress`:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-
-```shell
-$ dig @${KONG_UDP_ENDPOINT} -p 9999 konghq.com
-```
-
 {% endnavtab %}
-{% navtab Response %}
-
-```shell
-;; ANSWER SECTION:
-konghq.com.		30	IN	A	34.83.126.248
-
-;; Query time: 60 msec
-;; SERVER: <KONG_UDP_ENDPOINT>#9999
-;; WHEN: Thu Aug 19 08:39:16 EDT 2021
-;; MSG SIZE  rcvd: 77
+{% navtab Gateway APIs %}
+```bash
+echo "apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: UDPRoute
+metadata:
+  name: tftp
+  namespace: udp-example
+spec:
+  parentRefs:
+  - name: kong
+    namespace: default
+  rules:
+  - backendRefs:
+    - name: tftp
+      port: 9999
+" | kubectl apply -f -
 ```
-
+Response:
+```text
+```
 {% endnavtab %}
 {% endnavtabs %}
 
-Verify that the `{KONG_UDP_ENDPOINT}` in the `SERVER` section of the response above ends
-up being equal to your `${KONG_UDP_ENDPOINT}` value.
+This configuration routes traffic to UDP port `9999` on the
+{{site.base_gateway}} proxy to port `9999` on the TFTP test server.
 
-Now you're equipped to route UDP traffic into your Kubernetes cluster with {{site.base_gateway}}!
+## Test the configuration
+
+First, retrieve the external IP address of the UDP proxy Service you created
+previously:
+
+```bash
+export KONG_UDP_ENDPOINT="$(kubectl -n kong get service kong-udp-proxy \
+    -o=go-template='{% raw %}{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}{% endraw %}')"
+```
+
+After, use curl to send a TFTP request through the proxy:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+curl -s tftp://${KONG_UDP_ENDPOINT}:9999/hello
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+Hostname: tftp-5849bfd46f-nqk9x
+
+Request Information:
+	client_address=10.244.0.1
+	client_port=39364
+	real path=/hello
+	request_scheme=tftp
+```
+{% endnavtab %}
+{% endnavtabs %}

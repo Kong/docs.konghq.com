@@ -15,7 +15,7 @@ rules defined in the Ingress resources.
 
 The Ingress resource in Kubernetes is a fairly narrow and ambiguous API, and
 doesn't offer resources to describe the specifics of proxying.
-To overcome this limitation, the `KongIngress` Custom resource is used as an
+To overcome this limitation, the KongIngress Custom resource is used as an
 "extension" to the existing Ingress API.
 
 A few custom resources are bundled with the {{site.kic_product_name}} to

@@ -186,7 +186,7 @@ Pod Information:
 
 ## Create KongClusterPlugin resource
 
-Now that we have running services, we can add a `KongClusterPlugin` definition to add a response header to our services:
+Now that we have running services, we can add a KongClusterPlugin definition to add a response header to our services:
 
 ```bash
 echo '
@@ -227,7 +227,7 @@ resource but we have not told Kong when to execute the plugin.
 
 ## Configuring plugins on Ingress resources
 
-We will associate the `KongClusterPlugin` resource with the two Ingress resources
+We will associate the KongClusterPlugin resource with the two Ingress resources
 that we previously created:
 
 ```bash
@@ -338,11 +338,11 @@ Instead of applying plugins to specific services or ingress routes,
 you can apply plugins to protect the entire gateway.
 To test this, you can configure a rate limiting plugin to throttle requests coming from the same client.
 
-This must be a cluster-level `KongClusterPlugin` resource because `KongPlugin`
+This must be a cluster-level KongClusterPlugin resource because KongPlugin
 resources cannot be applied globally. This preserves Kubernetes RBAC guarantees
 for cross-namespace isolation.
 
-Create the `KongClusterPlugin` resource:
+Create the KongClusterPlugin resource:
 
 ```bash
 echo "

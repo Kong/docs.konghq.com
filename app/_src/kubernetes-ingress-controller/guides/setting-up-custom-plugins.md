@@ -179,7 +179,7 @@ $ helm install kong/kong --generate-name --set ingressController.installCRDs=fal
 Once you have setup Kong with the custom plugin installed, you can use it
 like any other plugin.
 
-First, create a `KongPlugin` custom resource:
+First, create a KongPlugin custom resource:
 
 ```yaml
 echo "
