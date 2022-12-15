@@ -1,6 +1,7 @@
 {%- assign path = include.path | default: '/echo' %}
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
+{%- assign service = include.service | default: 'echo' %}
 {% navtabs api %}
 {% navtab Ingress %}
 ```bash
@@ -21,7 +22,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: echo
+            name: {{ service }}
             port:
               number: 80
 " | kubectl apply -f -
@@ -51,7 +52,7 @@ spec:
         type: PathPrefix
         value: {{ path }}
     backendRefs:
-    - name: echo
+    - name: {{ service }}
       kind: Service
       port: 80
 " | kubectl apply -f -

@@ -6,6 +6,8 @@ This example shows how we can expose a service located outside the Kubernetes cl
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
+
 ## Create a Kubernetes Service
 
 First we need to create a Kubernetes Service [type=ExternalName][0] using the hostname of the application we want to expose:
@@ -22,21 +24,21 @@ spec:
     port: 80
   type: ExternalName
   externalName: httpbin.org
-" | kubectl create -f -
+" | kubectl apply -f -
 ```
 Response:
 ```
 service/echo created
 ```
 
-## Create an Ingress to expose the service at the path `/anything`
+## Create an Ingress to expose the service at the path `/httpbin`
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/anything' name='proxy-from-k8s-to-httpbin' %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' %}
 
 ## Test the Service
 
 ```bash
-curl -si http://kong.example/anything --resolve kong.example:80:$PROXY_IP
+curl -si http://kong.example/httpbin/anything --resolve kong.example:80:$PROXY_IP
 ```
 Response:
 ```

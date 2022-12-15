@@ -3,10 +3,11 @@
 {%- assign path = include.path | default: '/echo' %}
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
+{%- assign service = include.service | default: 'echo' %}
 
 Create routing configuration to proxy `{{ path }}` requests to the echo server:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service %}
 
 Test the routing rule:
 
