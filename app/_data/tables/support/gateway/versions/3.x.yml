@@ -22,6 +22,8 @@ third-party:
   datastore:
     - name: Postgres
       versions:
+        - 15
+        - 14
         - 13
         - 12
         - 11
