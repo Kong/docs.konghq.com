@@ -1,0 +1,130 @@
+{% include_relative_once _data/tables/support/gateway/packages.yml %}
+
+lts: false
+distributions:
+  - *alpine
+  - <<: *rhel8
+    fips: true
+    docker: true
+    arm: true
+  - *amazonlinux2
+    arm: true
+  - *amazonlinux2022
+    arm: true
+  - <<: *debian10
+    docker: true
+    arm: true
+  - *debian11
+  - <<: *ubuntu1804
+    docker: true
+    arm: true
+  - <<: *ubuntu2004
+    fips: true
+    arm: true
+  - <<: *ubuntu2204
+    fips: true
+    arm: true
+
+third-party:
+  datastore:
+    - name: Postgres
+      versions:
+        - 15
+        - 14
+        - 13
+        - 12
+        - 11
+        - 10
+        - 9
+        - Amazon RDS
+    - name: Cassandra
+      versions:
+        - 3.11
+    - name: Redis
+      versions:
+        - 6
+        - 7
+        - AWS Elasticache
+    - name: InfluxDB
+      versions:
+        - 1
+    - name: Kafka
+      versions:
+        - 3.3
+        - 3.2
+        - Confluent Cloud
+  metrics:
+    - name: Prometheus
+      versions:
+        - 2.40
+        - 2.37
+    - name: statsd
+      versions:
+        - 0.9
+    - name: OpenTelemetry
+    - name: Zipkin
+      versions:
+        - 2.23
+        - 2.22
+  vault:
+    - name: Hashicorp Vault
+      versions:
+        - 1.12
+    - name: AWS Secrets Manager
+    - name: Google Secrets Manager
+  identity_provider:
+    - name: Auth0
+    - name: AWS Cognito
+    - name: Connect2id
+    - name: Curity
+    - name: Dex
+    - name: Gluu
+    - name: Google
+    - name: IdentityServer
+    - name: Keycloak
+    - name: Microsoft Azure Active Directory
+    - name: Microsoft Active Directory Federation Services
+    - name: Microsoft Live Connect
+    - name: Okta
+    - name: OneLogin
+    - name: OpenAM
+    - name: Paypal
+    - name: PingFederate
+    - name: Salesforce
+    - name: WSO2
+    - name: Yahoo!
+  service_mesh:
+    - name: Kong Mesh
+      versions:
+        - 2.0
+    - name: Istio
+      versions:
+        - 1.16
+        - 1.15
+        - 1.14
+  log_provider:
+    - name: Splunk
+    - name: Datadog
+    - name: Loggly
+  s3_api:
+    - name: AWS S3
+    - name: MinIO
+
+browsers:
+  - name: Edge
+    versions:
+      - 109
+      - 108 (Extended)
+  - name: Chrome
+    versions:
+      - 109
+      - 108 (Extended)
+  - name: Firefox
+    versions:
+      - 102 (Extended)
+      - 106
+      - 107
+  - name: Safari
+    versions:
+      - 15
+      - 16
