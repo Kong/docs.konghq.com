@@ -88,5 +88,6 @@ jobs:
           filter_mode: file
           fail_on_error: true
           vale_flags: "--glob=!app/_src/.repos/kuma/**"
+          reporter: github-pr-review
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
