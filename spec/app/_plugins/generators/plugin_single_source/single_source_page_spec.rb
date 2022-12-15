@@ -23,8 +23,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
       it 'sets the corresponding attributes' do
         expect(subject.instance_variable_get(:@dir)).to eq('hub/acme/jwt-signer')
-        expect(subject.instance_variable_get(:@relative_path))
-          .to eq(File.join(site.source, '_hub/acme/jwt-signer/_index.md'))
+        expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/acme/jwt-signer/_index.md')
 
         expect(subject.data['version']).to eq('3.0.x')
         expect(subject.data['is_latest']).to eq(true)
@@ -48,8 +47,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
       it 'sets the corresponding attributes' do
         expect(subject.instance_variable_get(:@dir)).to eq('hub/acme/jwt-signer')
-        expect(subject.instance_variable_get(:@relative_path))
-          .to eq(File.join(site.source, '_hub/acme/jwt-signer/_index.md'))
+        expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/acme/jwt-signer/_index.md')
 
         expect(subject.data['version']).to eq('2.8.x')
         expect(subject.data['is_latest']).to eq(false)
@@ -72,8 +70,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
         it 'sets the corresponding attributes' do
           expect(subject.instance_variable_get(:@dir)).to eq('hub/acme/jwt-signer')
-          expect(subject.instance_variable_get(:@relative_path))
-            .to eq(File.join(site.source, '_hub/acme/jwt-signer/_2.2.x.md'))
+          expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/acme/jwt-signer/_2.2.x.md')
 
           expect(subject.data['version']).to eq('2.2.x')
           expect(subject.data['is_latest']).to eq(false)
