@@ -47,8 +47,6 @@ up.
 To expose UDP listens, update the Deployment's environment variables and port
 configuration:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl patch deploy -n kong ingress-kong --patch '{
   "spec": {
@@ -77,13 +75,10 @@ kubectl patch deploy -n kong ingress-kong --patch '{
   }
 }'
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 deployment.extensions/ingress-kong patched
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 ## Add a UDP proxy Service
 
@@ -92,8 +87,6 @@ versions prior to 1.26](https://github.com/kubernetes/enhancements/issues/1435).
 To direct UDP traffic to the proxy Service, you'll need to create a second
 Service:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 echo "apiVersion: v1
 kind: Service
@@ -114,13 +107,10 @@ spec:
   type: LoadBalancer
 " | kubectl apply -f -
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 service/kong-udp-proxy created
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 Note that this Service is typically added via the Kong Helm chart's `udpProxy`
 configuration. This guide creates it manually to demonstrate the resources the
@@ -131,8 +121,6 @@ chart normally manages for you and for compatibility with non-Helm installs.
 If you are using Gateway APIs (UDPRoute) option, your Gateway needs additional
 configuration under `listeners`. If you are using UDPIngress, skip this step.
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl patch --type=json gateway kong -p='[
     {
@@ -151,21 +139,16 @@ kubectl patch --type=json gateway kong -p='[
     }
 ]'
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 gateway.gateway.networking.k8s.io/kong patched
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 
 ## Deploy a UDP test application
 
 Create a test application Deployment and an associated Service:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 echo "---
 apiVersion: apps/v1
@@ -210,14 +193,11 @@ spec:
   type: ClusterIP
 " | kubectl apply -f -
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 deployment.apps/tftp created
 service/tftp created
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 [echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
 test server that accepts UDP TFTP requests and returns basic request
@@ -232,8 +212,6 @@ the application:
 
 {% navtabs api %}
 {% navtab Ingress %}
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 echo "apiVersion: configuration.konghq.com/v1beta1
 kind: UDPIngress
@@ -250,17 +228,12 @@ spec:
     port: 9999
 " | kubectl apply -f -
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 udpingress.configuration.konghq.com/tftp created
 ```
 {% endnavtab %}
-{% endnavtabs %}
-{% endnavtab %}
 {% navtab Gateway APIs %}
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: UDPRoute
@@ -277,12 +250,9 @@ spec:
       port: 9999
 " | kubectl apply -f -
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 ```
-{% endnavtab %}
-{% endnavtabs %}
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -294,17 +264,10 @@ This configuration routes traffic to UDP port `9999` on the
 First, retrieve the external IP address of the UDP proxy Service you created
 previously:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 export KONG_UDP_ENDPOINT="$(kubectl -n kong get service kong-udp-proxy \
     -o=go-template='{% raw %}{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}{% endraw %}')"
 ```
-{% endnavtab %}
-{% navtab Response %}
-No output.
-{% endnavtab %}
-{% endnavtabs %}
 
 After, use curl to send a TFTP request through the proxy:
 

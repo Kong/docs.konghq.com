@@ -1,9 +1,9 @@
-Routing configuration can include a certificate to present when clients connect
+The routing configuration can include a certificate to present when clients connect
 over HTTPS. This is not required, as {{site.base_gateway}} will serve a default
 certificate if it cannot find another, but including TLS configuration along
 with routing configuration is typical.
 
-First, create a test certificate for the `{{ include.hostname }}` hostname:
+First, create a test certificate for the `{{ include.hostname }}` hostname using one of the following commands:
 
 {% navtabs codeblock %}
 {% navtab Command %}
@@ -35,15 +35,11 @@ subject=CN = {{ include.hostname }}
 {% endnavtab %}
 {% endnavtabs %}
 
-Second, create a Secret containing the certificate:
-
-{% navtabs codeblock %}
-{% navtab Command %}
+Then, create a Secret containing the certificate:
 ```bash
 kubectl create secret tls {{ include.hostname }} --cert=./server.crt --key=./server.key
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 secret/{{ include.hostname }} created
 ```

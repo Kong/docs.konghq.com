@@ -26,36 +26,26 @@ APIs resource definitions and admission controller](https://gateway-api.sigs.k8s
 Support for Gateway APIs is disabled by default. After installing the APIs, you
 must enable support for them in {{site.kic_product_name}}:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl set env -n kong deployment/ingress-kong CONTROLLER_FEATURE_GATES="Gateway=true" -c ingress-controller
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 deployment.apps/ingress-kong env updated
 ```
-{% endnavtab %}
-{% endnavtabs %}
 {% endif_version %}
 {% if_version gte: 2.6.x %}
 {{site.kic_product_name}} automatically disables support for non-standard
 resources if they are not available at start, so you must restart it after
 installing Gateway APIs for it to recognize those resources:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl rollout restart -n NAMESPACE deployment DEPLOYMENT_NAME
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 deployment.apps/DEPLOYMENT_NAME restarted
 ```
-{% endnavtab %}
-{% endnavtabs %}
 {% endif_version %}
 
 ## Using alpha APIs
@@ -66,22 +56,17 @@ deployment.apps/DEPLOYMENT_NAME restarted
 Layer 4 routes (TCPRoute, UDPRoute, TLSRoute) are currently only available in
 the Gateway APIs experimental channel. 
 
-These APIs require version 2.6 or higher. To use them on a supported version,
+These APIs require version 2.6 or later. To use them on a supported version,
 install the experimental channel CRDs and enable the corresponding feature gate
 in {{site.kic_product_name}}:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl set env -n kong deployment/ingress-kong CONTROLLER_FEATURE_GATES="GatewayAlpha=true" -c ingress-controller
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 deployment.apps/ingress-kong env updated
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 If you also use other feature gates, include them as well. The command above
 replaces the entire `CONTROLLER_FEATURE_GATES` value.
