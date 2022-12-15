@@ -10,10 +10,10 @@ RSpec.describe PluginSingleSource::Generator do
       subject
 
       expect(site.data['ssg_hub'].map(&:path)).to match_array([
-        File.join(site.source, '_hub/acme/jq/_index.md'),
-        File.join(site.source, '_hub/acme/jwt-signer/_index.md'),
-        File.join(site.source, '_hub/acme/kong-plugin/_index.md'),
-        File.join(site.source, '_hub/acme/unbundled-plugin/_index.md'),
+        '_hub/acme/jq/_index.md',
+        '_hub/acme/jwt-signer/_index.md',
+        '_hub/acme/kong-plugin/_index.md',
+        '_hub/acme/unbundled-plugin/_index.md',
       ])
     end
 
