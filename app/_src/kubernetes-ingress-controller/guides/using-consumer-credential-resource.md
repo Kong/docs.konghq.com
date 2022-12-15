@@ -22,8 +22,6 @@ enabling a plugin. To enforce authentication requirements on the on the route
 you've created, create a KongPlugin resource with an authentication plugin,
 such as `key-auth`:
 
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 echo "
 apiVersion: configuration.konghq.com/v1
@@ -33,45 +31,32 @@ metadata:
 plugin: key-auth
 " | kubectl apply -f -
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 kongplugin.configuration.konghq.com/example-auth created
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 Now, associate this plugin with the previous Ingress rule we created
 using the `konghq.com/plugins` annotation:
 
 {% navtabs api %}
 {% navtab Ingress %}
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl annotate ingress echo konghq.com/plugins=example-auth
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
-{% endnavtabs %}
-{% endnavtab %}
 {% navtab Gateway APIs %}
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl annotate httproute echo konghq.com/plugins=example-auth
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
-{% endnavtab %}
-{% endnavtabs %}
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -112,14 +97,10 @@ credentials).
 Now, send a request including the credential (`key-auth` expects an `apikey`
 header with the key by default):
 
-```
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
 ```
-{% endnavtab %}
-{% navtab Response %}
+Response:
 ```text
 HTTP/1.1 200 OK                
 Content-Type: text/plain; charset=UTF-8
@@ -135,8 +116,6 @@ Via: kong/3.0.1
 Hostname: echo-fc6fd95b5-8tn52
 ...
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 In this guide, you learned how to leverage an authentication plugin in Kong
 and provision credentials. This enables you to offload authentication into
