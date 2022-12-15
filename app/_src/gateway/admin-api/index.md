@@ -736,7 +736,7 @@ The API for configurating Kong Konnect Runtime Groups.
 
 {% assign prefix = "" %}
 {% if page.edition == "konnect" %}
-{% assign prefix = "/v2/runtime-groups/{runtime_group_id}/core-entities" %}
+{% assign prefix = "/runtime-groups/{runtime_group_id}/core-entities" %}
 {% endif %}
 
 
@@ -751,13 +751,55 @@ The API for configurating Kong Konnect Runtime Groups.
 This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few major differences:
 
 * No `PATCH` methods.
-> PlaceHolder PlaceHolder PlaceHolder PlaceHolder PlaceHolder 
-* Non-backwards compatible error responses.
->  laceHolder PlaceHolder PlaceHolder PlaceHolder PlaceHolder 
-* `POST` methods do not support URL encoded forms.
->  laceHolder PlaceHolder PlaceHolder PlaceHolder PlaceHolder 
+> `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
 
-Authentication can be performed using a PAT token generated in Konnect. For more information review the [authentication instructions](/konnect/api/).
+* Non-backwards compatible error responses.
+>  Error responses returned in Konnect core entities endpoint are not compatible with the error responses returned by the Kong Admin APIs.
+
+* `POST` methods do not support URL encoded forms.
+> The content types `application/x-www-form-urlencoded` and `multipart/form-data` are not supported in the Konnect core entities endpoint. Please use application/json.
+
+* All core entities endpoints include only the top level path.
+> For example, to retrieve a route, only `/routes/{route name or id}` is supported.
+
+{:.note}
+> Note: These gaps will be closed in future versions.
+
+
+
+## Supported Content Types
+
+The Admin API accepts 3 content types on every endpoint:
+
+- **application/json**
+
+Handy for complex bodies (ex: complex plugin configuration), in that case send
+a JSON representation of the data you want to send. Example:
+
+```json
+{
+    "config": {
+        "limit": 10,
+        "period": "seconds"
+    }
+}
+```
+
+An example adding a Route to a Service named `test-service`:
+
+```
+curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+     -H "Content-Type: application/json" \
+     -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
+```
+
+## More resources
+
+* [Authentication](/konnect/api/).
+* [Kong Gateway API](/gateway/latest/admin-api/)
+* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
+* [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
+* [Plugin Hub](/hub/)
 
 --- 
 ## Nodes
