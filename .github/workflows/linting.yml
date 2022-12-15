@@ -86,6 +86,7 @@ jobs:
         with:
           # path where vale checks checking only modified files.
           filter_mode: file
+          fail_on_error: true
           vale_flags: "--glob=!app/_src/.repos/kuma/**"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
