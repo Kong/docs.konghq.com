@@ -1,72 +1,27 @@
-version: 3.x
-lts: false
+{% include_relative_once _data/tables/support/gateway/packages.yml %}
+
+version: 2.8
+lts: true
 distributions:
-  - os: RHEL
-    version: 8.x
-    artifacts:
-      - package
-      - docker
-    arm: false
-    fips: false
-    eol: March 2025
-  - os: RHEL
-    version: 9.x
-    artifacts:
-      - package
-    arm: false
-    fips: false
-    eol: March 2025
-  - os: Amazon Linux
-    version: 2
-    artifacts:
-      - package
-    arm: true
-    fips: false
-    eol: March 2025
-  - os: Amazon Linux
-    version: 2022
-    artifacts:
-      - package
-    arm: true
-    fips: false
-    eol: March 2025
-  - os: Debian
-    version: 10
-    artifacts:
-      - package
-    arm: false
-    fips: false
-    eol: June 2024
-  - os: Debian
-    version: 11
-    artifacts:
-      - package
-      - docker
-    arm: true
-    fips: false
-    eol: March 2025
-  - os: Debian
-    version: stable
-    artifacts:
-      - package
-    arm: false
-    fips: false
-    eol: March 2025
-  - os: Ubuntu
-    version: 20.04
-    artifacts:
-      - package
-    arm: false
-    fips: false
-    eol: March 2025
-  - os: Ubuntu
-    version: 22.04
-    artifacts:
-      - package
-      - docker
-    arm: true
-    fips: true
-    eol: March 2025
+  - <<: *alpine
+    docker: true
+  - <<: *rhel7
+    docker: true
+  - *rhel8
+  - *amazonlinux1
+  - *amazonlinux2
+  - <<: *centos7
+    docker: true
+  - *centos8
+  - *debian8
+  - *debian9
+  - *debian10
+  - *debian11
+  - *debian-stable
+  - *ubuntu1604
+  - *ubuntu1804
+  - *ubuntu2004
+
 third-party:
   datastore:
     - name: Postgres
@@ -74,6 +29,8 @@ third-party:
         - 13
         - 12
         - 11
+        - 10
+        - 9
         - Amazon RDS
     - name: Cassandra
       versions:
@@ -151,17 +108,17 @@ third-party:
 browsers:
   - name: Edge
     versions:
-      - 107
-      - 106 (Extended)
+      - 109
+      - 108 (Extended)
   - name: Chrome
     versions:
-      - 107
-      - 106 (Extended)
+      - 109
+      - 108 (Extended)
   - name: Firefox
     versions:
       - 102 (Extended)
-      - 105
       - 106
+      - 107
   - name: Safari
     versions:
       - 15

@@ -8,10 +8,19 @@ breadcrumb: Browser
 Kong supports N-1 versions of Edge, Chrome, Firefox and Safari on desktop plus any extended support versions.
 
 {% navtabs %}
-  {% navtab 2.8 LTS %}
-    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.lts-28 %}
+  {% navtab 2.6 %}
+    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.2x %}
   {% endnavtab %}
-  {% navtab 3.x %}
-    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.3x %}
+  {% navtab 2.7 %}
+    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.2x %}
+  {% endnavtab %}
+  {% navtab 2.8 LTS %}
+    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.2x %}
+  {% endnavtab %}
+  {% navtab 3.0 %}
+    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.3x %}
+  {% endnavtab %}
+  {% navtab 3.1 %}
+    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.3x %}
   {% endnavtab %}
 {% endnavtabs %}

@@ -1,7 +1,40 @@
 
-Kong Gateway {{ include.data.version }} supports the following deployment targets:
+Kong Gateway {{ include.version }} supports the following deployment targets:
 
-| OS | Version | Artifacts | ARM support | FIPS compliant | EOL |
-| -- | ------- | --------- | ----------- | -------------- | --- |
-{% for d in include.data.distributions %}| {{ d.os }} | {{ d.version }} | {{ d.artifacts | to_badges }} | {{ d.arm | to_check }} | {{ d.fips | to_check }} | {{ d.eol }} |
-{% endfor %}
+<table style="display: table;" width="100%">
+  <thead>
+    <tr>
+      <th>OS</th>
+      <th>Version</th>
+      <th>Artifacts</th>
+      <th>ARM support</th>
+      <th>FIPS compliant</th>
+      <th>EOL</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in include.data.distributions %}
+      <tr>
+        <td>{{ d.os }}</td>
+        <td>{{ d.version }}</td>
+        <td>
+          {% if d.package %}
+            <span class='badge package'></span>
+          {% endif %}
+          {% if d.docker %}
+            <span class='badge docker'></span>
+          {% endif %}
+        </td>
+        <td>{{ d.arm | to_check }}</td>
+        <td>{{ d.fips | to_check }}</td>
+        <td>
+          {% if d.eol %}
+            {{ d.eol }}
+          {% else %}
+            {{ include.eol }}
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
