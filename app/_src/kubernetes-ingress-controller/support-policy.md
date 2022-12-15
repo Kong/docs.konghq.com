@@ -8,6 +8,114 @@ The support for {{site.kic_product_name}} software versions is explained in this
 
 ## Version support for Kong Ingress Controller (Enterprise)
 
+Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products.
+
+At Kong’s discretion a specific minor version can be marked as a LTS version. The LTS version is supported on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS release whichever comes sooner. LTS only receives security fixes or certain critical patches at the discretion of Kong. Kong guarantees that at any given time, there will be at least 1 active LTS Kong version.
+
+LTS versions of {{site.kic_product_name}} are supported for 3 years after release. Standard versions are supported for 1 year after release.
+
+## Supported versions
+
+
+
+<table style="display:table" width="100%">
+<thead>
+<tr>
+  <th>Kubenetes Version</th>
+  <th>OpenShift Version</th>
+  <th>Upstream k8s EOL</th>
+  <th>Supported Kong Gateway Versions</th>
+  <th>Recommended KIC Version</th>
+  <th>EOL</th>
+</tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1.17</td>
+    <td>4.4</td>
+    <td>Dec 2020</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.18</td>
+    <td>4.5</td>
+    <td>June 2021</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.19</td>
+    <td>4.6</td>
+    <td>Oct 2021</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.20</td>
+    <td>4.7</td>
+    <td>Feb 2022</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.21</td>
+    <td>4.8</td>
+    <td>June 2022</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+
+  <tr>
+    <td>1.22</td>
+    <td>4.8</td>
+    <td>Oct 2022</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>2.5 LTS</td>
+    <td>Sept 2023</td>
+  </tr>
+  <tr>
+    <td>1.23</td>
+    <td>4.8</td>
+    <td>Feb 2023</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ site.data.kong_latest_KIC.release }}</td>
+    <td>Sept 2023</td>
+  </tr>
+  <tr>
+    <td>1.24</td>
+    <td>4.8</td>
+    <td>July 2023</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ site.data.kong_latest_KIC.release }}</td>
+    <td>Sept 2023</td>
+  </tr>
+  <tr>
+    <td>1.25</td>
+    <td>N/A</td>
+    <td>Oct 2023</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ site.data.kong_latest_KIC.release }}</td>
+    <td>Sept 2023</td>
+  </tr>
+  <tr>
+    <td>1.26</td>
+    <td>N/A</td>
+    <td>Feb 2024</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ site.data.kong_latest_KIC.release }}</td>
+    <td>Sept 2023</td>
+  </tr>
+</tbody>
+</table>
+
+## All {{site.kic_product_name}} versions
+
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
 |  2.8.x |  2022-12-19   |     2023-12-19      |      2024-12-19       |
