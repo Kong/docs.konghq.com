@@ -1,5 +1,5 @@
 {% assign name = include.name | default: 'kotenok' %}
-{%- assign credName = include.credName | default: 'gav' %}
+{%- assign credName = include.credName %}
 ```bash
 echo "apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
@@ -7,11 +7,11 @@ metadata:
   name: {{ name }}
   annotations:
     kubernetes.io/ingress.class: kong
-username: {{ name }}" | kubectl apply -f -
-{% if credName %}
+username: {{ name }}
+{% if credName -%}
 credentials:
 - {{ credName }}
-{% endif %}
+{% endif -%}" | kubectl apply -f -
 ```
 Response:
 ```text

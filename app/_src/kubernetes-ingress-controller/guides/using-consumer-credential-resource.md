@@ -64,7 +64,10 @@ Any request matching the proxying rules defined in the `echo` routing
 configuration will now require a valid API key:
 
 ```bash
-$ curl -i $PROXY_IP/echo
+curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+```
+Response:
+```
 HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive

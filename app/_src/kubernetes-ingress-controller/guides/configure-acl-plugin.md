@@ -70,13 +70,13 @@ Server: kong/3.0.1
 {"message":"Unauthorized"
 ```
 
-## Provision Consumers
+## Provision consumers
 
 To access the protected endpoints, create two consumers:
 
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name=admin %}
+{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='admin' %}
 
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name=user %}
+{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='user' %}
 
 ## Provision JWT credentials
 
@@ -169,7 +169,7 @@ Do the same for `USER_JWT` for the `user-jwt` Secret.
 Once you have the JWTs stored, you can send them in an `Authorization` header:
 
 ```bash
-curl -I -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/lemon
+curl -I -H "Authorization: Bearer ${USER_JWT}" http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
 ```
 Response:
 ```text
@@ -210,7 +210,7 @@ metadata:
   name: admin-acl
 plugin: acl
 config:
-  allowlist: ['admin']
+  allow: ['admin']
 " | kubectl apply -f -
 ```
 Response:
@@ -226,7 +226,7 @@ metadata:
   name: anyone-acl
 plugin: acl
 config:
-  allowlist: ['admin','user']
+  allow: ['admin','user']
 " | kubectl apply -f -
 ```
 Response:

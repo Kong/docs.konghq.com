@@ -11,7 +11,7 @@ Create routing configuration to proxy `{{ path }}` requests to the echo server:
 Test the routing rule:
 
 ```bash
-curl -i http://{{ hostname }}/{{ path }} --resolve {{ hostname }}:80:$PROXY_IP
+curl -i http://{{ hostname }}{{ path }} --resolve {{ hostname }}:80:$PROXY_IP
 ```
 Response:
 ```text
