@@ -160,7 +160,7 @@ validity checks across separate Gateway resources.
 {% if_version lte: 2.5.x %}
 Because {{site.kic_product_name}} and {{site.base_gateway}} instances are
 installed independent of their Gateway resource, we set the
-`konghq.com/gateway-unmanaged` annotation to the `<namespace>/<name>` of the
+`konghq.com/gateway-unmanaged` annotation to the `NAMESPACE/NAME` of the
 Kong proxy Service. This instructs KIC to populate that {{site.base_gateway}}
 resource with listener and status information.
 {% endif_version %}

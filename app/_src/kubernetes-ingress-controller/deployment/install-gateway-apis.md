@@ -36,7 +36,7 @@ deployment.apps/ingress-kong env updated
 {% endif_version %}
 {% if_version gte: 2.6.x %}
 {{site.kic_product_name}} automatically disables support for non-standard
-resources if they are not available at start, so you must restart it after
+resources if they are not available when starting. You must restart {{site.kic_product_name}} after
 installing Gateway APIs for it to recognize those resources:
 
 ```bash
@@ -57,7 +57,7 @@ Layer 4 routes (TCPRoute, UDPRoute, TLSRoute) are currently only available in
 the Gateway APIs experimental channel. 
 
 These APIs require version 2.6 or later. To use them on a supported version,
-install the experimental channel CRDs and enable the corresponding feature gate
+[install the experimental channel CRDs](https://gateway-api.sigs.k8s.io/guides/#install-experimental-channel) and enable the corresponding feature gate
 in {{site.kic_product_name}}:
 
 ```bash
