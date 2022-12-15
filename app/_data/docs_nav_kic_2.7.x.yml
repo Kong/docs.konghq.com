@@ -79,7 +79,7 @@ items:
             url: /guides/using-kongplugin-resource
           - text: Using the KongIngress Resource
             url: /guides/using-kongingress-resource
-          - text: Using KongConsumer and KongCredential Resources
+          - text: Using KongConsumer and Credential Resources
             url: /guides/using-consumer-credential-resource
           - text: Using the TCPIngress Resource
             url: /guides/using-tcpingress
