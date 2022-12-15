@@ -78,8 +78,6 @@ Response:
 NAME   CLASS   ADDRESS        READY   AGE
 kong   kong    203.0.113.42   True    4m46s
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 {{site.kic_product_name}} recognizes the `kong` IngressClass and
 `konghq.com/kic-gateway-controller` GatewayClass

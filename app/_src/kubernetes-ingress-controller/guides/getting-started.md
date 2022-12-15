@@ -214,8 +214,6 @@ Response:
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 Kong will now apply your plugin configuration to all routes associated with
 this resource. To test, it send another request through the proxy:

@@ -211,8 +211,6 @@ Response:
 ```text
 tcproute.gateway.networking.k8s.io/echo-plaintext created
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 This configuration instructs {{site.base_gateway}} to forward all traffic it
 receives on port 9000 to `tcp-echo` service on port 2701.
@@ -240,8 +238,6 @@ Response:
 ```text
 {"lastTransitionTime":"2022-11-14T19:48:51Z","message":"","observedGeneration":2,"reason":"Accepted","status":"True","type":"Accepted"}
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 Connect to this service using `telnet`:
 
@@ -317,8 +313,6 @@ spec:
 Response:
 ```text
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 ### Test the configuration
 
