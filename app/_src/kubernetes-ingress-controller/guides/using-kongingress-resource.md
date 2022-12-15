@@ -38,76 +38,17 @@ proxy behavior.
 
 {% endif_version %}
 
-## Installation
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
-the {{site.kic_product_name}} onto your Kubernetes cluster.
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-## Testing connectivity to Kong
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+## Set up Ingress
 
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-curl -i $PROXY_IP
-```
-{% endnavtab %}
-{% navtab Response %}
-```bash
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Install a dummy service
-
-We will start by installing the echo service and increasing its replica count:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl apply -f https://bit.ly/echo-service
-```
-{% endnavtab %}
-
-{% navtab Response %}
-```bash
-service/echo created
-deployment.apps/echo created
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl patch deploy echo --patch '{"spec": {"replicas": 2}}'
-```
-{% endnavtab %}
-
-{% navtab Response %}
-```
-deployment.apps/echo patched
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-## Setup Ingress
+{:.note}
+> Gateway APIs resources, such as HTTPRoute, do not support KongIngress, and
+> must use annotations instead.
 
 Let's expose the echo service outside the Kubernetes cluster
 by defining an Ingress.
