@@ -57,8 +57,8 @@ Kong supports the following versions:
   {% navtab 3.0 %}
     {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.3x eol="August 2023" %}
   {% endnavtab %}
-  {% navtab 3.1 %}
-    {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.3x eol="December 2023" %}
+  {% navtab 3.2 %}
+    {% include_cached gateway-support.html version="3.2*" data=site.data.tables.support.gateway.versions.32 eol="February 2024" %}
   {% endnavtab %}
 {% endnavtabs %}
 
