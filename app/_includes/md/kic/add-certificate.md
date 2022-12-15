@@ -43,5 +43,3 @@ Response:
 ```text
 secret/{{ include.hostname }} created
 ```
-{% endnavtab %}
-{% endnavtabs %}

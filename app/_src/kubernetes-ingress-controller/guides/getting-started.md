@@ -142,9 +142,6 @@ ingress.networking.k8s.io/echo patched
 {{site.kic_product_name}} versions below 2.5 do not support certificates with
 Gateway APIs.
 {% endif_version %}
-{% if_version gte: 2.5.x %}
-{% navtabs codeblock %}
-{% navtab Command %}
 ```bash
 kubectl patch --type=json gateway kong -p='[{
     "op":"add",
@@ -162,7 +159,6 @@ Response:
 ```text
 gateway.gateway.networking.k8s.io/kong patched
 ```
-{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
 
