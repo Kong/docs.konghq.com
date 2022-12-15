@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
+**My new entry**
+: {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
+
 **{{site.base_gateway}} 3.1 support**
 : {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
 
