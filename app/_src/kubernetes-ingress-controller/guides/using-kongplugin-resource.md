@@ -6,8 +6,8 @@ This guide walks you through using the {{site.kic_product_name}}
 KongPlugin Custom Resource to control proxied requests, including
 restricting paths and transforming requests.
 
-Please see the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
-document for understanding the purpose of `KongPlugin` resource.
+See the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+documentation for more information about the purpose of the `KongPlugin` resource.
 
 ## Installation
 
@@ -279,8 +279,8 @@ request matches a specific Ingress rule.
 
 ## Storing plugin configuration in a Secret
 
-You can store plugin configuration in a Secret to secure sensitive configuration. To do so, first create a Secret
-with a key for each field you wish to configure:
+You can store plugin configuration in a Secret to secure the sensitive configuration. To do so, first create a Secret
+with a key for each field you want to configure:
 
 ```sh
 echo '
@@ -297,12 +297,12 @@ type: Opaque
 ' | kubectl apply -f -
 ```
 
-The output is similar to the following:
+Example output:
 ```
 secret/plugin-conf-secret created
 ```
 
-Then, create a KongPlugin with a `configFrom` field referring that Secret:
+Then, create a KongPlugin with a `configFrom` field referring to that Secret:
 
 ```sh
 echo '
@@ -318,7 +318,7 @@ plugin: response-transformer
 ' | kubectl apply -f -
 ```
 
-The output is similar to the following:
+Example output:
 ```
 kongplugin.configuration.konghq.com/add-response-header created
 ```

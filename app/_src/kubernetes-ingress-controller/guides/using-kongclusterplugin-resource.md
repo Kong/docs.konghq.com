@@ -232,7 +232,7 @@ resource but we have not told Kong when to execute the plugin.
 
 ## Storing plugin configuration in a Secret
 
-You can store plugin configuration in a Secret to secure sensitive configuration. A secret can be stored in any
+You can store a plugin configuration in a Secret to secure sensitive configuration. A secret can be stored in any
 namespace.
 
 First, create a namespace in which we will create the secret:
@@ -240,12 +240,12 @@ First, create a namespace in which we will create the secret:
 kubectl create namespace secret-ns
 ```
 
-The output is similar to the following:
+Example output:
 ```
 namespace/secrets-ns created
 ```
 
-Next, create a Secret with a key for each field you wish to configure:
+Next, create a Secret with a key for each field you want to configure:
 ```sh
 echo '
 apiVersion: v1
@@ -262,16 +262,16 @@ type: Opaque
 ' | kubectl apply -f -
 ```
 
-The output is similar to the following:
+Example output:
 ```
 secret/plugin-conf-secret created
 ```
 
 {:.note}
 > KongClusterPlugin is a cluster-level resource, therefore specifying a secret's namespace is
-> required while referring it in the `configFrom` field.
+> required while referring to it in the `configFrom` field.
 
-Now, create a KongClusterPlugin with a `configFrom` field referring that Secret:
+Now, create a KongClusterPlugin with a `configFrom` field referring to that Secret:
 
 ```sh
 echo '
@@ -288,7 +288,7 @@ plugin: response-transformer
 ' | kubectl apply -f -
 ```
 
-The output is similar to the following:
+Example output:
 ```
 kongclusterplugin.configuration.konghq.com/add-response-header created
 ```

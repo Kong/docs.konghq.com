@@ -1,5 +1,5 @@
 It serves as an "extension" to Ingress resource. It is not meant as a replacement to the Ingress resource in Kubernetes. 
-Ingress resource spec in Kubernetes can define routing policies based on HTTP Host header and paths. 
+The Ingress resource spec in Kubernetes can define routing policies based on HTTP Host header and paths. 
 While this is sufficient in most cases, sometimes, users may want more control over routing at the Ingress level.
 Once a `KongIngress` resource is created, it needs to be associated with an Ingress or Service resource using the 
 `konghq.com/override` annotation.
