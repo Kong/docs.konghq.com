@@ -5,7 +5,8 @@ distributions:
   - *alpine
   - <<: *rhel7
     docker: true
-  - *rhel8
+  - <<: *rhel8
+    fips: true
   - *amazonlinux2
   - *amazonlinux2022
   - <<: *debian10
