@@ -7,6 +7,9 @@ distributions:
     fips: true
     docker: true
     arm: true
+  - <<: *rhel9
+    fips: true
+    arm: true
   - *amazonlinux2
     arm: true
   - *amazonlinux2022
@@ -37,6 +40,7 @@ third-party:
         - 10
         - 9
         - Amazon RDS
+        - Amazon Aurora
     - name: Cassandra
       versions:
         - 3.11
