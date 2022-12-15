@@ -96,6 +96,7 @@ module Jekyll
         ].any? { |p| parts[0] == p }
 
         has_version = parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/)
+
         next unless is_product || has_version
 
         case parts[0]
@@ -104,58 +105,49 @@ module Jekyll
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = ee_versions
           page.data['nav_items'] = site.data["docs_nav_ee_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/enterprise', 1, parts, 'release')
         when 'getting-started-guide'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = gsg_versions
           page.data['nav_items'] = site.data["docs_nav_gsg_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/getting-started-guide', 1, parts, 'release')
         when 'mesh'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = mesh_versions
           page.data['kong_latest'] = latest_version_mesh
           page.data['nav_items'] = site.data["docs_nav_mesh_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/mesh', 1, parts, latest_version_mesh['release'])
         when 'konnect'
           page.data['edition'] = parts[0]
           page.data['kong_versions'] = konnect_versions
           page.data['nav_items'] = site.data['docs_nav_konnect']
-          create_aliases(page, '/konnect', 1, parts, 'release')
         when 'kubernetes-ingress-controller'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = kic_versions
           page.data['kong_latest'] = latest_version_kic
           page.data['nav_items'] = site.data["docs_nav_kic_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/kubernetes-ingress-controller', 1, parts, latest_version_kic['release'])
         when 'deck'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = deck_versions
           page.data['kong_latest'] = latest_version_deck
           page.data['nav_items'] = site.data["docs_nav_deck_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/deck', 1, parts, latest_version_deck['release'])
         when 'gateway'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = gateway_versions
           page.data['kong_latest'] = latest_version_gateway
           page.data['nav_items'] = site.data["docs_nav_gateway_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/gateway', 1, parts, latest_version_gateway['release'])
         when 'contributing'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = contributing_versions
           page.data['nav_items'] = site.data['docs_nav_contributing']
-          create_aliases(page, '/contributing', 1, parts, 'release')
         when 'gateway-oss'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1]
           page.data['kong_versions'] = ce_versions
           page.data['nav_items'] = site.data["docs_nav_ce_#{parts[1].gsub(/\./, '')}"]
-          create_aliases(page, '/gateway-oss', 1, parts, 'release')
         end
 
         # Add additional variables that are available in src pages
@@ -177,24 +169,6 @@ module Jekyll
         # Clean up nav_items for generated pages as there's an
         # additional level of nesting
         page.data['nav_items'] = page.data['nav_items']['items'] if page.data['nav_items'].is_a?(Hash)
-
-        # Helpful boolean in templates. If version has .md, then it is not versioned
-        page.data['has_version'] = false if page.data['kong_version']&.include? '.md'
-      end
-    end
-
-    def create_aliases(page, _url_path, offset, parts, latest_release)
-      release_path = parts[0 + offset]
-      template_name = parts[1 + offset]
-
-      return unless release_path == latest_release
-
-      # template_name is nil if using single source generation and it's the index page
-      if template_name == 'index.md' || template_name.nil?
-        # This will be handled by latest_version_generator later
-      elsif /index\.(md|html)/.match(parts.last)
-        # all other nested index pages
-        page.data['alias'] = page.url.sub(/index/, '')
       end
     end
   end
