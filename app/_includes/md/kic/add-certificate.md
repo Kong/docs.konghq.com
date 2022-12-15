@@ -6,7 +6,7 @@ with routing configuration is typical.
 First, create a test certificate for the `{{ include.hostname }}` hostname using one of the following commands:
 
 {% navtabs codeblock %}
-{% navtab Command %}
+{% navtab OpenSSL 1.1.1 %}
 ```bash
 openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
   -days 365 -nodes -x509 -keyout server.key -out server.crt \
@@ -15,11 +15,18 @@ openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
   -addext "extendedKeyUsage = serverAuth" 2> /dev/null;
   openssl x509 -in server.crt -subject -noout
 ```
+
+Response:
+
+```text
+subject=CN = {{ include.hostname }}
+```
+
 Older OpenSSL versions, including the version provided with OS X Monterey,
 require using the alternative version of this command.
 
 {% endnavtab %}
-{% navtab Alternative Command %}
+{% navtab OpenSSL 0.9.8 %}
 ```bash
 openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
   -days 365 -nodes -x509 -keyout server.key -out server.crt \
@@ -27,13 +34,14 @@ openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
    printf "[dn]\nCN={{ include.hostname }}\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:{{ include.hostname }}\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth") 2>/dev/null;
   openssl x509 -in server.crt -subject -noout
 ```
-{% endnavtab %}
-{% navtab Response %}
+
+Response:
+
 ```text
 subject=CN = {{ include.hostname }}
 ```
 {% endnavtab %}
-{% endnavtabs %}
+{% endnavtab %}
 
 Then, create a Secret containing the certificate:
 ```bash
