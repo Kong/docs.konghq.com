@@ -299,7 +299,7 @@ Access-Control-Allow-Credentials: true
 x-added-service: demo
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/3.0.1
+Via: kong/3.1.1
 ```
 
 ## Configure a plugins for consumers and multiple resources

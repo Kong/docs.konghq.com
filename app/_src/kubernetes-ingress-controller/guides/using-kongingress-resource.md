@@ -102,7 +102,7 @@ Connection: keep-alive
 Server: echoserver
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 Hostname: echo-d778ffcd8-n9bss
 

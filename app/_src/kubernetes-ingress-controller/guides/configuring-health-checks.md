@@ -90,7 +90,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/3.1.1
 ```
 
 Observe the headers and you can see that Kong has proxied the request correctly.
@@ -145,7 +145,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 0
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 $ curl -i $PROXY_IP/foo/status/500
 HTTP/1.1 500 INTERNAL SERVER ERROR
@@ -158,7 +158,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 0
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 $ curl -i $PROXY_IP/foo/status/200
 HTTP/1.1 200 OK
@@ -171,7 +171,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 ```
 
@@ -190,7 +190,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 0
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 $ curl -i $PROXY_IP/foo/status/500
 HTTP/1.1 500 INTERNAL SERVER ERROR
@@ -203,7 +203,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 0
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 $ curl -i $PROXY_IP/foo/status/500
 HTTP/1.1 500 INTERNAL SERVER ERROR
@@ -216,7 +216,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 0
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 curl -i $PROXY_IP/foo/status/200
 HTTP/1.1 503 Service Temporarily Unavailable
@@ -298,7 +298,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/3.1.1
 
 ```
 
@@ -341,7 +341,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/3.1.1
 ```
 
 As we can see, active health-checks automatically marked a pod as healthy

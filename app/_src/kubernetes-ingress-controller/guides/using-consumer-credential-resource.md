@@ -111,7 +111,7 @@ Server: echoserver
 x-added-service:  demo
 X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 1
-Via: kong/3.0.1
+Via: kong/3.1.1
 
 Hostname: echo-fc6fd95b5-8tn52
 ...

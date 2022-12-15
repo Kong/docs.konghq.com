@@ -135,7 +135,7 @@ Server: echoserver
 my-request-id: ea87894d-7f97-4710-84ae-cbc608bb8107#2
 X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 0
-Via: kong/3.0.0
+Via: kong/3.1.1
 
 Hostname: echo-fc6fd95b5-6lqnc
 
@@ -215,7 +215,7 @@ Server: echoserver
 my-request-id: ea87894d-7f97-4710-84ae-cbc608bb8107#3
 X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
-Via: kong/3.0.0
+Via: kong/3.1.1
 
 
 

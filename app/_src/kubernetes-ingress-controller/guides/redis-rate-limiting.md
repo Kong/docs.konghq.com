@@ -94,7 +94,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
 X-Kong-Proxy-Latency: 1
-Via: kong/1.2.1
+Via: kong/3.1.1
 ```
 
 ## Set up rate-limiting
