@@ -81,7 +81,8 @@ module Jekyll
 
         parts = Pathname(path).each_filename.to_a
 
-        page.data['has_version'] = true
+        page.data['has_version'] = false
+
         # Only apply those rules to documentation pages
         is_product = %w[
           enterprise
@@ -95,24 +96,26 @@ module Jekyll
           gateway-oss
         ].any? { |p| parts[0] == p }
 
-        has_version = parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/)
+        next unless is_product
 
-        next unless is_product || has_version
+        has_version = Gem::Version.correct?(parts[1]) || parts[1] == 'pre-1.7'
+
+        page.data['has_version'] = true if has_version
 
         case parts[0]
         when 'enterprise'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = ee_versions
           page.data['nav_items'] = site.data["docs_nav_ee_#{parts[1].gsub(/\./, '')}"]
         when 'getting-started-guide'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = gsg_versions
           page.data['nav_items'] = site.data["docs_nav_gsg_#{parts[1].gsub(/\./, '')}"]
         when 'mesh'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = mesh_versions
           page.data['kong_latest'] = latest_version_mesh
           page.data['nav_items'] = site.data["docs_nav_mesh_#{parts[1].gsub(/\./, '')}"]
@@ -122,30 +125,30 @@ module Jekyll
           page.data['nav_items'] = site.data['docs_nav_konnect']
         when 'kubernetes-ingress-controller'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = kic_versions
           page.data['kong_latest'] = latest_version_kic
           page.data['nav_items'] = site.data["docs_nav_kic_#{parts[1].gsub(/\./, '')}"]
         when 'deck'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = deck_versions
           page.data['kong_latest'] = latest_version_deck
           page.data['nav_items'] = site.data["docs_nav_deck_#{parts[1].gsub(/\./, '')}"]
         when 'gateway'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = gateway_versions
           page.data['kong_latest'] = latest_version_gateway
           page.data['nav_items'] = site.data["docs_nav_gateway_#{parts[1].gsub(/\./, '')}"]
         when 'contributing'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = contributing_versions
           page.data['nav_items'] = site.data['docs_nav_contributing']
         when 'gateway-oss'
           page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1]
+          page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = ce_versions
           page.data['nav_items'] = site.data["docs_nav_ce_#{parts[1].gsub(/\./, '')}"]
         end
@@ -154,7 +157,7 @@ module Jekyll
         # to pages in app
         if !page.data['release'] && page.data['kong_version']
           # Skip if the page does not have a version
-          next unless /\d+\.\d+\.x/.match(page.data['kong_version'])
+          next unless Gem::Version.correct?(page.data['kong_version']) || page.data['kong_version'] == 'pre-1.7'
 
           current = page.data['kong_versions'].find do |elem|
             elem['release'] == page.data['kong_version']
