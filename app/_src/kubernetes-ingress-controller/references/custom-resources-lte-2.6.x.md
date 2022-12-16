@@ -9,9 +9,10 @@ Following CRDs enables users to declaratively configure all aspects of Kong:
 
 - [**KongPlugin**](#kongplugin): This resource corresponds to
   the [Plugin][kong-plugin] entity in Kong.
-- [**KongIngress**](#kongingress): {% if_version gte:2.8.x -%}**(Partially deprecated)**{% endif_version %}This resource provides fine-grained control over all aspects of proxy
-  behaviour like routing, load-balancing, and health checking. It serves as an
-  "extension" to the Ingress resources in Kubernetes.
+- [**KongIngress**](#kongingress): This resource provides fine-grained control
+  over all aspects of proxy behaviour like routing, load-balancing,
+  and health checking. It serves as an "extension" to the Ingress resources
+  in Kubernetes.
 - [**KongConsumer**](#kongconsumer):
   This resource maps to the [Consumer][kong-consumer] entity in Kong.
 - [**TCPIngress**](#tcpingress):
@@ -61,7 +62,7 @@ ordering:
 {% endif_version %}
 ```
 
-- `config` contains a list of `key` and `value`
+- `config` contains a list of `key` and `value`
   required to configure the plugin.
   All configuration values specific to the type of plugin go in here.
   Please read the documentation of the plugin being configured to set values
@@ -76,14 +77,14 @@ ordering:
   or `configFrom` may be used in a KongPlugin, not both at once.
 - `plugin` field determines the name of the plugin in Kong.
   This field was introduced in {{site.kic_product_name}} 0.2.0.
-{% if_version gte:2.6.x %}
+  {% if_version gte:2.6.x %}
 - `ordering` is only available on {{site.ee_product_name}}. `<phase>` is a
   request processing phase (for example, `access` or `body_filter`) and
   `<plugin>` is the name of the plugin that will run before or after the
   KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and
   `before.access: ["key-auth"]` will create a rate limiting plugin that limits
   requests _before_ they are authenticated.
-{% endif_version %}
+  {% endif_version %}
 
 **Please note:** validation of the configuration fields is left to the user
 by default. It is advised to setup and use the admission validating controller
@@ -193,7 +194,7 @@ type: Opaque
 
 ## KongClusterPlugin
 
-A KongClusterPlugin is same as KongPlugin resource. The only differences
+A `KongClusterPlugin` is same as `KongPlugin` resource. The only differences
 are that it is a Kubernetes cluster-level resource instead of a namespaced
 resource, and can be applied as a global plugin using labels.
 
@@ -242,8 +243,6 @@ meaning it will be executed for every request that is proxied via Kong.
 
 ## KongIngress
 
-{% if_version lte:2.7.x -%}
-
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
 > [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
@@ -252,45 +251,25 @@ meaning it will be executed for every request that is proxied via Kong.
 > available, it is the preferred means of configuring that setting, and the
 > annotation value will take precedence over a KongIngress value if both set
 > the same setting.
-{% endif_version %}
-{% if_version gte:2.8.x -%}
-
-{:.note}
-> As of version 2.8, KongIngress sections other than `upstream` are
-> [deprecated](https://github.com/Kong/kubernetes-ingress-controller/issues/3018).
-> All settings in the `proxy` and `route` sections are now available with
-> dedicated annotations, and these annotations will become the only means of
-> configuring those settings in a future release. For example, if you had set
-> `proxy.connect_timeout: 30000` in a KongIngress and applied an
-> `konghq.com/override` annotation for that KongIngress to a Service, you will
-> need to instead apply a `konghq.com/connect-timeout: 30000` annotation to the
-> Service.
-> 
-> Plans are to replace the `upstream` section of KongIngress with [a new
-> resource](https://github.com/Kong/kubernetes-ingress-controller/issues/3174),
-> but this is still in development and `upstream` is not yet officially
-> deprecated.
-
-{% endif_version %}
 
 Ingress resource spec in Kubernetes can define routing policies
 based on HTTP Host header and paths.
 While this is sufficient in most cases,
 sometimes, users may want more control over routing at the Ingress level.
-KongIngress serves as an "extension" to Ingress resource.
+`KongIngress` serves as an "extension" to Ingress resource.
 It is not meant as a replacement to the
-Ingress resource in Kubernetes.
+`Ingress` resource in Kubernetes.
 
 Please read the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#kongingress)
 document for why this resource exists and how it relates to the existing
 Ingress resource.
 
-Using KongIngress, all properties of [Upstream][kong-upstream],
+Using `KongIngress`, all properties of [Upstream][kong-upstream],
 [Service][kong-service], and
 [Route][kong-route] entities in Kong related to an Ingress resource
 can be modified.
 
-Once a KongIngress resource is created, it needs to be associated with
+Once a `KongIngress` resource is created, it needs to be associated with
 an Ingress or Service resource using the following annotation:
 
 ```yaml
@@ -403,7 +382,7 @@ in Kong.
 
 ## UDPIngress
 
-The UDPIngress API makes it possible to route traffic to your [UDP][udp] services
+The `UDPIngress` API makes it possible to route traffic to your [UDP][udp] services
 using Kong (e.g. DNS, Game Servers, e.t.c.).
 
 ```yaml
@@ -469,7 +448,7 @@ KongConsumers from all namespaces are combined into a single Kong
 configuration, and no KongConsumers with the same `kubernetes.io/ingress.class`
 may share the same `username` or `custom_id` value.
 
-For help configuring credentials for the KongConsumer Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
+For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object
