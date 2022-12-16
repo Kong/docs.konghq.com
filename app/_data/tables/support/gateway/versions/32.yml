@@ -17,7 +17,8 @@ distributions:
   - <<: *debian10
     docker: true
     arm: true
-  - *debian11
+  - <<: *debian11
+    arm: true
   - <<: *ubuntu1804
     docker: true
     arm: true
