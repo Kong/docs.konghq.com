@@ -53,4 +53,4 @@ You can extend {{site.konnect_short_name}} by using plugins. Kong provides a set
 
 Custom plugins can also be developed by the Kong Community and are supported and maintained by the plugin creators. If they are published on the Kong Plugin Hub, they are called Community or Third-Party plugins.
 
-See the [{{site.konnect_short_name}} plugin documentation](/konnect/runtime-manager/plugins/) for more information.
+See the [{{site.konnect_short_name}} plugin ordering documentation](/konnect/runtime-manager/plugins/) for more information.

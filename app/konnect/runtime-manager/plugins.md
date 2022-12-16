@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: Plugin Ordering Reference
 content_type: explanation
 ---
 
