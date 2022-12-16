@@ -26,6 +26,13 @@ apply to different sets of requests depending on what type of resource they are
 applied to. Applying a plugin an Ingress or HTTPRoute will modify requests that
 match that resource's routing rules.
 
+{:.important}
+> The [validating admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
+> is not installed by this guide, but is recommended for all environments. The
+> webhook is required to validate plugin configuration. Not installing the
+> webhook can allow invalid plugin configuration, and invalid plugin
+> configuration will block configuration updates until fixed.
+
 ### Create a plugin
 
 To try this out, first create a KongPlugin resource that adds a response
