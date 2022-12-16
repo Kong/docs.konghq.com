@@ -1,0 +1,4 @@
+---
+/gateway-oss/VERSION/configuration/: "/gateway/VERSION/reference/configuration/"
+/gateway/VERSION/get-started/configure-services-and-routes/: "/gateway/VERSION/get-started/services-and-routes/"
+/gateway/VERSION/install-and-run/: "/gateway/VERSION/install/"
