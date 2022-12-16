@@ -738,14 +738,14 @@ The API for configuring Kong Konnect Runtime Groups.
 
 {% assign prefix = "" %}
 {% if page.edition == "konnect" %}
-{% assign prefix = "/runtime-groups/{runtime_group_id}/core-entities" %}
+{% assign prefix = "/core-entities" %}
 {% endif %}
 
 
 | URL                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `https://us.api.konghq.com/v2/runtime-groups/`                   | US Region Konnect Platform Base URL |
-| `https://eu.api.konghq.com/v2/runtime-groups/` | EU Region Konnect Platform Base URL |
+| `https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}`                   | US Region Konnect Platform Base URL |
+| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
        
 
 
