@@ -113,9 +113,9 @@ RSpec.describe Jekyll::Versions do
             let(:relative_path) { 'enterprise/references/index.md' }
 
             it 'adds version properties' do
-              expect(page.data['has_version']).to eq(true)
+              expect(page.data['has_version']).to eq(false)
               expect(page.data['edition']).to eq('enterprise')
-              expect(page.data['kong_version']).to eq('references')
+              expect(page.data['kong_version']).to be_nil
               expect(page.data['kong_versions']).to eq(enterprise_versions)
               # We don't set the kong_latest on EE
               expect(page.data['kong_latest']).to be_nil
@@ -129,9 +129,9 @@ RSpec.describe Jekyll::Versions do
             let(:relative_path) { 'enterprise/k8s-changelog.md' }
 
             it 'adds version properties' do
-              expect(page.data['has_version']).to eq(true)
+              expect(page.data['has_version']).to eq(false)
               expect(page.data['edition']).to eq('enterprise')
-              expect(page.data['kong_version']).to eq('k8s-changelog.md')
+              expect(page.data['kong_version']).to be_nil
               expect(page.data['kong_versions']).to eq(enterprise_versions)
               # We don't set the kong_latest on EE
               expect(page.data['kong_latest']).to be_nil
@@ -184,9 +184,9 @@ RSpec.describe Jekyll::Versions do
           let(:relative_path) { 'mesh/changelog.md' }
 
           it 'adds version properties' do
-            expect(page.data['has_version']).to eq(true)
+            expect(page.data['has_version']).to eq(false)
             expect(page.data['edition']).to eq('mesh')
-            expect(page.data['kong_version']).to eq('changelog.md')
+            expect(page.data['kong_version']).to be_nil
             expect(page.data['kong_versions']).to eq(mesh_versions)
             expect(page.data['kong_latest']).to eq(latest_mesh)
             expect(page.data['nav_items']).to be_nil
@@ -200,7 +200,7 @@ RSpec.describe Jekyll::Versions do
         let(:relative_path) { 'konnect/index.md' }
 
         it 'adds version properties' do
-          expect(page.data['has_version']).to eq(true)
+          expect(page.data['has_version']).to eq(false)
           expect(page.data['edition']).to eq('konnect')
           expect(page.data['kong_versions']).to eq(['edition' => 'konnect'])
           expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_konnect'))
@@ -257,7 +257,10 @@ RSpec.describe Jekyll::Versions do
           expect(page.data['nav_items']).to eq(site.data['docs_nav_deck_pre-1.7'])
         end
 
-        it_behaves_like 'does not set `release` and `version` to the page'
+        it 'sets `release` and `version` to the page' do
+          expect(page.data['release']).to eq('pre-1.7')
+          expect(page.data['version']).to eq('1.6.0')
+        end
       end
 
       context 'gateway' do
@@ -277,16 +280,15 @@ RSpec.describe Jekyll::Versions do
             expect(page.data['release']).to eq('2.6.x')
             expect(page.data['version']).to be_nil
           end
-
         end
 
         context 'without version' do
           let(:relative_path) { 'gateway/changelog.md' }
 
           it 'adds version properties' do
-            expect(page.data['has_version']).to eq(true)
+            expect(page.data['has_version']).to eq(false)
             expect(page.data['edition']).to eq('gateway')
-            expect(page.data['kong_version']).to eq('changelog.md')
+            expect(page.data['kong_version']).to be_nil
             expect(page.data['kong_versions']).to eq(gateway_versions)
             expect(page.data['kong_latest']).to include(latest_gateway)
             expect(page.data['nav_items']).to be_nil
@@ -300,9 +302,9 @@ RSpec.describe Jekyll::Versions do
         let(:relative_path) { 'contributing/index.md' }
 
         it 'adds version properties' do
-          expect(page.data['has_version']).to eq(true)
+          expect(page.data['has_version']).to eq(false)
           expect(page.data['edition']).to eq('contributing')
-          expect(page.data['kong_version']).to eq('index.md')
+          expect(page.data['kong_version']).to be_nil
           expect(page.data['kong_versions']).to eq(['edition' => 'contributing'])
           expect(page.data['kong_latest']).to be_nil
           expect(page.data['nav_items']).to eq(site.data['docs_nav_contributing'])
@@ -322,13 +324,12 @@ RSpec.describe Jekyll::Versions do
           expect(page.data['kong_latest']).to be_nil
           expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_ce_21x'))
         end
-
       end
 
       context 'pages that are not documentation' do
         shared_examples_for 'only sets has_version' do
           it do
-            expect(page.data['has_version']).to eq(true)
+            expect(page.data['has_version']).to eq(false)
             expect(page.data['edition']).to be_nil
             expect(page.data['kong_version']).to be_nil
             expect(page.data['kong_versions']).to be_nil
