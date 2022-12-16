@@ -3,7 +3,7 @@ title: Plugin Ordering Reference
 content_type: explanation
 ---
 
-You can extend {{site.konnect_short_name}} by using plugins. Kong provides a set of standard Lua plugins that get bundled with {{site.konnect_short_name}}. The set of plugins you have access to depends on your installation.
+This document contains reference information about dynamic plugin ordering and plugin execution order in {{site.konnect_short_name}}. 
 
 ## Dynamic plugin ordering
 
