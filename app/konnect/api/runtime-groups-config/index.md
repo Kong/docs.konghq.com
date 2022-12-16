@@ -728,22 +728,24 @@ key_set_data: |
 
 ---
 
+<!-- vale off -->
 {% unless page.edition == "gateway" %}
 
-The API for configurating Kong Konnect Runtime Groups.
+The API for configuring Kong Konnect Runtime Groups.
+
 
 
 
 {% assign prefix = "" %}
 {% if page.edition == "konnect" %}
-{% assign prefix = "/runtime-groups/{runtime_group_id}/core-entities" %}
+{% assign prefix = "/core-entities" %}
 {% endif %}
 
 
 | URL                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `https://us.api.konghq.com/v2/runtime-groups/`                   | US Region Konnect Platform Base URL |
-| `https://eu.api.konghq.com/v2/runtime-groups/` | EU Region Konnect Platform Base URL |
+| `https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}`                   | US Region Konnect Platform Base URL |
+| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
        
 
 
@@ -809,7 +811,7 @@ Returns a list of runtime instance records that are associated to this runtime g
 
 **Endpoint**
 
-<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/nodes</div>
+<div class="endpoint get">/nodes</div>
 
 **Path Parameters**
 
@@ -831,7 +833,7 @@ Retrieve a specific runtime instance record associated to this runtime group. A 
 
 **Endpoint**
 
-<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/nodes/{node_id}</div>
+<div class="endpoint get">/nodes/{node_id}</div>
 
 **Path Parameters**
 
@@ -852,7 +854,7 @@ Remove a specific runtime instance record associated to this runtime group. Dele
 
 **Endpoint**
 
-<div class="endpoint post">/v2/runtime-groups/{runtime_group_id}/nodes/{node_id}</div>
+<div class="endpoint post">/nodes/{node_id}</div>
 
 **Path Parameters**
 
@@ -874,7 +876,7 @@ Returns a list of pinned dataplane client certificates that are associated to th
 
 **Endpoint**
 
-<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates</div>
+<div class="endpoint get">/dp-client-certificates</div>
 
 
 **Response**
@@ -889,7 +891,7 @@ Pin a new DP Client Certificate to this runtime group. A pinned dataplane certif
 
 **Endpoint**
 
-<div class="endpoint post">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates</div>
+<div class="endpoint post">/dp-client-certificates</div>
 
 **Response**
 
@@ -903,7 +905,7 @@ Retrieve a pinned dataplane client certificate associated to this runtime group.
 
 **Endpoint**
 
-<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/{certificate_id}</div>
+<div class="endpoint get">/dp-client-certificates/{certificate_id}</div>
 
 **Response**
 
@@ -916,7 +918,7 @@ HTTP 200 Created
 Update a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
 **Endpoint**
 
-<div class="endpoint put">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/{certificate_id}</div>
+<div class="endpoint put">/dp-client-certificates/{certificate_id}</div>
 
 
 **Response**
@@ -930,86 +932,11 @@ HTTP 200 Created
 Remove a pinned dataplane client certificate associated to this runtime group. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this runtime group using this certificate.
 **Endpoint**
 
-<div class="endpoint delete">/v2/runtime-groups/{runtime_group_id}/dp-client-certificates/{certificate_id}</div>
+<div class="endpoint delete">/dp-client-certificates/{certificate_id}</div>
 
 **Response**
 ```
 HTTP 200 Ok
-```
-
-## Core Entities
-
-### Core Entity GET Endpoint
-
-Get operation on a gateway core entity based on the `entity_endpoint`.
-
-**Endpoint**
-
-<div class="endpoint get">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
-
-**Path Parameters**
-
-| Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
-| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint.    
-
-**Responses**
-```
-HTTP 204 No Content
-```
-
-### Core Entity POST Endpoint
-
-POST operation on a gateway core entity based on the `entity_endpoint`.
-
-**Endpoint**
-
-<div class="endpoint post">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
-
-**Path Parameters**
-
-| Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
-| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint.    
-
-**Response**
-```
-HTTP 201 Created
-```
-
-### Core Entity PUT Endpoint
-
-PUT operation on a gateway core entity based on the entity_endpoint.
-**Endpoint**
-
-<div class="endpoint put">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
-
-| Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
-| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint. 
-
-**Response**
-
-```
-HTTP 200 Ok
-```
-
-### Core Entity DELETE Endpoint
-
-DELETE operation on a gateway core entity based on the `entity_endpoint`.
-
-**Endpoint**
-<div class="endpoint delete">/v2/runtime-groups/{runtime_group_id}/core-entities/{entity_endpoint}</div>
-
-**Path Parameters**
-
-| Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
-| `entity_endpoint`                   | Path of the Kong Gateway core entity API endpoint.    
-
-**Response**
-```
-HTTP 204 Created
 ```
 
 {% endunless %}
@@ -1337,7 +1264,7 @@ HTTP 200 OK
 
 ---
 
-{% endunless %}
+
 
 ### Validate A Configuration against A Schema
 {:.badge .dbless}
@@ -1367,6 +1294,7 @@ HTTP 200 OK
     "message": "schema validation successful"
 }
 ```
+
 
 
 ---
@@ -1411,6 +1339,7 @@ HTTP 200 OK
 
 
 ---
+{% endunless %}
 
 ### Retrieve Plugin Schema
 {:.badge .dbless}
@@ -1446,7 +1375,7 @@ HTTP 200 OK
 
 
 ---
-
+{% unless page.edition == "konnect" %}
 ### Validate A Plugin Configuration against The Schema
 {:.badge .dbless}
 
@@ -1479,7 +1408,7 @@ HTTP 200 OK
 
 ---
 
-{% unless page.edition == "konnect" %}
+
 
 ### Retrieve Runtime Debugging Info of Kong's Timers
 {:.badge .dbless}
