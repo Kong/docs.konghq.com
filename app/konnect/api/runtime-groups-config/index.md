@@ -728,9 +728,11 @@ key_set_data: |
 
 ---
 
+<!-- vale off -->
 {% unless page.edition == "gateway" %}
 
-The API for configurating Kong Konnect Runtime Groups.
+The API for configuring Kong Konnect Runtime Groups.
+
 
 
 
