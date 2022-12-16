@@ -4,6 +4,10 @@ While this is sufficient in most cases, sometimes, users may want more control o
 Once a `KongIngress` resource is created, it needs to be associated with an Ingress or Service resource using the 
 `konghq.com/override` annotation.
 
+{:.note}
+> KongIngress is not supported on Gateway APIs resources, such as HTTPRoute and
+> TCPRoute. These resources must use annotations.
+
 {% if_version lte:2.7.x -%}
 {:.important}
 > Many fields available on KongIngress are also available as annotations. When an annotation is available,
