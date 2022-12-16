@@ -140,6 +140,7 @@ items:
         url: /references/cli-arguments
       - text: Custom Resource Definitions
         url: /references/custom-resources
+        src: references/custom-resources-2.7.x
       - text: Plugin Compatibility
         url: /references/plugin-compatibility
       - text: Version Compatibility
