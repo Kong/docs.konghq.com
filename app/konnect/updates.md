@@ -11,6 +11,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
+**New {{site.konnect_saas}} Analytics custom report chart types and metrics**
+
+: You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
+
+: The new additions include:
+* New chart types: You can now select between either horizontal or vertical bar charts, as well as line charts.
+* New metrics: You can now measure requests per minute, response latency, response size, and request size as percentiles.
+* New time selector: Allows you to use relative time periods, which can help you avoid manually adjusting your reports for weekly reports.
+
+: For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
+
 **Konnect Overview dashboard improvements**
 
 : The Overview page gives org admins the ability to see easily see a high-level summary of their entire {{site.konnect_short_name}} ecosystem, news updates, learning opportunities, and most significantly easily create a new gateway service implementation. By clicking **Add a Service**, Org Admins can create a gateway service implementation top down. This means, setting up a service package, version, uploading and publishing docs to the Dev Portal, and applying plug-ins all within a three-step workflow!
