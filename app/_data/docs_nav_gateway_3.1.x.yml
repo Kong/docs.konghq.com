@@ -598,6 +598,8 @@ items:
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
+      - text: File Permissions Reference
+        url: /reference/file-access-permissions
       - text: Key management
         url: /reference/key-management
       - text: Performance Testing Framework
