@@ -10,9 +10,9 @@ distributions:
   - <<: *rhel9
     fips: true
     arm: true
-  - *amazonlinux2
+  - <<: *amazonlinux2
     arm: true
-  - *amazonlinux2022
+  - <<: *amazonlinux2022
     arm: true
   - <<: *debian10
     docker: true
