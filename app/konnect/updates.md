@@ -11,16 +11,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
-**New {{site.konnect_saas}} Analytics custom report chart types and metrics**
-: You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
-
-: The new additions include:
-* New chart types: You can now select between either horizontal or vertical bar charts, as well as line charts.
-* New metrics: You can now measure requests per minute, response latency, response size, and request size as percentiles.
-* New time selector: Allows you to use relative time periods, which can help you avoid manually adjusting your reports for weekly reports.
-
-: For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
-
 **{{site.base_gateway}} 3.1 support**
 : {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
 
