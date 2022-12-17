@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@kongponents/ktabs": "^0.1.2",
-    "@kongponents/styles": "^0.2.0",
+    "@kongponents/styles": "^7.0.0",
     "anchor-js": "^4.3.1",
     "animejs": "^3.1.0",
     "axios": "^0.21.2",
