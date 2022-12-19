@@ -869,6 +869,20 @@ Remove a specific runtime instance record associated to this runtime group. Dele
 HTTP 204 No Content
 ```
 
+### Fetch Expected Config Hash
+
+Retrieve the expected config hash for this runtime group. The expected config hash can be used to verify if the config hash of a runtime instance is up to date with the conrol plane. If they are in sync, the config hash will be the same. If sync in progress or if out of sync, the config hash will be different. The updated_at timestamp indicates when the config was last updated.
+
+**Endpoint**
+
+<div class="endpoint get">/expected-config-hash</div>
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
 ## Data plane certificates
 ### List data plane client certificates
 
