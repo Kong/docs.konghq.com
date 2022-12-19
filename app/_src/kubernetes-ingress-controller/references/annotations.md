@@ -16,6 +16,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource |
 | [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service |
 | [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service |
+| [`ingress.kubernetes.io/force-ssl-redirect`](#ingresskubernetesioforce-ssl-redirect) | Force non-SSL requests to be redirected to SSL. |
 | [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received |
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority |
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress |
@@ -288,6 +289,15 @@ Sample usage:
 ```yaml
 konghq.com/preserve-host: "true"
 ```
+
+### ingress.kubernetes.io/force-ssl-redirect
+
+> Available since controller 0.10
+
+This annotation is used to enforce requests to redirected to SSL protocol
+(HTTPS or GRPCS). The default status code for requests need to be redirected
+is 302. This code can be configured by annotation konghq.com/https-redirect-status-code[#konghqcomhttps-redirect-status-code].
+
 
 ### konghq.com/https-redirect-status-code
 
