@@ -4971,7 +4971,7 @@ HTTP 204 No Content
 
 ## Key Sets Entity
 
-An Key Set object holds a collection of asymmetric key objects.
+A Key Set object holds a collection of asymmetric key objects.
 This entity allows to logically group keys by their purpose.
 
 Key Sets can be both [tagged and filtered by tags](#tags).
