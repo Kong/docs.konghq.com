@@ -1,5 +1,5 @@
 product: kubernetes-ingress-controller
-release: 2.4.x
+release: 2.8.x
 generate: true
 items:
   - title: Introduction
@@ -9,6 +9,10 @@ items:
     items:
       - text: FAQ
         url: /faq
+      - text: Version Support Policy
+        url: /support-policy
+      - text: Stages of Software Availability
+        url: /availability-stages
       - text: Changelog
         url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
         absolute_url: true
@@ -33,6 +37,8 @@ items:
         url: /concepts/security
       - text: Ingress Resource API Versions
         url: /concepts/ingress-versions
+      - text: Gateway API
+        url: /concepts/gateway-api
   - title: Deployment
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /deployment/overview
@@ -63,6 +69,8 @@ items:
         url: /guides/getting-started
       - text: Upgrading from previous versions
         url: /guides/upgrade
+      - text: Upgrading to Kong 3.x
+        url: /guides/upgrade-kong-3x
       - text: Getting Started using Istio
         url: /guides/getting-started-istio
       - text: Using Custom Resources
@@ -83,6 +91,8 @@ items:
         url: /guides/configure-acl-plugin
       - text: Using cert-manager with Kong
         url: /guides/cert-manager
+      - text: Allowing Multiple Authentication Methods
+        url: /guides/allowing-multiple-authentication-methods
       - text: Configuring a Fallback Service
         url: /guides/configuring-fallback-service
       - text: Using an External Service
@@ -101,10 +111,10 @@ items:
         url: /guides/using-ingress-with-grpc
       - text: Setting up Upstream mTLS
         url: /guides/upstream-mtls
-      - text: Exposing a TCP-based Service
+      - text: Exposing a TCP Service
         url: /guides/using-tcpingress
         generate: false # Generated in the CustomResources section above
-      - text: Exposing a UDP-based Service
+      - text: Exposing a UDP Service
         url: /guides/using-udpingress
         generate: false # Generated in the CustomResources section above
       - text: Using the mTLS Auth Plugin
@@ -117,10 +127,10 @@ items:
         url: /guides/using-rewrites
       - text: Preserving Client IP Address
         url: /guides/preserve-client-ip
-      - text: Using Gateway API
-        url: /guides/using-gateway-api
       - text: Using Kong with Knative
         url: /guides/using-kong-with-knative
+      - text: Using Multiple Backend Services
+        url: /guides/using-multiple-backends
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:
@@ -130,14 +140,18 @@ items:
         url: /references/cli-arguments
       - text: Custom Resource Definitions
         url: /references/custom-resources
-        src: references/custom-resources-lte-2.6.x
+        src: references/custom-resources-2.7.x
       - text: Plugin Compatibility
         url: /references/plugin-compatibility
       - text: Version Compatibility
         url: /references/version-compatibility
+      - text: Supported Kong Router Flavors
+        url: /references/supported-router-flavors
       - text: Troubleshooting
         url: /troubleshooting
       - text: Prometheus Metrics
         url: /references/prometheus
-      - text: Gateway API Support
+      - text: Feature Gates
+        url: /references/feature-gates
+      - text: Supported Gateway API Features
         url: /references/gateway-api-support

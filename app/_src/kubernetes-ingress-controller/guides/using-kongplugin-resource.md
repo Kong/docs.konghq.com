@@ -6,6 +6,9 @@ This guide walks you through using the {{site.kic_product_name}}
 KongPlugin Custom Resource to control proxied requests, including
 restricting paths and transforming requests.
 
+See the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+documentation for more information about the purpose of the `KongPlugin` resource.
+
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
@@ -273,6 +276,56 @@ Via: kong/2.8.1
 
 Here, we have successfully set up a plugin which is executed only when a
 request matches a specific Ingress rule.
+
+## Storing plugin configuration in a Secret
+
+You can store plugin configuration in a Secret to secure the sensitive configuration. To do so, first create a Secret
+with a key for each field you want to configure:
+
+```sh
+echo '
+apiVersion: v1
+kind: Secret
+metadata:
+  name: plugin-conf-secret
+stringData:
+  add-response-header: |
+    add:
+      headers:
+        - "demo: injected-by-kong"
+type: Opaque
+' | kubectl apply -f -
+```
+
+Example output:
+```
+secret/plugin-conf-secret created
+```
+
+Then, create a KongPlugin with a `configFrom` field referring to that Secret:
+
+```sh
+echo '
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: add-response-header
+configFrom:
+  secretKeyRef:
+    name: plugin-conf-secret
+    key: add-response-header
+plugin: response-transformer
+' | kubectl apply -f -
+```
+
+Example output:
+```
+kongplugin.configuration.konghq.com/add-response-header created
+```
+
+{:.important}
+> KongPlugins can only reference Secrets in their same namespace. KongClusterPlugins have an additional `configFrom.namespace`
+> field indicating the Secret's namespace.
 
 ## Configuring plugins on Service resource
 
