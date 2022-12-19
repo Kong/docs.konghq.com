@@ -206,11 +206,12 @@ keyauth_credentials:
 
 In both cases, the fields/parameters work as follows:
 
-field/parameter     | description
----                 | ---
-`{USERNAME_OR_ID}`  | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-`ttl`<br>*optional* | The number of seconds the key is going to be valid. If missing or set to zero, the `ttl` of the key is unlimited. If present, the value must be an integer between 0 and 100000000.
-`key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
+field/parameter      | description
+---                  | ---
+`{USERNAME_OR_ID}`   | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`ttl`<br>*optional*  | The number of seconds the key is going to be valid. If missing or set to zero, the `ttl` of the key is unlimited. If present, the value must be an integer between 0 and 100000000. Currently, it is incompatible with DB-less mode or Hybrid mode.
+`tags`<br>*optional* | You can optionally assign a list of tags to your `key`.
+`key`<br>*optional*  | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 ### Make a Request with the Key
 
