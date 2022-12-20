@@ -750,19 +750,19 @@ The API for configuring Kong Konnect Runtime Groups.
 
 
 
-This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few major differences:
+This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few notable differences:
 
-* No `PATCH` methods.
+* `PATCH` methods are not supported
 > `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
 
-* Non-backwards compatible error responses.
+* Updated error responses
 >  Error responses returned in Konnect core entities endpoint are not compatible with the error responses returned by the Kong Admin APIs.
 
-* `POST` methods do not support URL encoded forms.
-> The content types `application/x-www-form-urlencoded` and `multipart/form-data` are not supported in the Konnect core entities endpoint. Please use application/json.
+* `POST` methods only support `application/json`
+> The content types `application/x-www-form-urlencoded` and `multipart/form-data` are not supported in the Konnect core entities endpoint. Please use `application/json`.
 
-* All core entities endpoints include only the top level path.
-> For example, to retrieve a route, only `/routes/{route name or id}` is supported.
+* Nested endpoints are not supported
+>  Core entities endpoints include only the top level path. For example, to retrieve a route, only `/routes/{route name or id}` is supported. Nested endpoints are not available in Konnect.
 
 {:.note}
 > Note: These gaps will be closed in future versions.
@@ -772,7 +772,7 @@ This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a 
 ## Supported Content Types
 
 
-- **application/json**
+**application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case send
 a JSON representation of the data you want to send. Example:
