@@ -16,18 +16,20 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource |
 | [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service |
 | [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service |
+| [`ingress.kubernetes.io/force-ssl-redirect`](#ingresskubernetesioforce-ssl-redirect) | Force non-SSL requests to be redirected to SSL. |
 | [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received |
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority |
+{%- if_version gte:2.7.x -%}
+| [`konghq.com/regex-prefix`](#konghqcomregex-prefix) | Prefix of path to annotate that the path is a regex match, other than default `/~` |
+{%- endif_version -%}
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress |
 | [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress |
 | [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set request buffering on routes created from this Ingress |
 | [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set response buffering on routes created from this Ingress |
 | [`konghq.com/host-aliases`](#konghqcomhostaliases) | Additional hosts for routes created from this Ingress's rules |
-
 {%- if_version lte:2.7.x -%}
 | [`konghq.com/override`](#konghqcomoverride) | Control other routing attributes via KongIngress resource |
 {%- endif_version -%}
-
 {%- if_version gte:2.8.x %}
 | [`konghq.com/override`](#konghqcomoverride) | (Deprecated, replace with per-setting annotations) Control other routing attributes with a KongIngress resource |
 | [`konghq.com/path-handling`](#konghqcompathhandling) | Sets the path handling algorithm |
@@ -288,6 +290,15 @@ Sample usage:
 ```yaml
 konghq.com/preserve-host: "true"
 ```
+
+### ingress.kubernetes.io/force-ssl-redirect
+
+> Available since controller 0.10
+
+This annotation is used to enforce requests to be redirected to SSL protocol
+(HTTPS or GRPCS). The default status code for requests that need to be 
+redirected is 302. This code can be configured by annotation `konghq.com/https-redirect-status-code`[#konghqcomhttps-redirect-status-code].
+
 
 ### konghq.com/https-redirect-status-code
 
@@ -573,6 +584,21 @@ on a Service resource in Kubernetes, (please note the quotes around `true`):
 annotations:
   ingress.kubernetes.io/service-upstream: "true"
 ```
+
+{% if_version gte:2.7.x %}
+### konghq.com/regex-prefix
+
+> Available since controller 2.7
+
+Sets the prefix of regex matched path to be some string other than `/~`. In
+Kong 3.0 and later, paths with regex match must start with `~`, so in 
+ingresses, `/~` prefix used by default to annotate that the path is using
+regex match. If the annotation is set, paths with the specified prefix is
+considered as paths with regex match and will be translated to `~` started
+path in Kong. For example, if an ingress has annotation 
+`konghq.com/regex-prefix: "/@"`, paths started with `/@` are considered as 
+paths using regex match. See: [upgrade-to-kong3x](/kubernetes-ingress-controller/latest/guides/upgreade-kong-3x)
+{% endif_version %}
 
 {% if_version gte:2.8.x %}
 ### konghq.com/path-handling
