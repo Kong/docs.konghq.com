@@ -152,6 +152,8 @@
               url: /dev-portal/applications/dynamic-client-registration/okta
             - text: Curity
               url: /dev-portal/applications/dynamic-client-registration/curity
+            - text: Auth0
+              url: /dev-portal/applications/dynamic-client-registration/auth0
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps
         - text: Register an Application with a Service
