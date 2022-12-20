@@ -85,7 +85,7 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 6. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
 
-7. Enter the Client ID of the admin client created in Curity above into the **Inital Client ID** field.
+7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field.
 
 8. Enter the value you saved for the Client secret into the **Initial Client Secret** field.
 
