@@ -764,10 +764,6 @@ This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a 
 * Nested endpoints are not supported
 >  Core entities endpoints include only the top level path. For example, to retrieve a route, only `/routes/{route name or id}` is supported. Nested endpoints are not available in Konnect.
 
-{:.note}
-> Note: These gaps will be closed in future versions.
-
-
 
 ## Supported Content Types
 
@@ -796,7 +792,7 @@ curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_grou
 
 ## More resources
 
-* [Authentication](/konnect/api/).
+* [Authentication](/konnect/api/)
 * [Kong Gateway API](/gateway/latest/admin-api/)
 * [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
