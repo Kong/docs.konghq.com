@@ -46,36 +46,8 @@ You can also configure routes with:
 * Redirect status codes: HTTPS status codes
 * Tags: Optional set of strings to group routes with 
 
-## How {{site.base_gateway}} routes requests
-
-For each incoming request, {{site.base_gateway}} needs to determine
-which service gets to handle it based on the routes that have been
-defined.  We describe how the routing process works, in a logical
-sense, below.  The actual router implementation optimizes the process
-and caches results to avoid having to scan all routes repeatedly.
-
-The description below only describes how paths are matched.  In
-addition, the protocol, host, method and headers of the request also
-need to be matching for a route to be considered a match.
-
-In general, the router uses the first route that it finds to match the
-request.  If there are multiple routes that match a request with
-equivalent priority, it is not defined which of the two routes will be
-used.
-
-First, the path of the inbound request is matched against all paths
-that are regular expressions.  All regular expressions are ordered
-based on the `regex_priority` and the `created_at` value of the route.
-Regular expressions with a higher `regex_priority` are considered
-before those with a lower `regex_priority`.  If routes have the same
-`regex_priority`, regular expressions with a lower (older)
-`created_at` timestamp in the database are considered before those
-that have a later `created_at` timestamp.
-
-If no regular expressions match the path, all non-regular expression
-(prefix) paths are considered.  Those paths are sorted from longest to
-shortest, so a longer prefix wins over a shorter prefix.  There is no
-explicit ordering of paths with the same length.
+See [Routes](/gateway/key-concepts/routes/) for a description of how
+{{site.base_gateway}} routes requests.
 
 ## Managing services and routes
 

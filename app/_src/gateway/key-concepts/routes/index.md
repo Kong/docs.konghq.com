@@ -15,6 +15,37 @@ For example, if you have an external application and an internal application tha
 
 In the example above, two routes can be created, say `/external` and `/internal`, and both routes can point to `example_service`. A policy can be configured to limit how often the `/external` route is used and the route can be communicated to the external client for use. When the external client tries to access the service via {{site.base_gateway}} using `/external`, they are rate limited. But when the internal client accesses the service using {{site.base_gateway}} using `/internal`, the internal client will not be limited.
 
+## How {{site.base_gateway}} routes requests
+
+For each incoming request, {{site.base_gateway}} needs to determine
+which service gets to handle it based on the routes that have been
+defined.  We describe how the routing process works, in a logical
+sense, below.  The actual router implementation optimizes the process
+and caches results to avoid having to scan all routes repeatedly.
+
+The description below only describes how paths are matched.  In
+addition, the protocol, host, method and headers of the request also
+need to be matching for a route to be considered a match.
+
+In general, the router uses the first route that it finds to match the
+request.  If there are multiple routes that match a request with
+equivalent priority, it is not defined which of the two routes will be
+used.
+
+First, the path of the inbound request is matched against all paths
+that are regular expressions.  All regular expressions are ordered
+based on the `regex_priority` and the `created_at` value of the route.
+Regular expressions with a higher `regex_priority` are considered
+before those with a lower `regex_priority`.  If routes have the same
+`regex_priority`, regular expressions with a lower (older)
+`created_at` timestamp in the database are considered before those
+that have a later `created_at` timestamp.
+
+If no regular expressions match the path, all non-regular expression
+(prefix) paths are considered.  Those paths are sorted from longest to
+shortest, so a longer prefix wins over a shorter prefix.  There is no
+explicit ordering of paths with the same length.
+
 ## Dynamically rewrite request URLs with routes
 
 Routes can be configured dynamically to rewrite the requested URL to a different URL for the upstream. For example, your legacy upstream endpoint may have a base URI like `/api/old/`. However, you want your publicly accessible API endpoint to now be named `/new/api`. To route the service's upstream endpoint to the new URL, you could set up a service with the path `/api/old/` and a route with the path `/new/api`. 
