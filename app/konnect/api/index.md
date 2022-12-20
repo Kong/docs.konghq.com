@@ -7,9 +7,9 @@ content-type: explanation
 
 There are two types of base URLs that are used in {{site.konnect_short_name}} APIs:
 
-* Global: https://global.api.konghq.com 
+* **Global**: `https://global.api.konghq.com`
 
-* Region specific: https://{REGION_CODE}.api.konghq.com
+* **Region specific**: `https://{REGION_CODE}.api.konghq.com`
 
 The global endpoint is used to manage region-agnostic {{site.konnect_short_name}} entities that live in a global database. These APIs interact with entities that are not region specific and therefore do not have any regional boundaries. For example, identity management and IdP settings are all region-agnostic configurations applied to the organization as a whole.
 
@@ -28,6 +28,7 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/) - Interface for managing runtime groups.
 
+* [Runtime Configuration API](/api/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
 
 ## More information
 

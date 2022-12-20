@@ -5,7 +5,7 @@
 #  https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 #  or its associated files instead.
 #
-title: Admin API
+title: Konnect Runtime Configuration API
 source_url: https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 toc: false
 
@@ -750,7 +750,7 @@ The API for configuring Kong Konnect Runtime Groups.
 
 
 
-This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few notable differences:
+This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few major differences:
 
 * `PATCH` methods are not supported
 > `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
@@ -768,7 +768,7 @@ This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a 
 ## Supported Content Types
 
 
-**application/json**
+- **application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case send
 a JSON representation of the data you want to send. Example:
