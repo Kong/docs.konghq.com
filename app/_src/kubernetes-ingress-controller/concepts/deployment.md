@@ -196,7 +196,7 @@ In DB-less deployments, Kong's Ingress controller runs
 alongside and dynamically configures
 Kong as per the changes it receives from the Kubernetes API server.
 
-Following figure shows how this deployment looks like:
+Following figure shows what this deployment looks like:
 
 ![Kong DB-less](/assets/images/docs/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
 
