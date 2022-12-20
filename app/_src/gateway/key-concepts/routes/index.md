@@ -46,6 +46,34 @@ If no regular expressions match the path, all non-regular expression
 shortest, so a longer prefix wins over a shorter prefix.  There is no
 explicit ordering of paths with the same length.
 
+## Regular expressions
+
+Regular expressions used in routes are more expensive to evaluate than
+simple prefix routes.  If many regular expressions need to be
+evaluated to route a request, the latency introduced by
+{{site.base_gateway}} can suffer and its CPU usage can increase.  In
+particular in installations with thousands of routes, replacing
+regular expression routes by simple prefix routes can improve
+throughput and latency of {{site.base_gateway}}.
+
+Starting with version 3.0, {{site.base_gateway}} uses the regular
+expression engine shipped with the Rust programming language if the
+router is operating in `expressions` or `traditional_compatible` mode.
+Prior versions used the
+[PCRE library](https://www.pcre.org/original/doc/html/pcrepattern.html)
+to evaluate regular expression.  While the two engines are largely
+compatible, subtle differences exist between the two.  Please refer to
+the documentation pertinent to the engine that you are using if you
+have problems getting regular expression routes to work.
+
+Documentation Links:
+
+ * [Rust regex engine](https://docs.rs/regex/latest/regex/) - Default
+   engine used since {{site.base_gateway}} version 3.0.
+ * [PCRE](https://www.pcre.org/original/doc/html/pcrepattern.html) -
+   Regular expression library used prior to {{site.base_gateway}}
+   version 3.0
+
 ## Dynamically rewrite request URLs with routes
 
 Routes can be configured dynamically to rewrite the requested URL to a different URL for the upstream. For example, your legacy upstream endpoint may have a base URI like `/api/old/`. However, you want your publicly accessible API endpoint to now be named `/new/api`. To route the service's upstream endpoint to the new URL, you could set up a service with the path `/api/old/` and a route with the path `/new/api`. 
