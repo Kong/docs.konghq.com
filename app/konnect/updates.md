@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
+**Konnect Overview & Service Wizard**
+: {{site.konnect_short_name}} admins now have an Overview page which offers a high-level summary of their entire Konnect platform, news updates, and learning opportunities. In addition, we've added a new Service Wizard to walk admins through the end-to-end process of setting up a Service Package & Service Version, configuring a {{site.base_gateway}}, uploading documentation, and publishing a Service to the developer portal.
+
 **{{site.base_gateway}} 3.1 support**
 : {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
 
