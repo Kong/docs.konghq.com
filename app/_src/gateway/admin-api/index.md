@@ -771,7 +771,6 @@ This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a 
 
 ## Supported Content Types
 
-The Admin API accepts 3 content types on every endpoint:
 
 - **application/json**
 
