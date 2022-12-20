@@ -28,7 +28,7 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/) - Interface for managing runtime groups.
 
-* [Runtime Configuration API](/api/runtime-groups-config) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
+* [Runtime Configuration API](/konnect/api/runtime-groups-config/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
 
 ## More information
 
