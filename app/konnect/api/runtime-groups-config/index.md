@@ -752,26 +752,21 @@ The API for configuring Kong Konnect Runtime Groups.
 
 This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few major differences:
 
-* No `PATCH` methods.
+* `PATCH` methods are not supported
 > `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
 
-* Non-backwards compatible error responses.
+* Updated error responses
 >  Error responses returned in Konnect core entities endpoint are not compatible with the error responses returned by the Kong Admin APIs.
 
-* `POST` methods do not support URL encoded forms.
-> The content types `application/x-www-form-urlencoded` and `multipart/form-data` are not supported in the Konnect core entities endpoint. Please use application/json.
+* `POST` methods only support `application/json`
+> The content types `application/x-www-form-urlencoded` and `multipart/form-data` are not supported in the Konnect core entities endpoint. Please use `application/json`.
 
-* All core entities endpoints include only the top level path.
-> For example, to retrieve a route, only `/routes/{route name or id}` is supported.
-
-{:.note}
-> Note: These gaps will be closed in future versions.
-
+* Nested endpoints are not supported
+>  Core entities endpoints include only the top level path. For example, to retrieve a route, only `/routes/{route name or id}` is supported. Nested endpoints are not available in Konnect.
 
 
 ## Supported Content Types
 
-The Admin API accepts 3 content types on every endpoint:
 
 - **application/json**
 
@@ -867,6 +862,20 @@ Remove a specific runtime instance record associated to this runtime group. Dele
 
 ```
 HTTP 204 No Content
+```
+
+### Fetch Expected Config Hash
+
+Retrieve the expected config hash for this runtime group. The expected config hash can be used to verify if the config hash of a runtime instance is up to date with the conrol plane. If they are in sync, the config hash will be the same. If sync in progress or if out of sync, the config hash will be different. The updated_at timestamp indicates when the config was last updated.
+
+**Endpoint**
+
+<div class="endpoint get">/expected-config-hash</div>
+
+**Response**
+
+```
+HTTP 200 OK
 ```
 
 ## Data plane certificates
