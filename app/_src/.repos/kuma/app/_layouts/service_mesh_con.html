@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<div class="page-container page-container--servicemeshcon" aria-labelledby="masthead-main-title">
+  <div class="page-masthead-wrap smc-gradient">
+    <div class="inner flex flex-wrap -mx-4">
+      <div class="page-masthead w-full lg:w-1/2 px-4">
+        {% contentblock masthead %}
+      </div>
+      <!-- .page-masthead -->
+
+      <div class="page-masthead--right w-full lg:w-1/2 px-4">
+        <img src="{{ page.eventLogo }}" class="event-logo" />
+      </div>
+    </div>
+    <!-- .inner -->
+  </div>
+  <!-- .page-masthead-wrap -->
+
+  <section class="content-block-wrapper content-block-1">
+    <div class="inner py-8 flex justify-items-center">
+      <div class="content__content-block-1">
+        {% contentblock content-block-1 %}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-block-wrapper content-block-2">
+    <div class="inner pt-8 flex justify-items-center">
+      <div class="content__content-block-2 centered-headings">
+        {% contentblock content-block-2 %}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-block-wrapper content-block-3">
+    <div class="inner py-8">
+      {% include service_mesh_con_form.html %}
+    </div>
+  </section>
+
+  <section class="content-block-wrapper content-block-4">
+    <div class="inner py-8">
+      <div class="content__content-block-3 centered-text">
+        {% contentblock content-block-3 %}
+      </div>
+    </div>
+  </section>
+</div>

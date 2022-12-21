@@ -3,6 +3,14 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 2.0.1
+> Release on **2022/12/05**
+
+Built on top of [Kuma 2.0.0](https://github.com/kumahq/kuma/releases/tag/2.0.0)
+
+### Changes
+
+- Pulling important performance and reliability fixes from Kuma
 
 ## 2.0.0
 > Release on **2022/11/04**

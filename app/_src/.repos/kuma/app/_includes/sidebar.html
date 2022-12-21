@@ -1,0 +1,18 @@
+<aside id="sidebar" class="sidebar">
+  {% include nav_links.html %}
+
+  {% if page.doc %}
+    <form class="version-nav">
+      <label for="doc-version-selector">Version</label>
+      {% include version_selector.html name="doc-version-selector" %}
+    </form>
+
+    <div class="nav-item">
+      <form id="search-form" class="algolia-search-wrapper search-box" role="search">
+        <input id="algolia-search-input" class="search-query" placeholder="Search...">
+      </form>
+    </div>
+  {% endif %}
+
+  {% include sidebar_links.html nav_items=page.nav_items version=page.version depth=0 %}
+</aside>

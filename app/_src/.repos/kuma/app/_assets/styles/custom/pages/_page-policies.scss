@@ -1,0 +1,88 @@
+.policy-section {
+  max-width: 33.75rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  h1, h2, h3, h4, h5, h6 {
+    border: 0;
+  }
+}
+
+.policy-section--no-items {
+  text-align: center;
+}
+
+.policy-section__header {
+
+  h2, h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    font-size: 1.1875rem;
+    color: rgba(#000, 0.85);
+    margin-bottom: 0.8rem;
+  }
+
+  h3 {
+    font-size: 0.9375rem;
+    color: rgba(#000, 0.70);
+  }
+}
+
+.policy-section__items {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.policy-section__tile {
+  text-align: center;
+}
+
+.policy-section__link {
+  $hover-color: #3fa66a;
+  $cubic-bezier: cubic-bezier(0.47, 0.37, 0.36, 0.92);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+  background-color: #fff;
+  box-shadow: 0 0 1px 1px #c6cfd7;
+  border-radius: 5px;
+  padding: 1.4375rem 0.5rem;
+  transition:
+    color 200ms $cubic-bezier,
+    box-shadow 200ms $cubic-bezier,
+    transform 200ms $cubic-bezier;
+
+  &:hover, &:active {
+    // no more scale on hover because Chrome on Retina does not play nice with it
+    // transform: scale(1.05);
+    border: 1px solid $hover-color;
+    color: $hover-color;
+
+    h4 {
+      color: $hover-color;
+    }
+  }
+
+  h4 {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 200;
+    color: rgba(#000, 0.70);
+    line-height: 1.5rem;
+    transition: color 200ms $cubic-bezier;
+  }
+}
+
+.policy-section__icon {
+  max-width: 2.0625rem;
+  height: auto;
+  margin: 0 auto 0.8rem auto;
+}

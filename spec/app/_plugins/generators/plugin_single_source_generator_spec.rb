@@ -3,14 +3,17 @@ RSpec.describe PluginSingleSource::Generator do
     subject { described_class.new.generate(site) }
 
     it 'generates pages for each version of each plugin' do
-      expect { subject }.to change { site.pages.size }.by(12)
+      expect { subject }.to change { site.pages.size }.by(14)
     end
 
     it 'adds the latest version of the plugin to `data[sshg_hub]`' do
       subject
 
       expect(site.data['ssg_hub'].map(&:path)).to match_array([
-        '_hub/acme/jq/index.md', '_hub/acme/jwt-signer/index.md', '_hub/acme/kong-plugin/index.md'
+        '_hub/acme/jq/_index.md',
+        '_hub/acme/jwt-signer/_index.md',
+        '_hub/acme/kong-plugin/_index.md',
+        '_hub/acme/unbundled-plugin/_index.md',
       ])
     end
 

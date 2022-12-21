@@ -176,4 +176,6 @@ expected results are:
 
 ## API reference documentation
 
-* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce) - Interface for management of users, teams, team memberships and role assignments.
+* [Identity Management API Documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce) - Interface for managing users, teams, team memberships and role assignments.
+
+* [Runtime Groups API Documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/) - Interface for managing runtime groups and certificates.

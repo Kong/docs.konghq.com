@@ -9,11 +9,12 @@ description: |
   be analyzed in the AppDynamics flow map and correlated with other
   systems participating in handling application API requests.
 
-  The plugin utilizes the
-  [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435),
-  which must be downloaded and installed on the machine or within the
-  container running Kong Gateway. Refer to the
-  [AppDynamics SDK documentation](https://docs.appdynamics.com/) for platform support information.
+  {:.warning}
+  > The plugin utilizes the
+  > [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435),
+  > which must be downloaded and installed on the machine or within the
+  > container running Kong Gateway. Refer to the
+  > [AppDynamics SDK documentation](https://docs.appdynamics.com/) for platform support information.
 enterprise: true
 type: plugin
 categories:

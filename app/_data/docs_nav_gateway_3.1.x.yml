@@ -485,6 +485,8 @@ items:
             url: /plugin-development/pluginserver/python
           - text: Running Plugins in Containers
             url: /plugin-development/pluginserver/plugins-kubernetes
+          - text: External Plugin Performance
+            url: /plugin-development/pluginserver/performance
   - title: Kong Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
     items:
@@ -596,6 +598,8 @@ items:
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
+      - text: File Permissions Reference
+        url: /reference/file-access-permissions
       - text: Key management
         url: /reference/key-management
       - text: Performance Testing Framework

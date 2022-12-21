@@ -46,13 +46,13 @@ When running a scan, you may want to limit the number of pages scanned as you ad
 
 ```bash
 # Scan the first five pages
-node product.js --nav gateway_2.8.x --page 0 --perPage 5
+node run.js product --nav gateway_2.8.x --page 0 --perPage 5
 
 # Scan the next five pages
-node product.js --nav gateway_2.8.x --page 1 --perPage 5
+node run.js product --nav gateway_2.8.x --page 1 --perPage 5
 
 # Continue until the script responds with "No URLs detected to test"
-# Then run `node product.js --nav gateway_2.8.x` as a complete check to
+# Then run `node run.js product --nav gateway_2.8.x` as a complete check to
 # ensure that you've caught all the broken links
 ```
 

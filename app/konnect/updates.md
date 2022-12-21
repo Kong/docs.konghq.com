@@ -15,11 +15,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
 
 **Curity support for Dynamic CLient Registration**
-
 : [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity.md) is now supported as an identity provider for Dynamic Client Registration (DCR).
 
 **New {{site.konnect_saas}} Analytics custom report chart types and metrics**
-
 : You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
 
 : The new additions include:
@@ -30,7 +28,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
 
 **Konnect Overview dashboard improvements**
-
 : The Overview page gives org admins the ability to see easily see a high-level summary of their entire {{site.konnect_short_name}} ecosystem, news updates, learning opportunities, and most significantly easily create a new gateway service implementation. By clicking **Add a Service**, Org Admins can create a gateway service implementation top down. This means, setting up a service package, version, uploading and publishing docs to the Dev Portal, and applying plug-ins all within a three-step workflow!
 
 **Secrets management using vaults**

@@ -1,0 +1,188 @@
+//
+// Mixins + Functions
+//
+
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important; // Fix for https://github.com/twbs/bootstrap/issues/25686
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only {
+  @include sr-only;
+}
+
+@mixin img-full {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+@mixin img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+@mixin content-container($bordered: false) {
+  max-width: $container-width + $gutter;
+  padding-left: $gutter / 2;
+  padding-right: $gutter / 2;
+  margin-left: auto;
+  margin-right: auto;
+
+  @if $bordered {
+    border-top: 2px solid $gray-8;
+  }
+}
+
+@mixin gradient-container {
+  background-image: $gradient-1;
+  border-bottom: 1px solid $navy-light;
+}
+
+@mixin gradient-container-alt {
+  background-image: $gradient-5;
+}
+
+@mixin page-section($spacing: 3.5rem 0) {
+  padding: $spacing;
+}
+
+@mixin clear-text {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin button-base {
+  font-family: $base-font-family;
+  font-weight: $fw-medium;
+  background-color: $green-base;
+  padding: 0.563rem 2.25rem;
+  border-radius: 3px;
+  box-shadow: $base-soft-shadow;
+  text-align: center;
+  // text-shadow: 0 2px 0 $green-dark;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  // rounded buttons
+  height: $btn-height-base;
+  border-radius: $btn-radius;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    color: #fff !important;
+  }
+
+  &:hover {
+    background-color: lighten($green-base, 3.5);
+  }
+}
+
+@mixin button-state-overrides {
+  &:disabled:hover,
+  &:disabled:active,
+  &:disabled:focus,
+  &:disabled:visited {
+    @content;
+  }
+}
+
+@mixin quotify {
+  quotes: '“' '”' '‘' '’';
+
+  &:before {
+    content: open-quote;
+  }
+
+  &:after {
+    content: close-quote;
+  }
+}
+
+@mixin scrollbar-v {
+  &::-webkit-scrollbar {
+    width: 0.4em;
+  }
+
+  &::-webkit-scrollbar-track {
+    $i: rgba(#000, 0.35);
+
+    background-color: $i;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0 4px $i;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 0.2em;
+  }
+}
+
+@mixin scrollbar-h {
+  &::-webkit-scrollbar {
+    height: 0.4em;
+  }
+
+  &::-webkit-scrollbar-track {
+    $i: rgba(#000, 0.35);
+
+    background-color: $i;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0 4px $i;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 0.2em;
+  }
+}
+
+// target Retina screens
+@mixin retina-mq {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    @content;
+  }
+}
+
+// target IE10 and 11
+@mixin target-ie {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+// sticky
+@mixin sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+}
+
+.sticky {
+  @include sticky;
+}
+
+@mixin section-aura($shadow: 0 0 80px 85px, $color: $pale-blue) {
+  background-color: $color;
+  box-shadow: $shadow $color;
+  border-radius: 20px;
+}

@@ -1,0 +1,65 @@
+---
+layout: default
+themeContainerClasses: 'blog-page blog-page--posts no-sidebar'
+---
+
+<div class="page-container {% if page.headerImage %} has-image {% endif %}">
+  <header class="page-header text-center bg-gradient">
+    <div class="blog-nav inner">
+      <a href="/blog">&larr; Back to Blog</a>
+    </div>
+    <div class="inner blog-page__main-title-wrapper">
+      <h1>
+        {{ page.title }}
+      </h1>
+      <div class="blog-post__info">
+        <span class="date">
+          {% include post_date.html date=page.date %}
+        </span>
+        <span class="separator">/</span>
+        <span class="reading-time">
+          {% include reading_time.html text=page.content %}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="inner lg:flex lg:space-x-8 lg:items-start">
+    <div class="blog-detail__content lg:w-2/3">
+      {% if page.headerImage %}
+        <div
+          class="blog-post__header-image"
+          style="background-image: url('{{ page.headerImage }}');"
+        >
+        <img
+            src="{{ page.headerImage }}"
+            alt="Featured image for a blog article titled {{ page.title }}."
+            class="sr-only"
+            >
+        </div>
+      {% endif %}
+
+      <div class="blog-post__detail-content">
+        {{ content }}
+      </div>
+    </div>
+
+    <div class="blog-sidebar lg:w-1/3">
+      <div class="card">
+        <header class="card__header">
+          <div class="card__title">
+            <h3>Get Community Updates</h3>
+          </div>
+        </header>
+        <div class="card__content">
+          <div class="mb-4">
+            <p>Sign up for our Kuma community newsletter to get the most recent updates and product announcements.</p>
+          </div>
+          <div class="newsletter-form">
+            {% include newsletter_form.html stacked=true submit_text='Join Newsletter' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@
 # it.
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'jekyll'
+require 'jekyll-generator-single-source'
 
 Dir[File.expand_path('../app/_plugins/**/*.rb', __dir__)].each do |file|
   require file

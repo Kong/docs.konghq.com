@@ -1,0 +1,12 @@
+{% assign current_version = page.version %}
+
+<select name="{{ include.name }}" class="version-selector" id="version-selector">
+  {% for version in site.data.versions %}
+    <option value="{{ version.release }}" {% if version.release == current_version %} selected {% endif %}>
+      {{ version.release }}
+      {% if version == site.data.latest_version %}
+        (latest)
+      {% endif %}
+    </option>
+  {% endfor %}
+</select>

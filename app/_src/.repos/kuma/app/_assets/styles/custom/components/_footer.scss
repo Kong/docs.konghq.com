@@ -1,0 +1,194 @@
+// 
+// Footer
+// 
+
+$page-footer-border: 1px solid $color-7;
+$page-footer-desktop-height: 29.688rem;
+
+.page-footer {
+  padding: 5rem 0;
+  // padding: 0 0 5rem 0;
+  border-top: $page-footer-border;
+  background-color: #fff;
+
+  a {
+    color: $color-3;
+    line-height: 1.875rem;
+  }
+}
+
+// footer spacing above the content (homepage and sidebar pages excluded)
+.theme-container.no-sidebar:not(.is-home):not(.home) .page-footer {
+  margin-top: 5rem;
+}
+
+.page-footer__links {
+  
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  h5 {
+    text-transform: uppercase;
+    color: $color-3;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  a {
+    font-weight: $fw-regular;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .badge-wrap {
+    position: relative;
+  }
+
+  .badge {
+    position: absolute;
+    left: 115%;
+    top: -5px;
+    display: inline-block;
+    background-color: lighten($color-2, 45);
+    color: $color-2;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 2;
+    padding: 0 0.5rem;
+  }
+}
+
+.page-footer__sublinks {
+  margin-top: 2.5rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    line-height: normal;
+  }
+
+  .inner {
+    align-items: center;
+  }
+
+  .copyright {
+    color: lighten(#000, 45);
+  }
+
+  .social-links {
+
+    img {
+      display: block;
+      margin: 0;
+      max-width: 48px;
+    }
+    
+    ul {
+      display: flex;
+    }
+
+    ul li:not(:last-of-type) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+// CNCF banner
+.cncf-banner {
+  text-align: center;
+  margin: 0 0 2rem 0;
+  padding: 4rem 0;
+  border-bottom: $page-footer-border;
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 1.1875rem;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .page-footer__links {
+    text-align: center;
+
+    ul h5 {
+      padding: .5rem 0;
+      border-top: $page-footer-border;
+      border-bottom: $page-footer-border;
+    }
+  }
+
+  .page-footer__sublinks {
+    text-align: center;
+
+    .social-links {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: $page-footer-border;
+      
+      ul {
+        justify-content: center;
+      }
+    }
+  }
+
+}
+
+@media (min-width: $MQMobile + 1) {
+
+  // this spaces the footer far enough down as to
+  // not overlap the sidebar at any point on
+  // larger screens.
+  .page-footer {
+    // height: $page-footer-desktop-height;
+
+    // // this puts the footer above the bottom part
+    // // of the fixed sidebar on larger screens
+    // position: relative;
+    // z-index: 10;
+  }
+
+  .content-wrapper {
+    // min-height: calc(100vh - #{$page-footer-desktop-height});
+  }
+
+  .page-footer__sublinks {
+
+    ul {
+      display: flex;
+    }
+  
+    ul li:not(:last-of-type) {
+      margin-right: 2.813rem;
+    }
+  }
+}
+
+@media (min-width: $MQMobile + 1) and (max-width: 767px) {
+  .page-footer__sublinks {
+
+    ul {
+      justify-content: center;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+  }
+}

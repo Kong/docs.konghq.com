@@ -1,0 +1,7 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /gateway/2.6.x/
+  absolute_url: true
+  items:
+    - text: changelog
+      url: /changelog
