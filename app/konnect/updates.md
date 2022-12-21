@@ -11,6 +11,13 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
+**Runtime Groups Configuration API**
+: Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
+
+**Curity support for Dynamic CLient Registration**
+
+: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity.md) is now supported as an identity provider for Dynamic Client Registration (DCR).
+
 **New {{site.konnect_saas}} Analytics custom report chart types and metrics**
 
 : You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
