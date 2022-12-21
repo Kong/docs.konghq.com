@@ -106,4 +106,4 @@ _packages:
     version: 22.04
     package: true
     arm: false
-    fips: true
+    fips: false
