@@ -249,7 +249,7 @@
   edition: "deck"
 -
   release: "1.17.x"
-  version: "1.17.1"
+  version: "1.17.0"
   edition: "deck"
 -
   release: "1.0.x"
