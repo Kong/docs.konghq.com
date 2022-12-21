@@ -224,6 +224,8 @@
         - text: API Documentation
           url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/edcaaf42-777b-47f9-aa80-797327a4b8b2/
           absolute_url: true
+        - text: Portal RBAC Guide
+          url: app/konnect/api/portal-auth/portal-rbac-guide.md
     - text: Reference
       items:
         - text: Filtering
