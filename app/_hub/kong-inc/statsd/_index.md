@@ -171,19 +171,19 @@ Field         | Description                                             | Dataty
 
 ### Metric behaviors
 
-1.  By default, all metrics get logged.
-2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
-3.  `unique_users` metric only works with `stat_type` as `set`.
+* By default, all metrics get logged.
+* Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
+* `unique_users` metric only works with `stat_type` as `set`.
 {% if_plugin_version lte:2.8.x %}
-4.  `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
-5.  `status_count_per_user`, `request_per_user` and `unique_users` must have `customer_identifier` defined.
+* `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
+* `status_count_per_user`, `request_per_user` and `unique_users` must have `customer_identifier` defined.
 {% endif_plugin_version %}
 {% if_plugin_version gte:3.0.x %}
-4.  `status_count`, `status_count_per_user`, `status_count_per_user_per_route` and `request_per_user` work only with `stat_type` as `counter`.
-5.  `shdict_usage` work only with `stat_type` as `gauge`.
-6.  `status_count_per_user`, `request_per_user`, `unique_users` and `status_count_per_user_per_route` must have `customer_identifier` defined.
-7.  All metrics can optionally configure `service_identifier`; by default it's set to `service_name_or_host`.
-8.  `status_count_per_workspace` must have `workspace_identifier` defined.
+* `status_count`, `status_count_per_user`, `status_count_per_user_per_route` and `request_per_user` work only with `stat_type` as `counter`.
+* `shdict_usage` work only with `stat_type` as `gauge`.
+* `status_count_per_user`, `request_per_user`, `unique_users` and `status_count_per_user_per_route` must have `customer_identifier` defined.
+* All metrics can optionally configure `service_identifier`; by default it's set to `service_name_or_host`.
+* `status_count_per_workspace` must have `workspace_identifier` defined.
 {% endif_plugin_version %}
 
 

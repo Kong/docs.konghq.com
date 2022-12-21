@@ -1,0 +1,112 @@
+name: CI
+on: pull_request
+jobs:
+  check-links:
+    name: Check links
+    runs-on: ubuntu-latest
+    env:
+      URL: https://deploy-preview-${{github.event.number}}--kuma.netlify.app
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/setup-go@v3
+      - run: |
+          go install github.com/raviqqe/muffet/v2@v2.4.9
+      - name: Wait for Pages changed to be neutral
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: waitForCheck
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: "Pages changed - kuma"
+          timeoutSeconds: 1200
+      - name: Wait for Netlify site to be ready
+        if: steps.waitForCheck.outputs.conclusion == 'neutral'
+        uses: jakepartusch/wait-for-netlify-action@v1.2
+        id: waitForNetlify
+        with:
+          site_name: "kuma"
+          max_timeout: 1200
+      - name: link checker
+        run: |
+          `go env GOPATH`/bin/muffet ${URL} --exclude https://twitter.com --max-connections-per-host=8 --exclude 127.0.0.1 --exclude 'https://github.com/spiffe/spiffe/blob/main/standards/X509-SVID.md.*' --rate-limit 50 --timeout 60
+      - name: link checker dev docs
+        run: |
+          `go env GOPATH`/bin/muffet ${URL}/docs/dev --exclude https://twitter.com --max-connections-per-host=8 --exclude 127.0.0.1 --exclude 'https://github.com/spiffe/spiffe/blob/main/standards/X509-SVID.md.*' --exclude https://download.konghq.com --rate-limit 50 --timeout 60
+
+  installer-sh:
+    name: Test installer.sh
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # NOTE: for each new OS, the check must be explicitly set as required in Github
+        os:
+          - amazonlinux:2022
+          - debian:bookworm
+          - centos:7
+          - redhat/ubi8:8.6
+          - ubuntu:22.10
+          - archlinux:latest
+          - fedora:latest
+    container:
+      image: ${{ matrix.os }}
+    steps:
+      - name: Prepare OS
+        run: |
+          (apt-get update && apt-get install file curl -y) || true
+          yum install file tar gzip -y || true
+      - uses: actions/checkout@v3
+      - name: Run installer.sh
+        run: sh app/installer.sh
+      - name: Check kumactl architecture
+        run: file ./kuma-*/bin/kumactl | grep x86-64 &> /dev/null
+  installer-sh-arm64:
+    runs-on: ubuntu-latest
+    name: Test installer.sh on arm64
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        id: runcmd
+        with:
+          arch: aarch64
+          distro: ubuntu22.04
+
+          # Not required, but speeds up builds by storing container images in
+          # a GitHub package registry.
+          githubToken: ${{ github.token }}
+
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            apt-get update && apt-get install -y file curl tar gzip
+            sh app/installer.sh
+            file ./kuma-*/bin/kumactl | grep aarch64 &> /dev/null
+
+  vale:
+    name: Lint docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get changed files
+        id: changed-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Note that we filter here first because otherwise vale is run on all files
+            // before the output is filtered to changed files, which takes a long time.
+            const files = await github.paginate(
+              github.rest.pulls.listFiles, {
+                ...context.repo,
+                pull_number: ${{ github.event.number }},
+              },
+            );
+            return files
+              .filter(d => d.status != "removed")
+              .filter(d => !d.filename.includes("/generated/"))
+              .map(d => d.filename);
+      - uses: actions/checkout@v2
+      - uses: errata-ai/vale-action@v2
+        if: fromJSON(steps.changed-files.outputs.result).length > 0
+        name: Run Vale
+        with:
+          files: "${{ steps.changed-files.outputs.result }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

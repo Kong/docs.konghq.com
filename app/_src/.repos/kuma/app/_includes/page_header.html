@@ -1,0 +1,13 @@
+<header
+  class="page-header text-center bg-gradient {% if include.hasDivider %} page-header--has-divider {% endif %}"
+  style="{% if include.dividerColor %} border-bottom-color: {{ include.dividerColor }} {% endif %}"
+>
+  <div class="inner">
+    <h1>{{ page.title }}</h1>
+    {% if page.subTitle %}
+      <p class="page-sub-title">
+        {{ page.subTitle }}
+      </p>
+    {% endif %}
+  </div>
+</header>

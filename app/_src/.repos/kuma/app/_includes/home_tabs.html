@@ -1,0 +1,66 @@
+<div class="k-tabs">
+  <ul role="tablist" aria-label="ktabs">
+      <li
+        aria-selected="true"
+        aria-controls="panel-0"
+        id="kubernetes-tab"
+        class="tab-item active"
+        tabindex="0"
+        role="tab"
+      >
+        <a class="tab-link">Kubernetes</a>
+      </li>
+
+      <li
+        aria-selected="false"
+        aria-controls="panel-1"
+        id="openshift-tab"
+        class="tab-item"
+        tabindex="0"
+        role="tab"
+      >
+        <a class="tab-link">OpenShift</a>
+      </li>
+
+      <li
+        aria-selected="false"
+        aria-controls="panel-2"
+        id="universal-tab"
+        class="tab-item"
+        tabindex="0"
+        role="tab"
+      >
+        <a class="tab-link">Universal (VMs)</a>
+      </li>
+  </ul>
+
+  <div
+    id="panel-0"
+    aria-labelledby="kubernetes-tab"
+    role="tabpanel"
+    tabindex="0"
+    class="tab-container"
+  >
+    {% contentblock tab-kubernetes %}
+  </div>
+
+  <div
+    id="panel-1"
+    aria-labelledby="openshift-tab"
+    role="tabpanel"
+    tabindex="0"
+    class="tab-container hidden"
+  >
+    {% contentblock tab-openshift %}
+  </div>
+
+  <div
+    id="panel-2"
+    aria-labelledby="universal-tab"
+    role="tabpanel"
+    tabindex="0"
+    class="tab-container hidden"
+  >
+    {% contentblock tab-universal %}
+  </div>
+</div>

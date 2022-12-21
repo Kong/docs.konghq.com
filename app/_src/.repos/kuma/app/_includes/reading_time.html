@@ -1,0 +1,7 @@
+{% capture words %}
+{{ include.text | number_of_words | minus: 180 }}
+{% endcapture %}
+
+{% unless words contains '-' %}
+  {{ words | plus: 150 | divided_by: 150 | append: ' min read' }}
+{% endunless %}

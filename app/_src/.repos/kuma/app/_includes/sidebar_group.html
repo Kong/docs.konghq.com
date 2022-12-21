@@ -1,0 +1,12 @@
+{% assign item = include.item %}
+{% assign depth = include.depth %}
+
+<section class="sidebar-group depth-{{ depth }} {% if item.items.size > 0 %} collapsable {% endif %} {% if depth != 0 %} is-sub-group {% endif %}">
+  <button class="sidebar-heading">
+    <span>{{ item.title }}</span>
+    <span class="arrow right"></span>
+  </button>
+
+  {% assign children_depth = depth | plus: 1 %}
+  {% include sidebar_links.html nav_items=item.items depth=children_depth cssClass='sidebar-group-items hidden' version=include.version %}
+</section>

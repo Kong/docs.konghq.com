@@ -11,19 +11,19 @@ describe("Edit this page link", () => {
       title: "Single Sourced",
       src: "/deck/1.12.x/",
       expected:
-        "https://github.com/Kong/docs.konghq.com/edit/main/src/deck/index.md",
+        "https://github.com/Kong/docs.konghq.com/edit/main/app/_src/deck/index.md",
     },
     {
       title: "/app/ page /latest/",
       src: "/gateway/latest/",
       expected:
-        "https://github.com/Kong/docs.konghq.com/edit/main/src/gateway/index.md",
+        "https://github.com/Kong/docs.konghq.com/edit/main/app/_src/gateway/index.md",
     },
     {
       title: "Single Sourced /latest/",
       src: "/deck/latest/",
       expected:
-        "https://github.com/Kong/docs.konghq.com/edit/main/src/deck/index.md",
+        "https://github.com/Kong/docs.konghq.com/edit/main/app/_src/deck/index.md",
     },
   ].forEach((t) => {
     test(t.title, async () => {

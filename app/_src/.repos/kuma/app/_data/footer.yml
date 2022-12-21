@@ -1,0 +1,11 @@
+- label: 'Twitter'
+  icon: '/assets/images/social/icon-twitter.svg'
+  url: 'https://twitter.com/KumaMesh'
+
+- label: 'Meetup'
+  icon: '/assets/images/social/icon-meetup.svg'
+  url: 'https://www.meetup.com/members/121234612/'
+
+- label: 'Github'
+  icon: '/assets/images/social/icon-github.svg'
+  url: 'https://github.com/kumahq/kuma'

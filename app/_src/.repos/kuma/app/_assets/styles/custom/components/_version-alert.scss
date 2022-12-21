@@ -1,0 +1,44 @@
+// 
+// Version Alert
+// 
+// This is the component that alerts the user if they are
+// viewing documentation for an older version, and provides
+// them with a link to the latest version.
+// 
+
+$version-alert-max-width: 740px;
+$version-alert-margin: $navbarHeight auto 0 auto;
+$version-alert-padding: 2rem 2.5rem 0 2rem;
+$version-alert-title-font-size: 1.5rem;
+$version-alert-title-margin: 0;
+$version-alert-text-margin: 0;
+$version-alert-inner-padding: 1.5rem;
+$version-alert-inner-margin: 0;
+$version-alert-link-color: $color-5;
+
+.version-alert {
+  margin: $version-alert-margin;
+  padding: $version-alert-padding;
+  max-width: $version-alert-max-width;
+
+  .custom-block {
+    padding: $version-alert-inner-padding;
+    margin: $version-alert-inner-margin;
+
+    a {
+      text-decoration: underline;
+      font-weight: $fw-bold;
+      color: $version-alert-link-color;
+    }
+  }
+
+  .custom-block-title {
+    text-transform: uppercase;
+    font-size: $version-alert-title-font-size;
+    margin: $version-alert-title-margin;
+  }
+
+  p {
+    margin: $version-alert-text-margin;
+  }
+}

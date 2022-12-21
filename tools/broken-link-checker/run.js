@@ -166,8 +166,8 @@ async function buildPrUrls(options) {
       ];
     }
 
-    // Any changes in src
-    else if (f.startsWith("src/")) {
+    // Any changes in app/_src
+    else if (f.startsWith("app/_src/")) {
       urlsToAdd = await fileToUrls("*", f);
     }
 

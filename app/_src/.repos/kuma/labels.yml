@@ -1,0 +1,10 @@
+# A set of labels used for tracking issues
+default:
+  labels:
+    - color: 5319e7
+      name: "backport-to-stable"
+      description: "Automatically backport this PR to the latest stable branch"
+      delete: true
+    - color: 0052cc
+      name: "area/infra"
+      description: "Anything related the inner workings rather of the site rather than content (Jekyll, CSS...)"

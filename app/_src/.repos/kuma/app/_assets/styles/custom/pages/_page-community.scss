@@ -1,0 +1,116 @@
+//
+// Community
+//
+
+.page-container--community {
+  .community-form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+
+  .inline-list {
+    display: block;
+    overflow: hidden;
+    list-style: none;
+    margin: 10px 0 0 0 !important;
+    padding: 0;
+
+    li {
+      display: inline-block;
+
+      &:not(:last-of-type) {
+        border-right: 1px solid #ccc;
+        margin-right: 8px;
+        padding-right: 10px;
+      }
+    }
+
+    a {
+      display: block;
+    }
+
+    .icon {
+      display: inline-block;
+      margin: 0 5px 0 0;
+    }
+  }
+
+  .note {
+    margin-top: 10px !important;
+  }
+
+  .form-stacked {
+
+    .btn {
+      margin-top: 0.8rem;
+    }
+  }
+
+  .form-wrapper .custom-block {
+    box-shadow: 0 0 0 1px #cccccc, 0 3px 6px 0 #eaecef;
+    padding: 20px;
+    // border-left: 0;
+
+    // success
+    &.tip {
+      background-color: #fff;
+    }
+
+    // error
+    &.danger {
+
+    }
+  }
+
+  button.is-sending {
+    position: relative;
+    background-color: $green-base !important;
+    cursor: not-allowed;
+
+    span:not(.is-hidden) {
+      display: block;
+      position: absolute;
+      left: calc(50% - 12px);
+    }
+  }
+
+  .is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .form-wrapper {
+    form {
+      border-radius: 0;
+      overflow: visible;
+    }
+  }
+
+  .inline-list {
+    display: block;
+    overflow: hidden;
+    list-style: none;
+    margin: 10px 0 0 0 !important;
+    padding: 0;
+
+    li {
+      display: inline-block;
+
+      &:not(:last-of-type) {
+        border-right: 1px solid #ccc;
+        margin-right: 8px;
+        padding-right: 10px;
+      }
+    }
+
+    a {
+      display: block;
+    }
+
+    .icon {
+      display: inline-block;
+      margin: 0 5px 0 0;
+    }
+  }
+}

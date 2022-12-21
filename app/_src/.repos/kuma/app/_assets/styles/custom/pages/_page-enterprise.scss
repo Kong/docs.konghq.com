@@ -1,0 +1,57 @@
+.page-container--enterprise {
+  .company-list {
+    list-style: none;
+
+    li {
+      display: block;
+    }
+  }
+
+  .company-list__link {
+    $hover-color: #3fa66a;
+    $cubic-bezier: cubic-bezier(0.47, 0.37, 0.36, 0.92);
+
+    overflow: hidden;
+    min-height: 8rem;
+    background-color: #fff;
+    border: 1px solid #c6cfd7;
+    border-radius: 5px;
+    padding: 1.4375rem 0.5rem;
+    transition:
+      color 200ms $cubic-bezier,
+      border 200ms $cubic-bezier;
+
+    &:hover, &:active {
+      // no more scale on hover because Chrome on Retina does not play nice with it
+      // transform: scale(1.05);
+      border: 1px solid $hover-color;
+      color: $hover-color;
+
+      h3, p {
+        color: $hover-color;
+      }
+    }
+
+    h3, p {
+      transition: color 200ms $cubic-bezier;
+    }
+
+    h3 {
+      padding: 0;
+      margin: 0;
+      font-size: 1.188rem;
+      font-weight: 500;
+      color: rgba(#000, 0.70);
+      line-height: 1.5rem;
+    }
+
+    p {
+      font-weight: normal;
+      color: rgba(#000, 0.70);
+    }
+  }
+
+  .pull-request-cta {
+    border-top: 1px solid #eaecef;
+  }
+}

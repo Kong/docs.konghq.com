@@ -51,7 +51,7 @@ module PluginSingleSource
       # Needed so that regeneration works for single sourced pages
       # It must be set to the source file
       # Also, @path MUST NOT be set, it falls back to @relative_path
-      @relative_path = File.expand_path(source_path, site.source)
+      @relative_path = source_path
 
       # Override any frontmatter as required
       unless plugin.respond_to?(:ext_data) && plugin.ext_data['frontmatter'] && plugin.ext_data['frontmatter'][version]

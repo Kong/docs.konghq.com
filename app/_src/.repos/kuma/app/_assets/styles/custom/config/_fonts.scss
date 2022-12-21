@@ -1,0 +1,25 @@
+// 
+// Fonts
+// 
+
+// Fallback system fonts
+
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// Custom fonts
+
+$roboto-mono-regular: 'Roboto Mono Regular';
+$roboto: 'Roboto';
+
+// Base fonts and their fallbacks
+
+$base-font-family: $roboto, $sans-serif;
+$base-heading-font-family: $roboto, $sans-serif;
+$base-mono-family: $roboto-mono-regular, $monospace;
+
+// Font weights
+
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;

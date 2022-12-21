@@ -1,0 +1,158 @@
+---
+layout: default
+title: Blog
+subTitle: Stay up to date on the latest Kuma news.
+permalink: /blog/
+pagination:
+  enabled: true
+  permalink: '/page/:num/'
+themeContainerClasses: 'blog-page blog-page--pagination no-sidebar'
+---
+
+<div class="page-container page-container--blog">
+
+  <header class="page-header text-center bg-gradient">
+    <div class="inner">
+      <h1>Blog</h1>
+      <p  class="page-sub-title">
+      {{ page.subTitle }}
+      </p>
+    </div>
+  </header>
+
+  <div class="inner">
+    <div class="lg:flex lg:space-x-8 lg:items-start">
+      <div class="blog-content-area lg:w-2/3">
+        <div class="blog-index-list">
+          {% for post in paginator.posts %}
+            <article class="blog-article">
+
+              <div class="blog-article__content-wrapper {% if post.headerImage %} has-image {% endif %}">
+                {% if post.headerImage %}
+                  <div
+                    class="blog-post__header-image"
+                    style="background-image: url('{{ post.headerImage }}');"
+                    >
+                    <img
+                      src="{{ post.headerImage }}"
+                      alt="Featured image for a blog article titled {{ post.title }}."
+                      class="sr-only"
+                    >
+                  </div>
+                {% endif %}
+
+                <div class="blog-article__post-inner">
+                  <header class="blog-index__post-header">
+                    <div class="blog-index__post-header__content">
+                      <div class="blog-post__info">
+                        <span class="date">
+                          {% include post_date.html date=post.date %}
+                        </span>
+                        <span class="separator">/</span>
+                        <span class="reading-time">
+                          {% include reading_time.html text=post.content %}
+                        </span>
+                      </div>
+                      <h2 class="blog-index__post-title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                      </h2>
+                    </div>
+                  </header>
+
+                  {% if post.description %}
+                    <div class="blog-index__post-summary">
+                      {% include post_summary.html summary=post.description %}
+                    </div>
+                  {% endif %}
+
+                  <footer class="blog-index__post-footer">
+                    <a href="{{ post.url }}">Continue Reading &rarr;</a>
+                  </footer>
+                </div>
+
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="blog-sidebar lg:w-1/3">
+        <div class="card">
+          <header class="card__header">
+            <div class="card__title">
+              <h3>Get Community Updates</h3>
+            </div>
+          </header>
+          <div class="card__content">
+            <div class="mb-4">
+              <p>Sign up for our Kuma community newsletter to get the most recent updates and product announcements.</p>
+            </div>
+            <div class="newsletter-form">
+              {% include newsletter_form.html stacked=true submit_text='Join Newsletter' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if paginator.total_pages > 1 %}
+      <div class="pagination-wrapper">
+        <ul class="pagination">
+          {% if paginator.previous_page %}
+            <li class="page-item">
+              <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Prev</a>
+            </li>
+          {% else %}
+            <li class="disabled">
+              <a>Prev</a>
+            </li>
+          {% endif %}
+
+          {% if paginator.first_page and paginator.previous_page and paginator.first_page != paginator.previous_page %}
+            <li class="page-item">
+              <a href="{{ paginator.first_page_path | prepend: site.baseurl | replace: '//', '/' | remove: 'index.html' }}">{{ paginator.first_page }}</a>
+            </li>
+          {% endif %}
+
+          {% assign first_trail_page = paginator.page_trail | map: 'num' | first | minus: paginator.first_page %}
+          {% if first_trail_page >= 2  %}
+            <li class="page-item disabled">
+              <a>...</a>
+            </li>
+          {% endif %}
+
+          {% if paginator.page_trail %}
+            {% for trail in paginator.page_trail %}
+              <li class="page-item {% if page.url == trail.path %} active {% endif %}">
+                <a href="{{ trail.path | prepend: site.baseurl | remove: 'index.html' }}" title="{{ trail.title }}">{{ trail.num }}</a>
+              </li>
+            {% endfor %}
+          {% endif %}
+
+          {% assign last_trail_page = paginator.page_trail | map: 'num' | last | minus: paginator.last_page | abs %}
+          {% if last_trail_page >= 2  %}
+            <li class="page-item disabled">
+              <a>...</a>
+            </li>
+          {% endif %}
+
+          {% if paginator.last_page and paginator.next_page and paginator.last_page != paginator.next_page %}
+            <li class="page-item">
+              <a href="{{ paginator.last_page_path | prepend: site.baseurl | replace: '//', '/' | remove: 'index.html' }}">{{ paginator.last_page }}</a>
+            </li>
+          {% endif %}
+
+          {% if paginator.next_page %}
+            <li class="page-item">
+              <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next</a>
+            </li>
+          {% else %}
+            <li class="disabled">
+              <a>Next</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+  </div>
+</div>
