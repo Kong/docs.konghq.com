@@ -37,9 +37,11 @@ that are regular expressions.  All regular expressions are ordered
 based on the `regex_priority` and the `created_at` value of the route.
 Regular expressions with a higher `regex_priority` are considered
 before those with a lower `regex_priority`.  If routes have the same
-`regex_priority`, regular expressions with a lower (older)
-`created_at` timestamp in the database are considered before those
-that have a later `created_at` timestamp.
+`regex_priority`, the order in which they are considered is undefined
+in {{site.base_gateway}} version 3.0 and above.  In earlier versions,
+identical regular expressions with a lower (older) `created_at`
+timestamp in the database are considered before those that have a
+later `created_at` timestamp.
 
 If no regular expressions match the path, all non-regular expression
 (prefix) paths are considered.  Those paths are sorted from longest to
