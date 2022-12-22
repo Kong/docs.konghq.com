@@ -31,22 +31,27 @@ third-party:
         - 10
         - 9
         - Amazon RDS
+      icon: postgresql.svg
     - name: Cassandra
       versions:
         - 3.11
+      icon: cassandra.svg
     - name: Redis
       versions:
         - 6
         - 7
         - AWS Elasticache
+      icon: redis.svg
     - name: InfluxDB
       versions:
         - 1
+      icon: influxdb.svg
     - name: Kafka
       versions:
         - 3.3
         - 3.2
         - Confluent Cloud
+      icon: kafka.svg
   metrics:
     - name: Prometheus
       versions:
@@ -64,8 +69,11 @@ third-party:
     - name: Hashicorp Vault
       versions:
         - 1.12
+      icon: vaultproject.svg
     - name: AWS Secrets Manager
+      icon: aws.svg
     - name: Google Secrets Manager
+      icon: gcp.svg
   identity_provider:
     - name: Auth0
     - name: AWS Cognito
@@ -91,18 +99,25 @@ third-party:
     - name: Kong Mesh
       versions:
         - 2.0
+      icon: kong.svg
     - name: Istio
       versions:
         - 1.16
         - 1.15
         - 1.14
+      icon: istio.svg
   log_provider:
     - name: Splunk
+      icon: splunk.svg
     - name: Datadog
+      icon: datadog.svg
     - name: Loggly
+      icon: loggly.svg
   s3_api:
     - name: AWS S3
+      icon: aws.svg
     - name: MinIO
+      icon: minio.svg
 
 browsers:
   - name: Edge

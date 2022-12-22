@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180.34 189.93">
+   <defs>
+      <style>.statsd-cls-1{fill:#fff;}.statsd-cls-2{fill:#aadbdb;}.statsd-cls-3{fill:#ff000d;}.statsd-cls-4{fill:#040200;}</style>
+   </defs>
+   <title>StatsD</title>
+   <g id="Layer_2" data-name="Layer 2">
+      <g id="Layer_1-2" data-name="Layer 1">
+         <g id="Mouth">
+            <path d="M20.6,119.51v5.94H31.53v17.06h28V125.38h4v32.17H91.54V125.31h4.57V164.5h27.47V125.31h5.19v10.93h26.91V125.45h9.91v-6.14Z"></path>
+            <rect class="statsd-cls-1" x="36.85" y="125.52" width="16.72" height="11.46"></rect>
+            <rect class="statsd-cls-1" x="68.85" y="125.52" width="16.72" height="26.26"></rect>
+            <rect class="statsd-cls-1" x="101.26" y="125.52" width="16.96" height="32.8"></rect>
+            <rect class="statsd-cls-1" x="133.85" y="125.52" width="16.72" height="4.75"></rect>
+         </g>
+         <g id="RightEye">
+            <circle cx="131.5" cy="72.78" r="35"></circle>
+            <circle class="statsd-cls-1" cx="131.5" cy="72.78" r="29"></circle>
+            <g id="Layer_4" data-name="Layer 4">
+               <rect x="132.12" y="45.25" width="6.77" height="2.59" transform="translate(193.86 -84.31) rotate(95.08)"></rect>
+               <rect x="141.18" y="48.5" width="6.77" height="2.59" transform="translate(266.98 -41.82) rotate(124.19)"></rect>
+               <rect x="148.14" y="54.28" width="6.77" height="2.59" transform="translate(300.59 -6.3) rotate(137.31)"></rect>
+               <rect x="152.71" y="62.21" width="6.77" height="2.59" transform="translate(324.34 53.77) rotate(154.56)"></rect>
+               <rect x="153.89" y="71.29" width="6.77" height="2.59" transform="translate(317.98 137.21) rotate(177.13)"></rect>
+               <rect x="152.96" y="80.59" width="6.77" height="2.59" transform="translate(258.15 226.05) rotate(-152.87)"></rect>
+               <rect x="122.15" y="45.47" width="6.77" height="2.59" transform="translate(154.49 -84.04) rotate(82.05)"></rect>
+               <rect x="113.27" y="49.17" width="6.77" height="2.59" transform="translate(86.63 -73.04) rotate(52.94)"></rect>
+               <rect x="106.61" y="55.29" width="6.77" height="2.59" transform="translate(61.74 -57.31) rotate(39.82)"></rect>
+               <rect x="102.44" y="63.44" width="6.77" height="2.59" transform="translate(32.96 -35.66) rotate(22.58)"></rect>
+               <rect x="101.72" y="72.57" width="6.77" height="2.59"></rect>
+               <rect x="103.11" y="81.81" width="6.77" height="2.59" transform="matrix(0.87, -0.5, 0.5, 0.87, -27.28, 64.38)"></rect>
+            </g>
+            <polygon class="statsd-cls-3" points="130.81 45.59 129.54 66.55 132.08 66.55 130.81 45.59"></polygon>
+            <circle cx="131.5" cy="72.78" r="7.5"></circle>
+         </g>
+         <g id="LeftEye">
+            <circle cx="58.5" cy="72.78" r="35"></circle>
+            <circle class="statsd-cls-1" cx="58.5" cy="72.78" r="29"></circle>
+            <g id="Layer_4_copy" data-name="Layer 4 copy">
+               <rect x="59.12" y="45.25" width="6.77" height="2.59" transform="translate(114.4 -11.6) rotate(95.08)"></rect>
+               <rect x="68.18" y="48.5" width="6.77" height="2.59" transform="translate(152.96 18.57) rotate(124.19)"></rect>
+               <rect x="75.14" y="54.28" width="6.77" height="2.59" transform="translate(173.93 43.19) rotate(137.31)"></rect>
+               <rect x="79.71" y="62.21" width="6.77" height="2.59" transform="translate(185.42 85.14) rotate(154.56)"></rect>
+               <rect x="80.89" y="71.29" width="6.77" height="2.59" transform="translate(172.07 140.86) rotate(177.13)"></rect>
+               <rect x="79.96" y="80.59" width="6.77" height="2.59" transform="translate(120.18 192.76) rotate(-152.87)"></rect>
+               <rect x="49.15" y="45.47" width="6.77" height="2.59" transform="translate(91.58 -11.74) rotate(82.05)"></rect>
+               <rect x="40.27" y="49.17" width="6.77" height="2.59" transform="translate(57.62 -14.79) rotate(52.94)"></rect>
+               <rect x="33.61" y="55.29" width="6.77" height="2.59" transform="translate(44.81 -10.57) rotate(39.82)"></rect>
+               <rect x="29.44" y="63.44" width="6.77" height="2.59" transform="translate(27.36 -7.64) rotate(22.58)"></rect>
+               <rect x="28.72" y="72.57" width="6.77" height="2.59"></rect>
+               <rect x="30.11" y="81.81" width="6.77" height="2.59" transform="matrix(0.87, -0.5, 0.5, 0.87, -37.06, 27.88)"></rect>
+            </g>
+            <polygon class="statsd-cls-3" points="57.81 45.59 56.55 66.55 59.08 66.55 57.81 45.59"></polygon>
+            <circle cx="58.5" cy="72.78" r="7.5"></circle>
+         </g>
+         <path class="statsd-cls-4" d="M13.54,47.05C6.79,32,3.81,15.08,5.46.54c9.48,8.8,18.08,18.43,32,19.81,37.39-24.74,75.22-24.84,113.11,0C164.15,19,172.93,9.65,182.94,0c-.41,16.73,0,32.44-8.65,46.79,13.73,23.85,17.47,49.06,9.84,75.57-6,20.91-18.16,37.64-35.84,50.29-34.93,25-83.16,22.62-115.76-5.55C-.32,138.72-11.23,89.22,13.54,47.05Zm153.8-.23c6.4-9.44,9.11-20.17,9-32.6-8,7.84-17.48,11-26.9,12.7C112,1.29,75.4,1.44,38.48,27,29,25,19.54,22.09,11.75,14.22A55.36,55.36,0,0,0,20.59,47c-26,40.92-15.36,89.18,16.51,116.25,32,27.19,79.57,27.7,112.39,1.11S193.82,88.35,167.34,46.82Z"></path>
+      </g>
+   </g>
+</svg>
