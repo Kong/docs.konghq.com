@@ -26,6 +26,9 @@ with any of the following backends:
 **Dynamic Plugin Ordering**
 : {{site.konnect_short_name}} now supports changing the order in which plugins are applied. See the [plugin documentation](/konnect/runtime-manager/plugins) for more details. 
 
+**App Registration Enhancement**
+: {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
+
 **Runtime Groups Configuration API**
 : Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
 
