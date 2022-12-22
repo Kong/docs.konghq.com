@@ -2,6 +2,7 @@
 title: Configure Curity for Dynamic Client Registration
 breadcrumb: Curity
 content_type: how-to
+beta: true
 ---
 
 
@@ -10,6 +11,10 @@ content_type: how-to
 * Enterprise {{site.konnect_short_name}} account.
 * A [Curity account](https://developer.curity.io/)
 * A [Curity instance](https://curity.io/resources/getting-started/) that can be publicly accessed over the internet or from within the network where your gateways are installed.
+
+{% tip %}
+This feature requires Curity v7.x.
+{% endtip %}
 
 ## Configure Curity
 
