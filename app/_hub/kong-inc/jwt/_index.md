@@ -646,3 +646,10 @@ associated [Consumer][consumer-object].
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
+
+## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+
+* Breaking changes
+  * Denies a request that has different tokens in the jwt token search locations.
