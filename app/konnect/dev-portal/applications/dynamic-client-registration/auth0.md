@@ -12,19 +12,19 @@ content_type: how-to
 
 ## Configure Auth0
 
-To use dynamic client registration (DCR) with Auth0 as the identity provider (IdP), there are two important configurations to prepare in Auth0. First, you must authorize an Auth0 application so Konnect can use the Auth0 Management API on your behalf. Next, you will create an API audience that Konnect applications will be granted access to.
+To use dynamic client registration (DCR) with Auth0 as the identity provider (IdP), there are two important configurations to prepare in Auth0. First, you must authorize an Auth0 application so Konnect can use the Auth0 Management API on your behalf. Next, you will create an API audience that {{site.konnect_short_name}} applications will be granted access to.
 
 To get started configuring Auth0, log in to your Auth0 dashboard and complete the following:
 
 ### Configure access to the Auth0 Management API
 
-Konnect will use a client ID and secret from an Auth0 application that has been authorized to perform specific actions in the Auth0 Management API.
+{{site.konnect_short_name}} will use a client ID and secret from an Auth0 application that has been authorized to perform specific actions in the Auth0 Management API.
 
 1. From the sidebar, select **Applications > Applications**
 
 2. Click the **Create Application** button
 
-3. Give the application a memorable name, like "Konnect Portal DCR Admin"
+3. Give the application a memorable name, like "{{site.konnect_short_name}} Portal DCR Admin"
 
 4. Select the application type **Machine to Machine Applications** and click **create**
 
@@ -46,7 +46,7 @@ Konnect will use a client ID and secret from an Auth0 application that has been 
 ### Configure the API audience
 
 {:.note}
-> **Note:** You can use an existing API entity if there is one already defined in Auth0 that represents the audience you are/will be serving with Konnect Portal applications.
+> **Note:** You can use an existing API entity if there is one already defined in Auth0 that represents the audience you are/will be serving with {{site.konnect_short_name}} Portal applications.
 In most cases, it is a good idea to create a new API that is specific to your Konnect Portal applications.
 
 To create a new API audience:
@@ -55,13 +55,13 @@ To create a new API audience:
 
 2. Click the **Create API** button
 
-3. Give the API a memorable **name**, like "Konnect Portal Applications"
+3. Give the API a memorable **name**, like "{{site.konnect_short_name}} Portal Applications"
 
 4. Set the **identifier** to a value that represents the audience the API is serving
 
 5. Click **create**
 
-6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Client Token Audience** value in Konnect
+6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Client Token Audience** value in {{site.konnect_short_name}}
 
 ## Configure the Dev Portal
 
