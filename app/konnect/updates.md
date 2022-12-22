@@ -23,9 +23,6 @@ with any of the following backends:
 * GCP Secret Manager
 : See the [vaults documentation](/konnect/runtime-manager/vaults) to get started.
 
-**Dynamic Plugin Ordering**
-: {{site.konnect_short_name}} now supports changing the order in which plugins are applied. See the [plugin documentation](/konnect/runtime-manager/plugins) for more details. 
-
 **App Registration Enhancement**
 : {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
 
