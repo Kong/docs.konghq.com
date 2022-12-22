@@ -65,24 +65,32 @@ params:
       value_in_examples: consumer
       datatype: string
       description: |
-        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, `header`, or `path`.
+        The type of identifier used to generate the rate limit key.
+        Defines the scope used to increment the rate limiting counters.
+        Can be `ip`, `credential`, `consumer`, `service`, `header`, or `path`.
     - name: path
       required: semi
       datatype: string
       description: |
-        Request path to use as the rate limit key when the `path` identifier is defined.
+        Request path to use as the rate limit key when `config.identifier` is
+        configured with the value: `path`.
     - name: header_name
       required: semi
       datatype: string
       description: |
-        Header name to use as the rate limit key when the `header` identifier is defined.
+        Header name to use as the rate limit key when `config.identifier` is
+        configured with the value: `header`.
     - name: dictionary_name
       required: true
       default: kong_rate_limiting_counters
       value_in_examples: null
       datatype: string
       description: |
-        The shared dictionary where counters will be stored until the next sync cycle.
+        The shared dictionary where counters are stored. When the plugin is
+        configured to synchronize counter data externally (i.e. 
+        `config.strategy` is `cluster` or `redis` and `config.sync_rate` is not
+        `-1`), this dictionary serves as a buffer to populate counters in the
+        data store on each synchronization cycle.
     - name: sync_rate
       required: true
       default: null
@@ -101,7 +109,7 @@ params:
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
-        data and sync configuration is shared in a namespace.
+        data and sync configuration is isolated in each namespace.
 
         In DB-less mode, this field will be generated automatically on every configuration change.
         We recommended setting `namespace` explicitly when using DB-less mode.
@@ -161,7 +169,10 @@ params:
       value_in_examples: false
       datatype: boolean
       description: |
-        Optionally hide informative response headers. Available options: `true` or `false`.
+        Optionally hide informative response headers that would otherwise
+        provide information about the current status of limits and counters as
+        described in the paragraph [Headers sent to the client](#headers-sent-to-the-client).
+        Available options: `true` or `false`.
     - name: redis.host
       required: semi
       default: null
@@ -368,6 +379,14 @@ params:
       datatype: string
       description: |
         Sets the time window type to either `sliding` (default) or `fixed`.
+        Sliding windows apply the rate limiting logic while taking into account
+        previous hit rates (from the window the is immediately preceding the current)
+        using a dynamic weight.
+        Fixed windows consist of buckets that are statically assigned to a
+        definitive time range, each request is mapped to only one fixed window
+        based on its timestamp and will affect only that window's counters.
+        For more information refer to the
+        [Enterprise Rate Limiting Library Overview](/gateway/latest/reference/rate-limiting/#overview).
     - name: retry_after_jitter_max
       required: true
       default: 0
