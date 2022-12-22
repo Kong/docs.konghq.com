@@ -11,8 +11,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
-**Curity support for Dynamic Client Registration**
-: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity) is now supported as an identity provider for Dynamic Client Registration (DCR).
+**Curity support for Dynamic Client Registration (beta)**
+: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity) is now in beta release as an identity provider for Dynamic Client Registration (DCR).
 
 **Secrets management using vaults**
 : {{site.konnect_short_name}} now supports storing sensitive values in a vault
