@@ -11,6 +11,21 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
+**Secrets management using vaults**
+: {{site.konnect_short_name}} now supports storing sensitive values in a vault
+with any of the following backends:
+* Environment variables
+* AWS Secrets Manager
+* HashiCorp Vault
+* GCP Secret Manager
+: See the [vaults documentation](/konnect/runtime-manager/vaults) to get started.
+
+**App Registration Enhancement**
+: {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
+
+**Runtime Groups Configuration API**
+: Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
+
 **New {{site.konnect_saas}} Analytics custom report chart types and metrics**
 : You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
 
@@ -21,13 +36,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
 
+**Konnect Overview & Service Wizard**
+: {{site.konnect_short_name}} admins now have an [Overview page](/konnect/) which offers a high-level summary of their entire Konnect platform, news updates, and learning opportunities. In addition, we've added a new Service Wizard to walk admins through the end-to-end process of setting up a Service Package & Service Version, configuring a {{site.base_gateway}}, uploading documentation, and publishing a Service to the developer portal.
+
 **{{site.base_gateway}} 3.1 support**
-: {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
+: {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms.
 
 **Support for all {{site.base_gateway}} 3.1 plugins**
 : {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins. review our [compatibility documentation](/konnect/compatibility/#plugin-compatibility).
 
-
+**Runtime Groups API**
+: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
 ## November 2022
 
 ### 2022.11.21
