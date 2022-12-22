@@ -83,6 +83,13 @@
           url: /runtime-manager/gateway-config
         - text: Runtime Configuration
           url: /runtime-manager/manage-proxy-config
+    - text: Secrets Management
+      items:
+        - text: Overview
+          url: /runtime-manager/vaults
+        - text: Set Up and Use a Vault in Konnect
+          url: /runtime-manager/vaults/how-to
+
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
 
