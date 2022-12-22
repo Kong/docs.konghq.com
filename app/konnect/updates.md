@@ -39,8 +39,8 @@ with any of the following backends:
 
 : For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
 
-**Konnect Overview dashboard improvements**
-: The [Overview page](/konnect/) gives org admins the ability to see easily see a high-level summary of their entire {{site.konnect_short_name}} ecosystem, news updates, learning opportunities, and most significantly easily create a new gateway service implementation. By clicking **Add a Service**, Org Admins can create a gateway service implementation top down. This means, setting up a service package, version, uploading and publishing docs to the Dev Portal, and applying plug-ins all within a three-step workflow!
+**Konnect Overview & Service Wizard**
+: {{site.konnect_short_name}} admins now have an [Overview page](/konnect/) which offers a high-level summary of their entire Konnect platform, news updates, and learning opportunities. In addition, we've added a new Service Wizard to walk admins through the end-to-end process of setting up a Service Package & Service Version, configuring a {{site.base_gateway}}, uploading documentation, and publishing a Service to the developer portal.
 
 **{{site.base_gateway}} 3.1 support**
 : {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms.
