@@ -69,6 +69,7 @@ params:
         - `consumer`
         - `credential`
         - `ip`
+        - `subdomain` (The first part of your hostname eg. `<subdomain>.domain.com` will rate limit by subdomain.)
         - `service` (The `service.id` or `service.name` configuration must be provided if you're adding the plugin to a service through the top-level `/plugins` endpoint.)
         - `header` (The `header_name` configuration must be provided.)
         - `path` (The `path` configuration must be provided.)
