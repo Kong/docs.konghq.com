@@ -55,6 +55,25 @@ Kong Ingress Controller has been tested against the following Service Mesh versi
   {% endfor %}
 </div>
 
+
+## Metrics
+
+Kong Ingress Controller has been tested against the following metrics providers:
+
+<div class="docs-grid-install">
+  {% for d in include.data.third-party.metrics %}
+    <div class="docs-grid-install-block no-description">
+      <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
+      <div class="install-text">
+        <span style="font-size: 22px;display:block;margin-bottom:4px;">{{ d.name }}</span>
+        {% if d.versions %}
+          {{ d.versions | join: ", " }}
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
 ## Log Providers
 
 Kong Ingress Controller has been tested against the following log providers:

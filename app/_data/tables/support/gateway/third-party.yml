@@ -1,0 +1,147 @@
+_third_party:
+  postgres: &postgres
+    name: Postgres
+    versions:
+      - 15
+      - 14
+      - 13
+      - 12
+      - 11
+      - 10
+      - 9
+      - Amazon RDS
+    icon: postgresql.svg
+  cassandra: &cassandra
+    name: Cassandra
+    versions:
+      - 3.11
+    icon: cassandra.svg
+  redis: &redis
+    name: Redis
+    versions:
+      - 6
+      - 7
+      - AWS Elasticache
+    icon: redis.svg
+  influxdb: &influxdb
+    name: InfluxDB
+    versions:
+      - 1
+    icon: influxdb.svg
+  kafka: &kafka
+    name: Kafka
+    versions:
+      - 3.3
+      - 3.2
+      - Confluent Cloud
+    icon: kafka.svg
+
+  # Metrics
+  prometheus: &prometheus
+    name: Prometheus
+    versions:
+      - 2.40
+      - 2.37
+    icon: prometheus.svg
+  statsd: &statsd
+    name: statsd
+    versions:
+      - 0.9
+    icon: statsd.svg
+  opentelemetry: &opentelemetry
+    name: OpenTelemetry
+    icon: opentelemetry.svg
+  zipkin: &zipkin
+    name: Zipkin
+    versions:
+      - 2.23
+      - 2.22
+    icon: zipkin.svg
+
+  # Vaults
+  vaultproject: &vaultproject
+    name: Hashicorp Vault
+    versions:
+      - 1.12
+    icon: vaultproject.svg
+  aws-sm: &aws-sm
+    name: AWS Secrets Manager
+    icon: aws.svg
+  gcp-sm: &gcp-sm
+    name: Google Secrets Manager
+    icon: gcp.svg
+
+  # IDP
+  auth0: &auth0
+    name: Auth0
+  cognito: &cognito
+    name: AWS Cognito
+  connect2id: &connect2id
+    name: Connect2id
+  curity: &curity
+    name: Curity
+  dex: &dex
+    name: Dex
+  gluu: &gluu
+    name: Gluu
+  google: &google
+    name: Google
+  identityserver: &identityserver
+    name: IdentityServer
+  keycloak: &keycloak
+    name: Keycloak
+  azure-ad: &azure-ad
+    name: Microsoft Azure Active Directory
+  microsoft-adfs: &microsoft-adfs
+    name: Microsoft Active Directory Federation Services
+  microsoft-live-connect: &microsoft-live-connect
+    name: Microsoft Live Connect
+  okta: &okta
+    name: Okta
+  onelogin: &onelogin
+    name: OneLogin
+  openam: &openam
+    name: OpenAM
+  paypal: &paypal
+    name: Paypal
+  pingfederate: &pingfederate
+    name: PingFederate
+  salesforce: &salesforce
+    name: Salesforce
+  wso2: &wso2
+    name: WSO2
+  yahoo: &yahoo
+    name: Yahoo!
+
+  # Mesh
+  kongmesh: &kongmesh
+    name: Kong Mesh
+    versions:
+      - 2.0
+    icon: kong.svg
+  istio: &istio
+    name: Istio
+    versions:
+      - 1.16
+      - 1.15
+      - 1.14
+    icon: istio.svg
+
+  # Log provider
+  splunk: &splunk
+    name: Splunk
+    icon: splunk.svg
+  datadog: &datadog
+    name: Datadog
+    icon: datadog.svg
+  loggly: &loggly
+    name: Loggly
+    icon: loggly.svg
+
+  # S3 Compatible APIs
+  s3: &s3
+    name: AWS S3
+    icon: aws.svg
+  minio: &minio
+    name: MinIO
+    icon: minio.svg

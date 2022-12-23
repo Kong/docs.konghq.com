@@ -26,4 +26,7 @@ Kong aims to support the last 2 versions of any third party tool, plus the curre
   {% navtab 3.1 %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.3x %}
   {% endnavtab %}
+  {% navtab 3.2 %}
+    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.32 %}
+  {% endnavtab %}
 {% endnavtabs %}
