@@ -31,8 +31,8 @@ class Plugin(object):
   pass
 ```
 
-* A class named `Plugin` defines the class that implements this plugin. 
-* A dictionary called `Schema` that defines expected values and data types of the plugin. 
+* A class named `Plugin` defines the class that implements this plugin.
+* A dictionary called `Schema` that defines expected values and data types of the plugin.
 * The variables `version` and `priority` that define the version number and priority of execution respectively.
 
 {:.note}
@@ -63,6 +63,9 @@ You can implement custom logic during the following phases using the same functi
 
 The presence of the `response` handler automatically enables the buffered proxy mode.
 
+{:.note}
+> **Notes:** a positional argument is required in the definition of phase handler method.
+
 ### Type hints
 
 Support for [type hints](https://www.python.org/dev/peps/pep-0484/) is available. To use type hints
@@ -75,6 +78,25 @@ class Plugin(object):
         self.config = config
     def access(self, kong: kong.kong):
         host, err = kong.request.get_header("host")
+```
+
+{:.warning}
+> **Warning:** classes and functions in the `kong_pdk.pdk.kong` module cannot be used directly because they're only used for type hints. To call PDK functions, you need to use the `kong` object which is passed as the phase handler's parameter. Please keep in mind that if you want to call PDK functions outside of the phase handler, you'll also need to pass the `kong` object to your outer code.
+
+Below is an example of using the PDK functions outside of the `Plugin` class:
+
+```python
+import kong_pdk.pdk.kong as kong
+
+def example_access_phase(kong: kong.kong):
+    host_header, err = kong.request.get_header("host")
+    kong.log.info(host_header)
+
+class Plugin(object):
+    def __init__(self, config):
+        self.config = config
+    def access(self, kong: kong.kong):
+        example_access_phase(kong)
 ```
 
 ## Embedded server
@@ -112,6 +134,12 @@ their defaults and can be omitted:
 pluginserver_names = my-plugin,other-one
 pluginserver_my_plugin_query_cmd = /path/to/my-plugin --dump
 pluginserver_other_one_query_cmd = /path/to/other-one --dump
+```
+
+If you want to open verbose logging, pass an `-v` argument to the start cmd line:
+
+```
+pluginserver_my_plugin_start_cmd = /path/to/my-plugin.py -v
 ```
 
 ## Concurrency model
