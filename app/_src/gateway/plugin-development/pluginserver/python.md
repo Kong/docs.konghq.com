@@ -136,7 +136,7 @@ pluginserver_my_plugin_query_cmd = /path/to/my-plugin --dump
 pluginserver_other_one_query_cmd = /path/to/other-one --dump
 ```
 
-If you want to open verbose logging, pass an `-v` argument to the start cmd line:
+If you want to open verbose logging, pass an `-v` argument to the start command line:
 
 ```
 pluginserver_my_plugin_start_cmd = /path/to/my-plugin.py -v
