@@ -20,8 +20,8 @@ items:
       - text: Stability
         url: /stability
       - text: Release Notes
-        url: /gateway/changelog
-        absolute_url: true
+        url: /changelog
+        src: /gateway/changelog-3.x
       - text: Key Concepts
         items:
           - text: Services

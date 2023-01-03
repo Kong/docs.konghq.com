@@ -9,8 +9,7 @@
     - text: Stages of Software Availability
       url: /availability-stages
     - text: Changelog
-      url: /gateway/changelog
-      absolute_url: true
+      url: /changelog
 
 - title: Install and Run
   icon: /assets/images/icons/documentation/icn-deployment-color.svg

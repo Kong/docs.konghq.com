@@ -1,5 +1,5 @@
 ---
-title: Kong Gateway Changelog
+title: Kong Gateway 1.x Changelog
 no_version: true
 ---
 
