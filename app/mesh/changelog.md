@@ -98,27 +98,6 @@ Built on top of [Kuma 1.7.1](https://github.com/kumahq/kuma/releases/tag/1.7.1)
 
 - Check both old and new spec on Update
 
-## 1.7.4
-> Release on **2022/10/10**
-
-Built on top of [Kuma 1.6.2](https://github.com/kumahq/kuma/releases/tag/1.6.2)
-
-### Changes
-
-- Added support for evicted Pods.
-- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
-
-## 1.7.2
-
-> Released on **2022/07/19**
-
-Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
-
-### Changes
-
-- Check both old and new spec on Update
-
-
 ## 1.8.0
 
 > Released on **2022/06/13**
@@ -156,6 +135,26 @@ Dependency upgrades:
 
 * The `kuma-cp` no longer comes with a built-in DNS server. Use
   the DNS server embedded in the dataplane proxy (enabled by default).
+
+## 1.7.4
+> Release on **2022/10/10**
+
+Built on top of [Kuma 1.6.2](https://github.com/kumahq/kuma/releases/tag/1.6.2)
+
+### Changes
+
+- Added support for evicted Pods.
+- Prevents a potential data race by creating a deep copy of tags when generating outbounds.
+
+## 1.7.2
+
+> Released on **2022/07/19**
+
+Built on top of [Kuma 1.6.1](https://github.com/kumahq/kuma/releases/tag/1.6.1)
+
+### Changes
+
+- Check both old and new spec on Update
 
 ## 1.7.1
 
