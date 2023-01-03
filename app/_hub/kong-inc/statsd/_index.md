@@ -102,7 +102,28 @@ params:
       default: 'workspace_id'
       datatype: string
       description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
-      minimum_version: "3.0.x"   
+      minimum_version: "3.0.x"
+    - name: flush_timeout
+      required: true
+      default: '`2`'
+      value_in_examples: 2
+      datatype: number
+      description: |
+        Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.
+      minimum_version: "3.1.x"
+    - name: retry_count
+      required: true
+      default: 10
+      value_in_examples: 10
+      datatype: integer
+      description: Number of times to retry when sending data to the upstream server.
+      minimum_version: "3.1.x"
+    - name: queue_size
+      required: true
+      default: 1
+      datatype: integer
+      description: Maximum number of log entries to be sent on each message to the upstream server.
+      minimum_version: "3.1.x"
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
