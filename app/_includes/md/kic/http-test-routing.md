@@ -39,5 +39,5 @@ Pod Information:
 ```
 
 If everything is deployed correctly, you should see the above response.
-This verifies that Kong can correctly route traffic to an application running
+This verifies that {{site.base_gateway}} can correctly route traffic to an application running
 inside Kubernetes.

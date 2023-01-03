@@ -154,8 +154,8 @@ kongconsumer.configuration.konghq.com/user patched
 
 ### Send authenticated requests
 
-To send an authenticated request, you'll need to create signed JWTs for your
-users. On jwt.io, add an issuer matching the `key` field from your Secrets to
+To send an authenticated request, you must create signed JWTs for your
+users. On [jwt.io](https://jwt.io), add an issuer matching the `key` field from your Secrets to
 the JWT payload (for example, `"iss":"admin-isuer",` for the `admin-jwt`
 Secret). The "Encoded" output will update automatically. Copy the "Encoded"
 value and store it in an environment variable:
