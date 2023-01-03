@@ -55,7 +55,7 @@ the {{site.kic_product_name}}:
 - [Setting up upstream mTLS](/kubernetes-ingress-controller/{{page.kong_version}}/guides/upstream-mtls)
   This guide gives an overview of how to setup mutual TLS authentication
   between Kong and your upstream server.
-- [Preserveing Client IP address](/kubernetes-ingress-controller/{{page.kong_version}}/guides/preserve-client-ip)
+- [Preserving Client IP address](/kubernetes-ingress-controller/{{page.kong_version}}/guides/preserve-client-ip)
   This guide gives an overview of different methods to preserve the Client
   IP address.
 - [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongclusterplugin-resource)
