@@ -7,6 +7,9 @@ KongPlugin and KongClusterPlugin custom resources other configuration. These
 resources change how {{site.base_gateway}} handles proxied requests. This guide
 configures plugins that modify headers and enforce authentication requirements.
 
+See the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+documentation for more information about the purpose of the `KongPlugin` resource.
+
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}

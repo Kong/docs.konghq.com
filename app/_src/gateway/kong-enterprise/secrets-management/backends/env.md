@@ -34,6 +34,9 @@ This allows you to reference the secrets separately:
 {vault://env/pg-creds/password}
 ```
 
+{:.note}
+> When adding an environment variable with Helm, ensure that the variable being passed has `kong-` appended to it. 
+
 ## Configuration via vaults entity
 
 {:.note}
