@@ -52,7 +52,7 @@
 # ENTERPRISE GATEWAY
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/
-/enterprise/2.4.x/release-notes       /gateway/changelog
+/enterprise/2.4.x/release-notes       /gateway/latest/changelog
 
 
 # GETTING STARTED GUIDES
@@ -792,7 +792,8 @@
 /gateway/2.7.x/install-and-run/upgrade-enterprise/#dev-portal-migrations    /enterprise/2.1.x/developer-portal/legacy-migration/
 
 # GENERAL REDIRECTS TO /GATEWAY/
-/enterprise/changelog      /gateway/changelog
+/gateway/changelog         /gateway/latest/changelog/
+/enterprise/changelog      /gateway/latest/changelog/
 /enterprise/2.6.x/introduction/key-concepts     /gateway/latest/availability-stages/
 /enterprise/2.7.x/introduction/key-concepts     /gateway/latest/availability-stages/
 /enterprise/latest/introduction/key-concepts    /gateway/latest/availability-stages/
