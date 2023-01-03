@@ -555,6 +555,10 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## Changelog
 
+**{{site.base_gateway}} 3.1.x**
+* Added the ability to customize the error code and message with
+the configuration parameters `error_code` and `error_message`.
+
 **{{site.base_gateway}} 3.0.x**
 
 * {{site.base_gateway}} now disallows enabling the plugin if the `cluster`
