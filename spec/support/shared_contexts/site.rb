@@ -39,5 +39,16 @@ module SharedContexts
       site.read
       site
     end
+
+    def find_page_by_url(url)
+      site.instance_variable_get(:@pages).detect { |p| p.url == url }
+    end
+
+    def generate_site!
+      Jekyll::GeneratorSingleSource::Generator.new.generate(site)
+      PluginSingleSource::Generator.new.generate(site)
+      Jekyll::Versions.new.generate(site)
+      LatestVersion::Generator.new.generate(site)
+    end
   end
 end
