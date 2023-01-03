@@ -304,6 +304,8 @@ kubectl patch --type json kongconsumer user \
 ```
 Response:
 ```text
+kongconsumer.configuration.konghq.com/admin patched
+kongconsumer.configuration.konghq.com/user patched
 ```
 
 ### Send authorized requests
