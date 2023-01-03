@@ -142,7 +142,6 @@ describe("sitemap includes", () => {
     "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
     "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
-    "/gateway/changelog/",
     "/mesh/changelog/",
     "/hub/",
   ].forEach((t) => {
