@@ -99,6 +99,19 @@ spec:
         tags:
         - name: k8s.kuma.io/namespace
           value: kuma-demo
+    - targetRef:
+        kind: MeshService
+        name: web
+      to: # can only be used with policies that have "to" list (like MeshAccessLog)
+        targetRef:
+          kind: MeshService
+          name: backend
+    - targetRef:
+        kind: MeshService
+        name: web
+      from: # can only be used with policies that have "from" list (like MeshTrafficPermission)
+        targetRef:
+          kind: Mesh
 ```
 {% endnavtab %}
 {% navtab Universal %}
@@ -119,9 +132,27 @@ rules:
       tags:
       - name: k8s.kuma.io/namespace
         value: kuma-demo
+  - targetRef:
+      kind: MeshService
+      name: web
+    to: # can only be used with policies that have "to" list (like MeshAccessLog)
+      targetRef:
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: MeshService
+      name: web
+    from: # can only be used with policies that have "from" list (like MeshTrafficPermission)
+      targetRef:
+        kind: Mesh
 ```
+
 {% endnavtab %}
 {% endnavtabs %}
+The Lack of `targetRef`, `from` or `to` means that a user can specify anything in this section.
+For example, `when` element with specific `from` section lets user pick anything for `targetRef` in policy.
+
+If the policy contains multiple `to` elements, you need to specify RBAC qualifier for every single `to` element.
 {% endnavtab %}
 {% endnavtabs %}
 
