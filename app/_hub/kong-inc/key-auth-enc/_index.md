@@ -232,10 +232,11 @@ keyauth_credentials:
 
 The fields/parameters work as follows:
 
-Field/parameter     | Description
----                 | ---
-`{consumer}`        | The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
-`key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
+Field/parameter      | Description
+---                  | ---
+`{consumer}`         | The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
+`tags`<br>*optional* | You can optionally assign a list of tags to your `key`.
+`key`<br>*optional*  | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 ### Make a request with the key
 
