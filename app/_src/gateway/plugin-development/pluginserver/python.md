@@ -64,7 +64,7 @@ You can implement custom logic during the following phases using the same functi
 The presence of the `response` handler automatically enables the buffered proxy mode.
 
 {:.note}
-> **Notes:** a positional argument is required in the definition of phase handler method. In the example below, the positional argument is called `kong`. The positional argument can be used as the PDK function's root object, which means that you can call specific PDK function by using this argument, like `kong.log.info` or `kong.request.get_header`.
+> **Notes:** A positional argument is required in the definition of the phase handler method. In the example below, the positional argument is called `kong`. The positional argument can be used as the PDK function's root object, which means that you can call specific PDK functions by using this argument, like `kong.log.info` or `kong.request.get_header`.
 
 ### Type hints
 
@@ -81,9 +81,9 @@ class Plugin(object):
 ```
 
 {:.important}
-> **Warning:** classes and functions in the `kong_pdk.pdk.kong` module cannot be used directly because they're only used for type hints. To call PDK functions, you need to use the `kong` object which is passed as the phase handler's parameter. Please keep in mind that if you want to call PDK functions outside of the phase handler, you'll also need to pass the `kong` object to your outer code.
+> **Warning:** Classes and functions in the `kong_pdk.pdk.kong` module cannot be used directly because they're only used for type hints. To call PDK functions,  use the `kong` object that is passed as the phase handler's parameter. Keep in mind that if you want to call PDK functions outside of the phase handler, you also need to pass the `kong` object to your outer code.
 
-Below is an example of using the PDK functions outside of the `Plugin` class:
+Here is an example of using the PDK functions outside of the `Plugin` class:
 
 ```python
 import kong_pdk.pdk.kong as kong
@@ -136,7 +136,7 @@ pluginserver_my_plugin_query_cmd = /path/to/my-plugin --dump
 pluginserver_other_one_query_cmd = /path/to/other-one --dump
 ```
 
-If you want to open verbose logging, pass an `-v` argument to the start command line:
+If you want to open verbose logging, pass the `-v` argument to the `start` command line:
 
 ```
 pluginserver_my_plugin_start_cmd = /path/to/my-plugin.py -v
