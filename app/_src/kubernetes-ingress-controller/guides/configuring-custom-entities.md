@@ -18,7 +18,7 @@ Ingress Controller.
 custom entity in your plugin. To check if your plugin contains a custom entity,
 the source code will usually contain a `daos.lua` file.
 Custom plugins have first-class support in the {{site.kic_product_name}}
-via the `KongPlugin` CRD.
+via the KongPlugin CRD.
 Please read [the custom plugin guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/setting-up-custom-plugins) instead
 if you are only using Custom plugins.
 

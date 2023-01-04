@@ -14,9 +14,6 @@ To use consumer groups for rate limiting, configure the plugin with the
 For more information and examples of setting up and managing consumer groups, see the
 [Consumer Groups examples](/gateway/{{page.kong_version}}/kong-enterprise/consumer-groups).
 
-{:.note}
-> **Note:** Consumer groups are not supported in declarative configuration with
-decK. If you have consumer groups in your configuration, decK will ignore them.
 
 ## List consumer groups
 

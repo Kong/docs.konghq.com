@@ -35,6 +35,11 @@ params:
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
     Gateway in DB-less or hybrid mode, use the `redis` strategy.
+
+    {:.note}
+    > **Note**: We recommend setting `namespace` to a static value in DB-less mode.
+    > The `namespace` will be regenerated on every configuration change if not explicitly set, resetting counters to zero.
+
   config:
     - name: limit
       required: true
@@ -98,6 +103,8 @@ params:
         The rate limiting library namespace to use for this plugin instance. Counter
         data and sync configuration is shared in a namespace.
 
+        In DB-less mode, this field will be generated automatically on every configuration change.
+        We recommended setting `namespace` explicitly when using DB-less mode.
     - name: strategy # old version of param description
       maximum_version: "2.8.x"
       required: true
@@ -406,6 +413,20 @@ params:
       datatype: boolean
       description: |
         If set to `true`, this doesn't count denied requests (status = `429`). If set to `false`, all requests, including denied ones, are counted. This parameter only affects the `sliding` window_type.
+    - name: error_code
+      minimum_version: "3.1.x"
+      required: false
+      default: 429
+      datatype: number
+      description: |
+        Set a custom error code to return when the rate limit is exceeded.
+    - name: error_message
+      minimum_version: "3.1.x"
+      required: false
+      default: rate limit exceeded
+      datatype: string
+      description: |
+        Set a custom error message to return when the rate limit is exceeded.
 
   extra: |
     **Notes:**
@@ -533,6 +554,10 @@ decK. If you have consumer groups in your configuration, decK will ignore them.
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+* Added the ability to customize the error code and message with
+the configuration parameters `error_code` and `error_message`.
 
 **{{site.base_gateway}} 3.0.x**
 

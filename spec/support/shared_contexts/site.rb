@@ -6,7 +6,11 @@ module SharedContexts
       Jekyll.configuration(
         source: File.expand_path('../../fixtures/app', __dir__),
         destination: File.expand_path('../../fixtures/dist', __dir__),
-        quiet: true
+        quiet: true,
+        'jekyll-generator-single-source': {
+          'versions_file' => '_data/kong_versions.yml',
+          'docs_nav_folder' => '_data',
+        }
       )
     end
 

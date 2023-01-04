@@ -154,7 +154,7 @@ Date: Fri, 21 Jun 2019 21:14:45 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
-Via: kong/1.1.2
+Via: kong/3.1.1
 ```
 
 ## Request TLS Certificate from Let's Encrypt
@@ -178,8 +178,8 @@ spec:
           podTemplate:
              metadata:
                annotations:
-                 kuma.io/sidecar-injection: "false"   # If ingress is running in Kuma/Kong Mesh, disable sidecar injection
-                 sidecar.istio.io/inject: "false"  # If using Istio, disable sidecar injection
+                 kuma.io/sidecar-injection: 'false'   # If ingress is running in Kuma/Kong Mesh, disable sidecar injection
+                 sidecar.istio.io/inject: 'false'  # If using Istio, disable sidecar injection
           class: kong" | kubectl apply -f -
 clusterissuer.cert-manager.io/letsencrypt-prod configured
 ```
@@ -336,7 +336,7 @@ $ curl -v https://demo.example.com
 < Server: echoserver
 < X-Kong-Upstream-Latency: 1
 < X-Kong-Proxy-Latency: 1
-< Via: kong/1.1.2
+< Via: kong/3.1.1
 <
 
 

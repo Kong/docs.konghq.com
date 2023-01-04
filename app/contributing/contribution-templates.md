@@ -10,7 +10,7 @@ At Kong, we use the following four standard content types when we write our docu
 * Reference: Documentation that explains the technology, like API or command line documentation.
 * Tutorial: Documentation that helps users learn about a topic by going step-by-step through a series of tasks.
 
-To help anyone interested in writing documentation contribute, we have created templates for the individual content types:
+To help anyone interested in writing documentation, we have created templates for the individual content types:
 
 - [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md)
 - [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md)
