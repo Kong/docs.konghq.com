@@ -17,6 +17,8 @@
       url: /updates
     - text: Support
       items:
+        - text: Control Plane Upgrades FAQ
+          url: /upgrade-faq
         - text: Supported Installation Options
           url: /install-support
 
