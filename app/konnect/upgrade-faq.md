@@ -10,7 +10,7 @@ content_type: reference
 The {{site.base_gateway}} control plane and its dependencies are fully managed by {{site.konnect_short_name}}. As new versions of {{site.base_gateway}} are released, {{site.konnect_short_name}} supports them as long as they are under our [active support schedule](/gateway/latest/support-policy/#version-support-for-kong-gateway-enterprise/).
 
 
-### Will {{site.konnect_short_name}} control plane upgrades always show incompatible message on runtime manager page if the data planes are not the same version as the {{site.konnect_short_name}} control plane?
+### Will {{site.konnect_short_name}} control plane upgrades always show incompatible messages on the runtime manager page if the data planes are not the same version as the {{site.konnect_short_name}} control plane?
 
 An old configuration may still be 100% compatible with older data planes and therefore not show any error messages in the {{site.konnect_short_name}} UI. If there are compatibility issues detected when pushing the payload down to the data plane then this will be reflected in the UI.
 
