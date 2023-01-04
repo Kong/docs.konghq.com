@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions: Control Plane Upgrades
+title: Frequently Asked Questions - Control Plane Upgrades
 content_type: reference
 ---
 
