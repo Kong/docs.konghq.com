@@ -27,7 +27,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 
   - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
 
-- The service version must have an [implementation](/konnect/servicehub/service-implementations).
+- The service version must have an implementation.
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 

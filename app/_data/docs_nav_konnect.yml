@@ -99,15 +99,12 @@
     - text: Overview
       url: /servicehub
     - text: Manage Services
-      items:
-        - text: Konnect Services
-          url: /servicehub/manage-services
-        - text: Service Versions
-          url: /servicehub/service-versions
-        - text: Service Implementations
-          url: /servicehub/service-implementations
-        - text: Manage Service Documentation
-          url: /servicehub/service-documentation
+      url: /servicehub/manage-services
+    - text: Service Versions
+      url: /servicehub/service-versions
+    - text: Manage Service Documentation
+      url: /servicehub/service-documentation
+
     - text: Manage Plugins
       items:
         - text: Overview

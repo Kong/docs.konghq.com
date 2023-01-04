@@ -20,8 +20,7 @@ From a service version page, enable a plugin:
 1. Click **Save**.
 
 {:.note}
-> If you don't see the **Plugins** section, create an
-[implementation](/konnect/servicehub/service-implementations) first.
+> If you don't see the **Plugins** section, create an implementation
 
 
 ## Disable a plugin

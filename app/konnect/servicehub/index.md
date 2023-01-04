@@ -3,7 +3,7 @@ title: Service Hub Overview
 ---
 
 The Service Hub is a {{site.konnect_saas}} functionality module that
-lets you catalog all of your services in a single system of record. This
+lets you catalog all of your services in a single place. This
 catalog represents the single source of truth of your organization’s service
 inventory and their dependencies.
 
@@ -61,7 +61,6 @@ Learn more in the [route configuration guide](/gateway/latest/key-concepts/route
 After configuring the service, version, implementation, and at least one route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
 
-[Implement a service version &rarr;](/konnect/servicehub/service-implementations)
 
 ## Dev Portal
 
