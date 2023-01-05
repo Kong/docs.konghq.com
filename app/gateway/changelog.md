@@ -1271,6 +1271,56 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.2.3
+**Release Date** 2023/01/06
+
+### Fixes
+
+#### Enterprise
+
+**Kong Manager:**
+* Fixed a role precedence issue with RBAC. 
+RBAC rules involving deny (negative) rules now correctly take precedence over allow (non-negative) roles.
+* Fixed workspace filtering pagination on the overview page.
+
+#### Core 
+
+* Fixed a router issue where, in an environment with more than 50k routes, attempting to update a route caused a 500 error response.
+* Fixed a timer leak that occurred whenever the generic messaging protocol connection broke in hybrid mode.
+* Fixed a `tlshandshake` method error that occurred when SSL was configured on PostgreSQL, and the Kong Gateway had `stream_listen` configured with a stream proxy. 
+* Fixed an issue that caused segfaults in Kong Gateway running on Amazon Linux 2 with `opentracing` enabled.
+  This was caused by the wrong base image being used for the Amazon Linux 2 package.
+  The Amazon Linux 2 package is now built on an actual Amazon Linux 2 image instead of the shared CentOS-based image.
+
+#### Plugins
+
+* [HTTP Log](/hub/kong-inc/http-log) (`http-log`)
+  * Fixed the `could not update kong admin` internal error caused by empty headers.
+  This error occurred when using this plugin with the Kubernetes Ingress Controller.
+
+* [JWT](/hub/kong-inc/jwt/) (`jwt`)
+  * Fixed an issue where the JWT plugin could potentially forward an unverified token to the upstream. 
+
+* [JWT Signer](/hub/kong-inc/jwt-signer/) (`jwt-signer`)
+  * Fixed the error `attempt to call local 'err' (a string value)`. 
+
+* [Mocking](/hub/kong-inc/mocking) (`mocking`)
+  * Fixed UUID pattern matching. 
+
+* [Prometheus](/hub/kong-inc/prometheus/) (`prometheus`)
+  * Provided options to reduce the plugin's impact on performance.
+  Added new `kong.conf` options to switch high cardinality metrics `on` or `off`: 
+  [`prometheus_plugin_status_code_metrics`](/gateway/2.8.x/reference/configuration/#prometheus_plugin_status_code_metrics), [`prometheus_plugin_latency_metrics`](/gateway/2.8.x/reference/configuration/#prometheus_plugin_latency_metrics), [`prometheus_plugin_bandwidth_metrics`](/gateway/2.8.x/reference/configuration/#prometheus_plugin_bandwidth_metrics), and [`prometheus_plugin_upstream_health_metrics`](/gateway/2.8.x/reference/configuration/#prometheus_plugin_upstream_health_metrics).
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) (`rate-limiting-advanced`)
+  * Fixed a maintenance cycle lock leak in the `kong_locks` dictionary. 
+  Kong Gateway now clears old namespaces from the maintenance cycle schedule when a namespace is updated.
+
+* [Request Transformer](/hub/kong-inc/request-transformer/) (`request-transformer`)
+  * Fixed an issue where empty arrays were being converted to empty objects.
+  Empty arrays are now preserved.
+
+
 ## 2.8.2.2
 **Release Date** 2022/12/01
 
