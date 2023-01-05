@@ -1285,7 +1285,7 @@ RBAC rules involving deny (negative) rules now correctly take precedence over al
 
 #### Core 
 
-* Fixed a router issue where, in an environment with more than 50k routes, attempting to update a route caused a 500 error response.
+* Fixed a router issue where, in an environment with more than 50,000 routes, attempting to update a route caused a `500` error response.
 * Fixed a timer leak that occurred whenever the generic messaging protocol connection broke in hybrid mode.
 * Fixed a `tlshandshake` method error that occurred when SSL was configured on PostgreSQL, and the Kong Gateway had `stream_listen` configured with a stream proxy. 
 * Fixed an issue that caused segfaults in Kong Gateway running on Amazon Linux 2 with `opentracing` enabled.
