@@ -44,10 +44,10 @@ Built on top of [Kuma 1.8.2](https://github.com/kumahq/kuma/releases/tag/1.8.2)
 
 ### Changes
 
-- Fix potential logging of secrets in kuma-cp
-- Fix KDS instability
-- Fix unnecessary CDS updates
-- Fix bug where OPA Agent stops returning valid decisions after KM CP crashes
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
 
 ## 1.9.1
 > Release on **2022/10/10**
