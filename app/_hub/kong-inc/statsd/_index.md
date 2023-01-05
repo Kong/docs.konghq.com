@@ -215,6 +215,10 @@ Field         | Description                                             | Dataty
 ---
 ## Changelog
 
+**{{site.base_gateway}} 3.1.x**
+* Added support for managing queues and connection retries when sending messages to the upstream with 
+the `queue_size`,`flush_timeout`, and `retry_count` configuration parameters. 
+
 ### {{site.base_gateway}} 3.0.x
 
 * Merged features of the StatsD Advanced plugin into the StatsD plugin. The StatsD plugin now includes the following:

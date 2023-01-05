@@ -164,6 +164,10 @@ Field           | Description                                           | Dataty
 
 ## Changelog
 
+**{{site.base_gateway}} 3.1.x**
+* Added support for managing queues and connection retries when sending messages to the upstream with 
+the `queue_size`,`flush_timeout`, and `retry_count` configuration parameters. 
+
 **{{site.base_gateway}} 2.7.x**
 * Added support for the `distribution` metric type.
 * Allow service, consumer, and status tags to be customized through the configuration parameters `service_name_tag`, `consumer_tag`, and `status_tag`.
