@@ -189,3 +189,7 @@ company_name: Kong Inc.
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
+
+# Helm commands
+mesh_helm_repo: kong-mesh/kong-mesh
+mesh_helm_install_name: kong-mesh
