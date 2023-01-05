@@ -37,6 +37,18 @@ However, Control Plane Token is now deprecated and will be removed in the future
 ### Breaking changes and deprecations
 Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
 
+## 1.9.2
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.8.2](https://github.com/kumahq/kuma/releases/tag/1.8.2)
+
+### Changes
+
+- Fix potential logging of secrets in kuma-cp
+- Fix KDS instability
+- Fix unnecessary CDS updates
+- Fix bug where OPA Agent stops returning valid decisions after KM CP crashes
+
 ## 1.9.1
 > Release on **2022/10/10**
 
@@ -48,7 +60,6 @@ Built on top of [Kuma 1.8.1](https://github.com/kumahq/kuma/releases/tag/1.8.1)
 - Added support for evicted Pods.
 - Added support for wildcard tag value match in RBAC.
 - Prevents a potential data race by creating a deep copy of tags when generating outbounds.
-
 
 ## 1.9.0
 > Release on **2022/08/23**
