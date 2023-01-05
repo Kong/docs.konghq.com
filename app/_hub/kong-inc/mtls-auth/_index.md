@@ -156,6 +156,15 @@ params:
       datatype: boolean
       description: |
         Sends the distinguished names (DN) of the configured CA list in the TLS handshake message.
+    - name: allow_partial_chain
+      minimum_version: "3.1.x"
+      required: true
+      default: false
+      value_in_examples:
+      datatype: boolean
+      description: |
+        Allow certificate verification with only an intermediate certificate.
+        If turn this on, there is no need to upload the full chain to Kong Certificates.
 ---
 
 ## Usage
@@ -258,7 +267,7 @@ be associated with the SNIs. If multiple `mtls-auth` plugins with different
 `config.ca_certificate` are associated to the same SNI, the CA DNs will be
 merged. For example:
 
-- When the plugin is enabled in the **global** Workspace scope, the CA DNs 
+- When the plugin is enabled in the **global** Workspace scope, the CA DNs
   are associated with a special SNI, "\*".
 - When the plugin is applied at the **service** level, the CA DNs are
   associated with every SNI of every route to this service. If a route has no
