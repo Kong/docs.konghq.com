@@ -15,38 +15,67 @@ For example, if you have an external application and an internal application tha
 
 In the example above, two routes can be created, say `/external` and `/internal`, and both routes can point to `example_service`. A policy can be configured to limit how often the `/external` route is used and the route can be communicated to the external client for use. When the external client tries to access the service via {{site.base_gateway}} using `/external`, they are rate limited. But when the internal client accesses the service using {{site.base_gateway}} using `/internal`, the internal client will not be limited.
 
-## How {{site.base_gateway}} routes requests
+## How {{site.base_gateway}} routes requests in `traditional_compat` mode
 
 For each incoming request, {{site.base_gateway}} needs to determine
 which service gets to handle it based on the routes that have been
-defined.  We describe how the routing process works, in a logical
-sense, below.  The actual router implementation optimizes the process
-and caches results to avoid having to scan all routes repeatedly.
+defined.  We describe how the routing process works in
+`traditional_compat` mode, in a logical sense, below.  The actual
+router implementation optimizes the process and caches results to
+avoid having to scan all routes repeatedly.  Note that when using the
+`expressions` router, route priorities are explicitly defined and this
+description does not apply.  Underneath, routes are converted from the
+`traditional_compat` format to the `expressions` format.
 
-The description below only describes how paths are matched.  In
-addition, the protocol, host, method and headers of the request also
-need to be matching for a route to be considered a match.
+In general, the router uses the highest priority matching route to
+handle a request.  If there are multiple matching routes with the same
+priority, it is not defined which of the two routes will be used.
 
-In general, the router uses the first route that it finds to match the
-request.  If there are multiple routes that match a request with
-equivalent priority, it is not defined which of the two routes will be
-used.
+In `traditional_compat` mode, the priority of a route is determined as
+follows, by the order of descending significance:
 
-First, the path of the inbound request is matched against all paths
-that are regular expressions.  All regular expressions are ordered
-based on the `regex_priority` and the `created_at` value of the route.
-Regular expressions with a higher `regex_priority` are considered
-before those with a lower `regex_priority`.  If routes have the same
-`regex_priority`, the order in which they are considered is undefined
-in {{site.base_gateway}} version 3.0 and above.  In earlier versions,
-identical regular expressions with a lower (older) `created_at`
-timestamp in the database are considered before those that have a
-later `created_at` timestamp.
+### Priority Points
 
-If no regular expressions match the path, all non-regular expression
-(prefix) paths are considered.  Those paths are sorted from longest to
-shortest, so a longer prefix wins over a shorter prefix.  There is no
-explicit ordering of paths with the same length.
+For the presence of each of a route's `methods`, `host`, `headers` and
+`snis`, a "priority point" will be added to the route.  The number of
+"priority points" determines the overall order in which the routes
+will be considered.  Routes with a higher "priority point" values will
+be considered before those with lower values.  This means that if one
+route has `methods` defined, and second one has `methods` and
+`headers` defined, the second one will be considered before the first
+one.
+
+### Wildcard Hosts
+
+Among the routes with the same "priority point" value, those that have
+any wildcard host specification will be considered after routes that
+do not have any wildcard host (or no host) specified.
+
+### Header Count
+
+The resulting buckets are sorted so the routes with a higher number of
+specified headers have higher priority than those with a lower number
+of headers.
+
+### Regular Expressions and Prefix Paths
+
+Within the resulting buckets of routes with equal priority, the router
+will sort the routes as follows:
+
+ - Routes that have a regular expression path are considered first and
+   are ordered by their `regex_priority` value.  Routes with a higher
+   `regex_priority` are considered before routes with lower
+   `regex_priority` values.
+ - Routes that have no regular expression path are ordered by the
+   length of their paths.  Routes with longer paths are considered
+   before routes with shorter paths.
+
+Note that this means that routes with multiple paths get the priority
+that is associated with their highest priority path.  If one of the
+paths is a regular expression, the whole route is considered before
+routes that have no regular expressions.  Similarily, if a route
+contains multiple prefix paths (and no regular expressions), its
+priority is determined by the longest of the paths.
 
 ## Regular expressions
 
