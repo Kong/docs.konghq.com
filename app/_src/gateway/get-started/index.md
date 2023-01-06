@@ -39,8 +39,11 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 1. Run {{site.base_gateway}} with the `quickstart` script:
 
    ```sh
-   curl -Ls https://get.konghq.com/quickstart | bash -s
+   curl -Ls https://get.konghq.com/quickstart | bash
    ```
+
+   {:.note}
+   > **Note**: The quickstart script runs Kong Gateway Enterprise in Free mode. If you wish to run Kong with a license, you can pass the license to the script via the `KONG_LICENSE_DATA` environment variable: `curl -Ls get.konghq.com/quickstart | bash -s -- -e "KONG_LICENSE_DATA"`. For more advanced usage of the quickstart script, see the [code repository documentation](https://github.com/Kong/get.konghq.com).
 
    This script runs Docker containers for {{site.base_gateway}} and the supporting PostgreSQL database.
    The script also creates a Docker network for those containers to communicate over. Finally, the database is 
