@@ -73,7 +73,7 @@ will sort the routes as follows:
 Note that this means that routes with multiple paths get the priority
 that is associated with their highest priority path.  If one of the
 paths is a regular expression, the whole route is considered before
-routes that have no regular expressions.  Similarily, if a route
+routes that have no regular expressions.  Similarly, if a route
 contains multiple prefix paths (and no regular expressions), its
 priority is determined by the longest of the paths.
 
