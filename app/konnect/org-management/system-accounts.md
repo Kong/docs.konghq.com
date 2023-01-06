@@ -4,11 +4,17 @@ content_type: how-to
 no_version: true
 ---
 
-This guide shows you how to manage system accounts in {{site.konnect_short_name}}. 
+This guide explains what a system account is, how they vary from user accounts, and how to manage a system account using the [{{site.konnect_short_name}} API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/fc735302-d8ac-4e66-a9ef-225569a75d3c). 
 
-The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/org-management/users/) is able to. Unlike regular user accounts, system accounts are not associated with an email address or password and can't access the {{site.konnect_short_name}} user interface. Because of these differences, you can use the system account as part of an automation or integration that requires a user account.  
+System accounts are a service account in {{site.konnect_short_name}}. Because they are not associated with an email address and a user, system accounts can be used for automation and integrations. 
 
-In addition, the system account can be assigned roles directly or inherit the roles of a [team](/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
+System accounts offer the following benefits over regular user accounts:
+
+* System accounts are not associated with an email address. This allows you to use the account as part of an automation or integration that isn't associated with any person’s identity.
+* When you use a user account as part of an automation or integration and that user leaves the company, this breaks the automations and integrations. If you use a system account instead, the automations and integrations wouldn't break.
+* Because system accounts can't be assigned the same permissions as a user account, they can't access the {{site.konnect_short_name}} UI.
+
+The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/konnect/org-management/users/) can. In addition, the system account can be assigned roles directly or inherit the roles of a [team](/konnect/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
 
 ## Manage a system account via the user interface
 
@@ -67,15 +73,49 @@ You will receive a `201` response code, and a response body containing the acces
 
 ### Assign a role to a system account
 
+You can assign a role to a system account so that the permissions associated with that role can be assigned to that account and their subsequent credentials.
 
+Assign a role to a system account by sending a `POST` request containing the `accountId` and the `role_name` of the system account:
+
+```sh
+curl --request POST \
+  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
+  --data '{
+  "role_name": "Viewer"}'
+```
+
+You will receive a `201` response code and a response body containing the role that is now assigned to the system account:
+
+```
+{
+  "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+  "role_name": "Viewer",
+  "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
+  "entity_type_name": "Runtime Groups",
+  "entity_region": "eu"
+}
+```
 
 ### Assign a system account to a team
 
-## See also <!-- Optional -->
+You can assign a team to a system account so that the permissions associated with that team can be assigned to that account and their subsequent credentials.
 
-This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
+Assign a team to a system account by sending a `POST` request containing the `teamId` of the team:
 
-See the following examples of how-to documentation:
-* [Analytics reports](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/)
-* [Service directory mapping](https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/)
-* [Custom entities](https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/)
+```sh
+curl --request POST \
+  --url https://global.api.konghq.com/v2/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
+```
+
+You will receive a `201` response code and a response body stating that the system account was added to the team:
+
+```
+Created
+```
+
+## See also
+
+See the following documentation for additional information:
+* [Manage Teams and Roles](/konnect/org-management/teams-and-roles/manage/)
+* [Roles Reference](/konnect/org-management/teams-and-roles/roles-reference/)
+* [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/)
