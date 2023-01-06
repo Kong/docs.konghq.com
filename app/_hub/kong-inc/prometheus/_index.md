@@ -310,6 +310,13 @@ allow access to the `/metrics` endpoint to Prometheus:
 * Plugin version bumped to 3.0.0
 * The `node_id` label was added to memory metrics.
 
+**{{site.base_gateway}} (Enterprise) 2.8.3.2**
+* Adds new directives in `kong.conf` to enable or disable high cardinality metrics.
+  * `prometheus_plugin_status_code_metrics`: enables or disables reporting the HTTP/Stream status codes per service/route.
+  * `prometheus_plugin_latency_metrics`: enables or disables reporting the latency added by Kong, request time and upstream latency.
+  * `prometheus_plugin_bandwidth_metrics`: enables or disables reporting the bandwidth consumed by service/route.
+  * `prometheus_plugin_upstream_health_metrics`: enables or disables reporting the upstream health status.
+
 **{{site.base_gateway}} 2.8.x**
 * Adds a new metric:
   * `kong_nginx_timers` (gauge): total number of Nginx timers, in Running or Pending state.
