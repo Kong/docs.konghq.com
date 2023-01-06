@@ -127,6 +127,7 @@ allowDetailed
 allow_any_domain
 allow_dtd
 allow_origin_header
+allow_partial_chain
 allow_paths
 allow_status_codes
 allowed_content_types
