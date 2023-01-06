@@ -164,7 +164,7 @@ params:
       datatype: boolean
       description: |
         Allow certificate verification with only an intermediate certificate.
-        If turn this on, there is no need to upload the full chain to Kong Certificates.
+        When this is enabled, you don't need to upload the full chain to Kong Certificates.
 ---
 
 ## Usage
