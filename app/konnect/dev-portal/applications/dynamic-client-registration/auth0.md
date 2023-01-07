@@ -63,6 +63,9 @@ To create a new API audience:
 
 6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Client Token Audience** value in {{site.konnect_short_name}}
 
+{:.important}
+   > **Important:** In order for DCR with Auth0 to work within {{site.konnect_short_name}}, the global **OIDC Dynamic Application Registration** setting in Auth0 must be set to `disabled`. If the global **OIDC Dynamic Application Registration** setting is set to `enabled`, the Auth0 Management API will return an error when attempting to create a client.
+
 ## Configure the Dev Portal
 
 Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for dynamic client registration (DCR).
