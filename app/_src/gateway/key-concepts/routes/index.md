@@ -88,7 +88,7 @@ regular expression routes by simple prefix routes can improve
 throughput and latency of {{site.base_gateway}}.
 
 Starting with version 3.0, {{site.base_gateway}} uses the regular
-expression engine shipped with the Rust programming language if the
+expression engine shipped with the [Rust](https://docs.rs/regex/latest/regex/) programming language if the
 router is operating in `expressions` or `traditional_compatible` mode.
 Prior versions used the
 [PCRE library](https://www.pcre.org/original/doc/html/pcrepattern.html)
