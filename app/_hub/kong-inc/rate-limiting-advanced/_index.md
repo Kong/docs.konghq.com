@@ -109,7 +109,7 @@ params:
       maximum_version: "2.8.x"
       required: true
       default: cluster
-      value_in_examples: cluster
+      value_in_examples: local
       datatype: string
       description: |
         The rate-limiting strategy to use for retrieving and incrementing the
