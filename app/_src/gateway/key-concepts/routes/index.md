@@ -19,12 +19,12 @@ In the example above, two routes can be created, say `/external` and `/internal`
 
 For each incoming request, {{site.base_gateway}} must determine
 which service gets to handle it based on the routes that are
-defined.  We describe how the routing process works in
-`traditional_compat` mode, in a logical sense, below.  The actual
-router implementation optimizes the process and caches results to
-avoid having to scan all routes repeatedly.  Note that when using the
+defined. The `traditional_compat` mode routing process in the following sections. 
+
+The actual router implementation optimizes the process and caches results to
+avoid having to scan all routes repeatedly. When using the
 `expressions` router, route priorities are explicitly defined and this
-description does not apply.  Underneath, routes are converted from the
+description doesn't apply. When you use the 'expressions' router, routes are converted from the
 `traditional_compat` format to the `expressions` format.
 
 In general, the router uses the highest priority matching route to
