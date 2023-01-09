@@ -100,8 +100,6 @@
       url: /servicehub
     - text: Manage Services
       url: /servicehub/manage-services
-    - text: Service Versions
-      url: /servicehub/service-versions
     - text: Manage Service Documentation
       url: /servicehub/service-documentation
 

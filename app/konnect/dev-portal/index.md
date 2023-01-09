@@ -11,12 +11,6 @@ In {{site.konnect_short_name}}, services created in the Service Hub can be publi
 
 * [Getting started guide](/konnect/getting-started/publish-service): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
 
-* [How to publish services to the Dev Portal](/konnect/servicehub/service-documentation/#publishing/): This how-to explains ho* w to publish services to the Dev Portal. It also covers all of the settings associated with publishing services to the Dev Portal like access and making your Dev Portal publicly accessible.
-
-* [How to manage documentation](/konnect/servicehub/service-documentation/): This how-to explains how to perform all of the functionality related to managing API specs and service descriptions. Service descriptions are markdown files that explain the aspects of your API, like a README. 
-
-* [Manage Konnect Service Versions](/konnect/servicehub/service-versions/): This explains how to manage the service versions for your services, including the status of the service version. Service versions can have a status of "Published", "Deprecated", or "Unpublished". 
-
 The Dev Portal lives at a separate URL from {{site.konnect_short_name}} and requires that all users, including Admin roles, [register as a Developer](/konnect/dev-portal/dev-reg/).
 
 ## Developer self service

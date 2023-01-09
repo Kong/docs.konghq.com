@@ -1,8 +1,8 @@
 ---
-title: Konnect Service Package Dashboard
+title: Konnect Service Dashboard
 ---
 
-The Konnect Service Package Dashboard is the place to manage service packages, versions, and Documentation. The dashboard is available by clicking any Service Package in the Service Hub. 
+The Konnect Service Package Dashboard is the place to manage services, versions, and documentation. The dashboard is available by clicking any Service Package in the Service Hub. 
 
 Here are some of the things you can do from the Service package Dashboard: 
 
@@ -20,79 +20,38 @@ Number | Item | Description
 -------|------|------------
 1 | **Service Versions** | This section displays the status of a service version. From the context menu you can **Delete** a service, or use the **View Details** button to navigate to that versions dashboard. 
 2 | **Analytics** | Analytics data for the service. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/)
-3 | **Documentation** | Dashboard for cluster-wide monitoring. Use the dashboard to: <br> &nbsp;&nbsp;&bull; View request activity <br> &nbsp;&nbsp;&bull; Track proxy 
+3 | **Documentation** | You can add markdown documentation for your service. The documentation will render in the dashboard. If the service is published, the documentation will be available to developers in the Dev Portal. 
 
-<!-- SHARING IS NOT YET AVAILABLE
-## Share a service
 
-If you have a Service Admin or Organization Admin role, you can share any
-service that you have access to.
 
-For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-and-roles/#entity-and-role-sharing).
+### Service Versions
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
+A {{site.konnect_short_name}} service version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). Configurations for the service version include configurations, plugins, specific implementations that are associated with the same runtime group. 
 
-1. Click **Share service**.
+Services can have multiple service versions, and each version can be associated with a different runtime group. Services can be maded available in multiple environments by creating service versions in different runtime groups.
 
-1. Select a user or team to share the service with.
+A common use case is environment specialization.
+For example, if you have three runtime groups for `development`, `staging`, and
+`production`, you can manage which environment the service is available in by
+assigning a version to that group at creation time. You might have v1 running
+in `production`, and be actively working on v2 in `development`. Once it's
+ready to test, you'd create v2 in `staging` before finally creating v2 in
+`production` alongside v1.
 
-1. Select a role to grant to the user or team.
 
-1. Click **Share service** to save.
--->
+### Analytics
 
-### Service Packages
+The analytics dashboard shown in the **Service Dashboard** is a high level overview of **traffic**, **error**, and **latency** for the service. These reports are generated automatically based on the traffic to the service. For more information about analytics read the [analytics documentation](/konnect/analytics/)
 
-Each entry in the Service Hub is called a _{{site.konnect_short_name}} service package_.
-A {{site.konnect_short_name}} service package is an abstraction of an upstream service that can break down into multiple
-configuration _versions_, and can be _implemented_ to route to any existing
-endpoint.
+Learn more: 
 
-* **Service**: The abstraction of one of
-your own services. For example, it might represent a data
-transformation microservice or a billing API.
+* [Analytics overview](/konnect/analytics/)
+* [How to analyze services and routes](/konnect/analytics/services-and-routes/)
+* [How to generate reports](/konnect/analytics/generate-reports/)
 
-* **Service version**: One instance, or implementation, of the
-service with a unique configuration. A service can have many versions,
-and each version can have different configurations, set up for a RESTful API,
-gPRC endpoint, GraphQL endpoint, and others.
+### Documentation
 
-* **Service implementation**: A runnable service version. Each service version can only have one implementation.
-## Services in the Service Hub catalog
-
-Each entry in the Service Hub is called a _{{site.konnect_short_name}} service_, or _service_.
-A {{site.konnect_short_name}} service is an abstraction of an upstream service.
-
-A service in the Service Hub breaks down into multiple
-configuration _versions_, and can be _implemented_ to route to any
-endpoint.
-
-![{{site.konnect_short_name}} service diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
-
-* **Service**: The abstraction of one of
-your own services. For example, it might represent a data
-transformation microservice or a billing API.
-
-* **Service version**: One instance, or implementation, of the
-service with a unique configuration. A service can have many versions,
-and each version can have different configurations, set up for a RESTful API,
-gPRC endpoint, GraphQL endpoint, and others.
-
-* **Service implementation**: A runnable service version. Each service version can only have one implementation.
-
-A {{site.konnect_short_name}} service isn't associated with any specific runtime group, but every
-service version is. When you create a version of the service, you must select a
-group for the version to run on.
-
-{:.note}
-> **Note:** Currently, the only supported implementation type is a
-{{site.base_gateway}} runtime.
-
-The main attribute of a service version is its upstream URL, where the service
-listens for requests. You can specify the URL with a single string, or by
-specifying its protocol, host, port, and path individually.
-
-[Get started with service management &rarr;](/konnect/servicehub/manage-services)
+The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be consumed accessed once the service is published.
 
 ### {{site.base_gateway}} implementations
 
