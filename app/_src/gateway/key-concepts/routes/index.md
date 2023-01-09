@@ -33,7 +33,7 @@ In general, the router uses the highest priority matching route to
 handle a request. If there are multiple matching routes with the same
 priority, it is not defined which of the matching routes will be used
 and {{site.base_gateway}} will use either of them according to how its
-internal data structes are organized.
+internal data structures are organized.
 
 In `traditional_compat` mode, the priority of a route is determined as
 follows, by the order of descending significance:
