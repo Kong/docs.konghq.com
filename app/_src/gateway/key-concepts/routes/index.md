@@ -45,7 +45,7 @@ route has `methods` defined, and second one has `methods` and
 `headers` defined, the second one will be considered before the first
 one.
 
-### Wildcard Hosts
+### 2. Wildcard hosts
 
 Among the routes with the same "priority point" value, those that have
 any wildcard host specification will be considered after routes that
