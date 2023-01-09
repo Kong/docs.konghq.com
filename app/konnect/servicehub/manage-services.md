@@ -7,7 +7,7 @@ The Konnect Service Package Dashboard is the place to manage services, versions,
 Here are some of the things you can do from the Service package Dashboard: 
 
 * Configure a service
-* Publish a service to the Developer Portal
+* Publish a service to the Dev Portal
 * Manage versions and labels. 
 * View traffic, error, and latency data. 
 
@@ -28,7 +28,7 @@ Number | Item | Description
 
 A {{site.konnect_short_name}} service version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). Configurations for the service version include configurations, plugins, specific implementations that are associated with the same runtime group. 
 
-Services can have multiple service versions, and each version can be associated with a different runtime group. Services can be maded available in multiple environments by creating service versions in different runtime groups.
+Services can have multiple service versions, and each version can be associated with a different runtime group. Services can be made available in multiple environments by creating service versions in different runtime groups.
 
 A common use case is environment specialization.
 For example, if you have three runtime groups for `development`, `staging`, and
