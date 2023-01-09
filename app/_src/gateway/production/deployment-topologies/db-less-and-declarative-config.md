@@ -251,11 +251,13 @@ export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"h
 kong start
 ```
 
-## DB-Less with Helm (KIC Disabled)
+## DB-less with Helm (KIC disabled)
 
-When deploying Kong in DB-less mode(env.database: "off") and without the Ingress Controller(ingressController.enabled: false), you have to provide a declarative configuration for Kong to run. You can provide an existing ConfigMap (dblessConfig.configMap) or place the whole configuration into values.yaml (dblessConfig.config) parameter. See the example configuration in the default values.yaml for more details. You can use --set-file dblessConfig.config=/path/to/declarative-config.yaml in Helm commands to substitute in a complete declarative config file.
+When deploying {{site.base_gateway}} on Kubernetes in DB-less mode (`env.database: "off"`) and without the Ingress Controller (`ingressController.enabled: false`), you have to provide a declarative configuration for {{site.base_gateway}} to run. You can provide an existing ConfigMap (`dblessConfig.configMap`) or place the whole configuration into a `values.yaml` (`dblessConfig.config`) parameter. See the example configuration in the [default `values.yaml`](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml) for more detail.
 
-Note that externally supplied ConfigMaps are not hashed or tracked in deployment annotations. Subsequent ConfigMap updates will require user-initiated new deployment rollouts to apply the new configuration. You should run kubectl rollout restart deploy after updating externally supplied ConfigMap content.
+Use `--set-file dblessConfig.config=/path/to/declarative-config.yaml` in Helm commands to substitute in a complete declarative config file.
+
+Externally supplied ConfigMaps are not hashed or tracked in deployment annotations. Subsequent ConfigMap updates require user-initiated deployment rollouts to apply the new configuration. Run `kubectl rollout restart deploy` after updating externally supplied ConfigMap content.
 
 ## Using Kong in DB-less mode
 
