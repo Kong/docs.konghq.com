@@ -34,7 +34,7 @@ priority, it is not defined which of the two routes will be used.
 In `traditional_compat` mode, the priority of a route is determined as
 follows, by the order of descending significance:
 
-### Priority Points
+### 1. Priority points
 
 For the presence of each of a route's `methods`, `host`, `headers` and
 `snis`, a "priority point" will be added to the route.  The number of
