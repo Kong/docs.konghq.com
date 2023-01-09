@@ -57,7 +57,7 @@ The resulting buckets are sorted so the routes with a higher number of
 specified headers have higher priority than those with a lower number
 of headers.
 
-### Regular Expressions and Prefix Paths
+### 4. Regular Expressions and Prefix Paths
 
 Within the resulting buckets of routes with equal priority, the router
 will sort the routes as follows:
