@@ -16,16 +16,18 @@ We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically gene
 Each `versions.yml` is expected to contain a `strategy` (either `matrix` for the original rendering, or `gateway` for plugins that have versions pinned to the Gateway version)
 and a list of `releases` like so: 
 
+{% raw %}
 ```yaml
 strategy: gateway
 releases:
   minimum_version: '2.1.x'
   maximum_version: '3.0.x' # optional
 ```
+{% endraw %}
 which will read all available Gateway versions from `kong_versions.yml` and select those that are in the range specified.
 
 This can also be used with `overrides`:
-
+{% raw %}
 ```yaml
 strategy: gateway
 releases:
@@ -34,11 +36,13 @@ overrides:
   2.8.x: 0.13.x
   2.7.x: 0.12.x
 ```
+{% endraw %}
 
 ### CE/EE Discrepancies
 
 In some cases, the version of a plugin is different between the Community Edition (OSS) and Enterprise Edition. In these instances, each release should be entered as a unique version in the config file. Here's an example where Gateway 2.3.x CE uses plugin version 1.0, whilst 2.3.x EE uses plugin version 2.0:
 
+{% raw %}
 ```yaml
 strategy: gateway
 releases:
@@ -56,11 +60,13 @@ overrides:
   2.3.x-CE: 1.0.x
   2.2.x: 1.0.x
 ```
+{% endraw %}
 
 `2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
 
 If you want to use `releases` but have one or two versions that you need to override, you can use `replacements` like so:
 
+{% raw %}
 ```yaml
 strategy: gateway
 releases:
@@ -75,19 +81,23 @@ overrides:
   2.3.x-EE: 2.0.x
   2.3.x-CE: 1.0.x
 ```
+{% endraw %}
 
 ## Conditional Rendering
 
 As we add new functionality, we'll want content to be displayed for specific versions of a plugin. We can use the `if_plugin_version` block for this:
 
+{% raw %}
 ```
 {% if_plugin_version eq:1.11.x %}
 This will only show for version 1.11.x
 {% endif_plugin_version %}
 ```
+{% endraw %}
 
 We also support greater than (`gte`) and less than (`lte`). This filter is **inclusive** of the version provided:
 
+{% raw %}
 ```
 {% if_plugin_version gte:1.11.x %}
 This will only show for version 1.11.x and above (1.12.x, 2.0.0 etc)
@@ -101,9 +111,11 @@ This will only show for version 1.11.x and below (1.10.x, 1.0.0 etc)
 This will show for versions 1.11.x to 1.19.x inclusive
 {% endif_plugin_version %}
 ```
+{% endraw %}
 
 When working with tables, the filter expects new lines before and after `if_plugin_version` e.g.:
 
+{% raw %}
 ```
 | Name  | One         | Two    |
 |-------|-------------|--------|
@@ -115,6 +127,7 @@ When working with tables, the filter expects new lines before and after `if_plug
 
 | Test1 | Works       | Shows  |
 ```
+{% endraw %}
 
 The above will be rendered as a single table
 
@@ -122,6 +135,7 @@ The above will be rendered as a single table
 
 Generated parameters can specify `minimum_version` and `maximum_version` fields. Here's an example where `access_token_name` will only be shown for versions `1.4.0` to `1.7.0`, while `demo_field` will always be shown:
 
+{% raw %}
 ```yaml
 params:
   name: sample-plugin
@@ -145,5 +159,6 @@ params:
       minimum_version: "1.4.0"
       maximum_version: "1.7.0"
 ```
+{% endraw %}
 
 Both `minimum_version` and `maximum_version` are optional.

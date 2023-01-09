@@ -30,6 +30,7 @@ Setting `generate: true` at the top level will use the generator for every path 
 
 I've added comments to the file to show what will be read, and what URL will be generated:
 
+{% raw %}
 ```yaml
 product: deck
 release: 1.11.x
@@ -61,11 +62,13 @@ items:
     # Reads `src/deck/installation-guide.md` and writes `/deck/<release>/installation/index.html`
     src: installation-guide
 ```
+{% endraw %}
 
 ### Concept 2: Single source specific files
 
 You may not want to update an entire release at once. In this instance, single sourcing specific files might be useful. You can set `assume_generated: false` at the top level, then use `generate: true` on individual items to enable this.
 
+{% raw %}
 ```yaml
 product: deck
 release: 1.11.x
@@ -94,11 +97,13 @@ items:
     src: installation-v3
     generate: true
 ```
+{% endraw %}
 
 ### Concept 3: Multiple releases + Single Sourcing
 
 We may rewrite entire pages over time, and it doesn't make sense to keep everything in a single file. In this instance, we should append the major version to the filename e.g. `instructions-v3.md` and use the `src` parameter to point at a specific file:
 
+{% raw %}
 ```yaml
 product: deck
 release: 1.11.x
@@ -114,11 +119,13 @@ items:
         url: /terminology
         src: terminology-v3
 ```
+{% endraw %}
 
 ## Rendering unlisted pages
 
 In some cases you may want to render a page within a version without adding it to the side navigation. You can accomplish this by adding an `unlisted` section to the data file:
 
+{% raw %}
 ```yaml
 product: deck
 release: 1.11.x
@@ -139,6 +146,7 @@ unlisted:
   # Options such as 'generate' and 'src' are valid here too
   - url: /how-to/example
 ```
+{% endraw %}
 
 ## Conditional Rendering
 
@@ -146,14 +154,17 @@ unlisted:
 
 As we add new functionality, we'll want content to be displayed for specific releases of a product. We can use the `if_version` block for this:
 
+{% raw %}
 ```
 {% if_version eq:1.11.x %}
 This will only show for version 1.11.x
 {% endif_version %}
 ```
+{% endraw %}
 
 We also support greater than (`gte`) and less than (`lte`). This filter is **inclusive** of the version provided:
 
+{% raw %}
 ```
 {% if_version gte:1.11.x %}
 This will only show for version 1.11.x and above (1.12.x, 2.0.0 etc)
@@ -167,9 +178,11 @@ This will only show for version 1.11.x and below (1.10.x, 1.0.0 etc)
 This will show for versions 1.11.x to 1.19.x inclusive
 {% endif_version %}
 ```
+{% endraw %}
 
 When working with tables, the filter expects new lines before and after `if_version` e.g.:
 
+{% raw %}
 ```
 | Name  | One         | Two    |
 |-------|-------------|--------|
@@ -181,19 +194,23 @@ When working with tables, the filter expects new lines before and after `if_vers
 
 | Test1 | Works       | Shows  |
 ```
+{% endraw %}
 
 The above will be rendered as a single table.
 
 If using `if_version` in a sentence, specify `inline:true` like so:
 
+{% raw %}
 ```
 Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world
 ```
+{% endraw %}
 
 ### Front matter
 
 You may want to set values in the front matter conditionally. You can do this using `overrides`:
 
+{% raw %}
 ```yaml
 ---
 title: Page Here
@@ -206,11 +223,13 @@ overrides:
       lte: 2.5.x
 ---
 ```
+{% endraw %}
 
 In the above example, versions `2.3.x`, `2.4.x` and `2.5.x` will have `alpha: true`, and all other versions will have `alpha: false`.
 
 You can set the key to any scalar value. Here's an example using strings to switch something from "Private Beta" (2.8.x and before) to GA (anything later than this).
 
+{% raw %}
 ```yaml
 ---
 title: Another Page
@@ -222,3 +241,4 @@ overrides:
       lte: 2.8.x
 ---
 ```
+{% endraw %}
