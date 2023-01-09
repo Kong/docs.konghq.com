@@ -15,25 +15,26 @@ For example, if you have an external application and an internal application tha
 
 In the example above, two routes can be created, say `/external` and `/internal`, and both routes can point to `example_service`. A policy can be configured to limit how often the `/external` route is used and the route can be communicated to the external client for use. When the external client tries to access the service via {{site.base_gateway}} using `/external`, they are rate limited. But when the internal client accesses the service using {{site.base_gateway}} using `/internal`, the internal client will not be limited.
 
-## How {{site.base_gateway}} routes requests in `traditional_compat` mode
+## How requests are routed
 
 For each incoming request, {{site.base_gateway}} must determine which
-service gets to handle it based on the routes that are defined. The
-`traditional_compat` mode routing process is described in the
-following sections.
+service gets to handle it based on the routes that are defined.  With
+release 3.0, {{site.base_gateway}} introduced a new router that can be
+running in two modes, the `traditional_compat` mode, which is
+configured like prior releases, and the `expressions` mode which uses
+a new configuration scheme.
 
-The actual router implementation optimizes the process and caches
-results to avoid having to scan all routes repeatedly. When using the
-`expressions` router, route priorities are explicitly defined and this
-description doesn't apply. When you use the 'expressions' router,
-routes are converted from the `traditional_compat` format to the
-`expressions` format.
+The default mode of the router is `traditional_compat` and the
+following sections describe how it is operates.  For a description of
+the `expressions` mode, see
+[How to Configure Routes using Expressions](expressions).
 
-In general, the router uses the highest priority matching route to
-handle a request. If there are multiple matching routes with the same
-priority, it is not defined which of the matching routes will be used
-and {{site.base_gateway}} will use either of them according to how its
-internal data structures are organized.
+In general, the router orders all defined routes by their priority and
+uses the highest priority matching route to handle a request. If there
+are multiple matching routes with the same priority, it is not defined
+which of the matching routes will be used and {{site.base_gateway}}
+will use either of them according to how its internal data structures
+are organized.
 
 In `traditional_compat` mode, the priority of a route is determined as
 follows, by the order of descending significance:
