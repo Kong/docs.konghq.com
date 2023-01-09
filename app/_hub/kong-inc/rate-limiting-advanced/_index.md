@@ -80,7 +80,7 @@ params:
       datatype: string
       description: |
         Header name to use as the rate limit key when `config.identifier` is
-        configured with the value: `header`.
+        configured with the value: `header`. Ignored when `config.identifier` is not `header`.
     - name: dictionary_name
       required: true
       default: kong_rate_limiting_counters
