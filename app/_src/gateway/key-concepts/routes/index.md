@@ -28,7 +28,7 @@ description does not apply.  Underneath, routes are converted from the
 `traditional_compat` format to the `expressions` format.
 
 In general, the router uses the highest priority matching route to
-handle a request.  If there are multiple matching routes with the same
+handle a request. If there are multiple matching routes with the same
 priority, it is not defined which of the two routes will be used.
 
 In `traditional_compat` mode, the priority of a route is determined as
