@@ -98,7 +98,7 @@
   items:
     - text: Overview
       url: /servicehub
-    - text: Manage Services
+    - text: Konnect Service Dashboard
       url: /servicehub/manage-services
     - text: Manage Service Documentation
       url: /servicehub/service-documentation
