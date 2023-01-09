@@ -95,16 +95,24 @@ params:
         0 will sync the counters in the specified number of seconds. The minimum
         allowed interval is 0.02 seconds (20ms).
     - name: namespace
-      required: true
+      required: semi
       default: random_auto_generated_string
-      value_in_examples: null
+      value_in_examples: example_namespace
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
         data and sync configuration is shared in a namespace.
 
-        In DB-less mode, this field will be generated automatically on every configuration change.
-        We recommended setting `namespace` explicitly when using DB-less mode.
+        {:.important}
+        > **Important**: If managing Kong Gateway with **declarative configuration** or running
+        Kong Gateway in **DB-less mode**, set the `namespace` explicitly in your declarative configuration.
+        > <br><br>
+        > If not set, you will run into the following issues:
+        * In DB-less mode, this field will be regenerated automatically on every configuration change.
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        `namespace` value.
+
+
     - name: strategy # old version of param description
       maximum_version: "2.8.x"
       required: true
