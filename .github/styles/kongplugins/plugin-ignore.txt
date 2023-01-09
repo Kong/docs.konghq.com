@@ -393,6 +393,7 @@ error_code
 error_message
 event_queue_size
 example_apikey
+example_namespace
 example_pass
 example_tag
 example_user
