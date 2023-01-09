@@ -93,7 +93,7 @@ router is operating in `expressions` or `traditional_compatible` mode.
 Prior versions used the
 [PCRE library](https://www.pcre.org/original/doc/html/pcrepattern.html)
 to evaluate regular expression.  While the two engines are largely
-compatible, subtle differences exist between the two.  Please refer to
+compatible, subtle differences exist between the two. Refer to
 the documentation pertinent to the engine that you are using if you
 have problems getting regular expression routes to work.
 
