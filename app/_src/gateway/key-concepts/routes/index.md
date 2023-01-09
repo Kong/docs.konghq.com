@@ -17,7 +17,7 @@ In the example above, two routes can be created, say `/external` and `/internal`
 
 ## How {{site.base_gateway}} routes requests in `traditional_compat` mode
 
-For each incoming request, {{site.base_gateway}} needs to determine
+For each incoming request, {{site.base_gateway}} must determine
 which service gets to handle it based on the routes that have been
 defined.  We describe how the routing process works in
 `traditional_compat` mode, in a logical sense, below.  The actual
