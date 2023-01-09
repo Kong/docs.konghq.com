@@ -7,11 +7,12 @@ description: |
   The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
 
   As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
-  * Additional configurations: `limit`, `window_size`, and `sync_rate`
+  * Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
   * Support for Redis Sentinel, Redis cluster, and Redis SSL
-  * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
+  * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows tuning of performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
   * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
-  * Consumer groups support: Apply different rate limiting configurations to select groups of consumers.
+  * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
+  * More control on what requests contribute to increment the rate limiting counters via the `disable_penalty` parameter
 type: plugin
 enterprise: true
 categories:
@@ -34,7 +35,7 @@ params:
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
-    Gateway in DB-less or hybrid mode, use the `redis` strategy.
+    Gateway in DB-less or hybrid mode, the `redis` strategy is the only available option to configure the plugin with a central data store.
 
     {:.note}
     > **Note**: We recommend setting `namespace` to a static value in DB-less mode.
@@ -179,7 +180,7 @@ params:
       value_in_examples: null
       datatype: string
       description: |
-        Host to use for Redis connection when the `redis` strategy is defined.
+        Host (or IP address) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default: 6379
@@ -329,7 +330,7 @@ params:
       description: |
         Sentinel addresses to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis Sentinel. Each string element must
-        be a hostname. The minimum length of the array is 1 element.
+        consist of a hostname (or IP address) and port. The minimum length of the array is 1 element.
     - name: redis.cluster_addresses
       required: semi
       default: null
@@ -338,7 +339,7 @@ params:
       description: |
         Cluster addresses to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis cluster. Each string element must
-        be a hostname. The minimum length of the array is 1 element.
+        consist of a hostname (or IP address) and port. The minimum length of the array is 1 element.
     - name: redis.keepalive_backlog
       minimum_version: "2.5.x"
       required: false
