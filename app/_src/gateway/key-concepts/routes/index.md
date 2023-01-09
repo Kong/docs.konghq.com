@@ -43,7 +43,7 @@ follows, by the order of descending significance:
 3. Header count
 4. Regular expressions and prefix paths
 
-### 1. Priority points
+### Priority points
 
 For the presence of each of a route's `methods`, `host`, `headers`,
 and `snis`, a "priority point" will be added to the route. The number
@@ -54,19 +54,19 @@ route has `methods` defined, and second one has `methods` and
 `headers` defined, the second one will be considered before the first
 one.
 
-### 2. Wildcard hosts
+### Wildcard hosts
 
 Among the routes with the same "priority point" value, those that have
 any wildcard host specification will be considered after routes that
 don't have any wildcard host (or no host) specified.
 
-### 3. Header count
+### Header count
 
 The resulting groups are sorted so the routes with a higher number of
 specified headers have higher priority than those with a lower number
 of headers.
 
-### 4. Regular expressions and prefix paths
+### Regular expressions and prefix paths
 
 Within the resulting groups of routes with equal priority, the router
 sorts the routes as follows:
