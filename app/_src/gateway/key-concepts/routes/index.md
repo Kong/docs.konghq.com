@@ -51,7 +51,7 @@ Among the routes with the same "priority point" value, those that have
 any wildcard host specification will be considered after routes that
 do not have any wildcard host (or no host) specified.
 
-### Header Count
+### 3. Header count
 
 The resulting buckets are sorted so the routes with a higher number of
 specified headers have higher priority than those with a lower number
