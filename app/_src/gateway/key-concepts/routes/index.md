@@ -38,10 +38,10 @@ internal data structures are organized.
 In `traditional_compat` mode, the priority of a route is determined as
 follows, by the order of descending significance:
 
- - 1. Priority points
- - 2. Wildcard hosts
- - 3. Header count
- - 4. Regular expressions and prefix paths
+1. Priority points
+2. Wildcard hosts
+3. Header count
+4. Regular expressions and prefix paths
 
 ### 1. Priority points
 
