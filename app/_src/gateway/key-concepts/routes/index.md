@@ -82,7 +82,7 @@ priority is determined by the longest of the paths.
 Regular expressions used in routes are more expensive to evaluate than
 simple prefix routes.  If many regular expressions need to be
 evaluated to route a request, the latency introduced by
-{{site.base_gateway}} can suffer and its CPU usage can increase.  In
+{{site.base_gateway}} can suffer and its CPU usage can increase. In
 particular in installations with thousands of routes, replacing
 regular expression routes by simple prefix routes can improve
 throughput and latency of {{site.base_gateway}}.
