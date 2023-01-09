@@ -97,13 +97,6 @@ compatible, subtle differences exist between the two. Refer to
 the documentation pertinent to the engine that you are using if you
 have problems getting regular expression routes to work.
 
-Documentation Links:
-
- * [Rust regex engine](https://docs.rs/regex/latest/regex/) - Default
-   engine used since {{site.base_gateway}} version 3.0.
- * [PCRE](https://www.pcre.org/original/doc/html/pcrepattern.html) -
-   Regular expression library used prior to {{site.base_gateway}}
-   version 3.0
 
 ## Dynamically rewrite request URLs with routes
 
