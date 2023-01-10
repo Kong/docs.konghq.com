@@ -45,6 +45,8 @@ The following instructions use [PostgreSQL](http://www.postgresql.org/) as a dat
     ```
 
 2. Run the {{site.base_gateway}} migrations using the following command:
+{:.note}
+> **Note:** If using Enterprise, [we strongly recommend seeding a password for the **Super Admin** user](#seed-super-admin) with the ```kong migrations``` command.
 
     ```bash
     kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
