@@ -239,6 +239,7 @@
 
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
+/konnect/service-hub/manage-services                /konnect/servicehub/
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
