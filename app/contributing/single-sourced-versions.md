@@ -3,32 +3,28 @@ title: Single Sourced Versions
 no_version: true
 ---
 
-## History
+Historically, we have supported multiple versions of a product by copying the previous release folder and renaming it in the `app` folder. This served us well with a small number of versions, but has not scaled well as we approach 50 versions of our products.
 
-Historically, we have supported multiple versions of a product by copying the previous release folder and renaming it within the `app` folder. This served us well with a small number of versions, but has not scaled well as we approach 50 versions of our products.
+We now use a Jekyll plugin (`single_source_generator.rb`) to dynamically generate pages from a single source file:
 
-We now use a Jekyll plugin (`single_source_generator.rb`) to dynamically generate pages from a single source file. It works as follows:
-
-- Read all navigation files (`app/_data/docs_nav_*.yml`)
-- If the file does not contain `generate: true` at the top level, skip it
-- If it does, loop through all items in the navigation
-  - If `assume_generated` is not set at the top level, or it is set to `true` then all items will be generated
-  - If `assume_generated` is set to `false` then each item in the navigation that should be generated will need `generate: true` to be set
+- Read all navigation files (`app/_data/docs_nav_*.yml`).
+- If the file does not contain `generate: true` at the top level, skip it.
+- If it does, loop through all items in the navigation:
+  - If `assume_generated` is not set at the top level, or it is set to `true`, then all items will be generated.
+  - If `assume_generated` is set to `false`, then each item in the navigation that should be generated will need `generate: true` to be set.
 - Each file that should be generated goes through the following process:
-  - Build up the base directory: `app/_src/<product>` by default, but if the `src` starts with a `/` it will be treated as a full path within `app/_src/`. e.g. `/shared/license` would be `app/_src/shared/license` whilst `shared/license` would be `app/_src/<product>/shared/license`
-  - If `src` is set on the item, we'll use that as the source file
+  - Build the base directory. This will be `app/_src/<product>` by default, but if the `src` starts with a `/`, it will be treated as a full path in `app/_src/`. For example, `/shared/license` would be `app/_src/shared/license` while `shared/license` would be `app/_src/<product>/shared/license`.
+  - If `src` is set on the item, we'll use that as the source file.
   - If `src` is _not_ set on the item:
-    - If `absolute_url` is set, skip the item. We assume it's generated another way (unless the `url` is equal to `/<product>/`, which is a special case and is always generated)
-    - Else use the `url` and set `src` to be `url`
-  - Read `app/_src/<product>/<src>.md` or `app/_src/<product>/<src>/index.md` and generate a file at `<product>/<version>/<url>` using that content
+    - If `absolute_url` is set, skip the item. We assume it's generated another way (unless the `url` is equal to `/<product>/`, which is a special case and is always generated).
+    - Else, use the `url` and set `src` to be `url`.
+  - Read `app/_src/<product>/<src>.md` or `app/_src/<product>/<src>/index.md` and generate a file at `<product>/<version>/<url>` using that content.
 
-## Concepts
+## Single source an entire product
 
-### Concept 1: Single source an entire product
+Setting `generate: true` at the top level of a nav file will use the generator for every path in the file.
 
-Setting `generate: true` at the top level will use the generator for every path in the file.
-
-I've added comments to the file to show what will be read, and what URL will be generated:
+The comments in the following example file describe what will be read, and what URL will be generated:
 
 {% raw %}
 ```yaml
@@ -38,8 +34,8 @@ generate: true
 items:
   - title: Introduction
     # Reads `src/deck/index.md` and writes `/deck/<release>/index.html`
-    # This is a special case as absolute_url is true, but `/deck/` is equal to `/<product>/`
-    # and we always need to generate an index page
+    # This is a special case because absolute_url is true, but `/deck/` is equal to `/<product>/`
+    # and we must always generate an index page
     url: /deck/
     absolute_url: true
     items:
@@ -64,7 +60,7 @@ items:
 ```
 {% endraw %}
 
-### Concept 2: Single source specific files
+## Single source specific files
 
 You may not want to update an entire release at once. In this instance, single sourcing specific files might be useful. You can set `assume_generated: false` at the top level, then use `generate: true` on individual items to enable this.
 
@@ -99,9 +95,9 @@ items:
 ```
 {% endraw %}
 
-### Concept 3: Multiple releases + Single Sourcing
+## Manage multiple releases and single sourcing
 
-We may rewrite entire pages over time, and it doesn't make sense to keep everything in a single file. In this instance, we should append the major version to the filename e.g. `instructions-v3.md` and use the `src` parameter to point at a specific file:
+If a page requires a major rewrite for a release, it doesn't make sense to keep everything in a single file. In this instance, we should append the major version to the filename (for example, `instructions-v3.md`) and use the `src` parameter to point to a specific file:
 
 {% raw %}
 ```yaml
@@ -115,15 +111,15 @@ items:
     items:
       - text: Terminology
         # Reads `src/deck/terminology-v3.md` and writes `/deck/<release>/terminology/index.html`
-        # This is how you can have multiple release of a single source file when completely rewriting content
+        # This is how you can have multiple releases of a single source file when completely rewriting content
         url: /terminology
         src: terminology-v3
 ```
 {% endraw %}
 
-## Rendering unlisted pages
+## Render unlisted pages
 
-In some cases you may want to render a page within a version without adding it to the side navigation. You can accomplish this by adding an `unlisted` section to the data file:
+In some cases, you may want to render a page within a version without adding it to the side navigation. You can do this by adding an `unlisted` section to the data file:
 
 {% raw %}
 ```yaml
@@ -148,11 +144,11 @@ unlisted:
 ```
 {% endraw %}
 
-## Conditional Rendering
+## Conditional rendering
 
 ### Content
 
-As we add new functionality, we'll want content to be displayed for specific releases of a product. We can use the `if_version` block for this:
+As we add new functionality, we'll want content on a page to be displayed for specific releases of a product. You can use the `if_version` block in a file for this:
 
 {% raw %}
 ```
@@ -167,20 +163,20 @@ We also support greater than (`gte`) and less than (`lte`). This filter is **inc
 {% raw %}
 ```
 {% if_version gte:1.11.x %}
-This will only show for version 1.11.x and above (1.12.x, 2.0.0 etc)
+This will only show for version 1.11.x and later (1.12.x, 2.0.0 etc)
 {% endif_version %}
 
 {% if_version lte:1.11.x %}
-This will only show for version 1.11.x and below (1.10.x, 1.0.0 etc)
+This will only show for version 1.11.x and earlier (1.10.x, 1.0.0 etc)
 {% endif_version %}
 
 {% if_version gte:1.11.x lte:1.19.x %}
-This will show for versions 1.11.x to 1.19.x inclusive
+This will show for versions 1.11.x through 1.19.x, inclusive
 {% endif_version %}
 ```
 {% endraw %}
 
-When working with tables, the filter expects new lines before and after `if_version` e.g.:
+When working with tables, the filter expects new lines before and after `if_version`:
 
 {% raw %}
 ```
@@ -198,15 +194,15 @@ When working with tables, the filter expects new lines before and after `if_vers
 
 The above will be rendered as a single table.
 
-If using `if_version` in a sentence, specify `inline:true` like so:
+If you want to conditionalize content within a sentence, you can use `if_version` and specify `inline:true`:
 
 {% raw %}
 ```
-Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world
+Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world.
 ```
 {% endraw %}
 
-### Front matter
+### Conditionalize front matter
 
 You may want to set values in the front matter conditionally. You can do this using `overrides`:
 
@@ -227,7 +223,7 @@ overrides:
 
 In the above example, versions `2.3.x`, `2.4.x` and `2.5.x` will have `alpha: true`, and all other versions will have `alpha: false`.
 
-You can set the key to any scalar value. Here's an example using strings to switch something from "Private Beta" (2.8.x and before) to GA (anything later than this).
+You can set the key to any scalar value. Here's an example using strings to switch something from "Private Beta" (2.8.x and earlier) to GA (anything later than this).
 
 {% raw %}
 ```yaml

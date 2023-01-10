@@ -5,13 +5,13 @@ no_version: true
 
 We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically generate pages from a single source file. It works as follows:
 
-- Read all version files (`app/_hub/**/versions.yml`)
-- For each version listed in the file, check if `app/_hub/[vendor]/[name]/[version].md` exists
-- If not, read `app/_hub/[vendor]/[name]/_index.md` and generate a version of the page
-- The latest version is always generated as `index.html`, while older versions are generated as `[version].html`
+1. Read all version files (`app/_hub/**/versions.yml`).
+1. For each version listed in the file, check if `app/_hub/[vendor]/[name]/[version].md` exists.
+1. If not, read `app/_hub/[vendor]/[name]/_index.md` and generate a version of the page.
+1. The latest version is always generated as `index.html`, while older versions are generated as `[version].html`.
 
 
-### Automatic Plugin Versioning
+## Automatic plugin versioning
 
 Each `versions.yml` is expected to contain a `strategy` (either `matrix` for the original rendering, or `gateway` for plugins that have versions pinned to the Gateway version)
 and a list of `releases` like so: 
@@ -24,7 +24,7 @@ releases:
   maximum_version: '3.0.x' # optional
 ```
 {% endraw %}
-which will read all available Gateway versions from `kong_versions.yml` and select those that are in the range specified.
+which reads all available Gateway versions from `kong_versions.yml` and selects those that are in the specified range.
 
 This can also be used with `overrides`:
 {% raw %}
@@ -38,9 +38,9 @@ overrides:
 ```
 {% endraw %}
 
-### CE/EE Discrepancies
+## Open source and enterprise discrepancies
 
-In some cases, the version of a plugin is different between the Community Edition (OSS) and Enterprise Edition. In these instances, each release should be entered as a unique version in the config file. Here's an example where Gateway 2.3.x CE uses plugin version 1.0, whilst 2.3.x EE uses plugin version 2.0:
+In some cases, the version of a plugin is different between the Community Edition (OSS) and Enterprise Edition. In these instances, each release should be entered as a unique version in the config file. Here's an example where Gateway 2.3.x CE uses plugin version 1.0, while 2.3.x EE uses plugin version 2.0:
 
 {% raw %}
 ```yaml
@@ -64,7 +64,7 @@ overrides:
 
 `2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
 
-If you want to use `releases` but have one or two versions that you need to override, you can use `replacements` like so:
+If you want to use `releases` but have one or two versions that you need to override, you can use `replacements`:
 
 {% raw %}
 ```yaml
@@ -83,7 +83,7 @@ overrides:
 ```
 {% endraw %}
 
-## Conditional Rendering
+## Conditional rendering
 
 As we add new functionality, we'll want content to be displayed for specific versions of a plugin. We can use the `if_plugin_version` block for this:
 
@@ -113,7 +113,7 @@ This will show for versions 1.11.x to 1.19.x inclusive
 ```
 {% endraw %}
 
-When working with tables, the filter expects new lines before and after `if_plugin_version` e.g.:
+When working with tables, the filter expects new lines before and after `if_plugin_version`:
 
 {% raw %}
 ```
@@ -129,9 +129,9 @@ When working with tables, the filter expects new lines before and after `if_plug
 ```
 {% endraw %}
 
-The above will be rendered as a single table
+The above will be rendered as a single table.
 
-## Params
+## Parameters
 
 Generated parameters can specify `minimum_version` and `maximum_version` fields. Here's an example where `access_token_name` will only be shown for versions `1.4.0` to `1.7.0`, while `demo_field` will always be shown:
 
