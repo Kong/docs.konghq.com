@@ -381,7 +381,7 @@ params:
       description: |
         Sets the time window type to either `sliding` (default) or `fixed`.
         Sliding windows apply the rate limiting logic while taking into account
-        previous hit rates (from the window the is immediately preceding the current)
+        previous hit rates (from the window that immediately precedes the current)
         using a dynamic weight.
         Fixed windows consist of buckets that are statically assigned to a
         definitive time range, each request is mapped to only one fixed window
