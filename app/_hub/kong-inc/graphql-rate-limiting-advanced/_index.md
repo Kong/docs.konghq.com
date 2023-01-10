@@ -18,6 +18,7 @@ params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
+  konnect_examples: false
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong

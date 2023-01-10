@@ -51,7 +51,7 @@ Alternatively, the `LD_LIBRARY_PATH` environment variable can be set
 to the directory containing the `libappdynamics.so` file when
 starting {{site.base_gateway}}.
 
-If the AppDymanics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
+If the AppDynamics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
 You will receive an error message like this:
 
 ```
