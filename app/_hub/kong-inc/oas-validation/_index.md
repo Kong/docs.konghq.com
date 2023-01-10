@@ -10,7 +10,8 @@ description: |
   [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
   v3.x.
 enterprise: true
-plus: true
+cloud: false
+plus: false
 type: plugin
 categories:
   - traffic-control
@@ -26,6 +27,7 @@ params:
     - name: http
     - name: https
   dbless_compatible: 'yes'
+  konnect_examples: false
   config:
     - name: api_spec
       required: true
