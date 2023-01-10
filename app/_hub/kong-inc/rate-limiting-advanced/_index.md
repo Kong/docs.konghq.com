@@ -180,7 +180,8 @@ params:
       value_in_examples: null
       datatype: string
       description: |
-        Host (or IP address) to use for Redis connection when the `redis` strategy is defined.
+        Host to use for Redis connection when the `redis` strategy is defined.
+        This parameter accepts a hostname or an IP address as a value.
     - name: redis.port
       required: semi
       default: 6379
