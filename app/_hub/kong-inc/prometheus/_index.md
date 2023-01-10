@@ -84,8 +84,8 @@ and consume data from each node's configured `/metrics` endpoint.
 
 ## Grafana dashboard
 
-Metrics exported by the plugin can be graphed in Grafana using a drop in
-dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/7424).
+Metrics exported by the plugin can be graphed in Grafana using a drop-in
+dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://grafana.com/grafana/dashboards/7424-kong-official/).
 
 ## Available metrics
 
