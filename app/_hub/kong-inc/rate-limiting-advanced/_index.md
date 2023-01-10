@@ -12,7 +12,7 @@ description: |
   * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
   * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
   * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
-  * More control on what requests contribute to increment the rate limiting counters via the `disable_penalty` parameter
+  * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
 type: plugin
 enterprise: true
 categories:
