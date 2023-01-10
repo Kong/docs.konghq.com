@@ -24,9 +24,9 @@ Number | Item | Description
 
 
 
-### Service Versions
+### Service versions
 
-A {{site.konnect_short_name}} service version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). Configurations for the service version include configurations, plugins, specific implementations that are associated with the same runtime group. 
+A {{site.konnect_short_name}} service version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). As such, the configurations, plugins, specific implementations that are associated with the runtime group are also associated with the service version. 
 
 Services can have multiple service versions, and each version can be associated with a different runtime group. Services can be made available in multiple environments by creating service versions in different runtime groups.
 

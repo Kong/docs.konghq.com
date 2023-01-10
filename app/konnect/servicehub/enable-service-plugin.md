@@ -20,7 +20,7 @@ From a service version page, enable a plugin:
 1. Click **Save**.
 
 {:.note}
-> If you don't see the **Plugins** section, create an implementation
+> If you don't see the **Plugins** section, create an implementation first.
 
 
 ## Disable a plugin
