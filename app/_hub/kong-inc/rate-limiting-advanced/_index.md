@@ -74,7 +74,7 @@ params:
       datatype: string
       description: |
         Request path to use as the rate limit key when `config.identifier` is
-        configured with the value: `path`. Ignored when `config.identifier` has any other value.
+        configured with the value `path`. Ignored when `config.identifier` has any other value.
     - name: header_name
       required: semi
       datatype: string
