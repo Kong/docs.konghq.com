@@ -89,7 +89,7 @@ params:
       description: |
         The shared dictionary where counters are stored. When the plugin is
         configured to synchronize counter data externally (i.e. 
-        `config.strategy` is `cluster` or `redis` and `config.sync_rate` is not
+        `config.strategy` is `cluster` or `redis` and `config.sync_rate` isn't
         `-1`), this dictionary serves as a buffer to populate counters in the
         data store on each synchronization cycle.
     - name: sync_rate
