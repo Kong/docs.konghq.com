@@ -88,12 +88,23 @@ params:
         entirely and only stores counters in node memory. A value greater than
         0 syncs the counters in that many number of seconds.
     - name: namespace
-      required: false
-      default: random string
-      value_in_examples: null
+      required: semi
+      default: random_auto_generated_string
+      value_in_examples: example_namespace
       datatype: string
       description: |
-        The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
+        The rate limiting library namespace to use for this plugin instance. Counter
+        data and sync configuration is shared in a namespace.
+
+        {:.important}
+        > **Important**: If managing Kong Gateway with **declarative configuration** or running
+        Kong Gateway in **DB-less mode**, set the `namespace` explicitly in your declarative configuration.
+        > <br><br>
+        > If not set, you will run into the following issues:
+        * In DB-less mode, this field will be regenerated automatically on every configuration change.
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        `namespace` value.
+
     - name: strategy
       required: null
       default: cluster
