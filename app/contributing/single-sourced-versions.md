@@ -194,7 +194,7 @@ When working with tables, the filter expects new lines before and after `if_vers
 
 The above will be rendered as a single table.
 
-If you want to conditionalize content within a sentence, you can use `if_version` and specify `inline:true`:
+If you want to conditionally render content in a sentence, you can use `if_version` and specify `inline:true`:
 
 {% raw %}
 ```
@@ -202,7 +202,7 @@ Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} w
 ```
 {% endraw %}
 
-### Conditionalize front matter
+### Conditionally render front matter
 
 You may want to set values in the front matter conditionally. You can do this using `overrides`:
 
