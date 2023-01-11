@@ -49,6 +49,7 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: |
         *Deprecated*. Use `config.access` instead.
 
@@ -58,6 +59,7 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: |
         Array of stringified Lua code to be cached and run in sequence during the certificate phase.
 
@@ -66,6 +68,7 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: |
         Array of stringified Lua code to be cached and run in sequence during the rewrite phase.
 
@@ -74,21 +77,25 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the access phase.
     - name: header_filter
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the header_filter phase.
     - name: body_filter
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the body_filter phase.
     - name: log
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the log phase.
 ---
 
