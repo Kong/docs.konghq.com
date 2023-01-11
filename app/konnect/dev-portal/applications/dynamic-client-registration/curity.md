@@ -2,7 +2,6 @@
 title: Configure Curity for Dynamic Client Registration
 breadcrumb: Curity
 content_type: how-to
-beta: true
 ---
 
 
