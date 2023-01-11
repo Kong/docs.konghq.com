@@ -13,7 +13,7 @@ Netlify link: <!-- Netlify will generate a preview link after PR is opened. Add 
 
 ### Checklist 
 
-[ ] Review label added
+[ ] Review label added <!-- (see below) -->
 
 ** Release-specific work only **
 [ ] Pointed to correct feature branch (e.g. `release/gateway-3.2`, `release/deck-1.17`)
