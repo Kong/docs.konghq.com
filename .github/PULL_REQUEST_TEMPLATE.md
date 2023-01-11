@@ -1,11 +1,9 @@
 
-### Summary 
+### Description
 
-Description: <!-- What did you change and why? -->
+What did you change and why?
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-Changelog entry, if applicable:
+Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc.
 
 
 ### Testing instructions
@@ -16,7 +14,9 @@ Netlify link: <!-- Netlify will generate a preview link after PR is opened. Add 
 ### Checklist 
 
 [ ] Review label added
-[ ] Changelog entry (if applicable)
+
+** Release-specific work only **
+[ ] Pointed to correct feature branch (e.g. `release/gateway-3.2`, `release/deck-1.17`)
 
 
 <!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
@@ -25,7 +25,8 @@ Netlify link: <!-- Netlify will generate a preview link after PR is opened. Add 
 
     review:copyedit: Request for writer review.
     review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a platform change.
+    review:tech: Request for technical review for a docs platform change.
+    review:sme: Request for review from an SME (engineer, PM, etc).
 
 At least one of these labels must be applied to a PR or the build will fail.
 -->
