@@ -181,7 +181,7 @@ docker run --name opentelemetry-collector \
   -p 4317:4317 \
   -p 4318:4318 \
   -p 55679:55679 \
-  -v ./otelcol.yaml:/etc/otel-collector-config.yaml \
+  -v $(pwd)/otelcol.yaml:/etc/otel-collector-config.yaml \
   otel/opentelemetry-collector-contrib:0.52.0 \
   --config=/etc/otel-collector-config.yaml
 ```
