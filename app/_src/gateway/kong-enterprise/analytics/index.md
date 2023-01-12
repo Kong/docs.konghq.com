@@ -31,7 +31,7 @@ When using Vitals, note:
   * If a user does not have access to Vitals data, charts will not display.
 
 ## Vitals API
-Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the OAS (Open API Spec, formerly Swagger) file. See a sample here (downloadable file): [`vitals.yaml`](/api/vitals.yaml).
+Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the Open API specification format, you can view it by downloading the [`vitals.yaml`](/api/vitals.yaml) file. Support for the `/vitals/reports/:entity_type` endpoint is now deprecated, for information about migrating to the Vitals API review the [migration information](/kong-enterprise/analytics/migrate-to-vitals-api).
 
 ## Viewing Vitals in Kong Manager
 View Vitals information in Kong Manager using any of the following:

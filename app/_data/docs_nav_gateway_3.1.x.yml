@@ -222,6 +222,10 @@ items:
             url: /kong-enterprise/analytics/prometheus-strategy
           - text: Estimate Analytics Storage in PostgreSQL
             url: /kong-enterprise/analytics/estimates
+          - text: Troubleshooting
+            items:
+              - text: How to migrate to the Vitals
+                url: /kong-enterprise/analytics/migrate-to-vitals-api
       - text: Secrets Management
         items:
           - text: Overview
