@@ -13,3 +13,15 @@ jobs:
           mode: minimum
           count: 1
           labels: "review:tech, review:copyedit, review:general, review:autodoc, review:sme"
+          add_comment: true
+          message: |
+            "Please add at least one of the following review labels to this PR:
+             - `review:copyedit`: Request for writer review.
+             - `review:general`: Review for general accuracy and presentation. 
+               Does the doc work? Does it output correctly?
+             - `review:tech`: Request for technical review for a docs platform change.
+             - `review:sme`: Request for review from an SME (engineer, PM, etc.).
+             
+             Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! 
+             The maintainers will label this PR for you."
+
