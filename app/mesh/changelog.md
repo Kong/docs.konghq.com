@@ -78,6 +78,18 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 
 - You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
 
+## 1.8.4
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.7.3](https://github.com/kumahq/kuma/releases/tag/1.7.3)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
+
 ## 1.8.3
 > Release on **2022/10/10**
 
@@ -146,6 +158,18 @@ Dependency upgrades:
 
 * The `kuma-cp` no longer comes with a built-in DNS server. Use
   the DNS server embedded in the dataplane proxy (enabled by default).
+
+## 1.7.5
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.6.3](https://github.com/kumahq/kuma/releases/tag/1.6.3)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
 
 ## 1.7.4
 > Release on **2022/10/10**
@@ -236,6 +260,17 @@ Every item in the items array now has a `kind` property of either:
 `SidecarDataplane`: a normal Dataplane with outbounds, inbounds, etc.
 `MeshGatewayDataplane`: a MeshGateway-configured Dataplane with a new structure representing the MeshGateway it serves.
 Some examples can be found in the [Inspect API docs](https://kuma.io/docs/1.6.x/reference/http-api/#inspect-api).
+
+## 1.6.3
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.5.3](https://github.com/kumahq/kuma/releases/tag/1.5.3)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
 
 ## 1.6.1
 
