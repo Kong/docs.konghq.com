@@ -32,7 +32,9 @@ When using Vitals, note:
 
 ## Vitals API
 
-Vitals data is available using Vitals API. Access to these endpoints can be managed using RBAC. The Vitals API is described using the Open API Specification, you can view it by downloading the [`vitals.yaml`](/api/vitals.yaml) file. You can use the API to retrieve health and traffic information from your cluster.
+Vitals data is available using Vitals API. Access to these endpoints can be managed using RBAC. 
+
+The Vitals API is described using the Open API Specification. You can view it by downloading the [`vitals.yaml`](/api/vitals.yaml) file. Use the API to retrieve health and traffic information from your cluster.
 
 For example, you can use the API to retrieve the number of requests for a service in a workspace by issuing the following `GET` request: 
 
@@ -42,9 +44,9 @@ curl -i -X GET http://localhost:8001/WORKSPACE_NAME/vitals/status_codes/by_servi
     -d "interval=minutes"
 ```
 
-A successful request will return a payload with the following data:
+A successful request returns a payload with the following data:
 
-```bash
+```json
 {
 "stats": {
 	"cluster": {
