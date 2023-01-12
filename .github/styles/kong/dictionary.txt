@@ -25,6 +25,7 @@ Grafana
 HTTPie
 Istio
 Istio's
+Jira
 JsonPath
 Keycloak
 Knative
