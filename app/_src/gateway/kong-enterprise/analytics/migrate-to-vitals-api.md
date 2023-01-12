@@ -27,28 +27,28 @@ If the request was successful, the response body will contain data in this forma
 ```bash
 {
 "stats": {
-		"cluster": {
-			"1673366520": {
-				"200": 44
-			},
-			"1673366580": {
-				"200": 49
-			},
-			"1673366460": {
-				"200": 13
-			}
+	"cluster": {
+		"1673366520": {
+			"200": 44
+		},
+		"1673366580": {
+			"200": 49
+		},
+		"1673366460": {
+			"200": 13
 		}
-	},
+	}
+},
 	"meta": {
-		"earliest_ts": 1673343331,
-		"latest_ts": 1673366580,
-		"stat_labels": [
-			"status_codes_per_service_total"
-		],
-		"level": "cluster",
-		"entity_type": "service",
-		"interval": "minutes",
-		"workspace_id": "af622cf4-f636-4ae4-9aa5-2726d6713edf"
+	"earliest_ts": 1673343331,
+	"latest_ts": 1673366580,
+	"stat_labels": [
+		"status_codes_per_service_total"
+	],
+	"level": "cluster",
+	"entity_type": "service",
+	"interval": "minutes",
+	"workspace_id": "af622cf4-f636-4ae4-9aa5-2726d6713edf"
 	}
 }
 ```
