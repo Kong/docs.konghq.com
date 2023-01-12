@@ -41,29 +41,30 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
 2. On the workspaces tab, click on **New Workspace**.
 3. Create a workspace named `SecureWorkspace` and select a color or image for the workspace avatar.
 
-    Each workspace name should be unique, regardless of letter case. For example, naming one workspace “Payments” and another one “payments” will create two different workspaces that appear identical.
-
     {:.important}
-    > Do not give a workspace the same name as any of these major routes in Kong Manager:
+    > Workspace names are **case sensitive** ("Payments" and "payments" are not equal), so it is recommended you give your worksapces unique names regardless of letter case to prevent confusion.
+    >
+    > <br>
+    > Additionally, do not give a workspace the same name as any of these major routes in Kong Manager:
     >
     |---------|-----------|--------------|---------------|
     | Admins  | APIs      | Certificates | Consumers     |
     | Plugins | Portal    | Routes       | Services      |
     | SNIs    | Upstreams | Vitals       | PermalinkStep |
 
-4. Click **Create New Workspace**.
-5. In the new workspace, click **Teams**.
-6. From the Teams page, click the **Roles** tab to view the default roles that come with {{site.base_gateway}}.
-7. Select SecureWorkspace to see its assigned roles.
+4. Click **Create New Workspace**, and you will see your new workspace dashboard.
+5. Click the **Teams** tab.
+6. From the Teams page, click the **Roles** tab.
+7. Select `SecureWorkspace` to view the default roles that come with {{site.base_gateway}}.
 
     By default, each new workspace has the following roles and privileges:
 
     | Role                     | Description                                                                                  |
     |--------------------------|----------------------------------------------------------------------------------------------|
-    | *workspace-admin*        | Can administer the objects in a workspace but can’t add new administrators to the workspace. |
-    | *workspace-portal-admin* | Can manage the Dev Portal. |
-    | *workspace-read-only*    | Can view anything in the workspace, but can’t make any changes. |
-    | *workspace-super-admin*  | Can do anything inside the workspace. |
+    | *workspace-admin*        | Full access to all endpoints in the workspace — except RBAC Admin API. |
+    | *workspace-portal-admin* | Full access to Dev Portal related endpoints in the workspace. |
+    | *workspace-read-only*    | Read access to all endpoints in the workspace. |
+    | *workspace-super-admin*  | Full access to all endpoints in the workspace. |
 
 **Notes:**
 
@@ -83,8 +84,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 2. Enter the new administrator’s **Email address** , **Username**, and **Custom Id**.
 3. Ensure that **Enable RBAC Token** is enabled.
 
-    This setting lets the admin use the Admin API as well as Kong Manager.
-    If you don’t want this user to access the Admin API, uncheck this box.
+    This setting allows the new admin to use the Admin API as well as Kong Manager.
 
 4. Click **Add/Edit Roles**.
 5. In the Workspace Access dialog, select the **SecureWorkspace**.
@@ -93,13 +93,13 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
     When you are done adding roles, you are redirected back to the **Invite Admin** dialog.
 
     {:.important}
-    > **Important:** Before you move on, make sure the **Enable RBAC Token** checkbox is checked. The RBAC token is what allows the new admin to send a token to the Admin API to configure the system programmatically.
+    > **Important:** Before you proceed, ensure the **Enable RBAC Token** checkbox is checked. The RBAC token is what allows the new admin to use the Admin API to configure the system programmatically.
 
 7. Click **Invite Admin** to send the invite.
 
     If you have [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email) set up, Kong Manager sends an email with a registration link.
 
-    If you don't have SMTP enabled, you can generate a registration link for the new administrator manually.
+    If you don't have SMTP enabled, the following instructions guide you to generate a registration link manually.
 
 ### Register the admin manually
 
