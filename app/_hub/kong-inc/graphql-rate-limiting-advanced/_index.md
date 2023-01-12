@@ -189,7 +189,9 @@ params:
       referenceable: true
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+        If undefined, ACL authentication will not be performed.
+
+         This requires Redis v6.0.0+. The username **cannot** be set to `default`.
       minimum_version: "2.8.x"
     - name: redis.password
       required: semi
