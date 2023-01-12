@@ -42,7 +42,7 @@ curl -i -X GET http://localhost:8001/WORKSPACE_NAME/vitals/status_codes/by_servi
     -d "interval=minutes"
 ```
 
-A succesful request will return a payload with the following data:
+A successful request will return a payload with the following data:
 
 ```bash
 {
