@@ -24,6 +24,8 @@
       url: /variables
     - text: Single Sourced Versions
       url: /single-sourced-versions
+    - text: Conditional rendering
+      url: /conditional-rendering
     - text: Single Sourced Plugins
       url: /single-sourced-plugins
 
