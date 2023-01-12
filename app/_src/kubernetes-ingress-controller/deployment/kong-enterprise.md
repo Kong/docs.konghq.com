@@ -25,6 +25,30 @@ $ kubectl create namespace kong
 namespace/kong created
 ```
 
+### Set up for Kind deployment
+```bash
+cat <<EOF | kind create cluster --config=-
+kind: Cluster
+name: kong
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+EOF
+```
+
 ### Kong Enterprise License secret
 
 Kong Enterprise requires a valid license to run.
@@ -71,6 +95,32 @@ kong-migrations-pzrzz           0/1     Completed   0          4m3s
 postgres-0                      1/1     Running     0          4m3s
 ```
 
+### For Kind deployment
+
+Apply kind specific patches to forward the hostPorts to the ingress controller, set taint tolerations, and schedule it to the custom labeled node.
+
+```bash
+kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"containers":[{"name":"proxy","ports":[{"containerPort":8000,"hostPort":80,"name":"proxy","protocol":"TCP"},{"containerPort":8443,"hostPort":443,"name":"proxy-ssl","protocol":"TCP"}]}],"nodeSelector":{"ingress-ready":"true"},"tolerations":[{"key":"node-role.kubernetes.io/control-plane","operator":"Equal","effect":"NoSchedule"},{"key":"node-role.kubernetes.io/master","operator":"Equal","effect":"NoSchedule"}]}}}}'
+```
+Apply kind specific patch to change service type to NodePort
+
+```bash
+kubectl patch service -n kong kong-proxy -p '{"spec":{"type":"NodePort"}}'
+kubectl patch service -n kong kong-manager -p '{"spec":{"type":"NodePort"}}'
+kubectl patch service -n kong kong-admin -p '{"spec":{"type":"NodePort"}}'
+```
+
+```bash
+kubectl get services -n kong
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+kong-admin                NodePort    10.96.66.102    <none>        80:30980/TCP                 62m
+kong-manager              NodePort    10.96.244.156   <none>        80:31640/TCP                 62m
+kong-proxy                NodePort    10.96.87.68     <none>        80:31134/TCP,443:32025/TCP   62m
+kong-validation-webhook   ClusterIP   10.96.37.107    <none>        443/TCP                      62m
+postgres                  ClusterIP   10.96.84.4      <none>        5432/TCP                     62m
+```
+
+### For Non-Kind deployment
 You can also see the `kong-proxy` service:
 
 ```bash
@@ -92,6 +142,78 @@ external IP address.
 
 ### Setup Kong Manager
 
+#### For Kind deployment
+
+Set up the ingress rules for Admin, Manager and Proxy
+```
+echo "
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-proxy
+  namespace: kong
+spec:
+  ingressClassName: kong
+  rules:
+  - host: kong.127-0-0-1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kong-proxy
+            port: 
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-admin
+  namespace: kong
+spec:
+  ingressClassName: kong
+  rules:
+  - host: admin-api.127-0-0-1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kong-admin
+            port: 
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-manager
+  namespace: kong
+spec:
+  ingressClassName: kong
+  rules:
+  - host: manager.127-0-0-1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kong-manager
+            port: 
+              number: 80
+" | kubectl apply -f -
+```
+
+We will use the *.127.nip.io to set up the Admin API
+
+```bash
+kubectl patch deployment -n kong ingress-kong -p "{\"spec\": { \"template\" : { \"spec\" : {\"containers\":[{\"name\":\"proxy\",\"env\": [{ \"name\" : \"KONG_ADMIN_API_URI\", \"value\": \"http://admin-api.127-0-0-1.nip.io\" }]}]}}}}"
+```
+
+#### For Non-Kind deployment
 Next, if you browse to the IP address or host of the `kong-manager` service in your Browser,
 which in our case is `http://34.83.242.237`.
 Kong Manager should load in your browser.
