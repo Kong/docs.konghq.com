@@ -33,18 +33,27 @@ You can find all the supported editions in the [`app/_data/kong_versions.yml`](h
 
 As we add new functionality, we want content on a page to be displayed only for specific releases of a product. You can use the `if_version` block for this, or `if_plugin_version` for any content in the Plugin Hub.
 
+* `if_version` is used by Kong Gateway, Kong Mesh, Kubernetes Ingress Controller, and decK documentation.
+* `if_plugin_version` can only be used for plugin documentation in the `app/_hub` directory.
+
 `if_version` and `if_plugin_version` support the following filters:
 * `eq`: Render content that **equals** the provided version.
 * `gte`: Render content that is **equal or greater than** the provided version.
 * `lte`: Render content that is **equal or less than** the provided version.
 
-`eq` displays content for only one specific version:
+For example, `eq` displays content for only one specific version:
 
 {% raw %}
 ```
 
 {% if_version eq:1.11.x %}
 This will only show for version 1.11.x
+{% endif_version %}
+
+
+
+{% if_version eq:2.8.x %}
+This will only show for plugin version 2.8.x
 {% endif_version %}
 ```
 {% endraw %}
@@ -109,7 +118,6 @@ Hello {% if_plugin_version lte:2.8.x inline:true %}everyone in the {% endif_plug
 
 You may want to set values in a page's front matter conditionally. You can do this using `overrides`:
 
-{% raw %}
 ```yaml
 ---
 title: Page Here
@@ -122,13 +130,11 @@ overrides:
       lte: 2.5.x
 ---
 ```
-{% endraw %}
 
 In the above example, versions `2.3.x`, `2.4.x` and `2.5.x` will have `alpha: true`, and all other versions will have `alpha: false`.
 
 You can set the key to any scalar value. Here's an example using strings to switch something from "Private Beta" (2.8.x and earlier) to GA (anything later than this).
 
-{% raw %}
 ```yaml
 ---
 title: Another Page
@@ -140,4 +146,49 @@ overrides:
       lte: 2.8.x
 ---
 ```
-{% endraw %}
+
+### Plugin parameters
+
+Generated parameters for files in the `app/_hub` directory can specify `minimum_version` and `maximum_version` fields.
+Here's an example where `access_token_name` will only be shown for versions `1.4.0` to `1.7.0`, while `demo_field` will always be shown:
+
+```yaml
+params:
+  name: sample-plugin
+  service_id: true
+  route_id: true
+  consumer_id: false
+  dbless_compatible: "yes"
+  manager_examples: false
+  konnect_examples: false
+  config:
+    - name: demo_field
+      required: true
+      default: "`access_token`"
+      datatype: string
+      description: This is a demo_field
+    - name: access_token_name
+      required: true
+      default: "`access_token`"
+      datatype: array of string elements
+      description: This is a description
+      minimum_version: "1.4.0"
+      maximum_version: "1.7.0"
+```
+
+Both `minimum_version` and `maximum_version` are optional.
+
+You can do the same for plugin protocols:
+
+```yaml
+params:
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
+```
