@@ -31,9 +31,9 @@ You can find all the supported editions in the [`app/_data/kong_versions.yml`](h
 
 ## Conditionally render content by version
 
-As we add new functionality, we want content on a page to be displayed only for specific releases of a product. You can use the `if_version` block for this.
+As we add new functionality, we want content on a page to be displayed only for specific releases of a product. You can use the `if_version` block for this, or `if_plugin_version` for any content in the Plugin Hub.
 
-`if_version` supports the following filters:
+`if_version` and `if_plugin_version` support the following filters:
 * `eq`: Render content that **equals** the provided version.
 * `gte`: Render content that is **equal or greater than** the provided version.
 * `lte`: Render content that is **equal or less than** the provided version.
@@ -58,9 +58,12 @@ Greater than (`gte`) and less than (`lte`) are **inclusive** of the version prov
 This will only show for version 1.11.x and later (1.12.x, 2.0.0 etc)
 {% endif_version %}
 
-{% if_version lte:1.11.x %}
-This will only show for version 1.11.x and earlier (1.10.x, 1.0.0 etc)
-{% endif_version %}
+
+
+{% if_plugin_version lte:2.8.x %}
+This will only show for plugin version 2.8.x and earlier (2.7.x, 2.6.x etc)
+{% endif_plugin_version %}
+
 
 {% if_version gte:1.11.x lte:1.19.x %}
 This will show for versions 1.11.x through 1.19.x, inclusive
@@ -71,7 +74,7 @@ This will show for versions 1.11.x through 1.19.x, inclusive
 ### Table rows
 
 When working with tables, you can set a conditional filter for a given row. 
-The filter expects new lines before and after `if_version`:
+The filter expects new lines before and after `if_version` or `if_plugin_version`:
 
 ```
 | Name  | One         | Two    |
@@ -91,11 +94,14 @@ The above will be rendered as a single table.
 
 ### Inline content
 
-If you want to conditionally render content in a sentence, you can use `if_version` and specify `inline:true`:
+If you want to conditionally render content in a sentence, you can use `if_version` or `if_plugin_version`
+and specify `inline:true`:
 
 {% raw %}
 ```
 Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world.
+
+Hello {% if_plugin_version lte:2.8.x inline:true %}everyone in the {% endif_plugin_version %} world.
 ```
 {% endraw %}
 

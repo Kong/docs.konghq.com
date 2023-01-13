@@ -24,10 +24,10 @@
       url: /variables
     - text: Single-sourced versions
       url: /single-sourced-versions
-    - text: Conditional rendering
-      url: /conditional-rendering
     - text: Single-sourced plugins
       url: /single-sourced-plugins
+    - text: Conditional rendering
+      url: /conditional-rendering
 
 - title: Community
   icon: /assets/images/icons/documentation/icn-references-color.svg
