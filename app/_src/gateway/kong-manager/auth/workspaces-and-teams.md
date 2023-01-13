@@ -42,7 +42,7 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
 3. Create a workspace named `SecureWorkspace` and select a color or image for the workspace avatar.
 
     {:.important}
-    > Workspace names are **case sensitive** ("Payments" and "payments" are not equal), so it is recommended you give your worksapces unique names regardless of letter case to prevent confusion.
+    > Workspace names are **case sensitive** ("Payments" and "payments" are not equal), so it is recommended you give your workspaces unique names regardless of letter case to prevent confusion.
     >
     > <br>
     > Additionally, do not give a workspace the same name as any of these major routes in Kong Manager:
@@ -52,7 +52,7 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
     | Plugins | Portal    | Routes       | Services      |
     | SNIs    | Upstreams | Vitals       | PermalinkStep |
 
-4. Click **Create New Workspace**, and you will see your new workspace dashboard.
+4. Click **Create New Workspace** to open a new workspace dashboard.
 5. Click the **Teams** tab.
 6. From the Teams page, click the **Roles** tab.
 7. Select `SecureWorkspace` to view the default roles that come with {{site.base_gateway}}.
@@ -61,7 +61,7 @@ For this example, start by creating a simple workspace called `SecureWorkspace`.
 
     | Role                     | Description                                                                                  |
     |--------------------------|----------------------------------------------------------------------------------------------|
-    | *workspace-admin*        | Full access to all endpoints in the workspace — except RBAC Admin API. |
+    | *workspace-admin*        | Full access to all endpoints in the workspace except the RBAC Admin API. |
     | *workspace-portal-admin* | Full access to Dev Portal related endpoints in the workspace. |
     | *workspace-read-only*    | Read access to all endpoints in the workspace. |
     | *workspace-super-admin*  | Full access to all endpoints in the workspace. |
