@@ -147,6 +147,8 @@ grpcs
 gui
 guis
 gzip
+hackathon
+hackathons
 hardcoded
 hardcoding
 hashicorp
