@@ -7,6 +7,7 @@ module SharedContexts
         source: File.expand_path('../../fixtures/app', __dir__),
         destination: File.expand_path('../../fixtures/dist', __dir__),
         quiet: true,
+        permalink: 'pretty',
         'jekyll-generator-single-source': {
           'versions_file' => '_data/kong_versions.yml',
           'docs_nav_folder' => '_data',
@@ -28,7 +29,8 @@ module SharedContexts
           { 'scope' => { 'path' => 'about' }, 'values' => { 'layout' => 'about', 'header_html' => '<a class=\'github-button\' href=\'https://github.com/Kong/kong\' data-style=\'mega\' data-count-href=\'/Kong/kong/stargazers\' data-count-api=\'/repos/Kong/kong#stargazers_count\' data-count-aria-label=\'# stargazers on GitHub\' aria-label=\'Star Kong/kong on GitHub\'>Star</a>&nbsp;<a class=\'github-button\' href=\'https://github.com/Kong/kong/fork\' data-icon=\'octicon-repo-forked\' data-style=\'mega\' data-count-href=\'/Kong/kong/network\' data-count-api=\'/repos/Kong/kong#forks_count\' data-count-aria-label=\'# forks on GitHub\' aria-label=\'Fork Kong/kong on GitHub\'>Fork</a>', 'breadcrumbs' => '' } },
           { 'scope' => { 'type' => 'hub' }, 'values' => {  'layout' => 'extension', 'permalink' => '/:collection/:path' } },
           { 'scope' => { 'path' => 'contributing' }, 'values' => { 'layout' => 'docs-v2' } }
-        ]
+        ],
+        plugins: ['jekyll-redirect-from', 'jekyll-include-cache', 'jekyll-generator-single-source']
       )
     end
 
