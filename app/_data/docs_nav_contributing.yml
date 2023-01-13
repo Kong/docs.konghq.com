@@ -10,7 +10,7 @@
       url: /style-guide
     - text: Word choice and naming
       url: /word-choice
-    - text: Contribution Templates
+    - text: Contribution templates
       url: /contribution-templates
 
 - title: Markdown rules and formatting
@@ -22,11 +22,11 @@
       url: /includes
     - text: Variables
       url: /variables
-    - text: Single Sourced Versions
+    - text: Single-sourced versions
       url: /single-sourced-versions
     - text: Conditional rendering
       url: /conditional-rendering
-    - text: Single Sourced Plugins
+    - text: Single-sourced plugins
       url: /single-sourced-plugins
 
 - title: Community
