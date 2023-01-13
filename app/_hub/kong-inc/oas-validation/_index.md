@@ -5,6 +5,9 @@ desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger AP
 description: |
   Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
 
+  {:.important .no-icon}
+  > In Kong Gateway versions 3.1.1.0 and 3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually [enable the plugin](#enable-the-plugin).
+  
 enterprise: true
 cloud: false
 plus: false
@@ -101,6 +104,16 @@ params:
       description: |
         If set to true, returns a detailed error message for invalid requests & responses. This is useful while testing.
 ---
+
+{% if_plugin_version eq:3.1.x %}
+## Enable the plugin
+
+To enable the plugin, use one of the following methods:
+  * Package install: Set `plugins=bundled,oas-validation` in `kong.conf` before starting Kong
+  * Docker: Set `KONG_PLUGINS=bundled,oas-validation` in the environment
+  * Kubernetes: Set `KONG_PLUGINS=bundled,oas-validation` using [these instructions](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration)
+
+{% endif_plugin_version %}
 
 ## Tutorial
 
