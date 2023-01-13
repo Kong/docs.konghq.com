@@ -13,10 +13,8 @@ Netlify link: <!-- Netlify will generate a preview link after PR is opened. Add 
 
 ### Checklist 
 
-[ ] Review label added <!-- (see below) -->
-
-** Release-specific work only **
-[ ] Pointed to correct feature branch (e.g. `release/gateway-3.2`, `release/deck-1.17`)
+- [ ] Review label added <!-- (see below) -->
+- [ ] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
 
 
 <!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
