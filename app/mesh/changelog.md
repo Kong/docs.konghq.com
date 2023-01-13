@@ -4,16 +4,16 @@ no_version: true
 ---
 
 ## 2.0.2
-> Release on **2023/01/13**
+> Released on **2023/01/13**
 
 Built on top of [Kuma 2.0.2](https://github.com/kumahq/kuma/releases/tag/2.0.2)
 
 ### Changes
 
-- Upgrade Helm library version.
-- Upgrade Go version to 1.18.9.
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
 - Fix caching of data which might cause regeneration of certificates.
-- Upgrade CoreDNS.
+- Upgraded CoreDNS.
 
 ## 2.0.1
 > Release on **2022/12/05**
@@ -53,16 +53,16 @@ However, Control Plane Token is now deprecated and will be removed in the future
 Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
 
 ## 1.9.3
-> Release on **2023/01/13**
+> Released on **2023/01/13**
 
 Built on top of [Kuma 1.8.3](https://github.com/kumahq/kuma/releases/tag/1.9.3)
 
 ### Changes
 
-- Upgrade Helm library version.
-- Upgrade Go version to 1.18.9.
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
 - Fix caching of data which might cause regeneration of certificates.
-- Upgrade CoreDNS.
+- Upgraded CoreDNS.
 
 ## 1.9.2
 > Released on **2022/12/06**
@@ -106,16 +106,16 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 - You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
 
 ## 1.8.5
-> Release on **2023/01/13**
+> Released on **2023/01/13**
 
 Built on top of [Kuma 1.7.4](https://github.com/kumahq/kuma/releases/tag/1.7.4)
 
 ### Changes
 
-- Upgrade Helm library version.
-- Upgrade Go version to 1.18.9.
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
 - Fix caching of data which might cause regeneration of certificates.
-- Upgrade CoreDNS.
+- Upgraded CoreDNS.
 
 ## 1.8.4
 > Released on **2022/12/06**
@@ -199,16 +199,16 @@ Dependency upgrades:
   the DNS server embedded in the dataplane proxy (enabled by default).
 
 ## 1.7.6
-> Release on **2023/01/13**
+> Released on **2023/01/13**
 
 Built on top of [Kuma 1.6.4](https://github.com/kumahq/kuma/releases/tag/1.6.4)
 
 ### Changes
 
-- Upgrade Helm library version.
-- Upgrade Go version to 1.18.9.
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
 - Fix caching of data which might cause regeneration of certificates.
-- Upgrade CoreDNS.
+- Upgraded CoreDNS.
 
 ## 1.7.5
 > Released on **2022/12/06**
@@ -313,16 +313,16 @@ Every item in the items array now has a `kind` property of either:
 Some examples can be found in the [Inspect API docs](https://kuma.io/docs/1.6.x/reference/http-api/#inspect-api).
 
 ## 1.6.4
-> Release on **2023/01/13**
+> Released on **2023/01/13**
 
 Built on top of [Kuma 1.5.4](https://github.com/kumahq/kuma/releases/tag/1.5.4)
 
 ### Changes
 
-- Upgrade Helm library version.
-- Upgrade Go version to 1.18.9.
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
 - Fix caching of data which might cause regeneration of certificates.
-- Upgrade CoreDNS.
+- Upgraded CoreDNS.
 
 ## 1.6.3
 > Released on **2022/12/06**
