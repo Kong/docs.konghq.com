@@ -1,6 +1,5 @@
 ---
-title: Content Templates
-no_version: true
+title: Content templates
 ---
 
 At Kong, we use the following four standard content types when we write our documentation:

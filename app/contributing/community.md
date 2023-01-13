@@ -1,6 +1,5 @@
 ---
 title: Community
-no_version: true
 ---
 
 This section contains information on how to contribute using our docs-as-code approach. You may also be interested in [Community Expectations](/contributing/community-expectations/) and [Hackathons](/contributing/hackathons/).

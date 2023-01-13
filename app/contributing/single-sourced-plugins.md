@@ -1,6 +1,5 @@
 ---
-title: Single Sourced Plugins
-no_version: true
+title: Single-sourced plugins
 ---
 
 We use a Jekyll plugin (`plugin_single_source_generator.rb`) to dynamically generate pages from a single source file. It works as follows:

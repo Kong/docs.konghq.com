@@ -1,6 +1,5 @@
 ---
 title: Plugin docs
-no_version: true
 ---
 
 > WORK IN PROGRESS

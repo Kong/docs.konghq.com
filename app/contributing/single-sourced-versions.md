@@ -1,6 +1,5 @@
 ---
-title: Single Sourced Versions
-no_version: true
+title: Single-sourced versions
 ---
 
 Historically, we have supported multiple versions of a product by copying the previous release folder and renaming it in the `app` folder. This served us well with a small number of versions, but has not scaled well as we approach 50 versions of our products.

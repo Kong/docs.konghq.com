@@ -1,7 +1,5 @@
 ---
 title: Contributing to the Kong docs
-no_version: true
-layout: 'docs-v2'
 ---
 
 <!-- vale off -->

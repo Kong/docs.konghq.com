@@ -1,6 +1,5 @@
 ---
 title: Conditional rendering
-no_version: true
 ---
 
 ## Conditionally render content by version

@@ -1,6 +1,5 @@
 ---
 title: Reusable content
-no_version: true
 ---
 
 In Jekyll, reusable content is managed using [`include`](https://jekyllrb.com/docs/includes/)
