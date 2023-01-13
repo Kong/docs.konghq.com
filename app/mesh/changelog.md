@@ -12,7 +12,7 @@ Built on top of [Kuma 2.0.2](https://github.com/kumahq/kuma/releases/tag/2.0.2)
 
 - Upgraded the Helm library version.
 - Upgraded the Go version to 1.18.9.
-- Fix caching of data which might cause regeneration of certificates.
+- Fixed data caching. This bug might have caused certificates to regenerate.
 - Upgraded CoreDNS.
 
 ## 2.0.1
@@ -61,7 +61,7 @@ Built on top of [Kuma 1.8.3](https://github.com/kumahq/kuma/releases/tag/1.9.3)
 
 - Upgraded the Helm library version.
 - Upgraded the Go version to 1.18.9.
-- Fix caching of data which might cause regeneration of certificates.
+- Fixed data caching. This bug might have caused certificates to regenerate.
 - Upgraded CoreDNS.
 
 ## 1.9.2
@@ -114,7 +114,7 @@ Built on top of [Kuma 1.7.4](https://github.com/kumahq/kuma/releases/tag/1.7.4)
 
 - Upgraded the Helm library version.
 - Upgraded the Go version to 1.18.9.
-- Fix caching of data which might cause regeneration of certificates.
+- Fixed data caching. This bug might have caused certificates to regenerate.
 - Upgraded CoreDNS.
 
 ## 1.8.4
@@ -207,7 +207,7 @@ Built on top of [Kuma 1.6.4](https://github.com/kumahq/kuma/releases/tag/1.6.4)
 
 - Upgraded the Helm library version.
 - Upgraded the Go version to 1.18.9.
-- Fix caching of data which might cause regeneration of certificates.
+- Fixed data caching. This bug might have caused certificates to regenerate.
 - Upgraded CoreDNS.
 
 ## 1.7.5
@@ -321,7 +321,7 @@ Built on top of [Kuma 1.5.4](https://github.com/kumahq/kuma/releases/tag/1.5.4)
 
 - Upgraded the Helm library version.
 - Upgraded the Go version to 1.18.9.
-- Fix caching of data which might cause regeneration of certificates.
+- Fixed data caching. This bug might have caused certificates to regenerate.
 - Upgraded CoreDNS.
 
 ## 1.6.3
