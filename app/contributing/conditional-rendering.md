@@ -2,9 +2,43 @@
 title: Conditional rendering
 ---
 
+The Kong docs support conditional rendering based on the following:
+* Product
+* Product version
+
+
+## Conditionally render content by product
+
+If you have content that needs to be reused between multiple products, you can conditionally render parts of that 
+for a specific product:
+
+{% raw %}
+```
+This sentence is visible for every product that the content is used in.
+
+{% unless page.edition == "konnect" %}
+This will be hidden for Konnect.
+{% endunless %}
+
+{% if page.edition == "gateway" %}
+This will show only for Kong Gateway.
+{% endif %}
+```
+{% endraw %}
+
+You can find all the supported editions in the [`app/_data/kong_versions.yml`](https://github.com/Kong/docs.konghq.com/blob/main/app/_data/kong_versions.yml) metadata file. 
+
+
 ## Conditionally render content by version
 
-As we add new functionality, we'll want content on a page to be displayed for specific releases of a product. You can use the `if_version` block in a file for this:
+As we add new functionality, we want content on a page to be displayed only for specific releases of a product. You can use the `if_version` block for this.
+
+`if_version` supports the following filters:
+* `eq`: Render content that **equals** the provided version.
+* `gte`: Render content that is **equal or greater than** the provided version.
+* `lte`: Render content that is **equal or less than** the provided version.
+
+`eq` displays content for only one specific version:
 
 {% raw %}
 ```
@@ -15,7 +49,7 @@ This will only show for version 1.11.x
 ```
 {% endraw %}
 
-We also support greater than (`gte`) and less than (`lte`). This filter is **inclusive** of the version provided:
+Greater than (`gte`) and less than (`lte`) are **inclusive** of the version provided:
 
 {% raw %}
 ```
@@ -34,23 +68,28 @@ This will show for versions 1.11.x through 1.19.x, inclusive
 ```
 {% endraw %}
 
-When working with tables, the filter expects new lines before and after `if_version`:
+### Table rows
 
-{% raw %}
+When working with tables, you can set a conditional filter for a given row. 
+The filter expects new lines before and after `if_version`:
+
 ```
 | Name  | One         | Two    |
 |-------|-------------|--------|
 | Test1 | Works       | Shows  |
+{% raw %}
 
 {% if_version gte: 1.11.x %}
 | Test2 | Conditional | Hidden |
 {% endif_version %}
 
+{% endraw %}
 | Test1 | Works       | Shows  |
 ```
-{% endraw %}
 
 The above will be rendered as a single table.
+
+### Inline content
 
 If you want to conditionally render content in a sentence, you can use `if_version` and specify `inline:true`:
 
@@ -60,21 +99,9 @@ Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} w
 ```
 {% endraw %}
 
-## Conditionally render content by version
+### Front matter
 
-You can conditionally render content that only relates to a specific product:
-
-{% raw %}
-```
-{% unless page.edition == "konnect" %}
-This will be hidden for Konnect
-{% endunless %}
-```
-{% endraw %}
-
-## Conditionally render front matter
-
-You may want to set values in the front matter conditionally. You can do this using `overrides`:
+You may want to set values in a page's front matter conditionally. You can do this using `overrides`:
 
 {% raw %}
 ```yaml
