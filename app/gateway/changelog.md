@@ -1320,6 +1320,9 @@ RBAC rules involving deny (negative) rules now correctly take precedence over al
   * Fixed an issue where empty arrays were being converted to empty objects.
   Empty arrays are now preserved.
 
+### Known limitations
+
+A required PCRE library is dynamically linked where prior versions statically linked the library. Depending on the system PCRE version, this may cause regex compliation to fail when routing requests. From 2.8.2.4 and later, Kong will return to statically linking the PCRE library.
 
 ## 2.8.2.2
 **Release Date** 2022/12/01
