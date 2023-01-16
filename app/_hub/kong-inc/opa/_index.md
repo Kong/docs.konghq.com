@@ -322,7 +322,8 @@ The plugin expects the following structure in the OPA response in this case:
     "headers": {
       "<key>": "<value>",
       "<key2>": "<value2>"
-    }
+    },
+    "message": "<value3> or object",
   }
 }
 ```
@@ -334,5 +335,7 @@ If `result.allow` is set to `true`, then the key-value pairs in `result.headers`
 are injected into the request before it is forwarded to the upstream Service.
 
 If `result.allow` is set to `false`, then the key-value pairs in `result.headers` (if any)
-are injected into the response and the status code of the response is set to `result.status`.
+are injected into the response, the `result.message` (if any) is set as the response message,
+and the status code of the response is set to `result.status`.
 If `result.status` is absent then the default `403` status code is sent.
+If `result.status` is absent then the default *unauthorized* message is sent.
