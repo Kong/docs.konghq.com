@@ -3,14 +3,29 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
-## 2.0.1
-> Release on **2022/12/05**
+## 2.0.2
+> Released on **2023/01/13**
 
-Built on top of [Kuma 2.0.0](https://github.com/kumahq/kuma/releases/tag/2.0.0)
+Built on top of [Kuma 2.0.2](https://github.com/kumahq/kuma/releases/tag/2.0.2)
 
 ### Changes
 
-- Pulling important performance and reliability fixes from Kuma
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
+
+## 2.0.1
+> Release on **2022/12/05**
+
+Built on top of [Kuma 2.0.1](https://github.com/kumahq/kuma/releases/tag/2.0.1)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
 
 ## 2.0.0
 > Release on **2022/11/04**
@@ -36,6 +51,18 @@ However, Control Plane Token is now deprecated and will be removed in the future
 
 ### Breaking changes and deprecations
 Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
+
+## 1.9.3
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.8.3](https://github.com/kumahq/kuma/releases/tag/1.9.3)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
 
 ## 1.9.2
 > Released on **2022/12/06**
@@ -77,6 +104,18 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 ### Upgrading
 
 - You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
+
+## 1.8.5
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.7.4](https://github.com/kumahq/kuma/releases/tag/1.7.4)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
 
 ## 1.8.4
 > Released on **2022/12/06**
@@ -158,6 +197,18 @@ Dependency upgrades:
 
 * The `kuma-cp` no longer comes with a built-in DNS server. Use
   the DNS server embedded in the dataplane proxy (enabled by default).
+
+## 1.7.6
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.6.4](https://github.com/kumahq/kuma/releases/tag/1.6.4)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
 
 ## 1.7.5
 > Released on **2022/12/06**
@@ -260,6 +311,18 @@ Every item in the items array now has a `kind` property of either:
 `SidecarDataplane`: a normal Dataplane with outbounds, inbounds, etc.
 `MeshGatewayDataplane`: a MeshGateway-configured Dataplane with a new structure representing the MeshGateway it serves.
 Some examples can be found in the [Inspect API docs](https://kuma.io/docs/1.6.x/reference/http-api/#inspect-api).
+
+## 1.6.4
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.5.4](https://github.com/kumahq/kuma/releases/tag/1.5.4)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
 
 ## 1.6.3
 > Released on **2022/12/06**
