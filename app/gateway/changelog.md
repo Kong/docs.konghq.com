@@ -1288,9 +1288,6 @@ RBAC rules involving deny (negative) rules now correctly take precedence over al
 * Fixed a router issue where, in an environment with more than 50,000 routes, attempting to update a route caused a `500` error response.
 * Fixed a timer leak that occurred whenever the generic messaging protocol connection broke in hybrid mode.
 * Fixed a `tlshandshake` method error that occurred when SSL was configured on PostgreSQL, and the Kong Gateway had `stream_listen` configured with a stream proxy. 
-* Fixed an issue that caused segfaults in Kong Gateway running on Amazon Linux 2 with `opentracing` enabled.
-  This was caused by the wrong base image being used for the Amazon Linux 2 package.
-  The Amazon Linux 2 package is now built on an actual Amazon Linux 2 image instead of the shared CentOS-based image.
 
 #### Plugins
 
