@@ -31,7 +31,7 @@ the `/app/_hub/_init/my-extension/versions.yml` files into your plugin's subdire
 1. Edit your `_index.md` file based on the guidance in comments in that file.
 You'll also find lots of helpful examples in other plugin doc files.
 
-1. Edit your `versions.yml` file with the minimum Kong Gateway version that this plugin supports.
+1. Edit your `versions.yml` file with the minimum {{site.base_gateway}} version that this plugin supports.
     This will generate a doc for every subsequent gateway version, 
     starting with the one you specify.
 
