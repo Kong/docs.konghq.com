@@ -32,7 +32,7 @@ When using Vitals, note:
 
 ## Vitals API
 
-Vitals data is available using Vitals API. Access to these endpoints can be managed using RBAC. 
+Vitals data is available using the Vitals API. Access to these endpoints can be managed using RBAC. 
 
 The Vitals API is described using the Open API Specification. You can view it by downloading the [`vitals.yaml`](/api/vitals.yaml) file. Use the API to retrieve health and traffic information from your cluster.
 
