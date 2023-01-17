@@ -4,7 +4,7 @@ title: Plugin docs
 
 Plugin documentation is posted on the [Plugin Hub](/hub/). 
 All plugin docs, whether developed by Kong and external contributors,
-follow a [specific template](https://raw.githubusercontent.com/Kong/docs.konghq.com/main/app/_hub/_init/my-extension/).
+follow a [specific template](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension).
 
 We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
@@ -20,10 +20,10 @@ We are currently accepting plugin submissions to our plugin hub from trusted tec
   create a publisher directory at`_app/_hub/`, such as
  `_app/_hub/company-name`. 
 
-  See other Kong Hub listings for examples of publisher names.
+    See other Kong Hub listings for examples of publisher names.
 
-1. Create a subdirectory for your plugin within your publisher directory -
-such as `_app/_hub/kong-inc/your-plugin`.
+1. Create a subdirectory for your plugin within your publisher directory.
+For example, `_app/_hub/kong-inc/your-plugin`.
 
 1. Copy the `/app/_hub/_init/my-extension/_index.md` and 
 the `/app/_hub/_init/my-extension/versions.yml` files into your plugin's subdirectory.
@@ -51,9 +51,9 @@ the README - you should find your Hub contribution listed at
 
 1. Once you are happy with your listing, push your branch to the GitHub repository
 
-  ```
-  git push --set-upstream origin [name_of_your_new_branch]
-  ```
+    ```
+    git push --set-upstream origin [name_of_your_new_branch]
+    ```
 
 1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make [a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
 
@@ -65,6 +65,6 @@ necessary, and once approved, will merge and deploy your Kong Hub addition!
 
 If you want to write a custom plugin for your own needs, start by reading the [Plugin Development Guide](/gateway/latest/plugin-development).
 
-If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the [Distribution section](/gateway/latest/plugin-development/distribution) of the Plugin Development Guide.
+If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the [Distribution section](/gateway/latest/plugin-development/distribution/#distribute-your-plugin) of the Plugin Development Guide.
 
 To give visibility to your plugin, you can create a post in the [Announcements](https://discuss.konghq.com/c/announcements/7) category of Kong Nation.
