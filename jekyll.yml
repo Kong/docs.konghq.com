@@ -171,6 +171,7 @@ defaults:
       path: "contributing"
     values:
       layout: "docs-v2"
+      no_version: true
 
 # product name vars
 ee_product_name: Kong Enterprise

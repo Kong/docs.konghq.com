@@ -1,6 +1,5 @@
 ---
-title: Using Variables
-no_version: true
+title: Using variables
 ---
 
 Use variable in content text, links, and in code blocks.

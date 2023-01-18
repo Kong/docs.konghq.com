@@ -1,6 +1,5 @@
 ---
 title: Style guide
-no_version: true
 ---
 
 <!-- vale off -->
