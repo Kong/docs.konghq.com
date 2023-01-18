@@ -3,7 +3,7 @@ title: Plugin docs
 ---
 
 Plugin documentation is posted on the [Plugin Hub](/hub/). 
-All plugin docs, whether developed by Kong and external contributors,
+All plugin docs, whether developed by Kong or external contributors,
 follow a [specific template](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension).
 
 We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
