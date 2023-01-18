@@ -9,7 +9,7 @@ follow a [specific template](https://github.com/Kong/docs.konghq.com/tree/main/a
 We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
 {:.note}
-> The Kong Plugin Hub is documentation site. We **do not** host plugin source code or downloads.
+> The Kong Plugin Hub is a documentation site. We **do not** host plugin source code or downloads.
 
 ## Add a new plugin doc
 
@@ -55,10 +55,10 @@ the README - you should find your Hub contribution listed at
     git push --set-upstream origin [name_of_your_new_branch]
     ```
 
-1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make [a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
+1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Plugin Hub. 
 
 The Kong docs team will review your PR, suggest improvements and adjustments as
-necessary, and once approved, will merge and deploy your Kong Hub addition!
+necessary, and once approved, will merge and deploy your Plugin Hub addition!
 
 
 ## Custom plugins and documentation
