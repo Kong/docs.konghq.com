@@ -59,7 +59,7 @@ Kong Gateway now triggers an event that allows the Vitals subsystem to be reinit
 - Support for the `/vitals/reports/:entity_type` endpoint is deprecated. Use one of the following endpoints from the Vitals API instead:
   - For `/vitals/reports/consumer`, use `/{workspace_name}/vitals/status_codes/by_consumer` instead
   - For `/vitals/reports/service`, use `/{workspace_name}/vitals/status_codes/by_service` instead
-  - For `/vitals/reports/hostname`, use /{`workspace_name}/vitals/nodes` instead
+  - For `/vitals/reports/hostname`, use `/{workspace_name}/vitals/nodes` instead
 
   See the [Vitals documentation](/gateway/latest/kong-enterprise/analytics/#vitals-api) for more detail.
  
