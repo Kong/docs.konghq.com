@@ -31,7 +31,10 @@ You can find all the supported editions in the [`app/_data/kong_versions.yml`](h
 
 ## Conditionally render content by version
 
-As we add new functionality, we want content on a page to be displayed only for specific releases of a product. You can use the `if_version` block for this, or `if_plugin_version` for any content in the Plugin Hub.
+You can use conditional rendering by version for any content in the `app/_src` or `app/_hub` directories.
+
+As we add new functionality, we want content on a page to be displayed only for specific releases of a product. 
+You can use the `if_version` block for this, or `if_plugin_version` for any content in the Plugin Hub.
 
 * `if_version` is used by {{site.base_gateway}}, {{site.mesh_product_name}}, Kubernetes Ingress Controller, and decK documentation.
 * `if_plugin_version` can only be used for plugin documentation in the `app/_hub` directory.
@@ -44,17 +47,22 @@ As we add new functionality, we want content on a page to be displayed only for 
 For example, `eq` displays content for only one specific version:
 
 {% raw %}
+
 ```
 
 {% if_version eq:1.11.x %}
 This will only show for version 1.11.x
 {% endif_version %}
 
+```
 
+Or for a plugin:
+```
 
-{% if_version eq:2.8.x %}
+{% if_plugin_version eq:2.8.x %}
 This will only show for plugin version 2.8.x
-{% endif_version %}
+{% endif_plugin_version %}
+
 ```
 {% endraw %}
 
