@@ -1,22 +1,23 @@
 <!---shared with logging plugins: file-log, http-log, loggly, syslog, tcp-log, udp-log DOCS-1617 --->
 
-A few considerations on the JSON object:
-
-* `request` contains properties about the request sent by the client.
-* `response` contains properties about the response sent to the client.
-* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request.
-* `route` contains {{site.base_gateway}} properties about the specific Route requested.
-* `service` contains {{site.base_gateway}} properties about the Service associated with the requested Route.
-* `authenticated_entity` contains {{site.base_gateway}} properties about the authenticated credential (if an authentication plugin has been enabled).
-* `workspaces` contains {{site.base_gateway}} properties of the Workspaces associated with the requested
-   Route. **Only in {{site.base_gateway}} version >= 0.34.x**. For {{site.base_gateway}} version >= 2.1.x, 
-   there is a `ws_id` on services and routes that reference the workspace ID.
-* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled).
-* `latencies` contains some data about the latencies involved:
-  * `proxy` is the time it took for the final service to process the request.
-  * `kong` is the internal Kong latency that it took to run all the plugins.
-  * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
-* `client_ip` contains the original client IP address.
-* `started_at` contains the UTC timestamp of when the request has started to be processed.
+* `service` properties about the Service associated with the requested Route.
+* `route` properties about the specific Route requested.
+* `request` properties about the request sent by the client.
+* `response` properties about the response sent to the client.
+* `latencies` latency data.
+  * `kong` time in ms that it took to run all the plugins.
+  * `request` time in ms time elapsed between the first bytes were read from the client and the last bytes sent to the client. This is useful for detecting slow clients.
+  * `proxy` time in ms it took for the upstream to process the request.
+* `tries` a list of iterations made by the load balancer for this request.
+  * `balancer_start` unix timestamp for when the balancer started.
+  * `ip` of the contacted balancer.
+  * `port` of the contacted balancer.
+  * `balancer_latency` in ms.
+* `client_ip` the original client IP address.
+* `workspace` the UUID of the workspace associated with this request.
+* `upstream_uri` the URI, including query parameters, for the configured upstream.
+* `authenticated_entity` properties about the authenticated credential (if an authentication plugin has been enabled).
+* `consumer` the authenticated Consumer (if an authentication plugin has been enabled).
+* `started_at` the unix timestamp of when the request has started to be processed.
 
 Log plugins enabled on services and routes contain information about the service or route.
