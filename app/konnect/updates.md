@@ -9,7 +9,7 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## January 2023
+## February 2023
 
 **Audit Logging** <span class="badge beta"></span>
 : {{site.konnect_short_name}} now provides an audit logging API. 
