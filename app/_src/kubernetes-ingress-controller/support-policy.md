@@ -21,10 +21,10 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 <table style="display:table" width="100%">
 <thead>
 <tr>
-  <th>Kubenetes Version</th>
+  <th>Kubernetes Version</th>
   <th>OpenShift Version</th>
   <th>Upstream k8s EOL</th>
-  <th>Supported Kong Gateway Versions</th>
+  <th>Supported {{site.base_gateway}} Versions</th>
   <th>Recommended KIC Version</th>
   <th>EOL</th>
 </tr>
