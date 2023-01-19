@@ -208,6 +208,13 @@
           url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /org-management/audit-logging
+        - text: Log reference
+          url: /org-management/audit-logging/reference
+    
     - text: Account and Org Deactivation
       url: /org-management/deactivation
     - text: Troubleshoot
@@ -263,6 +270,13 @@
         - text: API Spec
           url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
           absolute_url: true
+    - text: Organization Settings API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
+          absolute_url: true
+        - text: Audit Log Webhooks
+          url: /api/organization-settings/audit-logging
     - text: Reference
       items:
         - text: Filtering

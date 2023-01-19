@@ -9,6 +9,13 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## January 2023
+
+**Audit Logging**
+: {{site.konnect_short_name}} now provides an audit logging API. 
+Using a webhook, you can push {{site.konnect_short_name}} audit logs to an endpoint of your choice with any of the supported SIEM vendors.
+See the [audit logging documentation](/konnect/org-management/audit-logging) for more details.
+
 ## December 2022
 
 **Curity support for Dynamic Client Registration (beta)**
