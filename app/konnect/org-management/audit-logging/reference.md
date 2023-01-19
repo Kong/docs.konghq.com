@@ -30,15 +30,17 @@ Property | Description
 Timestamp | Time and date of the event in UTC.
 `AUTHENTICATION_TYPE` | Can be one of the following: <br> - `AUTHENTICATION_TYPE_BASIC`: basic email and password authentication <br> - `AUTHENTICATION_TYPE_SSO`: authentication with single sign-on (SSO) <br> - `AUTHENTICATION_TYPE_PAT`: authentication with a personal access token
 `AUTHENTICATION_OUTCOME` | Can be one of the following: <br> - `AUTHENTICATION_OUTCOME_SUCCESS`: authentication is successful<br> - `AUTHENTICATION_OUTCOME_NOT_FOUND`: user was not found<br> - `AUTHENTICATION_OUTCOME_INVALID_PASSWORD`: invalid password specified <br> - `AUTHENTICATION_OUTCOME_LOCKED`: user account is locked<br> - `AUTHENTICATION_OUTCOME_DISABLED`: user account has been disabled
+`rt` | Milliseconds since Unix epoch.
+`src` | The IP address of the request originator.
+`success` | `true` or `false`, depending on whether authentication was successful or not.
 `org_id` | The originating organization ID.
 `principal_id` | The user ID of the user that performed the action.
-`rt` | ?
-`src` | The IP address of the request originator.
+`trace_id` | The trace ID of the request.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
-`success` | `true` or `false`, depending on whether authentication was successful or not.
-
 
 ## Authorization logs
+
+Authorization log entries are created for every read and write operation in Konnect.
 
 Example log entry:
 
@@ -60,53 +62,16 @@ Each authorization log entry contains the following:
 Property | Description
 ---------|-------------
 Timestamp | Time and date of the event in UTC.
-`action` | The type of action the user performed on the resource.
+`service_name` | The name of the component within Konnect. For example, `portals` or `runtimegroups`. In the above example, this appears as `Authz.portals`.
+`rt` | Milliseconds since Unix epoch.
+`src` | The IP address of the request originator.
+`action` | The type of action the user performed on the resource. For example, `retrieve`, `list`, or `edit`.
 `granted` | Boolean indicating whether the authorization was granted or not.
 `org_id` | The originating organization ID.
 `principal_id` | The user ID of the user that performed the action.
 `actor_id` | If using impersonation, the ID of the person doing the impersonation. Otherwise, this field is empty.
 `trace_id` | The trace ID of the request.
-`caller_ip` | IP address of the user agent making the request.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
-`service_name` | The name of the component within Konnect. For example, `portals` or `runtimegroups`.
-
-## Actions logged by Konnect
-
-### Authentication
-
-User action | Object | Action
-------------|--------|--------
-Sign up and create organization | UserID | Create
-Create a user without creating an organization | UserID | Create
-Password reset requested | UserID | Edit
-Password changed | UserID | Edit
-Delete user | UserID | Delete
-Disable user | UserID | Edit
-Login success | UserID | Login
-Login failure | UserID | Login
-Logout | UserID | Logout
-Locked account | UserID | Login
-
-### Roles
-
-User action | Object | Action | Payload
-------------|--------|--------|---------
-Create role | Role | Create | Subaction: None <br>Properties: None
-Edit role - add user | Object 1: Role <br> Object 2: User | Edit | Subaction: Add user <br> Properties: Role, User
-Edit role - remove user | Object 1: Role <br> Object 2: User | Edit | Subaction: Remove user <br> Properties: Role, User
-Edit role - change external group mapping | Role | Edit | Subaction: Edit role mapping <br> Properties: New mapping
-Delete role | Role | Delete | Subaction: None <br> Properties: Role metadata
-
-### Audit logging webhook
-
-User action | Object | Action
-------------|--------|--------
-Set up or edit webhook | audit-log-webhook-config | Edit
-View webhook configuration | audit-log-webhook-config | Retrieve
-
-<!-- Will need to fill out the rest of the actions for other resources - is this just any API object? -->
-<!-- Is "object" the same thing as "resource"? -->
-
 
 ## See also
 * [Audit logging in Konnect](/konnect/org-management/audit-logging/)
