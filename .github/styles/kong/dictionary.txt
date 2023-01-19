@@ -55,7 +55,6 @@ Postgres
 PowerShell
 Prometheus
 Protobuf
-QRadar
 Resty
 Splunk
 Stap
@@ -303,8 +302,6 @@ statsd
 stderr
 stdin
 stdout
-subaction
-subactions
 subcommand
 subcommands
 submodule
