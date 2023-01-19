@@ -54,7 +54,6 @@ If the connection is successful, you will receive a `200` response code, and a r
 ```json
 {
     "endpoint":"https://example.com/audit-logs",
-    "authorization":"<example-token>",
     "enabled":true
 }
 ```
@@ -63,14 +62,14 @@ You should now start receiving logs at your endpoint from the configured organiz
 
 ## View webhook configuration
 
-You can view audit log webhooks by running the following:
+You can view your audit log webhook configuration by running the following:
 
 ```sh
 curl https://global.api.konghq.com/v2/audit-log-webhook \
     --header "Authorization: Bearer PAT"
 ```
 
-You will receive a `200` response code and the following data, with the authorization token hidden:
+You will receive a `200` response code and the following data, with the authorization value hidden:
 
 ```json
 {
