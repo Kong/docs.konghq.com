@@ -5,7 +5,7 @@ badge: enterprise
 
 Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performance, and to understand the microservice API transactions traversing Kong. Vitals uses visual API analytics to see exactly how your APIs and Gateway are performing. Quickly access key statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-* Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including dashboarding of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
+* Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including creating dashboards of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
