@@ -35,6 +35,7 @@ title: Style guide
 |---                                |---                                            |---                                                |
 |Use descriptive link titles instead of "click here" |For more information, see the [style guide](#). | For more information, [click here](#).           |
 |                                   |Learn about [content best practices](#) in the Kong style guide. | Learn about content best practices [here](#).|
+
 <!-- vale on -->
 
 ## Formatting standards
