@@ -20,14 +20,11 @@ A retry is done on connection error, server error (`500` status code), or too ma
 Before you can push Konnect audit logs to an external service, you need to configure the service to receive logs. 
 This configuration is specific to your vendor.
 
-1. Configure a data collection endpoint to push logs to in one of the following SIEM providers:
-    * Microsoft Azure Sentinel
-    * Splunk Enterprise Security
-    * IBM QRadar
-    * ArcSight
-    * LogRhythm
+You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
 
-2. Create an access token, or find the credentials that you will need to access this endpoint.
+1. In your log collection service, configure a data collection endpoint to push logs to.
+
+2. Take note of the authorization credentials that you need to access this endpoint. Konnect supports any HTTP authorization header type.
 
 ## Create a webhook
 
@@ -39,15 +36,16 @@ Create a webhook by sending a `PUT` request to the `/audit-log-webhook` endpoint
 curl -i -X PUT https://global.api.konghq.com/v2/audit-log-webhook \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer PAT" \
-    --data '{"endpoint":"https://example.com/audit-logs","enabled":true,"authorization":"Bearer example-token"}'
+    --data '{"endpoint":"https://example.com/audit-logs","enabled":true,"authorization":"example-token"}'
 ```
 
 Replace the following placeholders with your own data:
 * `PAT`: A Konnect [personal access token](https://cloud.konghq.com/global/tokens) for the organization that you're tracking.
 * `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages.
-* `"authorization":"Bearer example-token"`: The access token for your log collection service. 
+* `"authorization":"example-token"`: The authorization credentials for your log collection service. 
+Konnect supports any authorization header type.
 
-    For example, if you are setting up the webhook for Splunk, you would provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`
+    For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`
 
 If the connection is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details: 
 

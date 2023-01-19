@@ -19,15 +19,9 @@ By tracking Konnect audit logs, you gain the following benefits:
 
 ## Setting up audit logging in Konnect
 
-Konnect supports webhooks to the following SIEM vendors:
-- Microsoft Azure Sentinel
-- Splunk Enterprise Security
-- IBM QRadar
-- ArcSight
-- LogRhythm
-
 Konnect administrators can track streams of security events and operational changes per organization.
-You can do this by [setting up a webhook](/konnect/api/organization-settings/audit-logging/) to send data to the service. 
+You can do this by [setting up a webhook](/konnect/api/organization-settings/audit-logging/) to send data to any 
+log collection service that supports [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
 
 Audit logging webhooks must be configured using the [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced).
 Only Konnect organization administrators can configure and view audit log webhooks. 
