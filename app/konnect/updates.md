@@ -11,9 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## January 2023
 
-**Audit Logging**
+**Audit Logging** <span class="badge beta"></span>
 : {{site.konnect_short_name}} now provides an audit logging API. 
-Using a webhook, you can push {{site.konnect_short_name}} audit logs to an endpoint of your choice with any of the supported SIEM vendors.
+Using a webhook, you can push {{site.konnect_short_name}} audit logs to an external endpoint of your choice.
 See the [audit logging documentation](/konnect/org-management/audit-logging) for more details.
 
 ## December 2022
