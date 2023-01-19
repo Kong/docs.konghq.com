@@ -156,6 +156,8 @@ params:
       referenceable: true
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
+
+        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
     - name: redis_password
       required: false
       datatype: string

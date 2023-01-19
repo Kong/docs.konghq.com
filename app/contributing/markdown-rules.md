@@ -1,6 +1,5 @@
 ---
 title: Markdown rules and formatting
-no_version: true
 ---
 
 ## Markdown front matter
@@ -45,7 +44,6 @@ A {{site.konnect_short_name}} page without a version for a beta feature:
 ```yaml
 ---
 title: My Page
-no_version: true
 beta: true
 ---
 ```

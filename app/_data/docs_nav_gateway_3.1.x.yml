@@ -551,6 +551,8 @@ items:
         url: /admin-api/#health-routes
       - text: Tags
         url: /admin-api/#tags
+      - text: Debug Routes
+        url: /admin-api/#debug-routes
       - text: Services
         url: /admin-api/#service-object
       - text: Routes
@@ -598,6 +600,8 @@ items:
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
+      - text: File Permissions Reference
+        url: /reference/file-access-permissions
       - text: Key management
         url: /reference/key-management
       - text: Performance Testing Framework

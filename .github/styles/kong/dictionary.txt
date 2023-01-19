@@ -26,6 +26,7 @@ Grafana
 HTTPie
 Istio
 Istio's
+Jira
 JsonPath
 Keycloak
 Knative
@@ -61,6 +62,7 @@ Stap
 Styra
 Styra
 Syslog
+Templatized
 Terraform
 Terraform's
 UIs
@@ -146,6 +148,8 @@ grpcs
 gui
 guis
 gzip
+hackathon
+hackathons
 hardcoded
 hardcoding
 hashicorp
@@ -158,6 +162,7 @@ href
 http
 httpbin
 https
+impactful
 inbounds
 ini
 init_worker
@@ -271,6 +276,8 @@ requery
 retryOn
 rockspec
 rockspecs
+rollout
+rollouts
 routable
 ruleset
 runtime

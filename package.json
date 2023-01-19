@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.27.10",
+    "browser-sync": "2.27.11",
     "cheerio": "1.0.0-rc.12",
     "cloudflare": "2.9.1",
     "del": "6.1.1",
@@ -49,8 +49,8 @@
     "jpegtran": "2.0.0",
     "list-assets": "0.0.2",
     "lodash": "4.17.21",
-    "node-fetch": "2.6.7",
-    "prettier": "2.8.1",
+    "node-fetch": "2.6.8",
+    "prettier": "2.8.3",
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4"
   },
@@ -67,7 +67,7 @@
     ]
   },
   "dependencies": {
-    "@segment/analytics-next": "1.48.0",
+    "@segment/analytics-next": "1.49.2",
     "js-cookie": "^3.0.1"
   }
 }

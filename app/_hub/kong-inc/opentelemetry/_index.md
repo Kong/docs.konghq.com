@@ -177,11 +177,11 @@ service:
 Run the OpenTelemetry Collector with Docker:
 
 ```bash
-docker run --name opentelemetry-collector
+docker run --name opentelemetry-collector \
   -p 4317:4317 \
   -p 4318:4318 \
   -p 55679:55679 \
-  -v ./otelcol.yaml:/etc/otel-collector-config.yaml \
+  -v $(pwd)/otelcol.yaml:/etc/otel-collector-config.yaml \
   otel/opentelemetry-collector-contrib:0.52.0 \
   --config=/etc/otel-collector-config.yaml
 ```
@@ -227,7 +227,7 @@ The OpenTelemetry plugin propagates the following headers:
 - `b3` and `b3-single`: [Zipkin headers](https://github.com/openzipkin/b3-propagation)
 - `jaeger`: [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot`: [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
-- `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/agent/propagation/) (Enterprise only)
+- `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing) (Enterprise only)
 
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.

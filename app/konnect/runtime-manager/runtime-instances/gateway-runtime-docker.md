@@ -85,7 +85,7 @@ $ docker run -d --name kong-dp \
   -e "KONG_VITALS=off" \
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly \
   -p 8000:8000 \
-  kong/kong-gateway:3.0.0.0
+  kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
@@ -105,7 +105,7 @@ docker run -d --name kong-dp `
   -e "KONG_VITALS=off" `
   --mount type=bind,source="$(pwd)",target={PATH_TO_KEYS_AND_CERTS},readonly `
   -p 8000:8000 `
-  kong/kong-gateway:3.0.0.0
+  kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
 ```
 {% endnavtab %}
 {% endnavtabs %}

@@ -127,6 +127,7 @@ allowDetailed
 allow_any_domain
 allow_dtd
 allow_origin_header
+allow_partial_chain
 allow_paths
 allow_status_codes
 allowed_content_types
@@ -328,6 +329,7 @@ datatype
 dbless_compatible
 dbless_explanation
 default_header_type
+default_service_name
 default_type
 description
 dest
@@ -391,7 +393,10 @@ entityname
 error_code
 error_message
 event_queue_size
+example_apikey
+example_namespace
 example_pass
+example_tag
 example_user
 expires_in
 exposed_headers

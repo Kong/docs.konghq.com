@@ -95,21 +95,29 @@ params:
         0 will sync the counters in the specified number of seconds. The minimum
         allowed interval is 0.02 seconds (20ms).
     - name: namespace
-      required: true
+      required: semi
       default: random_auto_generated_string
-      value_in_examples: null
+      value_in_examples: example_namespace
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
         data and sync configuration is shared in a namespace.
 
-        In DB-less mode, this field will be generated automatically on every configuration change.
-        We recommended setting `namespace` explicitly when using DB-less mode.
+        {:.important}
+        > **Important**: If managing Kong Gateway with **declarative configuration** or running
+        Kong Gateway in **DB-less mode**, set the `namespace` explicitly in your declarative configuration.
+        > <br><br>
+        > If not set, you will run into the following issues:
+        * In DB-less mode, this field will be regenerated automatically on every configuration change.
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        `namespace` value.
+
+
     - name: strategy # old version of param description
       maximum_version: "2.8.x"
       required: true
       default: cluster
-      value_in_examples: cluster
+      value_in_examples: local
       datatype: string
       description: |
         The rate-limiting strategy to use for retrieving and incrementing the
@@ -258,7 +266,9 @@ params:
       referenceable: true
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+. This can not be set to **default**.
+        If undefined, ACL authentication will not be performed.
+
+        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
     - name: redis.password
       required: semi
       default: null
@@ -413,6 +423,20 @@ params:
       datatype: boolean
       description: |
         If set to `true`, this doesn't count denied requests (status = `429`). If set to `false`, all requests, including denied ones, are counted. This parameter only affects the `sliding` window_type.
+    - name: error_code
+      minimum_version: "3.1.x"
+      required: false
+      default: 429
+      datatype: number
+      description: |
+        Set a custom error code to return when the rate limit is exceeded.
+    - name: error_message
+      minimum_version: "3.1.x"
+      required: false
+      default: rate limit exceeded
+      datatype: string
+      description: |
+        Set a custom error message to return when the rate limit is exceeded.
 
   extra: |
     **Notes:**
@@ -531,15 +555,15 @@ For guides on working with consumer groups, see the consumer group
 [API reference](/gateway/latest/admin-api/consumer-groups/reference) in
 the Admin API documentation.
 
-{:.note}
-> **Note:** Consumer groups are not supported in declarative configuration with
-decK. If you have consumer groups in your configuration, decK will ignore them.
-
 {% endif_plugin_version %}
 
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+* Added the ability to customize the error code and message with
+the configuration parameters `error_code` and `error_message`.
 
 **{{site.base_gateway}} 3.0.x**
 

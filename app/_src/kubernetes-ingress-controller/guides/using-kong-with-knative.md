@@ -146,7 +146,7 @@ Content-Length: 20
 Connection: keep-alive
 X-Kong-Upstream-Latency: 2723
 X-Kong-Proxy-Latency: 0
-Via: kong/1.4.3
+Via: kong/3.1.1
 
 Hello Go Sample v1!
 ```
@@ -222,7 +222,7 @@ Connection: keep-alive
 demo:  injected-by-kong
 X-Kong-Upstream-Latency: 2455
 X-Kong-Proxy-Latency: 1
-Via: kong/1.4.3
+Via: kong/3.1.1
 
 Hello Go Sample v1!
 ```

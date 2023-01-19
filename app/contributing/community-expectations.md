@@ -1,6 +1,5 @@
 ---
 title: Community expectations
-no_version: true
 ---
 
 This section outlines our community expectations around inclusive language and accessibility. 

@@ -19,6 +19,11 @@ or any Kubernetes cluster which supports a service of type `LoadBalancer`.
 As explained in the [deployment document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment), there
 are a variety of configurations and runtimes for the {{site.kic_product_name}}.
 
+Since version 2.4, {{site.kic_product_name}} includes support for the new
+Gateway APIs standard by default, but Kubernetes itself does not. You must
+[install the Gateway API resources](https://gateway-api.sigs.k8s.io/guides/#installing-gateway-api)
+and restart any {{site.kic_product_name}} instances after to use this feature.
+
 The following sections detail on deployment steps for all the different
 runtimes:
 
