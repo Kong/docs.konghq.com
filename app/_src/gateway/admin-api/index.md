@@ -1759,7 +1759,9 @@ HTTP 200 OK
 
 
 ### Set Node Log Level of All Control Plane Nodes
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
  Change the log level of all Control Plane nodes deployed in Hybrid
  (CP/DP) cluster.
@@ -1808,7 +1810,9 @@ HTTP 200 OK
 ---
 
 ### Set Node Log Level of All Nodes
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
 Change the log level of all nodes in a cluster.
 
@@ -1882,7 +1886,9 @@ HTTP 200 OK
 ---
 
 ### Set Log Level of A Single Node
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
 Change the log level of a node.
 

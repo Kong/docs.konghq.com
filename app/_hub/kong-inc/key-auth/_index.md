@@ -200,6 +200,10 @@ entry:
 ```yaml
 keyauth_credentials:
 - consumer: {USERNAME_OR_ID}
+  ttl: 5000
+  tags:
+    - example_tag
+  key: example_apikey
 ```
 {% endnavtab %}
 {% endnavtabs %}

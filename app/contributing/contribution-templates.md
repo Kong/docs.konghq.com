@@ -1,6 +1,5 @@
 ---
-title: Content Templates
-no_version: true
+title: Content templates
 ---
 
 At Kong, we use the following four standard content types when we write our documentation:
@@ -17,4 +16,4 @@ To help anyone interested in writing documentation, we have created templates fo
 - [Reference](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/reference-template.md)
 - [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md)
 
-If you are interested in contributing a new plugin, there is also a [plugin template](https://raw.githubusercontent.com/Kong/docs.konghq.com/main/app/_hub/_init/my-extension/_index.md) you can follow to help you focus on writing the content not the format.
+If you are interested in contributing a new plugin, there is also a [plugin template](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension) you can follow to help you focus on writing the content not the format.

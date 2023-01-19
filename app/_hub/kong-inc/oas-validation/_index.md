@@ -5,12 +5,9 @@ desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger AP
 description: |
   Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
 
-  {:.note}
-  > To use this plugin in Konnect Cloud,
-  [upgrade your runtimes](/konnect/runtime-manager/upgrade) to at least
-  v3.x.
 enterprise: true
-plus: true
+cloud: false
+plus: false
 type: plugin
 categories:
   - traffic-control
@@ -26,6 +23,7 @@ params:
     - name: http
     - name: https
   dbless_compatible: 'yes'
+  konnect_examples: false
   config:
     - name: api_spec
       required: true

@@ -173,7 +173,7 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Upgrade from 3.0.x to 3.1.x
+## Upgrade from 3.0.x to 3.1.x {#migrate-db}
 
 ### Traditional mode
 

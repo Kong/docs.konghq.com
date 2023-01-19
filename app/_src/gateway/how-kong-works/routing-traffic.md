@@ -510,7 +510,9 @@ For more information about how the router processes regular expressions, see [pe
 
 ##### Evaluation order
 
-The router evaluates routes using the `regex_priority` field of the `Route` where a route is configured.
+The router evaluates routes using the `regex_priority` field of the
+`Route` where a route is configured.  Higher `regex_priority` values
+mean higher priority.
 
 ```json
 [
