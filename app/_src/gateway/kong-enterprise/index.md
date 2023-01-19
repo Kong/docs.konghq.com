@@ -129,7 +129,7 @@ For example, you could define three consumer groups:
 [Set up consumer groups &rarr;](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
 
 
-{% if_version gte:3.1.x %}
+{% if_version gte:3.2.x %}
 ## Provisioning new data planes in the event of a control plane outage
 
 Starting in {{site.base_gateway}} version 3.1, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. For more information read the [How to Manage New Data Planes during Control Plane Outages](/gateway/latest/kong-enterprise/cp-outage-handling) documentation, or the [Control Plane Outage Management FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq).
