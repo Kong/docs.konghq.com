@@ -12,15 +12,18 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 ![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
 
 ## Prerequisites
-Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
+Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 
-You will need one of the following databases to use Vitals:
-* InfluxDB
-* PostgresSQL 9.5+
+You can use one of the following storage strategies with Vitals:
+* Kong database:
+ * PostgresSQL 9.5+
+* Separate storage engine:
+ * InfluxDB
+ * Prometheus 
 
 ## Guidelines for viewing Vitals
 When using Vitals, note:
