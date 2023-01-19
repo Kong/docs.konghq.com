@@ -237,6 +237,7 @@
 
 # KONNECT
 
+/konnect/api/organization-settings/audit-logging    /konnect/org-management/audit-logging/webhook/
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
