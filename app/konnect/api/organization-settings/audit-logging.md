@@ -5,7 +5,7 @@ badge: enterprise
 beta: true
 ---
 
-You can use the Konnect Organization Settings API to configure webhooks for [audit logging](/konnect/org-management/audit-logging). 
+You can use the {{site.konnect_short_name}} Organization Settings API to configure webhooks for [audit logging](/konnect/org-management/audit-logging). 
 
 Webhooks are invoked via an HTTP request using the following retry rules:
 
@@ -17,18 +17,18 @@ A retry is done on connection error, server error (`500` status code), or too ma
 
 ## Prerequisites
 
-Before you can push Konnect audit logs to an external service, you need to configure the service to receive logs. 
+Before you can push {{site.konnect_short_name}} audit logs to an external service, you need to configure the service to receive logs. 
 This configuration is specific to your vendor.
 
 You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
 
 1. In your log collection service, configure a data collection endpoint to push logs to.
 
-2. Take note of the authorization credentials that you need to access this endpoint. Konnect supports any HTTP authorization header type.
+2. Take note of the authorization credentials that you need to access this endpoint. {{site.konnect_short_name}} supports any HTTP authorization header type.
 
 ## Create a webhook
 
-Now that you have an external endpoint and authorization credentials, you can set up a webhook in Konnect.
+Now that you have an external endpoint and authorization credentials, you can set up a webhook in {{site.konnect_short_name}}.
 
 Create a webhook by sending a `PUT` request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
 
@@ -40,10 +40,10 @@ curl -i -X PUT https://global.api.konghq.com/v2/audit-log-webhook \
 ```
 
 Replace the following placeholders with your own data:
-* `PAT`: A Konnect [personal access token](https://cloud.konghq.com/global/tokens) for the organization that you're tracking.
+* `PAT`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) for the organization that you're tracking.
 * `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages.
 * `"authorization":"example-token"`: The authorization credentials for your log collection service. 
-Konnect supports any authorization header type.
+{{site.konnect_short_name}} supports any authorization header type.
 
     For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`
 
@@ -77,6 +77,6 @@ You will receive a `200` response code and the following data, with the authoriz
 ```
 
 ## See also
-* [Audit logging in Konnect](/konnect/org-management/audit-logging/)
+* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
 * [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)

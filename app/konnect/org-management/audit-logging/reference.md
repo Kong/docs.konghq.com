@@ -5,7 +5,7 @@ content_type: reference
 beta: true
 ---
 
-Konnect logs events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
+{{site.konnect_short_name}} logs events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
 
 ## Authentication logs
 
@@ -40,7 +40,7 @@ Timestamp | Time and date of the event in UTC.
 
 ## Authorization logs
 
-Authorization log entries are created for every read and write operation in Konnect.
+Authorization log entries are created for every read and write operation in {{site.konnect_short_name}}.
 
 Example log entry:
 
@@ -62,7 +62,7 @@ Each authorization log entry contains the following:
 Property | Description
 ---------|-------------
 Timestamp | Time and date of the event in UTC.
-`service_name` | The name of the component within Konnect. For example, `portals` or `runtimegroups`. In the above example, this appears as `Authz.portals`.
+`service_name` | The name of the component within {{site.konnect_short_name}}. For example, `portals` or `runtimegroups`. In the above example, this appears as `Authz.portals`.
 `rt` | Milliseconds since Unix epoch.
 `src` | The IP address of the request originator.
 `action` | The type of action the user performed on the resource. For example, `retrieve`, `list`, or `edit`.
@@ -74,6 +74,6 @@ Timestamp | Time and date of the event in UTC.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
 
 ## See also
-* [Audit logging in Konnect](/konnect/org-management/audit-logging/)
+* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/api/organization-settings/audit-logging/)
 * [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
