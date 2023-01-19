@@ -1275,7 +1275,7 @@ openid-connect
 ## 2.8.2.4
 **Release Date** 2023/01/20
 
-## Fixes
+### Fixes
 
 * Kong Gateway now statically links the BoringSSL PCRE library. 
 This fixes the issue introduced in 2.8.2.3, where the BoringSSL library was dynamically linked, 
