@@ -13,7 +13,7 @@ description: |
   - Signed [JWT][jwt] access tokens ([JWS][jws])
   - Opaque access tokens
   - Refresh tokens
-  - Authorization code
+  - Authorization code with client secret or PKCE
   - Username and password
   - Client credentials
   - Session cookies
