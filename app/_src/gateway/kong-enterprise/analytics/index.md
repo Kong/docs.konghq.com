@@ -20,10 +20,10 @@ Vitals is enabled by default in {{site.ee_product_name}} and available upon the 
 
 You can use one of the following storage strategies with Vitals:
 * Kong database:
- * PostgresSQL 9.5+
+  * PostgresSQL 9.5+
 * Separate storage engine:
- * InfluxDB
- * Prometheus 
+  * InfluxDB
+  * Prometheus 
 
 ## Guidelines for viewing Vitals
 When using Vitals, note:
