@@ -11,6 +11,7 @@ This guide walks you through the steps to enable RBAC in the {{site.konnect_shor
 ## Enabling RBAC in portal
 
 RBAC is disabled by default in the portal. To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal.
+You can find the portal ID from the Dev Portal section of Konnect UI. 
 
 ```bash
 curl --request PATCH \
