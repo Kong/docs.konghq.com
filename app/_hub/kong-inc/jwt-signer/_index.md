@@ -170,7 +170,7 @@ params:
       datatype: number
       description: |
         If you want to add or perhaps subtract (using a negative value) expiry
-        time(in seconds) of the original access token, you can specify a value that is added to
+        time (in seconds) of the original access token, you can specify a value that is added to
         the original access token's `exp` claim.
     - name: access_token_introspection_endpoint
       required: false
