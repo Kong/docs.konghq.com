@@ -1273,7 +1273,7 @@ openid-connect
 
 
 ## 2.8.2.4
-**Release Date** 2023/01/20
+**Release Date** 2023/01/23
 
 ### Fixes
 
