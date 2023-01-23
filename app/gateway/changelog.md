@@ -1278,7 +1278,7 @@ openid-connect
 ### Fixes
 
 * Kong Gateway now statically links the BoringSSL PCRE library. 
-This fixes the issue introduced in 2.8.2.3, where the BoringSSL library was dynamically linked, 
+This fixes an issue introduced in 2.8.2.3, where the BoringSSL library was dynamically linked, 
 causing regex compilation to fail when routing requests with some versions of the library.
 
 ## 2.8.2.3
