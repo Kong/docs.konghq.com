@@ -14,7 +14,7 @@ RBAC is disabled by default in the portal. To enable RBAC, you must make a `PATC
 
 ```bash
 curl --request PATCH \
-  --url https://cloud.konghq.com/api/portals/<portal-id> \
+  --url https://<region>.api.konghq.com/konnect-api/api/portals/<portal-id> \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -32,7 +32,7 @@ To create a team, you must make a POST request to the teams endpoint. The follow
 
 ```bash
 curl --request POST \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -47,7 +47,7 @@ You can verify that the team has been created by making a GET request to the tea
 
 ```bash
 curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
@@ -59,7 +59,7 @@ To get a list of the available roles, make a GET request to the roles endpoint. 
 
 ```bash
 curl --request GET \
-  --url https://us.api.konghq.com/v2/portal-roles \
+  --url https://<region>.api.konghq.com/v2/portal-roles \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
@@ -69,7 +69,7 @@ To assign a role to a team, you must make a POST request to the team roles endpo
 
 ```bash
 curl --request POST \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -86,7 +86,7 @@ To remove a role from a team, you must make a DELETE request to the team roles e
 
 ```bash
 curl --request DELETE \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles/<role-id> \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles/<role-id> \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
@@ -96,7 +96,7 @@ To add a developer to a team, you must make a POST request to the team members e
 
 ```bash
 curl --request POST \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --data '{
