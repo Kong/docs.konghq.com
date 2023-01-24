@@ -1,13 +1,13 @@
 ---
-title: Configure TLS
-content_type: how-to
+title: Configuring TLS
+content_type: Tutorial
 ---
 
 Configuring TLS adds a layer of security to {{site.base_gateway}} by ensuring that all data transmitted between {{site.base_gateway}} and the PostgreSQL server is encrypted. The table below contains a list of advantages and disadvantages to this approach: 
 
 * Advantages: 
   * Authentication: TLS can authenticate traffic to {{site.base_gateway}} and the PostgreSQL server. This helps in the prevention of man-in-the-middle attacks. With TLS {{site.base_gateway}} can verify that it is communicating with the correct PostgreSQL server, and the PostgreSQl server can verify that {{site.base_gateway}} or any other client is authorized to connect.
-  * Encryption: The data that is transmited between {{site.base_gateway}} and the PostgreSQL server is encrypted using symmetric key encryption, this means the same key used to encrypt the data is used to decrypt the data. This method protects your data from unauthorized access. 
+  * Encryption: The data that is transmitted between {{site.base_gateway}} and the PostgreSQL server is encrypted using symmetric key encryption, this means the same key used to encrypt the data is used to decrypt the data. This method protects your data from unauthorized access. 
   * Data integrity: With TLS your data is protected during transport.
 * Disadvantages: 
   * Complexity: Configuring and maintaining secure TLS connections require the management of certificates and may add additional complexity to your {{site.base_gateway}} instance.
@@ -20,7 +20,7 @@ This guide will show you how to configure TLS on PostgreSQL and {{site.base_gate
 
 * [OpenSSL](https://www.openssl.org/)
 * TLS support enabled in PostgreSQL
-  * If you are installing a pre-packaged distribution, or using the offical docker image, TLS support is already compiled in.
+  * If you are installing a pre-packaged distribution, or using the official docker image, TLS support is already compiled in.
   * If you are compiling PostgreSQl from source, TLS support must be enabled at build time using the `--with-ssl=openssl ` flag. In this case OpenSSL will need to be installed as well. 
 
 ## PostgreSQL setup
@@ -62,7 +62,7 @@ The first method is called the `cert` authentication method, it uses SSL client 
 
 `hostssl all all all cert`
 
-The `cert` authentication method enforces that a certificate is valid, and also ensures that the Common Name (`cn`) in the certificates mathes the user name or an applicable mapping of the requested database. 
+The `cert` authentication method enforces that a certificate is valid, and also ensures that the Common Name (`cn`) in the certificates matches the user name or an applicable mapping of the requested database. 
 
 Username mapping can be used to allow the `cn` to be different from the username in the database. You can learn more about username mapping on the PostgreSQL official [Username mapping docs](https://www.postgresql.org/docs/current/auth-username-maps.html). 
 
@@ -79,11 +79,8 @@ PostgreSQL will allow any client to connect to the server over SSL/TLS, and the 
 {:.note}
 >In both methods the Certificate Revocation List (CRL) is also checked when a client connects to the server. The CRL is used to revoke invalid certificates. 
 
-## Configure TLS on {{site.base_gateway}}
 
-The following section will cov
-
-### {{site.base_gateway}} TLS configuration
+## {{site.base_gateway}} TLS configuration <!-- Header optional if there's only one task section in the article -->
 
 To configure TLS on {{site.base_gateway}}, add the following settings to the `kong.conf` configuration file: 
 
@@ -107,11 +104,11 @@ pg_ssl_cert_key = '/path/to/client.key'
 ```
 
 
-* **pg_ssl_cert**  The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set.
+* **`pg_ssl_cert`**  The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set.
 
-* **pg_ssl_cert_key**  If `pg_ssl_cert` is set, the absolute path to the PEM encoded client TLS private key for the PostgreSQL connection.
+* **`pg_ssl_cert_key`**  If `pg_ssl_cert` is set, the absolute path to the PEM encoded client TLS private key for the PostgreSQL connection.
 
-The client certificate **must** be trusted by one of the specified certificate authorities. The ceritificate authorities are set in the `ssl_ca_file` in the PostgreSQL configuration file `postgres.conf`. 
+The client certificate **must** be trusted by one of the specified certificate authorities. The certificate authorities are set in the `ssl_ca_file` in the PostgreSQL configuration file `postgres.conf`. 
 
 
 ## Creating Certificates
@@ -119,6 +116,8 @@ The client certificate **must** be trusted by one of the specified certificate a
 Certificates can be created with OpenSSL using the default settings. 
 
 ### Intermediate CA chain 
+
+An intermediate CA chain is a chain where each certificate is issued by a different CA, and the last certificate in the chain is issued to the server or the client. 
 
 Generate root CA private key and self-sign a root CA certificate, from the terminal using these steps: 
 
@@ -183,76 +182,71 @@ Generate root CA private key and self-sign a root CA certificate, from the termi
         ```
         This step is typically done when the client is configured to use a certificate chain that includes the intermediate CA. If the client is not configured to use a certificate chain, or if the intermediate CA is already included in the `client.crt` file, this step is not necessary. 
 
+### Chain without intermediate CA
 
+In this case the certificate chain where is signed directly by the root certificate authority instead of an intermediate CA. This type of chain may be used in situations where the certificate is issued by a well-known and trusted root CA, and the level of security and trust provided by an intermediary CA is not necessary. 
 
+1. Generate a root CA cert key pair:
 
-
-
-
-
-
-The combined method combines any authentication method in the `hostssl` entry with cerfication of a client certificate using the `clientcert` authentication option. 
-
-## Task section <!-- Header optional if there's only one task section in the article -->
-
-Task sections break down the task into steps that the user completes in sequential order. The title for a how-to task section directs the user to perform an action and generally starts with a verb. Examples include "Install Kubernetes", "Configure the security settings", and "Create a microservice".
-
-Continuing the previous example of installing software, here's an example:
-
-1. On your computer, open the terminal.
-1. Install ____ with the terminal:
     ```sh
-    example code
-    ```
-1. Optional: To also install ____ to manage documents, install it using the terminal:
+    openssl req -new -x509 -utf8 -nodes -subj "/CN=root.yourdomain.com" -config /etc/ssl/openssl.cnf -extensions v3_ca -days 3650 -keyout root.key -out root.crt
+
+2. Generate server private key and certificate
+    1. Generate a server private key and certificate signing request (CSR)
+        ```sh
+        openssl req -new -utf8 -nodes -subj "/CN=dbhost.yourdomain.com" -config /etc/ssl/openssl.cnf -keyout server.key -out server.csr
+        ```
+    1. Change the permissions of the private key:
+        ```sh
+        chmod og-rwx server.key
+        ```
+    1. Create a server certificate signed by the intermediate CA:
+        ```sh
+        openssl x509 -req -in server.csr -days 365 -CA intermediate.crt -CAkey intermediate.key -CAcreateserial -out server.crt
+        ```
+3. Generate a private key and certificate for the client
+    1. Generate a client private key and certificate signing request (CSR):
+        ```sh
+       openssl req -new -utf8 -nodes -subj "/CN=kong" -config /etc/ssl/openssl.cnf -keyout client.key -out client.csr
+       ```
+    1.  Change the permissions of the private key:
+        ```sh
+        chmod og-rwx client.key
+        ```
+    1. Create a client certificate signed by an intermediate CA: 
+        ```sh
+        openssl x509 -req -in client.csr -days 365 -CA intermediate.crt -CAkey intermediate.key -CAcreateserial -out client.crt
+        ```
+4. Create a server and client certificate directly
+    1. Create a server certificate signed by the root CA
+        ```sh
+       openssl req -new -utf8 -nodes -subj "/CN=kong" -config /etc/ssl/openssl.cnf -keyout client.key -out client.csr
+       ```
+    2. Create a client certificate signed by the root CA
+        ```sh
+        openssl x509 -req -in client.csr -days 365 -CA root.crt -CAkey root.key -CAcreateserial -out client.crt
+        ```
+Not using an intermediary CA could potentially be less-secure than using an intermediary CA, because the chain is shorter, and there are no additional layers of security that would normally be provided by the intermediary. 
+
+### Self-signed certificates for testing
+
+Self-signed certificates should **only** be used for testing.
+1. Generate server key and self-signed cert
+
     ```sh
-    example code
+   openssl req -new -x509 -utf8 -nodes -subj "/CN=dbhost.yourdomain.com" -config /etc/ssl/openssl.cnf -days 365 -keyout server.key -out server.crt
+   ```
+2. Change private key permissions: 
+    ```sh
+    chmod og-rwx server.key
     ```
-1. To ______, do the following:
-    1. Click **Start**.
-    1. Click **Stop**.
-1. To ____, do one of the following:
-    * If you are using Kubernetes, start the software:
-        ```sh
-        example code
-        ```
-    * If you are using Docker, start the software:
-        ```sh
-        example code
-        ```
+3. Generate the client key and self-signed certificate:
+    ```sh
+    openssl req -new -x509 -utf8 -nodes -subj "/CN=kong" -config /etc/ssl/openssl.cnf -days 365 -keyout client.key -out client.crt
+    ```
+4. Change the permissions of the private key: 
+    ```sh
+    chmod og-rwx client.key
+    ```
 
-{:.note}
-> **Note**: You can also use notes to highlight important information. Try to keep them short.
-
-You can also use tabs in a section. For example, if you can install the software with macOS or Docker, you might have a tab with instructions for macOS and a tab with instructions for Docker.
-
-{% navtabs %}
-{% navtab macOS %}
-
-1. Open Terminal...
-1. Run....
-
-{% endnavtab %}
-{% navtab Docker %}
-
-1. Open Docker...
-1. Run....
-
-{% endnavtab %}
-{% endnavtabs %}
-
-## Second task section <!-- Optional -->
-
-Adding additional sections can be helpful if you have to switch from working in one product to another or if you switch from one task, like installing to configuring.
-
-1. First step.
-1. Second step.
-
-## See also <!-- Optional -->
-
-This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
-
-See the following examples of how-to documentation:
-* [Analytics reports](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/)
-* [Service directory mapping](https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/)
-* [Custom entities](https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/)
+Because in this case you are using a self-signed certificate, the `client.crt` should be specified in the `ssl_ca_file` parameter, and the `server.crt` should be specified in the `lua_ssl_trusted_certificate` parameter.

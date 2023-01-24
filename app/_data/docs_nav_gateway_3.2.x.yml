@@ -153,8 +153,12 @@ items:
             url: /production/networking/firewall
           - text: CP/DP Communication through a Forward Proxy
             url: /production/networking/cp-dp-proxy
-          - text: How to configure TLS
-            url: /production/networking/configure-tls
+          - text: TLS
+            items: 
+            - text: Configuration
+              url: /production/networking/configure-tls
+            - text: Troubleshooting
+              url: /production/networking/troubleshoot-tls
       - text: Kong Configuration File
         url: /production/kong-conf
       - text: Environment Variables
