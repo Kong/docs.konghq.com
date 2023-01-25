@@ -12,7 +12,7 @@ Audit logs can help you detect and respond to potential security incidents when 
 
 By tracking {{site.konnect_short_name}} audit logs, you gain the following benefits:
 * **Security**: System events can be used to show abnormalities to be investigated, forensic information related to breaches, or provide evidence for compliance and regulatory purposes.
-* **Compliance**: Some regulations require audit logs, or audit logs are needed to show auditors who confirm whether certain certification standards are met.
+* **Compliance**: Regulators and auditors may require audit logs to confirm whether certain certification standards are met.
 * **Debugging**: Audit logs can help determine the root causes of efficiency or performance issues.
 * **Risk management**: Prevent issues or catch them early.
 
