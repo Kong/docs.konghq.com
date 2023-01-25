@@ -35,8 +35,6 @@ Keyring and data encryption | <i class="fa fa-times"></i>
 However, decK can't delete workspaces, and it can't update multiple workspaces simultaneously.
 See [Manage multiple workspaces](/deck/{{page.kong_version}}/guides/kong-enterprise/#manage-multiple-workspaces) for more information.
 
-Because decK can't manage all of {{site.base_gateway}}'s configuration, you need to make other arrangements for deployment, backup, and restore of unmanaged entities.
+While deck can manage a majority of {{site.base_gateway}}'s configuration, we recommend additional arrangements for deployment, backup, and restoring unmanaged entities for a more comprehensive approach.
 
-This is also the case if the data plane loses connection to the control plane in hybrid mode. 
-The data plane can function in disconnected mode, using a [backup declarative configuration file](/gateway/latest/reference/configuration/#declarative_config). 
-However, this option is not available if you have any of the unmanaged entities configured.
+In the event that the data plane loses connection to the control plane in hybrid mode, the data plane can continue to function using a [backup declarative configuration file](/gateway/latest/reference/configuration/#declarative_config). This feature is not available if you have any unmanaged entities configured.
