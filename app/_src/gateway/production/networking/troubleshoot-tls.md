@@ -33,7 +33,7 @@ If you are receiving this error message:
 FATAL:  could not load server certificate file "server.crt": No such file or directory
 ```
 The server is unable to find the certificate file. By default, the certificate file should be named `server.crt`, and it should be placed in the server's data directory. Other names are allowed, but they should be explicitly specified in the `ssl_cert_file`. 
-The combined method combines any authentication method in the `hostssl` entry with the cerfication of a client certificate using the `clientcert` authentication option. 
+The combined method combines any authentication method in the `hostssl` entry with the certification of a client certificate using the `clientcert` authentication option. 
 
 
 ### Could not access private key file
