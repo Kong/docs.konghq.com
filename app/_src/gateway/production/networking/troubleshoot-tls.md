@@ -125,7 +125,7 @@ Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: cert
 {{site.base_gateway}} failed to verify the PostgreSQL server certificate. Ensure that the postgreSQL server has configured a trusted certificate and the corresponding CA chain is correctly set in `lua_ssl_trusted_certificate` within `kong.conf`. 
 
 
-### Connection requres a valid client certificate
+### Connection requires a valid client certificate
 
 ```sh
 Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: FATAL: connection requires a valid client certificate
