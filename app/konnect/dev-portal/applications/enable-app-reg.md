@@ -127,11 +127,15 @@ at any time.
 
 ### Differences between runtime groups
 
-If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
+The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is used in every non-`default` runtime group. `konnect-application-auth`plugin does not connect applications to `consumers`. Therefore the application created through the app registration process in any non-`default` runtime group will not support rate-limiting plugins. 
 
-In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
+In the `default` runtime group, applications are still linked to Kong Gateway `consumers` and use the `acl` plugin to control access between an application’s `consumers` and a service version.
 
-The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.
+### Known limitations
+
+`konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}}less than 3.0, you must create your service version in the `default` runtime group. This configuration is deprecated. It is recommended to upgrade your runtime instances to Kong {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin. 
+
+`konnect-application-auth` plugin does not connect applications to `consumers`. Therefore the application created through the app registration process in any non default runtime group will not support rate-limiting plugins at this moment. We will provide a resolution to address this gap soon.  
 
 {:.note}
 > **Note:** If you are not in the `default` runtime group, consumer-based plugins, like rate-limiting, are not compatible
