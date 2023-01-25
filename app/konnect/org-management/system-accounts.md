@@ -60,11 +60,11 @@ You will receive a `201` response code, and a response body containing the acces
 {
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "name": "Sample Access Token",
-  "created_at": "2019-08-24T14:15:22Z",
-  "updated_at": "2019-08-24T14:15:22Z",
-  "expires_at": "2019-08-24T14:15:22Z",
-  "last_used_at": "2019-08-24T14:15:22Z",
-  "token": "npat_12345678901234567890123456789012345678901234567890"
+  "created_at": "2023-01-12:15:54Z",
+  "expires_at": "2023-11-15T00:00:00Z",
+  "updated_at": "2023-01-13T21:04:22Z",
+  "last_used_at": "2023-01-18T06:45:40Z",
+  "token": "spat_12345678901234567890123456789012345678901234567890"
 }
 ```
 
@@ -81,7 +81,11 @@ Assign a role to a system account by sending a `POST` request containing the `ac
 curl --request POST \
   --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
   --data '{
-  "role_name": "Viewer"}'
+  "role_name": "Viewer",
+  "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
+  "entity_type_name": "Runtime Groups",
+  "entity_region": "eu"
+}'
 ```
 
 You will receive a `201` response code and a response body containing the role that is now assigned to the system account:
