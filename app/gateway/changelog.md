@@ -1271,6 +1271,16 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+
+## 2.8.2.4
+**Release Date** 2023/01/23
+
+### Fixes
+
+* Kong Gateway now statically links the BoringSSL PCRE library. 
+This fixes an issue introduced in 2.8.2.3, where the BoringSSL library was dynamically linked, 
+causing regex compilation to fail when routing requests with some versions of the library.
+
 ## 2.8.2.3
 **Release Date** 2023/01/06
 

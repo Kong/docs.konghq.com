@@ -98,6 +98,12 @@ params:
         List of paramname:value pairs. If and only if content-type is one the
         following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`];
         and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+    - name: replace.json_types
+      minimum_version: "3.1.x"
+      required: false
+      datatype: array of string, boolean, or number elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
     - name: rename.headers
       required: false
       default: null
@@ -162,6 +168,16 @@ params:
       description: |
         List of `paramname:value` pairs. If and only if content-type is one the following: [`application/json, multipart/form-data`, `application/x-www-form-urlencoded`]; and the parameter is not present, add a new parameter with the given value to form-encoded body.
         Ignored if the parameter is already present.
+    - name: add.json_types
+      minimum_version: "3.1.x"
+      required: false
+      value_in_examples:
+        - 'new-json-key:string'
+        - 'another-json-key:boolean'
+        - 'another-json-key:number'
+      datatype: array of string, boolean, or number elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
     - name: append.headers
       required: false
       default: null
@@ -189,6 +205,12 @@ params:
       description: |
         List of `paramname:value` pairs. If the content-type is one the following: [`application/json`, `application/x-www-form-urlencoded`]; add a new parameter with the given value if the parameter is not present. Otherwise, if it is already present,
         the two values (old and new) will be aggregated in an array.
+    - name: append.json_types
+      minimum_version: "3.1.x"
+      required: false
+      datatype: array of string, boolean, or number elements
+      description: |
+        List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
     - name: allow.body
       required: false
       default: null
@@ -197,6 +219,14 @@ params:
       description: |
         Set of parameter names. If and only if content-type is one the following:
         [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; allow only allowed parameters in the body.
+    - name: dots_in_keys
+      minimum_version: "3.1.x"
+      required: false
+      datatype: boolean
+      default: true
+      description: |
+        Specify whether dots (for example, `customers.info.phone`) should be treated as part of a property name or used to descend into nested JSON objects. 
+        See [Arrays and nested objects](#arrays-and-nested-objects).
   extra: |
     **Notes:**
     * If the value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array
@@ -226,6 +256,20 @@ $('$(something_that_needs_to_escaped)')
 > **Note**: The plugin creates a non-mutable table of request headers,
 query strings, and captured URIs before transformation. So any update or removal
  of parameters used in the template does not affect the rendered value of template.
+
+{% if_plugin_version gte:3.1.x %}
+### Arrays and nested objects
+
+The plugin allows navigating complex JSON objects (arrays and nested objects)
+when `config.dots_in_keys` is set to `false` (the default is `true`).
+
+- `array[*]`: Loops through all elements of the array.
+- `array[N]`: Navigates to the nth element of the array (the index of the first element is `1`).
+- `top.sub`: Navigates to the `sub` property of the `top` object.
+
+These can be combined. For example, `config.remove.json: customers[*].info.phone` removes
+all `phone` properties from inside the `info` object of all entries in the `customers` array.
+{% endif_plugin_version %}
 
 ### Advanced templates
 
@@ -418,6 +462,10 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 ---
 
 ## Changelog
+
+
+**{{site.base_gateway}} 3.1.x**
+- Added support for navigating nested JSON objects and arrays when transforming a JSON payload.
 
 **{{site.base_gateway}} 3.0.x**
 - Removed the deprecated `whitelist` parameter.
