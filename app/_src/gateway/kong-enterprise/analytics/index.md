@@ -34,7 +34,49 @@ When using Vitals, note:
   * If a user does not have access to Vitals data, charts will not display.
 
 ## Vitals API
-Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the OAS (Open API Spec, formerly Swagger) file. See a sample here (downloadable file): [`vitals.yaml`](/api/vitals.yaml).
+
+Vitals data is available using the Vitals API. Access to these endpoints can be managed using RBAC. 
+
+The Vitals API is described using the Open API Specification. You can view it by downloading the [`vitals.yaml`](/api/vitals.yaml) file. Use the API to retrieve health and traffic information from your cluster.
+
+For example, you can use the API to retrieve the number of requests for a service in a workspace by issuing the following `GET` request: 
+
+```bash
+curl -i -X GET http://localhost:8001/WORKSPACE_NAME/vitals/status_codes/by_service \
+    -d "service_id=030f4ade-69ed-48b0-b3e1-cd088a1f2a09" \
+    -d "interval=minutes"
+```
+
+A successful request returns a payload with the following data:
+
+```json
+{
+"stats": {
+	"cluster": {
+		"1673366520": {
+			"200": 44
+		},
+		"1673366580": {
+			"200": 49
+		},
+		"1673366460": {
+			"200": 13
+		}
+	}
+},
+	"meta": {
+	"earliest_ts": 1673343331,
+	"latest_ts": 1673366580,
+	"stat_labels": [
+		"status_codes_per_service_total"
+	],
+	"level": "cluster",
+	"entity_type": "service",
+	"interval": "minutes",
+	"workspace_id": "af622cf4-f636-4ae4-9aa5-2726d6713edf"
+	}
+}
+```
 
 ## Viewing Vitals in Kong Manager
 View Vitals information in Kong Manager using any of the following:
