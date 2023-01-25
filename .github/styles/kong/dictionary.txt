@@ -342,6 +342,7 @@ uncomment
 uncommenting
 unencrypted
 unix
+unmanaged
 unmarshalled
 unnormalized
 unprocessable
