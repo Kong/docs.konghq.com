@@ -18,7 +18,7 @@ decK manages only the core proxy entities in {{site.ee_product_name}}. It doesn'
 manage enterprise-only entities such as admins, RBAC permissions, RBAC roles,
 or any entities related to Dev Portal.
 
-For a full list, see the reference for [entities managed by decK](/deck/{{page.kong_version}}/entities).
+For a full list, see the reference for [entities managed by decK](/deck/{{page.kong_version}}/reference/entities).
 
 ## RBAC
 
