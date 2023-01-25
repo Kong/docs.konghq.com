@@ -175,8 +175,14 @@
       url: /analytics/summary-dashboard/
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
-    - text: Generate Reports
-      url: /analytics/generate-reports
+    - text: Custom Reports
+      items:
+        - text: Overview
+          url: /analytics/custom-reports
+        - text: Use Cases
+          url: /analytics/custom-reports/use-cases
+        - text: Reference
+          url: /analytics/custom-reports/reference
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
