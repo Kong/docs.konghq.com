@@ -338,4 +338,4 @@ If `result.allow` is set to `false`, then the key-value pairs in `result.headers
 are injected into the response, the `result.message` (if any) is set as the response message,
 and the status code of the response is set to `result.status`.
 If `result.status` is absent then the default `403` status code is sent.
-If `result.status` is absent then the default *unauthorized* message is sent.
+If `result.status` is absent, then the default *unauthorized* message is sent.
