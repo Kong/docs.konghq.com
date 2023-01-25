@@ -11,8 +11,8 @@ System accounts are a service account in {{site.konnect_short_name}}. Because th
 System accounts offer the following benefits over regular user accounts:
 
 * System accounts are not associated with an email address. This allows you to use the account as part of an automation or integration that isn't associated with any person’s identity.
-* When you use a user account as part of an automation or integration and that user leaves the company, this breaks the automations and integrations. If you use a system account instead, the automations and integrations wouldn't break.
-* Because system accounts can't be assigned the same permissions as a user account, they can't access the {{site.konnect_short_name}} UI.
+* When you use a user account as part of an automation or integration and that user leaves the company, this breaks the automation and integrations. If you use a system account instead, the automation and integrations wouldn't break.
+* System accounts don't have sign-in credentials and therefor can't access the {{site.konnect_short_name}} UI. These accounts are intended to be used with APIs and CLIs.
 
 The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/konnect/org-management/users/) can. In addition, the system account can be assigned roles directly or inherit the roles of a [team](/konnect/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
 
