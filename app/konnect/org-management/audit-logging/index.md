@@ -7,14 +7,13 @@ beta: true
 
 Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure. 
 
-No system is completely secure. Audit logs provide a mechanism to catch abnormal events when those events occur. 
-If potential security incidents are not caught early, perpetrators can cause issues or even downtime with a company’s infrastructure, 
-leading to serious consequences such as outages and lost revenue.
+Audit logs can help you detect and respond to potential security incidents when they occur. Monitoring audit logs proactively can reduce the risk of outages and ensure continuous service for your users. No system can ever be completely secure, but audit logs can be a key part of your incident prevention infrastructure.
+
 
 By tracking {{site.konnect_short_name}} audit logs, you gain the following benefits:
-* **Security**: System events can be used to show abnormalities to be investigated, forensic information related to breaches, or provide evidence.
+* **Security**: System events can be used to show abnormalities to be investigated, forensic information related to breaches, or provide evidence for compliance and regulatory purposes.
 * **Compliance**: Some regulations require audit logs, or audit logs are needed to show auditors who confirm whether certain certification standards are met.
-* **Debugging**: Audit logs give insights into why there is a current level of efficiency or performance. 
+* **Debugging**: Audit logs can help determine the root causes of efficiency or performance issues.
 * **Risk management**: Prevent issues or catch them early.
 
 ## Setting up audit logging in {{site.konnect_short_name}}

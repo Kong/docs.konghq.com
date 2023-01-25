@@ -13,7 +13,7 @@ Webhooks are invoked via an HTTP request using the following retry rules:
 - Maximum retry wait time: 30 seconds
 - Maximum number of retries: 4
 
-A retry is done on connection error, server error (`500` status code), or too many requests (`429` status code).
+A retry is performed on connection error, server error (`500` HTTP status code), or too many requests (`429` HTTP status code).
 
 ## Prerequisites
 
@@ -60,7 +60,7 @@ You should now start receiving logs at your endpoint from the configured organiz
 
 ## View webhook configuration
 
-You can view your audit log webhook configuration by running the following:
+You can view your audit log webhook configuration by running the following command:
 
 ```sh
 curl https://global.api.konghq.com/v2/audit-log-webhook \
