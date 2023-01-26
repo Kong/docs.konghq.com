@@ -31,10 +31,6 @@ configuration
 For all possible requests, see the
 [Consumer Groups reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
 
-{:.note}
-> **Note:** Consumer groups are not supported in declarative configuration with
-decK. If you have consumer groups in your configuration, decK will ignore them.
-
 ## Set up consumer group
 
 1. Create a consumer group named `Gold`:
@@ -63,7 +59,8 @@ http POST :8001/consumer_groups name=Gold
     {
         "created_at": 1638915521,
         "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-        "name": "Gold"
+        "name": "Gold",
+        "tags": null
     }
     ```
 
@@ -128,7 +125,8 @@ http POST :8001/consumer_groups/Gold/consumers consumer=Amal
       "consumer_group": {
       "created_at": 1638915521,
       "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-      "name": "Gold"
+      "name": "Gold",
+      "tags": null
       },
       "consumers": [
         {
@@ -262,7 +260,8 @@ http :8001/consumer_groups/Gold
         "consumer_group": {
             "created_at": 1638915521,
             "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-            "name": "Gold"
+            "name": "Gold",
+            "tags": null
         },
         "consumers": [
             {
@@ -312,7 +311,8 @@ You can remove a consumer from a group by accessing `/consumers` or
         "consumer_group": {
             "created_at": 1638915521,
             "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-            "name": "Gold"
+            "name": "Gold",
+            "tags": null
         },
         "consumers": [
             {
@@ -324,7 +324,7 @@ You can remove a consumer from a group by accessing `/consumers` or
             }
         ]
       }
-      ```
+    ```
 
 1. Using the username or ID of the consumer (`Amal` in this example),
 remove the consumer from the group:
@@ -362,7 +362,8 @@ http DELETE :8001/consumer_groups/Gold/consumers/Amal
         "consumer_group": {
             "created_at": 1638917780,
             "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-            "name": "Gold"
+            "name": "Gold",
+            "tags": null
         }
     }
     ```
@@ -400,7 +401,8 @@ http :8001/consumers/Amal/consumer_groups
             {
                 "created_at": 1638915521,
                 "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
-                "name": "Gold"
+                "name": "Gold",
+                "tags": null
             }
         ]
     }
@@ -442,7 +444,8 @@ http DELETE :8001/consumers/Amal/consumer_groups/Gold
         "consumer_group": {
             "created_at": 1638917780,
             "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-            "name": "Gold"
+            "name": "Gold",
+            "tags": null
         }
     }
     ```
@@ -488,7 +491,8 @@ http DELETE :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
         "consumer_group": {
             "created_at": 1638917780,
             "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-            "name": "Gold"
+            "name": "Gold",
+            "tags": null
         }
     }
     ```
@@ -663,7 +667,8 @@ http POST :8001/consumer_groups/Speedsters/consumers \
         "consumer_group": {
             "created_at": 1639432267,
             "id": "a905151a-5767-40e8-804e-50eec4d0235b",
-            "name": "Speedsters"
+            "name": "Speedsters",
+            "tags": null
         },
         "consumers": [
             {
@@ -756,12 +761,14 @@ http POST :8001/consumers/BarryAllen/consumer_groups \
           {
               "created_at": 1639432267,
               "id": "a905151a-5767-40e8-804e-50eec4d0235b",
-              "name": "Gold"
+              "name": "Gold",
+              "tags": null
           },
           {
               "created_at": 1639436107,
               "id": "2fd2bdd6-690c-4e49-8296-31f55015496d",
-              "name": "Speedsters"
+              "name": "Speedsters",
+              "tags": null
           }
       ]
     }

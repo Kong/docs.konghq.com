@@ -154,7 +154,7 @@ Date: Fri, 21 Jun 2019 21:14:45 GMT
 Server: echoserver
 X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
-Via: kong/1.1.2
+Via: kong/3.1.1
 ```
 
 ## Request TLS Certificate from Let's Encrypt
@@ -336,7 +336,7 @@ $ curl -v https://demo.example.com
 < Server: echoserver
 < X-Kong-Upstream-Latency: 1
 < X-Kong-Proxy-Latency: 1
-< Via: kong/1.1.2
+< Via: kong/3.1.1
 <
 
 

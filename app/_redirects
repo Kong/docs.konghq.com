@@ -46,6 +46,9 @@
 /kubernetes-ingress-controller-beta/   /kubernetes-ingress-controller/
 /kubernetes-ingress-controller-beta/*  /kubernetes-ingress-controller/:splat
 
+# KIC GENERAL
+/kubernetes-ingress-controller/:version/guides/using-gateway-api/ /kubernetes-ingress-controller/:version/guides/getting-started/
+
 # ENTERPRISE GATEWAY
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/

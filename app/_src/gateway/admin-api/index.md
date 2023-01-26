@@ -26,7 +26,7 @@ service_body: |
     `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
     `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
     `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
-    `enabled` |  Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.  Default: `true`.
+    `enabled` |  Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL).
 
 service_json: |
@@ -728,6 +728,230 @@ key_set_data: |
 
 ---
 
+<!-- vale off -->
+{% unless page.edition == "gateway" %}
+
+The API for configuring Kong Konnect Runtime Groups.
+
+
+
+
+{% assign prefix = "" %}
+{% if page.edition == "konnect" %}
+{% assign prefix = "/core-entities" %}
+{% endif %}
+
+
+| URL                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}`                   | US Region Konnect Platform Base URL |
+| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
+       
+
+
+
+This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few notable differences:
+
+* `PATCH` methods are not supported
+> `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
+
+* Updated error responses
+>  Error responses returned in Konnect core entities endpoint are not compatible with the error responses returned by the Kong Admin APIs.
+
+* `POST` methods only support `application/json`
+> The content types `application/x-www-form-urlencoded` and `multipart/form-data` are not supported in the Konnect core entities endpoint. Please use `application/json`.
+
+* Nested endpoints are not supported
+>  Core entities endpoints include only the top level path. For example, to retrieve a route, only `/routes/{route name or id}` is supported. Nested endpoints are not available in Konnect.
+
+
+## Supported Content Types
+
+
+**application/json**
+
+Handy for complex bodies (ex: complex plugin configuration), in that case send
+a JSON representation of the data you want to send. Example:
+
+```json
+{
+    "config": {
+        "limit": 10,
+        "period": "seconds"
+    }
+}
+```
+
+An example adding a Route to a Service named `test-service`:
+
+```
+curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+     -H "Content-Type: application/json" \
+     -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
+```
+
+## More resources
+
+* [Authentication](/konnect/api/)
+* [Kong Gateway API](/gateway/latest/admin-api/)
+* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
+* [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
+* [Plugin Hub](/hub/)
+
+--- 
+## Nodes
+### List Runtime Instance Records
+
+Returns a list of runtime instance records that are associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
+
+**Endpoint**
+
+<div class="endpoint get">/nodes</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `page.size`                   | The number of items to include in a page.                                                                                                                 |
+| `page.number` | The specific page number in the collection results. |
+       
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+### Fetch Runtime Instance Record
+
+Retrieve a specific runtime instance record associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
+
+**Endpoint**
+
+<div class="endpoint get">/nodes/{node_id}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `node_id`                   | The unique identifier for the runtime instance.                                                                                                                 |
+
+
+**Response**
+
+```
+HTTP 204 OK
+```
+
+### Delete Runtime Instance Record
+
+Remove a specific runtime instance record associated to this runtime group. Deleting this record does not prevent the runtime instance from re-connecting to the runtime group.
+
+**Endpoint**
+
+<div class="endpoint post">/nodes/{node_id}</div>
+
+**Path Parameters**
+
+| Attribute                | Description                                                                                                                         |
+| ---------                | -----------                                                                                                                         |
+| `node_id`                   | The unique identifier for the runtime instance.                                                                                                                 |
+
+
+**Response**
+
+```
+HTTP 204 No Content
+```
+
+### Fetch Expected Config Hash
+
+Retrieve the expected config hash for this runtime group. The expected config hash can be used to verify if the config hash of a runtime instance is up to date with the conrol plane. If they are in sync, the config hash will be the same. If sync in progress or if out of sync, the config hash will be different. The updated_at timestamp indicates when the config was last updated.
+
+**Endpoint**
+
+<div class="endpoint get">/expected-config-hash</div>
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+## Data plane certificates
+### List data plane client certificates
+
+Returns a list of pinned dataplane client certificates that are associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+
+**Endpoint**
+
+<div class="endpoint get">/dp-client-certificates</div>
+
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+### Pin new data plane client certificates
+
+Pin a new DP Client Certificate to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+
+**Endpoint**
+
+<div class="endpoint post">/dp-client-certificates</div>
+
+**Response**
+
+```
+HTTP 201 Created
+```
+
+### Fetch data plane client certificate
+
+Retrieve a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+
+**Endpoint**
+
+<div class="endpoint get">/dp-client-certificates/{certificate_id}</div>
+
+**Response**
+
+```
+HTTP 200 Created
+```
+
+### Replace data plane client certificate
+
+Update a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+**Endpoint**
+
+<div class="endpoint put">/dp-client-certificates/{certificate_id}</div>
+
+
+**Response**
+
+```
+HTTP 200 Created
+```
+
+### Delete DP Client Certificate
+
+Remove a pinned dataplane client certificate associated to this runtime group. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this runtime group using this certificate.
+**Endpoint**
+
+<div class="endpoint delete">/dp-client-certificates/{certificate_id}</div>
+
+**Response**
+```
+HTTP 200 Ok
+```
+
+{% endunless %}
+
+{% unless page.edition == "konnect" %}
+
 {{site.base_gateway}} comes with an **internal** RESTful Admin API for administration purposes.
  Requests to the Admin API can be sent to any node in the cluster, and Kong will
  keep the configuration consistent across all nodes.
@@ -741,6 +965,7 @@ key_set_data: |
  of methods to secure the Admin API.
 
 ---
+
 
 
 ## DB-less Mode
@@ -764,6 +989,7 @@ related to handling the declarative config, including:
 
 
 ---
+
 
 
 ## Declarative Configuration
@@ -1047,6 +1273,8 @@ HTTP 200 OK
 
 ---
 
+
+
 ### Validate A Configuration against A Schema
 {:.badge .dbless}
 
@@ -1075,6 +1303,7 @@ HTTP 200 OK
     "message": "schema validation successful"
 }
 ```
+
 
 
 ---
@@ -1119,6 +1348,7 @@ HTTP 200 OK
 
 
 ---
+{% endunless %}
 
 ### Retrieve Plugin Schema
 {:.badge .dbless}
@@ -1154,7 +1384,7 @@ HTTP 200 OK
 
 
 ---
-
+{% unless page.edition == "konnect" %}
 ### Validate A Plugin Configuration against The Schema
 {:.badge .dbless}
 
@@ -1186,6 +1416,8 @@ HTTP 200 OK
 
 
 ---
+
+
 
 ### Retrieve Runtime Debugging Info of Kong's Timers
 {:.badge .dbless}
@@ -1378,8 +1610,11 @@ HTTP 200 OK
   or data-plane mode. The special return value "00000000000000000000000000000000"
   means Kong does not currently have a valid configuration loaded.
 
+{% endunless %}
 
 ---
+
+{% unless page.edition == "konnect" %}
 
 ## Tags
 
@@ -1524,7 +1759,9 @@ HTTP 200 OK
 
 
 ### Set Node Log Level of All Control Plane Nodes
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
  Change the log level of all Control Plane nodes deployed in Hybrid
  (CP/DP) cluster.
@@ -1573,7 +1810,9 @@ HTTP 200 OK
 ---
 
 ### Set Node Log Level of All Nodes
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
 Change the log level of all nodes in a cluster.
 
@@ -1647,7 +1886,9 @@ HTTP 200 OK
 ---
 
 ### Set Log Level of A Single Node
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
 Change the log level of a node.
 
@@ -1684,8 +1925,11 @@ HTTP 200 OK
 }
 ```
 
+{% endunless %}
 
 ---
+
+
 
 ## Service Object
 
@@ -1719,9 +1963,9 @@ Services can be both [tagged and filtered by tags](#tags).
 
 ##### Create Service
 
-<div class="endpoint post indent">/services</div>
+<div class="endpoint post indent">{{ prefix }}/services</div>
 
-
+{% unless page.edition == "konnect" %}
 ##### Create Service Associated to a Specific Certificate
 
 <div class="endpoint post indent">/certificates/{certificate name or id}/services</div>
@@ -1731,7 +1975,7 @@ Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created Service.
 
-
+{% endunless %}
 #### Request Body
 
 {{ page.service_body }}
@@ -1755,9 +1999,9 @@ HTTP 201 Created
 
 ##### List All Services
 
-<div class="endpoint get indent">/services</div>
+<div class="endpoint get indent">{{ prefix }}/services</div>
 
-
+{% unless page.edition == "konnect" %}
 ##### List Services Associated to a Specific Certificate
 
 <div class="endpoint get indent">/certificates/{certificate name or id}/services</div>
@@ -1767,7 +2011,7 @@ Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Services are to be retrieved. When using this endpoint, only Services associated to the specified Certificate will be listed.
 
-
+{% endunless %}
 #### Response
 
 ```
@@ -1789,14 +2033,14 @@ HTTP 200 OK
 
 ##### Retrieve Service
 
-<div class="endpoint get indent">/services/{service name or id}</div>
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
 
-
+{% unless page.edition == "konnect" %}
 ##### Retrieve Service Associated to a Specific Certificate
 
 <div class="endpoint get indent">/certificates/{certificate id}/services/{service name or id}</div>
@@ -1827,7 +2071,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be retrieved.
 
-
+{% endunless %}
 #### Response
 
 ```
@@ -1843,7 +2087,7 @@ HTTP 200 OK
 
 ### Update Service
 
-
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -1906,24 +2150,24 @@ HTTP 200 OK
 
 
 ---
-
+{% endunless %}
 ### Update Or Create Service
 
 
-
+{% unless page.edition == "konnect" %}
 {:.note}
 > **Note**: This API is not available in DB-less mode.
-
+{% endunless %}
 ##### Create Or Update Service
 
-<div class="endpoint put indent">/services/{service name or id}</div>
+<div class="endpoint put indent">{{ prefix }}/services/{service name or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
 
-
+{% unless page.edition == "konnect" %}
 ##### Create Or Update Service Associated to a Specific Certificate
 
 <div class="endpoint put indent">/certificates/{certificate id}/services/{service name or id}</div>
@@ -1954,7 +2198,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be created or updated.
 
-
+{% endunless %}
 #### Request Body
 
 {{ page.service_body }}
@@ -1980,10 +2224,10 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
 
-
+{% endunless %}
 ---
 
 ### Delete Service
@@ -1995,14 +2239,14 @@ See POST and PATCH responses.
 
 ##### Delete Service
 
-<div class="endpoint delete indent">/services/{service name or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/services/{service name or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
 
-
+{% unless page.edition == "konnect" %}
 ##### Delete Service Associated to a Specific Certificate
 
 <div class="endpoint delete indent">/certificates/{certificate id}/services/{service name or id}</div>
@@ -2012,7 +2256,7 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
-
+{% endunless %}
 #### Response
 
 ```
@@ -2123,12 +2367,12 @@ Routes can be both [tagged and filtered by tags](#tags).
 
 ##### Create Route
 
-<div class="endpoint post indent">/routes</div>
+<div class="endpoint post indent">{{ prefix }}/routes</div>
 
 
 ##### Create Route Associated to a Specific Service
 
-<div class="endpoint post indent">/services/{service name or id}/routes</div>
+<div class="endpoint post indent">{{ prefix }}/services/{service name or id}/routes</div>
 
 {:.indent}
 Attributes | Description
@@ -2159,12 +2403,12 @@ HTTP 201 Created
 
 ##### List All Routes
 
-<div class="endpoint get indent">/routes</div>
+<div class="endpoint get indent">{{ prefix }}/routes</div>
 
 
 ##### List Routes Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service name or id}/routes</div>
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}/routes</div>
 
 {:.indent}
 Attributes | Description
@@ -2193,7 +2437,7 @@ HTTP 200 OK
 
 ##### Retrieve Route
 
-<div class="endpoint get indent">/routes/{route name or id}</div>
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2203,7 +2447,7 @@ Attributes | Description
 
 ##### Retrieve Route Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}/routes/{route name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2211,7 +2455,7 @@ Attributes | Description
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
 
-
+{% unless page.edition == "konnect" %}
 ##### Retrieve Route Associated to a Specific Plugin
 
 <div class="endpoint get indent">/plugins/{plugin id}/route</div>
@@ -2221,7 +2465,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be retrieved.
 
-
+{% endunless %}
 #### Response
 
 ```
@@ -2234,7 +2478,7 @@ HTTP 200 OK
 
 
 ---
-
+{% unless page.edition == "konnect" %}
 ### Update Route
 
 
@@ -2290,7 +2534,7 @@ HTTP 200 OK
 
 
 ---
-
+{% endunless %}
 ### Update Or Create Route
 
 
@@ -2300,7 +2544,7 @@ HTTP 200 OK
 
 ##### Create Or Update Route
 
-<div class="endpoint put indent">/routes/{route name or id}</div>
+<div class="endpoint put indent">{{ prefix }}/routes/{route name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2310,7 +2554,7 @@ Attributes | Description
 
 ##### Create Or Update Route Associated to a Specific Service
 
-<div class="endpoint put indent">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint put indent">{{ prefix }}/services/{service name or id}/routes/{route name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2318,7 +2562,7 @@ Attributes | Description
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
 
-
+{% unless page.edition == "konnect" %}
 ##### Create Or Update Route Associated to a Specific Plugin
 
 <div class="endpoint put indent">/plugins/{plugin id}/route</div>
@@ -2328,7 +2572,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be created or updated.
 
-
+{% endunless %}
 #### Request Body
 
 {{ page.route_body }}
@@ -2354,9 +2598,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -2369,14 +2613,14 @@ See POST and PATCH responses.
 
 ##### Delete Route
 
-<div class="endpoint delete indent">/routes/{route name or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/routes/{route name or id}</div>#
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
 
-
+{% unless page.edition == "konnect" %}
 ##### Delete Route Associated to a Specific Service
 
 <div class="endpoint delete indent">/services/{service name or id}/routes/{route name or id}</div>
@@ -2386,6 +2630,7 @@ Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
+{% endunless %}
 
 
 #### Response
@@ -2420,7 +2665,7 @@ Consumers can be both [tagged and filtered by tags](#tags).
 
 ##### Create Consumer
 
-<div class="endpoint post indent">/consumers</div>
+<div class="endpoint post indent">{{ prefix }}/consumers</div>
 
 
 #### Request Body
@@ -2446,7 +2691,7 @@ HTTP 201 Created
 
 ##### List All Consumers
 
-<div class="endpoint get indent">/consumers</div>
+<div class="endpoint get indent">{{ prefix }}/consumers</div>
 
 
 #### Response
@@ -2470,14 +2715,14 @@ HTTP 200 OK
 
 ##### Retrieve Consumer
 
-<div class="endpoint get indent">/consumers/{consumer username or id}</div>
+<div class="endpoint get indent">{{ prefix }}/consumers/{consumer username or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
 
-
+{% unless page.edition == "konnect" %}
 ##### Retrieve Consumer Associated to a Specific Plugin
 
 <div class="endpoint get indent">/plugins/{plugin id}/consumer</div>
@@ -2487,6 +2732,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be retrieved.
 
+{% endunless %}
 
 #### Response
 
@@ -2500,6 +2746,7 @@ HTTP 200 OK
 
 
 ---
+{% unless page.edition == "konnect" %}
 
 ### Update Consumer
 
@@ -2545,7 +2792,7 @@ HTTP 200 OK
 
 
 ---
-
+{% endunless %}
 ### Update Or Create Consumer
 
 
@@ -2555,14 +2802,14 @@ HTTP 200 OK
 
 ##### Create Or Update Consumer
 
-<div class="endpoint put indent">/consumers/{consumer username or id}</div>
+<div class="endpoint put indent">{{ prefix }}/consumers/{consumer username or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to create or update.
 
-
+{% unless page.edition == "konnect" %}
 ##### Create Or Update Consumer Associated to a Specific Plugin
 
 <div class="endpoint put indent">/plugins/{plugin id}/consumer</div>
@@ -2572,7 +2819,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be created or updated.
 
-
+{% endunless %}
 #### Request Body
 
 {{ page.consumer_body }}
@@ -2599,8 +2846,9 @@ body is not allowed.
 HTTP 200 OK
 ```
 
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -2613,7 +2861,7 @@ See POST and PATCH responses.
 
 ##### Delete Consumer
 
-<div class="endpoint delete indent">/consumers/{consumer username or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/consumers/{consumer username or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2658,7 +2906,7 @@ See the [Precedence](#precedence) section below for more details.
 A plugin will always be run once and only once per request. But the
 configuration with which it will run depends on the entities it has been
 configured for.
-
+{% unless page.edition == "konnect" %}
 Plugins can be configured for various entities, combination of entities, or
 even globally. This is useful, for example, when you wish to configure a plugin
 a certain way for most requests, but make _authenticated requests_ behave
@@ -2684,7 +2932,7 @@ times is:
 6. Plugins configured on a Route.
 7. Plugins configured on a Service.
 8. Plugins configured to run globally.
-
+{% endunless %}
 **Example**: if the `rate-limiting` plugin is applied twice (with different
 configurations): for a Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
@@ -2703,12 +2951,12 @@ would have otherwise matched config B.
 
 ##### Create Plugin
 
-<div class="endpoint post indent">/plugins</div>
+<div class="endpoint post indent">{{ prefix }}/plugins</div>
 
 
 ##### Create Plugin Associated to a Specific Route
 
-<div class="endpoint post indent">/routes/{route name or id}/plugins</div>
+<div class="endpoint post indent">{{ prefix }}/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
@@ -2718,7 +2966,7 @@ Attributes | Description
 
 ##### Create Plugin Associated to a Specific Service
 
-<div class="endpoint post indent">/services/{service name or id}/plugins</div>
+<div class="endpoint post indent">{{ prefix }}/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
@@ -2728,7 +2976,7 @@ Attributes | Description
 
 ##### Create Plugin Associated to a Specific Consumer
 
-<div class="endpoint post indent">/consumers/{consumer name or id}/plugins</div>
+<div class="endpoint post indent">{{ prefix }}/consumers/{consumer name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
@@ -2759,12 +3007,12 @@ HTTP 201 Created
 
 ##### List All Plugins
 
-<div class="endpoint get indent">/plugins</div>
+<div class="endpoint get indent">{{ prefix }}/plugins</div>
 
 
 ##### List Plugins Associated to a Specific Route
 
-<div class="endpoint get indent">/routes/{route name or id}/plugins</div>
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
@@ -2774,7 +3022,7 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service name or id}/plugins</div>
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
@@ -2784,7 +3032,7 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Consumer
 
-<div class="endpoint get indent">/consumers/{consumer name or id}/plugins</div>
+<div class="endpoint get indent">{{ prefix }}/consumers/{consumer name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
@@ -2813,7 +3061,7 @@ HTTP 200 OK
 
 ##### Retrieve Plugin
 
-<div class="endpoint get indent">/plugins/{plugin id}</div>
+<div class="endpoint get indent">{{ prefix }}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2823,7 +3071,7 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Route
 
-<div class="endpoint get indent">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2834,7 +3082,7 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2845,7 +3093,7 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Consumer
 
-<div class="endpoint get indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">{{ prefix }}/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2866,6 +3114,7 @@ HTTP 200 OK
 
 
 ---
+{% unless page.edition == "konnect" %}
 
 ### Update Plugin
 
@@ -2932,7 +3181,7 @@ HTTP 200 OK
 {{ page.plugin_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Plugin
@@ -2944,7 +3193,7 @@ HTTP 200 OK
 
 ##### Create Or Update Plugin
 
-<div class="endpoint put indent">/plugins/{plugin id}</div>
+<div class="endpoint put indent">{{ prefix }}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2954,7 +3203,7 @@ Attributes | Description
 
 ##### Create Or Update Plugin Associated to a Specific Route
 
-<div class="endpoint put indent">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint put indent">{{ prefix }}/routes/{route name or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2965,7 +3214,7 @@ Attributes | Description
 
 ##### Create Or Update Plugin Associated to a Specific Service
 
-<div class="endpoint put indent">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint put indent">{{ prefix }}/services/{service name or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -2976,7 +3225,7 @@ Attributes | Description
 
 ##### Create Or Update Plugin Associated to a Specific Consumer
 
-<div class="endpoint put indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint put indent">{{ prefix }}/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3010,9 +3259,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -3025,7 +3274,7 @@ See POST and PATCH responses.
 
 ##### Delete Plugin
 
-<div class="endpoint delete indent">/plugins/{plugin id}</div>
+<div class="endpoint delete indent">{{ prefix }}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3035,7 +3284,7 @@ Attributes | Description
 
 ##### Delete Plugin Associated to a Specific Route
 
-<div class="endpoint delete indent">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint delete indent">{{ prefix }}/routes/{route name or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3046,7 +3295,7 @@ Attributes | Description
 
 ##### Delete Plugin Associated to a Specific Service
 
-<div class="endpoint delete indent">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint delete indent">{{ prefix }}/services/{service name or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3057,7 +3306,7 @@ Attributes | Description
 
 ##### Delete Plugin Associated to a Specific Consumer
 
-<div class="endpoint delete indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint delete indent">{{ prefix }}/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3074,6 +3323,7 @@ HTTP 204 No Content
 
 
 ---
+{% unless page.edition == "konnect" %}
 
 ### Retrieve Enabled Plugins
 {:.badge .dbless}
@@ -3123,6 +3373,7 @@ HTTP 200 OK
 
 
 ---
+{% endunless %}
 
 ## Certificate Object
 
@@ -3152,7 +3403,7 @@ Certificates can be both [tagged and filtered by tags](#tags).
 
 ##### Create Certificate
 
-<div class="endpoint post indent">/certificates</div>
+<div class="endpoint post indent">{{ prefix }}/certificates</div>
 
 
 #### Request Body
@@ -3178,7 +3429,7 @@ HTTP 201 Created
 
 ##### List All Certificates
 
-<div class="endpoint get indent">/certificates</div>
+<div class="endpoint get indent">{{ prefix }}/certificates</div>
 
 
 #### Response
@@ -3202,13 +3453,14 @@ HTTP 200 OK
 
 ##### Retrieve Certificate
 
-<div class="endpoint get indent">/certificates/{certificate id}</div>
+<div class="endpoint get indent">{{ prefix }}/certificates/{certificate id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 
+{% unless page.edition == "konnect" %}
 
 ##### Retrieve Certificate Associated to a Specific Upstream
 
@@ -3219,7 +3471,7 @@ Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be retrieved.
 
-
+{% endunless %}
 #### Response
 
 ```
@@ -3236,10 +3488,10 @@ HTTP 200 OK
 ### Update Certificate
 
 
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
-
 ##### Update Certificate
 
 <div class="endpoint patch indent">/certificates/{certificate id}</div>
@@ -3275,7 +3527,7 @@ HTTP 200 OK
 {{ page.certificate_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create Certificate
@@ -3287,13 +3539,14 @@ HTTP 200 OK
 
 ##### Create Or Update Certificate
 
-<div class="endpoint put indent">/certificates/{certificate id}</div>
+<div class="endpoint put indent">{{ prefix }}/certificates/{certificate id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 
+{% unless page.edition == "konnect" %}
 
 ##### Create Or Update Certificate Associated to a Specific Upstream
 
@@ -3303,7 +3556,7 @@ Attributes | Description
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be created or updated.
-
+{% endunless %}
 
 #### Request Body
 
@@ -3331,7 +3584,9 @@ body is not allowed.
 HTTP 200 OK
 ```
 
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
+{% endunless %}
 
 
 ---
@@ -3345,13 +3600,14 @@ See POST and PATCH responses.
 
 ##### Delete Certificate
 
-<div class="endpoint delete indent">/certificates/{certificate id}</div>
+<div class="endpoint delete indent">{{ prefix }}/certificates/{certificate id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 
+{% unless page.edition == "konnect" %}
 
 ##### Delete Certificate Associated to a Specific Upstream
 
@@ -3362,6 +3618,7 @@ Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be deleted.
 
+{% endunless %}
 
 #### Response
 
@@ -3393,7 +3650,7 @@ CA Certificates can be both [tagged and filtered by tags](#tags).
 
 ##### Create CA Certificate
 
-<div class="endpoint post indent">/ca_certificates</div>
+<div class="endpoint post indent">{{ prefix }}/ca_certificates</div>
 
 
 #### Request Body
@@ -3419,7 +3676,7 @@ HTTP 201 Created
 
 ##### List All CA Certificates
 
-<div class="endpoint get indent">/ca_certificates</div>
+<div class="endpoint get indent">{{ prefix }}/ca_certificates</div>
 
 
 #### Response
@@ -3443,7 +3700,7 @@ HTTP 200 OK
 
 ##### Retrieve CA Certificate
 
-<div class="endpoint get indent">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint get indent">{{ prefix }}/ca_certificates/{ca_certificate id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3467,6 +3724,7 @@ HTTP 200 OK
 ### Update CA Certificate
 
 
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -3496,7 +3754,7 @@ HTTP 200 OK
 {{ page.ca_certificate_json }}
 ```
 
-
+{% endunless %}
 ---
 
 ### Update Or Create CA Certificate
@@ -3508,7 +3766,7 @@ HTTP 200 OK
 
 ##### Create Or Update CA Certificate
 
-<div class="endpoint put indent">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint put indent">{{ prefix }}/ca_certificates/{ca_certificate id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3542,7 +3800,9 @@ body is not allowed.
 HTTP 200 OK
 ```
 
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
+{% endunless %}
 
 
 ---
@@ -3556,7 +3816,7 @@ See POST and PATCH responses.
 
 ##### Delete CA Certificate
 
-<div class="endpoint delete indent">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint delete indent">{{ prefix }}/ca_certificates/{ca_certificate id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3596,12 +3856,12 @@ SNIs can be both [tagged and filtered by tags](#tags).
 
 ##### Create SNI
 
-<div class="endpoint post indent">/snis</div>
+<div class="endpoint post indent">{{ prefix }}/snis</div>
 
 
 ##### Create SNI Associated to a Specific Certificate
 
-<div class="endpoint post indent">/certificates/{certificate name or id}/snis</div>
+<div class="endpoint post indent">{{ prefix }}/certificates/{certificate name or id}/snis</div>
 
 {:.indent}
 Attributes | Description
@@ -3632,12 +3892,12 @@ HTTP 201 Created
 
 ##### List All SNIs
 
-<div class="endpoint get indent">/snis</div>
+<div class="endpoint get indent">{{ prefix }}/snis</div>
 
 
 ##### List SNIs Associated to a Specific Certificate
 
-<div class="endpoint get indent">/certificates/{certificate name or id}/snis</div>
+<div class="endpoint get indent">{{ prefix }}/certificates/{certificate name or id}/snis</div>
 
 {:.indent}
 Attributes | Description
@@ -3666,7 +3926,7 @@ HTTP 200 OK
 
 ##### Retrieve SNI
 
-<div class="endpoint get indent">/snis/{sni name or id}</div>
+<div class="endpoint get indent">{{ prefix }}/snis/{sni name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3676,7 +3936,7 @@ Attributes | Description
 
 ##### Retrieve SNI Associated to a Specific Certificate
 
-<div class="endpoint get indent">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint get indent">{{ prefix }}/certificates/{certificate id}/snis/{sni name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3701,9 +3961,11 @@ HTTP 200 OK
 ### Update SNI
 
 
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
+
 
 ##### Update SNI
 
@@ -3743,6 +4005,7 @@ HTTP 200 OK
 
 
 ---
+{% endunless %}
 
 ### Update Or Create SNI
 
@@ -3753,7 +4016,7 @@ HTTP 200 OK
 
 ##### Create Or Update SNI
 
-<div class="endpoint put indent">/snis/{sni name or id}</div>
+<div class="endpoint put indent">{{ prefix }}/snis/{sni name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3763,7 +4026,7 @@ Attributes | Description
 
 ##### Create Or Update SNI Associated to a Specific Certificate
 
-<div class="endpoint put indent">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint put indent">{{ prefix }}/certificates/{certificate id}/snis/{sni name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3797,9 +4060,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -3812,7 +4075,7 @@ See POST and PATCH responses.
 
 ##### Delete SNI
 
-<div class="endpoint delete indent">/snis/{sni name or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/snis/{sni name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3822,7 +4085,7 @@ Attributes | Description
 
 ##### Delete SNI Associated to a Specific Certificate
 
-<div class="endpoint delete indent">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/certificates/{certificate id}/snis/{sni name or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -3868,8 +4131,9 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 
 ##### Create Upstream
 
-<div class="endpoint post indent">/upstreams</div>
+<div class="endpoint post indent">{{ prefix }}/upstreams</div>
 
+{% unless page.edition == "konnect" %}
 
 ##### Create Upstream Associated to a Specific Certificate
 
@@ -3880,6 +4144,7 @@ Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created Upstream.
 
+{% endunless %}
 
 #### Request Body
 
@@ -3904,8 +4169,9 @@ HTTP 201 Created
 
 ##### List All Upstreams
 
-<div class="endpoint get indent">/upstreams</div>
+<div class="endpoint get indent">{{ prefix }}/upstreams</div>
 
+{% unless page.edition == "konnect" %}
 
 ##### List Upstreams Associated to a Specific Certificate
 
@@ -3916,6 +4182,7 @@ Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Upstreams are to be retrieved. When using this endpoint, only Upstreams associated to the specified Certificate will be listed.
 
+{% endunless %}
 
 #### Response
 
@@ -3938,13 +4205,14 @@ HTTP 200 OK
 
 ##### Retrieve Upstream
 
-<div class="endpoint get indent">/upstreams/{upstream name or id}</div>
+<div class="endpoint get indent">{{ prefix }}/upstreams/{upstream name or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
+{% unless page.edition == "konnect" %}
 
 ##### Retrieve Upstream Associated to a Specific Certificate
 
@@ -3955,6 +4223,8 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
+
+{% endunless %}
 
 #### Response
 
@@ -3972,9 +4242,12 @@ HTTP 200 OK
 ### Update Upstream
 
 
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
+
+
 
 ##### Update Upstream
 
@@ -4012,7 +4285,9 @@ HTTP 200 OK
 ```
 
 
+
 ---
+{% endunless %}
 
 ### Update Or Create Upstream
 
@@ -4023,13 +4298,14 @@ HTTP 200 OK
 
 ##### Create Or Update Upstream
 
-<div class="endpoint put indent">/upstreams/{upstream name or id}</div>
+<div class="endpoint put indent">{{ prefix }}/upstreams/{upstream name or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
+{% unless page.edition == "konnect" %}
 
 ##### Create Or Update Upstream Associated to a Specific Certificate
 
@@ -4040,6 +4316,8 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
+
+{% endunless %}
 
 #### Request Body
 
@@ -4066,10 +4344,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
-
+{% endunless %}
 ---
 
 ### Delete Upstream
@@ -4081,14 +4358,14 @@ See POST and PATCH responses.
 
 ##### Delete Upstream
 
-<div class="endpoint delete indent">/upstreams/{upstream name or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/upstreams/{upstream name or id}</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
-
+{% unless page.edition == "konnect" %}
 ##### Delete Upstream Associated to a Specific Certificate
 
 <div class="endpoint delete indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
@@ -4099,6 +4376,7 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
+{% endunless %}
 
 #### Response
 
@@ -4106,6 +4384,7 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
+{% unless page.edition == "konnect" %}
 
 ---
 
@@ -4145,7 +4424,7 @@ attribute is defined by the state of all of Upstream's Targets, according
 to the field `healthchecks.threshold`.
 
 
-<div class="endpoint get indent">/upstreams/{name or id}/health/</div>
+<div class="endpoint get indent">/upstreams/{name or id}/health</div>
 
 {:.indent}
 Attributes | Description
@@ -4206,7 +4485,7 @@ HTTP 200 OK
     "node_id": "cbb297c0-14a9-46bc-ad91-1d0ef9b42df9"
 }
 ```
-
+{% endunless %}
 
 ---
 
@@ -4227,6 +4506,8 @@ Targets can be both [tagged and filtered by tags](#tags).
 ```json
 {{ page.target_json }}
 ```
+
+{% unless page.edition == "konnect" %}
 
 ### Update Target
 
@@ -4253,6 +4534,7 @@ Attributes | Description
 HTTP 201 Created
 ```
 
+{% endunless %}
 
 ---
 
@@ -4266,7 +4548,7 @@ HTTP 201 Created
 Remove a target from the load balancer.
 
 
-<div class="endpoint delete indent">/upstreams/{upstream name or id}/targets/{host:port or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/upstreams/{upstream name or id}/targets/{host:port or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -4283,6 +4565,8 @@ HTTP 204 No Content
 
 
 ---
+
+{% unless page.edition == "konnect" %}
 
 ### Set Target Address As Healthy
 
@@ -4449,6 +4733,8 @@ HTTP 204 No Content
 
 ---
 
+{% endunless %}
+
 ### List All Targets
 {:.badge .dbless}
 
@@ -4457,7 +4743,7 @@ target may be returned, showing the history of changes for a specific target.
 The target object with the latest `created_at` is the current definition.
 
 
-<div class="endpoint get indent">/upstreams/{name or id}/targets/all/</div>
+<div class="endpoint get indent">/upstreams/{name or id}/targets/all</div>
 
 {:.indent}
 Attributes | Description
@@ -4496,6 +4782,7 @@ HTTP 200 OK
 
 ---
 
+
 ## Vaults Entity
 
 Vault entities are used to configure different Vault connectors. Examples of
@@ -4523,7 +4810,7 @@ Vaults can be both [tagged and filtered by tags](#tags).
 
 ##### Create Vault
 
-<div class="endpoint post indent">/vaults</div>
+<div class="endpoint post indent">{{ prefix }}/vaults</div>
 
 
 #### Request Body
@@ -4549,7 +4836,7 @@ HTTP 201 Created
 
 ##### List All Vaults
 
-<div class="endpoint get indent">/vaults</div>
+<div class="endpoint get indent">{{ prefix }}/vaults</div>
 
 
 #### Response
@@ -4573,7 +4860,7 @@ HTTP 200 OK
 
 ##### Retrieve Vault
 
-<div class="endpoint get indent">/vaults/{vault prefix or id}</div>
+<div class="endpoint get indent">{{ prefix }}/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -4597,6 +4884,7 @@ HTTP 200 OK
 ### Update Vault
 
 
+{% unless page.edition == "konnect" %}
 
 {:.note}
 > **Note**: This API is not available in DB-less mode.
@@ -4628,6 +4916,7 @@ HTTP 200 OK
 
 
 ---
+{% endunless %}
 
 ### Update Or Create Vault
 
@@ -4638,7 +4927,7 @@ HTTP 200 OK
 
 ##### Create Or Update Vault
 
-<div class="endpoint put indent">/vaults/{vault prefix or id}</div>
+<div class="endpoint put indent">{{ prefix }}/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -4671,9 +4960,9 @@ body is not allowed.
 ```
 HTTP 200 OK
 ```
-
+{% unless page.edition == "konnect" %}
 See POST and PATCH responses.
-
+{% endunless %}
 
 ---
 
@@ -4686,7 +4975,7 @@ See POST and PATCH responses.
 
 ##### Delete Vault
 
-<div class="endpoint delete indent">/vaults/{vault prefix or id}</div>
+<div class="endpoint delete indent">{{ prefix }}/vaults/{vault prefix or id}</div>
 
 {:.indent}
 Attributes | Description
@@ -4702,7 +4991,7 @@ HTTP 204 No Content
 
 
 ---
-
+{% unless page.edition == "konnect" %}
 ## Keys Entity
 
 A Key object holds a representation of asymmetric keys in various formats.
@@ -5065,6 +5354,7 @@ HTTP 200 OK
 
 
 
+
 {:.note}
 > **Note**: This API is not available in DB-less mode.
 
@@ -5311,3 +5601,5 @@ HTTP 204 No Content
 [healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
 [secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
 [proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+
+{% endunless %}

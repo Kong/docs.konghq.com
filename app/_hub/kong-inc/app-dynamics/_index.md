@@ -8,13 +8,17 @@ description: |
   AppDynamics. The plugin reports request and response timestamps and error information to the AppDynamics platform to
   be analyzed in the AppDynamics flow map and correlated with other
   systems participating in handling application API requests.
+  
+  ## Prerequisites
 
-  {:.warning}
-  > The plugin utilizes the
-  > [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435),
-  > which must be downloaded and installed on the machine or within the
-  > container running Kong Gateway. Refer to the
-  > [AppDynamics SDK documentation](https://docs.appdynamics.com/) for platform support information.
+  Before using the plugin, download and install the [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435) on the machine or within the container running Kong Gateway. 
+
+  ### Platform support
+  
+  The AppDynamics C SDK supports Linux distributions based on glibc 2.5+. MUSL-based distributions like the Alpine distribution, which is popular for container usage, are not supported. Kong Gateway must be running on a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin. 
+  
+  See the [AppDynamics C/C++ SDK Supported Environments](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/c-c++-sdk/c-c++-sdk-supported-environments) document for more information.
+
 enterprise: true
 type: plugin
 categories:
@@ -51,7 +55,7 @@ Alternatively, the `LD_LIBRARY_PATH` environment variable can be set
 to the directory containing the `libappdynamics.so` file when
 starting {{site.base_gateway}}.
 
-If the AppDymanics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
+If the AppDynamics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
 You will receive an error message like this:
 
 ```

@@ -1,6 +1,5 @@
 ---
 title: Word choice and naming
-no_version: true
 ---
 
 Generally:

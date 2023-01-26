@@ -40,7 +40,7 @@ is part of the organization admin team by default.
     Every account starts with one group named `default`. If you have an
     Enterprise subscription, you can create additional custom groups.
 
-1. Click **Add runtime instance**.
+1. Click **New Runtime Instance**.
 
      The page opens to a runtime configuration form with the Docker tab
      selected.

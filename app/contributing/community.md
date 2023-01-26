@@ -1,6 +1,5 @@
 ---
 title: Community
-no_version: true
 ---
 
 This section contains information on how to contribute using our docs-as-code approach. You may also be interested in [Community Expectations](/contributing/community-expectations/) and [Hackathons](/contributing/hackathons/).
@@ -19,7 +18,7 @@ The first thing we’re going to do is look over the [README](https://github.com
 
 To contribute using our docs-as-code approach, you'll need:
 
-* A code editor like [VScode](https://code.visualstudio.com/) or [Atom](https://atom.io/).
+* A code editor like [VS Code](https://code.visualstudio.com/).
 * Basic Git knowledge, see [Git/GitHub Resources](/contributing/#gitgithub-resources).
 * A [fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks) of our repository, and our repository [configured as an upstream](https://docs.github.com/en/get-started/quickstart/fork-a-repo#configuring-git-to-sync-your-fork-with-the-original-repository) to your fork. On [our main repository page](https://github.com/Kong/docs.konghq.com), click the `Fork` button in the top right. Learn more about [working with forks on GitHub](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks).
 * To know the difference between a PR and an Issue. PR stands for Pull Request or Please Review. It’s different from an Issue in that an Issue is a statement of something that needs attention, while a PR attempts to resolve something. So, an Issue is an idea and a PR is an action.

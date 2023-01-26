@@ -11,76 +11,92 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2022
 
+**Curity support for Dynamic Client Registration (beta)**
+: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity) is now in beta release as an identity provider for Dynamic Client Registration (DCR).
+
+**Secrets management using vaults**
+: {{site.konnect_short_name}} now supports storing sensitive values in a vault
+with any of the following backends:
+* Environment variables
+* AWS Secrets Manager
+* HashiCorp Vault
+* GCP Secret Manager
+: See the [vaults documentation](/konnect/runtime-manager/vaults) to get started.
+
+**App Registration Enhancement**
+: {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
+
+**Runtime Groups Configuration API**
+: Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
+
+**New {{site.konnect_saas}} Analytics custom report chart types and metrics**
+: You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
+
+: The new additions include:
+* New chart types: You can now select between either horizontal or vertical bar charts, as well as line charts.
+* New metrics: You can now measure requests per minute, response latency, response size, and request size as percentiles.
+* New time selector: Allows you to use relative time periods, which can help you avoid manually adjusting your reports for weekly reports.
+
+: For more information, see [Generate Reports](/konnect/analytics/generate-reports/).
+
+**Konnect Overview & Service Wizard**
+: {{site.konnect_short_name}} admins now have an [Overview page](/konnect/) which offers a high-level summary of their entire Konnect platform, news updates, and learning opportunities. In addition, we've added a new Service Wizard to walk admins through the end-to-end process of setting up a Service Package & Service Version, configuring a {{site.base_gateway}}, uploading documentation, and publishing a Service to the developer portal.
+
 **{{site.base_gateway}} 3.1 support**
-: {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms. 
+: {{site.konnect_short_name}} users can now use {{site.base_gateway}} 3.1 with {{site.konnect_short_name}}. This allows {{site.konnect_short_name}} users to access the new capabilities and improvements added to {{site.base_gateway}} 3.1 core platforms.
 
 **Support for all {{site.base_gateway}} 3.1 plugins**
 : {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins. review our [compatibility documentation](/konnect/compatibility/#plugin-compatibility).
 
+**Runtime Groups API**
+: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
 
 ## November 2022
-
-### 2022.11.21
 
 **Application registration support in any runtime group**
 : {{site.konnect_short_name}} now officially supports [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-runtime-group). Portal developers can register their applications to consume services proxied through gateway services in both default and non-default runtime groups.
 
 :  Currently, this feature is only available for services being proxied through {{site.base_gateway}} 3.0.0.0 or later.
 
-### 2022.11.18
-
 **Dev portal Dynamic Client Registration**
 
 : As part of this release, we have improved the UI for DCR to provide a more polished experience for users.
 
-### 2022.11.17
-
 **Certificate management functionality added to the {{site.konnect_saas}} runtime manager**
-: {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing, 
-and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}. 
+: {{site.konnect_short_name}} now allows customers to handle the complexity of creating, storing,
+and organizing certificates needed for runtime instances connected to runtime groups in {{site.konnect_short_name}}.
 This reduces operational complexity for customers while ensuring that security is not compromised.
 
 **New Analytics predefined teams**
-: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities. 
+: {{site.konnect_short_name}} now allows you to add users to the Analytics Viewer and Analytics Admin teams. These teams allow you to give users access to only the Analytics section in {{site.konnect_short_name}}. With this release, individual users don't have to be Organization Admins anymore to access all the Analytics capabilities.
 
 : {{site.konnect_short_name}} now includes the following predefined Analytics teams:
 * Analytics Admin: Users can fully manage all Analytics content, which includes creating, editing, and deleting reports, as well as viewing the analytics summary.
-* Analytics Viewer: Users can only view the analytics summary and report data. 
+* Analytics Viewer: Users can only view the analytics summary and report data.
 
 : For more information, see [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
 **Migration to cloud.konghq.com is completed**
-: All active accounts have been migrated from `konnect.konghq.com` 
+: All active accounts have been migrated from `konnect.konghq.com`
 to [cloud.konghq.com](https://cloud.konghq.com).
 The deprecated environment at `konnect.konghq.com` is no longer available.
 
-### 2022.11.15
-
 **Multiple runtime groups**
 : All the runtime groups in {{site.konnect_short_name}}, including default and non-default runtime groups, are eligible for application registration.
-
-### 2022.11.08
 
 **Editing the default runtime group**
 : You can now edit the name of the default runtime group.
 The group still retains its status as the default group, and can't be deleted.
 
-### 2022.11.01
-
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
 [IdP API documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
 
-
 ## October 2022
-
-### 2022.10.27
 
 **Dynamic client registration <span class="badge beta"></span>**
 : Dynamic client registration with Okta is now in public beta.
 [Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
-
-### 2022.10.21
 
 **Latency reporting**
 : The Analytics dashboard now includes a [latency tab](/konnect/analytics/summary-dashboard/), which lets you track
@@ -90,8 +106,6 @@ P99 latency data also appears in runtime groups and on service overview pages in
 : This feature is available for runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
 
 ## September 2022
-
-### 2022.09.28
 
 **Analytics custom reports**
 : [Analytics custom reports](/konnect/analytics/generate-reports/) are now generally available in {{site.konnect_saas}}. This release focuses on stability and minor usability improvements.
@@ -128,9 +142,6 @@ This release includes a new user interface that provides information about which
 **Service version lifecycle**
 : You can identify the [lifecycle stage](/konnect/servicehub/service-versions/#manage-the-service-version-lifecycle) of your APIs and notify Dev Portal developers if a particular API will be deprecated soon.  
 
-
-### 2022.09.09
-
 **{{site.base_gateway}} 3.0.0.0 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 3.0.0.0 runtimes.
 You can keep using existing 2.8.x runtimes, or you can upgrade to
@@ -158,8 +169,6 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 ## August 2022
 
-### 2022.08.31
-
 **Generic OIDC**
 
 : {{site.konnect_short_name}} launches generic OIDC support to allow Single-Sign-On (SSO) for platform login. Customers now have the ability to configure a separate OIDC-compliant Identity Provider (IdP) for {{site.konnect_short_name}}. Generic OIDC is an Enterprise feature.
@@ -181,8 +190,6 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 : We have introduced an "Export" option to all reports inside the overview page in Vitals. Exporting a report downloads an unpivoted CSV to your local machine that can be used for offline analysis.
 
 ## July 2022
-
-### 2022.07.12
 
 **New environment for {{site.konnect_short_name}}**
 : {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
@@ -288,7 +295,6 @@ If you have a custom plugin you want to use in {{site.konnect_short_name}}, cont
 
 ## March 2022
 
-### 2021.03.07
 **{{site.base_gateway}} 2.8.0.0 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.8.0.0 runtimes.
 You can keep using existing 2.7.x runtimes, or you can upgrade to
@@ -302,7 +308,6 @@ You can keep using existing 2.7.x runtimes, or you can upgrade to
 
 ## January 2022
 
-### 2022.01.14
 **Custom Domain for Dev Portal**
 : You can now set a custom domain for your Dev Portal through the {{site.konnect_saas}} Admin UI.
 
@@ -313,7 +318,6 @@ You can keep using existing 2.7.x runtimes, or you can upgrade to
 
 ## December 2021
 
-### 2021.12.21
 **{{site.base_gateway}} 2.7.0.0 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.7.0.0 runtimes.
 You can keep using existing 2.6.x runtimes, or you can upgrade to
@@ -327,7 +331,6 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 
 ## November 2021
 
-### 2021.11.30
 **Single-sign on (SSO) with Okta**
 : {{site.konnect_saas}} now supports single sign-on (SSO) access through
 [Okta](https://developer.okta.com/docs/guides/) with
@@ -336,8 +339,6 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 : See the guide on [Setting up SSO with Okta](/konnect/org-management/okta-idp)
 for more information.
 
-
-### 2021.11.10
 **{{site.base_gateway}} 2.6.0.0 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.6.0.0
 runtimes. You can keep using existing 2.5.x runtimes, or you can upgrade to
@@ -370,7 +371,7 @@ help differentiate the {{site.konnect_short_name}}-managed plugins and avoid bre
 
 
 ## August 2021
-### 2021.08.31
+
 **{{site.base_gateway}} 2.5.0.1 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.5.0.1.
 runtimes. You can keep using existing 2.4.x runtimes, or you can upgrade to
@@ -380,13 +381,12 @@ improvements to CP-DP communication, new configuration options in plugins, and m
 : For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/gateway/changelog).
 
 ## June 2021
-### 2021.06.24
+
 **Global plugin support**
 : You can now configure global plugins through {{site.konnect_saas}}. Visit the
 [Shared Config page](https://konnect.konghq.com/configuration/)
 and select the **Plugin** menu option to get started.
 
-### 2021.06.21
 **{{site.base_gateway}} 2.4.1.1 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
 runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
@@ -412,8 +412,6 @@ newly introduced in this release, [start up a new runtime](/konnect/runtime-mana
     * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
     * [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/)
 
-
-### 2021.06.15
 **Default strategy/policy for rate limiting plugins**
 : The rate limiting plugins now default to `redis` as the rate limiting
 strategy or policy. This setting allows cluster-wide rate limiting using a
@@ -439,15 +437,12 @@ configuration anymore.
 
 ## May 2021
 
-### 2021.05.12
 **Certificate expiration limit extended**
 : The validity period for runtime certificates has been extended from 30 days to
 six months.
 
 : To take advantage of the new validity period, bring up new data planes through
 the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/runtime-instances/renew-certificates).
-
-### 2021.05.11
 
 **{{site.konnect_short_name}} Plus is launched!**
 : {{site.konnect_short_name}} introduces a
@@ -487,8 +482,6 @@ access code. No more
 reaching out to Kong support or sales for access &ndash; just go
 to [https://konnect.konghq.com](https://konnect.konghq.com) and try it out!
 
-### 2021.05.07
-
 **Runtime setup improvements**
 : Runtime setup for Linux and Kubernetes environments has improved. When you
 configure a new runtime, instead of one **Advanced** tab, the Runtime Manager
@@ -513,15 +506,12 @@ the parameter and the value. Add a space to fix the formatting:
 
 ## March 2021
 
-### 2021.03.16
 **Runtime setup improvement**
 : Quick setup just got a little bit faster. When configuring a new runtime
 through the Runtime Manager, HTTPie is no longer required for the
 quick setup script.
 
 ## February 2021
-
-### 2021.02.23
 
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
@@ -551,20 +541,16 @@ through {{site.konnect_saas}}. This includes:
 * [TCP Log](/hub/kong-inc/tcp-log)
 * [UDP Log](/hub/kong-inc/udp-log)
 
-### 2021.02.10
-
 **Portal authentication**
 : You can now [disable authentication on a Dev Portal](/konnect/dev-portal/access/),
 which exposes the Dev Portal publicly to anyone with the link. No one needs to register
 for Dev Portal access.
 : New application registrations aren't available through a public-facing portal.
 
-### 2021.02.01
+**{{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!**
 
-{{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!
-
-To get started with {{site.konnect_short_name}}, see the
+: To get started with {{site.konnect_short_name}}, see the
 [Quickstart Guide](/konnect/getting-started/configure-runtime/).
 
-For more information about {{site.konnect_short_name}}, contact your Kong sales
+: For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.

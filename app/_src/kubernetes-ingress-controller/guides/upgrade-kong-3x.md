@@ -160,7 +160,7 @@ disable `enableLegacyRegexDetection`.
 > **Important**: The `enableLegacyRegexDetection` option is meant to be **temporary**.
 Only use it for migration.
 
-The Gateway API `HTTPRoute` resources are not affected by this problem. They
+The Gateway API HTTPRoute resources are not affected by this problem. They
 do have a dedicated regular expression path type, and KIC inserts the `~`
 prefix automatically for these.
 
