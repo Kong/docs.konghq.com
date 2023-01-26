@@ -278,6 +278,8 @@ items:
         url: /features/cert-manager
       - text: OPA policy support
         url: /features/opa
+      - text: MeshOPA (beta)
+        url: /features/meshopa
       - text: Multi-zone authentication
         url: /features/kds-auth
       - text: FIPS support
@@ -525,7 +527,7 @@ unlisted:
   - url: /generated/cmd/kumactl/kumactl_get_virtual-outbounds/
     src: /.repos/kuma/app/docs/2.0.x/generated/cmd/kumactl/kumactl_get_virtual-outbounds/
   - url: /generated/cmd/kumactl/kumactl_get_zone/
-    src: /.repos/kuma/app/docs/2.0.x/generated/cmd/kumactl/kumactl_get_zone/ 
+    src: /.repos/kuma/app/docs/2.0.x/generated/cmd/kumactl/kumactl_get_zone/
   - url: /generated/cmd/kumactl/kumactl_get_zone-ingress/
     src: /.repos/kuma/app/docs/2.0.x/generated/cmd/kumactl/kumactl_get_zone-ingress/
   - url: /generated/cmd/kumactl/kumactl_get_zone-ingresses/
