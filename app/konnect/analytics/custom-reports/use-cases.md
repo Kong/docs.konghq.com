@@ -14,14 +14,14 @@ This narrative driven tutorial will guide you through the process of creating cu
 * Total API usage by application for all APIs in the current month. 
 * Capturing requests per minute for an API over the last 30 days. 
 
-## Narrative?? 
+## Narrative?? Situation? 
 
-You have just joined an organization as an API product mananger, your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following APIs because they would give a brief but wholistic understanding of the API: 
+You have just joined an organization as an API product manager, your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following APIs because they would give a brief but wholistic understanding of the API: 
 
-* Number of requests: This metric measures the total number of requests made to the API. This is good for understanding total usage of an API, and can potentially be used to uncover scalibility requirements. 
+* Number of requests: This metric measures the total number of requests made to the API. This is good for understanding total usage of an API, and can potentially be used to uncover scalability requirements. 
 * Error response rate: This metric measures the percentage of requests that result in errors. With this metric you can potentially pinpoint any issues users of your API are having. 
-* Average throughput: Througput is the measurement of the number of requests an API can handle per second. 
-* Latency: Latency is the measurement of the time it takes for the API to respond to a request. 
+* Average throughput: Throughput is the measurement of the number of requests an API can handle per second. 
+* Latency: latency is the measurement of the time it takes for the API to respond to a request. 
 
 These KPIs can help you define the type of reports you need to show the stakeholders in your organization:
 
@@ -55,7 +55,7 @@ To build a custom report, navigate to the custom reports dashboard by selecting 
 * **Group By**: Service
 * **Then by**: None
 
-<picture>
+<picture of finished chart>
 
 This report can provide your stakeholders with the answers to questions like:
 
@@ -67,7 +67,7 @@ The data can be used to support other types of exploratory questions about your 
 
 * What is the most popular service? 
 * Are there spikes in requests across months? 
-* Are there any errors or issues that might be impacting the number of requests our API is receving? 
+* Are there any errors or issues that might be impacting the number of requests our API is receiving? 
 
 
 ### Instructions
