@@ -3,7 +3,7 @@ title: Workspace Examples
 badge: enterprise
 ---
 
-Workspaces provide a way to segment Kong entities—entities in a workspace
+Workspaces provide a way to segment Kong entities. Entities in a workspace
 are isolated from those in other workspaces. That said, entities
 such as Services and Routes have "routing rules", which are pieces of info
 attached to Services or Routes—such as HTTP method, URI, or host—that allow a
@@ -30,10 +30,10 @@ router:
     * If the matching Service or Route's `host` is an absolute value, a
       conflict is reported—`409 Conflict`
 
-## The Default workspace
+## The default workspace
 
-Kong creates a default workspace—unsurprisingly named `default`—whose goal
-is to group all existing entities in Kong, where "existing entities" refers to:
+Kong starts with a default workspace named `default`. This workspace
+groups all existing entities in Kong:
 
 - Entities that were created in operation in previous versions &amp; in case
 one is migrating from an older Kong version;
@@ -47,6 +47,10 @@ That said, it's worth noting that the default workspace is a workspace as any
 other, the only difference being that it's created by Kong, at migration time.
 
 (Examples will be shown using the HTTPie HTTP command line client.)
+
+## Using the API in workspaces
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
 
 ## Listing workspaces and its entities
 

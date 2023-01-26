@@ -15,43 +15,6 @@ for bulk developer administration.
 This is not the same as the Dev Portal API [`/developer`](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1#/developer/get-developer) endpoints,
 which return data on the logged-in developer.
 
-## Using the API in workspaces
-
-Any requests that don't specify a workspace target the `default` workspace.
-To target a different workspace, add `/{WORKSPACE_NAME}/` to the start of any
-endpoint.
-
-For example, if you don't specify a workspace,
-this request retrieves a list of developers from the `default` workspace:
-
-{% navtabs codeblock %}
-{% navtab cURL %}
-```sh
-curl -i -X GET http://localhost:8001/developers
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/developers
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-While this request retrieves all developers from the workspace `SRE`:
-
-{% navtabs codeblock %}
-{% navtab cURL %}
-```sh
-curl -i -X GET http://localhost:8001/SRE/developers
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/SRE/developers
-```
-{% endnavtab %}
-{% endnavtabs %}
-
 ## Developers
 
 ### List all developers
