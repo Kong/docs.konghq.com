@@ -3,10 +3,6 @@ title: Event Hooks Reference
 badge: enterprise
 ---
 
-{:.important}
-> **Important:** Before you can use event hooks for the first time, Kong needs to be
-reloaded.
-
 {% include_cached /md/enterprise/event-hooks-intro.md %}
 
 {:.note}
