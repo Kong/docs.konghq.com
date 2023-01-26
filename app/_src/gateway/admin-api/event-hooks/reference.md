@@ -3,6 +3,8 @@ title: Event Hooks Reference
 badge: enterprise
 ---
 
+{% include_cached /md/enterprise/event-hooks-intro.md %}
+
 {:.note}
 > **Note:** Event hooks do not work with Konnect yet.
 
