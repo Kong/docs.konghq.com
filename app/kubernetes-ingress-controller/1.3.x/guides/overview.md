@@ -13,7 +13,7 @@ the {{site.kic_product_name}}:
 - [Using KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
   This guide explains how the KongIngress resource can be used to change Kong
   specific settings like load-balancing, health-checking and proxy behaviour.
-- [Using KongConsumer and KongCredential resources](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
+- [Using KongConsumer and Credential Resources](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
   This guide walks through how Kubernetes native declarative configuration
   can be used to dynamically provision credentials for authentication purposes
   in the Ingress layer.
@@ -55,7 +55,7 @@ the {{site.kic_product_name}}:
 - [Setting up upstream mTLS](/kubernetes-ingress-controller/{{page.kong_version}}/guides/upstream-mtls)
   This guide gives an overview of how to setup mutual TLS authentication
   between Kong and your upstream server.
-- [Preserveing Client IP address](/kubernetes-ingress-controller/{{page.kong_version}}/guides/preserve-client-ip)
+- [Preserving Client IP address](/kubernetes-ingress-controller/{{page.kong_version}}/guides/preserve-client-ip)
   This guide gives an overview of different methods to preserve the Client
   IP address.
 - [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongclusterplugin-resource)

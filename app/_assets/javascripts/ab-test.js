@@ -2,10 +2,6 @@ $(document).ready(function () {
   // Top right CTA
   const cta = $("#top-cta").text("");
   const ctaOptions = {
-    incubator: {
-      url: "https://incubator.konghq.com/",
-      text: "Early Access",
-    },
     sales_demo: {
       url: "https://konghq.com/contact-sales",
       text: "Personalized Demo",

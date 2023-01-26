@@ -78,7 +78,7 @@ like this:
     ```yaml
     image:
       repository: kong/kong-gateway
-      tag: "3.0.0.0"
+      tag: "{{ site.data.kong_latest_gateway.ee-version }}"
 
     secretVolumes:
     - kong-cluster-cert

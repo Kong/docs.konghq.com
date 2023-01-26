@@ -15,6 +15,7 @@ kong_version_compatibility:
 params:
   name: degraphql
   service_id: true
+  konnect_examples: false
   dbless_compatible: 'yes'
   config:
     - name: graphql_server_path

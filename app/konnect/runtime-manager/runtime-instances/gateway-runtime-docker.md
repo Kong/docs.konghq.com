@@ -70,6 +70,7 @@ Use the following `docker run` command sample as a guide to compile your actual 
 {% navtabs codeblock %}
 {% navtab Any Unix shell %}
 ```sh
+
 docker run -d \
         -e "KONG_ROLE=data_plane" \
         -e "KONG_DATABASE=off" \
@@ -85,7 +86,8 @@ docker run -d \
         -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/cluster.crt" \
         -p "$KONNECT_RUNTIME_PORT":8000 \
         -p "$KONNECT_RUNTIME_PORT_SECURE":8443 \
-        kong/kong-gateway:3.1.0
+        kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+
 ```
 {% endnavtab %}
 {% navtab Windows PowerShell %}
@@ -105,7 +107,8 @@ docker run -d \
         -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/cluster.crt" `
         -p "$KONNECT_RUNTIME_PORT":8000 `
         -p "$KONNECT_RUNTIME_PORT_SECURE":8443 `
-        kong/kong-gateway:3.1.0
+        kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+
 ```
 {% endnavtab %}
 {% endnavtabs %}

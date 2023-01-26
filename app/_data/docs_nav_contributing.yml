@@ -10,8 +10,10 @@
       url: /style-guide
     - text: Word choice and naming
       url: /word-choice
-    - text: Contribution Templates
+    - text: Contribution templates
       url: /contribution-templates
+    - text: Plugin documentation
+      url: /plugin-docs
 
 - title: Markdown rules and formatting
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -22,6 +24,12 @@
       url: /includes
     - text: Variables
       url: /variables
+    - text: Single-sourced versions
+      url: /single-sourced-versions
+    - text: Single-sourced plugins
+      url: /single-sourced-plugins
+    - text: Conditional rendering
+      url: /conditional-rendering
 
 - title: Community
   icon: /assets/images/icons/documentation/icn-references-color.svg
