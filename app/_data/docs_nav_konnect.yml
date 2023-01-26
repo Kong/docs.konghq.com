@@ -93,6 +93,8 @@
           url: /runtime-manager/vaults
         - text: Set Up and Use a Vault in Konnect
           url: /runtime-manager/vaults/how-to
+    - text: Plugin Ordering Reference
+      url: /runtime-manager/plugins
     - text: Troubleshoot
       url: /runtime-manager/troubleshoot
 
