@@ -35,6 +35,10 @@ RSpec.describe Jekyll::AliasGenerator do
         expect(redirects).to include("/first-alias/index.html\t/contributing/")
         expect(redirects).to include("/second-alias/index.html\t/contributing/")
       end
+
+      it 'includes mesh_redirects' do
+        expect(redirects).to include('/mesh/:version/policies/circuit-breakers/ /mesh/:version/policies/circuit-breaker/ 301')
+      end
     end
   end
 end
