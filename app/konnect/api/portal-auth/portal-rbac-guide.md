@@ -103,3 +103,13 @@ curl --request POST \
   "id": "<developer-id>"
 }'
 ```
+
+## List Developers 
+
+You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The followig example shows how to make the request. 
+
+```bash
+curl --request GET \
+  --url https://us.api.konghq.com/v2/portals/<portal-id>/developers \
+  --header 'Authorization: Bearer <personal-access-token>'
+```
