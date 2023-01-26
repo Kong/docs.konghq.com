@@ -90,6 +90,16 @@ curl --request DELETE \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
+## List Developers 
+
+You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The followig example shows how to make the request. 
+
+```bash
+curl --request GET \
+  --url https://us.api.konghq.com/v2/portals/<portal-id>/developers \
+  --header 'Authorization: Bearer <personal-access-token>'
+```
+
 ## Add a Developer to a Team
 
 To add a developer to a team, you must make a POST request to the team members endpoint. The following example shows how to add a developer to the team created in the previous section.
@@ -104,12 +114,8 @@ curl --request POST \
 }'
 ```
 
-## List Developers 
 
-You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The followig example shows how to make the request. 
 
-```bash
-curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/developers \
-  --header 'Authorization: Bearer <personal-access-token>'
-```
+## More information
+
+* [Portal Auth API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696)
