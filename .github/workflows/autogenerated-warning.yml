@@ -35,7 +35,7 @@ jobs:
 
   prevent-merge-if-labeled:
     needs: [check]
-    if: needs.check.outputs.result == 'false'
+    if: check.outputs.result == 'false'
     runs-on: ubuntu-latest
     steps:
       - uses: mheap/github-action-required-labels@v3
@@ -44,4 +44,4 @@ jobs:
         with:
           mode: exactly
           count: 0
-          labels: "ci:prevent-merge:generated-files, ci:manual-approve:generated-files"
+          labels: "ci:prevent-merge:generated-files"
