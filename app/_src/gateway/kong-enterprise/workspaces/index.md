@@ -46,8 +46,6 @@ a specific workspace.
 That said, it's worth noting that the default workspace is a workspace as any
 other, the only difference being that it's created by Kong, at migration time.
 
-(Examples will be shown using the HTTPie HTTP command line client.)
-
 ## Using the API in workspaces
 
 {% include_cached /md/gateway/admin-api-workspaces.md %}
@@ -181,6 +179,9 @@ With this, Teams A, B, and C will have the freedom to operate their `guest`
 consumer independently, choosing authentication plugins or doing any other
 operation that is allowed in the non-workspaced Kong world.
 
+## See also
+
+* [Workspaces API reference](/gateway/{{page.kong_version}}/admin-api/workspaces/reference)
 
 ---
 

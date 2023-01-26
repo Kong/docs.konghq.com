@@ -828,6 +828,13 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 ---
 
+## Using the API in workspaces 
+{:.badge .enterprise}
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
+
+---
+
 ## Information Routes
 
 
