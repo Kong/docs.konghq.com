@@ -9,6 +9,22 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## January 2023
+
+**Dynamic plugin ordering using the UI**
+: You can now configure dynamic plugin ordering using the {{site.konnect_short_name}} user interface. Dynamic plugin ordering allows you to override the default static plugin execution order by choosing which plugins run before or after another plugin. 
+
+: **Known limitation:** The control plane can't evaluate any conflicts in the dynamic ordering. If there are any conflicts in the defined order of plugin execution, you will only know during execution via the dataplane logs.
+
+: For more information, see [Plugin Ordering Reference](/konnect/runtime-manager/plugins/).
+
+**Consumer groups**
+: {{site.konnect_short_name}} now supports configure consumer groups to enable tier-based API consumption via the {{site.konnect_short_name}} user interface. Consumer groups work with the [Rate Limiting Advanced plugin](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) to allow you to manage custom rate limiting configurations for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and apply them to subsets of consumers instead of managing each consumer individually. Consumer groups are also supported through decK.
+
+: **Known limitation:** There is a rate limiting advanced plugin bug for local strategy where the number of remaining requests resets after every couple of seconds. You can use the Redis strategy as a workaround or if you want to test with local strategy, you can use {{site.base_gateway}} version 3.0.2.0.
+
+: For more information, see [Create Consumer Groups in Konnect](/konnect/runtime-manager/consumer-groups/).
+
 ## December 2022
 
 **Curity support for Dynamic Client Registration (beta)**
