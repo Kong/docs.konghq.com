@@ -44,4 +44,4 @@ jobs:
         with:
           mode: exactly
           count: 0
-          labels: "ci:prevent-merge:generated-files"
+          labels: "ci:prevent-merge:generated-files, ci:manual-approve:generated-files"
