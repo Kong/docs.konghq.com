@@ -54,6 +54,13 @@ params:
         How often to sample requests that do not contain trace IDs.
         Set to `0` to turn sampling off, or to `1` to sample **all** requests. The
         value must be between zero (0) and one (1), inclusive.
+    - name: default_service_name
+      required: false
+      default: null
+      datatype: string
+      description: |
+        Set a default service name to override `unknown-service-name` in the 
+        Zipkin spans.
     - name: include_credential
       required: true
       default: true

@@ -6,7 +6,6 @@ content-type: reference
 
 The support for {{site.ee_product_name}} software versions is explained in this topic.
 
-{% include_cached /md/support-policy.md %}
 
 ## Version support for {{site.base_gateway}} (Enterprise)
 
@@ -32,9 +31,7 @@ The support for {{site.ee_product_name}} software versions is explained in this 
 
 > *Table 1: Version Support for {{site.ee_product_name}}*
 
-## Additional terms
-- The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
-- The above applies to Kong standard software builds only.
+{% include_cached /md/support-policy.md %}
 
 ## See also
 

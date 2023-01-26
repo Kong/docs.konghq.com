@@ -316,7 +316,7 @@ Connection: keep-alive
 Date: Fri, 28 Oct 2022 08:18:18 GMT
 X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 0
-Via: kong/3.0.0
+Via: kong/3.1.1
 
 echo-658c5ff5ff-8cvgj%
 ```

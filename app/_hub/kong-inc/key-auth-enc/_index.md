@@ -176,7 +176,7 @@ You must reuse your keys to make the migration to {{site.base_gateway}} transpar
 Provision new credentials by making the following HTTP request:
 
 ```bash
-curl -X POST http://localhost:8001/consumers/{consumer}/key-auth-enc
+curl -X POST http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth-enc
 ```
 
 Response:
@@ -198,7 +198,7 @@ HTTP/1.1 201 Created
 If you prefer to specify a key, set the `key` in the request body:
 
 ```bash
-curl -X POST http://localhost:8001/consumers/{consumer}/key-auth-enc
+curl -X POST http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth-enc
   --data "key=myapikey"
 ```
 
@@ -225,7 +225,10 @@ entry:
 
 ```yaml
 keyauth_credentials:
-- consumer: {consumer}
+- consumer: {USERNAME_OR_ID}
+  tags:
+    - example_tag
+  key: example_apikey
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -234,7 +237,8 @@ The fields/parameters work as follows:
 
 Field/parameter     | Description
 ---                 | ---
-`{consumer}`        | The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
+`{USERNAME_OR_ID}` |  The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
+`tags`<br>*optional* | You can optionally assign a list of tags to your `key`.
 `key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 ### Make a request with the key
@@ -299,7 +303,7 @@ curl -X POST http://localhost:8001/routes/{route}/plugins \
 Delete an API key by making the following request:
 
 ```bash
-curl -X DELETE http://localhost:8001/consumers/{consumer}/key-auth-enc/{id}
+curl -X DELETE http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth-enc/{ID}
 ```
 
 Response:
@@ -308,8 +312,8 @@ Response:
 HTTP/1.1 204 No Content
 ```
 
-* `consumer`: The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
-* `id`: The `id` attribute of the key credential object.
+* `{USERNAME_OR_ID}`: The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
+* `{ID}`: The `id` attribute of the key credential object.
 
 ### Upstream Headers
 
@@ -362,10 +366,10 @@ Response:
 Filter the list by consumer by using a different endpoint:
 
 ```bash
-curl -X GET http://kong:8001/consumers/{username or id}/key-auth-enc
+curl -X GET http://kong:8001/consumers/{USERNAME_OR_ID}/key-auth-enc
 ```
 
-`username or id`: The username or ID of the consumer whose credentials need to be listed.
+`{USERNAME_OR_ID}`: The username or ID of the consumer whose credentials need to be listed.
 
 Response:
 
@@ -386,7 +390,7 @@ Response:
 }
 ```
 
-`username or id`: The username or ID of the consumer whose credentials need to be listed.
+`{USERNAME_OR_ID}`: The username or ID of the consumer whose credentials need to be listed.
 
 ### Retrieve the consumer associated with a key
 
