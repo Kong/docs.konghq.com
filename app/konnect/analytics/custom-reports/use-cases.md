@@ -4,10 +4,9 @@ content_type: tutorial
 badge: plus
 ---
 
-##  Overview
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
 
-This narrative driven tutorial will guide you through the process of creating custom reports for key API metrics using {{site.konnect_saas}} custom reports. Specifically this tutorial will cover building reports for the following use cases:
+This narrative driven tutorial guides you through the process of creating custom reports for key API metrics using {{site.konnect_saas}} custom reports. This tutorial covers building reports for the following use cases:
 
 * Total number of requests across an API in the current month.
 * Daily API usage for an API over the last 30 days. 
@@ -16,12 +15,12 @@ This narrative driven tutorial will guide you through the process of creating cu
 
 ## Narrative?? Situation? 
 
-You have just joined an organization as an API product manager, your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following APIs because they would give a brief but wholistic understanding of the API: 
+You have just joined an organization as an API product manager. Your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following KPIs because they would give a brief but wholistic understanding of the API: 
 
-* Number of requests: This metric measures the total number of requests made to the API. This is good for understanding total usage of an API, and can potentially be used to uncover scalability requirements. 
-* Error response rate: This metric measures the percentage of requests that result in errors. With this metric you can potentially pinpoint any issues users of your API are having. 
-* Average throughput: Throughput is the measurement of the number of requests an API can handle per second. 
-* Latency: latency is the measurement of the time it takes for the API to respond to a request. 
+* **Number of requests:** This metric measures the total number of requests made to the API. This is good for understanding total usage of an API, and can potentially be used to uncover scalability requirements. 
+* **Error response rate:** This metric measures the percentage of requests that result in errors. With this metric you can potentially pinpoint any issues users of your API are having. 
+* **Average throughput:** Throughput is the measurement of the number of requests an API can handle per second. 
+* **Latency:** latency is the measurement of the time it takes for the API to respond to a request. 
 
 These KPIs can help you define the type of reports you need to show the stakeholders in your organization:
 
@@ -30,7 +29,7 @@ These KPIs can help you define the type of reports you need to show the stakehol
 * Total API usage, by application
 * Requests per minute for a specific API 
 
-With {{site.konnect_saas}} custom reports you can create those reports across any number of time frames.
+With {{site.konnect_saas}}, you can create these reports across any number of time frames.
 
 some sort of intro sentence... to this section after 
 ## Build custom reports 
@@ -55,7 +54,7 @@ To build a custom report, navigate to the custom reports dashboard by selecting 
 * **Group By**: Service
 * **Then by**: None
 
-<picture of finished chart>
+[picture of finished chart]
 
 This report can provide your stakeholders with the answers to questions like:
 
@@ -69,6 +68,32 @@ The data can be used to support other types of exploratory questions about your 
 * Are there spikes in requests across months? 
 * Are there any errors or issues that might be impacting the number of requests our API is receiving? 
 
+## Daily API usage for an API over the last 30 days
+
+From the previous report, you determine that the Accounts API is receiving the most traffic. 
+You don't know whether this is a cause for concern or not, so you decide to take a closer look.
+
+To gain further insight into the Accounts API, let's build a report that displays the number of requests per day for the Accounts API over the last 30 days. Set the following options in the UI:
+
+* **Name**: Daily Accounts API Usage (last 30 days)
+* **Chart type**: Line chart
+* **Date/Time**: Last 30 days
+* **Metric**: Request count
+* **Group by**: Service
+
+Add a filter for the Account API. Click on **Add Filter**, then set the following options:
+
+* **Filter by**: Service
+* **Filter value**: Accounts API (or your own API name)
+
+[screenshot of finished report]
+
+This report can provide your stakeholders with the answers to questions like:
+
+* What does average traffic over time look like for this service?
+* Are there any anomalies, such as spikes or drops in traffic?
+* If there are anomalies, do they repeat? Are there any patterns in the data?
+* If there's an issue with API traffic, has it been resolved or is it ongoing?
 
 ### Instructions
 
