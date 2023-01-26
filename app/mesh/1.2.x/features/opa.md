@@ -18,8 +18,10 @@ When `OPAPolicy` is applied, the control plane configures:
 To apply a policy with OPA:
 
 - Specify the group of data plane proxies to apply the policy to with the `selectors` property.
-- Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+- Provide a policy<a href="#footnote-1"><sup id="note-return-1">1</sup></a> with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 - Optionally provide custom configuration for the policy agent.
+
+<span id="footnote-1"><a href="#note-return-1">1</a></span>: You cannot currently apply multiple OPA policies. This limitation will be lifted in the future.
 
 ### Inline
 
