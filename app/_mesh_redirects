@@ -1,6 +1,6 @@
 # TODO: Automate this file's generation
 # Generated redirects
-/mesh/:version/overview/ /mesh/:version/overview/what-is-a-service-mesh 301
+/mesh/:version/overview/ /mesh/:version/introduction/what-is-a-service-mesh 301
 /mesh/:version/installation/ /mesh/:version/installation/kubernetes 301
 /mesh/:version/api/ /mesh/:version/reference/http-api 301
 /mesh/:version/documentation/deployments/ /mesh/:version/introduction/deployments 301
