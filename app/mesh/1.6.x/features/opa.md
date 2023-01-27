@@ -21,6 +21,7 @@ To apply a policy with OPA:
 - Provide a policy with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 {:.note}
 > **Note:** You cannot currently apply multiple OPA policies. This limitation will be addressed in the future.
+
 - Optionally provide custom configuration for the policy agent.
 
 
