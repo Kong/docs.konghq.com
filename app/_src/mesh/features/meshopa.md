@@ -47,7 +47,7 @@ You must also specify the HTTP protocol in your mesh configuration:
 {% navtabs %}
 {% navtab Kubernetes %}
 
-Add the HTTP protocol annotation to the Kubernetes Service configuration, with the general syntax `<port>.service.kuma.io/protocol`.
+Add the HTTP protocol annotation to the Kubernetes Service configuration, with `appProtocol` field.
 
 Example:
 
@@ -57,13 +57,12 @@ kind: Service
 metadata:
   name: web
   namespace: kong-mesh-example
-  annotations:
-    8080.service.kuma.io/protocol: http # required for OPA support
 spec:
   selector:
     app: web
   ports:
   - port: 8080
+    appProtocol: http
 ```
 
 {% endnavtab %}
