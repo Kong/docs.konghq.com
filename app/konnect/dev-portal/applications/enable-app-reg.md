@@ -138,5 +138,3 @@ The internal `konnect-application-auth` plugin only supports {{site.base_gateway
 The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default runtime group currently don't support rate limiting plugins. This will be addressed in a future release.
 
 If you don't use any rate limiting plugins, we recommend upgrading your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.
-
-with applications, as they do not use consumers.
