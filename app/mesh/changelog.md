@@ -3,6 +3,12 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 2.1.0
+
+### Upgrading
+
+- `KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_USERS` only works on fresh installations. If you want to add an admin user to an installation that is already running, you must do it manually.
+
 ## 2.0.2
 > Released on **2023/01/13**
 
