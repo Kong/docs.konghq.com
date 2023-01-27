@@ -5,12 +5,71 @@ no_version: true
 
 <!-- vale off -->
 
+## 3.1.1.2
+**Release Date** 2023/01/24
+
+### Features
+
+#### Enterprise
+
+- **Dev Portal**:
+  - The Dev Portal API now supports an optional `fields` query parameter on the `/files` endpoint.
+  This parameter lets you specify which file object fields should be included in the response.
+
+### Fixes
+
+#### Enterprise
+
+- **Kong Manager**:
+  - Fixed issues with the plugin list:
+      - Added missing icons and categories for the TLS Handshake Modifier and TLS Metadata Headers plugins.
+      - Removed entries for the following deprecated plugins: Kubernetes Sidecar Injector, Collector, and Upstream TLS.
+      - Removed Apache OpenWhisk plugin from Kong Manager. This plugin must be [installed manually via LuaRocks](/hub/kong-inc/openwhisk/).
+      - Removed the internal-only Konnect Application Auth plugin. 
+  - Fixed an issue where Kong Manager would occasionally log out while redirecting to other pages or refreshing 
+    the page when OpenID Connect was used as the authentication method. 
+  - Fixed an issue where `404 Not Found` errors were triggered while updating the service, route, or consumer bound to a scoped plugin.
+  - Fixed an issue where admins with the permission `['create'] /services/*/plugins` couldn't create plugins under a service.
+  - Fixed an issue where viewing a consumer group in any workspace other than `default` would cause a `404 Not Found` error. 
+
+#### Hybrid mode
+
+- Fixed an issue where Vitals data was not showing up after a license was deployed using the `/licenses` endpoint.
+Kong Gateway now triggers an event that allows the Vitals subsystem to be reinitialized during license preload.
+- Fixed an issue where the forward proxy between data planes and the control plane didn't support the telemetry port `8006`.
+- Backwards compatibility with 2.8.x.x data planes has been restored. 
+
+### Plugins
+
+- [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  - Fixed an issue where the cache expired while the window was still valid.
+   The plugin now requires the cache size to be, at minimum, twice the value of `window_size`.
+
+- [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`)
+  - Added the OAS Validation plugin back into the bundled plugins list. The plugin is now available by default
+  with no extra configuration necessary through `kong.conf`.
+  - Fixed an issue where the plugin returned the wrong error message when failing to get the path schema spec. 
+  - Fixed a `500` error that occurred when the response body schema had no content field.
+
+- [**mTLS Authentication**](/hub/kong-inc/mtls-auth) (`mtls-auth`)
+  - Fixed an issue where the plugin used the old route caches after routes were updated. 
+
+### Deprecations
+
+- Support for the `/vitals/reports/:entity_type` endpoint is deprecated. Use one of the following endpoints from the Vitals API instead:
+  - For `/vitals/reports/consumer`, use `/{workspace_name}/vitals/status_codes/by_consumer` instead
+  - For `/vitals/reports/service`, use `/{workspace_name}/vitals/status_codes/by_service` instead
+  - For `/vitals/reports/hostname`, use `/{workspace_name}/vitals/nodes` instead
+
+  See the [Vitals documentation](/gateway/latest/kong-enterprise/analytics/#vitals-api) for more detail.
+ 
+
 ## 3.1.0.0
 **Release Date** 2022/12/06
 
-## Features
+### Features
 
-### Enterprise
+#### Enterprise
 
 - You can now specify the namespaces of HashiCorp Vaults for secrets management.
 
@@ -44,7 +103,7 @@ Kubernetes service account. See the following configuration parameters:
   - Added support for persisting the page size of lists across pages and provided
   more options for page sizes.
 
-### Core
+#### Core
 - Allow `kong.conf` SSL properties to be stored in vaults or environment
   variables. Allow such properties to be configured directly as content
   or base64 encoded content.
@@ -60,7 +119,7 @@ managing asymmetric keys in various formats (JWK, PEM). For more information,
 see [Key management](/gateway/latest/reference/key-management/).
 [#9737](https://github.com/Kong/kong/pull/9737)
 
-### Hybrid Mode
+#### Hybrid Mode
 
 - Data plane node IDs will now persist across restarts.
   [#9067](https://github.com/Kong/kong/pull/9067)
@@ -70,7 +129,7 @@ see [Key management](/gateway/latest/reference/key-management/).
   [#9758](https://github.com/Kong/kong/pull/9758)
   [#9773](https://github.com/Kong/kong/pull/9773)
 
-### Performance
+#### Performance
 
 - Increase the default value of `lua_regex_cache_max_entries`. A warning will be thrown
   when there are too many regex routes and `router_flavor` is `traditional`.
@@ -78,18 +137,18 @@ see [Key management](/gateway/latest/reference/key-management/).
 - Add batch queue into the Datadog and StatsD plugins to reduce timer usage.
   [#9521](https://github.com/Kong/kong/pull/9521)
 
-### OS support
+#### OS support
 
 - Kong Gateway now supports Amazon Linux 2022 with Enterprise packages.
 - Kong Gateway now supports Ubuntu 22.04 with both open-source and Enterprise packages.
 
-### PDK
+#### PDK
 
 - Extend `kong.client.tls.request_client_certificate` to support setting
   the Distinguished Name (DN) list hints of the accepted CA certificates.
   [#9768](https://github.com/Kong/kong/pull/9768)
 
-### Plugins
+#### Plugins
 
 **New plugins:**
 - [**AppDynamics**](/hub/kong-inc/app-dynamics) (`app-dynamics`)
@@ -211,13 +270,13 @@ see [Key management](/gateway/latest/reference/key-management/).
   - syslog
   - kafka-log
 
-## Known limitations
+### Known limitations
 
 - With Dynamic log levels, if you set log-level to `alert` you will still see `info` and `error` entries in the logs. 
 
-## Fixes
+### Fixes
 
-### Enterprise
+#### Enterprise
 
 - Fixed an issue where the RBAC token was not re-hashed after an update on the `user_token` field.
 - Fixed an issue where `admin_gui_auth_conf` wouldn't accept
@@ -251,7 +310,7 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
   - Fixed a performance issue where admins with a large number of workspace
   permissions caused Kong Manager to load slowly.
 
-### Core
+#### Core
 
 - Fixed an issue where external plugins crashing with unhandled exceptions
   would cause high CPU utilization after the automatic restart.
@@ -282,19 +341,19 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
   in current request.
   [#9503](https://github.com/Kong/kong/pull/9503)
 
-### Hybrid Mode
+#### Hybrid Mode
 
 - Fixed a race condition that could cause configuration push events to be dropped
   when the first data plane connection was established with a control plane
   worker.
   [#9616](https://github.com/Kong/kong/pull/9616)
 
-### CLI
+#### CLI
 
 - Fixed slow CLI performance due to pending timer jobs.
   [#9536](https://github.com/Kong/kong/pull/9536)
 
-### PDK
+#### PDK
 
 - Added support for `kong.request.get_uri_captures`
   (`kong.request.getUriCaptures`)
@@ -306,7 +365,7 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
   version of the go PDK is incompatible after this change.
   [#9526](https://github.com/Kong/kong/pull/9526)
 
-### Plugins
+#### Plugins
 
 - Added the missing `protocols` field to various plugin schemas.
   [#9525](https://github.com/Kong/kong/pull/9525)
@@ -371,9 +430,9 @@ requests to `wss` for `wss`-only routes for parity with HTTP/HTTPS.
     due to an invalid OT baggage pattern.
     [#9280](https://github.com/Kong/kong/pull/9280)
 
-## Breaking changes
+### Breaking changes
 
-### Hybrid mode
+#### Hybrid mode
 
 - The legacy hybrid configuration protocol has been removed in favor of the wRPC protocol
 introduced in 3.0.0.0. Rolling upgrades from 2.8.x.y to 3.1.0.0 are not supported.

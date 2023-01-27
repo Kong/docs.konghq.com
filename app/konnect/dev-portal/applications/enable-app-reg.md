@@ -127,12 +127,16 @@ at any time.
 
 ### Differences between runtime groups
 
-If you need to use a version of {{site.base_gateway}} less than 3.0, you must create your service version in the `default` runtime group. Non-default runtime groups are only compatible with {{site.base_gateway}} 3.0 and higher.
+The `konnect-application-auth` plugin manages access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is used in every non-`default` runtime group. 
 
-In the `default` runtime group, applications are still linked to {{site.base_gateway}} `consumers` and use the `acl` plugin to control access between an application's `consumer` and a service version. This configuration is deprecated. It is recommended to upgrade your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin and doesn't rely on `consumers`.
+In the `default` runtime group, applications are linked to {{site.base_gateway}} consumers and use the `acl` plugin to control access between an application’s consumers and a service version. In all other runtime groups, applications are not linked to {{site.base_gateway}} consumers.
 
-The `konnect-application-auth` plugin is used to manage access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is only supported in {{site.base_gateway}} 3.0+ and is used for app registration in every non-`default` runtime group.
+### Known limitations
 
-{:.note}
-> **Note:** If you are not in the `default` runtime group, consumer-based plugins, like rate-limiting, are not compatible
+The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your service version in the `default` runtime group, which still supports consumer mapping with the `acl` plugin.
+
+The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default runtime group currently don't support rate limiting plugins. This will be addressed in a future release.
+
+If you don't use any rate limiting plugins, we recommend upgrading your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.
+
 with applications, as they do not use consumers.

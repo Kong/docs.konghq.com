@@ -50,9 +50,8 @@ with any of the following backends:
 
 **Runtime Groups API**
 : Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
-## November 2022
 
-### 2022.11.21
+## November 2022
 
 **Application registration support in any runtime group**
 : {{site.konnect_short_name}} now officially supports [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-runtime-group). Portal developers can register their applications to consume services proxied through gateway services in both default and non-default runtime groups.

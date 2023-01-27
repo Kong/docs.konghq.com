@@ -640,6 +640,8 @@ vault_data: |
 
 ---
 
+<!-- vale off -->
+
 {{site.base_gateway}} comes with an **internal** RESTful Admin API for administration purposes.
  Requests to the Admin API can be sent to any node in the cluster, and Kong will
  keep the configuration consistent across all nodes.
@@ -825,6 +827,13 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -F "paths[1]=/path/one" \
      -F "paths[2]=/path/two"
 ```
+
+---
+
+## Using the API in workspaces 
+{:.badge .enterprise}
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
 
 ---
 
