@@ -3,12 +3,12 @@ title: Portal Auth RBAC Setup
 content-type: tutorial
 ---
 
-## Overview
+## Getting Started
 
-This guide walks you through the steps to enable RBAC in the {{site.konnect_short_name}} Portal.
+This guide walks you through the steps to enable RBAC in the {{site.konnect_short_name}} Portal. For more details on how to create your personal access token, see [Authentication](/konnect/api/#authentication). 
 
 
-## Enabling RBAC in portal
+### Enable RBAC in portal
 
 RBAC is disabled by default in the portal. To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal.
 
@@ -25,11 +25,8 @@ curl --request PATCH \
 {:.note}
 > The `portal-id` can be found in the {{site.konnect_short_name}} within the **Developers** tab. 
 
-## Explain the RBAC setup
 
-
-
-## Create a Team
+### Create a Team
 
 To create a team, you must make a POST request to the teams endpoint. The following example shows how to create a team.
 
@@ -54,55 +51,5 @@ curl --request GET \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
-## Assigning Roles
-
-### Available Roles
-
-To get a list of the available roles, make a GET request to the roles endpoint. The following example shows how to get a list of the available roles.
-
-```bash
-curl --request GET \
-  --url https://<region>.api.konghq.com/v2/portal-roles \
-  --header 'Authorization: Bearer <personal-access-token>'
-```
-
-### Assigning a Role to a Team
-
-To assign a role to a team, you must make a POST request to the team roles endpoint. The following example shows how to assign the developer role to the team created in the previous section.
-
-```bash
-curl --request POST \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
-  --header 'Authorization: Bearer <personal-access-token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "role_name": "API Viewer",
-  "entity_id": "<service-package-id>",
-  "entity_type_name": "Services",
-  "entity_region": "us"
-}'
-```
-
-### Removing a Role from a Team
-
-To remove a role from a team, you must make a DELETE request to the team roles endpoint. The following example shows how to remove the developer role from the team created in the previous section.
-
-```bash
-curl --request DELETE \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles/<role-id> \
-  --header 'Authorization: Bearer <personal-access-token>'
-```
-
-## Add a Developer to a Team
-
-To add a developer to a team, you must make a POST request to the team members endpoint. The following example shows how to add a developer to the team created in the previous section.
-
-```bash
-curl --request POST \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers \
-  --header 'Authorization: Bearer <personal-access-token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "id": "<developer-id>"
-}'
-```
+## More information
+[Portal Auth API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696)
