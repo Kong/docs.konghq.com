@@ -4,10 +4,9 @@ content_type: reference
 beta: true
 ---
 
-{% warning %}
-This policy uses new policy matching algorithm and is in beta state,
-it should not be mixed with [OPA Policy](../opa).
-{% endwarning %}
+{:.warning}
+> **Warning:** This policy uses the new policy matching algorithm and is in a beta state.
+It should not be mixed with the [OPA Policy](../opa).
 
 ## MeshOPA policy plugin
 
