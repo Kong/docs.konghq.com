@@ -36,11 +36,11 @@ To learn more about the information in this table, see the [matching docs](/docs
 To apply a policy with MeshOPA, you must do the following:
 
 - Specify the group of data plane proxies to apply the policy to with the `targetRef` property.
-- Provide the list of policies<a href="#footnote-1"><sup id="note-return-1">1</sup></a> with the `appendPolicies` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
-- Optionally provide custom configuration for the policy agent.
+- Provide a policy with the `appendPolicies` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+  {:.note}
+  > **Note:** You cannot currently apply multiple OPA policies. This limitation will be addressed in the future.
 
-<span id="footnote-1"><a href="#note-return-1">1</a></span>: due to a [bug in OPA](https://github.com/open-policy-agent/opa/issues/5595) we currently support only one policy. 
-Keep in mind that due to [configuration merging](/mesh/{{page.kong_version}}/policies/targetref/#merging-configuration), you can end up with more than one entry in `appendPolicies`.
+- Optionally provide custom configuration for the policy agent.
 
 You must also specify the HTTP protocol in your mesh configuration:
 
