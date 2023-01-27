@@ -30,12 +30,13 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Certificate Admin | Access to configure certificates for an existing runtime group. |
 | Deployer | Access to deploy a service to the runtime group. Must also have the Deployer role for the service being deployed.  |
 | Viewer | Read-only access to all the configurations of a runtime group and its runtime instances. |
-| Upstream Admin | Access to configure upstreams for an existing runtime group. |
 | Consumer Admin | Access to configure consumers for an existing runtime group. |
 | Gateway Service Admin | Access to configure gateway services for an existing runtime group. |
 | Key Admin | Access to configure key for an existing runtime group. |
 | Plugin Admin | Access to configure plugins for an existing runtime group. |
+| Route Admin | Access to configure routes for an existing runtime group. |
 | SNI Admin | Access to configure SNIs for an existing runtime group. |
+| Upstream Admin | Access to configure upstreams for an existing runtime group. |
 | Vault Admin | Access to configure vaults for an existing runtime group. |
 
 <!-- ## Organizations
