@@ -13,7 +13,7 @@ it should not be mixed with [OPA Policy](../opa).
 
 The agent is included in the data plane proxy sidecar, instead of the more common deployment as a separate sidecar.
 
-When `MeshOPA` policy is applied, the control plane configures:
+When the `MeshOPA` policy is applied, the control plane configures the following:
 
 - The embedded policy agent, with the specified policy
 - Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_authz/v3/ext_authz.proto) that points to the embedded policy agent
@@ -32,14 +32,14 @@ To learn more about the information in this table, see the [matching docs](/docs
 
 ## Configuration
 
-To apply a policy with MeshOPA:
+To apply a policy with MeshOPA, you must do the following:
 
 - Specify the group of data plane proxies to apply the policy to with the `targetRef` property.
 - Provide the list of policies<a href="#footnote-1"><sup id="note-return-1">1</sup></a> with the `appendPolicies` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 - Optionally provide custom configuration for the policy agent.
 
 <span id="footnote-1"><a href="#note-return-1">1</a></span>: due to a [bug in OPA](https://github.com/open-policy-agent/opa/issues/5595) we currently support only one policy. 
-Be aware that due to [configuration merging](/mesh/{{page.kong_version}}/policies/targetref/#merging-configuration) you can end up with more than one entry in `appendPolicies`.
+Keep in mind that due to [configuration merging](/mesh/{{page.kong_version}}/policies/targetref/#merging-configuration), you can end up with more than one entry in `appendPolicies`.
 
 You must also specify the HTTP protocol in your mesh configuration:
 
@@ -190,7 +190,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-### With Secrets
+### With secrets
 
 Encoding the policy in a [Secret][secrets] provides some security for policies that contain sensitive data.
 
@@ -377,7 +377,7 @@ spec:
   default:
     authConfig: # optional
         statusOnError: 413 # optional: defaults to 403.
-        onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny' defines the behaviour when communication with the agent fails or the policy execution fails.
+        onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny' defines the behavior when communication with the agent fails or the policy execution fails.
         requestBody: # optional
             maxSize: 1024 # the max number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
             sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
@@ -402,7 +402,7 @@ spec:
   default:
     authConfig: # optional
       statusOnError: 413 # optional: defaults to 403. http statusCode to use when the connection to the agent failed.
-      onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny'. defines the behaviour when communication with the agent fails or the policy execution fails.
+      onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny'. defines the behavior when communication with the agent fails or the policy execution fails.
       requestBody: # optional
         maxSize: 1024 # the maximum number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
         sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
