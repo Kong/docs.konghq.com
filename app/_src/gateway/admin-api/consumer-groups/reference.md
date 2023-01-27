@@ -11,6 +11,8 @@ To use consumer groups for rate limiting, configure the plugin with the
 `enforce_consumer_groups` and `consumer_groups` parameters, then use the
 `/consumer_groups` endpoint to manage the groups.
 
+Consumer groups can be [tagged and filtered by tags](/gateway/{{page.kong_version}}/admin-api/#tags).
+
 For more information and examples of setting up and managing consumer groups, see the
 [Consumer Groups examples](/gateway/{{page.kong_version}}/kong-enterprise/consumer-groups).
 
@@ -35,12 +37,14 @@ HTTP/1.1 200 OK
         {
             "created_at": 1557522650,
             "id": "42b022c1-eb3c-4512-badc-1aee8c0f50b5",
-            "name": "my_group"
+            "name": "my_group",
+            "tags": null
         },
         {
             "created_at": 1637706162,
             "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
-            "name": "my_group2"
+            "name": "my_group2",
+            "tags": null
         }
     ],
     "next": null
@@ -68,7 +72,8 @@ HTTP/1.1 200 OK
     "consumer_group": {
         "created_at": 1638917780,
         "id": "be4bcfca-b1df-4fac-83cc-5cf6774bf48e",
-        "name": "JL"
+        "name": "JL",
+        "tags": null
     }
 }
 ```
@@ -135,7 +140,8 @@ HTTP/1.1 200 OK
         {
             "created_at": 1638918476,
             "id": "e2c3f16e-22c7-4ef4-b6e4-ab25c522b339",
-            "name": "JL"
+            "name": "JL",
+            "tags": null,
         }
     ]
 }
@@ -153,6 +159,8 @@ HTTP/1.1 200 OK
 Attribute               | Description
 ---------:              | --------
 `name`<br>*required*    | A unique name for the consumer group you want to create.
+`tags`<br>*optional*    | An optional set of strings associated with the consumer group for grouping and filtering.
+
 
 **Response**
 
@@ -165,6 +173,7 @@ HTTP 201 Created
   "created_at": 1557522650,
   "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
   "name": "JL",
+  "tags": ["tag1", "tag2"]
 }
 ```
 
@@ -175,6 +184,7 @@ HTTP 201 Created
 Attribute                    | Description
 ---------:                   | --------
 `GROUP_NAME`<br>*required*   | A unique name for the consumer group you want to create.
+`tags`<br>*optional*         | An optional set of strings associated with the consumer group for grouping and filtering.
 
 
 **Response**
@@ -188,6 +198,7 @@ HTTP 201 Created
   "created_at": 1557522650,
   "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
   "name": "JL",
+  "tags": ["tag1", "tag2"]
 }
 ```
 
@@ -235,7 +246,8 @@ HTTP 201 Created
         {
             "created_at": 1638918476,
             "id": "e2c3f16e-22c7-4ef4-b6e4-ab25c522b339",
-            "name": "JL"
+            "name": "JL",
+            "tags": null
         }
     ]
 }

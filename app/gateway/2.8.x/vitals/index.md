@@ -5,23 +5,24 @@ badge: enterprise
 
 Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performance, and to understand the microservice API transactions traversing Kong. Vitals uses visual API analytics to see exactly how your APIs and Gateway are performing. Quickly access key statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-* Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including dashboarding of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
+* Use Kong Admin API to access Vitals data via endpoints. Additional visualizations, including creating dashboards of Vitals data alongside data from other systems, can be achieved using the Vitals API to integrate with common monitoring systems.
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
 ![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
 
 ## Prerequisites
-Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
+Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
 
-
-You will need one of the following databases to use Vitals:
-* InfluxDB
-* PostgresSQL 9.5+
-* Cassandra 2.1+
+You can use one of the following storage strategies with Vitals:
+* Kong database:
+  * PostgresSQL 9.5+
+* Separate storage engine:
+  * InfluxDB
+  * Prometheus 
 
 ## Guidelines for viewing Vitals
 When using Vitals, note:

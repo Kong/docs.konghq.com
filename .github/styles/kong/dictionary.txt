@@ -1,5 +1,6 @@
 ACLs
 Alertmanager
+Amal
 Amberflo
 Arya
 Bagdi
@@ -25,6 +26,7 @@ Grafana
 HTTPie
 Istio
 Istio's
+Jira
 JsonPath
 Keycloak
 Knative
@@ -146,6 +148,8 @@ grpcs
 gui
 guis
 gzip
+hackathon
+hackathons
 hardcoded
 hardcoding
 hashicorp
@@ -158,6 +162,7 @@ href
 http
 httpbin
 https
+impactful
 inbounds
 ini
 init_worker
@@ -271,6 +276,8 @@ requery
 retryOn
 rockspec
 rockspecs
+rollout
+rollouts
 routable
 ruleset
 runtime
