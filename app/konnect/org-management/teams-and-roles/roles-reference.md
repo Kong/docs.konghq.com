@@ -32,7 +32,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Viewer | Read-only access to all the configurations of a runtime group and its runtime instances. |
 | Consumer Admin | Access to configure consumers for an existing runtime group. |
 | Gateway Service Admin | Access to configure gateway services for an existing runtime group. |
-| Key Admin | Access to configure key for an existing runtime group. |
+| Key Admin | Access to configure keys for an existing runtime group. |
 | Plugin Admin | Access to configure plugins for an existing runtime group. |
 | Route Admin | Access to configure routes for an existing runtime group. |
 | SNI Admin | Access to configure SNIs for an existing runtime group. |
