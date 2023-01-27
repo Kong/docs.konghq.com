@@ -3,14 +3,10 @@ title: Portal Auth Setup
 content-type: tutorial
 ---
 
-## Getting Started
 
-This guide walks you through the steps to enable RBAC in the {{site.konnect_short_name}} Portal. For more details on how to create your personal access token, see [Authentication](/konnect/api/#authentication). 
+## Enable RBAC in portal
 
-
-### Enable RBAC in portal
-
-RBAC is disabled by default in the portal. To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal.
+RBAC is disabled by default in the {{site.konnect_short_name}} Portal. To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal. For more details on how to create your personal access token, see [Authentication](/konnect/api/#authentication). 
 
 ```bash
 curl --request PATCH \
@@ -26,7 +22,7 @@ curl --request PATCH \
 > The `portal-id` can be found in the {{site.konnect_short_name}} within the **Developers** tab. 
 
 
-### Create a Team
+## Create a Team
 
 To create a team, you must make a POST request to the teams endpoint. The following example shows how to create a team.
 
