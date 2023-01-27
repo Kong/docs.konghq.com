@@ -62,6 +62,10 @@ Kong Gateway now triggers an event that allows the Vitals subsystem to be reinit
   - For `/vitals/reports/hostname`, use `/{workspace_name}/vitals/nodes` instead
 
   See the [Vitals documentation](/gateway/latest/kong-enterprise/analytics/#vitals-api) for more detail.
+
+### Upgrades
+
+You can now directly upgrade to {{site.base_gateway}} 3.1.1.2 from 2.8.x.x.
  
 
 ## 3.1.0.0
