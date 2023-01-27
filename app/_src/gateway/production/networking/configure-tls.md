@@ -13,14 +13,14 @@ Configuring TLS adds a layer of security to {{site.base_gateway}} by ensuring th
   * Complexity: Configuring and maintaining secure TLS connections requires managing certificates and may add additional complexity to your {{site.base_gateway}} instance.
   * Performance: Encrypting and decrypting data consumes additional computing resources which can impact the performance of {{site.base_gateway}}. 
 
-This guide will show you how to configure TLS on PostgreSQL and {{site.base_gateway}} to secure your data in transport. 
+This guide shows you how to configure TLS on PostgreSQL and {{site.base_gateway}} to secure your data in transport. 
 
 
 ## Prerequisites
 
 * [OpenSSL](https://www.openssl.org/)
-* TLS support enabled in PostgreSQL
-  * If you are installing a pre-packaged distribution, or using the official Docker image, TLS support is already included
+* TLS support enabled in PostgreSQL.
+  * If you are installing a pre-packaged distribution, or using the official Docker image, TLS support is already included.
   * If you are compiling PostgreSQL from source, TLS support must be enabled at build time using the `--with-ssl=openssl ` flag. In this case, OpenSSL needs to be installed as well. 
 
 ## PostgreSQL setup
@@ -44,11 +44,11 @@ If the file is owned by the root user, the permissions for the file must be `u=r
 
 `chmod 0640 /path/to/server.crt`. 
 
-Certificates issued by intermediate certificate authorities can also be used, but the first certificate in `server.crt` must be the server's certificate, and it must match the server's private key. This is because the certificate must match the server's private key and the intermediate certificate authority, to establish a chain of trust. 
+Certificates issued by intermediate certificate authorities can also be used, but the first certificate in `server.crt` must be the server's certificate, and it must match the server's private key.
 
 ### mTLS
 
-Mutual Transport Layer Security (mTLS) is a protocol that provides an additional layer of security on top of the standard TLS protocol. mTLS requires that both the client and the server authenticate each other during the TLS handshake. If you require PostgreSQL to use mTLS authentication there are mTLS specific parameters that must be set. 
+Mutual Transport Layer Security (mTLS) is a protocol that provides an additional layer of security on top of the standard TLS protocol. mTLS requires that both the client and the server authenticate each other during the TLS handshake. If you require PostgreSQL to use mTLS authentication, there are mTLS specific parameters that must be set. 
 
 ```bash
 ssl_ca_file = '/path/to/ca/chain.crt'
@@ -58,7 +58,7 @@ This parameter must be set to the file that contains the key for the trusted cer
 
 #### `cert` authentication method
 
-The `cert` authentication method uses SSL client certificates to perform authentication. For this method, edit the `hostssl` line in the  [`pg_hba.conf`](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html). 
+The `cert` authentication method uses SSL client certificates to perform authentication. For this method, edit the `hostssl` line in the  [`pg_hba.conf`](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html):
 
 `hostssl all all all cert`
 

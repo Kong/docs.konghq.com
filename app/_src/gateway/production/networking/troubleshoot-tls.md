@@ -5,7 +5,7 @@ content_type: reference
 
 ## PostgreSQL
 
-### Could not accept SSL connection:
+### Could not accept SSL connection
 
 If you receive either of the following error messages, you are experiencing an issue with mismatched SSL versions.
 
