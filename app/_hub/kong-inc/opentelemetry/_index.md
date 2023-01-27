@@ -34,6 +34,12 @@ params:
         The full HTTP(S) endpoint that Kong Gateway should send OpenTelemetry spans to.
         The endpoint must be a [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) endpoint.
 
+    - name: queue
+      required: false
+      datatype: record
+      description: Configuration parameters for queue (XXX link to queue parameters missing)
+      minimum_version: "3.3.x"
+
     - name: headers # old version of headers parameter without 'referenceable' attribute
       maximum_version: "3.0.x"
       required: false
@@ -108,6 +114,10 @@ params:
 
         Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
 ---
+
+## Queueing
+
+{% include /md/plugins-hub/queue-parameters.md %}
 
 The OpenTelemetry plugin is built on top of {{site.base_gateway}}'s tracing API
 and is intended to be fully compatible with the OpenTelemetry specification.

@@ -81,6 +81,11 @@ params:
       datatype: integer
       description: |
         The length in bytes of each request's Trace ID. The value can be either `8` or `16`.
+    - name: queue
+      required: false
+      datatype: record
+      description: Configuration parameters for queue (XXX link to queue parameters missing)
+      minimum_version: "3.3.x"
 
     # ----- 2.3.x and earlier version of the 'header_type' parameter -----
     - name: header_type
@@ -248,6 +253,10 @@ params:
         * `annotations`: Include the duration of each phase as an annotation. This is the default.
         * `tags`: Include the duration of each phase as a tag.
 
+---
+## Queueing
+
+{% include /md/plugins-hub/queue-parameters.md %}
 
 ---
 ## How it Works

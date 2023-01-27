@@ -115,6 +115,7 @@ params:
       description: |
         Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.
       minimum_version: "3.1.x"
+      maximum_version: "3.2.x"
     - name: retry_count
       required: true
       default: 10
@@ -122,12 +123,19 @@ params:
       datatype: integer
       description: Number of times to retry when sending data to the upstream server.
       minimum_version: "3.1.x"
+      maximum_version: "3.2.x"
     - name: queue_size
       required: true
       default: 1
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
       minimum_version: "3.1.x"
+      maximum_version: "3.2.x"
+    - name: queue
+      required: false
+      datatype: record
+      description: Configuration parameters for queue (XXX link to queue parameters missing)
+      minimum_version: "3.3.x"
     - name: tag_style
       required: false
       datatype: string
@@ -137,6 +145,12 @@ params:
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
     65507 according to UDP protocol. Consider the MTU of the network when setting this parameter.
+---
+
+## Queueing
+
+{% include /md/plugins-hub/queue-parameters.md %}
+
 ---
 
 ## Metrics

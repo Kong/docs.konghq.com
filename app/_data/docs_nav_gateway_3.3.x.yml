@@ -551,7 +551,12 @@ items:
         items:
           - text: Add a Body Value
             url: /kong-plugins/request-transformer/add-body-value
-
+      - text: Batch Queuing
+        items:
+          - text: Overview
+            url: /kong-plugins/batch-queue
+          - text: Batch Queuing Reference
+            url: /kong-plugins/batch-queue/reference
       - text: GraphQL
         url: /kong-plugins/graphql
       - text: gRPC

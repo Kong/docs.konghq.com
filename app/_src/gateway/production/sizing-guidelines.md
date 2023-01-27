@@ -93,6 +93,43 @@ around **500MB** of memory allocated per worker process.
 
 For example, on a machine with 4 CPU cores and 8 GB of RAM available, we recommend allocating between 4-6 GB to cache via the `mem_cache_size` directive, depending on what other processes are running alongside {{site.base_gateway}}.
 
+### Plugin queues
+
+Several plugins that are distributed with {{site.base_gateway}}
+utilize internal, in-memory queues to decouple production of data from
+the transmission to an upstream server.  These queues reduce the
+number of concurrent requests that are made to an upstream server
+under high load conditions and provide for buffering during temporary
+network and upstream outages.  Please see the [Plugin Queues]()
+documentation for details on {{site.base_gateway}}'s internal
+queueing system.
+
+As queues utilize main memory to store queued entries, it is important
+to understand how many queues exist in the system and how many entries
+they can hold in terms of their capacity configuration.
+
+Most plugins use one queue per plugin instance, with the exception of
+the http-log plugin, which uses one queue per log server upstream
+configuration.
+
+The `queue.max_entries` configuration parameter determines how many
+entries can be waiting for transmission on a given queue.  Once this
+limit is reached, the oldest entry is removed when a new entry is
+enqueued.  While it is not possible to precisely predict how much
+memory a single queue entry will occupy for a given plugin and in a
+particular configuration, estimates can be made based on the amount of
+data that is actually transmitted to the upstream server.
+
+In larger configurations, it is advisable to experimentally determine
+the memory requirements of queues by running {{site.base_gateway}} in
+a test environment and observe its memory consumption while plugin
+upstream servers are unavailable, forcing queues to grow up to their
+configured limits.
+
+The default value of 10,000 entries for the `queue.max_entries` should
+provide for enough buffering in many installations while keeping the
+maximum memory usage of queues at reasonable levels.
+
 ## Scaling dimensions
 
 {{site.base_gateway}} is designed to handle large volumes of request

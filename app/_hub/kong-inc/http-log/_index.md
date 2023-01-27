@@ -89,17 +89,25 @@ params:
       datatype: number
       description: |
         Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.    
+      maximum_version: "3.2.x"
     - name: retry_count
       required: false
       default: 10
       value_in_examples: 15
       datatype: integer
       description: Number of times to retry when sending data to the upstream server.
+      maximum_version: "3.2.x"
     - name: queue_size
       required: false
       default: 1
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
+      maximum_version: "3.2.x"
+    - name: queue
+      required: false
+      datatype: record
+      description: Configuration parameters for queue (XXX link to queue parameters missing)
+      minimum_version: "3.3.x"
 
     # ----- Old version of the 'headers' parameter -----
     - name: headers
@@ -142,10 +150,24 @@ params:
       minimum_version: "2.4.x"
 ---
 
+## Queueing
+
+The HTTP Log plugin uses internal queues to decouple the production of
+log entries from their transmission to the upstream log server.  In
+contrast to other plugins that use queues, it shares one queue
+between all plugin instances that use the same log server parameter.
+The equivalence of the log server is determined by the parameters
+`http_endpoint`, `method`, `content_type`, `timeout`, and `keepalive`.
+All plugin instances that have the same values for these parameters
+share one queue.
+
+
+{% include /md/plugins-hub/queue-parameters.md %}
+
 ## Log format
 
 {:.note}
-> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
+> **Note:** If the `max_batch_size` argument > 1, a request is logged as an array of JSON objects.
 
 {% include /md/plugins-hub/log-format.md %}
 
