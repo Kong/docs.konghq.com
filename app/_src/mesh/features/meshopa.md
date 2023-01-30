@@ -99,10 +99,11 @@ For more information, see [the {{site.mesh_product_name}} documentation about pr
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: MeshOPA
-mesh: default
 metadata:
   name: mopa-1
   namespace: kong-mesh-system
+  labels:
+    kuma.io/mesh: default # optional, defaults to `default` if unset
 spec:
   targetRef:
     kind: Mesh
@@ -204,7 +205,7 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
     apiVersion: v1
     kind: Secret
     metadata:
-      name: opa-policy
+      name: mopa-policy
       namespace: kong-mesh-system
       labels:
         kuma.io/mesh: default
@@ -213,21 +214,22 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
     type: system.kuma.io/secret
     ```
 
-1.  Pass the Secret to `OPAPolicy`:
+1.  Pass the Secret to `MeshOPA`:
 
     ```yaml
     apiVersion: kuma.io/v1alpha1
-    kind: MeshOpa
-    mesh: default
+    kind: MeshOPA
     metadata:
-      name: opa-1
+      name: mopa-1
       namespace: kong-mesh-system
+      labels:
+        kuma.io/mesh: default
     spec:
       targetRef:
         kind: Mesh
       default:
         appendPolicies:
-          - secret: opa-policy
+          - secret: mopa-policy
     ```
 
 {% endnavtab %}
@@ -242,21 +244,18 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
     data: cGFja2FnZSBlbnZveS5hdXRoegoKaW1wb3J0IGlucHV0LmF0dHJpYnV0ZXMucmVxdWVzdC5odHRwIGFzIGh0dHBfcmVxdWVzdAoKZGVmYXVsdCBhbGxvdyA9IGZhbHNlCgp0b2tlbiA9IHsidmFsaWQiOiB2YWxpZCwgInBheWxvYWQiOiBwYXlsb2FkfSB7CiAgICBbXywgZW5jb2RlZF0gOj0gc3BsaXQoaHR0cF9yZXF1ZXN0LmhlYWRlcnMuYXV0aG9yaXphdGlvbiwgIiAiKQogICAgW3ZhbGlkLCBfLCBwYXlsb2FkXSA6PSBpby5qd3QuZGVjb2RlX3ZlcmlmeShlbmNvZGVkLCB7InNlY3JldCI6ICJzZWNyZXQifSkKfQoKYWxsb3cgewogICAgaXNfdG9rZW5fdmFsaWQKICAgIGFjdGlvbl9hbGxvd2VkCn0KCmlzX3Rva2VuX3ZhbGlkIHsKICB0b2tlbi52YWxpZAogIG5vdyA6PSB0aW1lLm5vd19ucygpIC8gMTAwMDAwMDAwMAogIHRva2VuLnBheWxvYWQubmJmIDw9IG5vdwogIG5vdyA8IHRva2VuLnBheWxvYWQuZXhwCn0KCmFjdGlvbl9hbGxvd2VkIHsKICBodHRwX3JlcXVlc3QubWV0aG9kID09ICJHRVQiCiAgdG9rZW4ucGF5bG9hZC5yb2xlID09ICJhZG1pbiIKfQoK
     ```
 
-1.  Pass the Secret to `MeshOpa`:
+1.  Pass the Secret to `MeshOPA`:
 
     ```yaml
-    apiVersion: kuma.io/v1alpha1
-    kind: MeshOpa
+    type: MeshOPA
     mesh: default
-    metadata:
-      name: opa-1
-      namespace: kong-mesh-system
+    name: mopa-1
     spec:
       targetRef:
         kind: Mesh
       default:
         appendPolicies:
-          - secret: opa-policy
+          - secret: mopa-policy
     ```
 
 {% endnavtab %}
@@ -371,10 +370,11 @@ spec:
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: MeshOPA
-mesh: default
 metadata:
   name: mopa-1
   namespace: kong-mesh-system
+  labels:
+    kuma.io/mesh: default # optional, defaults to `default` if unset
 spec:
   targetRef:
     kind: Mesh
@@ -435,10 +435,11 @@ The `agentConfig` field lets you define a custom configuration that points to an
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: MeshOPA
-mesh: default
 metadata:
   name: mopa-1
   namespace: kong-mesh-system
+  labels:
+    kuma.io/mesh: default
 spec:
   targetRef:
     kind: Mesh
@@ -541,10 +542,11 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
     echo "
     apiVersion: kuma.io/v1alpha1
     kind: MeshOPA
-    mesh: default
     metadata:
       namespace: kong-mesh-system
       name: mopa-1
+      labels:
+        kuma.io/mesh: default
     spec:
       targetRef:
         kind: Mesh
