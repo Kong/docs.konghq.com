@@ -43,18 +43,18 @@ I like the idea of listing the potential categories here and then introducing th
 
 Then show off the corresponding chart, and provide an outro paragraph about the data and what it means. 
 
-## Total number of requests across APIs 
+## Total number of requests across APIs over the last 30 days
 
 To build a custom report, navigate to the custom reports dashboard by selecting **Analytics**, then **reports**. To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
 
-* **Name**: API usage
+* **Name**: API usage (last 30 days)
 * **Horizontal Bar Chart**
 * **Date/Time**: Last 30 days
 * **Metric**: Request count
 * **Group By**: Service
 * **Then by**: None
 
-[picture of finished chart]
+[screenshot of finished report]
 
 This report can provide your stakeholders with the answers to questions like:
 
@@ -95,9 +95,32 @@ This report can provide your stakeholders with the answers to questions like:
 * If there are anomalies, do they repeat? Are there any patterns in the data?
 * If there's an issue with API traffic, has it been resolved or is it ongoing?
 
+<<<<<<< HEAD
 ## Latency for an API over the last 30 days
 
 This use case demonstrates how you can use custom reports to track the latency for an API, the Payment API in this case, over the last 30 days.
+=======
+## Daily API usage by application over the last 30 days
+
+At this point you have two custom reports: 
+
+* Total number of requests across APIs. 
+* Daily API Usage for an API over the last 30 days.
+
+These two custom reports can work together to provide you with a lot of information about your organizations product. These alone can help drive a lot internal change to your API. Let's dive deeper, if you want to learn about the types of third-party applications that your users use to connect to your API, set the following options in the UI: 
+
+* **Name**: API Usage by Application (last 30 days)
+* **Chart type**: Vertical bar chart
+* **Date/Time**: Last 30 days
+* **Metric**: Request count
+* **Group by**: Service
+* **Then by**: Application
+
+[screenshot of finished report]
+
+This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate usage data about your API to your stakeholders. 
+## Latency for the Payment API over the last 30 days
+>>>>>>> 40e9d9d6297126072c1941cdbcc4ceb7dd6a1614
 
 1. In {{site.konnect_short_name}}, navigate to **Analytics**, then **Reports**.
 1. Click **New Report**.
@@ -125,6 +148,8 @@ This report can provide your stakeholders with the answers to questions like:
 * [struggling to come up with more examples]
 
 
+
+## 
 ### Instructions
 
 Steps in each section should break down the tasks the user will complete in sequential order.
