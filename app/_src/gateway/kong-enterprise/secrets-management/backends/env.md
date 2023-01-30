@@ -20,8 +20,8 @@ You can now reference this secret:
 {vault://env/my-secret-value}
 ```
 
-You can also define a `json` string if you want to store multiple secrets
-in a single environment variable.
+You can also define a flat `json` string if you want to store multiple secrets
+in a single environment variable. Nested `json` is not supported.
 
 ```bash
 export PG_CREDS='{"username":"user", "password":"pass"}'
