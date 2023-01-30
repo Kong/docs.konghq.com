@@ -1,0 +1,37 @@
+params:
+  name: kong-log-google
+  api_id: false
+    # boolean - whether this plugin can be applied to an API [[this needs more]]
+  service_id: true
+    # boolean - whether this plugin can be applied to a Service.
+    # Affects generation of examples and config table.
+  consumer_id: false
+    # boolean - whether this plugin can be applied to a Consumer.
+    # Affects generation of examples and config table.
+  route_id: true
+    # whether this plugin can be applied to a Route.
+    # Affects generation of examples and config table.
+  protocols:
+    - name: http
+    - name: https
+    # List of protocols this plugin is compatible with.
+    # Valid values: "http", "https", "tcp", "tls"
+    # Example: ["http", "https"]
+  dbless_compatible: yes
+    # Degree of compatibility with DB-less mode. Three values allowed:
+    # 'yes', 'no' or 'partially'
+  dbless_explanation: Fully compatible with DB and DB-less (K8s, Declarative) Kong implementations.
+    # Optional free-text explanation, usually containing details about the degree of
+    # compatibility with DB-less.
+
+  config:
+    - name: tid
+      required: yes
+      default: UA-XXXX-Y
+      value_in_examples: UA-XXXX-Y
+      description: The tracking ID / property ID. The format is UA-XXXX-Y. All collected data is associated by this ID.
+    - name: cid
+      required: yes
+      default: 555
+      value_in_examples: 555
+      description: Client ID. This allows you to set and identify metrics in Google Analytics by a custom client ID.

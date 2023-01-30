@@ -34,26 +34,6 @@ kong_version_compatibility: # required
       - 0.30-x
     #incompatible:
 
-params:
-  name: upstream-auth-basic
-  api_id: true
-  service_id: true
-  consumer_id: false
-  route_id: true
-  dbless_compatible: yes
-  config:
-    - name: username
-      required: true
-      value_in_examples: kingkong
-      urlencode_in_examples:
-      default:
-      description: The username to send in the Authorization header to the upstream service
-    - name: password
-      required: true
-      value_in_examples: 1-big-ape
-      urlencode_in_examples:
-      default:
-      description: The password to send in the Authorization header to the upstream service
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.

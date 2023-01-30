@@ -19,38 +19,6 @@ kong_version_compatibility:
       - 1.1.x
       - 1.2.x
 
-params:
-  name: api-transformer
-  service_id: True
-  consumer_id: False
-  route_id: True
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: yes
-  config:
-    - name: request_transformer
-      required: 'yes'
-      default:
-      value_in_examples: /home/foo/api_xxx/req_transformer.lua
-      description: |
-        The .lua script to be used for the transformation.
-        Available OpenResty variables and utils: [Check README](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer){:target="_blank"}{:rel="noopener noreferrer"}
-    - name: response_transformer
-      required: 'yes'
-      default:
-      value_in_examples: /home/foo/api_xxx/resp_transformer.lua
-      description: |
-        The .lua script to be used for the transformation.
-        Available OpenResty variables and utils: [Check README](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer){:target="_blank"}{:rel="noopener noreferrer"}
-    - name: http_200_always
-      required: 'no'
-      default: true
-      value_in_examples: true
-      description: |
-        We may need to use HTTP 200 approach in API error handling in some business cases.
-
-
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.

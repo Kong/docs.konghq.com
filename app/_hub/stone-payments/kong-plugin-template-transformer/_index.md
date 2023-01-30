@@ -24,34 +24,6 @@ kong_version_compatibility:
       - 0.33-x
     incompatible:
 
-params:
-  name: kong-plugin-template-transformer
-  api_id: True
-  service_id: True
-  consumer_id: False
-  route_id: True
-  dbless_compatible: yes
-  config:
-    - name: request_template
-      required: 'no'
-      default:
-      value_in_examples: '''{ "email": "{{body.user}}", "password": "{{body.password}}" }'''
-      description: |
-        Describes the template to be used for the transformation. 
-        Available nginx variables: headers, body, custom_data, route_groups, query_string.
-    - name: response_template
-      required: 'no'
-      default:
-      value_in_examples: '''{ "status": "{{status}}", "message": "{{body.message}}" }'''
-      description: |
-        Describes the template to be used for the transformation. 
-        Available nginx variables: headers, body, status.
-    - name: hidden_fields
-      required: 'no'
-      default:
-      value_in_examples: '''["password"]'''
-      description: |
-        Fields to hide in the nginx logs.
 ---
 
 ## Kong Plugin Template Transformer

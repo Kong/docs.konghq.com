@@ -17,26 +17,6 @@ kong_version_compatibility:
     compatible:
      - 1.2.x
      - 1.1.x
-
-
-params:
-  name: apig-response-transform
-  api_id: False
-  service_id: True
-  consumer_id: False
-  route_id: True
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: 'yes'
-  dbless_explanation: It is recommended to use in dbless mode.
-  config:
-    - name: format
-      required: true
-      default: xml
-      value_in_examples: xml
-      description: |
-        Describe the format of the response format.
 ---
 ### Installation
 Recommended:

@@ -39,39 +39,6 @@ kong_version_compatibility:
     compatible:
      - 1.5.x
 
-params:
-  name: reedelk-transformer
-  api_id: false
-  service_id: true
-  consumer_id: false
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: yes
-  dbless_explanation:
-
-  config:
-    - name: upstream_transformer_url
-      required: no
-      default:
-      value_in_examples: http://myhost/upstream/transform
-      description:
-        The URL of the Reedelk REST flow endpoint to invoke for the upstream
-        request transformation.
-
-    - name: downstream_transformer_url
-      required: no
-      default:
-      value_in_examples: http://myhost/downstream/transform
-      description:
-        The URL of the Reedelk REST flow endpoint to invoke for the downstream
-        request transformation.
-
-  extra:
-    The `upstream_transformer_url` and `downstream_transformer_url` are the URLs
-    of the Reedelk REST flow endpoint to invoke for the upstream/downstream
-    request/response transformations; e.g., `http://localhost:8888/apiabledev/transform`.
 ###############################################################################
 # END YAML DATA
 

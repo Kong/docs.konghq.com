@@ -13,54 +13,6 @@ kong_version_compatibility:
     compatible: true
   enterprise_edition:
     compatible: true
-params:
-  name: basic-auth
-  service_id: true
-  route_id: true
-  consumer_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
-  dbless_compatible: partially
-  dbless_explanation: |
-    Consumers and Credentials can be created with declarative configuration.
-
-    Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials are not available on DB-less mode.
-  config:
-    - name: hide_credentials
-      required: true
-      value_in_examples: true
-      datatype: boolean
-      default: '`false`'
-      description: |
-        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string
-      description:
-        An optional string (Consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` or `username` attribute, and **not** its `custom_id`.
-      minimum_version: "3.1.x"
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string
-      description: |
-        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
-        If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
-        must refer to the consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
-      maximum_version: "3.0.x"
-  extra: |
-    Once applied, any user with a valid credential can access the Service.
-    To restrict usage to only some of the authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
-    denied groups of users.
 ---
 
 ## Usage
@@ -271,12 +223,3 @@ Consumer.
 [acl-associating]: /plugins/acl/#associating-consumers
 
 ---
-
-## Changelog
-
-**{{site.base_gateway}} 3.0.x**
-* The deprecated `X-Credential-Username` header has been removed.
-
-**{{site.base_gateway}} 2.7.x**
-* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
-and you are using basic authentication, the `basicauth_credentials.password` field will be encrypted.

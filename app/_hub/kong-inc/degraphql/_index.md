@@ -12,18 +12,6 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible: true
-params:
-  name: degraphql
-  service_id: true
-  konnect_examples: false
-  dbless_compatible: 'yes'
-  config:
-    - name: graphql_server_path
-      required: true
-      default: "/graphql"
-      datatype: string
-      description: The path to the GraphQL server.
-      minimum_version: "3.0.x"
 ---
 ## Usage
 
@@ -171,8 +159,4 @@ curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
 <div class="endpoint delete">/services/:service_name/degraphql/routes/:id</div>
 
 ---
-## Changelog
 
-**{{site.base_gateway}} 3.0.x**
-
-* Added the `graphql_server_path` configuration parameter.

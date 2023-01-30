@@ -12,75 +12,6 @@ kong_version_compatibility:
     compatible: true
   enterprise_edition:
     compatible: true
-params:
-  name: syslog
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: tcp
-    - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: grpc
-    - name: grpcs
-    - name: ws
-      minimum_version: "3.1.x"
-    - name: wss
-      minimum_version: "3.1.x"
-  dbless_compatible: 'yes'
-  config:
-    - name: successful_severity
-      required: false
-      default: '`info`'
-      datatype: string
-      description: |
-        An optional logging severity assigned to all the successful requests with a response
-        status code less then 400. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
-    - name: client_errors_severity
-      required: false
-      default: '`info`'
-      datatype: string
-      description: |
-        An optional logging severity assigned to all the failed requests with a
-        response status code 400 or higher but less than 500. Available options: `debug`, `info`, `notice`,
-        `warning`, `err`, `crit`, `alert`, `emerg`.
-    - name: server_errors_severity
-      required: false
-      default: '`info`'
-      datatype: string
-      description: |
-        An optional logging severity assigned to all the failed requests with a
-        response status code 500 or higher. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
-    - name: log_level
-      required: false
-      default: '`info`'
-      datatype: string
-      description: |
-        An optional logging severity. Any request with equal or higher severity
-        will be logged to System log. Available options: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`.
-    - name: custom_fields_by_lua
-      minimum_version: "2.4.x"
-      required: false
-      default: null
-      datatype: map
-      description: |
-        A list of key-value pairs, where the key is the name of a log field and
-        the value is a chunk of Lua code, whose return value sets or replaces
-        the log field value.
-    - name: facility
-      minimum_version: "2.5.x"
-      required: false
-      default: '`user`'
-      datatype: string
-      description: |
-        The facility is used by the operating system to decide how to handle each log message. This
-        optional argument defines what must be the facility set by the plugin when logging. Available
-        options: `auth`, `authpriv`, `cron`, `daemon`, `ftp`, `kern`, `lpr`, `mail`, `news`, `syslog`,
-        `user`, `uucp`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 ---
 
 ## Log format
@@ -110,11 +41,4 @@ logging level severity the same as or lower than the set `config.log_level` for 
 {% endif_plugin_version %}
 
 ---
-## Changelog
 
-**{{site.base_gateway}} 2.5.x**
-* The plugin now includes facility configuration options, which are a way for the plugin to group error messages from different sources.
-
-**{{site.base_gateway}} 2.4.x**
-
-* Added `custom_fields_by_lua` configuration option.

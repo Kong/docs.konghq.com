@@ -37,24 +37,6 @@ kong_version_compatibility:
       - 0.32-x
       - 0.31-x
       - 0.30-x
-
-
-
-params:
-  name: kong-spec-expose
-  api_id: true
-  service_id: true
-  consumer_id: false
-  route_id: true
-  dbless_compatible: yes
-  config:
-    - name: spec_url
-      required: true
-      value_in_examples: https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/json/petstore.json
-      urlencode_in_examples: false
-      default:
-      description: The full path to the specification/documentation of your service.
-
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.

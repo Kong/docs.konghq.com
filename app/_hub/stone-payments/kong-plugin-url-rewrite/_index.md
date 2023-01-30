@@ -23,21 +23,6 @@ kong_version_compatibility:
       - 0.32-x
       - 0.33-x
     incompatible:
-
-params:
-  name: kong-plugin-url-rewrite
-  api_id: True
-  service_id: True
-  consumer_id: False
-  route_id: True
-  dbless_compatible: yes
-  config:
-    - name: url
-      required: 'yes'
-      default: ''
-      value_in_examples: 'http://new-url.com'
-      description: |
-        The url that you want to execute the request against. Completely overrides the upstream_uri property.
 ---
 
 ## Kong Plugin URL Rewrite

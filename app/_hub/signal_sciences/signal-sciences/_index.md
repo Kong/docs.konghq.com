@@ -77,9 +77,6 @@ kong_version_compatibility:
       - 0.35-x
       - 0.34-x
 
-params:
-  dbless_compatible: yes
-
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.

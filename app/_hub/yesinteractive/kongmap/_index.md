@@ -33,7 +33,6 @@ kong_version_compatibility:
         - 1.5.x
         - 1.3-x
 
-
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.

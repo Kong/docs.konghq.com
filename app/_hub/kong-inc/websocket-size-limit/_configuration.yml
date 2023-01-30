@@ -1,0 +1,35 @@
+params:
+  name: websocket-size-limit
+  service_id: true
+  route_id: true
+  consumer_id: false
+  dbless_compatible: 'yes'
+  protocols:
+    - name: ws
+    - name: wss
+  config:
+    - name: client_max_payload
+      required: semi
+      value_in_examples: 1024
+      datatype: integer
+      default: null
+      encrypted: false
+      description: |
+        Maximum size (in bytes) of client-originated WebSocket messages. Must
+        be greater than `0` and less than `33554432` (32 MiB)
+      extra: |
+        Either `client_max_payload` or `upstream_max_payload` is
+        required.
+    - name: upstream_max_payload
+      required: semi
+      value_in_examples: 16384
+      datatype: integer
+      default: null
+      encrypted: false
+      description: |
+        Maximum size (in bytes) of upstream-originated WebSocket messages. Must
+        be greater than `0` and less than `33554432` (32 MiB)
+      extra: |
+        Either `client_max_payload` or `upstream_max_payload` is
+        required.
+

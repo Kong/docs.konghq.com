@@ -67,59 +67,6 @@ kong_version_compatibility:
 # PLUGIN-ONLY SETTINGS below this line
 # If your extension is a plugin, ALL of the following lines must be completed.
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
-params: 
-  name: ab-microsensor
-  api_id: true
-  service_id: true
-  consumer_id: true
-  route_id: true
-  dbless_compatible: yes
-  config: 
-    - name: ab_localbay_ip
-      required: yes
-      default: 
-      value_in_examples:
-      description:
-        The ArecaBay LocalBay IP that this plugin will connect and provide API event data.
-
-    - name: ab_localbay_port
-      required: yes
-      default: 
-      value_in_examples:
-      description:
-        The ArecaBay LocalBay Port that this plugin will connect and provide API event data.
-
-    - name: ab_tenant_id
-      required: yes
-      default: 
-      value_in_examples:
-      description:
-        The tenant id specific to the ArecaBay LocalBay.
-
-    - name: ab_localbay_passphrase
-      required: yes
-      default: 
-      value_in_examples:
-      description:
-        The passphrase for authentication with LocalBay.
-
-    - name: ab_microsensor_name
-      required: yes
-      default: 
-      value_in_examples:
-      description:
-        The name of this microsensor to be used for display purposes in the web console.
-
-    - name: ab_microsensor_id
-      required: yes
-      default: 
-      value_in_examples:
-      description:
-        The id of this microsensor.
-
-  extra:
-    # This is for additional remarks about your configuration.
 ---
 
 ## Installation

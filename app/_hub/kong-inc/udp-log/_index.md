@@ -12,52 +12,6 @@ kong_version_compatibility:
     compatible: true
   enterprise_edition:
     compatible: true
-params:
-  name: udp-log
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: tcp
-    - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: grpc
-    - name: grpcs
-    - name: ws
-      minimum_version: "3.1.x"
-    - name: wss
-      minimum_version: "3.1.x"
-  dbless_compatible: 'yes'
-  config:
-    - name: host
-      required: true
-      value_in_examples: 127.0.0.1
-      datatype: string
-      description: The IP address or host name to send data to.
-    - name: port
-      required: true
-      value_in_examples: 9999
-      datatype: integer
-      description: The port to send data to on the upstream server.
-    - name: timeout
-      required: false
-      default: '`10000`'
-      value_in_examples: 10000
-      datatype: number
-      description: An optional timeout in milliseconds when sending data to the upstream server.
-    - name: custom_fields_by_lua
-      minimum_version: "2.4.x"
-      required: false
-      default: null
-      datatype: map
-      description: |
-        A list of key-value pairs, where the key is the name of a log field and
-        the value is a chunk of Lua code, whose return value sets or replaces
-        the log field value.
 ---
 
 ## Log format
@@ -79,8 +33,4 @@ params:
 {% endif_plugin_version %}
 
 ---
-## Changelog
 
-**{{site.base_gateway}} 2.4.x**
-
-* Added `custom_fields_by_lua` configuration option.

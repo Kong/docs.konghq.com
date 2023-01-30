@@ -46,25 +46,6 @@ kong_version_compatibility:
       - 0.35-x
       - 0.36-x
 
-params:
-  name: cleafy-plugin-for-kong
-  api_id: false
-  service_id: false
-  consumer_id: false
-  route_id: true
-  dbless_compatible: yes
-  config:
-    - name: api_address
-      required: yes
-      default:
-      value_in_examples: http://cleafy.com
-      description: Specifies the URL pointing to the Cleafy API.
-    - name: accept_encoding
-      required: no
-      default:
-      value_in_examples:
-      description: Specifies the type of encoding accepted from the backend server. This plugin does not support gzip-encoded requests.
-      
 ---
 
 ### Cleafy-Stream Kong plugin

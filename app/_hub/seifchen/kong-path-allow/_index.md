@@ -28,29 +28,6 @@ kong_version_compatibility:
       - 1.3.x
       - 1.2.x
 
-params:
-  name: kong-path-allow
-  api_id: false
-  service_id: true
-  consumer_id: true
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: yes
-
-  config:
-    - name: allow_paths
-      required: yes
-      default: []
-      value_in_examples: ["/api/services", "/api/routes"]
-      description: An allowed path. Any request path that does not match one of the paths in this list will be forbidden and return a 403 error code.
-    - name: regex
-      required: true
-      default: true
-      value_in_examples:
-      description: A boolean value that specifies whether the plugin uses regex for path matching. If `true`, the plugin will use `ngx.re.match` to match the `request_path` and `allow_paths` values. If `false`, it will strictly judge whether the two paths are equal.
-
 ---
 
 # Install

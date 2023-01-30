@@ -1,0 +1,16 @@
+params:
+  name: signalfx
+  api_id: true
+  service_id: true
+  consumer_id: true
+  route_id: true
+  dbless_compatible: yes
+  config:
+    - name: aggregate_by_http_method
+      required: yes
+      default: true
+      value_in_examples:
+      description: |
+        By default, metrics for each Service/API-fielded request cycle will be aggregated by a context determined partially by the request's HTTP method and by its response's status code.
+        If you are monitoring a large infrastructure with hundreds of routes, grouping by HTTP method can be too granular or costly for performant `/signalfx` requests on a 1s interval, depending on the server resources.
+        This context grouping can be disabled with the boolean configuration option `aggregate_by_http_method`.

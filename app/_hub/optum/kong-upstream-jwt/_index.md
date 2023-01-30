@@ -38,18 +38,6 @@ kong_version_compatibility:
       - 0.32-x
       - 0.31-x
       - 0.30-x
-
-
-
-params:
-  name: kong-upstream-jwt
-  api_id: true
-  service_id: true
-  consumer_id: false
-  route_id: true
-  dbless_compatible: yes
-extra: |
-  Installing this plugin globally will ensure security across all proxies for service providers who implement the JWT validation correctly.
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
