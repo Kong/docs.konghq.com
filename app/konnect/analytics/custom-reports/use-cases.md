@@ -95,25 +95,35 @@ This report can provide your stakeholders with the answers to questions like:
 * If there are anomalies, do they repeat? Are there any patterns in the data?
 * If there's an issue with API traffic, has it been resolved or is it ongoing?
 
-## Latency for the Payment API over the last 30 days
+## Latency for an API over the last 30 days
+
+This use case demonstrates how you can use custom reports to track the latency for an API, the Payment API in this case, over the last 30 days.
 
 1. In {{site.konnect_short_name}}, navigate to **Analytics**, then **Reports**.
 1. Click **New Report**.
 1. Configure the report with the following:
     * **Name**: Payment API - Latency (last 30 days)
     * **Date/Time**: Last 30 days
-    * **Chart type**: Line Chart
+    * **Chart type**: Line chart
     * **Select a metric**: Response latency (p99)
-    * **Group by**: None
-    * **Then by**: None
+    * **Group by**: Service
+    * **Choose granularity**: Daily
     * **Entity Selection**: Payment <!-- I don't see this anywhere in the UI? -->
+    * Filtering: 
+        * **Filter by**: Service
+        * **Operator**: In
+        * **Value**: Payment
 1. Click **Create**.
+
+[screenshot of finished report]
 
 This report can provide your stakeholders with the answers to questions like:
 
-* How performant has my Payment API been over the last 30 days?
-* 
-A fast Payment API is critical for ACMEs business. With this report, Amy can show how performant that service has been over the last 30 days. She is using p99 which shows a more accurate picture of what most end users experience looks like instead of hiding outliners behind an average latency.
+* How performant has my API been over the last 30 days?
+* Is my Payment API processing payments quickly enough?
+* Are there any performance outliers?
+* [struggling to come up with more examples]
+
 
 ### Instructions
 
