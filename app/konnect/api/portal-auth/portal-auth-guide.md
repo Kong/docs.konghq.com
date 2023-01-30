@@ -1,10 +1,15 @@
 ---
-title: Portal Auth Setup
+title: Portal RBAC Setup
 content-type: tutorial
 ---
 
 
 ## Enable RBAC in portal
+
+Portal RBAC allow you to apply "API viewer" and "API Consumer" role to manage how developer portal developer can access the service published to the portal. 
+* API viewer provide the read access to the documentation associated with services. 
+* API Consumer can register the applications to consume the services. 
+You can use the API to create a team of developers, assign the roles to the team and add developers to the team. The developers within the team can access the service based on the role assigned. 
 
 RBAC is disabled by default in the {{site.konnect_short_name}} Portal. To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal. For more details on how to create your personal access token, see [Authentication](/konnect/api/#authentication). 
 
