@@ -87,6 +87,10 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(api_id).to have_css('td', text: 'Type: string')
       expect(api_id).to have_css('td', text: 'The ID of the API the plugin targets.')
     end
+
+    it 'renders the changelog' do
+      expect(html).to have_css('h2#_22x-changelog', text: '_2.2.x Changelog')
+    end
   end
 
   context 'versions using _index' do
@@ -180,6 +184,10 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(realm).to have_css('td', text: 'Type: string')
       expect(realm).to have_css('td', text: 'Default value: ngx.var.host')
       expect(realm).to have_css('p', text: 'When authentication or authorization fails')
+    end
+
+    it 'renders the changelog' do
+      expect(html).to have_css('h2#changelog', text: 'Changelog')
     end
   end
 end

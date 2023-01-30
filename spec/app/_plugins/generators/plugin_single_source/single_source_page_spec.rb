@@ -70,7 +70,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
         it 'sets the corresponding attributes' do
           expect(subject.instance_variable_get(:@dir)).to eq('hub/acme/jwt-signer')
-          expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/acme/jwt-signer/_2.2.x.md')
+          expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/acme/jwt-signer/_2.2.x/_index.md')
 
           expect(subject.data['version']).to eq('2.2.x')
           expect(subject.data['is_latest']).to eq(false)
@@ -79,7 +79,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
           expect(subject.data['permalink']).to eq('hub/acme/jwt-signer/2.2.x.html')
           expect(subject.data['layout']).to eq('extension')
 
-          expect(subject.data['source_file']).to eq('_hub/acme/jwt-signer/_2.2.x.md')
+          expect(subject.data['source_file']).to eq('_hub/acme/jwt-signer/_2.2.x/_index.md')
           expect(subject.data['extn_slug']).to eq('jwt-signer')
           expect(subject.data['extn_publisher']).to eq('acme')
           expect(subject.data['extn_icon']).to eq('/assets/images/icons/hub/acme_jwt-signer.png')

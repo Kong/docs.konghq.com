@@ -1,0 +1,31 @@
+params:
+  name: jwt-signer
+  service_id: true
+  route_id: true
+  consumer_id: false
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+  dbless_compatible: 'yes'
+  config:
+    - name: realm
+      required: false
+      default: ngx.var.host
+      datatype: string
+      description: |
+        When authentication or authorization fails, or there is an unexpected
+        error, the plugin sends an `WWW-Authenticate` header with the `realm`
+        attribute value.
+  extra: |
+    **Configuration Notes:**
+
+    Most of the parameters are optional, but you need to specify some options to actually
+    make the plugin work:
+
+    * For example, signature verification cannot be done without the plugin knowing about
+    config.access_token_jwks_uri and/or config.channel_token_jwks_uri.
+
+    * Also for introspection to work, you need to specify introspection endpoints
+    config.access_token_introspection_endpoint and/or `config.channel_token_introspection_endpoint.
