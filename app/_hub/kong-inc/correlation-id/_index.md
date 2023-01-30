@@ -13,39 +13,6 @@ kong_version_compatibility:
     compatible: true
   enterprise_edition:
     compatible: true
-params:
-  name: correlation-id
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: header_name
-      required: false
-      default: Kong-Request-ID
-      value_in_examples: Kong-Request-ID
-      datatype: string
-      description: |
-        The HTTP header name to use for the correlation ID.
-    - name: generator
-      required: false
-      default: uuid#counter
-      value_in_examples: uuid#counter
-      datatype: string
-      description: |
-        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker`. See [Generators](#generators).
-    - name: echo_downstream
-      required: false
-      default: false
-      value_in_examples: false
-      datatype: boolean
-      description: |
-        Whether to echo the header back to downstream (the client).
 ---
 
 ## How it works
@@ -156,7 +123,3 @@ Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/referenc
 
 You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
 
-## Changelog
-
-**{{site.base_gateway}} 2.2.x**
-* The plugin now generates a `correlation-id` value by default if the correlation ID header arrives empty.

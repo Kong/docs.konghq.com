@@ -27,22 +27,6 @@ kong_version_compatibility:
   enterprise_edition:
     compatible:
       - 0.34-x
-
-
-params:
-  name: kong-response-size-limiting
-  api_id: false
-  service_id: true
-  route_id: true
-  consumer_id: true
-  dbless_compatible: yes
-  config:
-    - name: allowed_payload_size
-      required: true
-      default: "`128`"
-      value_in_examples: 128
-      description: Allowed upstream response payload size in megabytes, default is `128` (128000000 Bytes)
-
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.

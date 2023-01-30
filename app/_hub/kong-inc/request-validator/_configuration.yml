@@ -1,0 +1,55 @@
+params:
+  name: request-validator
+  service_id: true
+  route_id: true
+  consumer_id: true
+  dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+  config:
+    - name: body_schema
+      required: semi
+      value_in_examples: '''[{"name":{"type": "string", "required": true}}]'''
+      datatype: string
+      description: |
+        The request body schema specification. One of `body_schema` or `parameter_schema`
+        must be specified.
+    - name: allowed_content_types
+      required: true
+      default:
+        - application/json
+      value_in_examples: null
+      datatype: Set of string elements
+      description: |
+        List of allowed content types. The value can be configured with the `charset` parameter. For example, `application/json; charset=UTF-8`.
+        <br>**Note:** 
+        Body validation is only done for `application/json` and skipped for any other allowed content types. 
+        Only one parameter is supported at the most. If a request is sending more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated. Note that `application/json` doesn't match with `application/json; charset=UTF-8`.
+        The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
+    - name: version
+      required: true
+      default: kong
+      value_in_examples: null
+      datatype: string
+      description: |
+        Which validator to use. Supported values are `kong` (default) for using Kong's own schema
+        validator, or `draft4` for using a JSON Schema Draft 4-compliant validator.
+    - name: parameter_schema
+      required: semi
+      value_in_examples: null
+      datatype: Array of record elements
+      description: |
+        Array of parameter validator specifications. For details and examples, see
+        [Parameter Schema Definition](#parameter-schema-definition). One of `body_schema` or `parameter_schema`
+        must be specified.
+    - name: verbose_response
+      required: true
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        If enabled, the plugin returns more verbose and detailed validation errors
+        (for example, the name of the required field that is missing).

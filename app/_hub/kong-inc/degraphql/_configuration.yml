@@ -1,0 +1,17 @@
+params:
+  name: degraphql
+  service_id: true
+  konnect_examples: false
+  dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+  config:
+    - name: graphql_server_path
+      required: true
+      default: "/graphql"
+      datatype: string
+      description: The path to the GraphQL server.
+      minimum_version: "3.0.x"

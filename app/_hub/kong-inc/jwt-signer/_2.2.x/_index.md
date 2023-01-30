@@ -24,13 +24,6 @@ kong_version_compatibility:
       compatible: null
     enterprise_edition:
       compatible: true
-
-params:
-  name: jwt-signer
-  service_id: true
-  route_id: true
-  consumer_id: false
-  dbless_compatible: yes
 ---
 
 ## Contents

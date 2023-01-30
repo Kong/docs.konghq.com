@@ -19,24 +19,6 @@ categories:
 kong_version_compatibility:
   enterprise_edition:
     compatible: true
-params:
-  name: tls-handshake-modifier
-  service_id: true
-  consumer_id: false
-  route_id: true
-  protocols:
-    - name: https
-    - name: grpcs
-    - name: tls
-  dbless_compatible: 'yes'
-  config:
-    - name: tls_client_certificate
-      required: false
-      default: REQUEST
-      datatype: string
-      description: |
-        Indicates the TLS handshake preference. The only option is `REQUEST`, which
-        requests the client certificate.
 ---
 
 ## Client certificate request

@@ -14,26 +14,6 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible: true
-params:
-  name: route-by-header
-  service_id: true
-  route_id: true
-  consumer_id: true
-  dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  konnect_examples: false
-  manager_examples: false
-  config:
-    - name: rules
-      required: false
-      default: {}
-      value_in_examples: null
-      description: |
-        List of [rules](#rules)
 ---
 
 ## Rules

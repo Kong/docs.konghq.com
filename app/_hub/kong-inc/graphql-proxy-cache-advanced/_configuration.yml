@@ -1,0 +1,40 @@
+params:
+  name: graphql-proxy-cache-advanced
+  service_id: true
+  route_id: true
+  dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+  config:
+    - name: vary_headers
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: array of string elements
+      description: |
+        Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
+    - name: cache_ttl
+      required: null
+      default: 300
+      value_in_examples: null
+      datatype: integer
+      description: |
+        TTL in seconds of cache entities. Must be a value greater than 0.
+    - name: strategy
+      required: true
+      default: memory
+      value_in_examples: memory
+      datatype: string
+      description: |
+        The backing data store in which to hold cached entities. Accepted value is `memory`.
+    - name: memory.dictionary_name
+      required: true
+      default: kong_db_cache
+      value_in_examples: null
+      datatype: string
+      description: |
+        The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note
+        that this dictionary currently must be defined manually in the Kong Nginx template.

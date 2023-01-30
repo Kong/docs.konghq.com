@@ -1,0 +1,66 @@
+params:
+  name: prometheus
+  service_id: true
+  route_id: false
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
+  dbless_compatible: 'yes'
+  dbless_explanation: |
+    The database will always be reported as reachable in Prometheus with DB-less.
+    Additionally, the DB entity count metric (`kong_db_entities_total`) is not
+    emitted in DB-less mode.
+  config:
+    - name: per_consumer
+      required: false
+      datatype: boolean
+      default: '`false`'
+      description: |
+        A boolean value that determines if per-consumer metrics should be
+        collected.
+        If enabled, the `kong_http_requests_total` and `kong_bandwidth_bytes`
+        metrics fill in the consumer label when available.
+    - name: status_code_metrics
+      required: false
+      datatype: boolean
+      default: '`false`'
+      description: |
+        A boolean value that determines if status code metrics should be
+        collected.
+        If enabled, `http_requests_total`, `stream_sessions_total` metrics will be exported.
+    - name: latency_metrics
+      required: false
+      datatype: boolean
+      default: '`false`'
+      description: |
+        A boolean value that determines if status code metrics should be
+        collected.
+        If enabled, `kong_latency_ms`, `upstream_latency_ms` and `request_latency_ms`
+        metrics will be exported.
+    - name: bandwidth_metrics
+      required: false
+      datatype: boolean
+      default: '`false`'
+      description: |
+        A boolean value that determines if status code metrics should be
+        collected.
+        If enabled, `bandwidth_bytes` and `stream_sessions_total` metrics will be exported.
+    - name: upstream_health_metrics
+      required: false
+      datatype: boolean
+      default: '`false`'
+      description: |
+        A boolean value that determines if status code metrics should be
+        collected.
+        If enabled, `upstream_target_health` metric will be exported.

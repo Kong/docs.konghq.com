@@ -1,0 +1,292 @@
+params:
+  name: graphql-rate-limiting-advanced
+  service_id: true
+  route_id: true
+  konnect_examples: false
+  dbless_compatible: partially
+  dbless_explanation: |
+    The cluster strategy is not supported in DB-less and hybrid modes. For Kong
+    Gateway in DB-less or hybrid mode, use the `redis` strategy.
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+  config:
+    - name: cost_strategy
+      required: true
+      default: default
+      value_in_examples: null
+      datatype: string
+      description: |
+        Strategy to use to evaluate query costs. Either `default` or
+        `node_quantifier`. See [default](/hub/kong-inc/graphql-rate-limiting-advanced/#default) and
+        [node_quantifier](/hub/kong-inc/graphql-rate-limiting-advanced/#node_quantifier) respectively.
+    - name: max_cost
+      required: false
+      default: 0
+      value_in_examples: null
+      datatype: number
+      description: |
+        A defined maximum cost per query. 0 means unlimited.
+    - name: score_factor
+      required: false
+      default: 1
+      value_in_examples: null
+      datatype: number
+      description: |
+        A scoring factor to multiply (or divide) the cost. The `score_factor` must always be greater than 0.
+    - name: limit
+      required: true
+      default: null
+      value_in_examples:
+        - '5'
+      datatype: array of number elements
+      description: |
+        One or more requests-per-window limits to apply.
+    - name: window_size
+      required: true
+      default: null
+      value_in_examples:
+        - '30'
+      datatype: array of number elements
+      description: |
+        One or more window sizes to apply a limit to (defined in seconds).
+    - name: identifier
+      required: true
+      default: consumer
+      value_in_examples: null
+      datatype: string
+      description: |
+        How to define the rate limit key. Can be `ip`, `credential`, `consumer`.
+    - name: dictionary_name
+      required: true
+      default: kong_rate_limiting_counters
+      value_in_examples: null
+      datatype: string
+      description: |
+        The shared dictionary where counters will be stored until the next sync cycle.
+    - name: sync_rate
+      required: true
+      default: null
+      value_in_examples: -1
+      datatype: number
+      description: |
+        How often to sync counter data to the central data store. A value of 0
+        results in synchronous behavior; a value of -1 ignores sync behavior
+        entirely and only stores counters in node memory. A value greater than
+        0 syncs the counters in that many number of seconds.
+    - name: namespace
+      required: semi
+      default: random_auto_generated_string
+      value_in_examples: example_namespace
+      datatype: string
+      description: |
+        The rate limiting library namespace to use for this plugin instance. Counter
+        data and sync configuration is shared in a namespace.
+
+        {:.important}
+        > **Important**: If managing Kong Gateway with **declarative configuration** or running
+        Kong Gateway in **DB-less mode**, set the `namespace` explicitly in your declarative configuration.
+        > <br><br>
+        > If not set, you will run into the following issues:
+        * In DB-less mode, this field will be regenerated automatically on every configuration change.
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        `namespace` value.
+
+    - name: strategy
+      required: null
+      default: cluster
+      value_in_examples: cluster
+      datatype: string
+      description: |
+        The rate-limiting strategy to use for retrieving and incrementing the
+        limits. Available values are:
+        - `cluster`: Counters are stored in the Kong datastore and shared across
+        the nodes.
+        - `redis`: Counters are stored on a Redis server and shared
+        across the nodes.
+
+        In DB-less and hybrid modes, the `cluster` config strategy is not
+        supported.
+
+        {:.important}
+        > There is no local storage strategy. However, you can achieve local
+        rate limiting by using a placeholder `strategy` value (either `cluster` or `redis`)
+        and a `sync_rate` of `-1`. This setting stores counters in-memory on the
+        node.
+        <br><br>If using `redis` as the placeholder value, you must fill in all
+        additional `redis` configuration parameters with placeholder values.
+
+        For details on which strategy should be used, refer to the
+        [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
+    - name: redis.host
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Host to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.port
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: integer
+      description: |
+        Port to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.ssl
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        If set to true, then uses SSL to connect to Redis.
+      minimum_version: "2.2.x"
+    - name: redis.ssl_verify
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        If set to true, then verifies the validity of the server SSL certificate. Note that you need to configure the
+        [lua_ssl_trusted_certificate](/gateway/latest/reference/configuration/#lua_ssl_trusted_certificate)
+        to specify the CA (or server) certificate used by your redis server. You may also need to configure
+        [lua_ssl_verify_depth](/gateway/latest/reference/configuration/#lua_ssl_verify_depth) accordingly.
+      minimum_version: "2.2.x"
+    - name: redis.server_name
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Specifies the server name for the new TLS extension Server Name Indication (SNI) when connecting over SSL.
+      minimum_version: "2.2.x"
+    - name: redis.timeout
+      required: semi
+      default: 2000
+      value_in_examples: null
+      datatype: number
+      description: |
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.username
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      referenceable: true
+      description: |
+        Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
+        If undefined, ACL authentication will not be performed.
+
+         This requires Redis v6.0.0+. The username **cannot** be set to `default`.
+      minimum_version: "2.8.x"
+    - name: redis.password
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      referenceable: true
+      description: |
+        Password to use for Redis connection when the `redis` strategy is defined.
+        If undefined, no AUTH commands are sent to Redis.
+    - name: redis.database
+      required: semi
+      default: 0
+      value_in_examples: null
+      datatype: integer
+      description: |
+        Database to use for Redis connection when the `redis` strategy is defined.
+    - name: redis.sentinel_master
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_username
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      referenceable: true
+      description: |
+        Sentinel username to authenticate with a Redis Sentinel instance.
+        If undefined, ACL authentication will not be performed. This requires Redis v6.2.0+.
+      minimum_version: "2.8.x"
+    - name: redis.sentinel_password
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      referenceable: true
+      description: |
+        Sentinel password to authenticate with a Redis Sentinel instance.
+        If undefined, no AUTH commands are sent to Redis Sentinels.
+    - name: redis.sentinel_role
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_addresses
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: array of string elements
+      description: |
+        Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.cluster_addresses
+      required: semi
+      default: null
+      value_in_examples: null
+      datatype: array of string elements
+      description: |
+        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
+    - name: redis.keepalive_backlog
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: integer
+      description: |
+        If specified, limits the total number of opened connections for a pool. If the
+        connection pool is full, all connection queues beyond the maximum limit go into
+        the backlog queue. Once the backlog queue is full, subsequent connect operations
+        will fail and return `nil`. Queued connect operations resume once the number of
+        connections in the pool is less than `keepalive_pool_size`. Note that queued
+        connect operations are subject to set timeouts.
+      minimum_version: "2.5.x"
+    - name: redis.keepalive_pool
+      required: false
+      default: generated from string template
+      value_in_examples: null
+      datatype: string
+      description: |
+        The custom name of the connection pool. If not specified, the connection pool
+        name is generated from the string template `"<host>:<port>"` or `"<unix-socket-path>"`.
+      minimum_version: "2.5.x"
+    - name: redis.keepalive_pool_size
+      required: false
+      default: 30
+      value_in_examples: null
+      datatype: integer
+      description: |
+        The size limit for every cosocket connection pool associated with every remote
+        server, per worker process. If no `keepalive_pool_size` is specified and no `keepalive_backlog`
+        is specified, no pool is created. If no `keepalive_pool_size` is specified and `keepalive_backlog`
+        is specified, then the pool uses the default value `30`.
+      minimum_version: "2.5.x"
+    - name: window_type
+      required: true
+      default: sliding
+      value_in_examples: null
+      datatype: string
+      description: |
+        Sets the time window to either `sliding` or `fixed`.
+    - name: hide_client_headers
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        Optionally hide informative response headers. Available options: `true` or `false`.

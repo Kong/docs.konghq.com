@@ -15,34 +15,6 @@ kong_version_compatibility:
     compatible: true
   enterprise_edition:
     compatible: true
-params:
-  name: grpc-gateway
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: tcp
-    - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
-  dbless_compatible: 'yes'
-  config:
-    - name: proto
-      required: false
-      default: null
-      value_in_examples: path/to/hello.proto
-      datatype: string
-      description: |
-        Describes the gRPC types and methods.
-        [HTTP configuration](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto)
-        must be defined in the file.
 ---
 
 ## Purpose
@@ -188,8 +160,4 @@ Currently only unary requests are supported; streaming requests are not supporte
 [Introduction to Kong gRPC plugins](/gateway/latest/configure/grpc)
 
 ---
-## Changelog
 
-**{{site.base_gateway}} 2.6.x**
-* Fields of type `.google.protobuf.Timestamp` on the gRPC side are now transcoded to and from ISO8601 strings on the REST side.
-* URI arguments like `..?foo.bar=x&foo.baz=y` are interpreted as structured fields, equivalent to `{"foo": {"bar": "x", "baz": "y"}}`.

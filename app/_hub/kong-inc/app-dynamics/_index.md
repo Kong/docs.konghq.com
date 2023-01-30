@@ -28,17 +28,6 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible: true
-bundled: false
-params:
-  name: app-dynamics
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: 'yes'
 ---
 
 ## Installation

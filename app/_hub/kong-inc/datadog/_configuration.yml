@@ -1,0 +1,86 @@
+params:
+  name: datadog
+  service_id: true
+  route_id: true
+  consumer_id: true
+  konnect_examples: false
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
+  dbless_compatible: 'yes'
+  config:
+    - name: host
+      required: false
+      default: localhost
+      value_in_examples: 127.0.0.1
+      datatype: string
+      description: The IP address or hostname to send data to.
+    - name: port
+      required: false
+      default: 8125
+      value_in_examples: 8125
+      datatype: integer
+      description: The port to send data to on the upstream server.
+    - name: metrics
+      required: true
+      default: null
+      datatype: array of record elements
+      description: |
+        List of metrics to be logged. Available values are described at [Metrics](#metrics).
+        By default, the plugin logs all available metrics. If you specify an array of metrics,
+        only the listed metrics are logged.
+    - name: prefix
+      required: false
+      default: kong
+      datatype: string
+      description: String to be attached as a prefix to a metric's name.
+    - name: service_name_tag
+      minimum_version: "2.7.x"
+      required: false
+      default: name
+      datatype: string
+      description: String to be attached as the name of the service.
+    - name: status_tag
+      minimum_version: "2.7.x"
+      required: false
+      default: status
+      datatype: string
+      description: String to be attached as the tag of the HTTP status.
+    - name: consumer_tag
+      minimum_version: "2.7.x"
+      required: false
+      default: consumer
+      datatype: string
+      description: String to be attached as tag of the consumer.
+    - name: flush_timeout
+      required: true
+      default: '`2`'
+      value_in_examples: 2
+      datatype: number
+      description: |
+        Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.
+      minimum_version: "3.1.x"
+    - name: retry_count
+      required: true
+      default: 10
+      value_in_examples: 10
+      datatype: integer
+      description: Number of times to retry when sending data to the upstream server.
+      minimum_version: "3.1.x"
+    - name: queue_size
+      required: true
+      default: 1
+      datatype: integer
+      description: Maximum number of log entries to be sent on each message to the upstream server.
+      minimum_version: "3.1.x"

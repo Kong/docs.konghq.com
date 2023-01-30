@@ -1,0 +1,100 @@
+params:
+  name: websocket-validator
+  service_id: true
+  route_id: true
+  consumer_id: false
+  protocols:
+    - name: ws
+    - name: wss
+  dbless_compatible: 'yes'
+  config:
+
+    - name: client.text.schema
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: '''{ "type": "object" }'''
+      description: |
+        Schema used to validate client-originated text frames. The semantics of
+        this field depend on the validation type set by `config.client.text.type`.
+
+    - name: client.text.type
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: '''draft4'''
+      description: |
+        The corresponding validation library for `config.client.text.schema`.
+        Currently, only `draft4` is supported.
+
+
+    - name: client.binary.schema
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: null
+      description: |
+        Schema used to validate client-originated binary frames. The semantics of
+        this field depend on the validation type set by `config.client.binary.type`.
+
+    - name: client.binary.type
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: null
+      description: |
+        The corresponding validation library for `config.client.binary.schema`.
+        Currently, only `draft4` is supported.
+
+
+    - name: upstream.text.schema
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: null
+      description: |
+        Schema used to validate upstream-originated text frames. The semantics of
+        this field depend on the validation type set by `config.upstream.text.type`.
+
+    - name: upstream.text.type
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: null
+      description: |
+        The corresponding validation library for `config.upstream.text.schema`.
+        Currently, only `draft4` is supported.
+
+
+    - name: upstream.binary.schema
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: null
+      description: |
+        Schema used to validate upstream-originated binary frames. The semantics of
+        this field depend on the validation type set by `config.upstream.binary.type`.
+
+    - name: upstream.binary.type
+      required: semi
+      default: null
+      datatype: string
+      encrypted: false
+      value_in_examples: null
+      description: |
+        The corresponding validation library for `config.upstream.binary.schema`.
+        Currently, only `draft4` is supported.
+  extra: |
+    At least one of the following complete message validation configurations must be defined:
+      * `config.client.text.type` and `config.client.text.schema`
+      * `config.client.binary.type` and `config.client.binary.schema`
+      * `config.upstream.text.type` and `config.upstream.text.schema`
+      * `config.upstream.binary.type` and `config.upstream.binary.schema`
+

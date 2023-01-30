@@ -1,0 +1,105 @@
+params:
+  name: proxy-cache
+  service_id: true
+  route_id: true
+  consumer_id: true
+  dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
+  config:
+    - name: response_code
+      required: null
+      default: '200, 301, 404'
+      value_in_examples:
+        - '200'
+      datatype: array integer elements
+      description: |
+        Upstream response status code considered cacheable.
+    - name: request_method
+      required: null
+      default: '`["GET","HEAD"]`'
+      value_in_examples:
+        - GET
+        - HEAD
+      datatype: array of string elements
+      description: |
+        Downstream request methods considered cacheable.
+    - name: content_type
+      required: null
+      default: '`["text/plain", "application/json"]`'
+      value_in_examples:
+        - text/plain
+        - application/json
+      datatype: array of string elements
+      description: |
+        Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
+    - name: vary_headers
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: array of string elements
+      description: |
+        Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
+    - name: vary_query_params
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: array of string elements
+      description: |
+        Relevant query parameters considered for the cache key. If undefined, all params are taken into consideration.
+    - name: cache_ttl
+      required: null
+      default: 300
+      value_in_examples: 300
+      datatype: integer
+      description: |
+        TTL, in seconds, of cache entities.
+    - name: cache_control
+      required: null
+      default: '`false`'
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
+    - name: storage_ttl
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: integer
+      description: |
+        Number of seconds to keep resources in the storage backend. This value is independent of `cache_ttl` or resource TTLs defined by Cache-Control behaviors.
+    - name: strategy
+      required: true
+      default: null
+      value_in_examples: memory
+      datatype: string
+      description: |
+        The backing data store in which to hold cache entities. The only accepted value is `memory`.
+    - name: memory.dictionary_name
+      required: null
+      default: '`kong_db_cache`'
+      value_in_examples: null
+      datatype: string
+      description: |
+        The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
+  extra: |
+
+    <div class="alert alert-ee red">
+    <strong>Warning:</strong> The <code>content_type</code> parameter requires
+    an exact match. For example, if your Upstream expects
+    <code>application/json; charset=utf-8</code> and the
+    <code>config.content_type</code> value is only <code>application/json</code>
+    (a partial match), then the proxy cache is bypassed.
+    </div>

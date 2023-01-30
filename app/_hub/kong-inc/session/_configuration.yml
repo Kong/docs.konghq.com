@@ -1,0 +1,243 @@
+params:
+  name: session
+  service_id: true
+  route_id: true
+  consumer_id: false
+  dbless_compatible: partially
+  dbless_explanation: |
+    `config.storage` must be set to `cookie`. The `kong` strategy uses
+    a database, and is not supported. The plugin currently lacks checks
+    for this invalid configuration in DB-less mode.
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
+  config:
+    - name: secret
+      required: false
+      default: random number generated from `kong.utils.random_string`
+      value_in_examples: opensesame
+      datatype: string
+      encrypted: true
+      referenceable: true
+      description: |
+        The secret that is used in keyed HMAC generation.​
+    - name: audience
+      minimum_version: "3.2.x"
+      required: false
+      default: '"default"'
+      datatype: string
+      description: The session audience, which is the intended target application. For example `"my-application"`. 
+    - name: remember
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: Enables or disables persistent sessions.
+    - name: remember_cookie_name
+      minimum_version: "3.2.x"
+      required: false
+      default: '"remember"'
+      datatype: string
+      description: Persistent session cookie name. Use with the `remember` configuration parameter.
+    - name: remember_rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 604800
+      datatype: integer
+      description:  The persistent session rolling timeout window, in seconds.
+    - name: remember_absolute_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 2592000
+      datatype: integer
+      description: The persistent session absolute timeout limit, in seconds.
+    - name: request_headers
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        List of information to include, as headers, in the request to the upstream.
+        
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
+        `absolute-timeout`.
+        
+        For example, `{ "id", "timeout" }` sets both `Session-Id` and `Session-Timeout` in the request headers.
+    - name: response_headers
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        List of information to include, as headers, in the response to the downstream.
+        
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
+        `absolute-timeout`.
+        
+        For example: `{ "id", "timeout" }` injects both `Session-Id` and `Session-Timeout` in the response headers.
+    - name: cookie_name
+      required: false
+      default: '`session`'
+      datatype: string
+      description: The name of the cookie.
+    - name: cookie_lifetime
+      maximum_version: "3.1.x"
+      required: false
+      default: 3600
+      datatype: number
+      description: The duration in seconds that the session will remain open.
+    - name: rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 3600
+      datatype: integer
+      description: |
+        The session cookie rolling timeout, in seconds.
+        Specifies how long the session can be used until it needs to be renewed.
+    - name: absolute_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 86400
+      datatype: integer
+      description: |
+        The session cookie absolute timeout, in seconds.
+        Specifies how long the session can be used until it is no longer valid.
+    - name: cookie_idletime
+      maximum_version: "3.1.x"
+      required: false
+      datatype: number
+      description: |
+        The cookie idle time (in seconds); if a cookie is not used for this time
+        period, the session becomes invalid. This value is not set by default,
+        meaning idle time checks are disabled.
+    - name: idling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 900
+      datatype: integer
+      description: The session cookie idle time, in seconds.
+    - name: cookie_renew
+      maximum_version: "3.1.x"
+      required: false
+      default: 600
+      datatype: number
+      description: The remaining duration in seconds of a session at which point the Plugin renews the session.
+    - name: cookie_path
+      required: false
+      default: /
+      datatype: string
+      description: The resource in the host where the cookie is available.
+    - name: cookie_domain
+      required: false
+      default: 'Set using Nginx variable host, but may be overridden'
+      datatype: string
+      description: The domain with which the cookie is intended to be exchanged.
+    - name: cookie_samesite
+      maximum_version: "3.1.x"
+      required: false
+      default: Strict
+      datatype: string
+      description: |
+        Determines whether and how a cookie may be sent with cross-site requests. 
+        
+        * `Strict`: The browser sends cookies only if the request originated from the website that set the cookie.
+        * `Lax`: Same-site cookies are withheld on cross-domain subrequests, but are sent when a user navigates
+        to the URL from an external site, for example, by following a link. 
+        * `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. 
+        `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more information, 
+        see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).
+    - name: cookie_same_site
+      minimum_version: "3.2.x"
+      required: false
+      default: Strict
+      datatype: string
+      description: |
+        Determines whether and how a cookie may be sent with cross-site requests.
+        
+        * `Strict`: The browser sends cookies only if the request originated from the website that set the cookie.
+        * `Lax`: Same-site cookies are withheld on cross-domain subrequests, but are sent when a user navigates
+        to the URL from an external site, for example, by following a link. 
+        * `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. 
+        `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the
+        [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).
+    - name: cookie_httponly
+      maximum_version: "3.1.x"
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        Applies the `HttpOnly` tag so that the cookie is sent only to a server. See the
+        [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
+    - name: cookie_http_only
+      minimum_version: "3.2.x"
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        Applies the `HttpOnly` tag so that the cookie is sent only to a server. See the
+        [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
+    - name: cookie_secure
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        Applies the Secure directive so that the cookie may be sent to the server only with an encrypted
+        request over the HTTPS protocol. See the
+        [Restrict access to cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Restrict_access_to_cookies).
+    - name: cookie_discard
+      maximum_version: "3.1.x"
+      required: false
+      default: 10
+      datatype: number
+      description: The duration in seconds after which an old session’s TTL is updated that an old cookie is discarded.
+    - name: stale_ttl
+      minimum_version: "3.2.x"
+      required: false
+      default: 10
+      datatype: number
+      description: |
+        The duration, in seconds, after which an old cookie is discarded, starting from the moment
+        when the session becomes outdated and is replaced by a new one.
+    - name: cookie_persistent
+      minimum_version: "3.1.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        Allows the browser to persist cookies even if the browser is closed.
+        By default, cookies are not persisted across browser restarts.
+    - name: storage
+      required: false
+      default: cookie
+      datatype: string
+      description: |
+        Determines where the session data is stored. `kong`: Stores encrypted session data into Kong's current database
+        strategy; the cookie will not contain any session data. `cookie`: Stores encrypted
+        session data within the cookie itself.
+    - name: logout_methods
+      required: false
+      default: '[`"POST"`, `"DELETE"`]'
+      datatype: array of string elements
+      description: |
+        The methods that may be used to end sessions: POST, DELETE, GET.
+    - name: logout_query_arg
+      required: false
+      default: session_logout
+      datatype: string
+      description: The query argument passed to logout requests.
+    - name: logout_post_arg
+      required: false
+      default: session_logout
+      datatype: string
+      description: The POST argument passed to logout requests. Do not change this property.
