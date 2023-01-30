@@ -17,37 +17,6 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible: true
-params:
-  name: jwt-signer
-  service_id: true
-  route_id: true
-  consumer_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: realm
-      required: false
-      default: ngx.var.host
-      datatype: string
-      description: |
-        When authentication or authorization fails, or there is an unexpected
-        error, the plugin sends an `WWW-Authenticate` header with the `realm`
-        attribute value.
-  extra: |
-    **Configuration Notes:**
-
-    Most of the parameters are optional, but you need to specify some options to actually
-    make the plugin work:
-
-    * For example, signature verification cannot be done without the plugin knowing about
-    config.access_token_jwks_uri and/or config.channel_token_jwks_uri.
-
-    * Also for introspection to work, you need to specify introspection endpoints
-    config.access_token_introspection_endpoint and/or `config.channel_token_introspection_endpoint.
 ---
 
 ## Manage key signing
@@ -71,17 +40,3 @@ for adding an authentication header (possibly similar to
 The key size (the modulo) for RSA keys is currently hard-coded to 2048 bits.
 
 ---
-## Changelog
-
-### 2.7.x
-> handler.lua version: 1.9.0
-
-* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the following fields  `d`, `p`, `q`, `dp`, `dq`, `qi`, and `k`inside
- `jwt_signer_jwks.previous[...].` and `jwt_signer_jwks.keys[...]` will be
- marked as encrypted.
-
-  {:.important}
-  > There's a bug in {{site.base_gateway}} that prevents keyring encryption
-  from working on deeply nested fields, so the `encrypted=true` setting does not
-  currently have any effect in this plugin.

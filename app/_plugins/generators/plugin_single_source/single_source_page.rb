@@ -19,7 +19,11 @@ module PluginSingleSource
       # This is the directory that we're going to write the output file to
       @dir = "hub/#{plugin.dir}"
 
-      source_path = "#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/#{source}.md"
+      source_path = if source == '_index'
+                      "#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/#{source}.md"
+                    else
+                      "#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/#{source}/_index.md"
+                    end
       content = File.read(File.expand_path(source_path, site.source))
 
       # Load content + frontmatter from the file
@@ -27,6 +31,34 @@ module PluginSingleSource
         @content = Regexp.last_match.post_match
         @data = SafeYAML.load(Regexp.last_match(1))
       end
+
+      # TODO: temporary for now
+      # ------------
+      # CONFIGURATION PARAMETERS TABLE
+      # ------------
+      configuration_params_table_path = if source == '_index'
+                                          File.expand_path("#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/_configuration.yml", site.source)
+                                        else
+                                          # Specific version file
+                                          File.expand_path("#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/#{source}/_configuration.yml", site.source)
+                                        end
+      if File.exists?(configuration_params_table_path)
+        @data.merge!(SafeYAML.load(File.read(configuration_params_table_path)))
+      end
+
+      # ------------
+      # CHANGELOG...
+      # ------------
+      changelog_path = if source == '_index'
+                         File.expand_path("#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/_changelog.md", site.source)
+                       else
+                         # Specific version file
+                         File.expand_path("#{Generator::PLUGINS_FOLDER}/#{plugin.dir}/#{source}/_changelog.md", site.source)
+                       end
+      if File.exists?(changelog_path)
+        @content << File.read(changelog_path)
+      end
+      #-------------
 
       @data['version'] = version if plugin.set_version?
       @data['is_latest'] = is_latest
