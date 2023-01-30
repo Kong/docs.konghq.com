@@ -5,6 +5,18 @@ no_version: true
 
 <!-- vale off -->
 
+
+## 3.1.1.3
+**Release Date** 2023/01/30
+
+### Fixes
+
+#### Enterprise
+
+* Fixed the accidental removal of the `ca-certificates` dependency from packages and images. 
+This prevented SSL connections from using common root certificate authorities.
+
+
 ## 3.1.1.2
 **Release Date** 2023/01/24
 
@@ -63,6 +75,11 @@ Kong Gateway now triggers an event that allows the Vitals subsystem to be reinit
 
   See the [Vitals documentation](/gateway/latest/kong-enterprise/analytics/#vitals-api) for more detail.
  
+### Known issues
+* The `ca-certificates` dependency is missing from packages and images. 
+This prevents SSL connections from using common root certificate authorities. 
+
+    Upgrade to 3.1.1.3 to resolve.
 
 ## 3.1.0.0
 **Release Date** 2022/12/06
