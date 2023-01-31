@@ -222,10 +222,10 @@
     - text: Portal Auth API
       items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696
+          url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/
           absolute_url: true
-        - text: Portal Auth Guide
-          url: /api/portal-auth/portal-auth-guide
+        - text: Portal RBAC Guide
+          url: /api/portal-auth/portal-rbac-guide
     - text: Runtime Configuration API
       items:
         - text: Overview
