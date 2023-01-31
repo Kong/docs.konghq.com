@@ -1,6 +1,7 @@
 ---
 title: Plugin Compatibility
 no_version: true
+layout: extension
 ---
 
 Each [subscription tier](https://konghq.com/pricing) gives you
