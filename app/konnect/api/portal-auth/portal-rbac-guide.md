@@ -90,7 +90,7 @@ curl --request DELETE \
 
 ### Add a Developer to a Team
 
-You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The followig example shows how to make the request. 
+You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The following example shows how to make the request. 
 
 ```bash
 curl --request GET \
