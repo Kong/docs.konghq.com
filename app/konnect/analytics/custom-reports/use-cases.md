@@ -95,6 +95,17 @@ This report can provide your stakeholders with the answers to questions like:
 * If there are anomalies, do they repeat? Are there any patterns in the data?
 * If there's an issue with API traffic, has it been resolved or is it ongoing?
 
+### Request per minute for the Account API over the last 30 days
+
+You can dive deeper into the Account API and build a report that displays the requests per minute for the Account API over the last 30 days. With this, you can develop a complete picture of the Accounts API, both on a per minute basis, and on a daily basis.
+
+* **Name**: Account API - RPM (last 30 days)
+
+* **Chart type**: Line chart
+* **Date/Time**: Last 30 days
+* **Metric**: Request count
+* **Group by**: Service
+
 ## Daily API usage by application over the last 30 days
 
 At this point you have two custom reports: 
@@ -113,7 +124,10 @@ These two custom reports can work together to provide you with a lot of informat
 
 [screenshot of finished report]
 
-This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate usage data about your API to your stakeholders. 
+This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate usage data about your API to your stakeholders.
+
+
+
 ## Latency for an API over the last 30 days
 
 This use case demonstrates how you can use custom reports to track the latency for an API, the Payment API in this case, over the last 30 days.
