@@ -30,7 +30,7 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Runtime Configuration API](/konnect/api/runtime-groups-config/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
 
-* [Portal Auth API Documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696) - Interface for portal developers, teams, and RBAC rules.
+* [Portal Auth API Documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/) - Interface for portal developers, teams, and RBAC rules.
 
 
 ## More information
