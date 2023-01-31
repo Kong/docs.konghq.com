@@ -478,7 +478,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 1.  Make a request from the frontend to the backend:
 
     ```sh
-    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -c kuma-fe -- curl backend:3001 -v
     ```
 
     The output looks like:
@@ -565,7 +565,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 1.  Make an invalid request from the frontend to the backend:
 
     ```sh
-    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl backend:3001 -v
+    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -c kuma-fe -- curl backend:3001 -v
     ```
     The output looks like:
 
@@ -603,7 +603,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 
     Make the request:
     ```sh
-    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -- curl -H "Authorization: Bearer $ADMIN_TOKEN" backend:3001
+    kubectl exec -i -t $(kubectl get pod -l "app=kuma-demo-frontend" -o jsonpath='{.items[0].metadata.name}' -n kuma-demo) -n kuma-demo -c kuma-fe -- curl -H "Authorization: Bearer $ADMIN_TOKEN" backend:3001
     ```
 
     The output looks like:

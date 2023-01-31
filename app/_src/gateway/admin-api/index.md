@@ -798,7 +798,6 @@ curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_grou
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
 * [Plugin Hub](/hub/)
 
---- 
 ## Nodes
 ### List Runtime Instance Records
 
@@ -1140,6 +1139,13 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -F "paths[1]=/path/one" \
      -F "paths[2]=/path/two"
 ```
+
+---
+
+## Using the API in workspaces 
+{:.badge .enterprise}
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
 
 ---
 
