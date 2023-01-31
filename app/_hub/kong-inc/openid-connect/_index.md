@@ -3,7 +3,7 @@ name: OpenID Connect
 publisher: Kong Inc.
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
-  OpenID Connect ([1.0][connect]) plugin allows the integration with a third party
+  OpenID Connect ([1.0][connect]) plugin allows for integration with a third party
   identity provider (IdP) in a standardized way. This plugin can be used to implement
   Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
   Connect relying party (RP) between the client, and the upstream service.
@@ -78,8 +78,8 @@ description: |
 
   ## Important Configuration Parameters
 
-  This plugin includes many configuration parameters that allow a finely grained customization.
-  The following steps will help you getting started setting up the plugin:
+  This plugin includes many configuration parameters that allow finely grained customization.
+  The following steps will help you get started setting up the plugin:
 
   1. Configure: `config.issuer`.
 
@@ -92,10 +92,9 @@ description: |
      to match the URL of the `iss` claim in the access tokens being validated. To set
      URLs supported in the `iss` claim, use `config.issuers_allowed`.
   2. Decide what authentication grants to use with this plugin and configure
-     the field `config.auth_methods` accordingly.
+     the `config.auth_methods` field accordingly.
 
-     The parameter should only contain the grants that you want to use, in order to
-     restrict the scope of any potential attack.
+     In order to restrict the scope of potential attacks, the parameter should only contain the grants that you want to use. 
 
   3. In many cases, you also need to specify `config.client_id`, and if your identity provider
      requires authentication, such as on a token endpoint, you will need to specify the client
@@ -105,12 +104,12 @@ description: |
      the audience with `config.audience_required` to contain only your `config.client_id`.
      You may also need to adjust `config.audience_claim` in case your identity provider
      uses a non-standard claim (other than `aud` as specified in JWT standard). This is
-     important because some identity providers, such as Google, share the public keys
+     important because some identity providers, such as Google, share public keys
      with different clients.
 
-  5. If you are using Kong in DB-less mode with the declarative configuration and 
-     session cookie authentication, you should set `config.session_secret` as well.
-     Leaving this parameter unset would result in each of the Nginx workers across your
+  5. If you are using Kong in DB-less mode with a declarative configuration and 
+     session cookie authentication, you should set `config.session_secret`.
+     Leaving this parameter unset will result in every Nginx worker across your
      nodes encrypting and signing the cookies with their own secrets.
 
   In summary, start with the following parameters:
@@ -178,7 +177,7 @@ params:
       default: null
       datatype: string
       description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), requests that fail authentication will return a `4xx` status code. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+        An optional string (consumer UUID or username) value that functions as an “anonymous” consumer if authentication fails. If empty (default null), requests that fail authentication will return a `4xx` HTTP status code. This value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
       minimum_version: "3.1.x"  
     - name: anonymous
       required: false
@@ -331,7 +330,7 @@ params:
         - `PS512`: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
         - `EdDSA`: EdDSA with Ed25519
     - group: JWT Access Token Authentication
-      description: Parameters for setting where to look for the bearer token and whether to introspect them.
+      description: Parameters for specifying the location of the bearer token, and introspection options.
     - name: bearer_token_param_type
       required: false
       default:
@@ -356,7 +355,7 @@ params:
       datatype: boolean
       description: Specifies whether to introspect the JWT access tokens (can be used to check for revocations).
     - group: Client Credentials Grant
-      description: Parameters for where to look for the client credentials.
+      description: Parameters specifying the location of client credentials.
     - name: client_credentials_param_type
       required: false
       default:
@@ -463,7 +462,7 @@ params:
       default:
         - sub
       datatype: array of string elements
-      description: 'The claim used to derive a virtual credential (e.g. to be consumed by the rate-limiting plugin), in case the Consumer mapping is not used.'
+      description: 'The claim used to derive virtual credentials (e.g. to be consumed by the rate-limiting plugin), in case the consumer mapping is not used.'
     - group: Issuer Verification
     - name: issuers_allowed
       minimum_version: "2.2.x"
@@ -1843,7 +1842,7 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
    <br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
    <br>
-3. Create a verified user with name: `john` and the non-temporary password: `doe` that can be used with the password grant:
+3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
 
@@ -1961,7 +1960,7 @@ for a better readability. [httpbin.org](https://httpbin.org/) is used as an upst
 Using Admin API is convenient when testing the plugin, but similar configs can
 be done in declarative format as well.
 
-When this plugin is configured with multiple grants / flows there is a hard-coded search
+When this plugin is configured with multiple grants/flows there is a hard-coded search
 order for the credentials:
 
 1. [Session Authentication](#session-authentication)
@@ -1974,13 +1973,13 @@ order for the credentials:
 8. [Client Credentials Grant](#client-credentials-grant)
 9. [Authorization Code Flow](#authorization-code-flow)
 
-Once some credentials are found, the plugin will stop searching further. Multiple grants may
-share the same credentials, i.e. both the password and client credentials grants can use 
+Once credentials are found, the plugin will stop searching further. Multiple grants may
+share the same credentials. For example, both the password and client credentials grants can use 
 basic access authentication through the `Authorization` header.
 
 {:.warning}
 > The choices made in the examples below are solely aimed at simplicity.
-Because httpbin.org is used as an upstream service, it is highly recommend that you do
+Because `httpbin.org` is used as an upstream service, it is highly recommended that you do
 not run these usage examples with a production identity provider as there is a great chance
 of leaking information. Also the examples below use the plain HTTP protocol that you should
 never use in production. 
@@ -2063,7 +2062,7 @@ described in [the diagram](#authorization-code-flow) above.
 
 Password grant is a legacy authentication grant. This is a less secure way of
 authenticating end users than the authorization code flow, because, for example,
-the passwords are shared with third parties. The grant is rather simple:
+the passwords are shared with third parties. The image below illustrates the grant:
 
 <img src="/assets/images/docs/openid-connect/password-grant.svg">
 
@@ -2126,7 +2125,7 @@ HTTP/1.1 200 OK
 
 ### Client Credentials Grant
 
-Client credentials grant is very similar to [the password grant](#password-grant).
+The client credentials grant is very similar to [the password grant](#password-grant).
 The most important difference in the Kong OpenID Connect plugin is that the plugin itself
 does not try to authenticate. It just forwards the credentials passed by the client
 to the identity server's token endpoint. The client credentials grant is visualized
@@ -3341,8 +3340,7 @@ HTTP/1.1 401 Unauthorized
 
 ## Debugging
 
-The OpenID Connect plugin is complex, and it integrates with a third party
-identity provider: this can present some challenges while debugging it. If you have
+The OpenID Connect plugin is complex, integrating with third-party identity providers can present challenges. If you have
 issues with the plugin or integration, try the following:
 
 1. Set Kong [log level](/gateway/latest/reference/configuration/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
