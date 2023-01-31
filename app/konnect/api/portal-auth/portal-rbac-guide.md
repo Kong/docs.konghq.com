@@ -5,7 +5,12 @@ content-type: tutorial
 
 ## Overview
 
-This guide walks you through the steps to enable RBAC in the {{site.konnect_short_name}} Portal.
+This guide walks you through the steps to enable RBAC in the {{site.konnect_short_name}} Portal. You can use this API to assign `API Viewer`and `API Consumer` developers roles to manage the access to the services published to the portal. 
+* `API Viewer` allows developers to read the documentation associated with services published to the portal
+* `API Consumer` allows developer to register the applications to consume the services published to the portal
+
+You can create a team, assign the roles to the team and add the developers to the team using this API. Developers within the team will be granted the role assigned. 
+
 
 
 ## Enabling RBAC in portal
@@ -65,7 +70,7 @@ curl --request GET \
 
 ### Assigning a Role to a Team
 
-To assign a role to a team, you must make a POST request to the team roles endpoint. The following example shows how to assign the developer role to the team created in the previous section.
+To assign a role to a team, you must make a POST request to the team roles endpoint. The following example shows how to assign the developer role to the team created in the previous section. You can find the service package ID in Serivce Hub.  
 
 ```bash
 curl --request POST \
@@ -92,7 +97,7 @@ curl --request DELETE \
 
 ## List Developers 
 
-You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The followig example shows how to make the request. 
+You can make a GET request to the developers endpoint to retrieve all the information about individual developers who have registered to the Dev Portal. The followig example shows how to make the request. This will allow you to receive the developer ID in the response body, which you will need this information to add the developer to the team. 
 
 ```bash
 curl --request GET \
