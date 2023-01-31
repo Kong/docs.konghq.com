@@ -10,10 +10,10 @@ Built on top of [Kuma 2.1.0](https://github.com/kumahq/kuma/releases/tag/2.1.0)
 
 ### Changes
 
-- Add MeshOPA policy. This policy is compliant with new `targetRef` standard. This policy will replace OPA Policy.
+- Added the MeshOPA policy. This policy is compliant with new `targetRef` standard. This policy will replace OPA Policy.
 - RBAC now supports `to` and `from` selectors in `targetRef` based policies
-- Add possibility to specify list of users that have admin rights by default
-- Limited number of OPA policies you can configure to 1, because of [OPA limitations](https://github.com/open-policy-agent/opa/issues/5595)
+- Added the ability to specify list of users that have admin rights by default.
+- Limited the number of OPA policies you can configure to one because of [OPA limitations](https://github.com/open-policy-agent/opa/issues/5595).
 
 ## 2.0.2
 > Released on **2023/01/13**
