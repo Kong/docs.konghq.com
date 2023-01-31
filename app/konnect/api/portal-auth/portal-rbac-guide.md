@@ -99,7 +99,13 @@ curl --request GET \
 ```
 
 To add a developer to a team, you must make a POST request to the team members endpoint. The following example shows how to add a developer to the team created in the previous section.
-@@ -103,3 +113,9 @@ curl --request POST \
+
+```bash
+curl --request POST \
+  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers \
+  --header 'Authorization: Bearer <personal-access-token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
   "id": "<developer-id>"
 }'
 ```
