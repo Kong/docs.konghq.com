@@ -23,7 +23,7 @@ In this case, the client is trying to connect to the server using a version of t
 
 You can check the TLS version by running the `pg_config --configure` command. 
 
-Kong recommends TLSv1.2 or higher. Lower versions are deprecated and considered unsecure.
+Kong recommends TLSv1.2 or higher. Lower versions are deprecated and are not considered secure.
 
 ### Could not load server certificate file
 
