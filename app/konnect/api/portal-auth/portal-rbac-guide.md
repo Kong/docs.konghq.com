@@ -1,5 +1,5 @@
 ---
-title: Portal Auth RBAC Setup
+title: Portal RBAC Setup
 content-type: tutorial
 ---
 
