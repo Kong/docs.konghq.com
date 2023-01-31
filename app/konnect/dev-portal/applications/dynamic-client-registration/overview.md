@@ -20,7 +20,7 @@ These methods include:
 If you have checked `Bearer Access Token`, then you can request a token from the IdP's `/token` endpoint and use the returned token as a Bearer Token:
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/dcr-bearer-token.png" />
+  <img src="/assets/images/docs/konnect/dcr-bearer-tokens.png" />
 </p>
 
 Token endpoints for IdPs are:
