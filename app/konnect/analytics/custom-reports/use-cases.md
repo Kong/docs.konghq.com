@@ -6,14 +6,7 @@ badge: plus
 
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
 
-This narrative driven tutorial guides you through the process of creating custom reports for key API metrics using {{site.konnect_saas}} custom reports. This tutorial covers building reports for the following use cases:
-
-* Total number of requests across an API in the current month.
-* Daily API usage for an API over the last 30 days. 
-* Total API usage by application for all APIs in the current month. 
-* Capturing requests per minute for an API over the last 30 days. 
-
-## Narrative?? Situation? 
+This tutorial guides you through the process of creating custom reports for key API metrics using {{site.konnect_saas}} custom reports. 
 
 You have just joined an organization as an API product manager. Your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following KPIs because they would give a brief but wholistic understanding of the API: 
 
@@ -22,30 +15,12 @@ You have just joined an organization as an API product manager. Your first task 
 * **Average throughput:** Throughput is the measurement of the number of requests an API can handle per second. 
 * **Latency:** latency is the measurement of the time it takes for the API to respond to a request. 
 
-These KPIs can help you define the type of reports you need to show the stakeholders in your organization:
+## Build reports 
 
-* Total number of requests across APIs 
-* Daily API usage 
-* Total API usage, by application
-* Requests per minute for a specific API 
+Let's build some custom reports by navigating to the custom report dasboard and selecting **Analytics**, then **reports**.
+### Total number of requests across APIs over the last 30 days
 
-With {{site.konnect_saas}}, you can create these reports across any number of time frames.
-
-some sort of intro sentence... to this section after 
-## Build custom reports 
-Maybe instructions about how it works but probably not needed? 
-
-I like the idea of listing the potential categories here and then introducing them like a recipe in each section: 
-
-* Name: API Usage (current month)
-* Date/Time: Current Month
-* Entity Selection: All Entities
-
-Then show off the corresponding chart, and provide an outro paragraph about the data and what it means. 
-
-## Total number of requests across APIs over the last 30 days
-
-To build a custom report, navigate to the custom reports dashboard by selecting **Analytics**, then **reports**. To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
+To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
 
 * **Name**: API usage (last 30 days)
 * **Horizontal Bar Chart**
@@ -68,7 +43,7 @@ The data can be used to support other types of exploratory questions about your 
 * Are there spikes in requests across months? 
 * Are there any errors or issues that might be impacting the number of requests our API is receiving? 
 
-## Daily API usage for an API over the last 30 days
+### Daily API usage for an API over the last 30 days
 
 From the previous report, you determine that the Accounts API is receiving the most traffic. 
 You don't know whether this is a cause for concern or not, so you decide to take a closer look.
@@ -95,7 +70,7 @@ This report can provide your stakeholders with the answers to questions like:
 * If there are anomalies, do they repeat? Are there any patterns in the data?
 * If there's an issue with API traffic, has it been resolved or is it ongoing?
 
-### Request per minute for the Account API over the last 30 days
+#### Request per minute for the Account API over the last 30 days
 
 You can dive deeper into the Account API and build a report that displays the requests per minute for the Account API over the last 30 days. With this, you can develop a complete picture of the Accounts API, both on a per minute basis, and on a daily basis.
 
@@ -106,7 +81,7 @@ You can dive deeper into the Account API and build a report that displays the re
 * **Metric**: Request count
 * **Group by**: Service
 
-## Daily API usage by application over the last 30 days
+### Daily API usage by application over the last 30 days
 
 At this point you have two custom reports: 
 
@@ -128,7 +103,7 @@ This report can be used to highlight which applications users prefer, where to d
 
 
 
-## Latency for an API over the last 30 days
+### Latency for an API over the last 30 days
 
 This use case demonstrates how you can use custom reports to track the latency for an API, the Payment API in this case, over the last 30 days.
 
@@ -159,4 +134,4 @@ This report can provide your stakeholders with the answers to questions like:
 
 
 
-### Conclusion 
+## Conclusion 
