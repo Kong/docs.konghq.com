@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot TLS
+title: Troubleshoot Postgres TLS
 content_type: reference
 ---
 
@@ -90,7 +90,7 @@ This error occurs when the PostgreSQL server requires a client certificate for a
 
 ## Troubleshooting TLS on {{site.base_gateway}}
 
-### Failed to retrieve PostgreSQL version 
+### Protocol versions are not a match 
 
 If you receive either of the following error messages: 
 
@@ -131,10 +131,10 @@ Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: FATA
 ```
 {{site.base_gateway}} requires a client certificate for authentication, but the client was unable to provide a valid certificate. 
 
-This error occurs when the {{site.base_gateway}} server requires a client certificate for authentication, but the server is unable to provide a valid certificate. For this type of error, check if `pg_ssl_cert` and `pg_ssl_cert_key` are correctly set in `kong.conf`. 
+This error occurs when the PostgreSQL server requires a client certificate for authentication, but the {{site.base_gateway}} is unable to provide a valid certificate. For this type of error, check if `pg_ssl_cert` and `pg_ssl_cert_key` are correctly set in `kong.conf`. 
 
 
-### Failed to retrieve PostgreSQL version
+### tlsv1 alert unknown ca
 
 ```sh
 Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: tlsv1 alert unknown ca
@@ -142,5 +142,8 @@ Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: tlsv
 The PostgreSQL server failed to verify the client certificate. Use a client certificate which is trusted by the CA set in `ssl_ca_file` within `postgres.conf`. 
 
 ### Certificate authentication failed for user
+```sh
+Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: FATAL: certificate authentication failed for user "kong"```
+
 
 The common name of the client certificate doesn't match the username set in the database. Add a username mapping in `pg_ident.conf` as described in the [PostgreSQL configuration instructions](/gateway/latest/production/networking/configure-tls/).
