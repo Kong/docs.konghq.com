@@ -153,12 +153,12 @@ items:
             url: /production/networking/firewall
           - text: CP/DP Communication through a Forward Proxy
             url: /production/networking/cp-dp-proxy
-          - text: Postgres TLS
+          - text: PostgreSQL TLS
             items: 
-            - text: Configuration
-              url: /production/networking/configure-tls
-            - text: Troubleshooting
-              url: /production/networking/troubleshoot-tls
+            - text: Configure PostgreSQL TLS
+              url: /production/networking/configure-postgres-tls
+            - text: Troubleshooting PostgreSQL TLS
+              url: /production/networking/troubleshoot-postgres-tls
       - text: Kong Configuration File
         url: /production/kong-conf
       - text: Environment Variables

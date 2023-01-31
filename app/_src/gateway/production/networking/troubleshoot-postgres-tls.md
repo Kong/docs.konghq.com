@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Postgres TLS
+title: Troubleshoot PostgreSQL TLS
 content_type: reference
 ---
 

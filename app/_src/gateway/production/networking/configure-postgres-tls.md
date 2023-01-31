@@ -1,5 +1,5 @@
 ---
-title: Configuring Postgres TLS
+title: Configuring PostgreSQL TLS
 content_type: tutorial
 ---
 
