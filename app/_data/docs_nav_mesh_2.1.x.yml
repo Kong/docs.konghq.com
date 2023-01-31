@@ -135,6 +135,9 @@ items:
       - text: IPv6 support
         url: /networking/ipv6/
         src: /.repos/kuma/app/_src/networking/ipv6/
+      - text: Non-mesh traffic
+        url: /networking/non-mesh-traffic/
+        src: /.repos/kuma/app/_src/networking/non-mesh-traffic/
   - title: Security
     icon: /assets/images/icons/konnect/icn-organizations-nav.svg
     items:
@@ -191,9 +194,9 @@ items:
       - text: How Kong Mesh chooses the right policy to apply
         url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply/
         src: /.repos/kuma/app/_src/policies/how-kuma-chooses-the-right-policy-to-apply/
-      # - text: Policy matching
-        # url: /policies/matching/
-        # src: /.repos/kuma/app/_src/policies/matching/
+      - text: Understanding TargetRef policies
+        url: /policies/targetref
+        src: /.repos/kuma/app/_src/policies/targetref/
       - text: Protocol support in Kong Mesh
         url: /policies/protocol-support-in-kong-mesh/
         src: /.repos/kuma/app/_src/policies/protocol-support-in-kuma/
@@ -257,12 +260,36 @@ items:
       - text: Service Health Probes
         url: /policies/service-health-probes/
         src: /.repos/kuma/app/_src/policies/service-health-probes/
-      - text: MeshTrace (Beta)
-        url: /policies/meshtrace/
-        src: /.repos/kuma/app/_src/policies/meshtrace/
       - text: MeshAccessLog (Beta)
         url: /policies/meshaccesslog/
         src: /.repos/kuma/app/_src/policies/meshaccesslog/
+      - text: MeshCircuitBreaker (Beta)
+        url: /policies/meshcircuitbreaker/
+        src: /.repos/kuma/app/_src/policies/meshcircuitbreaker/
+      - text: MeshFaultInjection (Beta)
+        url: /policies/meshfaultinjection/
+        src: /.repos/kuma/app/_src/policies/meshfaultinjection/
+      - text: MeshHealthCheck (Beta)
+        url: /policies/meshhealthcheck/
+        src: /.repos/kuma/app/_src/policies/meshhealthcheck/
+      - text: MeshHTTPRoute (Beta)
+        url: /policies/meshhttproute/
+        src: /.repos/kuma/app/_src/policies/meshhttproute/
+      - text: MeshProxyPatch (Beta)
+        url: /policies/meshproxypatch/
+        src: /.repos/kuma/app/_src/policies/meshproxypatch/
+      - text: MeshRateLimit (Beta)
+        url: /policies/meshratelimit/
+        src: /.repos/kuma/app/_src/policies/meshratelimit/
+      - text: MeshRetry (Beta)
+        url: /policies/meshretry/
+        src: /.repos/kuma/app/_src/policies/meshretry/
+      - text: MeshTimeout (Beta)
+        url: /policies/meshtimeout/
+        src: /.repos/kuma/app/_src/policies/meshtimeout/
+      - text: MeshTrace (Beta)
+        url: /policies/meshtrace/
+        src: /.repos/kuma/app/_src/policies/meshtrace/
       - text: MeshTrafficPermission (Beta)
         url: /policies/meshtrafficpermission/
         src: /.repos/kuma/app/_src/policies/meshtrafficpermission/
