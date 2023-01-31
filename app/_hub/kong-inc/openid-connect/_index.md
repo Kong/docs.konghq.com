@@ -3,7 +3,7 @@ name: OpenID Connect
 publisher: Kong Inc.
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
-  OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
+  OpenID Connect ([1.0][connect]) plugin allows for integration with a third party
   identity provider (IdP) in a standardized way. This plugin can be used to implement
   Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
   Connect relying party (RP) between the client, and the upstream service.
@@ -68,7 +68,7 @@ description: |
   [paypal]: https://developer.paypal.com/docs/log-in-with-paypal/integrate/
   [pingfederate]: https://documentation.pingidentity.com/pingfederate/
   [salesforce]: https://help.salesforce.com/articleView?id=sf.sso_provider_openid_connect.htm&type=5
-  [wso2]: https://is.docs.wso2.com/en/latest/learn/openid-connect/
+  [wso2]: https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/
   [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
 
   Once applied, any user with a valid credential can access the Service.
@@ -78,24 +78,23 @@ description: |
 
   ## Important Configuration Parameters
 
-  This plugin contains many configuration parameters that might seem overwhelming
-  at the start. Here is a list of parameters that you should focus on first:
+  This plugin includes many configuration parameters that allow finely grained customization.
+  The following steps will help you get started setting up the plugin:
 
-  1. The first parameter you should configure is: `config.issuer`.
+  1. Configure: `config.issuer`.
 
      This parameter tells the plugin where to find discovery information, and it is
-     the only required parameter. You should specify the `realm` or `iss` for this
+     the only required parameter. You should set the value `realm` or `iss` on this
      parameter if you don't have a discovery endpoint.
 
      {:.note}
       > **Note**: This does not have
      to match the URL of the `iss` claim in the access tokens being validated. To set
      URLs supported in the `iss` claim, use `config.issuers_allowed`.
-  2. Next, you should decide what authentication grants you want to use with this
-     plugin, so configure: `config.auth_methods`.
+  2. Decide what authentication grants to use with this plugin and configure
+     the `config.auth_methods` field accordingly.
 
-     That parameter should contain only the grants that you want to
-     use; otherwise, you inadvertently widen the attack surface.
+     In order to restrict the scope of potential attacks, the parameter should only contain the grants that you want to use. 
 
   3. In many cases, you also need to specify `config.client_id`, and if your identity provider
      requires authentication, such as on a token endpoint, you will need to specify the client
@@ -105,12 +104,13 @@ description: |
      the audience with `config.audience_required` to contain only your `config.client_id`.
      You may also need to adjust `config.audience_claim` in case your identity provider
      uses a non-standard claim (other than `aud` as specified in JWT standard). This is
-     because, for example Google, shares the public keys with different clients.
+     important because some identity providers, such as Google, share public keys
+     with different clients.
 
-  5. If you are using Kong in DB-less mode with the declarative configuration, you
-     should set up `config.session_secret` if you are also using the session cookie
-     authentication. Otherwise, each of your Nginx workers across all your
-     nodes will encrypt and sign the cookies with their own secrets.
+  5. If you are using Kong in DB-less mode with a declarative configuration and 
+     session cookie authentication, you should set `config.session_secret`.
+     Leaving this parameter unset will result in every Nginx worker across your
+     nodes encrypting and signing the cookies with their own secrets.
 
   In summary, start with the following parameters:
 
@@ -118,7 +118,7 @@ description: |
   2. `config.auth_methods`
   3. `config.client_id` (and in many cases the client authentication credentials)
   4. `config.audience_required` (if using a public identity provider)
-  5. `config.session_secret` (if using the Kong in DB-less mode)
+  5. `config.session_secret` (if using Kong in DB-less mode)
 enterprise: true
 plus: true
 type: plugin
@@ -177,7 +177,7 @@ params:
       default: null
       datatype: string
       description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request fails with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+        An optional string (consumer UUID or username) value that functions as an “anonymous” consumer if authentication fails. If empty (default null), requests that fail authentication will return a `4xx` HTTP status code. This value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
       minimum_version: "3.1.x"  
     - name: anonymous
       required: false
@@ -220,7 +220,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        Specify whether to use the user info endpoint to get addition claims for consumer mapping,
+        Specify whether to use the user info endpoint to get additional claims for consumer mapping,
         credential mapping, authenticated groups, and upstream and downstream headers.
         > This requires an extra round-trip and can add latency, but the plugin can also cache
         > user info requests (see: `config.cache_user_info`).
@@ -232,7 +232,7 @@ params:
       value_in_examples: <discovery-uri>
       datatype: url
       description: |
-        The discovery endpoint (or just the issuer identifier).
+        The discovery endpoint (or the issuer identifier).
         > When using Kong with the database, the discovery information and the JWKS
         > are cached to the Kong configuration database.
     - name: rediscovery_lifetime
@@ -330,7 +330,7 @@ params:
         - `PS512`: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
         - `EdDSA`: EdDSA with Ed25519
     - group: JWT Access Token Authentication
-      description: Parameters for setting where to search for the bearer token and whether to introspect them.
+      description: Parameters for specifying the location of the bearer token, and introspection options.
     - name: bearer_token_param_type
       required: false
       default:
@@ -339,7 +339,7 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the bearer token:
+        Where to look for the bearer token:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
@@ -355,7 +355,7 @@ params:
       datatype: boolean
       description: Specifies whether to introspect the JWT access tokens (can be used to check for revocations).
     - group: Client Credentials Grant
-      description: Parameters for where to search for the client credentials.
+      description: Parameters specifying the location of client credentials.
     - name: client_credentials_param_type
       required: false
       default:
@@ -364,12 +364,12 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the client credentials:
+        Where to look for the client credentials:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search from the HTTP request body
     - group: Password Grant
-      description: Parameters for where to search for the username and password.
+      description: Parameters for where to look for the username and password.
     - name: password_param_type
       required: false
       default:
@@ -378,12 +378,12 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the username and password:
+        Where to look for the username and password:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
     - group: Refresh Token Grant
-      description: Parameters for where to search for the refresh token (rarely used as the refresh tokens are in many cases bound to the client).
+      description: Parameters for where to look for the refresh token (rarely used as the refresh tokens are in many cases bound to the client).
     - name: refresh_token_param_type
       required: false
       default:
@@ -392,7 +392,7 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the refresh token:
+        Where to look for the refresh token:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
@@ -402,7 +402,7 @@ params:
       datatype: string
       description: The name of the parameter used to pass the refresh token.
     - group: ID Token
-      description: Parameters for where to search for the id token (rarely sent as part of the request).
+      description: Parameters for where to look for the id token (rarely sent as part of the request).
     - name: id_token_param_type
       required: false
       default:
@@ -411,7 +411,7 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the id token:
+        Where to look for the id token:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
@@ -462,7 +462,7 @@ params:
       default:
         - sub
       datatype: array of string elements
-      description: 'The claim used to derive a virtual credential (for instance, for the rate-limiting plugin), in case the Consumer mapping is not used.'
+      description: 'The claim used to derive virtual credentials (e.g. to be consumed by the rate-limiting plugin), in case the consumer mapping is not used.'
     - group: Issuer Verification
     - name: issuers_allowed
       minimum_version: "2.2.x"
@@ -875,7 +875,7 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: Destroy the possible session for the forbidden requests.
+      description: Destroy any active session for the forbidden requests.
     - group: Errors
       description: Parameters for how to handle unexpected errors.
     - name: unexpected_redirect_uri
@@ -1816,7 +1816,7 @@ HTTP 204 No Content
 
 ## Preparations
 
-The OpenID Connect plugin relies in most cases on a 3rd party identity provider.
+The OpenID Connect plugin relies in most cases on a third party identity provider.
 In this section, we explain configuration of Keycloak and Kong.
 
 All the `*.test` domains in the following examples point to the `localhost` (`127.0.0.1` and/or `::1`).
@@ -1827,22 +1827,22 @@ We use [Keycloak][keycloak] as the identity provider in the following examples,
 but the steps will be similar in other standard identity providers. If you encounter
 difficulties during this phase, please refer to the [Keycloak documentation](https://www.keycloak.org/documentation).
 
-1. Create a confidential client `kong` with `private_key_jwt` authentication and point the
+1. Create a confidential client `kong` with `private_key_jwt` authentication and configure
    Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-kong-settings.png">
    <br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-kong-auth.png">
    <br>
-2. Create another confidential client `service` with `client_secret_basic` authentication,
-   and the secret of `cf4c655a-0622-4ce6-a0de-d3353ef0b714` (Keycloak auto-generates one),
-   and enable the client credentials grant for the client:
+2. Create another confidential client `service` with `client_secret_basic` authentication.
+   For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
+   Enable the client credentials grant for the client:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-service-settings.png">
    <br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
    <br>
-3. Create verified user `john` with the non-temporary password `doe` that we can use with the password grant:
+3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
 
@@ -1863,7 +1863,7 @@ to
 ```
 
 The Keycloak default `https` port conflicts with the default Kong TLS proxy port,
-and that can be a problem if both are started on a single host.
+and that can be a problem if both are started on the same host.
 
 [keycloak]: http://www.keycloak.org/
 
@@ -1947,7 +1947,8 @@ At this point we have:
 2. Routed traffic to the service
 3. Enabled OpenID Connect plugin on the service
 
-Follow up on next sections to enable OpenID Connect plugin for specific grants or flows.
+The following sections will guide you through the process of enabling the OpenID Connect
+plugin for specific grants or flows.
 
 ## Authentication
 
@@ -1959,7 +1960,7 @@ for a better readability. [httpbin.org](https://httpbin.org/) is used as an upst
 Using Admin API is convenient when testing the plugin, but similar configs can
 be done in declarative format as well.
 
-When plugin is configured with multiple grants / flows there is a hard-coded search
+When this plugin is configured with multiple grants/flows there is a hard-coded search
 order for the credentials:
 
 1. [Session Authentication](#session-authentication)
@@ -1972,20 +1973,21 @@ order for the credentials:
 8. [Client Credentials Grant](#client-credentials-grant)
 9. [Authorization Code Flow](#authorization-code-flow)
 
-In case plugin finds credentials, it will stop searching other credentials. Some grants may
-use the same credentials, in other words, both password and client credentials grants can use credentials
-from basic authentication header.
+Once credentials are found, the plugin will stop searching further. Multiple grants may
+share the same credentials. For example, both the password and client credentials grants can use 
+basic access authentication through the `Authorization` header.
 
 {:.warning}
-> Because the httpbin.org is used as an upstream service, it is highly recommend that you do
-not run these usage examples with a production identity provider as there is great a chance
+> The choices made in the examples below are solely aimed at simplicity.
+Because `httpbin.org` is used as an upstream service, it is highly recommended that you do
+not run these usage examples with a production identity provider as there is a great chance
 of leaking information. Also the examples below use the plain HTTP protocol that you should
-never use in production. The choices here are for simplicity.
+never use in production. 
 
 ### Authorization Code Flow
 
 The authorization code flow is the three-legged OAuth/OpenID Connect flow.
-The sequence diagram below, describes the participants, and their interactions
+The sequence diagram below describes the participants and their interactions
 for this usage scenario, including the use of session cookies:
 
 <img src="/assets/images/docs/openid-connect/authorization-code-flow.svg">
@@ -2058,9 +2060,9 @@ described in [the diagram](#authorization-code-flow) above.
 
 ### Password Grant
 
-Password grant is a legacy authentication grant. The password grant is a less
-secure way to authenticate the end users than the authorization code flow. For example,
-the passwords get shared with 3rd parties. The grant is rather simple though:
+Password grant is a legacy authentication grant. This is a less secure way of
+authenticating end users than the authorization code flow, because, for example,
+the passwords are shared with third parties. The image below illustrates the grant:
 
 <img src="/assets/images/docs/openid-connect/password-grant.svg">
 
@@ -2123,8 +2125,8 @@ HTTP/1.1 200 OK
 
 ### Client Credentials Grant
 
-Client credentials grant is almost the same as [the password grant](#password-grant),
-but the biggest difference with the Kong OpenID Connect plugin is that the plugin itself
+The client credentials grant is very similar to [the password grant](#password-grant).
+The most important difference in the Kong OpenID Connect plugin is that the plugin itself
 does not try to authenticate. It just forwards the credentials passed by the client
 to the identity server's token endpoint. The client credentials grant is visualized
 below:
@@ -2519,7 +2521,7 @@ HTTP/1.1 200 OK
 ### Kong OAuth Token Authentication
 
 The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 Plugin](/hub/kong-inc/oauth2/).
-This is very similar to 3rd party identity provider issued [JWT access token authentication](#jwt-access-token-authentication)
+This is very similar to third party identity provider issued [JWT access token authentication](#jwt-access-token-authentication)
 or [introspection authentication](#introspection-authentication):
 
 <img src="/assets/images/docs/openid-connect/kong-oauth-authentication.svg">
@@ -2748,16 +2750,15 @@ The OpenID Connect plugin has several features to do coarse grained authorizatio
 
 ### Claims Based Authorization
 
-With claims verification, you have a couple of configuration options that all work the same and that
-can be used for the authorization:
+The following options can be configured to manage claims verification during authorization:
 
 1. `config.scopes_claim` and `config.scopes_required`
 2. `config.audience_claim` and `config.audience_required`
 3. `config.groups_claim` and `config.groups_required`
 4. `config.roles_claim` and `config.roles_required`
 
-The first configuration option, for example `config.scopes_claim`, points to a source, from which the value is
-retrieved and checked against the value of the second configuration option, in this case `config.scopes_required`.
+For example, the first configuration option, `config.scopes_claim`, points to a source, from which the value is
+retrieved and checked against the value of the second configuration option: `config.scopes_required`.
 
 Let's take a look at a JWT access token:
 
@@ -2912,8 +2913,8 @@ the JSON when looking up a claim, take for example this imaginary payload:
 In this case you would probably want to use `config.groups_claim` to point to `groups` claim, but that claim
 is not a top-level claim, so you need to traverse there:
 
-1. Find the `user` claim and under it.
-2. Find the `groups` claim, and read the value:
+1. Find the `user` claim.
+2. Inside the `user` claim, find the `groups` claim, and read its value:
 
 ```json
 {
@@ -3339,8 +3340,7 @@ HTTP/1.1 401 Unauthorized
 
 ## Debugging
 
-The OpenID Connect plugin is pretty complex, and it has to integrate with a 3rd party
-identity provider. This makes it slightly more difficult to debug. If you have
+The OpenID Connect plugin is complex, integrating with third-party identity providers can present challenges. If you have
 issues with the plugin or integration, try the following:
 
 1. Set Kong [log level](/gateway/latest/reference/configuration/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
