@@ -142,8 +142,9 @@ Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: tlsv
 The PostgreSQL server failed to verify the client certificate. Use a client certificate which is trusted by the CA set in `ssl_ca_file` within `postgres.conf`. 
 
 ### Certificate authentication failed for user
-```sh
-Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: FATAL: certificate authentication failed for user "kong"```
 
+```sh
+Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: FATAL: certificate authentication failed for user "kong"
+```
 
 The common name of the client certificate doesn't match the username set in the database. Add a username mapping in `pg_ident.conf` as described in the [PostgreSQL configuration instructions](/gateway/latest/production/networking/configure-tls/).
