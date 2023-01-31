@@ -45,12 +45,12 @@ The following table outlines various upgrade path scenarios to 3.1.x depending o
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.8.x.x | Traditional | Only if you upgrade to 3.1.1.2 | [Upgrade to 3.1.1.2](#upgrade-from-28xx-to-3112). |
-| 2.8.x.x | Hybrid | Only if you upgrade to 3.1.1.2 | [Upgrade to 3.1.1.2](#upgrade-from-28xx-to-3112). |
-| 2.8.x.x | DB less | Only if you upgrade to 3.1.1.2 | [Upgrade to 3.1.1.2](#upgrade-from-28xx-to-3112). |
+| 2.x–2.7.2.0 | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x–2.7.2.0 | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x–2.7.2.0 | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.8.x.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3112). |
+| 2.8.x.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3112). |
+| 2.8.x.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3112). |
 | 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
 | 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
 | 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
@@ -211,37 +211,37 @@ Perform a rolling upgrade of your cluster:
 8. When your traffic is fully migrated to the 3.1.x cluster,
    decommission your old 3.0.x data planes.
 
-## Upgrade from 2.8.x.x to 3.1.1.2 
+## Upgrade from 2.8.x.x to 3.1.1.3
 
 ### Traditional mode
 
 
 1. Clone your database.
-2. Download 3.1.1.2, and configure it to point to the cloned data store.
+2. Download 3.1.1.3, and configure it to point to the cloned data store.
    Run `kong migrations up` and `kong migrations finish`.
-3. Start the 3.1.1.2 cluster.
-4. Now both the old (2.8.x.x) and new (3.1.1.2)
-   clusters can now run simultaneously. Start provisioning 3.1.1.2 nodes.
+3. Start the 3.1.1.3 cluster.
+4. Now both the old (2.8.x.x) and new (3.1.1.3)
+   clusters can now run simultaneously. Start provisioning 3.1.1.3 nodes.
 3. Gradually divert traffic away from your old nodes, and into
-   your 3.1.1.2 cluster. Monitor your traffic to make sure everything
+   your 3.1.1.3 cluster. Monitor your traffic to make sure everything
    is going smoothly.
-4. When your traffic is fully migrated to the 3.1.1.2 cluster,
+4. When your traffic is fully migrated to the 3.1.1.3 cluster,
    decommission your old nodes.
 
 ### Hybrid mode
 
 Perform a rolling upgrade of your cluster:
 
-1. Download 3.1.1.2.
+1. Download 3.1.1.3.
 2. Decommission your existing 2.8.x.x control plane. Your existing 2.8.x.x data
    planes can continue to handle proxy traffic during this time, even with no 
    active control plane.
-4. Configure the new 3.1.1.2 control plane to point to the same data store as
+4. Configure the new 3.1.1.3 control plane to point to the same data store as
    your old control plane. Run `kong migrations up` and `kong migrations finish`.
-5. Start the new 3.1.1.2 control plane.
-6. Start new 3.1.1.2 data planes.
+5. Start the new 3.1.1.3 control plane.
+6. Start new 3.1.1.3 data planes.
 7. Gradually divert traffic away from your 2.8.x.x data planes, and into
-   the new 3.1.1.2 data planes. Monitor your traffic to make sure everything
+   the new 3.1.1.3 data planes. Monitor your traffic to make sure everything
    is going smoothly.
-8. When your traffic is fully migrated to the 3.1.1.2 cluster,
+8. When your traffic is fully migrated to the 3.1.1.3 cluster,
    decommission your old 2.8.x.x data planes.
