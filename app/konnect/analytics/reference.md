@@ -74,10 +74,10 @@ Last 12 hours| Data is aggregated in ten minute increments.
 Last 24 hours| Data is aggregated in ten minute increments.
 Last 7 days | Data is aggregated in one hour increments.
 Last 30 days | Data is aggregated in one hour increments.
-This week | Data is aggregated in one hour increments. Logs any traffic in the current caledar week. 
-This month | Data is aggregated in one hour increments. Logs any traffic in the current caledar month. 
-Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous caledar week.
-Previous month | Data is aggregated in one hour increments. Logs any traffic in the previous caledar month. 
+This week | Data is aggregated in one hour increments. Logs any traffic in the current calendar week. 
+This month | Data is aggregated in one hour increments. Logs any traffic in the current calendar month. 
+Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous calendar week.
+Previous month | Data is aggregated in one hour increments. Logs any traffic in the previous calendar month. 
 
 {:.important}
 > Free tier users can only select intervals up to 24 hours.
