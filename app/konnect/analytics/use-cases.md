@@ -5,8 +5,7 @@ badge: plus
 ---
 
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
-
-This tutorial guides you through determining which custom report to create based on KPIs and the process of creating those custom reports for key API metrics. 
+Let's go through some example situations where you could leverage custom reports.
 
 In this scenario, you just joined an organization as an API product manager. 
 Your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the organization's APIs. 
@@ -51,7 +50,7 @@ The data can be used to support other types of exploratory questions about your 
 * Are there spikes in requests across months? 
 * Are there any errors or issues that might be impacting the number of requests our API is receiving? 
 
-### Daily API usage for an API per minute over the last 30 days
+### Daily API usage for an API over the last 30 days
 
 From the previous report, you determine that the Accounts API is receiving the most traffic. 
 You don't know whether this is a cause for concern or not, so you decide to take a closer look.
@@ -86,15 +85,26 @@ Your configuration should now look like this, with the filter unchanged:
 
 [screenshot of finished report]
 
-Where a daily report can help stakeholders understand overall demand for the account API, the per minute report provides a more detailed picture. 
-By combining the two reports, you can provide a lot of insight into the usage and performance of your API. 
-
 These reports can provide your stakeholders with the answers to questions like:
 
 * What does average traffic over time look like for this service?
 * Are there any anomalies, such as spikes or drops in traffic?
 * If there are anomalies, do they repeat? Are there any patterns in the data?
 * If there's an issue with API traffic, has it been resolved or is it ongoing?
+
+#### Comparing daily vs per minute traffic
+
+Where a daily report can help stakeholders understand overall demand for the account API, the per minute report provides a more detailed picture. 
+By combining the two reports, you can provide a lot of insight into the usage and performance of your API. 
+
+For example, if the Accounts API is seeing a high number of requests per day and per minute, the organization may need to explore upgrading the API to handle the load. 
+Or, you may need to explore the current monetization policy to take advantage of the traffic.
+
+If the Accounts API is seeing a low amount traffic per day, but the per minute report shows normal traffic, you could be dealing with a variety of situations: 
+
+* Activity: The API is being used heavily during a specific part of the day. 
+* Security: Bots, or scripts, could be attempting to misuse your API. 
+* Stability: If the API is experiencing technical issues, such as slow response times or errors, could be resulting in a large number of retries that spike the requests per minute. 
 
 ### Daily API usage by application over the last 30 days
 
@@ -115,15 +125,6 @@ These two custom reports can work together to provide you with a lot of informat
 [screenshot of finished report]
 
 This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate usage data about your API to your stakeholders.
-
-If the accounts API is seeing a large number of requests per day and per minute, the organization may need to explore upgrading the API to handle the load. Or explore the current monetization policy to take advantage of the traffic.
-
-If the accounts API is seeing a low amount of per day traffic, but the per minute report shows traffic, you could be dealing with a variety of situations: 
-
-* Activity: The API is being used heavily during a specific part of the day. 
-* Security: Bots, or scripts, could be attempting to misuse your API. 
-* Stability: If the API is experiencing technical issues, such as slow response times or errors, could be resulting in a large number of retries that spike the requests per minute. 
-
 
 
 ### Latency for an API over the last 30 days

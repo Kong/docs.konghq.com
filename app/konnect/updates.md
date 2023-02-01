@@ -99,7 +99,7 @@ The group still retains its status as the default group, and can't be deleted.
 [Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
 
 **Latency reporting**
-: The Analytics dashboard now includes a [latency tab](/konnect/analytics/summary-dashboard/), which lets you track
+: The Analytics dashboard now includes a [latency tab](/konnect/analytics/), which lets you track
 request latency for the P50, P95, and P99 percentiles.
 P99 latency data also appears in runtime groups and on service overview pages in the Service Hub.
 
