@@ -157,19 +157,4 @@ This report can provide your stakeholders with the answers to questions like:
 
 ## Conclusion 
 
-You now have reports that you can use to track the KPIs identified earlier:
-
-* **Number of requests:** The following reports all display the request count for your APIs:
-    * "API usage (last 30 days)"
-    * "Daily Accounts API Usage (last 30 days)"
-    * "Account API - RPM (last 30 days)"
-    * "API Usage by Application (last 30 days)"
-* **Error response rate:** 
-    * The "API usage (last 30 days)" report displays if there are any errors or issues that might be impacting the number of requests the API is receiving.
-* **Average throughput:** The following reports all display the number of requests your APIs can handle per second:
-    * "API usage (last 30 days)"
-    * "Daily Accounts API Usage (last 30 days)"
-    * "Account API - RPM (last 30 days)"
-    * "API Usage by Application (last 30 days)"
-* **Latency:** 
-    * The "Payment API - Latency (last 30 days)" report displays how performant the Payment API is.  
+After completing these example scenarios, you should have a better understanding of how you can use a variety of metrics to collect analytics on KPIs with {{site.konnect_short_name}} custom reports. Additionally, you now know how to use information gathered from those reports, such as anomalies, to further drill down into what is causing the problem. 
