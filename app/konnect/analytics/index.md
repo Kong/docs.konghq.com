@@ -30,47 +30,10 @@ For greater insights into your service usage, access the dedicated {% konnect_ic
 From Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the [Analytics dashboard](/konnect/analytics/summary-dashboard) to track traffic, errors by error code, and latency across all services in your organization.
 * [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
-* [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
+* [Create a custom report](/konnect/analytics/use-cases/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
 > _**Figure 2:** Graph showing successful and failed requests over the past three hours._
-
-## Time intervals
-
-Interval | Description  
-------|----------|
-Last 15 minutes | Data is aggregated in ten second increments.
-Last hour| Data is aggregated in one minute increments.
-Last three hours | Data is aggregated in one minute increments.
-Last six hours | Data is aggregated in ten minute increments.
-Last 12 hours| Data is aggregated in ten minute increments.
-Last 24 hours| Data is aggregated in ten minute increments.
-Last seven days | Data is aggregated in one hour increments.
-Last 30 days | Data is aggregated in one hour increments.
-
-{:.important}
-> Free tier users can only select intervals up to 24 hours.
-
-## Terms
-
-**Request Count**
-: Displays a count of all proxy requests received. This includes requests that
-were rejected due to rate limiting, failed authentication, and so on.
-
-**Status Codes**
-: Displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx,
-  4xx, 5xx). The Status Codes view contains the counts of status code classes
-  graphed over time, as well as the ratio of code classes to total requests.
-
-**Time frame selector**
-: Controls the time frame of data visualized, which indirectly controls the
-granularity of the data. For example, the “5M” selection displays 5 minutes in
-1-second resolution data, while longer time frames display minute, hour, or
-days resolution data.
-
-**Traffic metrics**
-: Provide insight into which of your services and service versions are being
-used and how they are responding.
 
 ## Team permissions
 

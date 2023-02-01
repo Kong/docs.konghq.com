@@ -176,9 +176,9 @@
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
     - text: Use Cases
-      url: /analytics/custom-reports/use-cases
+      url: /analytics/use-cases
     - text: Reference
-      url: /analytics/custom-reports/reference
+      url: /analytics/reference
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 

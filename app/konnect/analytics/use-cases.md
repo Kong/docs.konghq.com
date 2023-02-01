@@ -64,6 +64,7 @@ Set the following options in the UI:
 * **Date/Time**: Last 30 days
 * **Metric**: Request count
 * **Group by**: Service
+* **Then by**: None
 
 Add a filter for the Account API. Click on **Add Filter**, then set the following options:
 
@@ -81,6 +82,7 @@ Your configuration should now look like this, with the filter unchanged:
 * **Date/Time**: Last 30 days
 * **Metric**: Requests Per Minute
 * **Group by**: Service
+* **Then by**: None
 
 [screenshot of finished report]
 
