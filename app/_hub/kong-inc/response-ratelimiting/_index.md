@@ -19,35 +19,9 @@ categories:
   - traffic-control
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: response-ratelimiting
   service_id: true
@@ -56,6 +30,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
