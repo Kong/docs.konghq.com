@@ -106,26 +106,28 @@ If the Accounts API is seeing a low amount traffic per day, but the per minute r
 * Security: Bots, or scripts, could be attempting to misuse your API. 
 * Stability: If the API is experiencing technical issues, such as slow response times or errors, could be resulting in a large number of retries that spike the requests per minute. 
 
-### Daily API usage by application over the last 30 days
+### Total API usage by {{site.konnect_saas}} application over the last 30 days
 
-At this point you have two custom reports: 
+You can track requests, you can do it per minute, per day, and you can even differentiate it across different APIs. However, because {{site.konnect_saas}} allows applications to consume services, you need to be able to answer what applications drive the most traffic to your APIs. Applications can be anything, public web applications, mobile applications, internal services that consume APIs.
 
-* Total number of requests across APIs. 
-* Daily API Usage for an API over the last 30 days, broken down per minute.
-
-These two custom reports can work together to provide you with a lot of information about your organizations product. These alone can help drive a lot internal change to your API. Let's dive deeper, if you want to learn about the types of third-party applications that your users use to connect to your API, set the following options in the UI: 
+To configure the {{site.konnect_saas}} to create a look back report of total traffic across different applications, set the following options in the UI: 
 
 * **Name**: API Usage by Application (last 30 days)
 * **Chart type**: Vertical bar chart
 * **Date/Time**: Last 30 days
-* **Metric**: Request count
 * **Group by**: Service
 * **Then by**: Application
 
+
 [screenshot of finished report]
 
-This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate usage data about your API to your stakeholders.
+This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate application-level usage data to your stakeholders. This data can help answer questions about how your APIs are being consumed. 
 
+Some example scenarios where this type of report would be useful are: 
+
+* Security: If you find that a particular application is generating more traffic than expected, you can assess its security to ensure that it wont be a potential risk for the organization. 
+* Monetization: If you have a monetization strategy, knowing which applications are actually consuming the data can help you allocate resources to make financial decisions. 
+* Innovation: With these reports you can identify API usage patterns and trends, which can help you allocate resources and make development decisions. 
 
 ### Latency for an API over the last 30 days
 
