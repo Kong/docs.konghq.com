@@ -112,7 +112,7 @@ The server and client versions are not in sync. Check the version that the Postg
 Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: the server does not support SSL connections
 ```
 
-This error occurs when SSL is not supported by PostgreSQL. Configure PostgreSQL according to [the configuration instructions](/gateway/{{page.kong_version}}/production/networking/configure-tls/).
+This error occurs when SSL is not supported by PostgreSQL. Configure PostgreSQL according to [the configuration instructions](/gateway/{{page.kong_version}}/production/networking/configure-postgres-tls/).
 
 
 
@@ -147,4 +147,4 @@ The PostgreSQL server failed to verify the client certificate. Use a client cert
 Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: FATAL: certificate authentication failed for user "kong"
 ```
 
-The common name of the client certificate doesn't match the username set in the database. Add a username mapping in `pg_ident.conf` as described in the [PostgreSQL configuration instructions](/gateway/latest/production/networking/configure-tls/).
+The common name of the client certificate doesn't match the username set in the database. Add a username mapping in `pg_ident.conf` as described in the [PostgreSQL configuration instructions](/gateway/latest/production/networking/configure-postgres-tls/).
