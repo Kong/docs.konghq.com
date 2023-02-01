@@ -198,7 +198,6 @@ params:
       description: |
         The TCP port that the plugin uses to connect to the server.
     - name: https
-      minimum_version: "3.2.x"
       required: false
       default: true
       datatype: boolean
