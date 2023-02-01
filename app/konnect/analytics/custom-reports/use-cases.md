@@ -101,27 +101,25 @@ These two custom reports can work together to provide you with a lot of informat
 
 This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate usage data about your API to your stakeholders.
 
-
-
 ### Latency for an API over the last 30 days
 
-This use case demonstrates how you can use custom reports to track the latency for an API, the Payment API in this case, over the last 30 days.
+At this point, you have multiple reports that display how your company's APIs are performing generally.
 
-1. In {{site.konnect_short_name}}, navigate to **Analytics**, then **Reports**.
-1. Click **New Report**.
-1. Configure the report with the following:
-    * **Name**: Payment API - Latency (last 30 days)
-    * **Date/Time**: Last 30 days
-    * **Chart type**: Line chart
-    * **Select a metric**: Response latency (p99)
-    * **Group by**: Service
-    * **Choose granularity**: Daily
-    * **Entity Selection**: Payment <!-- I don't see this anywhere in the UI? -->
-    * Filtering: 
-        * **Filter by**: Service
-        * **Operator**: In
-        * **Value**: Payment
-1. Click **Create**.
+Your company determines that it is critical that payments are processed quickly using the Payments API, so you decide to generate a report that will tell you how performant the Payment API is over the last 30 days. To build the report, set the following options in the UI:
+
+* **Name**: Payment API - Latency (last 30 days)
+* **Date/Time**: Last 30 days
+* **Chart type**: Line chart
+* **Select a metric**: Response latency (p99)
+* **Group by**: Service
+* **Choose granularity**: Daily
+* **Entity Selection**: Payment 
+
+Add a filter for the Payment API. Click on **Add Filter**, then set the following options:
+ 
+* **Filter by**: Service
+* **Operator**: In
+* **Value**: Payment
 
 [screenshot of finished report]
 
@@ -130,8 +128,22 @@ This report can provide your stakeholders with the answers to questions like:
 * How performant has my API been over the last 30 days?
 * Is my Payment API processing payments quickly enough?
 * Are there any performance outliers?
-* [struggling to come up with more examples]
-
-
 
 ## Conclusion 
+
+You now have reports that you can use to track the KPIs idetified earlier:
+
+* **Number of requests:** The following reports all display the request count for your APIs:
+    * "API usage (last 30 days)"
+    * "Daily Accounts API Usage (last 30 days)"
+    * "Account API - RPM (last 30 days)"
+    * "API Usage by Application (last 30 days)"
+* **Error response rate:** 
+    * The "API usage (last 30 days)" report displays if there are any errors or issues that might be impacting the number of requests the API is receiving.
+* **Average throughput:** The following reports all display the number of requests your APIs can handle per second:
+    * "API usage (last 30 days)"
+    * "Daily Accounts API Usage (last 30 days)"
+    * "Account API - RPM (last 30 days)"
+    * "API Usage by Application (last 30 days)"
+* **Latency:** 
+    * The "Payment API - Latency (last 30 days)" report displays how performant the Payment API is.  
