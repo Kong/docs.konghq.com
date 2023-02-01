@@ -159,4 +159,6 @@ This report can provide your stakeholders with the answers to questions like:
 
 ## Conclusion 
 
-After completing these example scenarios, you should have a better understanding of how you can use a variety of metrics to collect analytics on KPIs with {{site.konnect_short_name}} custom reports. Additionally, you now know how to use information gathered from those reports, such as anomalies, to further drill down into what is causing the problem. 
+After completing these example scenarios, you should have a better understanding of how you can use a variety of metrics to collect analytics on KPIs with {{site.konnect_short_name}} custom reports. 
+
+Additionally, you can use these reports to find and solve problems in resource allocation, optimization, and performance. You now know how to use the information gathered from those reports, such as anomalies, to further drill down into what is causing the problem. This information can then be presented to stakeholders to ensure your APIs are secure, performant, and stable. 
