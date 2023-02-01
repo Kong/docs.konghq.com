@@ -36,7 +36,8 @@ For greater insights into your service usage, access the dedicated {% konnect_ic
 
 From {% konnect_icon analytics %} Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
-* [Create a custom report](/konnect/analytics/use-cases/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
+* Create a [custom report](/konnect/analytics/use-cases/) for any number of services, service versions, routes, applications, or status codes.
+You can export any custom report as a CSV file.
 
 The summary dashboard provides metrics for services cataloged by Service Hub within a selected time interval for the following categories:
 

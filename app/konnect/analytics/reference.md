@@ -52,16 +52,32 @@ Where `DA58B` are the first five characters of its UUID.
 
 ## Time intervals
 
+All time interval presets are **relative**. 
+For custom reports, you can also choose a **custom** date range.
+
+* **Relative** time frames are dynamic and the report captures a snapshot of data
+relative to when a user views the report.
+* **Custom** time frames are static and the report captures a snapshot of data
+during the specified time frame. You can see the exact range below
+the time frame selector. For example:
+
+    ```
+    Jan 26, 2023 12:00 AM - Feb 01, 2023 12:00 AM (PST)
+    ```
+
 Interval | Description  
-------|----------|
+---------|-------------
 Last 15 minutes | Data is aggregated in ten second increments.
 Last hour| Data is aggregated in one minute increments.
-Last three hours | Data is aggregated in one minute increments.
-Last six hours | Data is aggregated in ten minute increments.
+Last 6 hours | Data is aggregated in ten minute increments.
 Last 12 hours| Data is aggregated in ten minute increments.
 Last 24 hours| Data is aggregated in ten minute increments.
-Last seven days | Data is aggregated in one hour increments.
+Last 7 days | Data is aggregated in one hour increments.
 Last 30 days | Data is aggregated in one hour increments.
+This week | Data is aggregated in one hour increments. Logs any traffic in the current caledar week. 
+This month | Data is aggregated in one hour increments. Logs any traffic in the current caledar month. 
+Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous caledar week.
+Previous month | Data is aggregated in one hour increments. Logs any traffic in the previous caledar month. 
 
 {:.important}
 > Free tier users can only select intervals up to 24 hours.

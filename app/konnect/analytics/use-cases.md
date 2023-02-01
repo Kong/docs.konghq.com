@@ -157,8 +157,29 @@ This report can provide your stakeholders with the answers to questions like:
 * Is my Payment API processing payments quickly enough?
 * Are there any performance outliers?
 
+## Share reports
+
+Now that you have your reports ready, you might want to share them with your stakeholders. 
+
+You can do this in a few different ways:
+
+* Grant your stakeholders the Analytics Viewer [role](/konnect/org-management/teams-and-roles/teams-reference) in 
+the {{site.konnect_short_name}} organization to access reports in a read-only state, 
+or the Analytics Editor role to let them customize the reports for themselves.
+* Take screenshots of the reports and share the images.
+* Export any of the reports you created into CSV files. This gives you raw data that you can 
+plug into any of your external dashboards or visualization services.
+
+    Open one of the reports you created, then from the **Reports Actions** dropdown, select **Export Report as CSV**.
+
+
 ## Conclusion 
 
 After completing these example scenarios, you should have a better understanding of how you can use a variety of metrics to collect analytics on KPIs with {{site.konnect_short_name}} custom reports. 
 
 Additionally, you can use these reports to find and solve problems in resource allocation, optimization, and performance. You now know how to use the information gathered from those reports, such as anomalies, to further drill down into what is causing the problem. This information can then be presented to stakeholders to ensure your APIs are secure, performant, and stable. 
+
+## More information
+* [Reports reference for metrics, filtering and grouping, and time intervals](/konnect/analytics/reference/)
+* [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
+* [Troubleshoot reports](/konnect/analytics/troubleshoot/)

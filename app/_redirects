@@ -278,6 +278,8 @@
 /konnect/shared-config                               /konnect/runtime-manager/gateway-config/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
+/konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 
 
