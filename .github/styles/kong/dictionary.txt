@@ -34,6 +34,8 @@ Knative's
 Knatives
 Kong/kong
 Konnect
+KPI
+KPIs
 Kuma
 Kustomize
 Loggly
