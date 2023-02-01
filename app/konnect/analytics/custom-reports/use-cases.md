@@ -1,23 +1,26 @@
 ---
-title: Use Cases
+title: Report Use Cases
 content_type: tutorial
 badge: plus
 ---
 
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
 
-This tutorial guides you through the process of creating custom reports for key API metrics using {{site.konnect_saas}} custom reports. 
+This tutorial guides you through determining which custom report to create based on KPIs and the process of creating those custom reports for key API metrics. 
 
-You have just joined an organization as an API product manager. Your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following KPIs because they would give a brief but wholistic understanding of the API: 
+In this tutorial scenario, you just joined an organization as an API product manager. Your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the API. You've selected the following KPIs because they would give a brief, but wholistic, understanding of the API: 
 
 * **Number of requests:** This metric measures the total number of requests made to the API. This is good for understanding total usage of an API, and can potentially be used to uncover scalability requirements. 
-* **Error response rate:** This metric measures the percentage of requests that result in errors. With this metric you can potentially pinpoint any issues users of your API are having. 
+* **Error response rate:** This metric measures the percentage of requests that result in errors. With this metric, you can potentially pinpoint any issues users of your API are having. 
 * **Average throughput:** Throughput is the measurement of the number of requests an API can handle per second. 
-* **Latency:** latency is the measurement of the time it takes for the API to respond to a request. 
+* **Latency:** This metric measures the time it takes for the API to respond to a request. This can be a good measure of the user experience  when a user makes a request to an API.
 
 ## Build reports 
 
-Let's build some custom reports by navigating to the custom report dasboard and selecting **Analytics**, then **reports**.
+Let's build some custom reports by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Reports**.
+
+This brings you to a list of all custom reports in the organization. From here, click **New Report** to get started.
+
 ### Total number of requests across APIs over the last 30 days
 
 To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
