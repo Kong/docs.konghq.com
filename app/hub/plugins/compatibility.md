@@ -4,21 +4,17 @@ no_version: true
 layout: extension
 ---
 
-Each [subscription tier](https://konghq.com/pricing) gives you
-access to a subset of plugins:
-* **Free tier:** Open-source Kong plugins
-* **Plus tier:** Open-source and Plus-specific plugins
-* **Enterprise tier:** All Kong plugins
+Reference for plugin compabitility with subscription tiers, deployment topologies, and protocols.
 
-## Network configuration options
+## Deployment topologies
 
-{{site.konnect_short_name}} can be configured in the following ways:
+{{site.base_gateway}} can be deployed in the following modes:
 
 * **{{site.konnect_short_name}} (Kong-hosted cloud)**: Hybrid deployment. Nodes are split into control plane and
 data plane roles. Kong provides and hosts the control plane and a database with
-{{site.konnect_product_name}}, and you provide the data plane nodes (no databases required).
+{{site.konnect_product_name}}, and you provide the {{site.base_gateway}} data plane nodes (no databases required).
 
-* **Self-managed**: Use any hosting service of your choice or host on-premises,
+* **Self-managed**: Use any hosting service of your choice or host {{site.base_gateway}} on-premises,
 with any of the following network configurations:
     * [**Traditional:**](/gateway/latest/production/deployment-topologies/traditional/)
     Every node is connected to a database. Refers to a classic
@@ -34,8 +30,14 @@ with any of the following network configurations:
     nodes, so only control plane nodes require a database
     (available in {{site.ce_product_name}} 2.0 and {{site.ee_product_name}} 2.1 onward).
 
-## Plugin tiers and supported network configurations
+## Plugin tiers and supported deployment topologies
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
+
+Each [subscription tier](https://konghq.com/pricing) gives you
+access to a subset of plugins:
+* **Free tier:** Open-source Kong plugins
+* **Plus tier:** Open-source and Plus-specific plugins
+* **Enterprise tier:** All Kong plugins
 
 {% assign categories = site.data.tables.plugin_index %}
 
@@ -103,6 +105,8 @@ with any of the following network configurations:
 simply tools to help you deploy Kong Gateway in various environments.
 
 ## Protocols
+
+{{site.base_gateway}} plugins are compatible with the following protocols:
 
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
