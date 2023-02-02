@@ -38,7 +38,7 @@ module PluginSingleSource
           version_file = File.join(site.source, Generator::PLUGINS_FOLDER, dir, "#{version}.md")
           next if !is_latest && File.exist?(version_file)
 
-          SingleSourcePage.new(site:, version:, is_latest:, plugin: self, source: sources[version])
+          SingleSourcePage.new(site:, release: build_release(version:, is_latest:))
         end.compact
       end
 
@@ -50,7 +50,15 @@ module PluginSingleSource
         releases.size > 1
       end
 
+      def ext_data
+        {}
+      end
+
       private
+
+      def build_release(version:, is_latest:)
+        Release.new(plugin: self, source: sources[version], version:, is_latest:, site:)
+      end
 
       def max_version
         @max_version ||= releases
