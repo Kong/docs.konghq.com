@@ -8,162 +8,43 @@ breadcrumbs:
 ---
 
 {% unless page.type == "concept" %}
-{% if page.type == "plugin" or page.type == "integration" %}
+  {% if page.type == "plugin" or page.type == "integration" %}
+    {% assign extn_slug = page.extn_slug %}
+    {% assign extn_publisher = page.extn_publisher %}
+    {% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
+  {% endif %}
 
-{% assign extn_slug = page.extn_slug %}
-{% assign extn_publisher = page.extn_publisher %}
-{% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
-{% capture params_table %}
-<table>
-  <thead>
-    <tr>
-      <th style="width: 25%;">Form Parameter</th>
-      <th style="width: 75%;">Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>name</code>
-        <p><i>required</i></p>
-        <p><strong>Type: </strong>string</p>
-      </td>
-      <td>The name of the plugin, in this case <code>{{ page.params.name }}</code>.</td>
-    </tr>
+  {% if page.kong_version_compatibility.community_edition %}
+    {% assign compat = true %}
+    {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
+  {% endif %}
 
-    {% if_plugin_version gte:3.2.x %}
-    <tr>
-      <td><code>instance_name</code>
-        <p><i>optional</i></p>
-        <p><strong>Type: </strong>string</p>
-      </td>
-      <td>
-        <p>An optional custom name to identify an instance of the plugin, for example <code>{{ page.params.name }}_my-service</code>.</p> 
-        <p>Useful when running the same plugin in multiple contexts, for example, on multiple services.</p>
-      </td>
-    </tr>
-    {% endif_plugin_version %}
+  {% if page.kong_version_compatibility.enterprise_edition %}
+    {% assign compat = true %}
+    {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
+  {% endif %}
 
-    {% if page.params.service_id %}
-      <tr>
-        <td><code>service.name</code> or <code>service.id</code>
-          {% if page.params.global == false %}
-          <p><i>required</i></p>
-          {% else %}
-          <p><i>optional</i></p>
-          {% endif %}
-          <p><strong>Type: </strong>string</p>
-        </td>
-        <td>
-          <p>The name or ID of the service the plugin targets.</p>
-          <p>Set one of these parameters if adding the plugin to a service through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a></p>
-          <p> Not required if using <code>/services/SERVICE_NAME|SERVICE_ID/plugins</code>.</p> </td>
-      </tr>
-    {% endif %}
-    {% if page.params.route_id %}
-      <tr>
-        <td><code>route.name</code> or <code>route.id</code>
-          <p><i>optional</i></p>
-          <p><strong>Type: </strong>string</p>
-        </td>
-        <td>
-          <p>The name or ID of the route the plugin targets.</p>
-          <p>Set one of these parameters if adding the plugin to a route through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a></p>
-          <p>Not required if using <code>/routes/ROUTE_NAME|ROUTE_ID/plugins</code>.</p></td>
-      </tr>
-    {% endif %}
-    {% if page.params.consumer_id %}
-      <tr>
-        <td><code>consumer.name</code> or <code>consumer.id</code>
-          <p><i>optional</i></p>
-          <p><br><strong>Type: </strong>string</p>
-        </td>
-        <td>
-          <p>The name or ID of the consumer the plugin targets.</p>
-          <p>Set one of these parameters if adding the plugin to a consumer through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a></p>
-          <p>Not required if using <code>/consumers/CONSUMER_NAME|CONSUMER_ID/plugins</code>.</p></td>
-      </tr>
-    {% endif %}
-      <tr>
-        <td><code>enabled</code>
-          <p><i>optional</i></p>
-          <p><strong>Type: </strong>boolean</p>
-          <p><strong>Default value: </strong><code>true</code></p>
-        </td>
-        <td>Whether this plugin will be applied.</td>
-      </tr>
-    {% if page.params.api_id %}
-    <tr>
-      <td><code>api_id</code>
-        <br><br><strong>Type: </strong>string</td>
-      <td>The ID of the API the plugin targets.
-        <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.</td>
-      </tr>
-    {% endif %}
-    {% for field in page.params.config %}
-      {% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}
-      {% if field.group %}
-    <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
-      <tr><th>Form Parameter</th><th>Description</th></tr>
-      {% else %}
-      <tr>
-        <td><code>config.{{ field.name }}</code>
-          {% if field.required == true %}<p><em>required</em></p>{% endif %}
-          {% if field.required == false %}<p><em>optional</em></p>{% endif %}
-          {% if field.required == "semi" %}<p><em>semi-optional</em></p>{% endif %}
-          {% if field.datatype != nil %}<p><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}</p>{% endif %}
-          {% if field.default != nil %}<p><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code></p>{% endif %}
-        </td>
-        <td>
-          <br>{{ field.description | markdownify }}
-          {% if field.encrypted == true %}<p>If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.</p>{% endif %}
-          {% if_plugin_version gte:2.7.x %}
-            {% if field.referenceable == true %}
-            <p>
-              This field is <em>referenceable</em>, which means it can be securely stored as a
-              <a href="/gateway/latest/kong-enterprise/secrets-management/">secret</a>
-              in a vault. References must follow a <a href="/gateway/latest/kong-enterprise/secrets-management/reference-format/">specific format</a>.
-            </p>
-            {% endif %}
-          {% endif_plugin_version %}
-        </td>
-      </tr>
-      {% endif %}
-      {% endif_plugin_version %}
-    {% endfor %}
-  </tbody>
-</table>
-{% endcapture %}
+  {% comment %}
+  We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
+  we pin the plugin version to the Gateway version. These are marked with strategy = gateway
 
-{% endif %}
+  We only want to show the compatibility matrix if the strategy = matrix (which is the default), or if the plugins are third-party.
+  {% endcomment %}
 
-{% if page.kong_version_compatibility.community_edition %}
-  {% assign compat = true %}
-  {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
-{% endif %}
-{% if page.kong_version_compatibility.enterprise_edition %}
-  {% assign compat = true %}
-  {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
-{% endif %}
+  {% if extn_publisher == "kong-inc" %}
+    {% unless extn_data['strategy'] == "matrix" %}
+      {% assign compat = false %}
+    {% endunless %}
+  {% endif %}
 
-{% comment %}
-We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
-we pin the plugin version to the Gateway version. These are marked with strategy = gateway
+  {% assign extn_type = site.extensions.types | where: "slug", page.type %}
+  {% assign extn_type = extn_type[0]['name'] %}
 
-We only want to show the compatibility matrix if the strategy = matrix (which is the default), or if the plugins are third-party.
-{% endcomment %}
-{% if extn_publisher == "kong-inc" %}
-  {% unless extn_data['strategy'] == "matrix" %}
-    {% assign compat = false %}
-  {% endunless %}
-{% endif %}
-{% assign extn_type = site.extensions.types | where: "slug", page.type %}
-{% assign extn_type = extn_type[0]['name'] %}
-
-{% assign extn_versions = extn_data['releases'] %}
-{% if extn_versions %}
-  {% assign extn_latest = extn_versions | first %}
-  {% assign extn_release = page.extn_release %}
-{% endif %}
+  {% assign extn_versions = extn_data['releases'] %}
+  {% if extn_versions %}
+    {% assign extn_latest = extn_versions | first %}
+    {% assign extn_release = page.extn_release %}
+  {% endif %}
 {% endunless %}
 
 <!-- BEGIN PAGE OUTPUT -->
@@ -268,8 +149,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
         <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
 
-        {{ params_table | markdownify }}
-
+        {% include plugins/configuration_parameters_table.html %}
       {% endif %}
 
       {{ page.params.extra | markdownify }}
