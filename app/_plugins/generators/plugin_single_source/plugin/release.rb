@@ -22,7 +22,7 @@ module PluginSingleSource
       def configuration_parameters_table
         @configuration_parameters_table ||= SafeYAML.load(
           File.read(File.expand_path('_configuration.yml', pages_source_path))
-        )
+        ) || {}
       end
 
       def markdown_content
