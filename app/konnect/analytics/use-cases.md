@@ -27,11 +27,11 @@ This brings you to a list of all custom reports in the organization. From here, 
 
 To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
 
-* **Name**: 
+* **Name**:  API usage (last 30 days)
 * **Horizontal Bar Chart**
 * **Date/Time**: Last 30 days
-* **Metric**: Request count
-* **Group By**: Service
+* **Select a metric**: Request count
+* **Group by**: Service
 * **Then by**: None
 
 ![API usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-api-requests.png){:.image-border}
@@ -59,11 +59,11 @@ Set the following options in the UI:
 * **Name**: Daily Accounts API Usage (last 30 days)
 * **Chart type**: Line chart
 * **Date/Time**: Last 30 days
-* **Metric**: Request count
+* **Select a metric**: Request count
 * **Group by**: Service
 * **Choose granularity**: Daily
 
-Add a filter for the Account API. Click on **Add Filter**, then set the following options:
+Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
 
 * **Filter by**: Service
 * **Operator**: In
@@ -77,7 +77,7 @@ Edit the report to switch the metric from **Request Count** to **Requests per Mi
 Your configuration should now look like this, with the filter unchanged:
 
 * **Date/Time**: Last 30 days
-* **Metric**: Requests Per Minute
+* **Select a metric**: Requests Per Minute
 * **Group by**: Service
 * **Choose granularity**: Daily
 
@@ -92,7 +92,7 @@ These reports can provide your stakeholders with the answers to questions like:
 
 #### Comparing daily vs per minute traffic
 
-Where a daily report can help stakeholders understand overall demand for the account API, the per minute report provides a more detailed picture. 
+Where a daily report can help stakeholders understand overall demand for the Accounts API, the per minute report provides a more detailed picture. 
 By combining the two reports, you can provide a lot of insight into the usage and performance of your API. 
 
 For example, if the Accounts API is seeing a high number of requests per day and per minute, the organization may need to explore upgrading the API to handle the load. 
@@ -102,31 +102,31 @@ If the Accounts API is seeing a low amount traffic per day, but the per minute r
 
 * Activity: The API is being used heavily during a specific part of the day. 
 * Security: Bots, or scripts, could be attempting to misuse your API. 
-* Stability: If the API is experiencing technical issues, such as slow response times or errors, could be resulting in a large number of retries that spike the requests per minute. 
+* Stability: If the API is experiencing technical issues, such as slow response times or errors, it could result in a large number of retries that spike the requests per minute. 
 
 ### Total API usage by {{site.konnect_saas}} application over the last 30 days
 
-You can track requests, you can do it per minute, per day, and you can even differentiate it across different APIs. However, because {{site.konnect_saas}} allows applications to consume services, you need to be able to answer what applications drive the most traffic to your APIs. Applications can be anything, public web applications, mobile applications, internal services that consume APIs.
+You can track requests per minute, per day, and even differentiate it across different APIs. However, because {{site.konnect_saas}} allows applications to consume services, you must be able to explain which applications drive the most traffic to your APIs. Applications can be anything: public web applications, mobile applications, and internal services that consume APIs.
 
 To configure the {{site.konnect_saas}} to create a look back report of total traffic across different applications, set the following options in the UI: 
 
 * **Name**: API Usage by Application (last 30 days)
 * **Chart type**: Vertical bar chart
 * **Date/Time**: Last 30 days
-* **Metric**: Request count
+* **Select a metric**: Request count
 * **Group by**: Service
 * **Then by**: Application
 
 
 ![API Usage by Application (last 30 days)](/assets/images/docs/konnect/custom-reports/api-usage-by-application.png){:.image-border}
 
-This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate application-level usage data to your stakeholders. This data can help answer questions about how your APIs are being consumed. 
+This report can be used to highlight which applications users prefer and where to distribute resources. Combined with the other reports, you can now communicate application-level usage data to your stakeholders. This data can help answer questions about how your APIs are being consumed. 
 
 Some example scenarios where this type of report would be useful are: 
 
 * Security: If you find that a particular application is generating more traffic than expected, you can assess its security to ensure that it wont be a potential risk for the organization. 
 * Monetization: If you have a monetization strategy, knowing which applications are actually consuming the data can help you allocate resources to make financial decisions. 
-* Innovation: With these reports you can identify API usage patterns and trends, which can help you allocate resources and make development decisions. 
+* Innovation: You can identify API usage patterns and trends using these reports, which can help you allocate resources and make development decisions. 
 
 ### Latency for an API over the last 30 days
 
@@ -142,7 +142,7 @@ Your company determines that it is critical that payments are processed quickly 
 * **Choose granularity**: Daily
 * **Entity Selection**: Payment 
 
-Add a filter for the Payment API. Click on **Add Filter**, then set the following options:
+Add a filter for the Payment API. Click **Add Filter**, then set the following options:
  
 * **Filter by**: Service
 * **Operator**: In
@@ -169,7 +169,7 @@ or the Analytics Editor role to let them customize the reports for themselves.
 * Export any of the reports you created into CSV files. This gives you raw data that you can 
 plug into any of your external dashboards or visualization services.
 
-    Open one of the reports you created, then from the **Reports Actions** dropdown, select **Export Report as CSV**.
+    Open one of the reports you created, then from the **Reports Actions** drop-down, select **Export Report as CSV**.
 
 
 ## Conclusion 
