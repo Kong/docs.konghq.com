@@ -3,6 +3,22 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 2.1.0
+> Released on **2023/01/30**
+
+Built on top of [Kuma 2.1.0](https://github.com/kumahq/kuma/releases/tag/2.1.0)
+
+### Changes
+
+- Added the MeshOPA policy. This policy is compliant with new `targetRef` standard. This policy will replace OPA Policy.
+- RBAC now supports `to` and `from` selectors in `targetRef` based policies
+- Added the ability to specify list of users that have admin rights by default.
+- Limited the number of OPA policies you can configure to one because of [OPA limitations](https://github.com/open-policy-agent/opa/issues/5595).
+
+### Upgrading
+
+- `KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_USERS` only works on fresh installations. If you want to add an admin user to an installation that is already running, you must do it manually.
+
 ## 2.0.2
 > Released on **2023/01/13**
 

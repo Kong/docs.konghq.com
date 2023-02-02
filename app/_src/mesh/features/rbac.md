@@ -79,6 +79,7 @@ For policies using the `targetRef` selector. You can specify which `targetRef` k
 
 {% navtabs %}
 {% navtab Kubernetes %}
+{% if_version lte:2.0.x %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: AccessRole
@@ -100,8 +101,46 @@ spec:
         - name: k8s.kuma.io/namespace
           value: kuma-demo
 ```
+{% endif_version %}
+{% if_version gte:2.1.x %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: role-1
+spec:
+  rules:
+  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+    names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
+    mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
+    access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
+    when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
+    - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+        kind: MeshService
+        name: backend
+    - targetRef:
+        kind: MeshSubset
+        tags:
+        - name: k8s.kuma.io/namespace
+          value: kuma-demo
+    - targetRef:
+        kind: MeshService
+        name: web
+      to: # can only be used with policies that have a "to" list (like MeshAccessLog)
+        targetRef:
+          kind: MeshService
+          name: backend
+    - targetRef:
+        kind: MeshService
+        name: web
+      from: # can only be used with policies that have a "from" list (like MeshTrafficPermission)
+        targetRef:
+          kind: Mesh
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Universal %}
+{% if_version lte:2.0.x %}
 ```yaml
 type: AccessRole
 name: role-1
@@ -120,8 +159,48 @@ rules:
       - name: k8s.kuma.io/namespace
         value: kuma-demo
 ```
+{% endif_version %}
+{% if_version gte:2.1.x %}
+```yaml
+type: AccessRole
+name: role-1
+rules:
+- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+  names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
+  mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
+  access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
+  when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
+  - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: MeshSubset
+      tags:
+      - name: k8s.kuma.io/namespace
+        value: kuma-demo
+  - targetRef:
+      kind: MeshService
+      name: web
+    to: # can only be used with policies that have a "to" list (like MeshAccessLog)
+      targetRef:
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: MeshService
+      name: web
+    from: # can only be used with policies that have a "from" list (like MeshTrafficPermission)
+      targetRef:
+        kind: Mesh
+```
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
+{% if_version gte:2.1.x %}
+The lack of `targetRef`, `from`, or `to` means that a user can specify anything in this section.
+For example, the `when` element with a specific `from` section allows the user to pick anything for `targetRef` in the policy.
+
+If the policy contains multiple `to` elements, you must specify an RBAC qualifier for every single `to` element.
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
 

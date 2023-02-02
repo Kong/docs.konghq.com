@@ -34,11 +34,6 @@ repos:
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
   oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
-collections:
-  hub:
-    output: true
-    layout: extension
-
 # for Kong platform extensions (not Jekyll)
 extensions:
   categories:
