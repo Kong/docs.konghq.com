@@ -20,6 +20,11 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 params:
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   name: kafka-upstream
   dbless_compatible: 'yes'
   config:

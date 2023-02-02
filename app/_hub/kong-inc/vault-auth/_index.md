@@ -20,6 +20,11 @@ params:
   dbless_compatible: 'yes'
   manager_examples: false
   konnect_examples: false
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: access_token_name
       required: true

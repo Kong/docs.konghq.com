@@ -23,6 +23,11 @@ params:
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
     Gateway in DB-less or hybrid mode, use the `redis` strategy.
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: cost_strategy
       required: true
@@ -102,7 +107,7 @@ params:
         > <br><br>
         > If not set, you will run into the following issues:
         * In DB-less mode, this field will be regenerated automatically on every configuration change.
-        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a
         `namespace` value.
 
     - name: strategy

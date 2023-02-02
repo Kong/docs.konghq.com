@@ -13,6 +13,15 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 params:
+protocols:
+    - name: http
+    - name: https
+    - name: tcp
+    - name: tls
+    - name: grpc
+    - name: grpcs
+    - name: ws
+    - name: wss
   name: proxy-cache
   service_id: true
   route_id: true

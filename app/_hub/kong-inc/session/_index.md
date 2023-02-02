@@ -29,6 +29,11 @@ params:
     `config.storage` must be set to `cookie`. The `kong` strategy uses
     a database, and is not supported. The plugin currently lacks checks
     for this invalid configuration in DB-less mode.
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: secret
       required: false

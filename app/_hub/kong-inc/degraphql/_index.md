@@ -13,6 +13,11 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 params:
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   name: degraphql
   service_id: true
   konnect_examples: false

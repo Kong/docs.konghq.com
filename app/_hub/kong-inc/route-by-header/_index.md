@@ -15,6 +15,11 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 params:
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   name: route-by-header
   service_id: true
   route_id: true

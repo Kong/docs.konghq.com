@@ -14,6 +14,11 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 params:
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   name: xml-threat-protection
   service_id: true
   route_id: true
