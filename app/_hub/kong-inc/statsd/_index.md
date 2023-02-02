@@ -189,6 +189,7 @@ Metric                     | Description | Namespace
 `latency`                  | The time interval in milliseconds between the request and response. | `kong.latency`
 `request_per_user`         | Tracks the request count per Consumer. | `kong.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.upstream_latency`
+`shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
 
 
 The Statsd plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which will be used like Prometheus labels.
@@ -209,7 +210,7 @@ For SignalFX dimension, add the tags to the metric name in square brackets, as s
 `metric.name[tagName=val,tag2Name=val2]:0|c`
 See the https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics README for a more complete description.
 
-So if `tag_style` config is enable, Kong put some filter lablel `service` `route` `workspace` `consumer` `node` `status` to metrics tags if these filed can be found.
+So if `tag_style` config is enable, Kong put some filter lablel `service` `route` `workspace` `consumer` `node` `status` to metrics tags if these filed can be found. For shdict_usage metrics, only two labels `node` and `shdict` be added.
 
 For example:
 
