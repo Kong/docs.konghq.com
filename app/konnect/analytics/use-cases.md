@@ -61,7 +61,7 @@ Set the following options in the UI:
 * **Date/Time**: Last 30 days
 * **Metric**: Request count
 * **Group by**: Service
-* **Then by**: None
+* **Choose granularity**: Daily
 
 Add a filter for the Account API. Click on **Add Filter**, then set the following options:
 
@@ -79,7 +79,7 @@ Your configuration should now look like this, with the filter unchanged:
 * **Date/Time**: Last 30 days
 * **Metric**: Requests Per Minute
 * **Group by**: Service
-* **Then by**: None
+* **Choose granularity**: Daily
 
 ![Daily Accounts API Usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-api-usage-by-application-minute.png){:.image-border}
 
