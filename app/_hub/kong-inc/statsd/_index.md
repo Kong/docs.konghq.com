@@ -124,6 +124,10 @@ params:
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
       minimum_version: "3.1.x"
+    - name: tag_style
+      required: false
+      datatype: string
+      description: tag style configrations to send metrics with [tags](https://github.com/prometheus/           statsd_exporter#tagging-extensions). Defaults to `nil` which means do not add any tags to the metrics.Allowed values are  `dogstatsd`, `influxdb`, `librato`, `signalfx`.
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
@@ -174,6 +178,44 @@ Metric                     | Description | Namespace
 `latency`                  | The time interval between when the request started and when the response is received from the upstream server. | `kong.global.unmatched.latency`
 `status_count`             | The status count. | `kong.global.unmatched.status.<status>.count`
 `kong_latency`             | The internal Kong latency in milliseconds that it took to run all the plugins. | `kong.global.unmatched.kong_latency`
+
+{% if_plugin_version gte:3.2.x %}
+If the statsd plugin enable `tag_style` config, the following metrics are sent instead:
+Metric                     | Description | Namespace
+---                        | ---         | ---
+`request_count`            | The number of requests. | `kong.request.count`
+`request_size`             | The request's body size in bytes. | `kong.request.size`
+`response_size`            | The response's body size in bytes. | `kong.response.size`
+`latency`                  | The time interval in milliseconds between the request and response. | `kong.latency`
+`request_per_user`         | Tracks the request count per Consumer. | `kong.request.count`
+`upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.upstream_latency`
+
+
+The Statsd plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which will be used like Prometheus labels.
+
+For Librato-style tags, they must be appended to the metric name with a delimiting #, as so:
+`metric.name#tagName=val,tag2Name=val2:0|c`
+See the https://github.com/librato/statsd-librato-backend#tags README for a more complete description.
+
+For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, as so:
+`metric.name,tagName=val,tag2Name=val2:0|c`
+See this https://www.influxdata.com/blog/getting-started-with-sending-statsd-metrics-to-telegraf-influxdb/#introducing-influx-statsd for a larger overview.
+
+For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, as so:
+`metric.name:0|c|#tagName:val,tag2Name:val2`
+See Tags in https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging for the concept description and Datagram Format.
+
+For SignalFX dimension, add the tags to the metric name in square brackets, as so:
+`metric.name[tagName=val,tag2Name=val2]:0|c`
+See the https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics README for a more complete description.
+
+So if `tag_style` config is enable, Kong put some filter lablel `service` `route` `workspace` `consumer` `node` `status` to metrics tags if these filed can be found.
+
+For example:
+
+`kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c`
+
+{% endif_plugin_version %}
 
 ### Metric Fields
 
