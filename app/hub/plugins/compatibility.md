@@ -4,7 +4,7 @@ no_version: true
 layout: extension
 ---
 
-Reference for plugin compabitility with subscription tiers, deployment topologies, and protocols.
+Reference for plugin compatibility with subscription tiers, deployment topologies, and protocols.
 
 ## Deployment topologies
 
