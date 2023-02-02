@@ -13,8 +13,6 @@ You've selected the following KPIs because they would give a brief, but wholisti
 
 * **Number of requests:** This metric measures the total number of requests made to the API. 
 This is good for understanding total usage of an API, and can potentially be used to uncover scalability requirements. 
-* **Error response rate:** This metric measures the percentage of requests that result in errors. 
-With this metric, you can potentially pinpoint any issues users of your API are having. 
 * **Average throughput:** Throughput is the measurement of the number of requests an API can handle per second. 
 * **Latency:** This metric measures the time it takes for the API to respond to a request. 
 This can be a good measure of the user experience when a user makes a request to an API.
@@ -29,14 +27,14 @@ This brings you to a list of all custom reports in the organization. From here, 
 
 To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
 
-* **Name**: API usage (last 30 days)
+* **Name**: 
 * **Horizontal Bar Chart**
 * **Date/Time**: Last 30 days
 * **Metric**: Request count
 * **Group By**: Service
 * **Then by**: None
 
-[screenshot of finished report]
+![API usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-api-requests.png)
 
 This report can provide your stakeholders with the answers to questions like:
 
@@ -71,7 +69,7 @@ Add a filter for the Account API. Click on **Add Filter**, then set the followin
 * **Operator**: In
 * **Filter value**: Accounts API (or your own API name)
 
-[screenshot of finished report]
+![Daily Accounts API Usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-usage-accounts-api-30.png)
 
 Now that you know what day or days this spike happened on, let's dig a little deeper. 
 Edit the report to switch the metric from **Request Count** to **Requests per Minute**.
@@ -83,7 +81,7 @@ Your configuration should now look like this, with the filter unchanged:
 * **Group by**: Service
 * **Then by**: None
 
-[screenshot of finished report]
+![Daily Accounts API Usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-api-usage-by-application-minute.png)
 
 These reports can provide your stakeholders with the answers to questions like:
 
@@ -115,11 +113,12 @@ To configure the {{site.konnect_saas}} to create a look back report of total tra
 * **Name**: API Usage by Application (last 30 days)
 * **Chart type**: Vertical bar chart
 * **Date/Time**: Last 30 days
+* **Metric**: Request count
 * **Group by**: Service
 * **Then by**: Application
 
 
-[screenshot of finished report]
+![API Usage by Application (last 30 days)](/assets/images/docs/konnect/custom-reports/api-usage-by-application.png)
 
 This report can be used to highlight which applications users prefer, where to distribute resources, and combined with the other reports, you can now communicate application-level usage data to your stakeholders. This data can help answer questions about how your APIs are being consumed. 
 
@@ -149,7 +148,7 @@ Add a filter for the Payment API. Click on **Add Filter**, then set the followin
 * **Operator**: In
 * **Filter value**: Payment
 
-[screenshot of finished report]
+![Payment API - Latency (last 30 days)](/assets/images/docs/konnect/custom-reports/payment-api-latency.png)
 
 This report can provide your stakeholders with the answers to questions like:
 
@@ -174,6 +173,8 @@ plug into any of your external dashboards or visualization services.
 
 
 ## Conclusion 
+
+With the information gathered from the reports, you can now feel empowered to go to your stakeholders and present data about your 
 
 After completing these example scenarios, you should have a better understanding of how you can use a variety of metrics to collect analytics on KPIs with {{site.konnect_short_name}} custom reports. 
 
