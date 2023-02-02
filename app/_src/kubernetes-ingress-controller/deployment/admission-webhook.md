@@ -1,5 +1,5 @@
 ---
-title: Validating admission webhook
+title: Validating the Admission Webhook
 ---
 
 The {{site.kic_product_name}} ships with an admission webhook for KongPlugin
@@ -45,14 +45,14 @@ you can enable the webhook by setting `ingressController.admissionWebhook.enable
 in your values.yaml. It is set to `true` by default as of chart version 2.16.
 
 The chart generates a self-signed certificate by default.
-`ingressController.admissionWebhook.certificate` contains settings to instead
-use a user-provided certificate.
+`ingressController.admissionWebhook.certificate` contains settings to
+use a user-provided certificate instead.
 
 ## Create a certificate for the admission webhook
 
 Kubernetes API-server makes an HTTPS call to the admission webhook to verify
 if the custom resource is valid or not. For this to work, Kubernetes API-server
-needs to trust the CA certificate that is used to sign admission webhook's
+needs to trust the CA certificate that is used to sign the admission webhook's
 TLS certificate.
 
 This can be accomplished either using a self-signed certificate or using
@@ -122,8 +122,8 @@ The output is similar to the following:
 deployment.extensions/ingress-kong patched
 ```
 
-If using the Helm chart, run `helm upgrade -f <path to values.yamvl> <release name> kong/kong`
-after enabling the webhook or updating certificate configuration.. Note that
+If you are using the Helm chart, run `helm upgrade -f <path to values.yamvl> <release name> kong/kong`
+after enabling the webhook or updating the certificate configuration. Note that
 chart versions 2.16 and later enable the webhook by default.
 
 ## Enable the validating admission
