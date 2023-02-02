@@ -38,5 +38,3 @@ for adding an authentication header (possibly similar to
 `config.channel_token_introspection_authorization`).
 
 The key size (the modulo) for RSA keys is currently hard-coded to 2048 bits.
-
----

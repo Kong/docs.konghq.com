@@ -3,8 +3,11 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
     let(:plugin) do
       PluginSingleSource::Plugin::Base.make_for(dir: 'acme/jwt-signer', site:)
     end
+    let(:release) do
+      PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, source:, is_latest:)
+    end
 
-    subject { described_class.new(site:, version:, plugin:, is_latest:, source:) }
+    subject { described_class.new(site:, release:) }
 
     context 'when the `source` does not start with `_`' do
       let(:source) { 'index' }

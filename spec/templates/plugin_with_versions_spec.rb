@@ -89,7 +89,7 @@ RSpec.describe 'Plugin page with multiple versions' do
     end
 
     it 'renders the changelog' do
-      expect(html).to have_css('h2#_22x-changelog', text: '_2.2.x Changelog')
+      expect(html).to have_css('h2#changelog', text: 'Changelog')
     end
   end
 
