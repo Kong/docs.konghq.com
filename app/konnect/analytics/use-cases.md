@@ -174,11 +174,15 @@ plug into any of your external dashboards or visualization services.
 
 ## Conclusion 
 
-With the information gathered from the reports, you can now feel empowered to go to your stakeholders and present data about your 
+Now that you've created these reports and gleaned some insights from the data, you can be more informed when you talk to your stakeholders.
 
-After completing these example scenarios, you should have a better understanding of how you can use a variety of metrics to collect analytics on KPIs with {{site.konnect_short_name}} custom reports. 
+You learned that:
 
-Additionally, you can use these reports to find and solve problems in resource allocation, optimization, and performance. You now know how to use the information gathered from those reports, such as anomalies, to further drill down into what is causing the problem. This information can then be presented to stakeholders to ensure your APIs are secure, performant, and stable. 
+* Custom reports can be used to view metrics like number of requests, latency, and throughput
+* You can use information from reports to dig deeper into any anomalies, performance, or stability issues to determine what is causing the problem
+* After you create a report, you can export and share the reports with stakeholders to let them draw conclusions based on further analysis
+
+If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, see [Analyze Services and Routes](/konnect/analytics/services-and-routes/).
 
 ## More information
 * [Reports reference for metrics, filtering and grouping, and time intervals](/konnect/analytics/reference/)
