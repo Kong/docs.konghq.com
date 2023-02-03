@@ -87,15 +87,15 @@ You can use `ExternalTrafficPolicy: Local` to preserve the Client IP address.
 You have three options:
 
 - L4 Network Load Balancer, with [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller): 
-  In this case, you can use the Proxy Protocol method to preserve Client IP
+  In this case, you can use the Proxy Protocol method to preserve the client IP
   address together with `ExternalTrafficPolicy: Cluster`.
-- L4 in-tree Network Load Balancer with the `service.beta.kubernetes.io/aws-load-balancer-type: nlb` annotation: 
-  In this case you need to use `ExternalTrafficPolicy: Local` to preserve the Client IP address.
+- L4 in-tree network Load Balancer with the `service.beta.kubernetes.io/aws-load-balancer-type: nlb` annotation: 
+  In this case you need to use `ExternalTrafficPolicy: Local` to preserve the client IP address.
 - L7 Load Balancer: 
   In this case, you need to use the HTTP headers method to preserve the Client
   IP address.
 
-The recommended Load Balancer type for AWS is the Network Load Balancer deployed with AWS Load Balancer Controller.
+The recommended Load Balancer type for AWS is the Network Load Balancer deployed with the AWS Load Balancer Controller. 
 You can choose this type of Load Balancer using the following annotations:
 
 ```
