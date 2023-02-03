@@ -44,7 +44,7 @@ In custom reports, the route entity name is composed of the following elements:
 KONNECT_SERVICE_NAME.VERSION.ROUTE_NAME|FIRST_FIVE_UUID_CHARS (RUNTIME GROUP)
 ```
 
-For example, for a route entity named `example_service.v1.example_route` with the badge `default`:
+For example, for a route entity named `example_service.v1.example_route (default)`:
 * `example_service` is the {{site.konnect_short_name}} service name
 * `v1` is the service version
 * `example_route` is the route name
@@ -63,7 +63,7 @@ In custom reports, the service version entity name is composed of the following 
 KONNECT_SERVICE_NAME - VERSION (RUNTIME GROUP)
 ```
 
-For example, for a service version entity named `Account - v1` with the badge `dev`:
+For example, for a service version entity named `Account - v1 (dev)`:
 * `Account` is the {{site.konnect_short_name}} service name
 * `v1` is the service version
 * `dev` is the runtime group name
@@ -90,17 +90,17 @@ the time frame selector. For example:
 
 Interval | Description  
 ---------|-------------
-Last 15 minutes | Data is aggregated in ten second increments.
+Last 15 minutes | Data is aggregated in one minute increments.
 Last hour| Data is aggregated in one minute increments.
-Last 6 hours | Data is aggregated in ten minute increments.
-Last 12 hours| Data is aggregated in ten minute increments.
-Last 24 hours| Data is aggregated in ten minute increments.
+Last 6 hours | Data is aggregated in one minute increments.
+Last 12 hours| Data is aggregated in hourly increments.
+Last 24 hours| Data is aggregated in hourly increments.
 Last 7 days | Data is aggregated in one hour increments.
-Last 30 days | Data is aggregated in one hour increments.
+Last 30 days | Data is aggregated in daily increments.
 Current week | Data is aggregated in one hour increments. Logs any traffic in the current calendar week. 
 Current month | Data is aggregated in one hour increments. Logs any traffic in the current calendar month. 
 Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous calendar week.
-Previous month | Data is aggregated in one hour increments. Logs any traffic in the previous calendar month. 
+Previous month | Data is aggregated in daily increments. Logs any traffic in the previous calendar month. 
 
 {:.important}
 > Free tier users can only select intervals up to 24 hours.
