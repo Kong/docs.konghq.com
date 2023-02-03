@@ -41,7 +41,7 @@ kong-exporter:
 This node is responsible for writing to the S3 bucket when it receives a new configuration. If the node version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
 Both the control plane and data plane can be configured to export configurations.
 
-A new data plane can be configured to load a configuration from S3 bucket if the control plane is not reachable using the following environment variables: 
+A new data plane can be configured to load a configuration from a bucket if the control plane is not reachable using the following environment variables: 
 
 ```yaml
 kong-dp-importer:
@@ -54,7 +54,7 @@ kong-dp-importer:
       AWS_REGION: 'us-east-2'
       AWS_ACCESS_KEY_ID: <access_key_read>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_read>
-      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcp://test-bucket/
+      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
       KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
 
 ```
@@ -127,9 +127,8 @@ The example below uses MinIO to demonstrate configuring a backup node:
       AWS_REGION: 'us-east-2'
       AWS_ACCESS_KEY_ID: <access_key_write>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_write>
-      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
       KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
-      AWS_CONFIG_STORAGE_ENDPOING: http://minio:9000/
+      AWS_CONFIG_STORAGE_ENDPOINT: http://minio:9000/
 ```
 
 {% endnavtab %}

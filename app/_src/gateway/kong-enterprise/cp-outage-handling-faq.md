@@ -41,14 +41,14 @@ This mode should be used only for situations that require adherence to strict hi
 Data plane resilience is managed in the `kong.conf` configuration file by the following parameters: 
 
 ```
-cluster_fallback_config: on
+cluster_fallback_config_import: on
 cluster_fallback_config_storage: $AWS_STORAGE_ENDPOINT
-cluster_fallback_config_exporter = off
+cluster_fallback_config_export = off
 ```
 
 
 | Parameter      | Description |
 | ----------- | ----------- |
-| `cluster_fallback_config`      | Fetch fallback configuration from the URL passed in `cluster_fallback_config_storage`. This should only be enabled on the data plane.    |
+| `cluster_fallback_config_import`      | Fetch the fallback configuration from the URL passed in `cluster_fallback_config_storage` if the CP is unreachable. This should only be enabled on the data plane.     |
 | `cluster_fallback_config_storage`   | This is the URL of the storage volume. The credentials for this storage volume should be passed as environment variables.       |
-| `cluster_fallback_config_exporter` | This parameter enables uploading the configuration to the storage volume. This should only be enabled on the backup node.|
+| `cluster_fallback_config_export` | This parameter enables uploading the configuration to the storage volume. This should only be enabled on the backup node.|
