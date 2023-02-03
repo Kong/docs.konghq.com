@@ -9,11 +9,11 @@ Let's go through some example situations where you could leverage custom reports
 
 In this scenario, you just joined an organization as an API product manager. 
 Your first task is to create a few reports that model business KPIs so that the executive team and investors have a grasp on the state of the organization's APIs. 
-You've selected the following KPIs because they would give a brief, but wholistic, understanding of the APIs: 
+You've selected the following KPIs because they would give a brief, but holistic, understanding of the APIs: 
 
 * **Number of requests:** This metric measures the total number of requests made to the API. 
 This is good for understanding total usage of an API, and can potentially be used to uncover scalability requirements. 
-* **Average throughput:** Throughput is the measurement of the number of requests an API can handle per second. 
+* **Throughput:** Throughput is the measurement of the number of requests an API can handle per minute. This metric can help you compare HTTP or database servers.
 * **Latency:** This metric measures the time it takes for the API to respond to a request. 
 This can be a good measure of the user experience when a user makes a request to an API.
 
@@ -30,7 +30,7 @@ To build a report that displays the total number of requests across all of your 
 * **Name**:  API usage (last 30 days)
 * **Horizontal Bar Chart**
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request count
+* **Select a metric**: Request Count
 * **Group by**: Service
 * **Then by**: None
 
@@ -59,7 +59,7 @@ Set the following options in the UI:
 * **Name**: Daily Accounts API Usage (last 30 days)
 * **Chart type**: Line chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request count
+* **Select a metric**: Request Count
 * **Group by**: Service
 * **Choose granularity**: Daily
 
@@ -113,7 +113,7 @@ To configure the {{site.konnect_saas}} to create a look back report of total tra
 * **Name**: API Usage by Application (last 30 days)
 * **Chart type**: Vertical bar chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request count
+* **Select a metric**: Request Count
 * **Group by**: Service
 * **Then by**: Application
 
@@ -137,7 +137,7 @@ Your company determines that it is critical that payments are processed quickly 
 * **Name**: Payment API - Latency (last 30 days)
 * **Date/Time**: Last 30 days
 * **Chart type**: Line chart
-* **Select a metric**: Response latency (p99)
+* **Select a metric**: Response Latency (p99)
 * **Group by**: Service
 * **Choose granularity**: Daily
 * **Entity Selection**: Payment 
