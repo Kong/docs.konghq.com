@@ -93,8 +93,8 @@ Interval | Description
 Last 15 minutes | Data is aggregated in one minute increments.
 Last hour| Data is aggregated in one minute increments.
 Last 6 hours | Data is aggregated in one minute increments.
-Last 12 hours| Data is aggregated in hourly increments.
-Last 24 hours| Data is aggregated in hourly increments.
+Last 12 hours| Data is aggregated in one hour increments.
+Last 24 hours| Data is aggregated in one hour increments.
 Last 7 days | Data is aggregated in one hour increments.
 Last 30 days | Data is aggregated in daily increments.
 Current week | Data is aggregated in one hour increments. Logs any traffic in the current calendar week. 
