@@ -92,7 +92,7 @@ You have three options:
 - L4 in-tree network Load Balancer with the `service.beta.kubernetes.io/aws-load-balancer-type: nlb` annotation: 
   In this case you need to use `ExternalTrafficPolicy: Local` to preserve the client IP address.
 - L7 Load Balancer: 
-  In this case, you need to use the HTTP headers method to preserve the Client
+  In this case, you need to use the HTTP headers method to preserve the client
   IP address.
 
 The recommended Load Balancer type for AWS is the Network Load Balancer deployed with the AWS Load Balancer Controller. 
