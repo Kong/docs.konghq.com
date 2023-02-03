@@ -112,4 +112,4 @@ curl --request POST \
 
 
 ## More information
-[Portal Auth API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/)
+[Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/)
