@@ -64,7 +64,7 @@ communicate with each other:
      -e "POSTGRES_USER=kong" \
      -e "POSTGRES_DB=kong" \
      -e "POSTGRES_PASSWORD=kongpass" \
-     postgres:12.2
+     postgres:13
     ```
 
     * `POSTGRES_USER` and `POSTGRES_DB`: Set these values to `kong`. This is
