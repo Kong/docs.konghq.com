@@ -53,7 +53,7 @@ The data can be used to support other types of exploratory questions about your 
 From the previous report, you determine that the Accounts API is receiving the most traffic. 
 You don't know whether this is a cause for concern or not, so you decide to take a closer look.
 
-To gain further insight into the Accounts API, let's build a report that displays the number of requests per day for the Accounts API over the last 30 days. 
+To gain further insight into the Accounts API, let's build a report that displays the number of requests per day for the Accounts API over the last 30 days. Keep in mind that {{site.konnect_saas}} only shows daily granularity for custom queries or for queries over one week.
 Set the following options in the UI:
 
 * **Name**: Daily Accounts API Usage (last 30 days)
@@ -92,7 +92,7 @@ These reports can provide your stakeholders with the answers to questions like:
 
 #### Comparing daily vs per minute traffic
 
-Where a daily report can help stakeholders understand overall demand for the Accounts API, the per minute report provides a more detailed picture. 
+Where a daily report can help stakeholders understand overall demand for the Accounts API, the per minute report provides a more detailed picture.
 By combining the two reports, you can provide a lot of insight into the usage and performance of your API. 
 
 For example, if the Accounts API is seeing a high number of requests per day and per minute, the organization may need to explore upgrading the API to handle the load. 
