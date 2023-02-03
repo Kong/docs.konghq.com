@@ -5,7 +5,7 @@ content-type: explanation
 
 ## Dynamic Client Registration Overview
 
-Dynamic Client Registration (DCR)support in {{site.konnect_short_name}} provides multiple methods by which applications can be authenticated using industry-standard protocols.
+Dynamic Client Registration (DCR) support in {{site.konnect_short_name}} provides multiple methods by which applications can be authenticated using industry-standard protocols.
 
 These methods include:
 * **Client Credentials Grant**: This authentication method utilizes client ID/secret information and is available for [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0), [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity), and [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta).
