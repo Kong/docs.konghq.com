@@ -148,7 +148,7 @@ Add a filter for the Payment API. Click **Add Filter**, then set the following o
 * **Operator**: In
 * **Filter value**: Payment
 
-![Payment API - Latency (last 30 days)](/assets/images/docs/konnect/custom-reports/payment-api-latency.png){:.image-border}
+![Payment API - Latency (last 30 days)](/assets/images/docs/konnect/custom-reports/latency-payments-api-30.png){:.image-border}
 
 This report can provide your stakeholders with the answers to questions like:
 
