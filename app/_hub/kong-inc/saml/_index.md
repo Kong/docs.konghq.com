@@ -283,7 +283,7 @@ params:
       datatype: string
       description: |
         Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
-        - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
+        - `Strict`: Cookies will only be sent in a first-party context and aren't sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests, like loading images or frames into a third party site, but are sent when a user is navigating to the origin site, like when they are following a link.
         - `None`: Cookies will be sent in all contexts, including responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie secure attribute must also be set or the cookie will be blocked.
         - `Default`: Do not explicitly specify a Same-Site attribute.
