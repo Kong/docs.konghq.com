@@ -389,9 +389,9 @@ params:
       datatype: array of string elements
       description: |
         List of information to include (as headers) in the response to downstream. 
-        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`,
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
-        E.g. { "id", "timeout" } will inject both `Session-Id` and `Session-Timeout` in the response headers.
+        For example: { "id", "timeout" } will inject both `Session-Id` and `Session-Timeout` in the response headers.
     - name: session_store_metadata
       minimum_version: "3.2.x"
       required: false
