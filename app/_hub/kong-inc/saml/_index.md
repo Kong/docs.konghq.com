@@ -692,9 +692,8 @@ curl --request POST \
 ## Changelog
 
 **{{site.base_gateway}} 3.2.x**
-* The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library
-which introduced several new features such as the possibility to specify audiences.
-The following configuration parameters have been affected:
+* The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library. This introduced several new features, such as the possibility to specify audiences.
+The following configuration parameters were affected:
 
 Added:
   * `session_audience`
