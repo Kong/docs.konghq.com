@@ -421,7 +421,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        When set to `true`, the storage key (session id) is hashed for extra security.
+        When set to `true`, the storage key (session ID) is hashed for extra security.
         Hashing the storage key means it is impossible to decrypt data from the storage
         without a cookie.
     - name: session_storage
