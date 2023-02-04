@@ -236,7 +236,7 @@ params:
       datatype: integer
       description: |
         The session cookie absolute timeout in seconds.
-        Specifies how long the session can be used until it is no longer valid
+        Specifies how long the session can be used until it is no longer valid.
     - name: session_cookie_idletime
       maximum_version: "3.1.x"
       required: false
