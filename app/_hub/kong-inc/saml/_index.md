@@ -379,9 +379,9 @@ params:
       datatype: array of string elements
       description: |
         List of information to include (as headers) in the request to upstream. 
-        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`,
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
-        E.g. { "id", "timeout" } will set both `Session-Id` and `Session-Timeout` in the request headers.
+        For example, { "id", "timeout" } will set both `Session-Id` and `Session-Timeout` in the request headers.
     - name: session_response_headers
       minimum_version: "3.2.x"
       required: false
