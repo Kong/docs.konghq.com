@@ -291,13 +291,16 @@ allow access to the `/metrics` endpoint to Prometheus:
 
 ## Changelog
 
+**{{site.base_gateway}} 3.2.x**
+* New configs `expose_tags.from_service`, `expose_tags.from_route` and `expose_tags.from_consumer` to expose Services, Routes and/or Consumers tags as metrics label `tags`.
+
 **{{site.base_gateway}} 3.0.x**
 * High cardinality metrics are now disabled by default.
 * Decreased performance penalty to proxy traffic when collecting metrics.
 * The following metric names were adjusted to add units to standardize where possible:
   * `http_status` to `http_requests_total`
   * `latency` to `kong_request_latency_ms`/`kong_upstream_latency_ms`/`kong_kong_latency_ms`
-  * `kong_bandwidh` to `kong_bandwidth_bytes`
+  * `kong_bandwidth` to `kong_bandwidth_bytes`
   * `nginx_http_current_connections`/`nginx_stream_current_connections` to `nginx_connections_total`
   * Removed: `http_consumer_status`
 * New metric: `session_duration_ms` for monitoring stream connections
