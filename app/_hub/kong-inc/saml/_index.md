@@ -399,7 +399,7 @@ params:
       datatype: boolean
       description: | 
         Configures whether or not session metadata should be stored.
-        This includes information about what are the active sessions for a specific audience
+        This includes information about the active sessions for a specific audience
         belonging to a specific subject.
     - name: session_enforce_same_subject
       minimum_version: "3.2.x"
