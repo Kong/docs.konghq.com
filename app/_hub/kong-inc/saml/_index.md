@@ -710,15 +710,15 @@ Added:
   * `session_hash_storage_key`
 
 Renamed:
-  * From: `session_cookie_lifetime` to `session_rolling_timeout`
-  * From: `session_cookie_idletime` to `session_idling_timeout`
-  * From: `session_cookie_samesite` to `session_cookie_same_site`
-  * From: `session_cookie_httponly` to `session_cookie_http_only`
-  * From: `session_memcache_prefix` to `session_memcached_prefix`
-  * From: `session_memcache_socket` to `session_memcached_socket`
-  * From: `session_memcache_host` to `session_memcached_host`
-  * From: `session_memcache_port` to `session_memcached_port`
-  * From: `session_redis_cluster_maxredirections` to `session_redis_cluster_max_redirections`
+  * `session_cookie_lifetime` to `session_rolling_timeout`
+  * `session_cookie_idletime` to `session_idling_timeout`
+  * `session_cookie_samesite` to `session_cookie_same_site`
+  * `session_cookie_httponly` to `session_cookie_http_only`
+  * `session_memcache_prefix` to `session_memcached_prefix`
+  * `session_memcache_socket` to `session_memcached_socket`
+  * `session_memcache_host` to `session_memcached_host`
+  * `session_memcache_port` to `session_memcached_port`
+  * `session_redis_cluster_maxredirections` to `session_redis_cluster_max_redirections`
 
 Deprecated:
   * `session_cookie_renew`
