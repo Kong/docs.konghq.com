@@ -49,7 +49,7 @@
     "jpegtran": "2.0.0",
     "list-assets": "0.0.2",
     "lodash": "4.17.21",
-    "node-fetch": "2.6.8",
+    "node-fetch": "2.6.9",
     "prettier": "2.8.3",
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4"
