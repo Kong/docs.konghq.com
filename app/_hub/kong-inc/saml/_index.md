@@ -246,7 +246,7 @@ params:
     - name: session_idling_timeout
       minimum_version: "3.2.x"
       required: false
-      default: null
+      default: 900
       datatype: integer
       description: The session cookie idle time in seconds.
     - name: session_cookie_renew
