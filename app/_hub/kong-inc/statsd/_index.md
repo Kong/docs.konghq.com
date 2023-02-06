@@ -195,7 +195,7 @@ Metric                     | Description | Namespace
 
 The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which are used like Prometheus labels.
 
-For Librato-style tags, they must be appended to the metric name with a delimiting #, as so:
+For Librato-style tags, they must be appended to the metric name with a delimiting #, for example:
 `metric.name#tagName=val,tag2Name=val2:0|c`
 See the https://github.com/librato/statsd-librato-backend#tags README for a more complete description.
 
