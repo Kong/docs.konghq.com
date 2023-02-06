@@ -169,7 +169,7 @@ to this target it will query the nameserver again.
 ### Balancing algorithms
 
 The ring-balancer supports the following load balancing algorithms: `round-robin`,
-`consistent-hashing`, and `least-connections`. By default, a ring-balancer
+`consistent-hashing`, `least-connections`, `latency`. By default, a ring-balancer
 uses the `round-robin` algorithm, which provides a well-distributed weighted
 round-robin over the targets.
 
@@ -199,6 +199,10 @@ Supported hashing attributes are:
 The `consistent-hashing` algorithm is based on _Consistent Hashing_, which ensures that when the balancer gets modified by
 a change in its targets (adding, removing, failing, or changing weights), only
 the minimum number of hashing losses occur. This maximizes upstream cache hits.
+
+The `latency` algorithm is based on [peak EWMA](https://linkerd.io/2016/03/16/beyond-round-robin-load-balancing-for-latency/), which ensures that the balancer selects the upstream target
+by lowest latency (`upstream_response_time`). This latency is not only TCP connect time, but also includes
+body response time. So in the `latency` algorithm, the latency is described as the service response latency, It is describing the combined score of service load and network latency. This balancer algorithm is suitable for a single upstream service, if the backend service has some different requests, that have different body types (for example video data, audio data, text data), it will cause `latency` algorithm loss load balancing function. And if you want to use it, please also make sure that the QPS of your requests is as large as possible, because sharing data between multiple workers in Nginx is troublesome, and for this algorithm, we only choose to store data on a single worker, The more requests there are, the more data kong worker will hit and the more `latency` balanced it will be.
 
 The ring-balancer also supports the `least-connections` algorithm, which selects
 the target with the lowest number of connections, weighted by the Target's
