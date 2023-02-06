@@ -193,7 +193,7 @@ Metric                     | Description | Namespace
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
 
 
-The Statsd plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which will be used like Prometheus labels.
+The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which are used like Prometheus labels.
 
 For Librato-style tags, they must be appended to the metric name with a delimiting #, as so:
 `metric.name#tagName=val,tag2Name=val2:0|c`
