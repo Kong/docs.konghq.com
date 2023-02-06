@@ -1,49 +1,48 @@
-params:
-  name: google-logging
-  api_id: false
-  service_id: false
-  consumer_id: false
-  route_id: false
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: yes
+name: google-logging
+api_id: false
+service_id: false
+consumer_id: false
+route_id: false
+protocols:
+  - name: http
+  - name: https
+dbless_compatible: yes
 
-  config:
-    - name: log_id
-      required: false
-      default: "cloudresourcemanager.googleapis.com%2Factivity"
-      value_in_examples:
-      description: |
-        The log id in: `projects/[PROJECT_ID]/logs/[LOG_ID]`. Also see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry){:target="_blank"}{:rel="noopener noreferrer"}.
-    - name: google_key
-      required: false
-      default:
-      value_in_examples:
-      description: The private key parameters of the Google service account. Either `google_key` or `google_key_file` must be specified.
-    - name: google_key_file
-      required: false
-      default:
-      value_in_examples:
-      description: |
-        Path to the service account json file. The associated service account needs the scope: `https://www.googleapis.com/auth/logging.write`. Either `google_key` or `google_key_file` must be specified.
-    - name: resource
-      required: false
-      default:
-      value_in_examples:
-      description: The Google monitor resource. Also see [MonitoredResource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource){:target="_blank"}{:rel="noopener noreferrer"}.
-    - name: retry_count
-      required: false
-      default: 0
-      value_in_examples:
-      description: Kong batch queue `retry_count`.
-    - name: flush_timeout
-      required: false
-      default: 2
-      value_in_examples:
-      description: Kong batch queue `flush_timeout` in seconds.
-    - name: batch_max_size
-      required: false
-      default: 200
-      value_in_examples:
-      description: Kong batch queue `batch_max_size`.
+config:
+  - name: log_id
+    required: false
+    default: "cloudresourcemanager.googleapis.com%2Factivity"
+    value_in_examples:
+    description: |
+      The log id in: `projects/[PROJECT_ID]/logs/[LOG_ID]`. Also see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry){:target="_blank"}{:rel="noopener noreferrer"}.
+  - name: google_key
+    required: false
+    default:
+    value_in_examples:
+    description: The private key parameters of the Google service account. Either `google_key` or `google_key_file` must be specified.
+  - name: google_key_file
+    required: false
+    default:
+    value_in_examples:
+    description: |
+      Path to the service account json file. The associated service account needs the scope: `https://www.googleapis.com/auth/logging.write`. Either `google_key` or `google_key_file` must be specified.
+  - name: resource
+    required: false
+    default:
+    value_in_examples:
+    description: The Google monitor resource. Also see [MonitoredResource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource){:target="_blank"}{:rel="noopener noreferrer"}.
+  - name: retry_count
+    required: false
+    default: 0
+    value_in_examples:
+    description: Kong batch queue `retry_count`.
+  - name: flush_timeout
+    required: false
+    default: 2
+    value_in_examples:
+    description: Kong batch queue `flush_timeout` in seconds.
+  - name: batch_max_size
+    required: false
+    default: 200
+    value_in_examples:
+    description: Kong batch queue `batch_max_size`.

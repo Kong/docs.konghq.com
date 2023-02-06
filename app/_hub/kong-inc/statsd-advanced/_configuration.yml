@@ -1,82 +1,81 @@
-params:
-  name: statsd-advanced
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: tcp
-    - name: tls
-    - name: udp
-  dbless_compatible: 'yes'
-  config:
-    - name: host
-      required: true
-      default: '`127.0.0.1`'
-      value_in_examples: 127.0.0.1
-      datatype: string
-      description: The IP address or hostname of the StatsD server.
-    - name: port
-      required: true
-      default: '`8125`'
-      value_in_examples: 8125
-      datatype: integer
-      description: The port of the StatsD server.
-    - name: metrics
-      required: true
-      default: All metrics are logged.
-      datatype: Array of record elements.
-      description: |
-        List of Metrics to be logged. Available values are described under [Metrics](#metrics).
-    - name: prefix
-      required: true
-      default: '`kong`'
-      datatype: string
-      description: String to prefix to each metric's name.
-    - name: hostname_in_prefix
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: Include the `hostname` in the `prefix` for each metric name.
-    - name: udp_packet_size
-      required: true
-      default: '`0` (not combined)'
-      datatype: number
-      description: |
-        Combine UDP packet up to the size configured. If zero (0), don't combine the
-        UDP packet. Must be a number between 0 and 65507 (inclusive).
-    - name: use_tcp
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: Use TCP instead of UDP.
-    - name: allow_status_codes
-      required: true
-      default: All responses are passed to log metrics.
-      value_in_examples:
-        - 200-205
-        - 400-499
-      datatype: array of string elements.
-      description: List of status code ranges that are allowed to be logged in metrics.
-    - name: consumer_identifier_default
-      required: true
-      default: 'custom_id'
-      datatype: string
-      description: The default consumer identifier for metrics. This will take effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
-    - name: service_identifier_default
-      required: true
-      default: 'service_name_or_host'
-      datatype: string
-      description: The default service identifier for metrics. This will take effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
-    - name: workspace_identifier_default
-      required: true
-      default: 'workspace_id'
-      datatype: string
-      description: The default workspace identifier for metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
-  extra: |
-    By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
-    configures the greatest datagram size the plugin can combine, this should be less than
-    65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
+name: statsd-advanced
+service_id: true
+route_id: true
+consumer_id: true
+protocols:
+  - name: http
+  - name: https
+  - name: grpc
+  - name: grpcs
+  - name: tcp
+  - name: tls
+  - name: udp
+dbless_compatible: 'yes'
+config:
+  - name: host
+    required: true
+    default: '`127.0.0.1`'
+    value_in_examples: 127.0.0.1
+    datatype: string
+    description: The IP address or hostname of the StatsD server.
+  - name: port
+    required: true
+    default: '`8125`'
+    value_in_examples: 8125
+    datatype: integer
+    description: The port of the StatsD server.
+  - name: metrics
+    required: true
+    default: All metrics are logged.
+    datatype: Array of record elements.
+    description: |
+      List of Metrics to be logged. Available values are described under [Metrics](#metrics).
+  - name: prefix
+    required: true
+    default: '`kong`'
+    datatype: string
+    description: String to prefix to each metric's name.
+  - name: hostname_in_prefix
+    required: true
+    default: '`false`'
+    datatype: boolean
+    description: Include the `hostname` in the `prefix` for each metric name.
+  - name: udp_packet_size
+    required: true
+    default: '`0` (not combined)'
+    datatype: number
+    description: |
+      Combine UDP packet up to the size configured. If zero (0), don't combine the
+      UDP packet. Must be a number between 0 and 65507 (inclusive).
+  - name: use_tcp
+    required: true
+    default: '`false`'
+    datatype: boolean
+    description: Use TCP instead of UDP.
+  - name: allow_status_codes
+    required: true
+    default: All responses are passed to log metrics.
+    value_in_examples:
+      - 200-205
+      - 400-499
+    datatype: array of string elements.
+    description: List of status code ranges that are allowed to be logged in metrics.
+  - name: consumer_identifier_default
+    required: true
+    default: 'custom_id'
+    datatype: string
+    description: The default consumer identifier for metrics. This will take effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
+  - name: service_identifier_default
+    required: true
+    default: 'service_name_or_host'
+    datatype: string
+    description: The default service identifier for metrics. This will take effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
+  - name: workspace_identifier_default
+    required: true
+    default: 'workspace_id'
+    datatype: string
+    description: The default workspace identifier for metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
+extra: |
+  By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
+  configures the greatest datagram size the plugin can combine, this should be less than
+  65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.

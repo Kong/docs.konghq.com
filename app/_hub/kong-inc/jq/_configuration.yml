@@ -1,75 +1,74 @@
-params:
-  name: jq
-  service_id: true
-  route_id: true
-  consumer_id: true
-  yaml_examples: false
-  konnect_examples: false
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: null
-  examples: false
-  config:
-    - name: request_jq_program
-      required: semi
-      datatype: string
-      description: |
-        The jq program to run on the request body. For example, `.[0] | { "X-Foo": .foo }`.
-        Either `request_jq_program` or `response_jq_plugin` **must** be included in the configuration.
-    - name: request_jq_program_options
-      required: false
-      datatype: record
-      description: |
-        Boolean option flags to modify the run behavior of the jq program run on the request body.
-        - `compact_output`: Returns output in a compact form without additional spacing,
-          and with each JSON object on a single line. Defaults to `true`. Set to `false` for "pretty" output.
-        - `raw_output`: Outputs as raw strings, not JSON quoted. Default is `false`.
-        - `join_output`: Similar to `raw_output` but does not output newline separators. Default is `false`.
-        - `ascii_output`: jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified
-           them as escape sequences (like `\u03bc`). Using this option, you can force jq to produce pure ASCII
-           output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
-        - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
-    - name: request_if_media_type
-      required: false
-      datatype: array of strings
-      default:
-        - application/json
-      description: |
-        A list of media type strings. The media type included in the `Content-Type` request header **must**
-        match one of the media types on this list for the program to run.
-    - name: response_jq_program
-      required: semi
-      datatype: string
-      description: |
-        The jq program to run on the response body. For example, `.[0] | { "X-Foo": .foo }`.
-        Either `request_jq_program` or `response_jq_plugin` **must** be included in configuration.
-    - name: response_jq_program_options
-      required: false
-      datatype: record
-      description: |
-        Boolean option flags to modify the run behavior of the jq program run on the response body.
-        - `compact_output`: Returns output in a compact form without additional spacing,
-          and with each JSON object on a single line. Defaults to `true`. Set to `false` for "pretty" output.
-        - `raw_output`: Outputs as raw strings, not JSON quoted. Default is `false`.
-        - `join_output`: Similar to `raw_output` but does not output newline separators. Default is `false`.
-        - `ascii_output`: jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified
-           them as escape sequences (like `\u03bc`). Using this option, you can force jq to produce pure ASCII
-           output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
-        - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
-    - name: response_if_media_type
-      required: false
-      datatype: array of strings
-      default:
-        - application/json
-      description: |
-        A list of media type strings. The media type included in the `Content-Type` response header **must**
-        match one of the media types on this list for the program to run.
-    - name: response_if_status_code
-      required: false
-      datatype: array of integers
-      default:
-        - 200
-      description: |
-        A list of HTTP response status codes. The response status code **must**
-        match one of the response status codes on this list for the program to run.
+name: jq
+service_id: true
+route_id: true
+consumer_id: true
+yaml_examples: false
+konnect_examples: false
+protocols:
+  - name: http
+  - name: https
+dbless_compatible: null
+examples: false
+config:
+  - name: request_jq_program
+    required: semi
+    datatype: string
+    description: |
+      The jq program to run on the request body. For example, `.[0] | { "X-Foo": .foo }`.
+      Either `request_jq_program` or `response_jq_plugin` **must** be included in the configuration.
+  - name: request_jq_program_options
+    required: false
+    datatype: record
+    description: |
+      Boolean option flags to modify the run behavior of the jq program run on the request body.
+      - `compact_output`: Returns output in a compact form without additional spacing,
+        and with each JSON object on a single line. Defaults to `true`. Set to `false` for "pretty" output.
+      - `raw_output`: Outputs as raw strings, not JSON quoted. Default is `false`.
+      - `join_output`: Similar to `raw_output` but does not output newline separators. Default is `false`.
+      - `ascii_output`: jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified
+         them as escape sequences (like `\u03bc`). Using this option, you can force jq to produce pure ASCII
+         output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
+      - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
+  - name: request_if_media_type
+    required: false
+    datatype: array of strings
+    default:
+      - application/json
+    description: |
+      A list of media type strings. The media type included in the `Content-Type` request header **must**
+      match one of the media types on this list for the program to run.
+  - name: response_jq_program
+    required: semi
+    datatype: string
+    description: |
+      The jq program to run on the response body. For example, `.[0] | { "X-Foo": .foo }`.
+      Either `request_jq_program` or `response_jq_plugin` **must** be included in configuration.
+  - name: response_jq_program_options
+    required: false
+    datatype: record
+    description: |
+      Boolean option flags to modify the run behavior of the jq program run on the response body.
+      - `compact_output`: Returns output in a compact form without additional spacing,
+        and with each JSON object on a single line. Defaults to `true`. Set to `false` for "pretty" output.
+      - `raw_output`: Outputs as raw strings, not JSON quoted. Default is `false`.
+      - `join_output`: Similar to `raw_output` but does not output newline separators. Default is `false`.
+      - `ascii_output`: jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified
+         them as escape sequences (like `\u03bc`). Using this option, you can force jq to produce pure ASCII
+         output, replacing every non-ASCII character with the equivalent escape sequence. Default is `false`.
+      - `sort_keys`: Outputs the fields of each object with the keys in sorted order. Default is `false`.
+  - name: response_if_media_type
+    required: false
+    datatype: array of strings
+    default:
+      - application/json
+    description: |
+      A list of media type strings. The media type included in the `Content-Type` response header **must**
+      match one of the media types on this list for the program to run.
+  - name: response_if_status_code
+    required: false
+    datatype: array of integers
+    default:
+      - 200
+    description: |
+      A list of HTTP response status codes. The response status code **must**
+      match one of the response status codes on this list for the program to run.
