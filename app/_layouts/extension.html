@@ -7,9 +7,7 @@ breadcrumbs:
 
 ---
 
-{% assign extn_slug = page.extn_slug %}
-{% assign extn_publisher = page.extn_publisher %}
-{% assign extn_data = site.data.extensions[extn_publisher][extn_slug] %}
+{% assign extn_data = site.data.extensions[page.extn_publisher][page.extn_slug] %}
 
 {% if page.kong_version_compatibility.community_edition %}
   {% assign compat = true %}
@@ -48,23 +46,49 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
-    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.header_title img=page.header_icon plus=page.plus enterprise=page.enterprise cloud=page.cloud publisher=page.publisher extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
+    {% include_cached header.html
+                      is_latest=page.is_latest
+                      id=page.id
+                      url=page.url
+                      breadcrumbs=page.breadcrumbs
+                      name=page.header_title
+                      img=page.header_icon
+                      plus=page.plus
+                      enterprise=page.enterprise
+                      cloud=page.cloud
+                      publisher=page.publisher
+                      extn_versions=extn_versions
+                      extn_publisher=page.extn_publisher
+                      extn_slug=extn_slug
+    %}
   {% else %}
-    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=page.extn_icon plus=page.plus enterprise=page.enterprise cloud=page.cloud publisher=page.publisher extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
+    {% include_cached header.html
+                      is_latest=page.is_latest
+                      id=page.id
+                      url=page.url
+                      breadcrumbs=page.breadcrumbs
+                      name=page.name
+                      img=page.extn_icon
+                      plus=page.plus
+                      enterprise=page.enterprise
+                      cloud=page.cloud
+                      publisher=page.publisher
+                      extn_versions=extn_versions
+                      extn_publisher=page.extn_publisher
+                      extn_slug=page.extn_slug
+    %}
   {% endif %}
 
   <div class="container">
     {% capture full_content %}
-    {% if page.type == "plugin" or page.type == "integration" %}
-
-      {% if page.plus and extn_publisher == "kong-inc" %}
+      {% if page.plus and page.extn_publisher == "kong-inc" %}
         <blockquote class="note" role="alert">
           Did you know that you can try this plugin without talking to anyone with a free
           trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
         </blockquote>
       {% endif %}
 
-      {% unless extn_publisher == "kong-inc" %}
+      {% unless page.extn_publisher == "kong-inc" %}
         <div class="alert alert-info blue" role="alert">
           Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
         </div>
@@ -107,7 +131,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         <hr>
       {% endif %}
 
-      {% unless extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
+      {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
 
       {% if page.type == "plugin" and page.configuration %}
         {% include plugins/configuration_reference.html %}
@@ -115,7 +139,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
       {{ page.configuration.extra | markdownify }}
 
-      {% if extn_publisher == "kong-inc" %}{{ content }}{% endif %}
+      {% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
 
       {% if page.terms_of_service %}
         <h3 id="terms-of-service">Terms of Service</h3>
@@ -135,8 +159,8 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
                       extn_type=extn_type
                       extn_release=extn_release
                       extn_latest=extn_latest
-                      extn_publisher=extn_publisher
-                      extn_slug=extn_slug
+                      extn_publisher=page.extn_publisher
+                      extn_slug=page.extn_slug
                       about_this=true
                       ee_compatible=ee_compatible
                       ce_compatible=ce_compatible
@@ -154,7 +178,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
     <i class="fas fa-chevron-up"></i>
   </div>
   {% if page.feedback != false %}
-  {% include feedback-widget.html %}
+    {% include feedback-widget.html %}
   {% endif %}
 </div>
 
