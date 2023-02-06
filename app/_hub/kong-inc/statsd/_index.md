@@ -209,7 +209,7 @@ See the [Datadog StatsD Tags](https://docs.datadoghq.com/developers/dogstatsd/da
 
 For SignalFX dimension, add the tags to the metric name in square brackets, for example:
 `metric.name[tagName=val,tag2Name=val2]:0|c`
-See the https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics README for a more complete description.
+See the [SignalFX StatsD](https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics) documentation for more information.
 
 So if `tag_style` config is enable, Kong put some filter lablel `service` `route` `workspace` `consumer` `node` `status` to metrics tags if these filed can be found. For shdict_usage metrics, only two labels `node` and `shdict` be added.
 
