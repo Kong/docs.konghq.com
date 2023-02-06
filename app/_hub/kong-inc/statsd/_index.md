@@ -188,7 +188,7 @@ Metric                     | Description | Namespace
 `request_size`             | The request's body size in bytes. | `kong.request.size`
 `response_size`            | The response's body size in bytes. | `kong.response.size`
 `latency`                  | The time interval in milliseconds between the request and response. | `kong.latency`
-`request_per_user`         | Tracks the request count per Consumer. | `kong.request.count`
+`request_per_user`         | Tracks the request count per consumer. | `kong.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.upstream_latency`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
 
