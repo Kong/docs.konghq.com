@@ -199,7 +199,7 @@ For Librato-style tags, they must be appended to the metric name with a delimiti
 `metric.name#tagName=val,tag2Name=val2:0|c`
 See the [Librato StatsD](https://github.com/librato/statsd-librato-backend#tags) documentation for more information.
 
-For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, as so:
+For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, for example:
 `metric.name,tagName=val,tag2Name=val2:0|c`
 See this https://www.influxdata.com/blog/getting-started-with-sending-statsd-metrics-to-telegraf-influxdb/#introducing-influx-statsd for a larger overview.
 
