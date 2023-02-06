@@ -11,7 +11,7 @@
         <p><i>required</i></p>
         <p><strong>Type: </strong>string</p>
       </td>
-      <td>The name of the plugin, in this case <code>{{ page.params.name }}</code>.</td>
+      <td>The name of the plugin, in this case <code>{{ page.configuration.name }}</code>.</td>
     </tr>
 
     {% if_plugin_version gte:3.2.x %}
@@ -27,10 +27,10 @@
       </tr>
     {% endif_plugin_version %}
 
-    {% if page.params.service_id %}
+    {% if page.configuration.service_id %}
       <tr>
         <td><code>service.name</code> or <code>service.id</code>
-          {% if page.params.global == false %}
+          {% if page.configuration.global == false %}
             <p><i>required</i></p>
           {% else %}
             <p><i>optional</i></p>
@@ -43,7 +43,7 @@
           <p> Not required if using <code>/services/SERVICE_NAME|SERVICE_ID/plugins</code>.</p></td>
       </tr>
     {% endif %}
-    {% if page.params.route_id %}
+    {% if page.configuration.route_id %}
       <tr>
         <td><code>route.name</code> or <code>route.id</code>
           <p><i>optional</i></p>
@@ -55,7 +55,7 @@
           <p>Not required if using <code>/routes/ROUTE_NAME|ROUTE_ID/plugins</code>.</p></td>
       </tr>
     {% endif %}
-    {% if page.params.consumer_id %}
+    {% if page.configuration.consumer_id %}
       <tr>
         <td><code>consumer.name</code> or <code>consumer.id</code>
           <p><i>optional</i></p>
@@ -75,7 +75,7 @@
         </td>
         <td>Whether this plugin will be applied.</td>
       </tr>
-    {% if page.params.api_id %}
+    {% if page.configuration.api_id %}
       <tr>
         <td><code>api_id</code>
           <br><br><strong>Type: </strong>string</td>
@@ -83,7 +83,7 @@
           <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.</td>
         </tr>
     {% endif %}
-    {% for field in page.params.config %}
+    {% for field in page.configuration.config %}
       {% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}
         {% if field.group %}
           <tr>

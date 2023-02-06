@@ -83,9 +83,9 @@ breadcrumbs:
         <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
 
         <ul>
-          <li>Package install: Set <strong>plugins=bundled,{{ page.params.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
-          <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.params.name }}</strong> in the environment</li>
-          <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.params.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+          <li>Package install: Set <strong>plugins=bundled,{{ page.configuration.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+          <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.configuration.name }}</strong> in the environment</li>
+          <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.configuration.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
         </ul>
         </details>
       </blockquote>
@@ -114,17 +114,17 @@ breadcrumbs:
 
       {% unless extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
 
-      {% if page.type == "plugin" and page.params %}
+      {% if page.type == "plugin" and page.configuration %}
         <h2 id="configuration">Configuration Reference</h2>
 
-        {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}
+        {% if page.configuration.dbless_compatible == "yes" or page.configuration.dbless_compatible == true %}
           <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
-        {% elsif page.params.dbless_compatible == "partially" %}
+        {% elsif page.configuration.dbless_compatible == "partially" %}
           <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
-        {% elsif page.params.dbless_compatible != nil %}
+        {% elsif page.configuration.dbless_compatible != nil %}
           <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
         {% endif %}
-        {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == "yes" %}
+        {% if page.configuration.dbless_compatible == "partially" or page.configuration.dbless_compatible == "yes" %}
           <p>In DB-less mode, you configure {{site.base_gateway}}
             <a href="/gateway/latest/reference/db-less-and-declarative-config">declaratively</a>.
             Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
@@ -136,13 +136,13 @@ breadcrumbs:
             </ul>
         {% endif %}
 
-        {% if page.params.dbless_explanation %}
-          {{ page.params.dbless_explanation | markdownify }}
+        {% if page.configuration.dbless_explanation %}
+          {{ page.configuration.dbless_explanation | markdownify }}
         {% endif %}
 
-        {% if page.params.examples != false %}
+        {% if page.configuration.examples != false %}
         <h3 id="example-config">Example plugin configuration</h3>
-          {% include_cached hub-examples.html version=page.version params=page.params publisher=page.publisher name=page.name %}
+          {% include_cached hub-examples.html version=page.version configuration=page.configuration publisher=page.publisher name=page.name %}
         {% endif %}
 
         <h3 id="parameters">Parameters</h3>
@@ -152,7 +152,7 @@ breadcrumbs:
         {% include plugins/configuration_parameters_table.html %}
       {% endif %}
 
-      {{ page.params.extra | markdownify }}
+      {{ page.configuration.extra | markdownify }}
 
       {% if extn_publisher == "kong-inc" %}{{ content }}{% endif %}
 
@@ -255,13 +255,13 @@ breadcrumbs:
             </ul>
           </td>
         </tr>
-        {% unless page.params.dbless_compatible == nil %}
+        {% unless page.configuration.dbless_compatible == nil %}
         <tr>
           <td>DB-less compatible?</td>
           <td>
-            <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
-              if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
-              if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
+            <a href="/hub/plugins/compatibility">{% if page.configuration.dbless_compatible == "yes" or page.configuration.dbless_compatible == true %}Yes{% endif %}{%
+              if page.configuration.dbless_compatible == "no" or page.configuration.dbless_compatible == false %}No{% endif %}{%
+              if page.configuration.dbless_compatible == "partially" %}Partially{% endif %}</a>
           </td>
         </tr>
         {% endunless %}
@@ -274,11 +274,11 @@ breadcrumbs:
            else %}See latest plugin version{% endif %}
         </tr>
         {% endif %}
-        {% if page.params.protocols %}
+        {% if page.configuration.protocols %}
         <tr>
           <td>Compatible protocols</td>
           <td>
-              {% for protocol in page.params.protocols %}{% if_plugin_version gte:protocol.minimum_version lte:protocol.maximum_version %}
+              {% for protocol in page.configuration.protocols %}{% if_plugin_version gte:protocol.minimum_version lte:protocol.maximum_version %}
                 <div class="protocol">
                   <code>{{ protocol.name }}</code>
                 </div>
