@@ -181,7 +181,7 @@ Metric                     | Description | Namespace
 `kong_latency`             | The internal Kong latency in milliseconds that it took to run all the plugins. | `kong.global.unmatched.kong_latency`
 
 {% if_plugin_version gte:3.2.x %}
-If the statsd plugin enable `tag_style` config, the following metrics are sent instead:
+If you enable the `tag_style` configuration for the StatsD plugin, the following metrics are sent instead:
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.request.count`
