@@ -4,15 +4,13 @@ no_version: true
 layout: extension
 ---
 
-Reference for plugin compatibility with subscription tiers, deployment topologies, and protocols.
+Reference for plugin compatibility with {{site.base_gateway}} and {{site.konnect_short_name}} [deployment topologies](#deployment-topologies) and [network protocols](#protocols).
+
+If you're looking for plugin availability by subscription tier, see [Plugin License Tiers](/hub/plugins/license-tiers).
 
 ## Deployment topologies
 
 {{site.base_gateway}} can be deployed in the following modes:
-
-* **{{site.konnect_short_name}} (Kong-hosted cloud)**: Hybrid deployment. Nodes are split into control plane and
-data plane roles. Kong provides and hosts the control plane and a database with
-{{site.konnect_product_name}}, and you provide the {{site.base_gateway}} data plane nodes (no databases required).
 
 * **Self-managed**: Use any hosting service of your choice or host {{site.base_gateway}} on-premises,
 with any of the following network configurations:
@@ -30,14 +28,10 @@ with any of the following network configurations:
     nodes, so only control plane nodes require a database
     (available in {{site.ce_product_name}} 2.0 and {{site.ee_product_name}} 2.1 onward).
 
-## Plugin tiers and supported deployment topologies
-<!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
+* **{{site.konnect_short_name}} (Kong-hosted cloud)**: Hybrid deployment. Nodes are split into control plane and
+data plane roles. Kong provides and hosts the control plane and a database with
+{{site.konnect_product_name}}, and you provide the {{site.base_gateway}} data plane nodes (no databases required).
 
-Each [subscription tier](https://konghq.com/pricing) gives you
-access to a subset of plugins:
-* **Free tier:** Open-source Kong plugins
-* **Plus tier:** Open-source and Plus-specific plugins
-* **Enterprise tier:** All Kong plugins
 
 {% assign categories = site.data.tables.plugin_index %}
 
@@ -49,36 +43,37 @@ access to a subset of plugins:
 <table>
   <thead>
       <th style="text-align: left; width: 10%">Plugin</th>
-      <th style="text-align: center">Free</th>
-      <th style="text-align: center">Plus</th>
-      <th style="text-align: center">Enterprise</th>
-      <th style="width: 20%">Konnect support</th>
+      <th style="text-align: center">Traditional</th>
+      <th style="text-align: center">DB-less</th>
+      <th style="text-align: center">Hybrid mode</th>
+      <th style="text-align: center">Konnect </th>
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
     {% for plugin in category.plugins %}
+    {% assign n = plugin.network_config_opts | downcase %}
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
         </td>
         <td style="text-align: center">
-          {% if plugin.free == true %}
+          {% if n == "all" or n contains "traditional" %}
           <i class="fa fa-check"></i>
-          {% elsif plugin.free == false %}
+          {% else %}
           <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.plus == true %}
+          {% if n == "all" or n contains "db-less" %}
           <i class="fa fa-check"></i>
-          {% elsif plugin.plus == false %}
+          {% else %}
           <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.enterprise == true %}
+          {% if n == "all" or n contains "hybrid" %}
           <i class="fa fa-check"></i>
-          {% elsif plugin.enterprise == false %}
+          {% else %}
           <i class="fa fa-times"></i>
           {% endif %}
         </td>
@@ -106,7 +101,7 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
 
 ## Protocols
 
-{{site.base_gateway}} plugins are compatible with the following protocols:
+{{site.base_gateway}} and {{site.konnect_short_name}} plugins are compatible with the following protocols:
 
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
