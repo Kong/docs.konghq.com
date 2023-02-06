@@ -1,72 +1,71 @@
-params:
-  name: openwhisk
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  dbless_compatible: 'yes'
-  config:
-    - name: host
-      required: true
-      default:
-      value_in_examples: <OPENWHISK_HOST>
-      datatype: string
-      description: Host of the OpenWhisk server.
-    - name: port
-      required: true
-      default: "`443`"
-      datatype: integer
-      description: Port of the OpenWhisk server.
-    - name: path
-      required: true
-      default:
-      value_in_examples: <PATH_TO_ACTION>
-      datatype: string
-      description: |
-        The path to `Action` resource.
-    - name: action
-      required: true
-      default:
-      value_in_examples: <ACTION_NAME>
-      datatype: string
-      description: |
-        Name of the `Action` to be invoked by the plugin.
-    - name: service_token
-      required: false
-      default:
-      value_in_examples: <AUTHENTICATION_TOKEN>
-      datatype: string
-      description: The service token to access Openwhisk resources.
-    - name: https_verify
-      required: false
-      default: "`false`"
-      datatype: boolean
-      description: |
-        Set to `true` to authenticate Openwhisk server.
-    - name: https
-      required: false
-      default: "`true`"
-      datatype: boolean
-      description: Option to use HTTPS to connect with the OpenWhisk server.
-    - name: result
-      required: false
-      default: "`true`"
-      datatype: boolean
-      description: |
-        Return only the result of the invoked `Action`.
-    - name: timeout
-      required: false
-      default: "`60000`"
-      datatype: integer
-      description: Timeout in milliseconds before closing a connection to OpenWhisk server.
-    - name: keepalive
-      required: false
-      default: "`60000`"
-      datatype: integer
-      description: Time in milliseconds for which an idle connection to OpenWhisk server lives before being closed.
+name: openwhisk
+service_id: true
+route_id: true
+consumer_id: true
+konnect_examples: false
+dbless_compatible: 'yes'
+config:
+  - name: host
+    required: true
+    default:
+    value_in_examples: <OPENWHISK_HOST>
+    datatype: string
+    description: Host of the OpenWhisk server.
+  - name: port
+    required: true
+    default: "`443`"
+    datatype: integer
+    description: Port of the OpenWhisk server.
+  - name: path
+    required: true
+    default:
+    value_in_examples: <PATH_TO_ACTION>
+    datatype: string
+    description: |
+      The path to `Action` resource.
+  - name: action
+    required: true
+    default:
+    value_in_examples: <ACTION_NAME>
+    datatype: string
+    description: |
+      Name of the `Action` to be invoked by the plugin.
+  - name: service_token
+    required: false
+    default:
+    value_in_examples: <AUTHENTICATION_TOKEN>
+    datatype: string
+    description: The service token to access Openwhisk resources.
+  - name: https_verify
+    required: false
+    default: "`false`"
+    datatype: boolean
+    description: |
+      Set to `true` to authenticate Openwhisk server.
+  - name: https
+    required: false
+    default: "`true`"
+    datatype: boolean
+    description: Option to use HTTPS to connect with the OpenWhisk server.
+  - name: result
+    required: false
+    default: "`true`"
+    datatype: boolean
+    description: |
+      Return only the result of the invoked `Action`.
+  - name: timeout
+    required: false
+    default: "`60000`"
+    datatype: integer
+    description: Timeout in milliseconds before closing a connection to OpenWhisk server.
+  - name: keepalive
+    required: false
+    default: "`60000`"
+    datatype: integer
+    description: Time in milliseconds for which an idle connection to OpenWhisk server lives before being closed.
 
-  extra: |
-    Note: If `config.https_verify` is set to `true`, then the server certificate
-    is verified according to the CA certificates specified by the
-    `lua_ssl_trusted_certificate` directive in your Kong configuration.
+extra: |
+  Note: If `config.https_verify` is set to `true`, then the server certificate
+  is verified according to the CA certificates specified by the
+  `lua_ssl_trusted_certificate` directive in your Kong configuration.
 

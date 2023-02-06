@@ -1,48 +1,47 @@
-params:
-  name: amberflo
-  service_id: true
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: 'yes'
-  dbless_explanation: The plugin is compatible with any with DB-less mode, including `local`, `cluster`, and `redis`.
-  config:
-    - name: apiKey
-      required: true
-      description: Your Amberflo API key.
-    - name: meterApiName
-      required: true
-      description: The meter for metering the requests.
-    - name: customerHeader
-      required: true
-      description: The header to get the Amberflo `customerId` from.
-    - name: intervalSeconds
-      required: false
-      default: "`1`"
-      description: The rate (in seconds) at which to send the meter record batch.
-    - name: batchSize
-      required: false
-      default: "`10`"
-      description: The size at which to send the meter record batch.
-    - name: methodDimension
-      required: false
-      description: The dimension name for the request method.
-    - name: hostDimension
-      required: false
-      description: The dimension name for the target URL host.
-    - name: routeDimension
-      required: false
-      description: The dimension name for the route name.
-    - name: serviceDimension
-      required: false
-      description: The dimension name for the service name.
-    - name: dimensionHeaders
-      required: false
-      description: |
-        The map of "dimension name" to "header name", for inclusion in the meter record.
-    - name: replacements
-      required: false
-      default: |
-        `{"/": ":"}`
-      description: The map of "old" to "new" values for transforming dimension values.
+name: amberflo
+service_id: true
+route_id: true
+protocols:
+  - name: http
+  - name: https
+dbless_compatible: 'yes'
+dbless_explanation: The plugin is compatible with any with DB-less mode, including `local`, `cluster`, and `redis`.
+config:
+  - name: apiKey
+    required: true
+    description: Your Amberflo API key.
+  - name: meterApiName
+    required: true
+    description: The meter for metering the requests.
+  - name: customerHeader
+    required: true
+    description: The header to get the Amberflo `customerId` from.
+  - name: intervalSeconds
+    required: false
+    default: "`1`"
+    description: The rate (in seconds) at which to send the meter record batch.
+  - name: batchSize
+    required: false
+    default: "`10`"
+    description: The size at which to send the meter record batch.
+  - name: methodDimension
+    required: false
+    description: The dimension name for the request method.
+  - name: hostDimension
+    required: false
+    description: The dimension name for the target URL host.
+  - name: routeDimension
+    required: false
+    description: The dimension name for the route name.
+  - name: serviceDimension
+    required: false
+    description: The dimension name for the service name.
+  - name: dimensionHeaders
+    required: false
+    description: |
+      The map of "dimension name" to "header name", for inclusion in the meter record.
+  - name: replacements
+    required: false
+    default: |
+      `{"/": ":"}`
+    description: The map of "old" to "new" values for transforming dimension values.

@@ -1,18 +1,17 @@
-params:
-  name: kong-plugin
-  service_id: false
-  consumer_id: false
-  route_id: false
-  protocols:
-    - name: "http"
-    - name: "https"
-  dbless_compatible: yes
+name: kong-plugin
+service_id: false
+consumer_id: false
+route_id: false
+protocols:
+  - name: "http"
+  - name: "https"
+dbless_compatible: yes
 
-  config:
-    - name: log_id
-      required: 'no'
-      default: 'default-log-id'
-      datatype: string
-      encrypted: yes
-      minimum_version: "0.0.1"
-      description: 'The log id'
+config:
+  - name: log_id
+    required: 'no'
+    default: 'default-log-id'
+    datatype: string
+    encrypted: yes
+    minimum_version: "0.0.1"
+    description: 'The log id'

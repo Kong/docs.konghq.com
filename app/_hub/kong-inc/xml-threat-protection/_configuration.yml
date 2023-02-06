@@ -1,177 +1,176 @@
-params:
-  name: xml-threat-protection
-  service_id: true
-  route_id: true
-  consumer_id: false
-  dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  config:
-    - name: checked_content_types
-      required: true
-      default: [ "application/xml" ]
-      value_in_examples: null
-      datatype: array of strings
-      description: |
-        A list of Content-Type values with payloads that must be validated.
-    - name: allowed_content_types
-      required: true
-      default: [ ]
-      value_in_examples: null
-      datatype: array of strings
-      description: |
-        A list of Content-Type values with payloads that are allowed, but aren't validated.
-        For example, if the API also accepts JSON, you can add `"application/json"`.
-    - name: allow_dtd
-      required: true
-      default: false
-      value_in_examples: null
-      datatype: boolean
-      description: |
-        Indicates whether an XML Document Type Definition (DTD) section is allowed.
-    - name: namespace_aware
-      required: true
-      default: true
-      value_in_examples: null
-      datatype: boolean
-      description: |
-        If not parsing namespace aware, all prefixes and namespace attributes will be counted as regular attributes and element names, and validated as such.
-    - name: max_depth
-      required: true
-      default: 50
-      value_in_examples: 50
-      datatype: number
-      description: |
-        Maximum depth of tags. Child elements such as Text or Comments are not counted as another level.
-    - name: max_children
-      required: true
-      default: 100
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum number of children allowed (Element, Text, Comment, ProcessingInstruction, CDATASection).
-        Note: Adjacent text and CDATA sections are counted as one. For example, `text-cdata-text-cdata` is one child.
-    - name: max_attributes
-      required: true
-      default: 100
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum number of attributes allowed on a tag, including default ones.
-        Note: If namespace-aware parsing is disabled, then the namespaces definitions are counted as attributes.
-    - name: max_namespaces
-      required: semi
-      default: 20
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum number of namespaces defined on a tag. This value is required if parsing is namespace-aware.
-    - name: document
-      required: true
-      default: 10485760 (10 mb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of the entire document.
-    - name: buffer
-      required: true
-      default: 1048576 (1 mb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of the unparsed buffer (see below).
-    - name: comment
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of comments.
-    - name: localname
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: 512
-      datatype: number
-      description: |
-        Maximum size of the localname. This applies to tags and attributes.
-        Note: If parsing isn't namespace-aware, this limit counts against the full name (prefix + localname).
-    - name: prefix
-      required: semi
-      default: 1024 (1 kb)
-      value_in_examples: 512
-      datatype: number
-      description: |
-        Maximum size of the prefix. This applies to tags and attributes. This value is required if parsing is namespace-aware.
-    - name: namespaceuri
-      required: semi
-      default: 1024 (1 kb)
-      value_in_examples: 1024
-      datatype: number
-      description: |
-        Maximum size of the namespace URI. This value is required if parsing is namespace-aware.
-    - name: attribute
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of the attribute value.
-    - name: text
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum text inside tags (counted over all adjacent text/CDATA elements combined).
-    - name: pitarget
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of processing instruction targets.
-    - name: pidata
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of processing instruction data.
-    - name: entityname
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of entity names in EntityDecl.
-    - name: entity
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of entity values in EntityDecl.
-    - name: entityproperty
-      required: true
-      default: 1024 (1 kb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Maximum size of systemId, publicId, or notationName in EntityDecl.
-    - name: bla_max_amplification
-      required: true
-      default: 100
-      value_in_examples: null
-      datatype: number
-      description: |
-        Sets the maximum allowed amplification. This protects against the Billion Laughs Attack.
-    - name: bla_threshold
-      required: true
-      default: 8388608 (8 mb)
-      value_in_examples: null
-      datatype: number
-      description: |
-        Sets the threshold after which the protection starts. This protects against the Billion Laughs Attack.
+name: xml-threat-protection
+service_id: true
+route_id: true
+consumer_id: false
+dbless_compatible: 'yes'
+protocols:
+  - name: http
+  - name: https
+  - name: grpc
+  - name: grpcs
+config:
+  - name: checked_content_types
+    required: true
+    default: [ "application/xml" ]
+    value_in_examples: null
+    datatype: array of strings
+    description: |
+      A list of Content-Type values with payloads that must be validated.
+  - name: allowed_content_types
+    required: true
+    default: [ ]
+    value_in_examples: null
+    datatype: array of strings
+    description: |
+      A list of Content-Type values with payloads that are allowed, but aren't validated.
+      For example, if the API also accepts JSON, you can add `"application/json"`.
+  - name: allow_dtd
+    required: true
+    default: false
+    value_in_examples: null
+    datatype: boolean
+    description: |
+      Indicates whether an XML Document Type Definition (DTD) section is allowed.
+  - name: namespace_aware
+    required: true
+    default: true
+    value_in_examples: null
+    datatype: boolean
+    description: |
+      If not parsing namespace aware, all prefixes and namespace attributes will be counted as regular attributes and element names, and validated as such.
+  - name: max_depth
+    required: true
+    default: 50
+    value_in_examples: 50
+    datatype: number
+    description: |
+      Maximum depth of tags. Child elements such as Text or Comments are not counted as another level.
+  - name: max_children
+    required: true
+    default: 100
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum number of children allowed (Element, Text, Comment, ProcessingInstruction, CDATASection).
+      Note: Adjacent text and CDATA sections are counted as one. For example, `text-cdata-text-cdata` is one child.
+  - name: max_attributes
+    required: true
+    default: 100
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum number of attributes allowed on a tag, including default ones.
+      Note: If namespace-aware parsing is disabled, then the namespaces definitions are counted as attributes.
+  - name: max_namespaces
+    required: semi
+    default: 20
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum number of namespaces defined on a tag. This value is required if parsing is namespace-aware.
+  - name: document
+    required: true
+    default: 10485760 (10 mb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of the entire document.
+  - name: buffer
+    required: true
+    default: 1048576 (1 mb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of the unparsed buffer (see below).
+  - name: comment
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of comments.
+  - name: localname
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: 512
+    datatype: number
+    description: |
+      Maximum size of the localname. This applies to tags and attributes.
+      Note: If parsing isn't namespace-aware, this limit counts against the full name (prefix + localname).
+  - name: prefix
+    required: semi
+    default: 1024 (1 kb)
+    value_in_examples: 512
+    datatype: number
+    description: |
+      Maximum size of the prefix. This applies to tags and attributes. This value is required if parsing is namespace-aware.
+  - name: namespaceuri
+    required: semi
+    default: 1024 (1 kb)
+    value_in_examples: 1024
+    datatype: number
+    description: |
+      Maximum size of the namespace URI. This value is required if parsing is namespace-aware.
+  - name: attribute
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of the attribute value.
+  - name: text
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum text inside tags (counted over all adjacent text/CDATA elements combined).
+  - name: pitarget
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of processing instruction targets.
+  - name: pidata
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of processing instruction data.
+  - name: entityname
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of entity names in EntityDecl.
+  - name: entity
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of entity values in EntityDecl.
+  - name: entityproperty
+    required: true
+    default: 1024 (1 kb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Maximum size of systemId, publicId, or notationName in EntityDecl.
+  - name: bla_max_amplification
+    required: true
+    default: 100
+    value_in_examples: null
+    datatype: number
+    description: |
+      Sets the maximum allowed amplification. This protects against the Billion Laughs Attack.
+  - name: bla_threshold
+    required: true
+    default: 8388608 (8 mb)
+    value_in_examples: null
+    datatype: number
+    description: |
+      Sets the threshold after which the protection starts. This protects against the Billion Laughs Attack.

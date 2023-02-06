@@ -1,27 +1,26 @@
-params:
-  name: prometheus
-  service_id: true
-  route_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: tcp
-    - name: tls
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  dbless_explanation: |
-    The database will always be reported as reachable in Prometheus with DB-less.
-    Additionally, the DB entity count metric (`kong_db_entities_total`) is not
-    emitted in DB-less mode.
-  config:
-    - name: per_consumer
-      minimum_version: "2.4.x"
-      required: false
-      datatype: boolean
-      default: '`false`'
-      description: |
-        A boolean value that determines if per-consumer metrics should be
-        collected.
-        If enabled, a `kong_http_consumer_status` metric is added to
-        exported metrics.
+name: prometheus
+service_id: true
+route_id: false
+protocols:
+  - name: http
+  - name: https
+  - name: tcp
+  - name: tls
+  - name: grpc
+  - name: grpcs
+dbless_compatible: 'yes'
+dbless_explanation: |
+  The database will always be reported as reachable in Prometheus with DB-less.
+  Additionally, the DB entity count metric (`kong_db_entities_total`) is not
+  emitted in DB-less mode.
+config:
+  - name: per_consumer
+    minimum_version: "2.4.x"
+    required: false
+    datatype: boolean
+    default: '`false`'
+    description: |
+      A boolean value that determines if per-consumer metrics should be
+      collected.
+      If enabled, a `kong_http_consumer_status` metric is added to
+      exported metrics.

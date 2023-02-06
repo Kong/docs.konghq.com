@@ -1,69 +1,68 @@
-params:
-  name: cors
-  service_id: true
-  route_id: true
-  consumer_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: origins
-      required: false
-      default: null
-      value_in_examples:
-        - 'http://mockbin.com'
-      datatype: array of string elements
-      description: |
-        List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes.
-    - name: methods
-      required: false
-      default: '`GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS, TRACE, CONNECT`'
-      value_in_examples:
-        - GET
-        - POST
-      datatype: array of string elements
-      description: 'Value for the `Access-Control-Allow-Methods` header. Available options include `GET`, `HEAD`, `PUT`, `PATCH`, `POST`, `DELETE`, `OPTIONS`, `TRACE`, `CONNECT`. By default, all options are allowed.'
-    - name: headers
-      required: false
-      default: Value of the `Access-Control-Request-Headers` request header
-      value_in_examples:
-        - Accept
-        - Accept-Version
-        - Content-Length
-        - Content-MD5
-        - Content-Type
-        - Date
-        - X-Auth-Token
-      datatype: array of string elements
-      description: |
-        Value for the `Access-Control-Allow-Headers` header.
-    - name: exposed_headers
-      required: false
-      default: null
-      value_in_examples:
-        - X-Auth-Token
-      datatype: array of string elements
-      description: |
-        Value for the `Access-Control-Expose-Headers` header. If not specified, no custom headers are exposed.
-    - name: credentials
-      required: true
-      default: '`false`'
-      value_in_examples: true
-      datatype: boolean
-      description: |
-        Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
-    - name: max_age
-      required: false
-      default: null
-      value_in_examples: 3600
-      datatype: number
-      description: |
-        Indicates how long the results of the preflight request can be cached, in `seconds`.
-    - name: preflight_continue
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the Upstream service.
+name: cors
+service_id: true
+route_id: true
+consumer_id: false
+protocols:
+  - name: http
+  - name: https
+  - name: grpc
+  - name: grpcs
+dbless_compatible: 'yes'
+config:
+  - name: origins
+    required: false
+    default: null
+    value_in_examples:
+      - 'http://mockbin.com'
+    datatype: array of string elements
+    description: |
+      List of allowed domains for the `Access-Control-Allow-Origin` header. If you want to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes.
+  - name: methods
+    required: false
+    default: '`GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS, TRACE, CONNECT`'
+    value_in_examples:
+      - GET
+      - POST
+    datatype: array of string elements
+    description: 'Value for the `Access-Control-Allow-Methods` header. Available options include `GET`, `HEAD`, `PUT`, `PATCH`, `POST`, `DELETE`, `OPTIONS`, `TRACE`, `CONNECT`. By default, all options are allowed.'
+  - name: headers
+    required: false
+    default: Value of the `Access-Control-Request-Headers` request header
+    value_in_examples:
+      - Accept
+      - Accept-Version
+      - Content-Length
+      - Content-MD5
+      - Content-Type
+      - Date
+      - X-Auth-Token
+    datatype: array of string elements
+    description: |
+      Value for the `Access-Control-Allow-Headers` header.
+  - name: exposed_headers
+    required: false
+    default: null
+    value_in_examples:
+      - X-Auth-Token
+    datatype: array of string elements
+    description: |
+      Value for the `Access-Control-Expose-Headers` header. If not specified, no custom headers are exposed.
+  - name: credentials
+    required: true
+    default: '`false`'
+    value_in_examples: true
+    datatype: boolean
+    description: |
+      Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
+  - name: max_age
+    required: false
+    default: null
+    value_in_examples: 3600
+    datatype: number
+    description: |
+      Indicates how long the results of the preflight request can be cached, in `seconds`.
+  - name: preflight_continue
+    required: true
+    default: '`false`'
+    datatype: boolean
+    description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the Upstream service.

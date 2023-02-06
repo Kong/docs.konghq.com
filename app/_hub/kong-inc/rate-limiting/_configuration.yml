@@ -1,170 +1,165 @@
-params:
-  name: rate-limiting
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: partially
-  dbless_explanation: |
-    The plugin will run fine with the `local` policy (which doesn't use the database) or
-    the `redis` policy (which uses an independent Redis, so it is compatible with DB-less).
+name: rate-limiting
+service_id: true
+route_id: true
+consumer_id: true
+protocols:
+  - name: http
+  - name: https
+  - name: grpc
+  - name: grpcs
+dbless_compatible: partially
+dbless_explanation: |
+  The plugin will run fine with the `local` policy (which doesn't use the database) or
+  the `redis` policy (which uses an independent Redis, so it is compatible with DB-less).
 
-    The plugin will not work with the `cluster` policy, which requires writes to the database.
-  config:
-    - name: second
-      required: semi
-      value_in_examples: 5
-      datatype: number
-      description: The number of HTTP requests that can be made per second.
-    - name: minute
-      required: semi
-      datatype: number
-      description: The number of HTTP requests that can be made per minute.
-    - name: hour
-      required: semi
-      value_in_examples: 10000
-      datatype: number
-      description: The number of HTTP requests that can be made per hour.
-    - name: day
-      required: semi
-      datatype: number
-      description: The number of HTTP requests that can be made per day.
-    - name: month
-      required: semi
-      datatype: number
-      description: The number of HTTP requests that can be made per month.
-    - name: year
-      required: semi
-      datatype: number
-      description: The number of HTTP requests that can be made per year.
-    - name: limit_by
-      required: false
-      default: '`consumer`'
-      datatype: string
-      description: |
-        The entity that is used when aggregating the limits. Available values are:
-        - `consumer`
-        - `credential`
-        - `ip`
-        - `service`
-        - `header` (The `header_name` configuration must be provided.)
-        - `path` (The `path` configuration must be provided.)
+  The plugin will not work with the `cluster` policy, which requires writes to the database.
+config:
+  - name: second
+    required: semi
+    value_in_examples: 5
+    datatype: number
+    description: The number of HTTP requests that can be made per second.
+  - name: minute
+    required: semi
+    datatype: number
+    description: The number of HTTP requests that can be made per minute.
+  - name: hour
+    required: semi
+    value_in_examples: 10000
+    datatype: number
+    description: The number of HTTP requests that can be made per hour.
+  - name: day
+    required: semi
+    datatype: number
+    description: The number of HTTP requests that can be made per day.
+  - name: month
+    required: semi
+    datatype: number
+    description: The number of HTTP requests that can be made per month.
+  - name: year
+    required: semi
+    datatype: number
+    description: The number of HTTP requests that can be made per year.
+  - name: limit_by
+    required: false
+    default: '`consumer`'
+    datatype: string
+    description: |
+      The entity that is used when aggregating the limits. Available values are:
+      - `consumer`
+      - `credential`
+      - `ip`
+      - `service`
+      - `header` (The `header_name` configuration must be provided.)
+      - `path` (The `path` configuration must be provided.)
+      If the entity value for aggregating the limits cannot be determined, the system falls back to `ip`.
+  - name: header_name
+    required: semi
+    datatype: string
+    description: Header name to be used if `limit_by` is set to `header`.
+  - name: path
+    required: semi
+    datatype: string
+    description: Path to be used if `limit_by` is set to `path`.
+  - name: policy
+    required: false
+    value_in_examples: local
+    default: '`local`'
+    datatype: string
+    description: |
+      The rate-limiting policies to use for retrieving and incrementing the
+      limits. Available values are:
+      - `local`: Counters are stored locally in-memory on the node.
+      - `cluster`: Counters are stored in the Kong data store and shared across
+      the nodes.
+      - `redis`: Counters are stored on a Redis server and shared
+      across the nodes.
+      In DB-less, hybrid mode, and Konnect, the `cluster` config policy is not supported.
+      For DB-less mode or Konnect, use one of `redis` or `local`; for hybrid mode, use
+      `redis`, or `local` for data planes only.
+      For details on which policy should be used, refer to the
+      [implementation considerations](#implementation-considerations).
+  - name: fault_tolerant
+    required: true
+    default: '`true`'
+    datatype: boolean
+    description: |
+      A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party data store. If `true`, requests will be proxied anyway, effectively disabling the rate-limiting function until the data store is working again. If `false`, then the clients will see `500` errors.
+  - name: hide_client_headers
+    required: true
+    default: '`false`'
+    datatype: boolean
+    description: Optionally hide informative response headers.
+  - name: redis_host
+    required: semi
+    datatype: string
+    description: |
+      When using the `redis` policy, this property specifies the address to the Redis server.
+  - name: redis_port
+    required: false
+    default: '`6379`'
+    datatype: integer
+    description: |
+      When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
+  - name: redis_username
+    minimum_version: "2.8.x"
+    required: false
+    datatype: string
+    referenceable: true
+    description: |
+      When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired. 
+      
+      This requires Redis v6.0.0+. The username **cannot** be set to `default`.
+  - name: redis_password
+    minimum_version: "2.7.x"
+    required: false
+    datatype: string
+    referenceable: true
+    description: |
+      When using the `redis` policy, this property specifies the password to connect to the Redis server.
+  - name: redis_ssl
+    minimum_version: "2.7.x"
+    required: true
+    default: '`false`'
+    datatype: boolean
+    description: |
+      When using the `redis` policy, this property specifies if SSL is used to connect to the Redis server.
+  - name: redis_ssl_verify
+    required: true
+    default: '`false`'
+    datatype: boolean
+    description: |
+      When using the `redis` policy with `redis_ssl` set to `true`, this property specifies it server SSL certificate is validated. Note that you need to configure the lua_ssl_trusted_certificate to specify the CA (or server) certificate used by your Redis server. You may also need to configure lua_ssl_verify_depth accordingly.
+  - name: redis_server_name
+    required: false
+    datatype: string
+    description: |
+      When using the `redis` policy with `redis_ssl` set to `true`, this property specifies the server name for the TLS extension Server Name Indication (SNI)
+  - name: redis_timeout
+    required: false
+    default: '`2000`'
+    datatype: number
+    description: |
+      When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
+  - name: redis_database
+    required: false
+    default: '`0`'
+    datatype: integer
+    description: |
+      When using the `redis` policy, this property specifies the Redis database to use.
+  - name: error_code
+    minimum_version: "3.1.x"
+    required: false
+    default: 429
+    datatype: number
+    description: |
+      Set a custom error code to return when the rate limit is exceeded.
+  - name: error_message
+    minimum_version: "3.1.x"
+    required: false
+    default: rate limit exceeded
+    datatype: string
+    description: |
+      Set a custom error message to return when the rate limit is exceeded.
 
-        If the entity value for aggregating the limits cannot be determined, the system falls back to `ip`.
-    - name: header_name
-      required: semi
-      datatype: string
-      description: Header name to be used if `limit_by` is set to `header`.
-    - name: path
-      required: semi
-      datatype: string
-      description: Path to be used if `limit_by` is set to `path`.
-    - name: policy
-      required: false
-      value_in_examples: local
-      default: '`local`'
-      datatype: string
-      description: |
-        The rate-limiting policies to use for retrieving and incrementing the
-        limits. Available values are:
-        - `local`: Counters are stored locally in-memory on the node.
-        - `cluster`: Counters are stored in the Kong data store and shared across
-        the nodes.
-        - `redis`: Counters are stored on a Redis server and shared
-        across the nodes.
-
-        In DB-less, hybrid mode, and Konnect, the `cluster` config policy is not supported.
-        For DB-less mode or Konnect, use one of `redis` or `local`; for hybrid mode, use
-        `redis`, or `local` for data planes only.
-
-        For details on which policy should be used, refer to the
-        [implementation considerations](#implementation-considerations).
-    - name: fault_tolerant
-      required: true
-      default: '`true`'
-      datatype: boolean
-      description: |
-        A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party data store. If `true`, requests will be proxied anyway, effectively disabling the rate-limiting function until the data store is working again. If `false`, then the clients will see `500` errors.
-    - name: hide_client_headers
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: Optionally hide informative response headers.
-    - name: redis_host
-      required: semi
-      datatype: string
-      description: |
-        When using the `redis` policy, this property specifies the address to the Redis server.
-    - name: redis_port
-      required: false
-      default: '`6379`'
-      datatype: integer
-      description: |
-        When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
-    - name: redis_username
-      minimum_version: "2.8.x"
-      required: false
-      datatype: string
-      referenceable: true
-      description: |
-        When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired. 
-        
-        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
-    - name: redis_password
-      minimum_version: "2.7.x"
-      required: false
-      datatype: string
-      referenceable: true
-      description: |
-        When using the `redis` policy, this property specifies the password to connect to the Redis server.
-    - name: redis_ssl
-      minimum_version: "2.7.x"
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        When using the `redis` policy, this property specifies if SSL is used to connect to the Redis server.
-    - name: redis_ssl_verify
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies it server SSL certificate is validated. Note that you need to configure the lua_ssl_trusted_certificate to specify the CA (or server) certificate used by your Redis server. You may also need to configure lua_ssl_verify_depth accordingly.
-    - name: redis_server_name
-      required: false
-      datatype: string
-      description: |
-        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies the server name for the TLS extension Server Name Indication (SNI)
-    - name: redis_timeout
-      required: false
-      default: '`2000`'
-      datatype: number
-      description: |
-        When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
-    - name: redis_database
-      required: false
-      default: '`0`'
-      datatype: integer
-      description: |
-        When using the `redis` policy, this property specifies the Redis database to use.
-    - name: error_code
-      minimum_version: "3.1.x"
-      required: false
-      default: 429
-      datatype: number
-      description: |
-        Set a custom error code to return when the rate limit is exceeded.
-    - name: error_message
-      minimum_version: "3.1.x"
-      required: false
-      default: rate limit exceeded
-      datatype: string
-      description: |
-        Set a custom error message to return when the rate limit is exceeded.
-
-
-  extra: '<div class="alert alert-warning"> <strong>Note:</strong> At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured. </div>'
+extra: '<div class="alert alert-warning"> <strong>Note:</strong> At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured. </div>'

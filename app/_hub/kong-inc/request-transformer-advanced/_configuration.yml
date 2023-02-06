@@ -1,220 +1,219 @@
-params:
-  name: request-transformer-advanced
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  config:
-    - name: http_method
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: string
-      description: |
-        Changes the HTTP method for the upstream request.
-    - name: remove.headers
-      required: false
-      default: null
-      value_in_examples:
-        - x-toremove
-        - x-another-one
-      datatype: array of string elements
-      description: |
-        List of header names. Unset the headers with the given name.
-    - name: remove.querystring
-      required: false
-      default: null
-      value_in_examples:
-        - 'qs-old-name:qs-new-name'
-        - 'qs2-old-name:qs2-new-name'
-      datatype: array of string elements
-      description: |
-        List of querystring names. Remove the querystring if it is present.
-    - name: remove.body
-      required: false
-      default: null
-      value_in_examples:
-        - formparam-toremove
-        - formparam-another-one
-      datatype: array of string elements
-      description: |
-        List of parameter names. Remove the parameter if and only if content-type is one of the
-        following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
-    - name: replace.headers
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of headername:value pairs. If and only if the header is already set,
-        replace its old value with the new one. Ignored if the header is not already set.
-    - name: replace.querystring
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of queryname:value pairs. If and only if the querystring name is already set,
-        replace its old value with the new one. Ignored if the header is not already set.
-    - name: replace.uri
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: string
-      description: |
-        Updates the upstream request URI with given value. This value can only
-        be used to update the path part of the URI; not the scheme, nor the hostname.
-    - name: replace.body
-      required: false
-      default: null
-      value_in_examples:
-        - 'body-param1:new-value-1'
-        - 'body-param2:new-value-2'
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of paramname:value pairs. If and only if content-type is one the
-        following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`];
-        and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
-    - name: replace.json_types
-      minimum_version: "3.1.x"
-      required: false
-      datatype: array of string, boolean, or number elements
-      description: |
-        List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
-    - name: rename.headers
-      required: false
-      default: null
-      value_in_examples:
-        - 'header-old-name:header-new-name'
-        - 'another-old-name:another-new-name'
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `headername:value` pairs. If and only if the header is already set,
-        rename the header. The value is unchanged. Ignored if the header is not already set.
-    - name: rename.querystring
-      required: false
-      default: null
-      value_in_examples:
-        - 'qs-old-name:qs-new-name'
-        - 'qs2-old-name:qs2-new-name'
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `queryname:value` pairs. If and only if the field name is already set,
-        rename the field name. The value is unchanged. Ignored if the field name is not already set.
-    - name: rename.body
-      required: false
-      default: null
-      value_in_examples:
-        - 'param-old:param-new'
-        - 'param2-old:param2-new'
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of parameter `name:value` pairs. Rename the parameter name if and only if content-type is
-        one of the following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
-    - name: add.headers
-      required: false
-      default: null
-      value_in_examples:
-        - 'x-new-header:value'
-        - 'x-another-header:something'
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `headername:value` pairs. If and only if the header is not already set,
-        set a new header with the given value. Ignored if the header is already set.
-    - name: add.querystring
-      required: false
-      default: null
-      value_in_examples:
-        - 'new-param:some_value'
-        - 'another-param:some_value'
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `queryname:value` pairs. If and only if the querystring name is not already set,
-        set a new querystring with the given value. Ignored if the querystring name is already set.
-    - name: add.body
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `paramname:value` pairs. If and only if content-type is one the following: [`application/json, multipart/form-data`, `application/x-www-form-urlencoded`]; and the parameter is not present, add a new parameter with the given value to form-encoded body.
-        Ignored if the parameter is already present.
-    - name: add.json_types
-      minimum_version: "3.1.x"
-      required: false
-      value_in_examples:
-        - 'new-json-key:string'
-        - 'another-json-key:boolean'
-        - 'another-json-key:number'
-      datatype: array of string, boolean, or number elements
-      description: |
-        List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
-    - name: append.headers
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `headername:value` pairs. If the header is not set, set it with the given value.
-        If it is already set, a new header with the same name and the new value will be set.
-    - name: append.querystring
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `queryname:value` pairs. If the querystring is not set, set it with the given value.
-        If it is already set, a new querystring with the same name and the new value will be set.
-    - name: append.body
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      referenceable: true
-      description: |
-        List of `paramname:value` pairs. If the content-type is one the following: [`application/json`, `application/x-www-form-urlencoded`]; add a new parameter with the given value if the parameter is not present. Otherwise, if it is already present,
-        the two values (old and new) will be aggregated in an array.
-    - name: append.json_types
-      minimum_version: "3.1.x"
-      required: false
-      datatype: array of string, boolean, or number elements
-      description: |
-        List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
-    - name: allow.body
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: array of string elements
-      description: |
-        Set of parameter names. If and only if content-type is one the following:
-        [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; allow only allowed parameters in the body.
-    - name: dots_in_keys
-      minimum_version: "3.1.x"
-      required: false
-      datatype: boolean
-      default: true
-      description: |
-        Specify whether dots (for example, `customers.info.phone`) should be treated as part of a property name or used to descend into nested JSON objects. 
-        See [Arrays and nested objects](#arrays-and-nested-objects).
-  extra: |
-    **Notes:**
-    * If the value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array
-    notation must be used instead.
-    * The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
+name: request-transformer-advanced
+service_id: true
+route_id: true
+consumer_id: true
+konnect_examples: false
+dbless_compatible: 'yes'
+protocols:
+  - name: http
+  - name: https
+  - name: grpc
+  - name: grpcs
+config:
+  - name: http_method
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: string
+    description: |
+      Changes the HTTP method for the upstream request.
+  - name: remove.headers
+    required: false
+    default: null
+    value_in_examples:
+      - x-toremove
+      - x-another-one
+    datatype: array of string elements
+    description: |
+      List of header names. Unset the headers with the given name.
+  - name: remove.querystring
+    required: false
+    default: null
+    value_in_examples:
+      - 'qs-old-name:qs-new-name'
+      - 'qs2-old-name:qs2-new-name'
+    datatype: array of string elements
+    description: |
+      List of querystring names. Remove the querystring if it is present.
+  - name: remove.body
+    required: false
+    default: null
+    value_in_examples:
+      - formparam-toremove
+      - formparam-another-one
+    datatype: array of string elements
+    description: |
+      List of parameter names. Remove the parameter if and only if content-type is one of the
+      following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
+  - name: replace.headers
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of headername:value pairs. If and only if the header is already set,
+      replace its old value with the new one. Ignored if the header is not already set.
+  - name: replace.querystring
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of queryname:value pairs. If and only if the querystring name is already set,
+      replace its old value with the new one. Ignored if the header is not already set.
+  - name: replace.uri
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: string
+    description: |
+      Updates the upstream request URI with given value. This value can only
+      be used to update the path part of the URI; not the scheme, nor the hostname.
+  - name: replace.body
+    required: false
+    default: null
+    value_in_examples:
+      - 'body-param1:new-value-1'
+      - 'body-param2:new-value-2'
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of paramname:value pairs. If and only if content-type is one the
+      following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`];
+      and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+  - name: replace.json_types
+    minimum_version: "3.1.x"
+    required: false
+    datatype: array of string, boolean, or number elements
+    description: |
+      List of JSON type names. Specify the types of the JSON values returned when replacing JSON properties.
+  - name: rename.headers
+    required: false
+    default: null
+    value_in_examples:
+      - 'header-old-name:header-new-name'
+      - 'another-old-name:another-new-name'
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `headername:value` pairs. If and only if the header is already set,
+      rename the header. The value is unchanged. Ignored if the header is not already set.
+  - name: rename.querystring
+    required: false
+    default: null
+    value_in_examples:
+      - 'qs-old-name:qs-new-name'
+      - 'qs2-old-name:qs2-new-name'
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `queryname:value` pairs. If and only if the field name is already set,
+      rename the field name. The value is unchanged. Ignored if the field name is not already set.
+  - name: rename.body
+    required: false
+    default: null
+    value_in_examples:
+      - 'param-old:param-new'
+      - 'param2-old:param2-new'
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of parameter `name:value` pairs. Rename the parameter name if and only if content-type is
+      one of the following: [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; and parameter is present.
+  - name: add.headers
+    required: false
+    default: null
+    value_in_examples:
+      - 'x-new-header:value'
+      - 'x-another-header:something'
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `headername:value` pairs. If and only if the header is not already set,
+      set a new header with the given value. Ignored if the header is already set.
+  - name: add.querystring
+    required: false
+    default: null
+    value_in_examples:
+      - 'new-param:some_value'
+      - 'another-param:some_value'
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `queryname:value` pairs. If and only if the querystring name is not already set,
+      set a new querystring with the given value. Ignored if the querystring name is already set.
+  - name: add.body
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `paramname:value` pairs. If and only if content-type is one the following: [`application/json, multipart/form-data`, `application/x-www-form-urlencoded`]; and the parameter is not present, add a new parameter with the given value to form-encoded body.
+      Ignored if the parameter is already present.
+  - name: add.json_types
+    minimum_version: "3.1.x"
+    required: false
+    value_in_examples:
+      - 'new-json-key:string'
+      - 'another-json-key:boolean'
+      - 'another-json-key:number'
+    datatype: array of string, boolean, or number elements
+    description: |
+      List of JSON type names. Specify the types of the JSON values returned when adding a new JSON property.
+  - name: append.headers
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `headername:value` pairs. If the header is not set, set it with the given value.
+      If it is already set, a new header with the same name and the new value will be set.
+  - name: append.querystring
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `queryname:value` pairs. If the querystring is not set, set it with the given value.
+      If it is already set, a new querystring with the same name and the new value will be set.
+  - name: append.body
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    referenceable: true
+    description: |
+      List of `paramname:value` pairs. If the content-type is one the following: [`application/json`, `application/x-www-form-urlencoded`]; add a new parameter with the given value if the parameter is not present. Otherwise, if it is already present,
+      the two values (old and new) will be aggregated in an array.
+  - name: append.json_types
+    minimum_version: "3.1.x"
+    required: false
+    datatype: array of string, boolean, or number elements
+    description: |
+      List of JSON type names. Specify the types of the JSON values returned when appending JSON properties.
+  - name: allow.body
+    required: false
+    default: null
+    value_in_examples: null
+    datatype: array of string elements
+    description: |
+      Set of parameter names. If and only if content-type is one the following:
+      [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`]; allow only allowed parameters in the body.
+  - name: dots_in_keys
+    minimum_version: "3.1.x"
+    required: false
+    datatype: boolean
+    default: true
+    description: |
+      Specify whether dots (for example, `customers.info.phone`) should be treated as part of a property name or used to descend into nested JSON objects. 
+      See [Arrays and nested objects](#arrays-and-nested-objects).
+extra: |
+  **Notes:**
+  * If the value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array
+  notation must be used instead.
+  * The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).

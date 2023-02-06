@@ -1,31 +1,30 @@
-params:
-  name: request-size-limiting
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: allowed_payload_size
-      required: true
-      default: '`128`'
-      datatype: integer
-      value_in_examples: 128
-      description: Allowed request payload size in megabytes. Default is `128` megabytes (128000000 bytes).
-    - name: size_unit
-      required: true
-      default: '`megabytes`'
-      datatype: string
-      description: 'Size unit can be set either in `bytes`, `kilobytes`, or `megabytes` (default). This configuration is not available in versions prior to Kong Gateway 1.3 and Kong Gateway (OSS) 2.0.'
-    - name: require_content_length
-      minimum_version: "2.3.x"
-      required: true
-      default: false
-      datatype: boolean
-      value_in_examples: false
-      description: Set to `true` to ensure a valid `Content-Length` header exists before reading the request body.
+name: request-size-limiting
+service_id: true
+route_id: true
+consumer_id: true
+konnect_examples: false
+protocols:
+  - name: http
+  - name: https
+  - name: grpc
+  - name: grpcs
+dbless_compatible: 'yes'
+config:
+  - name: allowed_payload_size
+    required: true
+    default: '`128`'
+    datatype: integer
+    value_in_examples: 128
+    description: Allowed request payload size in megabytes. Default is `128` megabytes (128000000 bytes).
+  - name: size_unit
+    required: true
+    default: '`megabytes`'
+    datatype: string
+    description: 'Size unit can be set either in `bytes`, `kilobytes`, or `megabytes` (default). This configuration is not available in versions prior to Kong Gateway 1.3 and Kong Gateway (OSS) 2.0.'
+  - name: require_content_length
+    minimum_version: "2.3.x"
+    required: true
+    default: false
+    datatype: boolean
+    value_in_examples: false
+    description: Set to `true` to ensure a valid `Content-Length` header exists before reading the request body.

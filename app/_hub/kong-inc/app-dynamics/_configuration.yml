@@ -1,11 +1,10 @@
 bundled: false
-params:
-  name: app-dynamics
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  protocols:
-    - name: http
-    - name: https
-  dbless_compatible: 'yes'
+name: app-dynamics
+service_id: true
+route_id: true
+consumer_id: true
+konnect_examples: false
+protocols:
+  - name: http
+  - name: https
+dbless_compatible: 'yes'
