@@ -153,8 +153,8 @@ Metric                     | Description | Namespace
 `status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
 `status_count_per_user_per_route`    | The status code per consumer per route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
-`cache_datastore_hits_total`            | The number of total cache hits. (kong-ee only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
-`cache_datastore_misses_total`            | The number of total cache misses. (kong-ee only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
+`cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
 
 {% endif_plugin_version %}
 {% if_plugin_version lte:2.8.x %}
@@ -194,8 +194,8 @@ Metric                     | Description | Namespace
 `request_per_user`         | Tracks the request count per consumer. | `kong.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final service to process the request. | `kong.upstream_latency`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
-`cache_datastore_hits_total`            | The number of total cache hits. (kong-ee only) | `kong.cache_datastore_hits_total`
-`cache_datastore_misses_total`            | The number of total cache misses. (kong-ee only) | `kong.cache_datastore_misses_total`
+`cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.cache_datastore_misses_total`
 
 
 
@@ -212,7 +212,7 @@ See the [InfluxDB StatsD](https://www.influxdata.com/blog/getting-started-with-s
 For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, for example:
 `metric.name:0|c|#tagName:val,tag2Name:val2`
 See the [Datadog StatsD Tags](https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging) documentation for more information about the concept description and Datagram Format.
-PS: (AWS Cloudwatch)[https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html] is also using the DogStatsD-style.
+(AWS CloudWatch)[https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html] also uses the DogStatsD protocol.
 
 For SignalFX dimension, add the tags to the metric name in square brackets, for example:
 `metric.name[tagName=val,tag2Name=val2]:0|c`
