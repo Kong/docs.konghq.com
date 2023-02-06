@@ -27,7 +27,7 @@ curl --request PATCH \
 ```
 
 {:.note}
-> The `portal-id` can be found in the {{site.konnect_short_name}} Portal within the **Developers** tab. 
+> The `portal-id` can be found in {{site.konnect_short_name}} within the **Dev Portal** section. 
 
 ## Setup RBAC
 
