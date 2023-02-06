@@ -203,7 +203,7 @@ For InfluxDB-style tags, they must be appended to the metric name with a delimit
 `metric.name,tagName=val,tag2Name=val2:0|c`
 See the [InfluxDB StatsD](https://www.influxdata.com/blog/getting-started-with-sending-statsd-metrics-to-telegraf-influxdb/#introducing-influx-statsd) documentation for more information.
 
-For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, as so:
+For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, for example:
 `metric.name:0|c|#tagName:val,tag2Name:val2`
 See Tags in https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging for the concept description and Datagram Format.
 
