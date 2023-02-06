@@ -260,7 +260,7 @@ Field         | Description                                             | Dataty
 ## Changelog
 
 **{{site.base_gateway}} 3.2.x**
-* Add `tag_style` configuration parameter that allows to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil` which means do not add any tags to the metrics.
+* Added the `tag_style` configuration parameter. This allows you to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics.
 
 **{{site.base_gateway}} 3.1.x**
 * Added support for managing queues and connection retries when sending messages to the upstream with 
