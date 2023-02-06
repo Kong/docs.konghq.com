@@ -197,7 +197,7 @@ The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags
 
 For Librato-style tags, they must be appended to the metric name with a delimiting #, for example:
 `metric.name#tagName=val,tag2Name=val2:0|c`
-See the https://github.com/librato/statsd-librato-backend#tags README for a more complete description.
+See the [Librato StatsD](https://github.com/librato/statsd-librato-backend#tags) documentation for more information.
 
 For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, as so:
 `metric.name,tagName=val,tag2Name=val2:0|c`
