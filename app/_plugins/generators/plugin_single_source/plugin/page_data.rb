@@ -15,7 +15,7 @@ module PluginSingleSource
       def build_data
         @data
           .merge!(@release.frontmatter)
-          .merge!(@release.configuration_parameters_table)
+          .merge!(configuration)
           .merge!(page_attributes)
           .merge!(frontmatter_overrides)
 
@@ -69,6 +69,10 @@ module PluginSingleSource
       def frontmatter_overrides
         # Override any frontmatter as required
         @release.ext_data.dig('frontmatter', @release.version) || {}
+      end
+
+      def configuration
+        { 'configuration' => @release.configuration_parameters_table }
       end
     end
   end
