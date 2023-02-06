@@ -127,7 +127,8 @@ params:
     - name: tag_style
       required: false
       datatype: string
-      description: tag style configrations to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil` which means do not add any tags to the metrics.Allowed values are  `dogstatsd`, `influxdb`, `librato`, `signalfx`.
+      description: The tag style configurations to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics. Allowed values are  `dogstatsd`, `influxdb`, `librato`, and `signalfx`.
+      minimum_version: 3.2.x
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
