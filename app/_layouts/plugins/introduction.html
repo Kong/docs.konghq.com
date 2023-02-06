@@ -1,0 +1,42 @@
+---
+layout: default
+type: plugin
+permalink: :path
+breadcrumbs:
+  Hub: '/hub'
+
+---
+
+<!-- BEGIN PAGE OUTPUT -->
+<div class="search-selector">Plugin Hub</div>
+
+<div class="page page-extension-profile">
+  {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.header_title %}
+
+  <div class="container">
+    {% capture full_content %}
+      {{ content }}
+    {% endcapture %}
+
+    {% include_cached plugins/right_nav.html full_content=full_content %}
+
+    <div class="page-content-container">
+      <div class="page-content">
+        <div class="content show-anchor-links">
+          {{ full_content }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="scroll-to-top-button">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+  {% if page.feedback != false %}
+    {% include feedback-widget.html %}
+  {% endif %}
+</div>
+
+{% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+
+<!-- {% include intercom.html %} -->
