@@ -218,7 +218,7 @@ For SignalFX dimension, add the tags to the metric name in square brackets, for 
 `metric.name[tagName=val,tag2Name=val2]:0|c`
 See the [SignalFX StatsD](https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics) documentation for more information.
 
-So when the `tag_style` config is enable, Kong Gateway uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
+So when the `tag_style` config is enabled, {{site.base_gateway}} uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
 
 For example:
 
