@@ -69,10 +69,12 @@ the following {{site.base_gateway}} objects:
 * Gateway services
 * Routes
 * Consumers
+* Consumer Groups
 * Plugins
 * Upstreams
 * Certificates
 * SNIs
+* Vaults
 
 When there are multiple runtime groups, any object configuration only
 applies to the runtime group that it was created in. Consumers and
