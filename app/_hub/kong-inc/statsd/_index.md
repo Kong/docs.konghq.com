@@ -207,7 +207,7 @@ For DogStatsD-style tags, they're appended as a |# delimited section at the end 
 `metric.name:0|c|#tagName:val,tag2Name:val2`
 See Tags in https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging for the concept description and Datagram Format.
 
-For SignalFX dimension, add the tags to the metric name in square brackets, as so:
+For SignalFX dimension, add the tags to the metric name in square brackets, for example:
 `metric.name[tagName=val,tag2Name=val2]:0|c`
 See the https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics README for a more complete description.
 
