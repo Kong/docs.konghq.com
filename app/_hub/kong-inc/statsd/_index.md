@@ -212,6 +212,7 @@ See the [InfluxDB StatsD](https://www.influxdata.com/blog/getting-started-with-s
 For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, for example:
 `metric.name:0|c|#tagName:val,tag2Name:val2`
 See the [Datadog StatsD Tags](https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging) documentation for more information about the concept description and Datagram Format.
+PS: (AWS Cloudwatch)[https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html] is also using the DogStatsD-style.
 
 For SignalFX dimension, add the tags to the metric name in square brackets, for example:
 `metric.name[tagName=val,tag2Name=val2]:0|c`
