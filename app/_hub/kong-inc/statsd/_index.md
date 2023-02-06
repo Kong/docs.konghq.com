@@ -153,6 +153,9 @@ Metric                     | Description | Namespace
 `status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
 `status_count_per_user_per_route`    | The status code per consumer per route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
+`cache_datastore_hits_total`            | The number of total cache hits. (kong-ee only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The number of total cache misses. (kong-ee only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
+
 {% endif_plugin_version %}
 {% if_plugin_version lte:2.8.x %}
 Metric                     | Description | Namespace
@@ -191,6 +194,9 @@ Metric                     | Description | Namespace
 `request_per_user`         | Tracks the request count per consumer. | `kong.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final service to process the request. | `kong.upstream_latency`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
+`cache_datastore_hits_total`            | The number of total cache hits. (kong-ee only) | `kong.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The number of total cache misses. (kong-ee only) | `kong.cache_datastore_misses_total`
+
 
 
 The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which are used like Prometheus labels.
