@@ -31,9 +31,7 @@ Service | Group or filter the data by {{site.konnect_short_name}} service.
 Service Version | Group or filter the data by {{site.konnect_short_name}} service version. <br><br>If you select multiple service versions in a report, the report shows the sum of requests for all selected versions broken down by service. It **does not** show data points for individual service versions.
 Route | Group or filter the data by route. Route names are composed of elements referencing their related service, service version, and runtime group. See [Route entity format](#route-entity-format) for details.
 Application | Group or filter the data by application.
-Status Code | Group or filter the data by individual response status code. Displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx,
-  4xx, 5xx). The Status Codes view contains the counts of status code classes
-  graphed over time, as well as the ratio of code classes to total requests.
+Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
 Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
 
 ### Route entity format
@@ -57,7 +55,7 @@ Where `DA58B` are the first five characters of its UUID.
 
 ### Service version entity format
 
-In custom reports, the service version entity name is composed of the following elements:
+The service version name isn't unique across an organization. To identify the entity you need, the service version entity name is composed of the following elements:
 
 ```
 KONNECT_SERVICE_NAME - VERSION (RUNTIME GROUP)
