@@ -4,6 +4,7 @@
 {% if include.name %}
   {% assign header_title = include.name %}
 {% endif %}
+
 {% if header_title %}
   <header class="page-header">
     <div class="container">
@@ -19,9 +20,9 @@
             {% for breadcrumb in include.breadcrumbs %}
               <li class="breadcrumb-item{% if include.url == breadcrumb[1] %} active{% endif %}">
                 {% if include.id == 'page-plugin' %}
-                <a href="https://konghq.com/plugins">Plugins</a>
+                  <a href="https://konghq.com/plugins">Plugins</a>
                 {% else %}
-                <a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a>
+                  <a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a>
                 {% endif %}
               </li>
             {% endfor %}

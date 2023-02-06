@@ -1,0 +1,164 @@
+<div class="about-extn-table">
+  <table id="about-extn">
+    <tr>
+      <th colspan="2">About this {{ include.extn_type | capitalize }}</th>
+    </tr>
+    {% if include.extn_versions %}
+      <tr class="version">
+        <td>Plugin Version</td>
+        <td>
+          {% if include.extn_data['overrides'][extn_release] %}
+            {{ include.extn_data['overrides'][extn_release] }}
+          {% else %}
+           {{ include.extn_release }}
+          {% endif %}
+        </td>
+      </tr>
+    {% endif %}
+    <tr class="publisher">
+      <td>Made by</td>
+      <td>
+      {% unless include.extn_publisher == "kong-inc" %}
+        {{ page.publisher }}
+      {% else %}
+        <img src="/assets/images/KogoBlue.svg" alt="Kong-logo"/> {{site.company_name}}
+      {% endunless %}
+      </td>
+    </tr>
+    <tr class="categories">
+      <td>Categories</td>
+      <td>
+        <ul class="categories">
+        {% for cat in page.categories %}
+          {% assign cat_meta = site.extensions.categories | where: "slug", cat %}
+          <li><a href="/hub/#{{ cat_meta[0].slug}}">{{ cat_meta[0].name }}</a>{% unless forloop.last %},{% endunless %}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    {% unless page.configuration.dbless_compatible == nil %}
+      <tr>
+        <td>DB-less compatible?</td>
+        <td>
+          <a href="/hub/plugins/compatibility/">{% if page.configuration.dbless_compatible == "yes" or page.configuration.dbless_compatible == true %}Yes{% endif %}{%
+            if page.configuration.dbless_compatible == "no" or page.configuration.dbless_compatible == false %}No{% endif %}{%
+            if page.configuration.dbless_compatible == "partially" %}Partially{% endif %}</a>
+        </td>
+      </tr>
+    {% endunless %}
+    {% if include.extn_publisher == "kong-inc" %}
+      <tr>
+        <td>Konnect Cloud compatible?</td>
+        <td>
+         {% if page.cloud == false %} No
+         {% elsif include.extn_release == include.extn_latest %} Yes
+         {% else %} See latest plugin version
+         {% endif %}
+      </tr>
+    {% endif %}
+    {% if page.configuration.protocols %}
+      <tr>
+        <td>Compatible protocols</td>
+        <td>
+            {% for protocol in page.configuration.protocols %}{% if_plugin_version gte:protocol.minimum_version lte:protocol.maximum_version %}
+              <div class="protocol">
+                <code>{{ protocol.name }}</code>
+              </div>
+            {% endif_plugin_version %}{% endfor %}
+        </td>
+      </tr>
+    {% endif %}
+    {% if page.support_url %}
+      {% assign support_dom = page.support_url | split: "/" %}
+      {% assign support_dom = support_dom[2] | remove: "www." | remove: "support." | remove: "help." | remove: "docs." %}
+      {% if support_dom.length > 20 %}{% assign support_dom = "Site" %}{% endif %}
+      <tr>
+        <td>Support</td>
+        <td><a href="{{ page.support_url }}">{{ support_dom | truncate: 15 }}</a></td>
+      </tr>
+    {% endif %}
+    {% if page.source_code or page.license_type %}
+      <tr class="source-code">
+        <td>Source</td>
+        <td>
+          <ul>
+          {% if page.source_code %}
+            <li>
+              <a href="{{ page.source_code }}">Code</a>
+            </li>
+          {% endif %}
+          {% if page.license_type %}
+            <li>
+              <a href="https://opensource.org/licenses/{{ page.license_type }}">License ({{ page.license_type }})</a>
+            </li>
+          {% endif %}
+          </ul>
+        </td>
+      </tr>
+    {% endif %}
+    {% if page.privacy_policy_url or page.privacy_policy or page.terms_of_service or page.terms_of_service_url %}
+      {% if page.privacy_policy_url %}
+        {% assign privacy = page.privacy_policy_url %}
+      {% elsif page.privacy_policy %}
+        {% assign privacy = "#privacy-policy" %}
+      {% endif %}
+      {% if page.terms_of_service_url %}
+        {% assign tos = page.terms_of_service_url %}
+      {% elsif page.terms_of_service %}
+        {% assign tos = "#terms-of-service" %}
+      {% endif %}
+      <tr class="legal">
+        <td>Legal</td>
+        <td>
+          <ul>
+            {% if privacy %}
+              <li>
+                <a href="{{privacy}}">Privacy</a>
+              </li>
+            {% endif %}
+            {% if tos %}
+              <li>
+                <a href="{{tos}}">Terms of Service</a>
+              </li>
+            {% endif %}
+          </ul>
+        </td>
+      </tr>
+    {% endif %}
+    {% if include.compat %}
+      <tr class="kong-editions">
+        <th colspan="2">
+            Version Compatibility
+        </th>
+      </tr>
+      <tr class="kong-compatibility">
+        <td colspan="2">
+          {% if include.ee_compatible %}
+            <ul class="compat-list">
+              {% unless first_ee %}
+                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
+              {% endunless %}
+              {% for v in include.ee_compatible %}
+                <li>
+                  <i class="fa fa-check"></i> {{ v }}
+                </li>
+             {% endfor %}
+            </ul>
+          {% endif %}
+          {% if include.ce_compatible %}
+            <ul class="compat-list">
+              {% unless first_ce %}
+                  <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
+              {% endunless %}
+              {% for v in include.ce_compatible %}
+                <li>
+                  <i class="fa fa-check"></i> {{ v }}
+                </li>
+             {% endfor %}
+            </ul>
+          {% endif %}
+        </td>
+      </tr>
+    {% endif %}
+  </table>
+</div>
