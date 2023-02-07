@@ -10,8 +10,7 @@ Traffic metrics provide insight into which of your services and service versions
 
 Metric | Description
 -------|------------
-Request Count | Total number of API calls within the selected time frame. This includes requests that
-were rejected due to rate limiting, failed authentication, and so on.
+Request Count | Total number of API calls within the selected time frame. This includes requests that were rejected due to rate limiting, failed authentication, and so on.
 Requests per Minute | Number of API calls per minute within the selected time frame.
 Response Latency | The amount of time, in milliseconds, that it takes to process an API request. The time starts when {{site.base_gateway}} receives a request and ends when it forwards the response back to the original caller. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from request received until response returned. 
 Request Size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
