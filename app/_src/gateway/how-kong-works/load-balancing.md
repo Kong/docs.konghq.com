@@ -200,7 +200,7 @@ The `consistent-hashing` algorithm is based on _Consistent Hashing_, which ensur
 a change in its targets (adding, removing, failing, or changing weights), only
 the minimum number of hashing losses occur. This maximizes upstream cache hits.
 
-The `latency` algorithm is based on [peak EWMA](https://linkerd.io/2016/03/16/beyond-round-robin-load-balancing-for-latency/), which ensures that the balancer selects the upstream target
+The `latency` algorithm is based on peak EWMA(exponentially weighted moving average), which ensures that the balancer selects the upstream target
 by lowest latency (`upstream_response_time`). This latency is not only TCP connect time, but also includes
 body response time. In the `latency` algorithm, the latency is the service response latency because it describes the combined score of service load and network latency. This balancer algorithm is suitable for a single type upstream service. If the backend service has different requests with different body types (for example, video data, audio data, or text data), it causes the `latency` algorithm loss load balancing function. Before using the `latency` algorithm, make sure that the QPS of your requests is as large as possible because sharing data between multiple workers in Nginx is difficult and this algorithm only stores data on a single worker. So, the more requests there are, the more data Kong will uncover and the more `latency` balanced it will be.
 
