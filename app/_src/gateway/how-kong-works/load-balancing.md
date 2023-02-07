@@ -169,7 +169,7 @@ to this target it will query the nameserver again.
 ### Balancing algorithms
 
 The ring-balancer supports the following load balancing algorithms: `round-robin`,
-`consistent-hashing`, `least-connections`, `latency`. By default, a ring-balancer
+`consistent-hashing`, `least-connections`, and `latency`. By default, a ring-balancer
 uses the `round-robin` algorithm, which provides a well-distributed weighted
 round-robin over the targets.
 
