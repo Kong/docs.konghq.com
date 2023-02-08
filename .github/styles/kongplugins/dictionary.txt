@@ -38,6 +38,7 @@ Kong/kong
 Konnect
 Kuma
 Kustomize
+Librato
 Loggly
 Lua's
 Luarocks
