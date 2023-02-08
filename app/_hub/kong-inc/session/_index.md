@@ -114,7 +114,7 @@ params:
       default: 86400
       datatype: integer
       description: |
-        The session cookie absolute timeout in seconds.
+        The session cookie absolute timeout. in seconds.
         Specifies how long the session can be used until it is no longer valid.
     - name: cookie_idletime
       maximum_version: "3.1.x"
