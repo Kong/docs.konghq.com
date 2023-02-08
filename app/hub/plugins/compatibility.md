@@ -106,7 +106,7 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
 
-<table>
+<table class="table-sticky">
   <thead>
       <th>Plugin</th>
       <th><code>http</code></th>

@@ -308,3 +308,15 @@
     margin-bottom: -25px;
   }
 }
+
+table {
+  &.table-sticky {
+    max-height: calc(100vh - 60px);
+
+    thead tr {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+  }
+}
