@@ -1,0 +1,88 @@
+
+{% if page.configuration.global == false %}
+  {:.important}
+  > This plugin cannot be enabled globally. Please select another tab.
+{% else %}
+  A plugin which is not associated to any service, route, or consumer is
+  considered _global_, and will be run on every request. Read the
+  [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
+  sections for more information.
+
+  The following examples provide some typical configurations for enabling
+  the <code>{{page.configuration.name}}</code> plugin globally.
+  {% navtabs %}
+    {% navtab Admin API %}
+
+Make the following request:
+
+```bash
+curl -X POST http://localhost:8001/plugins/ \
+  --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
+```
+
+    {% endnavtab %}
+
+    {% unless page.configuration.k8s_examples == false %}
+      {% navtab Kubernetes %}
+
+Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
+resource and label it as global:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: <global-{{page.configuration.name}}>
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: \"true\"
+{% if include.config_required_fields_k8s == 'config: ' %}config:
+  <optional_parameter>: <value>{% else %}{{ include.config_required_fields_k8s }}{% endif %}
+plugin: {{page.configuration.name}}
+```
+
+      {% endnavtab %}
+    {% endunless %}
+
+    {% unless page.configuration.yaml_examples == false %}
+      {% navtab Declarative (YAML) %}
+
+Add a <code>plugins</code> entry in the declarative
+configuration file:
+
+``` yaml
+plugins:
+- name: {{page.configuration.name}}
+  {% if include.config_required_fields_yaml == 'config: ' %}config:
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
+```
+      {% endnavtab %}
+    {% endunless %}
+
+    {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+      {% navtab Kong Manager %}
+
+
+You can configure this plugin through the Kong Manager UI.
+
+1. In Kong Manager, select the workspace.
+2. Open **Plugins** from the menu, then click **New Plugin**.
+3. Find and select the **{{ include.name }}** plugin.{%
+    if page.enterprise == true or page.plus == true %}
+    <blockquote class="note">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
+    </blockquote>{% endif %}
+4. If the option is available, set the plugin scope to **Global**.{% unless
+    include.config_required_fields_gui == empty %}
+5. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
+    {{ include.config_required_fields_gui }}{% endunless %}
+6. Click **Create**.
+
+      {% endnavtab %}
+    {% endunless %}
+  {% endnavtabs %}
+{% endif %}
