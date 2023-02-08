@@ -292,7 +292,7 @@ allow access to the `/metrics` endpoint to Prometheus:
 ## Changelog
 
 **{{site.base_gateway}} 3.2.x**
-* New configs `expose_tags.from_service`, `expose_tags.from_route` and `expose_tags.from_consumer` to expose Services, Routes and/or Consumers tags as metrics label `tags`.
+* Added the `expose_tags.from_service`, `expose_tags.from_route`, and `expose_tags.from_consumer` configs so you can expose services, routes, or consumers tags as metrics with the `tags` label.
 
 **{{site.base_gateway}} 3.0.x**
 * High cardinality metrics are now disabled by default.
