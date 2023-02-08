@@ -28,6 +28,19 @@ This prevented SSL connections from using common root certificate authorities.
   - The Dev Portal API now supports an optional `fields` query parameter on the `/files` endpoint.
   This parameter lets you specify which file object fields should be included in the response.
 
+#### Core 
+
+- When `router_flavor` is `traditional_compatible`, verify routes created using the
+  Expression router instead of the traditional router to ensure created routes
+  are actually compatible.
+  [#10088](https://github.com/Kong/kong/pull/10088)
+  
+- `kong migrations up` now reports routes that are incompatible with the 3.0 router
+  and stops the migration progress so that admins have a chance to adjust them.
+
+  [#10092](https://github.com/Kong/kong/pull/10092)
+  [#10101](https://github.com/Kong/kong/pull/10101)
+
 ### Fixes
 
 #### Enterprise
@@ -44,19 +57,31 @@ This prevented SSL connections from using common root certificate authorities.
   - Fixed an issue where admins with the permission `['create'] /services/*/plugins` couldn't create plugins under a service.
   - Fixed an issue where viewing a consumer group in any workspace other than `default` would cause a `404 Not Found` error. 
 
+#### Core
+
+* Fixed an issue where regexes generated in inso would not work in Kong Gateway. 
+* Bumped `atc-router` to `1.0.2` to address the potential worker crash issue.
+  [#9927](https://github.com/Kong/kong/pull/9927)
+
 #### Hybrid mode
 
 - Fixed an issue where Vitals data was not showing up after a license was deployed using the `/licenses` endpoint.
 Kong Gateway now triggers an event that allows the Vitals subsystem to be reinitialized during license preload.
 - Fixed an issue where the forward proxy between data planes and the control plane didn't support the telemetry port `8006`.
-- Backwards compatibility with 2.8.x.x data planes has been restored. 
+- Reverted the removal of WebSocket protocol support for configuration sync.
+  Backwards compatibility with 2.8.x.x data planes has been restored. 
+  [#10067](https://github.com/Kong/kong/pull/10067) 
 
-### Plugins
+#### Plugins
+
+- [**Datadog**](/hub/kong-inc/datadog/) (`datadog`),[**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`), and [**StatsD**](/hub/kong-inc/statsd/) (`statsd`)
+  - Fixed an issue in these plugins' batch queue processing, where metrics would be published multiple times. 
+  This caused a memory leak, where memory usage would grow without limit.
 
 - [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  - Fixed an issue where the cache expired while the window was still valid.
-   The plugin now requires the cache size to be, at minimum, twice the value of `window_size`.
-
+  - Fixed an issue with the `local` strategy, which was not working correctly when `window_size` was set to `fixed`, 
+    and the cache would expire while the window was still valid.
+  
 - [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`)
   - Added the OAS Validation plugin back into the bundled plugins list. The plugin is now available by default
   with no extra configuration necessary through `kong.conf`.

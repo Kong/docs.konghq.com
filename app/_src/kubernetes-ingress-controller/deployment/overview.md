@@ -24,6 +24,11 @@ Gateway APIs standard by default, but Kubernetes itself does not. You must
 [install the Gateway API resources](https://gateway-api.sigs.k8s.io/guides/#installing-gateway-api)
 and restart any {{site.kic_product_name}} instances after to use this feature.
 
+{:.important}
+> Although the [admission webhook](#admission-webhook) is not enabled by
+> all deployment methods, it is strongly recommended for any production
+> cluster.
+
 The following sections detail on deployment steps for all the different
 runtimes:
 
@@ -60,11 +65,11 @@ that are running in Kubernetes and non-Kubernetes environments.
 This [guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/kong-enterprise) goes into details of
 the architecture and how one can set that up.
 
-## Admission Controller
+## Admission Webhook
 
-The {{site.kic_product_name}} also ships with a Validating
-Admission Controller that
-can be enabled to verify KongConsumer, KongPlugin and Secret
-resources as they are created.
-Please follow the [admission-webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook) deployment
-guide to set it up.
+{{site.kic_product_name}} offers an admission webhook. This webhook
+validates updates to KongConsumer, credential Secret, and Kong(Cluster)Plugin
+resources. When the webhook is enabled, kubectl will display an error
+indicating why the configuration is invalid.
+
+To enable the admission webhook, follow the [admission webhook guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook).

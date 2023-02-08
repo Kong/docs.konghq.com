@@ -9,6 +9,34 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## January 2023
+
+**Dynamic plugin ordering using the UI**
+: You can now configure dynamic plugin ordering using the {{site.konnect_short_name}} user interface. Dynamic plugin ordering allows you to override the default static plugin execution order by choosing which plugins run before or after another plugin. 
+
+: **Known limitation:** The control plane can't evaluate any conflicts in the dynamic ordering. If there are any conflicts in the defined order of plugin execution, you will only know during execution via the dataplane logs.
+
+: For more information, see [Plugin Ordering Reference](/konnect/runtime-manager/plugins/).
+
+**Consumer groups**
+: {{site.konnect_short_name}} now supports configure consumer groups to enable tier-based API consumption via the {{site.konnect_short_name}} user interface. Consumer groups work with the [Rate Limiting Advanced plugin](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) to allow you to manage custom rate limiting configurations for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and apply them to subsets of consumers instead of managing each consumer individually. Consumer groups are also supported through decK.
+
+: **Known limitation:** There is a rate limiting advanced plugin bug for local strategy where the number of remaining requests resets after every couple of seconds. You can use the Redis strategy as a workaround or if you want to test with local strategy, you can use {{site.base_gateway}} version 3.0.2.0.
+
+: For more information, see [Create Consumer Groups in Konnect](/konnect/runtime-manager/consumer-groups/).
+
+**Auth0 support for Dynamic Client Registration**
+: [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0) is now available as an identity provider for Dynamic Client Registration (DCR).
+
+: **Known limitation:** Unlike other DCR providers, Auth0 requires specifying audience, which represents an independent token recipient. Multiple applications can be mapped to one Audience API within auth0 and share the same permissions accordingly.
+Currently, our OIDC plugin can only support single audience for this release. We will consider adding support for mutliple audiences in the future iteration.
+
+**Simplified docker script for creating Runtime Instances**
+: {{site.konnect_short_name}} now supports a simplified docker script to create a new runtime instance as well as in the QuickStart which makes it easier to create runtime instances. Instead of downloading a script from github, customers can now use a simple docker run command. This decrease the time and effort taken by customers to launch a Kong Gateway and improves security during runtime instance creation. Runtime Manager also supports simple copy buttons inside the code block components to make it easy for users to copy!
+
+**Curity support for Dynamic Client Registration (GA)**
+: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity) is now available as an identity provider for Dynamic Client Registration (DCR).
+
 ## December 2022
 
 **Curity support for Dynamic Client Registration (beta)**

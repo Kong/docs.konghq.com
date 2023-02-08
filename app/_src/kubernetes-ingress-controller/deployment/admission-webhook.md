@@ -1,15 +1,15 @@
 ---
-title: Validating Admission Controller
+title: Validating the Admission Webhook
 ---
 
-The {{site.kic_product_name}} ships with an Admission Controller for KongPlugin
+The {{site.kic_product_name}} ships with an admission webhook for KongPlugin
 and KongConsumer resources in the `configuration.konghq.com` API group.
 
-The Admission Controller needs a TLS certificate and key pair which
+The admission webhook needs a TLS certificate and key pair which
 you need to generate as part of the deployment.
 
 Following guide walks through a setup of how to create the required key-pair
-and enable the admission controller.
+and enable the admission webhook.
 
 Please note that this requires {{site.kic_product_name}} >= 0.6 to be
 already installed in the cluster.
@@ -38,11 +38,21 @@ This script takes all the following commands and packs them together.
 You need `kubectl` and `openssl` installed on your workstation for this to
 work.
 
-## Create a certificate for the admission controller
+## Set up using the Helm chart
 
-Kubernetes API-server makes an HTTPS call to the Admission Controller to verify
+If you are using the [Helm chart](https://github.com/Kong/charts/blob/main/charts/kong/README.md),
+you can enable the webhook by setting `ingressController.admissionWebhook.enabled=true`
+in your values.yaml. It is set to `true` by default as of chart version 2.16.
+
+The chart generates a self-signed certificate by default.
+`ingressController.admissionWebhook.certificate` contains settings to
+use a user-provided certificate instead.
+
+## Create a certificate for the admission webhook
+
+Kubernetes API-server makes an HTTPS call to the admission webhook to verify
 if the custom resource is valid or not. For this to work, Kubernetes API-server
-needs to trust the CA certificate that is used to sign Admission Controller's
+needs to trust the CA certificate that is used to sign the admission webhook's
 TLS certificate.
 
 This can be accomplished either using a self-signed certificate or using
@@ -75,7 +85,7 @@ writing new private key to 'key.pem'
 ### Using in-built Kubernetes CA
 
 Kubernetes comes with an in-built CA which can be used to provision
-a certificate for the Admission Controller.
+a certificate for the admission webhook.
 Please refer to the
 [this guide](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/)
 on how to generate a certificate using the in-built CA.
@@ -101,7 +111,7 @@ secret/kong-validation-webhook created
 Once the secret is created, update the Ingress Controller deployment:
 
 Execute the following command to patch the {{site.kic_product_name}} deployment
-to mount the certificate and key pair and also enable the admission controller:
+to mount the certificate and key pair and also enable the admission webhook:
 
 ```bash
 kubectl patch deploy -n kong ingress-kong \
@@ -111,6 +121,10 @@ The output is similar to the following:
 ```
 deployment.extensions/ingress-kong patched
 ```
+
+If you are using the Helm chart, run `helm upgrade -f <path to values.yamvl> <release name> kong/kong`
+after enabling the webhook or updating the certificate configuration. Note that
+chart versions 2.16 and later enable the webhook by default.
 
 ## Enable the validating admission
 
@@ -212,7 +226,7 @@ exists a consumer in Kong with the same username.
 
 Try to create the following KongPlugin resource.
 The `foo` config property does not exist in the configuration definition and
-hence the Admission Controller returns back an error.
+hence the admission webhook returns back an error.
 If you remove the `foo: bar` configuration line, the plugin will be
 created successfully.
 
