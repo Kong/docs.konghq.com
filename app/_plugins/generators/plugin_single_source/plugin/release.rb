@@ -25,13 +25,15 @@ module PluginSingleSource
         ) || {}
       end
 
-      def markdown_content
-        @markdown_content ||= parsed_file.content
-      end
-
       def changelog
         @changelog ||= File.read(
           File.expand_path('_changelog.md', plugin_base_path)
+        )
+      end
+
+      def how_to
+        @how_to ||= File.read(
+          File.expand_path('how-to/_index.md', pages_source_path)
         )
       end
 
@@ -49,7 +51,7 @@ module PluginSingleSource
 
       def content
         @content ||= <<~CONTENT
-          #{markdown_content}
+          #{how_to}
 
           #{changelog}
         CONTENT

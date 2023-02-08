@@ -17,9 +17,3 @@ kong_version_compatibility: # required
       - 2.2.x
       - 2.1.x
 ---
-
-## Usage
-Installation:
-```
-luarocks install acme-kong-plugin
-```

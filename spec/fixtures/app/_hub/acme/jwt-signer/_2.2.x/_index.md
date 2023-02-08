@@ -19,7 +19,3 @@ kong_version_compatibility:
     enterprise_edition:
       compatible: true
 ---
-
-## _2.2.x Description
-
-content: Verify and (re-)sign one or two tokens in a request
