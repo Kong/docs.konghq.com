@@ -50,14 +50,14 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     end
   end
 
-  describe '#markdown_content' do
+  describe '#how_to' do
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
 
-      it 'returns the markdown section of the file' do
-        expect(subject.markdown_content).to eq(
+      it 'returns the content of the <version>/how-to/_index.md file' do
+        expect(subject.how_to).to eq(
         <<~CONTENT
           ## _2.2.x Description
 
@@ -68,10 +68,9 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     end
 
     context 'when using `_index.md`' do
-      it 'returns the markdown section of the file' do
-        expect(subject.markdown_content).to eq(
-          File.read(File.expand_path('_hub/acme/jwt-signer/_index.md', site.source))
-          .match(/---\n.*\n---\n\n(.*)/m)[1]
+      it 'returns the content of the how-to/_index.md file' do
+        expect(subject.how_to).to eq(
+          File.read(File.expand_path('_hub/acme/jwt-signer/how-to/_index.md', site.source))
         )
       end
     end
@@ -108,10 +107,10 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       File.read(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source))
     end
     let(:markdown) do
-      File.read(File.expand_path(file_path, site.source)).match(/---\n.*\n---\n\n(.*)/m)[1]
+      File.read(File.expand_path(file_path, site.source))
     end
 
-    shared_examples_for 'returns the content of the corresponding _index.md and _changelog.md' do
+    shared_examples_for 'returns the content of the corresponding how-to/_index.md and _changelog.md' do
       it do
         expect(subject.content).to include(markdown)
         expect(subject.content).to include(changelog)
@@ -122,14 +121,14 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
-      let(:file_path) { '_hub/acme/jwt-signer/_2.2.x/_index.md' }
+      let(:file_path) { '_hub/acme/jwt-signer/_2.2.x/how-to/_index.md' }
 
-      it_behaves_like 'returns the content of the corresponding _index.md and _changelog.md'
+      it_behaves_like 'returns the content of the corresponding how-to/_index.md and _changelog.md'
     end
 
     context 'when using `_index.md`' do
-      let(:file_path) { '_hub/acme/jwt-signer/_index.md' }
-      it_behaves_like 'returns the content of the corresponding _index.md and _changelog.md'
+      let(:file_path) { '_hub/acme/jwt-signer/how-to/_index.md' }
+      it_behaves_like 'returns the content of the corresponding how-to/_index.md and _changelog.md'
     end
   end
 
