@@ -56,7 +56,7 @@ params:
       required: false
       default: '"remember"'
       datatype: string
-      description: Persistent session cookie name
+      description: Persistent session cookie name. Use with the `remember` configuration parameter.
     - name: remember_rolling_timeout
       minimum_version: "3.2.x"
       required: false
