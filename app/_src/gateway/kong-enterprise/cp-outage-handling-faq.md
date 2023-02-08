@@ -13,8 +13,6 @@ When the cluster adds new data plane nodes, the control plane uses a configurati
 
 By designating a dedicated backup node, any changes to the configuration file are pushed to the S3 compatible storage. Any new data plane nodes read the configuration file from the S3 compatible storage volume and consume the new configuration changes. 
 
-If the data plane and control plane are both configured to `export` a configuration, assuming that they are both configured with the right level of authentication, the data plane will export the configuration to the bucket.
-
 
 ## Data plane management during control plane outage
 
@@ -26,6 +24,8 @@ A new data plane node that is added to the cluster when the control plane is unr
 
 The S3 compatible storage volume is only accessed at data plane node creation time. The configuration will never be pulled from the storage after creation. If the new data plane node depends on any other functionality from the control plane, it will fail. 
 
+{:.note}
+> If the data plane and control plane are both configured to `export` a configuration, assuming that they are both configured with the right level of authentication, the data plane will write to the storage volume first, and then the control plane will overwrite the configuration. You should avoid this configuration.
 
 ## Security considerations
 
