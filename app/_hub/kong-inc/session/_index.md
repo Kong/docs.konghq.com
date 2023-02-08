@@ -44,7 +44,7 @@ params:
       required: false
       default: '"default"'
       datatype: string
-      description: The session audience, for example "my-application"
+      description: The session audience, which is the intended target application. For example `"my-application"`. 
     - name: remember
       minimum_version: "3.2.x"
       required: false
