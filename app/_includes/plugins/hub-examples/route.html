@@ -1,0 +1,135 @@
+
+The following examples provide some typical configurations for enabling
+the <code>{{page.configuration.name}}</code> plugin on a
+[route](/gateway/latest/admin-api/#route-object).
+
+{% navtabs %}
+  {% navtab Admin API %}
+
+Make the following request:
+
+```bash
+curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
+  --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
+```
+
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
+
+  {% endnavtab %}
+
+  {% unless page.configuration.k8s_examples == false %}
+    {% navtab Kubernetes %}
+
+First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+resource:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: {{page.configuration.name}}-example
+{% if include.config_required_fields_k8s == 'config: ' %}config:
+  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_k8s }}{% endif %}
+plugin: {{page.configuration.name}}
+```
+
+Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route-object))
+by annotating the ingress as follows:
+
+``` yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ROUTE_NAME|ROUTE_ID
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: {{page.configuration.name}}-example
+spec:
+  rules:
+  - host: examplehostname.com
+    http:
+      paths:
+      - path: /bar
+        backend:
+          service:
+            name: echo
+            port:
+              number: 80
+  ```
+
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
+
+<blockquote class="note">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any service, consumer, or route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</blockquote>
+
+    {% endnavtab %}
+  {% endunless %}
+
+  {% unless page.configuration.yaml_examples == false %}
+    {% navtab Declarative (YAML) %}
+
+Add this section to your declarative configuration file:
+
+```yaml
+plugins:
+- name: {{page.configuration.name}}
+  route: ROUTE_NAME
+  {% if include.config_required_fields_yaml == 'config: ' %}config:
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
+```
+
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration
+  will target.
+{% endnavtab %}
+{% endunless %}
+{% unless page.configuration.konnect_examples == false or include.publisher != "Kong Inc." %}
+{% navtab Konnect Cloud %}
+
+You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
+
+From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then set up the plugin:
+
+1. Select a route.
+2. In the **Plugins** section, click **Add Plugin**.
+3. Find and select the **{{ include.name }}** plugin.{% unless
+  include.config_required_fields_gui == empty %}
+4. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
+    {{ include.config_required_fields_gui }}{% endunless %}
+5. Click **Create**.
+
+    {% endnavtab %}
+  {% endunless %}
+
+  {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+    {% navtab Kong Manager %}
+
+You can configure this plugin through the Kong Manager UI.
+
+1. In Kong Manager, select the workspace.
+2. Open **Routes** from the menu, then click **View** for the
+route row.
+3. From the plugin section, click **Add Plugin**.
+4. Find and select the **{{ include.name }}** plugin.{%
+    if page.enterprise == true or page.plus == true %}
+    <blockquote class="note">
+    <strong>Note:</strong> If the plugin is greyed out, then it is not available
+    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
+    </blockquote>{% endif %}
+5. If the option is available, select **Scoped**.
+6. Add the route ID if it is not already prefilled.{% unless
+  include.config_required_fields_gui == empty %}
+7. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
+    {{ include.config_required_fields_gui }}{% endunless %}
+8. Click **Create**.
+
+    {% endnavtab %}
+  {% endunless %}
+{% endnavtabs %}

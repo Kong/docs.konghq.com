@@ -1,0 +1,110 @@
+
+The following examples provide some typical configurations for enabling
+the <code>{{page.configuration.name}}</code> plugin on a
+[consumer](/gateway/latest/admin-api/#consumer-object).
+
+{% navtabs %}
+  {% navtab Admin API %}
+
+Make the following request:
+
+```bash
+curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
+  --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
+```
+
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+
+{% if page.configuration.service_id and page.configuration.route_id %}
+You can combine `consumer.id`, `service.id`, or `route.id`
+{% elsif page.configuration.service_id %} and `service.id`
+{% elsif page.configuration.route_id %} and `route.id`
+{% endif %} in the same request, to further narrow the scope of the plugin.
+
+  {% endnavtab %}
+
+  {% unless page.configuration.k8s_examples == false %}
+    {% navtab Kubernetes %}
+
+First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+resource:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: {{page.configuration.name}}-example
+{% if include.config_required_fields_k8s == 'config: ' %}config:
+  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_k8s }}{% endif %}
+plugin: {{page.configuration.name}}
+```
+
+Then, apply it to a [consumer](/gateway/latest/admin-api/#consumer-object) by
+annotating the KongConsumer resource as follows:
+
+``` yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: CONSUMER_NAME|CONSUMER_ID
+  annotations:
+    konghq.com/plugins: {{page.configuration.name}}-example
+    kubernetes.io/ingress.class: kong
+  ```
+
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+
+<blockquote class="note">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any service, consumer, or route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</blockquote>
+
+    {% endnavtab %}
+  {% endunless %}
+
+  {% unless page.configuration.yaml_examples == false %}
+    {% navtab Declarative (YAML) %}
+
+Add this section to your declarative configuration file:
+
+``` yaml
+plugins:
+- name: {{page.configuration.name}}
+  consumer: CONSUMER_NAME|CONSUMER_ID
+  {% if include.config_required_fields_yaml == 'config: ' %}config:
+    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
+```
+
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+
+    {% endnavtab %}
+  {% endunless %}
+
+  {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+    {% navtab Kong Manager %}
+
+You can configure this plugin through the Kong Manager UI.
+
+1. In Kong Manager, select the workspace.
+2. From the **Consumers** section, click **View** for the consumer row.
+3. Select the **Plugins** tab, then click **Add Plugin**.
+4. Find and select the **{{ include.name }}** plugin.
+    {% if page.enterprise == true or page.plus == true %}
+      <blockquote class="note">
+      <strong>Note:</strong> If the plugin is greyed out, then it is not available
+      for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
+      </blockquote>
+    {% endif %}
+5. If the option is available, select **Scoped**.
+6. Add the consumer ID if it is not already prefilled.{% unless
+    include.config_required_fields_gui == empty %}
+7. Configure the plugin's [parameters](#parameters).
+
+    You can test out the plugin with the following sample configuration:
+    {{ include.config_required_fields_gui }}{% endunless %}
+7. Click **Create**.
+    {% endnavtab %}
+  {% endunless %}
+{% endnavtabs %}
