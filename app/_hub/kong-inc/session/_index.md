@@ -208,8 +208,8 @@ params:
       default: 10
       datatype: number
       description: |
-      The duration in seconds after which an old cookie is discarded, starting from the moment
-      when the session became outdated and was replaced by a new one.
+        The duration, in seconds, after which an old cookie is discarded, starting from the moment
+        when the session becomes outdated and is replaced by a new one.
     - name: cookie_persistent
       minimum_version: "3.1.x"
       required: false
