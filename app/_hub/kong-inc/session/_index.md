@@ -62,7 +62,7 @@ params:
       required: false
       default: 604800
       datatype: integer
-      description: Persistent session rolling timeout in seconds.
+      description:  The persistent session rolling timeout window, in seconds.
     - name: remember_absolute_timeout
       minimum_version: "3.2.x"
       required: false
