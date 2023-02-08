@@ -68,7 +68,7 @@ params:
       required: false
       default: 2592000
       datatype: integer
-      description: Persistent session absolute timeout in seconds.
+      description: The persistent session absolute timeout limit, in seconds.
     - name: request_headers
       minimum_version: "3.2.x"
       required: false
