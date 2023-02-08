@@ -837,6 +837,7 @@ service.name
 serviceDimension
 service_id
 service_identifier_default
+service_name
 service_name_or_host
 service_name_tag
 service_token
