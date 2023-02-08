@@ -75,7 +75,7 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        List of information to include (as headers) in the request to upstream. 
+        List of information to include, as headers, in the request to the upstream. 
         Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
         For example, { "id", "timeout" } will set both `Session-Id` and `Session-Timeout` in the request headers.
