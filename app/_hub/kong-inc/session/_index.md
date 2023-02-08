@@ -88,7 +88,7 @@ params:
         List of information to include, as headers, in the response to the downstream. 
         Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
-        For example: { "id", "timeout" } will inject both `Session-Id` and `Session-Timeout` in the response headers.
+        For example: `{ "id", "timeout" }` injects both `Session-Id` and `Session-Timeout` in the response headers.
     - name: cookie_name
       required: false
       default: '`session`'
