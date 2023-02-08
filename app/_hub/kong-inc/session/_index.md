@@ -513,7 +513,7 @@ session data storage adapter when `storage=kong`. This stores encrypted
 session data into the current database strategy and the cookie does not contain
 any session data. Data stored in the database is encrypted and the cookie contains only
 the session id, expiration time, and HMAC signature. Sessions use the built-in Kong
-DAO `ttl` mechanism that destroys sessions after specified `cookie_lifetime` unless renewal
+DAO `ttl` mechanism that destroys sessions after specified `rolling_timeout` unless renewal
 occurs during normal browser activity. Log out the application via XHR request
 (or something similar) to manually handle the redirects.
 
@@ -565,7 +565,7 @@ The following configuration parameters were affected:
       * `cookie_httponly` to `cookie_http_only`
       * `cookie_discard` to `stale_ttl`
     
-    Deprecated:
+    Removed:
       * `cookie_renew`
 
 **{{site.base_gateway}} 3.1.x**
