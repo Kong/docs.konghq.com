@@ -16,8 +16,3 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 ---
-
-### Documentation
-
-Details, prerequisites, and usage examples are provided on GitHub at
-[https://github.com/kong/kong-terraform-aws](https://github.com/kong/kong-terraform-aws).
