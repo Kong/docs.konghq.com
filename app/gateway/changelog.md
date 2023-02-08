@@ -35,7 +35,7 @@ This prevented SSL connections from using common root certificate authorities.
   are actually compatible.
   [#10088](https://github.com/Kong/kong/pull/10088)
   
--`kong migrations up` now reports routes that are incompatible with the 3.0 router
+- `kong migrations up` now reports routes that are incompatible with the 3.0 router
   and stops the migration progress so that admins have a chance to adjust them.
 
   [#10092](https://github.com/Kong/kong/pull/10092)
@@ -79,9 +79,8 @@ Kong Gateway now triggers an event that allows the Vitals subsystem to be reinit
   This caused a memory leak, where memory usage would grow without limit.
 
 - [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  - Fixed an issue with the `local` strategy, which was not working correctly when `window_size` was set to `fixed`.
-    The cache would expire while the window was still valid.
-    The plugin now requires the cache size to be, at minimum, twice the value of `window_size`.
+  - Fixed an issue with the `local` strategy, which was not working correctly when `window_size` was set to `fixed`, 
+    and the cache would expire while the window was still valid.
   
 - [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`)
   - Added the OAS Validation plugin back into the bundled plugins list. The plugin is now available by default
