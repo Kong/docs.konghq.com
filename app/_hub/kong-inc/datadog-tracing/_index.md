@@ -116,7 +116,7 @@ Enable the plugin:
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/plugins \
-    --data "name=Datadog-tracing"  \
+    --data "name=datadog-tracing"  \
     --data "config.endpoint=http://localhost:8126/v1/traces" \
     --data "config.service_name=kong" \
     --data "config.environment=prod"
