@@ -388,5 +388,3 @@ To update `score_factor`:
 curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
   --data config.score_factor=1
 ```
-
----

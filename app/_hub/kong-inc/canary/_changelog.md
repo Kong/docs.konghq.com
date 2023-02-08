@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.2.x**
+* The `start` field now defaults to the current timestamp.
+
 **{{site.base_gateway}} 2.8.x**
 * Added the `canary_by_header_name` configuration parameter.
 
