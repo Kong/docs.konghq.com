@@ -603,7 +603,7 @@ vault_body: |
     ---:| ---
     `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
     `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
-    `description`<br>*optional* |  The description of the Vault entity.
+    `description`<br>*optional* |  The description of the Vault object.
     `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
     `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
@@ -4789,9 +4789,9 @@ HTTP 200 OK
 ---
 
 
-## Vaults Entity
+## Vaults Object
 
-Vault entities are used to configure different Vault connectors. Examples of
+Vault object are used to configure different Vault connectors. Examples of
 Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager.
 
 Configuring a Vault allows referencing the secrets with other entities. For
@@ -4998,7 +4998,7 @@ HTTP 204 No Content
 
 ---
 {% unless page.edition == "konnect" %}
-## Keys Entity
+## Keys Object
 
 A Key object holds a representation of asymmetric keys in various formats.
 When Kong or a Kong plugin requires a specific public or private key to perform

@@ -834,3 +834,9 @@
 
 # 3.1
 /gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
+
+
+#3.2
+
+/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/vaults-object
