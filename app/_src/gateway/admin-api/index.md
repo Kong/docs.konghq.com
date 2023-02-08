@@ -4998,7 +4998,7 @@ HTTP 204 No Content
 
 ---
 {% unless page.edition == "konnect" %}
-## Keys Entity
+## Keys Object
 
 A Key object holds a representation of asymmetric keys in various formats.
 When Kong or a Kong plugin requires a specific public or private key to perform
