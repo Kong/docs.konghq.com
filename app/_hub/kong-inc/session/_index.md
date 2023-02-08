@@ -78,7 +78,7 @@ params:
         List of information to include, as headers, in the request to the upstream. 
         Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
-        For example, { "id", "timeout" } will set both `Session-Id` and `Session-Timeout` in the request headers.
+        For example, `{ "id", "timeout" }` sets both `Session-Id` and `Session-Timeout` in the request headers.
     - name: response_headers
       minimum_version: "3.2.x"
       required: false
