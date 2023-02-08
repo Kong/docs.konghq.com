@@ -152,13 +152,14 @@ params:
       default: Strict
       datatype: string
       description: |
-        Determines whether and how a cookie may be sent with cross-site requests. `Strict`:
-        The browser will send cookies only if the request originated from the website that set the cookie.
-        `Lax`: Same-site cookies are withheld on cross-domain subrequests, but will be sent when a user navigates
-        to the URL from an external site, for example, by following a link. `None` or `off`: Disables
-        the same-site attribute so that a cookie may be sent with cross-site requests. `None` requires
-        the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the
-        [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
+        Determines whether and how a cookie may be sent with cross-site requests. 
+        
+        * `Strict`: The browser sends cookies only if the request originated from the website that set the cookie.
+        * `Lax`: Same-site cookies are withheld on cross-domain subrequests, but are sent when a user navigates
+        to the URL from an external site, for example, by following a link. 
+        * `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. 
+        `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more information, 
+        see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
     - name: cookie_same_site
       minimum_version: "3.2.x"
       required: false
