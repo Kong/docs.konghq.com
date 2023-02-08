@@ -129,7 +129,7 @@ params:
       required: false
       default: 900
       datatype: integer
-      description: The session cookie idle time in seconds.
+      description: The session cookie idle time, in seconds.
     - name: cookie_renew
       maximum_version: "3.1.x"
       required: false
