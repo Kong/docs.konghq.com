@@ -17,6 +17,7 @@ JWTs
 Kiran
 Kongmap
 Kongverge
+Librato
 Lorem
 MBs
 Memcache
@@ -911,6 +912,7 @@ superset
 support_url
 sync_rate
 systemId
+tag_style
 tags_header
 talbe
 terms_of_service
