@@ -50,7 +50,7 @@ params:
       required: false
       default: false
       datatype: boolean
-      description: Enables or disables persistent sessions
+      description: Enables or disables persistent sessions.
     - name: remember_cookie_name
       minimum_version: "3.2.x"
       required: false
