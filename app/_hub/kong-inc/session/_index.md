@@ -106,7 +106,7 @@ params:
       default: 3600
       datatype: integer
       description: |
-        The session cookie rolling timeout in seconds.
+        The session cookie rolling timeout, in seconds.
         Specifies how long the session can be used until it needs to be renewed.
     - name: absolute_timeout
       minimum_version: "3.2.x"
