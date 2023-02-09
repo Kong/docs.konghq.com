@@ -18,7 +18,7 @@ This option is only recommended for customers who are have to adhere to strict a
 
 ## Configuration 
 
-In this setup you will need to designate one backup node. The backup node must have read/write access to the S3 compatible storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. The backup node must have read/write access to the storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
+In this setup you will need to designate one backup node. The backup node must have read/write access to the S3 compatible storage volume, and the data plane nodes supposed to be provisioned must have read access to the storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
 
 Using Docker Compose you can configure the backup data plane like this:
 
@@ -71,7 +71,7 @@ kong-dp-importer:
 
 ## Configuration
 
-In this setup you will need to designate one backup node. The backup node must have read/write access to the storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. The backup node will need **write** access to the storage volume. A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments.
+In this setup you will need to designate one backup node. The backup node must have read/write access to the storage volume, and the data plane nodes supposed to be provisioned must have read access to the storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments.
 Credentials are passed via the environment variable `GCP_SERVICE_ACCOUNT`. For more information about credentials review the [GCP credentials documentation](https://developers.google.com/workspace/guides/create-credentials).
 
 Using Docker Compose configure the node like this:
