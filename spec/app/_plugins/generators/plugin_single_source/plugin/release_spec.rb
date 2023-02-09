@@ -76,6 +76,28 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     end
   end
 
+  describe '#reference' do
+    context 'when there is a specific folder for the version' do
+      let(:is_latest) { false }
+      let(:version) { '2.5.x' }
+      let(:source) { '_2.2.x' }
+
+      it 'returns the content of the <version>/reference/_index.md file' do
+        expect(subject.reference).to eq(
+          File.read(File.expand_path('_hub/acme/jwt-signer/_2.2.x/reference/_index.md', site.source))
+        )
+      end
+    end
+
+    context 'when using `_index.md`' do
+      it 'returns the content of the reference/_index.md file' do
+        expect(subject.reference).to eq(
+          File.read(File.expand_path('_hub/acme/jwt-signer/reference/_index.md', site.source))
+        )
+      end
+    end
+  end
+
   describe '#frontmatter' do
     let(:frontmatter) do
       SafeYAML.load(
@@ -106,11 +128,10 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     let(:changelog) do
       File.read(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source))
     end
-    let(:markdown) do
-      File.read(File.expand_path(file_path, site.source))
-    end
+    let(:markdown) { File.read(File.expand_path(file_path, site.source)) }
+    let(:reference) { File.read(File.expand_path(reference_file_path, site.source)) }
 
-    shared_examples_for 'returns the content of the corresponding how-to/_index.md and _changelog.md' do
+    shared_examples_for 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md' do
       it do
         expect(subject.content).to include(markdown)
         expect(subject.content).to include(changelog)
@@ -122,13 +143,15 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
       let(:file_path) { '_hub/acme/jwt-signer/_2.2.x/how-to/_index.md' }
+      let(:reference_file_path) { '_hub/acme/jwt-signer/_2.2.x/reference/_index.md' }
 
-      it_behaves_like 'returns the content of the corresponding how-to/_index.md and _changelog.md'
+      it_behaves_like 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md'
     end
 
     context 'when using `_index.md`' do
       let(:file_path) { '_hub/acme/jwt-signer/how-to/_index.md' }
-      it_behaves_like 'returns the content of the corresponding how-to/_index.md and _changelog.md'
+      let(:reference_file_path) { '_hub/acme/jwt-signer/reference/_index.md' }
+      it_behaves_like 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md'
     end
   end
 

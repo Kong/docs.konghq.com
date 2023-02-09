@@ -21,19 +21,31 @@ module PluginSingleSource
 
       def configuration_parameters_table
         @configuration_parameters_table ||= SafeYAML.load(
-          File.read(File.expand_path('_configuration.yml', pages_source_path))
+          Utils::SafeFileReader.read(
+            file_name: '_configuration.yml',
+            source_path: pages_source_path
+          )
         ) || {}
       end
 
       def changelog
-        @changelog ||= File.read(
-          File.expand_path('_changelog.md', plugin_base_path)
+        @changelog ||= Utils::SafeFileReader.read(
+          file_name: '_changelog.md',
+          source_path: plugin_base_path
         )
       end
 
       def how_to
-        @how_to ||= File.read(
-          File.expand_path('how-to/_index.md', pages_source_path)
+        @how_to ||= Utils::SafeFileReader.read(
+          file_name: 'how-to/_index.md',
+          source_path: pages_source_path
+        )
+      end
+
+      def reference
+        @reference ||= Utils::SafeFileReader.read(
+          file_name: 'reference/_index.md',
+          source_path: pages_source_path
         )
       end
 
@@ -52,6 +64,8 @@ module PluginSingleSource
       def content
         @content ||= <<~CONTENT
           #{how_to}
+
+          #{reference}
 
           #{changelog}
         CONTENT
