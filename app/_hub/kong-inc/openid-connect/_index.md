@@ -946,7 +946,8 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: 'Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.'
+      description: | 
+        Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
     - name: authorization_cookie_http_only
       minimum_version: "3.2.x"
       required: false
@@ -1037,14 +1038,15 @@ params:
         Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
         - `Strict`: Cookies will only be sent in a first-party context and aren't sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
-        - `None`: Cookies will be sent in all contexts, for example in responses to both first party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
-        - `Default`: Do not explicitly specify a Same-Site attribute.
+        - `None`: Cookies will be sent in all contexts, for example in responses to both first party and cross-origin requests. If `SameSite=None` is set, the cookie `Secure` attribute must also be set, or the cookie will be blocked.
+        - `Default`: Do not explicitly specify a `Same-Site` attribute.
     - name: session_cookie_httponly
       maximum_version: "3.1.x"
       required: false
       default: true
       datatype: boolean
-      description: 'Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.'
+      description: |
+        Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
     - name: session_cookie_http_only
       minimum_version: "3.2.x"
       required: false
@@ -1112,51 +1114,51 @@ params:
       required: false
       default: '"default"'
       datatype: string
-      description: The session audience, for example "my-application"
+      description: The session audience, which is the intended target application. For example `"my-application"`.
     - name: session_remember
       minimum_version: "3.2.x"
       required: false
       default: false
       datatype: boolean
-      description: Enables or disables persistent sessions
+      description: Enables or disables persistent sessions.
     - name: session_remember_cookie_name
       minimum_version: "3.2.x"
       required: false
       default: '"remember"'
       datatype: string
-      description: Persistent session cookie name
+      description: Persistent session cookie name. Use with the `remember` configuration parameter.
     - name: session_remember_rolling_timeout
       minimum_version: "3.2.x"
       required: false
       default: 604800
       datatype: integer
-      description: Persistent session rolling timeout in seconds.
+      description: The persistent session rolling timeout window, in seconds.
     - name: session_remember_absolute_timeout
       minimum_version: "3.2.x"
       required: false
       default: 2592000
       datatype: integer
-      description: Persistent session absolute timeout in seconds.
+      description: The persistent session absolute timeout limit, in seconds.
     - name: session_request_headers
       minimum_version: "3.2.x"
       required: false
       default: null
       datatype: array of string elements
       description: |
-        List of information to include (as headers) in the request to upstream. 
-        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`,
+        List of information to include, as headers, in the request to the upstream. 
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
-        For example, { "id", "timeout" } will set both `Session-Id` and `Session-Timeout` in the request headers.
+        For example, `{ "id", "timeout" }` sets both `Session-Id` and `Session-Timeout` in the request headers.
     - name: session_response_headers
       minimum_version: "3.2.x"
       required: false
       default: null
       datatype: array of string elements
       description: |
-        List of information to include (as headers) in the response to downstream. 
-        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`,
+        List of information to include, as headers, in the response to the downstream. 
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
-        For example, { "id", "timeout" } will inject both `Session-Id` and `Session-Timeout` in the response headers.
+        For example: `{ "id", "timeout" }` injects both `Session-Id` and `Session-Timeout` in the response headers.
     - name: session_store_metadata
       minimum_version: "3.2.x"
       required: false
@@ -1164,7 +1166,7 @@ params:
       datatype: boolean
       description: | 
         Configures whether or not session metadata should be stored.
-        This includes information about the active sessions for a specific audience
+        This metadata includes information about the active sessions for a specific audience
         belonging to a specific subject.
     - name: session_enforce_same_subject
       minimum_version: "3.2.x"
