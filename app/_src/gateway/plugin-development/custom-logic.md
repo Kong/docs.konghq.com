@@ -414,6 +414,7 @@ response-transformer        | 800
 aws-lambda                  | 750
 azure-functions             | 749
 upstream-timeout            | 400
+proxy-cache                 | 100
 opentelemetry               | 14
 prometheus                  | 13
 http-log                    | 12
@@ -524,7 +525,7 @@ post-function               | -1000
 [pdk]: /gateway/{{page.kong_version}}/plugin-development/pdk
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
-[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
+[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_block
 [ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
 [rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
 [access]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
