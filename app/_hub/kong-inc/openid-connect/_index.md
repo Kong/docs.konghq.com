@@ -929,7 +929,7 @@ params:
         - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for instance, when following a link).
         - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie Secure attribute must also be set (or the cookie will be blocked).
-        - `off`: Do not set the Same-Site flag.
+        - `off`: Do not set the SameSite flag.
     - name: authorization_cookie_same_site
       minimum_version: "3.2.x"
       required: false
@@ -940,7 +940,7 @@ params:
         - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for instance, when following a link).
         - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie Secure attribute must also be set (or the cookie will be blocked).
-        - `Default`: Do not explicitly specify a Same-Site attribute.
+        - `Default`: Do not explicitly specify a SameSite attribute.
     - name: authorization_cookie_httponly
       maximum_version: "3.1.x"
       required: false
@@ -1028,7 +1028,7 @@ params:
         - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
         - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
-        - `off`: Do not set the Same-Site flag.
+        - `off`: Do not set the SameSite flag.
     - name: session_cookie_same_site
       minimum_version: "3.2.x"
       required: false
@@ -1039,7 +1039,7 @@ params:
         - `Strict`: Cookies will only be sent in a first-party context and aren't sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
         - `None`: Cookies will be sent in all contexts, for example in responses to both first party and cross-origin requests. If `SameSite=None` is set, the cookie `Secure` attribute must also be set, or the cookie will be blocked.
-        - `Default`: Do not explicitly specify a `Same-Site` attribute.
+        - `Default`: Do not explicitly specify a `SameSite` attribute.
     - name: session_cookie_httponly
       maximum_version: "3.1.x"
       required: false
