@@ -129,7 +129,7 @@ params: # Metadata about your plugin
     # Affects generation of examples and config table.
   protocols:
     # List of protocols this plugin is compatible with, in array format.
-    # Valid values: "http", "https", "tcp", "tls", "tls-passthrough", "grpc",
+    # Valid values: "http", "https", "tcp", "tls", "tls_passthrough", "grpc",
     # "grpcs", "udp", "ws", and "wss".
     # Example:
     # - name: http
