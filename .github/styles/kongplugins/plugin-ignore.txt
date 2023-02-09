@@ -147,10 +147,12 @@ authenticated_groups_claim
 authenticated_user
 authorization_code
 authorization_cookie_domain
+authorization_cookie_http_only
 authorization_cookie_httponly
 authorization_cookie_lifetime
 authorization_cookie_name
 authorization_cookie_path
+authorization_cookie_same_site
 authorization_cookie_samesite
 authorization_cookie_secure
 authorization_endpoint
@@ -158,6 +160,7 @@ authorization_header_name
 authorization_query_args_client
 authorization_query_args_names
 authorization_query_args_values
+authorization_rolling_timeout
 authorization_user_id_field
 authorization_value
 authorized_groups_claim
@@ -845,6 +848,7 @@ session_absolute_timeout
 session_audience
 session_compressor
 session_cookie_domain
+session_cookie_http_only
 session_cookie_httponly
 session_cookie_http_only
 session_cookie_idletime
@@ -853,6 +857,7 @@ session_cookie_maxsize
 session_cookie_name
 session_cookie_path
 session_cookie_renew
+session_cookie_same_site
 session_cookie_samesite
 session_cookie_same_site
 session_cookie_secure
@@ -870,6 +875,7 @@ session_memcached_prefix
 session_memcache_socket
 session_memcached_socket
 session_redis_auth
+session_redis_cluster_max_redirections
 session_redis_cluster_maxredirections
 session_redis_cluster_max_redirections
 session_redis_cluster_nodes
