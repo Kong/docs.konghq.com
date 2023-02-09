@@ -93,6 +93,8 @@ params:
         An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
         must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
+        Add a link to the right version of https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#anonymous-access
+        (replace latest with whatever version of this plugin is displayed)
       maximum_version: "3.0.x"
     - name: run_on_preflight
       required: true
@@ -157,6 +159,13 @@ parameter                       | description
 If you are also using the [ACL](/plugins/acl/) plugin and allow lists with this
 service, you must add the new Consumer to the allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
+
+Please refer to this docs -> https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#anonymous-access (again, pointing to the correct version) when you intend to setup "Anonymous" access.
+
+
+### Multiple Authentication
+
+A sentence informing the user about the possibility to set up "Multiple Authentication" and and refer them to this link -> https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication (here again make sure to not point to "latest" but to the corresponding kong version)
 
 ### Create a Key
 
@@ -383,6 +392,19 @@ Response:
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
+
+
+### Decision table (for the lack of a better name) -> This should be included in every plugin
+
+A table with data on how Kong behaves in various scenarios.
+
+request                        | proxied to upstream service | response status code
+--------                       |-----------------------------|---------------------
+has valid apikey               | yes                         | 200
+no key provided                | no                          | 401
+key now known to kong          | no                          | 401
+runtime error                  | no                          | 500
+
 
 ---
 ## Changelog
