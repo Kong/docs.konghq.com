@@ -288,6 +288,7 @@ content_type
 cookie_discard
 cookie_domain
 cookie_httponly
+cookie_http_only
 cookie_idletime
 cookie_lifetime
 cookie_name
@@ -295,6 +296,7 @@ cookie_names
 cookie_path
 cookie_persistent
 cookie_renew
+cookie_same_site
 cookie_samesite
 cookie_secure
 cosocket
@@ -917,6 +919,7 @@ splunk
 splunk_access_token
 splunk_endpoint
 ssl_verify
+stale_ttl
 start_date
 start_tls
 static_tags
