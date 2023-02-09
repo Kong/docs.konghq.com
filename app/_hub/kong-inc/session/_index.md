@@ -75,9 +75,11 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        List of information to include, as headers, in the request to the upstream. 
+        List of information to include, as headers, in the request to the upstream.
+        
         Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
+        
         For example, `{ "id", "timeout" }` sets both `Session-Id` and `Session-Timeout` in the request headers.
     - name: response_headers
       minimum_version: "3.2.x"
@@ -85,9 +87,11 @@ params:
       default: null
       datatype: array of string elements
       description: |
-        List of information to include, as headers, in the response to the downstream. 
+        List of information to include, as headers, in the response to the downstream.
+        
         Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
         `absolute-timeout`.
+        
         For example: `{ "id", "timeout" }` injects both `Session-Id` and `Session-Timeout` in the response headers.
     - name: cookie_name
       required: false
@@ -159,20 +163,21 @@ params:
         to the URL from an external site, for example, by following a link. 
         * `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. 
         `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more information, 
-        see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
+        see the [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).
     - name: cookie_same_site
       minimum_version: "3.2.x"
       required: false
       default: Strict
       datatype: string
       description: |
-        Determines whether and how a cookie may be sent with cross-site requests. `Strict`:
-        The browser will send cookies only if the request originated from the website that set the cookie.
-        `Lax`: Same-site cookies are withheld on cross-domain subrequests, but will be sent when a user navigates
-        to the URL from an external site, for example, by following a link. `None` or `off`: Disables
-        the same-site attribute so that a cookie may be sent with cross-site requests. `None` requires
-        the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the
-        [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).'
+        Determines whether and how a cookie may be sent with cross-site requests.
+        
+        * `Strict`: The browser sends cookies only if the request originated from the website that set the cookie.
+        * `Lax`: Same-site cookies are withheld on cross-domain subrequests, but are sent when a user navigates
+        to the URL from an external site, for example, by following a link. 
+        * `None` or `off`: Disables the same-site attribute so that a cookie may be sent with cross-site requests. 
+        `None` requires the Secure attribute (`cookie_secure`) in latest browser versions. For more info, see the
+        [SameSite cookies docs on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite).
     - name: cookie_httponly
       maximum_version: "3.1.x"
       required: false
