@@ -22,7 +22,6 @@ portal_session_conf = {
     "cookie_name":"<SET_COOKIE_NAME>",
     "storage":"kong",
     "cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>,
-    "cookie_renew":<NUMBER_OF_SECONDS_LEFT_TO_RENEW>,
     "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>,
     "cookie_domain":"<SET_DEPENDING_ON_DOMAIN>",
     "cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"
@@ -37,8 +36,6 @@ portal_session_conf = {
   Kong workers/nodes.
 * `"storage":"kong"`: Where session data is stored. This value _must_ be set to `kong` for use with the Dev Portal.
 * `"cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>`: The duration (in seconds) that the session will remain open; 3600 by    default.
-* `"cookie_renew":<NUMBER_OF_SECONDS_LEFT_TO_RENEW>`: The duration (in seconds) of a session remaining at which point
-   the Plugin renews the session; 600 by default.
 * `"cookie_secure":<SET_DEPENDING_ON_PROTOCOL>`: `true` by default. See [Session Security](#session-security) for
     exceptions.
 * `"cookie_domain":<SET_DEPENDING_ON_DOMAIN>:` Optional. See [Session Security](#session-security) for exceptions.
