@@ -20,6 +20,11 @@ params:
   route_id: true
   consumer_id: true
   dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   konnect_examples: false
   manager_examples: false
   config:

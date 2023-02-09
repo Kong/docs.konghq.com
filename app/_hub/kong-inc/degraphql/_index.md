@@ -17,6 +17,11 @@ params:
   service_id: true
   konnect_examples: false
   dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: graphql_server_path
       required: true
