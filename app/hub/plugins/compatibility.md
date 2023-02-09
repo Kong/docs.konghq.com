@@ -127,16 +127,16 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
       <a href="{{extn.url}}">{{ extn.name }}</a>
       </td>
       {% if extn.params.protocols == null %}
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
+        <td style="text-align: center">N/A</td>
       {% else %}
       {% assign protocols = extn.params.protocols | replace: '"', " "%}
       <td style="text-align: center"> 
