@@ -34,6 +34,8 @@ access to a subset of plugins:
 * **Plus tier:** Open-source and Plus-specific plugins
 * **Enterprise tier:** All Kong plugins
 
+If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility) on the Plugin Hub.
+
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
 
 {% assign categories = site.data.tables.plugin_index %}
@@ -98,5 +100,5 @@ access to a subset of plugins:
 
 ### Deployment
 
-[Deployment plugins](/hub/) are not bundled with any version of {{site.konnect_short_name}}, and are
+[Deployment plugins](/hub/#deployment) are not bundled with any version of {{site.konnect_short_name}}, and are
 simply tools to help you deploy {{site.base_gateway}} in various environments.

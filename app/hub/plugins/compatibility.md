@@ -4,7 +4,7 @@ no_version: true
 layout: extension
 ---
 
-Reference for plugin compatibility with {{site.base_gateway}} and {{site.konnect_short_name}} [deployment topologies](#deployment-topologies) and [network protocols](#protocols).
+Reference for plugin compatibility with {{site.base_gateway}} and {{site.konnect_short_name}} [deployment topologies](#deployment-topologies), [network protocols](#protocols), and [entity scopes](#scopes).
 
 If you're looking for plugin availability by subscription tier, see [Plugin License Tiers](/hub/plugins/license-tiers).
 
@@ -96,7 +96,7 @@ data plane roles. Kong provides and hosts the control plane and a database with
 
 ### Deployment
 
-[Deployment plugins](/hub) are not bundled with any version of {{site.base_gateway}} or {{site.konnect_short_name}}, and are
+[Deployment plugins](/hub/#deployment) are not bundled with any version of {{site.base_gateway}} or {{site.konnect_short_name}}, and are
 simply tools to help you deploy {{ site.base_gateway }} in various environments.
 
 ## Protocols
@@ -139,70 +139,70 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
         <td>--</td>
       {% else %}
       {% assign protocols = extn.params.protocols | replace: '"', " "%}
-      <td> 
+      <td style="text-align: center"> 
         {% if protocols contains "http " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "https " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "grpc " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "grpcs " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "tcp " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "tls " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "tls_passthrough " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "udp " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "ws " %}
         <i class="fa fa-check"></i>
         {% else %}
         <i class="fa fa-times"></i>
         {% endif %}  
       </td>
-      <td>
+      <td style="text-align: center">
         {% if protocols contains "wss " %}
         <i class="fa fa-check"></i>
         {% else %}
@@ -212,3 +212,55 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
       {% endif %}
     </tr>
   {% endfor %}
+  </tbody>
+</table>
+
+## Scopes
+
+Plugins can be scoped or global (unscoped):
+* Scoped plugin: Plugin applied to a specific service, route, or consumer.
+* Global plugin: Plugin applies either to your entire environment, or if running {{site.ee_product_name}}, your entire workspace.
+
+See the following table for plugins and their compatible scopes:
+<table class="table-sticky">
+  <thead>
+      <th style="text-align: left; width: 10%">Plugin</th>
+      <th style="text-align: center">Service</th>
+      <th style="text-align: center">Route</th>
+      <th style="text-align: center">Consumer</th>
+      <th style="text-align: center">Global</th>
+  </thead>
+  <tbody>
+    {% for extn in kong_extns %}
+    <tr>
+      <td>
+      <a href="{{extn.url}}">{{ extn.name }}</a>
+      </td>
+      <td style="text-align: center"> 
+        {% if extn.params.service_id == true %}
+        <i class="fa fa-check"></i>
+        {% else %}
+        <i class="fa fa-times"></i>
+        {% endif %}
+      </td>
+      <td style="text-align: center"> 
+        {% if extn.params.route_id == true %}
+        <i class="fa fa-check"></i>
+        {% else %}
+        <i class="fa fa-times"></i>
+        {% endif %}
+      </td>
+      <td style="text-align: center"> 
+        {% if extn.params.consumer_id == true %}
+        <i class="fa fa-check"></i>
+        {% else %}
+        <i class="fa fa-times"></i>
+        {% endif %}
+      </td>
+      <td style="text-align: center"> 
+        <i class="fa fa-check"></i>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
