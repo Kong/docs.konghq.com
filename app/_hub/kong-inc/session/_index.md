@@ -599,6 +599,6 @@ which means cookies are not persisted across browser restarts.
 
 [plugin]: https://docs.konghq.com/hub/
 [lua-resty-session]: https://github.com/bungle/lua-resty-session
-[multiple authentication]: https://docs.konghq.com/0.14.x/auth/#multiple-authentication
+[multiple authentication]: https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication
 [key auth]: https://docs.konghq.com/hub/kong-inc/key-auth/
 [request termination]: https://docs.konghq.com/hub/kong-inc/request-termination/
