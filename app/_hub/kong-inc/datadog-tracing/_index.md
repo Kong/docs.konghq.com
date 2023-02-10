@@ -18,7 +18,7 @@ kong_version_compatibility:
   enterprise_edition:
     compatible: true
 params:
-  name: Datadog-tracing
+  name: datadog-tracing
   konnect_examples: false
   protocols:
     - name: http
@@ -79,36 +79,40 @@ params:
 
 ## Usage
 
-{:.note}
-> **Note**: The Datadog Tracing plugin only works with {{site.base_gateway}}'s `tracing_instrumentations` configuration enabled. It is recommended that you set the `tracing_instrumentations` configuration to `request`, to avoid impacting performance, and only trace requests.
+## Prerequisites
 
-The Datadog Agent is required to run the Datadog Tracing plugin. The Datadog Agent can be installed on the same machine as {{site.base_gateway}} or on a different machine. The Datadog Tracing plugin will send spans to the Datadog Agent over HTTP.
+Before using this plugin:
+
+* Enable {{site.base_gateway}}'s `tracing_instrumentations` configuration. We recommend setting the `tracing_instrumentations` configuration to `request`, to avoid impacting performance, and only trace requests.
+* The Datadog Agent is required to run the Datadog Tracing plugin. The Datadog Agent can be installed on the same machine as {{site.base_gateway}} or on a different machine. The Datadog Tracing plugin sends spans to the Datadog Agent over HTTP.
 
 ### Set up {{site.base_gateway}}
 
 Enable the OpenTelemetry tracing capability in {{site.base_gateway}}'s configuration:
 
-- `tracing_instrumentations = request`: valid values can be found in the [tracing instrumentations](/gateway/latest/reference/configuration/#tracing_instrumentations) section of the configuration documentation.
-- `tracing_sampling_rate = 1.0`: tracing instrumentation sampling rate.
+- `tracing_instrumentations = request`: Valid values can be found in the [tracing instrumentations](/gateway/latest/reference/configuration/#tracing_instrumentations) section of the configuration documentation.
+- `tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
   The tracer samples a fixed percentage of all spans following the sampling rate.
   This allows you to set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
 
 ### Set up the Datadog Agent
 
+Set up the Datadog Agent. You can use the following example Docker configuration, substituting the `example-api-key` with your own key:
+
 ```bash
 docker run -d -p 8126:8126 \
-              --cgroupns host \
-              --pid host \
-              -v /var/run/docker.sock:/var/run/docker.sock:ro \
-              -v /proc/:/host/proc/:ro \
-              -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-              -e DD_API_KEY=<api-key> \
-              -e DD_APM_NON_LOCAL_TRAFFIC=true \
-              -e DD_APM_ENABLED=true \
-              gcr.io/datadoghq/agent:latest
+  --cgroupns host \
+  --pid host \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  -v /proc/:/host/proc/:ro \
+  -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+  -e DD_API_KEY=<example-api-key> \
+  -e DD_APM_NON_LOCAL_TRAFFIC=true \
+   -e DD_APM_ENABLED=true \
+   gcr.io/datadoghq/agent:latest
 ```
 
-For more information about installing the Datadog Agent on Docker, see [Datadog's documentation](https://docs.datadoghq.com/agent/docker/apm/?tab=linux). If you want to install another container option you can find the instructions [on this list](https://docs.datadoghq.com/containers/).
+For more information about installing the Datadog Agent on Docker, see [Datadog's documentation](https://docs.datadoghq.com/agent/docker/apm/?tab=linux). If you want to install another container option, you can find the instructions in [Datadog's container list](https://docs.datadoghq.com/containers/).
 
 ### Configure the Datadog Tracing plugin
 
@@ -122,7 +126,7 @@ curl -X POST http://<admin-hostname>:8001/plugins \
     --data "config.environment=prod"
 ```
 
-## OpenTelemetry Functionality
+## OpenTelemetry functionality
 
 ### Instrumentations
 
@@ -141,7 +145,7 @@ The top level span has the following attributes:
 
 ### Propagation
 
-The OpenTelemetry plugin propagates the following headers:
+The Datadog Tracing plugin propagates the following headers:
 - `w3c`: [W3C trace context](https://www.w3.org/TR/trace-context/)
 - `b3` and `b3-single`: [Zipkin headers](https://github.com/openzipkin/b3-propagation)
 - `jaeger`: [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
@@ -155,7 +159,7 @@ If no appropriate format is found, the plugin will fallback to the default forma
 
 The Datadog Tracing spans are printed to the console when the log level is set to `debug` in the Kong configuration file.
 
-An example of debug logs output:
+Here's an example of the debug log output:
 
 ```bash
 2022/06/02 15:28:42 [debug] 650#0: *111 [lua] instrumentation.lua:302: runloop_log_after(): [tracing] collected 6 spans:
@@ -169,7 +173,7 @@ Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.2
 
 ### Known issues
 
-- Datadog tracing Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
-- May impact the performance of {{site.base_gateway}}.
-  It's recommended to set the sampling rate (`tracing_sampling_rate`)
-  via Kong configuration file when using the Datadog Tracing plugin.
+- Datadog Tracing only supports the HTTP protocols (`http`/`https`) of {{site.base_gateway}}.
+- This plugin may impact the performance of {{site.base_gateway}}.
+  We recommend setting the sampling rate (`tracing_sampling_rate`)
+  in the {{site.base_gateway}} configuration file when using the Datadog Tracing plugin.
