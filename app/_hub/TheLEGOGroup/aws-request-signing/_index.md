@@ -136,42 +136,36 @@ params: # Metadata about your plugin
       required: yes
       datatype: string
       encrypted: true
-      minimum_version: 1.0.0
       value_in_examples: "arn:aws:iam::123456789012:role/example-role"
       description: The ARN of the AWS IAM Role to assume before making the request to the AWS service.
     - name: aws_assume_role_name
       required: yes
       datatype: string
       encrypted: true
-      minimum_version: 1.0.0
       value_in_examples: "example-role"
       description: The name of the AWS IAM Role to assume before making the request to the AWS service.
     - name: aws_region
       required: yes
       datatype: string
       encrypted: false
-      minimum_version: 1.0.0
       value_in_examples: "us-west-2"
       description: The AWS region in which the service is located.
     - name: aws_service
       required: yes
       datatype: string
       encrypted: false
-      minimum_version: 1.0.0
       value_in_examples: "s3"
       description: The name of the AWS service to be called.
     - name: override_target_host
       required: no
       datatype: string
       encrypted: false
-      minimum_version: 1.0.0
       value_in_examples: "example.com"
       description: An optional hostname or IP to use instead of the one specified in the service's endpoint.
     - name: override_target_port
       required: no
       datatype: number
       encrypted: false
-      minimum_version: 1.0.0
       value_in_examples: 443
       description: An optional port to use instead of the one specified in the service's endpoint.
     - name: override_target_protocol
@@ -179,7 +173,6 @@ params: # Metadata about your plugin
       datatype: string
       one_of: ["http", "https"]
       encrypted: false
-      minimum_version: 1.0.0
       value_in_examples: "https"
       description: An optional protocol to use instead of the one specified in the service's endpoint.
 
