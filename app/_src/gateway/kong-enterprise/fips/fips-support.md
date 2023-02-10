@@ -14,14 +14,14 @@ The package replaces OpenSSL, the primary SSL library in {{site.base_gateway}}, 
 ## FIPS implementation
 ### Password hashing
 
-Password hashing is designed to protect the original password from being reversed. Although FIPS 140-2 doesn't mention password hashing, {{site.base_gateway}} uses key derivation functions that are approved:
+The following table describes how {{site.base_gateway}} uses key derivation functions:
 
 | Component | Normal mode | FIPS mode | Notes |
 |-----------|-------------|-----------|-------|
-| core/rbac | bcrypt | PBKDF2 [^1] | PBKDF2 in BoringSSL isn't FIPS validated. OpenSSL 3.0 is required. |
-| plugins/oauth2[^2][^3] | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | PBKDF2 in BoringSSL isn't FIPS validated. OpenSSL 3.0 is required. |
+| core/rbac | bcrypt | PBKDF2 [^1] | PBKDF2 in BoringSSL isn't FIPS validated. |
+| plugins/oauth2[^2][^3] | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | PBKDF2 in BoringSSL isn't FIPS validated. |
 
-[^1]: As of {{site.base_gateway}} FIPS 3.0, RBAC uses PBKDF2 as password hashing algorithm. Although PBKDF2 is an approved algorithm in FIPS 140-2, the BoringSSL implementation of PBKDF2 is not validated. This approach is future proof because once OpenSSL 3.0 gets its FIPS certification, we can move off BoringSSL, and OpenSSL 3.0’s PBKDF2 implementation is included in its FIPS validation.
+[^1]: As of {{site.base_gateway}} FIPS 3.0, RBAC uses PBKDF2 as password hashing algorithm. Although PBKDF2 is an approved algorithm in FIPS 140-2, the BoringSSL implementation of PBKDF2 is not validated.
 [^2]: As of {{site.base_gateway}} FIPS 3.1, the oauth2 plugin disables `hash_secret` feature, so the user can’t turn it on. This means password will be stored plaintext in the database; however, users can choose to use secrets management or db encryption instead.
 [^3]: As of {{site.base_gateway}} FIPS 3.1, key-auth-enc uses SHA1 to speed up lookup of a key in DB. As of {{site.base_gateway}} FIPS 3.2, SHA1 support is “read-only”, meaning existing credentials in DB are still validated, but any new credentials will be hashed in SHA256.
 
