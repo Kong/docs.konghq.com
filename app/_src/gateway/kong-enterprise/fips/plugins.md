@@ -4,7 +4,7 @@ badge: enterprise
 content_type: reference
 ---
 
-This reference doc explains which {{site.base_gateway}} plugins are FIPS 140-2 compliant as well as provides additional details about how they maintain compliance.
+This reference lists which {{site.base_gateway}} plugins are FIPS 140-2 compliant and provides additional details about how they maintain compliance.
 
 | Plugin  | Subcomponent Compliance (if applicable)         | FIPS Compliant    | Notes |
 |-------|-------------|--------|-----|

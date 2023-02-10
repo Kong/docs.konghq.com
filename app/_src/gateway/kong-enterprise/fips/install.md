@@ -4,12 +4,12 @@ badge: enterprise
 content_type: how-to
 ---
 
-This how-to guide explains how to install and configure the {{site.base_gateway}} FIPS compliant package. After following the steps in this guide, you will have a FIPS compliant {{site.base_gateway}} with FIPS mode enabled.
+This how-to guide explains how to install and configure the {{site.base_gateway}} FIPS-compliant package. After following the steps in this guide, you will have a FIPS-compliant {{site.base_gateway}} with FIPS mode enabled.
 
 {% if_version eq:3.0.x %}
 ## Installing the {{site.base_gateway}} FIPS compliant Ubuntu package
 
-The FIPS compliant Ubuntu 20.04 and Ubuntu 22.04 packages can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
+The FIPS-compliant Ubuntu 20.04 and Ubuntu 22.04 packages can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
 
 1. Set up the Kong APT repository:
     ```bash
@@ -32,12 +32,12 @@ The FIPS compliant Ubuntu 20.04 and Ubuntu 22.04 packages can be installed using
 
 {% if_version gte:3.1.x %}
 
-## Installing the {{site.base_gateway}} FIPS compliant package
+## Installing a {{site.base_gateway}} FIPS compliant package
 
 {% navtabs %}
 {% navtab Ubuntu %}
 
-The FIPS compliant Ubuntu 20.04 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
+The FIPS-compliant Ubuntu 20.04 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
 
 1. Set up the Kong APT repository:
     ```bash
@@ -59,7 +59,7 @@ The FIPS compliant Ubuntu 20.04 package can be installed using the package disti
 {% endnavtab %}
 {% navtab RHEL %}
 
-The FIPS compliant Red Hat 8 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
+The FIPS-compliant Red Hat 8 package can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
 
 {% navtabs %}
 {% navtab Package %}
@@ -100,13 +100,13 @@ The FIPS compliant Red Hat 8 package can be installed using the package distinct
 
 ## Configure FIPS
 
-To start in FIPS mode, set the following variable to `on` in the `kong.conf` configuration file before starting {{site.base_gateway}}.
+To start in FIPS mode, set the following configuration property to `on` in the `kong.conf` configuration file before starting {{site.base_gateway}}:
 
 ```
 fips = on # fips mode is enabled, causing incompatible ciphers to be disabled
 ```
 
-You can also use an environment variable:
+You can also set this configuration using an environment variable:
 
 ```bash
 export KONG_FIPS=on
