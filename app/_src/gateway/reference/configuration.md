@@ -120,6 +120,30 @@ adjusted by the `log_level` property.
 **Default:** `logs/status_error.log`
 
 
+{% if_version gte:3.2.x %}
+
+### debug_access_log
+{:.badge .enterprise}
+
+Path for Debug API request access logs. The default value of `off` implies that
+logging for this API is disabled by default.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
+
+**Default:** `off`
+
+
+### debug_error_log
+{:.badge .enterprise}
+
+Path for Debug API request error logs. The granularity of these logs is
+adjusted by the `log_level` property.
+
+**Default:** `logs/debug_error.log`
+
+{% endif_version %}
+
 ### vaults
 
 Comma-separated list of vaults this node should load. By default, all the
@@ -130,6 +154,7 @@ The specified name(s) will be substituted as such in the Lua namespace:
 
 **Default:** `bundled`
 
+{% if_version lte:3.1.x %}
 
 ### opentelemetry_tracing
 
@@ -167,6 +192,60 @@ Example: `0.25`, this should account for 25% of all traces.
 
 **Default:** `1.0`
 
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+### opentelemetry_tracing
+
+Deprecated: use tracing_instrumentations instead
+
+**Default:** `off`
+
+
+### tracing_instrumentations
+
+Comma-separated list of tracing instrumentations this node should load. By
+default, no instrumentations are enabled.
+
+Valid values to this setting are:
+
+- `off`: do not enable instrumentations.
+- `request`: only enable request-level instrumentations.
+- `all`: enable all the following instrumentations.
+- `db_query`: trace database query, including Postgres and Cassandra.
+- `dns_query`: trace DNS query.
+- `router`: trace router execution, including router rebuilding.
+- `http_client`: trace OpenResty HTTP client requests.
+- `balancer`: trace balancer retries.
+- `plugin_rewrite`: trace plugins iterator execution with rewrite phase.
+- `plugin_access`: trace plugins iterator execution with access phase.
+- `plugin_header_filter`: trace plugins iterator execution with header_filter
+  phase.
+
+**Note:** In the current implementation, tracing instrumentations are not
+enabled in stream mode.
+
+**Default:** `off`
+
+
+### opentelemetry_tracing_sampling_rate
+
+Deprecated: use tracing_sampling_rate instead
+
+**Default:** `1.0`
+
+
+### tracing_sampling_rate
+
+Tracing instrumentation sampling rate.
+
+Tracer samples a fixed percentage of all spans following the sampling rate.
+
+Example: `0.25`, this should account for 25% of all traces.
+
+**Default:** `1.0`
+
+{% endif_version %}
 
 ### plugins
 
@@ -710,6 +789,13 @@ The Admin interface is the API allowing you to configure and manage Kong.
 Access to this interface should be *restricted* to Kong administrators *only*.
 This value accepts IPv4, IPv6, and hostnames.
 
+It is highly recommended to avoid exposing the Admin API to public
+interface(s), by using values such as 0.0.0.0:8001
+
+See
+https://docs.konghq.com/gateway/latest/production/running-kong/secure-admin-api/
+for more information about how to secure your Admin API.
+
 Some suffixes can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
@@ -765,13 +851,45 @@ The following suffix can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
   address/port be made with TLS enabled.
+{% if_version gte:3.2.x %}
+- `http2` will allow for clients to open HTTP/2 connections to Kong's Status
+API server.
+{% endif_version %}
 
 This value can be set to `off`, disabling the Status API for this node.
 
+{% if_version lte:3.1.x %}
 Example: `status_listen = 0.0.0.0:8100`
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+Example: `status_listen = 0.0.0.0:8100 ssl http2`
+{% endif_version %}
 
 **Default:** `off`
 
+{% if_version gte:3.2.x %}
+
+### debug_listen
+{:.badge .enterprise}
+
+Comma-separated list of addresses and ports on which the Debug API should
+listen.
+
+The following suffix can be specified for each pair:
+
+- `ssl` will require that all connections made through a particular
+  address/port be made with TLS enabled.
+- `http2` will allow for clients to open HTTP/2 connections to Kong's Debug API
+  server.
+
+This value can be set to `off`, disabling the Debug API for this node.
+
+Example: `debug_listen = 0.0.0.0:8200 ssl http2`
+
+**Default:** `off`
+
+{% endif_version %}
 
 ### nginx_user
 
@@ -900,6 +1018,17 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
 
 **Default:** `1d`
 
+{% if_version gte:3.2.x %}
+
+### ssl_session_cache_size
+
+Sets the size of the caches that store session parameters
+
+See https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache
+
+**Default:** `10m`
+
+{% endif_version %}
 
 ### ssl_cert
 
@@ -1087,6 +1216,29 @@ See docs for `ssl_cert_key` for detailed usage.
 
 **Default:** none
 
+{% if_version gte:3.1.x %}
+
+### debug_ssl_cert
+{:.badge .enterprise}
+
+Comma-separated list of certificates for `debug_listen` values with TLS
+enabled.
+
+See docs for `ssl_cert` for detailed usage.
+
+**Default:** none
+
+
+### debug_ssl_cert_key
+{:.badge .enterprise}
+
+Comma-separated list of keys for `debug_listen` values with TLS enabled.
+
+See docs for `ssl_cert_key` for detailed usage.
+
+**Default:** none
+
+{% endif_version %}
 
 ### headers
 
@@ -1228,6 +1380,19 @@ be kept open indefinitely.
 
 **Default:** `60`
 
+{% if_version gte:3.2.x %}
+
+### allow_debug_header
+
+Enable the `Kong-Debug` header function.
+
+if it is `on`, kong will add `Kong-Route-Id` `Kong-Route-Name`
+`Kong-Service-Id` `Kong-Service-Name` debug headers to response when the client
+request header `Kong-Debug: 1` is present.
+
+**Default:** `off`
+
+{% endif_version %}
 
 ---
 
@@ -1261,6 +1426,11 @@ The following namespaces are supported:
   {}` block.
 - `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
   `server {}` block (only effective if `status_listen` is enabled).
+{% if_version gte:3.2.x %}
+- `nginx_debug_<directive>` <span class="badge enterprise"></span>: 
+Injects `<directive>` in Kong's Debug API `server {}` block (only effective 
+if `debug_listen` is enabled).
+{% endif_version %}
 - `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
   `stream {}` block (only effective if `stream_listen` is enabled).
 - `nginx_sproxy_<directive>`: Injects `<directive>` in Kong's stream module
@@ -1349,6 +1519,23 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 Defines the maximum request body size for Admin API.
 
 **Default:** `10m`
+
+{% if_version gte:3.2.x %}
+
+### nginx_http_charset
+
+Adds the specified charset to the “Content-Type” response header field. If
+this charset is different from the charset specified in the source_charset
+directive, a conversion is performed.
+
+The parameter `off` cancels the addition of charset to the “Content-Type”
+response header field.
+
+See http://nginx.org/en/docs/http/ngx_http_charset_module.html#charset
+
+**Default:** `UTF-8`
+
+{% endif_version %}
 
 
 ### nginx_http_client_body_buffer_size
@@ -1446,6 +1633,8 @@ Accepted values are `postgres`, `cassandra`, and `off`.
 
 ### Postgres settings
 
+{% if_version lte:3.1.x %}
+
 name   | description  | default
 -------|--------------|----------
 **pg_host** | Host of the Postgres server. | `127.0.0.1`
@@ -1478,6 +1667,48 @@ name   | description  | default
 **pg_ro_max_concurrent_queries** | Same as `pg_max_concurrent_queries`, but for the read-only connection. Note: read-only concurrency is not shared with the main (read-write) connection. | `<pg_max_concurrent_queries>`
 **pg_ro_semaphore_timeout** | Same as `pg_semaphore_timeout`, but for the read-only connection. | `<pg_semaphore_timeout>`
 **pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
+
+{% endif_version %}
+{% if_version gte:3.2.x %}
+
+name   | description  | default
+-------|--------------|----------
+**pg_host** | Host of the Postgres server. | `127.0.0.1`
+**pg_port** | Port of the Postgres server. | `5432`
+**pg_timeout** | Defines the timeout (in ms), for connecting, reading and writing. | `5000`
+**pg_user** | Postgres user. | `kong`
+**pg_password** | Postgres user's password. | none
+**pg_database** | The database name to connect to. | `kong`
+**pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
+**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
+**pg_ssl_version** | When using SSL between Kong and PostgreSQL, the version of TLS to use. Accepted values are `tlsv1_1`, `tlsv1_2`, `tlsv1_3`, or `any`. When `any` is set, the client negotiates the highest version with the server, which can't be lower than `tlsv1_1`. | `tlsv1_2`
+**pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. It aborts the connection if the server does not support SSL connections. | `off`
+**pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
+**pg_ssl_cert** | The absolute path to the PEM encoded client TLS certificate for the PostgreSQL connection. Mutual TLS authentication against PostgreSQL is only enabled if this value is set. | none
+**pg_ssl_cert_key** | If `pg_ssl_cert` is set, the absolute path to the PEM encoded client TLS private key for the PostgreSQL connection. | none
+**pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
+**pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
+**pg_keepalive_timeout** | Specify the maximal idle timeout (in ms) for the postgres connections in the pool. If this value is set to 0 then the timeout interval is unlimited. If not specified this value will be same as `lua_socket_keepalive_timeout` | none
+**pg_pool_size** | Specifies the size limit (in terms of connection count) for the Postgres server. Note that this connection pool is intended per Nginx worker rather than per Kong instance. If not specified, the default value is the same as `lua_socket_pool_size` | none
+**pg_backlog** | If specified, this value will limit the total number of open connections to the Postgres server to `pg_pool_size`. If the connection pool is full, subsequent connect operations will be inserted in a queue with size equal to this option's value. If the number of queued connect operations reaches `pg_backlog`, exceeding connections will fail. If not specified, then number of open connections to the Postgres server is not limited. | none
+**pg_ro_host** | Same as `pg_host`, but for the read-only connection. **Note:** Refer to the documentation section above for detailed usage. | none
+**pg_ro_port** | Same as `pg_port`, but for the read-only connection. | `<pg_port>`
+**pg_ro_timeout** | Same as `pg_timeout`, but for the read-only connection. | `<pg_timeout>`
+**pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
+**pg_ro_password** | Same as `pg_password`, but for the read-only connection. | `<pg_password>`
+**pg_ro_database** | Same as `pg_database`, but for the read-only connection. | `<pg_database>`
+**pg_ro_schema** | Same as `pg_schema`, but for the read-only connection. | `<pg_schema>`
+**pg_ro_ssl** | Same as `pg_ssl`, but for the read-only connection. | `<pg_ssl>`
+**pg_ro_ssl_required** | Same as `pg_ssl_required`, but for the read-only connection. | `<pg_ssl_required>`
+**pg_ro_ssl_verify** | Same as `pg_ssl_verify`, but for the read-only connection. | `<pg_ssl_verify>`
+**pg_ro_ssl_version** | Same as `pg_ssl_version`, but for the read-only connection. | `<pg_ssl_version>`
+**pg_ro_max_concurrent_queries** | Same as `pg_max_concurrent_queries`, but for the read-only connection. Note: read-only concurrency is not shared with the main (read-write) connection. | `<pg_max_concurrent_queries>`
+**pg_ro_semaphore_timeout** | Same as `pg_semaphore_timeout`, but for the read-only connection. | `<pg_semaphore_timeout>`
+**pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
+**pg_ro_pool_size** | Same as `pg_pool_size`, but for the read-only connection. | `<pg_pool_size>`
+**pg_ro_backlog** | Same as `pg_backlog`, but for the read-only connection. | `<pg_backlog>`
+
+{% endif_version %}
 
 ### Cassandra settings
 
@@ -1539,6 +1770,26 @@ chacha20-poly1305 to encrypt `off` = does not encrypt
 
 **Default:** `off`
 
+{% if_version gte:3.2.x %}
+
+### lmdb_environment_path
+
+Directory where the LMDB database files used by DB-less and Hybrid mode to
+store Kong configurations reside.
+
+This path is relative under the Kong `prefix`.
+
+**Default:** `dbless.lmdb`
+
+
+### lmdb_map_size
+
+Maximum size of the LMDB memory map, used to store the DB-less and Hybird mode
+configurations. Default is 128m.
+
+**Default:** `128m`
+
+{% endif_version %}
 
 ---
 
@@ -3738,24 +3989,6 @@ defined in the `keyring_vault_kube_role` configuration property.
 
 {% endif_version %}
 
-### keyring_vault_auth_method
-{:.badge .enterprise}
-
-Defines the authentication mechanism when connecting to the Hashicorp Vault service.
-
-Accepted values are: `token`, or `kubernetes`:
-
-* `token`: Uses the static token defined in the `keyring_vault_token` configuration
-property.
-
-* `kubernetes`: Uses the Kubernetes authentication mechanism, with the running pod's
-mapped service account, to assume the Hashicorp Vault role name that is defined in
-the `keyring_vault_kube_role` configuration property.
-
-**Default:** `token`
-
-
-
 ### keyring_vault_token
 {:.badge .enterprise}
 
@@ -3786,27 +4019,6 @@ pod's filesystem, if using a non-standard container platform setup.
 **Default:** `/run/secrets/kubernetes.io/serviceaccount/token`
 
 {% endif_version %}
-
-### keyring_vault_kube_role
-{:.badge .enterprise}
-
-Defines the HashiCorp Vault role for the Kubernetes service
-account of the running pod.
-
-`keyring_vault_auth_method` must be set to `kubernetes` for this to activate.
-
-**Default:** `default`
-
-
-
-### keyring_vault_kube_api_token_file
-{:.badge .enterprise}
-
-Defines where the Kubernetes service account token should be read from on the pod's
-filesystem, if using a non-standard container platform setup.
-
-**Default:** `/run/secrets/kubernetes.io/serviceaccount/token`
-
 
 
 ### untrusted_lua
@@ -3904,7 +4116,74 @@ Kong which OpenResty installation to use.
 
 **Default:** none
 
+{% if_version gte:3.2.x %}
 
+### cluster_fallback_config_import
+{:.badge .enterprise}
+
+Enable fallback configuration imports
+
+This should only be enabled for data plane
+
+**Default:** `off`
+
+
+### cluster_fallback_config_storage
+{:.badge .enterprise}
+
+Storage definition used by `cluster_fallback_config_import` and
+`cluster_fallback_config_export`
+
+Currently supported storage type: S3-like storages and GCP storage service.
+
+To use S3 with a bucket named b and place all configs to with a key prefix
+named p, set it to: s3://b/p To use GCP for the same bucket and prefix, set it
+to: gcs://b/p
+
+The credentials (and endpoint URL for S3-like) for S3 are passing with
+environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` and
+`AWS_CONFIG_STORAGE_ENDPOINT` (extension), where `AWS_CONFIG_STORAGE_ENDPOINT`
+is the endpoint that hosts S3-like storage.
+
+The credentials for GCP is provided via the environment variable
+`GCP_SERVICE_ACCOUNT`
+
+**Default:** none
+
+
+### cluster_fallback_config_export
+{:.badge .enterprise}
+
+Enable fallback configuration exports.
+
+**Default:** `off`
+
+
+### cluster_fallback_config_export_delay
+{:.badge .enterprise}
+
+The fallback configuration export interval.
+
+If it's set to 60 and configuration A is exported and there're new
+configurations B, C and D in the next 60 seconds, it will wait until 60 seconds
+passed and export D, skipping B and C.
+
+**Default:** `60`
+
+
+### max_queued_batches
+
+Maximum number of batches to keep on an internal plugin queue before dropping
+old batches. This is meant as a global, last-resort control to prevent queues
+from consuming infinite memory. When batches are being dropped, an error message
+"exceeded max_queued_batches (%d), dropping oldest" will be logged. The error
+message will also include a string that identifies the plugin causing the
+problem. Queues are used by the http-log, statsd, opentelemetry and datadog
+plugins.
+
+**Default:** `100`
+
+{% endif_version %}
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
