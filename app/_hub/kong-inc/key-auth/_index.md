@@ -93,8 +93,7 @@ params:
         An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
         must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
-        Add a link to the right version of https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#anonymous-access
-        (replace latest with whatever version of this plugin is displayed)
+        For more information, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
       maximum_version: "3.0.x"
     - name: run_on_preflight
       required: true
@@ -160,12 +159,12 @@ If you are also using the [ACL](/plugins/acl/) plugin and allow lists with this
 service, you must add the new Consumer to the allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
-Please refer to this docs -> https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#anonymous-access (again, pointing to the correct version) when you intend to setup "Anonymous" access.
+For more information about how to configure anonymous access, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
 
 
 ### Multiple Authentication
 
-A sentence informing the user about the possibility to set up "Multiple Authentication" and and refer them to this link -> https://docs.konghq.com/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication (here again make sure to not point to "latest" but to the corresponding kong version)
+{{site.base_gateway}} supports multiple authentication plugins for a given service, allowing different clients to use different authentication methods to access a given service or route. For more information, see [Multiple Authentication](/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication).
 
 ### Create a Key
 
@@ -394,16 +393,16 @@ Response:
 [acl-associating]: /plugins/acl/#associating-consumers
 
 
-### Decision table (for the lack of a better name) -> This should be included in every plugin
+### Behavior matrix
 
-A table with data on how Kong behaves in various scenarios.
+The following table describes how {{site.base_gateway}} behaves in various scenarios:
 
-request                        | proxied to upstream service | response status code
+Request                        | Proxied to upstream service? | Response status code
 --------                       |-----------------------------|---------------------
-has valid apikey               | yes                         | 200
-no key provided                | no                          | 401
-key now known to kong          | no                          | 401
-runtime error                  | no                          | 500
+has valid apikey               | Yes                         | 200
+no key provided                | No                          | 401
+key now known to kong          | No                          | 401
+runtime error                  | No                          | 500
 
 
 ---
