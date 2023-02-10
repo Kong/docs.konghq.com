@@ -309,13 +309,23 @@ Span #4 name=access phase: cors duration=1500.824576ms
 Span #5 name=cors: heavy works duration=1500.709632ms attributes={"username":"kongers"}
 Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.21.11.162","net.peer.port":80}
 ```
-
+{% if_plugin_version gte:3.2.x %}
 ## Known issues
 
 - Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
 - May impact the performance of {{site.base_gateway}}.
   It's recommended to set the sampling rate (`tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:3.1.x %}
+## Known issues
+
+- Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
+- May impact the performance of {{site.base_gateway}}.
+  It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
+  via Kong configuration file when using the OpenTelemetry plugin.
+{% endif_plugin_version %}
 
 ## Changelog
 

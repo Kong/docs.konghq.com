@@ -11,11 +11,13 @@ In this section, we will describe the tracing capabilities of Kong.
 Only works for the plugins that are built on top of Kong's tracing API.
 e.g. OpenTelemetry plugin.
 
-{% if_version lte:3.1.x %}
+{% if_version gte:3.2.x %}
 Kong provides a set of core instrumentations for tracing, these can be configured in the `tracing_instrumentations` configuration.
 {% endif_version %}
+{% if_version lte:3.1.x %}
+Kong provides a set of core instrumentations for tracing, these can be configured in the `opentelemetry_tracing` configuration.
+{% endif_version %}
 
-Kong provides a set of core instrumentations for tracing, these can be configured in the `tracing_instrumentations` configuration.
 
 - `off`: do not enable instrumentations.
 - `request`: only enable request-level instrumentations.
