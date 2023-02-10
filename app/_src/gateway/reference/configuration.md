@@ -1386,7 +1386,7 @@ be kept open indefinitely.
 
 Enable the `Kong-Debug` header function.
 
-if it is `on`, kong will add `Kong-Route-Id` `Kong-Route-Name`
+If it is `on`, kong will add `Kong-Route-Id` `Kong-Route-Name`
 `Kong-Service-Id` `Kong-Service-Name` debug headers to response when the client
 request header `Kong-Debug: 1` is present.
 
