@@ -370,6 +370,7 @@ end_session_endpoint
 endfor
 endif
 endif_plugin_version
+endif_version
 endnavtab
 endnavtabs
 endraw
