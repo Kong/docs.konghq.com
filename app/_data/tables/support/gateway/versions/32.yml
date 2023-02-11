@@ -4,32 +4,27 @@
 
 lts: false
 distributions:
-  - *alpine
-  - <<: *rhel8
-    fips: true
+  - <<: *alpine
     docker: true
-    arm: true
-  - <<: *rhel9
-    fips: true
-    arm: true
   - <<: *amazonlinux2
+    docker: true
     arm: true
   - <<: *amazonlinux2022
+    docker: true
     arm: true
+  - <<: *centos7
   - <<: *debian10
-    docker: true
-    arm: true
   - <<: *debian11
-    arm: true
+  - <<: *rhel7
+  - <<: *rhel8
   - <<: *ubuntu1804
-    docker: true
     arm: true
   - <<: *ubuntu2004
-    fips: true
     arm: true
+    fips: true
   - <<: *ubuntu2204
-    fips: true
     arm: true
+    fips: true
 
 third-party:
   datastore:
@@ -44,7 +39,7 @@ third-party:
     - *statsd
     - *opentelemetry
     - *zipkin
-    
+
   vault:
     - *vaultproject
     - *aws-sm
@@ -75,7 +70,7 @@ third-party:
   service_mesh:
     - *kongmesh
     - *istio
-    
+
   log_provider:
     - *splunk
     - *datadog

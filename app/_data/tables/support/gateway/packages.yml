@@ -3,24 +3,6 @@ _packages:
     os: Alpine
     version: 3
     package: true
-    arm: true
-    fips: false
-  rhel7: &rhel7
-    os: RHEL
-    version: 7.x
-    package: true
-    arm: false
-    fips: false
-  rhel8: &rhel8
-    os: RHEL
-    version: 8.x
-    package: true
-    arm: false
-    fips: false
-  rhel9: &rhel9
-    os: RHEL
-    version: 9.x
-    package: true
     arm: false
     fips: false
   amazonlinux1: &amazonlinux1
@@ -80,6 +62,24 @@ _packages:
   debian-stable: &debian-stable
     os: Debian
     version: stable
+    package: true
+    arm: false
+    fips: false
+  rhel7: &rhel7
+    os: RHEL
+    version: 7.x
+    package: true
+    arm: false
+    fips: false
+  rhel8: &rhel8
+    os: RHEL
+    version: 8.x
+    package: true
+    arm: false
+    fips: false
+  rhel9: &rhel9
+    os: RHEL
+    version: 9.x
     package: true
     arm: false
     fips: false
