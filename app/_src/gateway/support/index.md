@@ -45,23 +45,23 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 Kong supports the following versions:
 
 {% navtabs %}
-  {% navtab 2.6 %}
-    {% include_cached gateway-support.html version="2.6" data=site.data.tables.support.gateway.versions.2x  eol="February 2023" %}
-  {% endnavtab %}
-    {% navtab 2.7 %}
-    {% include_cached gateway-support.html version="2.7" data=site.data.tables.support.gateway.versions.2x  eol="February 2023" %}
-  {% endnavtab %}
-  {% navtab 2.8 LTS %}
-    {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.2x  eol="March 2025" %}
-  {% endnavtab %}
-  {% navtab 3.0 %}
-    {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.3x eol="August 2023" %}
+  {% navtab 3.2 %}
+    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="February 2024" %}
   {% endnavtab %}
   {% navtab 3.1 %}
     {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.3x eol="December 2023" %}
   {% endnavtab %}
-  {% navtab 3.2 %}
-    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="February 2024" %}
+  {% navtab 3.0 %}
+    {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.3x eol="August 2023" %}
+  {% endnavtab %}
+  {% navtab 2.8 LTS %}
+    {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.2x  eol="March 2025" %}
+  {% endnavtab %}
+  {% navtab 2.7 %}
+    {% include_cached gateway-support.html version="2.7" data=site.data.tables.support.gateway.versions.2x  eol="February 2023" %}
+  {% endnavtab %}
+  {% navtab 2.6 %}
+    {% include_cached gateway-support.html version="2.6" data=site.data.tables.support.gateway.versions.2x  eol="February 2023" %}
   {% endnavtab %}
 {% endnavtabs %}
 
