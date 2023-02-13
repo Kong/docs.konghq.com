@@ -11,12 +11,12 @@ items:
         absolute_url: true
       - text: Support
         items:
-          - text: Gateway Support
-            url: /support/
-          - text: Third Party Dependencies
-            url: /support/third-party/
-          - text: Browser Support
-            url: /support/browser/
+        - text: Version Support Policy
+        url: /support-policy
+        - text: Supported Installation Options
+        url: /install-support
+        - text: Supported Linux Distributions
+        url: /os-support
       - text: Stability
         url: /stability
       - text: Release Notes
