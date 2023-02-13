@@ -279,7 +279,7 @@
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
 /konnect/legacy/*                                    /konnect/
-
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
 
 #API Redirects
 

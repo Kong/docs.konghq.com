@@ -602,7 +602,7 @@ items:
         url: /reference/cli
       - text: File Permissions Reference
         url: /reference/file-access-permissions
-      - text: Key management
+      - text: Key Management
         url: /reference/key-management
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
