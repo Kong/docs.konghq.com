@@ -148,13 +148,13 @@ params: # Metadata about your plugin
         required: yes
         datatype: string
         encrypted: false
-        value_in_examples: "us-west-2"
+        value_in_examples: "us-east-1"
         description: The AWS region in which the service is located.
       - name: aws_service
         required: yes
         datatype: string
         encrypted: false
-        value_in_examples: "s3"
+        value_in_examples: "lambda"
         description: The name of the AWS service to be called.
       - name: override_target_host
         required: no
