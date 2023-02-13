@@ -2318,7 +2318,7 @@ Learn more about the router:
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will not be configurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
 > will support `path_handling` `"v1'` behavior.
@@ -4230,6 +4230,25 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
+##### Retrieve Upstream Associated to a Specific Target
+
+<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.upstream_json }}
+```
 {% endunless %}
 
 #### Response
@@ -4274,6 +4293,17 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
+
+
+##### Update Upstream Associated to a Specific Target
+
+<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
+
 
 #### Request Body
 
@@ -4324,6 +4354,14 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 {% endunless %}
+##### Create Or Update Upstream Associated to a Specific Target
+
+<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
 
 #### Request Body
 
@@ -4382,6 +4420,14 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
+##### Delete Upstream Associated to a Specific Target
+
+<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
 {% endunless %}
 
 #### Response

@@ -5,7 +5,7 @@
 #  https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 #  or its associated files instead.
 #
-title: Konnect Runtime Configuration API
+title: Admin API
 source_url: https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 toc: false
 
@@ -96,7 +96,7 @@ route_body: |
     Attributes | Description
     ---:| ---
     `name`<br>*optional* | The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
-    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
+    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When it is set to only `"http"`, this is essentially the same as `["http", "https"]` in that both HTTP and HTTPS requests are allowed. Default: `["http", "https"]`.
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
@@ -603,7 +603,7 @@ vault_body: |
     ---:| ---
     `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
     `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
-    `description`<br>*optional* |  The description of the Vault entity.
+    `description`<br>*optional* |  The description of the Vault object.
     `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
     `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
@@ -750,7 +750,7 @@ The API for configuring Kong Konnect Runtime Groups.
 
 
 
-This API is similar to the [Kong Gateway admin API](/gateway/latest/admin-api/) with a few major differences:
+This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few notable differences:
 
 * `PATCH` methods are not supported
 > `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
@@ -768,7 +768,7 @@ This API is similar to the [Kong Gateway admin API](/gateway/latest/admin-api/) 
 ## Supported Content Types
 
 
-- **application/json**
+**application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case send
 a JSON representation of the data you want to send. Example:
@@ -785,7 +785,7 @@ a JSON representation of the data you want to send. Example:
 An example adding a Route to a Service named `test-service`:
 
 ```
-curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
      -H "Content-Type: application/json" \
      -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
 ```
@@ -798,7 +798,6 @@ curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/c
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
 * [Plugin Hub](/hub/)
 
---- 
 ## Nodes
 ### List Runtime Instance Records
 
@@ -1140,6 +1139,13 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -F "paths[1]=/path/one" \
      -F "paths[2]=/path/two"
 ```
+
+---
+
+## Using the API in workspaces 
+{:.badge .enterprise}
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
 
 ---
 
@@ -1759,7 +1765,9 @@ HTTP 200 OK
 
 
 ### Set Node Log Level of All Control Plane Nodes
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
  Change the log level of all Control Plane nodes deployed in Hybrid
  (CP/DP) cluster.
@@ -1808,7 +1816,9 @@ HTTP 200 OK
 ---
 
 ### Set Node Log Level of All Nodes
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
 Change the log level of all nodes in a cluster.
 
@@ -1882,7 +1892,9 @@ HTTP 200 OK
 ---
 
 ### Set Log Level of A Single Node
-{:.badge .dbless}
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
 
 Change the log level of a node.
 
@@ -2306,7 +2318,7 @@ Learn more about the router:
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will not be configurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
 > will support `path_handling` `"v1'` behavior.
@@ -4218,6 +4230,25 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
+##### Retrieve Upstream Associated to a Specific Target
+
+<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.upstream_json }}
+```
 {% endunless %}
 
 #### Response
@@ -4262,6 +4293,17 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
+
+
+##### Update Upstream Associated to a Specific Target
+
+<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
+
 
 #### Request Body
 
@@ -4312,6 +4354,14 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 {% endunless %}
+##### Create Or Update Upstream Associated to a Specific Target
+
+<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
 
 #### Request Body
 
@@ -4370,6 +4420,14 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
+##### Delete Upstream Associated to a Specific Target
+
+<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
 {% endunless %}
 
 #### Response
@@ -4777,9 +4835,9 @@ HTTP 200 OK
 ---
 
 
-## Vaults Entity
+## Vaults Object
 
-Vault entities are used to configure different Vault connectors. Examples of
+Vault object are used to configure different Vault connectors. Examples of
 Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager.
 
 Configuring a Vault allows referencing the secrets with other entities. For
@@ -4986,7 +5044,7 @@ HTTP 204 No Content
 
 ---
 {% unless page.edition == "konnect" %}
-## Keys Entity
+## Keys Object
 
 A Key object holds a representation of asymmetric keys in various formats.
 When Kong or a Kong plugin requires a specific public or private key to perform
