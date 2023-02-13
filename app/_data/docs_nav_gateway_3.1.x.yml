@@ -12,11 +12,11 @@ items:
       - text: Support
         items:
         - text: Version Support Policy
-        url: /support-policy
+          url: /support-policy
         - text: Supported Installation Options
-        url: /install-support
+          url: /install-support
         - text: Supported Linux Distributions
-        url: /os-support
+          url: /os-support
       - text: Stability
         url: /stability
       - text: Release Notes
