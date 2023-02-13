@@ -21,7 +21,7 @@ Kong introduces major functionality and breaking changes by releasing a new majo
 
 Kong releases a new minor version every 10 weeks. Minor versions contain features and bug fixes. Minor versions are always backwards compatible within that major version sequence.  Every minor version is supported for a period of 1 year from date of release. This is done by releasing patch updates (also known as patch releases) that apply to each supported minor version.
 
-At Kong’s discretion a specific minor version can be marked as a LTS version. The LTS version is supported on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS release whichever comes sooner. LTS only receives security fixes or certain critical patches at the discretion of Kong. Kong guarantees that at any given time, there will be at least 1 active LTS Kong version.
+At Kong’s discretion a specific minor version can be marked as a Long-Term Support (LTS) version. The LTS version is supported on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS release, whichever comes sooner. LTS only receives security fixes or certain critical patches at the discretion of Kong. Kong guarantees that at any given time, there will be at least 1 active LTS Kong version.
 
 
 ## Sunset support
