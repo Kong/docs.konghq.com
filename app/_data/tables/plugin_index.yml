@@ -442,7 +442,7 @@
     
     - name: Datadog Tracing
       free: No
-      plus: Yes
+      plus: No
       enterprise: Yes
       network_config_opts: All
       notes: --
