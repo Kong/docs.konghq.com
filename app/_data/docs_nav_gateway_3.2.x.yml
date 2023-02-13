@@ -347,7 +347,7 @@ items:
         url: /kong-enterprise/event-hooks
       - text: Configure Data Plane Resilience
         url: /kong-enterprise/cp-outage-handling
-      - text: Data Plane Resilience FAQ
+      - text: About Control Plane Outage Management
         url: /kong-enterprise/cp-outage-handling-faq
       - text: FIPS 140-2
         url: /kong-enterprise/fips-support

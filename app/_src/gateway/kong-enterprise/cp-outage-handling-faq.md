@@ -1,30 +1,30 @@
 ---
-title: Control Plane Outage Management FAQ
+title: About Control Plane Outage Management
 badge: enterprise
 content_type: Reference
 ---
 
-Starting in {{site.base_gateway}} version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. This document serves as an informational set of guidelines for that feature. For instructions on setting this up, read the [data plane resilience documentation](/gateway/latest/kong-enterprise/cp-outage-handling) doc.
+Starting in version 3.2, {{site.base_gateway}} can be set up to support configuring new data planes in the event of a control plane outage. This document explains how data plane resilience works, who should use it, and additional considerations. For instructions on setting this up, read the [data plane resilience documentation](/gateway/latest/kong-enterprise/cp-outage-handling).
 
 
-## How it works
+## How data plane resilience works
 
-When the cluster adds new data plane nodes, the control plane uses a configuration file to provision those nodes. If the control plane experiences an outage, the data plane is unable to be provisioned, and will silently fail until they can establish a connection with the control plane. After configuring {{site.base_gateway}} to manage the addition of new data plane nodes in the event of a control plane outage new nodes will no longer silently fail after not being able to establish a connection with the control plane and are configured by reading the configuration file that is located in the designated S3 compatible storage volume. 
+When the cluster adds new data plane nodes, the control plane uses a configuration file to provision those nodes. If the control plane experiences an outage, the data plane can't be provisioned and it will silently fail until it can establish a connection with the control plane. After configuring {{site.base_gateway}} to manage the addition of new data plane nodes in the event of a control plane outage, new nodes won't silently fail after not establishing a connection with the control plane. Instead, they are configured by reading the configuration file that is located in the designated S3 compatible storage volume. 
 
 By designating a dedicated backup node, any changes to the configuration file are pushed to the S3 compatible storage. Any new data plane nodes read the configuration file from the S3 compatible storage volume and consume the new configuration changes. 
 
 
-## Data plane management during control plane outage
+## Data plane management during a control plane outage
 
-A new data plane node that is added to the cluster when the control plane is unreachable exhibits the following behaviour:  
+A new data plane node added to the cluster when the control plane is unreachable exhibits the following behavior:  
 
-* The new data plane node determines that the control plane is unreachable. 
-* The new data plane node reads the configuration file from the S3 compatible storage volume, configures itself, caches the fetched configuration file, and begins proxying requests.
-* The new data plane node continuously tries to establish a connection with the control plane. 
+1. The new data plane node determines that the control plane is unreachable. 
+1. The new data plane node reads the configuration file from the S3 compatible storage volume, configures itself, caches the fetched configuration file, and begins proxying requests.
+1. The new data plane node continuously tries to establish a connection with the control plane. 
 
-The S3 compatible storage volume is only accessed at data plane node creation time. The configuration will never be pulled from the storage after creation. If the new data plane node depends on any other functionality from the control plane, it will fail. 
+The S3 compatible storage volume is only accessed when the data plane node is created. The configuration will never be pulled from the storage after creation. The data plane will fail if it depends on any other functionality from the control plane. 
 
-{:.note}
+{:.important}
 > If the data plane and control plane are both configured to `export` a configuration, assuming that they are both configured with the right level of authentication, the data plane will write to the storage volume first, and then the control plane will overwrite the configuration. You should avoid this configuration.
 
 ## Security considerations
