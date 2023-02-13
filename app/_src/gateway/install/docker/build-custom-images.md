@@ -111,15 +111,9 @@ FROM alpine:latest
 COPY kong.apk.tar.gz /tmp/kong.apk.tar.gz
 
 RUN set -ex; \
-    apk add bash curl ca-certificates; \
-    arch="$(apk --print-arch)"; \
-    case "${arch}" in \
-      x86_64) export ARCH='amd64'; KONG_SHA256=$KONG_AMD64_SHA ;; \
-      aarch64) export ARCH='arm64'; KONG_SHA256=$KONG_ARM64_SHA ;; \
-    esac; \
     apk add --no-cache --virtual .build-deps tar gzip \
     && tar -C / -xzf /tmp/kong.apk.tar.gz \
-    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash \
+    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash curl ca-certificates \
     && adduser -S kong \
     && addgroup -S kong \
     && mkdir -p "/usr/local/kong" \
