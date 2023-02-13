@@ -1,5 +1,5 @@
 ---
-title: Upgrade Kong Gateway 3.1.x
+title: Upgrade Kong Gateway 3.x.x
 ---
 
 Upgrade to major, minor, and patch {{site.base_gateway}}
@@ -45,12 +45,21 @@ The following table outlines various upgrade path scenarios to 3.1.x depending o
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.x–2.7.2.0 | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.x–2.7.2.0 | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.x–2.7.2.0 | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.8.x.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
+| 2.8.x.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
+| 2.8.x.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
+
+{% if_version gte: 3.2.x %}
+| 3.1.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.1.x | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.1.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
+{% endif_version %}
 
 ## Upgrade considerations and breaking changes
 
@@ -173,37 +182,37 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Upgrade from 3.0.x to 3.1.x {#migrate-db}
+## General upgrade path {#migrate-db}
 
 ### Traditional mode
 
 
 1. Clone your database.
-2. Download 3.1.x, and configure it to point to the cloned data store.
+2. Download the version of {{site.base_gateway}} you want to upgrade to, and configure it to point to the cloned data store.
    Run `kong migrations up` and `kong migrations finish`.
-3. Start the 3.1.x cluster.
-4. Now both the old (3.0.x) and new (3.1.x)
-   clusters can now run simultaneously. Start provisioning 3.1.x nodes.
+3. Start the new {{site.base_gateway}} version cluster.
+4. Now both the old and new
+   clusters can now run simultaneously. Start provisioning the new {{site.base_gateway}} version nodes.
 3. Gradually divert traffic away from your old nodes, and into
-   your 3.1.x cluster. Monitor your traffic to make sure everything
+   your new cluster. Monitor your traffic to make sure everything
    is going smoothly.
-4. When your traffic is fully migrated to the 3.1.x cluster,
+4. When your traffic is fully migrated to the new cluster,
    decommission your old nodes.
 
 ### Hybrid mode
 
 Perform a rolling upgrade of your cluster:
 
-1. Download 3.1.x.
-2. Decommission your existing 3.0.x control plane. Your existing 3.0.x data
+1. Download the version of {{site.base_gateway}} you want to upgrade to.
+2. Decommission your existing control plane. Your existing data
    planes can continue to handle proxy traffic during this time, even with no 
    active control plane.
-4. Configure the new 3.1.x control plane to point to the same data store as
+4. Configure the new {{site.base_gateway}} version control plane to point to the same data store as
    your old control plane. Run `kong migrations up` and `kong migrations finish`.
-5. Start the new 3.1.x control plane.
-6. Start new 3.1.x data planes.
-7. Gradually divert traffic away from your 3.0.x data planes, and into
-   the new 3.1.x data planes. Monitor your traffic to make sure everything
+5. Start the new control plane.
+6. Start new data planes.
+7. Gradually divert traffic away from your old data planes, and into
+   the new data planes. Monitor your traffic to make sure everything
    is going smoothly.
-8. When your traffic is fully migrated to the 3.1.x cluster,
-   decommission your old 3.0.x data planes.
+8. When your traffic is fully migrated to the new cluster,
+   decommission your old data planes.

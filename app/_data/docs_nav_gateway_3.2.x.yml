@@ -206,9 +206,9 @@ items:
         url: /production/logging
       - text: Upgrade and Migration
         items:
-          - text: Upgrade Kong Gateway 3.2.x
+          - text: Upgrade Kong Gateway 3.x.x
             url: /upgrade/
-            src: /gateway/upgrade-32x
+            src: /gateway/upgrade-31x
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
   - title: Kong Enterprise
