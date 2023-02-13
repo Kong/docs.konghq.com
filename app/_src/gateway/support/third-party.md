@@ -15,18 +15,12 @@ Kong aims to support the last 2 versions of any third party tool, plus the curre
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.32 %}
   {% endnavtab %}
   {% navtab 3.1 %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.3x %}
+    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.31 %}
   {% endnavtab %}
   {% navtab 3.0 %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.3x %}
+    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.30 %}
   {% endnavtab %}
   {% navtab 2.8 LTS %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.2x %}
-  {% endnavtab %}
-  {% navtab 2.7 %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.2x %}
-  {% endnavtab %}
-  {% navtab 2.6 %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.2x %}
+    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.28 %}
   {% endnavtab %}
 {% endnavtabs %}
