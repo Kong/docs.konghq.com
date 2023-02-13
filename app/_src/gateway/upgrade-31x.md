@@ -48,12 +48,12 @@ The following table outlines various upgrade path scenarios to 3.1.x depending o
 | 2.x–2.7.2.0 | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
 | 2.x–2.7.2.0 | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
 | 2.x–2.7.2.0 | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 2.8.x.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3112). |
-| 2.8.x.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3112). |
-| 2.8.x.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3112). |
-| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
-| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#upgrade-from-30x-to-31x). |
+| 2.8.x.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3113). |
+| 2.8.x.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3113). |
+| 2.8.x.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3113). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3113). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3113). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.1.3](#upgrade-from-28xx-to-3113). |
 
 ## Upgrade considerations and breaking changes
 
