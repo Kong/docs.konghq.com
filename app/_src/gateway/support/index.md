@@ -42,7 +42,7 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 
 ## Supported versions
 
-Kong supports the following versions:
+The following matrix describes the distributions available for each supported version of {{site.ee_product_name}}. End of support for these distributions is tied to end of support for Kong version, unless the distribution's end of life date is sooner (denoted with * ). Kong supports the following versions:
 
 {% navtabs %}
   {% navtab 3.2 %}
