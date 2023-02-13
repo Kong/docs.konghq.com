@@ -27,9 +27,9 @@ Token endpoints for IdPs are:
 
 | Vendor  | Endpoint  | Variables                                 |
 |:------|--------|----------------------------------------|
-| Auth0 | `https://<your-subdomain>.us.auth0.com/oauth/token` | { "grant_type": "client_credentials", "audience": "<your_audience>" } |
-| Curity | `https://curity.konger.me/oauth/v2/oauth-token` | { "grant_types": "client_credentials" } |
-| Okta | POST `https://<your-subdomain>.okta.com/oauth2/default/v1/token` | { "grant_types": "client_credentials" } |
+| Auth0 | `https://<your-subdomain>.us.auth0.com/oauth/token` | `{ "grant_type": "client_credentials", "audience": "<your_audience>" }` |
+| Curity | `https://curity.konger.me/oauth/v2/oauth-token` | `{ "grant_types": "client_credentials" }` |
+| Okta | POST `https://<your-subdomain>.okta.com/oauth2/default/v1/token` | `{ "grant_types": "client_credentials" }` |
 
 
 
