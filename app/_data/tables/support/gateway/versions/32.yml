@@ -22,7 +22,7 @@ distributions:
   - <<: *debian11
     eol: --
   - <<: *rhel7
-    eol: March 2023
+    eol: --
   - <<: *rhel8
     eol: --
   - <<: *ubuntu1804
