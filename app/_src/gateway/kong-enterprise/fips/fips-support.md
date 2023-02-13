@@ -19,14 +19,15 @@ The following table describes how {{site.base_gateway}} uses key derivation func
 | Component | Normal mode | FIPS mode | Notes |
 |-----------|-------------|-----------|-------|
 | core/rbac | bcrypt | PBKDF2 [^1] | PBKDF2 in BoringSSL isn't FIPS validated. |
-| plugins/oauth2[^2][^3] | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | PBKDF2 in BoringSSL isn't FIPS validated. |
+| plugins/oauth2[^2] | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | PBKDF2 in BoringSSL isn't FIPS validated. |
+| plugins/key-auth-enc[^3] | SHA1 | SHA1 | PBKDF2 in BoringSSL isn't FIPS validated. |
 
 [^1]: As of {{site.base_gateway}} FIPS 3.0, RBAC uses PBKDF2 as password hashing algorithm. Although PBKDF2 is an approved algorithm in FIPS 140-2, the BoringSSL implementation of PBKDF2 is not validated.
 [^2]: As of {{site.base_gateway}} FIPS 3.1, the oauth2 plugin disables `hash_secret` feature, so the user can’t turn it on. This means password will be stored plaintext in the database; however, users can choose to use secrets management or db encryption instead.
 [^3]: As of {{site.base_gateway}} FIPS 3.1, key-auth-enc uses SHA1 to speed up lookup of a key in DB. As of {{site.base_gateway}} FIPS 3.2, SHA1 support is “read-only”, meaning existing credentials in DB are still validated, but any new credentials will be hashed in SHA256.
 
 {:.note}
-> **Note**: If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using key-auth-enc plugin, you should send PATCH or POST requests to all existing key-auth-enc credentials to re-hash them in SHA256.
+> **Note**: If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the key-auth-enc plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing key-auth-enc credentials to re-hash them in SHA256.
 
 ### Non-cryptographic usage of cryptographic algorithms
 
@@ -42,8 +43,7 @@ The following table explains where cryptographic algorithms are used for non-cry
 | core/balancer | crc32 | crc32 | crc32 isn't message digest. |
 | core/uuid | Lua random number generator | Lua random number generator | The RNG isn’t used for cryptographic purposes. |
 | core/declarative_config/uuid | UUIDv5 (namespaced SHA1) | UUIDv5 (namespaced SHA1) | Used to generate a unique identifier. |
-| core/declarative_config/config_hash
-core/hybrid/hashes | MD5 | MD5 | Used to generate a unique identifier. |
+| core/declarative_config/config_hash and core/hybrid/hashes | MD5 | MD5 | Used to generate a unique identifier. |
 
 ### SSL client
 

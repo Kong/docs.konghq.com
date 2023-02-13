@@ -112,5 +112,7 @@ You can also set this configuration using an environment variable:
 export KONG_FIPS=on
 ```
 
+If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the key-auth-enc plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing key-auth-enc credentials to re-hash them in SHA256.
+
 {:.important .no-icon}
 > Migrating from non-FIPS to FIPS mode and backwards is not supported.
