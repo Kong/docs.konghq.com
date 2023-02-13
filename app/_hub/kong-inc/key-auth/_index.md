@@ -393,16 +393,16 @@ Response:
 [acl-associating]: /plugins/acl/#associating-consumers
 
 
-### Behavior matrix
+### Request behavior matrix
 
 The following table describes how {{site.base_gateway}} behaves in various scenarios:
 
-Request                        | Proxied to upstream service? | Response status code
---------                       |-----------------------------|---------------------
-has valid apikey               | Yes                         | 200
-no key provided                | No                          | 401
-key now known to kong          | No                          | 401
-runtime error                  | No                          | 500
+Description | Proxied to upstream service? | Response status code
+--------|-----------------------------|---------------------
+The request has a valid API key. | Yes | 200
+No API key is provided. | No | 401
+The API key is known to {{site.base_gateway}} | No | 401
+A runtime error occurred. | No | 500
 
 
 ---
