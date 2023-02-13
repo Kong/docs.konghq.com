@@ -1,5 +1,5 @@
 
-Kong Gateway {{ include.version }} supports the following deployment targets:
+Kong Gateway {{ include.version }} supports the following deployment targets until {{ include.eol }}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
 
 <table style="display: table;" width="100%">
   <thead>
@@ -9,7 +9,7 @@ Kong Gateway {{ include.version }} supports the following deployment targets:
       <th>Artifacts</th>
       <th>ARM support</th>
       <th>FIPS compliant</th>
-      <th>EOL</th>
+      <th>Vendor EOL</th>
     </tr>
   </thead>
   <tbody>
@@ -27,13 +27,7 @@ Kong Gateway {{ include.version }} supports the following deployment targets:
         </td>
         <td>{{ d.arm | to_check }}</td>
         <td>{{ d.fips | to_check }}</td>
-        <td>
-          {% if d.eol %}
-            {{ d.eol }}
-          {% else %}
-            {{ include.eol }}
-          {% endif %}
-        </td>
+        <td>{{ d.eol }}</td>
       </tr>
     {% endfor %}
   </tbody>

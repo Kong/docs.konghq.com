@@ -2,26 +2,34 @@
 {% include_relative_once _data/tables/support/gateway/third-party.yml %}
 {% include_relative_once _data/tables/support/gateway/browsers.yml %}
 
-lts: true
+lts: false
 distributions:
   - <<: *alpine
-    docker: true
+    eol: --
   - <<: *rhel7
     docker: true
-  - *rhel8
-  - *amazonlinux1
-  - *amazonlinux2
-  - <<: *centos7
+    eol: --
+  - <<: *rhel8
+    fips: true
+    eol: --
+  - <<: *amazonlinux2
+    eol: --
+  - <<: *amazonlinux2022
+    eol: --
+  - <<: *debian10
+    eol: --
     docker: true
-  - *centos8
-  - *debian8
-  - *debian9
-  - *debian10
-  - *debian11
-  - *debian-stable
-  - *ubuntu1604
-  - *ubuntu1804
-  - *ubuntu2004
+  - <<: *debian11
+    eol: --
+  - <<: *ubuntu1804
+    docker: true
+    eol: --
+  - <<: *ubuntu2004
+    fips: true
+    eol: --
+  - <<: *ubuntu2204
+    fips: true
+    eol: --
 
 third-party:
   datastore:
@@ -36,7 +44,7 @@ third-party:
     - *statsd
     - *opentelemetry
     - *zipkin
-    
+
   vault:
     - *vaultproject
     - *aws-sm
@@ -67,7 +75,7 @@ third-party:
   service_mesh:
     - *kongmesh
     - *istio
-    
+
   log_provider:
     - *splunk
     - *datadog

@@ -5,40 +5,31 @@
 lts: false
 distributions:
   - <<: *alpine
+    eol: --
+  - <<: *rhel7
     docker: true
+    eol: --
+  - <<: *rhel8
+    fips: true
     eol: --
   - <<: *amazonlinux2
-    docker: true
-    arm: true
     eol: --
   - <<: *amazonlinux2022
-    docker: true
-    arm: true
-    eol: --
-  - <<: *centos7
     eol: --
   - <<: *debian10
+    docker: true
     eol: --
   - <<: *debian11
     eol: --
-  - <<: *rhel7
-    eol: March 2023
-  - <<: *rhel8
-    eol: --
   - <<: *ubuntu1804
-    arm: true
-    docker: true
     eol: --
+    docker: true
   - <<: *ubuntu2004
-    arm: true
-    docker: true
-    fips: true
     eol: --
+    fips: true
   - <<: *ubuntu2204
-    arm: true
-    docker: true
-    fips: true
     eol: --
+    fips: true
 
 third-party:
   datastore:

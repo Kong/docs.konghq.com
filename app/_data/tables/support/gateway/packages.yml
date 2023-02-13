@@ -23,7 +23,6 @@ _packages:
     package: true
     arm: false
     fips: false
-    eol: March 2025
   centos7: &centos7
     os: CentOS
     version: 7
@@ -32,19 +31,19 @@ _packages:
     fips: false
   centos8: &centos8
     os: CentOS
-    version: 7
+    version: 8
     package: true
     arm: false
     fips: false
   debian8: &debian8
     os: Debian
-    version: 10
+    version: 8
     package: true
     arm: false
     fips: false
   debian9: &debian9
     os: Debian
-    version: 10
+    version: 9
     package: true
     arm: false
     fips: false
@@ -54,14 +53,12 @@ _packages:
     package: true
     arm: false
     fips: false
-    eol: June 2024
   debian11: &debian11
     os: Debian
     version: 11
     package: true
     arm: false
     fips: false
-    eol: March 2025
   debian-stable: &debian-stable
     os: Debian
     version: stable
@@ -74,21 +71,18 @@ _packages:
     package: true
     arm: false
     fips: false
-    eol: March 2023
   rhel8: &rhel8
     os: RHEL
     version: 8.x
     package: true
     arm: false
     fips: false
-    eol: March 2025
   rhel9: &rhel9
     os: RHEL
     version: 9.x
     package: true
     arm: false
     fips: false
-    eol: March 2025
   ubuntu1604: &ubuntu1604
     os: Ubuntu
     version: 16.04
@@ -107,11 +101,9 @@ _packages:
     package: true
     arm: false
     fips: false
-    eol: March 2025
   ubuntu2204: &ubuntu2204
     os: Ubuntu
     version: 22.04
     package: true
     arm: false
     fips: false
-    eol: March 2025

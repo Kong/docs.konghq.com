@@ -46,16 +46,16 @@ The following matrix describes the distributions available for each supported ve
 
 {% navtabs %}
   {% navtab 3.2 %}
-    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="N/A" %}
+    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="February 2024" %}
   {% endnavtab %}
   {% navtab 3.1 %}
-    {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.3x eol="N/A" %}
+    {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.31 eol="December 2023" %}
   {% endnavtab %}
   {% navtab 3.0 %}
-    {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.3x eol="N/A" %}
+    {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.30 eol="September 2023" %}
   {% endnavtab %}
   {% navtab 2.8 LTS %}
-    {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.2x  eol="N/A" %}
+    {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
   {% endnavtab %}
 {% endnavtabs %}
 
