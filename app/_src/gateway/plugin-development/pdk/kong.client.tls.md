@@ -18,7 +18,13 @@ Client TLS connection module.
 
 
 
+{% if_version lte:3.1.x %}
+## kong.client.tls.request_client_certificate()
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
 ## kong.client.tls.request_client_certificate([ca_certs])
+{% endif_version %}
 
 Requests the client to present its client-side certificate to initiate mutual
  TLS authentication between server and client.

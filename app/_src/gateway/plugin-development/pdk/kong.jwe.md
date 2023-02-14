@@ -10,6 +10,7 @@ pdk: true
 toc: true
 enterprise: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
+badge: enterprise
 ---
 
 JWE utility module  Provides utility functions around JSON Web Encryption.
