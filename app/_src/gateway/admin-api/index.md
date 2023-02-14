@@ -229,7 +229,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
-        "instance_name", rate-limiting-foo,
+        "instance_name": rate-limiting-foo,
         "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
@@ -1935,7 +1935,7 @@ HTTP 200 OK
 
 ---
 {% if_version gte:3.2.x %}
-### Get state of the CPU profling
+### Get state of the CPU profiling
 {:.badge .enterprise}
 
 Get the current CPU profiling state.
@@ -1957,10 +1957,12 @@ HTTP 200 OK
     "remain": 12
 }
 ```
-- `status`: The current profiling status. Can be `started` or `stopped`.
-- `path`: The path to the result file.
-- `pid`: The PID of worker under the profiling.
-- `remain`: How many seconds until timeout.
+Attributes | Description
+---:| ---
+`status` | The current profiling status. Can be `started` or `stopped`.
+`path`   |  The path to the result file.
+`pid`    | The PID of worker under the profiling.
+`remain` | How many seconds until timeout.
 
 ### Start CPU profiling
 {:.badge .enterprise}
@@ -2062,10 +2064,12 @@ HTTP 200 OK
 }
 ```
 
-- `status`: The current profiling status. Can be `started` or `stopped`.
-- `path`: The path to the result file.
-- `pid`: The PID of worker under the profiling.
-- `remain`: How many seconds until timeout.
+Attributes | Description
+---:| ---
+`status` | The current profiling status. Can be `started` or `stopped`.
+`path`   |  The path to the result file.
+`pid`    | The PID of worker under the profiling.
+`remain` | How many seconds until timeout.
 
 
 ### Start GC snapshot
@@ -2079,12 +2083,8 @@ The snapshot file is encoded using an internal format.
 {:.indent}
 Attributes | Default | Description
 ---:| ---
-`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in second).
+`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in seconds).
 `pid`<br>**required**     | Random Worker     | The PID of worker to profiling. If not specified, a random worker will be chosen.
-
-
-
-
 
 #### Response
 
@@ -4411,25 +4411,6 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
-##### Retrieve Upstream Associated to a Specific Target
-
-<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
-
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.upstream_json }}
-```
 {% endunless %}
 
 #### Response
@@ -4474,17 +4455,6 @@ Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
-
-
-##### Update Upstream Associated to a Specific Target
-
-<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
-
 
 #### Request Body
 
@@ -4535,14 +4505,6 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 {% endunless %}
-##### Create Or Update Upstream Associated to a Specific Target
-
-<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
 
 #### Request Body
 
@@ -4601,14 +4563,6 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
-##### Delete Upstream Associated to a Specific Target
-
-<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
-
-{:.indent}
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
 {% endunless %}
 
 #### Response
