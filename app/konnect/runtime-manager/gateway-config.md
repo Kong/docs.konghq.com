@@ -120,7 +120,7 @@ for all configuration options.
 Add authentication to a service or route with an access token and secret token. Credential tokens are stored securely using Vaults. Credential life-cyles can be managed through {{site.konnect_short_name}}. 
 
 ### Keys
-With **Keys**, you can centrally store and easily access key sets and keys in {{site.konnect_short_name}}. A key set object holds a collection of asymmetrical key objects. You can group keys objects by purpose. A key object holds a asymmetric keys in various formats. Key objects can be used when {{site.konnect_short_name}} or a {{site.konnect_short_name}} plugin requires a specific public or private key to perform an operation. You can create and manage key sets and key objects in {{site.konnect_short_name}}, from the **Runtime Manager**, **Keys** dashboard. Currently two key formats are supported:
+With **Keys**, you can centrally store and easily access key sets and keys in {{site.konnect_short_name}}. A key set object holds a collection of asymmetrical key objects. You can group keys objects by purpose. A key object holds asymmetric keys in various formats. Key objects can be used when {{site.konnect_short_name}} or a {{site.konnect_short_name}} plugin requires a specific public or private key to perform an operation. You can create and manage key sets and key objects in {{site.konnect_short_name}}, from the **Runtime Manager** > **Keys** dashboard. Currently two key formats are supported:
 * JWK
 * PEM
 

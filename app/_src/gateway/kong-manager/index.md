@@ -57,6 +57,7 @@ Number | Item | Description
 {% if_version gte:3.1.x %}
 10 | **Vaults** | Manage secret vaults in your environment.
 {% endif_version %}
+
 {% if_version gte:3.2.x %}
 11 | **Keys** | Centrally store and easily access key sets and keys.
 {% endif_version %}
