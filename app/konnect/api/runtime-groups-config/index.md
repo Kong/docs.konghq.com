@@ -5,7 +5,7 @@
 #  https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 #  or its associated files instead.
 #
-title: Admin API
+title: Konnect Runtime Configuration API
 source_url: https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua
 toc: false
 
