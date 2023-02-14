@@ -563,6 +563,8 @@ items:
         url: /admin-api/#health-routes
       - text: Tags
         url: /admin-api/#tags
+      - text: Debug Routes
+        url: /admin-api/#debug-routes
       - text: Services
         url: /admin-api/#service-object
       - text: Routes
