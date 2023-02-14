@@ -839,4 +839,4 @@
 #3.2
 
 /gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
-/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/vaults-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
