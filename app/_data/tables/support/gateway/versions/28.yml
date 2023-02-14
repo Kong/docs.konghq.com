@@ -10,17 +10,14 @@ distributions:
     docker: true
     eol: June 2024
   - *rhel8
-  - *amazonlinux1
   - *amazonlinux2
   - <<: *centos7
     docker: true
     eol: June 2024
   - *centos8
-  - *debian8
-  - *debian9
-  - *debian10
+  - <<: *debian10
+    eol: June 2024
   - *debian11
-  - *debian-stable
   - *ubuntu1604
   - *ubuntu1804
   - *ubuntu2004
