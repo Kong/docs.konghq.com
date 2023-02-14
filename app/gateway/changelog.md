@@ -52,7 +52,7 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
 
 #### Core
 
-* When `router_flavor` is `traditional_compatible`, Kong Gateway verifies routes created 
+* When `router_flavor` is set to`traditional_compatible`, Kong Gateway verifies routes created 
   using the expression router instead of the traditional router to ensure created routes
   are compatible.
   [#9987](https://github.com/Kong/kong/pull/9987)
@@ -98,7 +98,7 @@ By combining the data in the new `request_source` field with the `path` field, y
   [#10077](https://github.com/Kong/kong/pull/10077)
 
 * [**New plugin: Datadog Tracing**](/hub/kong-inc/datadog-tracing) (`datadog-tracing`)
-  * The Datadog Tracing plugin integrates Kong Gateway with the Datadog Application Performance Monitoring (APM) platform so that proxy requests handled by Kong Gateway can be identified and analyzed in Datadog.
+  * The Datadog Tracing plugin integrates Kong Gateway with the Datadog Application Performance Monitoring (APM) platform so that proxy requests handled by Kong Gateway can be identified and analyzed by Datadog.
 
 * [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
   * Added support for setting the durations of Kong phases as span tags
@@ -145,7 +145,7 @@ By combining the data in the new `request_source` field with the `path` field, y
     
 * **Improved Plugin Documentation**
     * Updated the plugin compatibility information for more clarity on [supported network protocols] (/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes) 
-    * Revised docs for top plugins to include examples:
+    * Revised docs for the following plugins to include examples:
       * [CORS](/hub/kong-inc/cors/)
       * [File Log](/hub/kong-inc/file-log/)
       * [HTTP Log](/hub/kong-inc/http-log/)
