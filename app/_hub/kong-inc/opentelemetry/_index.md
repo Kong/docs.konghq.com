@@ -15,6 +15,9 @@ kong_version_compatibility:
     compatible: true
 params:
   name: opentelemetry
+  service_id: true
+  route_id: true
+  consumer_id: true
   konnect_examples: false
   protocols:
     - name: http
@@ -330,6 +333,9 @@ Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.2
 {% endif_plugin_version %}
 
 ## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+* This plugin can now be scoped to individual services, routes, and consumers.
 
 **{{site.base_gateway}} 3.1.x**
 * The `headers` field is now marked as referenceable, which means it can be securely stored as a
