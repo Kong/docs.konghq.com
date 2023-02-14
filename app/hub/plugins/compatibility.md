@@ -258,7 +258,11 @@ See the following table for plugins and their compatible scopes:
         {% endif %}
       </td>
       <td style="text-align: center"> 
+        {% if extn.params.global == false %}
+        <i class="fa fa-times"></i>
+        {% else %}
         <i class="fa fa-check"></i>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
