@@ -42,7 +42,7 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 
 ## Supported versions
 
-The following matrix describes the distributions available for each supported version of {{site.base_gateway}}. End of support for these distributions is tied to end of support for the {{site.base_gateway}}' version, unless the OS manufacturer's end of life date is sooner. 
+The following matrix describes the distributions available for each supported version of {{site.base_gateway}}: 
 
 {% navtabs %}
   {% navtab 3.2 %}
