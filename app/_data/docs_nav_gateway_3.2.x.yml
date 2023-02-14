@@ -345,6 +345,10 @@ items:
         url: /kong-enterprise/consumer-groups
       - text: Event Hooks
         url: /kong-enterprise/event-hooks
+      - text: Configure Data Plane Resilience
+        url: /kong-enterprise/cp-outage-handling
+      - text: About Control Plane Outage Management
+        url: /kong-enterprise/cp-outage-handling-faq
       - text: FIPS 140-2
         url: /kong-enterprise/fips-support
   - title: Kong Manager
