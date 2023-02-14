@@ -217,7 +217,7 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
 
 ## Scopes
 
-Plugins can be scoped or global (unscoped):
+Plugins can be scoped or global (without scope):
 * Scoped plugin: Plugin applied to a specific service, route, or consumer.
 * Global plugin: Plugin applies either to your entire environment, or if running {{site.ee_product_name}}, your entire workspace.
 
@@ -258,7 +258,11 @@ See the following table for plugins and their compatible scopes:
         {% endif %}
       </td>
       <td style="text-align: center"> 
+        {% if extn.params.global == false %}
+        <i class="fa fa-times"></i>
+        {% else %}
         <i class="fa fa-check"></i>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
