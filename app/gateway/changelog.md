@@ -78,8 +78,8 @@ which lets you set the Nginx directive `ssl_session_cache`.
 #### Enterprise
 
 * Added two debugging endpoints to the Admin API:
-    * `/debug/profiling/cpu`: Instruction-based and timer-based Lua VM CPU profiling.
-    * `/debug/profiling/gc-snapshot`: Lua GC heap snapshot.
+    * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
+    * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
 
 #### Kong Manager
 
@@ -125,7 +125,7 @@ By combining the data in the new `request_source` field with the `path` field, y
   The parameter defaults to `nil`, which means that no tags are added to the metrics.
   [#10118](https://github.com/Kong/kong/pull/10118)
   
-* [**Session**](/hub/kong-inc/session/) (`session`), [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`).
+* [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`).
 
   * These plugins now use `lua-resty-session` v4.0.0. 
   
@@ -144,7 +144,8 @@ By combining the data in the new `request_source` field with the `path` field, y
     
     
 * **Improved Plugin Documentation**
-    * Updated the plugin compatibility information for more clarity on [supported network protocols](/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes) 
+    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](hub/plugins/license-tiers) page. 
+    * Updated the plugin compatibility information for more clarity on [supported network protocols](/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes). 
     * Revised docs for the following plugins to include examples:
       * [CORS](/hub/kong-inc/cors/)
       * [File Log](/hub/kong-inc/file-log/)
@@ -154,8 +155,8 @@ By combining the data in the new `request_source` field with the `path` field, y
       * [OpenID Connect](/hub/kong-inc/openid-connect/)
       * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
       * [SAML](/hub/kong-inc/saml/)
-       * [StatsD](/hub/kong-inc/statsd/)
-       * [StatsD advanced](/hub/kong-inc/statsd-advanced/)
+      * [StatsD](/hub/kong-inc/statsd/)
+      * [StatsD advanced](/hub/kong-inc/statsd-advanced/)
   
 
 ### Fixes
@@ -166,7 +167,7 @@ By combining the data in the new `request_source` field with the `path` field, y
   [#9960](https://github.com/Kong/kong/pull/9960)
 * Exposed PostreSQL connection pool configuration.
   [#9603](https://github.com/Kong/kong/pull/9603)
-* **Nginx template**: Do not add the default charset to the `Content-Type` response header when upstream response doesn't contain it.
+* **Nginx template**: The default charset is no longer added to the `Content-Type` response header when the upstream response doesn't contain it.
   [#9905](https://github.com/Kong/kong/pull/9905)
 * Fixed an issue where, after a valid declarative configuration was loaded,
   the configuration hash was incorrectly set to the value `00000000000000000000000000000000`.
