@@ -348,12 +348,12 @@ items:
       - text: FIPS 140-2
         items: 
           - text: Overview
-            src: /gateway/kong-enterprise/fips/fips-support
-            url: /kong-enterprise/fips-support
+            url: /kong-enterprise/fips-support/
+            src: /gateway/kong-enterprise/fips-support/index
           - text: Install the FIPS Compliant Package
-            url: /kong-enterprise/fips/install
+            url: /kong-enterprise/fips-support/install
           - text: FIPS 140-2 Compliant Plugins
-            url: /kong-enterprise/fips/plugins
+            url: /kong-enterprise/fips-support/plugins
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg

@@ -3,7 +3,7 @@ title: FIPS 140-2
 badge: enterprise
 content_type: reference
 ---
-
+<!--Only update this file for versions 3.1 or earlier. Versions 3.2 and later use the file in /gateway/kong-enterprise/fips-support/index -->
 The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that the software has met all of the rules of FIPS 140-2, but has not been submitted to a NIST testing lab for validation.
 
 
