@@ -608,7 +608,7 @@ items:
         url: /reference/nginx-directives
       - text: CLI
         url: /reference/cli
-      - text: Key management
+      - text: Key Management
         url: /reference/key-management
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
