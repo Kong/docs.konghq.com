@@ -7,7 +7,7 @@ content_type: reference
 The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that {{site.base_gateway}} only uses FIPS 140-2 approved algorithms while running in FIPS mode, but the product has not been submitted to a NIST testing lab for validation.
 
 
-{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** {% if_version gte:3.1.x %}, **Ubuntu 22.04**, and **Red Hat Enterprise 8** {% endif_version %}. This package provides compliance for the core {{site.base_gateway}} product{% if_version gte:3.1.x %} and all out of the box plugins{% endif_version %}.
+{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** {% if_version gte:3.1.x %}, **Ubuntu 22.04**, and **Red Hat Enterprise 8** {% endif_version %}. This package provides compliance for the core {{site.base_gateway}} product{% if_version gte:3.2.x %} and all out of the box plugins{% endif_version %}.
 
 The package replaces OpenSSL, the primary SSL library in {{site.base_gateway}}, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 validated BoringCrypto for cryptographic operations.
 
@@ -20,9 +20,9 @@ The following table describes how {{site.base_gateway}} uses key derivation func
 |-----------|-------------|-----------|-------|
 | core/rbac | bcrypt | PBKDF2 [^1] | PBKDF2 in BoringSSL isn't FIPS validated. |
 | plugins/oauth2[^2] | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | PBKDF2 in BoringSSL isn't FIPS validated. |
-| plugins/key-auth-enc[^3] | SHA1 | SHA1 | PBKDF2 in BoringSSL isn't FIPS validated. |
+| plugins/key-auth-enc[^3] | SHA1 | SHA256 | SHA1 is read-only in FIPS mode. |
 
-[^1]: As of {{site.base_gateway}} FIPS 3.0, RBAC uses PBKDF2 as password hashing algorithm. Although PBKDF2 is an approved algorithm in FIPS 140-2, the BoringSSL implementation of PBKDF2 is not validated.
+[^1]: As of {{site.base_gateway}} FIPS 3.0, RBAC uses PBKDF2 as password hashing algorithm.
 [^2]: As of {{site.base_gateway}} FIPS 3.1, the oauth2 plugin disables `hash_secret` feature, so the user can’t turn it on. This means password will be stored plaintext in the database; however, users can choose to use secrets management or db encryption instead.
 [^3]: As of {{site.base_gateway}} FIPS 3.1, key-auth-enc uses SHA1 to speed up lookup of a key in DB. As of {{site.base_gateway}} FIPS 3.2, SHA1 support is “read-only”, meaning existing credentials in DB are still validated, but any new credentials will be hashed in SHA256.
 
