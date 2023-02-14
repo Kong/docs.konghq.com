@@ -1935,7 +1935,6 @@ HTTP 200 OK
 ```
 
 ---
-{% if_version gte:3.2.x %}
 ### Get state of the CPU profling
 {:.badge .enterprise}
 
@@ -2115,7 +2114,6 @@ HTTP 409 Conflict
 }
 ```
 
-{% endif_version %}
 
 {% endunless %}
 
