@@ -81,7 +81,7 @@ which lets you set the Nginx directive `ssl_session_cache`.
     * `/debug/profiling/cpu`: Instruction-based and timer-based Lua VM CPU profiling.
     * `/debug/profiling/gc-snapshot`: Lua GC heap snapshot.
 
-##### Kong Manager
+#### Kong Manager
 
 * Improved the editor for expression fields. Any fields using the expression router now have syntax highlighting, autocomplete, and route validation.
 * Improved audit logs by adding `rbac_user_name` and `request_source`. 
@@ -144,7 +144,7 @@ By combining the data in the new `request_source` field with the `path` field, y
     
     
 * **Improved Plugin Documentation**
-    * Updated the plugin compatibility information for more clarity on [supported network protocols] (/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes) 
+    * Updated the plugin compatibility information for more clarity on [supported network protocols](/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes) 
     * Revised docs for the following plugins to include examples:
       * [CORS](/hub/kong-inc/cors/)
       * [File Log](/hub/kong-inc/file-log/)
