@@ -6,37 +6,24 @@ lts: true
 distributions:
   - <<: *alpine
     docker: true
-    eol: --
   - <<: *rhel7
     docker: true
     eol: June 2024
-  - <<: *rhel8
-    eol: --
-  - <<: *amazonlinux1
-    eol: --
-  - <<: *amazonlinux2
-    eol: --
+  - *rhel8
+  - *amazonlinux1
+  - *amazonlinux2
   - <<: *centos7
     docker: true
     eol: June 2024
-  - <<: *centos8
-    eol: --
-  - <<: *debian8
-    eol: --
-  - <<: *debian9
-    eol: --
-  - <<: *debian10
-    eol: --
-  - <<: *debian11
-    eol: --
-  - <<: *debian-stable
-    eol: --
-  - <<: *ubuntu1604
-    eol: --
-  - <<: *ubuntu1804
-    eol: --
-  - <<: *ubuntu2004
-    eol: --
+  - *centos8
+  - *debian8
+  - *debian9
+  - *debian10
+  - *debian11
+  - *debian-stable
+  - *ubuntu1604
+  - *ubuntu1804
+  - *ubuntu2004
 
 third-party:
   datastore:

@@ -9,7 +9,7 @@ Kong Gateway {{ include.version }} supports the following deployment targets unt
       <th>Artifacts</th>
       <th>ARM support</th>
       <th>FIPS compliant</th>
-      <th>Vendor EOL</th>
+      <th>EOL</th>
     </tr>
   </thead>
   <tbody>
@@ -27,7 +27,13 @@ Kong Gateway {{ include.version }} supports the following deployment targets unt
         </td>
         <td>{{ d.arm | to_check }}</td>
         <td>{{ d.fips | to_check }}</td>
-        <td>{{ d.eol }}</td>
+        <td>
+          {% if d.eol %}
+            {{ d.eol }}
+          {% else %}
+            {{ include.eol }}
+          {% endif %}
+        </td>
       </tr>
     {% endfor %}
   </tbody>
