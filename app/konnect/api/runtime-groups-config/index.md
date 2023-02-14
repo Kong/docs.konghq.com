@@ -1145,12 +1145,6 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 ---
 
-## Using the API in workspaces 
-{:.badge .enterprise}
-
-{% include_cached /md/gateway/admin-api-workspaces.md %}
-
----
 
 ## Information Routes
 
@@ -1356,8 +1350,9 @@ HTTP 200 OK
 ```
 
 
----
 {% endunless %}
+
+---
 
 ### Retrieve Plugin Schema
 {:.badge .dbless}
@@ -1391,9 +1386,10 @@ HTTP 200 OK
 }
 ```
 
+{% unless page.edition == "konnect" %}
 
 ---
-{% unless page.edition == "konnect" %}
+
 ### Validate A Plugin Configuration against The Schema
 {:.badge .dbless}
 
@@ -1621,9 +1617,9 @@ HTTP 200 OK
 
 {% endunless %}
 
----
-
 {% unless page.edition == "konnect" %}
+
+---
 
 ## Tags
 
@@ -1931,186 +1927,6 @@ HTTP 200 OK
 ```json
 {
     "message": "log level changed"
-}
-```
-
----
-### Get state of the CPU profling
-{:.badge .enterprise}
-
-Get the current CPU profiling state.
-
-<div class="endpoint get">/debug/profiling/cpu</div>
-
-#### Response
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "status": "started",
-    "path": "/usr/local/kong/profiling/prof-<pid>-<timestamp>.cbt",
-    "pid": 12345,
-    "mode": "time",
-    "interval": 100,
-    "remain": 12
-}
-```
-Attributes | Description
----:| ---
-`status` | The current profiling status. Can be `started` or `stopped`.
-`path`   |  The path to the result file.
-`pid`    | The PID of worker under the profiling.
-`remain` | How many seconds until timeout.
-
-### Start CPU profiling
-{:.badge .enterprise}
-
-Start CPU profiling to generate the raw data of flamegraph.
-There are two modes of CPU profiling: `time` and `instruction`.
-- `time` mode: This mode records the stacktrace periodically. The
-    `interval` parameter specifies the interval (in microseconds) of
-    the periodic recording. The higher the value, the less accurate
-    the result will be. The more accurate the result is, the more
-    performance impact it will have. The default value is `100`.
-- `instruction` mode: Each time a byte code is executed, the
-    instruction counter will be descresed by 1. When the instruction
-    counter reaches 0, the stacktrace will be recorded and the
-    instruction counter will be reset to the `step` parameter. The
-    higher the value of `step`, the less accurate the result will be.
-    The more accurate the result is, the more performance impact it
-    will have. The default value is `250`.
-The profiling will be stopped automatically after the `timeout`
-You can use the GET method to check the current profiling state,
-such as the path of the result file.
-
-<div class="endpoint post">/debug/profiling/cpu</div>
-
-{:.indent}
-
-Attributes | Default | Description
----:| ---
-`mode`<br>**required**    | time              | Profiling mode. Can be `time` or `instruction`.
-`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in seconds).
-`pid`<br>**required**     | Random Worker     | The PID of worker to profiling. If not specified, a random worker will be chosen.
-`step`<br>**required**    | 250               | Only for `mode = instruction`. The initial value of the instruction counter.
-`interval`<br>**required**| 100               | Only for `mode = time`. The sampling interval (in microseconds).
-
-
-
-
-
-#### Response
-
-```
-HTTP 201 Created
-```
-
-```json
-{
-    "status": "started",
-    "message": "profiling is activated at pid: 12345"
-}
-```
-
-```
-HTTP 409 Conflict
-```
-
-```json
-{
-    "status": "error",
-    "message": "profiling is already active at pid: 123"
-}
-```
-
-### Stop the CPU profiling
-{:.badge .enterprise}
-
-Stop the CPU profiling and generate the result file.
-You can use the GET method to check the current or the last profiling state,
-such as the path of the result file.
-
-<div class="endpoint delete">/debug/profiling/cpu</div>
-
-
-#### Response
-
-```
-HTTP 204 No Content
-```
-
-
-### Get the state of GC snapshot
-{:.badge .enterprise}
-
-Get the current CPU profiling state.
-
-<div class="endpoint get">/debug/profiling/gc-snapshot</div>
-
-#### Response
-
- ```
-HTTP 200 OK
-```
-
-```json
-{
-    "status": "started",
-    "path": "/usr/local/kong/profiling/gc-snapshot-<pid>-<timestamp>.cbt",
-    "pid": 12345,
-    "remain": 12
-}
-```
-
-Attributes | Description
----:| ---
-`status` | The current profiling status. Can be `started` or `stopped`.
-`path`   |  The path to the result file.
-`pid`    | The PID of worker under the profiling.
-`remain` | How many seconds until timeout.
-
-
-### Start GC snapshot
-{:.badge .enterprise}
-
-Start GC snapshot and save the result file.
-The snapshot file is encoded using an internal format.
-
-<div class="endpoint post">/debug/profiling/gc-snapshot</div>
-
-{:.indent}
-Attributes | Default | Description
----:| ---
-`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in seconds).
-`pid`<br>**required**     | Random Worker     | The PID of worker to profiling. If not specified, a random worker will be chosen.
-
-
-
-
-
-#### Response
-
-```
-HTTP 201 OK
-```
-
-```json
-{
-"status": "started",
-"message": "Dumping snapshot in progress on pid: 12345"
-}
-```
-
-```
-HTTP 409 Conflict
-```
-
-```json
-{
-"status": "error",
-"message": "gc-snapshot is already active at pid: 123"
 }
 ```
 
