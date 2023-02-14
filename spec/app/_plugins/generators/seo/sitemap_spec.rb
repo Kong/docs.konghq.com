@@ -33,9 +33,20 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/deck/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/latest/reference/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jq/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jq/changelog/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jq/how-to/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jwt-signer/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jwt-signer/changelog/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jwt-signer/how-to/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jwt-signer/how-to/nested/tutorial/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jwt-signer/reference/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/jwt-signer/reference/api/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/' }
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/changelog/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/how-to/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/changelog/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/how-to/' }
       ])
     end
 
