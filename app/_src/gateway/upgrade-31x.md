@@ -51,13 +51,13 @@ The following table outlines various upgrade path scenarios to 3.1.x depending o
 | 2.8.x.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
 | 2.8.x.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
 | 2.8.x.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
-| 3.0.x | Traditional | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
-| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
-| 3.0.x | DB less | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
 
 {% if_version gte: 3.2.x %}
 | 3.1.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.1.x | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.1.x | Hybrid | Yes | [Upgrade to 3.1.1.3](#migrate-db). |
 | 3.1.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
 {% endif_version %}
 
