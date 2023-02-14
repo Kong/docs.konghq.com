@@ -734,7 +734,7 @@ kong.request.get_start_time() -- 1649960273000
 ```
 
 
-
+{% if_version gte:3.2.x %}
 ## kong.request.get_uri_captures()
 
 Returns the URI captures matched by the router.
@@ -759,5 +759,6 @@ for name, value in pairs(captures.named) do
   -- do what you want to captures
 end
 ```
+{% endif_version %}
 
 

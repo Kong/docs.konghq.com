@@ -450,6 +450,8 @@ items:
           url: /plugin-development/pdk/kong.ctx
         - text: kong.ip
           url: /plugin-development/pdk/kong.ip
+        - text: kong.jwe
+          url: /plugin-development/pdk/kong.jwe
         - text: kong.log
           url: /plugin-development/pdk/kong.log
         - text: kong.nginx
