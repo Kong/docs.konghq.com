@@ -9,7 +9,13 @@ no_version: true
 ## 3.2.0.0
 **Release Date** 2023/02/15
 
-### Breaking changes and deprecations
+### Deprecations
+
+* Deprecated Alpine Linux images and packages. 
+    
+    Kong is announcing our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+### Breaking changes
 
 * The default PostgreSQL SSL version has been bumped to TLS 1.2. In `kong.conf`:
    
@@ -28,9 +34,6 @@ no_version: true
 configuration property to `kong.conf` to constrain the `Kong-Debug` header for debugging. This option defaults to `off`.
 
     If you were previously relying on the `Kong-Debug` header to provide debugging information, set `allow_debug_header: on` to continue doing so.
-* Deprecated Alpine Linux images and packages. 
-    
-    Alpine images and packages will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
 
 * [**JWT plugin**](/hub/kong-inc/jwt/) (`jwt`)
     
