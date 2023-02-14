@@ -40,7 +40,7 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
     * The JWT plugin now denies any request that has different tokens in the JWT token search locations.
       [#9946](https://github.com/Kong/kong/pull/9946)
 
-* [**Session plugin**](/hub/kong-inc/session/) (`session`)
+* [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`) plugins
     * For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
     For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
     as little time as possible. During that time, the invalid sessions could cause failures and partial downtime.
