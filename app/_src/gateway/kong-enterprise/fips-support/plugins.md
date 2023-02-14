@@ -10,11 +10,6 @@ This reference lists which {{site.base_gateway}} plugins are FIPS 140-2 complian
 |-------|-------------|--------|-----|
 | jwe-decrypt | N/A | Yes | Compliant via BoringSSL |
 
-{% if_version lte: 3.1.x %}
-| openid-connect | None | No | -- |
-| jwt-signer | None | No | -- |
-| key-auth-enc | N/A | No | -- |
-{% endif_version %}
 {% if_version gte: 3.2.x %}
 | openid-connect | All | Yes | Compliant via BoringSSL |
 | jwt-signer | All | Yes | Compliant via BoringSSL |

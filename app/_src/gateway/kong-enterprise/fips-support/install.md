@@ -6,32 +6,6 @@ content_type: how-to
 
 This how-to guide explains how to install and configure the {{site.base_gateway}} FIPS-compliant package. After following the steps in this guide, you will have a FIPS-compliant {{site.base_gateway}} with FIPS mode enabled.
 
-{% if_version eq:3.0.x %}
-## Installing the {{site.base_gateway}} FIPS compliant Ubuntu package
-
-The FIPS-compliant Ubuntu 20.04 and Ubuntu 22.04 packages can be installed using the package distinctively named `kong-enterprise-edition-fips`. To install the package follow these instructions:
-
-1. Set up the Kong APT repository:
-    ```bash
-    echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
-    default all" | sudo tee /etc/apt/sources.list.d/kong.list
-    ```
-
-2. Update the repository:
-    ```bash
-    sudo apt-get update
-    ```
-
-3. Install the {{site.base_gateway}} FIPS package:
-
-    ```sh
-    apt install kong-enterprise-edition-fips
-    ```
-
-{% endif_version %}
-
-{% if_version gte:3.1.x %}
-
 ## Installing a {{site.base_gateway}} FIPS compliant package
 
 {% navtabs %}
@@ -96,7 +70,6 @@ The FIPS-compliant Red Hat 8 package can be installed using the package distinct
 
 {% endnavtab %}
 {% endnavtabs %}
-{% endif_version %}
 
 ## Configure FIPS
 
