@@ -21,7 +21,8 @@ JWE utility module  Provides utility functions around JSON Web Encryption.
 ## kong.enterprise_edition.jwe.decrypt(key, token)
 
 Decrypt JWE encrypted JWT token and returns its payload as plaintext
- Supported keys (`key` argument):
+
+Supported keys (`key` argument):
  * Supported key formats:
    * `JWK` (given as a `string` or `table`)
    * `PEM` (given as a `string`)
