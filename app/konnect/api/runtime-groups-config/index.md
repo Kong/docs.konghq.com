@@ -1971,7 +1971,7 @@ Attributes | Description
 Start CPU profiling to generate the raw data of flamegraph.
 There are two modes of CPU profiling: `time` and `instruction`.
 - `time` mode: This mode records the stacktrace periodically. The
-    `interval` parameter specifies the interval (in microsecond) of
+    `interval` parameter specifies the interval (in microseconds) of
     the periodic recording. The higher the value, the less accurate
     the result will be. The more accurate the result is, the more
     performance impact it will have. The default value is `100`.

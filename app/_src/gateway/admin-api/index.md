@@ -1957,6 +1957,7 @@ HTTP 200 OK
     "remain": 12
 }
 ```
+
 Attributes | Description
 ---:| ---
 `status` | The current profiling status. Can be `started` or `stopped`.
@@ -1992,10 +1993,10 @@ such as the path of the result file.
 Attributes | Default | Description
 ---:| ---
 `mode`<br>**required**    | time              | Profiling mode. Can be `time` or `instruction`.
-`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in second).
+`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in seconds).
 `pid`<br>**required**     | Random Worker     | The PID of worker to profiling. If not specified, a random worker will be chosen.
 `step`<br>**required**    | 250               | Only for `mode = instruction`. The initial value of the instruction counter.
-`interval`<br>**required**| 100               | Only for `mode = time`. The sampling interval (in microsecond).
+`interval`<br>**required**| 100               | Only for `mode = time`. The sampling interval (in microseconds).
 
 
 
