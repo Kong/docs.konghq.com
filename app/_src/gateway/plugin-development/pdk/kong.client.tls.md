@@ -58,17 +58,8 @@ The `ca_certs` argument is the optional CA certificate chain opaque pointer,
 
 **Returns**
 
-{% if_version lte:3.1.x %}
-1.  `true|nil`:  Returns `true` if request is received, or `nil` if
- request fails.
-1.  `nil|err`:   Returns `nil` if the handshake is successful, or an error
- message if it fails.
-{% endif_version %}
-
-{% if_version gte:3.2.x %}
 1.  `true|nil`:  Returns `true` if successful, or `nil` if it fails.
 1.  `nil|err`:  Returns `nil` if successful, or an error message if it fails.
-{% endif_version %}
 
 **Usage**
 {% if_version lte:3.1.x %}
