@@ -5,6 +5,8 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
   subject { described_class.new(release:, file:, source_path:) }
 
   describe '#content' do
+    let(:content) { markdown_content(File.expand_path(file, source_path)) }
+
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
@@ -13,8 +15,7 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
       let(:source_path) { File.expand_path("_hub/acme/jwt-signer/#{source}/", site.source) }
 
       it 'returns the content of the corresponding how-to/_index.md' do
-        expect(subject.content)
-          .to eq(File.read(File.expand_path('_hub/acme/jwt-signer/_2.2.x/how-to/_index.md', site.source)))
+        expect(subject.content).to eq(content)
       end
     end
 
@@ -26,16 +27,14 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
       let(:source_path) { File.expand_path('_hub/acme/jwt-signer/', site.source) }
 
       it 'returns the content of the corresponding how-to/_index.md' do
-        expect(subject.content)
-          .to eq(File.read(File.expand_path('_hub/acme/jwt-signer/how-to/_index.md', site.source)))
+        expect(subject.content).to eq(content)
       end
 
       context 'nested files' do
         let(:file) { 'how-to/nested/_tutorial.md' }
 
         it 'returns the content of the corresponding how-to/ file' do
-          expect(subject.content)
-            .to eq(File.read(File.expand_path('_hub/acme/jwt-signer/how-to/nested/_tutorial.md', site.source)))
+          expect(subject.content).to eq(content)
         end
       end
     end

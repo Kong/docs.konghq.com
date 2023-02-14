@@ -6,7 +6,7 @@ module Utils
       file_path = File.expand_path(file_name, source_path)
       return '' unless File.exist?(file_path)
 
-      File.read(file_path)
+      FrontmatterParser.new(File.read(file_path)).content
     end
   end
 end

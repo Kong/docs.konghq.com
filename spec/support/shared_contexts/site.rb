@@ -40,5 +40,9 @@ module SharedContexts
       Jekyll::Versions.new.generate(site)
       LatestVersion::Generator.new.generate(site)
     end
+
+    def markdown_content(file_path)
+      Utils::FrontmatterParser.new(File.read(file_path)).content
+    end
   end
 end

@@ -6,6 +6,8 @@ RSpec.describe PluginSingleSource::Pages::Reference do
 
   describe '#content' do
     let(:file) { 'reference/_index.md' }
+    let(:content) { markdown_content(File.expand_path(file, source_path)) }
+
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
@@ -13,8 +15,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:source_path) { File.expand_path("_hub/acme/jwt-signer/#{source}/", site.source) }
 
       it 'returns the content of the corresponding reference/_index.md' do
-        expect(subject.content)
-          .to eq(File.read(File.expand_path('_hub/acme/jwt-signer/_2.2.x/reference/_index.md', site.source)))
+        expect(subject.content).to eq(content)
       end
     end
 
@@ -25,8 +26,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:source_path) { File.expand_path('_hub/acme/jwt-signer/', site.source) }
 
       it 'returns the content of the corresponding reference/_index.md' do
-        expect(subject.content)
-          .to eq(File.read(File.expand_path('_hub/acme/jwt-signer/reference/_index.md', site.source)))
+        expect(subject.content).to eq(content)
       end
     end
   end
