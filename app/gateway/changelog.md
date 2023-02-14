@@ -141,6 +141,22 @@ By combining the data in the new `request_source` field with the `path` field, y
 * [**Canary**](/hub/kong-inc/canary/) (`canary`)
     * Added a default value for the `start` field in the canary plugin. 
     If not set, the start time defaults to the current timestamp.
+    
+    
+* **Improved Plugin Documentation**
+    * Updated the plugin compatibility information for more clarity on [supported network protocols] (/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes) 
+    * Revised docs for top plugins to include examples:
+      * [CORS](/hub/kong-inc/cors/)
+      * [File Log](/hub/kong-inc/file-log/)
+      * [HTTP Log](/hub/kong-inc/http-log/)
+      * [JWT Signer](/hub/kong-inc/jwt-signer/)
+      * [Key Auth](/hub/kong-inc/key-auth/)
+      * [OpenID Connect](/hub/kong-inc/openid-connect/)
+      * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+      * [SAML](/hub/kong-inc/saml/)
+       * [StatsD](/hub/kong-inc/statsd/)
+       * [StatsD advanced](/hub/kong-inc/statsd-advanced/)
+  
 
 ### Fixes
 
