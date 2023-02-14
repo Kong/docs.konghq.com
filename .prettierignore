@@ -3,6 +3,7 @@
 *.html
 *.png 
 *.jpg
+*.svg
 # Build artifacts
 dist
 .vendor
