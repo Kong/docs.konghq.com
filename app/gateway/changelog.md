@@ -71,7 +71,6 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
 * Added the new configuration parameter [`ssl_session_cache_size`](/gateway/latest/reference/configuration/#ssl_session_cache_size), 
 which lets you set the Nginx directive `ssl_session_cache`.
   This configuration parameter defaults to `10m`.
-  
   Thanks [Michael Kotten](https://github.com/michbeck100) for contributing this change.
   [#10021](https://github.com/Kong/kong/pull/10021)
 
@@ -163,7 +162,7 @@ By combining the data in the new `request_source` field with the `path` field, y
 
 #### Core 
 
-* Added back PostgreSQL `FLOOR` function when calculating `ttl`, so the returned `ttl` is always a whole integer.
+* Added back PostgreSQL `FLOOR` function when calculating `ttl`, so `ttl` is always returned as a whole integer.
   [#9960](https://github.com/Kong/kong/pull/9960)
 * Exposed PostreSQL connection pool configuration.
   [#9603](https://github.com/Kong/kong/pull/9603)
