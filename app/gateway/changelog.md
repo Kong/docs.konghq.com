@@ -79,7 +79,7 @@ which lets you set the Nginx directive `ssl_session_cache`.
 * Added two debugging endpoints to the Admin API:
     * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
     * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
-
+* The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the key-auth-enc plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing key-auth-enc credentials to re-hash them in SHA256.
 #### Kong Manager
 
 * Improved the editor for expression fields. Any fields using the expression router now have syntax highlighting, autocomplete, and route validation.
