@@ -217,7 +217,7 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
 
 ## Scopes
 
-Plugins can be scoped or global (unscoped):
+Plugins can be scoped or global (without scope):
 * Scoped plugin: Plugin applied to a specific service, route, or consumer.
 * Global plugin: Plugin applies either to your entire environment, or if running {{site.ee_product_name}}, your entire workspace.
 
