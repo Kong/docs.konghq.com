@@ -30,7 +30,7 @@ module PluginSingleSource
         @name ||= dir.split('/').last
       end
 
-      def create_pages
+      def create_pages # rubocop:disable Metrics/AbcSize
         releases.map do |version, _|
           is_latest = KongVersions.to_semver(version) == max_version
           # Skip if a markdown file exists for this version
@@ -38,8 +38,8 @@ module PluginSingleSource
           version_file = File.join(site.source, Generator::PLUGINS_FOLDER, dir, "#{version}.md")
           next if !is_latest && File.exist?(version_file)
 
-          SingleSourcePage.new(site:, release: build_release(version:, is_latest:))
-        end.compact
+          Release.new(plugin: self, source: sources[version], version:, is_latest:, site:).generate_pages
+        end.flatten.compact
       end
 
       def sources
@@ -55,10 +55,6 @@ module PluginSingleSource
       end
 
       private
-
-      def build_release(version:, is_latest:)
-        Release.new(plugin: self, source: sources[version], version:, is_latest:, site:)
-      end
 
       def max_version
         @max_version ||= releases

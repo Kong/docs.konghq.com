@@ -7,17 +7,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
       PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, source:, is_latest:)
     end
 
-    subject { described_class.new(site:, release:) }
-
-    context 'when the `source` does not start with `_`' do
-      let(:source) { 'index' }
-      let(:version) { '3.0.x' }
-      let(:is_latest) { true }
-
-      it 'raises an expection' do
-        expect { subject }.to raise_error(ArgumentError)
-      end
-    end
+    subject { described_class.new(site:, page: release.overview_page) }
 
     context 'when it is the latest version of the plugin' do
       let(:source) { '_index' }

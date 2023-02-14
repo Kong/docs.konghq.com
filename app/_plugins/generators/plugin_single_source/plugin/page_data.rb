@@ -22,14 +22,11 @@ module PluginSingleSource
         @data
       end
 
-      def page_attributes # rubocop:disable Metrics/MethodLength
+      def page_attributes
         {
           'is_latest' => @release.latest?,
           'seo_noindex' => @release.latest? ? nil : true,
-          'canonical_url' => @release.latest? ? nil : "/#{base_url}",
           'version' => @release.set_version? ? @release.version : nil,
-          'source_file' => @release.source_file,
-          'permalink' => permalink,
           'extn_slug' => @release.name,
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
@@ -39,20 +36,6 @@ module PluginSingleSource
       end
 
       private
-
-      def permalink
-        # The plugin hub uses version.html as the filename unless it's the most
-        # recent version, in which case it uses index
-        if @release.latest?
-          base_url
-        else
-          "#{base_url}#{@release.version}.html"
-        end
-      end
-
-      def base_url
-        @base_url ||= "hub/#{@release.dir}/"
-      end
 
       def extn_icon
         @extn_icon ||= @data.fetch(

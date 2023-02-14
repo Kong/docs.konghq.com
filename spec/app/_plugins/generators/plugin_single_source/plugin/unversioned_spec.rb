@@ -22,13 +22,8 @@ RSpec.describe PluginSingleSource::Plugin::Unversioned do
   end
 
   describe '#create_pages' do
-    it 'generates a page for the plugin' do
-      expect(PluginSingleSource::Plugin::Release)
-        .to receive(:new)
-        .with(site:, version: '1.0.0', is_latest: true, plugin: subject, source: '_index')
-        .and_call_original
-
-      expect(subject.create_pages.size).to eq(1)
+    it 'generates pages for the plugin' do
+      expect(subject.create_pages.size).to eq(3)
     end
   end
 end

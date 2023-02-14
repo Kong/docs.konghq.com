@@ -33,10 +33,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
         expect(subject).to include(
           'is_latest' => true,
           'seo_noindex' => nil,
-          'canonical_url' => nil,
           'version' => version,
-          'source_file' => '_hub/acme/jwt-signer/_index.md',
-          'permalink' => 'hub/acme/jwt-signer/',
           'extn_slug' => 'jwt-signer',
           'extn_publisher' => 'acme',
           'extn_release' => '2.8.x',
@@ -74,10 +71,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
         expect(subject).to include(
           'is_latest' => false,
           'seo_noindex' => true,
-          'canonical_url' => '/hub/acme/jwt-signer/',
           'version' => version,
-          'source_file' => '_hub/acme/jwt-signer/_2.2.x/_index.md',
-          'permalink' => 'hub/acme/jwt-signer/2.5.x.html',
           'extn_slug' => 'jwt-signer',
           'extn_publisher' => 'acme',
           'extn_release' => '2.5.x',

@@ -22,7 +22,10 @@ module PluginSingleSource
         site.pages.concat(pages)
 
         # Make sure we add the page to site.hub for later iteration
-        site.data['ssg_hub'].concat(pages.select { |p| p.data['is_latest'] })
+        # only overview pages...
+        site.data['ssg_hub'].concat(
+          pages.select { |p| p.data['ssg_hub'] == true }
+        )
       end
     end
 

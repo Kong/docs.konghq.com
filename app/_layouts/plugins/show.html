@@ -1,0 +1,89 @@
+---
+layout: default
+type: plugin
+---
+
+{% assign extn_data = site.data.extensions[page.extn_publisher][page.extn_slug] %}
+{% assign extn_type = site.extensions.types | where: "slug", page.type %}
+{% assign extn_type = extn_type[0]['name'] %}
+
+{% assign extn_versions = extn_data['releases'] %}
+{% if extn_versions %}
+  {% assign extn_latest = extn_versions | first %}
+  {% assign extn_release = page.extn_release %}
+{% endif %}
+
+<!-- BEGIN PAGE OUTPUT -->
+<div class="search-selector">Plugin Hub</div>
+
+<div class="page page-extension-profile">
+  {% if page.header_icon or page.header_title %}
+    {% include_cached header.html
+                      is_latest=page.is_latest
+                      id=page.id
+                      url=page.url
+                      breadcrumbs=page.breadcrumbs
+                      name=page.header_title
+                      img=page.header_icon
+                      plus=page.plus
+                      enterprise=page.enterprise
+                      cloud=page.cloud
+                      publisher=page.publisher
+                      extn_versions=extn_versions
+                      extn_publisher=page.extn_publisher
+                      extn_slug=extn_slug
+    %}
+  {% else %}
+    {% include_cached header.html
+                      is_latest=page.is_latest
+                      id=page.id
+                      url=page.url
+                      breadcrumbs=page.breadcrumbs
+                      name=page.name
+                      img=page.extn_icon
+                      plus=page.plus
+                      enterprise=page.enterprise
+                      cloud=page.cloud
+                      publisher=page.publisher
+                      extn_versions=extn_versions
+                      extn_publisher=page.extn_publisher
+                      extn_slug=page.extn_slug
+    %}
+  {% endif %}
+
+  <div class="container">
+    {% capture full_content %}
+      {{ content }}
+    {% endcapture %}
+
+    {% include_cached plugins/right_nav.html
+                      full_content=full_content
+                      extn_versions=extn_versions
+                      extn_data=extn_data
+                      extn_type=extn_type
+                      extn_release=extn_release
+                      extn_latest=extn_latest
+                      extn_publisher=page.extn_publisher
+                      extn_slug=page.extn_slug
+                      about_this=true
+    %}
+
+    <div class="page-content-container">
+      <div class="page-content">
+        <div class="content show-anchor-links">
+          {{ full_content }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="scroll-to-top-button">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+  {% if page.feedback != false %}
+    {% include feedback-widget.html %}
+  {% endif %}
+</div>
+
+{% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+
+<!-- {% include intercom.html %} -->
