@@ -44,9 +44,9 @@ The `ca_certs` argument is the optional CA certificate chain opaque pointer,
  or [resty.opensslx509.chain](https://github.com/fffonion/lua-resty-openssl#restyopensslx509chain)
  The Distinguished Name (DN) list hints of the CA certificates will be sent to clients.
  If omitted, will not send any DN list to clients.
+ {% endif_version %}
 
 **Phases**
-{% endif_version %}
 
 * certificate
 
