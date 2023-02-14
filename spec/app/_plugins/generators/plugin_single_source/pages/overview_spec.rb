@@ -6,9 +6,9 @@ RSpec.describe PluginSingleSource::Pages::Overview do
   subject { described_class.new(release:, file:, source_path:) }
 
   describe '#content' do
-    let(:changelog) { File.read(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source)) }
-    let(:how_to) { File.read(File.expand_path(how_to_file_path, site.source)) }
-    let(:reference) { File.read(File.expand_path(reference_file_path, site.source)) }
+    let(:changelog) { markdown_content(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source)) }
+    let(:how_to) { markdown_content(File.expand_path(how_to_file_path, site.source)) }
+    let(:reference) { markdown_content(File.expand_path(reference_file_path, site.source)) }
 
     shared_examples_for 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md' do
       it do

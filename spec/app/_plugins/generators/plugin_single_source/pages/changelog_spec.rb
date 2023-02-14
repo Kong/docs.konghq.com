@@ -8,10 +8,8 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
   describe '#content' do
     shared_examples_for 'returns the content of the `_changelog.md` file at the top level' do
-      it do
-        expect(subject.content)
-          .to eq(File.read(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source)))
-      end
+      let(:content) { markdown_content(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source)) }
+      it { expect(subject.content).to eq(content) }
     end
 
     context 'when there is a specific folder for the version' do

@@ -9,11 +9,11 @@ module Utils
     end
 
     def frontmatter
-      @frontmatter ||= SafeYAML.load(@result.match(1))
+      @frontmatter ||= @result.nil? ? {} : SafeYAML.load(@result.match(1))
     end
 
     def content
-      @content ||= @result.post_match
+      @content ||= @result.nil? ? @string : @result.post_match
     end
   end
 end
