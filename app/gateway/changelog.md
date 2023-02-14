@@ -155,7 +155,6 @@ By combining the data in the new `request_source` field with the `path` field, y
       * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
       * [SAML](/hub/kong-inc/saml/)
       * [StatsD](/hub/kong-inc/statsd/)
-      * [StatsD advanced](/hub/kong-inc/statsd-advanced/)
   
 
 ### Fixes
