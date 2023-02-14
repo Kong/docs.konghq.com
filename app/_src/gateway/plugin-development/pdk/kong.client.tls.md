@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!--vale off-->
 Client TLS connection module.
 
  A set of functions for interacting with TLS connections from the client.
@@ -18,7 +18,13 @@ Client TLS connection module.
 
 
 
+{% if_version lte:3.1.x %}
 ## kong.client.tls.request_client_certificate()
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+## kong.client.tls.request_client_certificate([ca_certs])
+{% endif_version %}
 
 Requests the client to present its client-side certificate to initiate mutual
  TLS authentication between server and client.
@@ -32,30 +38,56 @@ Requests the client to present its client-side certificate to initiate mutual
  To find out whether the client honored the request, use
  `get_full_client_certificate_chain` in later phases.
 
+{% if_version gte:3.2.x %}
+The `ca_certs` argument is the optional CA certificate chain opaque pointer,
+ which can be created by the [parse_pem_cert](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_cert)
+ or [resty.opensslx509.chain](https://github.com/fffonion/lua-resty-openssl#restyopensslx509chain)
+ The Distinguished Name (DN) list hints of the CA certificates will be sent to clients.
+ If omitted, will not send any DN list to clients.
+ {% endif_version %}
 
 **Phases**
 
 * certificate
 
+{% if_version gte:3.2.x %}
+**Parameters**
+
+* **ca_certs** (`cdata`, _optional_):  The CA certificate chain opaque pointer
+{% endif_version %}
+
 **Returns**
 
-1.  `true|nil`:  Returns `true` if request is received, or `nil` if
- request fails.
-
-1.  `nil|err`:   Returns `nil` if the handshake is successful, or an error
- message if it fails.
-
-
+1.  `true|nil`:  Returns `true` if successful, or `nil` if it fails.
+1.  `nil|err`:  Returns `nil` if successful, or an error message if it fails.
 
 **Usage**
-
+{% if_version lte:3.1.x %}
 ``` lua
 local res, err = kong.client.tls.request_client_certificate()
 if not res then
   -- do something with err
 end
 ```
-
+{% endif_version %}
+{% if_version gte:3.2.x %}
+``` lua
+local x509_lib = require "resty.openssl.x509"
+local chain_lib = require "resty.openssl.x509.chain"
+local res, err
+local chain = chain_lib.new()
+-- err check
+local x509, err = x509_lib.new(pem_cert, "PEM")
+-- err check
+res, err = chain:add(x509)
+-- err check
+-- `chain.ctx` is the raw data of the chain, i.e. `STACK_OF(X509) *`
+res, err = kong.client.tls.request_client_certificate(chain.ctx)
+if not res then
+  -- do something with err
+end
+```
+{% endif_version %}
 
 
 ## kong.client.tls.disable_session_reuse()
