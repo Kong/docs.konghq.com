@@ -278,6 +278,7 @@ requery
 retryOn
 rockspec
 rockspecs
+rolling_timeout
 rollout
 rollouts
 routable
