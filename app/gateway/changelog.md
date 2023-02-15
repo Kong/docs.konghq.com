@@ -7,7 +7,7 @@ no_version: true
 
 
 ## 3.2.0.0
-**Release Date** 2023/02/15
+**Release Date** 2023/02/16
 
 ### Deprecations
 
@@ -80,10 +80,11 @@ which lets you set the Nginx directive `ssl_session_cache`.
 * Added two debugging endpoints to the Admin API:
     * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
     * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
-* The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
+* **FIPS Support**:
+  * The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
 
    If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
-
+  * FIPS-compliant Kong Gateway packages now support PostgreSQL SSL connections. 
 
 #### Kong Manager
 
@@ -132,6 +133,9 @@ By combining the data in the new `request_source` field with the `path` field, y
 * [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`)
 
   * These plugins now use `lua-resty-session` v4.0.0. 
+
+    This update includes new session functionalities such as configuring audiences to manage multiple 
+    sessions in a single cookie, global timeout, and persistent cookies.
   
     Due to this update, there are also a number of deprecated and removed parameters in these plugins. 
     See the invidividual plugin documentation for the full list of changed parameters in each plugin.
@@ -213,6 +217,8 @@ The tags field is now visible without needing to expand to see all fields.
 * Fixed an issue where the plugin **Copy JSON** button didn't copy the full configuration.
 * Fixed an issue where the password reset form didn't check for matching passwords and allowed mismatched passwords to be submitted.
 * Added a link to the upgrade prompt for Konnect or Enterprise. 
+* Fixed an RBAC issue with admins, where workspace admins in one workspace would have admin rights in other workspaces. 
+Workspace admins are now correctly restricted to their own workspaces.
  
 #### Plugins
 
