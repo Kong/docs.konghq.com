@@ -247,7 +247,7 @@ The tags field is now visible without needing to expand to see all fields.
   Previously, numbers that were too large caused requests to fail.
   [#10068](https://github.com/Kong/kong/pull/10068)
 
- * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed a bug where it was not possible to specify an anonymous consumer by name.
     [#4377](https://github.com/Kong/kong-ee/pull/4377)
 
