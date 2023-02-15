@@ -295,6 +295,9 @@ The tags field is now visible without needing to expand to see all fields.
 * Fixed the accidental removal of the `ca-certificates` dependency from packages and images. 
 This prevented SSL connections from using common root certificate authorities.
 
+### Upgrades
+You can now directly upgrade to {{site.base_gateway}} 3.1.1.3 from 2.8.x.x. Previously, you had to upgrade to 3.0.x first, then upgrade to the latest 3.x version.
+
 
 ## 3.1.1.2
 **Release Date** 2023/01/24
