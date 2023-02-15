@@ -4,7 +4,7 @@ module BadgeFilter
   def to_badges(input)
     input.map do |i|
       "<span class='badge #{i}'></span>"
-    end   
+    end
   end
 end
 

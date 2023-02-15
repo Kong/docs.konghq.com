@@ -2,8 +2,9 @@
 
 module ToCheckFilter
   def to_check(input)
-    return "✅" if input
-    return "❌"
+    return '✅' if input
+
+    '❌'
   end
 end
 
