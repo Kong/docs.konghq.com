@@ -25,7 +25,7 @@
       enterprise: Yes
       konnect: Yes
       network_config_opts: All
-      notes: Disabling the hmac-sha1 algorithm when using the FIPS image is not supported in konnect.
+      notes: --
       url: /hub/kong-inc/hmac-auth
 
     - name: JWT
