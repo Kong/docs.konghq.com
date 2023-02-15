@@ -271,7 +271,7 @@ The tags field is now visible without needing to expand to see all fields.
 * [**SAML**](/hub/kong-inc/saml) (`saml`)
   * Fixed an issue where the `session_cookie_httponly` parameter would always be set to `true`, even if it was configured as `false`.
 
-* [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/) (`key-auth-enc`)
+* [**Key Authentication Encrypted**](/hub/kong-inc/key-auth-enc/) (`key-auth-enc`)
   * Fixed the `ttl` parameter. You can now set `ttl` for an encrypted key.
   * Fixed an issue where this plugin didn't accept tags.
 
