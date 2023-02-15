@@ -762,6 +762,7 @@ refresh_token_param_type
 refresh_token_ttl
 refresh_tokens
 regex_priority
+remember_rolling_timeout
 remote_addr
 remote_user
 renew_threshold_days

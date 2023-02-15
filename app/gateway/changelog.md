@@ -73,13 +73,18 @@ which lets you set the Nginx directive `ssl_session_cache`.
   This configuration parameter defaults to `10m`.
   Thanks [Michael Kotten](https://github.com/michbeck100) for contributing this change.
   [#10021](https://github.com/Kong/kong/pull/10021)
+* [`status_listen`](/gateway/latest/reference/configuration/#status_listen) now supports HTTP2. [#9919](https://github.com/Kong/kong/pull/9919)
 
 #### Enterprise
 
 * Added two debugging endpoints to the Admin API:
     * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
     * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
-* The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the key-auth-enc plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing key-auth-enc credentials to re-hash them in SHA256.
+* The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
+
+   If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
+
+
 #### Kong Manager
 
 * Improved the editor for expression fields. Any fields using the expression router now have syntax highlighting, autocomplete, and route validation.
@@ -124,12 +129,15 @@ By combining the data in the new `request_source` field with the `path` field, y
   The parameter defaults to `nil`, which means that no tags are added to the metrics.
   [#10118](https://github.com/Kong/kong/pull/10118)
   
-* [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`).
+* [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`)
 
   * These plugins now use `lua-resty-session` v4.0.0. 
   
-    With this library update, these plugin have new session functionalities, including: configuring audiences to manage multiple sessions in a single cookie, global timeout, and persistent cookies.
-    [#10199](https://github.com/Kong/kong/pull/10199)
+    Due to this update, there are also a number of deprecated and removed parameters in these plugins. 
+    See the invidividual plugin documentation for the full list of changed parameters in each plugin.
+    * [Session changelog](/hub/kong-inc/session/#changelog)
+    * [OpenID Connect changelog](/hub/kong-inc/openid-connect/#changelog)
+    * [SAML changelog](/hub/kong-inc/saml/#changelog)
 
 * [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`) and [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
     * In hybrid and DB-less modes, these plugins now support `sync_rate = -1` with any strategy, including the default `cluster` strategy.
@@ -140,7 +148,6 @@ By combining the data in the new `request_source` field with the `path` field, y
 * [**Canary**](/hub/kong-inc/canary/) (`canary`)
     * Added a default value for the `start` field in the canary plugin. 
     If not set, the start time defaults to the current timestamp.
-    
     
 * **Improved Plugin Documentation**
     * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](hub/plugins/license-tiers) page. 
@@ -178,6 +185,8 @@ By combining the data in the new `request_source` field with the `path` field, y
   [#10056](https://github.com/Kong/kong/pull/10056)
 * Improved the error message for invalid JWK entries.
   [#9904](https://github.com/Kong/kong/pull/9904)
+* Fixed an issue where the `#` character wasn't parsed correctly from environment variables and vault references.
+  [10132](https://github.com/Kong/kong/pull/10132)
 
 #### Enterprise
 
@@ -217,6 +226,7 @@ The tags field is now visible without needing to expand to see all fields.
 * [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
   * Fixed an issue where the global plugin's sample ratio overrode the route-specific ratio.
   [#9877](https://github.com/Kong/kong/pull/9877)
+  * Fixed an issue where `trace-id` and `parent-id` strings with decimals were not processed correctly.
 
 * [**JWT**](/hub/kong-inc/jwt/) (`jwt`)
   * This plugin now denies requests that have different tokens in the JWT token search locations. 
@@ -231,11 +241,11 @@ The tags field is now visible without needing to expand to see all fields.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
   *  Fixed non-compliances to specification:
-    * For `http.uri` in spans, the field is now the full HTTP URI.
+     * For `http.uri` in spans, the field is now the full HTTP URI.
       [#10036](https://github.com/Kong/kong/pull/10036)
-    * `http.status_code` is now present on spans for requests that have a status code.
+     * `http.status_code` is now present on spans for requests that have a status code.
       [#10160](https://github.com/Kong/kong/pull/10160)
-    * `http.flavor` is now a string value, not a double.
+     * `http.flavor` is now a string value, not a double.
       [#10160](https://github.com/Kong/kong/pull/10160)
   
 * [**OAuth2**](/hub/kong-inc/oauth2/) (`oauth2`)
@@ -243,9 +253,9 @@ The tags field is now visible without needing to expand to see all fields.
   Previously, numbers that were too large caused requests to fail.
   [#10068](https://github.com/Kong/kong/pull/10068)
 
- * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * Fixed a bug where it was not possible to specify an anonymous consumer by name.
-    [#4377](https://github.com/Kong/kong-ee/pull/4377)
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where it was not possible to specify an anonymous consumer by name.
+  * Fixed an issue where the `authorization_cookie_httponly` and `session_cookie_httponly` parameters would always be set to `true`, even if they were configured as `false`.
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Matched the plugin's behavior to the Rate Limiting plugin.
@@ -257,6 +267,13 @@ The tags field is now visible without needing to expand to see all fields.
 
 * [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)
   * Fixed UUID pattern matching. 
+
+* [**SAML**](/hub/kong-inc/saml) (`saml`)
+  * Fixed an issue where the `session_cookie_httponly` parameter would always be set to `true`, even if it was configured as `false`.
+
+* [**Key Authentication Encrypted**](/hub/kong-inc/key-auth-enc/) (`key-auth-enc`)
+  * Fixed the `ttl` parameter. You can now set `ttl` for an encrypted key.
+  * Fixed an issue where this plugin didn't accept tags.
 
 ### Dependencies
 
@@ -279,6 +296,7 @@ The tags field is now visible without needing to expand to see all fields.
 * Bumped `lua-resty-session` from 3.10 to 4.0.0
   [#10199](https://github.com/Kong/kong/pull/10199)
   [#10230](https://github.com/Kong/kong/pull/10230)
+* Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
 
 
 ## 3.1.1.3
@@ -401,7 +419,6 @@ Kubernetes service account. See the following configuration parameters:
 
 - FIPS 140-2 packages:
   - Kong Gateway Enterprise now provides [FIPS 140-2 compliant packages for Red Hat Enterprise 8 and Ubuntu 22.04](/gateway/latest/kong-enterprise/fips-support).
-  - All out of the box Kong plugins are now supported in the Ubuntu and RHEL 8 FIPS-compliant packages.
   - Kong Gateway FIPS distributions now support TLS connections to the PostgreSQL database.
 
 - You can now [delete consumer group configurations](/gateway/latest/kong-enterprise/consumer-groups/#delete-consumer-group-configurations)
