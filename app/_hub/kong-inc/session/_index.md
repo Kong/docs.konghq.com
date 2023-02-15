@@ -567,25 +567,25 @@ _not_ a problem during session renewal period as renew happens in `access` phase
 * The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library. This introduced several new features, such as the possibility to specify an `audience` for the session.
 The following configuration parameters were affected:
 
-    Added:
-      * `audience`
-      * `remember`
-      * `remember_cookie_name`
-      * `remember_rolling_timeout`
-      * `remember_absolute_timeout`
-      * `absolute_timeout`
-      * `request_headers`
-      * `response_headers`
-    
-    Renamed:
-      * `cookie_lifetime` to `rolling_timeout`
-      * `cookie_idletime` to `idling_timeout`
-      * `cookie_samesite` to `cookie_same_site`
-      * `cookie_httponly` to `cookie_http_only`
-      * `cookie_discard` to `stale_ttl`
-    
-    Removed:
-      * `cookie_renew`
+  Added:
+    * `audience`
+    * `remember`
+    * `remember_cookie_name`
+    * `remember_rolling_timeout`
+    * `remember_absolute_timeout`
+    * `absolute_timeout`
+    * `request_headers`
+    * `response_headers`
+  
+  Renamed:
+    * `cookie_lifetime` to `rolling_timeout`
+    * `cookie_idletime` to `idling_timeout`
+    * `cookie_samesite` to `cookie_same_site`
+    * `cookie_httponly` to `cookie_http_only`
+    * `cookie_discard` to `stale_ttl`
+  
+  Removed:
+    * `cookie_renew`
 
 **{{site.base_gateway}} 3.1.x**
 *  Added the new configuration parameter `cookie_persistent`, which allows the
