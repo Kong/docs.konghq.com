@@ -14,15 +14,18 @@ distributions:
     arm: true
   - *centos7
   - *debian10
-  - *debian11
+  - <<: *debian11
+    docker: true
   - *rhel7
-  - *rhel8
+  - <<: *rhel8
+    docker: true
+    fips: true
   - <<: *ubuntu1804
-    arm: true
-    docker: true
+    arm: false
+    docker: false
   - <<: *ubuntu2004
-    arm: true
-    docker: true
+    arm: false
+    docker: false
     fips: true
   - <<: *ubuntu2204
     arm: true
