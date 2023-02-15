@@ -73,6 +73,7 @@ which lets you set the Nginx directive `ssl_session_cache`.
   This configuration parameter defaults to `10m`.
   Thanks [Michael Kotten](https://github.com/michbeck100) for contributing this change.
   [#10021](https://github.com/Kong/kong/pull/10021)
+* [`status_listen`](/gateway/latest/reference/configuration/#status_listen) now supports HTTP2. [#9919](https://github.com/Kong/kong/pull/9919)
 
 #### Enterprise
 
@@ -184,6 +185,8 @@ By combining the data in the new `request_source` field with the `path` field, y
   [#10056](https://github.com/Kong/kong/pull/10056)
 * Improved the error message for invalid JWK entries.
   [#9904](https://github.com/Kong/kong/pull/9904)
+* Fixed an issue where the `#` character wasn't parsed correctly from environment variables and vault references.
+  [10132](https://github.com/Kong/kong/pull/10132)
 
 #### Enterprise
 
@@ -223,6 +226,7 @@ The tags field is now visible without needing to expand to see all fields.
 * [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
   * Fixed an issue where the global plugin's sample ratio overrode the route-specific ratio.
   [#9877](https://github.com/Kong/kong/pull/9877)
+  * Fixed an issue where `trace-id` and `parent-id` strings with decimals were not processed correctly.
 
 * [**JWT**](/hub/kong-inc/jwt/) (`jwt`)
   * This plugin now denies requests that have different tokens in the JWT token search locations. 
@@ -250,8 +254,8 @@ The tags field is now visible without needing to expand to see all fields.
   [#10068](https://github.com/Kong/kong/pull/10068)
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * Fixed a bug where it was not possible to specify an anonymous consumer by name.
-    [#4377](https://github.com/Kong/kong-ee/pull/4377)
+  * Fixed an issue where it was not possible to specify an anonymous consumer by name.
+  * Fixed an issue where the `authorization_cookie_httponly` and `session_cookie_httponly` parameters would always be set to `true`, even if they were configured as `false`.
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Matched the plugin's behavior to the Rate Limiting plugin.
@@ -263,6 +267,13 @@ The tags field is now visible without needing to expand to see all fields.
 
 * [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)
   * Fixed UUID pattern matching. 
+
+* [**SAML**](/hub/kong-inc/saml) (`saml`)
+  * Fixed an issue where the `session_cookie_httponly` parameter would always be set to `true`, even if it was configured as `false`.
+
+* [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/) (`key-auth-enc`)
+  * Fixed the `ttl` parameter. You can now set `ttl` for an encrypted key.
+  * Fixed an issue where this plugin didn't accept tags.
 
 ### Dependencies
 
@@ -285,6 +296,7 @@ The tags field is now visible without needing to expand to see all fields.
 * Bumped `lua-resty-session` from 3.10 to 4.0.0
   [#10199](https://github.com/Kong/kong/pull/10199)
   [#10230](https://github.com/Kong/kong/pull/10230)
+* Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
 
 
 ## 3.1.1.3
