@@ -269,8 +269,7 @@ The `method` and `path` fields correspond either to a login or logout event:
 
 You may want to ignore audit log generation for certain Admin API
 requests, such as requests to the `/status` endpoint for
-health checking, or to ignore requests for a given path prefix 
-(for example, a given workspace). 
+health checking, or to ignore requests to a specific path prefix, for example, a given workspace.
 
 Use the `audit_log_ignore_methods` and
 `audit_log_ignore_paths` configuration options:
