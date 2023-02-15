@@ -805,6 +805,7 @@ response_signature_method
 response_template
 response_transformer
 response_type
+rolling_timeout
 result_data
 retry_after_jitter_max
 retry_count
