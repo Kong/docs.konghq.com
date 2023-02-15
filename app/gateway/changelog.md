@@ -80,7 +80,9 @@ which lets you set the Nginx directive `ssl_session_cache`.
     * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
     * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
 * The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
-If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
+
+   If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
+
 
 #### Kong Manager
 
@@ -235,11 +237,11 @@ The tags field is now visible without needing to expand to see all fields.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
   *  Fixed non-compliances to specification:
-    * For `http.uri` in spans, the field is now the full HTTP URI.
+     * For `http.uri` in spans, the field is now the full HTTP URI.
       [#10036](https://github.com/Kong/kong/pull/10036)
-    * `http.status_code` is now present on spans for requests that have a status code.
+     * `http.status_code` is now present on spans for requests that have a status code.
       [#10160](https://github.com/Kong/kong/pull/10160)
-    * `http.flavor` is now a string value, not a double.
+     * `http.flavor` is now a string value, not a double.
       [#10160](https://github.com/Kong/kong/pull/10160)
   
 * [**OAuth2**](/hub/kong-inc/oauth2/) (`oauth2`)
