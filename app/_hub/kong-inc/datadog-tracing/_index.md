@@ -142,6 +142,12 @@ The top level span has the following attributes:
 - `http.scheme`: HTTP scheme (http or https)
 - `http.flavor`: HTTP version
 - `net.peer.ip`: Client IP address
+- `kong.route_id`: Id of the {{site.base_gateway}} route matched by the request
+- `kong.route_name`: Name of the {{site.base_gateway}} route matched by the request (if available)
+- `kong.service_id`: Id of the {{site.base_gateway}} service matched by the request (if available)
+- `kong.service_name`: Name of the {{site.base_gateway}} service matched by the request (if available)
+- `kong.consumer`: Id of the {{site.base_gateway}} consumer authenticated by the request (if available)
+
 
 ### Propagation
 
