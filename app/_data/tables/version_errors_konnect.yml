@@ -731,7 +731,8 @@ messages:
       the service has been disabled.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
-    DocumentationURL: |      
+    DocumentationURL: |
+      todo      
   - ID: P101
     Severity: error
     Description: |
