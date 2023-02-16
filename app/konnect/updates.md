@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## February 2023
 
+**OAS plugin support**
+: {{site.konnect_saas}} now supports the OAS Validation plugin. This plugin allows you to validate HTTP requests and responses based on an API specification. For more information, see the [OAS Validation plugin documentation](/hub/kong-inc/oas-validation/).
+
 **Dev Portal RBAC via the API**
 : You can now perform Dev Portal RBAC operations using the {{site.konnect_saas}} API. This allows you to assign the following roles to Dev Portal developers:
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
