@@ -182,9 +182,7 @@ settings (`admin_gui_auth_conf`).
   its API. For example, if you use `api.admin.kong.example` and
   `manager.admin.kong.example` for the Admin API and Kong Manager,
   `cookie_domain` should be `admin.kong.example`.
-- {% if_version lte:3.1.x %}`cookie_samesite`{% endif_version %}
-  {% if_version gte:3.2.x %}`cookie_same_site`{% endif_version %}
-  should typically be left at its default, `strict`. `none`
+- `cookie_samesite` should typically be left at its default, `strict`. `none`
   is not necessary if you have your DNS records and `cookie_domain` set
   following the examples in this document. `off` is only needed if the GUI and
   API are on entirely separate hostnames, e.g. `admin.kong.example` for the API
