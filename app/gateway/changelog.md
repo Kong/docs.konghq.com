@@ -7,7 +7,7 @@ no_version: true
 
 
 ## 3.2.0.0
-**Release Date** 2023/02/16
+**Release Date** 2023/02/20
 
 ### Deprecations
 
@@ -40,20 +40,22 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
     * The JWT plugin now denies any request that has different tokens in the JWT token search locations.
       [#9946](https://github.com/Kong/kong/pull/9946)
 
-* Sessions library upgrade:
-    *  The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library has been upgraded to v4.0.0. This version includes a full rewrite of the session library, and is not backwards compatible.
+* Sessions library upgrade [#10199](https://github.com/Kong/kong/pull/10199):
+    * The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library has been upgraded to v4.0.0. This version includes a full rewrite of the session library, and is not backwards compatible.
       
       This library is used by the following plugins: [**Session**](/hub/kong-inc/session/), [**OpenID Connect**](/hub/kong-inc/openid-connect/), and [**SAML**](/hub/kong-inc/saml). This also affects any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
- 
+
+      All existing sessions are invalidated when upgrading to this version.
       For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
       For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
       as little time as possible. During that time, the invalid sessions could cause failures and partial downtime.
-      
-      Refer to the [upgrade guide for 3.2](/gateway/latest/upgrade/) for specific configuration changes and guidance on how to convert your existing session configuration.
     
-      All existing sessions are invalidated when upgrading to this version.
-        [#10199](https://github.com/Kong/kong/pull/10199)
-
+   * Parameters:
+      * The new parameter `idling_timeout`, which replaces `cookie_lifetime`, now has a default value of 900. Unless configured differently, sessions expire after 900 seconds (15 minutes) of idling. 
+      * The new parameter `absolute_timeout` has a default value of 86400. Unless configured differently, sessions expire after 86400 seconds (24 hours).
+      * Many session parameters have been renamed or removed. Although your configuration will continue to work as previously configured, we recommend adjusting your configuration to avoid future unexpected behavior. Refer to the [upgrade guide for 3.2](/gateway/latest/upgrade/#session-library-upgrade) for all session configuration changes and guidance on how to convert your existing session configuration.
+      
+      
 ### Features
 
 #### Core
