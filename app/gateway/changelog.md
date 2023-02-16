@@ -40,12 +40,18 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
     * The JWT plugin now denies any request that has different tokens in the JWT token search locations.
       [#9946](https://github.com/Kong/kong/pull/9946)
 
-* [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`) plugins
-    * For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
-    For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
-    as little time as possible. During that time, the invalid sessions could cause failures and partial downtime.
+* Sessions library upgrade:
+    *  The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library used by these plugins has been upgraded to v4.0.0. This version includes a full rewrite of the session library, and is not backwards compatible.
+      
+      Affects the following plugins: [**Session**](/hub/kong-inc/session/), [**OpenID Connect**](/hub/kong-inc/openid-connect/), and [**SAML**](/hub/kong-inc/saml), as well as any session configuration that uses the Session plugin in the background, including sessions for Kong Manager and Dev Portal.
+ 
+      For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
+      For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
+      as little time as possible. During that time, the invalid sessions could cause failures and partial downtime.
+      
+      Refer to the [upgrade guide for 3.2](/gateway/latest/upgrade/) for specific configuration changes and guidance on how to convert your existing session configuration.
     
-        All existing sessions are invalidated when upgrading to this version.
+      All existing sessions are invalidated when upgrading to this version.
         [#10199](https://github.com/Kong/kong/pull/10199)
 
 ### Features
