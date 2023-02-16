@@ -140,26 +140,12 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
 
 2. Create Kong config and credential variables:
 
-       {% if_version lte:3.1.x %}
-
        kubectl create secret generic kong-config-secret -n kong \
            --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_samesite":"off","cookie_secure":false}' \
            --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_samesite":"off","cookie_secure":false}' \
            --from-literal=pg_host="enterprise-postgresql.kong.svc.cluster.local" \
            --from-literal=kong_admin_password=kong \
            --from-literal=password=kong
-       
-       {% endif_version %}
-       {% if_version gte:3.2.x %}
-
-       kubectl create secret generic kong-config-secret -n kong \
-           --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_same_site":"off","cookie_secure":false}' \
-           --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_same_site":"off","cookie_secure":false}' \
-           --from-literal=pg_host="enterprise-postgresql.kong.svc.cluster.local" \
-           --from-literal=kong_admin_password=kong \
-           --from-literal=password=kong
-       
-       {% endif_version %}
 
 4. Create a Kong Enterprise license secret:
 
