@@ -150,7 +150,7 @@ docker build --no-cache -t kong-image .
 
 1. Test that the image built correctly:
 ```
-docker run -it kong-image kong version
+docker run -it --rm kong-image kong version
 ```
 
 1. To run {{ site.base_gateway }} and process traffic, follow the [Docker install instructions](/gateway/latest/install/docker/), replacing the image name with your custom name.
