@@ -18,7 +18,7 @@ Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions.
 
 The upgrade to {{page.kong_version}} is a **minor** upgrade.
-The lowest version that Kong {{page.kong_version}} supports migrating from is 3.0.x.
+The lowest version that Kong {{page.kong_version}} supports migrating from **directly** is 3.0.x.
 
 {:.important}
 > **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
@@ -39,9 +39,11 @@ If you are running 1.x, upgrade to 2.8.2 and then 3.0.x first at minimum, then u
 In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
 then follow the [database migration](#migrate-db) instructions.
 
-## Upgrade path for {{site.base_gateway}} 3.1.x 
+## Upgrade path for {{site.base_gateway}} {{page.kong_version}} 
 
-The following table outlines various upgrade path scenarios to 3.1.x depending on the {{site.base_gateway}} version you are currently using:
+The following table outlines various upgrade path scenarios to {{page.kong_version}} depending on the {{site.base_gateway}} version you are currently using:
+
+{% if_version lte: 3.1.x %}
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
@@ -51,22 +53,138 @@ The following table outlines various upgrade path scenarios to 3.1.x depending o
 | 2.8.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
 | 2.8.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
 | 2.8.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#migrate-db). |
+
+{% endif_version %}
+
+{% if_version gte: 3.2.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
 | 3.0.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
 | 3.0.x | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
 | 3.0.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
-
-{% if_version gte: 3.2.x %}
 | 3.1.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x]
-(#migrate-db). |
-| 3.1.1.3 | Hybrid | Yes | [upgrade to 3.2.x] |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | Yes | [upgrade to 3.2.x](#migrate-db) |
 | 3.1.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
+
 {% endif_version %}
 
 ## Upgrade considerations and breaking changes
 
 Before upgrading, review this list for any configuration or breaking changes that
 affect your current installation.
+
+{% if_version gte:3.2.x %}
+
+### PostgreSQL SSL version bump
+
+The default PostgreSQL SSL version has been bumped to TLS 1.2. 
+
+This causes changes to [`pg_ssl_version`](/gateway/latest/reference/configuration/#postgres-settings) (set through `kong.conf`):
+* The default value is now `tlsv1_2`.  
+* `pg_ssl_version` previously accepted any string. In this version, it requires one of the following values: `tlsv1_1`, `tlsv1_2`, `tlsv1_3` or `any`.
+
+This mirrors the setting `ssl_min_protocol_version` in PostgreSQL 12.x and onward. 
+See the [PostgreSQL documentation](https://postgresqlco.nf/doc/en/param/ssl_min_protocol_version/)
+for more information about that parameter.
+
+To use the default setting in `kong.conf`, verify that your Postgres server supports TLS 1.2 or higher versions, or set the TLS version yourself. 
+
+TLS versions lower than `tlsv1_2` are already deprecated and are considered insecure from PostgreSQL 12.x onward.
+  
+### Changes to the Kong-Debug header
+
+Added the [`allow_debug_header`](/gateway/latest/reference/configuration/#allow_debug_header) 
+configuration property to `kong.conf` to constrain the `Kong-Debug` header for debugging. This option defaults to `off`.
+
+If you were previously relying on the `Kong-Debug` header to provide debugging information, set `allow_debug_header: on` in `kong.conf` to continue doing so.
+
+### JWT plugin
+    
+The [JWT plugin](/hub/kong-inc/jwt/) now denies any request that has different tokens in the JWT token search locations.
+
+### Session library upgrade
+
+The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library has been upgraded to v4.0.0. 
+This version includes a full rewrite of the session library, and **is not backwards compatible**.
+
+This affects the following: 
+* [Session plugin](/hub/kong-inc/session/)
+* [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+* [SAML plugin](/hub/kong-inc/saml)
+* Any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
+
+All existing sessions are invalidated when upgrading to this version.
+
+For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later with
+the new configuration parameters. For that reason, we recommend that during upgrades, proxy nodes with
+mixed versions run for as little time as possible. During that time, the invalid sessions could cause 
+failures and partial downtime.
+
+Using the tables below, replace renamed parameters with their new versions, and remove any deprecated parameters from session configuration.
+
+#### Session plugin
+
+Old parameter name | New parameter name
+-------------------|--------------------
+`cookie_lifetime` | `rolling_timeout`
+`cookie_idletime` | `idling_timeout`
+`cookie_samesite` | `cookie_same_site`
+`cookie_httponly` | `cookie_http_only`
+`cookie_discard` | `stale_ttl`
+`cookie_renew` | Deprecated and **removed**, no replacement parameter. 
+  
+
+#### SAML plugin
+
+Old parameter name | New parameter name
+-------------------|--------------------
+`session_cookie_lifetime` | `session_rolling_timeout`
+`session_cookie_idletime` | `session_idling_timeout`
+`session_cookie_samesite` | `session_cookie_same_site` 
+`session_cookie_httponly` | `session_cookie_http_only`
+`session_memcache_prefix` | `session_memcached_prefix`
+`session_memcache_socket` | `session_memcached_socket`
+`session_memcache_host` | `session_memcached_host`
+`session_memcache_port` | `session_memcached_port`
+`session_redis_cluster_maxredirections` |  `session_redis_cluster_max_redirections`
+`session_cookie_renew` | Deprecated, no replacement parameter
+`session_cookie_maxsize` | Deprecated, no replacement parameter
+`session_strategy` | Deprecated, no replacement parameter
+`session_compressor` | Deprecated, no replacement parameter
+
+#### OpenID Connect plugin
+
+Old parameter name | New parameter name
+-------------------|--------------------
+`authorization_cookie_lifetime` | `authorization_rolling_timeout`
+`authorization_cookie_samesite` | `authorization_cookie_same_site`
+`authorization_cookie_httponly` | `authorization_cookie_http_only`
+`session_cookie_lifetime` | `session_rolling_timeout`
+`session_cookie_idletime` | `session_idling_timeout`
+`session_cookie_samesite` | `session_cookie_same_site`
+`session_cookie_httponly` | `session_cookie_http_only`
+`session_memcache_prefix` | `session_memcached_prefix`
+`session_memcache_socket` | `session_memcached_socket`
+`session_memcache_host` | `session_memcached_host`
+`session_memcache_port` | `session_memcached_port`
+`session_redis_cluster_maxredirections` | `session_redis_cluster_max_redirections`
+`session_cookie_renew` | Deprecated, no replacement parameter
+`session_cookie_maxsize` | Deprecated, no replacement parameter
+`session_strategy` | Deprecated, no replacement parameter
+`session_compressor` | Deprecated, no replacement parameter
+
+{% endif_version %}
 
 ### Kong for Kubernetes considerations
 
@@ -129,7 +247,7 @@ This ensures that all instances are using the new {{site.base_gateway}} package 
 > **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/),
 upgrade the control plane first, and then the data planes.
 
-* If you are currently running 2.8.x in classic (traditional)
+* If you are currently running the previous version in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/setup/)
   after running the migration.
@@ -153,12 +271,12 @@ To view all of the configuration changes between versions, clone the
 [Kong repository](https://github.com/kong/kong) and run `git diff`
 on the configuration templates, using `-w` for greater readability.
 
-Here's how to see the differences between previous versions and 3.0.x:
+Here's how to see the differences between previous versions and {{page.versions.ce}}:
 
 ```
 git clone https://github.com/kong/kong
 cd kong
-git diff -w 2.0.0 3.0.0 kong/templates/nginx_kong*.lua
+git diff -w 2.0.0 {{page.versions.ce}} kong/templates/nginx_kong*.lua
 ```
 
 Adjust the starting version number (2.0.0 in the example) to the version number you are currently using.
@@ -166,7 +284,7 @@ Adjust the starting version number (2.0.0 in the example) to the version number 
 To produce a patch file, use the following command:
 
 ```
-git diff 2.0.0 3.0.0 kong/templates/nginx_kong*.lua > kong_config_changes.diff
+git diff 2.0.0 {{page.versions.ce}} kong/templates/nginx_kong*.lua > kong_config_changes.diff
 ```
 
 Adjust the starting version number to the version number (2.0.0 in the example) you are currently using.
