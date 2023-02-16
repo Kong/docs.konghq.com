@@ -722,7 +722,7 @@ Renamed:
   * `session_memcache_port` to `session_memcached_port`
   * `session_redis_cluster_maxredirections` to `session_redis_cluster_max_redirections`
 
-Deprecated:
+Removed:
   * `session_cookie_renew`
   * `session_cookie_maxsize`
   * `session_strategy`

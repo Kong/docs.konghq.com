@@ -116,22 +116,30 @@ The [JWT plugin](/hub/kong-inc/jwt/) now denies any request that has different t
 ### Session library upgrade
 
 The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library has been upgraded to v4.0.0. 
-This version includes a full rewrite of the session library, and **is not backwards compatible**.
+This version includes a full rewrite of the session library.
 
-This affects the following: 
+This upgrade affects the following: 
 * [Session plugin](/hub/kong-inc/session/)
 * [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
 * [SAML plugin](/hub/kong-inc/saml)
 * Any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
 
 All existing sessions are invalidated when upgrading to this version.
-
-For sessions to work as expected in this version, all nodes must run {{site.base_gateway}} 3.2.x or later with
-the new configuration parameters. For that reason, we recommend that during upgrades, proxy nodes with
+For sessions to work as expected in this version, all nodes must run {{site.base_gateway}} 3.2.x or later.
+For that reason, we recommend that during upgrades, proxy nodes with
 mixed versions run for as little time as possible. During that time, the invalid sessions could cause 
 failures and partial downtime.
 
-Using the tables below, replace renamed parameters with their new versions, and remove any deprecated parameters from session configuration.
+The session library upgrade includes new, changed, and removed parameters. Here's how they function:
+
+* The new parameter `idling_timeout`, which replaces `cookie_lifetime`, has a default value of 900. 
+Unless configured differently, sessions expire after 900 seconds (15 minutes) of idling. 
+* The new parameter `absolute_timeout` has a default value of 86400. 
+Unless configured differently, sessions expire after 86400 seconds (24 hours).
+* All renamed parameters will still work by their old names.
+* Any removed parameters will not work anymore. They won't break your configuration, and sessions will continue to function, but they will not contribute anything to the configuration.
+
+Existing session configurations will still work as configured. However, we recommend updating parameters to their new renamed versions, and cleaning out any removed parameters from session configuration to avoid unpredictable behavior.
 
 #### Session plugin
 
@@ -142,7 +150,7 @@ Old parameter name | New parameter name
 `cookie_samesite` | `cookie_same_site`
 `cookie_httponly` | `cookie_http_only`
 `cookie_discard` | `stale_ttl`
-`cookie_renew` | Deprecated and **removed**, no replacement parameter. 
+`cookie_renew` | Removed, no replacement parameter. 
   
 
 #### SAML plugin
@@ -158,10 +166,10 @@ Old parameter name | New parameter name
 `session_memcache_host` | `session_memcached_host`
 `session_memcache_port` | `session_memcached_port`
 `session_redis_cluster_maxredirections` |  `session_redis_cluster_max_redirections`
-`session_cookie_renew` | Deprecated, no replacement parameter
-`session_cookie_maxsize` | Deprecated, no replacement parameter
-`session_strategy` | Deprecated, no replacement parameter
-`session_compressor` | Deprecated, no replacement parameter
+`session_cookie_renew` | Removed, no replacement parameter. 
+`session_cookie_maxsize` | Removed, no replacement parameter. 
+`session_strategy` | Removed, no replacement parameter. 
+`session_compressor` | Removed, no replacement parameter. 
 
 #### OpenID Connect plugin
 
@@ -179,10 +187,10 @@ Old parameter name | New parameter name
 `session_memcache_host` | `session_memcached_host`
 `session_memcache_port` | `session_memcached_port`
 `session_redis_cluster_maxredirections` | `session_redis_cluster_max_redirections`
-`session_cookie_renew` | Deprecated, no replacement parameter
-`session_cookie_maxsize` | Deprecated, no replacement parameter
-`session_strategy` | Deprecated, no replacement parameter
-`session_compressor` | Deprecated, no replacement parameter
+`session_cookie_renew` | Removed, no replacement parameter. 
+`session_cookie_maxsize` | Removed, no replacement parameter. 
+`session_strategy` | Removed, no replacement parameter. 
+`session_compressor` | Removed, no replacement parameter. 
 
 {% endif_version %}
 
