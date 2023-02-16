@@ -41,9 +41,9 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
       [#9946](https://github.com/Kong/kong/pull/9946)
 
 * Sessions library upgrade:
-    *  The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library used by these plugins has been upgraded to v4.0.0. This version includes a full rewrite of the session library, and is not backwards compatible.
+    *  The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library has been upgraded to v4.0.0. This version includes a full rewrite of the session library, and is not backwards compatible.
       
-      Affects the following plugins: [**Session**](/hub/kong-inc/session/), [**OpenID Connect**](/hub/kong-inc/openid-connect/), and [**SAML**](/hub/kong-inc/saml), as well as any session configuration that uses the Session plugin in the background, including sessions for Kong Manager and Dev Portal.
+      This library is used by the following plugins: [**Session**](/hub/kong-inc/session/), [**OpenID Connect**](/hub/kong-inc/openid-connect/), and [**SAML**](/hub/kong-inc/saml). This also affects any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
  
       For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
       For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
