@@ -11,7 +11,7 @@ items:
         absolute_url: true
       - text: Support
         items:
-          - text: Gateway Support
+          - text: Version Support Policy
             url: /support
           - text: Third Party Dependencies
             url: /support/third-party
