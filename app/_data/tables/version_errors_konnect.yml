@@ -255,18 +255,6 @@ messages:
     Resolution: Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
       [StatsD Advanced plugin](/hub/kong-inc/statsd-advanced/)
-  - ID: D126
-    Severity: error
-    Description: |
-      For the `statsd-advanced` plugin, one or more of the following `config` fields
-      are set: `consumer_identifier_default`, `service_identifier_default`,
-      `workspace_identifier_default` but Kong Gateway versions < 3.0.0.0 do not
-      support these fields. Plugin features that rely on these fields are not working
-      as intended.
-    Resolution: |
-      Please upgrade Kong Gateway to version `3.0.0.0` or above.
-    DocumentationURL: |
-      [statsd-advanced plugin](/hub/kong-inc/statsd-advanced/)
   - ID: D127
     Severity: error
     Description: |
@@ -277,7 +265,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.6.0.0` or above.
     DocumentationURL: |
-      todo
+      [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/)
   - ID: D128
     Severity: error
     Description: |
@@ -288,7 +276,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      todo
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D129
     Severity: error
     Description: |
@@ -348,7 +336,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [websocket-validator plugin](/hub/kong-inc/websocket-validator/)
+      [Websocket Validator plugin](/hub/kong-inc/websocket-validator/)
   - ID: D135
     Severity: error
     Description: |
@@ -357,7 +345,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [websocket-size-limit plugin](/hub/kong-inc/websocket-size-limit/)
+      [Websocket Size Limit plugin](/hub/kong-inc/websocket-size-limit/)
   - ID: D136
     Severity: error
     Description: |
@@ -366,7 +354,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [tls-handshake-modifier plugin](/hub/kong-inc/tls-handshake-modifier/)
+      [TLS Handshake Modifier plugin](/hub/kong-inc/tls-handshake-modifier/)
   - ID: D137
     Severity: error
     Description: |
@@ -375,7 +363,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [tls-metadata-headers plugin](/hub/kong-inc/tls-metadata-headers/)
+      [TLS Metadata Headers plugin](/hub/kong-inc/tls-metadata-headers/)
   - ID: D138
     Severity: error
     Description: |
@@ -385,7 +373,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [forward-proxy plugin](/hub/kong-inc/forward-proxy/)
+      [Forward Proxy plugin](/hub/kong-inc/forward-proxy/)
   - ID: D139
     Severity: error
     Description: |
@@ -395,7 +383,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [mtls-auth plugin](/hub/kong-inc/mtls-auth/)
+      [mTLS Authentication plugin](/hub/kong-inc/mtls-auth/)
   - ID: D140
     Severity: error
     Description: |
@@ -406,7 +394,7 @@ messages:
       Please upgrade Kong Gateway to version `2.8.2.0` or above, excluding versions
       `3.0.0.x` and `3.0.1.x`
     DocumentationURL: |
-      [route-transformer-advanced plugin](/hub/kong-inc/route-transformer-advanced/)
+      [Route Transformer Advanced plugin](/hub/kong-inc/route-transformer-advanced/)
   - ID: D141
     Severity: error
     Description: |
@@ -414,7 +402,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [app-dynamics plugin](/hub/kong-inc/app-dynamics/)
+      [App Dynamics plugin](/hub/kong-inc/app-dynamics/)
   - ID: D142
     Severity: error
     Description: |
@@ -422,7 +410,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [saml plugin](/hub/kong-inc/saml/)
+      [SAML plugin](/hub/kong-inc/saml/)
   - ID: D143
     Severity: error
     Description: |
@@ -430,7 +418,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [jwe-decrypt plugin](/hub/kong-inc/jwe-decrypt/)
+      [Kong JWE Decrypt plugin](/hub/kong-inc/jwe-decrypt/)
   - ID: D144
     Severity: error
     Description: |
@@ -439,7 +427,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [xml-threat-protection plugin](/hub/kong-inc/xml-threat-protection/)
+      [XML Threat Protection plugin](/hub/kong-inc/xml-threat-protection/)
   - ID: D145
     Severity: error
     Description: |
@@ -450,7 +438,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [rate-limiting-advanced plugin](/hub/kong-inc/rate-limiting-advanced/)
+      [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/)
   - ID: D146
     Severity: error
     Description: |
@@ -460,7 +448,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-
+      todo
   - ID: D147
     Severity: error
     Description: |
@@ -502,7 +490,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [mocking plugin](/hub/kong-inc/mocking/)
+      [Mocking plugin](/hub/kong-inc/mocking/)
   - ID: D151
     Severity: error
     Description: |
@@ -513,7 +501,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      todo
+      [OAuth 2.0 Introspection plugin](/hub/kong-inc/oauth2-introspection/)
   - ID: D152
     Severity: error
     Description: |
@@ -524,7 +512,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      todo
+      [mTLS Authentication plugin](/hub/kong-inc/mtls-auth/)
   - ID: D153
     Severity: error
     Description: |
@@ -535,7 +523,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      todo
+      [LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced/)
   - ID: D154
     Severity: error
     Description: |
@@ -547,7 +535,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [request-transformer-advanced plugin](/hub/kong-inc/request-transformer-advanced/)
+      [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/)
   - ID: D155
     Severity: error
     Description: |
@@ -555,7 +543,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [datadog-tracing plugin](/hub/kong-inc/datadog-tracing/)
+      [Datadog Tracing plugin](/hub/kong-inc/datadog-tracing/)
   - ID: D156
     Severity: warning
     Description: |
@@ -566,7 +554,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [openid-connect plugin](/hub/kong-inc/openid-connect/)
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D157
     Severity: warning
     Description: |
@@ -577,7 +565,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [openid-connect plugin](/hub/kong-inc/openid-connect/)
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D158
     Severity: warning
     Description: |
@@ -597,7 +585,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [openid-connect plugin](/hub/kong-inc/openid-connect/)
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D159
     Severity: error
     Description: |
@@ -613,7 +601,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [openid-connect plugin](/hub/kong-inc/openid-connect/)
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D160
     Severity: error
     Description: |
@@ -624,7 +612,7 @@ messages:
     Resolution: |
       Please remove these fields from the plugin configuration.
     DocumentationURL: |
-      [openid-connect plugin](/hub/kong-inc/openid-connect/)
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D161
     Severity: warning
     Description: |
@@ -635,7 +623,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [openid-connect plugin](/hub/kong-inc/openid-connect/)
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
   - ID: D162
     Severity: error
     Description: |
@@ -650,7 +638,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [saml plugin](/hub/kong-inc/saml/)
+      [SAML plugin](/hub/kong-inc/saml/)
   - ID: D163
     Severity: warning
     Description: |
@@ -667,7 +655,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [saml plugin](/hub/kong-inc/saml/)
+      [SAML plugin](/hub/kong-inc/saml/)
   - ID: D164
     Severity: error
     Description: |
@@ -679,7 +667,7 @@ messages:
     Resolution: |
       Please remove these fields from the plugin configuration.
     DocumentationURL: |
-      [saml plugin](/hub/kong-inc/saml/)
+      [SAML plugin](/hub/kong-inc/saml/)
   - ID: D165
     Severity: warning
     Description: |
@@ -690,7 +678,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [saml plugin](/hub/kong-inc/saml/)
+      [SAML plugin](/hub/kong-inc/saml/)
   - ID: D166
     Severity: warning
     Description: |
@@ -701,7 +689,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [saml plugin](/hub/kong-inc/saml/)
+      [SAML plugin](/hub/kong-inc/saml/)
   - ID: D167
     Severity: error
     Description: |
@@ -712,15 +700,15 @@ messages:
       Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a version
       >= 3.2.
     DocumentationURL: |
-      todo
+      [App Dynamics](/hub/kong-inc/app-dynamics/)
   - ID: D168
     Severity: error
     Description: |
-      Plugin `oas-validation` is not available in Kong Gateway versions < 3.1.0.0. `
+      Plugin `oas-validation` is not available in Kong Gateway versions < 3.1.0.0.
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [oas-validation plugin](/hub/kong-inc/oas-validation/)
+      [OAS Validation plugin](/hub/kong-inc/oas-validation/)
   - ID: D169
     Severity: error
     Description: |
@@ -987,7 +975,7 @@ messages:
       Please update the plugin configuration to use `config.access` field in place of
       `config.functions` field
     DocumentationURL: |
-      [post-function plugin](/hub/kong-inc/post-function/)
+      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
   - ID: P126
     Severity: error
     Description: |
@@ -1045,7 +1033,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      todo
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P131
     Severity: error
     Description: |
@@ -1056,7 +1044,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      todo
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P132
     Severity: error
     Description: |
@@ -1067,7 +1055,7 @@ messages:
       Explicitly set the `consumer_identifier` field for all metrics or upgrade Kong
       Gateway to a version >= 3.0.
     DocumentationURL: |
-      todo
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P133
     Severity: error
     Description: |
@@ -1080,7 +1068,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      [statsd plugin](/hub/kong-inc/statsd/)
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P134
     Severity: error
     Description: |
@@ -1110,7 +1098,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [zipkin plugin](/hub/kong-inc/zipkin/)
+      [Zipkin plugin](/hub/kong-inc/zipkin/)
   - ID: P137
     Severity: error
     Description: |
@@ -1121,7 +1109,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [rate-limiting plugin](/hub/kong-inc/rate-limiting/)
+      [Rate Limiting plugin](/hub/kong-inc/rate-limiting/)
   - ID: P138
     Severity: error
     Description: |
@@ -1133,7 +1121,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [acme plugin](/hub/kong-inc/acme/)
+      [ACME plugin](/hub/kong-inc/acme/)
   - ID: P139
     Severity: error
     Description: |
@@ -1144,7 +1132,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [response-ratelimiting plugin](/hub/kong-inc/response-ratelimiting/)
+      [Response Ratelimiting plugin](/hub/kong-inc/response-ratelimiting/)
   - ID: P140
     Severity: error
     Description: |
@@ -1155,7 +1143,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      [aws-lambda plugin](/hub/kong-inc/aws-lambda/)
+      [AWS Lambda plugin](/hub/kong-inc/aws-lambda/)
   - ID: P141
     Severity: error
     Description: |
@@ -1184,7 +1172,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      [pre-function plugin](/hub/kong-inc/pre-function/)
+      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
   - ID: P145
     Severity: error
     Description: |
@@ -1195,7 +1183,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      [post-function plugin](/hub/kong-inc/post-function/)
+      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
   - ID: P146
     Severity: error
     Description: |
@@ -1205,7 +1193,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [acme plugin](/hub/kong-inc/acme/)
+      [ACME plugin](/hub/kong-inc/acme/)
   - ID: P147
     Severity: error
     Description: |
@@ -1216,7 +1204,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [datadog plugin](/hub/kong-inc/datadog/)
+      [Datadog plugin](/hub/kong-inc/datadog/)
   - ID: P148
     Severity: error
     Description: |
@@ -1226,7 +1214,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P149
     Severity: error
     Description: |
@@ -1245,7 +1233,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [zipkin plugin](/hub/kong-inc/zipkin/)
+      [Zipkin plugin](/hub/kong-inc/zipkin/)
   - ID: P151
     Severity: error
     Description: |
@@ -1267,7 +1255,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [statsd plugin](/hub/kong-inc/statsd/)
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P153
     Severity: error
     Description: |
@@ -1277,7 +1265,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [statsd plugin](/hub/kong-inc/statsd/)
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P154
     Severity: error
     Description: |
@@ -1286,7 +1274,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      todo
+      [StatsD plugin](/hub/kong-inc/statsd/)
   - ID: P155
     Severity: error
     Description: |
@@ -1298,7 +1286,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P156
     Severity: warning
     Description: |
@@ -1310,7 +1298,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P157
     Severity: error
     Description: |
@@ -1320,7 +1308,7 @@ messages:
     Resolution: |
       Please remove these fields from the plugin configuration.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P158
     Severity: warning
     Description: |
@@ -1331,7 +1319,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P159
     Severity: error
     Description: |
@@ -1341,7 +1329,7 @@ messages:
     Resolution: |
       Please remove these fields from the plugin configuration.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P160
     Severity: warning
     Description: |
@@ -1352,7 +1340,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [session plugin](/hub/kong-inc/session/)
+      [Session plugin](/hub/kong-inc/session/)
   - ID: P161
     Severity: error
     Description: |
@@ -1363,4 +1351,4 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [aws-lambda plugin](/hub/kong-inc/aws-lambda/)
+      [AWS Lambda plugin](/hub/kong-inc/aws-lambda/)
