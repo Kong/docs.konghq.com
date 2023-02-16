@@ -126,7 +126,7 @@ This affects the following:
 
 All existing sessions are invalidated when upgrading to this version.
 
-For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later with
+For sessions to work as expected in this version, all nodes must run {{site.base_gateway}} 3.2.x or later with
 the new configuration parameters. For that reason, we recommend that during upgrades, proxy nodes with
 mixed versions run for as little time as possible. During that time, the invalid sessions could cause 
 failures and partial downtime.
