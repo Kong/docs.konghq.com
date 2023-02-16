@@ -286,7 +286,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      todo
+      [Application Registration plugin](/hub/kong-inc/application-registration/)
   - ID: D130
     Severity: error
     Description: |
@@ -297,7 +297,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [plugin plugin](/hub/kong-inc/plugin/)
+      [Plugin entity](/gateway/latest/admin-api/#plugin-object)
   - ID: D131
     Severity: error
     Description: |
@@ -307,7 +307,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      todo
+      [Service entity](/gateway/latest/admin-api/#service-object)
   - ID: D132
     Severity: error
     Description: |
@@ -317,7 +317,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      todo
+      [Route entity](/gateway/latest/admin-api/#route-object)
   - ID: D133
     Severity: error
     Description: |
@@ -327,7 +327,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      todo
+      [Plugin entity](/gateway/latest/admin-api/#plugin-object)
   - ID: D134
     Severity: error
     Description: |
@@ -442,13 +442,13 @@ messages:
   - ID: D146
     Severity: error
     Description: |
-      For the `vault` entity, one or more of the following schema fields are set:
+      For the `vaults` entity, one or more of the following schema fields are set:
       `auth_method`, `kube_role`, `kube_api_token_file` but Kong Gateway versions <
       3.1.0.0 do not support these fields.
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      todo
+      [Vaults entity](/gateway/latest/admin-api/#vaults-entity)
   - ID: D147
     Severity: error
     Description: |
@@ -457,7 +457,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.0.0` or above.
     DocumentationURL: |
-      todo
+      [Consumer Groups entity](/gateway/latest/admin-api/consumer-groups/reference/)
   - ID: D148
     Severity: error
     Description: |
@@ -468,7 +468,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.0.0` or above.
     DocumentationURL: |
-      todo
+      [Consumer Groups entity](/gateway/latest/admin-api/consumer-groups/reference/)
   - ID: D149
     Severity: error
     Description: |
@@ -479,7 +479,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.0.0` or above.
     DocumentationURL: |
-      todo
+      [Consumer Groups entity](/gateway/latest/admin-api/consumer-groups/reference/)
   - ID: D150
     Severity: error
     Description: |
@@ -720,7 +720,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      todo      
+      [Service entity](/gateway/latest/admin-api/#service-object)
   - ID: P101
     Severity: error
     Description: |
@@ -904,7 +904,7 @@ messages:
       routed to the upstream Services via Kong Gateway.
     Resolution: Please upgrade Kong Gateway to version `2.7` or above.
     DocumentationURL: |
-      [Service entity](/gateway/latest/admin-api/#service-object/)
+      [Service entity](/gateway/latest/admin-api/#service-object)
   - ID: P120
     Severity: error
     Description: |
@@ -986,11 +986,11 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      todo
+      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
   - ID: P127
     Severity: error
     Description: |
-      For the `upstreams` entity, one or more of the `hash_on, hash_fallback` schema
+      For the `upstream` entity, one or more of the `hash_on, hash_fallback` schema
       fields are set with one of the following values: path, query_arg, uri_capture,
       but Kong Gateway versions < 3.0 do not support these values. Because of this,
       `hash_on` and `hash_fallback'have been changed in the data-plane to `none` and
@@ -998,7 +998,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      todo
+      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
   - ID: P128
     Severity: warning
     Description: |
@@ -1010,7 +1010,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      todo
+      [Route entity](/gateway/latest/admin-api/#route-object)
   - ID: P129
     Severity: warning
     Description: |
@@ -1021,7 +1021,7 @@ messages:
       To define a regular expression based path for routing, please prefix the path
       with ~ character.
     DocumentationURL: |
-      todo
+      [Route entity](/gateway/latest/admin-api/#route-object)
   - ID: P130
     Severity: error
     Description: |
@@ -1078,16 +1078,16 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0` or above.
     DocumentationURL: |
-      todo
+      [Tags](/gateway/latest/admin-api/#tags)
   - ID: P135
     Severity: error
     Description: |
-      The `vault` entity is being used, but Kong Gateway versions < 3.1 do not support
+      The `vaults` entity is being used, but Kong Gateway versions < 3.1 do not support
       this entity.
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      todo
+      [Vaults entity](/gateway/latest/admin-api/#vaults-entity)
   - ID: P136
     Severity: error
     Description: |
@@ -1152,7 +1152,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      todo
+      [Keys entity](/gateway/latest/admin-api/#keys-entity)
   - ID: P142
     Severity: error
     Description: |
@@ -1161,7 +1161,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      todo
+      [Key Sets entity](/gateway/latest/admin-api/#key-sets-entity)
   - ID: P144
     Severity: error
     Description: |
@@ -1223,7 +1223,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      [plugin plugin](/hub/kong-inc/plugin/)
+      [Plugin entity](/gateway/latest/admin-api/#plugin-object)
   - ID: P150
     Severity: error
     Description: |
@@ -1237,14 +1237,14 @@ messages:
   - ID: P151
     Severity: error
     Description: |
-      For the `upstreams` entity, the `algorithm` field is set to `latency'but Kong
+      For the `upstream` entity, the `algorithm` field is set to `latency'but Kong
       Gateway versions < 3.2 do not support this value.Because of this, `algorithm`
       has been set to the default value `round-robin` and features depending on the
       `latency` algorithm may not work as expected.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
-      todo
+      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
   - ID: P152
     Severity: error
     Description: |
