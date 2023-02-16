@@ -94,11 +94,12 @@ which lets you set the Nginx directive `ssl_session_cache`.
     If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
   * FIPS-compliant Kong Gateway packages now support PostgreSQL SSL connections. 
 
-#### Kong Manager
+##### Kong Manager
 
 * Improved the editor for expression fields. Any fields using the expression router now have syntax highlighting, autocomplete, and route validation.
 * Improved audit logs by adding `rbac_user_name` and `request_source`. 
-By combining the data in the new `request_source` field with the `path` field, you can now determine login and logout events from the logs.
+By combining the data in the new `request_source` field with the `path` field, you can now determine login and logout events from the logs. 
+See the documentation for more detail on [interpreting audit logs](/gateway/latest/kong-enterprise/audit-log/#kong-manager-authentication).
 * License information can now be copied or downloaded into a file from Kong Manager. 
 * Kong Manager now supports the `POST` method for OIDC-based authentication.
 * Keys and key sets can now be configured in Kong Manager.
@@ -208,6 +209,11 @@ By combining the data in the new `request_source` field with the `path` field, y
     * The Enterprise license wasn't being picked up by other nodes in a cluster.
     * Vitals routes weren't accessible.
     * Vitals wasn't showing up in hybrid mode.
+* Fixed RBAC issues:
+  * Fixed an issue where workspace admins couldn't add rate limiting policies to consumer groups.
+  * Fixed an issue where workspace admins in one workspace would have admin rights in other workspaces. 
+    Workspace admins are now correctly restricted to their own workspaces.
+  * Fixed a role precedence issue with RBAC. RBAC rules involving deny (negative) rules now correctly take precedence over allow (non-negative) roles.
 
 ##### Vitals
 
@@ -220,14 +226,11 @@ By combining the data in the new `request_source` field with the `path` field, y
 * Moved the `tags` field out of the advanced fields section for certificate, route, and upstream configuration pages. 
 The tags field is now visible without needing to expand to see all fields.
 * Improved the user interface for Keys and Key Sets entities. 
-* Fixed a role precedence issue with RBAC. RBAC rules involving deny (negative) rules now correctly take precedence over allow (non-negative) roles.
 * You can now add tags for consumer groups in Kong Manager.
 * Fixed an issue where the plugin **Copy JSON** button didn't copy the full configuration.
 * Fixed an issue where the password reset form didn't check for matching passwords and allowed mismatched passwords to be submitted.
 * Added a link to the upgrade prompt for Konnect or Enterprise. 
-* Fixed an RBAC issue with admins, where workspace admins in one workspace would have admin rights in other workspaces. 
-Workspace admins are now correctly restricted to their own workspaces.
- 
+
 #### Plugins
 
 * Fixed an issue where the `redis.username` configuration parameter didn't work for the following plugins:
