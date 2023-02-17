@@ -126,9 +126,18 @@ This upgrade affects the following:
 
 All existing sessions are invalidated when upgrading to this version.
 For sessions to work as expected in this version, all nodes must run {{site.base_gateway}} 3.2.x or later.
+If multiple data planes run different versions, every time a user hits a different DP, 
+even for the same endpoint, the previous session is invalidated.
+
 For that reason, we recommend that during upgrades, proxy nodes with
 mixed versions run for as little time as possible. During that time, the invalid sessions could cause 
-failures and partial downtime.
+failures and partial downtime. 
+
+You can expect the following behavior:
+* **After upgrading the control plane**: Existing Kong Manager and Dev Portal sessions will be invalidated and all users will be required to log back in.
+* **After upgrading the data planes**: Existing proxy sessions will be invalidated. If you have an IdP configured, users will be required to log back into the IdP.
+
+#### Session configuration parameter changes
 
 The session library upgrade includes new, changed, and removed parameters. Here's how they function:
 
@@ -137,9 +146,16 @@ Unless configured differently, sessions expire after 900 seconds (15 minutes) of
 * The new parameter `absolute_timeout` has a default value of 86400. 
 Unless configured differently, sessions expire after 86400 seconds (24 hours).
 * All renamed parameters will still work by their old names.
-* Any removed parameters will not work anymore. They won't break your configuration, and sessions will continue to function, but they will not contribute anything to the configuration.
+* Any removed parameters will not work anymore. They won't break your configuration, and sessions will 
+continue to function, but they will not contribute anything to the configuration.
 
-Existing session configurations will still work as configured. However, we recommend updating parameters to their new renamed versions, and cleaning out any removed parameters from session configuration to avoid unpredictable behavior.
+Existing session configurations will still work as configured with the old parameters. 
+
+**Do not** change any parameters to the new ones until all CP and DP nodes are upgraded.
+
+After you have upgraded all of your CP and DP nodes to 3.2 and ensured that your environment is stable, we 
+recommend updating parameters to their new renamed versions, and cleaning out any removed parameters 
+from session configuration to avoid unpredictable behavior.
 
 #### Session plugin
 
@@ -328,6 +344,10 @@ diff the files to identify any changes, and apply them as needed.
    decommission your old nodes.
 
 ### Hybrid mode
+
+{:.important}
+> Do not make any changes to Kong configuration (`kong.conf`) or use the Admin API 
+in the middle of an upgrade. This can cause incompatibilities between data plane nodes.
 
 Perform a rolling upgrade of your cluster:
 
