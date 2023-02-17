@@ -9,7 +9,9 @@ You can set up any number of {{site.base_gateway}} runtime instances.
 A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
 serving traffic for the proxy. Data plane nodes are not directly connected
 to a database. Instead, they receive configuration from their runtime group,
-which stores and manages the configuration in {{site.konnect_saas}}.
+which stores and manages the configuration in {{site.konnect_saas}}. 
+
+In situations where forward-proxies are non-transparent, you can still connect the {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. For more information about this implementation in {{site.base_gateway}}, see [Control Plane and Data Plane Communication through a Forward Proxy](/gateway/latest/production/networking/cp-dp-proxy/) in the {{site.base_gateway}} documentation.
 
 We recommend running one major version (2.x or 3.x) of a runtime instance per
 runtime group, unless you are in the middle of version upgrades to the data plane.
