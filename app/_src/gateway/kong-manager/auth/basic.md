@@ -33,6 +33,7 @@ or a user that has `/admins` and `/rbac` read and write access.
     {% if_version gte:3.2.x %}
     * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `off`.
     {% endif_version %}
+    
     Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
 
 

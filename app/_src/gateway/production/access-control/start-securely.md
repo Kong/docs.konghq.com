@@ -29,8 +29,7 @@ may be set to `basic-auth`. See
 [Securing Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/) for other types
 of authentication.
 
-For a simple configuration to use for the subsequent Getting
-Started guides:
+Configure RBAC with basic authentication:
 
 {% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
@@ -41,7 +40,9 @@ admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":fal
 admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
 ```
 
-⚠️**Important:** the Sessions Plugin requires a secret and is configured securely by default.
+Kong Manager uses the Sessions plugin in the background.
+This plugin (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
+
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 {% if_version lte:3.1.x %}
@@ -50,6 +51,7 @@ admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
 {% if_version gte:3.2.x %}
 * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `off`.
 {% endif_version %}
+
 Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions#example-configurations).
 
 ## Step 1
