@@ -13,9 +13,9 @@ items:
         items:
           - text: Version Support Policy
             url: /support-policy/
-            src: /gateway/support
+            src: /gateway/support/index
           - text: Third Party Dependencies
-            url: /support/third-party/index
+            url: /support/third-party
           - text: Browser Support
             url: /support/browser
       - text: Stability
