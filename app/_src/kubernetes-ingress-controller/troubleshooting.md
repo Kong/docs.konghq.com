@@ -45,7 +45,7 @@ Therefore, authentication is required, which can be achieved in two different wa
    which is used by `kubectl` to connect to the API server.
    See 'kubeconfig' section for details.
 
-## Discovering API-server
+## Discovering API server
 
 Using this flag `--apiserver-host=http://localhost:8080`,
 it is possible to specify an unsecured API server or
@@ -312,23 +312,30 @@ port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pp
 {% if_version gte:2.8.x %}
 ## Translation failures
 
-{{site.kic_product_name}} translates Kubernetes resources into {{site.base_gateway}} configuration.
-It implements a set of validation rules that prevent a faulty {{site.base_gateway}} configuration from being created.
-In most cases, once the validation fails, the Kubernetes object that caused the failure is excluded
-from the translation and a corresponding translation failure warning event is recorded.
+{{site.kic_product_name}} translates Kubernetes resources into
+{{site.base_gateway}} configuration. It implements a set of validation rules
+that prevent a faulty {{site.base_gateway}} configuration from being created.
+In most cases, once the validation fails, the Kubernetes object that caused the
+failure is excluded from the translation and a corresponding translation
+failure warning event is recorded.
 
-To determine if there are any translation failures that you might want to fix, you
-can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
+To determine if there are any translation failures that you might want to fix,
+you can monitor the `ingress_controller_translation_count` [Prometheus
+metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
 
-To get a deeper insight into what went wrong during the translation, you can look into Kubernetes
-events with a `KongConfigurationTranslationFailed` reason. There's one event created for every
-object that was associated with the failure. An event's message is populated with an
-explanation of the exact reason for the failure, which should help you identify the root cause.
+To get a deeper insight into what went wrong during the translation, you can
+look into Kubernetes events with a `KongConfigurationTranslationFailed` reason.
+There's one event created for every object that was associated with the
+failure. An event's message is populated with an explanation of the exact
+reason for the failure, which should help you identify the root cause.
 
 ### Example
-In the following example, we create a service with a single port number `80`. In the Ingress definition, we specify a backend
-service that refers to a port number `8080` which does not match the one defined in the service.
-{{site.kic_product_name}} will skip the affected path and record warning events for both the service and Ingress objects.
+
+In the following example, we create a service with a single port number `80`.
+In the Ingress definition, we specify a backend service that refers to a port
+number `8080` which does not match the one defined in the service.
+{{site.kic_product_name}} will skip the affected path and record warning events
+for both the service and Ingress objects.
 
 ```yaml
 apiVersion: v1
