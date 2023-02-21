@@ -12,9 +12,10 @@ items:
       - text: Support
         items:
           - text: Version Support Policy
-            url: /support
+            url: /support-policy/
+            src: /gateway/support
           - text: Third Party Dependencies
-            url: /support/third-party
+            url: /support/third-party/index
           - text: Browser Support
             url: /support/browser
       - text: Stability
