@@ -57,7 +57,6 @@ PowerShell
 Prometheus
 Protobuf
 Resty
-SAML
 Splunk
 Stap
 Styra
@@ -216,7 +215,6 @@ middleware
 mimetype
 minifier
 minikube
-minio
 misconfigured
 mutex
 nameserver
@@ -278,7 +276,6 @@ requery
 retryOn
 rockspec
 rockspecs
-rolling_timeout
 rollout
 rollouts
 routable
@@ -300,6 +297,7 @@ ssl
 ssl_cert_key
 ssl_certificate
 sso
+SAML
 stapxx
 statsd
 stderr

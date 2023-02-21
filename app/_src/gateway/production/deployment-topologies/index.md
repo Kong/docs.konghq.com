@@ -30,7 +30,10 @@ Finally, {{ site.konnect_short_name }} supports runtime groups, which allows you
 
 ## Hybrid mode
 
-In hybrid mode, {{site.base_gateway}} nodes in a cluster are split into two roles: control plane
+Starting with {{site.base_gateway}} 2.1, {{site.base_gateway}} can be deployed in
+[hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/), which separates the control plane from the data plane.
+
+In this mode, {{site.base_gateway}} nodes in a cluster are split into two roles: control plane
 (CP), where configuration is managed and the Admin API is served from, and data
 plane (DP), which serves traffic for the proxy. Many DP nodes are connected to a single CP node. Instead of accessing the database contents directly like in the
 traditional deployment method, the DP nodes maintain connection with CP nodes,
@@ -57,7 +60,7 @@ You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declar
 
 ## DB-less and declarative mode
 
-You can enable [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, configured entities such as routes, services and plugins are stored in-memory on the node.
+Starting with {{site.base_gateway}} 1.1, you can enable [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/) to reduce complexity of and create more flexible deployment patterns. In this mode, configured entities such as routes, services and plugins are stored in-memory on the node.
 
 When running in DB-less mode, configuration is provided to {{ site.base_gateway }} using a second file. This file contains your configuration in YAML or JSON format using Kong's declarative configuration syntax.
 

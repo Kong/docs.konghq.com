@@ -20,11 +20,6 @@ params:
   service_id: true
   route_id: true
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: vary_headers
       required: false

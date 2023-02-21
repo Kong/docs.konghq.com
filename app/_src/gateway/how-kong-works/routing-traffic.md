@@ -542,20 +542,9 @@ defined URIs, in this order:
 4. `/version`
 
 Routers with a large number of regexes can consume traffic intended for other rules. Regular expressions are much more expensive to build and execute and can't be optimized easily. 
-You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). 
-
-{% if_version lte:3.1.x %}
-If you see unexpected behavior, sending `Kong-Debug: 1` in your
+You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). If you see unexpected behavior, sending `Kong-Debug: 1` in your
 request headers will indicate the matched route ID in the response headers for
-{% endif_version %}
-
-{% if_version gte:3.2.x %}
-If you see unexpected behavior, use the Kong debug header to help track down the source:
-
-1. In `kong.conf`, set [`allow_debug_header: on`](/gateway/{{page.kong_version}}/reference/configuration/#allow_debug_header).
-1. Send `Kong-Debug: 1` in your request headers to indicate the matched route ID in the response headers for
 troubleshooting purposes.
-{% endif_version %}
 
 As usual, a request must still match a route's `hosts` and `methods` properties
 as well, and {{site.base_gateway}} traverses your routes until it finds one that [matches

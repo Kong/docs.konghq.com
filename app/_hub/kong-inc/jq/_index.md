@@ -46,8 +46,6 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
   dbless_compatible: null
   examples: false
   config:

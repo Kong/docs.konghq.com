@@ -22,8 +22,6 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: aws_key
@@ -307,21 +305,6 @@ params:
       datatype: boolean
       description: |
         An optional value that Base64-encodes the request body.
-    - name: aws_imds_protocol_version
-      minimum_version: "3.2.x"
-      required: true
-      default: '`v1`'
-      datatype: string
-      description: |
-        Identifier to select the IMDS protocol version to use, either
-        `v1` or `v2`.  If `v2` is selected, an additional session
-        token is requested from the EC2 metadata service by the plugin
-        to secure the retrieval of the EC2 instance role.  Note that
-        if {{site.base_gateway}} is running inside a container on an
-        EC2 instance, the EC2 instance metadata must be configured
-        accordingly.  Please refer to "Considerations" section in the
-        ["Retrieve instance metadata" section of the EC2 manual](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html)
-        for details.
   extra: |
     **Reminder**: By default, cURL sends payloads with an
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-

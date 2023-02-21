@@ -1,20 +1,10 @@
 # Things that we're not ready to lint yet
 *.md
 *.html
-*.png 
-*.jpg
-*.svg
+
 # Build artifacts
 dist
 .vendor
 
-# Directories
-## Kuma
+# Kuma
 app/_src/.repos/kuma
-
-
-## Assets
-app/_assets/images/
-
-#Kuma
-app/

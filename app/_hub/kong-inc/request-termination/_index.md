@@ -22,8 +22,6 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: status_code

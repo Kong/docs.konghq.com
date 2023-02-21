@@ -19,17 +19,10 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
     - name: tcp
     - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   dbless_explanation: |
     The database will always be reported as reachable in Prometheus with DB-less.
