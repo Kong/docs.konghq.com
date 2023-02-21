@@ -721,6 +721,17 @@ messages:
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
       [Service entity](/gateway/latest/admin-api/#service-object)
+  - ID: D170
+    Severity: error
+    Description: |
+      For the `rate-limiting-advanced` plugin, `config.strategy` field has been set to `cluster`. 
+      This is not supported in Kong Gateway versions < 3.2.0.0. The plugin configuration has been 
+      changed to `config.strategy=local` and `sync_rate=null` in the data-plane 
+      and might not work as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.2.0.0` or above.
+    DocumentationURL: |
+      [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/)
   - ID: P101
     Severity: error
     Description: |
@@ -1352,3 +1363,14 @@ messages:
       Please upgrade Kong Gateway to version `3.2` or above.
     DocumentationURL: |
       [AWS Lambda plugin](/hub/kong-inc/aws-lambda/)
+  - ID: P162
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, instances have been configured on a specific 
+      service, route, or consumer. This is not supported in Kong Gateway versions < 3.2. 
+      The plugin has been removed in the data-plane.
+    Resolution: |
+      Unset the `service`, `route`, and `consumer` fields for the plugin, 
+      or upgrade Kong Gateway to version `3.2` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
