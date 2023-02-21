@@ -7,7 +7,7 @@ no_version: true
 
 
 ## 3.2.0.0
-**Release Date** 2023/02/15
+**Release Date** 2023/02/20
 
 ### Deprecations
 
@@ -40,14 +40,22 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
     * The JWT plugin now denies any request that has different tokens in the JWT token search locations.
       [#9946](https://github.com/Kong/kong/pull/9946)
 
-* [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`) plugins
-    * For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
-    For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
-    as little time as possible. During that time, the invalid sessions could cause failures and partial downtime.
-    
-        All existing sessions are invalidated when upgrading to this version.
-        [#10199](https://github.com/Kong/kong/pull/10199)
+* Sessions library upgrade [#10199](https://github.com/Kong/kong/pull/10199):
+    * The [`lua-resty-session`](https://github.com/bungle/lua-resty-session) library has been upgraded to v4.0.0. This version includes a full rewrite of the session library, and is not backwards compatible.
+      
+      This library is used by the following plugins: [**Session**](/hub/kong-inc/session/), [**OpenID Connect**](/hub/kong-inc/openid-connect/), and [**SAML**](/hub/kong-inc/saml). This also affects any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
 
+      All existing sessions are invalidated when upgrading to this version.
+      For sessions to work as expected in this version, all nodes must run Kong Gateway 3.2.x or later.
+      For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for
+      as little time as possible. During that time, the invalid sessions could cause failures and partial downtime.
+    
+   * Parameters:
+      * The new parameter `idling_timeout`, which replaces `cookie_lifetime`, now has a default value of 900. Unless configured differently, sessions expire after 900 seconds (15 minutes) of idling. 
+      * The new parameter `absolute_timeout` has a default value of 86400. Unless configured differently, sessions expire after 86400 seconds (24 hours).
+      * Many session parameters have been renamed or removed. Although your configuration will continue to work as previously configured, we recommend adjusting your configuration to avoid future unexpected behavior. Refer to the [upgrade guide for 3.2](/gateway/latest/upgrade/#session-library-upgrade) for all session configuration changes and guidance on how to convert your existing session configuration.
+      
+      
 ### Features
 
 #### Core
@@ -80,16 +88,18 @@ which lets you set the Nginx directive `ssl_session_cache`.
 * Added two debugging endpoints to the Admin API:
     * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
     * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
-* The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
+* **FIPS Support**:
+  * The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
 
-   If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
+    If you are migrating from {{site.base_gateway}} 3.1 to 3.2 in FIPS mode and are using the `key-auth-enc` plugin, you should send [PATCH or POST requests](/hub/kong-inc/key-auth-enc/#create-a-key) to all existing `key-auth-enc` credentials to re-hash them in SHA256.
+  * FIPS-compliant Kong Gateway packages now support PostgreSQL SSL connections. 
 
-
-#### Kong Manager
+##### Kong Manager
 
 * Improved the editor for expression fields. Any fields using the expression router now have syntax highlighting, autocomplete, and route validation.
 * Improved audit logs by adding `rbac_user_name` and `request_source`. 
-By combining the data in the new `request_source` field with the `path` field, you can now determine login and logout events from the logs.
+By combining the data in the new `request_source` field with the `path` field, you can now determine login and logout events from the logs. 
+See the documentation for more detail on [interpreting audit logs](/gateway/latest/kong-enterprise/audit-log/#kong-manager-authentication).
 * License information can now be copied or downloaded into a file from Kong Manager. 
 * Kong Manager now supports the `POST` method for OIDC-based authentication.
 * Keys and key sets can now be configured in Kong Manager.
@@ -132,6 +142,9 @@ By combining the data in the new `request_source` field with the `path` field, y
 * [**Session**](/hub/kong-inc/session/) (`session`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and [**SAML**](/hub/kong-inc/saml) (`saml`)
 
   * These plugins now use `lua-resty-session` v4.0.0. 
+
+    This update includes new session functionalities such as configuring audiences to manage multiple 
+    sessions in a single cookie, global timeout, and persistent cookies.
   
     Due to this update, there are also a number of deprecated and removed parameters in these plugins. 
     See the invidividual plugin documentation for the full list of changed parameters in each plugin.
@@ -196,6 +209,11 @@ By combining the data in the new `request_source` field with the `path` field, y
     * The Enterprise license wasn't being picked up by other nodes in a cluster.
     * Vitals routes weren't accessible.
     * Vitals wasn't showing up in hybrid mode.
+* Fixed RBAC issues:
+  * Fixed an issue where workspace admins couldn't add rate limiting policies to consumer groups.
+  * Fixed an issue where workspace admins in one workspace would have admin rights in other workspaces. 
+    Workspace admins are now correctly restricted to their own workspaces.
+  * Fixed a role precedence issue with RBAC. RBAC rules involving deny (negative) rules now correctly take precedence over allow (non-negative) roles.
 
 ##### Vitals
 
@@ -208,12 +226,14 @@ By combining the data in the new `request_source` field with the `path` field, y
 * Moved the `tags` field out of the advanced fields section for certificate, route, and upstream configuration pages. 
 The tags field is now visible without needing to expand to see all fields.
 * Improved the user interface for Keys and Key Sets entities. 
-* Fixed a role precedence issue with RBAC. RBAC rules involving deny (negative) rules now correctly take precedence over allow (non-negative) roles.
 * You can now add tags for consumer groups in Kong Manager.
 * Fixed an issue where the plugin **Copy JSON** button didn't copy the full configuration.
 * Fixed an issue where the password reset form didn't check for matching passwords and allowed mismatched passwords to be submitted.
 * Added a link to the upgrade prompt for Konnect or Enterprise. 
- 
+* Fixed an issue where any IdP user could log into Kong Manager, regardless of their role or group membership. 
+These users could see the Workspaces Overview dashboard with the default workspace, but they couldn't do anything else.
+Now, if IdP users with no groups or roles attempt to log into Kong Manager, they will be denied access.
+
 #### Plugins
 
 * Fixed an issue where the `redis.username` configuration parameter didn't work for the following plugins:
