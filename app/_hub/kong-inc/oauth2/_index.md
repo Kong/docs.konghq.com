@@ -290,7 +290,7 @@ Response:
       "credential_id": "2c74324f-fa2d-434b-b6de-bd138652158f",
       "scope": "email",
       "id": "610740e5-700a-45f0-889a-5c7f0422c48d",
-      "api_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
+      "service_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
       "token_type": "bearer"
     },
     {
@@ -300,14 +300,14 @@ Response:
       "credential_id": "2c74324f-fa2d-434b-b6de-bd138652158f",
       "scope": "email",
       "id": "edff2fc7-1634-4fb5-b714-de9435531e10",
-      "api_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
+      "service_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
       "token_type": "bearer"
     }
   ]
 }
 ```
 
-`credential_id` is the ID of the OAuth application at `kong:8001/consumers/{consumer_id}/oauth2` and `api_id` or `service_id` is the API or service that the token is valid for.
+`credential_id` is the ID of the OAuth application at `kong:8001/consumers/{consumer_id}/oauth2` and `service_id` is the API or service that the token is valid for.
 
 Note that `expires_in` is static and does not decrement based on elapsed time: you must add it to `created_at` to calculate when the token will expire.
 
