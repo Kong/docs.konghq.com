@@ -39,9 +39,9 @@ If you are running 1.x, upgrade to 2.8.2 and then 3.0.x first at minimum, then u
 In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
 then follow the [database migration](#migrate-db) instructions.
 
-## Upgrade path for {{site.base_gateway}} 3.1.x 
+## Upgrade path for {{site.base_gateway}} {{page.kong_version}} 
 
-The following table outlines various upgrade path scenarios to 3.1.x depending on the {{site.base_gateway}} version you are currently using:
+The following table outlines various upgrade path scenarios to {{page.kong_version}} depending on the {{site.base_gateway}} version you are currently using:
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
@@ -51,15 +51,19 @@ The following table outlines various upgrade path scenarios to 3.1.x depending o
 | 2.8.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
 | 2.8.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
 | 2.8.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
+
+{% if_version eq: 3.1.x %}
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#migrate-db). |
+{% endif_version %}
+{% if_version gte: 3.2.x %}
 | 3.0.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
 | 3.0.x | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
 | 3.0.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
-
-{% if_version gte: 3.2.x %}
 | 3.1.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x]
-(#migrate-db). |
-| 3.1.1.3 | Hybrid | Yes | [upgrade to 3.2.x] |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
 | 3.1.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
 {% endif_version %}
 
