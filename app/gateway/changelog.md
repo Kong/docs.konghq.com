@@ -6,8 +6,8 @@ no_version: true
 <!-- vale off -->
 
 
-##3.2
-** We have temporarily rolled back the 3.2.0.0 release to address some irregularities. We will restore this release soon. ** 
+## 3.2
+**We have temporarily rolled back the 3.2.0.0 release to address some irregularities. We will restore this release soon.** 
 
 ## 3.1.1.3
 **Release Date** 2023/01/30
