@@ -21,17 +21,11 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
     - name: tcp
     - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
     - name: udp
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: local_service_name
@@ -235,19 +229,6 @@ params:
         Set a header name to append to responses. This header name
         is sent to the client, making it possible to trace the ID of the
         correlated request.
-    - name: phase_duration_flavor
-      minimum_version: "3.2.x"
-      required: true
-      default: annotations
-      value_in_examples: null
-      datatype: string
-      description: |
-        Specify whether to include the duration of each phase as an annotation or a tag.
-
-        Options:
-        * `annotations`: Include the duration of each phase as an annotation. This is the default.
-        * `tags`: Include the duration of each phase as a tag.
-
 
 ---
 ## How it Works

@@ -20,11 +20,6 @@ params:
   route_id: true
   consumer_id: true
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: body_schema
       required: semi

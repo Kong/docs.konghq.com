@@ -74,7 +74,7 @@ Connection: keep-alive
 Content-Length: 6342
 Content-Type: application/json; charset=utf-8
 Date: Wed, 27 Mar 2019 15:24:58 GMT
-Server: kong/{{page.versions.ce}}
+Server: kong/2.1.0
 {
     "configuration:" {
        ...
@@ -82,7 +82,7 @@ Server: kong/{{page.versions.ce}}
        ...
     },
     ...
-    "version": "{{page.versions.ce}}"
+    "version": "2.1.0"
 }
 ```
 
@@ -105,7 +105,7 @@ Connection: keep-alive
 Content-Length: 23
 Content-Type: application/json; charset=utf-8
 Date: Wed, 27 Mar 2019 15:30:02 GMT
-Server: kong/{{page.versions.ce}}
+Server: kong/2.1.0
 
 {
     "data": [],

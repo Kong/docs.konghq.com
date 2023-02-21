@@ -3,22 +3,22 @@ title: Hybrid Mode Overview
 ---
 
 Traditionally, Kong has always required a database, to store configured 
-entities such as routes, services, and plugins. Hybrid mode,
-also known as control plane / data plane separation (CP/DP), removes the
-need for a database on every node.
+entities such as Routes, Services, and Plugins.
+
+Starting with {{site.base_gateway}} 2.1, Kong can be deployed in
+hybrid mode, also known as control plane / data plane separation (CP/DP).
 
 In this mode, Kong nodes in a cluster are split into two roles: control plane
 (CP), where configuration is managed and the Admin API is served from; and data
 plane (DP), which serves traffic for the proxy. Each DP node is connected to one
-of the CP nodes, and only the CP nodes are directly connected to a database.
-
-Instead of accessing the database contents directly, the DP nodes maintain a 
-connection with CP nodes to receive the latest configuration.
+of the CP nodes. Instead of accessing the database contents directly in the
+traditional deployment method, the DP nodes maintain connection with CP nodes,
+and receive the latest configuration.
 
 ![Hybrid mode topology](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
 
 When you create a new data plane node, it establishes a connection to the
-control plane. The control plane listens on port `8005` for connections and
+control plane. The control plane listens on port 8005 for connections and
 tracks any incoming data from its data planes.
 
 Once connected, every Admin API or Kong Manager action on the control plane

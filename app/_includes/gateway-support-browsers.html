@@ -1,4 +1,0 @@
-{% for d in include.data.browsers %}
-* **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
-  {% endif %}
-{% endfor %}

@@ -12,16 +12,9 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
 The Plugin Development Kit (PDK) is set of Lua functions and variables
- that can be used by plugins to implement their own logic.
- {% if_version lte:3.0.x %}
- The PDK is a
+ that can be used by plugins to implement their own logic.  The PDK is a
  [Semantically Versioned](https://semver.org/) component, originally
- released in Kong 0.14.0.
- {% endif_version %}
- {% if_version gte:3.1.x %}
- The PDK is originally released in Kong 0.14.0.
- {% endif_version %}
- The PDK is guaranteed to be forward-compatible
+ released in Kong 0.14.0. The PDK is guaranteed to be forward-compatible
  from its 1.0.0 release and onward.
 
  The Plugin Development Kit is accessible from the `kong` global variable,

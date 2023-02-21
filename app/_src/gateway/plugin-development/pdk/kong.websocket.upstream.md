@@ -192,6 +192,9 @@ Set the maximum allowed payload size for upstream frames.
 ``` lua
 -- set a max payload size of 1KB
 kong.websocket.upstream.set_max_payload_size(1024)
+
 -- Restore the default limit
 kong.websocket.upstream.set_max_payload_size(0)
 ```
+
+

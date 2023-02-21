@@ -164,9 +164,8 @@ params:
 
         In DB-less and hybrid modes, the `cluster` config strategy
         is not supported. From `3.0.0.0` onwards, Kong disallows
-        the plugin enablement if strategy is `cluster` and `sync_rate` is `-1`
-        with DB-less or hybrid mode. From `3.2.0.0` onward, please
-        use a different strategy or set `sync_rate` to `-1`.
+        the plugin enablement if `cluster` strategy is set with DB-less
+        or hybrid mode.
 
         In Konnect, the default strategy is `redis`.
 

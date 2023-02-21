@@ -26,8 +26,6 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: allowed_payload_size

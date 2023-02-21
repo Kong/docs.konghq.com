@@ -31,11 +31,6 @@ params:
   route_id: true
   konnect_examples: false
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: introspection_url
       required: true

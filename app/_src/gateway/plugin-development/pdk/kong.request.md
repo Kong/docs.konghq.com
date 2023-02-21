@@ -732,33 +732,3 @@ Returns the request start time, in Unix epoch milliseconds.
 ``` lua
 kong.request.get_start_time() -- 1649960273000
 ```
-
-
-{% if_version gte:3.2.x %}
-## kong.request.get_uri_captures()
-
-Returns the URI captures matched by the router.
-
-**Phases**
-
-* rewrite, access, header_filter, response, body_filter, log, admin_api
-
-**Returns**
-
-* `table`:  tables containing unamed and named captures.
-
-
-**Usage**
-
-``` lua
-local captures = kong.request.get_uri_captures()
-for idx, value in ipairs(captures.unnamed) do
-  -- do what you want to captures
-end
-for name, value in pairs(captures.named) do
-  -- do what you want to captures
-end
-```
-{% endif_version %}
-
-

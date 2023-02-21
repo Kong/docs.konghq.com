@@ -22,11 +22,6 @@ kong_version_compatibility:
 params:
   name: kafka-upstream
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: bootstrap_servers
       required: true

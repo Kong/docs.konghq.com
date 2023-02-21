@@ -26,11 +26,6 @@ params:
   route_id: true
   consumer_id: true
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: http_proxy_host
       minimum_version: "2.8.x"

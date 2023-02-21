@@ -20,11 +20,6 @@ params:
   consumer_id: true
   konnect_examples: false
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: path
       required: semi

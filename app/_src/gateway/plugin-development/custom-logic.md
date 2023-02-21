@@ -503,7 +503,6 @@ forward-proxy               | 50
 canary                      | 20
 opentelemetry               | 14
 prometheus                  | 13
-datadog-tracing             | 13
 http-log                    | 12
 statsd                      | 11
 statsd-advanced             | 11

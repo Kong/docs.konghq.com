@@ -68,8 +68,9 @@ Sets the host and port on which to connect to for proxying the request.
  Load-balancing components such as retries and health-checks will also be
  ignored for this request.
 
- The `host` argument expects the hostname or IP address of the upstream
- server, and the `port` expects a port number.
+ The `host` argument expects a string containing the IP address of the
+ upstream server (IPv4/IPv6), and the `port` argument must contain a number
+ representing the port on which to connect to.
 
 
 **Phases**

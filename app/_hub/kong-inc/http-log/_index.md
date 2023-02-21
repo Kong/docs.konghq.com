@@ -20,13 +20,13 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
     - name: tcp
     - name: tls
     - name: tls_passthrough
       minimum_version: "2.7.x"
     - name: udp
+    - name: grpc
+    - name: grpcs
     - name: ws
       minimum_version: "3.1.x"
     - name: wss

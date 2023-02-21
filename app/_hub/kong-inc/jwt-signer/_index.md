@@ -37,7 +37,7 @@ params:
   config:
     - name: realm
       required: false
-      default: null
+      default: ngx.var.host
       datatype: string
       description: |
         When authentication or authorization fails, or there is an unexpected
@@ -73,7 +73,7 @@ params:
       default: kong
       datatype: string
       description: |
-        The name of the keyset containing signing keys.
+        Selects the private key for access token signing.
     - name: access_token_jwks_uri
       required: false
       default: null
@@ -86,7 +86,7 @@ params:
         `401 Unauthorized`.
     - name: access_token_request_header
       required: false
-      default: Authorization
+      default: authorization
       datatype: string
       description: |
         This parameter tells the name of the header where to look for the access token.
@@ -159,18 +159,21 @@ params:
         values. Valid values are `id`, `username`, and `custom_id`.
     - name: access_token_upstream_header
       required: false
-      default: 'Authorization:bearer'
+      default: 'authorization:bearer'
       datatype: string
       description: |
         Removes the `config.access_token_request_header` from the request after reading its
-        value. With `config.access_token_upstream_header`, you can specify the upstream header where the plugin adds the Kong signed token. If you don't specify a value, such as use `null` or `""` (empty string), the plugin does not even try to sign or re-sign the token.
+        value. With `config.access_token_upstream_header`, you can specify the upstream header where the
+        plugin adds the Kong signed token. If you don't specify a value,
+        such as use `null` or `""` (empty string), the plugin does not even try to
+        sign or re-sign the token.
     - name: access_token_upstream_leeway
       required: false
       default: 0
       datatype: number
       description: |
         If you want to add or perhaps subtract (using a negative value) expiry
-        time (in seconds) of the original access token, you can specify a value that is added to
+        time of the original access token, you can specify a value that is added to
         the original access token's `exp` claim.
     - name: access_token_introspection_endpoint
       required: false
@@ -402,7 +405,7 @@ params:
       default: kong
       datatype: string
       description: |
-        The name of the keyset containing signing keys.
+        Selects the private key for channel token signing.
     - name: channel_token_jwks_uri
       required: false
       default: null

@@ -19,11 +19,6 @@ params:
   route_id: true
   consumer_id: false
   dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
   config:
     - name: checked_content_types
       required: true

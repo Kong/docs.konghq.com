@@ -35,8 +35,6 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: grpc
-    - name: grpcs
   dbless_compatible: 'yes'
   dbless_explanation: |
     {:.note}
