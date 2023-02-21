@@ -230,6 +230,9 @@ The tags field is now visible without needing to expand to see all fields.
 * Fixed an issue where the plugin **Copy JSON** button didn't copy the full configuration.
 * Fixed an issue where the password reset form didn't check for matching passwords and allowed mismatched passwords to be submitted.
 * Added a link to the upgrade prompt for Konnect or Enterprise. 
+* Fixed an issue where any IdP user could log into Kong Manager, regardless of their role or group membership. 
+These users could see the Workspaces Overview dashboard with the default workspace, but they couldn't do anything else.
+Now, if IdP users with no groups or roles attempt to log into Kong Manager, they will be denied access.
 
 #### Plugins
 
