@@ -25,13 +25,17 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
     - name: tcp
     - name: tls
     - name: tls_passthrough
       minimum_version: "2.7.x"
     - name: udp
-    - name: grpc
-    - name: grpcs
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: host
@@ -124,6 +128,11 @@ params:
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
       minimum_version: "3.1.x"
+    - name: tag_style
+      required: false
+      datatype: string
+      description: The tag style configurations to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics. Allowed values are  `dogstatsd`, `influxdb`, `librato`, and `signalfx`.
+      minimum_version: 3.2.x
   extra: |
     By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
     configures the greatest datagram size the plugin can combine. It should be less than
@@ -148,6 +157,9 @@ Metric                     | Description | Namespace
 `status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
 `status_count_per_user_per_route`    | The status code per consumer per route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
+`cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
+
 {% endif_plugin_version %}
 {% if_plugin_version lte:2.8.x %}
 Metric                     | Description | Namespace
@@ -174,6 +186,49 @@ Metric                     | Description | Namespace
 `latency`                  | The time interval between when the request started and when the response is received from the upstream server. | `kong.global.unmatched.latency`
 `status_count`             | The status count. | `kong.global.unmatched.status.<status>.count`
 `kong_latency`             | The internal Kong latency in milliseconds that it took to run all the plugins. | `kong.global.unmatched.kong_latency`
+
+{% if_plugin_version gte:3.2.x %}
+If you enable the `tag_style` configuration for the StatsD plugin, the following metrics are sent instead:
+Metric                     | Description | Namespace
+---                        | ---         | ---
+`request_count`            | The number of requests. | `kong.request.count`
+`request_size`             | The request's body size in bytes. | `kong.request.size`
+`response_size`            | The response's body size in bytes. | `kong.response.size`
+`latency`                  | The time interval in milliseconds between the request and response. | `kong.latency`
+`request_per_user`         | Tracks the request count per consumer. | `kong.request.count`
+`upstream_latency`         | Tracks the time in milliseconds it took for the final service to process the request. | `kong.upstream_latency`
+`shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
+`cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.cache_datastore_misses_total`
+
+
+
+The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which are used like Prometheus labels.
+
+For Librato-style tags, they must be appended to the metric name with a delimiting #, for example:
+`metric.name#tagName=val,tag2Name=val2:0|c`
+See the [Librato StatsD](https://github.com/librato/statsd-librato-backend#tags) documentation for more information.
+
+For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, for example:
+`metric.name,tagName=val,tag2Name=val2:0|c`
+See the [InfluxDB StatsD](https://www.influxdata.com/blog/getting-started-with-sending-statsd-metrics-to-telegraf-influxdb/#introducing-influx-statsd) documentation for more information.
+
+For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, for example:
+`metric.name:0|c|#tagName:val,tag2Name:val2`
+See the [Datadog StatsD Tags](https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging) documentation for more information about the concept description and Datagram Format.
+(AWS CloudWatch)[https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html] also uses the DogStatsD protocol.
+
+For SignalFX dimension, add the tags to the metric name in square brackets, for example:
+`metric.name[tagName=val,tag2Name=val2]:0|c`
+See the [SignalFX StatsD](https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics) documentation for more information.
+
+So when the `tag_style` config is enabled, {{site.base_gateway}} uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
+
+For example:
+
+`kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c`
+
+{% endif_plugin_version %}
 
 ### Metric Fields
 
@@ -214,6 +269,9 @@ Field         | Description                                             | Dataty
 
 ---
 ## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+* Added the `tag_style` configuration parameter. This allows you to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics.
 
 **{{site.base_gateway}} 3.1.x**
 * Added support for managing queues and connection retries when sending messages to the upstream with 

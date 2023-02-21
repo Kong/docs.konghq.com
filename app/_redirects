@@ -279,7 +279,7 @@
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
 /konnect/legacy/*                                    /konnect/
-
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
 
 #API Redirects
 
@@ -834,3 +834,9 @@
 
 # 3.1
 /gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
+
+
+#3.2
+
+/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object

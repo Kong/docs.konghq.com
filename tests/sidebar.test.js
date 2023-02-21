@@ -115,8 +115,8 @@ describe("sidenav versions", () => {
     {
       title: "Root page links to /latest/",
       src: "/gateway/latest/",
-      link_text: "Supported Linux Distributions",
-      expected_url: "/gateway/latest/os-support",
+      link_text: "Get Kong",
+      expected_url: "/gateway/latest/get-started/",
     },
     {
       title: "Versioned root page links to the correct version",
@@ -127,8 +127,8 @@ describe("sidenav versions", () => {
     {
       title: "Sub page links to latest",
       src: "/gateway/latest/admin-api/",
-      link_text: "Supported Linux Distributions",
-      expected_url: "/gateway/latest/os-support",
+      link_text: "Get Kong",
+      expected_url: "/gateway/latest/get-started/",
     },
     {
       title: "Versioned sub page links to the correct version",

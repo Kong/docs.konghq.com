@@ -9,6 +9,10 @@ This page describes {{site.base_gateway}}'s capabilities to manage asymmetric ke
 
 For some operations, access to public and private keys is required. This document also describes how to grant access to those keys using {{site.base_gateway}}.
 
+{% if_version gte:3.2.x %}
+>This feature is available in both {site.konnect_short_name}}, and Kong Manager. In **Konnect**, you can manage keys as a  **Runtime Manager** entity. In Kong Manager, it is available from the **API Gateway** drop-down. 
+{% endif_version %}
+{:.note}
 
 ### Use cases
 
@@ -25,7 +29,6 @@ Some {{site.base_gateway}} plugins offer a custom endpoint to configure JSON Web
 ### Keys endpoint
 
 The generic `Keys` endpoint allows you to store asymmetric keys, either a public or private key, as a JWK or PEM. A configurable `kid` string is required to identify the key. The `kid` attribute is a common way to identify the key that should be used to verify or decrypt a token, but it can be used in other scenarios when you must identify a key.
-
 
 ### Key Sets endpoint
 

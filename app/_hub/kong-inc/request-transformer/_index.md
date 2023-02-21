@@ -29,6 +29,17 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: http_method

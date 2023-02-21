@@ -96,7 +96,7 @@ route_body: |
     Attributes | Description
     ---:| ---
     `name`<br>*optional* | The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
-    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
+    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When it is set to only `"http"`, this is essentially the same as `["http", "https"]` in that both HTTP and HTTPS requests are allowed. Default: `["http", "https"]`.
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
@@ -214,6 +214,7 @@ plugin_body: |
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
+    `instance_name`<br>*optional* | The Plugin instance name.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
@@ -228,6 +229,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
+        "instance_name": rate-limiting-foo,
         "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
@@ -603,7 +605,7 @@ vault_body: |
     ---:| ---
     `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
     `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
-    `description`<br>*optional* |  The description of the Vault entity.
+    `description`<br>*optional* |  The description of the Vault object.
     `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
     `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
@@ -1380,7 +1382,7 @@ HTTP 200 OK
             "type": "boolean"
         },
         "key_names": {
-            "default": "function",
+            "default": ["apikey"],
             "required": true,
             "type": "array"
         }
@@ -1931,6 +1933,186 @@ HTTP 200 OK
 }
 ```
 
+---
+{% if_version gte:3.2.x %}
+### Get state of the CPU profiling
+{:.badge .enterprise}
+
+Get the current CPU profiling state.
+
+<div class="endpoint get">/debug/profiling/cpu</div>
+
+#### Response
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "status": "started",
+    "path": "/usr/local/kong/profiling/prof-<pid>-<timestamp>.cbt",
+    "pid": 12345,
+    "mode": "time",
+    "interval": 100,
+    "remain": 12
+}
+```
+
+Attributes | Description
+---:| ---
+`status` | The current profiling status. Can be `started` or `stopped`.
+`path`   |  The path to the result file.
+`pid`    | The PID of worker under the profiling.
+`remain` | How many seconds until timeout.
+
+### Start CPU profiling
+{:.badge .enterprise}
+
+Start CPU profiling to generate the raw data of flamegraph.
+There are two modes of CPU profiling: `time` and `instruction`.
+- `time` mode: This mode records the stacktrace periodically. The
+    `interval` parameter specifies the interval (in microsecond) of
+    the periodic recording. The higher the value, the less accurate
+    the result will be. The more accurate the result is, the more
+    performance impact it will have. The default value is `100`.
+- `instruction` mode: Each time a byte code is executed, the
+    instruction counter will be descresed by 1. When the instruction
+    counter reaches 0, the stacktrace will be recorded and the
+    instruction counter will be reset to the `step` parameter. The
+    higher the value of `step`, the less accurate the result will be.
+    The more accurate the result is, the more performance impact it
+    will have. The default value is `250`.
+The profiling will be stopped automatically after the `timeout`
+You can use the GET method to check the current profiling state,
+such as the path of the result file.
+
+<div class="endpoint post">/debug/profiling/cpu</div>
+
+{:.indent}
+
+Attributes | Default | Description
+---:| ---
+`mode`<br>**required**    | time              | Profiling mode. Can be `time` or `instruction`.
+`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in seconds).
+`pid`<br>**required**     | Random Worker     | The PID of worker to profiling. If not specified, a random worker will be chosen.
+`step`<br>**required**    | 250               | Only for `mode = instruction`. The initial value of the instruction counter.
+`interval`<br>**required**| 100               | Only for `mode = time`. The sampling interval (in microseconds).
+
+
+
+
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{
+    "status": "started",
+    "message": "profiling is activated at pid: 12345"
+}
+```
+
+```
+HTTP 409 Conflict
+```
+
+```json
+{
+    "status": "error",
+    "message": "profiling is already active at pid: 123"
+}
+```
+
+### Stop the CPU profiling
+{:.badge .enterprise}
+
+Stop the CPU profiling and generate the result file.
+You can use the GET method to check the current or the last profiling state,
+such as the path of the result file.
+
+<div class="endpoint delete">/debug/profiling/cpu</div>
+
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+
+### Get the state of GC snapshot
+{:.badge .enterprise}
+
+Get the current CPU profiling state.
+
+<div class="endpoint get">/debug/profiling/gc-snapshot</div>
+
+#### Response
+
+ ```
+HTTP 200 OK
+```
+
+```json
+{
+    "status": "started",
+    "path": "/usr/local/kong/profiling/gc-snapshot-<pid>-<timestamp>.cbt",
+    "pid": 12345,
+    "remain": 12
+}
+```
+
+Attributes | Description
+---:| ---
+`status` | The current profiling status. Can be `started` or `stopped`.
+`path`   |  The path to the result file.
+`pid`    | The PID of worker under the profiling.
+`remain` | How many seconds until timeout.
+
+
+### Start GC snapshot
+{:.badge .enterprise}
+
+Start GC snapshot and save the result file.
+The snapshot file is encoded using an internal format.
+
+<div class="endpoint post">/debug/profiling/gc-snapshot</div>
+
+{:.indent}
+Attributes | Default | Description
+---:| ---
+`timeout`<br>**required** | 60                | Profiling will be stopped automatically after the timeout (in seconds).
+`pid`<br>**required**     | Random Worker     | The PID of worker to profiling. If not specified, a random worker will be chosen.
+
+#### Response
+
+```
+HTTP 201 OK
+```
+
+```json
+{
+"status": "started",
+"message": "Dumping snapshot in progress on pid: 12345"
+}
+```
+
+```
+HTTP 409 Conflict
+```
+
+```json
+{
+"status": "error",
+"message": "gc-snapshot is already active at pid: 123"
+}
+```
+
+{% endif_version %}
+
 {% endunless %}
 
 ---
@@ -2318,7 +2500,7 @@ Learn more about the router:
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will not be configurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
 > will support `path_handling` `"v1'` behavior.
@@ -4789,9 +4971,9 @@ HTTP 200 OK
 ---
 
 
-## Vaults Entity
+## Vaults Object
 
-Vault entities are used to configure different Vault connectors. Examples of
+Vault object are used to configure different Vault connectors. Examples of
 Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager.
 
 Configuring a Vault allows referencing the secrets with other entities. For
@@ -4998,7 +5180,7 @@ HTTP 204 No Content
 
 ---
 {% unless page.edition == "konnect" %}
-## Keys Entity
+## Keys Object
 
 A Key object holds a representation of asymmetric keys in various formats.
 When Kong or a Kong plugin requires a specific public or private key to perform
@@ -5266,7 +5448,7 @@ HTTP 204 No Content
 
 ## Key Sets Entity
 
-An Key Set object holds a collection of asymmetric key objects.
+A Key Set object holds a collection of asymmetric key objects.
 This entity allows to logically group keys by their purpose.
 
 Key Sets can be both [tagged and filtered by tags](#tags).
