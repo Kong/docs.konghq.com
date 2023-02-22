@@ -53,15 +53,15 @@
 
   {% if include.about_this %}
     {% include_cached plugins/about_this.html
-                      extn_type=extn_type
-                      extn_versions=extn_versions
-                      extn_data=extn_data
-                      extn_release=extn_release
-                      extn_publisher=extn_publisher
-                      extn_latest=extn_latest
-                      compat=compat
-                      ee_compatible=ee_compatible
-                      ce_compatible=ce_compatible
+                      extn_type=include.extn_type
+                      extn_versions=include.extn_versions
+                      extn_data=include.extn_data
+                      extn_release=include.extn_release
+                      extn_publisher=include.extn_publisher
+                      extn_latest=include.extn_latest
+                      compat=include.compat
+                      ee_compatible=include.ee_compatible
+                      ce_compatible=include.ce_compatible
     %}
   {% endif %}
 </aside>
