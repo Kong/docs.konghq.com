@@ -823,8 +823,9 @@
 
 # 3.0
 
-/gateway/2.8.x/install-and-run/                   /gateway/latest/install-and-run/os-support
-/gateway/2.8.x/install-and-run/centos/            /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/install-and-run/                   /gateway/latest/support-policy/
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/support-policy/
+/gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
 /gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
 /gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
 /gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
@@ -840,3 +841,9 @@
 
 /gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
 /gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/latest/os-support/                     /gateway/latest/support-policy/
+/gateway/latest/install-support/                /gateway/latest/support-policy/
+/gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
+/gateway/3.2.x/install-support/                /gateway/latest/support-policy/
