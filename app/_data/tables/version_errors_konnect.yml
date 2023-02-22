@@ -448,7 +448,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-entity)
+      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
   - ID: D147
     Severity: error
     Description: |
