@@ -509,6 +509,28 @@ For all available properties, see the
 [Target object](/gateway/latest/admin-api/#target-object) documentation.
 
 {% endnavtab %}
+{% navtab Plugins %}
+
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+<!-- codeblock tabs -->
+{% navtabs codeblock %}
+{% navtab cURL %}
+```sh
+curl -i http://localhost:8001/schemas/plugins/<plugin-name>
+```
+{% endnavtab %}
+{% navtab HTTPie %}
+```sh
+http :8001/schemas/plugins/<plugin-name>
+```
+{% endnavtab %}
+{% endnavtabs %}
+<!-- end codeblock tabs -->
+
+decK doesn't support setting custom default values for the plugin object.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## See also

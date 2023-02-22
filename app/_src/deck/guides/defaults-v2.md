@@ -2,6 +2,8 @@
 title: Set Up Object Defaults
 content_type: how-to
 ---
+<!--old version of topic; for the current version, see defaults.md -->
+
 Use object defaults to enforce a set of standard values and avoid
 repetition in your configuration.
 
