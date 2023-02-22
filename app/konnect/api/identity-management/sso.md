@@ -1,9 +1,9 @@
 ---
-title: [Preview] SSO Customization Options for Konnect
+title: Preview of SSO Customization Options for Konnect
 content-type: how-to
 ---
 
-# Set up SSO for Konnect
+# Set up SSO for Konnect [Preview]
 
 * [Overview](#overview)
 * [Configuration](#configuration)
