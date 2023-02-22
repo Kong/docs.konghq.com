@@ -8,7 +8,7 @@ describe("Page titles", () => {
     {
       title: "Plugin Page (generated)",
       src: "/hub/kong-inc/application-registration/",
-      expected: "Portal Application Registration plugin | Kong Docs",
+      expected: "Portal Application Registration Overview | Kong Docs",
     },
   ].forEach((t) => {
     test(t.title, async () => {

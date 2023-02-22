@@ -2,7 +2,7 @@
 {% capture page_title %}{{
 include.title | escape }}{% if include.kong_version and include.no_version != true %} - v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
 site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.title }}
- | {{site.title}}{% endcapture %}
+| {{site.title}}{% endcapture %}
 {% endunless %}
 
 <head>
