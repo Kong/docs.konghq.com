@@ -58,6 +58,10 @@ module PluginSingleSource
       def page_attributes
         super.merge('layout' => 'extension')
       end
+
+      def page_title
+        "#{@release.frontmatter['name']} Overview"
+      end
     end
   end
 end

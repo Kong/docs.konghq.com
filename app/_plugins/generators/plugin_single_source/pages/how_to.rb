@@ -24,6 +24,10 @@ module PluginSingleSource
       def ssg_hub
         false
       end
+
+      def page_title
+        "Using the #{@release.frontmatter['name']} plugin"
+      end
     end
   end
 end

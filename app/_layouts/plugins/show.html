@@ -17,39 +17,21 @@ type: plugin
 <div class="search-selector">Plugin Hub</div>
 
 <div class="page page-extension-profile">
-  {% if page.header_icon or page.header_title %}
-    {% include_cached header.html
-                      is_latest=page.is_latest
-                      id=page.id
-                      url=page.url
-                      breadcrumbs=page.breadcrumbs
-                      name=page.header_title
-                      img=page.header_icon
-                      plus=page.plus
-                      enterprise=page.enterprise
-                      cloud=page.cloud
-                      publisher=page.publisher
-                      extn_versions=extn_versions
-                      extn_publisher=page.extn_publisher
-                      extn_slug=extn_slug
-    %}
-  {% else %}
-    {% include_cached header.html
-                      is_latest=page.is_latest
-                      id=page.id
-                      url=page.url
-                      breadcrumbs=page.breadcrumbs
-                      name=page.name
-                      img=page.extn_icon
-                      plus=page.plus
-                      enterprise=page.enterprise
-                      cloud=page.cloud
-                      publisher=page.publisher
-                      extn_versions=extn_versions
-                      extn_publisher=page.extn_publisher
-                      extn_slug=page.extn_slug
-    %}
-  {% endif %}
+  {% include_cached header.html
+                    is_latest=page.is_latest
+                    id=page.id
+                    url=page.url
+                    breadcrumbs=page.breadcrumbs
+                    name=page.title
+                    img=page.extn_icon
+                    plus=page.plus
+                    enterprise=page.enterprise
+                    cloud=page.cloud
+                    publisher=page.publisher
+                    extn_versions=extn_versions
+                    extn_publisher=page.extn_publisher
+                    extn_slug=page.extn_slug
+  %}
 
   <div class="container">
     {% capture full_content %}

@@ -56,7 +56,8 @@ module PluginSingleSource
       def page_attributes
         @page_attributes ||= {
           'ssg_hub' => ssg_hub,
-          'layout' => 'plugins/show'
+          'layout' => 'plugins/show',
+          'title' => page_title
         }
       end
 
