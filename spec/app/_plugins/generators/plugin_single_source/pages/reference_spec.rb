@@ -48,7 +48,8 @@ RSpec.describe PluginSingleSource::Pages::Reference do
           'canonical_url' => '/hub/acme/jwt-signer/reference/',
           'source_file' => '_hub/acme/jwt-signer/_2.2.x/reference/_index.md',
           'permalink' => 'hub/acme/jwt-signer/2.5.x/reference.html',
-          'ssg_hub' => false
+          'ssg_hub' => false,
+          'title' => 'Kong JWT Signer plugin reference'
         })
       end
     end
@@ -64,7 +65,8 @@ RSpec.describe PluginSingleSource::Pages::Reference do
           'canonical_url' => nil,
           'source_file' => '_hub/acme/jwt-signer/reference/_index.md',
           'permalink' => 'hub/acme/jwt-signer/reference/',
-          'ssg_hub' => false
+          'ssg_hub' => false,
+          'title' => 'Kong JWT Signer plugin reference'
         })
       end
     end

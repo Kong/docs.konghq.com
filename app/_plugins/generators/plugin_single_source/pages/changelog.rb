@@ -20,6 +20,10 @@ module PluginSingleSource
       def ssg_hub
         false
       end
+
+      def page_title
+        "#{@release.frontmatter['name']} Changelog"
+      end
     end
   end
 end
