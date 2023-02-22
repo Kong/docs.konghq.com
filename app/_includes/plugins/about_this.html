@@ -18,11 +18,11 @@
     <tr class="publisher">
       <td>Made by</td>
       <td>
-      {% unless include.extn_publisher == "kong-inc" %}
-        {{ page.publisher }}
-      {% else %}
+      {% if include.extn_publisher == "kong-inc" %}
         <img src="/assets/images/KogoBlue.svg" alt="Kong-logo"/> {{site.company_name}}
-      {% endunless %}
+      {% else %}
+        {{ page.publisher }}
+      {% endif %}
       </td>
     </tr>
     <tr class="categories">
