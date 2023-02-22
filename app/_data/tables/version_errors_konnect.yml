@@ -1110,7 +1110,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-entity)
+      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
   - ID: P136
     Severity: error
     Description: |
@@ -1175,7 +1175,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [Keys entity](/gateway/latest/admin-api/#keys-entity)
+      [Keys entity](/gateway/latest/admin-api/#keys-object)
   - ID: P142
     Severity: error
     Description: |
@@ -1184,7 +1184,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1` or above.
     DocumentationURL: |
-      [Key Sets entity](/gateway/latest/admin-api/#key-sets-entity)
+      [Key Sets entity](/gateway/latest/admin-api/#keys-object)
   - ID: P144
     Severity: error
     Description: |
