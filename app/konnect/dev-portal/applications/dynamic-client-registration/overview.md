@@ -15,6 +15,10 @@ These methods include:
 <p align="center">
   <img src="/assets/images/docs/konnect/dcr-auth-methods.png" />
 </p>
+Each method is available when using [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0), [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity), or [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta) as the DCR Identity Provider.
+
+{:.note}
+> **Note:** When using DCR for a Dev Portal, each application will automatically recieve a client ID and secret. This can be used to authenticate with services directly if using the Client Credentials Grant, or can be used to obtain an access token from the Identity Provider if using the Bearer Token authentication method.
 
 ## Authentication with bearer tokens
 If you have checked `Bearer Access Token`, then you can request a token from the IdP's `/token` endpoint and use the returned token as a Bearer Token:
