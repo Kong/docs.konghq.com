@@ -22,7 +22,7 @@ module PluginSingleSource
         @data
       end
 
-      def page_attributes
+      def page_attributes # rubocop:disable Metrics/MethodLength
         {
           'is_latest' => @release.latest?,
           'seo_noindex' => @release.latest? ? nil : true,
@@ -31,7 +31,9 @@ module PluginSingleSource
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
           'extn_icon' => extn_icon,
-          'layout' => layout
+          'layout' => layout,
+          'page_type' => 'plugin',
+          'book' => "plugins/#{@release.vendor}/#{@release.name}/#{@release.version}"
         }
       end
 
