@@ -34,11 +34,11 @@ If you have checked `Bearer Access Token`, then you can request a token from the
 
 Token endpoints for IdPs are:
 
-| Vendor  | Endpoint  | Variables                                 |
+| Vendor  | Endpoint  | Body                                 |
 |:------|--------|----------------------------------------|
-| Auth0 | `https://<your-subdomain>.us.auth0.com/oauth/token` | `{ "grant_type": "client_credentials", "audience": "<your_audience>" }` |
-| Curity | `https://curity.konger.me/oauth/v2/oauth-token` | `{ "grant_types": "client_credentials" }` |
-| Okta | POST `https://<your-subdomain>.okta.com/oauth2/default/v1/token` | `{ "grant_types": "client_credentials" }` |
+| Auth0 | POST `https://YOUR_AUTH0_SUBDOMAIN.REGION.auth0.com/oauth/token` | `{ "grant_type": "client_credentials", "audience": "<your_audience>" }` |
+| Curity | POST `https://YOUR_CURITY_DOMAIN/oauth/v2/oauth-token` | `{ "grant_types": "client_credentials" }` |
+| Okta | POST `https://YOUR_OKTA_SUBDOMAIN.okta.com/oauth2/default/v1/token` | `{ "grant_types": "client_credentials" }` |
 
 
 
