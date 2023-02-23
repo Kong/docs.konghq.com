@@ -42,12 +42,12 @@ curl -i -X PUT https://global.api.konghq.com/v2/audit-log-webhook \
 Replace the following placeholders with your own data:
 * `PAT`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) for the organization that you're tracking.
 * `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages.
-* `"authorization":"example-token"`: The authorization credentials for your log collection service. 
-{{site.konnect_short_name}} supports any authorization header type.
+* `"authorization":"Bearer example-token"`: The authorization type and credential to pass to your log collection endpoint. 
+{{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint.
 
     For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`
 
-If the connection is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details: 
+If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details: 
 
 ```json
 {
