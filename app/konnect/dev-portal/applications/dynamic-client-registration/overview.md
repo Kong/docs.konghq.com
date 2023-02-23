@@ -40,5 +40,7 @@ Token endpoints for IdPs are:
 | Curity | POST `https://YOUR_CURITY_DOMAIN/oauth/v2/oauth-token` | `{ "grant_types": "client_credentials" }` |
 | Okta | POST `https://YOUR_OKTA_SUBDOMAIN.okta.com/oauth2/default/v1/token` | `{ "grant_types": "client_credentials" }` |
 
+### Authentication with session cookie
 
+After successfully authenticating with either Client Credentials or Bearer Access Token, the Session Cookie authentication method can be used to authenticate subsequent requests without including the original credentials. To use this authentication method, ensure your Identity Provider is configured to send session cookie response headers.
 
