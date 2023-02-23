@@ -18,8 +18,12 @@ When `OPAPolicy` is applied, the control plane configures:
 To apply a policy with OPA: 
 
 - Specify the group of data plane proxies to apply the policy to with the `selectors` property.
-- Provide the list of policies with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+- Provide a policy with the `conf` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+{:.note}
+> **Note:** You cannot currently apply multiple OPA policies. This limitation will be addressed in the future.
+
 - Optionally provide custom configuration for the policy agent.
+
 
 You must also specify the HTTP protocol in your mesh configuration:
 

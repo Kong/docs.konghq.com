@@ -1,6 +1,7 @@
 ---
 title: Plugin Compatibility
 no_version: true
+layout: extension
 ---
 
 Each [subscription tier](https://konghq.com/pricing) gives you
@@ -98,4 +99,4 @@ see [{{site.ee_product_name}} for Kubernetes Deployment Options](/gateway/latest
 ### Deployment
 
 [Deployment plugins](/hub) are not bundled with any version of Konnect, and are
-simply tools to help you deploy Kong Gateway in various environments.
+simply tools to help you deploy {{ site.base_gateway }} in various environments.

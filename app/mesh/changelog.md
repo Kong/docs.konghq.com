@@ -3,6 +3,79 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 2.1.1
+> Released on **2023/02/16**
+
+Built on top of [Kuma 2.1.1](https://github.com/kumahq/kuma/releases/tag/2.1.1)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- mTLS is now optional on the API server
+- You can now use a custom CA in egress and ingress using HELM
+- Fixed disabling IPv6 for transparent proxying
+
+## 2.0.3
+> Released on **2023/02/16**
+
+Built on top of [Kuma 2.0.3](https://github.com/kumahq/kuma/releases/tag/2.0.3)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.9.4
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.8.4](https://github.com/kumahq/kuma/releases/tag/1.8.4)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.8.6
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.7.5](https://github.com/kumahq/kuma/releases/tag/1.7.5)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.7.7
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.6.5](https://github.com/kumahq/kuma/releases/tag/1.6.5)
+
+### Changes
+
+- Bumped Envoy from 1.21.3 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 2.1.0
+> Released on **2023/01/30**
+
+Built on top of [Kuma 2.1.0](https://github.com/kumahq/kuma/releases/tag/2.1.0)
+
+### Changes
+
+- Added the MeshOPA policy. This policy is compliant with new `targetRef` standard. This policy will replace OPA Policy.
+- RBAC now supports `to` and `from` selectors in `targetRef` based policies
+- Added the ability to specify list of users that have admin rights by default.
+- Limited the number of OPA policies you can configure to one because of [OPA limitations](https://github.com/open-policy-agent/opa/issues/5595).
+
+### Upgrading
+
+- `KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_USERS` only works on fresh installations. If you want to add an admin user to an installation that is already running, you must do it manually.
+
 ## 2.0.2
 > Released on **2023/01/13**
 

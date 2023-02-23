@@ -5,9 +5,7 @@ content_type: explanation
 
 In {{site.base_gateway}}, a service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on. 
 
-The main attribute of a service is its URL. You can specify the URL with a single string, or by specifying its protocol, host, port, and path individually. 
-
-Service entities are abstractions of each of your own upstream services. Examples of services would be a data transformation microservice or a billing API.
+The main attribute of a service is its URL. You can specify the URL with a single string, or by specifying its protocol, host, port, and path individually.
 
 ## Service and route interaction
 

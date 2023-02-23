@@ -1,5 +1,6 @@
 ACLs
 Alertmanager
+Amal
 Amberflo
 Arya
 Bagdi
@@ -326,6 +327,7 @@ tfvars
 timeframe
 timeframes
 tlds
+tproxy
 transcoded
 transcoder
 transpile
@@ -341,6 +343,7 @@ uncomment
 uncommenting
 unencrypted
 unix
+unmanaged
 unmarshalled
 unnormalized
 unprocessable

@@ -43,6 +43,9 @@ module Jekyll
       # Generate redirect_to from frontmatter redirects
       redirects.concat(frontmatter_aliases)
 
+      # Read existing _mesh_redirects file
+      redirects.concat(mesh_redirects)
+
       # Write out a _redirects file
       site.pages << build_page(redirects)
     end
@@ -79,14 +82,19 @@ module Jekyll
     end
 
     def moved_pages
-      @moved_pages ||= YAML.load_file(
-        File.join(@site.source, 'moved_urls.yml')
-      ).to_a
+      @moved_pages ||= ::Utils::MovedPages.pages(@site)
     end
 
     def existing_redirects
       @existing_redirects ||= File.readlines(
         File.join(@site.source, '_redirects'),
+        chomp: true
+      )
+    end
+
+    def mesh_redirects
+      @mesh_redirects ||= File.readlines(
+        File.join(@site.source, '_mesh_redirects'),
         chomp: true
       )
     end
