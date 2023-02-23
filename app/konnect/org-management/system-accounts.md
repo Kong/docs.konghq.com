@@ -4,15 +4,15 @@ content_type: how-to
 no_version: true
 ---
 
-This guide explains what a system account is, how they vary from user accounts, and how to manage a system account using the [{{site.konnect_short_name}} API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/fc735302-d8ac-4e66-a9ef-225569a75d3c). 
+This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/fc735302-d8ac-4e66-a9ef-225569a75d3c). 
 
-System accounts are a service account in {{site.konnect_short_name}}. Because they are not associated with an email address and a user, system accounts can be used for automation and integrations. 
+A system account is a service account in {{site.konnect_short_name}}. Because system accounts are not associated with an email address and a user, they can be used for automation and integrations. 
 
 System accounts offer the following benefits over regular user accounts:
 
 * System accounts are not associated with an email address. This allows you to use the account as part of an automation or integration that isn't associated with any person’s identity.
-* When you use a user account as part of an automation or integration and that user leaves the company, this breaks the automation and integrations. If you use a system account instead, the automation and integrations wouldn't break.
-* System accounts don't have sign-in credentials and therefor can't access the {{site.konnect_short_name}} UI. These accounts are intended to be used with APIs and CLIs.
+* When you use a user account as part of an automation or integration and that user leaves the company, automation and integrations break. If you use a system account instead, the automation and integrations wouldn't break.
+* System accounts don't have sign-in credentials and therefore can't access the {{site.konnect_short_name}} UI. These accounts are intended to be used with APIs and CLIs.
 
 The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/konnect/org-management/users/) can. In addition, the system account can be assigned roles directly or inherit the roles of a [team](/konnect/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
 
@@ -35,7 +35,7 @@ curl --request POST \
 
 You will receive a `201` response code, and a response body containing information about your system account:
 
-```
+```json
 {
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "name": "Example System Account",
@@ -56,7 +56,7 @@ curl --request POST \
 ```
 You will receive a `201` response code, and a response body containing the access token for the system account:
 
-```
+```json
 {
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "name": "Sample Access Token",
@@ -67,6 +67,8 @@ You will receive a `201` response code, and a response body containing the acces
   "token": "spat_12345678901234567890123456789012345678901234567890"
 }
 ```
+
+Copy and save the access token beginning with `spat_`.
 
 {:.important}
 > **Important**: The access token is only displayed once, so make sure you save it securely. 
@@ -90,7 +92,7 @@ curl --request POST \
 
 You will receive a `201` response code and a response body containing the role that is now assigned to the system account:
 
-```
+```json
 {
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "role_name": "Viewer",
