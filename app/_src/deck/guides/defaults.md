@@ -299,20 +299,9 @@ the {{site.base_gateway}}, set all possible default values for an object in your
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/routes
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/routes
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all Routes.
 For example:
@@ -346,20 +335,9 @@ For documentation on all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/services
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/services
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all
 Services. For example:
@@ -384,20 +362,9 @@ For documentation on all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/upstreams
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/upstreams
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all
 Upstreams. For example:
@@ -481,20 +448,9 @@ For documentation on all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/targets
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/targets
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all
 Targets. For example:
@@ -513,20 +469,9 @@ For all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/plugins/<plugin-name>
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/plugins/<plugin-name>
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 decK doesn't support setting custom default values for the plugin object.
 
