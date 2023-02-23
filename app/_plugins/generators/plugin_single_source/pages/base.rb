@@ -17,8 +17,8 @@ module PluginSingleSource
       def data
         @data ||= Plugin::PageData
                   .generate(release: @release)
-                  .merge(url_attributes)
-                  .merge(page_attributes)
+                  .merge!(url_attributes)
+                  .merge!(page_attributes)
       end
 
       def content

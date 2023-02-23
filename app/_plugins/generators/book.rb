@@ -23,13 +23,17 @@ module Jekyll
           }
 
           page.data['book']['previous'] = pages[idx - 1] if idx.positive?
-
           page.data['book']['next'] = pages[idx + 1] if idx < pages.size - 1
 
           # Add all existing pages links to this page
           pages.each do |p|
-            p_basename = p.basename
-            page.data['book']['chapters'][p_basename] = p.url if p_basename != page.basename
+            if p.data['page_type'] == 'plugin'
+              path = p.path
+              page.data['book']['chapters'][path] = p.url if path != page.path
+            else
+              p_basename = p.basename
+              page.data['book']['chapters'][p_basename] = p.url if p_basename != page.basename
+            end
           end
         end
       end

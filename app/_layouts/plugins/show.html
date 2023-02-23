@@ -36,6 +36,7 @@ type: plugin
   <div class="container">
     {% capture full_content %}
       {{ content }}
+      {% include book.html %}
     {% endcapture %}
 
     {% include_cached plugins/right_nav.html
