@@ -47,7 +47,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
     user associated with the account:
 
     ```sh
-    Successfully Konnected as Some Name (Org Name)!
+    Successfully Konnected to the Example-Name organization!
     ```
 
     You can also use decK with {{site.konnect_short_name}} more securely by storing

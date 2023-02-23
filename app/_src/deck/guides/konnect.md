@@ -117,7 +117,7 @@ decK automatically uses the credentials from `$HOME/.deck.yaml` in any subsequen
 ```sh
 deck ping
 
-Successfully Konnected as MyName (Konnect Org)!
+Successfully Konnected to the Example-Name organization!
 ```
 {% if_version gte:1.14.x %}
 ### Authenticate using a personal access token
