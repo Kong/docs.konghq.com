@@ -310,30 +310,30 @@ the Helm chart), wait for the Deployment to restart, run `kubectl
 port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pprof/`.
 
 {% if_version gte:2.8.x %}
-## Identifying and fixing invalid configuration
+## Identify and fix an invalid configuration
 
 Kubernetes resources can request configuration that {{site.kic_product_name}}
-cannot translate into valid {{site.base_gateway}} configuration. While the
+can't translate into a valid {{site.base_gateway}} configuration. While the
 [admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
-can reject some invalid configuration at creation time and the controller can
-fix some invalid configuration on its own, some configuration issues require
-human review to correct. When such issues arise, {{site.kic_product_name}}
+can reject some invalid configurations during creation and the controller can
+fix some invalid configurations on its own, some configuration issues require
+you to review and fix them. When such issues arise, {{site.kic_product_name}}
 creates Kubernetes Events to help you identify problem resources and understand
 how to fix them.
 
-### Monitoring for issues that require human intervention
+### Monitor for issues that require manual fixes
 
 {{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus)
 include `ingress_controller_translation_count` and
 `ingress_controller_configuration_push_count` counters. Issues that require
 human intervention add `success=false` tallies to these counters.
 
-{{site.kic_product_name}} will also emit error logs with a `could not update
+{{site.kic_product_name}} also generates error logs with a `could not update
 kong admin` for configuration push failures.
 
 ### Finding problem resource Events
 
-Once you have observed a translation or configuration push failure, you can
+Once you see a translation or configuration push failure, you can
 locate which Kubernetes resources require changes by searching for Events. For
 example, this Ingress attempts to create a gRPC route that also uses HTTP
 methods, which is impossible:
@@ -378,12 +378,12 @@ NAMESPACE   LAST SEEN   TYPE      REASON                         OBJECT         
 default     35m         Warning   KongConfigurationApplyFailed   ingress/httpbin   invalid methods: cannot set 'methods' when 'protocols' is 'grpc' or 'grpcs'
 ```
 
-The controller can also create events with the reason
+The controller can also create Events with the reason
 `KongConfigurationTranslationFailed` when it catches issues before sending
 configuration to Kong.
 
 {:.note}
-> {{site.base_gateway}} 2.8 only emits `KongConfigurationTranslationFailed`
+> {{site.base_gateway}} 2.8 only generates `KongConfigurationTranslationFailed`
 > Events. `KongConfigurationApplyFailed` Events were added in 2.9.
 
 The complete Event contains additional information about the problem resource,
@@ -421,8 +421,8 @@ type: Warning
 
 {{site.kic_product_name}} creates one Event for every individual problem with a
 resource, so you may see multiple Events for a single resource with different
-messages. The message describes the reason the resource is invalid--in this
-case, because gRPC routes cannot use HTTP methods.
+messages. The message describes the reason the resource is invalid. In this
+case, it's because gRPC routes cannot use HTTP methods.
 
 Removing the annotation will clear the issue:
 
@@ -436,7 +436,7 @@ ingress.networking.k8s.io/httpbin annotated
 ```
 
 {:.note}
-> Clearing issues does not immediately clear the Events. Events do eventually
+> Clearing issues doesn't immediately clear the Events. Events do eventually
 > expire (after an hour, by default), but may be outdated. The Event `count`
 > will stop increasing after the problem is fixed.
 
