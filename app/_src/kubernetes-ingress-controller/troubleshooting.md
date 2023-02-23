@@ -382,9 +382,14 @@ The controller can also create Events with the reason
 `KongConfigurationTranslationFailed` when it catches issues before sending
 configuration to Kong.
 
+{% if_version lte:2.9.x %}
 {:.note}
 > {{site.base_gateway}} 2.8 only generates `KongConfigurationTranslationFailed`
-> Events. `KongConfigurationApplyFailed` Events were added in 2.9.
+> Events. `KongConfigurationApplyFailed` Events were added in 2.9, but you
+> should handle either Event type in the same way: both translation and apply
+> failure Events indicate some issue you must correct in the associated
+> Kubernetes resource.
+{% endif_version %}
 
 The complete Event contains additional information about the problem resource,
 the number of times the problem occurred, and when it occurred:
