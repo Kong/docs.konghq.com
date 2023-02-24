@@ -13,10 +13,10 @@ The Service Hub makes internal APIs discoverable, consumable, and reusable for i
 
 
 
-## Konnect Service Dashboard
+## Service Package Dashboard
 
 
-The Konnect Service Package Dashboard is the place to manage services, versions, and documentation. The dashboard is available by clicking any Service Package in the Service Hub. 
+The Service Package Dashboard is the place to manage services, versions, and documentation. The dashboard is available by clicking any Service Package in the Service Hub. 
 
 Here are some of the things you can do from the Service Package Dashboard: 
 
@@ -64,7 +64,7 @@ Learn more:
 
 ### Documentation
 
-The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be consumed accessed once the service is published.
+The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the service is published.
 
 Learn more: 
 
