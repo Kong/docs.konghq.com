@@ -10,6 +10,7 @@ CloudFormation
 Cloudformation
 Cognito
 Curity
+CLIs
 DAO
 DAOs
 DPP
