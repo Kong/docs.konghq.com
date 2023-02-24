@@ -54,7 +54,7 @@ ready to test, you'd create v2 in `staging` before finally creating v2 in
 
 ### Analytics
 
-The analytics dashboard shown in the **Service Dashboard** is a high level overview of **traffic**, **error**, and **latency** for the service. These reports are generated automatically based on the traffic to the service. For more information about analytics read the [analytics documentation](/konnect/analytics/)
+The analytics dashboard shown in the **Service Dashboard** is a high level overview of **traffic**, **error**, and **latency** for the service. These reports are generated automatically based on the traffic to the service. 
 
 Learn more: 
 
@@ -81,6 +81,9 @@ Learn more in the [route configuration guide](/gateway/latest/key-concepts/route
 After configuring the service, version, implementation, and at least one route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
 
+### Plugins
+
+Plugins can be configured to run in a variety of contexts, ranging from a specific service version or route to all service versions. Plugins can execute actions inside Kong Konnect before or after a request has been proxied to the upstream API, as well as on any incoming responses.
 
 Learn more:
 
