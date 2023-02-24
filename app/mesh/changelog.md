@@ -3,14 +3,102 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
-## 2.0.1
-> Release on **2022/12/05**
+## 2.1.1
+> Released on **2023/02/16**
 
-Built on top of [Kuma 2.0.0](https://github.com/kumahq/kuma/releases/tag/2.0.0)
+Built on top of [Kuma 2.1.1](https://github.com/kumahq/kuma/releases/tag/2.1.1)
 
 ### Changes
 
-- Pulling important performance and reliability fixes from Kuma
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- mTLS is now optional on the API server
+- You can now use a custom CA in egress and ingress using HELM
+- Fixed disabling IPv6 for transparent proxying
+
+## 2.0.3
+> Released on **2023/02/16**
+
+Built on top of [Kuma 2.0.3](https://github.com/kumahq/kuma/releases/tag/2.0.3)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.9.4
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.8.4](https://github.com/kumahq/kuma/releases/tag/1.8.4)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.8.6
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.7.5](https://github.com/kumahq/kuma/releases/tag/1.7.5)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.7.7
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.6.5](https://github.com/kumahq/kuma/releases/tag/1.6.5)
+
+### Changes
+
+- Bumped Envoy from 1.21.3 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 2.1.0
+> Released on **2023/01/30**
+
+Built on top of [Kuma 2.1.0](https://github.com/kumahq/kuma/releases/tag/2.1.0)
+
+### Changes
+
+- Added the MeshOPA policy. This policy is compliant with new `targetRef` standard. This policy will replace OPA Policy.
+- RBAC now supports `to` and `from` selectors in `targetRef` based policies
+- Added the ability to specify list of users that have admin rights by default.
+- Limited the number of OPA policies you can configure to one because of [OPA limitations](https://github.com/open-policy-agent/opa/issues/5595).
+
+### Upgrading
+
+- `KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_USERS` only works on fresh installations. If you want to add an admin user to an installation that is already running, you must do it manually.
+
+## 2.0.2
+> Released on **2023/01/13**
+
+Built on top of [Kuma 2.0.2](https://github.com/kumahq/kuma/releases/tag/2.0.2)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
+
+## 2.0.1
+> Release on **2022/12/05**
+
+Built on top of [Kuma 2.0.1](https://github.com/kumahq/kuma/releases/tag/2.0.1)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
 
 ## 2.0.0
 > Release on **2022/11/04**
@@ -37,6 +125,30 @@ However, Control Plane Token is now deprecated and will be removed in the future
 ### Breaking changes and deprecations
 Deprecated the Control Plane Token. It will be removed in a future release. You can use the Zone Token instead to authenticate the zone control plane.
 
+## 1.9.3
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.8.3](https://github.com/kumahq/kuma/releases/tag/1.9.3)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
+
+## 1.9.2
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.8.2](https://github.com/kumahq/kuma/releases/tag/1.8.2)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
+
 ## 1.9.1
 > Release on **2022/10/10**
 
@@ -48,7 +160,6 @@ Built on top of [Kuma 1.8.1](https://github.com/kumahq/kuma/releases/tag/1.8.1)
 - Added support for evicted Pods.
 - Added support for wildcard tag value match in RBAC.
 - Prevents a potential data race by creating a deep copy of tags when generating outbounds.
-
 
 ## 1.9.0
 > Release on **2022/08/23**
@@ -66,6 +177,30 @@ Built on top of [Kuma 1.8.0](https://github.com/kumahq/kuma/releases/tag/1.8.0)
 ### Upgrading
 
 - You need to add `VIEW_CLUSTERS` and `VIEW_STATS` to admin `AccessRole` to be able to see stats and clusters in the GUI.
+
+## 1.8.5
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.7.4](https://github.com/kumahq/kuma/releases/tag/1.7.4)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
+
+## 1.8.4
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.7.3](https://github.com/kumahq/kuma/releases/tag/1.7.3)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
 
 ## 1.8.3
 > Release on **2022/10/10**
@@ -135,6 +270,30 @@ Dependency upgrades:
 
 * The `kuma-cp` no longer comes with a built-in DNS server. Use
   the DNS server embedded in the dataplane proxy (enabled by default).
+
+## 1.7.6
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.6.4](https://github.com/kumahq/kuma/releases/tag/1.6.4)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
+
+## 1.7.5
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.6.3](https://github.com/kumahq/kuma/releases/tag/1.6.3)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
+- Fixed a bug where the OPA Agent stops returning valid decisions after KM CP crashes.
 
 ## 1.7.4
 > Release on **2022/10/10**
@@ -225,6 +384,29 @@ Every item in the items array now has a `kind` property of either:
 `SidecarDataplane`: a normal Dataplane with outbounds, inbounds, etc.
 `MeshGatewayDataplane`: a MeshGateway-configured Dataplane with a new structure representing the MeshGateway it serves.
 Some examples can be found in the [Inspect API docs](https://kuma.io/docs/1.6.x/reference/http-api/#inspect-api).
+
+## 1.6.4
+> Released on **2023/01/13**
+
+Built on top of [Kuma 1.5.4](https://github.com/kumahq/kuma/releases/tag/1.5.4)
+
+### Changes
+
+- Upgraded the Helm library version.
+- Upgraded the Go version to 1.18.9.
+- Fixed data caching. This bug might have caused certificates to regenerate.
+- Upgraded CoreDNS.
+
+## 1.6.3
+> Released on **2022/12/06**
+
+Built on top of [Kuma 1.5.3](https://github.com/kumahq/kuma/releases/tag/1.5.3)
+
+### Changes
+
+- Fixed potential logging of secrets in kuma-cp.
+- Fixed KDS instability.
+- Fixed unnecessary CDS updates.
 
 ## 1.6.1
 

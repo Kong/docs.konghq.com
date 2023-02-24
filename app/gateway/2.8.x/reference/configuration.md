@@ -2065,6 +2065,50 @@ each individual worker.
 
 ---
 
+The following switches enable or disable Prometheus plugin high-cardinality
+metrics. When enabled, these metrics can negatively impact the Gateway
+performance depending on the number of entities configured.
+
+---
+
+#### prometheus_plugin_status_code_metrics
+
+Enables or disables reporting the HTTP/Stream
+status codes per service/route by the
+Prometheus plugin. 
+
+**Default:** `on`
+
+---
+
+#### prometheus_plugin_latency_metrics 
+
+Enables or disables reporting the latency
+added by Kong, request time and upstream
+latency by the Prometheus plugin. 
+
+**Default:** `on`
+
+---
+
+#### prometheus_plugin_bandwidth_metrics
+
+Enables or disables the bandwith consumed by
+service/route reporting by the Prometheus
+plugin. 
+
+**Default:** `on`
+
+---
+
+#### prometheus_plugin_upstream_health_metrics
+
+Enables or disables the upstream health status
+reporting by the Prometheus plugin.
+
+**Default:** `on`.
+
+---
 
 ### Miscellaneous section
 

@@ -260,7 +260,8 @@
       free: No
       plus: Yes
       enterprise: Yes
-      network_config_opts: All
+      konnect: Yes
+      network_config_opts: Self-managed classic, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/oas-validation/
 

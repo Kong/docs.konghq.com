@@ -1,6 +1,5 @@
 ---
 title: Hackathons
-no_version: true
 ---
 
 Here, you'll find all the information you need to contribute effectively to our hackathons. 

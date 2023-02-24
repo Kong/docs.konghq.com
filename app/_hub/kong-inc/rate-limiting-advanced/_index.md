@@ -7,11 +7,12 @@ description: |
   The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
 
   As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
-  * Additional configurations: `limit`, `window_size`, and `sync_rate`
+  * Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
   * Support for Redis Sentinel, Redis cluster, and Redis SSL
-  * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. Configure `sync_rate` to periodically sync with backend storage.
+  * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
   * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
-  * Consumer groups support: Apply different rate limiting configurations to select groups of consumers.
+  * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
+  * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
 type: plugin
 enterprise: true
 categories:
@@ -34,7 +35,7 @@ params:
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
-    Gateway in DB-less or hybrid mode, use the `redis` strategy.
+    Gateway in DB-less or hybrid mode, the `redis` strategy is the only available option to configure the plugin with a central data store.
 
     {:.note}
     > **Note**: We recommend setting `namespace` to a static value in DB-less mode.
@@ -65,24 +66,32 @@ params:
       value_in_examples: consumer
       datatype: string
       description: |
-        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, `header`, or `path`.
+        The type of identifier used to generate the rate limit key.
+        Defines the scope used to increment the rate limiting counters.
+        Can be `ip`, `credential`, `consumer`, `service`, `header`, or `path`.
     - name: path
       required: semi
       datatype: string
       description: |
-        Request path to use as the rate limit key when the `path` identifier is defined.
+        Request path to use as the rate limit key when `config.identifier` is
+        configured with the value `path`. Ignored when `config.identifier` has any other value.
     - name: header_name
       required: semi
       datatype: string
       description: |
-        Header name to use as the rate limit key when the `header` identifier is defined.
+        Header name to use as the rate limit key when `config.identifier` is
+        configured with the value `header`. Ignored when `config.identifier` is not `header`.
     - name: dictionary_name
       required: true
       default: kong_rate_limiting_counters
       value_in_examples: null
       datatype: string
       description: |
-        The shared dictionary where counters will be stored until the next sync cycle.
+        The shared dictionary where counters are stored. When the plugin is
+        configured to synchronize counter data externally (that is 
+        `config.strategy` is `cluster` or `redis` and `config.sync_rate` isn't
+        `-1`), this dictionary serves as a buffer to populate counters in the
+        data store on each synchronization cycle.
     - name: sync_rate
       required: true
       default: null
@@ -95,21 +104,29 @@ params:
         0 will sync the counters in the specified number of seconds. The minimum
         allowed interval is 0.02 seconds (20ms).
     - name: namespace
-      required: true
+      required: semi
       default: random_auto_generated_string
-      value_in_examples: null
+      value_in_examples: example_namespace
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
-        data and sync configuration is shared in a namespace.
+        data and sync configuration is isolated in each namespace.
 
-        In DB-less mode, this field will be generated automatically on every configuration change.
-        We recommended setting `namespace` explicitly when using DB-less mode.
+        {:.important}
+        > **Important**: If managing Kong Gateway with **declarative configuration** or running
+        Kong Gateway in **DB-less mode**, set the `namespace` explicitly in your declarative configuration.
+        > <br><br>
+        > If not set, you will run into the following issues:
+        * In DB-less mode, this field will be regenerated automatically on every configuration change.
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        `namespace` value.
+
+
     - name: strategy # old version of param description
       maximum_version: "2.8.x"
       required: true
       default: cluster
-      value_in_examples: cluster
+      value_in_examples: local
       datatype: string
       description: |
         The rate-limiting strategy to use for retrieving and incrementing the
@@ -161,7 +178,10 @@ params:
       value_in_examples: false
       datatype: boolean
       description: |
-        Optionally hide informative response headers. Available options: `true` or `false`.
+        Optionally hide informative response headers that would otherwise
+        provide information about the current status of limits and counters as
+        described in the paragraph [Headers sent to the client](#headers-sent-to-the-client).
+        Available options: `true` or `false`.
     - name: redis.host
       required: semi
       default: null
@@ -169,6 +189,7 @@ params:
       datatype: string
       description: |
         Host to use for Redis connection when the `redis` strategy is defined.
+        This parameter accepts a hostname or an IP address as a value.
     - name: redis.port
       required: semi
       default: 6379
@@ -258,7 +279,9 @@ params:
       referenceable: true
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+. This can not be set to **default**.
+        If undefined, ACL authentication will not be performed.
+
+        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
     - name: redis.password
       required: semi
       default: null
@@ -318,7 +341,7 @@ params:
       description: |
         Sentinel addresses to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis Sentinel. Each string element must
-        be a hostname. The minimum length of the array is 1 element.
+        consist of a hostname (or IP address) and port. The minimum length of the array is 1 element.
     - name: redis.cluster_addresses
       required: semi
       default: null
@@ -327,7 +350,7 @@ params:
       description: |
         Cluster addresses to use for Redis connections when the `redis` strategy is defined.
         Defining this value implies using Redis cluster. Each string element must
-        be a hostname. The minimum length of the array is 1 element.
+        consist of a hostname (or IP address) and port. The minimum length of the array is 1 element.
     - name: redis.keepalive_backlog
       minimum_version: "2.5.x"
       required: false
@@ -368,6 +391,14 @@ params:
       datatype: string
       description: |
         Sets the time window type to either `sliding` (default) or `fixed`.
+        Sliding windows apply the rate limiting logic while taking into account
+        previous hit rates (from the window that immediately precedes the current)
+        using a dynamic weight.
+        Fixed windows consist of buckets that are statically assigned to a
+        definitive time range, each request is mapped to only one fixed window
+        based on its timestamp and will affect only that window's counters.
+        For more information refer to the
+        [Enterprise Rate Limiting Library Overview](/gateway/latest/reference/rate-limiting/#overview).
     - name: retry_after_jitter_max
       required: true
       default: 0
@@ -544,10 +575,6 @@ For guides on working with consumer groups, see the consumer group
 [examples](/gateway/latest/admin-api/consumer-groups/examples) and
 [API reference](/gateway/latest/admin-api/consumer-groups/reference) in
 the Admin API documentation.
-
-{:.note}
-> **Note:** Consumer groups are not supported in declarative configuration with
-decK. If you have consumer groups in your configuration, decK will ignore them.
 
 {% endif_plugin_version %}
 

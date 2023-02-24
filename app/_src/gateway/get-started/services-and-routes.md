@@ -46,6 +46,9 @@ You can also configure routes with:
 * Redirect status codes: HTTPS status codes
 * Tags: Optional set of strings to group routes with 
 
+See [Routes](../../key-concepts/routes/) for a description of how
+{{site.base_gateway}} routes requests.
+
 ## Managing services and routes
 
 The following tutorial walks through managing and testing services and routes using the 

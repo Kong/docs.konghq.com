@@ -10,52 +10,62 @@ end
 module LatestVersion
   class Generator < Jekyll::Generator
     priority :medium
-    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
-      products_with_latest = %w[gateway mesh KIC deck]
 
-      @page_index = site.config['defaults'].to_h do |s|
-        next [s['scope']['path'], s['values']['version-index']]
-      end
+    PRODUCTS_WITH_LATEST = {
+      'gateway' => 'gateway',
+      'mesh' => 'mesh',
+      'deck' => 'deck',
+      'kubernetes-ingress-controller' => 'KIC'
+    }.freeze
 
-      # Load config file
+    def generate(site)
+      @site = site
+
       site.pages.each do |page|
-        page_path = remove_generated_prefix(page)
-        parts = Pathname(page_path).each_filename.to_a
+        # If it has a permalink it's _probably_ an index page e.g. /gateway/
+        # so we should not generate a /latest/ URL as it's already evergreen
+        next if page.data['is_latest'] || page.data['permalink']
 
-        products_with_latest.each do |product|
-          # Reset values for every new page
-          generate_latest = false
-          release_path = nil
+        next unless generate_latest?(page)
 
-          product_name = product.downcase
-          # Special case KIC
-          product_name = 'kubernetes-ingress-controller' if product_name == 'kic'
-
-          # Latest version
-          if parts[0] == product_name && parts[1] == site.data["kong_latest_#{product}"]['release']
-            generate_latest = true
-            release_path = parts[1]
-          end
-
-          next unless generate_latest && !page.data['is_latest']
-          # If it has a permalink it's _probably_ an index page e.g. /gateway/
-          # so we should not generate a /latest/ URL as it's already evergreen
-          next if page.data['permalink']
-
-          # Otherwise, let's generate a /latest/ URL too
-          page = DuplicatePage.new(
-            site,
-            site.source,
-            page.url.gsub(release_path, 'latest'),
-            page.content,
-            page.data,
-            @page_index["#{product_name}/#{release_path}/"],
-            page_path,
-            page.relative_path
-          )
-          site.pages << page
-        end
+        # Otherwise, let's generate a /latest/ URL too
+        site.pages << build_duplicate_page(page)
       end
+    end
+
+    private
+
+    def build_duplicate_page(page)
+      product_name, release_path = page_path(page).first(2)
+
+      DuplicatePage.new(
+        @site,
+        page.url.gsub(release_path, 'latest'),
+        page,
+        page_index["#{product_name}/#{release_path}/"],
+        remove_generated_prefix(page)
+      )
+    end
+
+    def generate_latest?(page)
+      product_name_from_path, release_path = page_path(page).first(2)
+      product_name, product = PRODUCTS_WITH_LATEST.detect do |k, _|
+        k == product_name_from_path
+      end
+
+      product_name &&
+        release_path == @site.data["kong_latest_#{product}"]['release']
+    end
+
+    def page_index
+      # XXX: this isn't being set on any of the pages
+      @page_index ||= @site.config['defaults'].to_h do |s|
+        [s['scope']['path'], s['values']['version-index']]
+      end
+    end
+
+    def page_path(page)
+      Pathname(remove_generated_prefix(page)).each_filename.to_a
     end
 
     def remove_generated_prefix(page)
@@ -68,23 +78,22 @@ module LatestVersion
   end
 
   class DuplicatePage < ::Jekyll::Page
-    def initialize(site, base_dir, url, content, data, page_index, path, relative_path) # rubocop:disable Lint/MissingSuper, Metrics/ParameterLists, Metrics/MethodLength
+    def initialize(site, url, original_page, page_index, path) # rubocop:disable Lint/MissingSuper, Metrics/MethodLength, Metrics/AbcSize
       @site = site
-      @base = base_dir
-      @content = content
-
+      @base = site.source
+      @content = original_page.content
       @dir = url
       @name = 'index.md'
 
       process(@name)
-      @data = data.clone
+
+      @data = original_page.data.clone
       @data['is_latest'] = true
       @data['version-index'] = page_index
       @data['edit_link'] = "app/#{path}" unless @data['edit_link']
-
       @data['alias'] = [@dir.sub('latest/', '')] if @dir.end_with?('/latest/')
 
-      @relative_path = relative_path
+      @relative_path = original_page.relative_path
     end
   end
 end

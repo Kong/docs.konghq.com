@@ -44,8 +44,14 @@ The following instructions use [PostgreSQL](http://www.postgresql.org/) as a dat
     CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
     ```
 
-2. Run the {{site.base_gateway}} migrations using the following command:
+2. Run one of the following {{site.base_gateway}} migrations:
+    * <span class="badge enterprise"></span> In Enterprise environments, we strongly recommend seeding a password for the **Super Admin** user with the ```kong migrations``` command. This allows you to use RBAC (Role Based Access Control) at a later time, if needed. Create an environment variable with the desired **Super Admin** password and store the password in a safe place:
+    ```bash
+    KONG_PASSWORD={PASSWORD} kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
+    ```
+    > **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
 
+    * If you aren't using Enterprise, run the following:
     ```bash
     kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
     ```
@@ -77,22 +83,6 @@ Set the `database` option to `off` and the `declarative_config` option to the pa
 ```
 database = off
 declarative_config = {PATH_TO_KONG.CONF_FILE}
-```
-
-## Seed Super Admin
-{:.badge .enterprise}
-
-Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
-
-Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
-
-{:.important}
-> **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
-
-Run migrations to prepare the Kong database, using the following command:
-
-```
-KONG_PASSWORD={PASSWORD} kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
 ```
 
 ## Start {{site.base_gateway}}

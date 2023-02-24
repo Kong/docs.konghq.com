@@ -34,11 +34,6 @@ repos:
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
   oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
-collections:
-  hub:
-    output: true
-    layout: extension
-
 # for Kong platform extensions (not Jekyll)
 extensions:
   categories:
@@ -187,20 +182,26 @@ defaults:
       path: "contributing"
     values:
       layout: "docs-v2"
+      no_version: true
 
 # product name vars
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
-mesh_product_name: Kong Mesh
-default_namespace: kong-mesh-system
 kic_product_name: Kubernetes Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
 konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
+mesh_product_name: Kong Mesh
+mesh_namespace: kong-mesh-system
+mesh_cp_name: kong-mesh-control-plane
 
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
+
+# Helm commands
+mesh_helm_repo: kong-mesh/kong-mesh
+mesh_helm_install_name: kong-mesh

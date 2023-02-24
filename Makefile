@@ -15,6 +15,7 @@ install-prerequisites:
 install: ruby-version-check
 	npm ci
 	bundle install
+	git submodule update --init
 
 # Using local dependencies, starts a doc site instance on http://localhost:3000.
 run: ruby-version-check

@@ -51,6 +51,7 @@ Learn more:
 
 ### Documentation
 
+
 The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be consumed accessed once the service is published.
 
 ### {{site.base_gateway}} implementations
@@ -67,3 +68,4 @@ Learn more in the [route configuration guide](/gateway/latest/key-concepts/route
 
 After configuring the service, version, implementation, and at least one route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
+

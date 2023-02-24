@@ -693,7 +693,7 @@ Input:
 Output when `portal_auth = basic-auth`:
 
 ```html
-Authentication is endabled!
+Authentication is enabled!
 ```
 
 #### portal.specs
