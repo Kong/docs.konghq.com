@@ -152,7 +152,7 @@
         - text: Dynamic Client Registration
           items:
             - text: Overview
-              url: /dev-portal/applications/dynamic-client-registration/overview
+              url: /dev-portal/applications/dynamic-client-registration/
             - text: Okta
               url: /dev-portal/applications/dynamic-client-registration/okta
             - text: Curity
