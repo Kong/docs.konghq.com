@@ -20,7 +20,7 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
   <img src="/assets/images/docs/konnect/konnect_service_docs_description.png" />
 </p>
 
-All service descriptions are managed from the **Documentation** section in the service overview. Once you've uploaed the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
+All service descriptions are managed from the **Documentation** section in the service overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
 
 ## API specification
 
