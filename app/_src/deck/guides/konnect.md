@@ -158,10 +158,7 @@ To generate a PAT for a user account in {{site.konnect_short_name}}, select your
 {% endnavtab %}
 {% navtab System Account Token %}
 
-To generate a system account access token, navigate to **Organization > System Accounts** in {{site.konnect_short_name}}, then 
-then click **Generate token**. 
-
-Or, you can [create a token through the Konnect API](/konnect/org-management/system-accounts/#generate-a-system-account-access-token).
+[Create a system account token](/konnect/org-management/system-accounts/#generate-a-system-account-access-token) through the {{site.konnect_short_name}} API.
 
 {% endnavtab %}
 {% endnavtabs %}
