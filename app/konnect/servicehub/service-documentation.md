@@ -9,12 +9,18 @@ documentation to the Dev Portal. Publishing services to the Dev Portal is the on
 
 ## Service descriptions
 
-You can provide extended descriptions of your services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. All service descriptions are managed from the **Documentation Page** for a particular service. Service descriptions can be any markdown document that describes your service: 
+You can provide extended descriptions of your services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. Service descriptions can be any markdown document that describes your service: 
 
 * Release notes
 * Support and SLA 
 * Business context and use cases
 * Deployment workflows
+
+<p align="center">
+  <img src="/assets/images/docs/konnect/konnect_service_docs_description.png" />
+</p>
+
+All service descriptions are managed from the **Documentation** section in the service overview. Once you've uploaed the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
 
 ## API specification
 
@@ -22,12 +28,8 @@ API specifications, or specs, can be uploaded and attached to a specific version
 You can have different API specs that correspond to different service versions.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
-## Publishing
+<p align="center">
+  <img src="/assets/images/docs/konnect/konnect_service_docs_spec_edit.png" />
+</p>
 
-Publishing a service makes it available to developers in your organization. Unpublishing a service removes it from the Dev Portal. Removing a service from the Dev Portal is not permanent, and you can republish it at any time.
-
-{:.note}
-> **Note**: You can only publish services in your [geographic region](/konnect/regions) to the Dev Portal in your region. If you want to publish services to a Dev Portal in another region, switch to the new region in the top-right of {{site.konnect_product_name}}.
-
-Publishing and unpublishing service documentation in {{site.konnect_product_name}} controls what document is displayed for a particular service.
-Publishing is managed from a specific service's **Documentation Page**. 
+Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also see the publication status. 
