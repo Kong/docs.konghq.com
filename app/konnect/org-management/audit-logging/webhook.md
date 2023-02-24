@@ -22,9 +22,11 @@ This configuration is specific to your vendor.
 
 You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
 
+1. Check your SIEM documentation to find out where to send CEF data.
+
 1. In your log collection service, configure a data collection endpoint to push logs to.
 
-2. Take note of the authorization credentials that you need to access this endpoint. {{site.konnect_short_name}} supports any HTTP authorization header type.
+1. Take note of the authorization credentials that you need to access this endpoint. {{site.konnect_short_name}} supports any HTTP authorization header type.
 
 ## Create a webhook
 
@@ -41,7 +43,11 @@ curl -i -X PUT https://global.api.konghq.com/v2/audit-log-webhook \
 
 Replace the following placeholders with your own data:
 * `PAT`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) for the organization that you're tracking.
-* `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages.
+* `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages. 
+   
+   {:.note}
+    > Check your SIEM documentation to find out where to send CEF data.
+    
 * `"authorization":"Bearer example-token"`: The authorization type and credential to pass to your log collection endpoint. 
 {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint.
 
