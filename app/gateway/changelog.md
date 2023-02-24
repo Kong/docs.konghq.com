@@ -259,11 +259,6 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
   This caused a memory leak, where memory usage would grow without limit.
   [#10052](https://github.com/Kong/kong/pull/10052) [#10044](https://github.com/Kong/kong/pull/10044)
 
-* [**Datadog Tracing**](/hub/kong-inc/datadog-tracing) (`datadog-tracing`)
-  * Fixed OpenTelemetry trace ID handling through Datadog. The formats used by Datadog and OpenTelemetry are slightly different, and Kong Gateway's OpenTelemetry implementation missed length handling when reporting and propagating trace IDs.
-    
-    This caused traces originating from Kong Gateway to incorrectly connect with the target service, causing Kong Gateway and the target service to submit separate traces.
-
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
   *  Fixed non-compliances to specification:
      * For `http.uri` in spans, the field is now the full HTTP URI.
@@ -272,9 +267,9 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
       [#10160](https://github.com/Kong/kong/pull/10160)
      * `http.flavor` is now a string value, not a double.
       [#10160](https://github.com/Kong/kong/pull/10160)
-  * Fixed OpenTelemetry trace ID handling through Datadog. The formats used by Datadog and OpenTelemetry are slightly different, and Kong Gateway's OpenTelemetry implementation missed length handling when reporting and propagating trace IDs.
-    
+  * Fixed an issue with getting the traces of other formats, where the trace ID reported and propagated could be of incorrect length.
     This caused traces originating from Kong Gateway to incorrectly connect with the target service, causing Kong Gateway and the target service to submit separate traces.
+    [#10332](https://github.com/Kong/kong/pull/10332)
   
 * [**OAuth2**](/hub/kong-inc/oauth2/) (`oauth2`)
   * `refresh_token_ttl` is now limited to a range between `0` and `100000000` by the schema validator. 
