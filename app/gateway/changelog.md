@@ -200,6 +200,10 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
   [#9904](https://github.com/Kong/kong/pull/9904)
 * Fixed an issue where the `#` character wasn't parsed correctly from environment variables and vault references.
   [10132](https://github.com/Kong/kong/pull/10132)
+* Fixed an issue where control plane didn't downgrade configuration for the AWS Lambda and Zipkin plugins for older versions of data planes.
+  [#10346](https://github.com/Kong/kong/pull/10346)
+* Fixed an issue in DB-less mode, where validation of regex routes could be skipped when the old configuration format was used.
+  [#10348](https://github.com/Kong/kong/pull/10348)
 
 #### Enterprise
 
@@ -235,7 +239,7 @@ These users could see the Workspaces Overview dashboard with the default workspa
 Now, if IdP users with no groups or roles attempt to log into Kong Manager, they will be denied access.
 
 #### Plugins
-
+  
 * Fixed an issue where the `redis.username` configuration parameter didn't work for the following plugins:
     * GraphQL Rate Limiting Advanced
     * Proxy Cache Advanced
