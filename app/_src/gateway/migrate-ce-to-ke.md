@@ -25,7 +25,7 @@ The following steps guide you through the migration process.
 
 1. [Download](/gateway/{{page.kong_version}}/install/) the {{site.base_gateway}}
 {{page.kong_version}} Enterprise package and configure it to point to the same data store as your
-{{site.ce_product_name}} {{page.kong_version}} node. The migration command expects the data store
+{{site.ce_product_name}} node. The migration command expects the data store
 to be up to date on any pending migration:
 
    ```shell
