@@ -66,6 +66,10 @@ Learn more:
 
 The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be consumed accessed once the service is published.
 
+Learn more: 
+
+* [Manage service documentation](/konnect/servicehub/service-doumentation/)
+
 ### {{site.base_gateway}} implementations
 
 When configuring a {{site.base_gateway}} implementation of a service, you'll
