@@ -202,7 +202,7 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
   [10132](https://github.com/Kong/kong/pull/10132)
 * Fixed an issue where control plane didn't downgrade configuration for the AWS Lambda and Zipkin plugins for older versions of data planes.
   [#10346](https://github.com/Kong/kong/pull/10346)
-* Fixed an issue in DB-less mode, where validation of regex routes could be skipped when the old configuration format was used.
+* Fixed an issue in DB-less mode, where validation of regex routes could be skipped when using a configuration format older than `3.0`.
   [#10348](https://github.com/Kong/kong/pull/10348)
 
 #### Enterprise
