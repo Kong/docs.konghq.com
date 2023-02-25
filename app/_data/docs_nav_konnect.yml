@@ -281,3 +281,9 @@
       items:
         - text: Filtering
           url: /api/filtering
+
+- title: Reference
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Labels
+      url: /reference/labels
