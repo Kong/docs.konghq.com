@@ -30,3 +30,17 @@ organization
 * Set up [Okta integration](/konnect/org-management/okta-idp)
 * View {{site.konnect_saas}} [teams and roles](/konnect/org-management/teams-and-roles)
 * [Map Okta groups to {{site.konnect_short_name}} teams](/konnect/org-management/okta-idp/#map-roles-to-groups)
+
+## Login session duration
+
+A login session adheres to the following session duration limits:
+
+* **Individual token duration:** 30 minutes
+* **Refresh token duration:** 60 minutes
+* **Overall session duration:** 12 hours
+
+This means that a login session can last 12 hours at maximum, as long as the user is active every 60 minutes.
+After 12 hours, the user will have to re-authenticate.
+
+These limits also apply to sessions initiated through external IdPs.
+Currently, session duration limits are not configurable.
