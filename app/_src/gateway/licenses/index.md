@@ -51,7 +51,7 @@ the Admin GUI in Kong Manager.
 
 ## License expiration
 
-Licenses expire at 00:00 on the date of expiration, relative to the timezone the machine is running in.
+Licenses expire at 00:00 on the date of expiration, relative to the time zone the machine is running in.
 
 Kong Manager displays a banner with a license expiration warning starting at 15 days before expiration.
 Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs).
