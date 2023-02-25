@@ -59,7 +59,7 @@ When a license expires, {{site.base_gateway}} behaves as follows:
 * Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.kong_version}}/kong-enterprise) become read-only.
 * The Admin API is not accessible until the license is either renewed or the subscription is downgraded to free mode.
 * Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
-* Other Enterprise features, such as the Developer Portal, are not accessible.
+* Other Enterprise features, such as the Dev Portal, are not accessible.
 
 If you downgrade to free mode, the Admin API will be unlocked, but Enterprise features such Dev Portal, 
 Enterprise plugins, and others will no longer be accessible.
