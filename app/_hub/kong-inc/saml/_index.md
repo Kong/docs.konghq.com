@@ -128,6 +128,9 @@ params:
       referenceable: true
       description: |
         The public certificate provided by the IdP. This is used to validate responses from the IdP.
+
+        Only include the contents of the certificate. Do not include the header (`BEGIN CERTIFICATE`) and footer (`END CERTIFICATE`) lines.
+        
     - name: encryption_key
       required: false
       datatype: string
@@ -416,7 +419,7 @@ params:
 
 ## Kong Configuration
 
-### Create an Anonymous Consumer:
+### Create an anonymous consumer
 
 ```bash
 curl --request PUT \
@@ -435,7 +438,7 @@ curl --request PUT \
 }
 ```
 
-### Create a Service
+### Create a service
 
 ```bash
 curl --request PUT \
@@ -454,7 +457,7 @@ curl --request PUT \
 }
 ```
 
-### Create a Route
+### Create a route
 
 ```bash
 curl --request PUT \
@@ -470,14 +473,14 @@ curl --request PUT \
 }
 ```
 
-### Setup Microsoft AzureAD
+### Set up Microsoft AzureAD
 
 1. Create a SAML Enterprise Application. Refer to the [Microsoft AzureAD documentation](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) for more information.
-2. Note the identifier (entity ID) and sign on URL parameters
-3. Configure the reply URL (Assertion Consumer Service URL), for example, `https://kong-proxy:8443/saml/consume`
-4. Assign users to the SAML enterprise application
+2. Note the identifier (entity ID) and sign on URL parameters.
+3. Configure the reply URL (Assertion Consumer Service URL), for example, `https://kong-proxy:8443/saml/consume`.
+4. Assign users to the SAML enterprise application.
 
-### Create a Plugin on a Service
+### Create a plugin on a service
 
 Validation of the SAML response assertion is disabled in the plugin configuration below. This configuration should not be used in a production environment.
 
@@ -524,3 +527,30 @@ curl --request POST \
 2. The browser is redirected to the AzureAD Sign in page. Enter the user credentials of a user configured in AzureAD
 3. If user credentials are valid, the browser will be redirected to https://httpbin.org/anything
 4. If the user credentials are invalid, a `401` unauthorized HTTP status code is returned
+
+## Troubleshooting
+
+### Certificate is valid, but isn't being accepted
+
+**Error:**
+You have a valid certificate specified in the `idp_certificate` field, but you get the following error:
+
+```
+[saml] user is unauthorized with error: public key in saml response does not match
+```
+
+**Solution:**
+If you provide a certificate through the `idp_certificate` field, the certificate must have the header and footer removed.
+
+For example, a standard certificate might look like this, with a header and footer:
+
+```
+-----BEGIN CERTIFICATE-----
+<certificate contents>
+-----END CERTIFICATE-----
+```
+
+Remove the header and footer before including the certificate in the `idp_certificate` field:
+```
+<certificate contents>
+```
