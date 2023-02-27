@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## February 2023
 
+**System accounts**
+Organizations now have access to [system accounts](/konnect/org-management/system-accounts) which can be created without a verified email address. This allows a system account to be used as part of an automation or integration that is not associated with any person’s identity.
+
 **Multiple authentication methods for Dynamic Client Registration**
 Dynamic Client Registration (DCR) now supports [multiple authentication methods](/konnect/dev-portal/applications/dynamic-client-registration/#authentication-methods), including client credentials, bearer tokens, and session cookies.
 
