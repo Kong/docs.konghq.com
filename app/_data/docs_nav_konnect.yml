@@ -215,6 +215,8 @@
           url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+        - text: Login Sessions Reference
+          url: /org-management/sessions-reference
     - text: Account and Org Deactivation
       url: /org-management/deactivation
     - text: Troubleshoot
