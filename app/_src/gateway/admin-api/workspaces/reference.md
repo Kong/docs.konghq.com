@@ -253,7 +253,6 @@ HTTP 200 OK
 {
   "counts": {
     "acls": 1,
-    "apis": 1,
     "basicauth_credentials": 1,
     "consumers": 1234,
     "files": 41,

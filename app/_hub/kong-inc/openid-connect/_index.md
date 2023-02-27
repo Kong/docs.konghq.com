@@ -1007,7 +1007,7 @@ params:
       required: false
       default: 600
       datatype: integer
-      description: The session cookie renew time.
+      description: The number of seconds prior to the `session_cookie_lifetime` that the session cookie will be renewed.
     - name: session_cookie_path
       required: false
       default: '"/"'

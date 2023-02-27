@@ -5,7 +5,6 @@ no_version: true
 
 <!-- vale off -->
 
-
 ## 3.2.1.0
 **Release Date** 2023/02/28
 
@@ -321,7 +320,6 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
   [#10199](https://github.com/Kong/kong/pull/10199)
   [#10230](https://github.com/Kong/kong/pull/10230)
 * Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
-
 
 ## 3.1.1.3
 **Release Date** 2023/01/30

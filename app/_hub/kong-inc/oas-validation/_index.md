@@ -9,7 +9,7 @@ description: |
   > In Kong Gateway versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually [enable the plugin](#enable-the-plugin).
   
 enterprise: true
-cloud: false
+cloud: true
 plus: false
 type: plugin
 categories:
@@ -26,7 +26,7 @@ params:
     - name: http
     - name: https
   dbless_compatible: 'yes'
-  konnect_examples: false
+  konnect_examples: true
   config:
     - name: api_spec
       required: true

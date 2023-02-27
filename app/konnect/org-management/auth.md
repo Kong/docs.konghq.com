@@ -30,3 +30,8 @@ organization
 * Set up [Okta integration](/konnect/org-management/okta-idp)
 * View {{site.konnect_saas}} [teams and roles](/konnect/org-management/teams-and-roles)
 * [Map Okta groups to {{site.konnect_short_name}} teams](/konnect/org-management/okta-idp/#map-roles-to-groups)
+
+## More information
+
+* [Troubleshoot authorization and authentication issues](/konnect/org-management/troubleshoot/)
+* [Login sessions reference](/konnect/org-management/sessions-reference/)

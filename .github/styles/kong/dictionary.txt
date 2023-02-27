@@ -11,6 +11,7 @@ CloudFormation
 Cloudformation
 Cognito
 Curity
+CLIs
 DAO
 DAOs
 DPP
@@ -329,6 +330,7 @@ tfvars
 timeframe
 timeframes
 tlds
+tproxy
 transcoded
 transcoder
 transpile

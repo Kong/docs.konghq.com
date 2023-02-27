@@ -147,6 +147,8 @@
           url: /dev-portal/applications/enable-app-reg
         - text: Dynamic Client Registration
           items:
+            - text: Overview
+              url: /dev-portal/applications/dynamic-client-registration/
             - text: Okta
               url: /dev-portal/applications/dynamic-client-registration/okta
             - text: Curity
@@ -205,10 +207,14 @@
               url: /org-management/teams-and-roles/roles-reference
         - text: Manage Users
           url: /org-management/users
+        - text: Manage System Accounts
+          url: /org-management/system-accounts
         - text: Set up SSO with OIDC
           url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+        - text: Login Sessions Reference
+          url: /org-management/sessions-reference
     - text: Account and Org Deactivation
       url: /org-management/deactivation
     - text: Troubleshoot

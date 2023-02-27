@@ -52,7 +52,7 @@ If the connection is successful, the terminal displays the full name of the user
 associated with the account:
 
 ```sh
-Successfully Konnected as Some Name (Org Name)!
+Successfully Konnected to the Example-Name organization!
 ```
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
