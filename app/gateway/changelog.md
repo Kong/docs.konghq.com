@@ -7,7 +7,7 @@ no_version: true
 
 
 ## 3.2.1.0
-**Release Date** 2023/02/27
+**Release Date** 2023/02/28
 
 ### Deprecations
 
@@ -85,9 +85,6 @@ which lets you set the Nginx directive `ssl_session_cache`.
 
 #### Enterprise
 
-* Added two debugging endpoints to the Admin API:
-    * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
-    * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
 * **FIPS Support**:
   * The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
 
