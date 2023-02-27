@@ -44,7 +44,7 @@ You will receive a `201` response code, and a response body containing informati
 
 The system account access token can be used for authenticating API and CLI requests.
 
-Create a system account by sending a `POST` request containing the `accountId` of the system account:
+Create a system account token by sending a `POST` request containing the `accountId` of the system account:
 
 ```sh
 curl --request POST \
