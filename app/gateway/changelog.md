@@ -6,8 +6,8 @@ no_version: true
 <!-- vale off -->
 
 
-## 3.2.0.0
-**Release Date** 2023/02/20
+## 3.2.1.0
+**Release Date** 2023/02/28
 
 ### Deprecations
 
@@ -85,9 +85,6 @@ which lets you set the Nginx directive `ssl_session_cache`.
 
 #### Enterprise
 
-* Added two debugging endpoints to the Admin API:
-    * [`/debug/profiling/cpu`](/gateway/latest/admin-api/#get-state-of-the-cpu-profiling): Instruction-based and timer-based Lua VM CPU profiling.
-    * [`/debug/profiling/gc-snapshot`](/gateway/latest/admin-api/#get-the-state-of-gc-snapshot): Lua GC heap snapshot.
 * **FIPS Support**:
   * The OpenID Connect, Key Authentication - Encrypted, and JWT Signer plugins are now [FIPS 140-2 compliant](/gateway/latest/kong-enterprise/fips-support/). 
 
@@ -200,6 +197,10 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
   [#9904](https://github.com/Kong/kong/pull/9904)
 * Fixed an issue where the `#` character wasn't parsed correctly from environment variables and vault references.
   [10132](https://github.com/Kong/kong/pull/10132)
+* Fixed an issue where control plane didn't downgrade configuration for the AWS Lambda and Zipkin plugins for older versions of data planes.
+  [#10346](https://github.com/Kong/kong/pull/10346)
+* Fixed an issue in DB-less mode, where validation of regex routes could be skipped when using a configuration format older than `3.0`.
+  [#10348](https://github.com/Kong/kong/pull/10348)
 
 #### Enterprise
 
@@ -235,7 +236,7 @@ These users could see the Workspaces Overview dashboard with the default workspa
 Now, if IdP users with no groups or roles attempt to log into Kong Manager, they will be denied access.
 
 #### Plugins
-
+  
 * Fixed an issue where the `redis.username` configuration parameter didn't work for the following plugins:
     * GraphQL Rate Limiting Advanced
     * Proxy Cache Advanced
@@ -267,6 +268,9 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
       [#10160](https://github.com/Kong/kong/pull/10160)
      * `http.flavor` is now a string value, not a double.
       [#10160](https://github.com/Kong/kong/pull/10160)
+  * Fixed an issue with getting the traces of other formats, where the trace ID reported and propagated could be of incorrect length.
+    This caused traces originating from Kong Gateway to incorrectly connect with the target service, causing Kong Gateway and the target service to submit separate traces.
+    [#10332](https://github.com/Kong/kong/pull/10332)
   
 * [**OAuth2**](/hub/kong-inc/oauth2/) (`oauth2`)
   * `refresh_token_ttl` is now limited to a range between `0` and `100000000` by the schema validator. 
