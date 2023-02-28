@@ -409,7 +409,7 @@ jQuery(function () {
     }
   });
 
-  if ($('.plugin-hub')) {
+  if ($(".plugin-hub")) {
     var hash = window.location.hash;
     if (hash) {
       var filter = hash.slice(1);
