@@ -12,7 +12,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## February 2023
 
 **Support for Gateway 3.2.x features**
-: {{site.konnect_saas}} now supports the following features released in {{site.base_gateway}} 3.2.1:
+: {{site.konnect_saas}} now supports {{site.base_gateway}} 3.2.1.0, which includes the following features:
 * **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/gateway-config/#keys) and key sets can now be configured in Runtime Manager.
 * **Datadog Tracing Plugin:** The new [Datadog Tracing Plugin](/hub/kong-inc/datadog-tracing/) is {{site.konnect_saas}} compatible.
 * **Optional plugin config field:** Every plugin now supports the optional `instance_name` field.    
