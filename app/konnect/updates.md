@@ -15,7 +15,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : {{site.konnect_saas}} now supports the following features released in {{site.base_gateway}} 3.2.1:
 * **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/gateway-config/#keys) and key sets can now be configured in Runtime Manager.
 * **Datadog Tracing Plugin:** The new [Datadog Tracing Plugin](/hub/kong-inc/datadog-tracing/) is {{site.konnect_saas}} compatible.
-* **Optional plugin config field:** Every plugin now supports the optional 'instance_name' field.    
+* **Optional plugin config field:** Every plugin now supports the optional `instance_name` field.    
 
 **System accounts**
 : Organizations now have access to [system accounts](/konnect/org-management/system-accounts/) which can be created without a verified email address. This allows a system account to be used as part of an automation or integration that is not associated with any person’s identity.
@@ -31,7 +31,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
 * **API consumer**: Allows the Dev Portal developer to register their applications with the consumer services.
 
-For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/).
+: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/).
 
 ## January 2023
 
