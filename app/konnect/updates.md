@@ -12,10 +12,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## February 2023
 
 **System accounts**
-Organizations now have access to [system accounts](/konnect/org-management/system-accounts) which can be created without a verified email address. This allows a system account to be used as part of an automation or integration that is not associated with any person’s identity.
+Organizations now have access to [system accounts](/konnect/org-management/system-accounts/) which can be created without a verified email address. This allows a system account to be used as part of an automation or integration that is not associated with any person’s identity.
 
 **Multiple authentication methods for Dynamic Client Registration**
-Dynamic Client Registration (DCR) now supports [multiple authentication methods](/konnect/dev-portal/applications/dynamic-client-registration/#authentication-methods), including client credentials, bearer tokens, and session cookies.
+Dynamic Client Registration (DCR) now supports [multiple authentication methods](/konnect/dev-portal/applications/dynamic-client-registration/#authentication-methods/), including client credentials, bearer tokens, and session cookies.
 
 **OAS plugin support**
 : {{site.konnect_saas}} now supports the OAS Validation plugin. This plugin allows you to validate HTTP requests and responses based on an API specification. For more information, see the [OAS Validation plugin documentation](/hub/kong-inc/oas-validation/).
@@ -25,7 +25,7 @@ Dynamic Client Registration (DCR) now supports [multiple authentication methods]
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
 * **API consumer**: Allows the Dev Portal developer to register their applications with the consumer services.
 
-For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide) and the [Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/).
+For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/).
 
 ## January 2023
 
