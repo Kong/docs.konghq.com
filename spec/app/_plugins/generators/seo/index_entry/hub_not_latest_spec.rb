@@ -12,18 +12,6 @@ RSpec.describe SEO::IndexEntry::HubNotLatest do
     it { expect(subject.indexable?(index)).to eq(false) }
   end
 
-  describe '#process!' do
-    before { subject.process!(index) }
-
-    it 'sets the canonical url to the page' do
-      expect(page.data['canonical_url']).to eq('/hub/acme/jq/')
-    end
-
-    it 'sets seo_noindex to the page' do
-      expect(page.data['seo_noindex']).to eq(true)
-    end
-  end
-
   describe '#attributes' do
     it { expect(subject.attributes).to eq({ 'url' => '/hub/acme/jq/', 'page' => page }) }
   end

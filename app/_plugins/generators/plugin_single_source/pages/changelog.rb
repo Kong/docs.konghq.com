@@ -3,8 +3,6 @@
 module PluginSingleSource
   module Pages
     class Changelog < Base
-      private
-
       def canonical_url
         "/#{base_url}changelog/"
       end
@@ -17,12 +15,18 @@ module PluginSingleSource
         end
       end
 
-      def ssg_hub
-        false
-      end
-
       def page_title
         "#{@release.frontmatter['name']} Changelog"
+      end
+
+      def dropdown_url
+        @dropdown_url ||= "/#{base_url}VERSION/changelog/"
+      end
+
+      private
+
+      def ssg_hub
+        false
       end
     end
   end

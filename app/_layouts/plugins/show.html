@@ -16,28 +16,23 @@ type: plugin
 <!-- BEGIN PAGE OUTPUT -->
 <div class="search-selector">Plugin Hub</div>
 
-<div class="page page-extension-profile">
-  {% include_cached header.html
-                    is_latest=page.is_latest
-                    id=page.id
-                    url=page.url
-                    breadcrumbs=page.breadcrumbs
-                    name=page.title
-                    img=page.extn_icon
-                    plus=page.plus
-                    enterprise=page.enterprise
-                    cloud=page.cloud
-                    publisher=page.publisher
-                    extn_versions=extn_versions
-                    extn_publisher=page.extn_publisher
-                    extn_slug=page.extn_slug
-  %}
-
+<div class="page v2 hub" data-url={{ page.url }}>
   <div class="container">
     {% capture full_content %}
       {{ content }}
-      {% include book.html %}
     {% endcapture %}
+
+    {% include_cached plugins/sidebar.html
+                      sidenav=page.sidenav
+                      extn_versions=extn_versions
+                      extn_data=extn_data
+                      extn_type=extn_type
+                      extn_release=extn_release
+                      extn_latest=extn_latest
+                      extn_publisher=page.extn_publisher
+                      placeholder_url=page.placeholder_url
+                      versions_dropdown=page.versions_dropdown
+    %}
 
     {% include_cached plugins/right_nav.html
                       full_content=full_content
@@ -48,13 +43,29 @@ type: plugin
                       extn_latest=extn_latest
                       extn_publisher=page.extn_publisher
                       extn_slug=page.extn_slug
-                      about_this=true
+                      about_this=false
     %}
 
-    <div class="page-content-container">
+    <div class="page-content-container v2">
       <div class="page-content">
         <div class="content show-anchor-links">
+          {% include_cached header.html
+                            is_latest=page.is_latest
+                            id=page.id
+                            url=page.url
+                            breadcrumbs=page.breadcrumbs
+                            name=page.title
+                            img=page.extn_icon
+                            plus=page.plus
+                            enterprise=page.enterprise
+                            cloud=page.cloud
+                            publisher=page.publisher
+                            extn_versions=extn_versions
+                            extn_publisher=page.extn_publisher
+                            extn_slug=page.extn_slug
+          %}
           {{ full_content }}
+          {% include book.html %}
         </div>
       </div>
     </div>

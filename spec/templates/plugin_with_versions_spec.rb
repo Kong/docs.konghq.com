@@ -27,7 +27,7 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('.old-version-banner')
     end
 
-    it 'renders information about the plugin in the sidenav' do
+    xit 'renders information about the plugin in the sidenav' do
       expect(html).to have_css('th', text: 'About this Plugin')
       expect(html).to have_css('tr.version', text: 'Plugin Version 1.7.0', normalize_ws: true)
       expect(html).to have_css('tr.publisher', text: 'Made by Kong Inc.', normalize_ws: true)
@@ -113,7 +113,7 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).not_to have_css('.old-version-banner')
     end
 
-    it 'renders information about the plugin in the sidenav' do
+    xit 'renders information about the plugin in the sidenav' do
       expect(html).to have_css('th', text: 'About this Plugin')
       expect(html).to have_css('tr.version', text: 'Plugin Version 1.9.1', normalize_ws: true)
       expect(html).to have_css('tr.publisher', text: 'Made by Kong Inc.', normalize_ws: true)

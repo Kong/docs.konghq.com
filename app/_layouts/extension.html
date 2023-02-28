@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: plugins/show
 type: plugin
 permalink: :path
 breadcrumbs:
@@ -8,16 +8,6 @@ breadcrumbs:
 ---
 
 {% assign extn_data = site.data.extensions[page.extn_publisher][page.extn_slug] %}
-
-{% if page.kong_version_compatibility.community_edition %}
-  {% assign compat = true %}
-  {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
-{% endif %}
-
-{% if page.kong_version_compatibility.enterprise_edition %}
-  {% assign compat = true %}
-  {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
-{% endif %}
 
 {% comment %}
 We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
@@ -36,136 +26,73 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 {% assign extn_type = extn_type[0]['name'] %}
 
 {% assign extn_versions = extn_data['releases'] %}
-{% if extn_versions %}
-  {% assign extn_latest = extn_versions | first %}
-  {% assign extn_release = page.extn_release %}
+
+{% if page.plus and page.extn_publisher == "kong-inc" %}
+  <blockquote class="note" role="alert">
+    Did you know that you can try this plugin without talking to anyone with a free
+    trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=docs-plugins&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+  </blockquote>
 {% endif %}
 
-<!-- BEGIN PAGE OUTPUT -->
-<div class="search-selector">Plugin Hub</div>
-
-<div class="page page-extension-profile">
-  {% include_cached header.html
-                    is_latest=page.is_latest
-                    id=page.id
-                    url=page.url
-                    breadcrumbs=page.breadcrumbs
-                    name=page.title
-                    img=page.extn_icon
-                    plus=page.plus
-                    enterprise=page.enterprise
-                    cloud=page.cloud
-                    publisher=page.publisher
-                    extn_versions=extn_versions
-                    extn_publisher=page.extn_publisher
-                    extn_slug=page.extn_slug
-  %}
-
-  <div class="container">
-    {% capture full_content %}
-      {% if page.plus and page.extn_publisher == "kong-inc" %}
-        <blockquote class="note" role="alert">
-          Did you know that you can try this plugin without talking to anyone with a free
-          trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
-        </blockquote>
-      {% endif %}
-
-      {% unless page.extn_publisher == "kong-inc" %}
-        <div class="alert alert-info blue" role="alert">
-          Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
-        </div>
-      {% endunless %}
-
-      {% if page.bundled == false %}
-        <blockquote class="important">
-          <details>
-          <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
-
-          <ul>
-            <li>Package install: Set <strong>plugins=bundled,{{ page.configuration.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
-            <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.configuration.name }}</strong> in the environment</li>
-            <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.configuration.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
-          </ul>
-          </details>
-        </blockquote>
-      {% endif %}
-
-      {% if page.alpha %}
-        <blockquote class="warning no-icon">
-          This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
-        </blockquote>
-      {% endif %}
-
-      {% if page.beta %}
-        <blockquote class="warning no-icon">
-          This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
-        </blockquote>
-      {% endif %}
-
-      {{ page.description | markdownify }}
-
-      {% if page.installation %}
-        <hr>
-        <h2 id="installation">Installation</h2>
-
-        {{ page.installation | markdownify }}
-
-        <hr>
-      {% endif %}
-
-      {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
-
-      {% if page.type == "plugin" and page.configuration %}
-        {% include plugins/configuration_reference.html %}
-      {% endif %}
-
-      {{ page.configuration.extra | markdownify }}
-
-      {% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
-
-      {% if page.terms_of_service %}
-        <h3 id="terms-of-service">Terms of Service</h3>
-        {{ page.terms_of_service | markdownify }}
-      {% endif %}
-
-      {% if page.privacy_policy %}
-        <h3 id="privacy-policy">Privacy Policy</h3>
-        {{ page.privacy_policy | markdownify }}
-      {% endif %}
-
-      {% include book.html %}
-    {% endcapture %}
-
-    {% include_cached plugins/right_nav.html
-                      full_content=full_content
-                      extn_versions=extn_versions
-                      extn_data=extn_data
-                      extn_type=extn_type
-                      extn_release=extn_release
-                      extn_latest=extn_latest
-                      extn_publisher=page.extn_publisher
-                      extn_slug=page.extn_slug
-                      about_this=true
-                      ee_compatible=ee_compatible
-                      ce_compatible=ce_compatible
-    %}
-
-    <div class="page-content-container">
-      <div class="page-content">
-        <div class="content show-anchor-links">
-          {{ full_content }}
-        </div>
-      </div>
-    </div>
+{% unless page.extn_publisher == "kong-inc" %}
+  <div class="alert alert-info blue" role="alert">
+    Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by a third-party contributor.
   </div>
-  <div id="scroll-to-top-button">
-    <i class="fas fa-chevron-up"></i>
-  </div>
-  {% if page.feedback != false %}
-    {% include feedback-widget.html %}
-  {% endif %}
-</div>
+{% endunless %}
 
-{% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+{% if page.bundled == false %}
+  <blockquote class="important">
+    <details>
+    <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
 
-<!-- {% include intercom.html %} -->
+    <ul>
+      <li>Package install: Set <strong>plugins=bundled,{{ page.configuration.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.configuration.name }}</strong> in the environment</li>
+      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.configuration.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+    </ul>
+    </details>
+  </blockquote>
+{% endif %}
+
+{% if page.alpha %}
+  <blockquote class="warning no-icon">
+    This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
+  </blockquote>
+{% endif %}
+
+{% if page.beta %}
+  <blockquote class="warning no-icon">
+    This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
+  </blockquote>
+{% endif %}
+
+{{ page.description | markdownify }}
+
+{% if page.installation %}
+  <hr>
+  <h2 id="installation">Installation</h2>
+
+  {{ page.installation | markdownify }}
+
+  <hr>
+{% endif %}
+
+{% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
+
+{% if page.type == "plugin" and page.configuration %}
+  {% include plugins/configuration_reference.html %}
+{% endif %}
+
+{{ page.configuration.extra | markdownify }}
+
+{% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
+
+{% if page.terms_of_service %}
+  <h3 id="terms-of-service">Terms of Service</h3>
+  {{ page.terms_of_service | markdownify }}
+{% endif %}
+
+{% if page.privacy_policy %}
+  <h3 id="privacy-policy">Privacy Policy</h3>
+  {{ page.privacy_policy | markdownify }}
+{% endif %}

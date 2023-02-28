@@ -12,7 +12,7 @@ module SEO
       private
 
       def url
-        @url ||= @page.url.gsub('/index', '/')
+        @url ||= "/#{@page.data['permalink']}"
       end
     end
   end

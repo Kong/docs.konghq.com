@@ -11,7 +11,13 @@ breadcrumbs:
 <div class="search-selector">Plugin Hub</div>
 
 <div class="page page-extension-profile">
-  {% include_cached header.html id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.header_title %}
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header-title">
+        <h1 id="main" tabindex="-1">{{ page.header_title }}</h1>
+      </div>
+    </div>
+  </header>
 
   <div class="container">
     {% capture full_content %}

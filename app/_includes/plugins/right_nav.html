@@ -1,33 +1,4 @@
-<aside class="docs-toc {% if include.extn_versions %} with-dropdown{% endif %}" id="plugin-toc" >
-  {% if include.extn_versions %}
-    <div class="versions-dropdown dropdown page-header-right">
-      <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {% if include.extn_data['strategy'] == "gateway" %}
-          Gateway
-        {% else %}
-          {{ include.extn_type | capitalize }}
-        {% endif %}
-
-        Version {{ include.extn_release }}{% if include.extn_release == include.extn_latest %}&nbsp;<em>(latest)</em>{% endif %}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
-        {% for ver in extn_versions %}
-          {% if ver == include.extn_latest %}
-            {% assign ver_path = "" %}
-          {% else %}
-            {% assign ver_path = ver | append: ".html" %}
-          {% endif %}
-          <li {% if include.extn_release == ver.release %} class="active" {% endif %}>
-            <a href="/hub/{{ include.extn_publisher }}/{{ include.extn_slug }}/{{ ver_path }}">
-              {{ver}} {% if ver == include.extn_latest %}<em>(latest)</em>{% endif %}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-
+<aside class="docs-toc" id="plugin-toc" >
   <div class="github-links">
     <p>
       <a href="/hub/"><i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
