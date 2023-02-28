@@ -20,8 +20,13 @@ With the tracing API, you can set the instrumentation of your module with the fo
 
 Kong uses a global tracer internally to instrument the core modules and plugins.
 
+{% if_version lte:3.1.x %}
 By default, the tracer is a [NoopTracer](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#get-a-tracer). The tracer is first initialized when `opentelemetry_tracing` configuration is enabled.
 
+{% endif_version %}
+{% if_version gte:3.2.x %}
+By default, the tracer is a [NoopTracer](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#get-a-tracer). The tracer is first initialized when `tracing_instrumentations` configuration is enabled.
+{% endif_version %}
 You can create a new tracer manually, or use the global tracer instance: 
 
 ```lua
