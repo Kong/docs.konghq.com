@@ -364,3 +364,72 @@ Perform a rolling upgrade of your cluster:
    is going smoothly.
 8. When your traffic is fully migrated to the new cluster,
    decommission your old data planes.
+
+
+## Upgrade to {{site.base_gateway}} 3.x.x and retain 2.x.x alerts for Prometheus
+
+You can upgrade to {{site.base_gateway}} 3.x.x while still retaining your {{site.base_gateway}} 2.x.x Prometheus alerts or dashboards. This can be useful if you don't have the capacity to patch them to comply with the new {{site.base_gateway}} 3.x.x Prometheus metrics. 
+
+Convert {{site.base_gateway}} 3.x.x Prometheus metrics into {{site.base_gateway}} 2.x.x Prometheus metrics in the `kong.config` file:
+
+```yaml
+- job_name: kong-3x-metrics-as-kong-2x
+  scrape_interval: 20s
+  scrape_timeout: 19s
+  metrics_path: /metrics
+  scheme: http
+  metric_relabel_configs:
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_http_requests_total
+      target_label: __name__
+      replacement: kong_http_status
+
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_(.*)_latency_ms_(bucket|count|sum)
+      target_label: type
+      replacement: $1
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_(.*)_latency_ms_(bucket|count|sum)
+      target_label: __name__
+      replacement: kong_latency_$2
+
+    - action: replace
+      source_labels:
+        - __name__
+        - direction
+      regex: (kong_bandwidth_bytes);(egress|ingress)
+      separator: ;
+      target_label: type
+      replacement: $2
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_bandwidth_bytes
+      target_label: __name__
+      replacement: kong_bandwidth
+
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_nginx_connections_total
+      target_label: node_id
+      replacement: ""
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_nginx_connections_total
+      target_label: subsystem
+      replacement: ""
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_nginx_connections_total
+      target_label: __name__
+      replacement: kong_nginx_http_current_connections
+```
