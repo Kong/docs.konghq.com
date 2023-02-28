@@ -66,6 +66,8 @@ When a license expires, {{site.base_gateway}} behaves as follows:
 If you downgrade to free mode, the Admin API will be unlocked, but Enterprise features such Dev Portal, 
 Enterprise plugins, and others will no longer be accessible.
 
+To upload a new license, see [Deploy an Enterprise License](/gateway/{{page.kong_version}}/licenses/deploy/).
+
 ### License expiration logs
 
 {{site.base_gateway}} logs the license expiration date on the following schedule:
