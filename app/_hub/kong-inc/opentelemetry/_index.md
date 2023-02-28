@@ -33,8 +33,7 @@ params:
       maximum_version: "3.0.x"
       required: false
       datatype: map
-      value_in_examples:
-        X-Auth-Token: secret-token
+      value_in_examples: {X-Auth-Token: secret-token}
       description: |
         The custom headers to be added in the HTTP request sent to the OTLP server.
         This setting is useful for adding the authentication headers (token)
@@ -45,8 +44,7 @@ params:
       referenceable: true
       required: false
       datatype: map
-      value_in_examples:
-        X-Auth-Token: secret-token
+      value_in_examples: {X-Auth-Token: secret-token}
       description: |
         The custom headers to be added in the HTTP request sent to the OTLP server.
         This setting is useful for adding the authentication headers (token)
