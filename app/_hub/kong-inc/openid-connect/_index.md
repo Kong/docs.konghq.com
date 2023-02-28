@@ -240,9 +240,12 @@ params:
       default: 30
       datatype: integer
       description: |
-        Specifies how often (in seconds) the plugin completes a re-discovery.
+        Specifies how long (in seconds) the plugin waits between discovery attempts. Discovery is still triggered on an as-needed basis.
         > The re-discovery usually happens when the plugin cannot find a key for verifying
-        > the signature.
+        > the signature. For example, if a token is presented for which Kong does not have a
+        > JWK cached, it will poll the discovery endpoint for new JWK data. If that discovery
+        > attempt does not yeild a JWK that can validate the token, Kong will wait the specified
+        > number of seconds before retrying the discovery.
     - group: Client
     - name: client_id
       required: false
