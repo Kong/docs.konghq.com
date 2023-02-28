@@ -25,7 +25,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Multiple authentication methods for Dynamic Client Registration**
 : Dynamic Client Registration (DCR) now supports [multiple authentication methods](/konnect/dev-portal/applications/dynamic-client-registration/), including client credentials, bearer tokens, and session cookies.
 
-**OAS plugin support**
+**OAS Validation plugin support**
 : {{site.konnect_saas}} now supports the OAS Validation plugin. This plugin allows you to validate HTTP requests and responses based on an API specification. For more information, see the [OAS Validation plugin documentation](/hub/kong-inc/oas-validation/).
 
 **Dev Portal RBAC via the API**
