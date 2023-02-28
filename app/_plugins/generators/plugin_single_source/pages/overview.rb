@@ -37,8 +37,6 @@ module PluginSingleSource
         ).content
       end
 
-      private
-
       def canonical_url
         "/#{base_url}"
       end
@@ -51,16 +49,22 @@ module PluginSingleSource
         end
       end
 
+      def page_title
+        "#{@release.frontmatter['name']} Overview"
+      end
+
+      def dropdown_url
+        @dropdown_url ||= "/#{base_url}VERSION/"
+      end
+
+      private
+
       def ssg_hub
         @release.latest?
       end
 
       def page_attributes
         super.merge('layout' => 'extension')
-      end
-
-      def page_title
-        "#{@release.frontmatter['name']} Overview"
       end
     end
   end

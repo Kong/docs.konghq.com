@@ -23,6 +23,7 @@ module SharedContexts
     def render_page(page:)
       layouts = {
         'extension' => Jekyll::Layout.new(site, '_layouts', 'extension.html'),
+        'plugins/show' => Jekyll::Layout.new(site, '_layouts', 'plugins/show.html'),
         'default' => Jekyll::Layout.new(site, '_layouts', 'default.html'),
       }
       site.layouts = layouts

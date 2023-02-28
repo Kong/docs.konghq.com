@@ -75,12 +75,7 @@ module PluginSingleSource
       end
 
       def generate_pages
-        [
-          overview_page,
-          changelog,
-          how_tos,
-          references
-        ].flatten.map(&:to_jekyll_page)
+        PagesBuilder.new(self).run
       end
 
       def plugin_base_path

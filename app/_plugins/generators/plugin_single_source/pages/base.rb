@@ -3,6 +3,8 @@
 module PluginSingleSource
   module Pages
     class Base
+      attr_reader :site, :release
+
       def initialize(release:, file:, source_path:)
         @release = release
         @file = file
@@ -43,6 +45,12 @@ module PluginSingleSource
         ).gsub("#{@site.source}/", '')
       end
 
+      def nav_title
+        @nav_title ||= ::Utils::FrontmatterParser
+                       .new(File.read(File.expand_path(@file, @source_path)))
+                       .frontmatter.fetch('nav_title', 'Missing nav_title')
+      end
+
       private
 
       def url_attributes
@@ -57,7 +65,8 @@ module PluginSingleSource
         @page_attributes ||= {
           'ssg_hub' => ssg_hub,
           'layout' => 'plugins/show',
-          'title' => page_title
+          'title' => page_title,
+          'versions_dropdown' => Drops::VersionsDropdown.new(self)
         }
       end
 

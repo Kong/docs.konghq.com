@@ -35,6 +35,27 @@ jQuery(function () {
       });
   });
 
+  $('.docs-sidebar .accordion-item input').each(function(index, input) {
+    $(input).on('click', function(event) {
+      var value = $('#accordion-opened').val();
+      var id = input.id.split('-')[1];
+
+      if (value === '') {
+        if ($('.accordion-item.active')[0]) {
+          value = $('.accordion-item.active')[0].firstElementChild.id.split('-')[1];
+        } else {
+          $('#accordion-opened').val(id.toString());
+          return;
+        }
+      }
+      if (value !== id.toString()) {
+        $('#accordion-' + value).prop('checked', false);
+        $('#accordion-opened').val(id.toString());
+      }
+
+    });
+  });
+
   // Function to close menus on pressing the "Escape" key
   function closeDropdownOnEscape() {
     if (event.key === "Escape") {
