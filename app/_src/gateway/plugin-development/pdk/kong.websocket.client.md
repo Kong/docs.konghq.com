@@ -193,9 +193,6 @@ Set the maximum allowed payload size for client frames, in bytes.
 ``` lua
 -- set a max payload size of 1KB
 kong.websocket.client.set_max_payload_size(1024)
-
 -- Restore the default limit
 kong.websocket.client.set_max_payload_size(0)
 ```
-
-

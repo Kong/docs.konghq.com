@@ -74,6 +74,32 @@
     text-align: center;
   }
 
+  &.package::after {
+    content: "Package"; 
+    color: white;
+    border-color: @steel-400;
+    background-color: @steel-400;
+    text-align: center;
+    margin-right: 2px;
+  }
+
+  &.docker::after {
+    content: "Docker";
+    color: white;
+    border-color: #6e30bf;
+    background-color: #6e30bf;
+    text-align: center;
+    margin-right: 2px;
+  }
+
+  &.ami::after {
+    content: "AMI";
+    color: white;
+    border-color: @black-80;
+    background-color: @black-80;
+    margin-right: 2px;
+  }
+
   // Tooltip container
   .tooltip {
     position: relative;

@@ -81,3 +81,8 @@ Remove a user from your organization from the {% konnect_icon organizations %} [
 1. Click the **User Actions** drop-down menu, then select **Delete**.
 
 1. Confirm deletion to permanently remove this user from the organization.
+
+## See also
+
+See the following documentation for additional information:
+* [Manage System Accounts](/konnect/org-management/system-accounts/)

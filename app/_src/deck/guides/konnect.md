@@ -32,13 +32,22 @@ This takes precedence over the `--konnect-password-file` flag.
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} runtime group name.
 
-{% if_version gte:1.14.x %}
+{% if_version gte:1.14.x lte:1.17.x %}
 `--konnect-token`
 :  Personal access token associated with your {{site.konnect_short_name}} account, this takes precedence over the `--konnect-token-file` flag.
 
 
 `--konnect-token-file`
 :  File containing the personal access token to your {{site.konnect_short_name}} account.
+{% endif_version %}
+
+{% if_version gte:1.18.x %}
+`--konnect-token`
+:  Personal access token associated with your {{site.konnect_short_name}} account (`kpat_*`), or with a system account (`spat_*`). This takes precedence over the `--konnect-token-file` flag.
+
+
+`--konnect-token-file`
+:  File containing the personal access token to your {{site.konnect_short_name}} account, or to a system account.
 {% endif_version %}
 
 {:.note}
@@ -122,13 +131,54 @@ Successfully Konnected to the Example-Name organization!
 {% if_version gte:1.14.x %}
 ### Authenticate using a personal access token
 
-{% include_cached /md/personal-access-token.md %}
+You can generate a personal access token (PAT) in {{site.konnect_short_name}} for authentication with decK commands. This is more secure than basic authentication, and can be useful for organizations with CI pipelines that can't use the standard username and password authentication. 
+
+{% if_version gte:1.18.x %}
+There are two types of PATs available for {{site.konnect_short_name}}: 
+* Personal access tokens associated with user accounts
+* System account access tokens associated with system accounts
+
+Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts).
+{% endif_version %}
+
+Before you generate a PAT, keep the following in mind:
+
+* A PAT is granted all of the permissions that the user has access to via their most up-to-date role assignment.
+* The PAT has a maximum duration of 12 months.
+* There is a limit of 10 personal access tokens per user.
+* Unused tokens are deleted and revoked after 12 months of inactivity.
+
+{% if_version gte:1.18.x %}
+{% navtabs %}
+{% navtab User Account Token %}
+
+To generate a PAT for a user account in {{site.konnect_short_name}}, select your name to open the context menu 
+ and click **Personal access tokens**, then click **Generate token**. 
+
+{% endnavtab %}
+{% navtab System Account Token %}
+
+[Create a system account token](/konnect/org-management/system-accounts/#generate-a-system-account-access-token) through the {{site.konnect_short_name}} API.
+
+{% endnavtab %}
+{% endnavtabs %}
+{% endif_version %}
+
+{% if_version lte:1.17.x %}
+
+To generate a PAT for a user account in {{site.konnect_short_name}}, select your name to open the context menu 
+ and click **Personal access tokens**, then click **Generate token**. 
+
+{% endif_version %}
+
+{:.important}
+> **Important**: The access token is only displayed once, so make sure you save it securely. 
 
 You can use the `--konnect-token` flag to pass the PAT directly in the command:
 
 ```sh
 deck ping \
-  --konnect-token YOUR_PERSONAL_ACCESS_TOKEN
+  --konnect-token YOUR_KONNECT_TOKEN
 ```
 
 You can save your {{site.konnect_short_name}}
