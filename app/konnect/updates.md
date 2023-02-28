@@ -11,11 +11,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## February 2023
 
+**Support for Gateway 3.2.x features**
+: {{site.konnect_saas}} now supports the following features released in {{site.base_gateway}} 3.2.1:
+* **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/gateway-config/#keys) and key sets can now be configured in Runtime Manager.
+* **Datadog Tracing Plugin:** The new [Datadog Tracing Plugin](/hub/kong-inc/datadog-tracing/) is {{site.konnect_saas}} compatible.
+* **Optional plugin config field:** Every plugin now supports the optional 'instance_name' field.    
+
 **System accounts**
-Organizations now have access to [system accounts](/konnect/org-management/system-accounts/) which can be created without a verified email address. This allows a system account to be used as part of an automation or integration that is not associated with any person’s identity.
+: Organizations now have access to [system accounts](/konnect/org-management/system-accounts/) which can be created without a verified email address. This allows a system account to be used as part of an automation or integration that is not associated with any person’s identity.
 
 **Multiple authentication methods for Dynamic Client Registration**
-Dynamic Client Registration (DCR) now supports [multiple authentication methods](/konnect/dev-portal/applications/dynamic-client-registration/), including client credentials, bearer tokens, and session cookies.
+: Dynamic Client Registration (DCR) now supports [multiple authentication methods](/konnect/dev-portal/applications/dynamic-client-registration/), including client credentials, bearer tokens, and session cookies.
 
 **OAS plugin support**
 : {{site.konnect_saas}} now supports the OAS Validation plugin. This plugin allows you to validate HTTP requests and responses based on an API specification. For more information, see the [OAS Validation plugin documentation](/hub/kong-inc/oas-validation/).
