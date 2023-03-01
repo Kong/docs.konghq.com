@@ -18,11 +18,11 @@
         {% if include.breadcrumbs %}
           <ul class="breadcrumbs install">
             {% for breadcrumb in include.breadcrumbs %}
-              <li class="breadcrumb-item{% if include.url == breadcrumb[1] %} active{% endif %}">
-                {% if include.id == 'page-plugin' %}
-                  <a href="https://konghq.com/plugins">Plugins</a>
+              <li class="breadcrumb-item{% if include.url == breadcrumb.url %} active{% endif %}">
+                {% if breadcrumb.url %}
+                  <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
                 {% else %}
-                  <a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a>
+                  {{ breadcrumb.text }}
                 {% endif %}
               </li>
             {% endfor %}

@@ -51,6 +51,10 @@ module PluginSingleSource
                        .frontmatter.fetch('nav_title', 'Missing nav_title')
       end
 
+      def base_url
+        @base_url ||= "hub/#{@release.dir}/"
+      end
+
       private
 
       def url_attributes
@@ -66,12 +70,19 @@ module PluginSingleSource
           'ssg_hub' => ssg_hub,
           'layout' => 'plugins/show',
           'title' => page_title,
-          'versions_dropdown' => Drops::VersionsDropdown.new(self)
+          'versions_dropdown' => Drops::VersionsDropdown.new(self),
+          'breadcrumbs' => Drops::Breadcrumbs.new(breadcrumbs).breadcrumbs
         }
       end
 
-      def base_url
-        @base_url ||= "hub/#{@release.dir}/"
+      def breadcrumbs
+        [
+          { text: 'Home', url: '/' },
+          { text: 'Plugin Hub', url: '/hub/' },
+          { text: @release.vendor },
+          { text: @release.name, url: "/#{base_url}#{@release.latest? ? '' : @release.version}" },
+          { text: page_title, url: "/#{permalink}" }
+        ]
       end
     end
   end
