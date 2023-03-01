@@ -29,12 +29,13 @@ upgrade to 2.8.2, [then migrate to {{page.kong_version}}](#migrate-db).
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
-[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.1.x/CHANGELOG.md#310) and
-[Enterprise](/gateway/changelog/#3000) Gateway changelogs. Since {{site.base_gateway}}
+[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.2.x/CHANGELOG.md#310) and
+[Enterprise](/gateway/changelog/#3210) Gateway changelogs. Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to {{page.kong_version}}.
-If you are running 1.x, upgrade to 2.8.2 and then 3.0.x first at minimum, then upgrade to {{page.kong_version}} from there.
+If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at minimum, finally upgrade to
+{{page.kong_version}} from there.
 
 In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
 then follow the [database migration](#migrate-db) instructions.
@@ -81,8 +82,11 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 ## Upgrade considerations and breaking changes
 
-Before upgrading, review this list for any configuration or breaking changes that
-affect your current installation.
+Before upgrading, review any configuration or breaking changes in this version and prior versions, which
+affects your current installation.
+
+Customers may have to adopt different upgrading paths in accord with deployment methods, set of features in use,
+custom plugins, etc.
 
 {% if_version gte:3.2.x %}
 
@@ -328,8 +332,17 @@ diff the files to identify any changes, and apply them as needed.
 
 ## General upgrade path {#migrate-db}
 
-### Traditional mode
+`kong migrations` mentioned in this section is irrevocable, and hence customers are suggested to backup data
+before making any changes.
 
+Depending on the database in use (Postgres or Cassandra), a database dump is recommended, so that we can do recover
+from migrations failure in database level.
+
+Additionally, {{site.base_gateway}} supports exporting data in YAML format by `kong config db_export`, which later on
+can be imported back by `kong config db_import`. Please check
+[kong config CLI](https://docs.konghq.com/gateway/latest/reference/cli/#kong-config).
+
+### Traditional mode
 
 1. Clone your database.
 2. Download the version of {{site.base_gateway}} you want to upgrade to, and configure it to point to the cloned data store.
