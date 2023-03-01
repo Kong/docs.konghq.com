@@ -29,7 +29,7 @@ You can have different API specs that correspond to different service versions.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/konnect_service_docs_spec_edit.png" />
+  <img src="/assets/images/docs/konnect/konnect_service_docs_spec.png" />
 </p>
 
-Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also see the publication status. 
+Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also be able to filter by tag when in full-page view. 

@@ -31,9 +31,9 @@ Here are some of the things you can do from the Service Package Dashboard:
 
 Number | Item | Description
 -------|------|------------
-1 | **Service Versions** | This section displays the status of a service version. From the context menu you can **Delete** a service, or use the **View Details** button to navigate to that versions dashboard. 
+1 | **Service Versions** | This section displays the status of a service version. From the context menu you can **Delete** a service version, or use the **View Details** button to navigate to that versions dashboard. 
 2 | **Analytics** | Analytics data for the service. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/)
-3 | **Documentation** | You can add markdown documentation for your service. The documentation will render in the dashboard. If the service is published, the documentation will be available to developers in the Dev Portal. 
+3 | **Documentation** | You can add markdown documentation for your service, as well as an API specification for each version of the service. You can control the individual publishing status of each document you upload to a service.
 
 
 
