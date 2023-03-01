@@ -21,6 +21,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: origins
@@ -89,7 +91,7 @@ Below is a list of known issues or limitations for this plugin.
 ### CORS Limitations
 
 If the client is a browser, there is a known issue with this plugin caused by a
-limitation of the CORS specification that doesn't allow to specify a custom
+limitation of the [CORS specification](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) that prevents specifying a custom
 `Host` header in a preflight `OPTIONS` request.
 
 Because of this limitation, this plugin only works for Routes that have been

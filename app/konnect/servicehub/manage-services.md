@@ -39,7 +39,8 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
     For example, you might set `location:us-west`, where `location` is the key
     and the `us-west` is the value.
 
-    These labels are customizable, you can set them to any value.
+    These labels are customizable. 
+    See the [Labels](/konnect/reference/labels) reference for more information on label formatting.
 
 1. Click **Save**.
 

@@ -16,6 +16,9 @@ Here are some of the things you can do with Kong Manager:
 * Manage users and roles for both {{site.base_gateway}} and for the Dev Portal
 * Configure Dev Portals: customize appearance, manage developers and applications, and edit Dev Portal layouts, specs, and documentation
 * Monitor performance: visualize cluster-wide, workspace-level, or even object-level health using intuitive, customizable dashboards
+{% if_version gte:3.2.x %}
+* Centrally store and easily access key sets and keys. 
+{% endif_version %}
 
 {:.note}
 > **Note**: If you are running Kong in [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional), increased traffic could lead to potential performance issues for the Kong proxy.
@@ -51,9 +54,12 @@ Number | Item | Description
 7 | **API Gateway** | Manage the {{site.base_gateway}} entities in the current workspace.
 8 | **Dev Portal** | Workspace-specific Dev Portal configuration. If you enable Dev Portal for the current workspace, the menu will have additional items: <br> &nbsp;&nbsp;&bull; Settings: General settings for the Dev Portal instance in this workspace <br> &nbsp;&nbsp;&bull; Appearance: Customize your Dev Portal colors, fonts, and branding <br> &nbsp;&nbsp;&bull; Developers: Manage developer requests and access <br> &nbsp;&nbsp;&bull; Applications: Manage application requests and access <br> &nbsp;&nbsp;&bull; Permissions: Manage roles and content permissions <br> &nbsp;&nbsp;&bull; Editor: Access the Dev Portal files editor to configure layouts, documentation, and specs
 9 | **Vitals** | Monitor requests by access code for all services in the workspace.
-
 {% if_version gte:3.1.x %}
 10 | **Vaults** | Manage secret vaults in your environment.
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+11 | **Keys** | Centrally store and easily access key sets and keys.
 {% endif_version %}
 
 ### Workspace dashboard

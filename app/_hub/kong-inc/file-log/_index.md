@@ -29,6 +29,8 @@ params:
     - name: grpcs
     - name: tcp
     - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
     - name: udp
     - name: ws
       minimum_version: "3.1.x"
