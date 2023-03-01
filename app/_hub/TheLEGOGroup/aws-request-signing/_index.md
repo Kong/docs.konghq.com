@@ -20,7 +20,7 @@
 # https://github.com/Kong/docs.konghq.com/app/_hub for examples.
 # Remove inapplicable entries and comments as needed.
 
-name: aws-request-signing 
+name: AWS Request Signing
   # (required) The name of your extension.
   # Use capitals and spaces as needed.
 publisher: The LEGO Group
@@ -54,7 +54,9 @@ description: |
   This eliminates the need for an AWS API Gateway and simplifies the use of Lambdas as upstreams in Kong. 
   
   However, in order to use this plugin, there is an AWS setup required.
-  Specifically, you will need to add your token issuer to the "Identity Providers" in your AWS account, this way the plugin can request temporary credentials. More details can be seen in the [plugin repo.](https://github.com/LEGO/kong-aws-request-signing#aws-setup-required)
+  Specifically, you will need to add your token issuer to the "Identity Providers" in your AWS account, this way the plugin can request temporary credentials. 
+ 
+ For more information on the required AWS setup, visit the [plugin repo.](https://github.com/LEGO/kong-aws-request-signing#aws-setup-required)
   
   Once this is done, you can use the plugin to communicate with your Lambda HTTPS endpoint.
 
