@@ -409,6 +409,16 @@ jQuery(function () {
     }
   });
 
+  if ($(".plugin-hub")) {
+    var hash = window.location.hash;
+    if (hash) {
+      var filter = hash.slice(1);
+      $("a[data-filter]").removeClass("active");
+      $(`a[href='${hash}']`).addClass("active");
+      pluginFilter(filter);
+    }
+  }
+
   function pluginFilter(target) {
     $("html, body").animate({ scrollTop: 0 });
     if (!target) {

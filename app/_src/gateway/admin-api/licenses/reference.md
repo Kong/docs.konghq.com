@@ -232,7 +232,7 @@ HTTP 200 OK
         }
     ],
     "db_version": "postgres 9.6.19",
-    "kong_version": "2.7.0.0",
+    "kong_version": "{{page.versions.ee}}",
     "license_key": "ASDASDASDASDASDASDASDASDASD_ASDASDA",
     "rbac_users": 0,
     "services_count": 0,
@@ -261,7 +261,7 @@ HTTP 200 OK
         }
     ],
     "db_version": "postgres 9.6.19",
-    "kong_version": "2.7.0.0",
+    "kong_version": "{{page.versions.ee}}",
     "license_key": "UNLICENSED",
     "rbac_users": 0,
     "services_count": 0,

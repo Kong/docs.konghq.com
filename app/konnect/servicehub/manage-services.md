@@ -39,6 +39,7 @@ ready to test, you'd create v2 in `staging` before finally creating v2 in
 `production` alongside v1.
 
 
+
 ### Analytics
 
 The analytics dashboard shown in the **Service Dashboard** is a high level overview of **traffic**, **error**, and **latency** for the service. These reports are generated automatically based on the traffic to the service. For more information about analytics read the [analytics documentation](/konnect/analytics/)
@@ -50,7 +51,6 @@ Learn more:
 * [How to generate reports](/konnect/analytics/generate-reports/)
 
 ### Documentation
-
 
 The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be consumed accessed once the service is published.
 

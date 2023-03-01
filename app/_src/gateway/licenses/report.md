@@ -40,7 +40,7 @@ Connection: keep-alive
 Content-Length: 814
 Content-Type: application/json; charset=utf-8
 Date: Mon, 06 Dec 2021 12:04:28 GMT
-Server: kong/2.7.0.1-enterprise-edition
+Server: kong/{{page.versions.ee}}-enterprise-edition
 Vary: Origin
 X-Kong-Admin-Request-ID: R1jmopI6fjkOLdOuPJVLEmGh4sCLMpSY
 {
@@ -68,7 +68,7 @@ X-Kong-Admin-Request-ID: R1jmopI6fjkOLdOuPJVLEmGh4sCLMpSY
     }
   ],
    "db_version": "postgres 9.6.24",
-   "kong_version": "2.7.0.1-enterprise-edition",
+   "kong_version": "{{page.versions.ee}}-enterprise-edition",
    "license_key": "KONGLICENSEKEY_NOTVALIDFORREAL_USAGE",
    "rbac_users": 0,
    "services_count": 27,
