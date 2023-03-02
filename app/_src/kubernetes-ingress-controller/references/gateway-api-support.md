@@ -86,6 +86,12 @@ The {{site.kic_product_name}} supports the following resources and features in t
 
 - Supported `v1alpha2` of TLSRoute.
 
+## GRPC Routes
+
+### v2.9.x
+
+- Supported `v1alpha2` of GRPCRoute.
+
 ## Reference Grants and Reference Policies
 
 ### v2.4.x
@@ -96,3 +102,7 @@ The {{site.kic_product_name}} supports the following resources and features in t
 ### v2.6.x
 
 - Supported `v1alpha2` version of ReferenceGrant and removed support of ReferencePolicy.
+
+### v2.9.x
+
+- Supported `v1beta1` version of ReferenceGrant, and removed support of `v1alpha2` version ReferenceGrant.
