@@ -120,7 +120,7 @@ To edit your Nginx parameters, do the following:
    log_format customformat '$remote_addr - $remote_user [$time_local] '
                  '"$request" $status $body_bytes_sent  '
                  '"$http_referer" "$http_user_agent" '
-                 'Kong-Request-ID="$sent_http_Kong_Request_ID"';
+                 'Kong-Request-ID="$http_Kong_Request_ID"';
    ```
 
 1. Use your custom log format for the proxy access log phase. Locate the following line:
