@@ -57,7 +57,7 @@ items:
         url: /deployment/eks
       - text: Kong Ingress on GKE
         url: /deployment/gke
-      - text: Admission Webhook
+      - text: Enable the Validating Admission Webhook
         url: /deployment/admission-webhook
       - text: Installing Gateway APIs
         url: /deployment/install-gateway-apis
