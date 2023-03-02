@@ -12,7 +12,7 @@ module SEO
       private
 
       def url
-        @url ||= "/#{@page.data['permalink']}"
+        @url ||= @page.data['permalink']
       end
     end
   end

@@ -4,12 +4,12 @@ module PluginSingleSource
   module Pages
     class Reference < Base
       def canonical_url
-        "/#{base_url}#{file_to_url_segment}/"
+        "#{base_url}#{file_to_url_segment}/"
       end
 
       def permalink
         if @release.latest?
-          canonical_url.delete_prefix('/')
+          canonical_url
         else
           "#{base_url}#{@release.version}/#{file_to_url_segment}.html"
         end
@@ -20,13 +20,17 @@ module PluginSingleSource
       end
 
       def dropdown_url
-        @dropdown_url ||= "/#{base_url}VERSION/#{file_to_url_segment}"
+        @dropdown_url ||= "#{base_url}VERSION/#{file_to_url_segment}/"
       end
 
       private
 
       def file_to_url_segment
-        @file.gsub('_index', '').gsub('_', '').gsub('.md', '').delete_suffix('/')
+        @file_to_url_segment ||= @file
+                                 .gsub('_index', '')
+                                 .gsub('_', '')
+                                 .gsub('.md', '')
+                                 .delete_suffix('/')
       end
 
       def ssg_hub

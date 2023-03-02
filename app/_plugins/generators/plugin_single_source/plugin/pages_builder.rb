@@ -29,12 +29,12 @@ module PluginSingleSource
       end
 
       def sidenav
-        @sidenav ||= Drops::Sidenav.new(
+        @sidenav ||= ::Jekyll::Drops::Sidenav.new(
           [
-            { title: 'Overview', url: @release.overview_page.permalink, icon: },
-            { title: 'Configuration', items: items_for(@release.references), icon: },
-            { title: 'Using the plugin', items: items_for(@release.how_tos), icon: },
-            { title: 'Changelog', url: @release.changelog.permalink, icon: }
+            { 'title' => 'Overview', 'url' => @release.overview_page.permalink.gsub('.html', '/'), 'icon' => icon },
+            { 'title' => 'Configuration', 'items' => items_for(@release.references), 'icon' => icon },
+            { 'title' => 'Using the plugin', 'items' => items_for(@release.how_tos), 'icon' => icon },
+            { 'title' => 'Changelog', 'url' => @release.changelog.permalink.gsub('.html', '/'), 'icon' => icon }
           ]
         )
       end
@@ -44,7 +44,7 @@ module PluginSingleSource
       end
 
       def items_for(pages)
-        pages.map { |p| { text: p.nav_title, url: p.permalink } }
+        pages.map { |p| { 'text' => p.nav_title, 'url' => p.permalink.gsub('.html', '/') } }
       end
     end
   end

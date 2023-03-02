@@ -30,36 +30,8 @@
 
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
-    {% for nav_item in include.sidenav.nav_items %}
-      <li class="accordion-item">
-        <input id="accordion-{{ forloop.index }}" type="checkbox" />
-        <label for="accordion-{{ forloop.index }}">
-          {% if nav_item.icon %}
-            <img src="{{ nav_item.icon }}" alt="{{ nav_item.label }}">
-          {% endif %}
-          {% if nav_item.url %}
-            <a href="/{{ nav_item.url }}" class="accordion-link" role="menuitem" tabindex="0">{{ nav_item.label }}</a>
-          {% else %}
-            {{ nav_item.label }}
-          {% endif %}
-          {% if nav_item.items.size > 0 %}
-            <i class="fa fa-chevron-down"></i>
-          {% endif %}
-        </label>
-        {% if nav_item.items.size > 0 %}
-          <div>
-            <ul class="items">
-              {% for item in nav_item.items %}
-                <li>
-                  <a href="/{{ item.url }}">
-                    {{ item.label }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      </li>
+    {% for item in include.sidenav.nav_items %}
+      {% include_cached accordion_item.html item=item id=forloop.index %}
     {% endfor %}
   </ul>
 </aside>

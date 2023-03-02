@@ -4,12 +4,12 @@ module PluginSingleSource
   module Pages
     class Changelog < Base
       def canonical_url
-        "/#{base_url}changelog/"
+        "#{base_url}changelog/"
       end
 
       def permalink
         if @release.latest?
-          canonical_url.delete_prefix('/')
+          canonical_url
         else
           "#{base_url}#{@release.version}/changelog.html"
         end
@@ -20,7 +20,7 @@ module PluginSingleSource
       end
 
       def dropdown_url
-        @dropdown_url ||= "/#{base_url}VERSION/changelog/"
+        @dropdown_url ||= "#{base_url}VERSION/changelog/"
       end
 
       private

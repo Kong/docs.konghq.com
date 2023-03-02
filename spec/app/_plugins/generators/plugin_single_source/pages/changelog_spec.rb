@@ -41,7 +41,7 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
         expect(subject.data).to include({
           'canonical_url' => nil,
           'source_file' => '_hub/acme/jwt-signer/_changelog.md',
-          'permalink' => 'hub/acme/jwt-signer/changelog/',
+          'permalink' => '/hub/acme/jwt-signer/changelog/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Changelog'
         })
@@ -57,7 +57,7 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
         expect(subject.data).to include({
           'canonical_url' => '/hub/acme/jwt-signer/changelog/',
           'source_file' => '_hub/acme/jwt-signer/_changelog.md',
-          'permalink' => 'hub/acme/jwt-signer/2.5.x/changelog.html',
+          'permalink' => '/hub/acme/jwt-signer/2.5.x/changelog.html',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Changelog'
         })

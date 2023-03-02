@@ -52,7 +52,7 @@ module PluginSingleSource
       end
 
       def base_url
-        @base_url ||= "hub/#{@release.dir}/"
+        @base_url ||= "/hub/#{@release.dir}/"
       end
 
       private
@@ -80,8 +80,8 @@ module PluginSingleSource
           { text: 'Home', url: '/' },
           { text: 'Plugin Hub', url: '/hub/' },
           { text: @release.vendor },
-          { text: @release.name, url: "/#{base_url}#{@release.latest? ? '' : @release.version}" },
-          { text: page_title, url: "/#{permalink}" }
+          { text: @release.name, url: "#{base_url}#{@release.latest? ? '' : @release.version}" },
+          { text: page_title, url: permalink }
         ]
       end
     end

@@ -1,11 +1,5 @@
 {% if include.no_version == false or include.has_version == true or include.nav_items != nil %}
 
-{% if include.is_latest %}
-  {% assign version = 'latest' %}
-{% else %}
-  {% assign version = include.kong_version %}
-{% endif %}
-
 <aside class="docs-sidebar">
   <i class="fa fa-times close-sidebar"></i>
 
@@ -121,32 +115,10 @@
     {% endunless %}
   </div>
 
-  {% if include.edition == 'enterprise' %}
-  {% assign docs_url = '/enterprise/' | append: version %}
-  {% elsif include.edition == 'studio' %}
-  {% assign docs_url = '/studio/' | append: version %}
-  {% elsif include.edition == 'getting-started-guide' %}
-  {% assign docs_url = '/getting-started-guide/' | append: version %}
-  {% elsif include.edition == 'mesh' %}
-  {% assign docs_url = '/mesh/' | append: version %}
-  {% elsif include.edition == 'konnect' %}
-  {% assign docs_url = '/konnect' %}
-  {% elsif include.edition == 'kubernetes-ingress-controller' %}
-  {% assign docs_url = '/kubernetes-ingress-controller/' | append: version %}
-  {% elsif include.edition == 'deck' %}
-  {% assign docs_url = '/deck/' | append: version %}
-  {% elsif include.edition == 'gateway-oss' %}
-  {% assign docs_url = '/gateway-oss/' | append: version %}
-  {% elsif include.edition == 'gateway' %}
-  {% assign docs_url = '/gateway/' | append: version %}
-  {% elsif include.edition == 'contributing' %}
-  {% assign docs_url = '/contributing' %}
-  {% endif %}
-
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
-    {% for nav in include.nav_items %}
-    {% include_cached docs-sidebar-item.html id=forloop.index docs_url=docs_url items=nav.items url=nav.url absolute_url=nav.absolute_url target=item.target icon=nav.icon title=nav.title %}
+    {% for item in include.sidenav.nav_items %}
+      {% include accordion_item.html item=item id=forloop.index %}
     {% endfor %}
   </ul>
 </aside>

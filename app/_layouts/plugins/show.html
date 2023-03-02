@@ -16,7 +16,7 @@ type: plugin
 <!-- BEGIN PAGE OUTPUT -->
 <div class="search-selector">Plugin Hub</div>
 
-<div class="page v2 hub page page-extension-profile" data-url={{ page.url }}>
+<div class="page v2 hub" data-url={{ page.url | replace: '.html', '/' }}>
   <div class="container">
     {% capture full_content %}
       {{ content }}

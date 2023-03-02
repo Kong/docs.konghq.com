@@ -67,10 +67,10 @@ RSpec.describe PluginSingleSource::Plugin::Release do
 
       it 'returns the relative path to the _index.md file inside the corresponding folder' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
-          'hub/acme/jwt-signer/2.5.x.html',
-          'hub/acme/jwt-signer/2.5.x/changelog.html',
-          'hub/acme/jwt-signer/2.5.x/how-to.html',
-          'hub/acme/jwt-signer/2.5.x/reference.html'
+          '/hub/acme/jwt-signer/2.5.x.html',
+          '/hub/acme/jwt-signer/2.5.x/changelog.html',
+          '/hub/acme/jwt-signer/2.5.x/how-to.html',
+          '/hub/acme/jwt-signer/2.5.x/reference.html'
         ])
       end
     end
@@ -78,12 +78,12 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     context 'when using `_index.md`' do
       it 'returns the relative path to the top-level _index.md file' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
-          'hub/acme/jwt-signer/',
-          'hub/acme/jwt-signer/changelog/',
-          'hub/acme/jwt-signer/how-to/',
-          'hub/acme/jwt-signer/how-to/nested/tutorial/',
-          'hub/acme/jwt-signer/reference/',
-          'hub/acme/jwt-signer/reference/api/',
+          '/hub/acme/jwt-signer/',
+          '/hub/acme/jwt-signer/changelog/',
+          '/hub/acme/jwt-signer/how-to/',
+          '/hub/acme/jwt-signer/how-to/nested/tutorial/',
+          '/hub/acme/jwt-signer/reference/',
+          '/hub/acme/jwt-signer/reference/api/',
         ])
       end
     end

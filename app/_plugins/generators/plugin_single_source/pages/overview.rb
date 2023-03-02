@@ -38,12 +38,12 @@ module PluginSingleSource
       end
 
       def canonical_url
-        "/#{base_url}"
+        base_url
       end
 
       def permalink
         if @release.latest?
-          base_url
+          canonical_url
         else
           "#{base_url}#{@release.version}.html"
         end
@@ -54,7 +54,7 @@ module PluginSingleSource
       end
 
       def dropdown_url
-        @dropdown_url ||= "/#{base_url}VERSION/"
+        @dropdown_url ||= "#{base_url}VERSION/"
       end
 
       private

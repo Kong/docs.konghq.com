@@ -28,8 +28,7 @@ module Jekyll
           # Add all existing pages links to this page
           pages.each do |p|
             if p.data['page_type'] == 'plugin'
-              path = p.path
-              page.data['book']['chapters'][path] = p.url if path != page.path
+              page.data['book']['chapters'][p.path] = p.url.gsub('.html', '/') if p.path != page.path
             else
               p_basename = p.basename
               page.data['book']['chapters'][p_basename] = p.url if p_basename != page.basename
