@@ -12,8 +12,7 @@ legal agreements API.
 
 ## Prerequisites
 
-* You have a {{site.konnect_short_name}} service with at least one version in the `default` runtime group.
-Application registration is not supported for custom runtime groups.
+* You have a {{site.konnect_short_name}} service with at least one version.
 
 * You have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/).
 
