@@ -53,44 +53,57 @@ Following table describes all the flags that are available:
 | `--enable-controller-udpingress`                | `boolean` | Enable the UDPIngress controller.                                                                     | `true`                         |
 | `--enable-reverse-sync`                  | `boolean`          | Send configuration to Kong even if the configuration checksum has not changed since previous update.                                                | `false`                           |
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.5.x %}
+| `--feature-gates`                        | `strings`          | A set of key=value pairs that describe feature gates for alpha/beta/experimental features.                                                          | see [feature-gates][fg]           |
+{% endif_version %}
+{% if_version gte:2.6.x %}
 | `--gateway-api-controller-name`          | `string`           | Controller name of the Kubernetes Gateway API. Gateway resources are reconciled only when their GatewayClass has the same value in `spec.controllerName`.           | `konghq.com/kic-gateway-controller` |
 {% endif_version %}
 
 | `--health-probe-bind-address`            | `string`           | The address the probe endpoint binds to.                                                                                                            | `":10254"`                        |
-| `--help`                                 | `boolean`          | Help for this command.                                                                                                                               | `false`                           |
+| `--help`                                 | `boolean`          | Help for this command.                                                                                                                              | `false`                           |
 | `--ingress-class`                        | `string`           | Name of the ingress class to route through this controller.                                                                                         | `"kong"`                          |
 | `--kong-admin-ca-cert`                   | `string`           | PEM-encoded CA certificate to verify Kong's Admin SSL certificate.                                                                                  |                                   |
 | `--kong-admin-ca-cert-file`              | `string`           | Path to PEM-encoded CA certificate file to verify Kong's Admin SSL certificate.                                                                     |                                   |
 | `--kong-admin-concurrency`               | `int`              | Max number of concurrent requests sent to Kong's Admin API.                                                                                         | `10`                              |
 | `--kong-admin-filter-tag`                | `strings`          | The tag used to manage and filter entities in Kong. This flag can be specified multiple times to specify multiple tags.                             | `[managed-by-ingress-controller]` |
-| `--kong-admin-header`                    | `strings`          | Add a header (key:value) to every Admin API call, this flag can be used multiple times to specify multiple headers.                                  |                                   |
+| `--kong-admin-header`                    | `strings`          | Add a header (key:value) to every Admin API call, this flag can be used multiple times to specify multiple headers.                                 |                                   |
 | `--kong-admin-init-retries`              | `int`              | Number of attempts that will be made initially on controller startup to connect to the Kong Admin API.                                              | `60`                              |
 | `--kong-admin-init-retry-delay`          | `duration`         | The time delay between every attempt (on controller startup) to connect to the Kong Admin API.                                                      |                                   |
 | `--kong-admin-tls-server-name`           | `string`           | SNI name to use to verify the certificate presented by Kong in TLS.                                                                                 |                                   |
 | `--kong-admin-tls-skip-verify`           | `boolean`          | Disable verification of TLS certificate of Kong's Admin endpoint.                                                                                   | `false`                           |
 | `--kong-admin-token`                     | `string`           | The Kong Enterprise RBAC token used by the controller.                                                                                              |                                   |
 | `--kong-admin-url`                       | `string`           | The Kong Admin URL to connect to in the format "protocol://address:port".                                                                           | `"http://localhost:8001"`         |
-| `--kong-custom-entities-secret`          | `string`           | A Secret containing custom entities for DB-less mode, in "namespace/name" format.                                                                    |                                   |
+
+{% if_version lte:2.8.x %}
+| `--kong-custom-entities-secret`          | `string`           | A Secret containing custom entities for DB-less mode, in "namespace/name" format.                                                                   |                                   |
+{% endif_version %}
+
 | `--kong-workspace`                       | `string`           | Kong Enterprise workspace to configure. Leave this empty if not using Kong workspaces.                                                              |                                   |
 | `--kubeconfig`                           | `string`           | Path to the kubeconfig file.                                                                                                                        |                                   |
 | `--log-format`                           | `string`           | Format of logs of the controller. Allowed values are text and json.                                                                                 | `"text"`                          |
 | `--log-level`                            | `string`           | Level of logging for the controller. Allowed values are trace, debug, info, warn, error, fatal and panic.                                           | `"info"`                          |
 | `--metrics-bind-address`                 | `string`           | The address the metric endpoint binds to.                                                                                                           | `":10255"`                        |
-| `--profiling`                            | `boolean`          | Enable profiling via web interface `host:10256/debug/pprof/`.                                                                                          | `false`                           |
+| `--profiling`                            | `boolean`          | Enable profiling via web interface `host:10256/debug/pprof/`.                                                                                       | `false`                           |
 | `--proxy-sync-seconds`                   | `float32`          | Define the rate (in seconds) in which configuration updates will be applied to the Kong Admin API.                                                  | `3`                               |
 | `--proxy-timeout-seconds`                | `float32`          | Define the rate (in seconds) in which the timeout configuration will be applied to the Kong client.                                                 | `10`                              |
 | `--publish-service`                      | `string`           | Service fronting Ingress resources in "namespace/name" format. The controller will update Ingress status information with this Service's endpoints. |                                   |
 | `--publish-status-address`               | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service" when that Service lacks useful address information.  |                                   |
 
-{% if_version gte: 2.4.x %}
+{% if_version gte:2.9.x %}
+| `--publish-service-udp`                  | `string`           | Service fronting UDP routing resources in "namespace/name" format. The controller will update Ingress status information with this Service's endpoints. If omitted, the same Service will be used for both TCP and UDP routes. |                                   |
+| `--publish-status-address-udp`           | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service-udp" when that Service lacks useful address information. |                                   |
+{% endif_version %}
+{% if_version gte:2.4.x %}
 | `--skip-ca-certificates`                 | `boolean`          | Disable CA certificate handling. When using multiple controllers for separate workspaces in the same Kong instance, all but one controller should have this set to `true`. | `false`     |
 {% endif_version %}
 | `--sync-period`                          | `duration`         | Relist and confirm cloud resources this often.                                                                                                       | `48h`                             |
 
-{% if_version gte: 2.4.x %}
+{% if_version gte:2.4.x %}
 | `--term-delay`                           | `duration`         | The time delay to sleep before SIGTERM or SIGINT shuts down the Ingress Controller.                                                              | `0s`                              |
 {% endif_version %}
 
 | `--update-status`                        | `boolean`          | Indicates if the ingress controller should update the status of resources (e.g. IP/Hostname for v1.Ingress, e.t.c.).                                 | `true`                            |
 | `--watch-namespace`                      | `strings`          | Namespace(s) to watch for Kubernetes resources. Defaults to all namespaces. To watch multiple namespaces, use a comma-separated list of namespaces. | `all`                             |
+
+[fg]: /kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates
