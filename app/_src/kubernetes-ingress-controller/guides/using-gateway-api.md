@@ -241,6 +241,15 @@ HTTPRoute resources are similar to Ingress resources: they contain a set of
 matching criteria for HTTP requests and upstream Services to route those
 requests to.
 
+
+{:.important}
+> The Gateway API specification binds HTTPRoutes to one or more listeners in
+> a Gateway resource. These listeners have a specific port, and HTTPRoutes
+> should only be available on their listeners' ports per the specification.
+> Kong's HTTP proxy implementation [doesn't support this](https://github.com/Kong/kubernetes-ingress-controller/issues/3314).
+> If you configure multiple HTTP ports, Kong serves all HTTP routes on all
+> ports.
+
 {% if_version lte: 2.5.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1alpha2
