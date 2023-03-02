@@ -45,7 +45,7 @@ Therefore, authentication is required, which can be achieved in two different wa
    which is used by `kubectl` to connect to the API server.
    See 'kubeconfig' section for details.
 
-## Discovering API-server
+## Discovering API server
 
 Using this flag `--apiserver-host=http://localhost:8080`,
 it is possible to specify an unsecured API server or
@@ -310,58 +310,139 @@ the Helm chart), wait for the Deployment to restart, run `kubectl
 port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pprof/`.
 
 {% if_version gte:2.8.x %}
-## Translation failures
+## Identify and fix an invalid configuration
 
-{{site.kic_product_name}} translates Kubernetes resources into {{site.base_gateway}} configuration.
-It implements a set of validation rules that prevent a faulty {{site.base_gateway}} configuration from being created.
-In most cases, once the validation fails, the Kubernetes object that caused the failure is excluded
-from the translation and a corresponding translation failure warning event is recorded.
+Kubernetes resources can request configuration that {{site.kic_product_name}}
+can't translate into a valid {{site.base_gateway}} configuration. While the
+[admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
+can reject some invalid configurations during creation and the controller can
+fix some invalid configurations on its own, some configuration issues require
+you to review and fix them. When such issues arise, {{site.kic_product_name}}
+creates Kubernetes Events to help you identify problem resources and understand
+how to fix them.
 
-To determine if there are any translation failures that you might want to fix, you
-can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
+### Monitor for issues that require manual fixes
 
-To get a deeper insight into what went wrong during the translation, you can look into Kubernetes
-events with a `KongConfigurationTranslationFailed` reason. There's one event created for every
-object that was associated with the failure. An event's message is populated with an
-explanation of the exact reason for the failure, which should help you identify the root cause.
+{{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus)
+include `ingress_controller_translation_count` and
+`ingress_controller_configuration_push_count` counters. Issues that require
+human intervention add `success=false` tallies to these counters.
 
-### Example
-In the following example, we create a service with a single port number `80`. In the Ingress definition, we specify a backend
-service that refers to a port number `8080` which does not match the one defined in the service.
-{{site.kic_product_name}} will skip the affected path and record warning events for both the service and Ingress objects.
+{{site.kic_product_name}} also generates error logs with a `could not update
+kong admin` for configuration push failures.
+
+### Finding problem resource Events
+
+Once you see a translation or configuration push failure, you can
+locate which Kubernetes resources require changes by searching for Events. For
+example, this Ingress attempts to create a gRPC route that also uses HTTP
+methods, which is impossible:
 
 ```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-spec:
-  ports:
-    - port: 80
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-ingress
   annotations:
-    kubernetes.io/ingress.class: "kong"
+    konghq.com/methods: GET
+    konghq.com/protocols: grpcs
+    kubernetes.io/ingress.class: kong
+  name: httpbin
+  uid: 3dcd75e9-c076-46a0-8cd3-3cc62f081920
 spec:
   rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: my-service
-                port:
-                  number: 8080 # doesn't match the port in my-service
+  - http:
+      paths:
+      - backend:
+          service:
+            name: httpbin
+            port:
+              number: 80
+        path: /bar
+        pathType: Prefix
 ```
 
-```console
-kubectl get events --sort-by='.lastTimestamp' --field-selector=reason=KongConfigurationTranslationFailed
-LAST SEEN   TYPE      REASON                               OBJECT               MESSAGE
-4s          Warning   KongConfigurationTranslationFailed   ingress/my-ingress   can't find port for backend kubernetes service: no suitable port found
-4s          Warning   KongConfigurationTranslationFailed   service/my-service   can't find port for backend kubernetes service: no suitable port found
+{{site.base_gateway}} will reject the route {{site.kic_product_name}} creates
+from this Ingress and return an error. {{site.kic_product_name}} will process
+this error and create a Kubernetes Event linked to the Ingress.
+
+You can quickly find these Events by searching across all namespaces for Events
+with the special failure reasons that indicate {{site.kic_product_name}}
+failures:
+
+```bash```
+kubectl get events -A --field-selector='reason=KongConfigurationApplyFailed'
 ```
+Response:
+```
+NAMESPACE   LAST SEEN   TYPE      REASON                         OBJECT            MESSAGE
+default     35m         Warning   KongConfigurationApplyFailed   ingress/httpbin   invalid methods: cannot set 'methods' when 'protocols' is 'grpc' or 'grpcs'
+```
+
+The controller can also create Events with the reason
+`KongConfigurationTranslationFailed` when it catches issues before sending
+configuration to Kong.
+
+{% if_version lte:2.9.x %}
+{:.note}
+> {{site.base_gateway}} 2.8 only generates `KongConfigurationTranslationFailed`
+> Events. `KongConfigurationApplyFailed` Events were added in 2.9, but you
+> should handle either Event type in the same way: both translation and apply
+> failure Events indicate some issue you must correct in the associated
+> Kubernetes resource.
+{% endif_version %}
+
+The complete Event contains additional information about the problem resource,
+the number of times the problem occurred, and when it occurred:
+
+```
+apiVersion: v1
+kind: Event
+count: 1
+eventTime: null
+firstTimestamp: "2023-02-21T22:42:48Z"
+involvedObject:
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  name: httpbin
+  namespace: default
+  uid: 3dcd75e9-c076-46a0-8cd3-3cc62f081920
+kind: Event
+lastTimestamp: "2023-02-21T22:42:48Z"
+message: 'invalid methods: cannot set ''methods'' when ''protocols'' is ''grpc''
+  or ''grpcs'''
+metadata:
+  creationTimestamp: "2023-02-21T22:42:48Z"
+  name: httpbin.1745f83aefeb8dde
+  namespace: default
+  resourceVersion: "861"
+  uid: ab78a0fa-ebe7-4d86-a465-a4e7d636ccff
+reason: KongConfigurationApplyFailed
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kong-client
+type: Warning
+```
+
+{{site.kic_product_name}} creates one Event for every individual problem with a
+resource, so you may see multiple Events for a single resource with different
+messages. The message describes the reason the resource is invalid. In this
+case, it's because gRPC routes cannot use HTTP methods.
+
+Removing the annotation will clear the issue:
+
+```bash
+kubectl annotate ingress httpbin konghq.com/methods-
+```
+
+Response:
+```
+ingress.networking.k8s.io/httpbin annotated
+```
+
+{:.note}
+> Clearing issues doesn't immediately clear the Events. Events do eventually
+> expire (after an hour, by default), but may be outdated. The Event `count`
+> will stop increasing after the problem is fixed.
+
 {% endif_version %}
