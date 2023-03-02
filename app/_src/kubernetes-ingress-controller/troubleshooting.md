@@ -321,6 +321,7 @@ you to review and fix them. When such issues arise, {{site.kic_product_name}}
 creates Kubernetes Events to help you identify problem resources and understand
 how to fix them.
 
+<<<<<<< HEAD
 To determine if there are any translation failures that you might want to fix, you
 can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
 
@@ -331,6 +332,15 @@ include `ingress_controller_translation_count` and
 `ingress_controller_configuration_push_count` counters. Issues that require
 human intervention add `success=false` tallies to these counters.
 
+=======
+### Monitor for issues that require manual fixes
+
+{{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus)
+include `ingress_controller_translation_count` and
+`ingress_controller_configuration_push_count` counters. Issues that require
+human intervention add `success=false` tallies to these counters.
+
+>>>>>>> Update KIC troubleshooting for 2.9 and add GWAPI port note (#5196)
 {{site.kic_product_name}} also generates error logs with a `could not update
 kong admin` for configuration push failures.
 
