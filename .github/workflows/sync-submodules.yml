@@ -11,7 +11,7 @@ jobs:
         uses: mheap/submodule-sync-action@v1
         with:
           path: app/_src/.repos/kuma
-          ref: release/kuma-2.0
+          ref: master
           pr_branch: automated-kuma-update
-          base_branch: release/mesh-2.0
-          target_branch: release/mesh-2.0
+          base_branch: main
+          target_branch: main
