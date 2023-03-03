@@ -311,7 +311,7 @@ The overview of this type of deployment can be found on the figure below:
 
 ![Gateway Discovery overview](/assets/images/docs/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
 
-In this type of deployment, there are two types of deployments created,
+In this type of architecture, there are two types of Kubernetes deployments created,
 separating the control and data flow:
 
 - **Control-plane**: This deployment consists of a pod(s) running the controller.

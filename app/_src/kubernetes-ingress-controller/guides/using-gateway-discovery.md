@@ -90,7 +90,7 @@ $ helm upgrade --install controller kong/kong -n kong --create-namespace \
   --set-string ingressController.image.effectiveSemver=2.9.1
 ```
 
-At this point you should be able to set both deployments ready:
+At this point you should be able to see both deployments ready:
 
 ```
 $ kubectl get deployment -n kong
@@ -107,7 +107,7 @@ independently.
 Additional replicas, will:
 
 - In case of the controller, stand by to take over when elected leader gets shut down.
-- In case of the gateway, share the traffic the other gateways from the deployment.
+- In case of the gateway, share the traffic with the other gateways from the deployment.
 
 We can test scaling those 2 deployments by invoking:
 
