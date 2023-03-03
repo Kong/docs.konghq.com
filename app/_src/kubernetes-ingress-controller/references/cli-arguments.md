@@ -70,8 +70,21 @@ Following table describes all the flags that are available:
 | `--kong-admin-tls-server-name`           | `string`           | SNI name to use to verify the certificate presented by Kong in TLS.                                                                                 |                                   |
 | `--kong-admin-tls-skip-verify`           | `boolean`          | Disable verification of TLS certificate of Kong's Admin endpoint.                                                                                   | `false`                           |
 | `--kong-admin-token`                     | `string`           | The Kong Enterprise RBAC token used by the controller.                                                                                              |                                   |
+
+{% if_version lte:2.8.x %}
 | `--kong-admin-url`                       | `string`           | The Kong Admin URL to connect to in the format "protocol://address:port".                                                                           | `"http://localhost:8001"`         |
-| `--kong-custom-entities-secret`          | `string`           | A Secret containing custom entities for DB-less mode, in "namespace/name" format.                                                                    |                                   |
+{% endif_version %}
+{% if_version gte:2.9.x %}
+| `--kong-admin-url`                       | `strings`          | Comma-separated string list of Kong Admin URL(s) to connect to in the format "protocol://address:port".                                             | `["http://localhost:8001"]`       |
+{% endif_version %}
+{% if_version gte:2.9.x %}
+| `--kong-admin-svc`                       | `strings`          | Kong Admin API Service namespaced name in "namespace/name" format, to use for Gateway discovery.                                                    | `""`                              |
+| `--kong-admin-svc-port-names`            | `strings`          | Names of ports on Kong Admin API service to take into account when doing gateway discovery.                                                         | `["admin","admin-tls","kong-admin","kong-admin-tls"]` |
+{% endif_version %}
+{% if_version lte:2.8.x %}
+| `--kong-custom-entities-secret`          | `string`           | A Secret containing custom entities for DB-less mode, in "namespace/name" format.                                                                   |                                   |
+{% endif_version %}
+
 | `--kong-workspace`                       | `string`           | Kong Enterprise workspace to configure. Leave this empty if not using Kong workspaces.                                                              |                                   |
 | `--kubeconfig`                           | `string`           | Path to the kubeconfig file.                                                                                                                        |                                   |
 | `--log-format`                           | `string`           | Format of logs of the controller. Allowed values are text and json.                                                                                 | `"text"`                          |
