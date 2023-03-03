@@ -4459,20 +4459,64 @@ HTTP 200 OK
     "node_id": "cbb297c0-14a9-46bc-ad91-1d0ef9b42df9",
     "data": [
         {
-            "created_at": 1485524883980,
             "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
             "health": "HEALTHY",
+            "data": {
+                "dns": "ttl=0, virtual SRV",
+                "addresses": [
+                    {
+                        "weight": 100,
+                        "ip": "127.0.0.1",
+                        "port": 20000,
+                        "health": "HEALTHY"
+                    }
+                ],
+                "weight": {
+                    "unavailable": 0,
+                    "available": 100,
+                    "total": 100
+                },
+                "port": 20000,
+                "host": "127.0.0.1",
+                "nodeWeight": 100
+            },
+            "weight": 100,
             "target": "127.0.0.1:20000",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 100
+            "created_at": 1485524883980,
+            "upstream": {
+                "id": "07131005-ba30-4204-a29f-0927d53257b4"
+            },
+            "tags": null
         },
         {
-            "created_at": 1485524914883,
             "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
             "health": "UNHEALTHY",
+            "data": {
+                "dns": "ttl=0, virtual SRV",
+                "addresses": [
+                    {
+                        "weight": 100,
+                        "ip": "127.0.0.1",
+                        "port": 20002,
+                        "health": "UNHEALTHY"
+                    }
+                ],
+                "weight": {
+                    "unavailable": 100,
+                    "available": 0,
+                    "total": 100
+                },
+                "port": 20002,
+                "host": "127.0.0.1",
+                "nodeWeight": 100
+            },
+            "weight": 100,
             "target": "127.0.0.1:20002",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 200
+            "created_at": 1485524914883,
+            "upstream": {
+                "id": "07131005-ba30-4204-a29f-0927d53257b4"
+            },
+            "tags": null
         }
     ]
 }
