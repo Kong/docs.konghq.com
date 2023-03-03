@@ -11,7 +11,7 @@ The support for {{site.mesh_product_name}} software versions is explained in thi
 
 | Version  | Released Date | End of Full Support |
 |:--------:|:-------------:|:-------------------:|
-|  2.1.x   |  2023-02-01   |     2025-02-01      |
+|  2.1.x   |  2023-02-01   |     2024-02-01      |
 |  2.0.x   |  2022-11-04   |     2024-11-03      |
 |  1.9.x   |  2022-08-24   |     2023-08-24      |
 |  1.8.x   |  2022-06-15   |     2023-06-14      |
