@@ -1705,6 +1705,7 @@ params:
       datatype: array of string elements
       description: Do not use proxy with these hosts.
     - group: Cache TTLs
+      description: Note: These do not apply to the discovery cache.
     - name: cache_ttl
       required: false
       default: 3600
@@ -1891,7 +1892,17 @@ The OpenID Connect plugin extends the [Kong Admin API][admin] with a few endpoin
 ### Discovery Cache
 
 When configuring the plugin using `config.issuer`, the plugin will store the fetched discovery
-information to the Kong database, or in the worker memory with DB-less. Discovery information remains cached until the OIDC plugin is enabled, disabled, or updated.
+information to the Kong database, or in the worker memory with DB-less. The discovery cache does
+not have an expiry or TTL, and so must be cleared manually using the `DELETE` endpoints listed below.
+
+The discovery cache will attempt to be refreshed when a token is presented whoes required discovery 
+information is not already available, based on the `config.issuer` value. Once a rediscovery attempt 
+has been made, a new attempt will not occur until the number of seconds defined in `rediscovery_lifetime` 
+has elapsed - this avoids excessive discovery requests to the identity provider.
+            
+If a JWT cannot be validated due to missing discovery information and an invalid status code is 
+received from the rediscovery request (ie, non-2xx), the plugin will attempt to validate the JWT
+by falling back to any sufficient discovery information that is still in the discovery cache.
 
 ##### Discovery Cache Object
 
