@@ -34,7 +34,7 @@ breaking changes between the 2.x and 3.x series noted in this document
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to {{page.kong_version}}.
-If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at minimum, finally upgrade to
+If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
 {{page.kong_version}} from there.
 
 In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
@@ -82,11 +82,11 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 ## Upgrade considerations and breaking changes
 
-Before upgrading, review any configuration or breaking changes in this version and prior versions, which
-affects your current installation.
+Before upgrading, review any configuration or breaking changes in this version and prior versions that
+affect your current installation.
 
-Customers may have to adopt different upgrading paths in accord with deployment methods, set of features in use,
-custom plugins, etc.
+You may need to adopt different upgrade paths depending on your deployment methods, set of features in use,
+custom plugins, for example.
 
 {% if_version gte:3.2.x %}
 
@@ -332,14 +332,12 @@ diff the files to identify any changes, and apply them as needed.
 
 ## General upgrade path {#migrate-db}
 
-`kong migrations` mentioned in this section is irrevocable, and hence customers are suggested to backup data
-before making any changes.
+Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
 
-Depending on the database in use (Postgres or Cassandra), a database dump is recommended, so that we can do recover
-from migrations failure in database level.
+Depending on the database you're using (Postgres or Cassandra), a database dump is recommended so that you can recover from migrations failure at the database level.
 
-Additionally, {{site.base_gateway}} supports exporting data in YAML format by `kong config db_export`, which later on
-can be imported back by `kong config db_import`. Please check
+Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
+can be imported back by `kong config db_import`. For more information, see
 [kong config CLI](https://docs.konghq.com/gateway/latest/reference/cli/#kong-config).
 
 ### Traditional mode
