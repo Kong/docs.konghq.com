@@ -244,7 +244,7 @@ params:
         > The re-discovery usually happens when the plugin cannot find a key for verifying
         > the signature. For example, if a token is presented for which Kong does not have a
         > JWK cached, it will poll the discovery endpoint for new JWK data. If that discovery
-        > attempt does not yeild a JWK that can validate the token, Kong will wait the specified
+        > attempt does not yield a JWK that can validate the token, Kong will wait the specified
         > number of seconds before retrying the discovery.
     - group: Client
     - name: client_id
