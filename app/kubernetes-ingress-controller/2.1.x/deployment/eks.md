@@ -51,7 +51,7 @@ $ helm install kong/kong --generate-name --set ingressController.installCRDs=fal
 ## Setup environment variables
 
 Next, create an environment variable with the IP address at which
-Kong is accesssible. This IP address sends requests to the
+Kong is accessible. This IP address sends requests to the
 Kubernetes cluster.
 
 Execute the following command to get the IP address at which Kong is accessible:

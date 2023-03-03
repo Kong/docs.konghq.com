@@ -1,8 +1,11 @@
 ACLs
+addons
 Alertmanager
 Amal
 Amberflo
+apiVersion
 Arya
+Autonegotiation
 Bagdi
 Bintray
 Bitnami
@@ -25,6 +28,7 @@ Github
 Goroutine
 Grafana
 HTTPie
+istioctl
 Istio
 Istio's
 Jira
@@ -157,6 +161,7 @@ hardcoding
 hashicorp
 header_filter
 headmatter
+healthcheck
 healthchecks
 hostname
 hostnames
