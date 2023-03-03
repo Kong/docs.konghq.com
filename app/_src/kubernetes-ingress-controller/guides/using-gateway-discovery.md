@@ -226,9 +226,12 @@ $ curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
 ...
 ```
 
-After issuing several queries against that address we can see in Gateway logs
-that we're hitting all Pod(s) which proxy traffic as configured (mark the first
-column: pod name):
+Through the means of Kubernetes Service, the traffic is load balanced across
+all Gateway pods that back the proxy service.
+
+After issuing several queries against that service we can see in Gateway logs
+that we're hitting all Pods which proxy the traffic as configured (mark the first
+column that contains the pod name):
 
 ```
 $ stern -n kong -lapp=gateway-kong --since 1m --include "/echo"
