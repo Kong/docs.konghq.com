@@ -582,6 +582,8 @@ items:
         url: /admin-api/event-hooks/reference
       - text: Keyring and Data Encryption
         url: /admin-api/db-encryption
+      - text: Audit Logs
+        url: /admin-api/audit-logs
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

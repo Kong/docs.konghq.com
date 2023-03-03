@@ -51,14 +51,22 @@ the Admin GUI in Kong Manager.
 
 ## License expiration
 
-When a license expires, you will still have access to your {{site.base_gateway}}
-and its configuration. Any Enterprise-specific features will be locked, and
-the Admin API will not be accessible until the license is either renewed or the
-subscription is downgraded to the free mode.
+Licenses expire at 00:00 on the date of expiration, relative to the time zone the machine is running in.
 
-In the event of a downgrade, the Admin API will be unlocked, but Enterprise
-features such Dev Portal, Enterprise plugins, and others will no
-longer be accessible.
+Kong Manager displays a banner with a license expiration warning starting at 15 days before expiration.
+Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs).
+
+When a license expires, {{site.base_gateway}} behaves as follows:
+
+* Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.kong_version}}/kong-enterprise) become read-only.
+* The Admin API is not accessible until the license is either renewed or the subscription is downgraded to free mode.
+* Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
+* Other Enterprise features, such as the Dev Portal, are not accessible.
+
+If you downgrade to free mode, the Admin API will be unlocked, but Enterprise features such Dev Portal, 
+Enterprise plugins, and others will no longer be accessible.
+
+To upload a new license, see [Deploy an Enterprise License](/gateway/{{page.kong_version}}/licenses/deploy/).
 
 ### License expiration logs
 

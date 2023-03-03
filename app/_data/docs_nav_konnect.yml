@@ -79,12 +79,6 @@
           url: /runtime-manager/runtime-instances/renew-certificates
         - text: Runtime Parameter Reference
           url: /runtime-manager/runtime-instances/runtime-parameter-reference
-    - text: Kong Gateway Configuration in Konnect
-      items:
-        - text: Overview
-          url: /runtime-manager/gateway-config
-        - text: Runtime Configuration
-          url: /runtime-manager/manage-proxy-config
     - text: Create Consumer Groups
       url: /runtime-manager/consumer-groups
     - text: Secrets Management
@@ -93,6 +87,8 @@
           url: /runtime-manager/vaults
         - text: Set Up and Use a Vault in Konnect
           url: /runtime-manager/vaults/how-to
+    - text: Kong Gateway Configuration in Konnect
+      url: /runtime-manager/gateway-config
     - text: Plugin Ordering Reference
       url: /runtime-manager/plugins
     - text: Troubleshoot
@@ -151,6 +147,8 @@
           url: /dev-portal/applications/enable-app-reg
         - text: Dynamic Client Registration
           items:
+            - text: Overview
+              url: /dev-portal/applications/dynamic-client-registration/
             - text: Okta
               url: /dev-portal/applications/dynamic-client-registration/okta
             - text: Curity
@@ -209,10 +207,14 @@
               url: /org-management/teams-and-roles/roles-reference
         - text: Manage Users
           url: /org-management/users
+        - text: Manage System Accounts
+          url: /org-management/system-accounts
         - text: Set up SSO with OIDC
           url: /org-management/oidc-idp
         - text: Set up SSO with Okta
           url: /org-management/okta-idp
+        - text: Login Sessions Reference
+          url: /org-management/sessions-reference
     - text: Account and Org Deactivation
       url: /org-management/deactivation
     - text: Troubleshoot
@@ -271,7 +273,7 @@
           - text: Targets
             url: /api/runtime-groups-config/#target-object
           - text: Vaults
-            url: /api/runtime-groups-config/#vaults-entity
+            url: /api/runtime-groups-config/#vaults-object
         - text: API Spec
           url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
           absolute_url: true
@@ -279,3 +281,9 @@
       items:
         - text: Filtering
           url: /api/filtering
+
+- title: Reference
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Labels
+      url: /reference/labels

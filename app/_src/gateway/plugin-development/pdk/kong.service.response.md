@@ -174,7 +174,7 @@ Returns the decoded buffered body.
 
 **Returns**
 
-* `string`:  The raw buffered body
+* `string`:  The decoded buffered body
 
 
 **Usage**

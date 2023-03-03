@@ -27,6 +27,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
@@ -69,7 +71,7 @@ params:
         - `consumer`
         - `credential`
         - `ip`
-        - `service` (The `service.id` or `service.name` configuration must be provided if you're adding the plugin to a service through the top-level `/plugins` endpoint.)
+        - `service`
         - `header` (The `header_name` configuration must be provided.)
         - `path` (The `path` configuration must be provided.)
 

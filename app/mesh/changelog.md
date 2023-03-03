@@ -3,6 +3,63 @@ title: Kong Mesh Changelog
 no_version: true
 ---
 
+## 2.1.1
+> Released on **2023/02/16**
+
+Built on top of [Kuma 2.1.1](https://github.com/kumahq/kuma/releases/tag/2.1.1)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- mTLS is now optional on the API server
+- You can now use a custom CA in egress and ingress using HELM
+- Fixed disabling IPv6 for transparent proxying
+
+## 2.0.3
+> Released on **2023/02/16**
+
+Built on top of [Kuma 2.0.3](https://github.com/kumahq/kuma/releases/tag/2.0.3)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.9.4
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.8.4](https://github.com/kumahq/kuma/releases/tag/1.8.4)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.8.6
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.7.5](https://github.com/kumahq/kuma/releases/tag/1.7.5)
+
+### Changes
+
+- Bumped Envoy from 1.22.2 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
+## 1.7.7
+> Released on **2023/02/16**
+
+Built on top of [Kuma 1.6.5](https://github.com/kumahq/kuma/releases/tag/1.6.5)
+
+### Changes
+
+- Bumped Envoy from 1.21.3 to 1.22.7
+- Security updates
+- Fixed disabling IPv6 for transparent proxying
+
 ## 2.1.0
 > Released on **2023/01/30**
 
