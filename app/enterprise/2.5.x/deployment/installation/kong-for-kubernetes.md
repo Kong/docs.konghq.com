@@ -94,12 +94,12 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs codeblock %}
 {% navtab kubectl %}
 ```sh
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```sh
-$ oc create -f https://bit.ly/k4k8s-enterprise-install
+$ oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% endnavtabs %}

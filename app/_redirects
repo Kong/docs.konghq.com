@@ -36,8 +36,8 @@
 /enterprise/2.5.x/deployment/using-kong-for-kubernetes/    /kubernetes-ingress-controller/
 /enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
 /enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
-/enteprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
-/enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
+/enterprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
+/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/  /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/deployment-options  /gateway/latest/install-and-run/kubernetes
 
