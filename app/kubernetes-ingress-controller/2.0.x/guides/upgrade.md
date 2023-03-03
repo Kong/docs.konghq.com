@@ -254,7 +254,7 @@ Update Complete. ⎈Happy Helming!⎈
 ### Perform the upgrade
 
 Run the following command, specifying the old release name, the namespace where
-you've configured Kong Gateway, and the existing `values.yaml` configuration file:
+you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file:
 
 ```shell
 $ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \
