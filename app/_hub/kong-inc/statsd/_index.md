@@ -189,6 +189,7 @@ Metric                     | Description | Namespace
 
 {% if_plugin_version gte:3.2.x %}
 If you enable the `tag_style` configuration for the StatsD plugin, the following metrics are sent instead:
+
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.request.count`
