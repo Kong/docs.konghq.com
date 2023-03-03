@@ -75,5 +75,9 @@ the {{site.kic_product_name}}:
   deployments of the {{site.kic_product_name}} running without a database.
 - [Using OpenID-connect plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-oidc-plugin/)
   This guide walks through steps necessary to set up OIDC authentication.
-- [Allow Multiple Authentication Plugins](/kubernetes-ingress-controller/{{page.kong_version}}/guides/allowing-multiple-authentication-methods/)
+- [Allow Multiple Authentication Plugins](/kubernetes-ingress-controller/{{page.kong_version}}/guides/allowing-multiple-authentication-methods)
   This guide walks through the steps for configuring multiple authentication options for consumers.
+- [Using Gateway Discovery](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery)
+  This guide walks through the steps for configuring {{site.base_gateway}} and
+  {{site.kic_product_name}} in separate deployments with KIC being able to
+  dynamically discover Gateways.
