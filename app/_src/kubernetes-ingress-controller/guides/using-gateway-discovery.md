@@ -22,7 +22,11 @@ defined in [gateway discovery section][kong-chart-gd].
 
 This guide will be also using [`stern`][stern-gh] for easy pod logs querying.
 
+<<<<<<< HEAD
 [helm]: https://helm.sh/
+=======
+[helm]: [helm]:https://helm.sh/
+>>>>>>> KIC 2.9.x update deployment guides - Gateway Discovery (#5231)
 [kong-chart]: https://github.com/Kong/charts/tree/main/charts/kong
 [kong-chart-gd]: https://github.com/Kong/charts/tree/main/charts/kong#the-gatewaydiscovery-section
 [stern-gh]: https://github.com/stern/stern
