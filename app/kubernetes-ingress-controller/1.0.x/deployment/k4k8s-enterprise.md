@@ -50,7 +50,7 @@ Execute the following to install Kong for Kubernetes Enterprise using YAML
 manifests:
 
 ```bash
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml-enterprise-install
 ```
 
 It takes a few minutes the first time this setup is done.
