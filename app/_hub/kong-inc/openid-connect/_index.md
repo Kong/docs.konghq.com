@@ -3,7 +3,7 @@ name: OpenID Connect
 publisher: Kong Inc.
 desc: Integrate Kong with a third-party OpenID Connect provider
 description: |
-  OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
+  OpenID Connect ([1.0][connect]) plugin allows for integration with a third party
   identity provider (IdP) in a standardized way. This plugin can be used to implement
   Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
   Connect relying party (RP) between the client, and the upstream service.
@@ -13,7 +13,7 @@ description: |
   - Signed [JWT][jwt] access tokens ([JWS][jws])
   - Opaque access tokens
   - Refresh tokens
-  - Authorization code
+  - Authorization code with client secret or PKCE
   - Username and password
   - Client credentials
   - Session cookies
@@ -68,7 +68,7 @@ description: |
   [paypal]: https://developer.paypal.com/docs/log-in-with-paypal/integrate/
   [pingfederate]: https://documentation.pingidentity.com/pingfederate/
   [salesforce]: https://help.salesforce.com/articleView?id=sf.sso_provider_openid_connect.htm&type=5
-  [wso2]: https://is.docs.wso2.com/en/latest/learn/openid-connect/
+  [wso2]: https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/
   [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
 
   Once applied, any user with a valid credential can access the Service.
@@ -78,24 +78,23 @@ description: |
 
   ## Important Configuration Parameters
 
-  This plugin contains many configuration parameters that might seem overwhelming
-  at the start. Here is a list of parameters that you should focus on first:
+  This plugin includes many configuration parameters that allow finely grained customization.
+  The following steps will help you get started setting up the plugin:
 
-  1. The first parameter you should configure is: `config.issuer`.
+  1. Configure: `config.issuer`.
 
      This parameter tells the plugin where to find discovery information, and it is
-     the only required parameter. You should specify the `realm` or `iss` for this
+     the only required parameter. You should set the value `realm` or `iss` on this
      parameter if you don't have a discovery endpoint.
 
      {:.note}
       > **Note**: This does not have
      to match the URL of the `iss` claim in the access tokens being validated. To set
      URLs supported in the `iss` claim, use `config.issuers_allowed`.
-  2. Next, you should decide what authentication grants you want to use with this
-     plugin, so configure: `config.auth_methods`.
+  2. Decide what authentication grants to use with this plugin and configure
+     the `config.auth_methods` field accordingly.
 
-     That parameter should contain only the grants that you want to
-     use; otherwise, you inadvertently widen the attack surface.
+     In order to restrict the scope of potential attacks, the parameter should only contain the grants that you want to use. 
 
   3. In many cases, you also need to specify `config.client_id`, and if your identity provider
      requires authentication, such as on a token endpoint, you will need to specify the client
@@ -105,12 +104,13 @@ description: |
      the audience with `config.audience_required` to contain only your `config.client_id`.
      You may also need to adjust `config.audience_claim` in case your identity provider
      uses a non-standard claim (other than `aud` as specified in JWT standard). This is
-     because, for example Google, shares the public keys with different clients.
+     important because some identity providers, such as Google, share public keys
+     with different clients.
 
-  5. If you are using Kong in DB-less mode with the declarative configuration, you
-     should set up `config.session_secret` if you are also using the session cookie
-     authentication. Otherwise, each of your Nginx workers across all your
-     nodes will encrypt and sign the cookies with their own secrets.
+  5. If you are using Kong in DB-less mode with a declarative configuration and 
+     session cookie authentication, you should set `config.session_secret`.
+     Leaving this parameter unset will result in every Nginx worker across your
+     nodes encrypting and signing the cookies with their own secrets.
 
   In summary, start with the following parameters:
 
@@ -118,7 +118,7 @@ description: |
   2. `config.auth_methods`
   3. `config.client_id` (and in many cases the client authentication credentials)
   4. `config.audience_required` (if using a public identity provider)
-  5. `config.session_secret` (if using the Kong in DB-less mode)
+  5. `config.session_secret` (if using Kong in DB-less mode)
 enterprise: true
 plus: true
 type: plugin
@@ -176,10 +176,18 @@ params:
       required: false
       default: null
       datatype: string
+      description:
+        An optional string (consumer UUID or username) value that functions as an “anonymous” consumer if authentication fails. If empty (default null), requests that fail authentication will return a `4xx` HTTP status code. This value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+      minimum_version: "3.1.x"  
+    - name: anonymous
+      required: false
+      default: null
+      datatype: string      
       description: |
-        Let unauthenticated requests pass or skip the plugin if another authentication plugin
-        has already authenticated the request by setting the value to anonymous Consumer.
-        The value can be a UUID or a username.
+        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
+        If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
+        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
+      maximum_version: "3.0.x"
     - group: General Settings
       description: Parameters for settings that affect different grants and flows.
     - name: preserve_query_args
@@ -212,7 +220,7 @@ params:
       default: false
       datatype: boolean
       description: |
-        Specify whether to use the user info endpoint to get addition claims for consumer mapping,
+        Specify whether to use the user info endpoint to get additional claims for consumer mapping,
         credential mapping, authenticated groups, and upstream and downstream headers.
         > This requires an extra round-trip and can add latency, but the plugin can also cache
         > user info requests (see: `config.cache_user_info`).
@@ -224,7 +232,7 @@ params:
       value_in_examples: <discovery-uri>
       datatype: url
       description: |
-        The discovery endpoint (or just the issuer identifier).
+        The discovery endpoint (or the issuer identifier).
         > When using Kong with the database, the discovery information and the JWKS
         > are cached to the Kong configuration database.
     - name: rediscovery_lifetime
@@ -322,7 +330,7 @@ params:
         - `PS512`: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
         - `EdDSA`: EdDSA with Ed25519
     - group: JWT Access Token Authentication
-      description: Parameters for setting where to search for the bearer token and whether to introspect them.
+      description: Parameters for specifying the location of the bearer token, and introspection options.
     - name: bearer_token_param_type
       required: false
       default:
@@ -331,7 +339,7 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the bearer token:
+        Where to look for the bearer token:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
@@ -347,7 +355,7 @@ params:
       datatype: boolean
       description: Specifies whether to introspect the JWT access tokens (can be used to check for revocations).
     - group: Client Credentials Grant
-      description: Parameters for where to search for the client credentials.
+      description: Parameters specifying the location of client credentials.
     - name: client_credentials_param_type
       required: false
       default:
@@ -356,12 +364,12 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the client credentials:
+        Where to look for the client credentials:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search from the HTTP request body
     - group: Password Grant
-      description: Parameters for where to search for the username and password.
+      description: Parameters for where to look for the username and password.
     - name: password_param_type
       required: false
       default:
@@ -370,12 +378,12 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the username and password:
+        Where to look for the username and password:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
     - group: Refresh Token Grant
-      description: Parameters for where to search for the refresh token (rarely used as the refresh tokens are in many cases bound to the client).
+      description: Parameters for where to look for the refresh token (rarely used as the refresh tokens are in many cases bound to the client).
     - name: refresh_token_param_type
       required: false
       default:
@@ -384,7 +392,7 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the refresh token:
+        Where to look for the refresh token:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
@@ -394,7 +402,7 @@ params:
       datatype: string
       description: The name of the parameter used to pass the refresh token.
     - group: ID Token
-      description: Parameters for where to search for the id token (rarely sent as part of the request).
+      description: Parameters for where to look for the id token (rarely sent as part of the request).
     - name: id_token_param_type
       required: false
       default:
@@ -403,7 +411,7 @@ params:
         - body
       datatype: array of string elements
       description: |
-        Where to search for the id token:
+        Where to look for the id token:
         - `header`: search the HTTP headers
         - `query`: search the URL's query string
         - `body`: search the HTTP request body
@@ -454,7 +462,7 @@ params:
       default:
         - sub
       datatype: array of string elements
-      description: 'The claim used to derive a virtual credential (for instance, for the rate-limiting plugin), in case the Consumer mapping is not used.'
+      description: 'The claim used to derive virtual credentials (e.g. to be consumed by the rate-limiting plugin), in case the consumer mapping is not used.'
     - group: Issuer Verification
     - name: issuers_allowed
       minimum_version: "2.2.x"
@@ -867,7 +875,7 @@ params:
       required: false
       default: true
       datatype: boolean
-      description: Destroy the possible session for the forbidden requests.
+      description: Destroy any active session for the forbidden requests.
     - group: Errors
       description: Parameters for how to handle unexpected errors.
     - name: unexpected_redirect_uri
@@ -888,10 +896,19 @@ params:
       datatype: string
       description: The authorization cookie name.
     - name: authorization_cookie_lifetime
+      maximum_version: "3.1.x"
       required: false
       default: 600
       datatype: integer
       description: The authorization cookie lifetime in seconds.
+    - name: authorization_rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 600
+      datatype: integer
+      description: |
+        The authorization cookie rolling timeout in seconds.
+        Specifies how long the authorization cookie can be used until it needs to be renewed.
     - name: authorization_cookie_path
       required: false
       default: '"/"'
@@ -903,6 +920,7 @@ params:
       datatype: string
       description: The authorization cookie Domain flag.
     - name: authorization_cookie_samesite
+      maximum_version: "3.1.x"
       required: false
       default: '"off"'
       datatype: string
@@ -911,8 +929,27 @@ params:
         - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for instance, when following a link).
         - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie Secure attribute must also be set (or the cookie will be blocked).
-        - `off`: Do not set the Same-Site flag.
+        - `off`: Do not set the SameSite flag.
+    - name: authorization_cookie_same_site
+      minimum_version: "3.2.x"
+      required: false
+      default: '"Default"'
+      datatype: string
+      description: |
+        Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
+        - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
+        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for instance, when following a link).
+        - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie Secure attribute must also be set (or the cookie will be blocked).
+        - `Default`: Do not explicitly specify a SameSite attribute.
     - name: authorization_cookie_httponly
+      maximum_version: "3.1.x"
+      required: false
+      default: true
+      datatype: boolean
+      description: | 
+        Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
+    - name: authorization_cookie_http_only
+      minimum_version: "3.2.x"
       required: false
       default: true
       datatype: boolean
@@ -932,20 +969,45 @@ params:
       datatype: string
       description: The session cookie name.
     - name: session_cookie_lifetime
+      maximum_version: "3.1.x"
       required: false
       default: 3600
       datatype: integer
       description: The session cookie lifetime in seconds.
+    - name: session_rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 3600
+      datatype: integer
+      description: |
+        The session cookie rolling timeout in seconds.
+        Specifies how long the session can be used until it needs to be renewed.
+    - name: session_absolute_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 86400
+      datatype: integer
+      description: |
+        The session cookie absolute timeout in seconds.
+        Specifies how long the session can be used until it is no longer valid.
     - name: session_cookie_idletime
+      maximum_version: "3.1.x"
       required: false
       default: null
       datatype: integer
       description: The session cookie idle time in seconds.
+    - name: session_idling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 900
+      datatype: integer
+      description: The session cookie idle time in seconds.
     - name: session_cookie_renew
+      maximum_version: "3.1.x"
       required: false
       default: 600
       datatype: integer
-      description: The session cookie renew time.
+      description: The number of seconds prior to the `session_cookie_lifetime` that the session cookie will be renewed.
     - name: session_cookie_path
       required: false
       default: '"/"'
@@ -957,6 +1019,7 @@ params:
       datatype: string
       description: The session cookie Domain flag.
     - name: session_cookie_samesite
+      maximum_version: "3.1.x"
       required: false
       default: '"Lax"'
       datatype: string
@@ -965,8 +1028,27 @@ params:
         - `Strict`: Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
         - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
         - `None`: Cookies will be sent in all contexts, for example in responses to both first-party and cross-origin requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)
-        - `off`: Do not set the Same-Site flag.
+        - `off`: Do not set the SameSite flag.
+    - name: session_cookie_same_site
+      minimum_version: "3.2.x"
+      required: false
+      default: '"Lax"'
+      datatype: string
+      description: |
+        Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
+        - `Strict`: Cookies will only be sent in a first-party context and aren't sent along with requests initiated by third party websites.
+        - `Lax`: Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (for example, when following a link).
+        - `None`: Cookies will be sent in all contexts, for example in responses to both first party and cross-origin requests. If `SameSite=None` is set, the cookie `Secure` attribute must also be set, or the cookie will be blocked.
+        - `Default`: Do not explicitly specify a `SameSite` attribute.
     - name: session_cookie_httponly
+      maximum_version: "3.1.x"
+      required: false
+      default: true
+      datatype: boolean
+      description: |
+        Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
+    - name: session_cookie_http_only
+      minimum_version: "3.2.x"
       required: false
       default: true
       datatype: boolean
@@ -979,6 +1061,7 @@ params:
         Cookie is only sent to the server when a request is made with the https: scheme (except on localhost),
         and therefore is more resistant to man-in-the-middle attacks.
     - name: session_cookie_maxsize
+      maximum_version: "3.1.x"
       required: false
       default: 4000
       datatype: integer
@@ -1009,6 +1092,7 @@ params:
         - `refresh_token` do not start session with refresh token grant
         - `session`: do not renew the session with session cookie authentication
     - name: session_strategy
+      maximum_version: "3.1.x"
       required: false
       default: '"default"'
       datatype: string
@@ -1017,6 +1101,7 @@ params:
         - `default`:  reuses session identifiers over modifications (but can be problematic with single-page applications with a lot of concurrent asynchronous requests)
         - `regenerate`: generates a new session identifier on each modification and does not use expiry for signature verification (useful in single-page applications or SPAs)
     - name: session_compressor
+      maximum_version: "3.1.x"
       required: false
       default: '"none"'
       datatype: string
@@ -1024,6 +1109,88 @@ params:
         The session strategy:
         - `none`: no compression
         - `zlib`: use zlib to compress cookie data
+    - name: session_audience
+      minimum_version: "3.2.x"
+      required: false
+      default: '"default"'
+      datatype: string
+      description: The session audience, which is the intended target application. For example `"my-application"`.
+    - name: session_remember
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: Enables or disables persistent sessions.
+    - name: session_remember_cookie_name
+      minimum_version: "3.2.x"
+      required: false
+      default: '"remember"'
+      datatype: string
+      description: Persistent session cookie name. Use with the `remember` configuration parameter.
+    - name: session_remember_rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 604800
+      datatype: integer
+      description: The persistent session rolling timeout window, in seconds.
+    - name: session_remember_absolute_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 2592000
+      datatype: integer
+      description: The persistent session absolute timeout limit, in seconds.
+    - name: session_request_headers
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        List of information to include, as headers, in the request to the upstream. 
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
+        `absolute-timeout`.
+        For example, `{ "id", "timeout" }` sets both `Session-Id` and `Session-Timeout` in the request headers.
+    - name: session_response_headers
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        List of information to include, as headers, in the response to the downstream. 
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
+        `absolute-timeout`.
+        For example: `{ "id", "timeout" }` injects both `Session-Id` and `Session-Timeout` in the response headers.
+    - name: session_store_metadata
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: | 
+        Configures whether or not session metadata should be stored.
+        This metadata includes information about the active sessions for a specific audience
+        belonging to a specific subject.
+    - name: session_enforce_same_subject
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: When set to `true`, audiences are forced to share the same subject.
+    - name: session_hash_subject
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        When set to `true`, the value of subject is hashed before being stored.
+        Only applies when `session_store_metadata` is enabled.
+    - name: session_hash_storage_key
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        When set to `true`, the storage key (session ID) is hashed for extra security.
+        Hashing the storage key means it is impossible to decrypt data from the storage
+        without a cookie.
     - name: session_storage
       required: false
       default: '"cookie"'
@@ -1040,21 +1207,49 @@ params:
       description: Specifies whether to always verify tokens stored in the session.
     - group: Session Settings for Memcached
     - name: session_memcache_prefix
+      maximum_version: "3.1.x"
+      required: false
+      default: '"sessions"'
+      datatype: string
+      description: The memcached session key prefix.
+    - name: session_memcached_prefix
+      minimum_version: "3.2.x"
       required: false
       default: '"sessions"'
       datatype: string
       description: The memcached session key prefix.
     - name: session_memcache_socket
+      maximum_version: "3.1.x"
+      required: false
+      default: null
+      datatype: string
+      description: The memcached unix socket path.
+    - name: session_memcached_socket
+      minimum_version: "3.2.x"
       required: false
       default: null
       datatype: string
       description: The memcached unix socket path.
     - name: session_memcache_host
+      maximum_version: "3.1.x"
+      required: false
+      default: '"127.0.0.1"'
+      datatype: string
+      description: The memcached host.
+    - name: session_memcached_host
+      minimum_version: "3.2.x"
       required: false
       default: '"127.0.0.1"'
       datatype: string
       description: The memcached host.
     - name: session_memcache_port
+      maximum_version: "3.1.x"
+      required: false
+      default: 11211
+      datatype: integer
+      description: The memcached port.
+    - name: session_memcached_port
+      minimum_version: "3.2.x"
       required: false
       default: 11211
       datatype: integer
@@ -1088,7 +1283,9 @@ params:
       referenceable: true
       description: |
         Username to use for Redis connection when the `redis` session storage is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+        If undefined, ACL authentication will not be performed.
+
+        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
     - name: session_redis_password
       minimum_version: "2.8.x"
       required: false
@@ -1166,6 +1363,13 @@ params:
         either `ip` or `host`, and `port` values.
 
     - name: session_redis_cluster_maxredirections
+      maximum_version: "3.1.x"
+      required: false
+      default: null
+      datatype: integer
+      description: The Redis cluster maximum redirects.
+    - name: session_redis_cluster_max_redirections
+      minimum_version: "3.2.x"
       required: false
       default: null
       datatype: integer
@@ -1806,7 +2010,7 @@ HTTP 204 No Content
 
 ## Preparations
 
-The OpenID Connect plugin relies in most cases on a 3rd party identity provider.
+The OpenID Connect plugin relies in most cases on a third party identity provider.
 In this section, we explain configuration of Keycloak and Kong.
 
 All the `*.test` domains in the following examples point to the `localhost` (`127.0.0.1` and/or `::1`).
@@ -1817,22 +2021,22 @@ We use [Keycloak][keycloak] as the identity provider in the following examples,
 but the steps will be similar in other standard identity providers. If you encounter
 difficulties during this phase, please refer to the [Keycloak documentation](https://www.keycloak.org/documentation).
 
-1. Create a confidential client `kong` with `private_key_jwt` authentication and point the
+1. Create a confidential client `kong` with `private_key_jwt` authentication and configure
    Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-kong-settings.png">
    <br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-kong-auth.png">
    <br>
-2. Create another confidential client `service` with `client_secret_basic` authentication,
-   and the secret of `cf4c655a-0622-4ce6-a0de-d3353ef0b714` (Keycloak auto-generates one),
-   and enable the client credentials grant for the client:
+2. Create another confidential client `service` with `client_secret_basic` authentication.
+   For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
+   Enable the client credentials grant for the client:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-service-settings.png">
    <br>
    <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
    <br>
-3. Create verified user `john` with the non-temporary password `doe` that we can use with the password grant:
+3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
 
@@ -1853,7 +2057,7 @@ to
 ```
 
 The Keycloak default `https` port conflicts with the default Kong TLS proxy port,
-and that can be a problem if both are started on a single host.
+and that can be a problem if both are started on the same host.
 
 [keycloak]: http://www.keycloak.org/
 
@@ -1937,7 +2141,8 @@ At this point we have:
 2. Routed traffic to the service
 3. Enabled OpenID Connect plugin on the service
 
-Follow up on next sections to enable OpenID Connect plugin for specific grants or flows.
+The following sections will guide you through the process of enabling the OpenID Connect
+plugin for specific grants or flows.
 
 ## Authentication
 
@@ -1949,7 +2154,7 @@ for a better readability. [httpbin.org](https://httpbin.org/) is used as an upst
 Using Admin API is convenient when testing the plugin, but similar configs can
 be done in declarative format as well.
 
-When plugin is configured with multiple grants / flows there is a hard-coded search
+When this plugin is configured with multiple grants/flows there is a hard-coded search
 order for the credentials:
 
 1. [Session Authentication](#session-authentication)
@@ -1962,20 +2167,21 @@ order for the credentials:
 8. [Client Credentials Grant](#client-credentials-grant)
 9. [Authorization Code Flow](#authorization-code-flow)
 
-In case plugin finds credentials, it will stop searching other credentials. Some grants may
-use the same credentials, in other words, both password and client credentials grants can use credentials
-from basic authentication header.
+Once credentials are found, the plugin will stop searching further. Multiple grants may
+share the same credentials. For example, both the password and client credentials grants can use 
+basic access authentication through the `Authorization` header.
 
 {:.warning}
-> Because the httpbin.org is used as an upstream service, it is highly recommend that you do
-not run these usage examples with a production identity provider as there is great a chance
+> The choices made in the examples below are solely aimed at simplicity.
+Because `httpbin.org` is used as an upstream service, it is highly recommended that you do
+not run these usage examples with a production identity provider as there is a great chance
 of leaking information. Also the examples below use the plain HTTP protocol that you should
-never use in production. The choices here are for simplicity.
+never use in production. 
 
 ### Authorization Code Flow
 
 The authorization code flow is the three-legged OAuth/OpenID Connect flow.
-The sequence diagram below, describes the participants, and their interactions
+The sequence diagram below describes the participants and their interactions
 for this usage scenario, including the use of session cookies:
 
 <img src="/assets/images/docs/openid-connect/authorization-code-flow.svg">
@@ -2048,9 +2254,9 @@ described in [the diagram](#authorization-code-flow) above.
 
 ### Password Grant
 
-Password grant is a legacy authentication grant. The password grant is a less
-secure way to authenticate the end users than the authorization code flow. For example,
-the passwords get shared with 3rd parties. The grant is rather simple though:
+Password grant is a legacy authentication grant. This is a less secure way of
+authenticating end users than the authorization code flow, because, for example,
+the passwords are shared with third parties. The image below illustrates the grant:
 
 <img src="/assets/images/docs/openid-connect/password-grant.svg">
 
@@ -2113,8 +2319,8 @@ HTTP/1.1 200 OK
 
 ### Client Credentials Grant
 
-Client credentials grant is almost the same as [the password grant](#password-grant),
-but the biggest difference with the Kong OpenID Connect plugin is that the plugin itself
+The client credentials grant is very similar to [the password grant](#password-grant).
+The most important difference in the Kong OpenID Connect plugin is that the plugin itself
 does not try to authenticate. It just forwards the credentials passed by the client
 to the identity server's token endpoint. The client credentials grant is visualized
 below:
@@ -2509,7 +2715,7 @@ HTTP/1.1 200 OK
 ### Kong OAuth Token Authentication
 
 The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 Plugin](/hub/kong-inc/oauth2/).
-This is very similar to 3rd party identity provider issued [JWT access token authentication](#jwt-access-token-authentication)
+This is very similar to third party identity provider issued [JWT access token authentication](#jwt-access-token-authentication)
 or [introspection authentication](#introspection-authentication):
 
 <img src="/assets/images/docs/openid-connect/kong-oauth-authentication.svg">
@@ -2738,16 +2944,15 @@ The OpenID Connect plugin has several features to do coarse grained authorizatio
 
 ### Claims Based Authorization
 
-With claims verification, you have a couple of configuration options that all work the same and that
-can be used for the authorization:
+The following options can be configured to manage claims verification during authorization:
 
 1. `config.scopes_claim` and `config.scopes_required`
 2. `config.audience_claim` and `config.audience_required`
 3. `config.groups_claim` and `config.groups_required`
 4. `config.roles_claim` and `config.roles_required`
 
-The first configuration option, for example `config.scopes_claim`, points to a source, from which the value is
-retrieved and checked against the value of the second configuration option, in this case `config.scopes_required`.
+For example, the first configuration option, `config.scopes_claim`, points to a source, from which the value is
+retrieved and checked against the value of the second configuration option: `config.scopes_required`.
 
 Let's take a look at a JWT access token:
 
@@ -2902,8 +3107,8 @@ the JSON when looking up a claim, take for example this imaginary payload:
 In this case you would probably want to use `config.groups_claim` to point to `groups` claim, but that claim
 is not a top-level claim, so you need to traverse there:
 
-1. Find the `user` claim and under it.
-2. Find the `groups` claim, and read the value:
+1. Find the `user` claim.
+2. Inside the `user` claim, find the `groups` claim, and read its value:
 
 ```json
 {
@@ -3329,8 +3534,7 @@ HTTP/1.1 401 Unauthorized
 
 ## Debugging
 
-The OpenID Connect plugin is pretty complex, and it has to integrate with a 3rd party
-identity provider. This makes it slightly more difficult to debug. If you have
+The OpenID Connect plugin is complex, integrating with third-party identity providers can present challenges. If you have
 issues with the plugin or integration, try the following:
 
 1. Set Kong [log level](/gateway/latest/reference/configuration/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
@@ -3389,6 +3593,44 @@ mean other gateways, load balancers, NATs, and such in front of Kong. If there i
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+* The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library which introduced several new features such as the possibility to specify audiences.
+The following configuration parameters have been affected:
+
+Added:
+  * `session_audience`
+  * `session_remember`
+  * `session_remember_cookie_name`
+  * `session_remember_rolling_timeout`
+  * `session_remember_absolute_timeout`
+  * `session_absolute_timeout`
+  * `session_request_headers`
+  * `session_response_headers`
+  * `session_store_metadata`
+  * `session_enforce_same_subject`
+  * `session_hash_subject`
+  * `session_hash_storage_key`
+
+Renamed:
+  * `authorization_cookie_lifetime` to `authorization_rolling_timeout`
+  * `authorization_cookie_samesite` to `authorization_cookie_same_site`
+  * `authorization_cookie_httponly` to `authorization_cookie_http_only`
+  * `session_cookie_lifetime` to `session_rolling_timeout`
+  * `session_cookie_idletime` to `session_idling_timeout`
+  * `session_cookie_samesite` to `session_cookie_same_site`
+  * `session_cookie_httponly` to `session_cookie_http_only`
+  * `session_memcache_prefix` to `session_memcached_prefix`
+  * `session_memcache_socket` to `session_memcached_socket`
+  * `session_memcache_host` to `session_memcached_host`
+  * `session_memcache_port` to `session_memcached_port`
+  * `session_redis_cluster_maxredirections` to `session_redis_cluster_max_redirections`
+
+Removed:
+  * `session_cookie_renew`
+  * `session_cookie_maxsize`
+  * `session_strategy`
+  * `session_compressor`
 
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `session_redis_auth` field has been removed from the plugin.

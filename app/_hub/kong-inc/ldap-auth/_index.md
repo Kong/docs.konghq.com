@@ -18,42 +18,9 @@ categories:
   - authentication
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-      - 0.9.x
-      - 0.8.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: ldap-auth
   service_id: false
@@ -64,6 +31,10 @@ params:
     - name: https
     - name: grpc
     - name: grpcs
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: hide_credentials
@@ -142,10 +113,18 @@ params:
       required: false
       default: null
       datatype: string
+      description:
+        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request fails with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+      minimum_version: "3.1.x"
+    - name: anonymous
+      required: false
+      default: null
+      datatype: string
       description: |
-        An optional string (consumer UUID) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`.
-
-        **Note:** The value must refer to the Consumer `id` attribute that is internal to Kong, **not** its `custom_id`.
+        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
+        If empty (default), the request fails with an authentication failure `4xx`. Note that this value
+        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
+      maximum_version: "3.0.x"
     - name: header_type
       required: false
       default: '`ldap`'

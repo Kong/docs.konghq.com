@@ -18,7 +18,7 @@ description: |
 
   * When transforming a JSON payload, transformations are applied to nested JSON objects and
     arrays. This can be turned off and on using the `config.dots_in_keys` configuration parameter.
-    See [Response Transformed Advanced arrays and nested objects](/hub/kong-inc/response-transformer-advanced/#arrays-and-nested-objects).
+    See [Response Transformer Advanced arrays and nested objects](/hub/kong-inc/response-transformer-advanced/#arrays-and-nested-objects).
   * Transformations can be restricted to responses with specific status codes using various
     `config.*.if_status` configuration parameters.
   * JSON body contents can be restricted to a set of allowed properties with
@@ -47,6 +47,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: remove.headers

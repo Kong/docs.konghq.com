@@ -21,11 +21,17 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: tcp
-    - name: tls
-    - name: udp
     - name: grpc
     - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: local_service_name
@@ -54,6 +60,13 @@ params:
         How often to sample requests that do not contain trace IDs.
         Set to `0` to turn sampling off, or to `1` to sample **all** requests. The
         value must be between zero (0) and one (1), inclusive.
+    - name: default_service_name
+      required: false
+      default: null
+      datatype: string
+      description: |
+        Set a default service name to override `unknown-service-name` in the 
+        Zipkin spans.
     - name: include_credential
       required: true
       default: true
@@ -212,6 +225,29 @@ params:
       datatype: number
       description: The timeout, in milliseconds, between two
         successive read operations when receiving a response from the Zipkin server.
+    - name: response_header_for_traceid
+      minimum_version: "3.1.x"
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: string
+      description: |
+        Set a header name to append to responses. This header name
+        is sent to the client, making it possible to trace the ID of the
+        correlated request.
+    - name: phase_duration_flavor
+      minimum_version: "3.2.x"
+      required: true
+      default: annotations
+      value_in_examples: null
+      datatype: string
+      description: |
+        Specify whether to include the duration of each phase as an annotation or a tag.
+
+        Options:
+        * `annotations`: Include the duration of each phase as an annotation. This is the default.
+        * `tags`: Include the duration of each phase as a tag.
+
 
 ---
 ## How it Works
@@ -288,6 +324,9 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 
 ## Changelog
 
+**{{site.base_gateway}} 3.1.x**
+* Added the parameter `response_header_for_traceid`.
+
 **{{site.base_gateway}} 3.0.x**
 
 * Added support for including the HTTP path in the span name with the
@@ -301,8 +340,8 @@ For more information, read the [Kong blog post](https://konghq.com/blog/tracing-
 
 **{{site.base_gateway}} 2.7.x**
 
-* Added a new parameter: `local_service_name`
-* Added a new `ignore` option for the `header_type` parameter
+* Added a new parameter: `local_service_name`.
+* Added a new `ignore` option for the `header_type` parameter.
 
 **{{site.base_gateway}} 2.5.x**
 * The plugin now includes the following tags: `kong.route`, `kong.service_name`, and `kong.route_name`.

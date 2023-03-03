@@ -11,15 +11,14 @@ description: |
   This plugin must be used in conjunction with the TLS Metadata Headers plugin.
 
 enterprise: true
-plus: false # need to update this once we verify that this plugin is in Konnect post-3.0 update
-cloud: false # need to update this once we verify that this plugin is in Konnect post-3.0 update
+plus: false
+cloud: true
 type: plugin
 categories:
   - security
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
 params:
   name: tls-handshake-modifier
   service_id: true
@@ -30,7 +29,6 @@ params:
     - name: grpcs
     - name: tls
   dbless_compatible: 'yes'
-  konnect_examples: false # need to update this once we verify that this plugin is in Konnect post-3.0 update
   config:
     - name: tls_client_certificate
       required: false

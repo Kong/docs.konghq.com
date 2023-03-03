@@ -31,6 +31,11 @@ params:
   route_id: true
   konnect_examples: false
   dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: introspection_url
       required: true
@@ -95,8 +100,17 @@ params:
       default: null
       value_in_examples: null
       datatype: string
+      description:
+        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request fails with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+      minimum_version: "3.1.x"
+    - name: anonymous
+      required: false
+      default: null
+      value_in_examples: null
+      datatype: string
       description: |
-        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure 4xx.
+        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails. If empty (default), the request fails with an authentication failure `4xx`.
+      maximum_version: "3.0.x"
     - name: run_on_preflight
       required: false
       default: true

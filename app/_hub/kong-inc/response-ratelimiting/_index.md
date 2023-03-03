@@ -19,35 +19,9 @@ categories:
   - traffic-control
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: response-ratelimiting
   service_id: true
@@ -56,6 +30,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
@@ -156,6 +132,8 @@ params:
       referenceable: true
       description: |
         When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
+
+        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
     - name: redis_password
       required: false
       datatype: string
@@ -172,6 +150,26 @@ params:
       default: '`0`'
       datatype: number
       description: 'When using the `redis` policy, this property specifies Redis database to use.'
+    - name: redis_ssl
+      minimum_version: "3.1.x"
+      required: true
+      default: '`false`'
+      datatype: boolean
+      description: |
+        When using the `redis` policy, this property specifies if SSL is used to connect to the Redis server.
+    - name: redis_ssl_verify
+      minimum_version: "3.1.x"
+      required: true
+      default: '`false`'
+      datatype: boolean
+      description: |
+        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies if the server SSL certificate is validated. Note that you need to configure the `lua_ssl_trusted_certificate` to specify the CA (or server) certificate used by your Redis server. You may also need to configure `lua_ssl_verify_depth` accordingly.
+    - name: redis_server_name
+      minimum_version: "3.1.x"
+      required: false
+      datatype: string
+      description: |
+        When using the `redis` policy with `redis_ssl` set to `true`, this property specifies the server name for the TLS extension Server Name Indication (SNI) 
 ---
 
 ## Configuring Quotas
@@ -237,6 +235,10 @@ X-RateLimit-Remaining-Images: 0
 
 ---
 ## Changelog
+
+**{{site.base_gateway}}  3.1.x**
+
+* Added the `redis_ssl`, `redis_ssl_verify`, and `redis_server_name` configuration parameters.
 
 **{{site.base_gateway}} 2.8.x**
 

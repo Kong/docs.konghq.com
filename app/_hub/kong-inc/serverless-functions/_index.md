@@ -37,6 +37,17 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: partially
   dbless_explanation: |
     The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.
@@ -45,6 +56,7 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: |
         *Deprecated*. Use `config.access` instead.
 
@@ -54,6 +66,7 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: |
         Array of stringified Lua code to be cached and run in sequence during the certificate phase.
 
@@ -62,6 +75,7 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: |
         Array of stringified Lua code to be cached and run in sequence during the rewrite phase.
 
@@ -70,21 +84,25 @@ params:
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the access phase.
     - name: header_filter
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the header_filter phase.
     - name: body_filter
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the body_filter phase.
     - name: log
       required: false
       default: '[]'
       value_in_examples: '[]'
+      datatype: array
       description: Array of stringified Lua code to be cached and run in sequence during the log phase.
 ---
 

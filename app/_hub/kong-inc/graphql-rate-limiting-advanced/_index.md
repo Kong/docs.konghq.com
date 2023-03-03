@@ -18,10 +18,16 @@ params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
+  konnect_examples: false
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
     Gateway in DB-less or hybrid mode, use the `redis` strategy.
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: cost_strategy
       required: true
@@ -87,12 +93,23 @@ params:
         entirely and only stores counters in node memory. A value greater than
         0 syncs the counters in that many number of seconds.
     - name: namespace
-      required: false
-      default: random string
-      value_in_examples: null
+      required: semi
+      default: random_auto_generated_string
+      value_in_examples: example_namespace
       datatype: string
       description: |
-        The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
+        The rate limiting library namespace to use for this plugin instance. Counter
+        data and sync configuration is shared in a namespace.
+
+        {:.important}
+        > **Important**: If managing Kong Gateway with **declarative configuration** or running
+        Kong Gateway in **DB-less mode**, set the `namespace` explicitly in your declarative configuration.
+        > <br><br>
+        > If not set, you will run into the following issues:
+        * In DB-less mode, this field will be regenerated automatically on every configuration change.
+        * If applying declarative configuration with decK, decK will automatically fail the update and require a 
+        `namespace` value.
+
     - name: strategy
       required: null
       default: cluster
@@ -177,7 +194,9 @@ params:
       referenceable: true
       description: |
         Username to use for Redis connection when the `redis` strategy is defined and ACL authentication is desired.
-        If undefined, ACL authentication will not be performed. This requires Redis v6.0.0+.
+        If undefined, ACL authentication will not be performed.
+
+         This requires Redis v6.0.0+. The username **cannot** be set to `default`.
       minimum_version: "2.8.x"
     - name: redis.password
       required: semi

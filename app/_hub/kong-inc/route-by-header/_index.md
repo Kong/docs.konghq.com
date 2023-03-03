@@ -20,6 +20,11 @@ params:
   route_id: true
   consumer_id: true
   dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   konnect_examples: false
   manager_examples: false
   config:
@@ -162,14 +167,14 @@ Enable plugin on service `serviceA`:
 ```bash
 curl -i -X POST http://kong:8001/services/serviceA/plugins \
   -H 'Content-Type: application/json' \
-  --data '{"name": "route-by-header", "config": {"rules":[{"condition": {"location":"us-east"}, "upstream_name": "east.doamin.com"}, {"condition": {"location":"us-west"}, "upstream_name": "west.doamin.com"}]}}'
+  --data '{"name": "route-by-header", "config": {"rules":[{"condition": {"location":"us-east"}, "upstream_name": "east.domain.com"}, {"condition": {"location":"us-west"}, "upstream_name": "west.domain.com"}]}}'
 ```
 
 Response:
 ```
 HTTP/1.1 201 Created
 ...
-{"created_at":1534540916000,"config":{"rules":{"":"{\"condition\": {\"location\":\"us-east\"}, \"upstream_name\": \"east.doamin.com\"}, {\"condition\": {\"location\":\"us-west\"}, \"upstream_name\": \"west.doamin.com\"}"}},"id":"0df16085-76b2-4a50-ac30-c8a1eade389a","enabled":true,"service_id":"6e7f5274-62da-469e-bdd5-03c4a212c15b","name":"route-by-header"}
+{"created_at":1534540916000,"config":{"rules":{"":"{\"condition\": {\"location\":\"us-east\"}, \"upstream_name\": \"east.domain.com\"}, {\"condition\": {\"location\":\"us-west\"}, \"upstream_name\": \"west.domain.com\"}"}},"id":"0df16085-76b2-4a50-ac30-c8a1eade389a","enabled":true,"service_id":"6e7f5274-62da-469e-bdd5-03c4a212c15b","name":"route-by-header"}
 
 ```
 
@@ -185,14 +190,14 @@ Let's patch above plugin to add one more rule with multiple headers:
 ```bash
 curl -i -X PATCH http://kong:8001/plugins/0df16085-76b2-4a50-ac30-c8a1eade389a \
   -H 'Content-Type: application/json' \
-  --data '{"name": "route-by-header", "config": {"rules":[{"condition": {"location":"us-east"}, "upstream_name": "east.doamin.com"}, {"condition": {"location":"us-west"}, "upstream_name": "west.doamin.com"},  {"condition": {"location":"us-south", "region": "US"}, "upstream_name": "south.doamin.com"}]}}'
+  --data '{"name": "route-by-header", "config": {"rules":[{"condition": {"location":"us-east"}, "upstream_name": "east.domain.com"}, {"condition": {"location":"us-west"}, "upstream_name": "west.domain.com"},  {"condition": {"location":"us-south", "region": "US"}, "upstream_name": "south.domain.com"}]}}'
 ```
 
 Response:
 ```
 HTTP/1.1 200 OK
 ...
-{"created_at":1534540916000,"config":{"rules":{"":"{\"condition\": {\"location\":\"us-east\"}, \"upstream_name\": \"east.doamin.com\"}, {\"condition\": {\"location\":\"us-west\"}, \"upstream_name\": \"west.doamin.com\"}, {\"condition\": {\"location\":\"us-south\", \"region\": \"us\"}, \"upstream_name\": \"south.doamin.com\"}"}},"id":"0df16085-76b2-4a50-ac30-c8a1eade389a","enabled":true,"service_id":"6e7f5274-62da-469e-bdd5-03c4a212c15b","name":"route-by-header"}
+{"created_at":1534540916000,"config":{"rules":{"":"{\"condition\": {\"location\":\"us-east\"}, \"upstream_name\": \"east.domain.com\"}, {\"condition\": {\"location\":\"us-west\"}, \"upstream_name\": \"west.domain.com\"}, {\"condition\": {\"location\":\"us-south\", \"region\": \"us\"}, \"upstream_name\": \"south.domain.com\"}"}},"id":"0df16085-76b2-4a50-ac30-c8a1eade389a","enabled":true,"service_id":"6e7f5274-62da-469e-bdd5-03c4a212c15b","name":"route-by-header"}
 ```
 
 Now we have an additional rule which routes any request with header `Location` set to

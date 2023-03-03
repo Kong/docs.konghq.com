@@ -140,7 +140,7 @@ infd:close()
 
 local parsed = assert(parser.parse(lines))
 
-local outpath = "src/gateway/reference/configuration.md"
+local outpath = "app/_src/gateway/reference/configuration.md"
 local outfd = assert(io.open(outpath, "w+"))
 
 outfd:write(data.header)
@@ -210,6 +210,9 @@ for _, section in ipairs(parsed) do
         write("{:.badge .enterprise}")
 
       elseif string.match(var.name, "cluster_telemetry") then
+        write("{:.badge .enterprise}")
+
+      elseif string.match(var.name, "cluster_fallback") then
         write("{:.badge .enterprise}")
 
       elseif string.match(var.name, "rbac") then

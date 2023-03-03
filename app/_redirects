@@ -46,6 +46,9 @@
 /kubernetes-ingress-controller-beta/   /kubernetes-ingress-controller/
 /kubernetes-ingress-controller-beta/*  /kubernetes-ingress-controller/:splat
 
+# KIC GENERAL
+/kubernetes-ingress-controller/:version/guides/using-gateway-api/ /kubernetes-ingress-controller/:version/guides/getting-started/
+
 # ENTERPRISE GATEWAY
 /enterprise/latest/introduction       /enterprise/
 /enterprise/2.3.x/introduction        /enterprise/
@@ -170,6 +173,7 @@
 /hub/kong-inc/jwt/2.1-x.html                       /hub/kong-inc/jwt/
 /hub/kong-inc/jwt-signer/0.*                       /hub/kong-inc/jwt-signer/
 /hub/kong-inc/jwt-signer/1.*                       /hub/kong-inc/jwt-signer/
+/hub/kong-inc/jwe-decrypt/3.*                      /hub/kong-inc/jwe-decrypt/
 /hub/kong-inc/kafka-log/0.*                        /hub/kong-inc/kafka-log/
 /hub/kong-inc/kafka-upstream/0.*                   /hub/kong-inc/kafka-upstream/
 /hub/kong-inc/key-auth/0.*                         /hub/kong-inc/key-auth/
@@ -275,7 +279,7 @@
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
 /konnect/legacy/*                                    /konnect/
-
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
 
 #API Redirects
 
@@ -500,6 +504,7 @@
 /gateway-oss/2.6.x/external-plugins/    /gateway/2.6.x/reference/external-plugins
 /gateway-oss/2.7.x/external-plugins/    /gateway/2.7.x/reference/external-plugins
 /gateway-oss/latest/external-plugins/   /gateway/latest/reference/external-plugins
+/gateway/3.0.x/reference/external-plugins/#performance-for-external-plugins /gateway/3.0.x/plugin-development/pluginserver/performance
 /enterprise/2.6.x/systemd/              /gateway/2.6.x/plan-and-deploy/systemd
 /enterprise/2.7.x/systemd/              /gateway/2.7.x/plan-and-deploy/systemd
 /enterprise/latest/systemd/             /gateway/latest/plan-and-deploy/systemd
@@ -818,11 +823,27 @@
 
 # 3.0
 
-/gateway/2.8.x/install-and-run/                   /gateway/latest/install-and-run/os-support
-/gateway/2.8.x/install-and-run/centos/            /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/install-and-run/                   /gateway/latest/support-policy/
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/support-policy/
+/gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
 /gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
 /gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
 /gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
 /gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
+
+# 3.1
+/gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
+
+
+#3.2
+
+/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/latest/os-support/                     /gateway/latest/support-policy/
+/gateway/latest/install-support/                /gateway/latest/support-policy/
+/gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
+/gateway/3.2.x/install-support/                /gateway/latest/support-policy/

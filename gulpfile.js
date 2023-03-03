@@ -22,7 +22,6 @@ var paths = {
 var sources = {
   content: [
     "app/**/*.{markdown,md,html,txt,yml,yaml}",
-    "src/**/*.{markdown,md,html,txt,yml,yaml}"
   ],
   styles: paths.assets + "stylesheets/**/*",
   js: [

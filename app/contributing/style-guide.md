@@ -1,6 +1,5 @@
 ---
 title: Style guide
-no_version: true
 ---
 
 <!-- vale off -->
@@ -12,6 +11,8 @@ no_version: true
 |Use [US English](https://www.merriam-webster.com) (not British English)|  The response **should** look like...|  The response **shall** look like...|
 |                                   |In the previous section, you **learned**...    |In the previous section, you **learnt**...         |
 |                                   | Color, recognize, analyze                     | Colour, recognise, analyse                        |
+|                                   | While                                         | Whilst                                            |
+|---                                |---                                            |---                                                |   
 |Use present tense                  |This `command` **starts** a proxy.             |This `command` **will start** a proxy.             |
 |---                                |---                                            |---                                                |
 |Use active voice                   |You can explore the API using a browser.       |The API can be explored using a browser.           |
@@ -19,6 +20,7 @@ no_version: true
 |---                                |---                                            |---                                                |
 |Use conversational tone            |Run the program.                               |Execute the program.                               |
 |                                   |Use the Admin API.                             |Utilize the Admin API.                             |
+|                                   |Open the link *to* do the thing.               |Open the link *in order to* do the thing.          |
 |---                                |---                                            |---                                                |
 |Don’t use Latin phrases            |For example, ...                               |e.g., ...                                          |
 |                                   |That is, ...                                   |i.e., ...                                          |
@@ -31,6 +33,8 @@ no_version: true
 |---                                |---                                            |---                                                |
 |Use sentence case for headings     |Understanding traffic flow in {{site.base_gateway}}     |Understanding Traffic Flow in {{site.base_gateway}}         |
 |---                                |---                                            |---                                                |
+|Use descriptive link titles instead of "click here" |For more information, see the [style guide](#). | For more information, [click here](#).           |
+|                                   |Learn about [content best practices](#) in the Kong style guide. | Learn about content best practices [here](#).|
 
 <!-- vale on -->
 
@@ -44,7 +48,7 @@ no_version: true
 * Run `npx prettier --write ./your/edited/files.md` in the terminal
 * (Maintainers only) Add the `ci:autofix:prettier` label to a Pull Request
 
-All files in `src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
+All files in `app/_src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
 
 ### Admonitions
 
@@ -55,6 +59,17 @@ All files in `src` are formatted with Prettier. Prose in `app` has not been bulk
   - **Warning:** Information necessary to avoid breaking something or losing data.
   - **Important:** Information that the reader really needs to pay attention to, otherwise things won't work.
 For more information about formatting admonitions see [markdown-rules](/contributing/markdown-rules/#admonitions).
+
+## Content types
+
+At Kong, we use the four following standard content types when we write our documentation:
+
+- [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md): Documentation that is understanding-oriented because it clarifies and discusses a particular topic.
+- [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md): Documentation that is goal-oriented and prescriptive and that takes readers through the steps to complete a real-world problem.
+- [Reference](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/reference-template.md): Documentation that explains the technology, like API or command line documentation.
+- [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Documentation that helps users learn about a topic by going step-by-step through a series of tasks.
+
+Every documentation page should fit one of these four content types.
 
 ## Punctuation rules
 

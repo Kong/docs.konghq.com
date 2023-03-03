@@ -30,6 +30,10 @@ params:
     - name: https
     - name: grpc
     - name: grpcs
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
@@ -78,10 +82,19 @@ params:
       required: false
       default: null
       datatype: string
+      description:
+        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
+      minimum_version: "3.1.x"
+    - name: anonymous
+      required: false
+      default: null
+      datatype: string
       description: |
-        An optional string (Consumer UUID) value to use as an anonymous Consumer if authentication fails.
+        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
-        must refer to the Consumer `id` attribute that is internal to Kong, and **not** its `custom_id`.
+        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
+        For more information, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
+      maximum_version: "3.0.x"
     - name: run_on_preflight
       required: true
       default: '`true`'
@@ -146,6 +159,13 @@ If you are also using the [ACL](/plugins/acl/) plugin and allow lists with this
 service, you must add the new Consumer to the allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
+For more information about how to configure anonymous access, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
+
+
+### Multiple Authentication
+
+{{site.base_gateway}} supports multiple authentication plugins for a given service, allowing different clients to use different authentication methods to access a given service or route. For more information, see [Multiple Authentication](/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication).
+
 ### Create a Key
 
 <div class="alert alert-warning">
@@ -188,17 +208,22 @@ entry:
 ```yaml
 keyauth_credentials:
 - consumer: {USERNAME_OR_ID}
+  ttl: 5000
+  tags:
+    - example_tag
+  key: example_apikey
 ```
 {% endnavtab %}
 {% endnavtabs %}
 
 In both cases, the fields/parameters work as follows:
 
-field/parameter     | description
----                 | ---
-`{USERNAME_OR_ID}`  | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-`ttl`<br>*optional* | The number of seconds the key is going to be valid. If missing or set to zero, the `ttl` of the key is unlimited. If present, the value must be an integer between 0 and 100000000.
-`key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
+field/parameter      | description
+---                  | ---
+`{USERNAME_OR_ID}`   | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`ttl`<br>*optional*  | The number of seconds the key is going to be valid. If missing or set to zero, the `ttl` of the key is unlimited. If present, the value must be an integer between 0 and 100000000. Currently, it is incompatible with DB-less mode or Hybrid mode.
+`tags`<br>*optional* | You can optionally assign a list of tags to your `key`.
+`key`<br>*optional*  | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 ### Make a Request with the Key
 
@@ -366,6 +391,19 @@ Response:
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
+
+
+### Request behavior matrix
+
+The following table describes how {{site.base_gateway}} behaves in various scenarios:
+
+Description | Proxied to upstream service? | Response status code
+--------|-----------------------------|---------------------
+The request has a valid API key. | Yes | 200
+No API key is provided. | No | 401
+The API key is known to {{site.base_gateway}} | No | 401
+A runtime error occurred. | No | 500
+
 
 ---
 ## Changelog

@@ -173,7 +173,3 @@ expected results are:
   ]
 }
 ```
-
-## API reference documentation
-
-* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce) - Interface for management of users, teams, team memberships and role assignments.

@@ -22,13 +22,17 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
     - name: tcp
     - name: tls
     - name: tls_passthrough
       minimum_version: "2.7.x"
     - name: udp
-    - name: grpc
-    - name: grpcs
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   config:
     - name: host
@@ -74,6 +78,27 @@ params:
       default: consumer
       datatype: string
       description: String to be attached as tag of the consumer.
+    - name: flush_timeout
+      required: true
+      default: '`2`'
+      value_in_examples: 2
+      datatype: number
+      description: |
+        Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.
+      minimum_version: "3.1.x"
+    - name: retry_count
+      required: true
+      default: 10
+      value_in_examples: 10
+      datatype: integer
+      description: Number of times to retry when sending data to the upstream server.
+      minimum_version: "3.1.x"
+    - name: queue_size
+      required: true
+      default: 1
+      datatype: integer
+      description: Maximum number of log entries to be sent on each message to the upstream server.
+      minimum_version: "3.1.x"
 ---
 
 ## Metrics
@@ -142,6 +167,10 @@ Field           | Description                                           | Dataty
 {% include /md/plugins-hub/kong-process-errors.md %}
 
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+* Added support for managing queues and connection retries when sending messages to the upstream with 
+the `queue_size`,`flush_timeout`, and `retry_count` configuration parameters. 
 
 **{{site.base_gateway}} 2.7.x**
 * Added support for the `distribution` metric type.

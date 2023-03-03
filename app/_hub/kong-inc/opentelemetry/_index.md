@@ -10,17 +10,20 @@ categories:
   - analytics-monitoring
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
 params:
   name: opentelemetry
+  service_id: true
+  route_id: true
+  consumer_id: true
   konnect_examples: false
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: endpoint
@@ -30,14 +33,30 @@ params:
       description: |
         The full HTTP(S) endpoint that Kong Gateway should send OpenTelemetry spans to.
         The endpoint must be a [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) endpoint.
-    - name: headers
+
+    - name: headers # old version of headers parameter without 'referenceable' attribute
+      maximum_version: "3.0.x"
       required: false
       datatype: map
       value_in_examples:
         - X-Auth-Token:secret-token
       description: |
         The custom headers to be added in the HTTP request sent to the OTLP server.
-        It's useful to add the authentication headers (token) for the APM backend.
+        This setting is useful for adding the authentication headers (token)
+        for the APM backend.
+
+    - name: headers  # current version of headers parameter
+      minimum_version: "3.1.x"
+      referenceable: true
+      required: false
+      datatype: map
+      value_in_examples:
+        - X-Auth-Token:secret-token
+      description: |
+        The custom headers to be added in the HTTP request sent to the OTLP server.
+        This setting is useful for adding the authentication headers (token)
+        for the APM backend.
+
     - name: resource_attributes
       required: false
       datatype: map
@@ -86,8 +105,15 @@ and is intended to be fully compatible with the OpenTelemetry specification.
 
 ## Usage
 
+{% if_plugin_version gte:3.2.x %}
+{:.note}
+> **Note**: The OpenTelemetry plugin only works when {{site.base_gateway}}'s `tracing_instrumentations` configuration is enabled.
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:3.1.x %}
 {:.note}
 > **Note**: The OpenTelemetry plugin only works when {{site.base_gateway}}'s `opentelemetry_tracing` configuration is enabled.
+{% endif_plugin_version %}
 
 The OpenTelemetry plugin is fully compatible with the OpenTelemetry specification and can be used with any OpenTelemetry compatible backend.
 
@@ -100,12 +126,18 @@ There are two ways to set up an OpenTelemetry backend:
 ### Set up {{site.base_gateway}}
 
 Enable the OpenTelemetry tracing capability in {{site.base_gateway}}'s configuration:
-
-- `opentelemetry_tracing = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#opentelemetry_tracing).
+{% if_plugin_version lte:3.1.x %}
+- `opentelemetry_tracing = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
 - `opentelemetry_tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
   Tracer samples a fixed percentage of all spans following the sampling rate.
   Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
-
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.2.x %}
+- `tracing_instrumentations = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
+- `tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
+  Tracer samples a fixed percentage of all spans following the sampling rate.
+  Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
+{% endif_plugin_version %}
 ### Set up an OpenTelemetry compatible backend
 
 This section is optional if you are using a OpenTelemetry compatible APM vendor.
@@ -163,11 +195,11 @@ service:
 Run the OpenTelemetry Collector with Docker:
 
 ```bash
-docker run --name opentelemetry-collector
+docker run --name opentelemetry-collector \
   -p 4317:4317 \
   -p 4318:4318 \
   -p 55679:55679 \
-  -v ./otelcol.yaml:/etc/otel-collector-config.yaml \
+  -v $(pwd)/otelcol.yaml:/etc/otel-collector-config.yaml \
   otel/opentelemetry-collector-contrib:0.52.0 \
   --config=/etc/otel-collector-config.yaml
 ```
@@ -191,10 +223,16 @@ This section describes how the OpenTelemetry plugin works.
 
 ### Built-in tracing instrumentations
 
+{% if_plugin_version gte:3.2.x %}
+{{site.base_gateway}} has a series of built-in tracing instrumentations
+which are configured by the `tracing_instrumentations` configuration.
+{{site.base_gateway}} creates a top-level span for each request by default when `tracing_instrumentations` is enabled.
+{% endif_plugin_version %}
+{% if_plugin_version lte:3.1.x %}
 {{site.base_gateway}} has a series of built-in tracing instrumentations
 which are configured by the `opentelemetry_tracing` configuration.
-
 {{site.base_gateway}} creates a top-level span for each request by default when `opentelemetry_tracing` is enabled.
+{% endif_plugin_version %}
 
 The top level span has the following attributes:
 - `http.method`: HTTP method
@@ -213,7 +251,7 @@ The OpenTelemetry plugin propagates the following headers:
 - `b3` and `b3-single`: [Zipkin headers](https://github.com/openzipkin/b3-propagation)
 - `jaeger`: [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot`: [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
-- `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/agent/propagation/) (Enterprise only)
+- `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing) (Enterprise only)
 
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.
@@ -276,10 +314,30 @@ Span #4 name=access phase: cors duration=1500.824576ms
 Span #5 name=cors: heavy works duration=1500.709632ms attributes={"username":"kongers"}
 Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.21.11.162","net.peer.port":80}
 ```
+{% if_plugin_version gte:3.2.x %}
+## Known issues
 
+- Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
+- May impact the performance of {{site.base_gateway}}.
+  It's recommended to set the sampling rate (`tracing_sampling_rate`)
+  via Kong configuration file when using the OpenTelemetry plugin.
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:3.1.x %}
 ## Known issues
 
 - Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
 - May impact the performance of {{site.base_gateway}}.
   It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
+{% endif_plugin_version %}
+
+## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+* This plugin can now be scoped to individual services, routes, and consumers.
+
+**{{site.base_gateway}} 3.1.x**
+* The `headers` field is now marked as referenceable, which means it can be securely stored as a
+[secret](/gateway/latest/kong-enterprise/secrets-management/)
+in a vault.

@@ -12,15 +12,14 @@ description: |
   Used in conjunction with any plugin which requests a client certificate, such as the mTLS Authentication or TLS Handshake Modifier plugins.
 
 enterprise: true
-plus: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
-cloud: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
+plus: false
+cloud: true
 type: plugin
 categories:
   - security
 kong_version_compatibility:
   enterprise_edition:
-    compatible:
-      - 3.0.x
+    compatible: true
 params:
   name: tls-metadata-headers
   service_id: true
@@ -31,7 +30,6 @@ params:
     - name: grpcs
     - name: tls
   dbless_compatible: 'yes'
-  konnect_examples: false # need to update this once we verify that this plugin is in Konnect post-3.0 update.
 
   config:
     - name: inject_client_cert_details

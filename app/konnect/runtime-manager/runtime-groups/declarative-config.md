@@ -52,7 +52,7 @@ If the connection is successful, the terminal displays the full name of the user
 associated with the account:
 
 ```sh
-Successfully Konnected as Some Name (Org Name)!
+Successfully Konnected to the Example-Name organization!
 ```
 
 You can also use decK with {{site.konnect_short_name}} more securely by storing
@@ -135,7 +135,7 @@ For this example, let's add a new service.
 
     This snippet defines a service named `MyService` pointing to `mockbin.org`.
     The service has one version, and the version gets implemented with the
-    route `/mockpath`, which means that you can access the service by appending
+    route `/mock`, which means that you can access the service by appending
     this route to your proxy URL.
 
     Because you're also enabling the `key-auth` plugin on the route, you need
@@ -152,10 +152,11 @@ For this example, let's add a new service.
     be added to the {{site.konnect_saas}} configuration:
 
     ```sh
-    creating route mockpath
     creating service MyService
+    creating route mockpath
+    creating plugin key-auth for route mockpath
     Summary:
-      Created: 2
+      Created: 3
       Updated: 0
       Deleted: 0
     ```
@@ -170,10 +171,11 @@ For this example, let's add a new service.
     You should see the same output again:
 
     ```sh
-    creating route mockpath
     creating service MyService
+    creating route mockpath
+    creating plugin key-auth for route mockpath
     Summary:
-      Created: 2
+      Created: 3
       Updated: 0
       Deleted: 0
     ```

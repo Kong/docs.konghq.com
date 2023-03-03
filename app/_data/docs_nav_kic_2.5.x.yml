@@ -59,6 +59,8 @@ items:
         url: /deployment/gke
       - text: Admission Controller
         url: /deployment/admission-webhook
+      - text: Installing Gateway APIs
+        url: /deployment/install-gateway-apis
   - title: Guides
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /guides/overview
@@ -71,14 +73,12 @@ items:
         url: /guides/getting-started-istio
       - text: Using Custom Resources
         items:
-          - text: Using the KongPlugin Resource
+          - text: Using the Kong(Cluster)Plugin Resource
             url: /guides/using-kongplugin-resource
           - text: Using the KongIngress Resource
             url: /guides/using-kongingress-resource
-          - text: Using KongConsumer and KongCredential Resources
+          - text: Using KongConsumer and Credential Resources
             url: /guides/using-consumer-credential-resource
-          - text: Using the KongClusterPlugin Resource
-            url: /guides/using-kongclusterplugin-resource
           - text: Using the TCPIngress Resource
             url: /guides/using-tcpingress
           - text: Using the UDPIngress Resource
@@ -134,6 +134,7 @@ items:
         url: /references/cli-arguments
       - text: Custom Resource Definitions
         url: /references/custom-resources
+        src: references/custom-resources-lte-2.6.x
       - text: Plugin Compatibility
         url: /references/plugin-compatibility
       - text: Version Compatibility

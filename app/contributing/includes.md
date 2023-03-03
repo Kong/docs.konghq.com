@@ -1,6 +1,5 @@
 ---
 title: Reusable content
-no_version: true
 ---
 
 In Jekyll, reusable content is managed using [`include`](https://jekyllrb.com/docs/includes/)
@@ -22,7 +21,7 @@ Add a Markdown (`.md`) or HTML (`.html`) file to the [`/app/_includes`](https://
 
 * Markdown `includes` contain snippets of documentation content, for example, common installation steps.
 * HTML `includes` contain pieces of website layout and functionality, for
-example, the footer and navbars.
+example, the footer and top navigation bar.
 
 If your Markdown `include` does not need to belong to a particular product version, place it in a product directory. For example:
 

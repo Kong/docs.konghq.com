@@ -13,7 +13,7 @@ module KumaToKongMesh
 
     def generate(site)
       site.pages.each do |page|
-        next unless page.data['path']&.include?('docs_nav_mesh')
+        next unless page.path.start_with?('_src/.repos/kuma')
 
         replace_title(page)
         replace_kuma_with_kong_mesh_in_links(page)

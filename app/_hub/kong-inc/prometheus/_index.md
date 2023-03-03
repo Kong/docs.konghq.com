@@ -19,10 +19,17 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: tcp
-    - name: tls
     - name: grpc
     - name: grpcs
+    - name: tcp
+    - name: tls
+    - name: tls_passthrough
+      minimum_version: "2.7.x"
+    - name: udp
+    - name: ws
+      minimum_version: "3.0.x"
+    - name: wss
+      minimum_version: "3.0.x"
   dbless_compatible: 'yes'
   dbless_explanation: |
     The database will always be reported as reachable in Prometheus with DB-less.
@@ -84,8 +91,8 @@ and consume data from each node's configured `/metrics` endpoint.
 
 ## Grafana dashboard
 
-Metrics exported by the plugin can be graphed in Grafana using a drop in
-dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/7424).
+Metrics exported by the plugin can be graphed in Grafana using a drop-in
+dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://grafana.com/grafana/dashboards/7424-kong-official/).
 
 ## Available metrics
 
@@ -309,6 +316,13 @@ allow access to the `/metrics` endpoint to Prometheus:
 * All Memory metrics have a new label, `node_id`.
 * Plugin version bumped to 3.0.0
 * The `node_id` label was added to memory metrics.
+
+**{{site.base_gateway}} (Enterprise) 2.8.3.2**
+* Adds new directives in `kong.conf` to enable or disable high cardinality metrics.
+  * `prometheus_plugin_status_code_metrics`: enables or disables reporting the HTTP/Stream status codes per service/route.
+  * `prometheus_plugin_latency_metrics`: enables or disables reporting the latency added by Kong, request time and upstream latency.
+  * `prometheus_plugin_bandwidth_metrics`: enables or disables reporting the bandwidth consumed by service/route.
+  * `prometheus_plugin_upstream_health_metrics`: enables or disables reporting the upstream health status.
 
 **{{site.base_gateway}} 2.8.x**
 * Adds a new metric:

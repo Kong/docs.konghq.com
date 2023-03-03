@@ -15,6 +15,7 @@ install-prerequisites:
 install: ruby-version-check
 	npm ci
 	bundle install
+	git submodule update --init
 
 # Using local dependencies, starts a doc site instance on http://localhost:3000.
 run: ruby-version-check
@@ -29,6 +30,7 @@ build: ruby-version-check
 clean:
 	-rm -rf dist
 	-rm -rf app/.jekyll-cache
+	-rm app/.jekyll-metadata
 
 # Runs tests
 test:

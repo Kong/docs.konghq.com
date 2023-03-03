@@ -1,8 +1,8 @@
 ACLs
 Alertmanager
+Amal
 Amberflo
 Arya
-Bagdi
 Bagdi
 Bintray
 Bitnami
@@ -11,6 +11,7 @@ CloudFormation
 Cloudformation
 Cognito
 Curity
+CLIs
 DAO
 DAOs
 DPP
@@ -26,6 +27,7 @@ Grafana
 HTTPie
 Istio
 Istio's
+Jira
 JsonPath
 Keycloak
 Knative
@@ -56,11 +58,13 @@ PowerShell
 Prometheus
 Protobuf
 Resty
+SAML
 Splunk
 Stap
 Styra
 Styra
 Syslog
+Templatized
 Terraform
 Terraform's
 UIs
@@ -146,6 +150,8 @@ grpcs
 gui
 guis
 gzip
+hackathon
+hackathons
 hardcoded
 hardcoding
 hashicorp
@@ -158,6 +164,7 @@ href
 http
 httpbin
 https
+impactful
 inbounds
 ini
 init_worker
@@ -195,6 +202,7 @@ kubectl
 kubernetes
 kumactl
 kustomization
+kv
 lapis
 loggly
 lookup
@@ -209,6 +217,7 @@ middleware
 mimetype
 minifier
 minikube
+minio
 misconfigured
 mutex
 nameserver
@@ -270,6 +279,9 @@ requery
 retryOn
 rockspec
 rockspecs
+rolling_timeout
+rollout
+rollouts
 routable
 ruleset
 runtime
@@ -318,6 +330,7 @@ tfvars
 timeframe
 timeframes
 tlds
+tproxy
 transcoded
 transcoder
 transpile
@@ -333,6 +346,7 @@ uncomment
 uncommenting
 unencrypted
 unix
+unmanaged
 unmarshalled
 unnormalized
 unprocessable

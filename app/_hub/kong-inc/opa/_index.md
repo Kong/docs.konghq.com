@@ -22,6 +22,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: opa_protocol
@@ -81,6 +83,13 @@ params:
       default: false
       description: |
         If set to true and the `Content-Type` header of the current request is `application/json`, the request body will be JSON decoded and the decoded struct is included as input to OPA.
+    - name: include_uri_captures_in_opa_input
+      required: false
+      datatype: boolean
+      default: false
+      minimum_version: "3.0.x"
+      description: |
+        If set to true, the [regex capture groups](https://docs.konghq.com/gateway/latest/reference/proxy/#using-regex-in-paths) captured on the Kong Gateway Route's path field in the current request (if any) are included as input to OPA.
     - name: ssl_verify
       required: true
       datatype: boolean
@@ -208,6 +217,10 @@ The input to OPA has the following JSON structure:
           "accept-encoding": "gzip, deflate",
           "connection": "keep-alive",
           "accept": "*\\/*"
+        },
+        "uri_captures": {      # The regex capture groups captured on the Kong Gateway Route's path field in the current request. Injected only if `include_uri_captures_in_opa_input` is set to `true`.
+          "named": {},
+          "unnamed": []
         }
       }
     },
@@ -311,7 +324,8 @@ The plugin expects the following structure in the OPA response in this case:
     "headers": {
       "<key>": "<value>",
       "<key2>": "<value2>"
-    }
+    },
+    "message": "<value3> or object",
   }
 }
 ```
@@ -323,5 +337,7 @@ If `result.allow` is set to `true`, then the key-value pairs in `result.headers`
 are injected into the request before it is forwarded to the upstream Service.
 
 If `result.allow` is set to `false`, then the key-value pairs in `result.headers` (if any)
-are injected into the response and the status code of the response is set to `result.status`.
+are injected into the response, the `result.message` (if any) is set as the response message,
+and the status code of the response is set to `result.status`.
 If `result.status` is absent then the default `403` status code is sent.
+If `result.status` is absent, then the default *unauthorized* message is sent.

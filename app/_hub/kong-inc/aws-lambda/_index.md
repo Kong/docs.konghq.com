@@ -22,6 +22,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: aws_key
@@ -305,6 +307,21 @@ params:
       datatype: boolean
       description: |
         An optional value that Base64-encodes the request body.
+    - name: aws_imds_protocol_version
+      minimum_version: "3.2.x"
+      required: true
+      default: '`v1`'
+      datatype: string
+      description: |
+        Identifier to select the IMDS protocol version to use, either
+        `v1` or `v2`.  If `v2` is selected, an additional session
+        token is requested from the EC2 metadata service by the plugin
+        to secure the retrieval of the EC2 instance role.  Note that
+        if {{site.base_gateway}} is running inside a container on an
+        EC2 instance, the EC2 instance metadata must be configured
+        accordingly.  Please refer to "Considerations" section in the
+        ["Retrieve instance metadata" section of the EC2 manual](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html)
+        for details.
   extra: |
     **Reminder**: By default, cURL sends payloads with an
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
@@ -509,15 +526,13 @@ Have fun leveraging the power of AWS Lambda in Kong!
 
 ## Changelog
 
-{% if_plugin_version gte:3.0.x %}
+**{{site.base_gateway}} 3.1.x**
+* Added a `requestContext` field into `awsgateway_compatible` input data.
+  [#9380](https://github.com/Kong/kong/pull/9380)
 
 **{{site.base_gateway}} 3.0.x**
 * The `proxy_scheme` configuration parameter has been removed from the plugin.
 * The plugin now allows both `aws_region` and `host` to be set at the same time.
-
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.8.x %}
 
 **{{site.base_gateway}} 2.8.x**
 * The `proxy_scheme` configuration parameter is deprecated and planned to be
@@ -525,29 +540,15 @@ removed in 3.x.x.
 * {{site.base_gateway}} 2.8.1.3: Added support for cross account invocation
 through configuration properties `aws_assume_role_arn` and `aws_role_session_name`.
 
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.7.x %}
-
 **{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.aws_key` and `config.aws_secret` parameter values will be encrypted.
 
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.6.x %}
-
 **{{site.base_gateway}} 2.6.x**
 * The AWS region can now be set with the environment variables: `AWS_REGION` or `AWS_DEFAULT_REGION`.
 
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.2.x %}
-
 **{{site.base_gateway}} 2.2.x**
 * Added support for `isBase64Encoded` flag in Lambda function responses.
-
-{% endif_plugin_version %}
 
 **{{site.base_gateway}} 2.1.x**
 * Added `host` configuration to allow for custom Lambda endpoints.

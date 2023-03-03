@@ -24,22 +24,24 @@ params:
   service_id: True
   consumer_id: False
   route_id: True
-  protocols: ["http", "https"] 
-  dbless_compatible: yes 
+  protocols:
+    - name: http
+    - name: https
+  dbless_compatible: yes
   config:
     - name: request_transformer
       required: 'yes'
       default:
       value_in_examples: /home/foo/api_xxx/req_transformer.lua
       description: |
-        The .lua script to be used for the transformation. 
+        The .lua script to be used for the transformation.
         Available OpenResty variables and utils: [Check README](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer){:target="_blank"}{:rel="noopener noreferrer"}
     - name: response_transformer
       required: 'yes'
       default:
       value_in_examples: /home/foo/api_xxx/resp_transformer.lua
       description: |
-        The .lua script to be used for the transformation. 
+        The .lua script to be used for the transformation.
         Available OpenResty variables and utils: [Check README](https://github.com/qnap-dev/kong-plugin-api-transformer#for-developer){:target="_blank"}{:rel="noopener noreferrer"}
     - name: http_200_always
       required: 'no'
@@ -49,20 +51,20 @@ params:
         We may need to use HTTP 200 approach in API error handling in some business cases.
 
 
-############################################################################### 
-# END YAML DATA 
-# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only. 
-# 
-# The remainder of this file is for free-form description, instruction, and 
-# reference matter. 
-# If you include headers, your headers MUST start at Level 2 (parsing to 
-# h2 tag in HTML). Heading Level 2 is represented by ## notation 
-# preceding the header text. Subsequent headings, 
-# if you choose to use them, must be properly nested (eg. heading level 2 may 
-# be followed by another heading level 2, or by heading level 3, but must NOT be 
-# followed by heading level 4) 
-############################################################################### 
-# BEGIN MARKDOWN CONTENT 
+###############################################################################
+# END YAML DATA
+# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
+#
+# The remainder of this file is for free-form description, instruction, and
+# reference matter.
+# If you include headers, your headers MUST start at Level 2 (parsing to
+# h2 tag in HTML). Heading Level 2 is represented by ## notation
+# preceding the header text. Subsequent headings,
+# if you choose to use them, must be properly nested (eg. heading level 2 may
+# be followed by another heading level 2, or by heading level 3, but must NOT be
+# followed by heading level 4)
+###############################################################################
+# BEGIN MARKDOWN CONTENT
 
 ---
 

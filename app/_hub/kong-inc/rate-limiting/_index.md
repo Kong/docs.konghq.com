@@ -27,6 +27,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
@@ -69,10 +71,10 @@ params:
         - `consumer`
         - `credential`
         - `ip`
-        - `service` (The `service.id` or `service.name` configuration must be provided if you're adding the plugin to a service through the top-level `/plugins` endpoint.)
+        - `service`
         - `header` (The `header_name` configuration must be provided.)
         - `path` (The `path` configuration must be provided.)
-        
+
         If the entity value for aggregating the limits cannot be determined, the system falls back to `ip`.
     - name: header_name
       required: semi
@@ -132,7 +134,9 @@ params:
       datatype: string
       referenceable: true
       description: |
-        When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired.
+        When using the `redis` policy, this property specifies the username to connect to the Redis server when ACL authentication is desired. 
+        
+        This requires Redis v6.0.0+. The username **cannot** be set to `default`.
     - name: redis_password
       minimum_version: "2.7.x"
       required: false
@@ -170,6 +174,22 @@ params:
       datatype: integer
       description: |
         When using the `redis` policy, this property specifies the Redis database to use.
+    - name: error_code
+      minimum_version: "3.1.x"
+      required: false
+      default: 429
+      datatype: number
+      description: |
+        Set a custom error code to return when the rate limit is exceeded.
+    - name: error_message
+      minimum_version: "3.1.x"
+      required: false
+      default: rate limit exceeded
+      datatype: string
+      description: |
+        Set a custom error message to return when the rate limit is exceeded.
+
+
   extra: '<div class="alert alert-warning"> <strong>Note:</strong> At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured. </div>'
 ---
 
@@ -268,6 +288,10 @@ selected header was not sent by the client or the configured service was not fou
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+* Added the ability to customize the error code and message with
+the configuration parameters `error_code` and `error_message`.
 
 **{{site.base_gateway}} 2.8.x**
 
