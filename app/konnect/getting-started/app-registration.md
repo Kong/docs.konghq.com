@@ -102,6 +102,9 @@ In this topic, you:
 * Created an application through the Dev Portal and registered it against your service
 * Generated an API key for the application and made a call using this key
 
+You can learn more about [application registration](/konnect/dev-portal/applications/enable-app-reg/) 
+in the {{site.konnect_saas}} Dev Portal documentation.
+
 For next steps, check out some of the other things you can do in
 {{site.konnect_saas}}:
 
