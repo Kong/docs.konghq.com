@@ -129,6 +129,8 @@ items:
         url: /guides/using-kong-with-knative
       - text: Using Multiple Backend Services
         url: /guides/using-multiple-backends
+      - text: Using Gateway Discovery
+        url: /guides/using-gateway-discovery
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:
