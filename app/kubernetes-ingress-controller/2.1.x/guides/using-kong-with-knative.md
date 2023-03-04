@@ -32,7 +32,7 @@ This will install the resources that are required to run Knative.
 Next, install the {{site.kic_product_name}}:
 
 ```
-kubectl apply -f https://bit.ly/k4k8s
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
 ```
 
 You can choose to install a different flavor, like using a database,
@@ -151,7 +151,7 @@ Via: kong/1.4.3
 Hello Go Sample v1!
 ```
 
-The request is served by Knative and from the response HTTP headeres,
+The request is served by Knative and from the response HTTP headers,
 we can tell that the request was proxied by Kong.
 
 The first request will also take longer to complete as Knative will spin

@@ -34,12 +34,15 @@ Istio's
 Jira
 JsonPath
 Keycloak
+knative
 Knative
 Knative's
 Knatives
 Kong/kong
 Konnect
 Kuma
+kustomizations
+kustomize
 Kustomize
 Loggly
 Lua's

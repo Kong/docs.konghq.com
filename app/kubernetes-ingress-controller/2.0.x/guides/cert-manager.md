@@ -26,7 +26,7 @@ This tutorial was written using Google Kubernetes Engine.
 Execute the following to install the Ingress Controller:
 
 ```bash
-$ kubectl create -f https://bit.ly/k4k8s
+$ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
 namespace/kong created
 customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.example.com created
 customresourcedefinition.apiextensions.k8s.io/kongconsumers.configuration.example.com created
