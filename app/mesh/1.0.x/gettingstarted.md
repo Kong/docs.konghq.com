@@ -56,7 +56,7 @@ and the documentation for the enterprise features that are exclusive to
 {{site.mesh_product_name}}:
 
 * [Official Kuma documentation](https://kuma.io/docs/)
-* [Enterprise features documentation](/mesh/{{page.kong_version}}/features)
+* [Enterprise features documentation](/mesh/{{page.kong_version}}/features/)
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any question or feedback you may have.

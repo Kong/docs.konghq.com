@@ -3,14 +3,14 @@ title: Get Started with decK
 tag: how-to
 ---
 
-Once you have [installed](/deck/{{page.kong_version}}/installation) decK, use this guide to get started with it.
+Once you have [installed](/deck/{{page.kong_version}}/installation/) decK, use this guide to get started with it.
 
 You can find help in the terminal for any command using the `--help`
-flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck).
+flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck/).
 
 ## Install {{site.base_gateway}}
 
-Make sure you have [{{site.base_gateway}} installed](/install) and have access to Kong's [Admin API](/gateway/latest/admin-api).
+Make sure you have [{{site.base_gateway}} installed](/install/) and have access to Kong's [Admin API](/gateway/latest/admin-api/).
 
 This guide assumes that {{site.base_gateway}} is running at `http://localhost:8001`.
 If your URL is different, change the URL to the network address where the gateway is running.
@@ -314,6 +314,6 @@ This will delete all configuration from Kong's database.
 ```
 
 ## Next steps
-See decK [best practices](/deck/{{page.kong_version}}/guides/best-practices), and check out the individual guides for getting :
-* [Backup and restore of {{site.base_gateway}}'s configuration](/deck/{{page.kong_version}}/guides/backup-restore)
+See decK [best practices](/deck/{{page.kong_version}}/guides/best-practices/), and check out the individual guides for getting :
+* [Backup and restore of {{site.base_gateway}}'s configuration](/deck/{{page.kong_version}}/guides/backup-restore/)
 * Deduplicate plugin configuration

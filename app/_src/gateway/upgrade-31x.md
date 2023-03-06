@@ -121,7 +121,7 @@ This version includes a full rewrite of the session library.
 This upgrade affects the following: 
 * [Session plugin](/hub/kong-inc/session/)
 * [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
-* [SAML plugin](/hub/kong-inc/saml)
+* [SAML plugin](/hub/kong-inc/saml/)
 * Any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
 
 All existing sessions are invalidated when upgrading to this version.
@@ -278,7 +278,7 @@ upgrade the control plane first, and then the data planes.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
   plugins on the control plane first, and then the data planes.
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 ### Template changes

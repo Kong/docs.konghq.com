@@ -235,7 +235,7 @@ This feature is only available with a
 {{site.konnect_product_name}} Enterprise subscription</a>.
 </div>
 
-1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license/).
 
 2. Enable the Dev Portal by setting the `portal` property to `on` and the
 `portal_gui_host` property to the DNS or IP address of the CentOS system. For

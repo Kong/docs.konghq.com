@@ -495,7 +495,7 @@ Applications consume Services in {{site.base_gateway}} via application-level
 authentication. Developers, or the persona that logs into the Dev Portal,
 create and manage applications through the Dev Portal.
 
-Admins must first [enable application registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) through so that Developers can associate Services with applications.
+Admins must first [enable application registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration/) through so that Developers can associate Services with applications.
 
 ### List all applications for a developer
 
@@ -1459,7 +1459,7 @@ HTTP/1.1 200 OK
 ### Create a credential for an application
 
 Create an OAuth2 authentication credential for an application.
-This request configures an instance of the [OAuth2 plugin](/hub/kong-inc/oauth2).
+This request configures an instance of the [OAuth2 plugin](/hub/kong-inc/oauth2/).
 
 **Endpoint**
 

@@ -138,5 +138,5 @@ The example below uses MinIO to demonstrate configuring a backup node:
 
 ## More Information
 
-* [Data plane resilience FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq)
+* [Data plane resilience FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq/)
 * [Hybrid Mode](/gateway/latest/production/deployment-topologies/hybrid-mode/)

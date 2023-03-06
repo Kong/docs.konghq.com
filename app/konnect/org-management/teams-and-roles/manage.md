@@ -7,7 +7,7 @@ Manage access to your {{site.konnect_short_name}} organization and its
 resources using teams and roles.
 
 {:.note}
-> **Note:** If Okta integration is [enabled](/konnect/org-management/okta-idp),
+> **Note:** If Okta integration is [enabled](/konnect/org-management/okta-idp/),
 {{site.konnect_short_name}} users and teams become read-only. An organization
 admin can view all registered users in {{site.konnect_short_name}}, but cannot
 edit their team membership from the {{site.konnect_short_name}} side. To manage
@@ -47,7 +47,7 @@ Edit team roles from the {% konnect_icon organizations %} [**Organization**](htt
 1. Select one or more roles from the list.
 
     Hover over the `i` icon next to the role to see its description,
-    or see the [roles reference](/konnect/org-management/teams-and-roles/roles-reference).
+    or see the [roles reference](/konnect/org-management/teams-and-roles/roles-reference/).
 
 1. Click **Save**.
 
@@ -85,5 +85,5 @@ Delete a team from the {% konnect_icon organizations %} [**Organization**](https
 ## See also
 
 * [Introduction to teams and roles in {{site.konnect_short_name}}](/konnect/org-management/teams-and-roles/)
-* [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
-* [Roles reference](/konnect/org-management/teams-and-roles/roles-reference)
+* [Teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
+* [Roles reference](/konnect/org-management/teams-and-roles/roles-reference/)

@@ -458,4 +458,4 @@ After migrations are complete and the `my-kong-kong-<ID>` pod is running, contin
 
 
 ## Next steps
-See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.
+See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes/) for information about concepts, how-to guides, reference guides, and using plugins.

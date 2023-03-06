@@ -2,11 +2,11 @@
 title: Install on Kubernetes
 ---
 
-This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} in DB-less mode. To install with a database, see the documentation on installing with [Helm](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart).
+This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} in DB-less mode. To install with a database, see the documentation on installing with [Helm](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart/).
 
 This page also includes the equivalent commands for OpenShift.
 
-In DB-less mode on Kubernetes, the config is stored in etcd, the Kubernetes native data store. For more information, see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/install/kubernetes/deployment-options).
+In DB-less mode on Kubernetes, the config is stored in etcd, the Kubernetes native data store. For more information, see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/install/kubernetes/deployment-options/).
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).

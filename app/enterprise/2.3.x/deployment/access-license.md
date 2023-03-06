@@ -16,7 +16,7 @@ for a feature comparison.
 </div>
 
 Once a license has been deployed to a {{site.base_gateway}} node, retrieve it
-using the [`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/admin-api/licenses/examples).
+using the [`/licenses` Admin API endpoint](/enterprise/{{page.kong_version}}/admin-api/licenses/examples/).
 
 If you have purchased a subscription but haven't received a license file,
 contact your sales representative.

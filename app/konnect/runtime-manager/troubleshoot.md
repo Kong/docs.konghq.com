@@ -52,7 +52,7 @@ control plane is running.
 
 1. Check the runtime instance versions in the table. If you see
 an instance running an older version of {{site.base_gateway}}, your runtime
-instance may need [upgrading](/konnect/runtime-manager/runtime-instances/upgrade).
+instance may need [upgrading](/konnect/runtime-manager/runtime-instances/upgrade/).
 
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
@@ -64,7 +64,7 @@ We recommend running one major version (2.x or 3.x) of a runtime instance per ru
 If you mix major runtime instance versions, the control plane will support the least common subset of configurations across all the versions connected to the {{site.konnect_short_name}} control plane.
 For example, if you are running 2.8.1.3 on one runtime instance and 3.0.0.0 on another, the control plane will only push configurations that can be used by the 2.8.1.3 runtime instance.
 
-If you experience compatibility errors, [upgrade your data planes](/konnect/runtime-manager/runtime-instances/upgrade) to match the version of the highest-versioned runtime instance in your runtime group.
+If you experience compatibility errors, [upgrade your data planes](/konnect/runtime-manager/runtime-instances/upgrade/) to match the version of the highest-versioned runtime instance in your runtime group.
 
 Possible compatibility errors:
 

@@ -63,7 +63,7 @@ For example, before routing a request, the client might be required to authentic
 Note the following before you start using this guide:
 
 ### Installation
-* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/) or [{{site.base_gateway}}](/enterprise/latest/deployment/installation/overview) installed and running on the platform of your choice.
+* This guide assumes that you have [{{site.ce_product_name}}](https://konghq.com/install/) or [{{site.base_gateway}}](/enterprise/latest/deployment/installation/overview/) installed and running on the platform of your choice.
 * During your installation, take note of the KONG_PASSWORD; you’ll need it later on in this guide for setting up user authorization.
 
 ### Deployment guidelines
@@ -87,4 +87,4 @@ common to both {{site.ce_product_name}} and {{site.base_gateway}}.
 
 ### Next Steps
 
-Next, [prepare to administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare).
+Next, [prepare to administer {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/prepare/).

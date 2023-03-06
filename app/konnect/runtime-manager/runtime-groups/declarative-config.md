@@ -8,7 +8,7 @@ files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
 
-In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/runtime-manager/runtime-groups)
+In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/runtime-manager/runtime-groups/)
 and all of their configurations:
 * Create state files for different runtime groups and manage each group
 separately.
@@ -21,7 +21,7 @@ parameters using a decK configuration file (`~/.deck.yaml` by default) to target
 `https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,
 decK looks for a local {{site.base_gateway}} instance instead.
 
-Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck).
+Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck/).
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
@@ -29,7 +29,7 @@ registration, or configure custom plugins.
 ## Prerequisites
 
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
-* Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime).
+* Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime/).
 
 ## Generate a Personal Access Token
 
@@ -286,7 +286,7 @@ groups.
     ```
 
 1. Using the state file you just edited, preview the import with
-the [`deck diff`](/deck/latest/reference/deck_diff)
+the [`deck diff`](/deck/latest/reference/deck_diff/)
 command, pointing to the runtime group that you want to target:
 
     ```sh
@@ -295,7 +295,7 @@ command, pointing to the runtime group that you want to target:
       --state default.yaml
     ```
 
-1. If everything looks good, [`deck sync`](/deck/latest/reference/deck_sync)
+1. If everything looks good, [`deck sync`](/deck/latest/reference/deck_sync/)
  the configuration to the new runtime group:
 
     ```sh
@@ -309,5 +309,5 @@ the same configuration.
 
 ## See also
 
-* [decK CLI reference](/deck/latest/reference/deck)
-* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import)
+* [decK CLI reference](/deck/latest/reference/deck/)
+* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import/)

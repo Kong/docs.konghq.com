@@ -9,7 +9,7 @@ requests' headers.
 
 ## Installation
 
-Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
+Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Test connectivity to {{site.base_gateway}}

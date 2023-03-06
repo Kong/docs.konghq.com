@@ -6,11 +6,11 @@ content-type: how-to
 
 Expressions can describe routes or paths as patterns using logical expressions.
 This how-to guide will walk through switching to the new router, and configuring routes with the new expressive domain specific language.
-For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-expressions-language).
+For a list of all available operators and configurable fields please review the [reference documentation](/gateway/latest/reference/router-expressions-language/).
 
 ## Prerequisite
 
-Edit [kong.conf](/gateway/latest/production/kong-conf) to contain the line `router_flavor = expressions` and restart {{site.base_gateway}}.
+Edit [kong.conf](/gateway/latest/production/kong-conf/) to contain the line `router_flavor = expressions` and restart {{site.base_gateway}}.
 Note: once you enable expressions, the match fields that traditionally exist on the Route object (such as `paths`, `methods`) will no longer
 be configurable and you must specify Expressions in the `expression` field.
 
@@ -58,7 +58,7 @@ curl --request POST \
 ```
 
 
-For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-expressions-language).
+For a list of all available operators, see the [reference documentation](/gateway/latest/reference/router-expressions-language/).
 
 ### Matching priority
 
@@ -160,4 +160,4 @@ This reduces the number of routes the Expressions engine has to consider, which 
 ## More information
 
 * [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-* [Expressions Language Reference](/gateway/latest/reference/router-expressions-language)
+* [Expressions Language Reference](/gateway/latest/reference/router-expressions-language/)

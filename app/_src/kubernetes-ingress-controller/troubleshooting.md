@@ -318,7 +318,7 @@ In most cases, once the validation fails, the Kubernetes object that caused the 
 from the translation and a corresponding translation failure warning event is recorded.
 
 To determine if there are any translation failures that you might want to fix, you
-can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
+can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
 
 To get a deeper insight into what went wrong during the translation, you can look into Kubernetes
 events with a `KongConfigurationTranslationFailed` reason. There's one event created for every
