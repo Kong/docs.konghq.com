@@ -87,7 +87,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community)
 for help!
 
-[key-auth]: /plugins/key-authentication
+[key-auth]: /hub/kong-inc/key-auth/
 [API-consumers]: /{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
 [configuration]: /{{page.kong_version}}/configuration
