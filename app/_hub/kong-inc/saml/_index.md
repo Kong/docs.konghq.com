@@ -698,7 +698,7 @@ curl --request POST \
 
 ### Certificate is valid, but isn't being accepted
 
-**Error:**
+**Problem:**
 You have a valid certificate specified in the `idp_certificate` field, but you get the following error:
 
 ```
