@@ -6,23 +6,17 @@ Plugin documentation is posted on the [Plugin Hub](/hub/).
 All plugin docs, whether developed by Kong or external contributors,
 follow a [specific template](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension).
 
-We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
+We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. 
+For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
 {:.note}
 > The Kong Plugin Hub is a documentation site. We **do not** host plugin source code or downloads.
 
 ## Add a new plugin doc
 
-1. Set up or find your publisher directory:
-  * If you're contributing a plugin developed by Kong, 
- use the existing `_app/_hub/kong-inc` directory.
-  * If you're documenting a plugin created by another company, 
-  create a publisher directory at`_app/_hub/`, such as
- `_app/_hub/company-name`. 
+### Plugins created by Kong Inc
 
-    See other Kong Hub listings for examples of publisher names.
-
-1. Create a subdirectory for your plugin within your publisher directory.
+1. Create a subdirectory for your plugin within the `_app/_hub/kong-inc` directory.
 For example, `_app/_hub/kong-inc/your-plugin`.
 
 1. Copy the `/app/_hub/_init/my-extension/_index.md` and 
@@ -30,6 +24,10 @@ the `/app/_hub/_init/my-extension/versions.yml` files into your plugin's subdire
 
 1. Edit your `_index.md` file based on the guidance in comments in that file.
 You'll also find lots of helpful examples in other plugin doc files.
+
+    If any of your plugin's configuration parameters have default values, 
+    leave the `required` field blank for that parameter.
+    The existence of a default value negates the requirement.
 
 1. Edit your `versions.yml` file with the minimum {{site.base_gateway}} version that this plugin supports.
     This will generate a doc for every subsequent gateway version, 
@@ -44,6 +42,41 @@ should be a square-format PNG file, 120x120 pixels in size.
 
     Add the icon file to `/app/_assets/images/icons/hub/`. 
 
+### Third-party or partner plugins
+
+1. Set up or find your publisher directory.
+
+  If your company has not contributed a plugin to Kong before, 
+  create a publisher directory at`_app/_hub/`, such as
+ `_app/_hub/company-name`. 
+
+    See other Kong Hub listings for examples of publisher names.
+
+1. Create a subdirectory for your plugin within your publisher directory.
+For example, `_app/_hub/kong-inc/your-plugin`.
+
+1. Copy the `/app/_hub/_init/my-extension/_index.md` file into your plugin's subdirectory.
+
+    **Do not** use the `versions.yml` file. 
+    Kong does not maintain multiple versions of third-party plugin docs.
+
+1. Edit your `_index.md` file based on the guidance in comments in that file.
+You'll also find lots of helpful examples in other plugin doc files.
+
+    If any of your plugin's configuration parameters have default values, 
+    leave the `required` field blank for that parameter.
+    The existence of a default value negates the requirement.
+
+1. Plugin icons are required for publication on the Kong plugin hub. Icons
+should be a square-format PNG file, 120x120 pixels in size. 
+
+    The filename of your image should be `publisher_plugin-name` using 
+    the `publisher` and `plugin` name from step 2.
+    For example, `my-company_oas-validation`.
+
+    Add the icon file to `/app/_assets/images/icons/hub/`. 
+
+### Test and submit plugin
 
 1. Run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
