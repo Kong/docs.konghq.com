@@ -16,7 +16,7 @@ badge: oss
 
 ## Prerequisites
 
-You have a supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+You have a supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
 
 ## Download and install
 

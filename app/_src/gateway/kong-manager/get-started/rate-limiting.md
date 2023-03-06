@@ -5,11 +5,11 @@ badge: free
 
 This tutorial walks you through setting up rate limiting for a service in Kong Manager.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/rate-limiting).
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/rate-limiting/).
 
 ## Prerequisites
 
-You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable).
+You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable/).
 
 ## Set up the Rate Limiting plugin
 
@@ -41,4 +41,4 @@ On the Workspaces tab in Kong Manager:
 2. Wait at least 30 seconds and try again.
     The service will be accessible until the sixth (6th) access attempt within a 30-second window.
 
-Next, head on to learn about [proxy caching](/gateway/{{page.kong_version}}/kong-manager/get-started/proxy-caching).
+Next, head on to learn about [proxy caching](/gateway/{{page.kong_version}}/kong-manager/get-started/proxy-caching/).

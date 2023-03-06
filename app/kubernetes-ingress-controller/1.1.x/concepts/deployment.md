@@ -54,7 +54,7 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources)
+Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
 concept document for details.
 
 ### RBAC permissions
@@ -88,7 +88,7 @@ all namespaces and will need access to these resources at the cluster level
 In addition to these, it needs:
 
 - Create a ConfigMap and read and update ConfigMap for to facilitate
-  leader-election. Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling)
+  leader-election. Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.

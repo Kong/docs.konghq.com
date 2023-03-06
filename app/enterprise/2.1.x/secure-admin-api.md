@@ -250,7 +250,7 @@ API resources can be enforced, while scaling to allow complex, case-specific
 uses.
 
 If you are not a Kong Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
+Enterprise offering by [contacting us](/enterprise/).
 
 [Back to top](#introduction)
 

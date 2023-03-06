@@ -42,7 +42,7 @@ of any `kong` CLI commands. License file environmental variables must be
 exported to the shell in which the Nginx process will run, ahead of the `kong`
 CLI tool.
 
-For more information, see [Deploy Your License](/gateway/{{page.kong_version}}/licenses/deploy).
+For more information, see [Deploy Your License](/gateway/{{page.kong_version}}/licenses/deploy/).
 
 ## Examining the license data on a {{site.base_gateway}} node
 
@@ -58,7 +58,7 @@ Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expirat
 
 When a license expires, {{site.base_gateway}} behaves as follows:
 
-* Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.kong_version}}/kong-enterprise) become read-only.
+* Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.kong_version}}/kong-enterprise/) become read-only.
 * The Admin API is not accessible until the license is either renewed or the subscription is downgraded to free mode.
 * Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
 * Other Enterprise features, such as the Dev Portal, are not accessible.

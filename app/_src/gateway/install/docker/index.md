@@ -237,9 +237,9 @@ Now that you have a running Gateway instance, Kong provides a series of
 
 
 In particular, right after installation you might want to:
-* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes)
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication)
+* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting/)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication/)
 
 ### Clean up containers
 
@@ -424,9 +424,9 @@ to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting?tab=using-deck-yaml)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication?tab=using-deck-yaml)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/load-balancing/?tab=using-deck-yaml)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting?tab=using-deck-yaml/)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication?tab=using-deck-yaml/)
+* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/load-balancing/?tab=using-deck-yaml/)
 
 ### Clean up containers
 
@@ -501,7 +501,7 @@ docker run --read-only -d --name kong-dbless \
 For troubleshooting license issues, see:
 * [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy/)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples/)
 
 If you did not receive a `200 OK` status code or need assistance completing
 setup, reach out to your support contact or head over to the

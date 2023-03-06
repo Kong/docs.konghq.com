@@ -203,9 +203,9 @@ By default, the span will be released after the Nginx request ends.
 
 Because of the compatibility with OpenTelemetry, the traces can be natively visualized through any OpenTelemetry UI.
 
-Please refer to the [OpenTelemetry plugin](/hub/kong-inc/opentelemetry) to see how to visualize the traces.
+Please refer to the [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/) to see how to visualize the traces.
 
 ## References
 
-- [Tracing PDK](/gateway/{{page.kong_version}}/plugin-development/pdk/kong.tracing)
-- [OpenTelemetry plugin](/hub/kong-inc/opentelemetry)
+- [Tracing PDK](/gateway/{{page.kong_version}}/plugin-development/pdk/kong.tracing/)
+- [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)

@@ -6,7 +6,7 @@ title: Markdown Rendering Module
 
 The Kong Developer Portal supports
 [Github-flavored Markdown](https://github.github.com/gfm/) (GFM) that can be
-used instead of the [templates](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates). Instead of 
+used instead of the [templates](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates/). Instead of 
 creating an HTML layout and partials for your templates, you can write custom CSS
 with the improved markdown rendering module. Extended markdown support
 improves rendering significantly, especially for tables.

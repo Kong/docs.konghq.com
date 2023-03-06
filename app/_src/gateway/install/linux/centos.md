@@ -20,7 +20,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/install/linux/os-support) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user) access.
+* A [supported system](/gateway/{{page.kong_version}}/install/linux/os-support/) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong.
 
 ## Download and Install

@@ -8,7 +8,7 @@ badge: oss
 
 ## Prerequisites
 
-You have [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user) access.
+You have [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 
 ## Download and install
 
@@ -66,7 +66,7 @@ can also run in [DB-less mode](/gateway/{{ page.kong_version }}/production/deplo
 
 ### Without a database
 
-If you are going to run Kong in [DB-less mode](/gateway/latest/production/deployment-topologies/db-less-and-declarative-config),
+If you are going to run Kong in [DB-less mode](/gateway/latest/production/deployment-topologies/db-less-and-declarative-config/),
 you should start by generating a declarative config file.
 
 1. Generate a `kong.yml` file in your current folder using the following command:

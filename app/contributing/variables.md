@@ -12,7 +12,7 @@ much of the page content is generated out of a plugin’s front matter.
 
 ## Product names
 
-For specific product name definitions and when to use what, see [word choice and naming](/contributing/word-choice).
+For specific product name definitions and when to use what, see [word choice and naming](/contributing/word-choice/).
 
 <!-- vale off-->
 

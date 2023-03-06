@@ -13,12 +13,12 @@ provider.
 The default authentication option in {{site.konnect_saas}} is basic
 authentication. You don't have to do anything special to set it up.
 
-* Learn about [teams and roles](/konnect/org-management/teams-and-roles) in {{site.konnect_short_name}}
-* [Manage teams and roles](/konnect/org-management/teams-and-roles/manage)
-* [Invite users](/konnect/org-management/users) to join your
+* Learn about [teams and roles](/konnect/org-management/teams-and-roles/) in {{site.konnect_short_name}}
+* [Manage teams and roles](/konnect/org-management/teams-and-roles/manage/)
+* [Invite users](/konnect/org-management/users/) to join your
 organization
-* [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
-* [Roles reference](/konnect/org-management/teams-and-roles/roles-reference)
+* [Teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
+* [Roles reference](/konnect/org-management/teams-and-roles/roles-reference/)
 
 ## External authentication
 {:.badge .enterprise}
@@ -27,8 +27,8 @@ organization
 [Okta](https://developer.okta.com/docs/guides/) with
 [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
 
-* Set up [Okta integration](/konnect/org-management/okta-idp)
-* View {{site.konnect_saas}} [teams and roles](/konnect/org-management/teams-and-roles)
+* Set up [Okta integration](/konnect/org-management/okta-idp/)
+* View {{site.konnect_saas}} [teams and roles](/konnect/org-management/teams-and-roles/)
 * [Map Okta groups to {{site.konnect_short_name}} teams](/konnect/org-management/okta-idp/#map-roles-to-groups)
 
 ## More information

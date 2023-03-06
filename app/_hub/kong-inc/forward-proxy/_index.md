@@ -9,7 +9,7 @@ description: |
    upstream. This is useful in environments where Kong sits in an organization's
    internal network, the upstream API is available via the public internet, and
    the organization proxies all outbound traffic through a forward proxy server.
-   Please note that this plugin can't be used with an [upstream](/gateway/latest/get-started/comprehensive/load-balancing). As a workaround for load balancing,
+   Please note that this plugin can't be used with an [upstream](/gateway/latest/get-started/comprehensive/load-balancing/). As a workaround for load balancing,
    configure the host field in service to a domain name so that you can
    use a DNS-based load balancing technique.
 enterprise: true
@@ -204,7 +204,7 @@ params:
 * The `auth_password` and `auth_username` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format/).
 
 **{{site.base_gateway}} 2.7.x**
 

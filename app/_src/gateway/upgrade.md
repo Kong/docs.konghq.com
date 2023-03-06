@@ -91,7 +91,7 @@ If you are adding a new plugin to your installation, you need to run
 `KONG_PLUGINS=tls-handshake-modifier`.
 
 The 3.0 release includes the following new plugins:
-* [OpenTelemetry](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+* [OpenTelemetry](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
 * [TLS Handshake Modifier](/hub/kong-inc/tls-handshake-modifier/) (`tls-handshake-modifier`)
 * [TLS Metadata Headers](/hub/kong-inc/tls-metadata-headers/) (`tls-metadata-headers`)
 * [WebSocket Size Limit](/hub/kong-inc/websocket-size-limit/) (`websocket-size-limit`)
@@ -109,7 +109,7 @@ All capabilities are now available in the [StatsD](/hub/kong-inc/statsd/) plugin
 
 The following plugins have had configuration parameters changed or removed. You will need to carefully review and update your configuration as needed:
 
-**[ACL](/hub/kong-inc/acl/), [Bot Detection](/hub/kong-inc/bot-detection), and [IP Restriction](/hub/kong-inc/ip-restriction/)**
+**[ACL](/hub/kong-inc/acl/), [Bot Detection](/hub/kong-inc/bot-detection/), and [IP Restriction](/hub/kong-inc/ip-restriction/)**
 * Removed the deprecated `blacklist` and `whitelist` configuration parameters. Use `allow` or `deny` instead.
 
 **[ACME](/hub/kong-inc/ACME/)**
@@ -348,7 +348,7 @@ upgrade the control plane first, and then the data planes.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
   plugins on the control plane first, and then the data planes.
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 ### Template changes

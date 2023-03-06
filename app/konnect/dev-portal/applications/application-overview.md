@@ -16,12 +16,12 @@ You can perform the following actions from an application's details page:
 
 - [Edit](#edit-an-application) the name, reference ID, and description of an application.
 - [Generate or delete credentials](/konnect/dev-portal/applications/dev-gen-creds/).
-- View a catalog of services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service), if no services are registered yet.
+- View a catalog of services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service/), if no services are registered yet.
 - View the status of an application registration to a Service.
 
 The guides within this section cover these topics:
 
-* [How to create, edit and delete applications](/konnect/dev-portal/applications/dev-apps)
-* [How to enable and disable app registration](/konnect/dev-portal/applications/enable-app-reg)
-* [How to register or unregister an application for a Service](/konnect/dev-portal/applications/dev-reg-app-service)
+* [How to create, edit and delete applications](/konnect/dev-portal/applications/dev-apps/)
+* [How to enable and disable app registration](/konnect/dev-portal/applications/enable-app-reg/)
+* [How to register or unregister an application for a Service](/konnect/dev-portal/applications/dev-reg-app-service/)
 * [How to generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/)

@@ -8,7 +8,7 @@ description: |
   [authentication plugin](/hub/#authentication) (such as
   [Basic Authentication](/hub/kong-inc/basic-auth/),
   [Key Authentication](/hub/kong-inc/key-auth/), [OAuth 2.0](/hub/kong-inc/oauth2/),
-  and [OpenID Connect](/hub/kong-inc/openid-connect/))
+  and [OpenID Connect](/hub/kong-inc/openid-connect/)/)
   to have been already enabled on the Service or Route.
 type: plugin
 categories:
@@ -302,7 +302,7 @@ curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{GROUP}
 A successful DELETE request returns a `204` status.
 
 ### See also
-- [configuration](/gateway/latest/reference/configuration)
+- [configuration](/gateway/latest/reference/configuration/)
 
 ---
 

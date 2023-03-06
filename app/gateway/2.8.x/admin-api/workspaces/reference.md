@@ -15,7 +15,7 @@ Admin API.
 The workspace object describes the workspace entity, which has an ID
 and a name.
 
-For workspace use cases and configuration examples, see [Workspace Examples](/gateway/{{page.kong_version}}/admin-api/workspaces/examples).
+For workspace use cases and configuration examples, see [Workspace Examples](/gateway/{{page.kong_version}}/admin-api/workspaces/examples/).
 
 ## Add workspace
 
