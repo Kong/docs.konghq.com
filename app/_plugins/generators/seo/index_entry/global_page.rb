@@ -9,6 +9,7 @@ module SEO
         super
 
         @page.data['is_latest'] = true
+        @page.data['canonical_url'] = @page.url
       end
 
       def version
