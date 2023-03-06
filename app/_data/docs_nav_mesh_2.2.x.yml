@@ -29,6 +29,12 @@ items:
   - title: Getting Started
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     url: /gettingstarted
+  - title: Kuma in Production
+    group: true
+    items:
+      - text: Overview
+        url: /production/
+        src: /.repos/kuma/app/_src/production/
   - title: Install
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
