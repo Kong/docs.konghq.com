@@ -134,18 +134,36 @@ them using three backticks, or fenced code blocks:
 
 ````
 ```bash
-some code here
+curl -i -X http://some-url \
+  --header 'content-type: application/json' \
+  --data '{"something":"example"}'
 ```
 ````
-
-Include a language whenever possible (in the example above, that language is
-`bash`). This will format your code blocks using language-specific syntax.
 
 You can also create tabbed code blocks, so that users can easily switch to
 their preferred format. See [tabs for code blocks](#tabs-for-code-blocks).
 
-<!-- If you're including placeholders in code blocks, use HTML tags instead of
-backticks. See [editable placeholders](#editable-placeholders-in-code-blocks). -->
+### Code block best practices 
+
+Use the following best practices for code blocks:
+
+* Wrap lines at 80 characters whenever possible. Use the `\` character to wrap a line.
+
+* Include a language (in the example above, that language is
+`bash`). This will format your code blocks using language-specific syntax.
+
+* Preface code examples with an introductory sentence. Use present tense, 
+avoid qualifiers, and end the statement with a colon (`:`). 
+
+  For example:
+
+  <i class="fa fa-check"></i> **Do:** The results should look like this:
+
+  <i class="fa fa-check"></i> **Do:** The output shows all of the connected data plane instances in the cluster:
+
+  <i class="fa times"></i> **Don't:** The results should look _something_ like this:
+
+  <i class="fa times"></i> **Don't:** The output will show...
 
 ## Placeholders
 
@@ -481,60 +499,6 @@ config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
   config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
   {% endnavtab %}
   {% endnavtabs %}
-
-## Admonitions
-
-When you need to highlight important information in some way, you can use an
-admonition. In our docs, we do this with Markdown blockquotes (`>`) and a class:
-
-```
-{:.note}
-> **Note**: Here's a note.
-```
-
-When using admonitions, think about whether the thing you're trying to note is
-_actually_ a note (or warning, or caution), or simply another piece of
-information that fits the flow of the task or content on the page. Avoid
-nesting too many elements inside admonitions, and try to keep them short.
-
-You can set the admonition label to anything you want. For example, you might
-want an `important` note to start with **Protect your password!**.
-
-Set a class on the admonition to display a specific style:
-
-* **Note:** {% raw %}`{:.note}`{% endraw %}
-
-    This is a generic note block that points out useful information that the
-    reader should pay attention to, but won't break anything if it's not followed.
-    If you don't use any class at all, the blockquote element defaults to this style.
-
-    {:.note}
-    > **Note:** Here's some info.
-
-* **Important:** {% raw %}`{:.important}`{% endraw %}
-
-    Use the `important` block for something that the reader really
-    needs to pay attention to, otherwise the thing they're trying to do won't work.
-
-    {:.important}
-    > **Important:** Be cautious about this thing.
-
-* **Warning:** {% raw %}`{:.warning}`{% endraw %}
-
-    Use the `warning` block for any big breaking changes, or for anything
-    irreversible.
-
-    {:.warning}
-    > **Warning:** Everything will break forever if you do this.
-
-* **No icon:** {% raw %}`{:.no-icon}`{% endraw %}
-
-    If you have a situation where you need to use a specific admonition type but
-    the icon doesn't belong, you can hide the icon by setting `no-icon` along
-    with any other admonition class. For example, here's the result of using `{:.warning .no-icon}`:
-
-    {:.warning .no-icon}
-    > This is something that's vital in a special way and the icon doesn't apply.
 
 ## Page-level navigation
 
