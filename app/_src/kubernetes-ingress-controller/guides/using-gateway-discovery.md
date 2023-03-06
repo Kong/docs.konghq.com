@@ -84,10 +84,7 @@ $ helm upgrade --install controller kong/kong -n kong --create-namespace \
   --set ingressController.gatewayDiscovery.adminApiService.name=${GATEWAY_RELEASE_NAME}-kong-admin \
   --set deployment.kong.enabled=false \
   --set proxy.nameOverride=${GATEWAY_RELEASE_NAME}-kong-proxy \
-  --set replicaCount=2 \
-  --set ingressController.image.repository=kong/nightly-ingress-controller \
-  --set ingressController.image.tag=nightly \
-  --set-string ingressController.image.effectiveSemver=2.9.1
+  --set replicaCount=2
 ```
 
 At this point you should be able to see both deployments ready:
