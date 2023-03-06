@@ -598,7 +598,7 @@ strategy is set with DB-less or hybrid mode.
 * The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 **{{site.base_gateway}} 2.7.x**
 

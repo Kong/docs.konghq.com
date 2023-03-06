@@ -63,7 +63,7 @@ necessary, and once approved, will merge and deploy your Plugin Hub addition!
 
 ## Custom plugins and documentation
 
-If you want to write a custom plugin for your own needs, start by reading the [Plugin Development Guide](/gateway/latest/plugin-development).
+If you want to write a custom plugin for your own needs, start by reading the [Plugin Development Guide](/gateway/latest/plugin-development/).
 
 If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the [Distribution section](/gateway/latest/plugin-development/distribution/#distribute-your-plugin) of the Plugin Development Guide.
 

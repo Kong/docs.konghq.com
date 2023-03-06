@@ -330,4 +330,4 @@ sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, go on to learn about [enforcing rate limiting](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services).
+Next, go on to learn about [enforcing rate limiting](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/).

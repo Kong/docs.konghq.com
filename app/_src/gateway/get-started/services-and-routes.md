@@ -52,7 +52,7 @@ See [Routes](../../key-concepts/routes/) for a description of how
 ## Managing services and routes
 
 The following tutorial walks through managing and testing services and routes using the 
-{{site.base_gateway}} [Admin API](/gateway/latest/admin-api). {{site.base_gateway}} 
+{{site.base_gateway}} [Admin API](/gateway/latest/admin-api/). {{site.base_gateway}} 
 also offers other options for configuration management including
 [Kong {{site.konnect_saas}}](/konnect/) and [decK](/deck/latest/).
 

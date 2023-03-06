@@ -147,7 +147,7 @@ For example, “Set up rate limiting in {{site.base_gateway}} with the Rate Limi
 
 ### Kong-specific terms
 
-For product and component names, see [Word Choice](/contributing/word-choice).
+For product and component names, see [Word Choice](/contributing/word-choice/).
 
 Object/entity names (for example, service, route, upstream) should be lowercase.
 

@@ -24,17 +24,17 @@ that incoming packets are balanced consistently across upstream services,
 providing optimal cache use in those services.
 
 The following plugins support UDP-based protocols:
-* [Datadog](/hub/kong-inc/datadog)
-* [File Log](/hub/kong-inc/file-log)
-* [HTTP Log](/hub/kong-inc/http-log)
-* [Loggly](/hub/kong-inc/loggly)
-* [Kafka Log](/hub/kong-inc/kafka-log)
-* [StatsD](/hub/kong-inc/statsd)
-* [StatsD Advanced](/hub/kong-inc/statsd-advanced)
-* [Syslog](/hub/kong-inc/syslog)
-* [TCP Log](/hub/kong-inc/tcp-log)
-* [UDP Log](/hub/kong-inc/udp-log)
-* [Zipkin](/hub/kong-inc/zipkin)
+* [Datadog](/hub/kong-inc/datadog/)
+* [File Log](/hub/kong-inc/file-log/)
+* [HTTP Log](/hub/kong-inc/http-log/)
+* [Loggly](/hub/kong-inc/loggly/)
+* [Kafka Log](/hub/kong-inc/kafka-log/)
+* [StatsD](/hub/kong-inc/statsd/)
+* [StatsD Advanced](/hub/kong-inc/statsd-advanced/)
+* [Syslog](/hub/kong-inc/syslog/)
+* [TCP Log](/hub/kong-inc/tcp-log/)
+* [UDP Log](/hub/kong-inc/udp-log/)
+* [Zipkin](/hub/kong-inc/zipkin/)
 
 ### Security Improvements
 
@@ -64,13 +64,13 @@ before 2.2.x to build those images in a way adds a “kong” user and
 grants that user access to the necessary files/directories. This new change
 helps cover the remaining use cases for non-Dockerized installations.
 
-For more information, see [Running Kong as a Non-Root User](/enterprise/{{page.kong_version}}/deployment/kong-user).
+For more information, see [Running Kong as a Non-Root User](/enterprise/{{page.kong_version}}/deployment/kong-user/).
 
 #### TLS Connections with Redis
 
 {{site.ee_product_name}} 2.2.x can now establish TLS connections to the Redis
-database. This feature is useful in, for example, the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
-and [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced) plugins.
+database. This feature is useful in, for example, the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+and [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced/) plugins.
 
 #### OpenID Connect
 
@@ -90,7 +90,7 @@ and [Proxy Caching Advanced](/hub/kong-inc/proxy-cache-advanced) plugins.
   * Adds the option to compress session data using
   the `session_compressor` parameter.
 
-For more information, see the [Open ID Connect plugin](/hub/kong-inc/openid-connect).
+For more information, see the [Open ID Connect plugin](/hub/kong-inc/openid-connect/).
 
 ### Performance Improvements
 

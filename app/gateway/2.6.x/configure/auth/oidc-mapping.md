@@ -27,7 +27,7 @@ Manager.
 
 ## Prerequisites
 * An IdP with an authorization server and users with groups assigned
-* [{{site.ee_product_name}} installed and configured](/gateway/{{page.kong_version}}/install-and-run)
+* [{{site.ee_product_name}} installed and configured](/gateway/{{page.kong_version}}/install-and-run/)
 * Kong Manager enabled
 * RBAC enabled
 * (If using Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed

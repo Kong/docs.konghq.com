@@ -60,7 +60,7 @@ kong-mesh-{{page.version}}/bin/kumactl install control-plane --license-path=/pat
 
 {:.note}
 > **Note**: {{site.mesh_product_name}} also has UBI images.
-To use these images instead, check out the [UBI documentation](/mesh/{{page.kong_version}}/features/ubi-images).
+To use these images instead, check out the [UBI documentation](/mesh/{{page.kong_version}}/features/ubi-images/).
 
 Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.

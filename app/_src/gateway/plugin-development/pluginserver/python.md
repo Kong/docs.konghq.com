@@ -114,7 +114,7 @@ be unique.
 
 ## Example configuration
 
-To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
+To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf/), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
 Below are two examples of loading plugins within `kong.conf`.
 
 ```
@@ -155,6 +155,6 @@ If your workload is CPU intensive, consider the multi-processing model by passin
 
 ## More Information
 * [PDK Reference](/gateway/latest/plugin-development/pdk/)
-* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes)
-* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go)
-* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript)
+* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes/)
+* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go/)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript/)

@@ -41,10 +41,10 @@ version to version. Chances are good that a typo on a page in one version appear
 
 Before you change anything except for typos or grammatical errors, explore these resources:
 
-* Our [style guide](/contributing/style-guide) provides a minimal set of style guidelines.
-* Our set of [markdown rules](/contributing/markdown-rules) for making your content work with our Jekyll implementation. Specifies how you must
+* Our [style guide](/contributing/style-guide/) provides a minimal set of style guidelines.
+* Our set of [markdown rules](/contributing/markdown-rules/) for making your content work with our Jekyll implementation. Specifies how you must
 work with certain kinds of content - includes, variables, new pages.
-* Our [list of Kong-specific terms](/contributing/terms). Includes product names and other terms the Kong docs use in specific ways.
+* Our [list of Kong-specific terms](/contributing/terms/). Includes product names and other terms the Kong docs use in specific ways.
 * Our [documentation templates](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates). You can use these templates to create new documentation pages. 
 
 ### Build locally

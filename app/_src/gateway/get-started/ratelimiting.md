@@ -11,16 +11,16 @@ Rate limiting is used to control the rate of requests sent to an upstream servic
 
 ## The rate limiting plugin
 
-{{site.base_gateway}} manages rate limiting through the use of Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting). The rate limiting plugin has an open source and an enterprise version, with the enterprise version giving you access to features like [sliding window algorithm support](https://en.wikipedia.org/wiki/Sliding_window_protocol), and Redis support.
+{{site.base_gateway}} manages rate limiting through the use of Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting/). The rate limiting plugin has an open source and an enterprise version, with the enterprise version giving you access to features like [sliding window algorithm support](https://en.wikipedia.org/wiki/Sliding_window_protocol), and Redis support.
 
 
 The rate limiting plug-ins limit how often each user can call the API. This protects them from inadvertent or malicious overuse. Without rate limiting, each user may request as often as they like, which can lead to “spikes” of requests that starve other consumers. After rate limiting is enabled, they are limited to a fixed number of requests per second. Kong offers an open source and an Enterprise version of the rate limiting plug-in, with the Enterprise version providing support for the sliding window algorithm to prevent the API from being overloaded near window boundaries, and adds Redis support for greater performance. For this guide we will use the Enterprise version of plug-in.  More details on the advanced rate limiting plug-in can be found here.
 
 
-Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting) lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
+Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting/) lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
 
 {:.note}
-> The [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
+> The [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) <span class="badge enterprise"></span> plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
 
 
 
@@ -42,7 +42,7 @@ This request configures the rate limiting plugin to enforce rate limiting on req
 
 After configuring rate limiting, you can verify that it was configured correctly and is working, by creating 6 requests within a 5 minute period.
 To validate rate limiting, send a request to the API six (6) times from the CLI to confirm the requests are rate limited.
-If you configured {{site.base_gateway}} with the [configure services and routes](/gateway/latest/get-started/configure-services-and-routes) guide use the example below, otherwise substitute the existing values for your own:
+If you configured {{site.base_gateway}} with the [configure services and routes](/gateway/latest/get-started/configure-services-and-routes/) guide use the example below, otherwise substitute the existing values for your own:
 
 {% navtabs %}
 {% navtab Admin API %}
@@ -119,7 +119,7 @@ curl -X POST http://localhost:8001/routes/mock/plugins \
 
 ```
 
-If you did not follow the [configure services and routes](/gateway/latest/get-started/configure-services-and-routes) guide, replace the `mock` value with a `route_id`.
+If you did not follow the [configure services and routes](/gateway/latest/get-started/configure-services-and-routes/) guide, replace the `mock` value with a `route_id`.
 
 
 ### Consumer-level rate limiting

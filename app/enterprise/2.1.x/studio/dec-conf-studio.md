@@ -19,7 +19,7 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 
 ## Prerequisites
 
-* [Insomnia Designer and the Insomnia Designer Kong Plugin Bundle](/enterprise/{{page.kong_version}}/studio/download-install) are installed
+* [Insomnia Designer and the Insomnia Designer Kong Plugin Bundle](/enterprise/{{page.kong_version}}/studio/download-install/) are installed
 
 ## Step 1: Create or import a spec into Insomnia Designer
 

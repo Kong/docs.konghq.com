@@ -9,7 +9,7 @@ and for a specific user of the API.
 
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
@@ -289,7 +289,7 @@ resource, but not for `/baz` because that request does not match.
 
 ## Configure consumer and credential
 
-Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
+Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource/)
 guide to provision a user and an `apikey`.
 
 Use the API key to pass authentication:

@@ -9,7 +9,7 @@ The {{site.konnect_short_name}} Dev Portal is a customizable website for develop
 
 In {{site.konnect_short_name}}, services created in the Service Hub can be published to the Dev Portal with one click. Published services become immediately available to users who have access to the Dev Portal. When a service is published, the API spec and any Service Document are viewable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications using your specific APIs.
 
-* [Getting started guide](/konnect/getting-started/publish-service): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
+* [Getting started guide](/konnect/getting-started/publish-service/): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
 
 * [How to publish services to the Dev Portal](/konnect/servicehub/service-documentation/#publishing/): This how-to explains ho* w to publish services to the Dev Portal. It also covers all of the settings associated with publishing services to the Dev Portal like access and making your Dev Portal publicly accessible.
 

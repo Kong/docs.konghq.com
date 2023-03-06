@@ -4,7 +4,7 @@ content_type: reference
 ---
 
 Plugins lets you extend {{site.konnect_short_name}} functionality. You can
-find a full list of all Kong plugins on the [Plugin Hub](/hub).
+find a full list of all Kong plugins on the [Plugin Hub](/hub/).
 
 ## Kong plugins in {{site.konnect_saas}}
 
@@ -48,7 +48,7 @@ The following plugins are not available with {{site.konnect_saas}}:
 * GraphQL Rate Limiting Advanced
 * Key Authentication Encrypted
 
-See the [plugin compatibility chart](/hub/plugins/compatibility)
+See the [plugin compatibility chart](/hub/plugins/compatibility/)
 for a full comparison of plans and network configurations that each plugin
 supports.
 

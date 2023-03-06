@@ -96,14 +96,14 @@ Those secrets would be unrecoverable.
 To keep your environment secure and avoid taking down your proxies by accident, make sure to:
 
 * Manage vaults with distributed configuration via tags.
-* Use a separate [RBAC role, user, and token](/gateway/latest/admin-api/rbac/reference)
+* Use a separate [RBAC role, user, and token](/gateway/latest/admin-api/rbac/reference/)
 to manage vaults. Don't use a generic admin user.
 * Set up a separate CI pipeline for vaults.
 
 ### Manage vaults with distributed configuration
 
 Avoid mixing vault configuration with other {{site.base_gateway}} entities.
-Instead, manage vaults with [distributed configuration](/deck/latest/guides/distributed-configuration) via tags.
+Instead, manage vaults with [distributed configuration](/deck/latest/guides/distributed-configuration/) via tags.
 
 Tag your vault in the declarative configuration file:
 

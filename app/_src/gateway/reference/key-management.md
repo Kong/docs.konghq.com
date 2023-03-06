@@ -21,10 +21,10 @@ Some {{site.base_gateway}} plugins offer a custom endpoint to configure JSON Web
 
 | Plugin                                         | Keys/Key Sets supported |
 | ---------------------------------------------- | --------------------- |
-| [OpenID Connect](/hub/kong-inc/openid-connect) | No                    |
-| [JWT Signer](/hub/kong-inc/jwt-signer)         | No                    |
-| [JWT](/hub/kong-inc/jwt)                       | No                    |
-| [JWE Decrypt](/hub/kong-inc/jwe-decrypt)       | Yes                   |
+| [OpenID Connect](/hub/kong-inc/openid-connect/) | No                    |
+| [JWT Signer](/hub/kong-inc/jwt-signer/)         | No                    |
+| [JWT](/hub/kong-inc/jwt/)                       | No                    |
+| [JWE Decrypt](/hub/kong-inc/jwe-decrypt/)       | Yes                   |
 
 ### Keys endpoint
 
@@ -35,10 +35,10 @@ The generic `Keys` endpoint allows you to store asymmetric keys, either a public
 You can assign one or many keys to a JSON Web Key Set. This can be useful to logically group multiple keys to use for a specific application or service. Key Sets are also the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to just _some_ keys.
 
 See the following plugins documentation for more information about how to configure them using a Key Set:
-* [OpenID Connect](/hub/kong-inc/openid-connect)
-* [JWT Signer](/hub/kong-inc/jwt-signer)
-* [JWT](/hub/kong-inc/jwt)                       
-* [JWE Decrypt](/hub/kong-inc/jwe-decrypt)
+* [OpenID Connect](/hub/kong-inc/openid-connect/)
+* [JWT Signer](/hub/kong-inc/jwt-signer/)
+* [JWT](/hub/kong-inc/jwt/)                       
+* [JWE Decrypt](/hub/kong-inc/jwe-decrypt/)
 
 {:.note}
 > **Note:** Deleting a Key Set will remove all associated keys.

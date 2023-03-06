@@ -16,7 +16,7 @@ Key Authentication for the Dev Portal can be enabled in three ways:
 
 >**Warning** Enabling authentication in the Dev Portal requires use of the
 > Sessions plugin. Developers will not be able to login if this is not set
-> properly. More information about [Sessions in the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions)
+> properly. More information about [Sessions in the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions/)
 
 ### Enable Portal Session Config
 

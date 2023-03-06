@@ -16,7 +16,7 @@ a multi-node Kong deployment.
 
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
@@ -124,7 +124,7 @@ any client to 5 requests per minute, and we are applying this policy in a
 global sense, meaning the rate-limit will apply across all services.
 
 You can set this up for a specific Ingress or a specific service as well,
-please follow [using KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
+please follow [using KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/)
 guide on steps for doing that.
 
 Next, test the rate-limiting policy by executing the following command

@@ -245,7 +245,7 @@ meaning it will be executed for every request that is proxied via Kong.
 
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
-> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations).
+> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/).
 > You can add these annotations directly to Service and Ingress resources
 > without creating a separate KongIngress resource. When an annotation is
 > available, it is the preferred means of configuring that setting, and the
@@ -448,7 +448,7 @@ KongConsumers from all namespaces are combined into a single Kong
 configuration, and no KongConsumers with the same `kubernetes.io/ingress.class`
 may share the same `username` or `custom_id` value.
 
-For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
+For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource/) guide.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object

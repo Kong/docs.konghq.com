@@ -121,7 +121,7 @@ docker run -d \
         `KONG_CLUSTER_TELEMETRY_ENDPOINT`, and `KONG_CLUSTER_TELEMETRY_SERVER_NAME`,
         then substitute them in the command sample.
 
-    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference) for
+    See [Parameters](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/) for
     descriptions and the matching fields in {{site.konnect_short_name}}.
 
 3. `-p 8000:8000` sets the proxy URL to `http://localhost:8000`.

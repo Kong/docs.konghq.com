@@ -50,7 +50,7 @@ Boolean values can be specified as `on`/`off` or `true`/`false`:
 > {{site.base_gateway}} will use the default settings for any value in `kong.conf` that is commented out.
 
 ## Verify configuration
-To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/latest/production/environment-variables) you have
+To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/latest/production/environment-variables/) you have
 currently set, and will output an error if your settings are invalid. 
 
 ```bash
@@ -97,6 +97,6 @@ kong start -c /etc/kong.conf --vv
 
 ## More Information
 
-* [Embedding Kong in OpenResty](/gateway/latest/production/kong-openresty)
-* [Setting environment variables](/gateway/latest/production/environment-variables)
-* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving)
+* [Embedding Kong in OpenResty](/gateway/latest/production/kong-openresty/)
+* [Setting environment variables](/gateway/latest/production/environment-variables/)
+* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving/)
