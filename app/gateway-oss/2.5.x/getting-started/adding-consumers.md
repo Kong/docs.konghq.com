@@ -86,7 +86,7 @@ Read more about the following related topics:
 Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community)
 for help!
 
-[key-auth]: /plugins/key-authentication
+[key-auth]: /hub/kong-inc/key-auth/
 [API-consumers]: /gateway-oss/{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /gateway-oss/{{page.kong_version}}/getting-started/enabling-plugins
 [configuration]: /gateway-oss/{{page.kong_version}}/configuration

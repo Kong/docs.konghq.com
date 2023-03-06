@@ -256,7 +256,7 @@ Enterprise offering by [contacting us](/enterprise/).
 
 
 [acl]: /plugins/acl
-[basic-auth]: /plugins/basic-authentication/
+[basic-auth]: /hub/kong-inc/basic-auth/
 [custom-configuration]: /gateway-oss/{{page.kong_version}}/configuration/#custom-nginx-configuration
 [ip-restriction]: /plugins/ip-restriction
-[key-auth]: /plugins/key-authentication
+[key-auth]: /hub/kong-inc/key-auth/
