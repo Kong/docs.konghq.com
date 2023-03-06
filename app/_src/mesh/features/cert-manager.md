@@ -14,10 +14,10 @@ plane certificates.
 
 {{site.mesh_product_name}} adds:
 
-* [`vault`](/mesh/{{page.kong_version}}/features/vault): {{site.mesh_product_name}} generates data plane certificates
+* [`vault`](/mesh/{{page.kong_version}}/features/vault/): {{site.mesh_product_name}} generates data plane certificates
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
-* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca): {{site.mesh_product_name}} generates data plane certificates
+* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca/): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 * `certmanager`: {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.

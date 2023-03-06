@@ -21,4 +21,4 @@ Keywords:
 | Analytics Admin | Users can fully manage all Analytics content, which includes creating, editing, and deleting reports, as well as viewing the analytics summary. |
 | Analytics Viewer | Users can view the analytics summary and report data.|
 
-To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles).
+To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles/).

@@ -3,7 +3,7 @@ title: Protect your Services
 ---
 In this topic, you’ll learn how to enforce rate limiting using the Rate Limiting plugin.
 
-If you are following the getting started workflow, make sure you have completed [Exposing Your Services](/getting-started-guide/{{page.kong_version}}/expose-services) before moving on.
+If you are following the getting started workflow, make sure you have completed [Exposing Your Services](/getting-started-guide/{{page.kong_version}}/expose-services/) before moving on.
 
 ## What is Rate Limiting?
 
@@ -183,4 +183,4 @@ setting the rate limit to 5 times per minute.
 * If using Kong Manager, you enabled the Rate Limiting Advanced plugin,
 setting the rate limit to 5 times for every 30 seconds.
 
-Next, head on to learn about [proxy caching](/getting-started-guide/{{page.kong_version}}/improve-performance).
+Next, head on to learn about [proxy caching](/getting-started-guide/{{page.kong_version}}/improve-performance/).

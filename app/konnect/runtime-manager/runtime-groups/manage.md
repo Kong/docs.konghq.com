@@ -12,7 +12,7 @@ runtime group entry.
 
 From a runtime group details page, you can
 [create and manage runtime instances](/konnect/runtime-manager/#types-of-runtimes)
-and configure any [global entities](/konnect/runtime-manager/gateway-config)
+and configure any [global entities](/konnect/runtime-manager/gateway-config/)
 in the group.
 
 ## Create a runtime group

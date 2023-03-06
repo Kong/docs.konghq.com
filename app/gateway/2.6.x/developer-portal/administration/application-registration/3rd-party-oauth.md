@@ -30,9 +30,9 @@ following providers have been tested for the current version of the Kong
 Portal Application Registration plugin used in tandem with the Kong OIDC plugin:
 
 * [Okta](https://developer.okta.com/). See the
-  [Okta setup example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+  [Okta setup example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config/).
 * [Azure](https://azure.microsoft.com/). See the
-  [Azure setup example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+  [Azure setup example](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config/).
 * [Ping Identity](https://www.pingidentity.com/).
 
 ### Resources

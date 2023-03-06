@@ -294,7 +294,7 @@ If there are multiple sets of tabs to enable, you can provide multiple tab names
 ```
 
 This will activate the `Using the Admin API` tab, then the `Using decK (YAML)` tabs. The order may be important if you are reusing tab names across contexts.
-See this [sample link to the getting started guide with Admin API and decK tabs selected](/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml).
+See this [sample link to the getting started guide with Admin API and decK tabs selected](/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml/).
 
 When using `?tab=`, it *must* come before any URL fragments (`#`) in the URL:
 

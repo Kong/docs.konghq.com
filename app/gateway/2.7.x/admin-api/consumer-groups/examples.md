@@ -12,7 +12,7 @@ For example, you could define three consumer groups:
 * A "silver tier" with 10 requests per second
 * A "bronze tier" with 6 requests per second
 
-The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced).
+The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/).
 
 Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and
@@ -144,7 +144,7 @@ http POST :8001/consumer_groups/JL/consumers consumer=DianaPrince
 
 ## Set up Rate Limiting Advanced config for consumer group
 
-1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced),
+1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/),
 setting the rate limit to five requests (`config.limit`) for every
 30 seconds (`config.window_size`):
 
@@ -189,7 +189,7 @@ http -f :8001/plugins/  \
     > **Note:** In this example, you're configuring the plugin globally, so it
     applies to all entities (Services, Routes, and Consumers) in the
     {{site.base_gateway}} instance. You can also apply it to a
-    [specific Service or Route](/hub/kong-inc/rate-limiting-advanced)
+    [specific Service or Route](/hub/kong-inc/rate-limiting-advanced/)
     for more granular control.
 
 1. The plugin you just set up applies to all consumers in the cluster. Change

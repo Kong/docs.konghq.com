@@ -35,7 +35,7 @@ access to a subset of plugins:
 * **Plus tier:** Open-source and Plus-specific plugins
 * **Enterprise tier:** All Kong plugins
 
-If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility) on the Plugin Hub.
+If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
 <!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
 

@@ -8,7 +8,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 1. **Create a {{site.konnect_short_name}} account**:
 
-    [Create an account &gt;](/konnect/getting-started/access-account)
+    [Create an account &gt;](/konnect/getting-started/access-account/)
 
 1.  **Set up a runtime instance**:
 
@@ -18,7 +18,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     ready, your services are immediately connected, configured,
     and available for testing.
 
-    [Set up a runtime instance &gt;](/konnect/getting-started/configure-runtime)
+    [Set up a runtime instance &gt;](/konnect/getting-started/configure-runtime/)
 
 
 2.  **Create a service**:
@@ -29,7 +29,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     entire architecture. In this step, you create the first version of a service,
     adding the first entry to your catalog.
 
-    [Create a service &gt;](/konnect/getting-started/configure-service)
+    [Create a service &gt;](/konnect/getting-started/configure-service/)
 
 3.  **Implement the new service**:
 
@@ -40,7 +40,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     is the next step. Here you set up a route to a mocking API service,
     then proxy traffic through the route.
 
-    [Implement the service &gt;](/konnect/getting-started/implement-service)
+    [Implement the service &gt;](/konnect/getting-started/implement-service/)
 
 ## Share APIs and enable development
 

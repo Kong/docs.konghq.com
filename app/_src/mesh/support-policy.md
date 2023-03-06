@@ -25,5 +25,5 @@ The support for {{site.mesh_product_name}} software versions is explained in thi
 
 ## See also
 
-* [Version support policy for {{site.base_gateway}}](/gateway/latest/support-policy)
-* [Version support policy for {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/support-policy)
+* [Version support policy for {{site.base_gateway}}](/gateway/latest/support-policy/)
+* [Version support policy for {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/support-policy/)

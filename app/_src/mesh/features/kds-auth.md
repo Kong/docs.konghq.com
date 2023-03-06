@@ -155,7 +155,7 @@ By default, a connection from the zone control plane to the global control plane
 
 ## Legacy Control Plane Token
 
-You can still authenticate a control plane using the separate [Control Plane Token](/mesh/{{page.kong_version}}/features/kds-auth), but it is deprecated and will be removed in the future.
+You can still authenticate a control plane using the separate [Control Plane Token](/mesh/{{page.kong_version}}/features/kds-auth/), but it is deprecated and will be removed in the future.
 
 <!-- vale off -->
 <!-- links -->

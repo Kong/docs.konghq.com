@@ -3,7 +3,7 @@ title: Sessions in the Dev Portal
 ---
 
 {:.important}
-> **Important**: Portal Session Configuration does not apply when using [OpenID Connect](/hub/kong-inc/openid-connect) for Dev Portal authentication. The following information assumes that the Dev Portal is configured with `portal_auth` other than `openid-connect`; for example, `key-auth` or `basic-auth`.
+> **Important**: Portal Session Configuration does not apply when using [OpenID Connect](/hub/kong-inc/openid-connect/) for Dev Portal authentication. The following information assumes that the Dev Portal is configured with `portal_auth` other than `openid-connect`; for example, `key-auth` or `basic-auth`.
 
 ## How does the Sessions plugin work in the Dev Portal?
 
@@ -76,7 +76,7 @@ portal_session_conf = {
 > * `logout_query_arg`
 > * `logout_post_arg`
 
-For detailed descriptions of each configuration property, see the [Session plugin documentation](/hub/kong-inc/session).
+For detailed descriptions of each configuration property, see the [Session plugin documentation](/hub/kong-inc/session/).
 
 ## Session security
 

@@ -266,7 +266,7 @@ worker process flushes its buffer of metrics every 5 seconds or 5000 data points
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
-the [Vitals API](/api/vitals.yaml), measurement
+the [Vitals API](/api/vitals.yaml/), measurement
 values are read back grouped by second.
 
 {:.note}

@@ -25,7 +25,7 @@ Gateway on behalf of users: creating a Gateway resource will trigger automatic
 provisioning of Deployments/Services/etc. with configuration matching the
 Gateway's listeners and addresses. The Kong alpha implementation does _not_
 automatically manage Gateway provisioning: you must create the Kong and ingress
-controller Deployment and proxy Service yourself following the [Gateway installation guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api).
+controller Deployment and proxy Service yourself following the [Gateway installation guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api/).
 
 Because the Kong Deployment and its configuration are not managed
 automatically, listener and address configuration are not set for you. You must
