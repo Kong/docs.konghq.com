@@ -9,6 +9,7 @@ gem 'kramdown-parser-gfm'
 gem 'liquid-c'
 gem 'rouge', '3.30.0'
 gem 'activesupport'
+gem 'nokogiri'
 
 group :development do
   gem 'pry'
