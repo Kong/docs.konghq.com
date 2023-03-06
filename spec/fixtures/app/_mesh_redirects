@@ -1,0 +1,2 @@
+# Policy redirects
+/mesh/:version/policies/circuit-breakers/ /mesh/:version/policies/circuit-breaker/ 301

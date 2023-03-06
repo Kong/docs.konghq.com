@@ -36,8 +36,8 @@
 /enterprise/2.5.x/deployment/using-kong-for-kubernetes/    /kubernetes-ingress-controller/
 /enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
 /enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
-/enteprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
-/enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
+/enterprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
+/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/  /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/deployment-options  /gateway/latest/install-and-run/kubernetes
 
@@ -281,7 +281,7 @@
 /konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
-
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
 
 #API Redirects
 
@@ -825,8 +825,9 @@
 
 # 3.0
 
-/gateway/2.8.x/install-and-run/                   /gateway/latest/install-and-run/os-support
-/gateway/2.8.x/install-and-run/centos/            /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/install-and-run/                   /gateway/latest/support-policy/
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/support-policy/
+/gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
 /gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
 /gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
 /gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
@@ -836,3 +837,15 @@
 
 # 3.1
 /gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
+
+
+#3.2
+
+/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/latest/os-support/                     /gateway/latest/support-policy/
+/gateway/latest/install-support/                /gateway/latest/support-policy/
+/gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
+/gateway/3.2.x/install-support/                /gateway/latest/support-policy/

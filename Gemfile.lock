@@ -53,7 +53,7 @@ GEM
       kramdown (~> 2.0)
     kwalify (0.7.2)
     liquid (4.0.3)
-    liquid-c (4.0.0)
+    liquid-c (4.0.1)
       liquid (>= 3.0.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)

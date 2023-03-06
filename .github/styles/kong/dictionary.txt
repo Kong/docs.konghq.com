@@ -1,8 +1,11 @@
 ACLs
+addons
 Alertmanager
 Amal
 Amberflo
+apiVersion
 Arya
+Autonegotiation
 Bagdi
 Bintray
 Bitnami
@@ -11,6 +14,7 @@ CloudFormation
 Cloudformation
 Cognito
 Curity
+CLIs
 DAO
 DAOs
 DPP
@@ -24,11 +28,13 @@ Github
 Goroutine
 Grafana
 HTTPie
+istioctl
 Istio
 Istio's
 Jira
 JsonPath
 Keycloak
+knative
 Knative
 Knative's
 Knatives
@@ -37,6 +43,8 @@ Konnect
 KPI
 KPIs
 Kuma
+kustomizations
+kustomize
 Kustomize
 Loggly
 Lua's
@@ -59,6 +67,7 @@ PowerShell
 Prometheus
 Protobuf
 Resty
+SAML
 Splunk
 Stap
 Styra
@@ -157,6 +166,7 @@ hardcoding
 hashicorp
 header_filter
 headmatter
+healthcheck
 healthchecks
 hostname
 hostnames
@@ -217,6 +227,7 @@ middleware
 mimetype
 minifier
 minikube
+minio
 misconfigured
 mutex
 nameserver
@@ -278,6 +289,7 @@ requery
 retryOn
 rockspec
 rockspecs
+rolling_timeout
 rollout
 rollouts
 routable
@@ -299,7 +311,6 @@ ssl
 ssl_cert_key
 ssl_certificate
 sso
-SAML
 stapxx
 statsd
 stderr
@@ -329,6 +340,7 @@ tfvars
 timeframe
 timeframes
 tlds
+tproxy
 transcoded
 transcoder
 transpile
@@ -344,6 +356,7 @@ uncomment
 uncommenting
 unencrypted
 unix
+unmanaged
 unmarshalled
 unnormalized
 unprocessable

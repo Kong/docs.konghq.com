@@ -21,8 +21,6 @@ params:
   protocols:
     - name: http
     - name: https
-    - name: tcp
-    - name: tls
     - name: grpc
     - name: grpcs
   dbless_compatible: 'yes'

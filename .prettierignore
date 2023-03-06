@@ -3,6 +3,8 @@
 *.html
 *.png 
 *.jpg
+*.svg
+
 # Build artifacts
 dist
 .vendor
@@ -17,3 +19,4 @@ app/_assets/images/
 
 #Kuma
 app/
+

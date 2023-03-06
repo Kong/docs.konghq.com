@@ -96,7 +96,7 @@ route_body: |
     Attributes | Description
     ---:| ---
     `name`<br>*optional* | The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
-    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
+    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When it is set to only `"http"`, this is essentially the same as `["http", "https"]` in that both HTTP and HTTPS requests are allowed. Default: `["http", "https"]`.
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
@@ -214,6 +214,7 @@ plugin_body: |
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
+    `instance_name`<br>*optional* | The Plugin instance name.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
@@ -228,6 +229,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
+        "instance_name": rate-limiting-foo,
         "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
@@ -603,7 +605,7 @@ vault_body: |
     ---:| ---
     `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
     `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
-    `description`<br>*optional* |  The description of the Vault entity.
+    `description`<br>*optional* |  The description of the Vault object.
     `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
     `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
@@ -798,7 +800,6 @@ curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_grou
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
 * [Plugin Hub](/hub/)
 
---- 
 ## Nodes
 ### List Runtime Instance Records
 
@@ -1143,6 +1144,13 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 ---
 
+## Using the API in workspaces 
+{:.badge .enterprise}
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
+
+---
+
 ## Information Routes
 
 
@@ -1374,7 +1382,7 @@ HTTP 200 OK
             "type": "boolean"
         },
         "key_names": {
-            "default": "function",
+            "default": ["apikey"],
             "required": true,
             "type": "array"
         }
@@ -2312,7 +2320,7 @@ Learn more about the router:
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will not be configurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
 > will support `path_handling` `"v1'` behavior.
@@ -4783,9 +4791,9 @@ HTTP 200 OK
 ---
 
 
-## Vaults Entity
+## Vaults Object
 
-Vault entities are used to configure different Vault connectors. Examples of
+Vault object are used to configure different Vault connectors. Examples of
 Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager.
 
 Configuring a Vault allows referencing the secrets with other entities. For
@@ -4992,7 +5000,7 @@ HTTP 204 No Content
 
 ---
 {% unless page.edition == "konnect" %}
-## Keys Entity
+## Keys Object
 
 A Key object holds a representation of asymmetric keys in various formats.
 When Kong or a Kong plugin requires a specific public or private key to perform
@@ -5260,7 +5268,7 @@ HTTP 204 No Content
 
 ## Key Sets Entity
 
-An Key Set object holds a collection of asymmetric key objects.
+A Key Set object holds a collection of asymmetric key objects.
 This entity allows to logically group keys by their purpose.
 
 Key Sets can be both [tagged and filtered by tags](#tags).

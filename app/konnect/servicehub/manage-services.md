@@ -39,7 +39,8 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
     For example, you might set `location:us-west`, where `location` is the key
     and the `us-west` is the value.
 
-    These labels are customizable, you can set them to any value.
+    These labels are customizable. 
+    See the [Labels](/konnect/reference/labels) reference for more information on label formatting.
 
 1. Click **Save**.
 
@@ -51,25 +52,6 @@ Edit any of the following:
 * **Service display name**: Click on the name to reveal a text box, then click outside of the text box to save.
 * **Service description**: Click **Edit** next to the description, make your edits, then click the checkmark to save.
 * **Labels**: Click **Edit** next to the labels, make your edits, then click **Save**.
-
-<!-- SHARING IS NOT YET AVAILABLE
-## Share a service
-
-If you have a Service Admin or Organization Admin role, you can share any
-service that you have access to.
-
-For more information, see [Manage Teams, Roles, and Users](/konnect/org-management/teams-and-roles/#entity-and-role-sharing).
-
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service from the list.
-
-1. Click **Share service**.
-
-1. Select a user or team to share the service with.
-
-1. Select a role to grant to the user or team.
-
-1. Click **Share service** to save.
--->
 
 ## Delete a service
 

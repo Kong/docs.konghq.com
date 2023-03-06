@@ -845,11 +845,12 @@ Generic Styling for Desktop
     max-width: 100%;
     font-size: 16px;
     overflow-x: auto;
-    border: none;
+    border: 1px solid #f0f4fa;
     border-collapse: collapse;
     border-radius: 3px;
     margin-top: 1.5em;
     position: relative;
+    width: fit-content;
 
     i.fa-times {
       color: @red-500;
@@ -892,10 +893,13 @@ Generic Styling for Desktop
     background-color: #fff;
     padding: 8px 16px 8px;
     border-bottom: 2px solid @steel-200;
-    border-top: none;
     position: -webkit-sticky;
     vertical-align: bottom;
     text-transform: uppercase;
+
+    code {
+      text-transform: initial;
+    }
   }
 
   td {
@@ -904,12 +908,10 @@ Generic Styling for Desktop
 
   tr:nth-child(even) {
     background-color: @steel-080;
-    border: 1px solid @steel-100;
   }
 
   tr:nth-child(odd) {
     background-color: @steel-100;
-    border: 1px solid @steel-100;
   }
 
   @media only screen and (max-width: 1099px) {

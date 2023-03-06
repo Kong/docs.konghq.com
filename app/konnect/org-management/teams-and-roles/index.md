@@ -46,26 +46,6 @@ If two roles provide access to the same entity, the role with more access
 takes effect. For example, if you have the Service Admin and Service Deployer
 roles on the same service, the Service Admin role takes precedence.
 
-<!-- (SHARING IS NOT YET AVAILABLE)
-### Entity and role sharing
-
-An Organization Admin can share any role or entity with any user in the
-organization.
-
-Any user with the Service Admin or Runtime Group Admin role can
-share services that they have access to, with
-users with the same role or lesser.
-
-For example, if you have a Service Admin role:
-* You can share that service with any other user through the Service Hub.
-* Because you have admin access, you can choose to share the service with users that possess any other
-level of access: creator, deployer, viewer, etc.
-
-You can [share any service](/konnect/servicehub/manage-services/#share-service)
-through the Service Hub, or
-[share any runtime group](/konnect/runtime-manager/runtime-groups/manage/#share-runtime-group)
-through the Runtime Manager. -->
-
 ## Get started with access management
 
 * Manage resource access in your organization

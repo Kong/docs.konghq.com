@@ -9,3 +9,8 @@ items:
       - text: Overview of Kong Gateway
         url: /gateway/3.0.x/
         absolute_url: true
+  - title: Reference
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: kong.conf
+        url: /reference/configuration/

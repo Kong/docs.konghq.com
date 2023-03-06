@@ -56,17 +56,17 @@ oc new-project kong
 
     ```sh
     ## Kong Gateway on Kubernetes native
-    kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
     ```
 
     ```sh
     ## Kong Gateway on OpenShift
-    oc create -f https://bit.ly/k4k8s-enterprise-install
+    oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
     ```
 
     ```sh
     ## Kong Gateway (OSS) on Kubernetes native
-    kubectl apply -f https://bit.ly/kong-ingress-dbless
+    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
     ```
 
     This might take a few minutes.
