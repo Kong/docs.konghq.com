@@ -54,7 +54,7 @@ is part of the organization admin team by default.
     {{site.konnect_saas}} account.
 
 1. Once {{site.konnect_short_name}} detects your runtime instance, 
-2. click **Done** to go back to the Runtime Instances page.
+click **Done** to go back to the Runtime Instances page.
 
 The runtime instances table will now include
 a new entry for your instance and the tag in the **Sync Status** column should
