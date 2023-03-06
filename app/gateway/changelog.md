@@ -8048,7 +8048,7 @@ the theme name to files inserted on a workspace.
 
     {{!-- Custom fonts --}}
     {{!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet"> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet"> --}}
 
     <style>
     /*
