@@ -10,6 +10,7 @@ description: |
   be analyzed using Datadog's Request Flow Map, and also correlated with other
   systems handling API requests.
 type: plugin
+enterprise: true
 categories:
   - analytics-monitoring
 kong_version_compatibility:
