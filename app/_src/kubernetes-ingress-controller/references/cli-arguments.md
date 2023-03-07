@@ -91,8 +91,8 @@ Following table describes all the flags that are available:
 | `--publish-status-address`               | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service" when that Service lacks useful address information.  |                                   |
 
 {% if_version gte:2.9.x %}
-| `--publish-service-udp`                  | `string`           | Service fronting UDP routing resources in "namespace/name" format. The controller will update Ingress status information with this Service's endpoints. If omitted, the same Service will be used for both TCP and UDP routes. |                                   |
-| `--publish-status-address-udp`           | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service-udp" when that Service lacks useful address information. |                                   |
+| `--publish-service-udp`                  | `string`           | Service fronting UDP routing resources in "namespace/name" format. The controller updates Ingress status information with this Service's endpoints. If omitted, the same Service is used for both TCP and UDP routes. |                                   |
+| `--publish-status-address-udp`           | `strings`          | User-provided addresses in comma-separated string format, for use instead of `publish-service-udp` when that Service lacks useful address information. |                                   |
 {% endif_version %}
 {% if_version gte:2.4.x %}
 | `--skip-ca-certificates`                 | `boolean`          | Disable CA certificate handling. When using multiple controllers for separate workspaces in the same Kong instance, all but one controller should have this set to `true`. | `false`     |

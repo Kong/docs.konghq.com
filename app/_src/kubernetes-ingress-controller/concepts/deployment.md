@@ -68,7 +68,7 @@ of a service as any service is scaled in or out.
 For this reason, it requires [RBAC][k8s-rbac] permissions to access resources
 stored in the Kubernetes object store.
 
-It needs read permissions (get,list,watch) on the following Kubernetes resources:
+It needs read permissions (get, list, watch) on the following Kubernetes resources:
 
 - Endpoints
 {% if_version gte:2.9.x inline: true%}
