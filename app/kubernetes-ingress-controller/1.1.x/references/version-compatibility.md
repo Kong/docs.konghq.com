@@ -8,7 +8,7 @@ The following sections detail on compatibility between versions.
 ## Kong
 
 By Kong, we are here referring to the official distribution of the Open-Source
-Kong Gateway.
+{{site.base_gateway}}.
 
 | {{site.kic_product_name}} |          <= 0.0.4           |            0.0.5            |            0.1.x            |            0.2.x            |            0.3.x            |            0.4.x            |            0.5.x            |            0.6.x            |            0.7.x            |            0.8.x            |            0.9.x            |           0.10.x            |            1.0.x            |            1.1.x            |
 |:------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
@@ -30,10 +30,10 @@ Kong Gateway.
 {% include md/enterprise/k8s-image-note.md %}
 
 Kong-enterprise-k8s is an official distribution by Kong, Inc. which bundles
-all enterprise plugins into Open-Source Kong Gateway.
+all enterprise plugins into Open-Source {{site.base_gateway}}.
 
 The compatibility for this distribution will largely follow that of the
-Open-Source Kong Gateway compatibility (the previous section).
+Open-Source {{site.base_gateway}} compatibility (the previous section).
 
 | {{site.kic_product_name}}   |           0.6.2+            |            0.7.x            |            0.8.x            |            0.9.x            |           0.10.x            |            1.0.x            |            1.1.x            |
 |:----------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
@@ -44,7 +44,7 @@ Open-Source Kong Gateway compatibility (the previous section).
 ## Kong Enterprise
 
 Kong Enterprise is the official enterprise distribution, which includes all
-other enterprise functionality, built on top of the Open-Source Kong Gateway.
+other enterprise functionality, built on top of the Open-Source {{site.base_gateway}}.
 
 | {{site.kic_product_name}} |            0.0.5            |            0.1.x            |            0.2.x            |            0.3.x            |            0.4.x            |            0.5.x            |            0.6.x            |            0.7.x            |            0.8.x            |            0.9.x            |           0.10.x            |            1.0.x            |            1.1.x            |
 |:------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|

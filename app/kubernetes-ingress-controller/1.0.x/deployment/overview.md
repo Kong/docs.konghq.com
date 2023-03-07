@@ -17,7 +17,7 @@ The {{site.kic_product_name}} can be installed on a local, managed
 or any Kubernetes cluster which supports a service of type `LoadBalancer`.
 
 As explained in the [deployment document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment), there
-are a vareity of configurations and runtimes for the {{site.kic_product_name}}.
+are a variety of configurations and runtimes for the {{site.kic_product_name}}.
 
 The following sections detail on deployment steps for all the different
 runtimes:
@@ -26,7 +26,7 @@ runtimes:
 
 
 Kong for Kubernetes is an Ingress Controller based on the
-Open-Source Kong Gateway. It consists of two components:
+Open-Source {{site.base_gateway}}. It consists of two components:
 
 - **Kong**: the Open-Source Gateway
 - **Controller**: a daemon process that integrates with the
