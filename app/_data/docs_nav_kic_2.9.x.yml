@@ -105,16 +105,18 @@ items:
         url: /guides/configuring-health-checks
       - text: Setting up a Custom Plugin
         url: /guides/setting-up-custom-plugins
-      - text: Using Ingress with gRPC
-        url: /guides/using-ingress-with-grpc
       - text: Setting up Upstream mTLS
         url: /guides/upstream-mtls
-      - text: Exposing a TCP Service
-        url: /guides/using-tcpingress
-        generate: false # Generated in the CustomResources section above
-      - text: Exposing a UDP Service
-        url: /guides/using-udpingress
-        generate: false # Generated in the CustomResources section above
+      - text: Exposing a TCP/UDP/gRPC Service
+        items:
+        - text: Exposing a TCP Service
+          url: /guides/using-tcpingress
+          generate: false # Generated in the CustomResources section above
+        - text: Exposing a UDP Service
+          url: /guides/using-udpingress
+          generate: false # Generated in the CustomResources section above
+        - text: Exposing a gRPC service
+          url: /guides/using-ingress-with-grpc
       - text: Using the mTLS Auth Plugin
         url: /guides/using-mtls-auth-plugin
       - text: Configuring Custom Entities
