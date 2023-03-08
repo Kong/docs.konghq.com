@@ -284,7 +284,7 @@ By default the socket is created with permission `0755`, so that StatsD exporter
 ## Exported Metrics
 
 With the above configuration, the Prometheus StatsD exporter will make available all
-metrics as provided by the [standard Vitals configuration](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml/).
+metrics as provided by the [standard Vitals configuration](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml).
 
 Additionally, the exporter process provides access to the default metrics exposed by the [Golang
 Prometheus client library](https://prometheus.io/docs/guides/go-application/). These metric names

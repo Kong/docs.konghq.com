@@ -20,19 +20,19 @@ description: |
 
   The plugin has been tested with several OpenID Connect providers:
 
-  - [Auth0][auth0] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-auth0/)/)
-  - [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-cognito/)/)
+  - [Auth0][auth0] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-auth0/))
+  - [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-cognito/))
   - [Connect2id][connect2id]
   - [Curity][curity]
   - [Dex][dex]
   - [Gluu][gluu]
-  - [Google][google] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-google/)/)
+  - [Google][google] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-google/))
   - [IdentityServer][identityserver]
   - [Keycloak][keycloak]
-  - [Microsoft Azure Active Directory][azure] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-azuread/)/)
+  - [Microsoft Azure Active Directory][azure] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-azuread/))
   - [Microsoft Active Directory Federation Services][adfs]
   - [Microsoft Live Connect][liveconnect]
-  - [Okta][okta] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-okta/)/)
+  - [Okta][okta] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-okta/))
   - [OneLogin][onelogin]
   - [OpenAM][openam]
   - [Paypal][paypal]
@@ -2040,7 +2040,7 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
    <br><br>
    <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
 
-Alternatively you can [download the exported Keycloak configuration](/assets/images/docs/openid-connect/keycloak.json/),
+Alternatively you can [download the exported Keycloak configuration](/assets/images/docs/openid-connect/keycloak.json),
 and use it to configure the Keycloak. Please refer to [Keycloak import documentation](https://www.keycloak.org/docs/latest/server_admin/#_export_import)
 for more information.
 
