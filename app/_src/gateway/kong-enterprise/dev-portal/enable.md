@@ -49,7 +49,7 @@ in the `KONG_PORTAL_GUI_HOST` variable:
 {% navtab Linux (kong.conf) %}
 
 1. To enable the Dev Portal, the following property must be set in the Kong
-configuration file ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/)/):
+configuration file ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/)):
 
    ```
    portal = on

@@ -78,7 +78,7 @@ Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
 Gateway deployments. You can also create your own custom plugins. For more
 information, see the
 [plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
-the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.kong_version}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.kong_version}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.kong_version}}/plugin-development/pluginserver/python/)/).
+the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.kong_version}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.kong_version}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.kong_version}}/plugin-development/pluginserver/python/)).
 
 ## Packages and modes
 
