@@ -64,5 +64,3 @@ instance may need [upgrading](/konnect/runtime-manager/runtime-instances/upgrade
 
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
-
-## Compatibility errors appear in the runtime instances list
