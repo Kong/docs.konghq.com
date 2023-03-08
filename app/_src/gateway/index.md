@@ -4,6 +4,10 @@ breadcrumb: Overview
 subtitle: API gateway built for hybrid and multi-cloud, optimized for microservices and distributed architectures
 ---
 
+This is an intentionally broken link:
+
+<a href="https://michaelheap.com/404">This is broken. Oh no</a>
+
 ## Quick Links
 
 <div class="docs-grid-install">
