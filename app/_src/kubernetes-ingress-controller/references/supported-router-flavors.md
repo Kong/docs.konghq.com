@@ -21,9 +21,13 @@ The compatibilities of router flavors between different {{site.kic_product_name}
 | Kong 3.1.x  `traditional`            |  <i class="fa fa-check"></i>   |  <i class="fa fa-check"></i>   |  <i class="fa fa-check"></i>   |
 | Kong 3.1.x  `traditional_compatible` | <i class="fa fa-times"></i>(*) | <i class="fa fa-times"></i>(*) | <i class="fa fa-times"></i>(*) |
 | Kong 3.1.x  `expressions`            |  <i class="fa fa-times"></i>   |  <i class="fa fa-times"></i>   |  <i class="fa fa-times"></i>   |
+| Kong 3.2.x  `traditional`            |  <i class="fa fa-check"></i>    |  <i class="fa fa-check"></i>   |  <i class="fa fa-check"></i>   |
+| Kong 3.2.x  `traditional_compatible` |  <i class="fa fa-times"></i>(*) | <i class="fa fa-times"></i>(*) | <i class="fa fa-times"></i>(*) |
+| Kong 3.2.x  `expressions`            |  <i class="fa fa-times"></i>    | <i class="fa fa-times"></i>    | <i class="fa fa-times"></i>    |
 
 (*) Most use cases are supported. Regexes with a backslash (`\`) followed by a non-escaped character (for example, `\j` or `\/`) in matches of paths or headers
-may not be accepted when {{site.base_gateway}} 3.0 is configured to use the `traditional_compatible` router.
+may not be accepted when {{site.base_gateway}} 3.x is configured to use the `traditional_compatible` router. Only the explicit specified regex matches are
+affected by this incompatibility. 
 
 [gateway-expression-router]:/gateway/latest/key-concepts/routes/expressions/
 [gateway-router-flavor]:/gateway/latest/reference/configuration/#router_flavor
