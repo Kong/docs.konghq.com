@@ -439,6 +439,63 @@ docker container rm kong-dbless
 docker network rm kong-net
 ```
 
+## Running Kong in read-only mode
+
+Starting with version 3.2.0 of {{site.base_gateway}} it is possible to run the container in read-only mode. To do so, mount a Docker volume to the locations where Kong needs to write data. The default configuration requires write access to `/tmp` and to the prefix path, as provided by the following example:
+
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```sh
+docker run --read-only -d --name kong-dbless \
+ --network=kong-net \
+ -v "$(pwd)/declarative:/kong/declarative/" \
+ -v "$(pwd)/tmp_volume:/tmp" \
+ -v "$(pwd)/prefix_volume:/var/run/kong" \
+ -e "KONG_PREFIX=/var/run/kong" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+ -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+ -e KONG_LICENSE_DATA \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 8001:8001 \
+ -p 8444:8444 \
+ -p 8002:8002 \
+ -p 8445:8445 \
+ -p 8003:8003 \
+ -p 8004:8004 \
+ kong/kong-gateway:{{page.versions.ee}}
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```sh
+docker run --read-only -d --name kong-dbless \
+ --network=kong-net \
+ -v "$(pwd)/declarative:/kong/declarative/" \
+ -v "$(pwd)/tmp_volume:/tmp" \
+ -v "$(pwd)/prefix_volume:/var/run/kong" \
+ -e "KONG_PREFIX=/var/run/kong" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8444:8444 \
+ kong:{{page.versions.ce}}
+ ```
+{% endnavtab %}
+{% endnavtabs_ee %}
+
 ## Troubleshooting
 
 For troubleshooting license issues, see:
