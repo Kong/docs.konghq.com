@@ -3,6 +3,10 @@ title: Glossary
 
 ---
 
+This is an intentionally broken link:
+
+<a href="https://michaelheap.com/404">Another broken one</a>
+
 | Term      | Definition |
 | ----------- | ----------- |
 |Admin | An admin is a {{site.base_gateway}} user account capable of accessing the Admin API or Kong Manager. |
