@@ -189,6 +189,7 @@ Metric                     | Description | Namespace
 
 {% if_plugin_version gte:3.2.x %}
 If you enable the `tag_style` configuration for the StatsD plugin, the following metrics are sent instead:
+
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.request.count`
@@ -205,28 +206,30 @@ Metric                     | Description | Namespace
 
 The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which are used like Prometheus labels.
 
-For Librato-style tags, they must be appended to the metric name with a delimiting #, for example:
+* **Librato-style tags**: Must be appended to the metric name with a delimiting #, for example:
 `metric.name#tagName=val,tag2Name=val2:0|c`
 See the [Librato StatsD](https://github.com/librato/statsd-librato-backend#tags) documentation for more information.
 
-For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, for example:
+* **InfluxDB-style tags**: Must be appended to the metric name with a delimiting comma, for example:
 `metric.name,tagName=val,tag2Name=val2:0|c`
 See the [InfluxDB StatsD](https://www.influxdata.com/blog/getting-started-with-sending-statsd-metrics-to-telegraf-influxdb/#introducing-influx-statsd) documentation for more information.
 
-For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, for example:
+* **DogStatsD-style tags**: Appended as a |# delimited section at the end of the metric, for example:
 `metric.name:0|c|#tagName:val,tag2Name:val2`
 See the [Datadog StatsD Tags](https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging) documentation for more information about the concept description and Datagram Format.
-(AWS CloudWatch)[https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html] also uses the DogStatsD protocol.
+[AWS CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html) also uses the DogStatsD protocol.
 
-For SignalFX dimension, add the tags to the metric name in square brackets, for example:
+* **SignalFX dimension**: Add the tags to the metric name in square brackets, for example:
 `metric.name[tagName=val,tag2Name=val2]:0|c`
 See the [SignalFX StatsD](https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics) documentation for more information.
 
-So when the `tag_style` config is enabled, {{site.base_gateway}} uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
+When the `tag_style` config is enabled, {{site.base_gateway}} uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
 
 For example:
 
-`kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c`
+```
+kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c
+```
 
 {% endif_plugin_version %}
 

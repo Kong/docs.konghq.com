@@ -67,17 +67,17 @@ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 {% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```sh
-kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% navtab Kubernetes (OSS) %}
 ```sh
-kubectl apply -f https://bit.ly/kong-ingress-dbless
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
 ```
 {% endnavtab %}
 {% navtab OpenShift %}
 ```sh
-oc create -f https://bit.ly/k4k8s-enterprise-install
+oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% endnavtabs %}

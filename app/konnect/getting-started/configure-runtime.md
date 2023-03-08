@@ -45,20 +45,18 @@ is part of the organization admin team by default.
      The page opens to a runtime configuration form with the Docker tab
      selected.
 
-1. Click **Copy Script**.
+1. Click **Generate Script**.
 
-1. Replace the placeholder for `<your-password>` with your own
-{{site.konnect_saas}} password.
-
-1. Run the script on any host you choose.
+1. Copy and run the script on any host you choose.
 
     This script creates a Docker container running a
     {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
-1. Click **Done** to go to the Runtime Instances page.
+1. Once {{site.konnect_short_name}} detects your runtime instance, 
+click **Done** to go back to the Runtime Instances page.
 
-Once the script has finished running, the runtime instances table will include
+The runtime instances table will now include
 a new entry for your instance and the tag in the **Sync Status** column should
 say **In Sync**.
 

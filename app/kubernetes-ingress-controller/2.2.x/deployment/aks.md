@@ -17,7 +17,7 @@ title: Kong Ingress on Azure Kubernetes Service (AKS)
 Deploy the {{site.kic_product_name}} using `kubectl`:
 
 ```bash
-$ kubectl create -f https://bit.ly/k4k8s
+$ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
 namespace/kong created
 customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.konghq.com created
 customresourcedefinition.apiextensions.k8s.io/kongconsumers.configuration.konghq.com created
@@ -51,7 +51,7 @@ $ helm install kong/kong --generate-name --set ingressController.installCRDs=fal
 ## Setup environment variables
 
 Next, we will setup an environment variable with the IP address at which
-Kong is accessible. This will be used to actually send reqeusts into the
+Kong is accessible. This will be used to actually send requests into the
 Kubernetes cluster.
 
 Execute the following command to get the IP address at which Kong is accessible:

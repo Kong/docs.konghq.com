@@ -32,7 +32,7 @@ This will install the resources that are required to run Knative.
 Next, install the {{site.kic_product_name}}:
 
 ```
-kubectl apply -f https://bit.ly/k4k8s
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
 ```
 
 You can choose to install a different flavor, like using a database,

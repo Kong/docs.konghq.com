@@ -254,7 +254,7 @@ then deploy.
 
 [bookinfo]:https://istio.io/latest/docs/examples/bookinfo/
 
-### Access BookInfo externally through Kong Gateway
+### Access BookInfo externally through {{site.base_gateway}}
 
 At this point the BookInfo application is available only internally. Here's how 
 to expose it as a service with [Ingress][ingress].
@@ -287,7 +287,7 @@ to expose it as a service with [Ingress][ingress].
     kubectl apply -f bookinfo-ingress.yaml
     ```
 
-1.  To make HTTP requests using Kong Gateway as ingress, you need the IP address of the 
+1.  To make HTTP requests using {{site.base_gateway}} as ingress, you need the IP address of the 
 load balancer. Get the `LoadBalancer` address and store it in a local `PROXY_IP`
 environment variable:
 

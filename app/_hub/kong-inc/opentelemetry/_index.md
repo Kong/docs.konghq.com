@@ -286,6 +286,9 @@ The following is an example for adding a custom span using {{site.base_gateway}}
 
       -- Append attributes
       span:set_attribute("custom.attribute", "custom value")
+      
+      -- Close the span
+      span:finish()
     ```
 
 2. Apply the Lua code using the `post-function` plugin using a cURL file upload:

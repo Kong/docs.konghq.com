@@ -18,14 +18,13 @@ upgrade strategy based on the following examples.
 
 [helm]:https://helm.sh/
 [chart]:https://github.com/kong/charts
-[list-releases]:https://v3.helm.sh/docs/helm/helm_list/
 [helm-docs]:https://v3.helm.sh/docs/
 
 ### Update CRDs
 
-KIC 2.7 includes {{site.base_gateway}} 3.x
-compatibility changes to the controller CRDs. Helm does not update CRDs automatically. You must apply them manually
-before upgrading KIC:
+KIC 2.7 includes {{site.base_gateway}} 3.x compatibility changes to the controller CRDs.
+Helm does not update CRDs automatically.
+You must apply them manually before upgrading KIC:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Kong/charts/main/charts/kong/crds/custom-resource-definitions.yaml
@@ -37,7 +36,7 @@ KIC 2.7 is the first version that supports Kong 3.x. You must upgrade to KIC
 2.7 before upgrading to Kong 3.x. See the [KIC Changelog][changelog] for all
 changes in this release.
 
-[changelog]:https://github.com/kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md#260
+[changelog]:https://github.com/kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md#270
 
 2.7 includes a minor breaking change that affects the `CombinedRoutes` feature
 gate, but is otherwise not expected to require changes to the existing
@@ -289,8 +288,8 @@ kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
 ```
 
 Once the new pods are in a `Ready` state, the upgrade is complete. Update your
-`values.yaml` file to use the new Kong and ingress controller image versions to
-continue using these through future upgrades.
+`values.yaml` file to use the new Kong and {{site.kic_product_name}} image
+versions to continue using these through future upgrades.
 
 ### Rollback
 
@@ -314,4 +313,3 @@ identify and correct these issues, or reference the
 [troubleshooting documentation][troubleshooting].
 
 [troubleshooting]:/kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting/
-[admission]:/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook
