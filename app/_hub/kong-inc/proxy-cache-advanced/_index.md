@@ -86,6 +86,13 @@ params:
       datatype: boolean
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
+    - name: cache_lowercase_uri
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        When enabled, the incoming request will be lowercase before fed into the Cache-Key calculation.
     - name: storage_ttl
       required: false
       default: null
