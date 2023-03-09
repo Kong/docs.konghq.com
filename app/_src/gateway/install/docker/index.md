@@ -441,7 +441,7 @@ docker network rm kong-net
 
 ## Running Kong in read-only mode
 
-Starting with version 3.2.0 of {{site.base_gateway}} it is possible to run the container in read-only mode. To do so, mount a Docker volume to the locations where Kong needs to write data. The default configuration requires write access to `/tmp` and to the prefix path, as provided by the following example:
+Starting with {{site.base_gateway}} 3.2.0, you can run the container in read-only mode. To do so, mount a Docker volume to the locations where Kong needs to write data. The default configuration requires write access to `/tmp` and to the prefix path:
 
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
