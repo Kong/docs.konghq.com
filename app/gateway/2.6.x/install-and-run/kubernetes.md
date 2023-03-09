@@ -66,7 +66,7 @@ oc new-project kong
 
     ```sh
     ## Kong Gateway (OSS) on Kubernetes native
-    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
+    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
     ```
 
     This might take a few minutes.
