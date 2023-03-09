@@ -72,7 +72,7 @@ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-contr
 {% endnavtab %}
 {% navtab Kubernetes (OSS) %}
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
 ```
 {% endnavtab %}
 {% navtab OpenShift %}

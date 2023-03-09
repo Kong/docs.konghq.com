@@ -332,6 +332,7 @@ tbl
 tcp
 tcpdump
 tcpingress
+tcpingresses
 teardown
 templated
 tfvars
@@ -347,6 +348,7 @@ truthy
 ttl
 txt
 udpingress
+udpingresses
 unary
 uncheck
 unchecking
