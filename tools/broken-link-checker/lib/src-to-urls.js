@@ -32,10 +32,12 @@ async function srcToUrls(pattern, src) {
 
     urls = urls.concat(
       r.map((u) => {
-        const url = u.is_absolute ? "" : u.url;
+        const prefix = u.is_absolute
+          ? ""
+          : `/${entry.product}/${entry.release}`;
         return {
           source: src,
-          url: `/${entry.product}/${entry.release}${url}`,
+          url: `${prefix}${u.url}`,
         };
       })
     );
