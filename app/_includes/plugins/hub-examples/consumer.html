@@ -1,6 +1,8 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
 The following examples provide some typical configurations for enabling
-the <code>{{page.configuration.name}}</code> plugin on a
+the <code>{{ hub_example.plugin_name }}</code> plugin on a
 [consumer](/gateway/latest/admin-api/#consumer-object).
 
 {% navtabs %}
@@ -8,10 +10,7 @@ the <code>{{page.configuration.name}}</code> plugin on a
 
 Make the following request:
 
-```bash
-curl -X POST http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins \
-  --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
-```
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
 Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
@@ -29,15 +28,7 @@ You can combine `consumer.id`, `service.id`, or `route.id`
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
 resource:
 
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: {{page.configuration.name}}-example
-{% if include.config_required_fields_k8s == 'config: ' %}config:
-  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_k8s }}{% endif %}
-plugin: {{page.configuration.name}}
-```
+{% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
 Then, apply it to a [consumer](/gateway/latest/admin-api/#consumer-object) by
 annotating the KongConsumer resource as follows:
@@ -48,7 +39,7 @@ kind: KongConsumer
 metadata:
   name: CONSUMER_NAME|CONSUMER_ID
   annotations:
-    konghq.com/plugins: {{page.configuration.name}}-example
+    konghq.com/plugins: {{ hub_example.plugin_name }}-example
     kubernetes.io/ingress.class: kong
   ```
 
@@ -69,20 +60,14 @@ Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that
 
 Add this section to your declarative configuration file:
 
-``` yaml
-plugins:
-- name: {{page.configuration.name}}
-  consumer: CONSUMER_NAME|CONSUMER_ID
-  {% if include.config_required_fields_yaml == 'config: ' %}config:
-    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
-```
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
 Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+  {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Kong Manager %}
 
 You can configure this plugin through the Kong Manager UI.
@@ -90,20 +75,23 @@ You can configure this plugin through the Kong Manager UI.
 1. In Kong Manager, select the workspace.
 2. From the **Consumers** section, click **View** for the consumer row.
 3. Select the **Plugins** tab, then click **Add Plugin**.
-4. Find and select the **{{ include.name }}** plugin.
+4. Find and select the **{{ page.name }}** plugin.
     {% if page.enterprise == true or page.plus == true %}
       <blockquote class="note">
       <strong>Note:</strong> If the plugin is greyed out, then it is not available
       for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
       </blockquote>
-    {% endif %}
+    {%- endif %}
 5. If the option is available, select **Scoped**.
-6. Add the consumer ID if it is not already prefilled.{% unless
-    include.config_required_fields_gui == empty %}
+6. Add the consumer ID if it is not already prefilled.
+{% unless kong_manager_fields.size  == 0 -%}
 7. Configure the plugin's [parameters](#parameters).
 
     You can test out the plugin with the following sample configuration:
-    {{ include.config_required_fields_gui }}{% endunless %}
+    {% for field in kong_manager_fields %}
+    * {{ field }}
+    {% endfor -%}
+{%- endunless %}
 7. Click **Create**.
     {% endnavtab %}
   {% endunless %}

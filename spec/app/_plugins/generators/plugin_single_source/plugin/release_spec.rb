@@ -100,4 +100,28 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       end
     end
   end
+
+  describe '#example' do
+    context 'when there is an example for the specific version' do
+      let(:is_latest) { false }
+      let(:version) { '2.5.x' }
+      let(:source) { '_2.2.x' }
+
+      it 'loads the corresponding example file' do
+        expect(subject.example)
+          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/acme/jwt-signer/examples/_2.2.x.yml', site.source))))
+      end
+    end
+
+    context 'when there is not a specific example ' do
+      let(:source) { '_index' }
+      let(:version) { '3.0.x' }
+      let(:is_latest) { true }
+
+      it 'loads the _index.yaml example file' do
+        expect(subject.example)
+          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/acme/jwt-signer/examples/_index.yml', site.source))))
+      end
+    end
+  end
 end

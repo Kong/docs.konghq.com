@@ -1,6 +1,8 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
 The following examples provide some typical configurations for enabling
-the <code>{{page.configuration.name}}</code> plugin on a
+the <code>{{ hub_example.plugin_name }}</code> plugin on a
 [route](/gateway/latest/admin-api/#route-object).
 
 {% navtabs %}
@@ -8,10 +10,7 @@ the <code>{{page.configuration.name}}</code> plugin on a
 
 Make the following request:
 
-```bash
-curl -X POST http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins \
-  --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
-```
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
 Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
 
@@ -23,15 +22,7 @@ Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plu
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
 resource:
 
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: {{page.configuration.name}}-example
-{% if include.config_required_fields_k8s == 'config: ' %}config:
-  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_k8s }}{% endif %}
-plugin: {{page.configuration.name}}
-```
+{% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
 Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route-object))
 by annotating the ingress as follows:
@@ -43,7 +34,7 @@ metadata:
   name: ROUTE_NAME|ROUTE_ID
   annotations:
     kubernetes.io/ingress.class: kong
-    konghq.com/plugins: {{page.configuration.name}}-example
+    konghq.com/plugins: {{ hub_example.plugin_name }}-example
 spec:
   rules:
   - host: examplehostname.com
@@ -74,19 +65,13 @@ Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plu
 
 Add this section to your declarative configuration file:
 
-```yaml
-plugins:
-- name: {{page.configuration.name}}
-  route: ROUTE_NAME
-  {% if include.config_required_fields_yaml == 'config: ' %}config:
-    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
-```
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
 Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration
   will target.
 {% endnavtab %}
 {% endunless %}
-{% unless page.configuration.konnect_examples == false or include.publisher != "Kong Inc." %}
+{% unless page.configuration.konnect_examples == false or page.publisher != "Kong Inc." %}
 {% navtab Konnect Cloud %}
 
 You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
@@ -95,39 +80,45 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 
 1. Select a route.
 2. In the **Plugins** section, click **Add Plugin**.
-3. Find and select the **{{ include.name }}** plugin.{% unless
-  include.config_required_fields_gui == empty %}
+3. Find and select the **{{ page.name }}** plugin.{% unless
+  kong_manager_fields.size  == 0 %}
 4. Configure the plugin's [parameters](#parameters).
 
     You can test out the plugin with the following sample configuration:
-    {{ include.config_required_fields_gui }}{% endunless %}
+    {% for field in kong_manager_fields %}
+    * {{ field }}
+    {% endfor -%}
+{%- endunless %}
 5. Click **Create**.
 
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+  {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Kong Manager %}
 
 You can configure this plugin through the Kong Manager UI.
 
 1. In Kong Manager, select the workspace.
-2. Open **Routes** from the menu, then click **View** for the
-route row.
+2. Open **Routes** from the menu, then click **View** for the route row.
 3. From the plugin section, click **Add Plugin**.
-4. Find and select the **{{ include.name }}** plugin.{%
-    if page.enterprise == true or page.plus == true %}
+4. Find and select the **{{ page.name }}** plugin.
+  {% if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
-    </blockquote>{% endif %}
+    </blockquote>
+  {%- endif %}
 5. If the option is available, select **Scoped**.
-6. Add the route ID if it is not already prefilled.{% unless
-  include.config_required_fields_gui == empty %}
+6. Add the route ID if it is not already prefilled.
+{% unless kong_manager_fields.size == 0 -%}
 7. Configure the plugin's [parameters](#parameters).
 
     You can test out the plugin with the following sample configuration:
-    {{ include.config_required_fields_gui }}{% endunless %}
+    {% for field in kong_manager_fields %}
+    * {{ field }}
+    {% endfor -%}
+{%- endunless %}
 8. Click **Create**.
 
     {% endnavtab %}

@@ -33,7 +33,8 @@ module PluginSingleSource
           'extn_icon' => extn_icon,
           'layout' => layout,
           'page_type' => 'plugin',
-          'book' => "plugins/#{@release.vendor}/#{@release.name}/#{@release.version}"
+          'book' => "plugins/#{@release.vendor}/#{@release.name}/#{@release.version}",
+          'hub_examples' => hub_examples
         }
       end
 
@@ -58,6 +59,15 @@ module PluginSingleSource
 
       def configuration
         { 'configuration' => @release.configuration_parameters_table }
+      end
+
+      def hub_examples
+        return unless @release.example
+
+        ::Jekyll::Drops::Plugins::HubExamples.new(
+          config: @release.configuration_parameters_table,
+          example: @release.example
+        )
       end
     end
   end

@@ -70,8 +70,8 @@ module PluginSingleSource
           'ssg_hub' => ssg_hub,
           'layout' => 'plugins/show',
           'title' => page_title,
-          'versions_dropdown' => Drops::VersionsDropdown.new(self),
-          'breadcrumbs' => Drops::Breadcrumbs.new(breadcrumbs).breadcrumbs
+          'versions_dropdown' => ::Jekyll::Drops::Plugins::VersionsDropdown.new(self),
+          'breadcrumbs' => ::Jekyll::Drops::Plugins::Breadcrumbs.new(breadcrumbs).breadcrumbs
         }
       end
 

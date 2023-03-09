@@ -1,0 +1,4 @@
+```bash
+curl -X POST {{ include.example.url }} \
+{% for param in include.example.params %}    --data "{{ param }}"{% unless forloop.last %}  \{% endunless %}
+{% endfor %}```

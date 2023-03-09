@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'forwardable'
+require 'yaml'
 
 module PluginSingleSource
   module Plugin
@@ -91,6 +92,16 @@ module PluginSingleSource
                                else
                                  "#{plugin_base_path}/#{@source}/"
                                end
+      end
+
+      def example
+        @example ||= YAML.load(
+          File.read(File.expand_path("examples/#{@source}.yml", plugin_base_path))
+        )
+      rescue StandardError => _e
+        # TODO: remove this once we have examples for every plugin
+        p "Missing example for plugin: #{vendor}/#{name}"
+        { 'name' => name }
       end
 
       private

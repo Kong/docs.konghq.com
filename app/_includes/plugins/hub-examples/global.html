@@ -1,24 +1,23 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
 {% if page.configuration.global == false %}
   {:.important}
   > This plugin cannot be enabled globally. Please select another tab.
 {% else %}
-  A plugin which is not associated to any service, route, or consumer is
-  considered _global_, and will be run on every request. Read the
-  [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
-  sections for more information.
+A plugin which is not associated to any service, route, or consumer is
+considered _global_, and will be run on every request. Read the
+[Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
+sections for more information.
 
-  The following examples provide some typical configurations for enabling
-  the <code>{{page.configuration.name}}</code> plugin globally.
+The following examples provide some typical configurations for enabling
+the <code>{{page.configuration.name}}</code> plugin globally.
   {% navtabs %}
     {% navtab Admin API %}
 
 Make the following request:
 
-```bash
-curl -X POST http://localhost:8001/plugins/ \
-  --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
-```
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
     {% endnavtab %}
 
@@ -32,14 +31,15 @@ resource and label it as global:
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
-  name: <global-{{page.configuration.name}}>
+  name: <global-{{ hub_example.plugin_name }}>
   annotations:
     kubernetes.io/ingress.class: kong
   labels:
     global: \"true\"
-{% if include.config_required_fields_k8s == 'config: ' %}config:
-  <optional_parameter>: <value>{% else %}{{ include.config_required_fields_k8s }}{% endif %}
-plugin: {{page.configuration.name}}
+config:
+  {%- for line in hub_example.kubernetes.example_config %}
+  {{ line }}{%- endfor %}
+plugin: {{ hub_example.plugin_name }}
 ```
 
       {% endnavtab %}
@@ -51,16 +51,12 @@ plugin: {{page.configuration.name}}
 Add a <code>plugins</code> entry in the declarative
 configuration file:
 
-``` yaml
-plugins:
-- name: {{page.configuration.name}}
-  {% if include.config_required_fields_yaml == 'config: ' %}config:
-    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
-```
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
+
       {% endnavtab %}
     {% endunless %}
 
-    {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+    {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
       {% navtab Kong Manager %}
 
 
@@ -68,18 +64,21 @@ You can configure this plugin through the Kong Manager UI.
 
 1. In Kong Manager, select the workspace.
 2. Open **Plugins** from the menu, then click **New Plugin**.
-3. Find and select the **{{ include.name }}** plugin.{%
+3. Find and select the **{{ page.name }}** plugin.{%
     if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
     </blockquote>{% endif %}
-4. If the option is available, set the plugin scope to **Global**.{% unless
-    include.config_required_fields_gui == empty %}
+4. If the option is available, set the plugin scope to **Global**.
+{% unless kong_manager_fields.size == 0 -%}
 5. Configure the plugin's [parameters](#parameters).
 
     You can test out the plugin with the following sample configuration:
-    {{ include.config_required_fields_gui }}{% endunless %}
+    {% for field in kong_manager_fields %}
+    * {{ field }}
+    {% endfor -%}
+{%- endunless %}
 6. Click **Create**.
 
       {% endnavtab %}

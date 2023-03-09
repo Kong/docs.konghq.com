@@ -1,7 +1,8 @@
-
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
 The following examples provide some typical configurations for enabling
-the <code>{{page.configuration.name}}</code> plugin on a
+the <code>{{ hub_example.plugin_name }}</code> plugin on a
 [service](/gateway/latest/admin-api/#service-object).
 
 {% navtabs %}
@@ -9,10 +10,7 @@ the <code>{{page.configuration.name}}</code> plugin on a
 
 Make the following request:
 
-```bash
-curl -X POST http://localhost:8001/services/SERVICE_NAME|SERVICE_ID/plugins \
-    --data "name={{page.configuration.name}}" {{ include.config_required_fields }}
-```
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
 Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that this plugin configuration will target.
 
@@ -24,15 +22,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
 resource:
 
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: {{page.configuration.name}}-example
-{% if include.config_required_fields_k8s == 'config: ' %}config:
-  EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_k8s }}{% endif %}
-plugin: {{page.configuration.name}}
-```
+{% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
 Next, apply the KongPlugin resource to a
 [service](/gateway/latest/admin-api/#service-object) by annotating the
@@ -46,7 +36,7 @@ metadata:
   labels:
     app: SERVICE_NAME|SERVICE_ID
   annotations:
-    konghq.com/plugins: {{page.configuration.name}}-example
+    konghq.com/plugins: {{ hub_example.plugin_name }}-example
 spec:
   ports:
   - port: 80
@@ -74,20 +64,14 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
 
 Add this section to your declarative configuration file:
 
-``` yaml
-plugins:
-- name: {{page.configuration.name}}
-  service: SERVICE_NAME|SERVICE_ID
-  {% if include.config_required_fields_yaml == 'config: ' %}config:
-    EXAMPLE_PARAMETER: EXAMPLE_VALUE{% else %}{{ include.config_required_fields_yaml }}{% endif %}
-```
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
 Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that this plugin configuration will target.
 
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.konnect_examples == false or include.publisher != "Kong Inc." %}
+  {% unless page.configuration.konnect_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Konnect Cloud %}
 
 You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
@@ -95,40 +79,45 @@ You can configure this plugin through the [{{site.konnect_short_name}}](https://
 From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then set up the plugin:
 
 1. In the **Plugins** section, click **Add Plugin**.
-2. Find and select the **{{ include.name }}** plugin.{% unless
-  include.config_required_fields_gui == empty %}
+2. Find and select the **{{ page.name }}** plugin.{% unless
+  kong_manager_fields.size == 0 %}
 3. Configure the plugin's [parameters](#parameters).
 
     You can test out the plugin with the following sample configuration:
-    {{ include.config_required_fields_gui }}{% endunless %}
+    {% for field in kong_manager_fields %}
+    * {{ field }}
+    {% endfor -%}
+{%- endunless %}
 4. Click **Create**.
 
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.manager_examples == false or include.publisher != "Kong Inc." %}
+  {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Kong Manager %}
 
 You can configure this plugin through the Kong Manager UI.
 
 1. In Kong Manager, select the workspace.
-2. From the **Services** section, click **View** for the
-service row.
+2. From the **Services** section, click **View** for the service row.
 3. From the plugin section, click **Add Plugin**.
-4. Find and select the **{{ include.name }}** plugin.{%
-    if page.enterprise == true or page.plus == true %}
+4. Find and select the **{{ page.name }}** plugin.
+  {% if page.enterprise == true or page.plus == true %}
     <blockquote class="note">
     <strong>Note:</strong> If the plugin is greyed out, then it is not available
     for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
-    </blockquote>{% endif %}
+    </blockquote>
+    {%- endif %}
 5. If the option is available, select **Scoped**.
-6. Add the service name and ID to the **Service** field if it
-is not already pre-filled.{% unless
-    include.config_required_fields_gui == empty %}
+6. Add the service name and ID to the **Service** field if it is not already pre-filled.
+{% unless kong_manager_fields.size == 0 -%}
 8. Configure the plugin's [parameters](#parameters).
 
     You can test out the plugin with the following sample configuration:
-    {{ include.config_required_fields_gui }}{% endunless %}
+    {% for field in kong_manager_fields %}
+    * {{ field }}
+    {% endfor -%}
+{%- endunless %}
 9. Click **Create**.
 
     {% endnavtab %}

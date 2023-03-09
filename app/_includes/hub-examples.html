@@ -1,175 +1,33 @@
-<!-- Generate Konnect and Kong Manager examples -->
-{% capture config_required_fields_gui %}{%
-  for field in include.configuration.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{% assign capfields = field.name | split: '_' %}{% capture titlecase %}{% for capfield in capfields %}{{ capfield | capitalize }} {% endfor %}{% endcapture %}{%
-    if field.required == true and field.value_in_examples != nil %}{%
-      if field.value_in_examples == false or field.value_in_examples == true %}
-    * Config.{{ titlecase | rstrip }}: {{ field.value_in_examples | replace: false, "clear checkbox" | replace: true, "select checkbox" }}{%
-      else %}{%
-        if field.value_in_examples.first %}{%
-          for value in field.value_in_examples %}{%
-            if field.value_in_examples contains "'" %}
-    * Config.{{ titlecase | rstrip }}: `{{ value | replace: "'", "" }}`{%
-            else %}
-    * Config.{{ titlecase | rstrip }}: `{{ value }}`{%
-            endif %}{%
-          endfor %}{%
-        else %}{%
-          if field.value_in_examples contains "'" %}
-    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{%
-          else %}
-    * Config.{{ titlecase | rstrip }}: `{{ field.value_in_examples }}`{%
-          endif %}{%
-        endif %}{%
-      endif %}{%
-    endif %}{% endif_plugin_version %}{%
-  endfor %}{%
-endcapture %}
+{%- assign hub_examples = page.hub_examples -%}
 
-<!-- Generate cURL examples -->
-{% capture config_required_fields %}{%
-  for field in include.configuration.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
-  if field.value_in_examples != nil %}{%
-  if field.value_in_examples.first %}{%
-  for value in field.value_in_examples %} \{%
-    if field.datatype == "map" %}{% assign mapValues = value | split: ":" %}
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] | replace: "'", "" }}'{% else %}"config.{{ field.name }}.{{ mapValues[0] }}={{ mapValues[1] }}"{% endif %}{%
-    else %}
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ value | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ value }}"{% endif %}{% endif %}{%
-  endfor %}{%
-  else %} \
-    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} {% if field.value_in_examples contains "'" %}'config.{{ field.name }}={{ field.value_in_examples | replace: "'", "" }}'{% else %}"config.{{ field.name }}={{ field.value_in_examples }}"{% endif %}{%
-  endif %}{%
-  endif %}{% endif_plugin_version %}{% endfor
-%}{% endcapture %}
+{% capture global_content %}
+{%- include plugins/hub-examples/global.html hub_example=hub_examples.global -%}
+{% endcapture %}
 
-<!-- Generate declarative yaml examples -->
-{% capture config_required_fields_yaml
-  %}config: {%
-  for field in include.configuration.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
-  if field.value_in_examples != nil %}{%
-    if field.value_in_examples.first %}{%
-        if field.name contains "." %}{%
-          assign names = field.name | split: "." %}
-    {{ names[0] }}:{%
-      for name in names offset:1 %}
-      {{ name }}:{% endfor %}{%
-      for value in field.value_in_examples %}
-      - {{ value }}{%
-      endfor %}{% else %}
-    {{ field.name }}:{%
-    for value in field.value_in_examples %}{%
-      if field.datatype == "map" %}
-      {{ value | replace: ":", ": " }}{% else %}
-    - {{ value }}{% endif %}{%
-    endfor %}{% endif %}{%
-    elsif field.name contains "." %}{%
-          assign names = field.name | split: "." %}
-    {{ names[0] }}:{%
-      for name in names offset:1 %}
-      {{ name }}:{% endfor %} {{ field.value_in_examples }}{%
-    else %}
-    {{ field.name }}: {{ field.value_in_examples }}{%
-    endif %}{%
-  endif %}{% endif_plugin_version %}{% endfor
-%}{% endcapture %}
-
-<!-- Generate kubernetes examples (different indentation from declarative) -->
-{% capture config_required_fields_k8s
-%}config: {%
-for field in page.configuration.config %}{% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}{%
-assign example = field.value_in_examples
-%}{%
-if field.value_in_examples_serialized%}{%
-assign example = field.value_in_examples_serialized
-%}{% endif %}{%
-if example != nil %}{%
-  if example.first %}{%
-      if field.name contains "." %}{%
-        assign names = field.name | split: "." %}
-  {{ names[0] }}:{%
-    for name in names offset:1 %}
-    {{ name }}:{% endfor %}{%
-    for value in example %}
-    - {{ value }}{%
-    endfor %}{% else %}
-  {{ field.name }}:{%
-  for value in example %}{%
-    if field.datatype == "map" %}
-    {{ value | replace: ":", ": " }}{% else %}
-  - {{ value }}{% endif %}{%
-  endfor %}{% endif %}{%
-  elsif field.name contains "." %}{%
-        assign names = field.name | split: "." %}
-  {{ names[0] }}:{%
-    for name in names offset:1 %}
-    {{ name }}:{% endfor %} {{ example }}{%
-  else %}
-  {{ field.name }}: {{ example }}{%
-  endif %}{%
-endif %}{% endif_plugin_version %}{% endfor
-%}{% endcapture %}
-
-<!-- Layout text -->
-
-{% if page.configuration.service_id or page.configuration.route_id or page.configuration.consumer_id %}
+{% if hub_examples.navtabs? %}
   {% navtabs parent %}
-    {% if page.configuration.service_id %}
+    {% if hub_examples.service %}
       {% navtab Enable on a service %}
-          {% include plugins/hub-examples/service.html
-                     config_required_fields=config_required_fields
-                     config_required_fields_k8s=config_required_fields_k8s
-                     config_required_fields_yaml=config_required_fields_yaml
-                     config_required_fields_gui=config_required_fields_gui
-                     publisher=include.publisher
-                     name=include.name
-          %}
+        {%- include plugins/hub-examples/service.html hub_example=hub_examples.service -%}
       {% endnavtab %}
     {% endif %}
 
-    {% if page.configuration.route_id %}
+    {% if hub_examples.route %}
       {% navtab Enable on a route %}
-        {% include plugins/hub-examples/route.html
-                   config_required_fields=config_required_fields
-                   config_required_fields_k8s=config_required_fields_k8s
-                   config_required_fields_yaml=config_required_fields_yaml
-                   config_required_fields_gui=config_required_fields_gui
-                   publisher=include.publisher
-                   name=include.name
-        %}
+        {%- include plugins/hub-examples/route.html hub_example=hub_examples.route -%}
       {% endnavtab %}
     {% endif %}
 
-    {% if page.configuration.consumer_id %}
+    {% if hub_examples.consumer %}
       {% navtab Enable on a consumer %}
-        {% include plugins/hub-examples/consumer.html
-                   config_required_fields=config_required_fields
-                   config_required_fields_k8s=config_required_fields_k8s
-                   config_required_fields_yaml=config_required_fields_yaml
-                   config_required_fields_gui=config_required_fields_gui
-                   publisher=include.publisher
-                   name=include.name
-        %}
+        {%- include plugins/hub-examples/consumer.html hub_example=hub_examples.consumer -%}
       {% endnavtab %}
     {% endif %}
 
     {% navtab Enable globally %}
-      {% include plugins/hub-examples/global.html
-                 config_required_fields=config_required_fields
-                 config_required_fields_k8s=config_required_fields_k8s
-                 config_required_fields_yaml=config_required_fields_yaml
-                 config_required_fields_gui=config_required_fields_gui
-                 publisher=include.publisher
-                 name=include.name
-      %}
+      {{ global_content | markdownify }}
     {% endnavtab %}
   {% endnavtabs %}
 {% else %}
-  {% include plugins/hub-examples/global.html
-             config_required_fields=config_required_fields
-             config_required_fields_k8s=config_required_fields_k8s
-             config_required_fields_yaml=config_required_fields_yaml
-             config_required_fields_gui=config_required_fields_gui
-             publisher=include.publisher
-             name=include.name
-  %}
+  {{ global_content | markdownify }}
 {% endif %}

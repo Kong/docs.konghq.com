@@ -9,6 +9,10 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
 
   subject { described_class.generate(release:) }
 
+  shared_examples_for 'includes the hub_examples' do
+    it { expect(subject['hub_examples']).to be_an_instance_of(Jekyll::Drops::Plugins::HubExamples) }
+  end
+
   describe '#build_data' do
     context 'when it is the latest version of the plugin' do
       let(:is_latest) { true }
@@ -46,6 +50,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
         expect(subject['configuration'])
           .to include(SafeYAML.load(File.read(File.expand_path('_hub/acme/jwt-signer/_configuration.yml', site.source))))
       end
+
+      it_behaves_like 'includes the hub_examples'
     end
 
     context 'when it is not the latest version of the plugin' do
@@ -84,6 +90,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
         expect(subject['configuration'])
           .to include(SafeYAML.load(File.read(File.expand_path('_hub/acme/jwt-signer/_2.2.x/_configuration.yml', site.source))))
       end
+
+      it_behaves_like 'includes the hub_examples'
     end
 
     context 'when there are frontmatter overrides' do
