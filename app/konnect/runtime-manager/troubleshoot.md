@@ -5,10 +5,14 @@ content_type: how-to
 
 ## Out of sync runtime instance
 
+**Problem**
+
 Occasionally, a {{site.base_gateway}} runtime instance might get out of sync
 with the {{site.konnect_short_name}} control plane. If this happens, you will
 see the status `Out of sync` on the Runtime Instances page, meaning the control
 plane can't communicate with the instance.
+
+**Solution**
 
 Troubleshoot the issue using the following methods:
 
@@ -37,8 +41,12 @@ If you are unable to resolve sync issues using the above methods, contact
 
 ## Missing functionality
 
+**Problem**
+
 If a {{site.konnect_short_name}} feature isn’t working on your runtime instance,
 the version may be out of date.
+
+**Solution**
 
 Verify that your instance versions are up to date:
 

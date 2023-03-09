@@ -17,7 +17,7 @@ For more information, see [Control Plane and Data Plane Communication through a 
 
 We recommend running one major version (2.x or 3.x) of a runtime instance per
 runtime group, unless you are in the middle of version upgrades to the data plane.
-Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
+Mixing versions may cause [compatibility issues](/konnect/runtime-manager/version-compatibility).
 
 <!-- Runtime Manager provides pre-populated templates for AWS and Azure that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}. -->
 
