@@ -29,14 +29,14 @@ kumactl install control plane \
 {% endnavtab %}
 {% navtab Helm %}
 ```sh
-helm install kuma \
-  --namespace kuma-system \
+helm install kong-mesh \
+  --namespace kong-mesh-system \
   --set kuma.controlPlane.image.repository=ubi-kuma-cp \
   --set kuma.dataPlane.image.repository=ubi-kuma-dp \
   --set kuma.dataPlane.image.repository=ubi-kuma-dp \
   --set kuma.dataPlane.initImage.repository=ubi-kuma-dp \
   --set kuma.kumactl.image.repository=ubi-kumactl \
-  kuma/kuma
+  kong-mesh/kong-mesh
 ```
 {% endnavtab %}
 {% endnavtabs %}
