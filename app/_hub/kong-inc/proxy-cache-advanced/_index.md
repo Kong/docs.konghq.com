@@ -86,7 +86,7 @@ params:
       datatype: boolean
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
-    - name: cache_lowercase_uri
+    - name: ignore_uri_case
       required: false
       default: false
       value_in_examples: null
