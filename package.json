@@ -64,7 +64,7 @@
     ]
   },
   "dependencies": {
-    "@segment/analytics-next": "1.51.1",
+    "@segment/analytics-next": "1.51.2",
     "js-cookie": "^3.0.1"
   }
 }
