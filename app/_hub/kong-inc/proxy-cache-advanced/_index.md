@@ -92,7 +92,7 @@ params:
       value_in_examples: null
       datatype: boolean
       description: |
-        When enabled, the incoming request will be lowercase before fed into the Cache-Key calculation.
+        When enabled, the incoming request will be lowercase before feeding into the Cache-Key calculation.
     - name: storage_ttl
       required: false
       default: null
