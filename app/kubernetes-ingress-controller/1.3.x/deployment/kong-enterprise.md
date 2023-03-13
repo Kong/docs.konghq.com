@@ -56,7 +56,7 @@ Ingress Controller.
 ## Install
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-postgres-enterprise.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-postgres-enterprise.yaml
 ```
 
 It takes a little while to bootstrap the database.
