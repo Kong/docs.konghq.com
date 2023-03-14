@@ -634,6 +634,7 @@
 /install/:version/  /mesh/:version/install/
 /mesh/:version/documentation/introduction/  /mesh/:version/
 /mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
+/mesh/:version/overview /mesh/:version/
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
