@@ -343,7 +343,7 @@ To delete a runtime group, you can use the Runtime Manager or the
 
 When a runtime group is deleted, all associated entities are also deleted.
 This includes all entities configured in the Runtime Manager for this group.
-As a best practice, [back up](/konnect/runtime-groups/backup-restore/) a runtime 
+As a best practice, [back up](/konnect/runtime-manager/backup-restore/) a runtime 
 group's configuration before deleting it to avoid losing necessary configuration.
 
 Runtime instances that are still active when the group is deleted will not be
