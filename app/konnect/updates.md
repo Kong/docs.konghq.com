@@ -257,7 +257,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
-: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage) or with [decK](/konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck).
+: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups/), then read up on how to manage them with the [UI or with decK](/konnect/runtime-manager/manage-runtime-groups/).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
   * Certificate rotation and management:
@@ -266,7 +266,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
     * The validity period for runtime instance certificates has been extended from six months to ten years.
   * Reworked Gateway configuration UI:
     * The Shared Config menu is now part of Runtime Manager. Manage your Gateway services, routes, plugins, upstreams, SNIs, and certificates through a runtime group, alongside all of the runtime instances in that group.
-  * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage).
+  * You can use [labels for categorizing runtime groups](/konnect/reference/labels/).
   Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of {{site.konnect_short_name}} entities.
 
 **Teams and roles**
