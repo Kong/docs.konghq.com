@@ -249,6 +249,8 @@
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
 /konnect/migrate/                                   /konnect/getting-started/import/
+/konnect/runtime-manager/runtime-groups/declarative-config/ /konnect/runtime-manager/manage-runtime-groups/
+/konnect/runtime-manager/runtime-groups/manage/             /konnect/runtime-manager/manage-runtime-groups/
 /konnect/getting-started/declarative-config/        /konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
