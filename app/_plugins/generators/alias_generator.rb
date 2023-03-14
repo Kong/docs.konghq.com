@@ -43,8 +43,8 @@ module Jekyll
       # Generate redirect_to from frontmatter redirects
       redirects.concat(frontmatter_aliases)
 
-      # Read existing _mesh_redirects file
-      redirects.concat(mesh_redirects)
+      # Read existing _common_redirects file from Kuma
+      redirects.concat(kuma_redirects)
 
       # Write out a _redirects file
       site.pages << build_page(redirects)
@@ -92,11 +92,11 @@ module Jekyll
       )
     end
 
-    def mesh_redirects
-      @mesh_redirects ||= File.readlines(
-        File.join(@site.source, '_mesh_redirects'),
+    def kuma_redirects
+      @kuma_redirects ||= File.readlines(
+        File.join(@site.source, '_src/.repos/kuma/app/_common_redirects'),
         chomp: true
-      )
+      ).map { |redirect| redirect.gsub('/docs/', '/mesh/') }
     end
   end
 end
