@@ -12,9 +12,11 @@ module Jekyll
             'service' => 'http://localhost:8001/services/SERVICE_NAME|SERVICE_ID/plugins'
           }.freeze
 
-          # XXX: handle url_encode somehow...
           def params
-            @params ||= ["name=#{plugin_name}", config_to_params].flatten.map(&:to_s)
+            @params ||= [
+              Fields::Curl.new(key: 'name', values: plugin_name),
+              config_to_params
+            ].flatten
           end
 
           def url
@@ -25,8 +27,16 @@ module Jekyll
 
           def config_to_params
             @example.fetch('config', []).map do |field, values|
-              Fields::Base.make_for(key: "config.#{field}", values:)
+              Fields::Curl.make_for(
+                key: "config.#{field}",
+                values:,
+                options: field_config(field)
+              )
             end
+          end
+
+          def field_config(field)
+            @config.fetch('config', {}).detect { |f| f['name'] == field } || {}
           end
         end
       end
