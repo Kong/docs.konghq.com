@@ -107,9 +107,6 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
   particular plugin entity.
   [#10077](https://github.com/Kong/kong/pull/10077)
 
-* [**New plugin: Datadog Tracing**](/hub/kong-inc/datadog-tracing/) (`datadog-tracing`)
-  * The Datadog Tracing plugin integrates Kong Gateway with the Datadog Application Performance Monitoring (APM) platform so that proxy requests handled by Kong Gateway can be identified and analyzed by Datadog.
-
 * [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
   * Added support for setting the durations of Kong phases as span tags
   through the configuration property `phase_duration_flavor`.
