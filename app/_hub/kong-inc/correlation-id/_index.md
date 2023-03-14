@@ -107,11 +107,11 @@ To edit your Nginx parameters, do the following:
 
 1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`.
 1. Add a `log_format` section on the root level of the config file which includes the
-  `$sent_http_Kong_Request_ID` variable.
+  `$http_Kong_Request_ID` variable.
 
    In the following example, we create a new log format named `customformat`.
    It's a copy of the default `combined` log format, but the last line adds
-   `$sent_http_Kong_Request_ID`, preceded by the string `Kong-Request-ID=`.
+   `$http_Kong_Request_ID`, preceded by the string `Kong-Request-ID=`.
    Marking the variable this way is optional, and will make testing the feature easier.
    Further customize the `log_format` by adding or removing
    [variables](http://nginx.org/en/docs/http/ngx_http_log_module.html):
