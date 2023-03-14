@@ -356,4 +356,4 @@ against {{site.konnect_short_name}}.
 ## See also
 
 * [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import)
-* [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config)
+* [Manage runtime groups with decK](/konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck)
