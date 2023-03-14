@@ -536,14 +536,6 @@ messages:
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
       [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/)
-  - ID: D155
-    Severity: error
-    Description: |
-      Plugin `datadog-tracing` is not available in Kong Gateway versions < 3.2.
-    Resolution: |
-      Please upgrade Kong Gateway to version `3.2` or above.
-    DocumentationURL: |
-      [Datadog Tracing plugin](/hub/kong-inc/datadog-tracing/)
   - ID: D156
     Severity: warning
     Description: |
