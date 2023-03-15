@@ -15,8 +15,8 @@ no_version: true
 
 #### Plugins
 * SAML: 
-    * Fix the SAML plugin to work on read-only file system.
-    * Fix the SAML plugin to handle the field session_auth_ttl (removed since 3.2.0.0).
+    * The SAML plugin now works on read-only file systems.
+    * The SAML plugin can now handle the field `session_auth_ttl` (removed since 3.2.0.0).
 
 * Datadog Tracing plugin: We found some late-breaking issues with the Datadog Tracing plugin and elected to remove it from the 3.2 release. We plan to add the plugin back with the issues fixed in a later release. 
 
