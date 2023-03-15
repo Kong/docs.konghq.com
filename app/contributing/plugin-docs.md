@@ -90,7 +90,9 @@ the README - you should find your Hub contribution listed at
     git push --set-upstream origin [name_of_your_new_branch]
     ```
 
-1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Plugin Hub. 
+1. Make a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
+against the [docs.konghq.com](https://github.com/Kong/docs.konghq.com/) 
+repository to add your documentation to the Plugin Hub. 
 
 The Kong docs team will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Plugin Hub addition!
