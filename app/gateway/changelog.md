@@ -5,6 +5,23 @@ no_version: true
 
 <!-- vale off -->
 
+##3.2.2.0
+**Release Date** 2023-03-15
+
+### Fixes 
+#### Enterprise
+* In Kong 3.2.1.0 and 3.2.1.1, alpine and ubuntu ARM64 artifacts incorrecty handles HTTP2 requests, causing the protocol to fail. The affected artifacts have been removed. This has been fixed in 3.2.2.0 release.
+* In Kong >= 3.0.0.0, < 3.2.2.0, the default logrotate file /etc/logrotate.d/kong-enterprise-edition is missing. This has been fixed in 3.2.2.0 release.
+
+#### Plugins
+* SAML
+Fix the SAML plugin to work on read-only file system.
+Fix the SAML plugin to handle the field session_auth_ttl (removed since 3.2.0.0).
+
+* Datadog Tracing plugin
+We found some late breaking issues with the datadog-tracing plugin and elected to remove it from the 3.2 release. We plan to add the plugin back with the issues fixed in a later release. 
+
+
 ## 3.2.1.0
 **Release Date** 2023/02/28
 
