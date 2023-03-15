@@ -10,8 +10,8 @@ no_version: true
 
 ### Fixes 
 #### Enterprise
-* In Kong 3.2.1.0 and 3.2.1.1, 'alpine' and 'ubuntu' ARM64 artifacts incorrecty handled HTTP2 requests, causing the protocol to fail. These artifacts have been removed. 
-* In all 3.x versions of Kong Gateway prior to this release, the default logrotate file '/etc/logrotate.d/kong-enterprise-edition' was missing. 
+* In Kong 3.2.1.0 and 3.2.1.1, `alpine` and `ubuntu` ARM64 artifacts incorrecty handled HTTP2 requests, causing the protocol to fail. These artifacts have been removed. 
+* In all 3.x versions of Kong Gateway prior to this release, the default logrotate file `/etc/logrotate.d/kong-enterprise-edition` was missing. 
 
 #### Plugins
 * SAML: 
