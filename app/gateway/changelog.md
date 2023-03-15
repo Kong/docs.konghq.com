@@ -20,7 +20,7 @@ no_version: true
 
 * Datadog Tracing plugin: We found some late-breaking issues with the Datadog Tracing plugin and elected to remove it from the 3.2 release. We plan to add the plugin back with the issues fixed in a later release. 
 
-### Known Issues
+### Known issues
 * Due to changes in GPG keys, customers who use yum to install this release will get a `Public key for kong-enterprise-edition-3.2.1.0.rhel7.amd64.rpm is not installed` error. The package is signed, it is just signed with a different (rotated) key from the metadata service, which triggers the error in yum. In order to avoid this error, manually download the package from [download.konghq.com](https://download.konghq.com/) and then install it. 
 
 ## 3.2.1.0
