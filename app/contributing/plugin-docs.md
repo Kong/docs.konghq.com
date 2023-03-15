@@ -16,17 +16,17 @@ For more information, see the [Kong Partners page](https://konghq.com/partners/)
 
 ### Plugins created by Kong Inc
 
-1. Create a subdirectory for your plugin [within the `_app/_hub/kong-inc` directory](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/kong-inc/).
+1. Create a subdirectory for the plugin [within the `_app/_hub/kong-inc` directory](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/kong-inc/).
 For example, `_app/_hub/kong-inc/your-plugin`.
 
 1. Copy the [`/app/_hub/_init/my-extension/_index.md` and 
 the `/app/_hub/_init/my-extension/versions.yml`](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension)
-files into your plugin's subdirectory.
+files into the plugin's subdirectory.
 
 1. Edit your `_index.md` file based on the guidance in comments in that file.
 You'll also find lots of helpful examples in other plugin doc files.
 
-    If any of your plugin's configuration parameters have default values, 
+    If configuration parameters have default values, 
     leave the `required` field blank for that parameter.
     The existence of a default value negates the requirement.
 
@@ -53,7 +53,7 @@ should be a square-format PNG file, 120x120 pixels in size.
 
     See other Kong Hub listings for examples of publisher names.
 
-1. Create a subdirectory for your plugin within your publisher directory.
+1. Create a subdirectory for your plugin within the publisher directory.
 For example, `_app/_hub/kong-inc/your-plugin`.
 
 1. Copy the [`/app/_hub/_init/my-extension/_index.md`](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension)
@@ -62,10 +62,10 @@ For example, `_app/_hub/kong-inc/your-plugin`.
     **Do not** use the `versions.yml` file. 
     Kong does not maintain multiple versions of third-party plugin docs.
 
-1. Edit your `_index.md` file based on the guidance in comments in that file.
+1. Edit the `_index.md` file based on the guidance in the comments in that file.
 You'll also find lots of helpful examples in other plugin doc files.
 
-    If any of your plugin's configuration parameters have default values, 
+    If configuration parameters have default values, 
     leave the `required` field blank for that parameter.
     The existence of a default value negates the requirement.
 
@@ -76,7 +76,7 @@ should be a square-format PNG file, 120x120 pixels in size.
     the `publisher` and `plugin` name from step 2.
     For example, `my-company_oas-validation`.
 
-    Add the icon file to `/app/_assets/images/icons/hub/`. 
+    Add the icon file to the `/app/_assets/images/icons/hub/` directory. 
 
 ### Test and submit plugin
 

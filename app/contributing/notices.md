@@ -60,7 +60,7 @@ needs to pay attention to, otherwise the thing they're trying to do won't work.
 
 ### Warning 
 
-Use the `warning` block for any big breaking changes, or for anything
+Use the `warning` block for any breaking changes, or for anything
 irreversible.
 
 ```
