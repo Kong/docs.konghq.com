@@ -65,7 +65,7 @@ If you're satisfied with the diff result, run `deck sync` to sync your configura
 a runtime group:
 
 ```sh
-deck diff \
+deck sync \
 --konnect-token <your-PAT> \
 --konnect-runtime-group-name <group-name> \
 --output-file /path/to/<my-backup.yaml>
