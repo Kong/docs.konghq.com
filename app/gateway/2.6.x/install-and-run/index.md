@@ -51,13 +51,6 @@ disable_image_expand: true
     <br> <span class="badge oss" aria-label="open-source only"></span>
     </div>
   </a>
-
-  <a href="/gateway/{{page.kong_version}}/install-and-run/macos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/macos-logo.png" alt="" />
-    <div class="install-text">MacOS
-    <br> <span class="badge oss" aria-label="open-source only"></span>
-    </div>
-  </a>
 </div>
 
 ### Deployment options
