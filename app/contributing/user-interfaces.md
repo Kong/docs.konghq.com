@@ -5,23 +5,40 @@ content_type: reference
 
 ## Documenting interactions with UI elements
 
-When documenting UI instructions, make sure to write them as part of workflows.
-
 As a general rule, we do not directly document CRUD (create, read, update, delete) tasks in the Kong documentation without any context.
+
+When documenting UI instructions, make sure to write them as part of workflows. 
+For example, you might have a multi-section task where you [set up a vault object and use it](/konnect/runtime-manager/vaults/how-to/), part of which walks you through creating the object in the {{site.konnect_short_name}} UI.
 
 {:.note}
 > In cases of escalation around a specific task (for example, users keep struggling to delete a route in Kong Manager), create a troubleshooting doc for that content.
+See the [Dev Portal troubleshooting doc](/konnect/dev-portal/troubleshoot/) for an example.
 
 ## Best practices for referring to UI elements 
 
-* If the area of a screen only has an icon, refer to it by the title of the element + icon. 
-* Use carets to describe only context menus, e.g.:
+* If the area of a screen only has an icon, refer to it by the title of the element and its icon. For example:  
+    
+    ✅  **Do:** Click the {% konnect_icon cogwheel %} settings icon.
 
-    * Click Service actions > Add new version.
-    * Click All > Services.
+* Use carets to only describe context menus. For example:
+    
+    ✅  **Do:** Click **Service actions** > **Add new version**.
+    
+    ✅  **Do:** Click All > **Services**.
+    
+    ❌  **Don't:** Click the **Reports** button > **Latency** tab > **Service** tab.
 
-* Say **Click**; do not say **Click on**
-* Don’t use plus signs in labels. For example, if the button looks like this: `+ New Plugin`, refer to the button as `New Plugin`.
+* Say **Click**; do not say **Click on**. For example:
+    
+    ✅  **Do:** Click the **Reports** button.
+    
+    ❌  **Don't:** Click on the **Reports** button.
+
+* When referring to buttons or other interactable elements that have plus signs, don't use the plus sign in the documentation.
+    
+    ✅  **Do:** New Plugin
+    
+    ❌  **Don't:** + New Plugin
 
 ## Screenshots
 
@@ -35,7 +52,7 @@ Screenshots are used to support documentation and do not _replace_ documentation
 - Mouse should not be visible.
 - **Emphasis on elements in the screenshot:** Create a **rectangular** border around the point of interest. 
 The border must use the color <span style="color:#0788ad">`#0788ad`</span> from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
-- **Screenshot border:** Set the `image-border` class if your screeshot requires a border. You might need to set a border when:
+- **Screenshot border:** Set the `image-border` class if your screenshot requires a border. You might need to set a border when:
     * Panels have a white background and will therefore blend into the surrounding area
     * You want to separate the screenshot clearly from another image
     * It's hard to tell which text belongs to the screenshot and which to the page content

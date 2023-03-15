@@ -157,13 +157,13 @@ avoid qualifiers, and end the statement with a colon (`:`).
 
   For example:
 
-  <i class="fa fa-check"></i> **Do:** The results should look like this:
+  ✅ **Do:** The results should look like this:
 
-  <i class="fa fa-check"></i> **Do:** The output shows all of the connected data plane instances in the cluster:
+  ✅ **Do:** The output shows all of the connected data plane instances in the cluster:
 
-  <i class="fa times"></i> **Don't:** The results should look _something_ like this:
+  ❌ **Don't:** The results should look _something_ like this:
 
-  <i class="fa times"></i> **Don't:** The output will show...
+  ❌ **Don't:** The output will show...
 
 ## Placeholders
 

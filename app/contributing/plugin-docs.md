@@ -59,7 +59,7 @@ For example, `_app/_hub/kong-inc/your-plugin`.
 1. Copy the [`/app/_hub/_init/my-extension/_index.md`](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension)
  file into your plugin's subdirectory.
 
-    **Do not** use the `versions.yml` file. 
+    **Do not** use the `versions.yml` file that also appears in the template directory.
     Kong does not maintain multiple versions of third-party plugin docs.
 
 1. Edit the `_index.md` file based on the guidance in the comments in that file.
