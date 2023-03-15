@@ -2,7 +2,7 @@
 title: Install Kong Gateway on macOS
 ---
 
-{{site.base_gateway}} is currently not supported through Homebew for MacOS.
+{{site.base_gateway}} is currently not supported through Homebrew for MacOS.
 We will be adding support for Homebrew installation in an upcoming release.
 
 Check out these other installation options instead:

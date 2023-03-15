@@ -643,6 +643,7 @@
 
 
 # GATEWAY INSTALLATION AND DEPLOYMENT
+/gateway/:version/install-and-run/macos/ /gateway/latest/install/macos/
 /install/compile/              https://github.com/Kong/kong
 /install/dcos/                 https://github.com/Kong/kong-dist-dcos
 /install/google-cloud/         /kubernetes-ingress-controller/latest/deployment/gke/
