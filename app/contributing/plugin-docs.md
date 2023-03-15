@@ -16,11 +16,12 @@ For more information, see the [Kong Partners page](https://konghq.com/partners/)
 
 ### Plugins created by Kong Inc
 
-1. Create a subdirectory for your plugin within the `_app/_hub/kong-inc` directory.
+1. Create a subdirectory for your plugin [within the `_app/_hub/kong-inc` directory](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/kong-inc/).
 For example, `_app/_hub/kong-inc/your-plugin`.
 
-1. Copy the `/app/_hub/_init/my-extension/_index.md` and 
-the `/app/_hub/_init/my-extension/versions.yml` files into your plugin's subdirectory.
+1. Copy the [`/app/_hub/_init/my-extension/_index.md` and 
+the `/app/_hub/_init/my-extension/versions.yml`](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension)
+files into your plugin's subdirectory.
 
 1. Edit your `_index.md` file based on the guidance in comments in that file.
 You'll also find lots of helpful examples in other plugin doc files.
@@ -44,18 +45,19 @@ should be a square-format PNG file, 120x120 pixels in size.
 
 ### Third-party or partner plugins
 
-1. Set up or find your publisher directory.
+1. Set up or find your publisher directory in the [docs repository](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/).
 
-  If your company has not contributed a plugin to Kong before, 
-  create a publisher directory at`_app/_hub/`, such as
- `_app/_hub/company-name`. 
+   If your company has not contributed a plugin to Kong before, 
+   create a publisher directory at`_app/_hub/`, such as
+  `_app/_hub/company-name`. 
 
     See other Kong Hub listings for examples of publisher names.
 
 1. Create a subdirectory for your plugin within your publisher directory.
 For example, `_app/_hub/kong-inc/your-plugin`.
 
-1. Copy the `/app/_hub/_init/my-extension/_index.md` file into your plugin's subdirectory.
+1. Copy the [`/app/_hub/_init/my-extension/_index.md`](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/_init/my-extension)
+ file into your plugin's subdirectory.
 
     **Do not** use the `versions.yml` file. 
     Kong does not maintain multiple versions of third-party plugin docs.

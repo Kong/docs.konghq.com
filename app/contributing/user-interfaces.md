@@ -3,28 +3,25 @@ title: Documenting user interfaces
 content_type: reference
 ---
 
- How do you direct users to interact with a UI element? 
- Do you say “click” or “click on”? 
- Where do you provide explicit instructions, and where do you condense?
+## Documenting interactions with UI elements
 
-Use carets to describe only context menus, e.g.:
+When documenting UI instructions, make sure to write them as part of workflows.
 
-Click Service actions > Add new version.
+As a general rule, we do not directly document CRUD (create, read, update, delete) tasks in the Kong documentation without any context.
 
-Click All > Services.
+{:.note}
+> In cases of escalation around a specific task (for example, users keep struggling to delete a route in Kong Manager), create a troubleshooting doc for that content.
 
-Don’t use plus signs in labels. For example, if the button looks like this: “+ New Plugin”, refer to the button as “New Plugin”.
+## Best practices for referring to UI elements 
 
+* If the area of a screen only has an icon, refer to it by the title of the element + icon. 
+* Use carets to describe only context menus, e.g.:
 
-CRUD (create, read, update, delete) tasks:
-Can only exist as part of tutorial/getting-started/how-to 
-Does not exist anywhere else. 
-In cases of escalation, create a troubleshooting doc and add it in. 
-If the area of a screen only has an icon, refer to it by the title of the element + icon. (accessibility). 
+    * Click Service actions > Add new version.
+    * Click All > Services.
 
-Screenshots: 
-Only two levels in Runtime manager -> Certificates 
-
+* Say **Click**; do not say **Click on**
+* Don’t use plus signs in labels. For example, if the button looks like this: `+ New Plugin`, refer to the button as `New Plugin`.
 
 ## Screenshots
 
@@ -36,8 +33,12 @@ Screenshots are used to support documentation and do not _replace_ documentation
 - Resolution should be set to **1500x845**.
 - Screenshots of UI elements should include only the relevant **panel**. Panels are a container within a UI window which contain multiple related elements.
 - Mouse should not be visible.
-- Emphasis can be added by creating a **square** border around the point of interest. The border must use the color <span style="color:#0788ad">`#0788ad`</span> from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
-- In situations that require it a `1px` black border can be used.
+- **Emphasis on elements in the screenshot:** Create a **rectangular** border around the point of interest. 
+The border must use the color <span style="color:#0788ad">`#0788ad`</span> from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
+- **Screenshot border:** Set the `image-border` class if your screeshot requires a border. You might need to set a border when:
+    * Panels have a white background and will therefore blend into the surrounding area
+    * You want to separate the screenshot clearly from another image
+    * It's hard to tell which text belongs to the screenshot and which to the page content
 - **Do not** use GIFs.
 - Limit image file size to ~2MB.
 - Add files to the corresponding product folder by navigating in the repo from `app > _assets > images > docs`.
