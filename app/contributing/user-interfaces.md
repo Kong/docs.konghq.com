@@ -34,7 +34,7 @@ See the [Dev Portal troubleshooting doc](/konnect/dev-portal/troubleshoot/) for 
     
     ❌  **Don't:** Click on the **Reports** button.
 
-* When referring to buttons or other interactable elements that have plus signs, don't use the plus sign in the documentation.
+* When referring to buttons or other interactive elements that have plus signs, don't use the plus sign in the documentation.
     
     ✅  **Do:** New Plugin
     
