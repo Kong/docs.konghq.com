@@ -5,7 +5,7 @@ no_version: true
 
 <!-- vale off -->
 
-##3.2.2.0
+## 3.2.2.0
 **Release Date** 2023-03-15
 
 ### Fixes 
@@ -14,12 +14,11 @@ no_version: true
 * In all 3.x versions of Kong Gateway prior to this release, the default logrotate file '/etc/logrotate.d/kong-enterprise-edition' was missing. 
 
 #### Plugins
-* SAML
-Fix the SAML plugin to work on read-only file system.
-Fix the SAML plugin to handle the field session_auth_ttl (removed since 3.2.0.0).
+* SAML: 
+    * Fix the SAML plugin to work on read-only file system.
+    * Fix the SAML plugin to handle the field session_auth_ttl (removed since 3.2.0.0).
 
-* Datadog Tracing plugin
-We found some late-breaking issues with the Datadog Tracing plugin and elected to remove it from the 3.2 release. We plan to add the plugin back with the issues fixed in a later release. 
+* Datadog Tracing plugin: We found some late-breaking issues with the Datadog Tracing plugin and elected to remove it from the 3.2 release. We plan to add the plugin back with the issues fixed in a later release. 
 
 
 ## 3.2.1.0
