@@ -31,6 +31,10 @@ In addition to the authentication plugins above, the
 is required when RBAC is enabled. It sends HTTP cookies to authenticate
 client requests and maintain session information.
 
+{:.note}
+> **Note:** Kong Manager does not directly offer 2FA, MFA, OTP, CAPTCHA, or reCAPTCHA. 
+However, if you configure Kong Manager to use [OIDC authentication](/gateway/{{page.kong_version}}/kong-manager/auth/oidc/configure/), then you can provide secondary authentication via your OIDC provider.
+
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
