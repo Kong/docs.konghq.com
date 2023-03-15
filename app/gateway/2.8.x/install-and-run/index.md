@@ -72,5 +72,5 @@ at any time to gain access to Enterprise features.
 > **Note**: For deployments on Kubernetes (including Helm and OpenShift),
 you need to apply the license during installation.
 
-See [Kong Gateway Licensing](/gateway/latest/plan-and-deploy/licenses/) for a feature comparison
+See [{{site.base_gateway}} Licensing](/gateway/latest/plan-and-deploy/licenses/) for a feature comparison
 between Free Mode and the Enterprise subscription, and more information about licenses.
