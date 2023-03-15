@@ -113,8 +113,6 @@ items:
                 url: /install/linux/rhel
               - text: Ubuntu
                 url: /install/linux/ubuntu
-          - text: macOS
-            url: /install/macos
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
@@ -614,3 +612,7 @@ items:
         url: /reference/router-expressions-language
       - text: FAQ
         url: /reference/faq
+
+unlisted:
+  - text: macOS
+    url: /install/macos
