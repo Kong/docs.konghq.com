@@ -93,7 +93,7 @@ params:
       value_in_examples: null
       datatype: boolean
       description: |
-        When enabled, the incoming request will be lowercase before feeding into the Cache-Key calculation.
+        If set to `true`, requests will be cached while ignoring case sensitivity in the URI.
     - name: storage_ttl
       required: false
       default: null
