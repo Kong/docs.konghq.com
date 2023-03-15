@@ -644,27 +644,13 @@
 
 
 # GATEWAY INSTALLATION AND DEPLOYMENT
-/enterprise/0.33-xinstallation/docker  /gateway/latest/install-and-run/docker
-/enterprise/0.35-x/deployment/installation/  /gateway/latest/install-and-run
-
-/install/                      https://konghq.com/install/
-/install/aws/                  /gateway/latest/install-and-run
+/gateway/:version/install-and-run/macos/ /gateway/latest/install/macos/
 /install/compile/              https://github.com/Kong/kong
-/install/aws-cloudformation/   /gateway/latest/install-and-run
-/install/aws-linux/            /gateway/latest/install-and-run/amazon-linux
-/install/aws-marketplace/      /gateway/latest/install-and-run
-/install/centos/               /gateway/latest/install-and-run/centos
 /install/dcos/                 https://github.com/Kong/kong-dist-dcos
-/install/debian/               /gateway/latest/install-and-run/debian
-/install/docker/               /gateway/latest/install-and-run/docker
 /install/google-cloud/         /kubernetes-ingress-controller/latest/deployment/gke/
-/install/kubernetes/           /gateway/latest/install-and-run/kubernetes
-/install/macos/                /gateway/latest/install-and-run/macos
-/install/osx/                  /gateway/latest/install-and-run/macos
-/install/redhat/               /gateway/latest/install-and-run/rhel
 /install/source/               https://github.com/Kong/kong
-/install/ubuntu/               /gateway/latest/install-and-run/ubuntu
 /install/vagrant/              https://github.com/Kong/kong-vagrant
+/install/*                     /gateway/latest/install/
 
 /gateway-oss/2.6.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
 /gateway-oss/2.7.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
