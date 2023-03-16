@@ -340,7 +340,7 @@ plugin exposes two strategies: `default` and `node_quantifier`.
 
 The following example queries can be run on this [SWAPI playground].
 
-[SWAPI playground]: https://swapi-graphql.eskerda.vercel.app/
+[SWAPI playground]: https://swapi-graphql.eskerda.vercel.app
 
 ### `default`
 
