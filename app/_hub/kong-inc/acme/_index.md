@@ -565,7 +565,7 @@ own certificate.
 {% if_plugin_version gte:3.3.x %}
 **{{site.base_gateway}} 3.3.x**
 
-* Added the `account_key` configuration parameters
+* Added the `account_key` configuration parameter
 
 {% endif_plugin_version %}
 
