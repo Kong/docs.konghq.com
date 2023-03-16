@@ -55,8 +55,6 @@
       items:
         - text: Overview
           url: /runtime-manager/runtime-instances/
-        - text: Installation Options
-          url: /runtime-manager/runtime-instances/install
         - text: Upgrade a Runtime Instance
           url: /runtime-manager/runtime-instances/upgrade
         - text: Renew Data Plane Certificates

@@ -8,11 +8,11 @@ features:
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
         icon: /assets/images/icons/documentation/macos-logo.png
-      - name: "Docker on Windows"
+      - name: "Windows"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
         icon: /assets/images/icons/documentation/windows-logo.svg
-      - name: "Docker on Linux"
+      - name: "Linux (Docker)"
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-docker/
         ga: true
         icon: /assets/images/icons/documentation/docker.png
@@ -45,7 +45,7 @@ features:
         url: /konnect/runtime-manager/runtime-instances/gateway-runtime-azure/
         ga: false
         icon: /assets/images/icons/documentation/azure.svg
-      - name: "Google Cloud (coming soon)"
-        url: null
+      - name: "Google Cloud <span class=\"badge alpha\"></span>"
+        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-aws/
         ga: false
-        icon: /assets/images/icons/documentation/cloud-icon-color.png
+        icon: /assets/images/icons/documentation/cloud-icon-color.svg
