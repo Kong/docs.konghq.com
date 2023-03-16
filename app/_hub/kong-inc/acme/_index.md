@@ -40,7 +40,7 @@ params:
       default: null
       datatype: record
       description: |
-        A private key to use as the account key required by some issuers. This parameter is configured to use [Key and Key Sets](/gateway/latest/reference/key-management)
+        A private key to use as the account key required by some issuers. This parameter is configured to use [Key and Key Sets](/gateway/latest/reference/key-management).
     - name: api_uri
       required: false
       default: '` https://acme-v02.api.letsencrypt.org/directory`'
