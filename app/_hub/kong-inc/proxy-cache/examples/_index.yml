@@ -1,0 +1,12 @@
+name: proxy-cache
+config:
+  response_code:
+    - 200
+  request_method:
+    - GET
+    - HEAD
+  content_type:
+    - text/plain
+    - application/json
+  cache_ttl: 300
+  strategy: memory

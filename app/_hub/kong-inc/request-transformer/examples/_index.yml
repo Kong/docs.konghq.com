@@ -1,0 +1,36 @@
+name: request-transformer
+config:
+  remove:
+    headers:
+      - x-toremove
+      - x-another-one
+    querystring:
+      - qs-old-name:qs-new-name
+      - qs2-old-name:qs2-new-name
+    body:
+      - formparam-toremove
+      - formparam-another-one
+  replace:
+    body:
+      - body-param1:new-value-1
+      - body-param2:new-value-2
+  rename:
+    headers:
+      - header-old-name:header-new-name
+      - another-old-name:another-new-name
+    querystring:
+      - qs-old-name:qs-new-name
+      - qs2-old-name:qs2-new-name
+    body:
+      - param-old:param-new
+      - param2-old:param2-new
+  add:
+    headers:
+      - x-new-header:value
+      - x-another-header:something
+    querystring:
+      - new-param:some_value
+      - another-param:some_value
+    body:
+      - new-form-param:some_value
+      - another-form-param:some_value

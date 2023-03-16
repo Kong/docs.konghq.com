@@ -1,0 +1,5 @@
+name: rate-limiting
+config:
+  second: 5
+  hour: 10000
+  policy: local

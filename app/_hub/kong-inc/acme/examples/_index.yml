@@ -1,0 +1,3 @@
+name: acme
+config:
+  account_email: example@example.com

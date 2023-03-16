@@ -1,0 +1,8 @@
+name: ldap-auth
+config:
+  hide_credentials: true
+  ldap_host: ldap.example.com
+  ldap_port: 389
+  base_dn: dc=example,dc=com
+  attribute: cn
+  header_type: ldap

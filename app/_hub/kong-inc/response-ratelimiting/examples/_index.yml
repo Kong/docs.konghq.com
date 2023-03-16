@@ -1,0 +1,8 @@
+name: response-ratelimiting
+config:
+  limits:
+    {limit_name}: <SMS>
+  limits:
+    {limit_name}:
+      minute: 10
+  policy: local

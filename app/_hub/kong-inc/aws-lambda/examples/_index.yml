@@ -1,0 +1,9 @@
+name: aws-lambda
+config:
+  aws_key: <AWS_KEY>
+  aws_secret: <AWS_SECRET>
+  aws_region: <AWS_REGION>
+  aws_assume_role_arn: <AWS_ASSUME_ROLE_ARN>
+  aws_role_session_name: <AWS_ROLE_SESSION_NAME>
+  function_name: <LAMBDA_FUNCTION_NAME>
+  proxy_url: http://my-proxy-server:3128

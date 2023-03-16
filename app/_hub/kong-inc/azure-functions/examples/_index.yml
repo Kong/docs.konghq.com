@@ -1,0 +1,6 @@
+name: azure-functions
+config:
+  functionname: <AZURE_FUNCTIONNAME>
+  appname: <AZURE_APPNAME>
+  hostdomain: azurewebsites.net
+  apikey: <AZURE_APIKEY>
