@@ -18,5 +18,6 @@ You can access these scripts from the {{site.konnect_short_name}} **Runtime Mana
 
 - [Upgrade a Runtime Instance](/konnect/runtime-manager/runtime-instances/upgrade)
 - [Renew Certificates](/konnect/runtime-manager/runtime-instances/renew-certificates)
-- [Backup and Restore](/konnect/runtime-manager/runtime-groups/manage/#delete-a-runtime-group)
+- [Backup and Restore](/konnect/runtime-manager/manage-runtime-groups/#delete-a-runtime-group)
+- [Forward Proxy Connection](/gateway/latest/production/networking/cp-dp-proxy)
 - [Runtime parameter reference](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference)
