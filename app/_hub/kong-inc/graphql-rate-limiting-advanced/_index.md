@@ -126,8 +126,6 @@ params:
         In DB-less and hybrid modes, the `cluster` config strategy is not
         supported.
 
-        In Konnect, the default strategy is `redis`.
-
         {:.important}
         > There is no local storage strategy. However, you can achieve local
         rate limiting by using a placeholder `strategy` value (either `cluster` or `redis`)
