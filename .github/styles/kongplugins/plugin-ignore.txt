@@ -488,6 +488,7 @@ idp_sso_url
 idtoken
 if_plugin_version
 ignore_signature
+ignore_uri_case
 include_body_in_opa_input
 include_cached
 include_consumer_in_opa_input
