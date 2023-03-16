@@ -87,6 +87,13 @@ params:
       datatype: boolean
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
+    - name: ignore_uri_case
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        If set to `true`, requests will be cached while ignoring case sensitivity in the URI.
     - name: storage_ttl
       required: false
       default: null
