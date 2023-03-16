@@ -52,6 +52,9 @@ Or, if your route doesn't have a name, it might look like this:
 
 Where `DA58B` are the first five characters of its UUID.
 
+{:.note}
+> **Note**: If you see a route with `*` and the last five digits of the UUID, like `*DA58B`, this represents the data of a deleted route.
+
 ### Service version entity format
 
 The service version name isn't unique across an organization. To identify the entity you need, the service version entity name is composed of the following elements:
