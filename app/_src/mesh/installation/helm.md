@@ -32,13 +32,7 @@ Install and run {{site.mesh_product_name}} using the following commands.
 You can use any Kubernetes namespace to install {{site.mesh_product_name}}, but as a default, we
 suggest `kong-mesh-system`.
 
-1. Create the `kong-mesh-system` namespace:
-
-    ```sh
-    kubectl create namespace kong-mesh-system
-    ```
-
-2. Upload the license secret to the cluster:
+1. Upload the license secret to the cluster:
 
     ```sh
     kubectl create secret generic kong-mesh-license -n kong-mesh-system --from-file=/path/to/license.json
@@ -49,7 +43,7 @@ suggest `kong-mesh-system`.
 
     The filename should be <code>license.json</code>, unless otherwise specified in <code>values.yaml</code>.
 
-3. Deploy the {{site.mesh_product_name}} Helm chart.
+1. Deploy the {{site.mesh_product_name}} Helm chart.
 
    By default, the license option is disabled, so you need to enable it for the license to take effect.
    The easiest option is to override each field on the CLI. The only
@@ -59,7 +53,7 @@ suggest `kong-mesh-system`.
 
     ```sh
     $ helm repo update
-    $ helm upgrade -i -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
+    $ helm upgrade -i --create-namespace -n kong-mesh-system kong-mesh kong-mesh/kong-mesh \
       --set 'kuma.controlPlane.secrets[0].Env="KMESH_LICENSE_INLINE"' \
       --set 'kuma.controlPlane.secrets[0].Secret="kong-mesh-license"' \
       --set 'kuma.controlPlane.secrets[0].Key="license.json"'
