@@ -196,8 +196,8 @@ have limitations in hybrid mode:
 (`ttl`), which determines the length of time a credential remains valid, does
 not work in hybrid mode.
 * [**Rate Limiting**](/hub/kong-inc/rate-limiting/), [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/), and [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/):
-These plugins don't support the `cluster` strategy/policy in hybrid mode. One the `local` or `redis` 
-strategies/policies must be used instead.
+These plugins don't support the `cluster` strategy/policy in hybrid mode. One of 
+the `local` or `redis` strategies/policies must be used instead.
 * [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/):
 This plugins doesn't support the `cluster` strategy in hybrid mode. The `redis` 
 strategy must be used instead.
