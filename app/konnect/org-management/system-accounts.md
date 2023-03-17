@@ -23,7 +23,7 @@ From the System Accounts page, you can:
 * Create and manage system accounts.
 * Create and manage system account access tokens.
 * Assign roles to a system account.
-* Manage team memberships of a system account.
+* Manage team memberships for a system account.
 
 ## Manage a system account via the API
 
