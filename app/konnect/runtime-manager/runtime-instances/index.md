@@ -21,4 +21,4 @@ You can access these scripts from the {{site.konnect_short_name}} **Runtime Mana
 - [Backup and Restore](/konnect/runtime-manager/manage-runtime-groups/#delete-a-runtime-group)
 - [Forward Proxy Connection](/gateway/latest/production/networking/cp-dp-proxy)
 - [Runtime parameter reference](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference)
-- [Analytics Metrics](/konnect/analytics/summary-dashboard/)
+- [Analytics Dashboard](/konnect/analytics/summary-dashboard/)
