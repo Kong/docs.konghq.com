@@ -61,6 +61,8 @@
           url: /runtime-manager/runtime-instances/renew-certificates
         - text: Runtime Parameter Reference
           url: /runtime-manager/runtime-instances/runtime-parameter-reference
+        - text: Advanced runtime installation with Docker
+          url: /runtime-manager/runtime-instances/gateway-runtime-docker/
     - text: Runtime Configuration
       items:
         - text: Overview

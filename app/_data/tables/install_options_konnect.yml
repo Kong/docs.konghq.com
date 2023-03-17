@@ -32,11 +32,9 @@ features:
   - name: "Cloud Providers"
     items:
       - name: "AWS <span class=\"badge alpha\"></span>"
-        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-aws/
         ga: false
         icon: /assets/images/icons/documentation/aws.svg
       - name: "Azure <span class=\"badge alpha\"></span>"
-        url: /konnect/runtime-manager/runtime-instances/gateway-runtime-azure/
         ga: false
         icon: /assets/images/icons/documentation/azure.svg
       - name: "Google Cloud <span class=\"badge alpha\"></span>"
