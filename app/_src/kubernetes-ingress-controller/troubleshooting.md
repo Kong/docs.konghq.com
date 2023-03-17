@@ -372,10 +372,12 @@ You can quickly find these Events by searching across all namespaces for Events
 with the special failure reasons that indicate {{site.kic_product_name}}
 failures:
 
-```bash```
+```bash
 kubectl get events -A --field-selector='reason=KongConfigurationApplyFailed'
 ```
+
 Response:
+
 ```
 NAMESPACE   LAST SEEN   TYPE      REASON                         OBJECT            MESSAGE
 default     35m         Warning   KongConfigurationApplyFailed   ingress/httpbin   invalid methods: cannot set 'methods' when 'protocols' is 'grpc' or 'grpcs'
@@ -397,7 +399,7 @@ configuration to Kong.
 The complete Event contains additional information about the problem resource,
 the number of times the problem occurred, and when it occurred:
 
-```
+```yaml
 apiVersion: v1
 kind: Event
 count: 1
