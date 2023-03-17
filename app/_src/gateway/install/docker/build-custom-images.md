@@ -21,7 +21,7 @@ chmod +x docker-entrypoint.sh
     * **RHEL**:[.rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.amd64.rpm)
     * **Alpine**: .apk ([amd64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.amd64.apk.tar.gz), [arm64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.arm64.apk.tar.gz))
 
-1. Create a `Dockerfile`, ensuring you replace the filename by the first `COPY` with the name of the {{site.base_gateway}} file you just downloaded:
+1. Create a `Dockerfile`, ensuring you replace the filename by the first `COPY` with the name of the {{site.base_gateway}} file you downloaded in step 2:
 
 {% capture dockerfile_run_steps %}COPY docker-entrypoint.sh /docker-entrypoint.sh
 
