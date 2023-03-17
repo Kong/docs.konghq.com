@@ -19,7 +19,7 @@ The system account can use a {{site.konnect_short_name}} personal access token (
 ## Manage a system account via the UI
 You can create and manage system accounts in your {{site.konnect_short_name}} organization through the {% konnect_icon organizations %} **Organization** > **System Accounts** page.
 
-From the System Accounts page, you can:
+From the **System Accounts** page, you can:
 * Create and manage system accounts.
 * Create and manage system account access tokens.
 * Assign roles to a system account.
