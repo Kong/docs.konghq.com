@@ -11,7 +11,7 @@ Our Debian and RHEL images are built with minimal dependencies (as of {{ site.ba
 
 If you would like to build your own images to further customise the base image and any dependencies, follow the instructions below:
 
-1. Download the [docker-entrypoint.sh](https://raw.githubusercontent.com/Kong/docker-kong/master/docker-entrypoint.sh) script from `docker-kong` and make it executable:
+1. Download [docker-entrypoint.sh](https://raw.githubusercontent.com/Kong/docker-kong/master/docker-entrypoint.sh) script from `docker-kong` and make it executable:
 ```bash
 chmod +x docker-entrypoint.sh
 ```
@@ -150,7 +150,7 @@ docker build --no-cache -t kong-image .
 
 1. Test that the image built correctly:
 ```
-docker run -it kong-image kong version
+docker run -it --rm kong-image kong version
 ```
 
 1. To run {{ site.base_gateway }} and process traffic, follow the [Docker install instructions](/gateway/latest/install/docker/), replacing the image name with your custom name.
