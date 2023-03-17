@@ -20,7 +20,7 @@ To create a new router object using expressions, send a `POST` request to the [s
 ```sh
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
-  --form expression='http.path == "/mock"'
+  --form-string expression='http.path == "/mock"'
 ```
 
 In this example, you associated a new route object with the path `/mock` to the existing service `example-service`. The Expressions DSL also allows you to create complex router match conditions.
@@ -29,7 +29,7 @@ In this example, you associated a new route object with the path `/mock` to the 
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
   --header 'Content-Type: multipart/form-data' \
-  --form 'expression=(http.path == "/mock" || net.protocol == "https")'
+  --form-string 'expression=(http.path == "/mock" || net.protocol == "https")'
 ```
 In this example the || operator created an expression that set variables for the following fields:
 
@@ -37,7 +37,7 @@ In this example the || operator created an expression that set variables for the
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
   --header 'Content-Type: multipart/form-data' \
-  --form 'expression=http.path == "/mock" && (net.protocol == "http" || net.protocol == "https")'
+  --form-string 'expression=http.path == "/mock" && (net.protocol == "http" || net.protocol == "https")'
 ```
 
 ### Create complex routes with Expressions
@@ -49,12 +49,12 @@ You can describe complex route objects using operators within a `POST` request.
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
   --header 'Content-Type: multipart/form-data' \
-  --form name=complex_object \
-  --form 'expression=(net.protocol == "http" || net.protocol == "https") &&
-         (http.method == "GET" || http.method == "POST") &&
-         (http.host == "example.com" || http.host == "example.test") &&
-         (http.path ^= "/mock" || http.path ^= "/mocking") &&
-         http.headers.x_another_header == "example_header" && (http.headers.x_my_header == "example" || http.headers.x_my_header == "example2")'
+  --form-string name=complex_object \
+  --form-string 'expression=(net.protocol == "http" || net.protocol == "https") &&
+                (http.method == "GET" || http.method == "POST") &&
+                (http.host == "example.com" || http.host == "example.test") &&
+                (http.path ^= "/mock" || http.path ^= "/mocking") &&
+                http.headers.x_another_header == "example_header" && (http.headers.x_my_header == "example" || http.headers.x_my_header == "example2")'
 ```
 
 
