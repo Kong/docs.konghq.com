@@ -20,7 +20,7 @@ You can use the Admin API to modify Kong's configuration, including adding
 Services and Routes.
 
 ## Before you start
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run). 
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/). 
 
 ## 1. Add a Service using the Admin API
 

@@ -52,7 +52,14 @@ module SEO
           latest_version = matching_url['version']
           canonical_url = matching_url['url']
         end
-        @page.data['canonical_url'] = canonical_url if canonical_url
+
+        # If there is no canonical URL, set it to the current page
+        # as we want all pages to have a canonical URL. This helps when
+        # people link to the page with ?url=params which are considered
+        # a different URL without a canonical tag
+        canonical_url ||= @page.url
+
+        @page.data['canonical_url'] = canonical_url
       end
 
       def urls_to_check

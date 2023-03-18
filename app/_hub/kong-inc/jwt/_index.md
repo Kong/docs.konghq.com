@@ -480,7 +480,7 @@ curl -i -f -X POST http://localhost:8001/routes \
 Add the plugin to your Route:
 
 ```bash
-curl -X POST http://localhost:8001/route/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=jwt"
 ```
 

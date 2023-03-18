@@ -129,8 +129,8 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
-* [deck {{site.konnect_short_name}} diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff)	 - Diff the current entities in Konnect with the one on disks (in alpha)
-* [deck {{site.konnect_short_name}} dump](/deck/{{page.kong_version}}/reference/deck_konnect_dump)	 - Export configuration from Konnect (in alpha)
-* [deck {{site.konnect_short_name}} ping](/deck/{{page.kong_version}}/reference/deck_konnect_ping)	 - Verify connectivity with Konnect (in alpha)
-* [deck {{site.konnect_short_name}} sync](/deck/{{page.kong_version}}/reference/deck_konnect_sync)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)
+* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck {{site.konnect_short_name}} diff](/deck/{{page.kong_version}}/reference/deck_konnect_diff/)	 - Diff the current entities in Konnect with the one on disks (in alpha)
+* [deck {{site.konnect_short_name}} dump](/deck/{{page.kong_version}}/reference/deck_konnect_dump/)	 - Export configuration from Konnect (in alpha)
+* [deck {{site.konnect_short_name}} ping](/deck/{{page.kong_version}}/reference/deck_konnect_ping/)	 - Verify connectivity with Konnect (in alpha)
+* [deck {{site.konnect_short_name}} sync](/deck/{{page.kong_version}}/reference/deck_konnect_sync/)	 - Sync performs operations to get Konnect's configuration to match the state file (in alpha)

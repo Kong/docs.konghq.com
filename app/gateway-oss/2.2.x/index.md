@@ -6,7 +6,7 @@ is_homepage: true
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><a href="https://konghq.com/install/#kong-community">Installation</a></h3>
-    <p>You can install {{site.ce_product_name}} on most Linux distributions and MacOS. We even provide the source so you can compile it yourself.</p>
+    <p>You can install {{site.ce_product_name}} on most Linux distributions. We even provide the source so you can compile it yourself.</p>
     <a href="https://konghq.com/install/#kong-community">Install {{site.ce_product_name}} &rarr;</a>
   </div>
 

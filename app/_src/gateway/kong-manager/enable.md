@@ -48,6 +48,6 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 
 ## Next steps
 
-* [Get started with managing {{site.base_gateway}}](/gateway/{{page.kong_version}}/kong-manager/get-started/services-and-routes)
+* [Get started with managing {{site.base_gateway}}](/gateway/{{page.kong_version}}/kong-manager/get-started/services-and-routes/)
 * [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/)
 * [Set up role-based access control to {{site.base_gateway}} resources](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/)

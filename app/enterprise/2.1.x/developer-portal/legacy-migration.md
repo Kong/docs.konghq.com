@@ -15,8 +15,8 @@ new file system.
 
 To learn more about the changes to the Developer Portal check out the 
 [What's new in 1.3](/enterprise/1.3-x/developer-portal/overview/#whats-new-in-1.3)
-section in the Developer Portal [Overview](/enterprise/1.3-x/developer-portal/overview)
-and the Kong Enterprise [Changelog](/gateway/changelog).
+section in the Developer Portal [Overview](/enterprise/1.3-x/developer-portal/overview/)
+and the Kong Enterprise [Changelog](/gateway/changelog/).
 
 
 ### Enabling Legacy Mode

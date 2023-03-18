@@ -24,8 +24,8 @@ for specific entities.
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
-* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ## Add a role and permissions

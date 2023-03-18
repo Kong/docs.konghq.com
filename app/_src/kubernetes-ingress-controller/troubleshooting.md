@@ -50,7 +50,7 @@ Therefore, authentication is required, which can be achieved in two different wa
 Using this flag `--apiserver-host=http://localhost:8080`,
 it is possible to specify an unsecured API server or
 reach a remote Kubernetes cluster using
-[kubectl proxy](https://kubernetes.io/docs/user-guide/kubectl/kubectl_proxy/).
+[kubectl proxy](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/#using-kubectl-proxy).
 Please do not use this approach in production.
 
 In the diagram below you can see the full authentication flow with all options, starting with the browser
@@ -181,8 +181,8 @@ Before configuring this option, please read about admission controllers.
 
 More information:
 
-- [User Guide: Service Accounts](http://kubernetes.io/docs/user-guide/service-accounts/)
-- [Cluster Administrator Guide: Managing Service Accounts](http://kubernetes.io/docs/admin/service-accounts-admin/)
+- [User Guide: Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+- [Cluster Administrator Guide: Managing Service Accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)
 
 ## Kubeconfig
 
@@ -318,7 +318,7 @@ In most cases, once the validation fails, the Kubernetes object that caused the 
 from the translation and a corresponding translation failure warning event is recorded.
 
 To determine if there are any translation failures that you might want to fix, you
-can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
+can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
 
 To get a deeper insight into what went wrong during the translation, you can look into Kubernetes
 events with a `KongConfigurationTranslationFailed` reason. There's one event created for every

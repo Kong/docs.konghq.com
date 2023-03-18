@@ -149,7 +149,7 @@ This feature is only available with a
 {{site.konnect_product_name}} Enterprise subscription</a>.
 </div>
 
-1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license/).
 
 2. In your container, set the Portal URL and set `KONG_PORTAL` to `on`:
 

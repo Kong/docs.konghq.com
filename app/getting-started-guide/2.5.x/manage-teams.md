@@ -7,7 +7,7 @@ title: Manage Administrative Teams
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.ee_product_name}}.
 
-If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/getting-started-guide/{{page.kong_version}}/load-balancing) before moving on.
+If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/getting-started-guide/{{page.kong_version}}/load-balancing/) before moving on.
 
 ## Overview of Workspaces and Teams
 
@@ -363,4 +363,4 @@ In this topic, you:
 * Created a workspace named `SecureWorkspace`.
 * Created an admin named `secureworkspaceadmin` and granted them permissions to manage to everything in the `SecureWorkspace`.
 
-Next, set up the [Kong Developer Portal](/getting-started-guide/{{page.kong_version}}/dev-portal).
+Next, set up the [Kong Developer Portal](/getting-started-guide/{{page.kong_version}}/dev-portal/).

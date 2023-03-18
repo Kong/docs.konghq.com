@@ -1,6 +1,6 @@
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) documentation to install
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Installing the Gateway APIs

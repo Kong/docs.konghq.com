@@ -17,7 +17,7 @@ When you create a {{site.konnect_saas}} account, a license is
 automatically provisioned to the organization. You do not need to manage this
 license manually.
 
-Any runtimes configured through the [Runtime Manager](/konnect/runtime-manager)
+Any runtimes configured through the [Runtime Manager](/konnect/runtime-manager/)
 also implicitly receive the same license from {{site.konnect_saas}}
 control plane. You should never have to deal with a license
 directly.
@@ -37,7 +37,7 @@ This page provides an overview of your current plan, including:
 the current month
 
 For Free and Plus plans, you can:
-* [Modify or cancel your plan](/konnect/account-management/change-plan)
+* [Modify or cancel your plan](/konnect/account-management/change-plan/)
 * [Set up or modify a payment method](/konnect/account-management/billing#modify-a-payment-method)
 * [Pay an invoice](/konnect/account-management/billing#pay-an-invoice)
 * [Check billing history](/konnect/account-management/billing#view-billing-history)

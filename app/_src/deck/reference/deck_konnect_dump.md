@@ -155,4 +155,4 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
-* [decK {{site.konnect_short_name}}](/deck/{{page.kong_version}}/reference/deck_konnect)	 - Configuration tool for {{site.konnect_short_name}} (in alpha)
+* [decK {{site.konnect_short_name}}](/deck/{{page.kong_version}}/reference/deck_konnect/)	 - Configuration tool for {{site.konnect_short_name}} (in alpha)

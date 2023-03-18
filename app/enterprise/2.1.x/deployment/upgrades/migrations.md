@@ -43,13 +43,13 @@ affect your current installation.
 * If you are adding a new plugin to your installation, you need to run
   `kong migrations up` with the plugin name specified. For example,
   `KONG_PLUGINS=oauth2`.
-* The [Portal Application Registration](/hub/kong-inc/application-registration) plugin
+* The [Portal Application Registration](/hub/kong-inc/application-registration/) plugin
   was in beta status for both 1.5.x and 2.1.x beta versions. Using the plugin in
   a 2.1.x production environment requires a fresh installation and configuration
   of the plugin. The 2.1.x plugin requires authentication to be configured separately
   on the same Service. See
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
   support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 * [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If
   you are currently running 1.5.x in classic (traditional)
@@ -58,12 +58,12 @@ affect your current installation.
   after running the migration. Custom plugins
   (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the Control Plane and the Data Plane in Hybrid mode.
-* [Custom plugins and entities](/enterprise/{{page.kong_version}}/deployment/upgrades/custom-changes).
+* [Custom plugins and entities](/enterprise/{{page.kong_version}}/deployment/upgrades/custom-changes/).
   If you have custom plugins and entities, there are some breaking changes and
   extra steps you need to take when migrating to 2.1.x.
 * The Kong Developer Portal has undergone a number of breaking changes. If you
   are currently using the Developer Portal, it will no longer work without
-  [manually migrating files](/enterprise/{{page.kong_version}}/developer-portal/latest-migrations).
+  [manually migrating files](/enterprise/{{page.kong_version}}/developer-portal/latest-migrations/).
 
 ### Migrating from 1.5.x (or 2.1.x-beta) to 2.1.x
 

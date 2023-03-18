@@ -23,7 +23,7 @@ If running a version of {{site.ce_product_name}} earlier than {{page.kong_versio
 
 The following steps guide you through the migration process.
 
-1. [Download](/gateway/{{page.kong_version}}/install) the {{site.base_gateway}}
+1. [Download](/gateway/{{page.kong_version}}/install/) the {{site.base_gateway}}
 {{page.kong_version}} Enterprise package and configure it to point to the same data store as your
 {{site.ce_product_name}} 2.8.x node. The migration command expects the data store
 to be up to date on any pending migration:

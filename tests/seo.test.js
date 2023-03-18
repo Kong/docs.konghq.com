@@ -124,8 +124,8 @@ describe("unversioned content", () => {
       const $ = await fetchPage(t.src);
       await expect($("meta[name='robots'][content='follow,index']")).toHaveCount(1);
 
-      // There's no need for a canonical link with unversioned content
-      await expect($("link[rel='canonical']")).toHaveCount(0);
+      // Even unversioned content has a canonical link now
+      await expect($("link[rel='canonical']")).toHaveCount(1);
     });
   });
 });

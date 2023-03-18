@@ -138,5 +138,5 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 {% include_cached /md/support-policy.md %}
 
 ## See also
-* [Version support policy for {{site.base_gateway}}](/gateway/latest/support-policy)
-* [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy)
+* [Version support policy for {{site.base_gateway}}](/gateway/latest/support-policy/)
+* [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy/)

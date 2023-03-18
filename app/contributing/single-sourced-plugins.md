@@ -87,4 +87,4 @@ overrides:
 ## See also
 
 * [Conditional rendering](/contributing/conditional-rendering/): Render content in a file based on version filters
-* [Single-sourced versions](/contributing/single-sourced-versions): Learn about how single sourcing is implemented for other Kong products
+* [Single-sourced versions](/contributing/single-sourced-versions/): Learn about how single sourcing is implemented for other Kong products

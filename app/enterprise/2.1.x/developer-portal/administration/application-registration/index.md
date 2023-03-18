@@ -77,8 +77,8 @@ Available options:
 Configure the identity provider for your application, configure your
 application in Kong, and associate them with each other. See the
 [Okta](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config),
-or the [Azure](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config) setup examples.
-2. Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration) on a Service.
+or the [Azure](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config/) setup examples.
+2. Enable the [Application Registration plugin](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration/) on a Service.
 3. Depending on your configured authentication strategy, configure the Kong
 [OAuth2](/hub/kong-inc/oauth2) or
 Kong [OIDC](/hub/kong-inc/openid-connect/) plugin on the same Service as the

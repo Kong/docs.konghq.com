@@ -26,7 +26,7 @@ for each runtime instance.
 
 {{site.konnect_short_name}} manages runtime configuration in runtime groups. Each runtime group acts
 as a separate control plane and can manage runtime configurations independently
-of any other group. See [runtime groups](/konnect/runtime-manager/runtime-groups)
+of any other group. See [runtime groups](/konnect/runtime-manager/runtime-groups/)
 for more information.
 
 ## Runtime instances

@@ -542,7 +542,7 @@ defined URIs, in this order:
 4. `/version`
 
 Routers with a large number of regexes can consume traffic intended for other rules. Regular expressions are much more expensive to build and execute and can't be optimized easily. 
-You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language). 
+You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language/). 
 
 {% if_version lte:3.1.x %}
 If you see unexpected behavior, sending `Kong-Debug: 1` in your
