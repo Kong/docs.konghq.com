@@ -5,9 +5,37 @@ content_type: reference
 beta: true
 ---
 
-{{site.konnect_short_name}} logs events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
+## Log overview
+{{site.konnect_short_name}} captures three types of events:
+
+* Authentication: triggered when a user attempts to log into the Konnect web application or use the Konnect API via a personal access token. Also triggered when a system account access token is used.
+* Authorization: triggered when a permission check is made for a user or system account against a resource.
+* Access logs: triggered when a request is made to the Konnect API.
+
+## Log format
+
+{{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm). Webhook calls include a batch of events; each event is formatted in CEF and separated by a newline. The `Content-Type` is `application/text`.
+
+To minimize payload size, the message body is compressed.  The `Content-Encoding` is `application/gzip`.
+
+All log entries include the following attributes:
+
+Property | Description
+---------|-------------
+Timestamp | Time and date of the event in UTC.
+`rt` | Milliseconds since Unix epoch.
+`src` | The IP address of the request originator.
+`org_id` | The originating organization ID.
+`principal_id` | The user ID of the user that performed the action.
+`actor_id` | If another user performed the request on behalf of the principal, the acting user's ID is provided here. (See note.)
+`trace_id` | The correlation ID of the request. Use this value to find all log entries for a given request.
+`user_agent` | The user agent of the request: application, operating system, vendor, and version.
+
+_Note: Only an authorized Kong employee may act on behalf of another user._ 
 
 ## Authentication logs
+
+Authentication attempts and their outcomes are logged whenever a user logs in to the Konnect application or uses the Konnect API.
 
 Example log entry:
 
@@ -23,24 +51,17 @@ trace_id=3895213347334635099
 user_agent=grpc-go/1.51.0
 ```
 
-Each authentication log entry contains the following:
+Each authentication log entry contains the following attributes in addition to the defaults above:
 
 Property | Description
 ---------|-------------
-Timestamp | Time and date of the event in UTC.
 `AUTHENTICATION_TYPE` | Can be one of the following: <br> - `AUTHENTICATION_TYPE_BASIC`: basic email and password authentication <br> - `AUTHENTICATION_TYPE_SSO`: authentication with single sign-on (SSO) <br> - `AUTHENTICATION_TYPE_PAT`: authentication with a personal access token
 `AUTHENTICATION_OUTCOME` | Can be one of the following: <br> - `AUTHENTICATION_OUTCOME_SUCCESS`: authentication is successful<br> - `AUTHENTICATION_OUTCOME_NOT_FOUND`: user was not found<br> - `AUTHENTICATION_OUTCOME_INVALID_PASSWORD`: invalid password specified <br> - `AUTHENTICATION_OUTCOME_LOCKED`: user account is locked<br> - `AUTHENTICATION_OUTCOME_DISABLED`: user account has been disabled
-`rt` | Milliseconds since Unix epoch.
-`src` | The IP address of the request originator.
 `success` | `true` or `false`, depending on whether authentication was successful or not.
-`org_id` | The originating organization ID.
-`principal_id` | The user ID of the user that performed the action.
-`trace_id` | The trace ID of the request.
-`user_agent` | The user agent of the request: application, operating system, vendor, and version.
 
 ## Authorization logs
 
-Authorization log entries are created for every read and write operation in {{site.konnect_short_name}}.
+Authorization log entries are created for every permission check in {{site.konnect_short_name}}.
 
 Example log entry:
 
@@ -57,21 +78,27 @@ trace_id=8809518331550410226
 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
 ```
 
-Each authorization log entry contains the following:
+Each authorization log entry contains the following attributes in addition to the defaults above:
 
 Property | Description
 ---------|-------------
-Timestamp | Time and date of the event in UTC.
-`service_name` | The name of the component within {{site.konnect_short_name}}. For example, `portals` or `runtimegroups`. In the above example, this appears as `Authz.portals`.
-`rt` | Milliseconds since Unix epoch.
-`src` | The IP address of the request originator.
 `action` | The type of action the user performed on the resource. For example, `retrieve`, `list`, or `edit`.
 `granted` | Boolean indicating whether the authorization was granted or not.
-`org_id` | The originating organization ID.
-`principal_id` | The user ID of the user that performed the action.
-`actor_id` | If using impersonation, the ID of the person doing the impersonation. Otherwise, this field is empty.
-`trace_id` | The trace ID of the request.
-`user_agent` | The user agent of the request: application, operating system, vendor, and version.
+
+
+## Access logs
+
+Access logs include information about requests to the Konnect API.
+
+Each access log entry contains the following attributes in addition to the defaults above:
+
+Property | Description
+---------|-------------
+`request` | The endpoint that was called.
+`query` | The request query parameters, if any.
+`act` | The HTTP request method; for example, `GET` or `POST`.
+`status` | The HTTP response code; for example, `200` or `403`.
+
 
 ## See also
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
