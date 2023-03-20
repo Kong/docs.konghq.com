@@ -6,22 +6,25 @@ items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
-      - text: Introduction to Kong Mesh
-        url: /mesh/2.1.x/
-        absolute_url: true
-      - text: What is Service Mesh?
+      - text: About service meshes
         url: /introduction/what-is-a-service-mesh/
-        src: /.repos/kuma/app/_src/introduction/what-is-a-service-mesh/
+        src: /.repos/kuma/app/_src/introduction/about-service-meshes/ 
+      - text: Overview of Kong Mesh
+        url: /mesh/2.2.x/
+        absolute_url: true
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
         src: /.repos/kuma/app/_src/introduction/how-kuma-works/
-      - text: Deployments
-        url: /introduction/deployments/
-        src: /.repos/kuma/app/_src/introduction/deployments/
+      - text: Architecture
+        url: /introduction/architecture/
+        src: /.repos/kuma/app/_src/introduction/architecture/
       - text: Version support policy
         url: /support-policy/
-      - text: Stability
+      - text: Stages of software availability
         url: /availability-stages/
+      - text: Mesh requirements
+        url: /documentation/requirements/
+        src: /.repos/kuma/app/_src/introduction/requirements/
       - text: Release notes
         url: /mesh/changelog
         generate: false
@@ -78,9 +81,6 @@ items:
   - title: Explore
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
-      - text: Overview
-        url: /explore/overview/
-        src: /.repos/kuma/app/_src/explore/overview/
       - text: Data plane proxy
         url: /explore/dpp/
         src: /.repos/kuma/app/_src/explore/dpp/
@@ -177,9 +177,6 @@ items:
       - text: Upgrades
         url: /documentation/upgrades/
         src: /.repos/kuma/app/_src/documentation/upgrades/
-      - text: Requirements
-        url: /documentation/requirements/
-        src: /.repos/kuma/app/_src/documentation/requirements/
   - title: Policies
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
