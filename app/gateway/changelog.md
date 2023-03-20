@@ -1200,7 +1200,6 @@ Amazon Linux 1 [reached end-of-life on December 31, 2020](https://aws.amazon.com
 * Deprecated and stopped producing Debian 8 (Jessie) containers and packages.
 Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020/20200709).
   [Kong/kong-build-tools #448](https://github.com/Kong/kong-build-tools/pull/448)
-  [Kong/kong-distributions #766](https://github.com/Kong/kong-distributions/pull/766)
 
 #### Core
 
@@ -2166,22 +2165,22 @@ and their statuses into CSV format.
 #### Core
 
 * **Beta feature**: Kong Gateway 2.8.0.0 introduces
-[secrets management and vault support](/gateway/latest/plan-and-deploy/security/secrets-management/).
+[secrets management and vault support](/gateway/latest/kong-enterprise/secrets-management/).
 You can now store confidential values such as usernames and passwords
 as secrets in secure vaults. Kong Gateway can then reference these secrets,
 making your environment more secure.
 
   The beta includes `get` support for the following vault implementations:
-  * [AWS Secrets Manager](/gateway/latest/plan-and-deploy/security/secrets-management/backends/aws-sm/)
-  * [HashiCorp Vault](/gateway/latest/plan-and-deploy/security/secrets-management/backends/hashicorp-vault/)
-  * [Environment variable](/gateway/latest/plan-and-deploy/security/secrets-management/backends/env/)
+  * [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/)
+  * [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+  * [Environment variable](/gateway/latest/kong-enterprise/secrets-management/backends/env/)
 
   As part of this support, some plugins have certain fields marked as
   *referenceable*. See the plugin section of the Kong Gateway 2.8 changelog for
   details.
 
   Test out secrets management using the
-  [getting started guide](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/),
+  [getting started guide](/gateway/latest/kong-enterprise/secrets-management/getting-started/),
   and check out the documentation for the Kong Admin API [`/vaults-beta` entity](/gateway/latest/admin-api/#vaults-beta-entity).
 
   {:.important}
@@ -2191,7 +2190,7 @@ making your environment more secure.
 
 * You can customize the transparent dynamic TLS SNI name.
 
-  Thanks, [@zhangshuaiNB](https://github.com/zhangshuaiNB)!
+  Thanks, [@Murphy-hub](https://github.com/Murphy-hub)!
   [#8196](https://github.com/Kong/kong/pull/8196)
 
 * Routes now support matching headers with regular expressions.
@@ -2270,8 +2269,8 @@ making your environment more secure.
   * **Beta feature:** The `client_id`, `client_secret`, `session_secret`, `session_redis_username`,
   and `session_redis_password` configuration fields are now marked as
   referenceable, which means they can be securely stored as
-  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [Forward Proxy Advanced](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
 
@@ -2284,8 +2283,8 @@ making your environment more secure.
 
   * The `auth_password` and `auth_username` configuration fields are now marked as
   referenceable, which means they can be securely stored as
-  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [Kafka Upstream](/hub/kong-inc/kafka-upstream/) (`kafka-upstream`) and [Kafka Log](/hub/kong-inc/kafka-log/) (`kafka-log`)
 
@@ -2294,22 +2293,22 @@ making your environment more secure.
 
   * **Beta feature:** The `authentication.user` and `authentication.password` configuration fields are now marked as
   referenceable, which means they can be securely stored as
-  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
 
   * **Beta feature:** The `ldap_password` and `bind_dn` configuration fields are now marked as
   referenceable, which means they can be securely stored as
-  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [Vault Authentication](/hub/kong-inc/vault-auth/) (`vault-auth`)
 
   * **Beta feature:** The `vaults.vault_token` form field is now marked as
   referenceable, which means it can be securely stored as a
-  [secret](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
 
@@ -2319,8 +2318,8 @@ making your environment more secure.
 
   * **Beta feature:** The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
   configuration fields are now marked as referenceable, which means they can be securely stored as
-  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
 
@@ -2331,8 +2330,8 @@ making your environment more secure.
 
   * **Beta feature:** The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
   configuration fields are now marked as referenceable, which means they can be securely stored as
-  [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
   * Added Redis ACL support (Redis v6.0.0+ and Redis Sentinel v6.2.0+).
@@ -2352,8 +2351,8 @@ making your environment more secure.
 
   * **Beta feature:**  The `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
   configuration fields are now marked as referenceable, which means they can be
-  securely stored as [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
-  in a vault. References must follow a [specific format](/gateway/{{page.kong_version}}/kong-enterprise/security/secrets-management/reference-format/).
+  securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+  in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * [jq](/hub/kong-inc/jq/) (`jq`)
   * Use response buffering from the PDK.
@@ -2846,7 +2845,7 @@ In this release, we continued our work on better performance:
 #### Plugins
 
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * Added support for JWT algorithm [RS384](https://javadoc.io/static/com.github.jwt-scala/jwt-core_3.0.0-RC3/7.1.4/api/pdi/jwt/JwtAlgorithm$$RS384$.html).
+  * Added support for JWT algorithm RS384.
   * The plugin now allows Redis Cluster nodes to be specified by hostname
     through the `session_redis_cluster_nodes` field, which
     is helpful if the cluster IPs are not static.
@@ -3370,7 +3369,7 @@ only one or neither of the fields be configured.
   to import the keys so Kong Gateway can recognize the decrypted fields. Before if there were data fields
   keyring-encrypted in the database, Kong Gateway attempted to decrypt them on the `init*` phases (`init` or `init_worker`
   phases - when the Kong process is started), and you would get errors like "no request found". **Keys must still be imported after the Kong process is started.**
-- The [Keyring Encryption](/enterprise/2.6.x/db-encryption/) feature is no longer in an alpha quality state.
+- The [Keyring Encryption](/gateway/latest/kong-enterprise/db-encryption/) feature is no longer in an alpha quality state.
 - This release includes a fix to the CentOS Docker image builds, ensuring CentOS 7 images are properly generated.
 
 #### Core
@@ -3545,7 +3544,7 @@ only one or neither of the fields be configured.
   to import the keys so Kong Gateway can recognize the decrypted fields. Before if there were data fields
   keyring-encrypted in the database, Kong Gateway attempted to decrypt them on the `init*` phases (`init` or `init_worker`
   phases - when the Kong process is started), and you would get errors like "no request found". **Keys must still be imported after the Kong process is started.**
-- The [Keyring Encryption](/enterprise/2.6.x/db-encryption/) feature is no longer in an alpha quality state.
+- The [Keyring Encryption](/gateway/latest/kong-enterprise/db-encryption/) feature is no longer in an alpha quality state.
 
 #### Core
 - Balancer retries now correctly set the `:authority` pseudo-header on balancer retries.
@@ -3628,7 +3627,7 @@ Developers now correctly propagate to their associated Consumers.
   keyring-encrypted in the database, Kong Gateway attempted to decrypt them on the `init*` phases (`init` or `init_worker`
   phases - when the Kong process is started), and you would get errors like "no request found".
   **Keys must still be imported after the Kong process is started.**
-- The [Keyring Encryption](/enterprise/2.6.x/db-encryption/) feature is no longer in an alpha quality state.
+- The [Keyring Encryption](/gateway/latest/kong-enterprise/db-encryption/) feature is no longer in an alpha quality state.
 - When using Redis Cluster with a Kong Gateway plugin and the cluster nodes are configured by hostname,
   if the entire cluster is rebooted and appears on new IP addresses, now the connection will eventually self heal once DNS is updated.
 
@@ -5387,7 +5386,7 @@ open-source **Kong Gateway 2.2.0.0**:
 
     <div class="alert alert-ee blue">
     <strong>Note:</strong> If you are not using one of our distribution packages and compiling
-    OpenResty from source, you must still apply Kong's <a href="https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/openresty-patches">
+    OpenResty from source, you must still apply Kong's <a href="https://github.com/Kong/kong-build-tools/tree/master/openresty-build-tools/patches">
     OpenResty patches</a>
     (and, as highlighted above, compile OpenResty with the new
     <code>lua-kong-nginx-module</code>). Our <a href="https://github.com/Kong/kong-build-tools">kong-build-tools</a>
@@ -6673,7 +6672,7 @@ repository will allow you to do both easily.
   [#4757](https://github.com/Kong/kong/pull/4757)
 - [azure-functions](https://github.com/Kong/kong-plugin-azure-functions):
   Bumped to 0.4 for minor fixes and performance improvements.
-- [kubernetes-sidecar-injector](https://github.com/Kong/kubernetes-sidecar-injector):
+- kubernetes-sidecar-injector:
   The plugin is now more resilient to Kubernetes schema changes. Note that it is
   now deprecated, and that Kong recommends using kuma.io instead.
 - [serverless-functions](https://github.com/Kong/kong-plugin-serverless-functions):
@@ -7194,7 +7193,7 @@ attempting to fetch headers during the ssl_cert phase.
   database schema.
 - Allow the `kong config init` command to run without a pointing to a prefix
   directory.
-- Adds support for [`db_cache_warmup_entities`](/enterprise/0.36-x/property-reference/#db_cache_warmup_entities),
+- Adds support for [`db_cache_warmup_entities`](/gateway/latest/reference/configuration/#db_cache_warmup_entities),
   which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
 - Provides support in declarative configuration for **Workspaces** and **RBAC**.
 - Provides support for the Redis Cluster library.
@@ -8042,14 +8041,6 @@ the theme name to files inserted on a workspace.
     | This file is broken up by section, but feel free to organize as you
     | see fit!
     |
-    | Helpful articles on customizing your Developer Portal:
-    |   - https://getkong.org/docs/enterprise/latest/developer-portal/introduction/
-    |   - https://getkong.org/docs/enterprise/latest/developer-portal/getting-started/
-    |   - https://getkong.org/docs/enterprise/latest/developer-portal/understand/
-    |   - https://getkong.org/docs/enterprise/latest/developer-portal/customization/
-    |   - https://getkong.org/docs/enterprise/latest/developer-portal/authentication/
-    |   - https://getkong.org/docs/enterprise/latest/developer-portal/faq/
-    |
     |--------------------------------------------------------------------------
     |
     --}}
@@ -8719,7 +8710,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
 
 ---
 
-[rbac-overview]: /enterprise/0.33-x/rbac/overview
-[workspaces-overview]: /enterprise/0.33-x/workspaces/overview
-[statsd-docs]: /enterprise/0.33-x/plugins/statsd-advanced
+[rbac-overview]: /gateway/latest/production/access-control/enable-rbac/
+[workspaces-overview]: /gateway/latest/kong-enterprise/workspaces/
+[statsd-docs]: /hub/kong-inc/statsd/
 [prometheus-docs]: /hub/kong-inc/prometheus/
