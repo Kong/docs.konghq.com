@@ -6,6 +6,7 @@
       absolute_url: true
     - text: Version Support Policy
       url: /support-policy
+      src: /gateway/support/index
     - text: Stages of Software Availability
       url: /availability-stages
     - text: Changelog

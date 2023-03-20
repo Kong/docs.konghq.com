@@ -13,6 +13,7 @@ items:
         items:
           - text: Version Support Policy
             url: /support-policy
+            src: /gateway/support/index
           - text: Supported Installation Options
             url: /install-support
           - text: Supported Linux Distributions
