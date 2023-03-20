@@ -12,10 +12,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## March 2023
 
 **Enriched documentation experience for service packages**
-: {{site.konnect_saas}} users can now publish contextual documentation as multiple markdown files in the Service Hub and render in the Dev Portal, so that developers can see different material more clearly. For example, release notes can now be published separately from deployment workflows.
+: {{site.konnect_saas}} users can now publish [contextual documentation](/konnect/servicehub/service-documentation/) as multiple markdown files in the Service Hub and render in the Dev Portal, so that developers can see different material more clearly. For example, release notes can now be published separately from deployment workflows.
 
 **Enhanced Service Hub experience**
-: The Service Hub user experience is now more intuitive, helpful, and impressive as the primary Service catalog for application developers and API product owners. We've optimized descriptions, placement of information, and rendering of data to include markdown files and API specs.
+: The [Service Hub](/konnect/servicehub/) user experience is now more intuitive, helpful, and impressive as the primary Service catalog for application developers and API product owners. We've optimized descriptions, placement of information, and rendering of data to include markdown files and API specs.
 
 ## February 2023
 
