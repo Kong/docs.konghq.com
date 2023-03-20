@@ -11,7 +11,7 @@ items:
         absolute_url: true
       - text: What is Service Mesh?
         url: /introduction/what-is-a-service-mesh/
-        src: /.repos/kuma/app/_src/introduction/what-is-a-service-mesh/
+        src: /.repos/kuma/app/_src/introduction/about-service-meshes/
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
         src: /.repos/kuma/app/_src/introduction/how-kuma-works/
@@ -80,7 +80,7 @@ items:
     items:
       - text: Overview
         url: /explore/overview/
-        src: /.repos/kuma/app/_src/explore/overview/
+        src: /.repos/kuma/app/_src/introduction/architecture/
       - text: Data plane proxy
         url: /explore/dpp/
         src: /.repos/kuma/app/_src/explore/dpp/
@@ -179,7 +179,7 @@ items:
         src: /.repos/kuma/app/_src/documentation/upgrades/
       - text: Requirements
         url: /documentation/requirements/
-        src: /.repos/kuma/app/_src/documentation/requirements/
+        src: /.repos/kuma/app/_src/introduction/requirements/
   - title: Policies
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
@@ -408,16 +408,6 @@ items:
       - text: Kuma-cp configuration reference
         url: /generated/kuma-cp
         src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
-  - title: Community
-    items:
-      - text: Open source License
-        url: /community/license/
-        src: /.repos/kuma/app/_src/community/license/
-      - text: Contribute to Mesh
-        url: /community/contribute-to-mesh/
-        src: /.repos/kuma/app/_src/community/contribute-to-kuma/
-
-
 unlisted:
   # Kuma CP
   - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
