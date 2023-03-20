@@ -251,7 +251,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 ## July 2022
 
 **New environment for {{site.konnect_short_name}}**
-: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the `konnect.konghq.com` environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
@@ -443,8 +443,7 @@ improvements to CP-DP communication, new configuration options in plugins, and m
 
 **Global plugin support**
 : You can now configure global plugins through {{site.konnect_saas}}. Visit the
-[Shared Config page](https://konnect.konghq.com/configuration/)
-and select the **Plugin** menu option to get started.
+Shared Config page and select the **Plugin** menu option to get started.
 
 **{{site.base_gateway}} 2.4.1.1 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
@@ -491,8 +490,7 @@ configuration anymore.
 
 **Sorting the runtime status table**
 : You can now sort the runtime status table in
-[Runtime Manager](https://konnect.konghq.com/runtime-manager) by the
-**Last Seen** or **Sync Status** columns.
+Runtime Manager by the **Last Seen** or **Sync Status** columns.
 
 ## May 2021
 
@@ -539,7 +537,7 @@ app and billing portal.
 : You can now sign up for a {{site.konnect_short_name}} account without an
 access code. No more
 reaching out to Kong support or sales for access &ndash; just go
-to [https://konnect.konghq.com](https://konnect.konghq.com) and try it out!
+to [https://cloud.konghq.com](https://cloud.konghq.com) and try it out!
 
 **Runtime setup improvements**
 : Runtime setup for Linux and Kubernetes environments has improved. When you
