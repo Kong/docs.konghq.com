@@ -68,7 +68,7 @@ The **Service Dashboard** can be used to manage documentation for your service. 
 
 Learn more: 
 
-* [Manage service documentation](/konnect/servicehub/service-doumentation/)
+* [Manage service documentation](/konnect/servicehub/service-documentation/)
 
 ### {{site.base_gateway}} implementations
 
