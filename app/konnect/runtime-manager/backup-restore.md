@@ -3,8 +3,16 @@ title: Back Up and Restore Konnect Configuration
 content_type: how-to
 ---
 
-You can use decK to back up and restore a subset or the entirety of
+Use [decK](/deck/latest/installation/) to back up and restore 
 {{site.konnect_short_name}}'s runtime group configuration. 
+
+With `deck dump`, decK generates state files for each runtime group, which act 
+as snapshots of the runtime group's configuration at that point in time.
+If a runtime group's configuration is ever corrupted, you can then use these snapshots to 
+restore your runtime group, or bring up another runtime group with the same configuration.
+
+Review the list of [entities managed by decK](/deck/latest/reference/entities/) to see what can 
+be backed up.
 
 {:.note}
 > **Note:** You can't use this method to back up
@@ -73,3 +81,7 @@ deck sync \
 
 Check your runtime group in {{site.konnect_short_name}} to make sure the sync worked. 
 Open **Runtime Manager**, select your runtime group, and check through the configured entities.
+
+## More information
+* [Entities managed by decK](/deck/latest/reference/entities/)
+* [Using tags to back up a subset of configuration](/deck/latest/guides/backup-restore/#manage-a-subset-of-configuration)
