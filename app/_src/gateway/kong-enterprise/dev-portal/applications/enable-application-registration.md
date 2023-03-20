@@ -20,9 +20,9 @@ external identity provider admins can selectively admit access to Services using
 * Authorization provider configured if using a supported third-party
   identity provider with the OIDC plugin:
   * For example instructions using Okta as an identity provider, refer to the
-    [Okta example](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config).
+    [Okta example](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config/).
   * For example instructions using Azure AD as an identity provider, refer to the
-    [Azure example](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config).
+    [Azure example](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config/).
 
 ## Enable Application Registration on a Service using Kong Manager {#enable-app-reg-plugin}
 
@@ -86,6 +86,6 @@ External OAuth2 strategy:
 
 * If using the third-party authorization strategy
 (`external-oauth2`), configure the OIDC plugin. You can use the Kong Manager GUI
-or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect).
+or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect/).
 When your deployment is hybrid mode, the OIDC plugin must be configured to handle
 authentication for the Portal Application Registration plugin.

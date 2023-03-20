@@ -23,9 +23,9 @@ privileged system calls in the operating system.
 ## Prerequisites
 
 {{site.ee_product_name}} is installed on one of the following Linux distributions:
-* [Amazon Linux 1 or 2](/gateway/{{page.kong_version}}/install/linux/amazon-linux)
-* [RHEL](/gateway/{{page.kong_version}}/install/linux/rhel)
-* [Ubuntu](/gateway/{{page.kong_version}}/install/linux/ubuntu)
+* [Amazon Linux 1 or 2](/gateway/{{page.kong_version}}/install/linux/amazon-linux/)
+* [RHEL](/gateway/{{page.kong_version}}/install/linux/rhel/)
+* [Ubuntu](/gateway/{{page.kong_version}}/install/linux/ubuntu/)
 
 ## Run {{site.base_gateway}} as the built-in kong user
 

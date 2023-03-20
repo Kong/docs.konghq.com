@@ -367,7 +367,7 @@ on how data plane nodes process configuration.
 
 {% navtabs %}
 {% navtab Using Docker %}
-1. Using the [Docker installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/docker),
+1. Using the [Docker installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/docker/),
 follow the instructions to:
     1. [Download {{site.ee_product_name}}](/enterprise/{{page.kong_version}}/deployment/installation/docker#pull-image).
     2. [Create a Docker network](/enterprise/{{page.kong_version}}/deployment/installation/docker/#create-network).
@@ -437,7 +437,7 @@ follow the instructions to:
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
-1. Find the documentation for [your platform](/enterprise/{{page.kong_version}}/deployment/installation),
+1. Find the documentation for [your platform](/enterprise/{{page.kong_version}}/deployment/installation/),
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.ee_product_name}} and the Enterprise license, then install Kong.
 

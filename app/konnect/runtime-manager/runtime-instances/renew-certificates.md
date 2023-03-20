@@ -12,7 +12,7 @@ Renew your certificates to prevent any interruption in communication between
 certificate expires and is not replaced:
 * The runtime instance stops receiving configuration updates from
 the control plane.
-* The runtime instance stops sending [analytics](/konnect/analytics) and usage data
+* The runtime instance stops sending [analytics](/konnect/analytics/) and usage data
 to the control plane.
 * Each disconnected runtime instance uses cached configuration to continue
 proxying and routing traffic.

@@ -265,10 +265,10 @@ plugin_data: |
 certificate_body: |
   Attributes | Description
   ---:| ---
-  `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
-  `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
-  `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
-  `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
+  `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
+  `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
+  `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
+  `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
   `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
   `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
 
@@ -660,7 +660,7 @@ vault_data: |
 ## DB-less Mode
 
 
-In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config), the Admin API can be used to load a new declarative
+In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/), the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
 of that particular Kong node. This is the case because there is no database
@@ -1810,7 +1810,7 @@ The router adds:
 
 Learn more about the router:
 
-* [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions)
+* [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions/)
 * [Router Expressions language reference](/gateway/3.0.x/reference/router-expressions-language/)
 
 #### Path handling algorithms

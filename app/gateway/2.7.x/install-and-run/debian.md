@@ -31,7 +31,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
 * The following tools are installed:
   * [`curl`](https://curl.se/)
   * [`lsb-release`](https://packages.debian.org/lsb-release)

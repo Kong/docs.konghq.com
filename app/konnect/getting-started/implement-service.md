@@ -79,7 +79,7 @@ All changes will be reflected in both locations.
 ## Verify the implementation
 
 If you used the Docker script to create a container
-earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime),
+earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime/),
 your runtime's default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append the route path

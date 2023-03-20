@@ -12,13 +12,13 @@ may negatively impact availability.
 
 ## The Rate Limiting plugin
 
-{{site.base_gateway}} imposes rate limits on clients through the use of the [Rate Limiting plugin](/hub/kong-inc/rate-limiting). 
+{{site.base_gateway}} imposes rate limits on clients through the use of the [Rate Limiting plugin](/hub/kong-inc/rate-limiting/). 
 When rate limiting is enabled, clients are restricted in the number of requests that can be made in a configurable period of time.
 The plugin supports identifying clients as [consumers](/gateway/latest/admin-api/#consumer-object) 
 or by the client IP address of the requests.
 
 {:.note}
-> This tutorial uses the [Rate Limiting](/hub/kong-inc/rate-limiting) <span class="badge free"></span> plugin. Also available is the 
+> This tutorial uses the [Rate Limiting](/hub/kong-inc/rate-limiting/) <span class="badge free"></span> plugin. Also available is the 
 [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> 
 plugin. The advanced version provides additional features like support for the sliding window algorithm
 and advanced Redis support for greater performance.
@@ -35,7 +35,7 @@ series from the beginning.
 Start with the introduction [Get Kong](/gateway/latest/get-started/), which includes
 tool prerequisites and instructions for running a local {{site.base_gateway}}.
 
-Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),
+Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes/),
 includes instructions for installing a mock service used throughout this series. 
 
 If you haven't completed these steps already, complete them before proceeding.

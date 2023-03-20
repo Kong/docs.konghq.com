@@ -85,7 +85,7 @@ kong-dp-exporter:
     environment:
       <<: *other-kong-envs
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_WRITE>
 ```
 
@@ -138,5 +138,5 @@ The example below uses MinIO to demonstrate configuring a backup node:
 
 ## More Information
 
-* [Data plane resilience FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq)
+* [Data plane resilience FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq/)
 * [Hybrid Mode](/gateway/latest/production/deployment-topologies/hybrid-mode/)

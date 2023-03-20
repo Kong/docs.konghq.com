@@ -4,7 +4,7 @@ badge: enterprise
 content_type: Reference
 ---
 
-Starting in version 3.2, {{site.base_gateway}} can be set up to support configuring new data planes in the event of a control plane outage. This document explains how data plane resilience works, who should use it, and additional considerations. For instructions on setting this up, read the [data plane resilience documentation](/gateway/latest/kong-enterprise/cp-outage-handling).
+Starting in version 3.2, {{site.base_gateway}} can be set up to support configuring new data planes in the event of a control plane outage. This document explains how data plane resilience works, who should use it, and additional considerations. For instructions on setting this up, read the [data plane resilience documentation](/gateway/latest/kong-enterprise/cp-outage-handling/).
 
 
 ## How data plane resilience works

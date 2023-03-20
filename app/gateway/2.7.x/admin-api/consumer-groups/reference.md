@@ -6,7 +6,7 @@ badge: enterprise
 Use consumer groups to manage custom rate limiting configuration for
 subsets of consumers.
 
-The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced).
+The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/).
 To use consumer groups for rate limiting, configure the plugin with the
 `enforce_consumer_groups` and `consumer_groups` parameters, then use the
 `/consumer_groups` endpoint to manage the groups.

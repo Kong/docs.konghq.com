@@ -33,7 +33,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user) access.
+* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
 ## Download and install

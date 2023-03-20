@@ -19,7 +19,7 @@ access to a subset of plugins:
     * {{site.konnect_short_name}} Enterprise tier
     * {{site.ee_product_name}} (self-managed)
 
-If you're looking for plugin deployment topology compatibility, supported network protocols, and supported entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility).
+If you're looking for plugin deployment topology compatibility, supported network protocols, and supported entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/).
 
 {% assign categories = site.data.tables.plugin_index %}
 

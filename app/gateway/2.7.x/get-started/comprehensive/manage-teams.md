@@ -5,7 +5,7 @@ badge: enterprise
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}}.
 
-If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing) before moving on.
+If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/) before moving on.
 
 ## Overview of workspaces and Teams
 
@@ -366,4 +366,4 @@ In this topic, you:
 * Created a workspace named `SecureWorkspace`.
 * Created an admin named `secureworkspaceadmin` and granted them permissions to manage to everything in the `SecureWorkspace`.
 
-Next, set up the [Dev Portal](/gateway/{{page.kong_version}}/get-started/comprehensive/dev-portal).
+Next, set up the [Dev Portal](/gateway/{{page.kong_version}}/get-started/comprehensive/dev-portal/).

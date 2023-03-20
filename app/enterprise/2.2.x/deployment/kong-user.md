@@ -25,11 +25,11 @@ configuration property. It is also possible to run Kong as a custom non-root use
 ## Prerequisites
 
 {{site.ee_product_name}} is installed on one of the following Linux distributions:
-* [Amazon Linux](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux)
-* [Amazon Linux 2](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2)
-* [CentOS](/enterprise/{{page.kong_version}}/deployment/installation/centos)
-* [RHEL](/enterprise/{{page.kong_version}}/deployment/installation/rhel)
-* [Ubuntu](/enterprise/{{page.kong_version}}/deployment/installation/ubuntu)
+* [Amazon Linux](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux/)
+* [Amazon Linux 2](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2/)
+* [CentOS](/enterprise/{{page.kong_version}}/deployment/installation/centos/)
+* [RHEL](/enterprise/{{page.kong_version}}/deployment/installation/rhel/)
+* [Ubuntu](/enterprise/{{page.kong_version}}/deployment/installation/ubuntu/)
 
 ## Run {{site.ee_product_name}} as the built-in kong user
 

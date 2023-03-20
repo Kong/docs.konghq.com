@@ -36,7 +36,7 @@ Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
 Gateway deployments. You can also create your own custom plugins. For more
 information, see the
 [plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
-the [PDK reference](/gateway/{{page.kong_version}}/pdk), and the guide on
+the [PDK reference](/gateway/{{page.kong_version}}/pdk/), and the guide on
 [creating plugins with other languages](/gateway/{{page.kong_version}}/reference/external-plugins).
 
 ## Packages and modes
@@ -60,7 +60,7 @@ See the [{{site.konnect_saas}} documentation](/konnect/) and the
   it also includes:
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
-    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference)
+    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
     * [Enterprise plugins](/hub/)
 
 You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
@@ -142,9 +142,9 @@ To test it out, you can choose either the open-source package, or
 run Kong Gateway in free mode and also try out Kong Manager.
 
 After installation, get started with one of our introductory guides:
-* **[Quickstart](/gateway/{{page.kong_version}}/get-started/quickstart)**: An introduction to
+* **[Quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/)**: An introduction to
 {{site.base_gateway}}, common objects, and basic Admin API commands.
-* **[Getting started guide](/gateway/{{page.kong_version}}/get-started/comprehensive)**:
+* **[Getting started guide](/gateway/{{page.kong_version}}/get-started/comprehensive/)**:
 The complete {{site.base_gateway}}
 getting started guide provides in-depth examples, explanations, and step-by-step
 instructions, and explores Kong's many available tools for managing the gateway.
@@ -168,4 +168,4 @@ Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
 For the latest version support information for {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy).
+{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy/).

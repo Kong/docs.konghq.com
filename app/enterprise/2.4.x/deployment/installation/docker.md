@@ -68,9 +68,9 @@ in `KONG_ADMIN_GUI_URL` in [Step 5](#start-gateway):
 ## Step 7. (Optional) Enable the Dev Portal
 
 {:.note}
-> This feature is only available with a [{{site.konnect_product_name}} Enterprise](/enterprise/{{page.kong_version}}/deployment/licensing) subscription.
+> This feature is only available with a [{{site.konnect_product_name}} Enterprise](/enterprise/{{page.kong_version}}/deployment/licensing/) subscription.
 
-1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license).
+1. [Deploy a license](/enterprise/{{page.kong_version}}/deployment/licenses/deploy-license/).
 
 2. In your container, set the Portal URL and set `KONG_PORTAL` to `on`:
 

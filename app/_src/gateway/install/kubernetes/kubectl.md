@@ -2,11 +2,11 @@
 title: Install on Kubernetes
 ---
 
-This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} in DB-less mode. To install with a database, see the documentation on installing with [Helm](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart).
+This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} in DB-less mode. To install with a database, see the documentation on installing with [Helm](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart/).
 
 This page also includes the equivalent commands for OpenShift.
 
-In DB-less mode on Kubernetes, the config is stored in etcd, the Kubernetes native data store. For more information, see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/install/kubernetes/deployment-options).
+In DB-less mode on Kubernetes, the config is stored in etcd, the Kubernetes native data store. For more information, see [Kubernetes Deployment Options](/gateway/{{page.kong_version}}/install/kubernetes/deployment-options/).
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).
@@ -67,17 +67,17 @@ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 {% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```sh
-kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% navtab Kubernetes (OSS) %}
 ```sh
-kubectl apply -f https://bit.ly/kong-ingress-dbless
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
 ```
 {% endnavtab %}
 {% navtab OpenShift %}
 ```sh
-oc create -f https://bit.ly/k4k8s-enterprise-install
+oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% endnavtabs %}

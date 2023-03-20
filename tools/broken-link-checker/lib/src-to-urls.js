@@ -25,14 +25,19 @@ async function srcToUrls(pattern, src) {
 
     // If we provided a specific source, only match that file
     if (src) {
-      r = r.filter((u) => u.src == src);
+      r = r.filter((u) => {
+        return u.src == src;
+      });
     }
 
     urls = urls.concat(
       r.map((u) => {
+        const prefix = u.is_absolute
+          ? ""
+          : `/${entry.product}/${entry.release}`;
         return {
           source: src,
-          url: `/${entry.product}/${entry.release}${u.url}`,
+          url: `${prefix}${u.url}`,
         };
       })
     );
@@ -50,10 +55,28 @@ function extractNavWithMeta(items, base, srcPrefix) {
       urls = urls.concat(extractNavWithMeta(u.items, base, srcPrefix));
     } else {
       if (u.absolute_url) {
-        urls.push({
-          src: u.src || u.url,
-          url: u.url,
-        });
+        const parts = u.url.split("/").filter((n) => n);
+
+        // Special handling for index pages
+        if (parts[1].match(/\d+\.\d+\.x/)) {
+          parts[1] = "index";
+        }
+
+        // Otherwise treat the second segment as the filename e.g.
+        // /gateway/changelog.md
+        if (parts.length == 2) {
+          urls.push({
+            src: srcPrefix + "/" + parts[1] + ".md",
+            url: u.url,
+            is_absolute: true,
+          });
+        } else {
+          urls.push({
+            src: u.src || u.url,
+            url: u.url,
+            is_absolute: true,
+          });
+        }
       } else {
         const url = `${base}${u.url}`;
         urls.push({
@@ -64,6 +87,7 @@ function extractNavWithMeta(items, base, srcPrefix) {
               .replace(/\/$/, "") + // Remove trailing slashes
             ".md",
           url,
+          is_absolute: false,
         });
       }
     }

@@ -38,7 +38,8 @@ in `production`, and be actively working on v2 in `development`. Once it's
 ready to test, you'd create v2 in `staging` before finally creating v2 in
 `production` alongside v1.
 
-
+    These labels are customizable. 
+    See the [Labels](/konnect/reference/labels/) reference for more information on label formatting.
 
 ### Analytics
 

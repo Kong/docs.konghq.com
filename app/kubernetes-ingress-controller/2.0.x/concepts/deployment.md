@@ -7,9 +7,9 @@ based on uses-cases. This document explains various components involved
 and choices one can make as per the specific use-case.
 
 - [**Kubernetes Resources**](#kubernetes-resources):
-  Various Kubernetes resouces required to run the {{site.kic_product_name}}.
+  Various Kubernetes resources required to run the {{site.kic_product_name}}.
 - [**Deployment options**](#deployment-options):
-  A high-level explanantion of choices that one should consider and customize
+  A high-level explanation of choices that one should consider and customize
   the deployment to best serve a specific use case.
 
 ## Kubernetes Resources
@@ -54,7 +54,7 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources)
+Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
 concept document for details.
 
 ### RBAC permissions
@@ -87,7 +87,7 @@ all namespaces and will need access to these resources at the cluster level
 In addition to these, it needs:
 
 - Create a ConfigMap and read and update ConfigMap for to facilitate
-  leader-election. Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling)
+  leader-election. Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.
@@ -137,10 +137,10 @@ of all the domains that Kong should be proxying, to route the traffic to Kong.
 The {{site.kic_product_name}} can run with or without a database.
 If a database is being deployed, then following resources are required:
 
-- A `StatefulSet` which runs a Postgresql pod backed with a `PersistentVolume`
+- A `StatefulSet` which runs a PostgreSQL pod backed with a `PersistentVolume`
   to store Kong's configuration.
-- An internal `Service` which resolves to the Postgresql pod. This ensures
-  that Kong can find the Postgresql instance using DNS inside
+- An internal `Service` which resolves to the PostgreSQL pod. This ensures
+  that Kong can find the PostgreSQL instance using DNS inside
   the Kubernetes cluster.
 - A batch `Job` to run schema migrations. This is required to be executed once
   to install bootstrap Kong's database schema.
@@ -257,7 +257,7 @@ There are a few different ways of accomplishing this:
   Use the annotation on Ingress and Custom resources to segment
   the Ingress resources between multiple Ingress Controllers.
   **Warning!**
-  When you use another Ingress Controler, which is default for cluster
+  When you use another Ingress Controller, which is default for cluster
   (without set any `kubernetes.io/ingress.class`), be aware of using default `kong`
   ingress class. There is special behavior of the default `kong` ingress class,
   where any ingress resource that is not annotated is picked up.
@@ -277,7 +277,7 @@ There are a few different ways of accomplishing this:
 
 The {{site.kic_product_name}} is compatible with a variety of runtimes:
 
-### Kong Gateway (OSS)
+### {{site.base_gateway}} (OSS)
 
 This is the [Open-Source Gateway](https://github.com/kong/kong) runtime.
 The Ingress Controller is primarily developed against releases of the
@@ -288,7 +288,7 @@ open-source gateway.
 If you are a Kong Enterprise customer you have access to Enterprise K8s in
 addition to OSS.
 
-Kong Enterprise K8S is a package that takes the open-source Kong Gateway and
+Kong Enterprise K8S is a package that takes the open-source {{site.base_gateway}} and
 adds enterprise-only plugins to it.
 
 You simply need to deploy Kong Enterprise K8S instead of the Open-Source

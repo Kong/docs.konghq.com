@@ -1,4 +1,3 @@
-# to do: Heather will fill this out
 - title: Contribution guidelines
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /
@@ -10,6 +9,10 @@
       url: /style-guide
     - text: Word choice and naming
       url: /word-choice
+    - text: Notes and other notices
+      url: /notices
+    - text: Documenting user interfaces
+      url: /user-interfaces
     - text: Contribution templates
       url: /contribution-templates
     - text: Plugin documentation
@@ -40,10 +43,3 @@
       url: /community-expectations
     - text: Hackathons
       url: /hackathons
-# - title: Plugin docs
-#   icon: /assets/images/icons/documentation/icn-references-color.svg
-#   url: /plugin-docs
-
-# - title: Terms
-#   icon: /assets/images/icons/documentation/icn-references-color.svg
-#   url: /terms

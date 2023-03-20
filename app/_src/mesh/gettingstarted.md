@@ -44,18 +44,18 @@ running {{site.mesh_product_name}} containers instead of Kuma containers:
 ## 3. Learn more
 
 Learn about enterprise features:
-  * [Support for HashiCorp Vault CA](/mesh/{{page.kong_version}}/features/vault)
-  * [Support for Amazon Certificate Manager Private CA](/mesh/{{page.kong_version}}/features/acmpca)
+  * [Support for HashiCorp Vault CA](/mesh/{{page.kong_version}}/features/vault/)
+  * [Support for Amazon Certificate Manager Private CA](/mesh/{{page.kong_version}}/features/acmpca/)
   {% if_version gte:1.8.x %}
-  * [Support for Kubernetes cert-manager CA](/mesh/{{page.kong_version}}/features/cert-manager)
+  * [Support for Kubernetes cert-manager CA](/mesh/{{page.kong_version}}/features/cert-manager/)
   {% endif_version %}
-  * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa)
-  * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth)
-  * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support)
-  * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation)
-  * [Role-Based Access Control](/mesh/{{page.kong_version}}/features/rbac)
-  * [Red Hat Universal Base Images](/mesh/{{page.kong_version}}/features/ubi-images)
-  * [Windows Support](/mesh/{{page.kong_version}}/features/windows)
+  * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa/)
+  * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth/)
+  * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support/)
+  * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation/)
+  * [Role-Based Access Control](/mesh/{{page.kong_version}}/features/rbac/)
+  * [Red Hat Universal Base Images](/mesh/{{page.kong_version}}/features/ubi-images/)
+  * [Windows Support](/mesh/{{page.kong_version}}/features/windows/)
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any questions or feedback you may have.
