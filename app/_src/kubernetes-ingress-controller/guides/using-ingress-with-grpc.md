@@ -115,6 +115,10 @@ In this guide, we use
 [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation).
 Ensure that you have it installed on your local system.
 
+## Enable the `GatewayAlpha` feature gate
+
+If you are using the Gateway API, you need to enable the [`GatewayAlpha`](/kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates) feature gate in the Kubernetes Ingress Controller.
+
 ## Deploy a gRPC test application
 
 Add a gRPC deployment and service:
