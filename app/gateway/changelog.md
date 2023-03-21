@@ -1770,7 +1770,7 @@ and an error is logged.
 * [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Fixed an issue where the plugin used the old route caches after routes were updated. 
  
-* [Key Auth Advanced](/hub/kong-inc/key-auth-advanced) (`key-auth-advanced`)
+* [Key Authentication - Encrypted](/hub/kong-inc/key-auth-enc) (`key-auth-enc`)
   * Fixed an issue where using an API key that exists in multiple workspaces caused a 401 error. 
   This occurred because of a caching issue.
 
