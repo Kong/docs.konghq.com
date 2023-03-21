@@ -59,7 +59,7 @@ params:
       value_in_examples: null
       datatype: string
       description: |
-        Indicates the type of data sent. The only available option is `application/json`.
+        Indicates the type of data sent. The available options are `application/json` and `application/json; charset=utf-8`.
     - name: timeout
       required: false
       default: '`10000`'
