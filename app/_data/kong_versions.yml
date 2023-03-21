@@ -287,7 +287,7 @@
   edition: "deck"
 -
   release: "1.19.x"
-  version: "1.19.0"
+  version: "1.19.1"
   edition: "deck"
 -
   release: "1.0.x"
