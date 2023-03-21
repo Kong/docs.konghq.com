@@ -27,11 +27,9 @@ Timestamp | Time and date of the event in UTC.
 `src` | The IP address of the request originator.
 `org_id` | The originating organization ID.
 `principal_id` | The user ID of the user that performed the action.
-`actor_id` | If another user performed the request on behalf of the principal, the acting user's ID is provided here. (See note.)
+`kong_initiated` | Whether the action was performed by Kong
 `trace_id` | The correlation ID of the request. Use this value to find all log entries for a given request.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
-
-_Note: Only an authorized Kong employee may act on behalf of another user._ 
 
 ## Authentication logs
 
