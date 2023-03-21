@@ -32,6 +32,6 @@ Kong will be running in that instance as configured in `nginx-kong.conf`.
 
 ## More Information
 
-* [Setting environment variables](/gateway/latest/production/environment-variables)
-* [How to use `kong.conf`](/gateway/latest/production/kong-conf)
-* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving)
+* [Setting environment variables](/gateway/latest/production/environment-variables/)
+* [How to use `kong.conf`](/gateway/latest/production/kong-conf/)
+* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving/)

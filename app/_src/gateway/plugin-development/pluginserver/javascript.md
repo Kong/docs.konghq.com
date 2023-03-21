@@ -149,6 +149,6 @@ contains examples of writing tests with `jest`.
 
 ## More Information
 * [PDK Reference](/gateway/latest/plugin-development/pdk/)
-* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes)
-* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python)
-* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go)
+* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes/)
+* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python/)
+* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go/)

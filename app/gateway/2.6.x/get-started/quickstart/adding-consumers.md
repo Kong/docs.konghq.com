@@ -9,9 +9,9 @@ management, and more.
 
 ## Before you start
 
-* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
-* You have [configured a Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service)
-* You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins)
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/).
+* You have [configured a Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service/)
+* You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins/)
 
 ## 1. Create a Consumer through the RESTful API
 
@@ -77,7 +77,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 - [Admin API Reference][API]
 - [Clustering Reference][cluster]
 
-Questions? Issues? Contact us on one of the [Community Channels](/community)
+Questions? Issues? Contact us on one of the [Community Channels](https://konghq.com/community/)
 for help!
 
 [key-auth]: /hub/kong-inc/key-auth

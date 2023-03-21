@@ -37,17 +37,16 @@ For greater insights into your service usage, access the dedicated {% konnect_ic
 
 From {% konnect_icon analytics %} Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
-* Create a [custom report](/konnect/analytics/use-cases/) for any number of services, service versions, routes, applications, or status codes.
-You can export any custom report as a CSV file.
+* [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
+* [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 The summary dashboard provides metrics for services cataloged by Service Hub within a selected time interval for the following categories:
 
-* **Traffic**: Total number of HTTP requests.
-* **Errors**: Percentage of failed HTTP requests.
-* **Latency**: Request latency at P50, P95, and P99 percentiles.
+* **Traffic**
+* **Errors**
+* **Latency**
 
 These categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
-
 You can view a graph for each category by clicking **Traffic**, **Errors**, or **Latency**, and switching between the views.
 
 * **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval.

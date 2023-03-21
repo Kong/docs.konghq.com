@@ -53,7 +53,7 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
     {:.note}
     > **Note:** Application registration is only available for
     services in the default runtime group, so if you plan on enabling
-    [application registration](/konnect/dev-portal/applications/application-overview),
+    [application registration](/konnect/dev-portal/applications/application-overview/),
     choose `default` in this step.
 
     Different versions of the same service can run in different runtime groups.

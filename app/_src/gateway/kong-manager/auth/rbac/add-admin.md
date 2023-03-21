@@ -15,8 +15,8 @@ do so using
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable)
-* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/)
+* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ## Invite an admin
@@ -40,7 +40,7 @@ Once they accept the invitation, the user will be listed in the main **Admins** 
 
     By default, the registration link will expire after 259,200
     seconds (3 days). This time frame can be configured in the `kong.conf`
-    file using the [`admin_invitation_expiry`](/gateway/{{page.kong_version}}/reference/configuration) property.
+    file using the [`admin_invitation_expiry`](/gateway/{{page.kong_version}}/reference/configuration/) property.
 
     If an email fails to send, either due to an incorrect email
     address or an external error, you can resend the invitation.

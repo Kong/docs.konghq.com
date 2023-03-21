@@ -50,13 +50,6 @@ disable_image_expand: true
     <div class="install-text">Debian
     </div>
   </a>
-
-  <a href="/gateway/{{page.kong_version}}/install-and-run/macos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/macos-logo.png" alt="" />
-    <div class="install-text">MacOS
-    <br> <span class="badge oss" aria-label="open-source only"></span>
-    </div>
-  </a>
 </div>
 
 ## Deployment options
@@ -79,5 +72,5 @@ at any time to gain access to Enterprise features.
 > **Note**: For deployments on Kubernetes (including Helm and OpenShift),
 you need to apply the license during installation.
 
-See [Kong Gateway Licensing](/gateway/latest/plan-and-deploy/licenses/) for a feature comparison
+See [{{site.base_gateway}} Licensing](/gateway/latest/plan-and-deploy/licenses/) for a feature comparison
 between Free Mode and the Enterprise subscription, and more information about licenses.

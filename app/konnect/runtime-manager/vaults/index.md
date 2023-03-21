@@ -60,15 +60,15 @@ Konnect supports the following vault backends:
 * GCP Secret Manager
 * Environment variables
 
-You can manage all of these vaults through the [Runtime Manager](/konnect/runtime-manager/vaults/how-to) or with [decK](/deck/latest/guides/vaults/).
+You can manage all of these vaults through the [Runtime Manager](/konnect/runtime-manager/vaults/how-to/) or with [decK](/deck/latest/guides/vaults/).
 
 ## See also
 
-Check out the example use case for [storing certificates in a vault](/konnect/runtime-manager/vaults/how-to).
+Check out the example use case for [storing certificates in a vault](/konnect/runtime-manager/vaults/how-to/).
 
 For detailed vault configuration references and guides, see the {{site.base_gateway}}
 documentation:
-* [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm)
-* [GCP Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm)
-* [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault)
-* [Environment variables](/gateway/latest/kong-enterprise/secrets-management/backends/env)
+* [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/)
+* [GCP Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+* [Environment variables](/gateway/latest/kong-enterprise/secrets-management/backends/env/)

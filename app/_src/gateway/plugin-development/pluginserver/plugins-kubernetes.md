@@ -38,6 +38,6 @@ CMD ["kong", "docker-start"]
 
 ## More information
 
-* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python)
-* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go)
-* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript)
+* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python/)
+* [Develop plugins with Go](/gateway/latest/plugin-development/pluginserver/go/)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript/)

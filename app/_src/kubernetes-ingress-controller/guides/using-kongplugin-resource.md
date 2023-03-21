@@ -448,7 +448,7 @@ consumer or just a route) always take precedence over less specific plugins.
 
 ## Next steps
 
-There's a lot more you can do with Kong plugins. Check the [Plugin Hub](/hub) to see all of the available plugins and how to use them.
+There's a lot more you can do with Kong plugins. Check the [Plugin Hub](/hub/) to see all of the available plugins and how to use them.
 
 Next, you might want to learn more about Ingress with the 
 [KongIngress resource guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource/).

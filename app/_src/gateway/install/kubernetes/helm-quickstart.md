@@ -21,7 +21,7 @@ Docker Desktop Kubernetes is a tool for running a local Kubernetes cluster using
 - [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/)
 
 {:.note}
-> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Configure Kubectl
 
@@ -45,7 +45,7 @@ Kind or "Kubernetes-in-Docker", is a tool for running local Kubernetes clusters 
 - [KinD](https://kind.sigs.k8s.io/)
 
 {:.note}
-> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Create Kubernetes Cluster
 
@@ -329,7 +329,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 ## Use {{site.base_gateway}}
 
-{{site.base_gateway}} is now serving the [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) Web UI and the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api).
+{{site.base_gateway}} is now serving the [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) Web UI and the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/).
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 

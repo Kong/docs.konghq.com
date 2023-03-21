@@ -19,6 +19,7 @@ module KumaToKongMesh
         replace_kuma_with_kong_mesh_in_links(page)
         replace_exact_links(page)
         replace_kuma_base_url(page)
+        replace_edit_url(page)
       end
     end
 
@@ -46,6 +47,13 @@ module KumaToKongMesh
       page.content = page
                      .content
                      .gsub(%r{/docs/{{\s*page.version\s*}}}, '/mesh/{{ page.kong_version }}')
+    end
+
+    def replace_edit_url(page)
+      return unless page.data['edit_link']
+
+      path = page.data['edit_link'].gsub('_src/.repos/kuma/', '')
+      page.data['edit_link'] = "https://github.com/kumahq/kuma-website/edit/master/#{path}"
     end
   end
 end

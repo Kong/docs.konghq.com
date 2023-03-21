@@ -21,4 +21,4 @@ Keywords:
 | Service Admin                  | Users can fully manage services and versions, manage application registration, publish services to the Dev Portal, and manage global configuration for consumers and plugins.|  
 | Service Developer              | Users can view {{site.konnect_short_name}} services, and fully manage versions of existing services and their Dev Portal specs. |
 
-To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles).
+To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles/).

@@ -54,7 +54,7 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
 1. Click **Upload Spec** again to upload your OpenAPI specification file.
 
     The spec must be in YAML or JSON format. You
-    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec to test this functionality.
+    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml/) as a sample spec to test this functionality.
     If the service was previously published to the Dev Portal, the documentation
     for the service gets automatically updated with your changes. If not,
     [publish](/konnect/servicehub/service-documentation/#publishing) the service.

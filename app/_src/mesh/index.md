@@ -149,7 +149,7 @@ Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
 For the latest version support information for
-{{site.mesh_product_name}}, see our [version support policy](/mesh/latest/support-policy).
+{{site.mesh_product_name}}, see our [version support policy](/mesh/latest/support-policy/).
 
 ## Contribute
 

@@ -43,7 +43,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 
 ## Role-based access control (RBAC)
 
-Kong Enterprise lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac).
+Kong Enterprise lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/).
 
 [Manage teams with RBAC &rarr;](/gateway/{{page.kong_version}}/kong-manager/auth/rbac)
 
@@ -73,7 +73,7 @@ This provides encryption-at-rest security controls in a {{site.base_gateway}} cl
 {{site.base_gateway}} provides granular logging of the Admin API. You can keep detailed track of changes made to the
 cluster configuration throughout its lifetime, for compliance efforts and for
 providing valuable data points during forensic investigations. Generated audit
-log trails are [workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference) and [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference)-aware,
+log trails are [workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)-aware,
 providing {{site.base_gateway}} operators a deep and wide look into changes happening within
 the cluster.
 
@@ -132,7 +132,7 @@ For example, you could define three consumer groups:
 {% if_version gte:3.2.x %}
 ## Provisioning new data planes in the event of a control plane outage
 
-Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. For more information, read the [How to Manage New Data Planes during Control Plane Outages](/gateway/latest/kong-enterprise/cp-outage-handling) documentation, or the [Control Plane Outage Management FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq).
+Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. For more information, read the [How to Manage New Data Planes during Control Plane Outages](/gateway/latest/kong-enterprise/cp-outage-handling/) documentation, or the [Control Plane Outage Management FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq/).
 
 {% endif_version %}
 ## More information

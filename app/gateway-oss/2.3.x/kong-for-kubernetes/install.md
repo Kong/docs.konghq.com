@@ -20,7 +20,7 @@ Use one of the following installation methods to install Kong for Kubernetes:
 To deploy Kong via `kubectl`, use:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
 ```
 
 > Important! This is not a production-grade deployment.
@@ -72,4 +72,4 @@ If you decide to use a database, we recommend that you run the database outside 
 We do not recommend using Kong with Cassandra on Kubernetes deployments, as the features covered by Kong’s use of Cassandra are handled by other means in Kubernetes.
 
 ## Next steps…
-See [Using Kong for Kubernetes](/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about Concepts, How-to guides, and Reference guides.
+See [Using Kong for Kubernetes](/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes/) for information about Concepts, How-to guides, and Reference guides.

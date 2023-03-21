@@ -16,6 +16,15 @@ System accounts offer the following benefits over regular user accounts:
 
 The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/konnect/org-management/users/) can. In addition, the system account can be assigned roles directly or inherit the roles of a [team](/konnect/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
 
+## Manage a system account via the UI
+You can create and manage system accounts in your {{site.konnect_short_name}} organization through the {% konnect_icon organizations %} **Organization** > **System Accounts** page.
+
+From the **System Accounts** page, you can:
+* Create and manage system accounts.
+* Create and manage system account access tokens.
+* Assign roles to a system account.
+* Manage team memberships for a system account.
+
 ## Manage a system account via the API
 
 ### Create a system account

@@ -69,6 +69,6 @@ consumers to your Service so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[key-auth]: /plugins/key-authentication
+[key-auth]: /hub/kong-inc/key-auth/
 [plugins]: /plugins
 [adding-consumers]: /gateway-oss/{{page.kong_version}}/getting-started/adding-consumers

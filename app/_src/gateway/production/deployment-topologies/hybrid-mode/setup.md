@@ -378,9 +378,9 @@ on how data plane nodes process configuration.
 
 {% navtabs %}
 {% navtab Using Docker %}
-1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install/docker),
+1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install/docker/),
 follow the instructions to:
-    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/docker).
+    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/docker/).
     2. [Create a Docker network](/gateway/{{page.kong_version}}/install/docker/#install-gateway-in-db-less-mode).
 
     {:.warning}
@@ -506,7 +506,7 @@ kong:{{page.versions.ce}}-alpine
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
-1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install),
+1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install/),
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.base_gateway}} and install Kong.
 
