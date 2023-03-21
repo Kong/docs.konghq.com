@@ -5,18 +5,17 @@ content_type: reference
 beta: true
 ---
 
-## Log overview
 {{site.konnect_short_name}} captures three types of events:
 
-* Authentication: triggered when a user attempts to log into the Konnect web application or use the Konnect API via a personal access token. Also triggered when a system account access token is used.
-* Authorization: triggered when a permission check is made for a user or system account against a resource.
-* Access logs: triggered when a request is made to the Konnect API.
+* **Authentication**: Triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used.
+* **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
+* **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
 
 ## Log format
 
-{{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm). Webhook calls include a batch of events; each event is formatted in CEF and separated by a newline. The `Content-Type` is `application/text`.
+{{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm). Webhook calls include a batch of events, where each event is formatted in CEF and separated by a newline. The `Content-Type` is `application/text`.
 
-To minimize payload size, the message body is compressed.  The `Content-Encoding` is `application/gzip`.
+To minimize payload size, the message body is compressed. The `Content-Encoding` is `application/gzip`.
 
 All log entries include the following attributes:
 
@@ -49,7 +48,7 @@ trace_id=3895213347334635099
 user_agent=grpc-go/1.51.0
 ```
 
-Each authentication log entry contains the following attributes in addition to the defaults above:
+In addition to the defaults, each authentication log entry also contains the following attributes:
 
 Property | Description
 ---------|-------------
@@ -76,7 +75,7 @@ trace_id=8809518331550410226
 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
 ```
 
-Each authorization log entry contains the following attributes in addition to the defaults above:
+In addition to the defaults, each authorization log entry also contains the following attributes:
 
 Property | Description
 ---------|-------------
@@ -86,9 +85,9 @@ Property | Description
 
 ## Access logs
 
-Access logs include information about requests to the Konnect API.
+Access logs include information about requests to the {{site.konnect_short_name}} API.
 
-Each access log entry contains the following attributes in addition to the defaults above:
+In addition to the defaults, each access log entry also contains the following attributes:
 
 Property | Description
 ---------|-------------
