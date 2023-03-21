@@ -440,8 +440,7 @@ improvements to CP-DP communication, new configuration options in plugins, and m
 
 **Global plugin support**
 : You can now configure global plugins through {{site.konnect_saas}}. Visit the
-[Shared Config page](https://konnect.konghq.com/configuration/)
-and select the **Plugin** menu option to get started.
+Shared Config page and select the **Plugin** menu option to get started.
 
 **{{site.base_gateway}} 2.4.1.1 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
@@ -488,7 +487,7 @@ configuration anymore.
 
 **Sorting the runtime status table**
 : You can now sort the runtime status table in
-[Runtime Manager](https://konnect.konghq.com/runtime-manager) by the
+Runtime Manager by the
 **Last Seen** or **Sync Status** columns.
 
 ## May 2021
