@@ -1723,7 +1723,7 @@ openid-connect
 #### Enterprise
 
 * Fixed an issue where the OpenTracing module was not included in the Amazon Linux 2 package.
-* Hybrid mode: Fixed an issue where enabling encryption on a data plane would cause the data plane to stop working after a restart.\\
+* Hybrid mode: Fixed an issue where enabling encryption on a data plane would cause the data plane to stop working after a restart.
 * Fixed the systemd unit file, which was incorrectly named `kong.service` in 2.8.1.x and later versions.
 It has been renamed back to `kong-enterprise-edition.service` to align with previous versions.
 
