@@ -4000,6 +4000,19 @@ to escape the sandbox.
 
 ---
 
+#### openresty_path
+
+Path to the OpenResty installation that Kong will use. When this is empty (the
+default), Kong determines the OpenResty installation by searching for a
+system-installed OpenResty and falling back to searching $PATH for the nginx
+binary.
+
+Setting this attribute disables the search behavior and explicitly instructs
+Kong which OpenResty installation to use.
+
+**Default:** none
+
+---
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
