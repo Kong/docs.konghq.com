@@ -6,19 +6,19 @@
 
 {% if hub_examples.navtabs? %}
   {% navtabs parent %}
-    {% if hub_examples.service %}
+    {% if hub_examples.enable_on_service? %}
       {% navtab Enable on a service %}
         {%- include plugins/hub-examples/service.html hub_example=hub_examples.service -%}
       {% endnavtab %}
     {% endif %}
 
-    {% if hub_examples.route %}
+    {% if hub_examples.enable_on_route? %}
       {% navtab Enable on a route %}
         {%- include plugins/hub-examples/route.html hub_example=hub_examples.route -%}
       {% endnavtab %}
     {% endif %}
 
-    {% if hub_examples.consumer %}
+    {% if hub_examples.enable_on_consumer? %}
       {% navtab Enable on a consumer %}
         {%- include plugins/hub-examples/consumer.html hub_example=hub_examples.consumer -%}
       {% endnavtab %}

@@ -1,3 +1,4 @@
+{%- assign schema = page.schema -%}
 <table>
   <thead>
     <tr>
@@ -27,13 +28,13 @@
       </tr>
     {% endif_plugin_version %}
 
-    {% if page.configuration.service_id %}
+    {% if schema.enable_on_service? %}
       <tr>
         <td><code>service.name</code> or <code>service.id</code>
-          {% if page.configuration.global == false %}
-            <p><i>required</i></p>
-          {% else %}
+          {% if schema.global? %}
             <p><i>optional</i></p>
+          {% else %}
+            <p><i>required</i></p>
           {% endif %}
           <p><br><strong>Type: </strong>string</p>
         </td>
@@ -43,7 +44,7 @@
           <p> Not required if using <code>/services/SERVICE_NAME|SERVICE_ID/plugins</code>.</p></td>
       </tr>
     {% endif %}
-    {% if page.configuration.route_id %}
+    {% if schema.enable_on_route? %}
       <tr>
         <td><code>route.name</code> or <code>route.id</code>
           <p><i>optional</i></p>
@@ -55,7 +56,7 @@
           <p>Not required if using <code>/routes/ROUTE_NAME|ROUTE_ID/plugins</code>.</p></td>
       </tr>
     {% endif %}
-    {% if page.configuration.consumer_id %}
+    {% if schema.enable_on_consumer? %}
       <tr>
         <td><code>consumer.name</code> or <code>consumer.id</code>
           <p><i>optional</i></p>
@@ -75,7 +76,7 @@
         </td>
         <td>Whether this plugin will be applied.</td>
       </tr>
-    {% if page.configuration.api_id %}
+    {% if schema.api_id %}
       <tr>
         <td><code>api_id</code>
           <br><br><strong>Type: </strong>string</td>
@@ -83,47 +84,43 @@
           <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.</td>
         </tr>
     {% endif %}
-    {% for field in page.configuration.config %}
-      {% if_plugin_version gte:field.minimum_version lte:field.maximum_version %}
-        {% if field.group %}
-          <tr>
-            <td colspan="2">
-              <strong>
-                <br><br>{{ field.group | markdownify | strip_html }}
-                {% if field.description %}
-                  <br><small>{{ field.description | markdownify | strip_html }}</small>
-                {% endif %}
-              </strong>
-            </td>
-          </tr>
-          <tr><th>Form Parameter</th><th>Description</th></tr>
-        {% else %}
-          <tr>
-            <td><code>config.{{ field.name }}</code>
-              {% if field.required == true %}<p><em>required</em></p>{% endif %}
-              {% if field.required == false %}<p><em>optional</em></p>{% endif %}
-              {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
-              {% if field.datatype != nil %}<p><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}</p>{% endif %}
-              {% if field.default != nil %}<p><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code></p>{% endif %}
-            </td>
-            <td>
-              <br>{{ field.description | markdownify }}
-              {% if field.encrypted == true %}
-                <p>If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.</p>
+    {% for field in schema.fields %}
+      {% if field.group %}
+        <tr>
+          <td colspan="2">
+            <strong>
+              <br><br>{{ field.group | markdownify | strip_html }}
+              {% if field.description %}
+                <br><small>{{ field.description | markdownify | strip_html }}</small>
               {% endif %}
-              {% if_plugin_version gte:2.7.x %}
-                {% if field.referenceable == true %}
-                  <p>
-                    This field is <em>referenceable</em>, which means it can be securely stored as a
-                    <a href="/gateway/latest/kong-enterprise/secrets-management/">secret</a>
-                    in a vault. References must follow a <a href="/gateway/latest/kong-enterprise/secrets-management/reference-format/">specific format</a>.
-                  </p>
-                {% endif %}
-              {% endif_plugin_version %}
-            </td>
-          </tr>
-        {% endif %}
-      {% endif_plugin_version %}
+            </strong>
+          </td>
+        </tr>
+        <tr><th>Form Parameter</th><th>Description</th></tr>
+      {% else %}
+        <tr>
+          <td><code>config.{{ field.name }}</code>
+            {% if field.required == true %}<p><em>required</em></p>{% endif %}
+            {% if field.required == false %}<p><em>optional</em></p>{% endif %}
+            {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
+            <p><strong>Type: </strong>{{ field.type | markdownify | strip_html }}</p>
+            {% if field.default != nil %}<p><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code></p>{% endif %}
+          </td>
+          <td>
+            <br>{{ field.description | markdownify }}
+            {% if field.encrypted == true %}
+              <p>If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.</p>
+            {% endif %}
+            {% if field.referenceable == true %}
+              <p>
+                This field is <em>referenceable</em>, which means it can be securely stored as a
+                <a href="/gateway/latest/kong-enterprise/secrets-management/">secret</a>
+                in a vault. References must follow a <a href="/gateway/latest/kong-enterprise/secrets-management/reference-format/">specific format</a>.
+              </p>
+            {% endif %}
+          </td>
+        </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>

@@ -100,22 +100,29 @@ module PluginSingleSource
         )
       rescue StandardError => _e
         # TODO: remove this once we have examples for every plugin
-        p "Missing example for plugin: #{vendor}/#{name}"
+        # p "Missing example for plugin: #{vendor}/#{name}"
         { 'name' => name }
+      end
+
+      def schema
+        # XXX: Quick hack to make the site build
+        # Skips third-party plugins and versions older than 2.3.x for which
+        # the docker image isn't working
+        @schema ||= if vendor != 'kong-inc' ||
+                       Utils::Version.to_version(version) <= Utils::Version.to_version('2.3.x') ||
+                       %w[app-dynamics serverless-functions].include?(name)
+                      NullSchema.new(plugin_name: name, version:)
+                    else
+                      Schema.new(plugin_name: name, version:)
+                    end
       end
 
       private
 
       def parsed_file
-        @parsed_file ||= ::Utils::FrontmatterParser.new(overview)
-      end
-
-      def overview
-        @overview ||= File.read(source_path)
-      end
-
-      def source_path
-        @source_path ||= File.expand_path('_index.md', pages_source_path)
+        @parsed_file ||= ::Utils::FrontmatterParser.new(
+          File.read(File.expand_path('_index.md', pages_source_path))
+        )
       end
 
       def validate_source!

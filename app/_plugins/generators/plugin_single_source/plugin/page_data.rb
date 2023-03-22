@@ -34,7 +34,8 @@ module PluginSingleSource
           'layout' => layout,
           'page_type' => 'plugin',
           'book' => "plugins/#{@release.vendor}/#{@release.name}/#{@release.version}",
-          'hub_examples' => hub_examples
+          'hub_examples' => hub_examples,
+          'schema' => schema
         }
       end
 
@@ -66,7 +67,16 @@ module PluginSingleSource
 
         ::Jekyll::Drops::Plugins::HubExamples.new(
           config: @release.configuration_parameters_table,
-          example: @release.example
+          example: @release.example,
+          schema:
+        )
+      end
+
+      def schema
+        Jekyll::Drops::Plugins::Schema.new(
+          schema: @release.schema,
+          version: @release.version,
+          metadata: @release.configuration_parameters_table
         )
       end
     end

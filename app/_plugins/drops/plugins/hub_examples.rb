@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 module Jekyll
   module Drops
     module Plugins
@@ -34,11 +36,17 @@ module Jekyll
       end
 
       class HubExamples < Liquid::Drop
+        extend Forwardable
+
+        def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
+                       :enable_on_service?
+
         attr_reader :example, :config
 
-        def initialize(config:, example:) # rubocop:disable Lint/MissingSuper
+        def initialize(config:, example:, schema:) # rubocop:disable Lint/MissingSuper
           @config = config
           @example = example
+          @schema = schema
         end
 
         def render?
@@ -46,11 +54,13 @@ module Jekyll
         end
 
         def navtabs?
-          [@config['service_id'], @config['route_id'], @config['consumer_id']].any?
+          @schema.enable_on_consumer? ||
+            @schema.enable_on_service? ||
+            @schema.enable_on_route?
         end
 
         def consumer
-          return unless @config['consumer_id']
+          return unless @schema.enable_on_consumer?
 
           @consumer ||= Example.new(type: 'consumer', example:, config:)
         end
@@ -60,13 +70,13 @@ module Jekyll
         end
 
         def route
-          return unless @config['route_id']
+          return unless @schema.enable_on_route?
 
           @route ||= Example.new(type: 'route', example:, config:)
         end
 
         def service
-          return unless @config['service_id']
+          return unless @schema.enable_on_service?
 
           @service ||= Example.new(type: 'service', example:, config:)
         end
