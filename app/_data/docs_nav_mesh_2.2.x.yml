@@ -7,7 +7,7 @@ items:
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Introduction to Kong Mesh
-        url: /mesh/2.1.x/
+        url: /mesh/2.2.x/
         absolute_url: true
       - text: What is Service Mesh?
         url: /introduction/what-is-a-service-mesh/
@@ -408,6 +408,15 @@ items:
       - text: Kuma-cp configuration reference
         url: /generated/kuma-cp
         src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
+  - title: Community
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: Open source License
+        url: /community/license/
+        src: /.repos/kuma/app/_src/community/license/
+      - text: Contribute to Mesh
+        url: /community/contribute-to-mesh/
+        src: /.repos/kuma/app/_src/community/contribute-to-kuma/
 unlisted:
   # Kuma CP
   - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
