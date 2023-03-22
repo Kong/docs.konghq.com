@@ -6,7 +6,7 @@ no_version: true
 <!-- vale off -->
 
 ## 3.2.2.0
-**Release Date** 2023/03/15
+**Release Date** 2023/03/22
 
 ### Fixes 
 #### Enterprise
