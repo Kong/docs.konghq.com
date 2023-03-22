@@ -1,3 +1,6 @@
 [submodule "app/_src/.repos/kuma"]
 	path = app/_src/.repos/kuma
 	url = https://github.com/kumahq/kuma-website.git
+[submodule "app/_src/.repos/kong-plugins"]
+	path = app/_src/.repos/kong-plugins
+	url = git@github.com:fabianrbz/kong-plugins-docs-toolkit.git
