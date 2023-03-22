@@ -32,6 +32,8 @@ Route | Group or filter the data by route. Route names are composed of elements 
 Application | Group or filter the data by application.
 Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
 Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
+Runtime Group | Group or filter the data by runtime groups.
+Gateway Services | Group or filter the data by gateway services.
 
 ### Route entity format
 
