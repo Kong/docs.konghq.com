@@ -154,6 +154,7 @@ items:
       - text: Kong Configuration File
         url: /production/kong-conf
       - text: Environment Variables
+        url: /production/environment-variables
       - text: Serving a Website and APIs from Kong
         url: /production/website-api-serving
       - text: Monitoring
