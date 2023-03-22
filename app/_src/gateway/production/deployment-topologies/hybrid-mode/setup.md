@@ -634,7 +634,7 @@ The output shows all of the connected data plane instances in the cluster:
 When set as a DP node, {{site.base_gateway}} processes configuration in the
 following order:
 
-1. **Config cache**: If the file `config.json.gz` exists in the `kong_prefix`
+1. **Config cache**: If the local config cache `dbless.lmdb` exists in the `kong_prefix`
 path (`/usr/local/kong` by default), the DP node loads it as configuration.
 2. **`declarative_config` exists**: If there is no config cache and the
 `declarative_config` parameter is set, the DP node loads the specified file.
@@ -643,7 +643,7 @@ configuration file available, the node starts with empty configuration. In this
 state, it returns 404 to all requests.
 4. **Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
 the latest configuration. If successful, it gets stored in the local config
-cache (`config.json.gz`).
+cache (`dbless.lmdb`).
 
 ### Configuration reference
 
