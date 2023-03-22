@@ -1,8 +1,11 @@
 ACLs
+addons
 Alertmanager
 Amal
 Amberflo
+apiVersion
 Arya
+Autonegotiation
 Bagdi
 Bintray
 Bitnami
@@ -25,17 +28,21 @@ Github
 Goroutine
 Grafana
 HTTPie
+istioctl
 Istio
 Istio's
 Jira
 JsonPath
 Keycloak
+knative
 Knative
 Knative's
 Knatives
 Kong/kong
 Konnect
 Kuma
+kustomizations
+kustomize
 Kustomize
 Loggly
 Lua's
@@ -157,6 +164,7 @@ hardcoding
 hashicorp
 header_filter
 headmatter
+healthcheck
 healthchecks
 hostname
 hostnames
@@ -324,6 +332,7 @@ tbl
 tcp
 tcpdump
 tcpingress
+tcpingresses
 teardown
 templated
 tfvars
@@ -339,6 +348,7 @@ truthy
 ttl
 txt
 udpingress
+udpingresses
 unary
 uncheck
 unchecking
@@ -351,6 +361,7 @@ unmarshalled
 unnormalized
 unprocessable
 unpublish
+unpublishing
 unregister
 unregistering
 unshorten

@@ -6,7 +6,7 @@ There are two types of PATs available for {{site.konnect_short_name}}:
 * Personal access tokens associated with user accounts
 * System account access tokens associated with system accounts
 
-Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts).
+Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts/).
 
 Before you generate a PAT, keep the following in mind:
 

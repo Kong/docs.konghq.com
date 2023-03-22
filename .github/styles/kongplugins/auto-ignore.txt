@@ -4,6 +4,8 @@ Kuma's
 _workspace
 admin_listen
 allow_terminated
+aws_assume_role_name
+aws_service
 balancer's
 bargineer
 bazgineer
@@ -32,6 +34,10 @@ ngx
 ngx_stream_proxy_module
 nrec
 nrec
+one_of
+override_target_host
+override_target_port
+override_target_protocol
 param
 params
 params

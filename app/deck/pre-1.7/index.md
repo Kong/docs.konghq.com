@@ -70,7 +70,7 @@ A list of all commands that are available in decK can be found
 
 ## Frequently Asked Questions (FAQs)
 
-You can find answers to FAQs [here](/deck/{{page.kong_version}}/faqs).
+You can find answers to FAQs [here](/deck/{{page.kong_version}}/faqs/).
 
 ## Explainer video
 

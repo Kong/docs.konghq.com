@@ -117,7 +117,7 @@ Server: kong/{{page.versions.ce}}
 
 {:.note}
 > **Note:** We recommend using decK to manage your declarative configuration.
-See the [decK documentation](/deck) for more information.
+See the [decK documentation](/deck/) for more information.
 
 To load entities into DB-less Kong, you need a declarative configuration
 file. The following command creates a skeleton file to get you

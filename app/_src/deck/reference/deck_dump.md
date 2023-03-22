@@ -44,8 +44,19 @@ When this setting has multiple tag values, entities must match every tag.
 
 {% endif_version %}
 
+{% if_version lte:1.18.x %}
+
 `--skip-consumers`
 :  skip exporting consumers and any plugins associated with consumers. (Default: `false`)
+
+{% endif_version %}
+
+{% if_version gte:1.19.x %}
+
+`--skip-consumers`
+:  skip exporting consumers, consumer-groups, and any plugins associated with them. (Default: `false`)
+
+{% endif_version %}
 
 `--with-id`
 :  write ID of all entities in the output (Default: `false`)
@@ -179,4 +190,4 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively

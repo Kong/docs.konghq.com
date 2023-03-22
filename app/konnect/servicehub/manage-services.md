@@ -1,62 +1,72 @@
 ---
-title: Manage Konnect Services
+title: Konnect Service Dashboard
 ---
 
-Through the [Service Hub](https://cloud.konghq.com/servicehub/), you can
-create and manage all {{site.konnect_short_name}} services, service versions, and service
-implementations in one place.
+The Konnect Service Package Dashboard is the place to manage services, versions, and documentation. The dashboard is available by clicking any Service Package in the Service Hub. 
 
-Access all {{site.konnect_short_name}} service configuration through the {% konnect_icon servicehub %}
-**Service Hub**.
+Here are some of the things you can do from the Service package Dashboard: 
 
-## Add a service to the catalog
+* Configure a service
+* Publish a service to the Dev Portal
+* Manage versions and labels. 
+* View traffic, error, and latency data. 
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), click the **New service** button.
 
-1. Enter a display name.
+![{{site.konnect_short_name}} service hub](/assets/images/docs/konnect/konnect-service-package-versions.png)
 
-    A display name can be any string containing letters, numbers, spaces, or the following
-    characters: `.`, `-`, `_`, `~`, `:`. Spaces are equal to the `-` character.
 
-    For example, you can use `example_service`, `ExampleService`, `Example-Service`, or `Example Service`.
-    `Example-Service` and `Example Service` would be considered the same name.
 
-    The display name you create generates a service name. {{site.konnect_short_name}}
-    uses the service name for internal metadata.
+Number | Item | Description
+-------|------|------------
+1 | **Service Versions** | This section displays the status of a service version. From the context menu you can **Delete** a service, or use the **View Details** button to navigate to that versions dashboard. 
+2 | **Analytics** | Analytics data for the service. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/)
+3 | **Documentation** | You can add markdown documentation for your service. The documentation will render in the dashboard. If the service is published, the documentation will be available to developers in the Dev Portal. 
 
-1. Optional: Enter a description.
 
-1. Click **Create**.
 
-## Add labels to a service
+### Service versions
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then follow these steps:
+A {{site.konnect_short_name}} service version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). As such, the configurations, plugins, specific implementations that are associated with the runtime group are also associated with the service version. 
 
-1. In the header next to **Labels**, click **Edit**.
+Services can have multiple service versions, and each version can be associated with a different runtime group. Services can be made available in multiple environments by creating service versions in different runtime groups.
 
-1. Click **Add label** and add any labels in `key:value` pair format.
-
-    For example, you might set `location:us-west`, where `location` is the key
-    and the `us-west` is the value.
+A common use case is environment specialization.
+For example, if you have three runtime groups for `development`, `staging`, and
+`production`, you can manage which environment the service is available in by
+assigning a version to that group at creation time. You might have v1 running
+in `production`, and be actively working on v2 in `development`. Once it's
+ready to test, you'd create v2 in `staging` before finally creating v2 in
+`production` alongside v1.
 
     These labels are customizable. 
-    See the [Labels](/konnect/reference/labels) reference for more information on label formatting.
+    See the [Labels](/konnect/reference/labels/) reference for more information on label formatting.
 
-1. Click **Save**.
+### Analytics
 
-## Update a service
+The analytics dashboard shown in the **Service Dashboard** is a high level overview of **traffic**, **error**, and **latency** for the service. These reports are generated automatically based on the traffic to the service. For more information about analytics read the [analytics documentation](/konnect/analytics/)
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service to edit.
+Learn more: 
 
-Edit any of the following:
-* **Service display name**: Click on the name to reveal a text box, then click outside of the text box to save.
-* **Service description**: Click **Edit** next to the description, make your edits, then click the checkmark to save.
-* **Labels**: Click **Edit** next to the labels, make your edits, then click **Save**.
+* [Analytics overview](/konnect/analytics/)
+* [How to analyze services and routes](/konnect/analytics/services-and-routes/)
+* [How to generate reports](/konnect/analytics/generate-reports/)
 
-## Delete a service
+### Documentation
 
-Deleting a service permanently removes it and all of its service versions, implementations, routes, and plugins from the Service Hub.
+The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be consumed accessed once the service is published.
 
-Delete a service through the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub):
+### {{site.base_gateway}} implementations
 
-* Open a service. From the **Service actions** drop-down menu, select **Delete service**, then confirm deletion in the dialog.
+When configuring a {{site.base_gateway}} implementation of a service, you'll
+need to specify a route. Routes determine how successful requests are sent to
+their services after they reach the API gateway. A single service version
+can have only one implementation, but potentially many routes.
+
+{:.important}
+> **Important**: Starting with {{site.base_gateway}} 3.0.0.0, the router supports logical expressions.
+Regex routes must begin with a `~` character. For example: `~/foo/bar/(?baz\w+)`.
+Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+
+After configuring the service, version, implementation, and at least one route,
+you’ll be able to start making requests through {{site.konnect_saas}}.
+

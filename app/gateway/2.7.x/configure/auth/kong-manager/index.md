@@ -51,7 +51,7 @@ By creating separate
  different teams do not have access to each other's Kong entities.
 
 {{site.base_gateway}} implements Role-Based Access Control
-([RBAC](/gateway/{{page.kong_version}}/configure/auth/rbac)).
+([RBAC](/gateway/{{page.kong_version}}/configure/auth/rbac/)).
 Admins are assigned Roles that have clearly defined Permissions. A
 Super Admin has the ability to:
 

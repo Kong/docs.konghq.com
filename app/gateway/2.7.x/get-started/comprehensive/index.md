@@ -106,4 +106,4 @@ common to both {{site.ce_product_name}} and {{site.base_gateway}}.
 
 ### Next Steps
 
-Next, [prepare to administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare).
+Next, [prepare to administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare/).

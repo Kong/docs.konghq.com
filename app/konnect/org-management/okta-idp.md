@@ -205,7 +205,7 @@ application into {{site.konnect_saas}}.
 
 ### Map {{site.konnect_short_name}} teams to Okta groups
 
-By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles),
+By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
 Okta group membership.
 
@@ -249,7 +249,7 @@ in Okta to locate the Okta groups you want to map.
     For example, if you have a `service_admin` group in Okta, you might map it
     to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
     over the info (`i`) icon beside each field to learn more about the team, or
-    see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference)
+    see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
     for more information.
 
     You must have at least one group mapped to save configuration changes.

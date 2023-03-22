@@ -9,7 +9,7 @@ Before getting started with using {{site.base_gateway}}, verify that it was inst
 Before you start this section, make sure that:
 * {{site.base_gateway}} is installed and running.
 * Kong Manager (if applicable) and Kong Admin API ports are listening on the appropriate port/IP/DNS settings.
-* If using declarative configuration to configure Kong, [decK](/deck/latest/installation) is installed.
+* If using declarative configuration to configure Kong, [decK](/deck/latest/installation/) is installed.
 
 In this guide, an instance of {{site.base_gateway}} is referenced via `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname of your control plane instance.
 
@@ -127,4 +127,4 @@ The output shows all of the connected Data Plane instances:
 
 ## Summary and next steps
 
-In this section, you learned about the methods of administering {{site.base_gateway}} and how to access its configuration. Next, go on to learn about [exposing your services with {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/expose-services).
+In this section, you learned about the methods of administering {{site.base_gateway}} and how to access its configuration. Next, go on to learn about [exposing your services with {{site.base_gateway}}](/getting-started-guide/{{page.kong_version}}/expose-services/).

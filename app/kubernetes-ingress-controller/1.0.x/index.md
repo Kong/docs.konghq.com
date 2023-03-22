@@ -26,7 +26,7 @@ Please refer to [custom resources][crd] concept document for more details.
 ### Deployment Methods
 
 The {{site.kic_product_name}} can be deployed in a variety of deployment patterns.
-Please refer to the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment) documentation,
+Please refer to the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment/) documentation,
 which explains all the components
 involved and different ways of deploying them based on the use-case.
 
@@ -34,7 +34,7 @@ involved and different ways of deploying them based on the use-case.
 
 The {{site.kic_product_name}} is designed to scale with your traffic
 and infrastructure.
-Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling) to understand
+Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/) to understand
 failures scenarios, recovery methods, as well as scaling considerations.
 
 ### Ingress classes
@@ -45,7 +45,7 @@ load configuration intended for other instances or other ingress controllers.
 
 ### Security
 
-Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security) to understand the
+Please refer to [this document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security/) to understand the
 default security settings and how to further secure the Ingress Controller.
 
 ## Guides and Tutorials
@@ -59,11 +59,11 @@ The configurations in the {{site.kic_product_name}} can be tweaked using
 Custom Resources and annotations.
 Please refer to the following documents detailing this process:
 
-- [Custom Resource Definitions](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources)
-- [Annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations)
-- [CLI arguments](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments)
-- [Version compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility)
-- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/plugin-compatibility)
+- [Custom Resource Definitions](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/)
+- [Annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)
+- [CLI arguments](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/)
+- [Version compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility/)
+- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/plugin-compatibility/)
 
 ## FAQs
 

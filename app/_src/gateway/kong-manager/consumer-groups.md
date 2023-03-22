@@ -12,7 +12,7 @@ For example, you could define three consumer groups:
 * A "silver tier" with 10 requests per second
 * A "bronze tier" with 6 requests per 30 seconds
 
-The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced).
+The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/).
 
 Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and

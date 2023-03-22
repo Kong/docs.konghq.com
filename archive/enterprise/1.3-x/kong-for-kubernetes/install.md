@@ -65,7 +65,7 @@ $ oc create secret generic kong-enterprise-license --from-file=./license -n kong
 ### Step 2. Deploy Kong for Kubernetes Enterprise
 
 ```
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 The initial setup might take a few minutes.
 
@@ -86,7 +86,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 On OpenShift:
 
 ```
-$ oc create -f https://bit.ly/k4k8s-enterprise
+$ oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 The initial setup might take a few minutes.
 

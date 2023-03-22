@@ -14,16 +14,16 @@ distributions that provide a drop-in replacement to Kuma's native binaries.
 **The latest {{page.kong_version}} version of {{site.mesh_product_name}} is
 {{page.kong_versions[0].version}}:**
 
-* [Kubernetes](/mesh/{{page.kong_version}}/installation/kubernetes)
-* [Helm](/mesh/{{page.kong_version}}/installation/helm)
-* [OpenShift](/mesh/{{page.kong_version}}/installation/openshift)
-* [Docker](/mesh/{{page.kong_version}}/installation/docker)
-* [CentOS](/mesh/{{page.kong_version}}/installation/centos)
-* [Red Hat](/mesh/{{page.kong_version}}/installation/redhat)
-* [Amazon Linux](/mesh/{{page.kong_version}}/installation/amazonlinux)
-* [Debian](/mesh/{{page.kong_version}}/installation/debian)
-* [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu)
-* [macOS](/mesh/{{page.kong_version}}/installation/macos)
+* [Kubernetes](/mesh/{{page.kong_version}}/installation/kubernetes/)
+* [Helm](/mesh/{{page.kong_version}}/installation/helm/)
+* [OpenShift](/mesh/{{page.kong_version}}/installation/openshift/)
+* [Docker](/mesh/{{page.kong_version}}/installation/docker/)
+* [CentOS](/mesh/{{page.kong_version}}/installation/centos/)
+* [Red Hat](/mesh/{{page.kong_version}}/installation/redhat/)
+* [Amazon Linux](/mesh/{{page.kong_version}}/installation/amazonlinux/)
+* [Debian](/mesh/{{page.kong_version}}/installation/debian/)
+* [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu/)
+* [macOS](/mesh/{{page.kong_version}}/installation/macos/)
 
 ## Verify Installation
 

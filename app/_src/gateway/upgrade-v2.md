@@ -29,12 +29,13 @@ upgrade to 2.8.2, [then migrate to {{page.kong_version}}](#migrate-db).
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
-[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.1.x/CHANGELOG.md#310) and
-[Enterprise](/gateway/changelog/#3000) Gateway changelogs. Since {{site.base_gateway}}
+[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.2.x/CHANGELOG.md#310) and
+[Enterprise](/gateway/changelog/#3210) Gateway changelogs. Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to {{page.kong_version}}.
-If you are running 1.x, upgrade to 2.8.2 and then 3.0.x first at minimum, then upgrade to {{page.kong_version}} from there.
+If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
+{{page.kong_version}} from there.
 
 In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
 then follow the [database migration](#migrate-db) instructions.
@@ -50,9 +51,9 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 | 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
 | 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
 | 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
-| 2.8.x | Traditional | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
-| 2.8.x | Hybrid | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
-| 2.8.x | DB less | Only if you upgrade to 3.1.1.3 | [Upgrade to 3.1.1.3](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.1.3](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
 | 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#migrate-db). |
 | 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#migrate-db). |
 | 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#migrate-db). |
@@ -63,17 +64,17 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.2.x](#migrate-db). |
-| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.2.x](#migrate-db). |
-| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.2.x](#migrate-db). |
-| 2.8.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
-| 2.8.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.0.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.0.x | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.0.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
 | 3.1.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
-| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
 | 3.1.1.3 | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
 | 3.1.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
 
@@ -81,8 +82,11 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 ## Upgrade considerations and breaking changes
 
-Before upgrading, review this list for any configuration or breaking changes that
+Before upgrading, review any configuration or breaking changes in this version and prior versions that
 affect your current installation.
+
+You may need to adopt different upgrade paths depending on your deployment methods, set of features in use,
+custom plugins, for example.
 
 {% if_version gte:3.2.x %}
 
@@ -121,7 +125,7 @@ This version includes a full rewrite of the session library.
 This upgrade affects the following: 
 * [Session plugin](/hub/kong-inc/session/)
 * [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
-* [SAML plugin](/hub/kong-inc/saml)
+* [SAML plugin](/hub/kong-inc/saml/)
 * Any session configuration that uses the Session or OpenID Connect plugin in the background, including sessions for Kong Manager and Dev Portal.
 
 All existing sessions are invalidated when upgrading to this version.
@@ -278,7 +282,7 @@ upgrade the control plane first, and then the data planes.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
   plugins on the control plane first, and then the data planes.
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 ### Template changes
@@ -328,8 +332,15 @@ diff the files to identify any changes, and apply them as needed.
 
 ## General upgrade path {#migrate-db}
 
-### Traditional mode
+Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
 
+Depending on the database you're using (Postgres or Cassandra), a database dump is recommended so that you can recover from migrations failure at the database level.
+
+Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
+can be imported back by `kong config db_import`. For more information, see
+[kong config CLI](https://docs.konghq.com/gateway/latest/reference/cli/#kong-config).
+
+### Traditional mode
 
 1. Clone your database.
 2. Download the version of {{site.base_gateway}} you want to upgrade to, and configure it to point to the cloned data store.
@@ -364,3 +375,72 @@ Perform a rolling upgrade of your cluster:
    is going smoothly.
 8. When your traffic is fully migrated to the new cluster,
    decommission your old data planes.
+
+
+## Upgrade to {{site.base_gateway}} 3.x.x and retain 2.x.x alerts for Prometheus
+
+You can upgrade to {{site.base_gateway}} 3.x.x while still retaining your {{site.base_gateway}} 2.x.x Prometheus alerts or dashboards. This can be useful if you don't have the capacity to patch them to comply with the new {{site.base_gateway}} 3.x.x Prometheus metrics. 
+
+Convert {{site.base_gateway}} 3.x.x Prometheus metrics into {{site.base_gateway}} 2.x.x Prometheus metrics in the `kong.config` file:
+
+```yaml
+- job_name: kong-3x-metrics-as-kong-2x
+  scrape_interval: 20s
+  scrape_timeout: 19s
+  metrics_path: /metrics
+  scheme: http
+  metric_relabel_configs:
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_http_requests_total
+      target_label: __name__
+      replacement: kong_http_status
+
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_(.*)_latency_ms_(bucket|count|sum)
+      target_label: type
+      replacement: $1
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_(.*)_latency_ms_(bucket|count|sum)
+      target_label: __name__
+      replacement: kong_latency_$2
+
+    - action: replace
+      source_labels:
+        - __name__
+        - direction
+      regex: (kong_bandwidth_bytes);(egress|ingress)
+      separator: ;
+      target_label: type
+      replacement: $2
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_bandwidth_bytes
+      target_label: __name__
+      replacement: kong_bandwidth
+
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_nginx_connections_total
+      target_label: node_id
+      replacement: ""
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_nginx_connections_total
+      target_label: subsystem
+      replacement: ""
+    - action: replace
+      source_labels:
+        - __name__
+      regex: kong_nginx_connections_total
+      target_label: __name__
+      replacement: kong_nginx_http_current_connections
+```

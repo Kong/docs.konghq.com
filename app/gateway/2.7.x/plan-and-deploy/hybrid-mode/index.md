@@ -183,7 +183,7 @@ If you have an Enterprise license, the license file must be
 deployed to control plane nodes. The control planes then distribute the license
 to the data planes in their clusters.
 
-Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference)
+Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
 endpoint to apply the license to the control plane.
 
 ## Limitations
@@ -204,13 +204,13 @@ control plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
 have limitations in hybrid mode:
 
-* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
+* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc/) The time-to-live setting
 (`ttl`), which determines the length of time a credential remains valid, does
 not work in hybrid mode.
-* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
+* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced/)
 This plugin does not support the `cluster` strategy in hybrid mode. The `redis`
 strategy must be used instead.
-* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
+* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2/) This plugin is not
 compatible with hybrid mode. For its regular workflow, the plugin needs to both
 generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
@@ -229,7 +229,7 @@ multiple control planes and redirecting the traffic using a TCP proxy.
 
 ## Readonly Status API endpoints on data plane
 
-Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
+Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api/)
 are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
 
 - [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)

@@ -9,12 +9,19 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## March 2023
+
+**Enriched documentation experience for service packages**
+: {{site.konnect_saas}} users can now publish [contextual documentation](/konnect/servicehub/service-documentation/) as multiple markdown files in the Service Hub and render in the Dev Portal, so that developers can see different material more clearly. For example, release notes can now be published separately from deployment workflows.
+
+**Enhanced Service Hub experience**
+: The [Service Hub](/konnect/servicehub/) user experience is now more intuitive, helpful, and impressive as the primary Service catalog for application developers and API product owners. We've optimized descriptions, placement of information, and rendering of data to include markdown files and API specs.
+
 ## February 2023
 
 **Support for Gateway 3.2.x features**
 : {{site.konnect_saas}} now supports the following features released in {{site.base_gateway}} 3.2.1.0:
 * **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/gateway-config/#keys) and key sets can now be configured in Runtime Manager.
-* **Datadog Tracing Plugin:** The new [Datadog Tracing Plugin](/hub/kong-inc/datadog-tracing/) is {{site.konnect_saas}} compatible.
 * **Optional plugin config field:** Every plugin now supports the optional `instance_name` field.    
 
 **System accounts**
@@ -50,7 +57,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : For more information, see [Create Consumer Groups in Konnect](/konnect/runtime-manager/consumer-groups/).
 
 **Auth0 support for Dynamic Client Registration**
-: [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0) is now available as an identity provider for Dynamic Client Registration (DCR).
+: [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) is now available as an identity provider for Dynamic Client Registration (DCR).
 
 : **Known limitation:** Unlike other DCR providers, Auth0 requires specifying audience, which represents an independent token recipient. Multiple applications can be mapped to one Audience API within auth0 and share the same permissions accordingly.
 Currently, our OIDC plugin can only support single audience for this release. We will consider adding support for mutliple audiences in the future iteration.
@@ -59,12 +66,12 @@ Currently, our OIDC plugin can only support single audience for this release. We
 : {{site.konnect_short_name}} now supports a simplified docker script to create a new runtime instance as well as in the QuickStart which makes it easier to create runtime instances. Instead of downloading a script from github, customers can now use a simple docker run command. This decrease the time and effort taken by customers to launch a Kong Gateway and improves security during runtime instance creation. Runtime Manager also supports simple copy buttons inside the code block components to make it easy for users to copy!
 
 **Curity support for Dynamic Client Registration (GA)**
-: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity) is now available as an identity provider for Dynamic Client Registration (DCR).
+: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity/) is now available as an identity provider for Dynamic Client Registration (DCR).
 
 ## December 2022
 
 **Curity support for Dynamic Client Registration (beta)**
-: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity) is now in beta release as an identity provider for Dynamic Client Registration (DCR).
+: [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity/) is now in beta release as an identity provider for Dynamic Client Registration (DCR).
 
 **Secrets management using vaults**
 : {{site.konnect_short_name}} now supports storing sensitive values in a vault
@@ -73,7 +80,7 @@ with any of the following backends:
 * AWS Secrets Manager
 * HashiCorp Vault
 * GCP Secret Manager
-: See the [vaults documentation](/konnect/runtime-manager/vaults) to get started.
+: See the [vaults documentation](/konnect/runtime-manager/vaults/) to get started.
 
 **App Registration Enhancement**
 : {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
@@ -244,11 +251,11 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 ## July 2022
 
 **New environment for {{site.konnect_short_name}}**
-: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the [konnect.konghq.com](https://konnect.konghq.com) environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the `konnect.konghq.com` environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
-: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import).
+: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import/).
 
 : The minimum supported {{site.base_gateway}} version for this environment is 2.5.0.1.
 
@@ -257,7 +264,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
-: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config).
+: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage/) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config/).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
   * Certificate rotation and management:
@@ -266,23 +273,23 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
     * The validity period for runtime instance certificates has been extended from six months to ten years.
   * Reworked Gateway configuration UI:
     * The Shared Config menu is now part of Runtime Manager. Manage your Gateway services, routes, plugins, upstreams, SNIs, and certificates through a runtime group, alongside all of the runtime instances in that group.
-  * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage).
+  * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage/).
   Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of {{site.konnect_short_name}} entities.
 
 **Teams and roles**
-: You can now manage {{site.konnect_short_name}} authorization with [teams and roles](/konnect/org-management/teams-and-roles).
-Existing RBAC roles have been converted to [predefined teams](/konnect/org-management/teams-and-roles/teams-reference), which are available for all {{site.konnect_short_name}} organizations.
+: You can now manage {{site.konnect_short_name}} authorization with [teams and roles](/konnect/org-management/teams-and-roles/).
+Existing RBAC roles have been converted to [predefined teams](/konnect/org-management/teams-and-roles/teams-reference/), which are available for all {{site.konnect_short_name}} organizations.
 
 : To manage user access, invite users to {{site.konnect_short_name}} and add them to teams, or assign individual roles to a user.
 
-: With a {{site.konnect_short_name}} Enterprise subscription, you can also [create custom teams](/konnect/org-management/teams-and-roles/manage) and assign per-entity permissions for each team.
+: With a {{site.konnect_short_name}} Enterprise subscription, you can also [create custom teams](/konnect/org-management/teams-and-roles/manage/) and assign per-entity permissions for each team.
 
 **Declarative configuration management support with decK**
 : As of [decK 1.12](https://github.com/Kong/deck/releases), standard decK commands such as `diff`, `sync`, and `dump` support {{site.konnect_short_name}} runtime groups.
 : Learn how to use decK with {{site.konnect_short_name}}:
-  * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect)
-  * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
-  * [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config)
+  * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect/)
+  * [Import](/konnect/getting-started/import/) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
+  * [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config/)
 
 **Tags for {{site.konnect_short_name}} services**
 : You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
@@ -307,7 +314,7 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 **Simplified custom Dev Portal URL setup**
 : SSL certificate generation for custom URLs is now handled by {{site.konnect_short_name}}.
 
-: To set up a custom URL, see the [Dev Portal customization documentation](/konnect/dev-portal/customization) for more information.
+: To set up a custom URL, see the [Dev Portal customization documentation](/konnect/dev-portal/customization/) for more information.
 
 **Vitals metrics and dashboards**
 : The Vitals overview dashboard has been reworked for Plus and Enterprise tiers.
@@ -321,11 +328,11 @@ You can view a graph for each category by clicking **Traffic** or **Errors**, an
 : Vitals custom reports are now available for Plus and Enterprise tiers.
 Through the Vitals menu, you can create custom reports to track API requests for services, routes, and applications.
 
-: See the [custom reports documentation](/konnect/analytics/generate-reports) for more information.
+: See the [custom reports documentation](/konnect/analytics/generate-reports/) for more information.
 
 **Custom plugin requirements have changed**
 : Some custom plugin limitations have changed or been removed.
-See the latest requirements in the [plugin documentation](/konnect/servicehub/plugins).
+See the latest requirements in the [plugin documentation](/konnect/servicehub/plugins/).
 
 : Custom plugins can't be added directly through the {{site.konnect_saas}} application.
 If you have a custom plugin you want to use in {{site.konnect_short_name}}, contact [Kong Support](https://support.konghq.com/).
@@ -388,22 +395,22 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 [Okta](https://developer.okta.com/docs/guides/) with
 [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
 
-: See the guide on [Setting up SSO with Okta](/konnect/org-management/okta-idp)
+: See the guide on [Setting up SSO with Okta](/konnect/org-management/okta-idp/)
 for more information.
 
 **{{site.base_gateway}} 2.6.0.0 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.6.0.0
 runtimes. You can keep using existing 2.5.x runtimes, or you can upgrade to
 2.6.0.0 to take advantage of any new features, updates, and bug fixes.
-: This release introduces the new [jq plugin](/hub/kong-inc/jq). It also
+: This release introduces the new [jq plugin](/hub/kong-inc/jq/). It also
 adds new features and improvements to a long list of plugins, including:
-* [Kafka Log](/hub/kong-inc/kafka-log)
-and [Kafka Upstream](/hub/kong-inc/kafka-upstream): Support for TLS, mTLS, and
+* [Kafka Log](/hub/kong-inc/kafka-log/)
+and [Kafka Upstream](/hub/kong-inc/kafka-upstream/): Support for TLS, mTLS, and
 SASL auth
-* [Prometheus](/hub/kong-inc/prometheus): Introduces the
+* [Prometheus](/hub/kong-inc/prometheus/): Introduces the
 `data_plane_cluster_cert_expiry_timestamp` metric, letting you keep an eye on the
 status of you data plane certificates
-* [Request Termination](/hub/kong-inc/request-termination): Introduces the
+* [Request Termination](/hub/kong-inc/request-termination/): Introduces the
 new `trigger` configuration option, which tells the
 plugin to activate only on specific headers or query parameters
 
@@ -428,25 +435,24 @@ help differentiate the {{site.konnect_short_name}}-managed plugins and avoid bre
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.5.0.1.
 runtimes. You can keep using existing 2.4.x runtimes, or you can upgrade to
 2.5.0.1 to take advantage of any new features, updates, and bug fixes.
-: This release includes [event hook support](/gateway/latest/admin-api/event-hooks/reference),
+: This release includes [event hook support](/gateway/latest/admin-api/event-hooks/reference/),
 improvements to CP-DP communication, new configuration options in plugins, and more.
-: For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/gateway/changelog).
+: For all the changes and new features in {{site.base_gateway}} 2.5.x, see the [changelog](/gateway/changelog/).
 
 ## June 2021
 
 **Global plugin support**
 : You can now configure global plugins through {{site.konnect_saas}}. Visit the
-[Shared Config page](https://konnect.konghq.com/configuration/)
-and select the **Plugin** menu option to get started.
+Shared Config page and select the **Plugin** menu option to get started.
 
 **{{site.base_gateway}} 2.4.1.1 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.4.1.1
 runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
 2.4.1.1 to take advantage of any new features.
-: The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa) and
+: The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa/) and
 [Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
-newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/runtime-instances/upgrade).
-: For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/gateway/changelog).
+newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
+: For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/gateway/changelog/).
 
 **More plugins available in {{site.konnect_saas}}**
 : The following plugins are now available:
@@ -458,7 +464,7 @@ newly introduced in this release, [start up a new runtime](/konnect/runtime-mana
     * [Request Size Limiting](/hub/kong-inc/request-size-limiting/)
     * [Request Transformer](/hub/kong-inc/request-transformer/)
 * **Plus tier**
-    * [Exit Transformer](/hub/kong-inc/exit-transformer)
+    * [Exit Transformer](/hub/kong-inc/exit-transformer/)
 * **Enterprise tier**
     * [Key Auth Encrypted](/hub/kong-inc/key-auth-enc/)
     * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
@@ -476,16 +482,15 @@ configuration anymore.
 
 : To find the setting based on the rate limiting plugin, see:
 * `config.policy`:
-    * [Rate Limiting](/hub/kong-inc/rate-limiting)
-    * [Response Rate Limiting](/hub/kong-inc/response-ratelimiting)
+    * [Rate Limiting](/hub/kong-inc/rate-limiting/)
+    * [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/)
 * `config.strategy`:
     * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/)
-    * [Rate Limiting Advanced ](/hub/kong-inc/rate-limiting-advanced)
+    * [Rate Limiting Advanced ](/hub/kong-inc/rate-limiting-advanced/)
 
 **Sorting the runtime status table**
 : You can now sort the runtime status table in
-[Runtime Manager](https://konnect.konghq.com/runtime-manager) by the
-**Last Seen** or **Sync Status** columns.
+Runtime Manager by the **Last Seen** or **Sync Status** columns.
 
 ## May 2021
 
@@ -494,7 +499,7 @@ configuration anymore.
 six months.
 
 : To take advantage of the new validity period, bring up new data planes through
-the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/runtime-instances/renew-certificates).
+the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/runtime-instances/renew-certificates/).
 
 **{{site.konnect_short_name}} Plus is launched!**
 : {{site.konnect_short_name}} introduces a
@@ -515,14 +520,14 @@ account and license, this license will roll over seamlessly into the new
 {{site.konnect_short_name}} Enterprise tier.
 
 **{{site.konnect_short_name}} Plus free trials**
-: When you [sign up for a {{site.konnect_short_name}} account](/konnect/getting-started/access-account),
+: When you [sign up for a {{site.konnect_short_name}} account](/konnect/getting-started/access-account/),
 you are automatically enrolled into a 30-day {{site.konnect_short_name}}
 Plus free trial. You don't need to provide a credit card or any info beyond
 the account registration. At the end of the trial, you'll have the choice to
 keep the account at the Plus tier or downgrade to Free.
 
 **Billing and plan management**
-: You can now [manage your plan subscription](/konnect/account-management/billing)
+: You can now [manage your plan subscription](/konnect/account-management/billing/)
 for Free and Plus plan tiers directly from the app. {{site.konnect_short_name}}
 now includes a Stripe integration, and the process is fully self-serve: choose
 your plan, add a card, make payments, all through the {{site.konnect_short_name}}
@@ -532,7 +537,7 @@ app and billing portal.
 : You can now sign up for a {{site.konnect_short_name}} account without an
 access code. No more
 reaching out to Kong support or sales for access &ndash; just go
-to [https://konnect.konghq.com](https://konnect.konghq.com) and try it out!
+to [https://cloud.konghq.com](https://cloud.konghq.com) and try it out!
 
 **Runtime setup improvements**
 : Runtime setup for Linux and Kubernetes environments has improved. When you
@@ -583,15 +588,15 @@ Runtime Manager and run gateway instances outside of Docker. Use the
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available
 through {{site.konnect_saas}}. This includes:
-* [File Log](/hub/kong-inc/file-log)
-* [HTTP Log](/hub/kong-inc/http-log)
-* [Kafka Log](/hub/kong-inc/kafka-log)
-* [Loggly](/hub/kong-inc/loggly)
-* [StatsD](/hub/kong-inc/statsd)
-* [StatsD Advanced](/hub/kong-inc/statsd-advanced)
-* [Syslog](/hub/kong-inc/syslog)
-* [TCP Log](/hub/kong-inc/tcp-log)
-* [UDP Log](/hub/kong-inc/udp-log)
+* [File Log](/hub/kong-inc/file-log/)
+* [HTTP Log](/hub/kong-inc/http-log/)
+* [Kafka Log](/hub/kong-inc/kafka-log/)
+* [Loggly](/hub/kong-inc/loggly/)
+* [StatsD](/hub/kong-inc/statsd/)
+* [StatsD Advanced](/hub/kong-inc/statsd-advanced/)
+* [Syslog](/hub/kong-inc/syslog/)
+* [TCP Log](/hub/kong-inc/tcp-log/)
+* [UDP Log](/hub/kong-inc/udp-log/)
 
 **Portal authentication**
 : You can now [disable authentication on a Dev Portal](/konnect/dev-portal/access/),

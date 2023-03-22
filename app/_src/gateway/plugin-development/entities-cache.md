@@ -271,7 +271,7 @@ module will store the miss just as if it was a hit. This means that a
 propagated by Kong so that all nodes that stored the miss can evict it, and
 properly fetch the newly created API key from the data store.
 
-See the [Clustering Guide](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional) to ensure
+See the [Clustering Guide](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
 ### Manual cache invalidation

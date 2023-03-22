@@ -16,16 +16,16 @@ We recommend running one major version (2.x or 3.x) of a runtime instance per ru
 
 ## Prerequisites
 
-Read through the [{{site.base_gateway}} upgrade considerations](/gateway/latest/upgrade) for the version that you're upgrading to.
+Read through the [{{site.base_gateway}} upgrade considerations](/gateway/latest/upgrade/) for the version that you're upgrading to.
 
 ## Upgrade a runtime instance
 
 To upgrade a runtime instance to a new version, follow these steps:
 
 1. Provision a new runtime instance through the Runtime Manager:
-  * [Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker)
-  * [Linux](/konnect/runtime-manager/runtime-instances/gateway-runtime-conf)
-  * [Kubernetes (Helm)](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes)
+  * [Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/)
+  * [Linux](/konnect/runtime-manager/runtime-instances/gateway-runtime-conf/)
+  * [Kubernetes (Helm)](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes/)
 
 2. Open {% konnect_icon runtimes %} **Runtime Manager**, then choose a runtime group.
 

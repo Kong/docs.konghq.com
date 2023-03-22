@@ -302,7 +302,7 @@ curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{GROUP}
 A successful DELETE request returns a `204` status.
 
 ### See also
-- [configuration](/gateway/latest/reference/configuration)
+- [configuration](/gateway/latest/reference/configuration/)
 
 ---
 
