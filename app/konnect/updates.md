@@ -11,8 +11,16 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2023
 
+
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).
+
+**Enriched documentation experience for service packages**
+: {{site.konnect_saas}} users can now publish [contextual documentation](/konnect/servicehub/service-documentation/) as multiple markdown files in the Service Hub and render in the Dev Portal, so that developers can see different material more clearly. For example, release notes can now be published separately from deployment workflows.
+
+**Enhanced Service Hub experience**
+: The [Service Hub](/konnect/servicehub/) user experience is now more intuitive, helpful, and impressive as the primary Service catalog for application developers and API product owners. We've optimized descriptions, placement of information, and rendering of data to include markdown files and API specs.
+
 
 ## February 2023
 
@@ -248,7 +256,9 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 ## July 2022
 
 **New environment for {{site.konnect_short_name}}**
-: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the konnect.konghq.com environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+
+: {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the `konnect.konghq.com` environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
@@ -487,8 +497,8 @@ configuration anymore.
 
 **Sorting the runtime status table**
 : You can now sort the runtime status table in
-Runtime Manager by the
-**Last Seen** or **Sync Status** columns.
+Runtime Manager by the **Last Seen** or **Sync Status** columns.
+
 
 ## May 2021
 
@@ -535,7 +545,9 @@ app and billing portal.
 : You can now sign up for a {{site.konnect_short_name}} account without an
 access code. No more
 reaching out to Kong support or sales for access &ndash; just go
-to https://konnect.konghq.com and try it out!
+
+to [https://cloud.konghq.com](https://cloud.konghq.com) and try it out!
+
 
 **Runtime setup improvements**
 : Runtime setup for Linux and Kubernetes environments has improved. When you

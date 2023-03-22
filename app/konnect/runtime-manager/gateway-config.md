@@ -21,8 +21,8 @@ upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway services can be exposed in Service Hub, or managed though Runtime Manager
 only:
-* When you create a [{{site.konnect_short_name}} service implementation](/konnect/servicehub/service-implementations/)
-through the Service Hub, it automatically creates a Gateway service.
+
+* When you create a {{site.konnect_short_name}} service implementation through the Service Hub, it automatically creates a Gateway service.
 * You can also create a Gateway service directly through Runtime Manager. This
 service won't be connected to any Service Hub implementation by default, unless you add a tag to link it.
 
