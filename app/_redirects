@@ -808,6 +808,7 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+/gateway/*/production/kong-openresty       /gateway/
 
 
 
