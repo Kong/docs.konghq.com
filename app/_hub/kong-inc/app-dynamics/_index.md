@@ -28,6 +28,7 @@ kong_version_compatibility:
     compatible: null
   enterprise_edition:
     compatible: true
+bundled: false
 params:
   name: app-dynamics
   service_id: true
