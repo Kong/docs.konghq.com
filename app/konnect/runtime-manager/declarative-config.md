@@ -1,26 +1,7 @@
 ---
-title: Manage Runtime Groups
+title: Manage Runtime Groups with decK
 content_type: how-to
 ---
-
-You can create and edit runtime groups in one of the following ways:
-* Through the Runtime Manager in {{site.konnect_short_name}}
-* Using declarative configuration files and decK
-* Using the {{site.konnect_short_name}} [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
-
-To [delete a runtime group](#deleting-a-runtime-group), use the Runtime Manager or the Runtime Groups API.
-
-## Manage runtime groups using Runtime Manager
-
-You can find the list of all runtime groups in the 
-![runtimes icon](/assets/images/icons/konnect/icn-runtimes.svg){:.inline .konnect-icn .no-image-expand}
-[Runtime Manager](https://cloud.konghq.com/runtime-manager/), where you can create, edit, and delete
-runtime groups.
-
-If you don't have an Enterprise account, the Runtime Manager will only ever have one
-runtime group entry.
-
-## Manage runtime groups using decK
 
 You can manage runtime groups in your {{site.konnect_saas}} org using configuration
 files instead of the GUI or admin API commands. With decK, Kong's declarative
@@ -330,25 +311,3 @@ the same configuration.
 * [decK CLI reference](/deck/latest/reference/deck)
 * [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import)
 
-## Deleting a runtime group
-
-{:.warning}
-> **Warning:** Deleting a group is irreversible. Make sure that you are
-certain that you want to delete the group, and that all entities and runtime
-instances in the have been accounted for.
-
-To delete a runtime group, you can use the Runtime Manager or the 
-{{site.konnect_short_name}} 
-[Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
-
-When a runtime group is deleted, all associated entities are also deleted.
-This includes all entities configured in the Runtime Manager for this group.
-As a best practice, [back up](/konnect/runtime-manager/backup-restore/) a runtime 
-group's configuration before deleting it to avoid losing necessary configuration.
-
-Runtime instances that are still active when the group is deleted will not be
-terminated, but they will be orphaned. They will continue processing traffic
-using the last configuration they received until they are either connected to
-a new runtime group or manually shut down.
-
-You cannot delete the default runtime group.

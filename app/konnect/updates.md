@@ -257,7 +257,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
-: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups/), then read up on how to manage them with the [UI or with decK](/konnect/runtime-manager/manage-runtime-groups/).
+: Learn more about runtime groups and managing them through the [Runtime Manager](/konnect/runtime-manager/), or [manage runtime groups with decK](/konnect/runtime-manager/declarative-config/).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
   * Certificate rotation and management:
@@ -282,7 +282,7 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 : Learn how to use decK with {{site.konnect_short_name}}:
   * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect)
   * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
-  * [Manage runtime groups with decK](/konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck)
+  * [Manage runtime groups with decK](/konnect/runtime-manager/declarative-config/)
 
 **Tags for {{site.konnect_short_name}} services**
 : You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
