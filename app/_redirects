@@ -806,7 +806,7 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
-/gateway/*/production/latest/kong-openresty       /gateway/
+/gateway/*/production/kong-openresty       /gateway/
 
 
 
