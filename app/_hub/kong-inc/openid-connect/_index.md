@@ -1705,7 +1705,7 @@ params:
       datatype: array of string elements
       description: Do not use proxy with these hosts.
     - group: Cache TTLs
-      description: Note: These do not apply to the discovery cache.
+      description: These do not apply to the discovery cache.
     - name: cache_ttl
       required: false
       default: 3600
