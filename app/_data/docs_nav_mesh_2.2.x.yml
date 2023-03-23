@@ -112,7 +112,6 @@ items:
             src: /.repos/kuma/app/_src/production/secure-deployment/dp-membership/
           - text: Kong Mesh RBAC
             url: /production/secure-deployment/rbac/
-            src: /.repos/kuma/app/_src/production/secure-deployment/rbac/
           - text: FIPS support
             url: /production/secure-deployment/fips-support/
             src: /.repos/kuma/app/_src/production/secure-deployment/fips-support/
