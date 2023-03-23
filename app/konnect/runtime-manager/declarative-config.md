@@ -25,18 +25,18 @@ Run `deck help` to see all available flags, or see the [decK CLI reference](/dec
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
 
-### Prerequisites
+## Prerequisites
 
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime/).
 
-### Generate a personal access token
+## Generate a personal access token
 
 To test your connection, we recommend that you use a personal access token (PAT).
 
 {% include_cached /md/personal-access-token.md %}
 
-### Test your connection
+## Test your connection
 
 Check that you can log in to {{site.konnect_short_name}} and that decK
 recognizes your account credentials:
@@ -70,7 +70,7 @@ needed.
 The following steps all use a `.deck.yaml` file to store the
 {{site.konnect_short_name}} credentials instead of flags.
 
-### Create a configuration file
+## Create a configuration file
 
 Capture a snapshot of the current configuration in a file:
 
@@ -102,7 +102,7 @@ deck dump --konnect-runtime-group-name default \
   --output-file examples/konnect.json
 ```
 
-### Make changes to configuration
+## Make changes to configuration
 
 Make any changes you like using YAML or JSON format.
 For this example, let's add a new service.
@@ -183,7 +183,7 @@ For this example, let's add a new service.
 
     You should see a new service named `MyService` in the runtime group.
 
-### Manage consumers and global plugins
+## Manage consumers and global plugins
 
 You can also use decK to manage objects not tied to a specific service or
 route. For this example, create a consumer and a global proxy caching plugin:
@@ -235,7 +235,7 @@ to see your changes:
     deck sync --konnect-runtime-group-name default
     ```
 
-### Test the service
+## Test the service
 
 If you have already have a runtime set up, you can test this
 configuration now. Or, you can start a simple runtime using the
@@ -261,7 +261,7 @@ Kong Error
 No API key found in request.
 ```
 
-### Migrate configuration between runtime groups
+## Migrate configuration between runtime groups
 {:.badge .enterprise}
 
 You can also use decK to migrate or duplicate configuration between runtime
@@ -306,7 +306,7 @@ command, pointing to the runtime group that you want to target:
 You should now have two runtime groups in {{site.konnect_short_name}} with
 the same configuration.
 
-### More information
+## More information
 
 * [decK CLI reference](/deck/latest/reference/deck)
 * [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import)
