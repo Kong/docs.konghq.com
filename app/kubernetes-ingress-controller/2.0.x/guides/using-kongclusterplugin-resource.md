@@ -43,7 +43,7 @@ an echo service and an httpbin service in their corresponding namespaces.
 ```bash
 $ kubectl create namespace httpbin
 namespace/httpbin created
-$ kubectl apply -n httpbin -f https://bit.ly/k8s-httpbin
+$ kubectl apply -n httpbin -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
 service/httpbin created
 deployment.apps/httpbin created
 ```
