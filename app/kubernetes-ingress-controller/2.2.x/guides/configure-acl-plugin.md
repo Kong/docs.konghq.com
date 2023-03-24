@@ -41,7 +41,7 @@ For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
 service in the cluster and proxy it.
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
 service/httpbin created
 deployment.apps/httpbin created
 ```

@@ -41,7 +41,7 @@ We will start by installing two services,
 an echo service and an httpbin service.
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
 service/httpbin created
 deployment.apps/httpbin created
 ```
