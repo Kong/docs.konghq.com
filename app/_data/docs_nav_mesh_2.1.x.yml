@@ -17,7 +17,7 @@ items:
         src: /.repos/kuma/app/_src/introduction/how-kuma-works/
       - text: Deployments
         url: /introduction/deployments/
-        src: /.repos/kuma/app/_src/introduction/deployments/
+        src: /.repos/kuma/app/_src/production/deployment/
       - text: Version support policy
         url: /support-policy/
       - text: Stability
@@ -69,10 +69,16 @@ items:
         src: /.repos/kuma/app/_src/quickstart/universal/
       - text: Standalone deployment
         url: /deployments/stand-alone/
-        src: /.repos/kuma/app/_src/deployments/stand-alone/
+        src: /.repos/kuma/app/_src/production/deployment/stand-alone/
+      - text: Deploy a standalone control plane
+        url: /production/cp-deployment/stand-alone/
+        src: /.repos/kuma/app/_src/production/cp-deployment/stand-alone/
       - text: Multi-zone deployment
         url: /deployments/multi-zone/
-        src: /.repos/kuma/app/_src/deployments/multi-zone/
+        src: /.repos/kuma/app/_src/production/deployment/multi-zone/
+      - text: Deploy a multi-zone global control plane
+        url: /production/cp-deployment/multi-zone/
+        src: /.repos/kuma/app/_src/production/cp-deployment/multi-zone/
       - text: License
         url: /plan-and-deploy/license
   - title: Explore
@@ -83,28 +89,28 @@ items:
         src: /.repos/kuma/app/_src/explore/overview/
       - text: Data plane proxy
         url: /explore/dpp/
-        src: /.repos/kuma/app/_src/explore/dpp/
+        src: /.repos/kuma/app/_src/production/dp-config/dpp/
       - text: Data plane on Kubernetes
         url: /explore/dpp-on-kubernetes/
-        src: /.repos/kuma/app/_src/explore/dpp-on-kubernetes/
+        src: /.repos/kuma/app/_src/production/dp-config/dpp-on-kubernetes/
       - text: Data plane on Universal
         url: /explore/dpp-on-universal/
-        src: /.repos/kuma/app/_src/explore/dpp-on-universal/
+        src: /.repos/kuma/app/_src/production/dp-config/dpp-on-universal/
       - text: Gateway
         url: /explore/gateway/
         src: /.repos/kuma/app/_src/explore/gateway/
       - text: Zone Ingress
         url: /explore/zone-ingress/
-        src: /.repos/kuma/app/_src/explore/zone-ingress/
+        src: /.repos/kuma/app/_src/production/cp-deployment/zone-ingress/
       - text: Zone Egress
         url: /explore/zoneegress/
-        src: /.repos/kuma/app/_src/explore/zoneegress/
+        src: /.repos/kuma/app/_src/production/cp-deployment/zoneegress/
       - text: CLI
         url: /explore/cli/
         src: /.repos/kuma/app/_src/explore/cli/
       - text: GUI
         url: /explore/gui/
-        src: /.repos/kuma/app/_src/explore/gui/
+        src: /.repos/kuma/app/_src/production/gui/
       - text: Observability
         url: /explore/observability/
         src: /.repos/kuma/app/_src/explore/observability/
@@ -119,7 +125,7 @@ items:
     items:
       - text: Networking
         url: /networking/networking/
-        src: /.repos/kuma/app/_src/networking/networking/
+        src: /.repos/kuma/app/_src/production/deployment/networking/
       - text: Service Discovery
         url: /networking/service-discovery/
         src: /.repos/kuma/app/_src/networking/service-discovery/
@@ -128,13 +134,13 @@ items:
         src: /.repos/kuma/app/_src/networking/dns/
       - text: Kong Mesh CNI
         url: /networking/cni/
-        src: /.repos/kuma/app/_src/networking/cni/
+        src: /.repos/kuma/app/_src/production/dp-config/cni/
       - text: Transparent Proxying
         url: /networking/transparent-proxying/
-        src: /.repos/kuma/app/_src/networking/transparent-proxying/
+        src: /.repos/kuma/app/_src/production/dp-config/transparent-proxying/
       - text: IPv6 support
         url: /networking/ipv6/
-        src: /.repos/kuma/app/_src/networking/ipv6/
+        src: /.repos/kuma/app/_src/production/dp-config/ipv6/
       - text: Non-mesh traffic
         url: /networking/non-mesh-traffic/
         src: /.repos/kuma/app/_src/networking/non-mesh-traffic/
@@ -143,25 +149,25 @@ items:
     items:
       - text: Secure access across Kong Mesh components
         url: /security/certificates/
-        src: /.repos/kuma/app/_src/security/certificates/
+        src: /.repos/kuma/app/_src/production/secure-deployment/certificates/
       - text: Secrets
         url: /security/secrets/
-        src: /.repos/kuma/app/_src/security/secrets/
+        src: /.repos/kuma/app/_src/production/secure-deployment/secrets/
       - text: Kong Mesh API Access Control
         url: /security/api-access-control/
-        src: /.repos/kuma/app/_src/security/api-access-control/
+        src: /.repos/kuma/app/_src/production/secure-deployment/api-access-control/
       - text: API server authentication
         url: /security/api-server-auth/
-        src: /.repos/kuma/app/_src/security/api-server-auth/
+        src: /.repos/kuma/app/_src/production/secure-deployment/api-server-auth/
       - text: Data plane proxy authentication
         url: /security/dp-auth/
-        src: /.repos/kuma/app/_src/security/dp-auth/
+        src: /.repos/kuma/app/_src/production/secure-deployment/dp-auth/
       - text: Zone proxy authentication
         url: /security/zoneproxy-auth/
-        src: /.repos/kuma/app/_src/security/zoneproxy-auth/
+        src: /.repos/kuma/app/_src/production/cp-deployment/zoneproxy-auth/
       - text: Data plane proxy membership
         url: /security/dp-membership/
-        src: /.repos/kuma/app/_src/security/dp-membership/
+        src: /.repos/kuma/app/_src/production/secure-deployment/dp-membership/
   - title: Monitor and Manage
     icon: /assets/images/icons/konnect/icn-analytics-nav.svg
     items:
@@ -170,13 +176,13 @@ items:
         src: /.repos/kuma/app/_src/documentation/health/
       - text: Fine-tuning
         url: /documentation/fine-tuning/
-        src: /.repos/kuma/app/_src/documentation/fine-tuning/
+        src: /.repos/kuma/app/_src/production/upgrades-tuning/fine-tuning/
       - text: Control Plane Configuration
         url: /documentation/configuration/
         src: /.repos/kuma/app/_src/documentation/configuration/
       - text: Upgrades
         url: /documentation/upgrades/
-        src: /.repos/kuma/app/_src/documentation/upgrades/
+        src: /.repos/kuma/app/_src/production/upgrades-tuning/upgrades/
       - text: Requirements
         url: /documentation/requirements/
         src: /.repos/kuma/app/_src/documentation/requirements/
@@ -202,7 +208,7 @@ items:
         src: /.repos/kuma/app/_src/policies/protocol-support-in-kuma/
       - text: Mesh
         url: /policies/mesh/
-        src: /.repos/kuma/app/_src/policies/mesh/
+        src: /.repos/kuma/app/_src/production/mesh/
       - text: Mutual TLS
         url: /policies/mutual-tls/
         src: /.repos/kuma/app/_src/policies/mutual-tls/
