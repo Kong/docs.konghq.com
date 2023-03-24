@@ -27,10 +27,9 @@ items:
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     url: /gettingstarted
   - title: Kong Mesh in Production
-    group: true
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg 
     items:
-      - title: Deployment topologies
-        group: true
+      - text: Deployment topologies
         items:
           - text: Overview
             url: /production/deployment/
@@ -44,8 +43,7 @@ items:
           - text: Default ports
             url: /production/deployment/networking/
             src: /.repos/kuma/app/_src/production/deployment/networking/
-      - title: Control plane deployment
-        group: true
+      - text: Control plane deployment
         items:
           - text: Kong Mesh license
             url: /production/cp-deployment/license/
@@ -71,8 +69,7 @@ items:
       - text: Create multiple service meshes in a cluster
         url: /production/mesh/
         src: /.repos/kuma/app/_src/production/mesh/
-      - title: Data plane configuration
-        group: true
+      - text: Data plane configuration
         items:
           - text: Data plane proxy
             url: /production/dp-config/dpp/
@@ -92,8 +89,7 @@ items:
           - text: IPv6 support
             url: /production/dp-config/ipv6/
             src: /.repos/kuma/app/_src/production/dp-config/ipv6/
-      - title: Secure your deployment
-        group: true
+      - text: Secure your deployment
         items:
           - text: Manage secrets
             url: /production/secure-deployment/secrets/
@@ -114,15 +110,13 @@ items:
             url: /production/secure-deployment/rbac/
           - text: FIPS support
             url: /production/secure-deployment/fips-support/
-            src: /.repos/kuma/app/_src/production/secure-deployment/fips-support/
           - text: Secure access accross services
             url: /production/secure-deployment/certificates/
             src: /.repos/kuma/app/_src/production/secure-deployment/certificates/
       - text: Kong Mesh user interface
         url: /production/gui/
         src: /.repos/kuma/app/_src/production/gui/
-      - title: Upgrades and tuning
-        group: true
+      - text: Upgrades and tuning
         items:
           - text: Upgrade Kong Mesh
             url: /production/upgrades-tuning/upgrades/
@@ -345,7 +339,7 @@ items:
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
-        url: /production/secure-deployment/
+        url: /production/secure-deployment/rbac/
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support
