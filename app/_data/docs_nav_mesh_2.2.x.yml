@@ -438,7 +438,6 @@ items:
       - text: Kuma-cp configuration reference
         url: /generated/kuma-cp
         src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
-<<<<<<< HEAD
   - title: Community
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
@@ -448,8 +447,6 @@ items:
       - text: Contribute to Mesh
         url: /community/contribute-to-mesh/
         src: /.repos/kuma/app/_src/community/contribute-to-kuma/
-=======
->>>>>>> 32fb5a7b0 (Add 2.2 nav and add 2.2 to kong versions)
 unlisted:
   # Kuma CP
   - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
