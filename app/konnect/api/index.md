@@ -30,7 +30,7 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Portal RBAC API Documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/) - Interface for portal developers, teams, and RBAC rules.
 
-* [Runtime Configuration API](/konnect/api/runtime-groups-config/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
+* [Runtime Configuration API](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
 
 {:.note}
 > **Note**: This list represents the APIs supported for use in production environments. 
