@@ -138,9 +138,6 @@ params:
       default: false
       datatype: boolean
       encrypted: false
-      value_in_examples: false
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Whether or not to use TLS/SSL tunnel to send API traffic capture to the destination.
     - name: request_body_flag
       required: no
