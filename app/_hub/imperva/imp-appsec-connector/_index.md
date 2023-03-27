@@ -120,7 +120,7 @@ params:
       default: tcp
       datatype: string
       encrypted: false
-      description: 'Can only be one of the following value: "tcp" or "http"'
+      description: The connection protocol to use. Accepts one of the following values: `tcp` or `http`.
     - name: method
       required: no
       default: "POST"
