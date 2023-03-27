@@ -144,7 +144,11 @@ params:
       default: true
       datatype: boolean
       encrypted: false
-      description: Set to false to turn off sending request body payload to destination. Used only for debugging purposes. API security will not fully function without inspection of request body payload.
+      description: |
+        Determines whether to send the request body payload to the destination. 
+        
+        Set to `false` to disable. Use **only** for debugging purposes. 
+        API security will not fully function without inspection of the request body payload.
     - name: response_body_flag
       required: no
       default: true
