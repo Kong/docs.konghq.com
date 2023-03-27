@@ -15,8 +15,8 @@ RSpec.describe SEO::IndexEntry::UnversionedProductPage do
   describe '#process!' do
     before { subject.process!(index) }
 
-    it 'does not set the canonical url to the page' do
-      expect(page.data['canonical_url']).to be_nil
+    it 'sets the canonical url to the page' do
+      expect(page.data['canonical_url']).to eq "/konnect/"
     end
 
     it 'does not set seo_noindex to the page' do

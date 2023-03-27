@@ -15,13 +15,12 @@ From a service version page, enable a plugin:
 
 1. Enter the plugin configuration details.
 
-    Configuration details are different for every plugin, see the [Plugin Hub](/hub) for parameter descriptions.
+    Configuration details are different for every plugin, see the [Plugin Hub](/hub/) for parameter descriptions.
 
 1. Click **Save**.
 
 {:.note}
-> If you don't see the **Plugins** section, create an
-[implementation](/konnect/servicehub/service-implementations) first.
+> If you don't see the **Plugins** section, create an implementation first.
 
 
 ## Disable a plugin

@@ -1,4 +1,4 @@
 ---
 title: Kubernetes Ingress Controller
-subtitle: An ingress controller for the Kong Gateway
+subtitle: An ingress controller for the {{site.base_gateway}}
 ---

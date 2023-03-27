@@ -494,14 +494,6 @@
       notes: --
       url: /hub/kong-inc/datadog
     
-    - name: Datadog Tracing
-      free: No
-      plus: No
-      enterprise: Yes
-      konnect: Yes
-      network_config_opts: All
-      notes: --
-      url: /hub/kong-inc/datadog-tracing
 
     - name: OpenTelemetry
       free: Yes

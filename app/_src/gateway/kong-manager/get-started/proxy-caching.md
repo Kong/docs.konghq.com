@@ -7,11 +7,11 @@ This tutorial walks you through setting up proxy caching in Kong Manager.
 
 Use proxy caching so that upstream services are not bogged down with repeated requests. With proxy caching, {{site.base_gateway}} can respond with cached results for better performance.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/proxy-caching).
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/proxy-caching/).
 
 ## Prerequisites
 
-You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable).
+You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable/).
 
 ## Set up the Proxy Caching plugin
 
@@ -35,4 +35,4 @@ figure out how to validate in the browser -->
 
 ## Next Steps
 
-Next, you’ll learn about [securing services](/gateway/{{page.kong_version}}/kong-manager/get-started/consumers) through Kong Manager.
+Next, you’ll learn about [securing services](/gateway/{{page.kong_version}}/kong-manager/get-started/consumers/) through Kong Manager.

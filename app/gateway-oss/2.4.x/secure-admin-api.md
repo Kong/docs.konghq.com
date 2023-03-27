@@ -238,7 +238,7 @@ For more information on integrating Kong into custom Nginx configurations, see
 ## Role Based Access Control ##
 
 {:.important}
-> This feature is only available with an [Enterprise](/konnect-platform/plans) subscription.
+> This feature is only available with an [Enterprise](/konnect-platform/plans/) subscription.
 
 Enterprise users can configure role-based access control to secure access to the
 Admin API. RBAC allows for fine-grained control over resource access based on
@@ -249,13 +249,13 @@ API resources can be enforced, while scaling to allow complex, case-specific
 uses.
 
 If you are not a Kong Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
+Enterprise offering by [contacting us](/enterprise/).
 
 [Back to top](#introduction)
 
 
 [acl]: /plugins/acl
-[basic-auth]: /plugins/basic-authentication/
+[basic-auth]: /hub/kong-inc/basic-auth/
 [custom-configuration]: /gateway-oss/{{page.kong_version}}/configuration/#custom-nginx-configuration
 [ip-restriction]: /plugins/ip-restriction
-[key-auth]: /plugins/key-authentication
+[key-auth]: /hub/kong-inc/key-auth/

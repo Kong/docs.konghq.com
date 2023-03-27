@@ -30,7 +30,7 @@ Kong Enterprise 2.1.x docs includes any changes made for the 2.1.0.0 beta docs.
 * [decK documentation](https://docs.konghq.com/deck/) has moved to docs.konghq.com.
 
 ### Kong for Kubernetes
-* Improved [Kubernetes Deployment Options](/enterprise/2.1.x/deployment/kubernetes-deployment-options) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
+* Improved [Kubernetes Deployment Options](/enterprise/2.1.x/deployment/kubernetes-deployment-options/) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
 
 ### Kong Vitals
 * New [Vitals Overview](/enterprise/2.1.x/vitals/overview/) topic.
@@ -49,7 +49,7 @@ Kong Enterprise 2.1.x docs includes any changes made for the 2.1.0.0 beta docs.
 ### Plugins
 * New declarative configuration (YAML) examples added to Plugins. For example, see the [Key Authentication Encrypted - Enabling the plugin on a Service](/hub/kong-inc/key-auth-enc/#enabling-the-plugin-on-a-service) section and click the **Declarative (YAML)** tab.
 * New [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
-* New [Plugin Compatibility Matrix](/konnect-platform/compatibility/plugins) compares the various Kong Gateway deployment modes.
+* New [Plugin Compatibility Matrix](/konnect-platform/compatibility/plugins/) compares the various Kong Gateway deployment modes.
 * Updated [gRPC Gateway](/hub/kong-inc/grpc-gateway/) Plugin documentation.
 
 ### Doc Site Improvements

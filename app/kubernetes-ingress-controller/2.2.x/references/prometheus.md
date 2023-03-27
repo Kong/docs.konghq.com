@@ -2,10 +2,10 @@
 title: Prometheus metrics
 ---
 
-{{site.kic_product_name}}, as well as Kong Gateway, both expose Prometheus metrics, under certain conditions:
+{{site.kic_product_name}}, as well as {{site.base_gateway}}, both expose Prometheus metrics, under certain conditions:
 
 * {{site.kic_product_name}}, since version 2.0, exposes Prometheus metrics for configuration updates.
-* Kong Gateway can expose Prometheus metrics for served requests, if the [Prometheus plugin][prom-plugin] is enabled. See the [Using KongPlugin resource guide][kongplugin-guide] for information on how to enable a plugin. Also, we provide a specific [guide for integration with Prometheus and Grafana][grafana-guide] as well.
+* {{site.base_gateway}} can expose Prometheus metrics for served requests, if the [Prometheus plugin][prom-plugin] is enabled. See the [Using KongPlugin resource guide][kongplugin-guide] for information on how to enable a plugin. Also, we provide a specific [guide for integration with Prometheus and Grafana][grafana-guide] as well.
 
 This document is a reference for the former type.
 

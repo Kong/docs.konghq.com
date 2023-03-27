@@ -48,7 +48,7 @@ series from the beginning.
 Start with the introduction, [Get Kong](/gateway/latest/get-started/), which includes
 tool prerequisites and instructions for running a local {{site.base_gateway}}.
 
-Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),
+Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes/),
 includes instructions for installing a mock service used throughout this series. 
 
 If you haven't completed these steps already, complete them before proceeding.

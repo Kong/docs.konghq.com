@@ -13,7 +13,7 @@ DCR support in {{site.konnect_short_name}} provides multiple methods by which ap
 * **Bearer tokens**: Authenticate using a token requested from the IdP's `/token` endpoint.
 * **Session cookie**: Allow sessions from either client credentials or bearer tokens to persist via cookie until an expiration.
 
-Each method is available when using [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0), [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity), or [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta) as the DCR Identity Provider.
+Each method is available when using [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0), [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity/), or [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta/) as the DCR Identity Provider.
 
 {:.note}
 > **Note:** When using DCR for a Dev Portal, each application will automatically receive a client ID and secret. These can be used to authenticate with services directly if using the Client Credentials Grant, or can be used to obtain an access token from the Identity Provider if using the Bearer Token authentication method.

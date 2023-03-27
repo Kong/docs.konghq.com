@@ -5,7 +5,7 @@
 # Your publisher path is relative to app/_hub/.
 # The path must consist only of alphanumeric characters and hyphens (-).
 #
-# 2. Duplicate the versions.yml file into your new plugin directory.
+# 2. (Kong Inc. internal plugins only) Duplicate the versions.yml file into your new plugin directory.
 # Set the Kong Gateway version that the plugin is being added to.
 
 # 3. Add a 64x64px icon for the plugin to app/_assets/images/icons/hub.
@@ -20,13 +20,13 @@
 # https://github.com/Kong/docs.konghq.com/app/_hub for examples.
 # Remove inapplicable entries and comments as needed.
 
-name: # (required) The name of your extension.
+name: # (required) The name of your plugin.
   # Use capitals and spaces as needed.
-publisher: # (required) The name of the entity publishing this extension.
+publisher: # (required) The name of the entity publishing this plugin.
   # Use capitals and spaces as needed.
   # If you are an individual, you might choose to use your GitHub handle, or your name.
   # If this is being published and supported by a company, please use your company name.
-  # Note that every extension by a given publisher must have the exact same value.
+  # Note that every plugin by a given publisher must have the exact same value.
 
 categories: # (required) Uncomment ONE that applies.
   #- authentication
@@ -101,11 +101,11 @@ cloud: # (Kong Inc plugins only) Boolean
 # Set the subscription tiers that your plugin is restricted to.
 # If your plugin is free/open-source, set `false` for both the enterprise and plus tiers.
 
-enterprise: # (Kong Inc plugins only) Boolean
+enterprise: # (Kong Inc internal plugins only) Boolean
   # Specifies if your plugin is an Enterprise-tier plugin.
   # Set true if only available in Enterprise, or false if available in other tiers.
 
-plus: # (Kong Inc and Konnect only) Boolean
+plus: # (Kong Inc internal and Konnect only) Boolean
   # Specifies if your plugin is a Plus-tier plugin in Konnect.
   # Set true if the plugin is available in the Plus and Enterprise tiers, or false if available for free/in open-source.
 

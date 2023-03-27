@@ -81,3 +81,8 @@ These versions have reached the end of full support.
 |   0.32   |  2018-05-22   |     2019-05-21      |      2020-05-21       |
 |   0.31   |  2018-03-13   |     2019-03-12      |      2020-03-12       |
 |   0.30   |  2018-01-22   |     2019-01-21      |      2020-01-21       |
+
+## See also
+
+* [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy/)
+* [Version support policy for {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/support-policy/)

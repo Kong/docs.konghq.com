@@ -94,12 +94,12 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs codeblock %}
 {% navtab kubectl %}
 ```sh
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise-install
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```sh
-$ oc create -f https://bit.ly/k4k8s-enterprise-install
+$ oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -161,7 +161,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 It might take a while for your cloud provider to associate the IP address to the `kong-proxy` service.
-After you have installed {{site.base_gateway}}, see the [getting started tutorial](/kubernetes-ingress-controller/latest/guides/getting-started).
+After you have installed {{site.base_gateway}}, see the [getting started tutorial](/kubernetes-ingress-controller/latest/guides/getting-started/).
 
 ## Next steps
-See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.
+See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes/) for information about concepts, how-to guides, reference guides, and using plugins.

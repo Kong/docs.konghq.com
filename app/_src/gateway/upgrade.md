@@ -91,7 +91,7 @@ If you are adding a new plugin to your installation, you need to run
 `KONG_PLUGINS=tls-handshake-modifier`.
 
 The 3.0 release includes the following new plugins:
-* [OpenTelemetry](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+* [OpenTelemetry](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
 * [TLS Handshake Modifier](/hub/kong-inc/tls-handshake-modifier/) (`tls-handshake-modifier`)
 * [TLS Metadata Headers](/hub/kong-inc/tls-metadata-headers/) (`tls-metadata-headers`)
 * [WebSocket Size Limit](/hub/kong-inc/websocket-size-limit/) (`websocket-size-limit`)
@@ -109,7 +109,7 @@ All capabilities are now available in the [StatsD](/hub/kong-inc/statsd/) plugin
 
 The following plugins have had configuration parameters changed or removed. You will need to carefully review and update your configuration as needed:
 
-**[ACL](/hub/kong-inc/acl/), [Bot Detection](/hub/kong-inc/bot-detection), and [IP Restriction](/hub/kong-inc/ip-restriction/)**
+**[ACL](/hub/kong-inc/acl/), [Bot Detection](/hub/kong-inc/bot-detection/), and [IP Restriction](/hub/kong-inc/ip-restriction/)**
 * Removed the deprecated `blacklist` and `whitelist` configuration parameters. Use `allow` or `deny` instead.
 
 **[ACME](/hub/kong-inc/ACME/)**
@@ -184,13 +184,25 @@ Use the `config.access` phase instead.
     Old and new plugin priority values:
     - `acme` changed from `1007` to `1705`
     - `basic-auth` changed from `1001` to `1100`
+    - `canary` changed from `13` to `20`
+    - `degraphql` changed from `1005` to `1500`
+    - `graphql-proxy-cache-advanced` changed from `100` to `99`
     - `hmac-auth` changed from `1000` to `1030`
     - `jwt` changed from `1005` to `1450`
+    - `jwt-signer` changed from `999` to `1020`.
     - `key-auth` changed from `1003` to `1250`
+    - `key-auth-advanced` changed from `1003` to `1250`
     - `ldap-auth` changed from `1002` to `1200`
+    - `ldap-auth-advanced` changed from `1002` to `1200`
+    - `mtls-auth` changed from `1006` to `1600`
     - `oauth2` changed from `1004` to `1400`
+    - `openid-connect` changed from `1000` to `1050`
     - `rate-limiting` changed from `901` to `910`
-    - `pre-function` changed from `+inf` to `1000000`.
+    - `rate-limiting-advanced` changed from `902` to `910`
+    - `route-by-header` changed from `2000` to `850`
+    - `route-transformer-advanced` changed from `800` to `780`
+    - `pre-function` changed from `+inf` to `1000000`
+    - `vault-auth` change from `1003` to `1350`
 
 * The `kong.request.get_path()` PDK function now performs path normalization
   on the string that is returned to the caller. The raw, non-normalized version
@@ -348,7 +360,7 @@ upgrade the control plane first, and then the data planes.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
   plugins on the control plane first, and then the data planes.
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 ### Template changes

@@ -16,7 +16,7 @@ description: |
   > <br>
   > In Konnect, the functionality is built into the Service Hub, so you don't need this plugin. See the following documentation:
   * [Learn about app registration in Konnect](/konnect/dev-portal/applications/application-overview/)
-  * [Enable app registration](/konnect/dev-portal/applications/enable-app-reg)
+  * [Enable app registration](/konnect/dev-portal/applications/enable-app-reg/)
 
   The Application Registration plugin is used in tandem with supported Kong Gateway authorization
   plugins, depending on your configured Dev
@@ -31,12 +31,12 @@ description: |
 
   | Kong Gateway Plugin | Portal authorization strategy                                 |
   |:------|:--------------------------------------------------------------------|
-  | [OAuth2](/hub/kong-inc/oauth2) | `kong-oauth2` |
+  | [OAuth2](/hub/kong-inc/oauth2/) | `kong-oauth2` |
   | [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` |
-  | [OIDC](/hub/kong-inc/openid-connect)| `external-oauth2` |
+  | [OIDC](/hub/kong-inc/openid-connect/)| `external-oauth2` |
 
   If you plan to use the external OAuth option with OIDC, review the
-  [supported OAuth workflows](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth).
+  [supported OAuth workflows](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth/).
 enterprise: true
 cloud: false
 type: plugin

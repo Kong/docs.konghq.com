@@ -205,7 +205,7 @@ tokens and so forth will require authentication by the other configured auth plu
 
 <div class="alert alert-warning">
   When multiple authentication plugins are enabled in an <tt>OR</tt> fashion on a given Service, and it is desired that
-  anonymous access be forbidden, then the <a href="/plugins/request-termination"><tt>request-termination</tt> plugin</a> should be
+  anonymous access be forbidden, then the <a href="/hub/kong-inc/request-termination/"><tt>request-termination</tt> plugin</a> should be
   configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
 </div>
 

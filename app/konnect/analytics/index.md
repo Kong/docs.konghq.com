@@ -15,62 +15,65 @@ historical data for the following lengths of time:
 * **Plus:** 6 months
 * **Enterprise:** 1 year
 
+## Contextual analytics for services and routes
+
 In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
 [activity graphs](/konnect/analytics/services-and-routes/) for services, service versions, or
 routes for the past 30 days.
 For services, these graphs display request counts. For service versions and
 routes, the graphs show requests broken down by status codes.
 
-![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png)
+![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png){:.image-border}
 
 > _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
-For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page <span class="badge plus"></span>.
+You can also [export this historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
 
-From Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
-* View the [Analytics dashboard](/konnect/analytics/summary-dashboard) to track traffic, errors by error code, and latency across all services in your organization.
+
+## Summary dashboard and custom reports
+{:.badge .plus}
+
+For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page.
+
+From {% konnect_icon analytics %} Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
+* View the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
 * [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
-![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png)
-> _**Figure 2:** Graph showing successful and failed requests over the past three hours._
+The summary dashboard provides metrics for services cataloged by Service Hub within a selected time interval for the following categories:
 
-## Time intervals
+* **Traffic**
+* **Errors**
+* **Latency**
 
-Interval | Description  
-------|----------|
-Last 15 minutes | Data is aggregated in ten second increments.
-Last hour| Data is aggregated in one minute increments.
-Last three hours | Data is aggregated in one minute increments.
-Last six hours | Data is aggregated in ten minute increments.
-Last 12 hours| Data is aggregated in ten minute increments.
-Last 24 hours| Data is aggregated in ten minute increments.
-Last seven days | Data is aggregated in one hour increments.
-Last 30 days | Data is aggregated in one hour increments.
+These categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
+You can view a graph for each category by clicking **Traffic**, **Errors**, or **Latency**, and switching between the views.
 
-{:.important}
-> Free tier users can only select intervals up to 24 hours.
+* **Traffic**: This graph displays the total number of HTTP requests categorized by successful and failed requests over the specified time interval.
+    * Successful requests contain all requests that returned a **1xx-3xx** status code.
+    * Failed requests contain all requests that returned a **4xx-5xx** status code.
+    * 6xx status codes are not reported.
 
-## Terms
+    ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png){:.image-border}
+    > _**Figure 2:** Graph showing successful and failed requests over the past three hours._
 
-**Request Count**
-: Displays a count of all proxy requests received. This includes requests that
-were rejected due to rate limiting, failed authentication, and so on.
+* **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
-**Status Codes**
-: Displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx,
-  4xx, 5xx). The Status Codes view contains the counts of status code classes
-  graphed over time, as well as the ratio of code classes to total requests.
+    ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png){:.image-border}
+    > _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
-**Time frame selector**
-: Controls the time frame of data visualized, which indirectly controls the
-granularity of the data. For example, the “5M” selection displays 5 minutes in
-1-second resolution data, while longer time frames display minute, hour, or
-days resolution data.
+* **Latency**: This graph displays request latency, in milliseconds, of the 99th, 95th, and 50th percentiles.
+Admins can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
 
-**Traffic metrics**
-: Provide insight into which of your services and service versions are being
-used and how they are responding.
+    {:.note}
+    > **Note**: Latency data is only available for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+
+   ![latency analytics graph](/assets/images/docs/konnect/konnect-analytics-latency.png){:.image-border}
+  > _**Figure 4:** Graph showing latency as a percentage over the past 15 minutes._
+
+Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
+
+You can select a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time.
 
 ## Team permissions
 

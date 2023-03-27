@@ -12,8 +12,8 @@ over a network. However, this also makes gRPC harder to work with, because inspe
 what went wrong is more challenging. Additionally, few clients natively handle gRPC.
 
 To help alleviate the challenges of working with gRPC, Kong has two plugins:
-- [gRPC-Gateway](/hub/kong-inc/grpc-gateway)
-- [gRPC-Web](/hub/kong-inc/grpc-web)
+- [gRPC-Gateway](/hub/kong-inc/grpc-gateway/)
+- [gRPC-Web](/hub/kong-inc/grpc-web/)
 
 The gRPC-Gateway plugin allows you to send JSON requests to a gRPC service. A
 specially configured `.proto` file handles the conversion of the JSON request

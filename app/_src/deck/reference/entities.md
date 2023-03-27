@@ -10,7 +10,7 @@ It does not manage {{site.base_gateway}} configuration parameters in `kong.conf`
 
 Entity | Managed by decK?
 -------|-----------------
-Services | <i class="fa fa-check"></i>
+Services | <i class="fa fa-check"></i> <sup>1</sup>
 Routes | <i class="fa fa-check"></i>
 Consumers | <i class="fa fa-check"></i>
 Plugins | <i class="fa fa-check"></i>
@@ -22,16 +22,27 @@ Targets | <i class="fa fa-check"></i>
 Vaults | <i class="fa fa-check"></i>
 Keys and key sets | <i class="fa fa-times"></i>
 Licenses | <i class="fa fa-times"></i>
-Workspaces | <i class="fa fa-check"></i> <sup>1</sup>
+Workspaces | <i class="fa fa-check"></i> <sup>2</sup>
 RBAC: roles and endpoint permissions | <i class="fa fa-check"></i>
 RBAC: groups and admins | <i class="fa fa-times"></i>
 Developers | <i class="fa fa-times"></i>
+
+{% if_version lte:1.16.x inline:true %}
 Consumer groups | <i class="fa fa-times"></i>
+{% endif_version %}
+{% if_version gte:1.17.x inline:true %}
+Consumer groups | <i class="fa fa-check"></i>
+{% endif_version %}
+
 Event hooks | <i class="fa fa-times"></i>
 Keyring and data encryption | <i class="fa fa-times"></i>
 
 {:.note .no-icon}
-> **\[1\]**: decK can create workspaces and manage entities in a given workspace. 
+> **\[1\]**: decK doesn't manage documents (`document_objects`) related to services, which means they are not included in dump/sync actions.
+If you attempt to delete a service that has an associated document via decK, it will fail.
+[Manage service documents directly](/gateway/latest/kong-enterprise/dev-portal/applications/managing-applications/#add-a-document-to-your-service) through Kong Manager. 
+> <br><br>
+> **\[2\]**: decK can create workspaces and manage entities in a given workspace. 
 However, decK can't delete workspaces, and it can't update multiple workspaces simultaneously.
 See [Manage multiple workspaces](/deck/{{page.kong_version}}/guides/kong-enterprise/#manage-multiple-workspaces) for more information.
 

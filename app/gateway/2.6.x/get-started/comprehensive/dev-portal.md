@@ -7,7 +7,7 @@ Dev Portal provides a single source of truth for all developers to locate, acces
 
 ## Before you begin
 
-Make sure the Dev Portal is on. You should have enabled it during [installation](/gateway/{{page.kong_version}}/install-and-run).
+Make sure the Dev Portal is on. You should have enabled it during [installation](/gateway/{{page.kong_version}}/install-and-run/).
 
 ## Enable the Dev Portal for a Workspace
 
