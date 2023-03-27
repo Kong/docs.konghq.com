@@ -223,7 +223,7 @@ If the LuaRocks utility is installed in your system (this is likely the case if 
 ```
 
 ### Update your loaded plugins list
-In your `kong.conf`, append `imp-appsec-connector` to the `plugins` field (or `custom_plugins` if old version of Kong). Make sure the field is not commented out.
+In your `kong.conf`, append `imp-appsec-connector` to the `plugins` field. Make sure the field is not commented out.
 
 ```yaml
 plugins = bundled,imp-appsec-connector         # Comma-separated list of plugins this node
