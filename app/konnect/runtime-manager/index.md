@@ -52,7 +52,6 @@ resources based on team purpose.
 Access to each runtime group is configurable on a team-by-team basis using
 entity-specific permissions. For more information, see [Administer teams](/konnect/org-management/teams-and-roles).
 
-[Set up and manage runtime groups &rarr;](/konnect/runtime-manager/manage-runtime-groups/)
 
 ### Runtime group dashboard
 
@@ -71,6 +70,7 @@ the following {{site.base_gateway}} entities:
 * Certificates
 * SNIs
 * Vaults
+* Keys
 
 When there are multiple runtime groups, any entity configuration only
 applies to the runtime group that it was created in. Consumers and
@@ -84,6 +84,7 @@ their authentication mechanisms don't carry over to other runtime groups.
 > **Warning:** Deleting a group is irreversible. Make sure that you are
 certain that you want to delete the group, and that all entities and runtime
 instances in the have been accounted for.
+
 To delete a runtime group, you can use the Runtime Manager or the 
 {{site.konnect_short_name}} 
 [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
