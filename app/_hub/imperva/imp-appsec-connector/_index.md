@@ -120,8 +120,6 @@ params:
       default: tcp
       datatype: string
       encrypted: false
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: 'Can only be one of the following value: "tcp" or "http"'
     - name: method
       required: no
