@@ -259,12 +259,9 @@ $ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/
 
 ## Changelog
 
-<!-- Add a changelog entry in the following format for every change to the plugin:
-
 **imp-appsec-connector 0.1.1**
 
-* Added X parameter for doing XYZ.
-* Removed the deprecated Z parameter.
--->
+* Introduced the Imperva API Security plugin. 
+This plugin is compatible with {{site.base_gateway}} 3.0.x and 3.2.x at release time.
 
 
