@@ -102,7 +102,7 @@ params:
   yaml_examples: true
   k8s_examples: true
   konnect_examples: false
-  manager_examples: true
+  manager_examples: false
   examples: true
 
   config: # Configuration settings for your plugin
