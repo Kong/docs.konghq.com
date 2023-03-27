@@ -209,7 +209,8 @@ The plugin sends a copy of API call requests/responses to the Imperva API receiv
 
 ## How to install
 
-> If you are using Kong's [Kubernetes Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for Kubernetes Ingress](https://docs.konghq.com/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/)
+{:.note}
+> If you are using Kong's [Kubernetes Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for Kubernetes Ingress](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/).
 
 The `.rock` file is a self-contained package that can be installed locally or from a remote server.
 
