@@ -170,7 +170,9 @@ params:
       default: 1
       datatype: number
       encrypted: false
-      description: Number of API logs to keep in queue for retry. Default is 1 meaning no retry.
+      description: |
+        Number of API logs to keep in the queue for retries. Default is 1, meaning no retries. 
+        Set to a number larger than 1 to enable retries.
     - name: flush_timeout
       required: no
       default: 2
