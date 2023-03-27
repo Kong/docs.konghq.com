@@ -164,9 +164,6 @@ params:
       default: 0
       datatype: number
       encrypted: false
-      value_in_examples: 0
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Number of retries if sending of API call capture fails. No retry by default.
     - name: queue_size
       required: no
