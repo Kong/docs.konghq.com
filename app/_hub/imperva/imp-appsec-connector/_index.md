@@ -214,7 +214,7 @@ The plugin sends a copy of API call requests/responses to the Imperva API receiv
 
 The `.rock` file is a self-contained package that can be installed locally or from a remote server.
 
-If the LuaRocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
+If the LuaRocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the `rock` in your LuaRocks tree, that is, the directory in which LuaRocks installs Lua modules.
 
 ### Install the Imperva Plugin
 
