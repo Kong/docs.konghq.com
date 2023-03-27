@@ -207,7 +207,7 @@ params:
 ## How it works
 The plugin sends a copy of API call requests/responses to the Imperva API receiver. The receiver service destination address and port are specified as config parameters. Additional parameters are used to control how the API captures are sent. 
 
-### How to install
+## How to install
 
 > If you are using Kong's [Kubernetes Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for Kubernetes Ingress](https://docs.konghq.com/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/)
 
