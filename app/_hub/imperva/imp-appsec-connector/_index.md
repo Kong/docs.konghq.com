@@ -138,7 +138,7 @@ params:
       default: false
       datatype: boolean
       encrypted: false
-      description: Whether or not to use TLS/SSL tunnel to send API traffic capture to the destination.
+      description: Whether or not to use an TLS/SSL tunnel to send API traffic capture to the destination.
     - name: request_body_flag
       required: no
       default: true
