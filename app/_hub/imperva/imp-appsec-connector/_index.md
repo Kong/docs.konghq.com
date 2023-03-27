@@ -184,7 +184,7 @@ params:
       default: 6000000
       datatype: number
       encrypted: false
-      description: Number of milli-seconds to keep a single connection open to the destination. 
+      description: Number of milliseconds to keep a single connection open to the destination. 
   extra:
     # This is for additional remarks about your configuration.
 
