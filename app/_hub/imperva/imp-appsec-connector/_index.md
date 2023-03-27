@@ -98,7 +98,7 @@ params:
     - name: http
     - name: https
   dbless_compatible: yes
-  dbless_explanation: The plugin is compatible with any with DB-less mode including 'local', 'cluster', and 'redis'
+  dbless_explanation: null
   yaml_examples: true
   k8s_examples: true
   konnect_examples: false
