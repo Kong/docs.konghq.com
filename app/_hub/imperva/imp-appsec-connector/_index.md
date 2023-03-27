@@ -106,7 +106,7 @@ params:
   examples: true
 
   config: # Configuration settings for your plugin
-    - name: destintion_addr
+    - name: destination_addr
       required: yes
       default:
       datatype: string
