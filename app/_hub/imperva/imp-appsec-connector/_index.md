@@ -154,9 +154,6 @@ params:
       default: true
       datatype: boolean
       encrypted: false
-      value_in_examples: true
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Set to false to turn off sending response body payload to destination. Used only for debugging purposes. API security will not fully function without inspection of response body payload.
     - name: retry_count
       required: no
