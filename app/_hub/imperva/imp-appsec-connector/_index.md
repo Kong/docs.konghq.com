@@ -164,7 +164,7 @@ params:
       default: 0
       datatype: number
       encrypted: false
-      description: Number of retries if sending of API call capture fails. No retry by default.
+      description: Number of retries if sending the API call capture fails. No retry by default.
     - name: queue_size
       required: no
       default: 1
