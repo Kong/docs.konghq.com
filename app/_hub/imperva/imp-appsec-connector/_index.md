@@ -34,16 +34,16 @@ description: |
   receiver service endpoint though the plugin's configuration, so the API data is 
   kept under the control of the application owner.
 
-  # (required) extended description.
-  # Use YAML pipe notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
-  #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
+# (required) extended description.
+# Use YAML pipe notation for extended entries.
+# EXAMPLE long text format (do not use this entry)
+# description: |
+#   Maintain an indentation of two (2) spaces after denoting a block with
+#   YAML pipe notation.
+#
+#   Lorem Ipsum is simply dummy text of the printing and typesetting
+#   industry. Lorem Ipsum has been the industry's standard dummy text ever
+#   since the 1500s.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
