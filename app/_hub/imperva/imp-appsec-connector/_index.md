@@ -132,9 +132,6 @@ params:
       default: 1048576
       datatype: number
       encrypted: false
-      value_in_examples: 1048576
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Maximum payload body size to capture. Default is 1MB.
     - name: ssl
       required: no
