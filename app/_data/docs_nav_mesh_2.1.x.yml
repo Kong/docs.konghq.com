@@ -11,10 +11,10 @@ items:
         absolute_url: true
       - text: What is Service Mesh?
         url: /introduction/what-is-a-service-mesh/
-        src: /.repos/kuma/app/_src/introduction/what-is-a-service-mesh/
+        src: /.repos/kuma/app/_src/introduction/about-service-meshes/
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
-        src: /.repos/kuma/app/_src/introduction/how-kuma-works/
+        src: /.repos/kuma/app/_src/introduction/overview-of-kuma/
       - text: Deployments
         url: /introduction/deployments/
         src: /.repos/kuma/app/_src/production/deployment/
@@ -87,7 +87,7 @@ items:
     items:
       - text: Overview
         url: /explore/overview/
-        src: /.repos/kuma/app/_src/explore/overview/
+        src: /.repos/kuma/app/_src/introduction/architecture/
       - text: Data plane proxy
         url: /explore/dpp/
         src: /.repos/kuma/app/_src/production/dp-config/dpp/
@@ -186,7 +186,7 @@ items:
         src: /.repos/kuma/app/_src/production/upgrades-tuning/upgrades/
       - text: Requirements
         url: /documentation/requirements/
-        src: /.repos/kuma/app/_src/documentation/requirements/
+        src: /.repos/kuma/app/_src/introduction/kuma-requirements/
   - title: Policies
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
