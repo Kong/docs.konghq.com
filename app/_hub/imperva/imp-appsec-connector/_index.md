@@ -132,7 +132,7 @@ params:
       default: 1048576
       datatype: number
       encrypted: false
-      description: Maximum payload body size to capture. Default is 1MB.
+      description: Maximum payload body size to capture, in bytes.
     - name: ssl
       required: no
       default: false
