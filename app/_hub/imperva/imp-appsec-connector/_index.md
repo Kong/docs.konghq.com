@@ -235,7 +235,7 @@ plugins = bundled,imp-appsec-connector         # Comma-separated list of plugins
 
 ### Restart Kong
 
-After LuaRocks is installed, restart Kong before enabling the plugin
+After LuaRocks is installed, restart Kong before enabling the plugin:
 
 ```shell
 kong restart
