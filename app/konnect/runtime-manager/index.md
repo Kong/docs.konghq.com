@@ -12,9 +12,6 @@ runtime groups currently owned by the organization. From here, you can add or
 delete runtime groups, or go into each individual group to manage runtime
 instances and their global configuration.
 
-![runtime manager dashboard](/assets/images/docs/konnect/konnect-runtime-manager-dashboard.png)
-> _**Figure 1:** Example Runtime Manager dashboard with several runtime groups, including the default group and groups for engineering, research, and sales._
-
 With {{site.konnect_short_name}} acting as the control plane, a runtime instance
 doesn't need a database to store configuration data. Instead, configuration
 is stored in-memory on each node, and you can easily update all runtime instances
