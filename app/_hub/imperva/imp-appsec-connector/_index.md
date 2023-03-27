@@ -18,7 +18,7 @@ type: plugin # (required) String, one of:
   # plugin          | extensions of the core platform
   # integration     | extensions of the Kong Admin API
 
-desc: Integrate Kong Gateway w. Imperva API Security to Discover/Monitor/Protect APIs. # (required) 1-liner description; max 80 chars
+desc: Integrate Kong Gateway with Imperva API Security to discover, monitor, and protect APIs
 description: #|
   The plugin, which operates with a very low CPU/memory footprint,
   captures API calls with request/response payloads and sends them to the
