@@ -178,9 +178,6 @@ params:
       default: 2
       datatype: number
       encrypted: false
-      value_in_examples: 2
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Number of seconds to wait before flushing the queue. 
     - name: timeout
       required: no
