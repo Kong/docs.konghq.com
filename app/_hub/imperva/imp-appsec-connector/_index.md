@@ -123,7 +123,7 @@ params:
       description: The connection protocol to use. Accepts one of the following values: `tcp` or `http`.
     - name: method
       required: no
-      default: "POST"
+      default: POST
       datatype: string
       encrypted: false
       value_in_examples: "POST"
