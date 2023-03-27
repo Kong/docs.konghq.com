@@ -6,19 +6,25 @@ items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
-      - text: Introduction to Kong Mesh
+      - text: About service meshes
+        url: /introduction/what-is-a-service-mesh/
+        src: /.repos/kuma/app/_src/introduction/about-service-meshes
+      - text: Overview of Kong Mesh
         url: /mesh/2.2.x/
         absolute_url: true
-      - text: What is Service Mesh?
-        url: /introduction/what-is-a-service-mesh/
-        src: /.repos/kuma/app/_src/introduction/what-is-a-service-mesh/
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
         src: /.repos/kuma/app/_src/introduction/how-kuma-works/
+      - text: Architecture
+        url: /introduction/architecture/
+        src: /.repos/kuma/app/_src/introduction/architecture/
+      - text: Stages of software availability
+        url: /availability-stages/
       - text: Version support policy
         url: /support-policy/
-      - text: Stability
-        url: /availability-stages/
+      - text: Mesh Requirements
+        url: /introduction/mesh-requirements/
+        src: /.repos/kuma/app/_src/introduction/kuma-requirements/
       - text: Release notes
         url: /mesh/changelog
         generate: false
@@ -165,9 +171,6 @@ items:
   - title: Explore
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
-      - text: Overview
-        url: /explore/overview/
-        src: /.repos/kuma/app/_src/explore/overview/
       - text: Gateway
         url: /explore/gateway/
         src: /.repos/kuma/app/_src/explore/gateway/
