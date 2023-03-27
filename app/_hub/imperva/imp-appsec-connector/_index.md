@@ -117,7 +117,7 @@ params:
         This can be an IP address or domain name, for example `logconsumer.myapisec.mydomain`.
     - name: connection_type
       required: no
-      default: "tcp"
+      default: tcp
       datatype: string
       encrypted: false
       value_in_examples: "tcp"
