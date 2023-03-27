@@ -126,9 +126,6 @@ params:
       default: POST
       datatype: string
       encrypted: false
-      value_in_examples: "POST"
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: 'Can only be one of the following value: "POST" or "PUT" or "PATCH"'
     - name: max_body_size
       required: no
