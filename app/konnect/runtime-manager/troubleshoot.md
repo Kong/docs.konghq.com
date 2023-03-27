@@ -64,3 +64,27 @@ instance may need [upgrading](/konnect/runtime-manager/runtime-instances/upgrade
 
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
+
+## Kubernetes runtime instance installation does not work
+
+**Problem**
+
+You followed the Kubernetes installation instructions in Runtime Manager 
+but your runtime instance isn't connecting.
+ 
+**Solution**
+
+Check your deployment logs for the error:
+
+```bash
+kubectl logs deployment/my-kong-kong -n kong
+```
+
+If you find any errors and need to update `values.yaml`, make your changes,
+save the file, then reapply the configuration by running the Helm `upgrade`
+command:
+
+```bash
+helm upgrade my-kong kong/kong -n kong \
+  --values ./values.yaml
+```
