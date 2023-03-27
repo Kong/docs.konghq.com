@@ -112,8 +112,6 @@ params:
       datatype: string
       encrypted: true
       value_in_examples: 10.0.0.1
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: |
         Destination address of the API security receiver (sometimes called a log consumer). 
         This can be an IP address or domain name, for example `logconsumer.myapisec.mydomain`.
