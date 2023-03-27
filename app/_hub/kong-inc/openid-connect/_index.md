@@ -2201,7 +2201,7 @@ for this usage scenario, including the use of session cookies:
 <img src="/assets/images/docs/openid-connect/authorization-code-flow.svg">
 
 {:.info}
-> If PKCE is to be used, the Identity Provider _must_ contain the ```code_challenge_methods_supported``` in the /.well-known/openid-configuration Discovery endpoint response. If it is not included, the PKCE code_challenge will not be sent. The ```code_challenge_methods_supported``` is a requirement for PKCE per [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).
+> If PKCE is to be used, the Identity Provider _must_ contain the ```code_challenge_methods_supported``` object in the ```/.well-known/openid-configuration``` Issuer discovery endpoint response. If it is not included, the PKCE ```code_challenge``` query parameter will not be sent. The ```code_challenge_methods_supported``` is a requirement for PKCE per [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).
 
 #### Patch the Plugin
 
