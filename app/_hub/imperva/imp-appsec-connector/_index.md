@@ -184,9 +184,6 @@ params:
       default: 6000000
       datatype: number
       encrypted: false
-      value_in_examples: 6000000
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Number of milli-seconds to keep a single connection open to the destination. 
   extra:
     # This is for additional remarks about your configuration.
