@@ -170,9 +170,6 @@ params:
       default: 1
       datatype: number
       encrypted: false
-      value_in_examples: 1
-      minimum_version: 3.0.0
-      maximum_version: 3.2.0
       description: Number of API logs to keep in queue for retry. Default is 1 meaning no retry.
     - name: flush_timeout
       required: no
