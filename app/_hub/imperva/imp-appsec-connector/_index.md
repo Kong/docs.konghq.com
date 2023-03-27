@@ -126,7 +126,7 @@ params:
       default: POST
       datatype: string
       encrypted: false
-      description: 'Can only be one of the following value: "POST" or "PUT" or "PATCH"'
+      description: The request method to use. Accepts one of the following values: `POST`, `PUT`, or `PATCH`.
     - name: max_body_size
       required: no
       default: 1048576
