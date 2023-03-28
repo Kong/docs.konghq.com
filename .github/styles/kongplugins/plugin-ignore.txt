@@ -328,6 +328,7 @@ default_type
 description
 dest
 destination_addr
+destination_port
 dex
 dictionary_name
 dimensionHeaders
