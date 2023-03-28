@@ -50,9 +50,7 @@ the {{site.kic_product_name}}:
   This guide walks through
   installation of a custom plugin into Kong using
   ConfigMaps and Volumes.
-- [Using ingress with gRPC](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-ingress-with-grpc/)
-  This guide walks through how to use the {{site.kic_product_name}} with gRPC.
-- [Setting up upstream mTLS](/kubernetes-ingress-controller/{{page.kong_version}}/guides/upstream-mtls/)
+- [Setting up upstream mTLS](/kubernetes-ingress-controller/{{page.kong_version}}/guides/upstream-mtls)
   This guide gives an overview of how to setup mutual TLS authentication
   between Kong and your upstream server.
 - [Preserving Client IP address](/kubernetes-ingress-controller/{{page.kong_version}}/guides/preserve-client-ip/)
@@ -64,10 +62,23 @@ the {{site.kic_product_name}}:
 - [Using Kong with Knative](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/)
   This guide gives an overview of how to setup Kong as the Ingress point
   for Knative workloads.
-- [Exposing TCP-based service](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-tcpingress/)
-  This guide gives an overview of how to use TCPIngress resource to expose
-  non-HTTP based services outside a Kubernetes cluster.
-- [Using mtls-auth plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-mtls-auth-plugin/)
+- Exposing TCP/UDP/gRPC services
+  - [Exposing TCP-based service](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-tcpingress)
+    This guide gives an overview of how to use TCPIngress/TCPRoute resources to expose
+    non-HTTP-based services outside a Kubernetes cluster.
+  - [Exposing UDP-based service](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-udpingress)
+    This guide gives an overview of how to use UDPIngress/UDPRoute resources to expose
+    non-HTTP-based services outside a Kubernetes cluster.
+  - [Exposing gRPC-based service](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-ingress-with-grpc)
+    {%- if_version lte:2.8.x -%}
+    This guide gives an overview of how to use Ingress resources to expose
+    gRPC-based services outside a Kubernetes cluster.
+    {%- endif_version -%}
+    {%- if_version gte:2.9.x -%}
+    This guide gives an overview of how to use Ingress/GRPCRoute resources to expose
+    gRPC-based services outside a Kubernetes cluster.
+    {%- endif_version -%}
+- [Using mtls-auth plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-mtls-auth-plugin)
   This guide gives an overview of how to use `mtls-auth` plugin and CA
   certificates to authenticate requests using client certificates.
 - [Configuring custom entities in Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configuring-custom-entities/)
@@ -75,5 +86,11 @@ the {{site.kic_product_name}}:
   deployments of the {{site.kic_product_name}} running without a database.
 - [Using OpenID-connect plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-oidc-plugin/)
   This guide walks through steps necessary to set up OIDC authentication.
-- [Allow Multiple Authentication Plugins](/kubernetes-ingress-controller/{{page.kong_version}}/guides/allowing-multiple-authentication-methods/)
+- [Allow Multiple Authentication Plugins](/kubernetes-ingress-controller/{{page.kong_version}}/guides/allowing-multiple-authentication-methods)
   This guide walks through the steps for configuring multiple authentication options for consumers.
+{% if_version gte:2.9.x %}
+- [Using Gateway Discovery](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery)
+  This guide walks through the steps for configuring {{site.base_gateway}} and
+  {{site.kic_product_name}} in separate deployments with KIC being able to
+  dynamically discover Gateways.
+{% endif_version %}

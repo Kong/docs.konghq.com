@@ -1,5 +1,5 @@
 product: kubernetes-ingress-controller
-release: 2.8.x
+release: 2.9.x
 generate: true
 items:
   - title: Introduction
@@ -57,7 +57,7 @@ items:
         url: /deployment/eks
       - text: Kong Ingress on GKE
         url: /deployment/gke
-      - text: Enable the Validating Admission Webhook
+      - text: Admission Webhook
         url: /deployment/admission-webhook
       - text: Installing Gateway APIs
         url: /deployment/install-gateway-apis
@@ -105,16 +105,18 @@ items:
         url: /guides/configuring-health-checks
       - text: Setting up a Custom Plugin
         url: /guides/setting-up-custom-plugins
-      - text: Using Ingress with gRPC
-        url: /guides/using-ingress-with-grpc
       - text: Setting up Upstream mTLS
         url: /guides/upstream-mtls
-      - text: Exposing a TCP Service
-        url: /guides/using-tcpingress
-        generate: false # Generated in the CustomResources section above
-      - text: Exposing a UDP Service
-        url: /guides/using-udpingress
-        generate: false # Generated in the CustomResources section above
+      - text: Exposing a TCP/UDP/gRPC Service
+        items:
+        - text: Exposing a TCP Service
+          url: /guides/using-tcpingress
+          generate: false # Generated in the CustomResources section above
+        - text: Exposing a UDP Service
+          url: /guides/using-udpingress
+          generate: false # Generated in the CustomResources section above
+        - text: Exposing a gRPC service
+          url: /guides/using-ingress-with-grpc
       - text: Using the mTLS Auth Plugin
         url: /guides/using-mtls-auth-plugin
       - text: Configuring Custom Entities
@@ -129,6 +131,8 @@ items:
         url: /guides/using-kong-with-knative
       - text: Using Multiple Backend Services
         url: /guides/using-multiple-backends
+      - text: Using Gateway Discovery
+        url: /guides/using-gateway-discovery
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:
