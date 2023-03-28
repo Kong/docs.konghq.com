@@ -222,6 +222,7 @@
         - text: Set up an Audit Log Webhook
           url: /org-management/audit-logging/webhook
         - text: Log Reference
+          url: /org-management/audit-logging/reference
     - text: Account and Org Deactivation
       url: /org-management/deactivation
     - text: Troubleshoot
