@@ -12,41 +12,7 @@ title: Kong Ingress on Elastic Kubernetes Service (EKS)
    cluster we will work on. The above EKS setup guide will help
    you set this up.
 
-## Deploy the {{site.kic_product_name}} {#deploy-kic}
-
-Deploy the {{site.kic_product_name}} using `kubectl`:
-
-```bash
-kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
-namespace/kong created
-customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.konghq.com created
-customresourcedefinition.apiextensions.k8s.io/kongconsumers.configuration.konghq.com created
-customresourcedefinition.apiextensions.k8s.io/kongcredentials.configuration.konghq.com created
-customresourcedefinition.apiextensions.k8s.io/kongingresses.configuration.konghq.com created
-serviceaccount/kong-serviceaccount created
-clusterrole.rbac.authorization.k8s.io/kong-ingress-clusterrole created
-clusterrolebinding.rbac.authorization.k8s.io/kong-ingress-clusterrole-nisa-binding created
-configmap/kong-server-blocks created
-service/kong-proxy created
-service/kong-validation-webhook created
-deployment.extensions/kong created
-```
-
-It may take a few minutes for all containers to start and report
-healthy statuses.
-
-Alternatively, you can use our helm chart as well.
-Please ensure that you have Tiller working and then execute:
-
-```bash
-$ helm repo add kong https://charts.konghq.com
-$ helm repo update
-
-# Helm 3
-$ helm install kong/kong --generate-name --set ingressController.installCRDs=false
-```
-
-*Note:* this process could take up to five minutes the first time.
+{% include_cached /md/kic/deploy-kic.md version=page.version %}
 
 ## Setup environment variables
 
