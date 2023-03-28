@@ -113,8 +113,16 @@ params:
       encrypted: true
       value_in_examples: 10.0.0.1
       description: |
-        Destination address of the API security receiver (sometimes called a log consumer). 
+        Destination address of the API security receiver. 
         This can be an IP address or domain name, for example `logconsumer.myapisec.mydomain`.
+    - name: destination_port
+      required: no
+      default: 8080
+      datatype: number
+      encrypted: false
+      description: |
+        Destination port of the API security receiver.
+        Accepts one of the following values: `8080`, `80`, `8443` or `443`.      
     - name: connection_type
       required: no
       default: tcp
@@ -244,22 +252,6 @@ After LuaRocks is installed, restart Kong before enabling the plugin:
 ```shell
 kong restart
 ```
-
-### Enable the Imperva Plugin 
-
-Please follow the example plugin configuration in the Configurtion Reference to enable the plugin on a service, on a route or globally. For your reference, an example
-of enabling the plugin on a service is provided below:
-
-```shell
-$ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/plugins/ \
-  --data "name=imp-appsec-connector" \
-  --data "config.destination_addr=<imp_apisec_controller_backend_domain_or_addr>" \
-  --data "config.destination_port=<destination_port_default_8080>" \
-  --data "config.connection_type=<tcp_or_http>"
-```
-
-
-
 
 ## Changelog
 
