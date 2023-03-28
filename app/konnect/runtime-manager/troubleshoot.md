@@ -65,46 +65,26 @@ instance may need [upgrading](/konnect/runtime-manager/runtime-instances/upgrade
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
 
-## Version compatibility
+## Kubernetes runtime instance installation does not work
 
-We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane.
+**Problem**
 
-If you mix major runtime instance versions, the control plane will support the least common subset of configurations across all the versions connected to the {{site.konnect_short_name}} control plane.
-For example, if you are running 2.8.1.3 on one runtime instance and 3.0.0.0 on another, the control plane will only push configurations that can be used by the 2.8.1.3 runtime instance.
+You followed the Kubernetes installation instructions in Runtime Manager 
+but your runtime instance isn't connecting.
+ 
+**Solution**
 
-If you experience compatibility errors, [upgrade your data planes](/konnect/runtime-manager/runtime-instances/upgrade/) to match the version of the highest-versioned runtime instance in your runtime group.
+Check your deployment logs for the error:
 
-Possible compatibility errors:
+```bash
+kubectl logs deployment/my-kong-kong -n kong
+```
 
-{% assign errors = site.data.tables.version_errors_konnect %}
+If you find any errors and need to update `values.yaml`, make your changes,
+save the file, then reapply the configuration by running the Helm `upgrade`
+command:
 
-<table>
-  <thead>
-      <th>Error code</th>
-      <th>Severity</th>
-      <th>Description</th>
-      <th>Resolution</th>
-      <th class="width=25%">References</th>
-  </thead>
-<tbody>
-  {% for message in errors.messages %}
-      <tr>
-        <td>
-          {{ message.ID | markdownify }}
-        </td>
-        <td>
-          {{ message.Severity | markdownify }}
-        </td>
-        <td>
-          {{ message.Description | markdownify }}
-        </td>
-        <td>
-          {{ message.Resolution | markdownify }}
-        </td>
-        <td>
-          {{ message.DocumentationURL | markdownify }}
-        </td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+```bash
+helm upgrade my-kong kong/kong -n kong \
+  --values ./values.yaml
+```
