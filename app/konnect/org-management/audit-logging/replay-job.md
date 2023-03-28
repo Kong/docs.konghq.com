@@ -69,7 +69,7 @@ You will receive a `200` response code and the following data:
 A replay job can be in one of the following statuses:
 
 * `accepted`: The job has been accepted for scheduling.
-* `pending`:
+* `pending`: The job has been scheduled.
 * `running`: The job is in progress.
 * `completed`: The job has finished with no errors.
 * `failed`: The job has failed.
