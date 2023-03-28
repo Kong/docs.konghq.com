@@ -300,6 +300,7 @@ cookie_renew
 cookie_same_site
 cookie_samesite
 cookie_secure
+connection_type
 cosocket
 cost_strategy
 counts_
@@ -326,6 +327,8 @@ default_service_name
 default_type
 description
 dest
+destination_addr
+destination_port
 dex
 dictionary_name
 dimensionHeaders
@@ -630,6 +633,7 @@ manager_examples
 mandatory_scope
 max_age
 max_attributes
+max_body_size
 max_callback_time_spent
 max_children
 max_cost
@@ -769,6 +773,7 @@ remote_user
 renew_threshold_days
 requestHash
 requestPath
+request_body_flag
 request_body_masks
 request_buffering
 request_digest_algorithm
@@ -790,6 +795,7 @@ require_content_length
 resolve_distributed_claims
 resource_attributes
 response_body_masks
+response_body_flag
 response_buffering
 response_code
 response_digest_algorithm
