@@ -22,11 +22,7 @@ defined in [gateway discovery section][kong-chart-gd].
 
 This guide will be also using [`stern`][stern-gh] for easy pod logs querying.
 
-<<<<<<< HEAD
 [helm]: https://helm.sh/
-=======
-[helm]: [helm]:https://helm.sh/
->>>>>>> KIC 2.9.x update deployment guides - Gateway Discovery (#5231)
 [kong-chart]: https://github.com/Kong/charts/tree/main/charts/kong
 [kong-chart-gd]: https://github.com/Kong/charts/tree/main/charts/kong#the-gatewaydiscovery-section
 [stern-gh]: https://github.com/stern/stern
@@ -88,10 +84,7 @@ $ helm upgrade --install controller kong/kong -n kong --create-namespace \
   --set ingressController.gatewayDiscovery.adminApiService.name=${GATEWAY_RELEASE_NAME}-kong-admin \
   --set deployment.kong.enabled=false \
   --set proxy.nameOverride=${GATEWAY_RELEASE_NAME}-kong-proxy \
-  --set replicaCount=2 \
-  --set ingressController.image.repository=kong/nightly-ingress-controller \
-  --set ingressController.image.tag=nightly \
-  --set-string ingressController.image.effectiveSemver=2.9.1
+  --set replicaCount=2
 ```
 
 At this point you should be able to see both deployments ready:
