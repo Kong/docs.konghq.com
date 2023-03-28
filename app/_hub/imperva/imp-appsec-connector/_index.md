@@ -120,13 +120,15 @@ params:
       default: tcp
       datatype: string
       encrypted: false
-      description: The connection protocol to use. Accepts one of the following values: `tcp` or `http`.
+      description: |
+        The connection protocol to use. Accepts one of the following values: `tcp` or `http`.
     - name: method
       required: no
       default: POST
       datatype: string
       encrypted: false
-      description: The request method to use. Accepts one of the following values: `POST`, `PUT`, or `PATCH`.
+      description: |
+        The request method to use. Accepts one of the following values: `POST`, `PUT`, or `PATCH`.
     - name: max_body_size
       required: no
       default: 1048576
@@ -138,7 +140,8 @@ params:
       default: false
       datatype: boolean
       encrypted: false
-      description: Whether or not to use an TLS/SSL tunnel to send API traffic capture to the destination.
+      description: |
+        Whether or not to use an TLS/SSL tunnel to send API traffic capture to the destination.
     - name: request_body_flag
       required: no
       default: true
@@ -164,7 +167,8 @@ params:
       default: 0
       datatype: number
       encrypted: false
-      description: Number of retries if sending the API call capture fails. No retry by default.
+      description: |
+        Number of retries if sending the API call capture fails. No retry by default.
     - name: queue_size
       required: no
       default: 1
