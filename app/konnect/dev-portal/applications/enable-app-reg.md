@@ -38,7 +38,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config/).
+> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/declarative-config/).
 
 ## Enable app registration with key authentication {#key-auth-flow}
 

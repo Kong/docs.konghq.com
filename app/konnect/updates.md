@@ -271,7 +271,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
-: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage/) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config/).
+: Learn more about runtime groups and managing them through the [Runtime Manager](/konnect/runtime-manager/), or [manage runtime groups with decK](/konnect/runtime-manager/declarative-config/).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
   * Certificate rotation and management:
@@ -280,7 +280,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
     * The validity period for runtime instance certificates has been extended from six months to ten years.
   * Reworked Gateway configuration UI:
     * The Shared Config menu is now part of Runtime Manager. Manage your Gateway services, routes, plugins, upstreams, SNIs, and certificates through a runtime group, alongside all of the runtime instances in that group.
-  * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage/).
+  * You can use [labels for categorizing runtime groups](/konnect/reference/labels/).
   Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of {{site.konnect_short_name}} entities.
 
 **Teams and roles**
@@ -295,8 +295,8 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 : As of [decK 1.12](https://github.com/Kong/deck/releases), standard decK commands such as `diff`, `sync`, and `dump` support {{site.konnect_short_name}} runtime groups.
 : Learn how to use decK with {{site.konnect_short_name}}:
   * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect/)
-  * [Import](/konnect/getting-started/import/) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
-  * [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config/)
+  * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
+  * [Manage runtime groups with decK](/konnect/runtime-manager/declarative-config/)
 
 **Tags for {{site.konnect_short_name}} services**
 : You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).

@@ -12,8 +12,7 @@ In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/runtime-mana
 and all of their configurations:
 * Create state files for different runtime groups and manage each group
 separately.
-* Manage Gateway services, routes, consumers, plugins, and upstreams for each
-group.
+* Manage [Gateway entities](/konnect/api/) for each group.
 * Migrate configuration from one group to another.
 
 Use a `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
@@ -31,7 +30,7 @@ registration, or configure custom plugins.
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime/).
 
-## Generate a Personal Access Token
+## Generate a personal access token
 
 To test your connection, we recommend that you use a personal access token (PAT).
 
@@ -240,7 +239,7 @@ to see your changes:
 
 If you have already have a runtime set up, you can test this
 configuration now. Or, you can start a simple runtime using the
-[Docker quick setup](/konnect/getting-started/configure-runtime) script.
+[Docker quick setup](/konnect/getting-started/configure-runtime/) script.
 
 The default proxy URL is `localhost:8000`.
 
@@ -307,7 +306,7 @@ command, pointing to the runtime group that you want to target:
 You should now have two runtime groups in {{site.konnect_short_name}} with
 the same configuration.
 
-## See also
+## More information
 
 * [decK CLI reference](/deck/latest/reference/deck/)
 * [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import/)
