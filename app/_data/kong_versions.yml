@@ -199,8 +199,8 @@
   lua_doc: true
 -
   release: "3.2.x"
-  ee-version: "3.2.1.0"
-  ce-version: "3.2.1"
+  ee-version: "3.2.2.0"
+  ce-version: "3.2.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -272,7 +272,7 @@
   edition: "deck"
 -
   release: "1.19.x"
-  version: "1.19.0"
+  version: "1.19.1"
   edition: "deck"
 -
   release: "1.0.x"

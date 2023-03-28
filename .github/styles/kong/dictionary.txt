@@ -40,6 +40,8 @@ Knative's
 Knatives
 Kong/kong
 Konnect
+KPI
+KPIs
 Kuma
 kustomizations
 kustomize
@@ -361,6 +363,7 @@ unmarshalled
 unnormalized
 unprocessable
 unpublish
+unpublishing
 unregister
 unregistering
 unshorten

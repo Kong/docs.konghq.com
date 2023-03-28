@@ -239,6 +239,7 @@
 
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
+/konnect/service-hub/manage-services                /konnect/servicehub/
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
@@ -278,6 +279,8 @@
 /konnect/shared-config                               /konnect/runtime-manager/gateway-config/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
+/konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
 
@@ -805,6 +808,7 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+/gateway/*/production/kong-openresty       /gateway/
 
 
 

@@ -186,7 +186,6 @@ kong start -c kong.conf --nginx-conf custom_nginx.template
 
 ## More information
 
-* [Embedding {{site.base_gateway}} in OpenResty](/gateway/latest/production/kong-openresty/)
 * [How to use `kong.conf`](/gateway/latest/production/kong-conf/)
 * [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving/)
 
