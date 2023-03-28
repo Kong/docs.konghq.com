@@ -283,6 +283,7 @@
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
+/konnect/runtime-manager/runtime-groups/ /konnect/runtime-manager/
 
 #API Redirects
 
