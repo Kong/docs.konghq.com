@@ -1,5 +1,5 @@
 ---
-title: Manage Runtime Groups with decK
+title: Manage Runtime Configuration with decK
 content_type: how-to
 ---
 
