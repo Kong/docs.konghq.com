@@ -29,7 +29,7 @@ Add the tag that most closely resembles the concept, even if it doesn’t perfec
 : Disables the version selector dropdown. Set this on pages that shouldn't be versioned.
 : 
 : Do not use if the page is part of `/contributing/` or `/konnect/`, 
-as both of those doc sets are unversioned by default.
+as both of those doc sets are not versioned by default.
 
 `beta: true` or `alpha: true`
 : Labels the page as beta or alpha; adds a banner to the top of the page. Can use `stability_message` to
