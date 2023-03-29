@@ -53,13 +53,23 @@ params:
       description: |
         An optional method used to send data to the HTTP server. Supported values are
         `POST` (default), `PUT`, and `PATCH`.
-    - name: content_type
+    
+    - name: content_type # old param version
+      maximum_version: "3.2.x"
       required: false
       default: '`application/json`'
       value_in_examples: null
       datatype: string
       description: |
         Indicates the type of data sent. The only available option is `application/json`.
+    - name: content_type # current param version
+      minimum_version: "3.3.x"
+      required: false
+      default: '`application/json`'
+      value_in_examples: null
+      datatype: string
+      description: |
+        Indicates the type of data sent. The available options are `application/json` and `application/json; charset=utf-8`.
     - name: timeout
       required: false
       default: '`10000`'
@@ -177,6 +187,10 @@ The log server that receives these messages might require extra headers, such as
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.3.x**
+
+* This plugin now supports the `application/json; charset=utf-8` content type.
 
 **{{site.base_gateway}} 3.0.x**
 
