@@ -221,6 +221,8 @@
           url: /org-management/audit-logging
         - text: Set up an Audit Log Webhook
           url: /org-management/audit-logging/webhook
+        - text: Set up an Audit Log Replay Job
+          url: /org-management/audit-logging/replay-job
         - text: Log Reference
           url: /org-management/audit-logging/reference
     - text: Account and Org Deactivation
