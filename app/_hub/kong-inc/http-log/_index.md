@@ -39,6 +39,3 @@ The log server that receives these messages might require extra headers, such as
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 
 {% endif_plugin_version %}
-
----
-
