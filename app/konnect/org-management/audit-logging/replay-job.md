@@ -5,7 +5,7 @@ badge: enterprise
 beta: true
 ---
 
-You can use the {{site.konnect_short_name}} Organization Settings API to configure replay jobs for [audit logging](/konnect/org-management/audit-logging). 
+You can use the {{site.konnect_short_name}} Organization Settings API to configure replay jobs for [audit logging](/konnect/org-management/audit-logging/). 
 
 Replay jobs are useful when you have missed audit log entries due to an error or a misconfigured audit
 log webhook. You may create one replay job at a time per region, and request data from up to one week ago.
@@ -13,7 +13,7 @@ A replay job in a region will resend data for the requested timeframe to the web
 
 ## Prerequisites
 
-Before you can request a replay job, your [audit log webhook](/konnect/org-management/audit-logging/webhook) 
+Before you can request a replay job, your [audit log webhook](/konnect/org-management/audit-logging/webhook/) 
 must be enabled and ready to receive data. 
 
 ## Create or update a replay job
@@ -30,8 +30,7 @@ curl -i -X PUT https://us.api.konghq.com/v2/audit-log-replay-job \
 Replace the following placeholder with your own data:
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or 
   [system account token](/konnect/org-management/system-accounts).
-
-`start_at` and `end_at` specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
+* `start_at` and `end_at`: specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
 
 If the request is successful, you will receive a `202` response code and a response body containing the replay job details: 
 
@@ -46,7 +45,7 @@ If the request is successful, you will receive a `202` response code and a respo
 
 ## View replay job
 
-You can view the audit log replay job in a given region by issuing a GET request. The example below retrieves an audit-log-replay-job in the `us` region:
+You can view the audit log replay job in a given region by issuing a GET request. The example below retrieves an `audit-log-replay-job` in the `us` region:
 
 ```sh
 curl https://us.api.konghq.com/v2/audit-log-replay-job \
@@ -77,7 +76,7 @@ A replay job can be in one of the following statuses:
 When a replay job is `running`, a request to update the job will return a `409` response code until it has completed or failed.
 
 
-## See also
+## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
