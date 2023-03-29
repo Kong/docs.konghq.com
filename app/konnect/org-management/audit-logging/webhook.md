@@ -35,14 +35,15 @@ Now that you have an external endpoint and authorization credentials, you can se
 Create a webhook by sending a `PUT` request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
 
 ```sh
-curl -i -X PUT https://global.api.konghq.com/v2/audit-log-webhook \
+curl -i -X PATCH https://global.api.konghq.com/v2/audit-log-webhook \
     --header "Content-Type: application/json" \
-    --header "Authorization: Bearer PAT" \
-    --data '{"endpoint":"https://example.com/audit-logs","enabled":true,"authorization":"example-token"}'
+    --header "Authorization: Bearer TOKEN" \
+    --data '{"endpoint":"https://example.com/audit-logs","enabled":true,"authorization":"Bearer example-token"}'
 ```
 
 Replace the following placeholders with your own data:
-* `PAT`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) for the organization that you're tracking.
+* `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or 
+  [system account token](/konnect/org-management/system-accounts).
 * `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages. 
    
    {:.note}
@@ -58,6 +59,7 @@ If the request is successful, you will receive a `200` response code, and a resp
 ```json
 {
     "endpoint":"https://example.com/audit-logs",
+    "log_format":"cef",
     "enabled":true
 }
 ```
@@ -70,14 +72,15 @@ You can view your audit log webhook configuration by running the following comma
 
 ```sh
 curl https://global.api.konghq.com/v2/audit-log-webhook \
-    --header "Authorization: Bearer PAT"
+    --header "Authorization: Bearer TOKEN"
 ```
 
-You will receive a `200` response code and the following data, with the authorization value hidden:
+You will receive a `200` response code and the following data. Note that the `authorization` property is not included in any responses:
 
 ```json
 {
     "endpoint":"https://example.com/audit-logs",
+    "log_format":"cef",
     "enabled":true
 }
 ```
