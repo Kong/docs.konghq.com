@@ -21,25 +21,7 @@ You will need the following:
 
 This tutorial was written using Google Kubernetes Engine.
 
-## Set up the {{site.kic_product_name}} {#set-up-kic}
-
-Execute the following to install the Ingress Controller:
-
-```bash
-$ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
-namespace/kong created
-customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.example.com created
-customresourcedefinition.apiextensions.k8s.io/kongconsumers.configuration.example.com created
-customresourcedefinition.apiextensions.k8s.io/kongcredentials.configuration.example.com created
-customresourcedefinition.apiextensions.k8s.io/kongingresses.configuration.example.com created
-serviceaccount/kong-serviceaccount created
-clusterrole.rbac.authorization.k8s.io/kong-ingress-clusterrole created
-clusterrolebinding.rbac.authorization.k8s.io/kong-ingress-clusterrole-nisa-binding created
-configmap/kong-server-blocks created
-service/kong-proxy created
-service/kong-validation-webhook created
-deployment.extensions/kong created
-```
+{% include_cached /md/kic/deploy-kic.md version=page.version %}
 
 ## Set up cert-manager
 

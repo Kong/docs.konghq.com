@@ -250,7 +250,7 @@
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
 /konnect/migrate/                                   /konnect/getting-started/import/
-/konnect/getting-started/declarative-config/        /konnect/runtime-manager/runtime-groups/declarative-config/
+/konnect/getting-started/declarative-config/        /konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
@@ -258,12 +258,16 @@
 /konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
 /konnect/servicehub/plugins/enable-service-plugin/   /konnect/servicehub/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/     /konnect/servicehub/enable-route-plugin/
-/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/gateway-runtime-conf
-/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/gateway-runtime-docker
-/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes
+/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
+/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
+/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/renew-certificates          /konnect/runtime-manager/runtime-instances/renew-certificates
 /konnect/runtime-manager/runtime-parameter-reference /konnect/runtime-manager/runtime-instances/runtime-parameter-reference
 /konnect/runtime-manager/upgrade                     /konnect/runtime-manager/runtime-instances/upgrade
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/configuration/
+/konnect/runtime-manager/runtime-groups/declarative-config/ /konnect/runtime-manager/declarative-config/
+/konnect/runtime-manager/runtime-groups/manage/             /konnect/runtime-manager/
+/konnect/runtime-manager/runtime-groups/*            /konnect/runtime-manager/
 /konnect/dev-portal/administrators/customization/themes    /konnect/dev-portal/customization/
 /konnect/dev-portal/customization/appearance/              /konnect/dev-portal/customization/
 /konnect/dev-portal/customization/public-portal/           /konnect/dev-portal/access/
@@ -275,12 +279,13 @@
 /konnect/manage-plugins/                             /konnect/servicehub/plugins/
 /konnect/manage-plugins/enable-service-plugin/       /konnect/servicehub/enable-service-plugin/
 /konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
-/konnect/manage-plugins/shared-config                /konnect/runtime-manager/manage-proxy-config/
-/konnect/shared-config                               /konnect/runtime-manager/gateway-config/
+/konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
+/konnect/shared-config                               /konnect/runtime-manager/configuration/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
+/konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
-/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
 
 #API Redirects
 
@@ -806,6 +811,7 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+/gateway/*/production/kong-openresty       /gateway/
 
 
 

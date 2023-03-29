@@ -11,17 +11,22 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2023
 
+
+**Reports V2**
+: {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).
+
 **Enriched documentation experience for service packages**
 : {{site.konnect_saas}} users can now publish [contextual documentation](/konnect/servicehub/service-documentation/) as multiple markdown files in the Service Hub and render in the Dev Portal, so that developers can see different material more clearly. For example, release notes can now be published separately from deployment workflows.
 
 **Enhanced Service Hub experience**
 : The [Service Hub](/konnect/servicehub/) user experience is now more intuitive, helpful, and impressive as the primary Service catalog for application developers and API product owners. We've optimized descriptions, placement of information, and rendering of data to include markdown files and API specs.
 
+
 ## February 2023
 
 **Support for Gateway 3.2.x features**
 : {{site.konnect_saas}} now supports the following features released in {{site.base_gateway}} 3.2.1.0:
-* **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/gateway-config/#keys) and key sets can now be configured in Runtime Manager.
+* **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/configuration/#keys) and key sets can now be configured in Runtime Manager.
 * **Optional plugin config field:** Every plugin now supports the optional `instance_name` field.    
 
 **System accounts**
@@ -47,14 +52,14 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : **Known limitation:** The control plane can't evaluate any conflicts in the dynamic ordering. If there are any conflicts in the defined order of plugin execution, you will only know during execution via the dataplane logs.
 
-: For more information, see [Plugin Ordering Reference](/konnect/runtime-manager/plugins/).
+: For more information, see [Plugin Ordering Reference](/konnect/reference/plugins/).
 
 **Consumer groups**
 : {{site.konnect_short_name}} now supports configure consumer groups to enable tier-based API consumption via the {{site.konnect_short_name}} user interface. Consumer groups work with the [Rate Limiting Advanced plugin](https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/) to allow you to manage custom rate limiting configurations for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and apply them to subsets of consumers instead of managing each consumer individually. Consumer groups are also supported through decK.
 
 : **Known limitation:** There is a rate limiting advanced plugin bug for local strategy where the number of remaining requests resets after every couple of seconds. You can use the Redis strategy as a workaround or if you want to test with local strategy, you can use {{site.base_gateway}} version 3.0.2.0.
 
-: For more information, see [Create Consumer Groups in Konnect](/konnect/runtime-manager/consumer-groups/).
+: For more information, see [Create Consumer Groups in Konnect](/konnect/runtime-manager/configuration/consumer-groups/).
 
 **Auth0 support for Dynamic Client Registration**
 : [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) is now available as an identity provider for Dynamic Client Registration (DCR).
@@ -80,7 +85,7 @@ with any of the following backends:
 * AWS Secrets Manager
 * HashiCorp Vault
 * GCP Secret Manager
-: See the [vaults documentation](/konnect/runtime-manager/vaults/) to get started.
+: See the [vaults documentation](/konnect/runtime-manager/configuration/vaults/) to get started.
 
 **App Registration Enhancement**
 : {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
@@ -158,7 +163,7 @@ The group still retains its status as the default group, and can't be deleted.
 [Test it out yourself!](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
 
 **Latency reporting**
-: The Analytics dashboard now includes a [latency tab](/konnect/analytics/summary-dashboard/), which lets you track
+: The Analytics dashboard now includes a [latency tab](/konnect/analytics/), which lets you track
 request latency for the P50, P95, and P99 percentiles.
 P99 latency data also appears in runtime groups and on service overview pages in the Service Hub.
 
@@ -172,7 +177,7 @@ P99 latency data also appears in runtime groups and on service overview pages in
 : Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file.
 
 **Runtime groups dashboard**
-: In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](/konnect/runtime-manager/runtime-groups/dashboard/) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
+: In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](/konnect/runtime-manager/#runtime-groups) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
 
 **Custom plugin instantiation**
 : {{site.konnect_saas}} now allows you to discover, configure, and apply Kong approved custom plugins to your control planes directly through the plugin hub in Runtime Manager. You can do this by submitting your custom plugin schemas for approval through the CRE teams. This allows you to expand Kong's functionality in your environment by using custom plugins, while reducing the operational overhead of working with your CRE teams to discover, configure, and apply custom plugins.
@@ -251,7 +256,9 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 ## July 2022
 
 **New environment for {{site.konnect_short_name}}**
+
 : {{site.konnect_short_name}} is now available at [cloud.konghq.com](https://cloud.konghq.com), which replaces the `konnect.konghq.com` environment. The environment at `konnect.konghq.com` will no longer receive any updates, and will be deprecated in the near future.
+
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
@@ -264,7 +271,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
-: Learn more about [runtime groups](/konnect/runtime-manager/runtime-groups), then read up on how to manage them with the [{{site.konnect_short_name}} UI](/konnect/runtime-manager/runtime-groups/manage/) or with [decK](/konnect/runtime-manager/runtime-groups/declarative-config/).
+: Learn more about runtime groups and managing them through the [Runtime Manager](/konnect/runtime-manager/), or [manage runtime groups with decK](/konnect/runtime-manager/declarative-config/).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
   * Certificate rotation and management:
@@ -273,7 +280,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
     * The validity period for runtime instance certificates has been extended from six months to ten years.
   * Reworked Gateway configuration UI:
     * The Shared Config menu is now part of Runtime Manager. Manage your Gateway services, routes, plugins, upstreams, SNIs, and certificates through a runtime group, alongside all of the runtime instances in that group.
-  * You can use [labels for categorizing runtime groups](/konnect/runtime-manager/runtime-groups/manage/).
+  * You can use [labels for categorizing runtime groups](/konnect/reference/labels/).
   Labels are key:value pairs, and are helpful for organizing, searching, and filtering subsets of {{site.konnect_short_name}} entities.
 
 **Teams and roles**
@@ -288,8 +295,8 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 : As of [decK 1.12](https://github.com/Kong/deck/releases), standard decK commands such as `diff`, `sync`, and `dump` support {{site.konnect_short_name}} runtime groups.
 : Learn how to use decK with {{site.konnect_short_name}}:
   * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect/)
-  * [Import](/konnect/getting-started/import/) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
-  * [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config/)
+  * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
+  * [Manage runtime groups with decK](/konnect/runtime-manager/declarative-config/)
 
 **Tags for {{site.konnect_short_name}} services**
 : You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
@@ -492,6 +499,7 @@ configuration anymore.
 : You can now sort the runtime status table in
 Runtime Manager by the **Last Seen** or **Sync Status** columns.
 
+
 ## May 2021
 
 **Certificate expiration limit extended**
@@ -537,7 +545,9 @@ app and billing portal.
 : You can now sign up for a {{site.konnect_short_name}} account without an
 access code. No more
 reaching out to Kong support or sales for access &ndash; just go
+
 to [https://cloud.konghq.com](https://cloud.konghq.com) and try it out!
+
 
 **Runtime setup improvements**
 : Runtime setup for Linux and Kubernetes environments has improved. When you
@@ -577,13 +587,7 @@ runtimes. There is no upgrade path for existing runtimes.
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
-Runtime Manager and run gateway instances outside of Docker. Use the
-**Advanced** option when configuring a new runtime to get started.
-
-: See the runtime configuration guides for more information:
-* [{{site.base_gateway}} runtime on Docker](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/)
-* [{{site.base_gateway}} runtime on Kubernetes](/konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes/)
-* [{{site.base_gateway}} runtime without a container](/konnect/runtime-manager/runtime-instances/gateway-runtime-conf/)
+Runtime Manager and run gateway instances outside of Docker.
 
 **Logging plugins**
 : The full set of {{site.base_gateway}}'s logging plugins is now available

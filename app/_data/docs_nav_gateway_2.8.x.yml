@@ -5,7 +5,9 @@
       url: /gateway/2.8.x/
       absolute_url: true
     - text: Version Support Policy
-      url: /support-policy
+      url: /support-policy/
+      src: /gateway/support/index
+      generate: true
     - text: Stages of Software Availability
       url: /availability-stages
     - text: Changelog
