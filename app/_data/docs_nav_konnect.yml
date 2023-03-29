@@ -4,160 +4,148 @@
     - text: Overview of Konnect
       url: /
     - text: Architecture
-      url: /architecture
+      url: /architecture/
     - text: Network Resiliency and Availability
-      url: /network-resiliency
+      url: /network-resiliency/
     - text: Port and Network Requirements
-      url: /network
+      url: /network/
     - text: Compatibility
-      url: /compatibility
+      url: /compatibility/
     - text: Stages of Software Availability
-      url: /availability-stages
+      url: /availability-stages/
     - text: Release Notes
-      url: /updates
+      url: /updates/
     - text: Support
       items:
         - text: Control Plane Upgrades FAQ
-          url: /upgrade-faq
+          url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /install-support
+          url: /install-support/
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
-      url: /getting-started
+      url: /getting-started/
     - text: Access a Konnect Account
-      url: /getting-started/access-account
+      url: /getting-started/access-account/
     - text: Set up a Runtime
-      url: /getting-started/configure-runtime
+      url: /getting-started/configure-runtime/
     - text: Configure a Service
-      url: /getting-started/configure-service
+      url: /getting-started/configure-service/
     - text: Implement and Test the Service
-      url: /getting-started/implement-service
+      url: /getting-started/implement-service/
     - text: Get Started with the Dev Portal
       items:
         - text: Publish and Consume Services
-          url: /getting-started/publish-service
+          url: /getting-started/publish-service/
         - text: Register Applications
-          url: /getting-started/app-registration
+          url: /getting-started/app-registration/
     - text: Import Kong Gateway Entities into Konnect
-      url: /getting-started/import
+      url: /getting-started/import/
 
 - title: Runtime Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
   items:
     - text: Overview
-      url: /runtime-manager
-    - text: Runtime Groups
-      items:
-        - text: Overview
-          url: /runtime-manager/runtime-groups
-        - text: Dashboard
-          url: /runtime-manager/runtime-groups/dashboard
-        - text: Manage Runtime Groups with UI
-          url: /runtime-manager/runtime-groups/manage
-        - text: Manage Runtime Groups with decK
-          url: /runtime-manager/runtime-groups/declarative-config
+      url: /runtime-manager/
     - text: Runtime Instances
       items:
-        - text: Installation Options
+        - text: Overview
           url: /runtime-manager/runtime-instances/
-        - text: Install with Docker
-          url: /runtime-manager/runtime-instances/gateway-runtime-docker
-        - text: Install on Kubernetes
-          url: /runtime-manager/runtime-instances/gateway-runtime-kubernetes
-        - text: Install on Linux
-          url: /runtime-manager/runtime-instances/gateway-runtime-conf
-        - text: Install on AWS
-          url: /runtime-manager/runtime-instances/gateway-runtime-aws
-        - text: Install on Azure
-          url: /runtime-manager/runtime-instances/gateway-runtime-azure
-        - text: Upgrade a Runtime Instance to a New Version
-          url: /runtime-manager/runtime-instances/upgrade
-        - text: Renew Certificates
-          url: /runtime-manager/runtime-instances/renew-certificates
+        - text: Upgrade a Runtime Instance
+          url: /runtime-manager/runtime-instances/upgrade/
+        - text: Verify a Runtime Instance
+          url: /runtime-manager/runtime-instances/verify-instance/
+        - text: Renew Data Plane Certificates
+          url: /runtime-manager/runtime-instances/renew-certificates/
         - text: Runtime Parameter Reference
-          url: /runtime-manager/runtime-instances/runtime-parameter-reference
-    - text: Create Consumer Groups
-      url: /runtime-manager/consumer-groups
-    - text: Secrets Management
+          url: /runtime-manager/runtime-instances/runtime-parameter-reference/
+    - text: Runtime Configuration
       items:
         - text: Overview
-          url: /runtime-manager/vaults
-        - text: Set Up and Use a Vault in Konnect
-          url: /runtime-manager/vaults/how-to
-    - text: Kong Gateway Configuration in Konnect
-      url: /runtime-manager/gateway-config
-    - text: Plugin Ordering Reference
-      url: /runtime-manager/plugins
-    - text: Troubleshoot
-      url: /runtime-manager/troubleshoot
+          url: /runtime-manager/configuration/
+        - text: Create Consumer Groups
+          url: /runtime-manager/configuration/consumer-groups/
+        - text: Secrets Management
+          items:
+            - text: Overview
+              url: /runtime-manager/configuration/vaults/
+            - text: Set Up and Use a Vault in Konnect
+              url: /runtime-manager/configuration/vaults/how-to/
+        - text: Manage Runtime Configuration using decK
+          url: /runtime-manager/declarative-config/
+    - text: Backup and Restore
+      url: /runtime-manager/backup-restore/
+    - text: Version Compatibility
+      url: /runtime-manager/version-compatibility/
+    - text: Troubleshooting
+      url: /runtime-manager/troubleshoot/
 
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
-      url: /servicehub
+      url: /servicehub/
     - text: Manage Service Documentation
-      url: /servicehub/service-documentation
+      url: /servicehub/service-documentation/
 
     - text: Manage Plugins
       items:
         - text: Overview
-          url: /servicehub/plugins
+          url: /servicehub/plugins/
         - text: Configure a Plugin on a Service
-          url: /servicehub/enable-service-plugin
+          url: /servicehub/enable-service-plugin/
         - text: Configure a Plugin on a Route
-          url: /servicehub/enable-route-plugin
+          url: /servicehub/enable-route-plugin/
 
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
     - text: Overview
-      url: /dev-portal
+      url: /dev-portal/
     - text: Access the Dev Portal
-      url: /dev-portal/access
+      url: /dev-portal/access/
     - text: Sign Up for a Dev Portal Account
-      url: /dev-portal/dev-reg
+      url: /dev-portal/dev-reg/
     - text: Access and Approval
       items:
         - text: Manage Developer Access
-          url: /dev-portal/access-and-approval/manage-devs
+          url: /dev-portal/access-and-approval/manage-devs/
         - text: Manage Application Registration Requests
-          url: /dev-portal/access-and-approval/manage-app-reg-requests
+          url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Connections
-          url: /dev-portal/access-and-approval/manage-app-connections
+          url: /dev-portal/access-and-approval/manage-app-connections/
         - text: Auto Approve Dev and App Registrations
-          url: /dev-portal/access-and-approval/auto-approve-devs-apps
+          url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
-          url: /dev-portal/access-and-approval/azure
+          url: /dev-portal/access-and-approval/azure/
     - text: Working with Applications
       items:
         - text: Application Overview
-          url: /dev-portal/applications/application-overview
+          url: /dev-portal/applications/application-overview/
         - text: Enable and Disable App Registration
-          url: /dev-portal/applications/enable-app-reg
+          url: /dev-portal/applications/enable-app-reg/
         - text: Dynamic Client Registration
           items:
             - text: Overview
               url: /dev-portal/applications/dynamic-client-registration/
             - text: Okta
-              url: /dev-portal/applications/dynamic-client-registration/okta
+              url: /dev-portal/applications/dynamic-client-registration/okta/
             - text: Curity
-              url: /dev-portal/applications/dynamic-client-registration/curity
+              url: /dev-portal/applications/dynamic-client-registration/curity/
             - text: Auth0
-              url: /dev-portal/applications/dynamic-client-registration/auth0
+              url: /dev-portal/applications/dynamic-client-registration/auth0/
         - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps
+          url: /dev-portal/applications/dev-apps/
         - text: Register an Application with a Service
-          url: /dev-portal/applications/dev-reg-app-service
+          url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
-          url: /dev-portal/applications/dev-gen-creds
+          url: /dev-portal/applications/dev-gen-creds/
     - text: Customize Dev Portal
       url: /dev-portal/customization/
     - text: Troubleshoot
-      url: /dev-portal/troubleshoot
+      url: /dev-portal/troubleshoot/
 
 - title: Analytics
   icon: /assets/images/icons/konnect/icn-analytics-nav.svg
@@ -167,9 +155,9 @@
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
     - text: Reports Use Cases
-      url: /analytics/use-cases
+      url: /analytics/use-cases/
     - text: Reports Reference
-      url: /analytics/reference
+      url: /analytics/reference/
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
@@ -179,39 +167,39 @@
     - text: Plans and Billing
       items:
         - text: Manage a Konnect Account or Plan
-          url: /account-management
+          url: /account-management/
         - text: Change to a Different Plan
-          url: /account-management/change-plan
+          url: /account-management/change-plan/
         - text: Manage Payment Methods and Invoices
-          url: /account-management/billing
+          url: /account-management/billing/
     - text: Authentication and Authorization
       items:
         - text: Overview
-          url: /org-management/auth
+          url: /org-management/auth/
         - text: Teams
           items:
             - text: Overview
-              url: /org-management/teams-and-roles
+              url: /org-management/teams-and-roles/
             - text: Manage Teams
-              url: /org-management/teams-and-roles/manage
+              url: /org-management/teams-and-roles/manage/
             - text: Teams Reference
-              url: /org-management/teams-and-roles/teams-reference
+              url: /org-management/teams-and-roles/teams-reference/
             - text: Roles Reference
-              url: /org-management/teams-and-roles/roles-reference
+              url: /org-management/teams-and-roles/roles-reference/
         - text: Manage Users
-          url: /org-management/users
+          url: /org-management/users/
         - text: Manage System Accounts
-          url: /org-management/system-accounts
+          url: /org-management/system-accounts/
         - text: Set up SSO with OIDC
-          url: /org-management/oidc-idp
+          url: /org-management/oidc-idp/
         - text: Set up SSO with Okta
-          url: /org-management/okta-idp
+          url: /org-management/okta-idp/
         - text: Login Sessions Reference
-          url: /org-management/sessions-reference
+          url: /org-management/sessions-reference/
     - text: Account and Org Deactivation
-      url: /org-management/deactivation
+      url: /org-management/deactivation/
     - text: Troubleshoot
-      url: /org-management/troubleshoot
+      url: /org-management/troubleshoot/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -224,7 +212,7 @@
           url: https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
           absolute_url: true
         - text: Identity Integration Guide
-          url: /api/identity-management/identity-integration
+          url: /api/identity-management/identity-integration/
     - text: Runtime Groups API
       items:
         - text: API Documentation
@@ -236,7 +224,7 @@
           url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/
           absolute_url: true
         - text: Portal RBAC Guide
-          url: /api/portal-auth/portal-rbac-guide
+          url: /api/portal-auth/portal-rbac-guide/
     - text: Runtime Configuration API
       items:
         - text: Overview
@@ -273,10 +261,12 @@
     - text: Reference
       items:
         - text: Filtering
-          url: /api/filtering
+          url: /api/filtering/
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: Labels
-      url: /reference/labels
+      url: /reference/labels/
+    - text: Plugin Ordering Reference
+      url: /reference/plugins/
