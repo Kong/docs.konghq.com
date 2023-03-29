@@ -788,6 +788,13 @@ jQuery(function () {
       th.style.width = match[2];
     }
   });
+
+
+  $('.field-subfield__expand').on('click', function(event) {
+    $(event.target).closest('.field').find('.field-description-and-children > .field-subfield__params:first').toggle('hidden');
+    $(event.target).toggleClass('rotated');
+  })
+
 });
 
 // Tooltips for badges

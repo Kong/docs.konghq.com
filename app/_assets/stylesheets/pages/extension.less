@@ -345,3 +345,27 @@ table {
     }
   }
 }
+
+.field {
+  &-overview {
+    display: flex;
+    align-items: baseline;
+  }
+  &-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid @gray;
+  }
+  &-subfield__params {
+    border-left: 1px solid @gray;
+  }
+  &-subfield__expand {
+    padding: 3px;
+
+    .fa-chevron-down.rotated {
+      transform: rotate(180deg);
+    }
+  }
+}

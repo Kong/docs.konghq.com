@@ -1,0 +1,124 @@
+{%- assign schema = page.schema -%}
+
+<ul>
+  <li class="field">
+    <div class="field-overview">
+      <h3>name</h3>
+    </div>
+    <div class="field-attributes">
+      <span><strong>string</strong></span>
+      <span><strong>required</strong></span>
+    </div>
+    <div class="field-description-and-children">
+      <p class="field-description">The name of the plugin, in this case <code>{{ page.configuration.name }}</code></p>
+    </div>
+  </li>
+
+  {% if_plugin_version gte:3.2.x %}
+    <li class="field">
+      <div class="field-overview">
+        <h3>instance_name</h3>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          An optional custom name to identify an instance of the plugin, for example <code>{{ page.configuration.name }}_my-service</code>.
+          Useful when running the same plugin in multiple contexts, for example, on multiple services.
+        </p>
+      </div>
+    </li>
+  {% endif_plugin_version %}
+
+  {% if schema.enable_on_service? %}
+    <li class="field">
+      <div class="field-overview">
+        <h3>service.name or service.id</h3>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+        {% unless schema.global? %}
+          <span><strong>required</strong></span>
+        {% endunless %}
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          The name or ID of the service the plugin targets.
+          Set one of these parameters if adding the plugin to a service through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
+          Not required if using <code>/services/SERVICE_NAME|SERVICE_ID/plugins</code>.
+        </p>
+      </div>
+    </li>
+  {% endif %}
+
+  {% if schema.enable_on_route? %}
+    <li class="field">
+      <div class="field-overview">
+        <h3>route.name or route.id</h3>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          The name or ID of the route the plugin targets.
+          Set one of these parameters if adding the plugin to a route through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
+          Not required if using <code>/routes/ROUTE_NAME|ROUTE_ID/plugins</code>.
+        </p>
+      </div>
+    </li>
+  {% endif %}
+
+  {% if schema.enable_on_consumer? %}
+    <li class="field">
+      <div class="field-overview">
+        <h3>consumer.name or consumer.id</h3>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          The name or ID of the consumer the plugin targets.
+          Set one of these parameters if adding the plugin to a consumer through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
+          Not required if using <code>/consumers/CONSUMER_NAME|CONSUMER_ID/plugins</code>.
+        </p>
+      </div>
+    </li>
+  {% endif %}
+
+  <li class="field">
+    <div class="field-overview">
+      <h3>enabled</h3>
+    </div>
+    <div class="field-attributes">
+      <span><strong>boolean</strong></span>
+      <span><strong>default: </strong><code>true</code></span>
+    </div>
+    <div class="field-description-and-children">
+      <p class="field-description">Whether this plugin will be applied.</p>
+    </div>
+  </li>
+
+  {% if schema.api_id %}
+    <li class="field">
+      <div class="field-overview">
+        <h3>api_id</h3>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          The ID of the API the plugin targets.
+          <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.
+        </p>
+      </div>
+    </li>
+  {% endif %}
+
+  {% for field in schema.fields %}
+    {% include plugins/schemas/field.html field=field %}
+  {% endfor %}
+</ul>

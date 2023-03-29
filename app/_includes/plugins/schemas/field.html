@@ -1,0 +1,115 @@
+<li class="field">
+  <div class="field-overview">
+    <h3 id="{{ include.field.name | handleize }}">
+      {{ include.field.name }}
+    </h3>
+    {% if include.field.fields.size > 0 or include.field.elements['fields'].size > 0 %}
+      <span class="field-subfield__expand">
+        <i class="fa fa-chevron-down"></i>
+      </span>
+    {% endif %}
+  </div>
+  <div class="field-attributes">
+    <span>
+      <strong>{{ include.field.type }}</strong>
+      {% if include.field.type == 'set' or include.field.type == 'array' %}
+        of type <code>{{ include.field.elements['type'] }}</code>
+      {% endif %}
+    </span>
+
+    {% if include.field.required %}
+      <span><strong>required</strong></span>
+    {% endif %}
+
+    {% if include.field.referenceable %}
+      <span>
+        <strong>referenceable</strong>
+      </span>
+    {% endif %}
+
+    {% if include.field.encrypted %}
+      <span>
+        <strong>encrypted</strong>
+      </span>
+    {% endif %}
+
+    {% if include.field.default %}
+      <span>
+        <strong>default: </strong><code>{{ include.field.default }}</code>
+      </span>
+    {% endif %}
+
+    {% if include.field.match %}
+      <span>
+        <strong>matches: </strong>
+        <code>{{ include.field.match }}</code>
+      </span>
+    {% endif %}
+
+    {% if include.field.starts_with %}
+      <span>
+        <strong>starts_with: </strong>
+        <code>{{ include.field.starts_with }}</code>
+      </span>
+    {% endif %}
+
+    {% if include.field.between %}
+      <span>
+        <strong>between: </strong>
+        <code>{{ include.field.between.first }}</code>
+        <code>{{ include.field.between.last }}</code>
+      </span>
+    {% endif %}
+
+    {% if include.field.len_min %}
+      <span>
+        <strong>len_min: </strong>
+        <code>{{ include.field.len_min }}</code>
+      </span>
+    {% endif %}
+
+    {% if include.field.len_max %}
+      <span>
+        <strong>len_max: </strong>
+        <code>{{ include.field.len_max }}</code>
+      </span>
+    {% endif %}
+
+    {% if include.field.one_of %}
+      {% include plugins/schemas/field/one_of.html one_of=include.field.one_of %}
+    {% endif %}
+
+    {% if include.field.elements %}
+      {% assign elements_one_of = include.field.elements['one_of'] %}
+      {% if elements_one_of %}
+        {% include plugins/schemas/field/one_of.html one_of=elements_one_of %}
+      {% endif %}
+    {% endif %}
+
+  </div>
+  <div class="field-description-and-children">
+    <p class="field-description">{{ include.field.description | markdownify }}</p>
+
+    {% if include.field.fields.size > 0 %}
+      <div class="field-subfield__params" hidden>
+        {% for sub_field in include.field.fields %}
+          <ul>
+            {% include plugins/schemas/field.html field=sub_field %}
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if include.field.elements %}
+      {% if include.field.elements['fields'] %}
+        <div class="field-subfield__params" hidden>
+          {% for sub_field in include.field.elements['fields'] %}
+            <ul>
+              {% include plugins/schemas/field.html field=sub_field %}
+            </ul>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</li>

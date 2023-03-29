@@ -8,26 +8,13 @@ module Jekyll
       class SchemaField < Liquid::Drop
         attr_reader :name
 
-        def initialize(name:, schema:, metadata:) # rubocop:disable Lint/MissingSuper
+        def initialize(name:, schema:) # rubocop:disable Lint/MissingSuper
           @name = name
           @schema = schema
-          @metadata = metadata || {} # field might not be defined in the config file
         end
 
         def required
-          if @metadata.key?('required') && @metadata.fetch('required') == 'semi'
-            'semi'
-          else
-            @schema['required']
-          end
-        end
-
-        def group
-          @metadata['group']
-        end
-
-        def description
-          @schema['description'] || @metadata['description']
+          @schema['required']
         end
 
         def type
@@ -44,6 +31,51 @@ module Jekyll
 
         def referenceable
           @schema['referenceable']
+        end
+
+        def description
+          @schema['description']
+        end
+
+        def between
+          @schema['between']
+        end
+
+        def len_min
+          @schema['len_min']
+        end
+
+        def len_max
+          @schema['len_max']
+        end
+
+        def match
+          @schema['match']
+        end
+
+        def starts_with
+          @schema['starts_with']
+        end
+
+        def one_of
+          @schema['one_of']
+        end
+
+        def elements
+          return {} unless @schema.key?('elements')
+
+          @elements ||= begin
+            @schema['elements']['fields'] = @schema['elements'].fetch('fields', []).map do |f|
+              SchemaField.new(name: f.keys.first, schema: f.values.first)
+            end
+            @schema['elements']
+          end
+        end
+
+        def fields
+          @fields ||= @schema.fetch('fields', []).concat(@schema.fetch('shorthand_fields', [])).map do |f|
+            SchemaField.new(name: f.keys.first, schema: f.values.first)
+          end
         end
       end
 
@@ -73,20 +105,7 @@ module Jekyll
         end
 
         def fields
-          @fields ||= @schema.config.fetch('fields', []).map do |f|
-            build_field(f)
-          end
-        end
-
-        private
-
-        def build_field(field)
-          name = field.keys.first
-          SchemaField.new(
-            name:,
-            schema: field.values.first,
-            metadata: @metadata.fetch('config', []).detect { |f| f['name'] == name }
-          )
+          @fields ||= [SchemaField.new(name: 'config', schema: @schema.config)]
         end
       end
     end
