@@ -1,28 +1,27 @@
 ---
-title: Runtime Instance Installation Options
-no_version: true
+title: About Runtime Instances
+content_type: explanation
+disable_image_expand: true
 ---
 
-{{site.konnect_short_name}} supports {{site.base_gateway}} as a runtime.
-You can set up any number of {{site.base_gateway}} runtime instances.
+A runtime instance is a single self-managed instance of {{site.base_gateway}} that functions as a data plane. In {{site.konnect_saas}}, runtime instances are part of [runtime groups](/konnect/runtime-manager/runtime-groups) and can be used to serve traffic to the runtime group. Runtime groups manage and store configuration in {{site.konnect_saas}}, and runtime instances are configured according to the configuration distributed by the runtime group. 
 
-A {{site.base_gateway}} runtime instance acts as a data plane, which is a node
-serving traffic for the proxy. Data plane nodes are not directly connected
-to a database. Instead, they receive configuration from their runtime group,
-which stores and manages the configuration in {{site.konnect_saas}}. 
+{{site.konnect_short_name}} provides runtime instance installation scripts for various platforms. 
+These runtime instances are configured to run in your {{site.konnect_short_name}} environment.
+You can access these scripts from the {{site.konnect_short_name}} **Runtime Manager**. 
 
-In situations where forward proxies are non-transparent, you can still connect the {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. 
-To do this, you need to configure each {{site.base_gateway}} runtime instance to authenticate with the proxy server and allow traffic through.
-For more information, see [Control Plane and Data Plane Communication through a Forward Proxy](/gateway/latest/production/networking/cp-dp-proxy/) in the {{site.base_gateway}} documentation.
-
-We recommend running one major version (2.x or 3.x) of a runtime instance per
-runtime group, unless you are in the middle of version upgrades to the data plane.
-Mixing versions may cause [compatibility issues](/konnect/runtime-manager/troubleshoot/#version-compatibility).
-
-<!-- Runtime Manager provides pre-populated templates for AWS and Azure that you can create your runtime instances in any of these clouds directly from {{site.konnect_short_name}}. -->
-
-{:.note}
-> **Note:** Kong does not host runtimes. You must install and host your own
-runtime instances.
+## Supported installation options
 
 {% include install.html config=site.data.tables.install_options_konnect header='no-header' %}
+
+{:.note}
+> **Note:** Kong does not host runtime instances. You must install and host your own.
+
+## More information
+
+- [Upgrade a runtime instance](/konnect/runtime-manager/runtime-instances/upgrade/)
+- [Renew certificates](/konnect/runtime-manager/runtime-instances/renew-certificates/) - Renew your data plane certificates
+- [Backup and restore](/konnect/runtime-manager/backup-restore/) - Back up and restore {{site.konnect_short_name}} using declarative configuration
+- [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) - Allow runtime instances to communicate with {{site.konnect_short_name}} through a forward proxy
+- [Runtime parameter reference](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/) - Reference for the default configuration parameters used in runtime instance installation
+- [Analytics dashboard](/konnect/analytics/) - Monitor and analyze your runtime instances, as well as specific entities
