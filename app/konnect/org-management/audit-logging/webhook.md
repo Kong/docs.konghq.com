@@ -32,7 +32,7 @@ You can configure a webhook into any application that supports the [ArcSight CEF
 
 Now that you have an external endpoint and authorization credentials, you can set up a webhook in {{site.konnect_short_name}}.
 
-Create a webhook by sending a `PUT` request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
+Create a webhook by sending a request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
 
 ```sh
 curl -i -X PATCH https://global.api.konghq.com/v2/audit-log-webhook \
