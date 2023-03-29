@@ -224,10 +224,10 @@ Now that you have a running Gateway instance, Kong provides a series of
 to help you set up and enhance your first Service.
 
 In particular, right after installation you might want to:
-* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services)
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing)
+* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services/)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/)
+* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/)
 
 ### Clean up containers
 
@@ -394,9 +394,9 @@ to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/?tab=using-deck-yaml)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/?tab=using-deck-yaml)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/?tab=using-deck-yaml)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/?tab=using-deck-yaml/)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/?tab=using-deck-yaml/)
+* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/?tab=using-deck-yaml/)
 
 ### Clean up containers
 

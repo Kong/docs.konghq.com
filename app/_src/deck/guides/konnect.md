@@ -51,7 +51,7 @@ This takes precedence over the `--konnect-password-file` flag.
 {% endif_version %}
 
 {:.note}
-> **Note:** Prior to decK 1.12, decK provided [`deck konnect`](/deck/1.11.x/reference/deck_konnect) commands.
+> **Note:** Prior to decK 1.12, decK provided [`deck konnect`](/deck/1.11.x/reference/deck_konnect/) commands.
 Those commands are deprecated and have been replaced with the flags in this guide.
 
 ## Authenticate with {{site.konnect_short_name}}
@@ -102,7 +102,7 @@ deck ping \
 By default, decK looks for a configuration file named `.deck.yaml` in the `$HOME` directory.
 This file lets you specify flags to include with every decK command.
 
-You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.kong_version}}/reference/deck).
+You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.kong_version}}/reference/deck/).
 
 If you store {{site.konnect_short_name}} credentials in the file, decK uses the credentials for every command.
 Set either `konnect-password` or `konnect-password-file` in the decK config file.
@@ -138,7 +138,7 @@ There are two types of PATs available for {{site.konnect_short_name}}:
 * Personal access tokens associated with user accounts
 * System account access tokens associated with system accounts
 
-Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts).
+Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts/).
 {% endif_version %}
 
 Before you generate a PAT, keep the following in mind:
@@ -355,5 +355,5 @@ against {{site.konnect_short_name}}.
 
 ## See also
 
-* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import)
-* [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config)
+* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import/)
+* [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config/)

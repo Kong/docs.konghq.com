@@ -66,7 +66,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
     The following steps all use a `.deck.yaml` file to store the
     {{site.konnect_short_name}} credentials instead of flags.
 
-1. Run [`deck dump`](/deck/latest/reference/deck_dump) to export configuration into a file:
+1. Run [`deck dump`](/deck/latest/reference/deck_dump/) to export configuration into a file:
 
     ```sh
     deck dump
@@ -79,10 +79,10 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 1. Open the file. If you have any of the following in your configuration, remove it:
 
     * Any `_workspace` entries: There are no workspaces in {{site.konnect_short_name}}. For a similar
-    concept, see [runtime groups](/konnect/runtime-manager/runtime-groups).
+    concept, see [runtime groups](/konnect/runtime-manager/runtime-groups/).
 
     * Configuration for the Portal App Registration plugin: App registration is
-    [supported in {{site.konnect_short_name}}](/konnect/dev-portal/applications/application-overview),
+    [supported in {{site.konnect_short_name}}](/konnect/dev-portal/applications/application-overview/),
     but not through a plugin, and decK does not manage it.
 
     * Any other unsupported plugins:
@@ -93,7 +93,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
         * GraphQL Rate Limiting Advanced
         * Key Authentication Encrypted
 
-1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff)
+1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff/)
 command, pointing to the runtime group that you want to target:
 
     ```sh
@@ -103,7 +103,7 @@ command, pointing to the runtime group that you want to target:
     If you're not using the default `kong.yaml` file, specify the filename and
     path with `--state /path/{FILENAME}.yaml`.
 
-1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync):
+1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync/):
 
     ```sh
     deck sync --konnect-runtime-group-name default
@@ -148,14 +148,14 @@ See the following docs to set up any additional things you may need:
 * **Dev Portal files:** You can migrate API specs and markdown service descriptions
 into Service Hub using the {{site.konnect_saas}} GUI. Each {{site.konnect_short_name}} service accepts
 one markdown description file, and each service version accepts one API spec.
-See [Dev Portal Service Documentation](/konnect/servicehub/service-documentation).
+See [Dev Portal Service Documentation](/konnect/servicehub/service-documentation/).
 
 * **Dev Portal applications and developers:** If you have developers or
 applications registered through the Portal, those developers need to create new
 accounts in {{site.konnect_saas}} and register their applications in the new
 location.
-    * [Create Dev Portal accounts](/konnect/dev-portal/dev-reg)
-    * [Enable application registration](/konnect/dev-portal/applications/enable-app-reg):
+    * [Create Dev Portal accounts](/konnect/dev-portal/dev-reg/)
+    * [Enable application registration](/konnect/dev-portal/applications/enable-app-reg/):
     App registration in {{site.konnect_saas}} works through a different
     mechanism than in self-managed {{site.base_gateway}}. Enable app
     registration on each service that requires it.
@@ -166,7 +166,7 @@ location.
 Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
 long as your plugins fit the criteria, or if you can adjust them to do so,
 contact Kong Support to get the plugin manually added to your account.
-* [**Review and set up teams and roles**](/konnect/org-management/teams-and-roles):
+* [**Review and set up teams and roles**](/konnect/org-management/teams-and-roles/):
 {{site.konnect_saas}} groups and roles don't map directly to
 {{site.base_gateway}} teams and roles. Set up teams to mirror your
 {{site.base_gateway}} groups, then invite users to your {{iste.konnect_saas}}

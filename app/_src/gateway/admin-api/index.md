@@ -267,12 +267,13 @@ plugin_data: |
 certificate_body: |
     Attributes | Description
     ---:| ---
-    `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-    `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
+    `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
+    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
+    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
     `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
+    `passphrase`<br>*optional* (Enterprise only) | To load an encrypted private key into Kong, specify the passphrase using this attribute. Kong will decrypt the private key and store it in its database. To encrypt the private key and other sensitive information in Kong's database, consider using DB encryption.
 
 certificate_json: |
     {
@@ -972,7 +973,7 @@ HTTP 200 Ok
 ## DB-less Mode
 
 
-In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config),
+In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/),
 the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
@@ -4459,20 +4460,64 @@ HTTP 200 OK
     "node_id": "cbb297c0-14a9-46bc-ad91-1d0ef9b42df9",
     "data": [
         {
-            "created_at": 1485524883980,
             "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
             "health": "HEALTHY",
+            "data": {
+                "dns": "ttl=0, virtual SRV",
+                "addresses": [
+                    {
+                        "weight": 100,
+                        "ip": "127.0.0.1",
+                        "port": 20000,
+                        "health": "HEALTHY"
+                    }
+                ],
+                "weight": {
+                    "unavailable": 0,
+                    "available": 100,
+                    "total": 100
+                },
+                "port": 20000,
+                "host": "127.0.0.1",
+                "nodeWeight": 100
+            },
+            "weight": 100,
             "target": "127.0.0.1:20000",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 100
+            "created_at": 1485524883980,
+            "upstream": {
+                "id": "07131005-ba30-4204-a29f-0927d53257b4"
+            },
+            "tags": null
         },
         {
-            "created_at": 1485524914883,
             "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
             "health": "UNHEALTHY",
+            "data": {
+                "dns": "ttl=0, virtual SRV",
+                "addresses": [
+                    {
+                        "weight": 100,
+                        "ip": "127.0.0.1",
+                        "port": 20002,
+                        "health": "UNHEALTHY"
+                    }
+                ],
+                "weight": {
+                    "unavailable": 100,
+                    "available": 0,
+                    "total": 100
+                },
+                "port": 20002,
+                "host": "127.0.0.1",
+                "nodeWeight": 100
+            },
+            "weight": 100,
             "target": "127.0.0.1:20002",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 200
+            "created_at": 1485524914883,
+            "upstream": {
+                "id": "07131005-ba30-4204-a29f-0927d53257b4"
+            },
+            "tags": null
         }
     ]
 }

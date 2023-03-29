@@ -80,11 +80,3 @@ features:
         url: /gateway/VERSION/install/docker/build-custom-images/
         icon: /assets/images/icons/documentation/alpinelinux-icon.svg
 
-  - name: "Other"
-    items:
-      - name: "MacOS (Homebrew)"
-        url: /gateway/VERSION/install/macos/
-        oss: true
-        enterprise_text: N/A
-        support: false
-        icon: /assets/images/icons/documentation/macos-logo.png

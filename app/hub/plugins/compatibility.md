@@ -6,7 +6,7 @@ layout: extension
 
 Reference for plugin compatibility with {{site.base_gateway}} and {{site.konnect_short_name}} [deployment topologies](#deployment-topologies), [network protocols](#protocols), and [entity scopes](#scopes).
 
-If you're looking for plugin availability by subscription tier, see [Plugin License Tiers](/hub/plugins/license-tiers).
+If you're looking for plugin availability by subscription tier, see [Plugin License Tiers](/hub/plugins/license-tiers/).
 
 ## Deployment topologies
 

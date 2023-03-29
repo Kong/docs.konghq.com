@@ -124,13 +124,13 @@ substituting your own license key.
     {% if_version lte:2.8.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker/).
 
     {% endif_version %}
     {% if_version gte:3.0.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install/docker).
+    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install/docker/).
 
     {% endif_version %}
 

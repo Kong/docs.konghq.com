@@ -40,7 +40,7 @@ title: Style guide
 
 ## Formatting standards
 
-### Automatic Formatting
+### Automatic formatting
 
 [Prettier](https://prettier.io/) is used to format all prose and code files. There are three ways to meet this standard:
 
@@ -49,16 +49,6 @@ title: Style guide
 * (Maintainers only) Add the `ci:autofix:prettier` label to a Pull Request
 
 All files in `app/_src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
-
-### Admonitions
-
-- Do not stack admonitions, in other words, list several admonitions one after the other.<br/>
-  Admonitions should be carefully selected, called-out text.
-- Admonition types:
-  - **Note:** Information concerning behavior that would not be expected, but won't break anything if it's not followed.
-  - **Warning:** Information necessary to avoid breaking something or losing data.
-  - **Important:** Information that the reader really needs to pay attention to, otherwise things won't work.
-For more information about formatting admonitions see [markdown-rules](/contributing/markdown-rules/#admonitions).
 
 ## Content types
 
@@ -147,7 +137,7 @@ For example, “Set up rate limiting in {{site.base_gateway}} with the Rate Limi
 
 ### Kong-specific terms
 
-For product and component names, see [Word Choice](/contributing/word-choice).
+For product and component names, see [Word Choice](/contributing/word-choice/).
 
 Object/entity names (for example, service, route, upstream) should be lowercase.
 
@@ -168,23 +158,6 @@ to avoid horizontal scrolling.
 
 - Enclose sample code with single backticks.<br/>
   For example: \`sudo yum install /path/to/package.rpm`
-
-## Screenshots
-
-You can use screenshots to express the capabilities, look and feel, and experience of a feature in situations where exclusively using text would make the documentation harder to understand. We recommend writing the documentation first, **without** using screenshots, and then assessing if a screenshot would enhance the documentation.
-
-Screenshots are used to support documentation and do not _replace_ documentation. In some cases, using wireframes in place of screenshots is easier to maintain. Otherwise, all screenshots must follow these guidelines.
-
-- Screenshots must be taken with browser developer tools.
-- Resolution should be set to **1500x843.75**.
-- Screenshots of UI elements should include only the relevant **panel**. Panels are a container within a UI window which contain multiple related elements.
-- Mouse should not be visible.
-- Emphasis can be added by creating a **square** border around the point of interest. The border must use the color `#0788ad` from the [colors style guide](https://kongponents.netlify.app/style-guide/colors.html).
-- In situations that require it a `1px` black border can be used.
-- **Do not** use GIFs.
-- Limit image file size to ~2MB.
-- Add files to the corresponding product folder by navigating in the repo from `app > _assets > images > docs`.
-- Use lowercase letters and dashes when naming an image file.
 
 ### Icons
 

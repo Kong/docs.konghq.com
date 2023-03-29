@@ -25,7 +25,7 @@ for specific entities.
 ## Prerequisites
 
 * [`enforce_rbac = on`](/gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac)
-* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely)
+* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely/)
 * Logged in to Kong Manager as a **Super Admin**
 
 ## Add a role and permissions

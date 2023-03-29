@@ -19,8 +19,11 @@ id: documentation
         <i class="far fa-list-alt expand-toc"></i>
         <div class="github-links">
           <p>
-            {% if page.edit_link %}
+            {% assign edit_link_no_https = page.edit_link | remove: "https://" %}
+            {% if page.edit_link and edit_link_no_https == page.edit_link %}
             <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.edit_link }}">
+            {% elsif page.edit_link %}
+            <a href="{{ page.edit_link }}">
             {% else %}
             <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ default_edit_link }}">
             {% endif %}
@@ -107,11 +110,19 @@ id: documentation
             {% if page.alpha %}
             <blockquote class="warning no-icon">
               This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be deployed in a production environment.
+
+              {% if page.stability_message %}
+              {{ page.stability_message }}
+              {% endif %}
             </blockquote>
             {% endif %}
             {% if page.beta %}
             <blockquote class="warning no-icon">
               This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be deployed in a production environment.
+
+              {% if page.stability_message %}
+              {{ page.stability_message }}
+              {% endif %}
             </blockquote>
             {% endif %}
 

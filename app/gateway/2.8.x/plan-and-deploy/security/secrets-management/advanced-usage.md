@@ -16,7 +16,7 @@ For example, the following query uses an option called `prefix` with the value `
 ```
 
 For more information on available configuration options,
-refer to respective [vault backend documentation](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends).
+refer to respective [vault backend documentation](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/).
 
 ## Environment Variables
 
@@ -45,7 +45,7 @@ This lets you drop the configuration from environment variables and query argume
 {vault://my-env-vault/my-secret-config-value}
 ```
 
-For more information, see the section on the [Vaults entity](/admin-api/#vaults-object).
+For more information, see the section on the [Vaults entity](/gateway/{{ page.version }}/admin-api/#vaults-object).
 
 ## Vaults CLI
 
@@ -114,4 +114,4 @@ Result:
 }
 ```
 
-Config options depend on the associated [backend](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends) used.
+Config options depend on the associated [backend](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/) used.

@@ -42,6 +42,7 @@ const octokit = new Octokit({
       argv.is_fork !== undefined
         ? argv.is_fork
         : github.context.payload.pull_request.head.repo.fork;
+    console.log(`Loading changed files for PR ${options.pull_number} (fork: ${options.is_fork})`)
     changes = await buildPrUrls(options);
   } else if (type == "product") {
     options.nav = argv.nav;

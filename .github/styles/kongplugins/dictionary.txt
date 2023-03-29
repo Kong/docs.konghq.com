@@ -25,6 +25,7 @@ Goroutine
 Grafana
 Hao
 HTTPie
+Imperva
 Istio
 Istio
 Istio's
@@ -128,6 +129,7 @@ drilldown
 enum
 env
 etcd
+exfiltration
 favicon
 filepath
 filetype

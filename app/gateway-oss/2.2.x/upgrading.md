@@ -2127,7 +2127,7 @@ with your 0.13 nodes anymore. This is why we suggest either performing this
 upgrade when your 0.13 cluster is warm and most entities are cached, or against
 a new database, if you can migrate your data. If you wish to temporarily make
 your APIs unavailable, you can leverage the
-[request-termination](https://getkong.org/plugins/request-termination/) plugin.
+[request-termination](https://getkong.org/hub/kong-inc/request-termination/) plugin.
 
 The path to upgrade a 0.13 datastore is identical to the one of previous major
 releases:
@@ -2300,7 +2300,7 @@ with your 0.12 nodes anymore. This is why we suggest either performing this
 upgrade when your 0.12 cluster is warm and most entities are cached, or against
 a new database if you can migrate your data. If you wish to temporarily make
 your APIs unavailable, you can leverage the
-[request-termination](https://getkong.org/plugins/request-termination/) plugin.
+[request-termination](https://getkong.org/hub/kong-inc/request-termination/) plugin.
 
 The path to upgrade a 0.12 datastore is identical to the one of previous major
 releases:
@@ -2439,7 +2439,7 @@ with your 0.11 nodes anymore. This is why we suggest either performing this
 upgrade when your 0.11 cluster is warm and most entities are cached, or against
 a new database, if you can migrate your data. If you wish to temporarily make
 your APIs unavailable, you can leverage the
-[request-termination](https://getkong.org/plugins/request-termination/) plugin.
+[request-termination](https://getkong.org/hub/kong-inc/request-termination/) plugin.
 
 The path to upgrade a 0.11 datastore is identical to the one of previous major
 releases:
@@ -2926,7 +2926,7 @@ with your 0.10 nodes anymore. This is why we suggest either performing this
 upgrade when your 0.10 cluster is warm and most entities are cached, or against
 a new database, if you can migrate your data. If you wish to temporarily make
 your APIs unavailable, you can leverage the new
-[request-termination](https://getkong.org/plugins/request-termination/) plugin.
+[request-termination](https://getkong.org/hub/kong-inc/request-termination/) plugin.
 
 The path to upgrade a 0.10 datastore is identical to the one of previous major
 releases:

@@ -45,15 +45,26 @@ When this setting has multiple tag values, entities must match every tag.
 
 {% endif_version %}
 
-{% if_version gte: 1.12.x %}
+{% if_version gte:1.12.x %}
 
 `--skip-ca-certificates`
 :  do not sync CA certificates. (Default: `false`)
 
 {% endif_version %}
 
+{% if_version lte:1.18.x %}
+
 `--skip-consumers`
 :  do not sync consumers or any plugins associated with consumers. (Default: `false`)
+
+{% endif_version %}
+
+{% if_version gte:1.19.x %}
+
+`--skip-consumers`
+:   do not sync consumers, consumer-groups, or any plugins associated with them. (Default: `false`)
+
+{% endif_version %}
 
 `-s`, `--state`
 :  file(s) containing Kong's configuration.
@@ -188,4 +199,4 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively

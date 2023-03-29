@@ -3,8 +3,8 @@ title: Access the Dev Portal
 content_type: reference
 ---
 
-Access the Dev Portal to view any [published services](/konnect/servicehub/service-documentation)
-and [register applications against services](/konnect/dev-portal/applications/dev-reg-app-service).
+Access the Dev Portal to view any [published services](/konnect/servicehub/service-documentation/)
+and [register applications against services](/konnect/dev-portal/applications/dev-reg-app-service/).
 
 ## Access the Dev Portal
 
