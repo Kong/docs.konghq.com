@@ -5,7 +5,7 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Gemspec/DateAssignment: # new in 1.10
+Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 Gemspec/RequireMFA: # new in 1.23
   Enabled: true
@@ -117,3 +117,5 @@ Naming/FileName:
   Enabled: true
   Exclude:
     - "**/Gemfile"
+AllCops:
+  NewCops: enable
