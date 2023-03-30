@@ -94,16 +94,6 @@ module PluginSingleSource
                                end
       end
 
-      def example
-        @example ||= YAML.load(
-          File.read(File.expand_path("examples/#{@source}.yml", plugin_base_path))
-        )
-      rescue StandardError => _e
-        # TODO: remove this once we have examples for every plugin
-        # p "Missing example for plugin: #{vendor}/#{name}"
-        { 'name' => name }
-      end
-
       def schema
         # XXX: Quick hack to make the site build
         # Skips third-party plugins and versions older than 2.3.x for which

@@ -7,9 +7,6 @@ module Jekyll
     module Plugins
       module Examples
         class Kubernetes < Yaml
-          def default_config
-            ['<optional_parameter>: <value>']
-          end
         end
       end
     end

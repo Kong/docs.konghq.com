@@ -5,10 +5,9 @@ module Jekyll
     module Plugins
       module Examples
         class Base < Liquid::Drop
-          def initialize(example:, type:, config:) # rubocop:disable Lint/MissingSuper
+          def initialize(example:, type:) # rubocop:disable Lint/MissingSuper
             @example = example
             @type = type
-            @config = config
           end
 
           def plugin_name

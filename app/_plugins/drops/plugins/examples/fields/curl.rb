@@ -11,6 +11,18 @@ module Jekyll
 
               ['-urlencode']
             end
+
+            def to_s
+              "#{@key}=#{escaped_values}"
+            end
+
+            def escaped_values
+              if @values.is_a?(String)
+                @values.gsub('"', '\"')
+              else
+                @values
+              end
+            end
           end
         end
       end

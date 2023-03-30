@@ -6,28 +6,27 @@ module Jekyll
   module Drops
     module Plugins
       class Example < Liquid::Drop
-        attr_reader :config, :example, :type
+        attr_reader :example, :type
 
-        def initialize(type:, example:, config:) # rubocop:disable Lint/MissingSuper
+        def initialize(type:, example:) # rubocop:disable Lint/MissingSuper
           @type = type
           @example = example
-          @config = config
         end
 
         def curl
-          @curl ||= Examples::Curl.new(type:, example:, config:)
+          @curl ||= Examples::Curl.new(type:, example:)
         end
 
         def yaml
-          @yaml ||= Examples::Yaml.new(type:, example:, config:)
+          @yaml ||= Examples::Yaml.new(type:, example:)
         end
 
         def kubernetes
-          @kubernetes ||= Examples::Yaml.new(type:, example:, config:)
+          @kubernetes ||= Examples::Yaml.new(type:, example:)
         end
 
         def kong_manager
-          @kong_manager ||= Examples::KongManager.new(type:, example:, config:)
+          @kong_manager ||= Examples::KongManager.new(type:, example:)
         end
 
         def plugin_name
@@ -39,18 +38,14 @@ module Jekyll
         extend Forwardable
 
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
-                       :enable_on_service?
+                       :enable_on_service?, :example
 
-        attr_reader :example, :config
-
-        def initialize(config:, example:, schema:) # rubocop:disable Lint/MissingSuper
-          @config = config
-          @example = example
+        def initialize(schema:) # rubocop:disable Lint/MissingSuper
           @schema = schema
         end
 
         def render?
-          @config['examples'].nil? || @config['examples']
+          !@schema.example.nil?
         end
 
         def navtabs?
@@ -62,23 +57,23 @@ module Jekyll
         def consumer
           return unless @schema.enable_on_consumer?
 
-          @consumer ||= Example.new(type: 'consumer', example:, config:)
+          @consumer ||= Example.new(type: 'consumer', example:)
         end
 
         def global
-          @global ||= Example.new(type: 'global', example:, config:)
+          @global ||= Example.new(type: 'global', example:)
         end
 
         def route
           return unless @schema.enable_on_route?
 
-          @route ||= Example.new(type: 'route', example:, config:)
+          @route ||= Example.new(type: 'route', example:)
         end
 
         def service
           return unless @schema.enable_on_service?
 
-          @service ||= Example.new(type: 'service', example:, config:)
+          @service ||= Example.new(type: 'service', example:)
         end
       end
     end

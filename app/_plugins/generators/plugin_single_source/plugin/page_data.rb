@@ -63,13 +63,9 @@ module PluginSingleSource
       end
 
       def hub_examples
-        return unless @release.example
+        return unless @release.schema
 
-        ::Jekyll::Drops::Plugins::HubExamples.new(
-          config: @release.configuration_parameters_table,
-          example: @release.example,
-          schema:
-        )
+        ::Jekyll::Drops::Plugins::HubExamples.new(schema: @release.schema)
       end
 
       def schema

@@ -19,17 +19,11 @@ module Jekyll
                                   YAML.dump(@example['config']).gsub("---\n", '').lines.map do |l|
                                     l.gsub("\n", '')
                                   end
-                                else
-                                  default_config
                                 end
           end
 
           def type_field
             @type_field ||= FIELD.fetch(@type)
-          end
-
-          def default_config
-            ['EXAMPLE_PARAMETER: EXAMPLE_VALUE']
           end
         end
       end

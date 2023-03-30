@@ -29,6 +29,8 @@ module PluginSingleSource
 
       SCHEMAS_PATH = 'app/_src/.repos/kong-plugins/'
 
+      attr_reader :plugin_name
+
       def initialize(plugin_name:, version:)
         @plugin_name = plugin_name
         @version = version
@@ -56,6 +58,10 @@ module PluginSingleSource
 
       def enable_on_route?
         fields.detect { |f| f.key?('route') } != NO_ROUTE
+      end
+
+      def example
+        @example ||= ExampleGenerator.new(schema: self).generate
       end
 
       private
