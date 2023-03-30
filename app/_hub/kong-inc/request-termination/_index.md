@@ -5,7 +5,7 @@ desc: Terminates all requests with a specific response
 description: |
   This plugin terminates incoming requests with a specified status code and
   message. This can be used to (temporarily) stop traffic on a Service or a Route,
-  or even block a Consumer.
+  or even block a Consumer. It can also be used as a debug plugin see `echo` section.
 type: plugin
 categories:
   - traffic-control
@@ -55,7 +55,7 @@ params:
       minimum_version: "2.6.x"
       required: false
       default: false
-      description: 'When set, the plugin will echo a copy of the request back to the client. The main usecase for this is debugging. It can be combined with `trigger` in order to debug requests on live systems without disturbing real traffic.'
+      description: 'When set, the plugin will echo a copy of the request, the router kong and the kong instance information back to the client. The main usecase for this is debugging. It can be combined with `trigger` in order to debug requests on live systems without disturbing real traffic.'
   extra: |
     Once applied, every request (within the configured plugin scope of a Service,
     Route, Consumer, or global) will be immediately terminated by
