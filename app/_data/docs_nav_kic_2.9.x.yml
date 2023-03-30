@@ -45,6 +45,8 @@ items:
     items:
       - text: Kong Ingress on Minikube
         url: /deployment/minikube
+      - text: Kong Ingress on Kind
+        url: /deployment/kind
       - text: Kong for Kubernetes
         url: /deployment/k4k8s
       - text: Kong for Kubernetes Enterprise
