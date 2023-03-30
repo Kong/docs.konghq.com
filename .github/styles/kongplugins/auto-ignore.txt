@@ -27,6 +27,7 @@ max_args
 max_headers
 metatable
 myapikey
+namespace
 narr
 ngx
 ngx_stream_proxy_module
