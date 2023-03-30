@@ -3,7 +3,7 @@
 <ul>
   <li class="field">
     <div class="field-overview">
-      <h4>name</h4>
+      <h4 id="name">name</h4>
     </div>
     <div class="field-attributes">
       <span><strong>string</strong></span>
@@ -17,7 +17,7 @@
   {% if_plugin_version gte:3.2.x %}
     <li class="field">
       <div class="field-overview">
-        <h4>instance_name</h4>
+        <h4 id="instance_name">instance_name</h4>
       </div>
       <div class="field-attributes">
         <span><strong>string</strong></span>
@@ -34,7 +34,7 @@
   {% if schema.enable_on_service? %}
     <li class="field">
       <div class="field-overview">
-        <h4>service.name or service.id</h4>
+        <h4 id="service">service.name or service.id</h4>
       </div>
       <div class="field-attributes">
         <span><strong>string</strong></span>
@@ -55,7 +55,7 @@
   {% if schema.enable_on_route? %}
     <li class="field">
       <div class="field-overview">
-        <h4>route.name or route.id</h4>
+        <h4 id="route">route.name or route.id</h4>
       </div>
       <div class="field-attributes">
         <span><strong>string</strong></span>
@@ -73,7 +73,7 @@
   {% if schema.enable_on_consumer? %}
     <li class="field">
       <div class="field-overview">
-        <h4>consumer.name or consumer.id</h4>
+        <h4 id="consumer">consumer.name or consumer.id</h4>
       </div>
       <div class="field-attributes">
         <span><strong>string</strong></span>
@@ -90,7 +90,7 @@
 
   <li class="field">
     <div class="field-overview">
-      <h4>enabled</h4>
+      <h4 id="enabled">enabled</h4>
     </div>
     <div class="field-attributes">
       <span><strong>boolean</strong></span>
@@ -104,7 +104,7 @@
   {% if schema.api_id %}
     <li class="field">
       <div class="field-overview">
-        <h4>api_id</h4>
+        <h4 id="api_id">api_id</h4>
       </div>
       <div class="field-attributes">
         <span><strong>string</strong></span>

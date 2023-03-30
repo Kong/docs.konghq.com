@@ -8,9 +8,14 @@ module Jekyll
       class SchemaField < Liquid::Drop
         attr_reader :name
 
-        def initialize(name:, schema:) # rubocop:disable Lint/MissingSuper
+        def initialize(name:, parent:, schema:) # rubocop:disable Lint/MissingSuper
           @name = name
+          @parent = parent
           @schema = schema
+        end
+
+        def anchor
+          "#{@parent}-#{@name}"
         end
 
         def required
@@ -66,7 +71,7 @@ module Jekyll
 
           @elements ||= begin
             @schema['elements']['fields'] = @schema['elements'].fetch('fields', []).map do |f|
-              SchemaField.new(name: f.keys.first, schema: f.values.first)
+              SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
             end
             @schema['elements']
           end
@@ -74,7 +79,7 @@ module Jekyll
 
         def fields
           @fields ||= @schema.fetch('fields', []).concat(@schema.fetch('shorthand_fields', [])).map do |f|
-            SchemaField.new(name: f.keys.first, schema: f.values.first)
+            SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
           end
         end
       end
@@ -105,7 +110,9 @@ module Jekyll
         end
 
         def fields
-          @fields ||= [SchemaField.new(name: 'config', schema: @schema.config)]
+          @fields ||= [
+            SchemaField.new(name: 'config', parent: '', schema: @schema.config)
+          ]
         end
       end
     end
