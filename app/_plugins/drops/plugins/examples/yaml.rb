@@ -16,7 +16,7 @@ module Jekyll
 
           def example_config
             @example_config ||= if @example['config']
-                                  YAML.dump(@example['config']).gsub("---\n", '').lines.map do |l|
+                                  YAML.dump(@example['config']).delete_prefix("---\n").lines.map do |l|
                                     l.gsub("\n", '')
                                   end
                                 end
