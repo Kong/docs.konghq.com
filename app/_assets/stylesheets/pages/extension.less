@@ -364,8 +364,13 @@ table {
   &-subfield__expand {
     padding: 3px;
 
-    .fa-chevron-down.rotated {
+    .fa-chevron-down {
       transform: rotate(180deg);
+      font-size: 12px;
+
+      &.rotated {
+        transform: none;
+      }
     }
   }
 }

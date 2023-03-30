@@ -791,8 +791,9 @@ jQuery(function () {
 
 
   $('.field-subfield__expand').on('click', function(event) {
-    $(event.target).closest('.field').find('.field-description-and-children > .field-subfield__params:first').toggle('hidden');
-    $(event.target).toggleClass('rotated');
+    var $field = $(event.target).closest('.field');
+    $field.find('.fa-chevron-down').toggleClass('rotated');
+    $field.find('.field-description-and-children > .field-subfield__params:first').toggle('hidden');
   })
 
 });
