@@ -91,7 +91,7 @@
     <p class="field-description">{{ include.field.description | markdownify }}</p>
 
     {% if include.field.fields.size > 0 %}
-      <div class="field-subfield__params" hidden>
+      <div class="field-subfield__params">
         {% for sub_field in include.field.fields %}
           <ul>
             {% include plugins/schemas/field.html field=sub_field %}
@@ -102,7 +102,7 @@
 
     {% if include.field.elements %}
       {% if include.field.elements['fields'] %}
-        <div class="field-subfield__params" hidden>
+        <div class="field-subfield__params">
           {% for sub_field in include.field.elements['fields'] %}
             <ul>
               {% include plugins/schemas/field.html field=sub_field %}
