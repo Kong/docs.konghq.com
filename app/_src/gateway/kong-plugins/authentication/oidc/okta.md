@@ -54,7 +54,7 @@ The steps in the guide offer an example of configuring OIDC with Okta on a speci
 
 * A [developer account](https://developer.okta.com) with Okta.
 * A running version of {{site.base_gateway}}.
-* Access to the [OpenID Connect plugin](/hub/kong-inc/openid-connect).
+* Access to the [OpenID Connect plugin](/hub/kong-inc/openid-connect/).
 * A [service](/gateway/{{page.kong_version}}/admin-api/#service-object)
 and [route](/gateway/{{page.kong_version}}/admin-api/#route-object) in
 {{site.base_gateway}} whose access you want to protect with Okta. For this

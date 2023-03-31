@@ -153,7 +153,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.2.4"
+  ee-version: "2.8.4.0"
   ce-version: "2.8.3"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -186,6 +186,21 @@
   release: "3.1.x"
   ee-version: "3.1.1.3"
   ce-version: "3.1.1"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+-
+  release: "3.2.x"
+  ee-version: "3.2.2.0"
+  ce-version: "3.2.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -250,6 +265,14 @@
 -
   release: "1.17.x"
   version: "1.17.3"
+  edition: "deck"
+-
+  release: "1.18.x"
+  version: "1.18.1"
+  edition: "deck"
+-
+  release: "1.19.x"
+  version: "1.19.1"
   edition: "deck"
 -
   release: "1.0.x"
@@ -327,5 +350,8 @@
   version: "2.7.0"
   edition: "kubernetes-ingress-controller"
 - release: "2.8.x"
-  version: "2.8.0"
+  version: "2.8.1"
+  edition: "kubernetes-ingress-controller"
+- release: "2.9.x"
+  version: "2.9.0"
   edition: "kubernetes-ingress-controller"

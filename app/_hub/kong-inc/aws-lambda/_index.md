@@ -22,6 +22,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: aws_key
@@ -305,6 +307,23 @@ params:
       datatype: boolean
       description: |
         An optional value that Base64-encodes the request body.
+    - name: aws_imds_protocol_version
+      minimum_version: "2.8.x"
+      required: true
+      default: '`v1`'
+      datatype: string
+      description: |
+        Identifier to select the IMDS protocol version to use, either
+        `v1` or `v2`. If `v2` is selected, an additional session
+        token is requested from the EC2 metadata service by the plugin
+        to secure the retrieval of the EC2 instance role. Note that
+        if Kong Gateway is running inside a container on an
+        EC2 instance, the EC2 instance metadata must be configured
+        accordingly. 
+        
+        Refer to the Considerations section in the
+        [Retrieve Instance Metadata section of the EC2 manual](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html)
+        for details.
   extra: |
     **Reminder**: By default, cURL sends payloads with an
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
@@ -509,6 +528,13 @@ Have fun leveraging the power of AWS Lambda in Kong!
 
 ## Changelog
 
+
+**{{site.base_gateway}} 3.2.x**
+* Added the configuration parameter `aws_imds_protocol_version`, which
+lets you select the IMDS protocol version.
+This option defaults to `v1` and can be set to `v2` to enable IMDSv2.
+[#9962](https://github.com/Kong/kong/pull/9962)
+
 **{{site.base_gateway}} 3.1.x**
 * Added a `requestContext` field into `awsgateway_compatible` input data.
   [#9380](https://github.com/Kong/kong/pull/9380)
@@ -522,6 +548,8 @@ Have fun leveraging the power of AWS Lambda in Kong!
 removed in 3.x.x.
 * {{site.base_gateway}} 2.8.1.3: Added support for cross account invocation
 through configuration properties `aws_assume_role_arn` and `aws_role_session_name`.
+* {{site.base_gateway}} 2.8.4.0: Backported the parameter
+`aws_imds_protocol_version` into 2.8.x.
 
 **{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,

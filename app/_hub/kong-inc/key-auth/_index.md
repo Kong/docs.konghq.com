@@ -8,7 +8,7 @@ description: |
   request body to authenticate their requests.
 
   This plugin can be used for authentication in conjunction with the
-  [Application Registration](/hub/kong-inc/application-registration) plugin.
+  [Application Registration](/hub/kong-inc/application-registration/) plugin.
 
   **Tip:** The Kong Gateway [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
     plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
@@ -93,6 +93,7 @@ params:
         An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
         must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
+        For more information, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
       maximum_version: "3.0.x"
     - name: run_on_preflight
       required: true
@@ -157,6 +158,13 @@ parameter                       | description
 If you are also using the [ACL](/plugins/acl/) plugin and allow lists with this
 service, you must add the new Consumer to the allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
+
+For more information about how to configure anonymous access, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
+
+
+### Multiple Authentication
+
+{{site.base_gateway}} supports multiple authentication plugins for a given service, allowing different clients to use different authentication methods to access a given service or route. For more information, see [Multiple Authentication](/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication).
 
 ### Create a Key
 
@@ -383,6 +391,19 @@ Response:
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
+
+
+### Request behavior matrix
+
+The following table describes how {{site.base_gateway}} behaves in various scenarios:
+
+Description | Proxied to upstream service? | Response status code
+--------|-----------------------------|---------------------
+The request has a valid API key. | Yes | 200
+No API key is provided. | No | 401
+The API key is known to {{site.base_gateway}} | No | 401
+A runtime error occurred. | No | 500
+
 
 ---
 ## Changelog

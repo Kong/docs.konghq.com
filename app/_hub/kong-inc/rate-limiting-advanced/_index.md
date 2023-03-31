@@ -1,7 +1,6 @@
 ---
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 1.6.x
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
   The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
@@ -138,10 +137,8 @@ params:
         - `local`: Counters are stored locally in-memory on the node (same effect
            as setting `sync_rate` to `-1`).
 
-        In DB-less and hybrid modes, the `cluster` config strategy
+        In DB-less, hybrid mode, and Konnect, the `cluster` config strategy
         is not supported.
-
-        In Konnect, the default strategy is `redis`.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -162,12 +159,13 @@ params:
         - `redis`: Counters are stored on a Redis server and shared
            across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config strategy
-        is not supported. From `3.0.0.0` onwards, Kong disallows
-        the plugin enablement if `cluster` strategy is set with DB-less
-        or hybrid mode.
-
-        In Konnect, the default strategy is `redis`.
+        In DB-less, hybrid mode, and Konnect, the `cluster` config strategy
+        is not supported. 
+        
+        From `3.0.0.0` onwards, Kong disallows
+        the plugin enablement if the strategy is `cluster` and `sync_rate` is `-1`
+        with DB-less or hybrid mode. From `3.2.0.0` onward, please
+        use a different strategy or set `sync_rate` to `-1`.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -598,7 +596,7 @@ strategy is set with DB-less or hybrid mode.
 * The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 **{{site.base_gateway}} 2.7.x**
 

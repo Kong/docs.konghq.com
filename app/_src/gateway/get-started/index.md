@@ -74,7 +74,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    Access-Control-Allow-Origin: *
    Content-Length: 11063
    X-Kong-Admin-Latency: 6
-   Server: kong/{{page.kong_version}}
+   Server: kong/{{page.versions.ce}}
    ```
 
 1. Evaluate the {{site.base_gateway}} configuration:

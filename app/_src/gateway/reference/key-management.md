@@ -9,6 +9,10 @@ This page describes {{site.base_gateway}}'s capabilities to manage asymmetric ke
 
 For some operations, access to public and private keys is required. This document also describes how to grant access to those keys using {{site.base_gateway}}.
 
+{% if_version gte:3.2.x %}
+>This feature is available in both {site.konnect_short_name}}, and Kong Manager. In **Konnect**, you can manage keys as a  **Runtime Manager** entity. In Kong Manager, it is available from the **API Gateway** drop-down. 
+{% endif_version %}
+{:.note}
 
 ### Use cases
 
@@ -17,25 +21,24 @@ Some {{site.base_gateway}} plugins offer a custom endpoint to configure JSON Web
 
 | Plugin                                         | Keys/Key Sets supported |
 | ---------------------------------------------- | --------------------- |
-| [OpenID Connect](/hub/kong-inc/openid-connect) | No                    |
-| [JWT Signer](/hub/kong-inc/jwt-signer)         | No                    |
-| [JWT](/hub/kong-inc/jwt)                       | No                    |
-| [JWE Decrypt](/hub/kong-inc/jwe-decrypt)       | Yes                   |
+| [OpenID Connect](/hub/kong-inc/openid-connect/) | No                    |
+| [JWT Signer](/hub/kong-inc/jwt-signer/)         | No                    |
+| [JWT](/hub/kong-inc/jwt/)                       | No                    |
+| [JWE Decrypt](/hub/kong-inc/jwe-decrypt/)       | Yes                   |
 
 ### Keys endpoint
 
 The generic `Keys` endpoint allows you to store asymmetric keys, either a public or private key, as a JWK or PEM. A configurable `kid` string is required to identify the key. The `kid` attribute is a common way to identify the key that should be used to verify or decrypt a token, but it can be used in other scenarios when you must identify a key.
-
 
 ### Key Sets endpoint
 
 You can assign one or many keys to a JSON Web Key Set. This can be useful to logically group multiple keys to use for a specific application or service. Key Sets are also the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to just _some_ keys.
 
 See the following plugins documentation for more information about how to configure them using a Key Set:
-* [OpenID Connect](/hub/kong-inc/openid-connect)
-* [JWT Signer](/hub/kong-inc/jwt-signer)
-* [JWT](/hub/kong-inc/jwt)                       
-* [JWE Decrypt](/hub/kong-inc/jwe-decrypt)
+* [OpenID Connect](/hub/kong-inc/openid-connect/)
+* [JWT Signer](/hub/kong-inc/jwt-signer/)
+* [JWT](/hub/kong-inc/jwt/)                       
+* [JWE Decrypt](/hub/kong-inc/jwe-decrypt/)
 
 {:.note}
 > **Note:** Deleting a Key Set will remove all associated keys.

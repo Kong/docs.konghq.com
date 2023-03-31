@@ -30,10 +30,10 @@ runtime groups and services can be shared with teams.
 instances of a resource type (for example, a particular service or all services).
 
 When you create a {{site.konnect_short_name}} account, you are automatically added to the Organization
-Admin team, which is one of the [predefined teams](/konnect/org-management/teams-and-roles/teams-reference)
+Admin team, which is one of the [predefined teams](/konnect/org-management/teams-and-roles/teams-reference/)
 in {{site.konnect_short_name}}. Predefined teams have sets of roles that can't be modified or
 deleted. You can add users to these teams, or create your own custom teams
-with any of the [supported roles](/konnect/org-management/teams-and-roles/roles-reference).
+with any of the [supported roles](/konnect/org-management/teams-and-roles/roles-reference/).
 
 ### Access precedence
 
@@ -49,8 +49,8 @@ roles on the same service, the Service Admin role takes precedence.
 ## Get started with access management
 
 * Manage resource access in your organization
- with [teams and roles](/konnect/org-management/teams-and-roles/manage)
-* [Invite users](/konnect/org-management/users) to join your
+ with [teams and roles](/konnect/org-management/teams-and-roles/manage/)
+* [Invite users](/konnect/org-management/users/) to join your
 organization
-* [View the teams reference](/konnect/org-management/teams-and-roles/teams-reference)
-* [View the roles reference](/konnect/org-management/teams-and-roles/roles-reference)
+* [View the teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
+* [View the roles reference](/konnect/org-management/teams-and-roles/roles-reference/)

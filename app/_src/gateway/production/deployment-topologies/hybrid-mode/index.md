@@ -3,22 +3,22 @@ title: Hybrid Mode Overview
 ---
 
 Traditionally, Kong has always required a database, to store configured 
-entities such as Routes, Services, and Plugins.
-
-Starting with {{site.base_gateway}} 2.1, Kong can be deployed in
-hybrid mode, also known as control plane / data plane separation (CP/DP).
+entities such as routes, services, and plugins. Hybrid mode,
+also known as control plane / data plane separation (CP/DP), removes the
+need for a database on every node.
 
 In this mode, Kong nodes in a cluster are split into two roles: control plane
 (CP), where configuration is managed and the Admin API is served from; and data
 plane (DP), which serves traffic for the proxy. Each DP node is connected to one
-of the CP nodes. Instead of accessing the database contents directly in the
-traditional deployment method, the DP nodes maintain connection with CP nodes,
-and receive the latest configuration.
+of the CP nodes, and only the CP nodes are directly connected to a database.
+
+Instead of accessing the database contents directly, the DP nodes maintain a 
+connection with CP nodes to receive the latest configuration.
 
 ![Hybrid mode topology](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
 
 When you create a new data plane node, it establishes a connection to the
-control plane. The control plane listens on port 8005 for connections and
+control plane. The control plane listens on port `8005` for connections and
 tracks any incoming data from its data planes.
 
 Once connected, every Admin API or Kong Manager action on the control plane
@@ -192,13 +192,16 @@ control plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
 have limitations in hybrid mode:
 
-* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
+* [**Key Auth Encrypted**](/hub/kong-inc/key-auth-enc/): The time-to-live setting
 (`ttl`), which determines the length of time a credential remains valid, does
 not work in hybrid mode.
-* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
-This plugin does not support the `cluster` strategy in hybrid mode. The `redis`
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/), [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/), and [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/):
+These plugins don't support the `cluster` strategy/policy in hybrid mode. One of 
+the `local` or `redis` strategies/policies must be used instead.
+* [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/):
+This plugins doesn't support the `cluster` strategy in hybrid mode. The `redis` 
 strategy must be used instead.
-* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
+* [**OAuth 2.0 Authentication**](/hub/kong-inc/oauth2/): This plugin is not
 compatible with hybrid mode. For its regular workflow, the plugin needs to both
 generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
@@ -217,7 +220,7 @@ multiple control planes and redirecting the traffic using a TCP proxy.
 
 ## Readonly Status API endpoints on data plane
 
-Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
+Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api/)
 are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
 
 - [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)

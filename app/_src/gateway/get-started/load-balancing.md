@@ -38,7 +38,7 @@ series from the beginning.
 Start with the introduction, [Get Kong](/gateway/latest/get-started/), which includes
 a list of prerequisites and instructions for running a local {{site.base_gateway}}.
 
-Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),
+Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes/),
 includes instructions for installing a mock service used throughout this series. 
 
 If you haven't completed these steps already, complete them before proceeding.
@@ -85,7 +85,7 @@ If you haven't completed these steps already, complete them before proceeding.
 
 ## What's next
 
-You've completed the Get Started with Kong guide, but a lot more is possible with [{{site.base_gateway}}](/gateway/latest). 
+You've completed the Get Started with Kong guide, but a lot more is possible with [{{site.base_gateway}}](/gateway/latest/). 
 The following are guides to advanced features of {{site.base_gateway}}:
 
 * [Monitoring with {{site.base_gateway}}](/gateway/{{ page.kong_version }}/production/monitoring/)

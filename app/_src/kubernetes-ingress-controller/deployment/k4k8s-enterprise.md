@@ -20,22 +20,7 @@ $ kubectl create namespace kong
 namespace/kong created
 ```
 
-### Kong Enterprise License secret
-
-Enterprise version requires a valid license to run.
-As part of sign up for Kong Enterprise, you should have received a license file.
-If you do not have one, please contact your sales representative.
-Save the license file temporarily to disk with filename `license`
-and execute the following:
-
-```bash
-$ kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
-secret/kong-enterprise-license created
-```
-
-Please note that `-n kong` specifies the namespace in which you are deploying
-  the {{site.kic_product_name}}. If you are deploying in a different namespace,
-  please change this value.
+{% include_cached /md/kic/kong-enterprise-license-secret.md version=page.version %}
 
 ## Installers
 
@@ -50,7 +35,7 @@ Execute the following to install Kong for Kubernetes Enterprise using YAML
 manifests:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
 ```
 
 It takes a few minutes the first time this setup is done.

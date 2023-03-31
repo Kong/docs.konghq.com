@@ -409,7 +409,7 @@ KongConsumers from all namespaces are combined into a single Kong
 configuration, and no KongConsumers with the same `kubernetes.io/ingress.class`
 may share the same `username` or `custom_id` value.
 
-For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource) guide.
+For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource/) guide.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object

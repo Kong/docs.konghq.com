@@ -19,21 +19,45 @@ can be terminated and restarted at any point of time.
 The controller itself can be stateful or stateless, depending on if a database
 is being used or not.
 
+{% if_version lte: 2.8.x %}
 If a database is not used, then the Controller and Kong are deployed as
 co-located containers in the same pod and each controller configures the Kong
 container that it is running with.
+{% endif_version %}
+{% if_version gte: 2.9.x %}
+If a database is not used, then the Controller and Kong can be deployed:
+
+- as co-located containers in the same pod and each controller configures the Kong
+  container that it is running with.
+- in separate deployments where each can be scaled independently.
+  To learn more about this approach please see
+  [the Gateway Discovery section on Deployments page][concepts-gd].
+
+[concepts-gd]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment/#gateway-discovery
+{% endif_version %}
 
 For cases when a database is necessary, the Controllers can be deployed
 on multiple zones to provide redundancy. In such a case, a leader election
 process will elect one instance as a leader, which will manipulate Kong's
 configuration.
 
-### Leader election (database-backed clusters only)
+### Leader election
 
+{% if_version gte: 2.9.x %}
+Multiple {{site.kic_product_name}} instances elect a leader when connected to a
+database-backed cluster or when Gateway Discovery is configured.
+This ensures that only a single controller pushes configuration to Kong's database
+or to Kong's Admin API to avoid potential conflicts and race
+conditions.
+{% endif_version %}
+{% if_version lte: 2.8.x %}
 Multiple {{site.kic_product_name}} instances elect a leader when connected to a
 database-backed cluster. This ensures that only a single controller pushes
 configuration to Kong's database to avoid potential conflicts and race
-conditions. When a leader controller shuts down, other instances will detect
+conditions.
+{% endif_version %}
+
+When a leader controller shuts down, other instances will detect
 that there is no longer a leader, and one will promote itself to the leader.
 
 For this reason, the controller needs permission to create a ConfigMap.

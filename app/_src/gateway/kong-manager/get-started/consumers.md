@@ -5,7 +5,7 @@ badge: free
 
 In this example, you’re going to enable the **Key Authentication plugin**, then create a consumer that uses key authentication. API key authentication is one of the most popular ways to conduct API authentication and can be implemented to create and delete access keys as required.
 
-If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/key-authentication).
+If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting started guide](/gateway/latest/get-started/key-authentication/).
 
 ## Set up the Key Authentication Plugin
 
@@ -50,4 +50,4 @@ http://localhost:8000/mock?apikey=apikey
 
 ## Next steps
 
-Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.kong_version}}/kong-manager/get-started/load-balancing).
+Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.kong_version}}/kong-manager/get-started/load-balancing/).

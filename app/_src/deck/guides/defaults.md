@@ -210,8 +210,8 @@ configuration would overwrite the value in your environment.
 
     {:.note}
     > For production use in larger systems, we recommend that you break out
-    your defaults into a [separate `defaults.yaml` file](/deck/{{page.kong_version}}/guides/multi-file-state)
-    or use [tags](/deck/{{page.kong_version}}/guides/distributed-configuration)
+    your defaults into a [separate `defaults.yaml` file](/deck/{{page.kong_version}}/guides/multi-file-state/)
+    or use [tags](/deck/{{page.kong_version}}/guides/distributed-configuration/)
     to apply the defaults wherever they are needed.
 
 1. Define the properties you want to set for {{site.base_gateway}} objects.
@@ -299,20 +299,9 @@ the {{site.base_gateway}}, set all possible default values for an object in your
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/routes
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/routes
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all Routes.
 For example:
@@ -346,20 +335,9 @@ For documentation on all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/services
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/services
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all
 Services. For example:
@@ -384,20 +362,9 @@ For documentation on all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/upstreams
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/upstreams
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all
 Upstreams. For example:
@@ -481,20 +448,9 @@ For documentation on all available properties, see the
 
 Use the Kong Admin API `/schemas` endpoint to find default values:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i http://localhost:8001/schemas/targets
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/targets
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 In your `kong.yaml` file, set the default values you want to use across all
 Targets. For example:
@@ -509,10 +465,21 @@ For all available properties, see the
 [Target object](/gateway/latest/admin-api/#target-object) documentation.
 
 {% endnavtab %}
+{% navtab Plugins %}
+
+Use the Kong Admin API `/schemas` endpoint to find default values:
+
+```sh
+curl -i http://localhost:8001/schemas/plugins/<plugin-name>
+```
+
+decK doesn't support setting custom default values for the plugin object.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## See also
-* [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration)
-* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.kong_version}}/guides/distributed-configuration)
-* [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state)
+* [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration/)
+* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.kong_version}}/guides/distributed-configuration/)
+* [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state/)
 * {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

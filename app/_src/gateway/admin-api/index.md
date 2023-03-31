@@ -96,7 +96,7 @@ route_body: |
     Attributes | Description
     ---:| ---
     `name`<br>*optional* | The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
-    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.  Default: `["http", "https"]`.
+    `protocols` |  An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When it is set to only `"http"`, this is essentially the same as `["http", "https"]` in that both HTTP and HTTPS requests are allowed. Default: `["http", "https"]`.
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. Note that the hosts value is case sensitive.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. The path patterns are matched against a normalized path, with most percent-encoded characters decoded, path folding, and preserved semantics. For more details read [rfc3986](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
@@ -214,6 +214,7 @@ plugin_body: |
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
+    `instance_name`<br>*optional* | The Plugin instance name.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
@@ -228,6 +229,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
+        "instance_name": rate-limiting-foo,
         "config": {"hour":500, "minute":20},
         "protocols": ["http", "https"],
         "enabled": true,
@@ -265,12 +267,13 @@ plugin_data: |
 certificate_body: |
     Attributes | Description
     ---:| ---
-    `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-    `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+    `cert` |  PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
+    `key` |  PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
+    `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
+    `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
     `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
+    `passphrase`<br>*optional* (Enterprise only) | To load an encrypted private key into Kong, specify the passphrase using this attribute. Kong will decrypt the private key and store it in its database. To encrypt the private key and other sensitive information in Kong's database, consider using DB encryption.
 
 certificate_json: |
     {
@@ -603,7 +606,7 @@ vault_body: |
     ---:| ---
     `prefix` |  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
     `name` |  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
-    `description`<br>*optional* |  The description of the Vault entity.
+    `description`<br>*optional* |  The description of the Vault object.
     `config`<br>*optional* |  The configuration properties for the Vault which can be found on the vaults' documentation page.
     `tags`<br>*optional* |  An optional set of strings associated with the Vault for grouping and filtering.
 
@@ -970,7 +973,7 @@ HTTP 200 Ok
 ## DB-less Mode
 
 
-In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config),
+In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/),
 the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
@@ -1380,7 +1383,7 @@ HTTP 200 OK
             "type": "boolean"
         },
         "key_names": {
-            "default": "function",
+            "default": ["apikey"],
             "required": true,
             "type": "array"
         }
@@ -2318,7 +2321,7 @@ Learn more about the router:
 
 {:.note}
 > **Note**: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when `router_flavor`
-> is set to `expressions`, `route.path_handling` will not be configurable and the path handling behavior
+> is set to `expressions`, `route.path_handling` will be unconfigurable and the path handling behavior
 > will be `"v0"`; when `router_flavor` is set to `traditional_compatible`, the path handling behavior
 > will be `"v0"` regardless of the value of `route.path_handling`. Only `router_flavor` = `traditional`
 > will support `path_handling` `"v1'` behavior.
@@ -4457,20 +4460,64 @@ HTTP 200 OK
     "node_id": "cbb297c0-14a9-46bc-ad91-1d0ef9b42df9",
     "data": [
         {
-            "created_at": 1485524883980,
             "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
             "health": "HEALTHY",
+            "data": {
+                "dns": "ttl=0, virtual SRV",
+                "addresses": [
+                    {
+                        "weight": 100,
+                        "ip": "127.0.0.1",
+                        "port": 20000,
+                        "health": "HEALTHY"
+                    }
+                ],
+                "weight": {
+                    "unavailable": 0,
+                    "available": 100,
+                    "total": 100
+                },
+                "port": 20000,
+                "host": "127.0.0.1",
+                "nodeWeight": 100
+            },
+            "weight": 100,
             "target": "127.0.0.1:20000",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 100
+            "created_at": 1485524883980,
+            "upstream": {
+                "id": "07131005-ba30-4204-a29f-0927d53257b4"
+            },
+            "tags": null
         },
         {
-            "created_at": 1485524914883,
             "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
             "health": "UNHEALTHY",
+            "data": {
+                "dns": "ttl=0, virtual SRV",
+                "addresses": [
+                    {
+                        "weight": 100,
+                        "ip": "127.0.0.1",
+                        "port": 20002,
+                        "health": "UNHEALTHY"
+                    }
+                ],
+                "weight": {
+                    "unavailable": 100,
+                    "available": 0,
+                    "total": 100
+                },
+                "port": 20002,
+                "host": "127.0.0.1",
+                "nodeWeight": 100
+            },
+            "weight": 100,
             "target": "127.0.0.1:20002",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 200
+            "created_at": 1485524914883,
+            "upstream": {
+                "id": "07131005-ba30-4204-a29f-0927d53257b4"
+            },
+            "tags": null
         }
     ]
 }
@@ -4789,9 +4836,9 @@ HTTP 200 OK
 ---
 
 
-## Vaults Entity
+## Vaults Object
 
-Vault entities are used to configure different Vault connectors. Examples of
+Vault object are used to configure different Vault connectors. Examples of
 Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager.
 
 Configuring a Vault allows referencing the secrets with other entities. For
@@ -4998,7 +5045,7 @@ HTTP 204 No Content
 
 ---
 {% unless page.edition == "konnect" %}
-## Keys Entity
+## Keys Object
 
 A Key object holds a representation of asymmetric keys in various formats.
 When Kong or a Kong plugin requires a specific public or private key to perform
@@ -5266,7 +5313,7 @@ HTTP 204 No Content
 
 ## Key Sets Entity
 
-An Key Set object holds a collection of asymmetric key objects.
+A Key Set object holds a collection of asymmetric key objects.
 This entity allows to logically group keys by their purpose.
 
 Key Sets can be both [tagged and filtered by tags](#tags).

@@ -17,7 +17,7 @@ do so using
 ### Prerequisites
 
 * [`enforce_rbac = on`](/enterprise/{{page.kong_version}}/property-reference/#enforce_rbac)
-* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/start-kong-securely)
+* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/start-kong-securely/)
 * Logged in to Kong Manager as a **Super Admin**
 * SMTP must be configured to [send invitation emails](/enterprise/{{page.kong_version}}/kong-manager/networking/email/),
 but to simply test this workflow without actually sending

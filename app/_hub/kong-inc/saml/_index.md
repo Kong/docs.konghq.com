@@ -98,6 +98,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: anonymous
@@ -128,6 +130,9 @@ params:
       referenceable: true
       description: |
         The public certificate provided by the IdP. This is used to validate responses from the IdP.
+
+        Only include the contents of the certificate. Do not include the header (`BEGIN CERTIFICATE`) and footer (`END CERTIFICATE`) lines.
+        
     - name: encryption_key
       required: false
       datatype: string
@@ -216,16 +221,41 @@ params:
       datatype: string
       description: The session cookie name.
     - name: session_cookie_lifetime
+      maximum_version: "3.1.x"
       required: false
       default: 3600
       datatype: integer
       description: The session cookie lifetime in seconds.
+    - name: session_rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 3600
+      datatype: integer
+      description: |
+        The session cookie rolling timeout in seconds.
+        Specifies how long the session can be used until it needs to be renewed.
+    - name: session_absolute_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 86400
+      datatype: integer
+      description: |
+        The session cookie absolute timeout in seconds.
+        Specifies how long the session can be used until it is no longer valid.
     - name: session_cookie_idletime
+      maximum_version: "3.1.x"
       required: false
       default: null
       datatype: integer
       description: The session cookie idle time in seconds.
+    - name: session_idling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 900
+      datatype: integer
+      description: The session cookie idle time in seconds.
     - name: session_cookie_renew
+      maximum_version: "3.1.x"
       required: false
       default: 600
       datatype: integer
@@ -241,6 +271,7 @@ params:
       datatype: string
       description: The session cookie domain flag.
     - name: session_cookie_samesite
+      maximum_version: "3.1.x"
       required: false
       default: Lax
       datatype: string
@@ -250,7 +281,25 @@ params:
         - `Lax`: Cookies are not sent on normal cross-site subrequests, like loading images or frames into a third party site, but are sent when a user is navigating to the origin site, like when they are following a link.
         - `None`: Cookies will be sent in all contexts, including responses to both first-party and cross-origin requests. If `SameSite=None` is set, the cookie secure attribute must also be set or the cookie will be blocked.
         - `off`: Do not set the Same-Site flag.
+    - name: session_cookie_same_site
+      minimum_version: "3.2.x"
+      required: false
+      default: Lax
+      datatype: string
+      description: |
+        Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks:
+        - `Strict`: Cookies will only be sent in a first-party context and aren't sent along with requests initiated by third party websites.
+        - `Lax`: Cookies are not sent on normal cross-site subrequests, like loading images or frames into a third party site, but are sent when a user is navigating to the origin site, like when they are following a link.
+        - `None`: Cookies will be sent in all contexts, including responses to both first party and cross-origin requests. If `SameSite=None` is set, the cookie secure attribute must also be set or the cookie will be blocked.
+        - `Default`: Do not explicitly specify a Same-Site attribute.
     - name: session_cookie_httponly
+      maximum_version: "3.1.x"
+      required: false
+      default: true
+      datatype: boolean
+      description: Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
+    - name: session_cookie_http_only
+      minimum_version: "3.2.x"
       required: false
       default: true
       datatype: boolean
@@ -263,6 +312,7 @@ params:
         The cookie is only sent to the server when a request is made with the https:scheme (except on localhost),
         and therefore is more resistant to man-in-the-middle attacks.
     - name: session_cookie_maxsize
+      maximum_version: "3.1.x"
       required: false
       default: 4000
       datatype: integer
@@ -280,6 +330,7 @@ params:
         data as well as state information that is sent to the IdP in
         the authentication exchange.
     - name: session_strategy
+      maximum_version: "3.1.x"
       required: false
       default: default
       datatype: string
@@ -288,6 +339,7 @@ params:
         - `default`:  reuses session identifiers over modifications (but can be problematic with single-page applications with a lot of concurrent asynchronous requests)
         - `regenerate`: generates a new session identifier on each modification and does not use expiry for signature verification. This is useful in single-page applications or SPAs.
     - name: session_compressor
+      maximum_version: "3.1.x"
       required: false
       default: none
       datatype: string
@@ -295,6 +347,88 @@ params:
         The session strategy:
         - `none`: no compression.
         - `zlib`: use Zlib to compress cookie data.
+    - name: session_audience
+      minimum_version: "3.2.x"
+      required: false
+      default: '"default"'
+      datatype: string
+      description: The session audience, for example "my-application"
+    - name: session_remember
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: Enables or disables persistent sessions
+    - name: session_remember_cookie_name
+      minimum_version: "3.2.x"
+      required: false
+      default: '"remember"'
+      datatype: string
+      description: Persistent session cookie name
+    - name: session_remember_rolling_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 604800
+      datatype: integer
+      description: Persistent session rolling timeout in seconds.
+    - name: session_remember_absolute_timeout
+      minimum_version: "3.2.x"
+      required: false
+      default: 2592000
+      datatype: integer
+      description: Persistent session absolute timeout in seconds.
+    - name: session_request_headers
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        List of information to include (as headers) in the request to upstream. 
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
+        `absolute-timeout`.
+        For example, { "id", "timeout" } will set both `Session-Id` and `Session-Timeout` in the request headers.
+    - name: session_response_headers
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: array of string elements
+      description: |
+        List of information to include (as headers) in the response to downstream. 
+        Accepted values are: `id`, `audience`, `subject`, `timeout`, `idling-timeout`, `rolling-timeout`, and
+        `absolute-timeout`.
+        For example: { "id", "timeout" } will inject both `Session-Id` and `Session-Timeout` in the response headers.
+    - name: session_store_metadata
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: | 
+        Configures whether or not session metadata should be stored.
+        This includes information about the active sessions for the `specific_audience`
+        belonging to a specific subject.
+    - name: session_enforce_same_subject
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: When set to `true`, audiences are forced to share the same subject.
+    - name: session_hash_subject
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        When set to `true`, the value of subject is hashed before being stored.
+        Only applies when `session_store_metadata` is enabled.
+    - name: session_hash_storage_key
+      minimum_version: "3.2.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: |
+        When set to `true`, the storage key (session ID) is hashed for extra security.
+        Hashing the storage key means it is impossible to decrypt data from the storage
+        without a cookie.
     - name: session_storage
       required: false
       default: cookie
@@ -302,7 +436,7 @@ params:
       description: |
         The session storage for session data:
         - `cookie`: stores session data with the session cookie. The session cannot be invalidated or revoked without changing the session secret, but is stateless, and doesn't require a database.
-        - `memcache`: stores session data in memcached
+        - `memcached`: stores session data in memcached
         - `redis`: stores session data in Redis
     - name: reverify
       required: false
@@ -311,21 +445,49 @@ params:
       description: Specifies whether to always verify tokens stored in the session.
     - group: Session Settings for Memcached
     - name: session_memcache_prefix
+      maximum_version: "3.1.x"
       required: false
       default: sessions
       datatype: string
       description: The memcached session key prefix.
+    - name: session_memcached_prefix
+      minimum_version: "3.2.x"
+      required: false
+      default: '"sessions"'
+      datatype: string
+      description: The memcached session key prefix.
     - name: session_memcache_socket
+      maximum_version: "3.1.x"
+      required: false
+      default: null
+      datatype: string
+      description: The memcached unix socket path.
+    - name: session_memcached_socket
+      minimum_version: "3.2.x"
       required: false
       default: null
       datatype: string
       description: The memcached unix socket path.
     - name: session_memcache_host
+      maximum_version: "3.1.x"
       required: false
       default: 127.0.0.1
       datatype: string
       description: The memcached host.
+    - name: session_memcached_host
+      minimum_version: "3.2.x"
+      required: false
+      default: '"127.0.0.1"'
+      datatype: string
+      description: The memcached host.
     - name: session_memcache_port
+      maximum_version: "3.1.x"
+      required: false
+      default: 11211
+      datatype: integer
+      description: The memcached port.
+    - name: session_memcached_port
+      minimum_version: "3.2.x"
       required: false
       default: 11211
       datatype: integer
@@ -408,15 +570,22 @@ params:
         The Redis cluster node host. Takes an array of host records, with
         either `ip` or `host`, and `port` values.
     - name: session_redis_cluster_maxredirections
+      maximum_version: "3.1.x"
       required: false
       default: null
       datatype: integer
       description: The Redis cluster's maximum redirects.
+    - name: session_redis_cluster_max_redirections
+      minimum_version: "3.2.x"
+      required: false
+      default: null
+      datatype: integer
+      description: The Redis cluster maximum redirects.
 ---
 
 ## Kong Configuration
 
-### Create an Anonymous Consumer:
+### Create an anonymous consumer
 
 ```bash
 curl --request PUT \
@@ -435,7 +604,7 @@ curl --request PUT \
 }
 ```
 
-### Create a Service
+### Create a service
 
 ```bash
 curl --request PUT \
@@ -454,7 +623,7 @@ curl --request PUT \
 }
 ```
 
-### Create a Route
+### Create a route
 
 ```bash
 curl --request PUT \
@@ -470,14 +639,14 @@ curl --request PUT \
 }
 ```
 
-### Setup Microsoft AzureAD
+### Set up Microsoft AzureAD
 
 1. Create a SAML Enterprise Application. Refer to the [Microsoft AzureAD documentation](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal) for more information.
-2. Note the identifier (entity ID) and sign on URL parameters
-3. Configure the reply URL (Assertion Consumer Service URL), for example, `https://kong-proxy:8443/saml/consume`
-4. Assign users to the SAML enterprise application
+2. Note the identifier (entity ID) and sign on URL parameters.
+3. Configure the reply URL (Assertion Consumer Service URL), for example, `https://kong-proxy:8443/saml/consume`.
+4. Assign users to the SAML enterprise application.
 
-### Create a Plugin on a Service
+### Create a plugin on a service
 
 Validation of the SAML response assertion is disabled in the plugin configuration below. This configuration should not be used in a production environment.
 
@@ -524,3 +693,68 @@ curl --request POST \
 2. The browser is redirected to the AzureAD Sign in page. Enter the user credentials of a user configured in AzureAD
 3. If user credentials are valid, the browser will be redirected to https://httpbin.org/anything
 4. If the user credentials are invalid, a `401` unauthorized HTTP status code is returned
+
+## Troubleshooting
+
+### Certificate is valid, but isn't being accepted
+
+**Problem:**
+You have a valid certificate specified in the `idp_certificate` field, but you get the following error:
+
+```
+[saml] user is unauthorized with error: public key in saml response does not match
+```
+
+**Solution:**
+If you provide a certificate through the `idp_certificate` field, the certificate must have the header and footer removed.
+
+For example, a standard certificate might look like this, with a header and footer:
+
+```
+-----BEGIN CERTIFICATE-----
+<certificate contents>
+-----END CERTIFICATE-----
+```
+
+Remove the header and footer before including the certificate in the `idp_certificate` field:
+```
+<certificate contents>
+```
+
+## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+* The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library. This introduced several new features, such as the possibility to specify audiences.
+The following configuration parameters were affected:
+
+Added:
+  * `session_audience`
+  * `session_remember`
+  * `session_remember_cookie_name`
+  * `session_remember_rolling_timeout`
+  * `session_remember_absolute_timeout`
+  * `session_absolute_timeout`
+  * `session_request_headers`
+  * `session_response_headers`
+  * `session_store_metadata`
+  * `session_enforce_same_subject`
+  * `session_hash_subject`
+  * `session_hash_storage_key`
+
+Renamed:
+  * `session_cookie_lifetime` to `session_rolling_timeout`
+  * `session_cookie_idletime` to `session_idling_timeout`
+  * `session_cookie_samesite` to `session_cookie_same_site`
+  * `session_cookie_httponly` to `session_cookie_http_only`
+  * `session_memcache_prefix` to `session_memcached_prefix`
+  * `session_memcache_socket` to `session_memcached_socket`
+  * `session_memcache_host` to `session_memcached_host`
+  * `session_memcache_port` to `session_memcached_port`
+  * `session_redis_cluster_maxredirections` to `session_redis_cluster_max_redirections`
+
+Removed:
+  * `session_cookie_renew`
+  * `session_cookie_maxsize`
+  * `session_strategy`
+  * `session_compressor`
+

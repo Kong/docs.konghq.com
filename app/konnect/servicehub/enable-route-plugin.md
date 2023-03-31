@@ -17,13 +17,12 @@ You can find a route's overview page through the {% konnect_icon servicehub %} [
 
 1. Enter the plugin configuration details.
 
-    Configuration details are different for every plugin, see the [Plugin Hub](/hub) for parameter descriptions.
+    Configuration details are different for every plugin, see the [Plugin Hub](/hub/) for parameter descriptions.
 
 1. Click **Save**.
 
 {:.note}
-> If you don't see the **Routes** section, create an
-[implementation](/konnect/servicehub/service-implementations) first.
+> If you don't see the **Routes** section, create an implementation.
 
 ## Update or disable a plugin
 

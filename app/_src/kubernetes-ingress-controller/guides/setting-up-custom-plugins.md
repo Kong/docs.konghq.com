@@ -21,6 +21,7 @@ $ mkdir myheader && cd myheader
 $ echo 'local MyHeader = {}
 
 MyHeader.PRIORITY = 1000
+MyHeader.VERSION = "1.0.0"
 
 function MyHeader:header_filter(conf)
   -- do custom logic here
@@ -201,7 +202,7 @@ konghq.com/plugins: my-custom-plugin
 ```
 
 Once you have got Kong up and running, configure your
-custom plugin via [KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource).
+custom plugin via [KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/).
 
 
 ### Plugins in other languages

@@ -74,7 +74,7 @@ Connection: keep-alive
 Content-Length: 6342
 Content-Type: application/json; charset=utf-8
 Date: Wed, 27 Mar 2019 15:24:58 GMT
-Server: kong/2.1.0
+Server: kong/{{page.versions.ce}}
 {
     "configuration:" {
        ...
@@ -82,7 +82,7 @@ Server: kong/2.1.0
        ...
     },
     ...
-    "version": "2.1.0"
+    "version": "{{page.versions.ce}}"
 }
 ```
 
@@ -105,7 +105,7 @@ Connection: keep-alive
 Content-Length: 23
 Content-Type: application/json; charset=utf-8
 Date: Wed, 27 Mar 2019 15:30:02 GMT
-Server: kong/2.1.0
+Server: kong/{{page.versions.ce}}
 
 {
     "data": [],
@@ -117,7 +117,7 @@ Server: kong/2.1.0
 
 {:.note}
 > **Note:** We recommend using decK to manage your declarative configuration.
-See the [decK documentation](/deck) for more information.
+See the [decK documentation](/deck/) for more information.
 
 To load entities into DB-less Kong, you need a declarative configuration
 file. The following command creates a skeleton file to get you

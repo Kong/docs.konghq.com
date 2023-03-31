@@ -480,7 +480,7 @@ curl -i -f -X POST http://localhost:8001/routes \
 Add the plugin to your Route:
 
 ```bash
-curl -X POST http://localhost:8001/route/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=jwt"
 ```
 
@@ -646,3 +646,10 @@ associated [Consumer][consumer-object].
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
+
+## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+
+* Breaking changes
+  * Denies a request that has different tokens in the JWT token search locations.

@@ -4,15 +4,15 @@ badge: enterprise
 content_type: how-to
 ---
 
-Enable [basic authentication](/hub/kong-inc/basic-auth) on a Kong Manager instance.
+Enable [basic authentication](/hub/kong-inc/basic-auth/) on a Kong Manager instance.
 
 ## Prerequisites
-You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin)
+You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access.
 
 ## Set up basic authentication
 
-1. In [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration), configure the following properties:
+1. In [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration/), configure the following properties:
 
     ```
     enforce_rbac = on
@@ -27,7 +27,13 @@ or a user that has `/admins` and `/rbac` read and write access.
 
     * Under all circumstances, the `secret` must be manually set to a string.
     * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
+    {% if_version lte:3.1.x %}
     * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.
+    {% endif_version %}
+    {% if_version gte:3.2.x %}
+    * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `off`.
+    {% endif_version %}
+    
     Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
 
 
@@ -45,6 +51,6 @@ or a user that has `/admins` and `/rbac` read and write access.
 
     * If you created a super admin via the Kong Manager **Teams** tab
     as described in
-    [How to Create a Super Admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin),
+    [How to Create a Super Admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/),
     log in with the credentials you created after accepting the email
     invitation.

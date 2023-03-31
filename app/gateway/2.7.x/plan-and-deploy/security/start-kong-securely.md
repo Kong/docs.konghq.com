@@ -15,7 +15,7 @@ following the guide below. It may only be added once.
 
 ## Prerequisites
 
-After [installing {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run//),
+After [installing {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/),
 either modify the configuration file or set environment variables for
 the following properties:
 

@@ -315,34 +315,6 @@ You can then start Kong with:
 kong start -c kong.conf --nginx-conf custom_nginx.template
 ```
 
-## Embedding Kong in OpenResty
-
-If you are running your own OpenResty servers, you can also easily embed Kong
-by including the Kong Nginx sub-configuration using the `include` directive.
-If you have an existing Nginx configuration, you can simply include the
-Kong-specific portion of the configuration which is output by Kong in a separate
-`nginx-kong.conf` file:
-
-```
-# my_nginx.conf
-
-# ...your nginx settings...
-
-http {
-    include 'nginx-kong.conf';
-
-    # ...your nginx settings...
-}
-```
-
-You can then start your Nginx instance like so:
-
-```bash
-nginx -p /usr/local/openresty -c my_nginx.conf
-```
-
-and Kong will be running in that instance (as configured in `nginx-kong.conf`).
-
 ## Serving both a website and your APIs from Kong
 
 A common use case for API providers is to make Kong serve both a website
@@ -4000,6 +3972,19 @@ to escape the sandbox.
 
 ---
 
+#### openresty_path
+
+Path to the OpenResty installation that Kong will use. When this is empty (the
+default), Kong determines the OpenResty installation by searching for a
+system-installed OpenResty and falling back to searching $PATH for the nginx
+binary.
+
+Setting this attribute disables the search behavior and explicitly instructs
+Kong which OpenResty installation to use.
+
+**Default:** none
+
+---
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html

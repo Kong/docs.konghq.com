@@ -19,35 +19,9 @@ categories:
   - traffic-control
 kong_version_compatibility:
   community_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 2.0.x
-      - 1.5.x
-      - 1.4.x
-      - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
+    compatible: true
   enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
-      - 2.5.x
-      - 2.4.x
-      - 2.3.x
-      - 2.2.x
-      - 2.1.x
-      - 1.5.x
-      - 1.3-x
-      - 0.36-x
+    compatible: true
 params:
   name: response-ratelimiting
   service_id: true
@@ -56,6 +30,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
@@ -122,11 +98,9 @@ params:
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config policy is not supported.
-        For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
+        In DB-less, hybrid mode, and Konnect, the `cluster` config policy is not supported.
+        For DB-less mode or Konnect, use one of `redis` or `local`; for hybrid mode, use
         `redis`, or `local` for data planes only.
-
-        In Konnect, the default policy is `redis`.
 
         For details on which policy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).

@@ -9,7 +9,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/install/linux/os-support) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user) access.
+* A [supported system](/gateway/{{page.kong_version}}/install/linux/os-support/) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * The following tools are installed:
   * [`curl`](https://curl.se/)
   * [`lsb-release`](https://packages.debian.org/lsb-release)

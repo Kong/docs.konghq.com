@@ -36,8 +36,8 @@
 /enterprise/2.5.x/deployment/using-kong-for-kubernetes/    /kubernetes-ingress-controller/
 /enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
 /enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
-/enteprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
-/enteprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
+/enterprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
+/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/  /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/deployment-options  /gateway/latest/install-and-run/kubernetes
 
@@ -239,6 +239,7 @@
 
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
+/konnect/service-hub/manage-services                /konnect/servicehub/
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
@@ -249,7 +250,7 @@
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
 /konnect/migrate/                                   /konnect/getting-started/import/
-/konnect/getting-started/declarative-config/        /konnect/runtime-manager/runtime-groups/declarative-config/
+/konnect/getting-started/declarative-config/        /konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
@@ -257,12 +258,16 @@
 /konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
 /konnect/servicehub/plugins/enable-service-plugin/   /konnect/servicehub/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/     /konnect/servicehub/enable-route-plugin/
-/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/gateway-runtime-conf
-/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/gateway-runtime-docker
-/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes
+/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
+/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
+/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/renew-certificates          /konnect/runtime-manager/runtime-instances/renew-certificates
 /konnect/runtime-manager/runtime-parameter-reference /konnect/runtime-manager/runtime-instances/runtime-parameter-reference
 /konnect/runtime-manager/upgrade                     /konnect/runtime-manager/runtime-instances/upgrade
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/configuration/
+/konnect/runtime-manager/runtime-groups/declarative-config/ /konnect/runtime-manager/declarative-config/
+/konnect/runtime-manager/runtime-groups/manage/             /konnect/runtime-manager/
+/konnect/runtime-manager/runtime-groups/*            /konnect/runtime-manager/
 /konnect/dev-portal/administrators/customization/themes    /konnect/dev-portal/customization/
 /konnect/dev-portal/customization/appearance/              /konnect/dev-portal/customization/
 /konnect/dev-portal/customization/public-portal/           /konnect/dev-portal/access/
@@ -274,12 +279,13 @@
 /konnect/manage-plugins/                             /konnect/servicehub/plugins/
 /konnect/manage-plugins/enable-service-plugin/       /konnect/servicehub/enable-service-plugin/
 /konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
-/konnect/manage-plugins/shared-config                /konnect/runtime-manager/manage-proxy-config/
-/konnect/shared-config                               /konnect/runtime-manager/gateway-config/
+/konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
+/konnect/shared-config                               /konnect/runtime-manager/configuration/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
+/konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
-
 
 #API Redirects
 
@@ -634,6 +640,7 @@
 /install/:version/  /mesh/:version/install/
 /mesh/:version/documentation/introduction/  /mesh/:version/
 /mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
+/mesh/:version/overview /mesh/:version/
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
@@ -643,27 +650,13 @@
 
 
 # GATEWAY INSTALLATION AND DEPLOYMENT
-/enterprise/0.33-xinstallation/docker  /gateway/latest/install-and-run/docker
-/enterprise/0.35-x/deployment/installation/  /gateway/latest/install-and-run
-
-/install/                      https://konghq.com/install/
-/install/aws/                  /gateway/latest/install-and-run
+/gateway/:version/install-and-run/macos/ /gateway/latest/install/macos/
 /install/compile/              https://github.com/Kong/kong
-/install/aws-cloudformation/   /gateway/latest/install-and-run
-/install/aws-linux/            /gateway/latest/install-and-run/amazon-linux
-/install/aws-marketplace/      /gateway/latest/install-and-run
-/install/centos/               /gateway/latest/install-and-run/centos
 /install/dcos/                 https://github.com/Kong/kong-dist-dcos
-/install/debian/               /gateway/latest/install-and-run/debian
-/install/docker/               /gateway/latest/install-and-run/docker
 /install/google-cloud/         /kubernetes-ingress-controller/latest/deployment/gke/
-/install/kubernetes/           /gateway/latest/install-and-run/kubernetes
-/install/macos/                /gateway/latest/install-and-run/macos
-/install/osx/                  /gateway/latest/install-and-run/macos
-/install/redhat/               /gateway/latest/install-and-run/rhel
 /install/source/               https://github.com/Kong/kong
-/install/ubuntu/               /gateway/latest/install-and-run/ubuntu
 /install/vagrant/              https://github.com/Kong/kong-vagrant
+/install/*                     /gateway/latest/install/
 
 /gateway-oss/2.6.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
 /gateway-oss/2.7.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
@@ -818,13 +811,15 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+/gateway/*/production/kong-openresty       /gateway/
 
 
 
 # 3.0
 
-/gateway/2.8.x/install-and-run/                   /gateway/latest/install-and-run/os-support
-/gateway/2.8.x/install-and-run/centos/            /gateway/latest/install-and-run/os-support
+/gateway/2.8.x/install-and-run/                   /gateway/latest/support-policy/
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/support-policy/
+/gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
 /gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
 /gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
 /gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
@@ -834,3 +829,15 @@
 
 # 3.1
 /gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
+
+
+#3.2
+
+/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/latest/os-support/                     /gateway/latest/support-policy/
+/gateway/latest/install-support/                /gateway/latest/support-policy/
+/gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
+/gateway/3.2.x/install-support/                /gateway/latest/support-policy/

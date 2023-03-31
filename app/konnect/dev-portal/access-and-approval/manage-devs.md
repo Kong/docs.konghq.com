@@ -9,7 +9,7 @@ In the {% konnect_icon dev-portal %} **Dev Portal** section, there are three way
 * The **Applications** page lists applications and their statuses.
 
 To allow automatic approval of developer registration requests,
-enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps).
+enable [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
 ## Access Requests page
 

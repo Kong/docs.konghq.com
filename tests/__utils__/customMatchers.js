@@ -1,6 +1,6 @@
 expect.extend({
   toHaveText(received, expected) {
-    const pass = received.text() === expected;
+    const pass = received.text().trimEnd() === expected;
     return {
       message: () => `expected ${received} to have text ${expected}`,
       pass,

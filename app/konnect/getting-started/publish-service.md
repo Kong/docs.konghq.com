@@ -13,7 +13,7 @@ out some customization options.
 
 ## Prerequisites
 
-You have [configured a {{site.konnect_short_name}} service](/konnect/getting-started/configure-service) with at least one version.
+You have [configured a {{site.konnect_short_name}} service](/konnect/getting-started/configure-service/) with at least one version.
 
 ## Upload a description
 
@@ -45,27 +45,29 @@ descriptions.
 
     ```
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service.
-Find the **Service Document** section on your service's overview page and click **Upload Document**.
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
 
-1. Locate the `.md` file and click **Open**.
+1. Select **Documentation**, then **Add Page**. Upload the `.md` file and click **Save**.
+
+    {% konnect_icon servicehub %} will automatically populate fields from the uploaded file.
 
 ## Upload an API spec
 
-API specifications, or specs, can be uploaded and attached to a specific service version within your Dev Portal.
+OpenAPI specifications, or specs, can be uploaded and attached to a specific service version within your Dev Portal.
 Every version can have one OpenAPI spec associated with it, in JSON or YAML format.
 
-If you brought your own spec, use it in the following steps. Otherwise, you can
-use the [sample Vitals spec](/konnect/vitalsSpec.yaml) for testing.
+If you have a spec, use it in the following steps. Otherwise, you can
+use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service, then pick a version.
+
+1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service, then select a service version.
 
 1. Find the **Version Spec** section and click **Upload Spec**.
 
 1. Select a spec file to upload.
 
     The spec must be in YAML or JSON format. To test this functionality, you
-    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec.
+    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml/) as a sample spec.
 
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.
@@ -180,4 +182,4 @@ In this topic, you:
 * Logged into the Dev Portal to check out the service documentation live
 * Customized the Dev Portal
 
-Next, [register an application against the service](/konnect/getting-started/app-registration).
+Next, [register an application against the service](/konnect/getting-started/app-registration/).

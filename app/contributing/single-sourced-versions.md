@@ -146,4 +146,4 @@ unlisted:
 ## See also
 
 * [Conditional rendering](/contributing/conditional-rendering/): Render content in a file based on version filters
-* [Single-sourced plugins](/contributing/single-sourced-plugins): Learn about how single sourcing is implemented for Kong plugin documentation
+* [Single-sourced plugins](/contributing/single-sourced-plugins/): Learn about how single sourcing is implemented for Kong plugin documentation

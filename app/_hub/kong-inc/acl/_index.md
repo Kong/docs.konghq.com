@@ -27,6 +27,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and ACLs can be created with declarative configuration.
@@ -300,7 +302,7 @@ curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{GROUP}
 A successful DELETE request returns a `204` status.
 
 ### See also
-- [configuration](/gateway/latest/reference/configuration)
+- [configuration](/gateway/latest/reference/configuration/)
 
 ---
 

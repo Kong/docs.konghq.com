@@ -19,8 +19,14 @@ params:
   route_id: true
   consumer_id: false
   dbless_compatible: 'yes'
+  protocols:
+    - name: http
+    - name: https
+    - name: grpc
+    - name: grpcs
   config:
     - name: start
+      maximum_version: "3.1.x"
       required: semi
       default: null
       value_in_examples: null
@@ -28,6 +34,19 @@ params:
       description: |
         Future time in seconds since epoch, when the canary release will start.
         Ignored when `percentage` is set, or when using `allow` or `deny` in `hash`.
+
+    - name: start
+      minimum_version: "3.2.x"
+      default: current timestamp
+      value_in_examples: null
+      datatype: number
+      description: |
+        Future time in seconds since epoch, when the canary release will start.
+        Ignored when `percentage` is set, or when using `allow` or `deny` in `hash`.
+
+        If no value is set for the `start` field, it defaults to the 
+        timestamp of the moment that the plugin instance is created.
+
     - name: duration
       required: null
       default: 3600
@@ -215,6 +234,9 @@ target. For this configuration to take effect, the following conditions must be 
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.2.x**
+* The `start` field now defaults to the current timestamp.
 
 **{{site.base_gateway}} 2.8.x**
 * Added the `canary_by_header_name` configuration parameter.

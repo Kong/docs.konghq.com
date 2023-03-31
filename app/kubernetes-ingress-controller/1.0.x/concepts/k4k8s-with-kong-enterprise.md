@@ -3,7 +3,7 @@ title: Kong for Kubernetes with Kong Enterprise
 ---
 
 Kong for Kubernetes is a {{site.kic_product_name}} built on top
-of Open-Source Kong Gateway.
+of Open-Source {{site.base_gateway}}.
 
 If you are an Enterprise customer, you have an option of running the
 [Enterprise version](/gateway/latest/install-and-run/kubernetes/)
@@ -11,7 +11,7 @@ of the Ingress Controller, which includes
 all the Enterprise plugins but does not include Kong Manager or any
 other Enterprise features. This makes it possible to
 run the Ingress layer without a database, providing a very low
-operational and maintance footprint.
+operational and maintenance footprint.
 
 However, in some cases, those enterprise features are necessary,
 and for such use-cases we support another deployment - Kong for
@@ -20,7 +20,7 @@ Kubernetes with Kong Enterprise.
 As seen in the diagram below, this deployment consists of
 Kong for Kubernetes deployed in Kubernetes, and is hooked up with
 a database. If there are services running outside Kubernetes,
-a regular Kong Gateway proxy can be deployed there and connected to the
+a regular {{site.base_gateway}} proxy can be deployed there and connected to the
 same database. This provides a single pane of visibility of
 all services that are running in your infrastructure.
 
@@ -37,7 +37,7 @@ If you are following this model, please keep in mind the following:
 - Ensure that you have the same image/package of Kong Enterprise
   running across the fleet. This means that all Kong instances that are
   connected to the same database must use the
-  same version of kong enteprise package.
+  same version of kong Enterprise package.
 
 [This guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/kong-enterprise)
 walks through the setup of the above architecture.

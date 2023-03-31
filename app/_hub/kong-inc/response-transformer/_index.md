@@ -47,6 +47,8 @@ params:
   protocols:
     - name: http
     - name: https
+    - name: grpc
+    - name: grpcs
   dbless_compatible: 'yes'
   config:
     - name: remove.headers
@@ -149,7 +151,7 @@ similar for Services.
 ```bash
 curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
-  --data "config.add.headers[1]=h1:v1" \
+  --data "config.add.headers[1]=h1:v2" \
   --data "config.add.headers[2]=h2:v1"
 ```
 {% endnavtab %}
@@ -161,7 +163,7 @@ plugins:
   route: {route}
   config:
     add:
-      headers: ["h1:v1", "h2:v2"]
+      headers: ["h1:v2", "h2:v1"]
 ```
 
 {% endnavtab %}
@@ -188,7 +190,7 @@ plugins:
 ```bash
 curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
-  --data "config.add.headers=h1:v1,h2:v2"
+  --data "config.add.headers=h1:v2,h2:v1"
 ```
 
 <table>

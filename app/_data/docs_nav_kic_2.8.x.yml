@@ -57,7 +57,7 @@ items:
         url: /deployment/eks
       - text: Kong Ingress on GKE
         url: /deployment/gke
-      - text: Admission Webhook
+      - text: Enable the Validating Admission Webhook
         url: /deployment/admission-webhook
       - text: Installing Gateway APIs
         url: /deployment/install-gateway-apis
@@ -138,7 +138,7 @@ items:
         url: /references/cli-arguments
       - text: Custom Resource Definitions
         url: /references/custom-resources
-        src: references/custom-resources-2.7.x
+        src: references/custom-resources-2.8.x
       - text: Plugin Compatibility
         url: /references/plugin-compatibility
       - text: Version Compatibility

@@ -55,7 +55,7 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 
 * Under all circumstances, the secret must be manually set to a string.
 *  If using HTTP instead of HTTPS, cookie_secure must be manually set to false.
-*  If using different domains for the Admin API and Kong Manager, cookie_samesite must be set to off. Learn more about these properties in [_Session Security in Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions), and see [_example configurations_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
+*  If using different domains for the Admin API and Kong Manager, cookie_samesite must be set to off. Learn more about these properties in [_Session Security in Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/), and see [_example configurations_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
 
 ## Configure LDAP Authentication for Kong Manager
 
@@ -112,7 +112,7 @@ With the Admin API's Directory Mapping endpoints.
 
 ## User-Admin Mapping
 
-To map a Service Directory User to a Kong Admin, you must configure the Admin's username as the value of the User's name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an Admin account in [_Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/rbac/add-admin) or using the [_Admin API_](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
+To map a Service Directory User to a Kong Admin, you must configure the Admin's username as the value of the User's name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an Admin account in [_Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/rbac/add-admin/) or using the [_Admin API_](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 
 For instructions on how to pair the bootstrapped Super Admin with a Directory User, see [_How to Set Up a Service Directory User as the First Super Admin_](/gateway/{{page.kong_version}}/configure/auth/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
