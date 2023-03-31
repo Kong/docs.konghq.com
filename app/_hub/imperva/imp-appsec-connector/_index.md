@@ -1,5 +1,5 @@
 ---
-name: API Security 
+name: Imperva API Security 
 publisher: Imperva 
 
 categories: 
