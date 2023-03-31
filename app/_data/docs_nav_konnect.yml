@@ -213,6 +213,8 @@
           absolute_url: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
+        - text: SSO Customization
+          url: /api/identity-management/sso/
     - text: Runtime Groups API
       items:
         - text: API Documentation
