@@ -30,7 +30,7 @@ Variable | Output | Definition
 
 Variable | Output | Definition
 ---------|--------|-----------
-{% raw %}`{{site.links.learn}}`{% endraw %} | https://education.konghq.com | Link to the current location of Kong Academy or a similar education site.
+{% raw %}`{{site.links.learn}}`{% endraw %} | https://konghq.com/learning-center | Link to the current location of Kong Academy or a similar education site.
 {% raw %}`{{site.links.download}}`{% endraw %} | https://download.konghq.com | Kong's product download site.
 {% raw %}`{{site.links.web}}`{% endraw %} | https://docs.konghq.com | Kong Docs website.
 
