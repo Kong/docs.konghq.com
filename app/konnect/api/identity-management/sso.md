@@ -1,15 +1,7 @@
 ---
-title: Preview of SSO Customization Options for Konnect
+title: SSO Customization Options
 content-type: how-to
 ---
-
-# Set up SSO for Konnect [Preview]
-
-* [Overview](#overview)
-* [Configuration](#configuration)
-  * [Scopes](#scopes)
-  * [Claims](#claims)
-* [Team Mapping](#team-mapping)
 
 ## Overview
 
@@ -55,7 +47,8 @@ $ https --auth "${KONNECT_PAT}" --auth-type bearer PATCH \
 If we'd like to customize the list of scopes sent from the Konnect identity service to your IdP, we can configure the 
 `scopes` attribute of our IdP configuration.
 
-*_NOTE: The `openid` scope is a required scope value as specified [here](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)._*
+{:.note}
+> The `openid` scope is a required scope value as specified [here](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).
 
 ```shell
 $ https --auth "${KONNECT_PAT}" --auth-type bearer PATCH \
