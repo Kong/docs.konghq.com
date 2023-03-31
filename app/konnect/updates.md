@@ -11,8 +11,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2023
 
-**Custom OIDC Scope Requests**
-:Enterprise orgs can now configure additional OIDC scopes in their authorization request with Konnect. This allows organizations to specify additional scopes they may require so that Konnect can obtain a certain claim from their IdP. For example, the `upn` scope is required to retrieve the `userPrincipalName`from Azure.
+: Enterprise orgs can now configure additional OIDC scopes in their authorization request with {{site.konnect_short_name}}. This allows organizations to specify additional scopes they may require so that {{site.konnect_short_name}} can obtain a certain claim from their IdP. For example, the `upn` scope is required to retrieve the `userPrincipalName` from Azure.
 
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).
