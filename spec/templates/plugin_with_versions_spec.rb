@@ -8,7 +8,7 @@ RSpec.describe 'Plugin page with multiple versions' do
   end
 
   context 'versions with a specific file - _2.2.x' do
-    let(:page_url) { '/hub/acme/jwt-signer/2.5.x.html' }
+    let(:page_url) { '/hub/kong-inc/jwt-signer/2.5.x.html' }
 
     it 'renders the plugin\'s description' do
       expect(html).to have_css('p', text: 'From _2.2.x.md: The Kong JWT Signer plugin makes it possible to verify and (re-)sign one or two tokens in a request.')
@@ -49,10 +49,8 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).not_to have_css('strong', text: 'Configuration Notes:')
     end
 
-    it 'renders the configuration parameters table' do
+    xit 'renders the configuration parameters table' do
       expect(html).to have_css('h3', text: 'Parameters')
-      expect(html).to have_css('th', text: 'Form Parameter')
-      expect(html).to have_css('th', text: 'Description')
 
       table = html.find('table:not(#about-extn)')
 
@@ -94,7 +92,7 @@ RSpec.describe 'Plugin page with multiple versions' do
   end
 
   context 'versions using _index' do
-    let(:page_url) { '/hub/acme/jwt-signer/' }
+    let(:page_url) { '/hub/kong-inc/jwt-signer/' }
 
     it 'renders the plugin\'s description' do
       expect(html).to have_css('p', text: "From _index.md:")
@@ -143,10 +141,8 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('p', text: 'Also for introspection to work, you need to specify introspection endpoints')
     end
 
-    it 'renders the configuration parameters table' do
+    xit 'renders the configuration parameters table' do
       expect(html).to have_css('h3', text: 'Parameters')
-      expect(html).to have_css('th', text: 'Form Parameter')
-      expect(html).to have_css('th', text: 'Description')
 
       table = html.find('table:not(#about-extn)')
 

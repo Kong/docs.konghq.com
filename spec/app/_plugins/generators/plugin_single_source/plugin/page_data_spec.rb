@@ -1,5 +1,5 @@
 RSpec.describe PluginSingleSource::Plugin::PageData do
-  let(:plugin_name) { 'acme/jwt-signer' }
+  let(:plugin_name) { 'kong-inc/jwt-signer' }
   let(:plugin) do
     PluginSingleSource::Plugin::Base.make_for(dir: plugin_name, site:)
   end
@@ -39,16 +39,16 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'seo_noindex' => nil,
           'version' => version,
           'extn_slug' => 'jwt-signer',
-          'extn_publisher' => 'acme',
+          'extn_publisher' => 'kong-inc',
           'extn_release' => '2.8.x',
-          'extn_icon' => '/assets/images/icons/hub/acme_jwt-signer.png',
+          'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
           'layout' => 'extension'
         )
       end
 
       it 'includes the attributes defined in _configuration.yml' do
         expect(subject['configuration'])
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/acme/jwt-signer/_configuration.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_configuration.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'
@@ -79,16 +79,16 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'seo_noindex' => true,
           'version' => version,
           'extn_slug' => 'jwt-signer',
-          'extn_publisher' => 'acme',
+          'extn_publisher' => 'kong-inc',
           'extn_release' => '2.5.x',
-          'extn_icon' => '/assets/images/icons/hub/acme_jwt-signer.png',
+          'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
           'layout' => 'extension'
         )
       end
 
       it 'includes the attributes defined in _configuration.yml' do
         expect(subject['configuration'])
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/acme/jwt-signer/_2.2.x/_configuration.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_configuration.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'

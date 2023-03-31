@@ -1,4 +1,0 @@
-name: jwt
-config:
-  uri_param_names:
-    - paramName_2.2.x

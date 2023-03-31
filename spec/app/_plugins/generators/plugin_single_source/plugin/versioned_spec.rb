@@ -1,7 +1,7 @@
 RSpec.describe PluginSingleSource::Plugin::Versioned do
   let(:dir) { [author, name].join('/') }
   let(:name) { 'jq' }
-  let(:author) { 'acme' }
+  let(:author) { 'kong-inc' }
 
   subject { described_class.new(dir:, site:) }
 
@@ -31,7 +31,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
     context 'when `maximum_version` is not set' do
       let(:data) do
         data = SafeYAML.load(
-          File.read('spec/fixtures/app/_hub/acme/jwt-signer/versions.yml')
+          File.read('spec/fixtures/app/_hub/kong-inc/jwt-signer/versions.yml')
         )
         data['releases'].delete('maximum_version')
         data

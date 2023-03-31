@@ -1,5 +1,5 @@
 RSpec.describe SEO::IndexEntry::HubNotLatest do
-  let(:page) { find_page_by_url('/hub/acme/jq/2.8.x.html') }
+  let(:page) { find_page_by_url('/hub/kong-inc/jq/2.8.x.html') }
   let(:index) { {} }
 
   before do
@@ -13,10 +13,10 @@ RSpec.describe SEO::IndexEntry::HubNotLatest do
   end
 
   describe '#attributes' do
-    it { expect(subject.attributes).to eq({ 'url' => '/hub/acme/jq/', 'page' => page }) }
+    it { expect(subject.attributes).to eq({ 'url' => '/hub/kong-inc/jq/', 'page' => page }) }
   end
 
   describe '#key' do
-    it { expect(subject.key).to eq('/hub/acme/jq/') }
+    it { expect(subject.key).to eq('/hub/kong-inc/jq/') }
   end
 end

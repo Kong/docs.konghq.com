@@ -1,14 +1,14 @@
 RSpec.describe PluginSingleSource::Pages::Changelog do
   let(:file) { '_changelog.md' }
-  let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'acme/jwt-signer', site:) }
+  let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'kong-inc/jwt-signer', site:) }
   let(:release) { PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:, source:) }
-  let(:source_path) { File.expand_path("_hub/acme/jwt-signer/", site.source) }
+  let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/", site.source) }
 
   subject { described_class.new(release:, file:, source_path:) }
 
   describe '#content' do
     shared_examples_for 'returns the content of the `_changelog.md` file at the top level' do
-      let(:content) { markdown_content(File.expand_path('_hub/acme/jwt-signer/_changelog.md', site.source)) }
+      let(:content) { markdown_content(File.expand_path('_hub/kong-inc/jwt-signer/_changelog.md', site.source)) }
       it { expect(subject.content).to eq(content) }
     end
 
@@ -40,8 +40,8 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => nil,
-          'source_file' => '_hub/acme/jwt-signer/_changelog.md',
-          'permalink' => '/hub/acme/jwt-signer/changelog/',
+          'source_file' => '_hub/kong-inc/jwt-signer/_changelog.md',
+          'permalink' => '/hub/kong-inc/jwt-signer/changelog/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Changelog'
         })
@@ -55,9 +55,9 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => '/hub/acme/jwt-signer/changelog/',
-          'source_file' => '_hub/acme/jwt-signer/_changelog.md',
-          'permalink' => '/hub/acme/jwt-signer/2.5.x/changelog.html',
+          'canonical_url' => '/hub/kong-inc/jwt-signer/changelog/',
+          'source_file' => '_hub/kong-inc/jwt-signer/_changelog.md',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/changelog.html',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Changelog'
         })
@@ -67,7 +67,7 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
   describe '#source_file' do
     shared_examples_for 'returns the relative path to the top-level _index.md file' do
-      it { expect(subject.source_file).to eq('_hub/acme/jwt-signer/_changelog.md') }
+      it { expect(subject.source_file).to eq('_hub/kong-inc/jwt-signer/_changelog.md') }
     end
 
     context 'when there is a specific folder for the version' do

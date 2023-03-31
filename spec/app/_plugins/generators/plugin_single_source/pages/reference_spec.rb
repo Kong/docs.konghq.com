@@ -1,5 +1,5 @@
 RSpec.describe PluginSingleSource::Pages::Reference do
-  let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'acme/jwt-signer', site:) }
+  let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'kong-inc/jwt-signer', site:) }
   let(:release) { PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:, source:) }
 
   subject { described_class.new(release:, file:, source_path:) }
@@ -12,7 +12,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
-      let(:source_path) { File.expand_path("_hub/acme/jwt-signer/#{source}/", site.source) }
+      let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns the content of the corresponding reference/_index.md' do
         expect(subject.content).to eq(content)
@@ -23,7 +23,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:is_latest) { true }
       let(:source) { '_index' }
       let(:version) { '2.8.x' }
-      let(:source_path) { File.expand_path('_hub/acme/jwt-signer/', site.source) }
+      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
 
       it 'returns the content of the corresponding reference/_index.md' do
         expect(subject.content).to eq(content)
@@ -41,13 +41,13 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
-      let(:source_path) { File.expand_path("_hub/acme/jwt-signer/#{source}/", site.source) }
+      let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => '/hub/acme/jwt-signer/reference/',
-          'source_file' => '_hub/acme/jwt-signer/_2.2.x/reference/_index.md',
-          'permalink' => '/hub/acme/jwt-signer/2.5.x/reference.html',
+          'canonical_url' => '/hub/kong-inc/jwt-signer/reference/',
+          'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/reference/_index.md',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/reference.html',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer plugin reference'
         })
@@ -58,13 +58,13 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:is_latest) { true }
       let(:version) { '2.8.x' }
       let(:source) { '_index' }
-      let(:source_path) { File.expand_path('_hub/acme/jwt-signer/', site.source) }
+      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => nil,
-          'source_file' => '_hub/acme/jwt-signer/reference/_index.md',
-          'permalink' => '/hub/acme/jwt-signer/reference/',
+          'source_file' => '_hub/kong-inc/jwt-signer/reference/_index.md',
+          'permalink' => '/hub/kong-inc/jwt-signer/reference/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer plugin reference'
         })
@@ -78,10 +78,10 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
       let(:file) { 'reference/_index.md' }
-      let(:source_path) { File.expand_path("_hub/acme/jwt-signer/#{source}/", site.source) }
+      let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns the relative path to the file inside the corresponding folder' do
-        expect(subject.source_file).to eq('_hub/acme/jwt-signer/_2.2.x/reference/_index.md')
+        expect(subject.source_file).to eq('_hub/kong-inc/jwt-signer/_2.2.x/reference/_index.md')
       end
     end
 
@@ -90,10 +90,10 @@ RSpec.describe PluginSingleSource::Pages::Reference do
       let(:source) { '_index' }
       let(:version) { '2.8.x' }
       let(:file) { 'reference/_index.md' }
-      let(:source_path) { File.expand_path('_hub/acme/jwt-signer/', site.source) }
+      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
 
       it 'returns the relative path to the file inside the corresponding folder' do
-        expect(subject.source_file).to eq('_hub/acme/jwt-signer/reference/_index.md')
+        expect(subject.source_file).to eq('_hub/kong-inc/jwt-signer/reference/_index.md')
       end
     end
   end
