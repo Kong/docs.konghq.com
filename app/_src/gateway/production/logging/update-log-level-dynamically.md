@@ -55,7 +55,7 @@ To change the log level of every node in your cluster, issue a `PUT` request wit
 
 ```bash
 curl --request PUT \
-  --url http://localhost:59191/debug/cluster/log-level/notice
+  --url http://localhost:8001/debug/cluster/log-level/notice
 ```
 
 If you have the appropriate permissions and the request is successful, you receive a `200` response code and the following response body:
@@ -76,7 +76,7 @@ To change the log level of the control plane nodes in your cluster, issue a `PUT
 
 ```bash
 curl --request PUT \
-  --url http://localhost:59191/debug/cluster/control-planes-nodes/log-level/notice
+  --url http://localhost:8001/debug/cluster/control-planes-nodes/log-level/notice
 ```
 
 If you have the appropriate permissions and the request is successful, you receive a `200` response code and the following response body:
