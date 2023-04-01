@@ -12,7 +12,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## March 2023
 
 **OIDC Configuration**
-: Enterprise orgs using OIDC login can now specify additional scopes to be requested during the authorization grant flow. This allows organizations to request custom claims from their IdP. The custom claims can then be used to override the default mapping for the `name`, `email` and `groups` attributes which are used during the login flow. For example, the `upn` scope may be required to retrieve the `userPrincipalName` claim from Azure which can then be  mapped to `email` in Konnect.
+: Enterprise orgs using OIDC login can now specify additional scopes to be requested during the authorization grant flow. This allows organizations to request custom claims from their IdP. The custom claims can then be used to override the default mapping for the `name`, `email` and `groups` attributes which are used during the login flow. For example, the `upn` scope may be required to retrieve the `userPrincipalName` claim from Azure which can then be  mapped to `email` attribute in Konnect.
 
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).
