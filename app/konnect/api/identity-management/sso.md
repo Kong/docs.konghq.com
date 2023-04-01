@@ -6,7 +6,7 @@ content-type: how-to
 ## Overview
 
 As an alternative to Konnect's native authentication, you can set up single sign-on (SSO) access to Konnect using
-any identity provider (IdP) that uses [OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect). 
+any identity provider (IdP) that uses [OpenID Connect](https://openid.net/connect/). 
 This authentication method allows your users to log in to Konnect using their existing SSO credentials, without needing
 a separate set of credentials unique to Konnect.
 
@@ -40,6 +40,23 @@ $ https --auth "${KONNECT_PAT}" --auth-type bearer PATCH \
   }
 }
 ```
+
+
+## Enable OIDC
+
+Once the SSO configuration has been set, you can enable the OIDC auth method with the authentication settings endpoint:
+
+```shell
+$ https --auth "${KONNECT_PAT}" --auth-type bearer PATCH \
+  'global.api.konghq.com/v2/authentication-settings' \
+  basic_auth_enabled=true
+  
+{
+  "oidc_auth_enabled": true,
+  "basic_auth_enabled": true
+}
+```
+Once OIDC has been enabled. You can verify the configuration is valid by signing on at https://cloud.konghq.com/login/{login_path}.
 
 
 ### Scopes
