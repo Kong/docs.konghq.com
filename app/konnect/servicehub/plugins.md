@@ -10,26 +10,22 @@ find a full list of all Kong plugins on the [Plugin Hub](/hub/).
 
 ### Plugin configuration
 
-Manage {{site.konnect_short_name}} plugins through the Service Hub or
-the Runtime Manager.
+Manage {{site.konnect_short_name}} plugins through the [Service Hub](https://cloud.konghq.com/us/servicehub) or
+the [Runtime Manager](https://cloud.konghq.com/us/runtime-manager).
 
 You can scope a plugin to an object, or apply it globally.
 
 * A **scoped** plugin applies configuration only to a specific service, route,
-or consumer. You can configure plugins on
-[services](/konnect/servicehub/enable-service-plugin) and
-[routes](/konnect/servicehub/enable-route-plugin) through Service Hub, and on
-[consumers](/konnect/runtime-manager/gateway-config)
-through the Runtime Manager.
+or consumerl. Set up scoped plugins through the Service Hub or the Runtime Manager.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
-routes, and consumers in a runtime group, using the
-[Runtime Manager](/konnect/runtime-manager/gateway-config).
+routes, and consumers in a runtime group &ndash; use the
+Runtime Manager.
 
 ### Application registration
 
 Application registration is built into the Service Hub.
-[Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg)
+[Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg/)
 also enables two plugins in read-only mode: ACL, and one of Key Auth or OpenID
 Connect. These plugins appear in the service's plugin list, and you can view their
 configurations, but you can't edit or delete them directly.
