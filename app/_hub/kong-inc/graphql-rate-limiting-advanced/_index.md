@@ -8,7 +8,7 @@ description: |
   [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 type: plugin
 enterprise: true
-cloud: false
+cloud: true
 categories:
   - traffic-control
 kong_version_compatibility:
@@ -18,7 +18,7 @@ params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
-  konnect_examples: false
+  konnect_examples: true
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
@@ -123,8 +123,8 @@ params:
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config strategy is not
-        supported.
+        In DB-less, hybrid mode, and Konnect, the `cluster` config strategy
+        is not supported.
 
         {:.important}
         > There is no local storage strategy. However, you can achieve local

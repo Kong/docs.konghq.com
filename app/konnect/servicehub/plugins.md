@@ -44,8 +44,6 @@ The following plugins are not available with {{site.konnect_saas}}:
 * OAuth2 Authentication
 * Apache OpenWhisk
 * Vault Auth
-* DeGraphQL
-* GraphQL Rate Limiting Advanced
 * Key Authentication Encrypted
 
 See the [plugin compatibility chart](/hub/plugins/compatibility/)

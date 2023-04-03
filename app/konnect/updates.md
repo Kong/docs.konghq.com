@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## April 2023
+
+**GraphQL plugins**
+: {{site.konnect_short_name}} now supports the [DeGraphQL](/hub/kong-inc/degraphql/) and [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) plugins.
+
 ## March 2023
 
 **Identity API**

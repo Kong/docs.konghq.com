@@ -270,7 +270,7 @@
       free: No
       plus: No
       enterprise: Yes
-      konnect: No
+      konnect: Yes
       network_config_opts: Self-managed traditional, DB-less, and hybrid
       notes: |
         In DB-less and hybrid modes, the <code>cluster</code> config strategy
@@ -538,7 +538,7 @@
       free: No
       plus: No
       enterprise: Yes
-      konnect: No
+      konnect: Yes
       network_config_opts: Self-managed traditional, DB-less, and hybrid
       notes: --
       url: /hub/kong-inc/degraphql
