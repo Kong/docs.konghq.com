@@ -16,7 +16,7 @@ the [Runtime Manager](https://cloud.konghq.com/us/runtime-manager).
 You can scope a plugin to an object, or apply it globally.
 
 * A **scoped** plugin applies configuration only to a specific service, route,
-or consumerl. Set up scoped plugins through the Service Hub or the Runtime Manager.
+or consumer. Set up scoped plugins through the Service Hub or the Runtime Manager.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
 routes, and consumers in a runtime group &ndash; use the
