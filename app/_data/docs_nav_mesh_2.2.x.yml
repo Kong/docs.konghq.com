@@ -35,6 +35,9 @@ items:
   - title: Kong Mesh in Production
     icon: /assets/images/icons/documentation/icn-deployment-color.svg 
     items:
+      - text: Overview
+        url: /production/
+        src: /.repos/kuma/app/_src/production/
       - text: Deployment topologies
         items:
           - text: Overview
