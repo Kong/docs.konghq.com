@@ -12,7 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## April 2023
 
 **GraphQL plugins**
-: {{site.konnect_short_name}} now supports the [DeGraphQL](/hub/kong-inc/degraphql/) and [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) plugins.
+: {{site.konnect_short_name}} now supports the the following GraphQL plugins:
+* [DeGraphQL](/hub/kong-inc/degraphql/): Transform a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/): Rate limit GraphQL requests.
 
 ## March 2023
 
