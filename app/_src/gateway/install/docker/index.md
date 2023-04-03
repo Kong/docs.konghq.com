@@ -33,8 +33,10 @@ configuration files to configure Kong.
 Store Kong configuration in-memory on the node. In this mode, the Admin API is
 read only, and you have to manage Kong using declarative configuration.
 
-If this is your first time trying out {{site.base_gateway}}, we recommend installing it
-with a database.
+
+    {:.note}
+    > **Note:**
+     If you want to run Kong Gateway without managing the control plane or a database, we reccommend starting for free with Kong Konnect [get started](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=docs-gateway&utm_content=docker-install). If you want to get started with a self-managed installation of {{site.base_gateway}}, we recommend installing it with a database.
 
 ## Install {{site.base_gateway}} with a database
 
