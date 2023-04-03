@@ -13,9 +13,14 @@ subtitle: API gateway built for hybrid and multi-cloud, optimized for microservi
     <div class="install-text">Features</div>
   </a>
 
+  <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/icn-cloud-blue.svg" alt="">
+    <div class="install-text">Quick Start (Cloud)</div>
+  </a>
+
   <a href="/gateway/{{page.kong_version}}/get-started/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Quick Start</div>
+    <div class="install-text">Quick Start (Docker)</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install/" class="docs-grid-install-block no-description">
