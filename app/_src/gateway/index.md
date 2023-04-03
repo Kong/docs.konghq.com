@@ -108,7 +108,7 @@ You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
 This package is also available as part of
-[{{site.konnect_product_name}}](/konnect/).
+[{{site.konnect_product_name}}](/konnect/) where Kong manages the control plane as a SaaS service, which reduces operational overhead and streamlines the upgrade cycle. {{site.konnect_product_name}} is available in free and paid plans. You can get started [here](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=docs-gateway&utm_content=gateway-mode-overview)  
 
 ![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
