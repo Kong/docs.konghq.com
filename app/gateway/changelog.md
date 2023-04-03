@@ -5,6 +5,16 @@ no_version: true
 
 <!-- vale off -->
 
+## 3.2.2.1
+**Release Date** 2023/04/03
+
+### Fixes
+* Fixed the Dynatrace implementation. Due to a build system issue, Kong Gateway 3.2.x packages prior to 3.2.2.1 didn't contain the debug symbols that Dynatrace requires.
+
+### Deprecations
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+
 ## 3.2.2.0
 **Release Date** 2023/03/22
 
