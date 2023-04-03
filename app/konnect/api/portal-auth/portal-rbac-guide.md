@@ -5,7 +5,7 @@ content-type: tutorial
 
 ## Overview
 
-A common scenario for a Developer Portal is to restrict developers' ability to view or request access to specific services based on their permisisons.
+A common scenario for a Dev Portal is to restrict developers' ability to view or request access to specific services based on their permissions.
 
 {{site.konnect_short_name}} Portal enables administrators with the ability to define Role-Based Access Control (RBAC) for teams of developers through the Konnect API.
 
