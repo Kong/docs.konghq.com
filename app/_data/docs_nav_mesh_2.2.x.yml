@@ -260,9 +260,6 @@ items:
       - text: Circuit Breaker
         url: /policies/circuit-breaker/
         src: /.repos/kuma/app/_src/policies/circuit-breaker/
-      - text: Proxy Template
-        url: /policies/proxy-template/
-        src: /.repos/kuma/app/_src/policies/proxy-template/
       - text: External Service
         url: /policies/external-services/
         src: /.repos/kuma/app/_src/policies/external-services/
@@ -356,12 +353,18 @@ items:
       - text: HTTP API
         url: /reference/http-api/
         src: /.repos/kuma/app/_src/reference/http-api/
-      - text: Annotations and labels in Kubernetes mode
+      - text: Kubernetes annotations and labels
         url: /reference/kubernetes-annotations/
         src: /.repos/kuma/app/_src/reference/kubernetes-annotations/
       - text: Kong Mesh data collection
         url: /reference/data-collection/
         src: /.repos/kuma/app/_src/reference/data-collection/
+      - text: Kuma-cp configuration reference
+        url: /generated/kuma-cp
+        src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
+      - text: Envoy proxy template
+        url: /reference/proxy-template/
+        src: /.repos/kuma/app/_src/reference/proxy-template/
       - text: Resources
         items:
           - text: Mesh
@@ -432,9 +435,6 @@ items:
           - text: kumactl
             url: /generated/cmd/kumactl/kumactl/
             src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl/
-      - text: Kuma-cp configuration reference
-        url: /generated/kuma-cp
-        src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
   - title: Community
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

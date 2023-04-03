@@ -242,7 +242,7 @@ items:
         src: /.repos/kuma/app/_src/policies/circuit-breaker/
       - text: Proxy Template
         url: /policies/proxy-template/
-        src: /.repos/kuma/app/_src/policies/proxy-template/
+        src: /.repos/kuma/app/_src/reference/proxy-template/
       - text: External Service
         url: /policies/external-services/
         src: /.repos/kuma/app/_src/policies/external-services/
