@@ -182,6 +182,14 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
     {% capture full_content %}
     {% if page.type == "plugin" or page.type == "integration" %}
+
+      {% if page.plus and extn_publisher == "kong-inc" %}
+        <blockquote class="note" role="alert">
+          Did you know that you can try this plugin without talking to anyone with a free
+          trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=docs-plugins&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+        </blockquote>
+      {% endif %}
+
       {% unless extn_publisher == "kong-inc" %}
         <div class="alert alert-info blue" role="alert">
           Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by a third-party contributor.
