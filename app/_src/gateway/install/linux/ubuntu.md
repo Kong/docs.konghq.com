@@ -7,12 +7,34 @@ The {{site.base_gateway}} software is governed by the
 Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
+{:.note}
+> This page will install {{ site.base_gateway }} in traditional mode, where it acts as both the Control Plane and Data Plane. Running in this mode may have a small performance impact.
+> &nbsp;
+> 
+> &nbsp;
+> 
+> We recommend using [Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your Control Plane to allow your Data Plane to run at maximum performance and decrease your deployment complexity
+
 ## Prerequisites
 
 * A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
-## Download and install
+## Installation
+
+The quickest way to get started with {{ site.base_gateway }} is using our install script:
+
+```bash
+bash <(curl -sS https://install-script--getkong.netlify.app/install)
+```
+
+This script will detect your operating system and automatically install the correct package. It'll also install a Postgres database and bootstrap {{ site.base_gateway }} for you.
+
+If you'd prefer to install just the package, please see the [Package Install](#package-install) section.
+
+## Advanced Installation
+
+### Package Install
 
 You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
@@ -21,7 +43,6 @@ You can install {{site.base_gateway}} by downloading an installation package or 
 > If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below.
 > <br /><br />
 > To check your release name run `lsb_release -sc`.
-
 
 {% navtabs %}
 {% navtab Package %}
@@ -65,23 +86,6 @@ sudo dpkg -i kong-{{page.versions.ce}}.amd64.deb
 {% endcapture %}
 
 {{ install_package | indent | replace: " </code>", "</code>" }}
-
-3. (Optional) Prevent accidental upgrades by marking the package as `hold`:
-{% capture optional %}
-{% navtabs_ee %}
-{% navtab Kong Gateway %}
-```bash
-sudo apt-mark hold kong-enterprise-edition
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-sudo apt-mark hold kong
-```
-{% endnavtab %}
-{% endnavtabs_ee %}
-{% endcapture %}
-{{ optional | indent | replace: " </code>", "</code>" }}
 
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
@@ -129,9 +133,22 @@ apt install -y kong={{page.versions.ce}}
 
 {{ install_from_repo | indent | replace: " </code>", "</code>" }}
 
+4. (Optional) Prevent accidental upgrades by marking the package as `hold`:
+{% capture optional %}
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+```bash
+sudo apt-mark hold kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo apt-mark hold kong
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+{{ optional | indent | replace: " </code>", "</code>" }}
+
 {% endnavtab %}
 {% endnavtabs %}
-
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
-
-
