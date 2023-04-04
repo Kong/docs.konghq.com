@@ -6,7 +6,7 @@ subtitle: API gateway built for hybrid and multi-cloud, optimized for microservi
 
 ## Quick Links
 
-<div class="docs-grid-install">
+<div class="docs-grid-install max-3">
 
   <a href="#features" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
