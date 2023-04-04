@@ -8,7 +8,7 @@ beta: true
 You can use the {{site.konnect_short_name}} Organization Settings API to configure replay jobs for [audit logging](/konnect/org-management/audit-logging/). 
 
 Replay jobs are useful when you have missed audit log entries due to an error or a misconfigured audit
-log webhook. You may create one replay job at a time per region, and request data from up to one week ago.
+log webhook. You may have one replay job at a time per region, and request data from up to one week ago.
 A replay job in a region will resend data for the requested timeframe to the webhook configured for that region.
 
 ## Prerequisites
@@ -16,9 +16,9 @@ A replay job in a region will resend data for the requested timeframe to the web
 Before you can request a replay job, your [audit log webhook](/konnect/org-management/audit-logging/webhook/) 
 must be enabled and ready to receive data. 
 
-## Create or update a replay job
+## Configure a replay job
 
-Create or update the replay job for a region by sending a `PUT` request to `/audit-log-replay-job` in the region where you want to retrieve data. The example below is for the `us` region.
+Configure the replay job for a region by sending a `PUT` request to `/audit-log-replay-job` in the region where you want to retrieve data. The example below is for the `us` region.
 
 ```sh
 curl -i -X PUT https://us.api.konghq.com/v2/audit-log-replay-job \
@@ -38,7 +38,7 @@ If the request is successful, you will receive a `202` response code and a respo
 {
     "start_at":"2023-03-27T20:00:00Z",
     "end_at":"2023-03-27T20:00:00Z",
-    "created_at":"2023-03-31T11:34:18Z",
+    "updated_at":"2023-03-31T11:34:18Z",
     "status":"accepted"
 }
 ```
@@ -52,13 +52,13 @@ curl https://us.api.konghq.com/v2/audit-log-replay-job \
     --header "Authorization: Bearer TOKEN"
 ```
 
-You will receive a `200` response code and the following data:
+You will receive a `200` response code and the job details:
 
 ```json
 {
     "start_at":"2023-03-27T20:00:00Z",
     "end_at":"2023-03-27T20:00:00Z",
-    "created_at":"2023-03-31T11:34:18Z",
+    "updated_at":"2023-03-31T11:34:18Z",
     "status":"accepted"
 }
 ```
@@ -67,6 +67,7 @@ You will receive a `200` response code and the following data:
 
 A replay job can be in one of the following statuses:
 
+* `unconfigured`: Initial state. The job has not been set up.
 * `accepted`: The job has been accepted for scheduling.
 * `pending`: The job has been scheduled.
 * `running`: The job is in progress.
