@@ -38,7 +38,7 @@ To apply a policy with MeshOPA, you must do the following:
 - Specify the group of data plane proxies to apply the policy to with the `targetRef` property.
 - Provide a policy with the `appendPolicies` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 - Optionally provide custom configuration for the policy agent.
-{% if_version lt:2.2.x %}
+{% if_version lte:2.1.x %}
   {:.note}
   > **Note:** You cannot currently apply multiple OPA policies. This limitation will be addressed in the future.
 {% endif_version %}
@@ -92,7 +92,7 @@ networking:
 
 For more information, see [the {{site.mesh_product_name}} documentation about protocol support][protocols].
 
-{% if_version lt:2.2.x %}
+{% if_version lte:2.1.x %}
 ### Inline
 
 {% navtabs %}
@@ -326,7 +326,7 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
 
 1.  Pass the Secret to `MeshOPA`:
 
-{% if_version lt:2.2.x %}
+{% if_version lte:2.1.x %}
     ```yaml
     apiVersion: kuma.io/v1alpha1
     kind: MeshOPA
@@ -376,7 +376,7 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
 
 1.  Pass the Secret to `MeshOPA`:
 
-{% if_version lt:2.2.x %}
+{% if_version lte:2.1.x %}
     ```yaml
     type: MeshOPA
     mesh: default
@@ -420,7 +420,7 @@ The following environment variables are available:
 | KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
 | KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
-| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | {% if_version lt:2.2.x %}`[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]`{% endif_version %}{% if_version gte:2.2.x %}nil{% endif_version %} |
+| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | {% if_version lte:2.1.x %}`[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]`{% endif_version %}{% if_version gte:2.2.x %}nil{% endif_version %} |
 
 {% navtabs %}
 {% navtab kumactl %}
@@ -770,7 +770,7 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
 
 1.  Apply a MeshOPA policy that requires a valid JWT token:
 
-{% if_version lt:2.2.x %}
+{% if_version lte:2.1.x %}
     ```sh
     echo "
     apiVersion: kuma.io/v1alpha1
