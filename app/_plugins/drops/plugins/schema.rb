@@ -15,6 +15,8 @@ module Jekyll
         end
 
         def anchor
+          return @name if @parent.empty?
+
           "#{@parent}-#{@name}"
         end
 
@@ -78,9 +80,16 @@ module Jekyll
         end
 
         def fields
-          @fields ||= @schema.fetch('fields', []).concat(@schema.fetch('shorthand_fields', [])).map do |f|
+          @fields ||= all_fields.map do |f|
             SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
           end
+        end
+
+        private
+
+        def all_fields
+          @all_fields ||= @schema.fetch('fields', [])
+                                 .concat(@schema.fetch('shorthand_fields', []))
         end
       end
 
@@ -90,12 +99,9 @@ module Jekyll
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
                        :enable_on_service?
 
-        def initialize(schema:, metadata:, version:) # rubocop:disable Lint/MissingSuper
+        def initialize(schema:, metadata:) # rubocop:disable Lint/MissingSuper
           @schema = schema
           @metadata = metadata
-          @version = version
-
-          fields
         end
 
         def global?

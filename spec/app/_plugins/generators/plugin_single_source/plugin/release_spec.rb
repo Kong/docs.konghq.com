@@ -100,4 +100,22 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       end
     end
   end
+
+  describe '#schema' do
+    context 'kong-inc plugin' do
+      context 'app-dynamics' do
+        let(:plugin_name) { 'kong-inc/app-dynamics' }
+        it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::NullSchema) }
+      end
+
+      context 'otherwise' do
+        it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::Schema) }
+      end
+    end
+
+    context 'third-party plugin' do
+      let(:plugin_name) { 'okta/okta' }
+      it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::NullSchema) }
+    end
+  end
 end

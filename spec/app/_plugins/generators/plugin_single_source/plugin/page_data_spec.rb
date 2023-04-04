@@ -13,6 +13,10 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
     it { expect(subject['hub_examples']).to be_an_instance_of(Jekyll::Drops::Plugins::HubExamples) }
   end
 
+  shared_examples_for 'includes the schema' do
+    it { expect(subject['schema']).to be_an_instance_of(Jekyll::Drops::Plugins::Schema) }
+  end
+
   describe '#build_data' do
     context 'when it is the latest version of the plugin' do
       let(:is_latest) { true }
@@ -42,7 +46,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'extn_publisher' => 'kong-inc',
           'extn_release' => '2.8.x',
           'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
-          'layout' => 'extension'
+          'layout' => 'extension',
+          'book' => 'plugins/kong-inc/jwt-signer/2.8.x'
         )
       end
 
@@ -52,6 +57,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
       end
 
       it_behaves_like 'includes the hub_examples'
+
+      it_behaves_like 'includes the schema'
     end
 
     context 'when it is not the latest version of the plugin' do
@@ -82,7 +89,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'extn_publisher' => 'kong-inc',
           'extn_release' => '2.5.x',
           'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
-          'layout' => 'extension'
+          'layout' => 'extension',
+          'book' => 'plugins/kong-inc/jwt-signer/2.5.x'
         )
       end
 
@@ -92,6 +100,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
       end
 
       it_behaves_like 'includes the hub_examples'
+
+      it_behaves_like 'includes the schema'
     end
 
     context 'when there are frontmatter overrides' do

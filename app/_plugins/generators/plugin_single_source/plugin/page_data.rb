@@ -71,7 +71,6 @@ module PluginSingleSource
       def schema
         Jekyll::Drops::Plugins::Schema.new(
           schema: @release.schema,
-          version: @release.version,
           metadata: @release.configuration_parameters_table
         )
       end

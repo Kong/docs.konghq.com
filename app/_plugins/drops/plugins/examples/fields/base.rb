@@ -9,13 +9,15 @@ module Jekyll
             def self.make_for(key:, values:, options: {})
               case values
               when Array
-                values.map { |v| make_for(key:, values: v, options:) }
+                values.map { |v| make_for(key:, values: v, options:) }.flatten
               when Hash
-                values.map { |k, v| make_for(key: "#{key}.#{k}", values: v, options:) }
+                values.map { |k, v| make_for(key: "#{key}.#{k}", values: v, options:) }.flatten
               else
                 new(key:, values:, options:)
               end
             end
+
+            attr_reader :key, :values
 
             def initialize(key:, values:, options: {}) # rubocop:disable Lint/MissingSuper
               @key = key

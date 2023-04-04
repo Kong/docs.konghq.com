@@ -45,17 +45,15 @@ module Jekyll
         end
 
         def render?
-          !@schema.example.nil?
+          !example.nil?
         end
 
         def navtabs?
-          @schema.enable_on_consumer? ||
-            @schema.enable_on_service? ||
-            @schema.enable_on_route?
+          enable_on_consumer? || enable_on_service? || enable_on_route?
         end
 
         def consumer
-          return unless @schema.enable_on_consumer?
+          return unless enable_on_consumer?
 
           @consumer ||= Example.new(type: 'consumer', example:)
         end
@@ -65,13 +63,13 @@ module Jekyll
         end
 
         def route
-          return unless @schema.enable_on_route?
+          return unless enable_on_route?
 
           @route ||= Example.new(type: 'route', example:)
         end
 
         def service
-          return unless @schema.enable_on_service?
+          return unless enable_on_service?
 
           @service ||= Example.new(type: 'service', example:)
         end
