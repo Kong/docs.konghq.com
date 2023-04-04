@@ -11,9 +11,11 @@ beta: true
 * **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
 * **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
 
-## Log format
+## Log formats
 
-{{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm). Webhook calls include a batch of events, where each event is formatted in CEF and separated by a newline. The `Content-Type` is `application/text`.
+{{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or JSON. You may specify which format to use in the [audit log webhook](/konnect/org-management/audit-logging/webhook/) endpoint.
+
+Webhook calls include a batch of events. Each event is formatted in either CEF or JSON and separated by a newline. The `Content-Type` is `application/text`.
 
 To minimize payload size, the message body is compressed. The `Content-Encoding` is `application/gzip`.
 
