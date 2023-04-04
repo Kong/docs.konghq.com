@@ -420,7 +420,12 @@ The following environment variables are available:
 | KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
 | KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
-| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | {% if_version lte:2.1.x %}`[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]`{% endif_version %}{% if_version gte:2.2.x %}nil{% endif_version %} |
+{% if_version lte:2.1.x %}
+| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | `[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]` |
+{% endif_version %}
+{% if_version gte:2.2.x %}
+| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | nil |
+{% endif_version %}
 
 {% navtabs %}
 {% navtab kumactl %}
