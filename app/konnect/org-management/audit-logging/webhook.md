@@ -118,13 +118,13 @@ attribute | definition
 
 A combination of `webhook_enabled` and `webhook_status` give a full picture of webhook status.
 
-webhook_enabled | webhook_status | definition
+`webhook_enabled` | `webhook_status` | definition
 --------------- | -------------- | ----------
-true            | active         | {{site.konnect_short_name}} is ready to ship data to the webhook. Either no attempts have been made yet (last_attempt_at is null), or the last attempt was successful.
-true            | inactive       | Last attempt to send data failed, but customer wants data to resume.
-false           | active         | Webhook config is saved. {{site.konnect_short_name}} is not shipping data to it per webhook configuration.
-false           | inactive       |Last attempt to send data failed, and customer has turned off the webhook.
-false           | unconfigured   | The webhook for this region has not been configured yet.
+true            | `active`       | {{site.konnect_short_name}} is ready to ship data to the webhook. Either no attempts have been made yet (`last_attempt_at` is not set), or the last attempt was successful.
+true            | `inactive`     | Last attempt to send data failed, but customer wants data to resume.
+false           | `active`       | Webhook config is saved. {{site.konnect_short_name}} is not shipping data to it per webhook configuration.
+false           | `inactive`     |Last attempt to send data failed, and customer has turned off the webhook.
+false           | `unconfigured` | The webhook for this region has not been configured yet.
 
 
 ## See also
