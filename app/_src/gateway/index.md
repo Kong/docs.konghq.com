@@ -83,7 +83,7 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 ## Packages and modes
 
 There are two ways to deploy {{site.base_gateway}} - {{ site.konnect_saas }} cloud and on-premises. If you're trying
-out {{site.base_gateway}} for the first time we recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-index-packages).
+out {{site.base_gateway}} for the first time we recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
 ### {{ site.konnect_saas }} Cloud
 
@@ -216,7 +216,7 @@ own data planes.
 
 There are a few ways to test out the Gateway's Plus or Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://cloud.konghq.com/register).
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong
