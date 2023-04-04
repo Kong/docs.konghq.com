@@ -413,6 +413,7 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
 
 The following environment variables are available:
 
+{% if_version lte:2.1.x %}
 | Variable                   | Type      | What it configures     | Default value {:width=25%:}   |
 | -------------------------- | --------- | --------------------------------------| ------------------- |
 | KMESH_OPA_ADDR             | string    | Address OPA API server listens on     | `localhost:8181`    |
@@ -420,10 +421,16 @@ The following environment variables are available:
 | KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
 | KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
-{% if_version lte:2.1.x %}
 | KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | `[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]` |
 {% endif_version %}
 {% if_version gte:2.2.x %}
+| Variable                   | Type      | What it configures     | Default value {:width=25%:}   |
+| -------------------------- | --------- | --------------------------------------| ------------------- |
+| KMESH_OPA_ADDR             | string    | Address OPA API server listens on     | `localhost:8181`    |
+| KMESH_OPA_CONFIG_PATH      | string    | Path to file of initial config        | N/A                 |
+| KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
+| KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
+| KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
 | KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | nil |
 {% endif_version %}
 
