@@ -24,13 +24,41 @@ Kong is licensed under an
 
 The quickest way to get started with {{ site.base_gateway }} is using our install script:
 
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
 ```bash
-bash <(curl -sS https://install-script--getkong.netlify.app/install)
+bash <(curl -sS https://install-script--getkong.netlify.app/install) -v {{page.versions.ee}}
 ```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+bash <(curl -sS https://install-script--getkong.netlify.app/install) -p kong -v {{page.versions.ce}}
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
 
 This script will detect your operating system and automatically install the correct package. It'll also install a Postgres database and bootstrap {{ site.base_gateway }} for you.
 
 If you'd prefer to install just the package, please see the [Package Install](#package-install) section.
+
+### Verify install
+
+Once the script completes, run the following in the same terminal window:
+
+```bash
+curl -i http://localhost:8001
+```
+
+You should receive a `200` status code.
+
+### Next steps
+
+Once {{ site.base_gateway }} is running, you may want to:
+
+* [Add your Enterprise license (optional)](/gateway/{{ page.kong_version }}/licenses/deploy).
+* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+* [Enable Dev Portal](/gateway/{{ page.kong_version }}/kong-enterprise/dev-portal/enable/)
+* [Create services and routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes/).
 
 ## Advanced Installation
 
