@@ -9,21 +9,21 @@ RSpec.describe PluginSingleSource::Plugin::Release do
 
   subject { described_class.new(site:, version:, plugin:, is_latest:, source:) }
 
-  describe '#configuration_parameters_table' do
+  describe '#metadata' do
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
 
       it 'returns the content of the _configuration.yml inside the corresponding folder' do
-        expect(subject.configuration_parameters_table)
+        expect(subject.metadata)
           .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_configuration.yml', site.source))))
       end
     end
 
     context 'when using `_index.md`' do
       it 'returns the content of the _configuration.yml at the top level' do
-        expect(subject.configuration_parameters_table)
+        expect(subject.metadata)
           .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_configuration.yml', site.source))))
       end
     end

@@ -1,13 +1,13 @@
 <h2 id="configuration">Configuration Reference</h2>
 
-{% if page.configuration.dbless_compatible == "yes" or page.configuration.dbless_compatible == true %}
+{% if page.metadata.dbless_compatible == "yes" or page.metadata.dbless_compatible == true %}
   <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
-{% elsif page.configuration.dbless_compatible == "partially" %}
+{% elsif page.metadata.dbless_compatible == "partially" %}
   <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
-{% elsif page.configuration.dbless_compatible != nil %}
+{% elsif page.metadata.dbless_compatible != nil %}
   <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
 {% endif %}
-{% if page.configuration.dbless_compatible == "partially" or page.configuration.dbless_compatible == "yes" %}
+{% if page.metadata.dbless_compatible == "partially" or page.metadata.dbless_compatible == "yes" %}
 <p>In DB-less mode, you configure {{site.base_gateway}}
   <a href="/gateway/latest/reference/db-less-and-declarative-config">declaratively</a>.
   Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
@@ -20,13 +20,13 @@
 </ul>
 {% endif %}
 
-{% if page.configuration.dbless_explanation %}
-  {{ page.configuration.dbless_explanation | markdownify }}
+{% if page.metadata.dbless_explanation %}
+  {{ page.metadata.dbless_explanation | markdownify }}
 {% endif %}
 
 {% if page.hub_examples.render? %}
   <h3 id="example-config">Example plugin configuration</h3>
-  {% include_cached hub-examples.html version=page.version configuration=page.configuration publisher=page.publisher name=page.name %}
+  {% include_cached hub-examples.html version=page.version configuration=page.metadata publisher=page.publisher name=page.name %}
 {% endif %}
 
 <h3 id="parameters">Parameters</h3>

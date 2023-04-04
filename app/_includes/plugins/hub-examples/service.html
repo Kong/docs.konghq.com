@@ -16,7 +16,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
 
   {% endnavtab %}
 
-  {% unless page.configuration.k8s_examples == false %}
+  {% unless page.metadata.k8s_examples == false %}
     {% navtab Kubernetes %}
 
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
@@ -59,7 +59,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.yaml_examples == false %}
+  {% unless page.metadata.yaml_examples == false %}
     {% navtab Declarative (YAML) %}
 
 Add this section to your declarative configuration file:
@@ -71,7 +71,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.konnect_examples == false or page.publisher != "Kong Inc." %}
+  {% unless page.metadata.konnect_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Konnect Cloud %}
 
 You can configure this plugin through the [{{site.konnect_short_name}}](https://cloud.konghq.com) UI.
@@ -93,7 +93,7 @@ From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.co
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
+  {% unless page.metadata.manager_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Kong Manager %}
 
 You can configure this plugin through the Kong Manager UI.

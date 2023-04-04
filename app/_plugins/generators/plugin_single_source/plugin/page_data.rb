@@ -15,7 +15,7 @@ module PluginSingleSource
       def build_data
         @data
           .merge!(@release.frontmatter)
-          .merge!(configuration)
+          .merge!(metadata)
           .merge!(page_attributes)
           .merge!(frontmatter_overrides)
 
@@ -58,8 +58,8 @@ module PluginSingleSource
         @release.ext_data.dig('frontmatter', @release.version) || {}
       end
 
-      def configuration
-        { 'configuration' => @release.configuration_parameters_table }
+      def metadata
+        { 'metadata' => @release.metadata }
       end
 
       def hub_examples
@@ -71,7 +71,7 @@ module PluginSingleSource
       def schema
         Jekyll::Drops::Plugins::Schema.new(
           schema: @release.schema,
-          metadata: @release.configuration_parameters_table
+          metadata: @release.metadata
         )
       end
     end

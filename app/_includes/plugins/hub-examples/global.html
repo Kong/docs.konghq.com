@@ -1,7 +1,7 @@
 {%- assign hub_example = include.hub_example -%}
 {%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
-{% if page.configuration.global == false %}
+{% if page.metadata.global == false %}
   {:.important}
   > This plugin cannot be enabled globally. Please select another tab.
 {% else %}
@@ -11,7 +11,7 @@ considered _global_, and will be run on every request. Read the
 sections for more information.
 
 The following examples provide some typical configurations for enabling
-the <code>{{page.configuration.name}}</code> plugin globally.
+the <code>{{page.metadata.name}}</code> plugin globally.
   {% navtabs %}
     {% navtab Admin API %}
 
@@ -21,7 +21,7 @@ Make the following request:
 
     {% endnavtab %}
 
-    {% unless page.configuration.k8s_examples == false %}
+    {% unless page.metadata.k8s_examples == false %}
       {% navtab Kubernetes %}
 
 Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
@@ -45,7 +45,7 @@ plugin: {{ hub_example.plugin_name }}
       {% endnavtab %}
     {% endunless %}
 
-    {% unless page.configuration.yaml_examples == false %}
+    {% unless page.metadata.yaml_examples == false %}
       {% navtab Declarative (YAML) %}
 
 Add a <code>plugins</code> entry in the declarative
@@ -56,7 +56,7 @@ configuration file:
       {% endnavtab %}
     {% endunless %}
 
-    {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
+    {% unless page.metadata.manager_examples == false or page.publisher != "Kong Inc." %}
       {% navtab Kong Manager %}
 
 

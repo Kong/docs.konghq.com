@@ -14,15 +14,15 @@ Make the following request:
 
 Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
-{% if page.configuration.service_id and page.configuration.route_id %}
+{% if page.metadata.service_id and page.metadata.route_id %}
 You can combine `consumer.id`, `service.id`, or `route.id`
-{% elsif page.configuration.service_id %} and `service.id`
-{% elsif page.configuration.route_id %} and `route.id`
+{% elsif page.metadata.service_id %} and `service.id`
+{% elsif page.metadata.route_id %} and `route.id`
 {% endif %} in the same request, to further narrow the scope of the plugin.
 
   {% endnavtab %}
 
-  {% unless page.configuration.k8s_examples == false %}
+  {% unless page.metadata.k8s_examples == false %}
     {% navtab Kubernetes %}
 
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
@@ -55,7 +55,7 @@ Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.yaml_examples == false %}
+  {% unless page.metadata.yaml_examples == false %}
     {% navtab Declarative (YAML) %}
 
 Add this section to your declarative configuration file:
@@ -67,7 +67,7 @@ Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.configuration.manager_examples == false or page.publisher != "Kong Inc." %}
+  {% unless page.metadata.manager_examples == false or page.publisher != "Kong Inc." %}
     {% navtab Kong Manager %}
 
 You can configure this plugin through the Kong Manager UI.

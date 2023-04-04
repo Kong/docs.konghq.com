@@ -22,8 +22,8 @@ module PluginSingleSource
         validate_source!
       end
 
-      def configuration_parameters_table
-        @configuration_parameters_table ||= SafeYAML.load(
+      def metadata
+        @metadata ||= SafeYAML.load(
           Utils::SafeFileReader.read(
             file_name: '_configuration.yml',
             source_path: pages_source_path
