@@ -51,7 +51,7 @@
       url: /runtime-manager/
     - text: Runtime Instances
       items:
-        - text: Overview
+        - text: Installation Options
           url: /runtime-manager/runtime-instances/
         - text: Upgrade a Runtime Instance
           url: /runtime-manager/runtime-instances/upgrade/
