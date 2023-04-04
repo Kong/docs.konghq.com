@@ -707,7 +707,7 @@ spec:
             }
 ```
 
-`appendPolicies` is an appendable list thefeore in case of data plane proxy of `test-server_kuma-demo_svc_80` service, both policies will be applied.
+`appendPolicies` is an appendable list therefore in case of data plane proxy of `test-server_kuma-demo_svc_80` service, both policies will be applied.
 
 Kong Mesh will autogenerate an additional OPA decision policy.
 ```rego
