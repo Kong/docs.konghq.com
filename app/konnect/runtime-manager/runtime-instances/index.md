@@ -1,5 +1,5 @@
 ---
-title: About Runtime Instances
+title: Installation Options
 content_type: explanation
 disable_image_expand: true
 ---
@@ -8,9 +8,14 @@ A runtime instance is a single self-managed instance of {{site.base_gateway}} th
 
 {{site.konnect_short_name}} provides runtime instance installation scripts for various platforms. 
 These runtime instances are configured to run in your {{site.konnect_short_name}} environment.
-You can access these scripts from the {{site.konnect_short_name}} **Runtime Manager**. 
 
 ## Supported installation options
+
+You can set up a runtime instance by navigating to {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager/), choosing a runtime group, then clicking on **New Runtime Instance**.
+
+This brings you to a set of installation options. Choose one of the options, then follow the instructions in {{site.konnect_short_name}} to finish setting up.
+
+{{site.konnect_short_name}} supports the following installation options:
 
 {% include install.html config=site.data.tables.install_options_konnect header='no-header' %}
 
