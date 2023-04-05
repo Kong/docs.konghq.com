@@ -5,8 +5,6 @@ desc: Send request and response logs to Syslog
 description: |
   Log request and response data to Syslog.
 type: plugin
-categories:
-  - logging
 kong_version_compatibility:
   community_edition:
     compatible: true

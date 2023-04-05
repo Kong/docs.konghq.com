@@ -9,8 +9,6 @@ description: |
 enterprise: true
 plus: true
 type: plugin
-categories:
-  - security
 kong_version_compatibility:
   enterprise_edition:
     compatible: true

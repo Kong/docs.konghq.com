@@ -16,8 +16,6 @@ description: |
   signature is verified, or discard the request if not. Kong can also perform
   verifications on some of the registered claims of RFC 7519 (exp and nbf).
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: true

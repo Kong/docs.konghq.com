@@ -1,16 +1,11 @@
-name: degraphql
-service_id: true
+name: DeGraphQL
 konnect_examples: false
 dbless_compatible: 'yes'
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
-config:
-  - name: graphql_server_path
-    required: true
-    default: "/graphql"
-    datatype: string
-    description: The path to the GraphQL server.
-    minimum_version: "3.0.x"
+free: No
+plus: No
+enterprise: Yes
+konnect: No
+network_config_opts: Self-managed traditional, DB-less, and hybrid
+notes: --
+categories:
+  - transformations

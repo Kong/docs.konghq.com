@@ -14,8 +14,6 @@ description: |
   * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
 type: plugin
 enterprise: true
-categories:
-  - traffic-control
 kong_version_compatibility:
   community_edition:
     compatible: null

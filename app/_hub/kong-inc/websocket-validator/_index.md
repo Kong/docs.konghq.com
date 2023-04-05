@@ -2,9 +2,6 @@
 name: WebSocket Validator
 publisher: Kong Inc.
 
-categories:
-  - traffic-control
-
 type: plugin
 
 desc: Validate WebSocket messages before they are proxied

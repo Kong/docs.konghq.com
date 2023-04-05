@@ -1,42 +1,12 @@
-name: application-registration
+name: Application Registration
 global: false
-service_id: true
-consumer_id: false
-route_id: false
 konnect_examples: false
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
 dbless_compatible: 'no'
-config:
-  - name: auto_approve
-    required: true
-    default: '`false`'
-    value_in_examples: false
-    datatype: boolean
-    description: |
-      If enabled, all new Service Contracts requests are automatically
-      approved. See [Enable automatic registration approval](#enable-automatic-registration-approval). Otherwise, Dev Portal admins must manually approve requests.
-  - name: description
-    required: false
-    default: null
-    value_in_examples: <my_service_description>
-    datatype: string
-    description: |
-      Unique description displayed in information about a Service in the Developer Portal.
-  - name: display_name
-    required: true
-    default: null
-    value_in_examples: <my_service_display_name>
-    datatype: string
-    description: |
-      Unique display name used for a Service in the Developer Portal.
-  - name: show_issuer
-    required: true
-    default: '`false`'
-    value_in_examples: false
-    datatype: boolean
-    description: |
-      Displays the **Issuer URL** in the **Service Details** dialog.
+free: No
+plus: No
+enterprise: Yes
+konnect: No
+network_config_opts: Self-managed traditional, DB-less, and hybrid
+notes: Application registration <b>is</b> available in Konnect Cloud, but doesn't require this plugin. <br>Learn how to <a href="/konnect/dev-portal/applications/enable-app-reg/">Enable Application Registration</a> in Konnect Cloud.
+categories:
+  - authentication

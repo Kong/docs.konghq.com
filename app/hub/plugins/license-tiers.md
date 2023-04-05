@@ -21,10 +21,11 @@ access to a subset of plugins:
 
 If you're looking for plugin deployment topology compatibility, supported network protocols, and supported entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/).
 
-{% assign categories = site.data.tables.plugin_index %}
+{% assign categories = site.extensions.categories %}
+{% assign plugins = site.data.ssg_hub | where: "extn_publisher", "kong-inc" %}
 
 {% for category in categories %}
-<h3 id="{{ category.name | downcase | split: " " | join: "-" }}">
+<h3 id="{{ category.slug }}">
   {{ category.name }}
 </h3>
 
@@ -36,30 +37,31 @@ If you're looking for plugin deployment topology compatibility, supported networ
       <th style="text-align: center">Enterprise</th>
   </thead>
   <tbody>
-    {% for plugin in category.plugins %}
+    {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.metadata.categories contains category.slug" %}
+    {% for plugin in plugins_for_category %}
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
         </td>
         <td style="text-align: center">
-          {% if plugin.free == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.free == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.free == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.free == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.plus == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.plus == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.plus == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.plus == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.enterprise == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.enterprise == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.enterprise == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.enterprise == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
       </tr>

@@ -6,8 +6,6 @@ description: |
   This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
   Renewal is handled with a configurable threshold time.
 type: plugin
-categories:
-  - security
 kong_version_compatibility:
   community_edition:
     compatible: true

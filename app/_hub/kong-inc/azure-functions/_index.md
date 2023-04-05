@@ -8,8 +8,6 @@ description: |
   It can be used in combination with other request plugins to secure, manage,
   or extend the function.
 type: plugin
-categories:
-  - serverless
 kong_version_compatibility:
   community_edition:
     compatible: true

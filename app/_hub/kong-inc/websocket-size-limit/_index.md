@@ -2,9 +2,6 @@
 name: WebSocket Size Limit
 publisher: Kong Inc.
 
-categories:
-  - traffic-control
-
 type: plugin
 
 desc: Block incoming WebSocket messages greater than a specified size

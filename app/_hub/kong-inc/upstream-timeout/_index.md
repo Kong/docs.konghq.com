@@ -1,8 +1,6 @@
 ---
 name: Upstream Timeout
 publisher: Kong Inc.
-categories:
-  - traffic-control
 type: plugin
 
 desc: Set timeouts on routes and override service-level timeouts

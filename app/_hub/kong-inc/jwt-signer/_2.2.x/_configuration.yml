@@ -1,4 +1,4 @@
-name: jwt-signer
+name: Kong JWT Signer
 service_id: true
 route_id: true
 consumer_id: false

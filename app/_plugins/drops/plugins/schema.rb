@@ -97,7 +97,7 @@ module Jekyll
         extend Forwardable
 
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
-                       :enable_on_service?
+                       :enable_on_service?, :protocols
 
         def initialize(schema:, metadata:) # rubocop:disable Lint/MissingSuper
           @schema = schema

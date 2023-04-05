@@ -1,81 +1,10 @@
-name: ip-restriction
-service_id: true
-route_id: true
-consumer_id: true
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
+name: IP Restriction
 dbless_compatible: 'yes'
-config:
-  # deprecated parameters and previous versions
-  - name: whitelist
-    required: semi
-    default:
-    value_in_examples: 54.13.21.1, 143.1.0.0/24
-    description: |
-      Comma-separated list of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
-    maximum_version: "2.0.x"
-  - name: blacklist
-    required: semi
-    default:
-    description: |
-      Comma-separated list of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
-    maximum_version: "2.0.0"
-  - name: allow
-    required: semi
-    default: null
-    value_in_examples:
-      - 54.13.21.1
-      - 143.1.0.0/24
-    datatype: array of string elements
-    description: |
-      List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
-
-      Note: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
-    minimum_version: "2.1.x"
-    maximum_version: "2.8.x"
-  - name: deny
-    required: semi
-    default: null
-    datatype: array of string elements
-    description: |
-      List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
-
-      Note: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`.  
-    minimum_version: "2.1.x"
-    maximum_version: "2.8.x"
-
-  # current parameters
-  - name: allow
-    required: semi
-    default: null
-    value_in_examples:
-      - 54.13.21.1
-      - 143.1.0.0/24
-    datatype: array of string elements
-    description: |
-      List of IPs or CIDR ranges to allow. One of `config.allow` or `config.deny` must be specified.
-    minimum_version: "3.0.x"
-  - name: deny
-    required: semi
-    default: null
-    datatype: array of string elements
-    description: |
-      List of IPs or CIDR ranges to deny. One of `config.allow` or `config.deny` must be specified.
-    minimum_version: "3.0.x"
-  - name: status
-    required: false
-    default: 403
-    datatype: integer
-    description: |
-      The HTTP status of the requests that will be rejected by the plugin.
-    minimum_version: "2.7.x"
-  - name: message
-    required: false
-    default: Your IP address is not allowed
-    datatype: string
-    description: |
-      The message to send as a response body to rejected requests.
-    minimum_version: "2.7.x"
+free: Yes
+plus: Yes
+enterprise: Yes
+konnect: Yes
+network_config_opts: All
+notes: --
+categories:
+  - security

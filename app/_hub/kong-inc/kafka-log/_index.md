@@ -10,8 +10,6 @@ description: |
 type: plugin
 enterprise: true
 plus: true
-categories:
-  - logging
 kong_version_compatibility:
   community_edition:
     compatible: null

@@ -10,8 +10,6 @@ description: |
   [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
   draft with a slightly different signature scheme.
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: true

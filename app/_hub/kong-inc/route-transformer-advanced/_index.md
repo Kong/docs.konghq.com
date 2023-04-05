@@ -6,8 +6,6 @@ description: |
   This plugin transforms the routing on the fly in Kong, changing the upstream server, port, or path to hit. The substitutions can be configured via flexible templates.
 type: plugin
 enterprise: true
-categories:
-  - transformations
 kong_version_compatibility:
   community_edition:
     compatible: null

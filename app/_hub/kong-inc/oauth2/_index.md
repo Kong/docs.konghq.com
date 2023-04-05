@@ -15,8 +15,6 @@ description: |
 
 cloud: false
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: true

@@ -15,8 +15,6 @@ description: |
   layer, the **Client IP** address will be used; otherwise, the Consumer will be
   used if an authentication plugin has been configured.
 type: plugin
-categories:
-  - traffic-control
 kong_version_compatibility:
   community_edition:
     compatible: true

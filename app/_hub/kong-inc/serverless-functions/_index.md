@@ -20,8 +20,6 @@ description: |
     in your `kong.conf` file.
 
 type: plugin
-categories:
-  - serverless
 kong_version_compatibility:
   community_edition:
     compatible: true

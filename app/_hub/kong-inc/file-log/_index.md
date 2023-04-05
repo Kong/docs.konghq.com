@@ -10,8 +10,6 @@ description: |
   This plugin uses blocking I/O, which could affect performance when writing
   to physical files on slow (spinning) disks.
 type: plugin
-categories:
-  - logging
 kong_version_compatibility:
   community_edition:
     compatible: true

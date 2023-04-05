@@ -40,8 +40,6 @@ description: |
 enterprise: true
 cloud: false
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   enterprise_edition:
     compatible: true

@@ -32,7 +32,6 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'enterprise' => true,
           'plus' => true,
           'type' => 'plugin',
-          'categories' => ['authentication'],
           'kong_version_compatibility' => { 'community_edition' => { 'compatible' => nil }, 'enterprise_edition' => { 'compatible' => true } }
         )
       end
@@ -75,7 +74,6 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'enterprise' => true,
           'plus' => true,
           'type' => 'plugin',
-          'categories' => ['authentication'],
           'kong_version_compatibility' => { 'community_edition' => { 'compatible' => nil }, 'enterprise_edition' => { 'compatible' => true } }
         )
       end

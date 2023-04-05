@@ -13,8 +13,6 @@ description: |
 
 type: plugin
 cloud: false
-categories:
-  - serverless
 
 installation: |
 

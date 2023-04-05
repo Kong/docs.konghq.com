@@ -56,4 +56,17 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
       expect(subject.enable_on_service?).to eq(schema.enable_on_service?)
     end
   end
+
+  describe '#global?' do
+    context 'when the `global` is defined in the metadata' do
+      it { expect(subject.global?).to eq(false) }
+    end
+
+    context 'when it is not' do
+      let(:plugin_name) { 'acme' }
+      let(:metadata_file) { 'app/_hub/kong-inc/acme/_configuration.yml' }
+
+      it { expect(subject.global?).to eq(true) }
+    end
+  end
 end

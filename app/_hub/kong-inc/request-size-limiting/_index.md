@@ -10,8 +10,6 @@ description: |
   to Kong Gateway to prevent a DOS (Denial of Service) attack.
 
 type: plugin
-categories:
-  - traffic-control
 kong_version_compatibility:
   community_edition:
     compatible: true

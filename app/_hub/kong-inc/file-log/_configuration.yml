@@ -1,44 +1,10 @@
-name: file-log
-service_id: true
-route_id: true
-consumer_id: true
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
-  - name: tcp
-  - name: tls
-  - name: tls_passthrough
-    minimum_version: "2.7.x"
-  - name: udp
-  - name: ws
-    minimum_version: "3.1.x"
-  - name: wss
-    minimum_version: "3.1.x"
+name: File Log
 dbless_compatible: 'yes'
-config:
-  - name: path
-    required: true
-    default: null
-    value_in_examples: /tmp/file.log
-    datatype: string
-    description: |
-      The file path of the output log file. The plugin creates the log file if it doesn't exist yet. Make sure Kong has write permissions to this file.
-  - name: reopen
-    required: true
-    default: '`false`'
-    datatype: boolean
-    description: |
-      Determines whether the log file is closed and reopened on every request. If the file
-      is not reopened, and has been removed/rotated, the plugin keeps writing to the
-      stale file descriptor, and hence loses information.
-  - name: custom_fields_by_lua
-    minimum_version: "2.4.x"
-    required: false
-    default: null
-    datatype: map
-    description: |
-      A list of key-value pairs, where the key is the name of a log field and
-      the value is a chunk of Lua code, whose return value sets or replaces
-      the log field value. Requires Kong 2.4.x or above.
+free: Yes
+plus: Yes
+enterprise: Yes
+konnect: Yes
+network_config_opts: All
+notes: --
+categories:
+  - logging

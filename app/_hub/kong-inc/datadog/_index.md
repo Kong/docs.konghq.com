@@ -6,8 +6,6 @@ description: |
   Log [metrics](#metrics) for a service or route to a local
   [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
 type: plugin
-categories:
-  - analytics-monitoring
 kong_version_compatibility:
   community_edition:
     compatible: true

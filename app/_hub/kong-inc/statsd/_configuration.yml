@@ -1,119 +1,14 @@
-name: statsd
-service_id: true
-route_id: true
-consumer_id: true
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
-  - name: tcp
-  - name: tls
-  - name: tls_passthrough
-    minimum_version: "2.7.x"
-  - name: udp
-  - name: ws
-    minimum_version: "3.0.x"
-  - name: wss
-    minimum_version: "3.0.x"
+name: StatsD
 dbless_compatible: 'yes'
-config:
-  - name: host
-    required: true
-    default: '`127.0.0.1`'
-    value_in_examples: 127.0.0.1
-    datatype: string
-    description: The IP address or hostname of StatsD server to send data to.
-  - name: port
-    required: true
-    default: '`8125`'
-    value_in_examples: 8125
-    datatype: integer
-    description: The port of StatsD server to send data to.
-  - name: metrics
-    required: true
-    default: All metrics are logged
-    datatype: Array of record elements
-    description: |
-      List of metrics to be logged. Available values are described under [Metrics](#metrics).
-  - name: prefix
-    required: true
-    default: '`kong`'
-    datatype: string
-    description: String to prefix to each metric's name.
-  - name: hostname_in_prefix
-    required: true
-    default: '`false`'
-    datatype: boolean
-    description: Include the `hostname` in the `prefix` for each metric name.
-    minimum_version: "3.0.x"
-  - name: udp_packet_size
-    required: true
-    default: '`0` (not combined)'
-    datatype: number
-    description: |
-      Combine UDP packet up to the size configured. If zero (0), don't combine the
-      UDP packet. Must be a number between 0 and 65507 (inclusive).
-  - name: use_tcp
-    required: true
-    default: '`false`'
-    datatype: boolean
-    description: Use TCP instead of UDP.
-    minimum_version: "3.0.x"
-  - name: allow_status_codes
-    required: true
-    default: All responses are passed to log metrics
-    value_in_examples:
-      - 200-205
-      - 400-499
-    datatype: array of string elements
-    description: List of status code ranges that are allowed to be logged in metrics.
-    minimum_version: "3.0.x"
-  - name: consumer_identifier_default
-    required: true
-    default: 'custom_id'
-    datatype: string
-    description: The default consumer identifier of metrics. This takes effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
-    minimum_version: "3.0.x"
-  - name: service_identifier_default
-    required: true
-    default: 'service_name_or_host'
-    datatype: string
-    description: The default service identifier of metrics. This takes effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
-    minimum_version: "3.0.x"
-  - name: workspace_identifier_default
-    required: true
-    default: 'workspace_id'
-    datatype: string
-    description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
-    minimum_version: "3.0.x"
-  - name: flush_timeout
-    required: true
-    default: '`2`'
-    value_in_examples: 2
-    datatype: number
-    description: |
-      Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.
-    minimum_version: "3.1.x"
-  - name: retry_count
-    required: true
-    default: 10
-    value_in_examples: 10
-    datatype: integer
-    description: Number of times to retry when sending data to the upstream server.
-    minimum_version: "3.1.x"
-  - name: queue_size
-    required: true
-    default: 1
-    datatype: integer
-    description: Maximum number of log entries to be sent on each message to the upstream server.
-    minimum_version: "3.1.x"
-  - name: tag_style
-    required: false
-    datatype: string
-    description: The tag style configurations to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics. Allowed values are  `dogstatsd`, `influxdb`, `librato`, and `signalfx`.
-    minimum_version: 3.2.x
 extra: |
   By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
   configures the greatest datagram size the plugin can combine. It should be less than
   65507 according to UDP protocol. Consider the MTU of the network when setting this parameter.
+free: Yes
+plus: Yes
+enterprise: Yes
+konnect: Yes
+network_config_opts: All
+notes: --
+categories:
+  - logging

@@ -122,8 +122,6 @@ description: |
 enterprise: true
 plus: true
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: null

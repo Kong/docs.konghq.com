@@ -21,8 +21,6 @@ description: |
 
 enterprise: true
 type: plugin
-categories:
-  - analytics-monitoring
 kong_version_compatibility:
   community_edition:
     compatible: null

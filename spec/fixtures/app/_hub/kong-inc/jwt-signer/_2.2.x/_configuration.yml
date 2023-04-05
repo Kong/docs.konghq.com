@@ -1,6 +1,8 @@
-name: jwt-signer
+name: Kong JWT Signer
 api_id: true
 service_id: true
 route_id: true
 consumer_id: false
 dbless_compatible: yes
+categories:
+  - authentication

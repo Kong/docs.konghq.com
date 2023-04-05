@@ -8,8 +8,6 @@ description: |
   back to your original upstream service, or shifting all traffic to the new version.
 enterprise: true
 type: plugin
-categories:
-  - traffic-control
 kong_version_compatibility:
   enterprise_edition:
     compatible: true

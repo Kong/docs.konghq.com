@@ -1,27 +1,10 @@
-name: grpc-gateway
-route_id: true
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
-  - name: tcp
-  - name: tls
-  - name: tls_passthrough
-    minimum_version: "2.7.x"
-  - name: udp
-  - name: ws
-    minimum_version: "3.0.x"
-  - name: wss
-    minimum_version: "3.0.x"
+name: gRPC-gateway
 dbless_compatible: 'yes'
-config:
-  - name: proto
-    required: false
-    default: null
-    value_in_examples: path/to/hello.proto
-    datatype: string
-    description: |
-      Describes the gRPC types and methods.
-      [HTTP configuration](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto)
-      must be defined in the file.
+free: Yes
+plus: Yes
+enterprise: Yes
+konnect: Yes
+network_config_opts: All
+notes: --
+categories:
+  - transformations

@@ -1,8 +1,6 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
-categories:
-  - transformations
 type: plugin
 desc: Access gRPC services through HTTP REST
 description: |

@@ -5,8 +5,6 @@ desc: Detect and block bots or custom clients
 description: |
   Protects a Service or a Route from most common bots and has the capability of allowing and denying custom clients.
 type: plugin
-categories:
-  - security
 kong_version_compatibility:
   community_edition:
     compatible: true

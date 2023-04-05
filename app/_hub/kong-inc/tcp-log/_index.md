@@ -5,8 +5,6 @@ desc: Send request and response logs to a TCP server
 description: |
   Log request and response data to a TCP server.
 type: plugin
-categories:
-  - logging
 kong_version_compatibility:
   community_edition:
     compatible: true

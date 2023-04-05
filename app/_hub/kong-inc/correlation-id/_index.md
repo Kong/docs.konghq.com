@@ -6,8 +6,6 @@ desc: Correlate requests and responses using a unique ID
 description: |
   Correlate requests and responses using a unique ID transmitted over an HTTP header.
 type: plugin
-categories:
-  - transformations
 kong_version_compatibility:
   community_edition:
     compatible: true

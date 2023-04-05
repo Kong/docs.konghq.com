@@ -31,8 +31,6 @@ description: |
     which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
     Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
 type: plugin
-categories:
-  - transformations
 kong_version_compatibility:
   community_edition:
     compatible: true

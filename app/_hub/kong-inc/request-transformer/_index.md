@@ -13,8 +13,6 @@ description: |
   With the advanced plugin, you can also limit the list of allowed parameters in the request body.
 
 type: plugin
-categories:
-  - transformations
 kong_version_compatibility:
   community_edition:
     compatible: true

@@ -5,8 +5,6 @@ desc: Send request and response logs to a UDP server
 description: |
   Log request and response data to an UDP server.
 type: plugin
-categories:
-  - logging
 kong_version_compatibility:
   community_edition:
     compatible: true

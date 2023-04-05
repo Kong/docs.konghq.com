@@ -5,8 +5,6 @@ desc: Send request and response logs to Loggly
 description: |
   Log request and response data over UDP to [Loggly](https://www.loggly.com).
 type: plugin
-categories:
-  - logging
 kong_version_compatibility:
   community_edition:
     compatible: true

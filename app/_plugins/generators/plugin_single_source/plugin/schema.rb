@@ -64,6 +64,13 @@ module PluginSingleSource
         @example ||= ExampleGenerator.new(schema: self).generate
       end
 
+      def protocols
+        @protocols ||= begin
+          protocols = fields.detect { |f| f.key?('protocols') }&.values&.first || {}
+          protocols.dig('elements', 'one_of') || []
+        end
+      end
+
       private
 
       def file_path

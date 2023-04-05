@@ -7,8 +7,6 @@ description: |
 enterprise: true
 plus: true
 type: plugin
-categories:
-  - traffic-control
 kong_version_compatibility:
   community_edition:
     compatible: null

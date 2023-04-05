@@ -11,8 +11,6 @@ description: |
   and [OpenID Connect](/hub/kong-inc/openid-connect/))
   to have been already enabled on the Service or Route.
 type: plugin
-categories:
-  - traffic-control
 kong_version_compatibility:
   community_edition:
     compatible: true

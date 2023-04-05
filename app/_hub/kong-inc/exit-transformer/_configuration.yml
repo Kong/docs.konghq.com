@@ -1,48 +1,12 @@
-name: exit-transformer
-service_id: true
-route_id: true
-consumer_id: false
+name: Exit Transformer
 yaml_examples: false
 konnect_examples: false
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
 dbless_compatible: 'yes'
-config:
-  - name: functions
-    required: true
-    value_in_examples:
-      - '@example/my_function.lua'
-    value_in_examples_serialized:
-      - |
-        |
-          local responses = {
-            ["Invalid authentication credentials"] = {
-              message = "Invalid API key",
-            },
-          }
-
-          return function(status, body, headers)
-            if not body or not body.message then
-              return status, body, headers
-            end
-            local response = responses[body.message]
-            body.message = response.message or body.message
-            status = response.status or status
-            headers = response.headers or headers
-            return status, body, headers
-          end
-    datatype: array of string elements
-    description: Array of functions used to transform any Kong proxy exit response.
-  - name: handle_unknown
-    default: '`false`'
-    required: false
-    datatype: boolean
-    description: 'Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.'
-  - name: handle_unexpected
-    default: '`false`'
-    required: false
-    datatype: boolean
-    description: Allow transform to apply to unexpected request (400) responses.
+free: No
+plus: Yes
+enterprise: Yes
+konnect: Yes
+network_config_opts: All
+notes: --
+categories:
+  - transformations

@@ -15,8 +15,6 @@ enterprise: true
 plus: false
 cloud: true
 type: plugin
-categories:
-  - security
 kong_version_compatibility:
   enterprise_edition:
     compatible: true

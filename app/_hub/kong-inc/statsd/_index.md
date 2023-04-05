@@ -8,8 +8,6 @@ description: |
   daemon by enabling its
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 type: plugin
-categories:
-  - analytics-monitoring
 kong_version_compatibility:
   community_edition:
     compatible: true

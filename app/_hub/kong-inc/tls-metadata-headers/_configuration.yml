@@ -1,55 +1,14 @@
-name: tls-metadata-headers
-service_id: true
-consumer_id: false
-route_id: true
-protocols:
-  - name: https
-  - name: grpcs
-  - name: tls
+name: TLS Metadata Headers
 dbless_compatible: 'yes'
-
-config:
-  - name: inject_client_cert_details
-    required: true
-    default: false
-    datatype: boolean
-    value_in_examples: true
-    description: |
-      Enables TLS client certificate metadata values to be injected into HTTP headers.
-  - name: client_cert_header_name
-    required: true
-    default: X-Client-Cert
-    datatype: string
-    value_in_examples: X-Forwarded-Client-Cert
-    description: |
-      Define the HTTP header name used for the PEM format URL encoded client certificate.
-  - name: client_serial_header_name
-    required: true
-    default: X-Client-Cert-Serial
-    datatype: string
-    description: |
-      Define the HTTP header name used for the serial number of the client certificate.
-  - name: client_cert_issuer_dn_header_name
-    required: true
-    default: X-Client-Cert-Issuer-DN
-    datatype: string
-    value_in_examples: null
-    description: |
-      Define the HTTP header name used for the issuer DN of the client certificate.
-  - name: client_cert_subject_dn_header_name
-    required: true
-    default: X-Client-Cert-Subject-DN
-    datatype: string
-    description: |
-      Define the HTTP header name used for the subject DN of the client certificate.
-  - name: client_cert_fingerprint_header_name
-    required: true
-    default: X-Client-Cert-Fingerprint
-    datatype: string
-    description: |
-      Define the HTTP header name used for the SHA1 fingerprint of the client certificate.
-
 extra: |
 
   The plugin must be used in conjunction with any plugin which requests a client certificate, such as
   the mTLS Authentication or TLS Handshake Modifier plugins.
+free: No
+plus: No
+enterprise: Yes
+konnect: No
+network_config_opts: Self-managed traditional, DB-less, and hybrid
+notes: --
+categories:
+  - security

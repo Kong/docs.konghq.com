@@ -1,8 +1,6 @@
 ---
 name: gRPC-Web
 publisher: Kong Inc.
-categories:
-  - transformations
 type: plugin
 desc: Allow browser clients to call gRPC services
 description: |

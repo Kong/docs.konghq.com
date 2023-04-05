@@ -12,8 +12,6 @@ description: |
     plugin provides the ability to apply
     [multiple limits in sliding or fixed windows](/hub/kong-inc/rate-limiting-advanced/#multi-limits-windows).
 type: plugin
-categories:
-  - traffic-control
 kong_version_compatibility:
   community_edition:
     compatible: true

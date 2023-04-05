@@ -12,8 +12,6 @@ description: |
 type: plugin
 enterprise: true
 plus: true
-categories:
-  - transformations
 kong_version_compatibility:
   community_edition:
     compatible: null

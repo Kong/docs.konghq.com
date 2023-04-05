@@ -68,4 +68,15 @@ RSpec.describe PluginSingleSource::Plugin::Schema do
       it { expect(subject.enable_on_route?).to eq(true) }
     end
   end
+
+  describe '#protocols' do
+    let(:plugin_name) { 'datadog' }
+
+    it 'returns the protocols defined in the schema' do
+      expect(subject.protocols).to match_array([
+        'grpc', 'grpcs', 'http', 'https','tcp','tls',
+        'tls_passthrough', 'udp', 'ws', 'wss'
+      ])
+    end
+  end
 end

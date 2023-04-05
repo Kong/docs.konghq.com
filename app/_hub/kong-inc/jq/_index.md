@@ -28,8 +28,6 @@ description: |
   See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs with jq.
 enterprise: true
 type: plugin
-categories:
-  - transformations
 kong_version_compatibility:
   enterprise_edition:
     compatible:

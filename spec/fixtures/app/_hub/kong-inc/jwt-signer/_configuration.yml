@@ -1,13 +1,7 @@
-name: jwt-signer
-service_id: true
-route_id: true
-consumer_id: false
-protocols:
-  - name: http
-  - name: https
-  - name: grpc
-  - name: grpcs
+name: Kong JWT Signer
 dbless_compatible: 'yes'
+categories:
+  - authentication
 config:
   - name: realm
     required: false

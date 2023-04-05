@@ -6,8 +6,6 @@ desc: Propagate spans and report space to a backend server through OTLP protocol
 description: |
   Propagate distributed tracing spans and report low-level spans to a OTLP-compatible server.
 type: plugin
-categories:
-  - analytics-monitoring
 kong_version_compatibility:
   community_edition:
     compatible: true

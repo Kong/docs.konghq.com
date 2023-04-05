@@ -13,8 +13,6 @@ description: |
   **Tip:** The Kong Gateway [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
     plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: true

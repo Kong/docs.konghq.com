@@ -35,7 +35,8 @@ module PluginSingleSource
           'page_type' => 'plugin',
           'book' => "plugins/#{@release.vendor}/#{@release.name}/#{@release.version}",
           'hub_examples' => hub_examples,
-          'schema' => schema
+          'schema' => schema,
+          'name' => @release.metadata['name']
         }
       end
 

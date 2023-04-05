@@ -12,8 +12,6 @@ description: |
   For information about configuring and using the Sessions plugin with the Dev
   Portal, see [Sessions in the Dev Portal](/gateway/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: true

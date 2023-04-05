@@ -14,8 +14,6 @@ description: |
   * The ability to bind to an enterprise LDAP directory with a password.
   * The ability to authenticate/authorize using a group base DN and specific group member or group name attributes.
 type: plugin
-categories:
-  - authentication
 kong_version_compatibility:
   community_edition:
     compatible: true
