@@ -335,6 +335,8 @@ items:
         url: /features/opa
       - text: MeshOPA (beta)
         url: /features/meshopa
+      - text: MeshGlobalRatelimit (beta)
+        url: /features/meshglobalratelimit
       - text: Multi-zone authentication
         url: /features/kds-auth
       - text: FIPS support
