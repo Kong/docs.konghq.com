@@ -27,29 +27,28 @@
 
 
 # KUBERNETES
-/gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
-/gateway-oss/2.7.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
 /gateway-oss/latest/kong-for-kubernetes/changelog   https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
-/gateway-oss/2.6.x/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
-/gateway-oss/2.7.x/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
-/gateway-oss/latest/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
-/kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
-/kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
-/enterprise/2.5.x/deployment/using-kong-for-kubernetes/    /kubernetes-ingress-controller/
-/enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
+/gateway-oss/latest/kong-for-kubernetes/using-kong-for-kubernetes  /kong-ingress-controller/
+/kong-ingress-controller/latest/introduction /kong-ingress-controller/
+/enterprise/latest/deployment/using-kong-for-kubernetes/   /kong-ingress-controller/
 /enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
 /enterprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/  /gateway/latest/install-and-run/kubernetes
 /enterprise/2.1.x/kong-for-kubernetes/deployment-options  /gateway/latest/install-and-run/kubernetes
 
+/gateway-oss/latest/kong-for-kubernetes/           /kong-ingress-controller/
+/gateway-oss/latest/kong-for-kubernetes/install/   /gateway/latest/production/install/kubernetes/helm-quickstart/
+/install/google-cloud/         /kong-ingress-controller/latest/deployment/gke/
 
 # KIC BETA
-/kubernetes-ingress-controller-beta/   /kubernetes-ingress-controller/
-/kubernetes-ingress-controller-beta/*  /kubernetes-ingress-controller/:splat
+/kubernetes-ingress-controller-beta/   /kong-ingress-controller/
+/kubernetes-ingress-controller-beta/*  /kong-ingress-controller/:splat
 
 # KIC GENERAL
-/kubernetes-ingress-controller/:version/guides/using-gateway-api/ /kubernetes-ingress-controller/:version/guides/getting-started/
+/kong-ingress-controller/:version/guides/using-gateway-api/ /kong-ingress-controller/:version/guides/getting-started/
+/kubernetes-ingress-controller/   /kong-ingress-controller/
+/kubernetes-ingress-controller/*  /kong-ingress-controller/:splat
 
 # ENTERPRISE GATEWAY
 /enterprise/latest/introduction       /enterprise/
@@ -720,17 +719,9 @@
 /gateway/:version/install-and-run/macos/ /gateway/latest/install/macos/
 /install/compile/              https://github.com/Kong/kong
 /install/dcos/                 https://github.com/Kong/kong-dist-dcos
-/install/google-cloud/         /kubernetes-ingress-controller/latest/deployment/gke/
 /install/source/               https://github.com/Kong/kong
 /install/vagrant/              https://github.com/Kong/kong-vagrant
 /install/*                     /gateway/latest/install/
-
-/gateway-oss/2.6.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
-/gateway-oss/2.7.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
-/gateway-oss/latest/kong-for-kubernetes/           /kubernetes-ingress-controller/
-/gateway-oss/2.6.x/kong-for-kubernetes/install/    /gateway/2.6.x/install-and-run/kubernetes
-/gateway-oss/2.7.x/kong-for-kubernetes/install/    /gateway/2.7.x/install-and-run/kubernetes
-/gateway-oss/latest/kong-for-kubernetes/install/   /gateway/latest/install-and-run/kubernetes
 
 /enterprise/2.6.x/deployment/installation/    /gateway/2.6.x/install-and-run
 /enterprise/2.7.x/deployment/installation/    /gateway/2.7.x/install-and-run
