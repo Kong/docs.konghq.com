@@ -33,7 +33,7 @@ config file is the source of truth.
 In traditional deployments, Kong's database provides
 a persistent store of configuration available to all Kong nodes to ensure
 consistent proxy behavior across the cluster that is not affected by node
-restarts. Because etcd provides this functionality in Kong for Kubernetes
+restarts. Because etcd provides this functionality in {{site.kic_product_name}}
 deployments, it is not necessary to run an additional database, reducing
 maintenance and infrastructure requirements.
 
@@ -77,7 +77,7 @@ functionality in these features is different from traditional deployments:
   controller, and you provide configuration via Kubernetes resources.
 * Because the controller creates proxy configuration on behalf of users, you do
   not need to interact with the Admin API directly. Kong's own RBAC
-  implementation isn't required for typical Kong for Kubernetes deployments, as
+  implementation isn't required for typical {{site.kic_product_name}} deployments, as
   they do not expose the Admin API; only the controller can access it.
   Kubernetes-level RBAC rules and namespaces should be used to restrict what
   configuration administrators can create.

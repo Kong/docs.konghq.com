@@ -34,11 +34,11 @@
               absolute_url: true
             - text: Docker
               url: /deployment/installation/docker
-            - text: Kong for Kubernetes Enterprise
+            - text: Kong Ingress Controller Enterprise
               url: /deployment/installation/kong-for-kubernetes
             - text: Kong Enterprise on Kubernetes
               url: /deployment/installation/kong-on-kubernetes
-            - text: OpenShift with Kong for Kubernetes Enterprise
+            - text: OpenShift with Kong Ingress Controller Enterprise
               url: /deployment/installation/kong-for-kubernetes
             - text: OpenShift with Kong Enterprise on Kubernetes
               url: /deployment/installation/kong-on-kubernetes
@@ -81,12 +81,12 @@
           items:
             - text: Deploying in Hybrid Mode
               url: /deployment/hybrid-mode-setup
-        - text: Kong for Kubernetes Enterprise
+        - text: Kong Ingress Controller Enterprise
           url: /deployment/kong-for-kubernetes-enterprise
           items:
             - text: Kubernetes Deployment Options
               url: /deployment/kubernetes-deployment-options
-            - text: Using Kong for Kubernetes
+            - text: Using Kong Ingress Controller
               url: /deployment/using-kong-for-kubernetes
             - text: KIC Changelog
               url: https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md

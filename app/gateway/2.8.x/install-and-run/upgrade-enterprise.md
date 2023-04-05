@@ -81,7 +81,7 @@ upgrade the control plane first, and then the data planes.
 * The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
-### Kong for Kubernetes considerations
+### {{site.kic_product_name}} considerations
 
 The Helm chart automates the upgrade migration process. When running `helm upgrade`,
 the chart spawns an initial job to run `kong migrations up` and then spawns new

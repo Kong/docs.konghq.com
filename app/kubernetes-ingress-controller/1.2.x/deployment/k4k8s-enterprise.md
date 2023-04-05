@@ -1,8 +1,8 @@
 ---
-title: Kong for Kubernetes Enterprise
+title: Kong Ingress Controller Enterprise
 ---
 
-Kong for Kubernetes Enterprise is an enhanced version of
+{{site.kic_product_name}} Enterprise is an enhanced version of
 the Open-Source Ingress Controller. It includes all
 Enterprise plugins and comes with 24x7 support for worry-free
 production deployment.
@@ -41,12 +41,12 @@ Please note that `-n kong` specifies the namespace in which you are deploying
 
 Once the secret is in-place, we can proceed with installation.
 
-Kong for Kubernetes can be installed using an installer of
+{{site.kic_product_name}} can be installed using an installer of
 your choice:
 
 ### YAML manifests
 
-Execute the following to install Kong for Kubernetes Enterprise using YAML
+Execute the following to install {{site.kic_product_name}} Enterprise using YAML
 manifests:
 
 ```bash
@@ -91,7 +91,7 @@ IP address to the `kong-proxy` Service.
   For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
 </div>
 
-Use Kustomize to install Kong for Kubernetes Enterprise:
+Use Kustomize to install {{site.kic_product_name}} Enterprise:
 
 ```
 kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/enterprise-k8s
@@ -142,7 +142,7 @@ the `demo-kong-proxy` service in `kong` namespace:
 export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong demo-kong-proxy)
 ```
 
-## Using Kong for Kubernetes Enterprise
+## Using {{site.kic_product_name}} Enterprise
 
-Once you've installed Kong for Kubernetes Enterprise, please follow our
+Once you've installed {{site.kic_product_name}} Enterprise, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.

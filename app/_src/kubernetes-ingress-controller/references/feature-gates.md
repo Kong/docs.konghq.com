@@ -2,7 +2,7 @@
 title: Feature Gates
 ---
 
-Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the Kubernetes Ingress Controller (KIC), we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
+Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the Kong Ingress Controller (KIC), we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
 
 Using feature gates enables contributors to add and manage new (and potentially experimental) functionality to the KIC in a controlled manner. The features will be "hidden" until generally available (GA) and the progress and maturity of features on their path to GA will be documented. Feature gates also create a clear path for deprecating features.
 

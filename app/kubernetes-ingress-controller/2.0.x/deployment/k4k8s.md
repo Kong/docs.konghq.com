@@ -1,8 +1,8 @@
 ---
-title: Kong for Kubernetes
+title: Kong Ingress Controller
 ---
 
-Kong for Kubernetes is an Ingress Controller based on the
+{{site.kic_product_name}} is an Ingress Controller based on the
 Open-Source {{site.base_gateway}}. It consists of two components:
 
 - **Kong**: the Open-Source Gateway
@@ -11,10 +11,10 @@ Open-Source {{site.base_gateway}}. It consists of two components:
 
 ## Installers
 
-Kong for Kubernetes can be installed using an installer of
+{{site.kic_product_name}} can be installed using an installer of
 your choice.
 
-Once you've installed Kong for Kubernetes,
+Once you've installed {{site.kic_product_name}},
 jump to the [next section](#using-kong-for-kubernetes)
 on using it.
 
@@ -35,7 +35,7 @@ Please pick one of the following guides depending on your platform:
   For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
 </div>
 
-Use Kustomize to install Kong for Kubernetes:
+Use Kustomize to install {{site.kic_product_name}}:
 
 ```
 kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/base
@@ -71,7 +71,7 @@ the `demo-kong-proxy` service in `kong` namespace:
 export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong demo-kong-proxy)
 ```
 
-## Using Kong for Kubernetes
+## Using {{site.kic_product_name}}
 
-Once you've installed Kong for Kubernetes, please follow our
+Once you've installed {{site.kic_product_name}}, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.

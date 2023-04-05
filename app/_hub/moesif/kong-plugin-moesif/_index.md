@@ -224,7 +224,7 @@ Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
 
 ## How to install
 
-> If you are using Kong's [Kubernetes Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for Kubernetes Ingress](https://www.moesif.com/docs/server-integration/kong-ingress-controller/).
+> If you are using Kong Ingress Controller(https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for Kubernetes Ingress](https://www.moesif.com/docs/server-integration/kong-ingress-controller/).
 
 The `.rock` file is a self-contained package that can be installed locally or from a remote server.
 

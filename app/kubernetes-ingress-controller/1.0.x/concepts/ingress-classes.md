@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller and Ingress Class
+title: Kong Ingress Controller and Ingress Class
 ---
 
 ## Introduction

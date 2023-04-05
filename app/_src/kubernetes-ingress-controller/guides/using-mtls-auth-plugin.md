@@ -12,7 +12,7 @@ for HTTPS requests.
 ## Installation
 
 Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
-Kong for Kubernetes Enterprise on your Kubernetes cluster.
+{{site.kic_product_name}} Enterprise on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
 

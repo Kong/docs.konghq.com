@@ -214,7 +214,7 @@ Old parameter name | New parameter name
 
 {% endif_version %}
 
-### Kong for Kubernetes considerations
+### {{site.kic_product_name}} considerations
 
 The Helm chart automates the upgrade migration process. When running `helm upgrade`,
 the chart spawns an initial job to run `kong migrations up` and then spawns new
@@ -230,7 +230,7 @@ Although not required, users should upgrade their chart version and {{site.base_
 In the event of any issues, this will help clarify whether the issue stems from changes in
 Kubernetes resources or changes in {{site.base_gateway}}.
 
-For specific Kong for Kubernetes version upgrade considerations, see
+For specific {{site.kic_product_name}} version upgrade considerations, see
 [Upgrade considerations](https://github.com/Kong/charts/blob/main/charts/kong/UPGRADE.md)
 
 #### Kong deployment split across multiple releases

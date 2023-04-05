@@ -117,7 +117,7 @@ Ensure that you have it installed on your local system.
 
 ## Enable the `GatewayAlpha` feature gate
 
-If you are using the Gateway API, you need to enable the [`GatewayAlpha`](/kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates) feature gate in the Kubernetes Ingress Controller.
+If you are using the Gateway API, you need to enable the [`GatewayAlpha`](/kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates) feature gate in the Kong Ingress Controller.
 
 ## Deploy a gRPC test application
 

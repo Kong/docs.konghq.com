@@ -29,7 +29,7 @@ Kong Enterprise 2.1.x docs includes any changes made for the 2.1.0.0 beta docs.
 ### decK
 * [decK documentation](https://docs.konghq.com/deck/) has moved to docs.konghq.com.
 
-### Kong for Kubernetes
+### {{site.kic_product_name}}
 * Improved [Kubernetes Deployment Options](/enterprise/2.1.x/deployment/kubernetes-deployment-options/) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
 
 ### Kong Vitals

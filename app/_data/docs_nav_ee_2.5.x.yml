@@ -31,11 +31,11 @@
               target_blank: true
             - text: Docker
               url: /deployment/installation/docker
-            - text: Kong for Kubernetes Enterprise
+            - text: Kong Ingress Controller Enterprise
               url: /deployment/installation/kong-for-kubernetes
             - text: Kong Gateway (Enterprise) on Kubernetes
               url: /deployment/installation/kong-on-kubernetes
-            - text: OpenShift with Kong for Kubernetes Enterprise
+            - text: OpenShift with Kong Ingress Controller Enterprise
               url: /deployment/installation/kong-for-kubernetes
             - text: OpenShift with Kong Gateway (Enterprise) on Kubernetes
               url: /deployment/installation/kong-on-kubernetes
@@ -83,7 +83,7 @@
           items:
             - text: Deploying in Hybrid Mode
               url: /deployment/hybrid-mode-setup
-        - text: Kong for Kubernetes Enterprise
+        - text: Kong Ingress Controller Enterprise
           url: /deployment/kong-for-kubernetes-enterprise
           items:
             - text: Kubernetes Deployment Options

@@ -1,8 +1,8 @@
 ---
-title: Kong for Kubernetes with Kong Enterprise
+title: Kong Ingress Controller with Kong Enterprise
 ---
 
-Kong for Kubernetes is a {{site.kic_product_name}} built on top
+{{site.kic_product_name}} is a Kubernetes ingress controller built on top
 of Open-Source {{site.base_gateway}}.
 
 If you are an Enterprise customer, you have an option of running the
@@ -18,7 +18,7 @@ and for such use-cases we support another deployment - Kong for
 Kubernetes with Kong Enterprise.
 
 As seen in the diagram below, this deployment consists of
-Kong for Kubernetes deployed in Kubernetes, and is hooked up with
+{{site.kic_product_name}} deployed in Kubernetes, and is hooked up with
 a database. If there are services running outside Kubernetes,
 a regular {{site.base_gateway}} proxy can be deployed there and connected to the
 same database. This provides a single pane of visibility of

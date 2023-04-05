@@ -450,14 +450,14 @@
 
         - text: List All Targets
           url: /admin-api/#list-all-targets
-- title: Kong for Kubernetes
+- title: Kong Ingress Controller
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   url: /kong-for-kubernetes/
   items:
-    - text: Install Kong for Kubernetes
+    - text: Install Kong Ingress Controller
       url: /kong-for-kubernetes/install
 
-    - text: Using Kong for Kubernetes
+    - text: Using Kong Ingress Controller
       url: /kong-for-kubernetes/using-kong-for-kubernetes
 
     - text: Changelog

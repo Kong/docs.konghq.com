@@ -4,7 +4,7 @@ title: Installing and Configuring
 
 ## Getting started
 
-If you are getting started with Kong for Kubernetes,
+If you are getting started with {{site.kic_product_name}},
 install it on Minikube using our Minikube [setup guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube/).
 
 Once you've installed the {{site.kic_product_name}}, please follow our
@@ -22,33 +22,33 @@ are a variety of configurations and runtimes for the {{site.kic_product_name}}.
 The following sections detail on deployment steps for all the different
 runtimes:
 
-## Kong for Kubernetes
+## {{site.kic_product_name}}
 
 
-Kong for Kubernetes is an Ingress Controller based on the
+{{site.kic_product_name}} is an Ingress Controller based on the
 Open-Source {{site.base_gateway}}. It consists of two components:
 
 - **Kong**: the Open-Source Gateway
 - **Controller**: a daemon process that integrates with the
   Kubernetes platform and configures Kong.
 
-Please follow [this guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s/) to deploy Kong for Kubernetes
+Please follow [this guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s/) to deploy {{site.kic_product_name}}
 using an installation method of your choice.
 
-## Kong for Kubernetes Enterprise
+## {{site.kic_product_name}} Enterprise
 
-Kong for Kubernetes Enterprise is an enhanced version of
+{{site.kic_product_name}} Enterprise is an enhanced version of
 the Open-Source Ingress Controller. It includes all
 Enterprise plugins and comes with 24x7 support for worry-free
 production deployment.
 This is available to enterprise customers of Kong, Inc. only.
 
-Please follow [this guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise/) to deploy Kong for Kubernetes
+Please follow [this guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise/) to deploy {{site.kic_product_name}}
 Enterprise if you have purchased or are trying out Kong Enterprise.
 
-## Kong for Kubernetes with Kong Enterprise
+## {{site.kic_product_name}} with Kong Enterprise
 
-Kong for Kubernetes can integrate with Kong Enterprise to
+{{site.kic_product_name}} can integrate with Kong Enterprise to
 provide a single pane of visibility across all of your services
 that are running in Kubernetes and non-Kubernetes environments.
 

@@ -1828,7 +1828,7 @@ RBAC rules involving deny (negative) rules now correctly take precedence over al
 
 * [HTTP Log](/hub/kong-inc/http-log/) (`http-log`)
   * Fixed the `could not update kong admin` internal error caused by empty headers.
-  This error occurred when using this plugin with the Kubernetes Ingress Controller.
+  This error occurred when using this plugin with the Kong Ingress Controller.
 
 * [JWT](/hub/kong-inc/jwt/) (`jwt`)
   * Fixed an issue where the JWT plugin could potentially forward an unverified token to the upstream. 

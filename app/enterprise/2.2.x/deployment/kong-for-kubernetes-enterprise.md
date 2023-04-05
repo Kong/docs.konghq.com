@@ -10,7 +10,7 @@ Enterprise plugins.
 * **Kong Enterprise on Kubernetes**: The whole Kong Enterprise platform
 deployed on Kubernetes, optionally with the Kong Ingress Controller.
 
-## Kong for Kubernetes Enterprise
+## {{site.kic_product_name}} Enterprise
 
 Kong for Kubernetes Enterprise is a lightweight deployment of Kong Gateway as
 a Kubernetes ingress controller. A Kubernetes ingress controller is a proxy

@@ -48,7 +48,7 @@ A new interface in Kong Manager lets you view usage dashboards and generate repo
 
 For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}}/vitals/overview/) and [Vitals Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/) topics.
 
-### Kong for Kubernetes Enterprise (K4K8s) Image Changes
+### {{site.kic_product_name}} Enterprise (K4K8s) Image Changes
 
 For the {{site.ee_product_name}}, Kong for Kubernetes Enterprise (K4K8s) now uses the `kong-enterprise-edition` image, which works as a drop-in replacement for the `kong-enterprise-k8s` image used in earlier versions.
 

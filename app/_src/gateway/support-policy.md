@@ -51,7 +51,7 @@ Support includes:
 * Assistance with upgrades to later versions of the Kong software
 * Access to bug-fix releases and/or workarounds based on the below Bug Fix Guidelines
 
-**<sup>*</sup>** 24 month support applies starting with {{site.ee_product_name}} 2.1.3.x. For prior releases, support remains at 12 months from the first minor version release. Support for the Kubernetes Ingress Controller and Kong Mesh remain at 12 months. The 24 month support applies to {{site.ee_product_name}} standard releases.
+**<sup>*</sup>** 24 month support applies starting with {{site.ee_product_name}} 2.1.3.x. For prior releases, support remains at 12 months from the first minor version release. Support for the Kong Ingress Controller and Kong Mesh remain at 12 months. The 24 month support applies to {{site.ee_product_name}} standard releases.
 
 ## Sunset support
 After the product hits the end of the support period, Kong will provide limited support to help the customer upgrade to a fully supported version of {{site.ee_product_name}} for up to an additional 12 month sunset period. Kong will not provide patches for software covered by this sunset period. If there is an issue that requires a patch during this period, the customer will need to upgrade to a newer {{site.ee_product_name}} version covered by 24 month active support.

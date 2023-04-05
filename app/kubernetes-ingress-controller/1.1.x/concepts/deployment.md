@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller Deployment
+title: Kong Ingress Controller Deployment
 ---
 
 The {{site.kic_product_name}} is designed to be deployed in a variety of ways

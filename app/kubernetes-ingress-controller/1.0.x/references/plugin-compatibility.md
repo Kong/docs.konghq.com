@@ -47,12 +47,12 @@ non-default configuration for
 ## Kong Enterprise
 
 There are [two distributions of Kong Enterprise](https://github.com/Kong/kubernetes-ingress-controller/tree/master/docs/deployment#overview),
-`kong-enterprise-k8s` (used with Kong for Kubernetes Enterprise) and
-`kong-enterprise-edition` (used with Kong for Kubernetes with Kong Enterprise).
+`kong-enterprise-k8s` (used with {{site.kic_product_name}} Enterprise) and
+`kong-enterprise-edition` (used with {{site.kic_product_name}} with Kong Enterprise).
 
 {% include md/enterprise/k8s-image-note.md %}
 
-|  Plugin                          |  Kong for Kubernetes with Kong Enterprise  |  Kong for Kubernetes Enterprise           |
+|  Plugin                          |  {{site.kic_product_name}} with Kong Enterprise  |  {{site.kic_product_name}} Enterprise           |
 |----------------------------------|--------------------------------------------|-------------------------------------------|
 |  acl                             |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  aws-lambda                      |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |

@@ -1,5 +1,5 @@
 ---
-title: Kong for Kubernetes with Kong Enterprise
+title: Kong Ingress Controller with Kong Enterprise
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} using Kong
@@ -114,7 +114,7 @@ As you follow along with other guides on how to use your newly deployed the {{si
 you will be able to browse Kong Manager and see changes reflected in the UI as Kong's
 configuration changes.
 
-## Using Kong for Kubernetes with Kong Enterprise
+## Using {{site.kic_product_name}} with Kong Enterprise
 
 Let's setup an environment variable to hold the IP address of `kong-proxy` service:
 
@@ -122,7 +122,7 @@ Let's setup an environment variable to hold the IP address of `kong-proxy` servi
 $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
 ```
 
-Once you've installed Kong for Kubernetes Enterprise, please follow our
+Once you've installed {{site.kic_product_name}} Enterprise, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
 
 ## Customizing by use-case
