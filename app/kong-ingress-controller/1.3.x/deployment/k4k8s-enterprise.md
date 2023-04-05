@@ -145,4 +145,4 @@ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ## Using {{site.kic_product_name}} Enterprise
 
 Once you've installed {{site.kic_product_name}} Enterprise, please follow our
-[getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+[getting started](/kong-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.

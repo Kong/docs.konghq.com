@@ -237,7 +237,7 @@ following resources:
   the same annotation to both of the resources.
 
 Please follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
+[Using the KongPlugin resource](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
 guide for details on how this annotation can be used.
 
 
@@ -486,7 +486,7 @@ with fine-grained controlled using the properties of Service, Route
 and Upstream entities in Kong.
 
 Please follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
+[Using the KongIngress resource](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
 guide for details on how to use this annotation.
 
 ### konghq.com/protocol
@@ -600,7 +600,7 @@ regex match. If the annotation is set, paths with the specified prefix is
 considered as paths with regex match and will be translated to `~` started
 path in Kong. For example, if an ingress has annotation
 `konghq.com/regex-prefix: "/@"`, paths started with `/@` are considered as
-paths using regex match. See: [upgrade-to-kong-3x](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/)
+paths using regex match. See: [upgrade-to-kong-3x](/kong-ingress-controller/latest/guides/upgrade-kong-3x/)
 {% endif_version %}
 
 {% if_version gte:2.8.x %}

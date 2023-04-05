@@ -22,7 +22,7 @@ walks through creating an HTTPRoute with multiple backend Services.
 To do so, you can deploy a second echo Service so that you have
 a second `BackendRef` to use for traffic splitting:
 ```bash
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-services.yaml
+kubectl apply -f {{site.links.web}}/assets/kong-ingress-controller/examples/echo-services.yaml
 ```
 Response:
 ```text

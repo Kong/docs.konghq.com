@@ -162,4 +162,4 @@ oc get service kong-proxy -n kong
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [Kong Ingress Controller docs](/kong-ingress-controller/) for  how-to guides, reference guides, and more.

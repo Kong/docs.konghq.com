@@ -135,7 +135,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
 {% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
-First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+First, create a [KongPlugin](/kong-ingress-controller/latest/references/custom-resources/#kongplugin)
 resource:
 
 ```yaml
@@ -273,7 +273,7 @@ Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plu
 {% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
-First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+First, create a [KongPlugin](/kong-ingress-controller/latest/references/custom-resources/#kongplugin)
 resource:
 
 ```yaml
@@ -418,7 +418,7 @@ You can combine `consumer.id`, `service.id`, or `route.id`
 {% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
-First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+First, create a [KongPlugin](/kong-ingress-controller/latest/references/custom-resources/#kongplugin)
 resource:
 
 ```yaml
@@ -529,7 +529,7 @@ curl -X POST http://localhost:8001/plugins/ \
 {% unless include.params.k8s_examples == false %}
 {% navtab Kubernetes %}
 
-Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
+Create a [KongClusterPlugin](/kong-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
 resource and label it as global:
 
 ```yaml

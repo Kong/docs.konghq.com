@@ -51,8 +51,10 @@ You can find feature preview documentation for alpha maturity features in the [k
 [k8s]:https://kubernetes.io
 [gates]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/
 [stages]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/#feature-stages
-[specs]: /kubernetes-ingress-controller/latest/references/custom-resources/
-[guides]: /kubernetes-ingress-controller/latest/guides/overview/
+[specs]: /kong-ingress-controller/latest/references/custom-resources/
+[guides]: /kong-ingress-controller/latest/guides/overview/
 [k8s-keps]:https://github.com/kubernetes/enhancements
 [kic-keps]:https://github.com/Kong/kubernetes-ingress-controller/tree/main/keps
 [releases]:https://github.com/Kong/kubernetes-ingress-controller/releases
+[kong-docs]:https://github.com/Kong/docs.konghq.com
+[kic-guides]: /kong-ingress-controller/latest/guides/overview/

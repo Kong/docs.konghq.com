@@ -72,8 +72,8 @@ option.
 
 ## See Also
 
-* [Full Kong Ingress Controller docs](/kubernetes-ingress-controller/)
+* [Full Kong Ingress Controller docs](/kong-ingress-controller/)
 * For a detailed comparison of the options, see
 [Deployment Options](/enterprise/{{page.kong_version}}/deployment/kubernetes-deployment-options)
 * For more information about the architecture of the ingress controller, see
-[Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design)
+[Kong Ingress Controller Design](/kong-ingress-controller/latest/concepts/design)

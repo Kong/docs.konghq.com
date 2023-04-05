@@ -54,7 +54,7 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
+Please refer to the [custom resources](/kong-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
 concept document for details.
 
 ### RBAC permissions
@@ -101,7 +101,7 @@ In addition to these, it needs:
 
 - Create, list, get, watch, delete and update `ConfigMap`s and `Leases` to
   facilitate leader-election.
-  Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
+  Please read this [document](/kong-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.
@@ -217,7 +217,7 @@ Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows what this deployment looks like:
 
-![Kong DB-less](/assets/images/docs/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
+![Kong DB-less](/assets/images/docs/kong-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
 
 In this deployment, only one Deployment is required, which is comprised of
 a Pod with two containers, a Kong container which proxies the requests
@@ -237,7 +237,7 @@ is a little different.
 
 Please refer to the below figure:
 
-![Kong with a database](/assets/images/docs/kubernetes-ingress-controller/db-deployment.png "Kong with database")
+![Kong with a database](/assets/images/docs/kong-ingress-controller/db-deployment.png "Kong with database")
 
 In this type of deployment, there are two types of deployments created,
 separating the control and data flow:
@@ -307,7 +307,7 @@ open-source gateway.
 The {{site.kic_product_name}} is also compatible with the full-blown version of
 Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
-[This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
+[This doc](/kong-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
 overview of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -324,7 +324,7 @@ through Kubernetes EndpointSlice watch.
 
 The overview of this type of deployment can be found on the figure below:
 
-![Gateway Discovery overview](/assets/images/docs/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
+![Gateway Discovery overview](/assets/images/docs/kong-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
 
 In this type of architecture, there are two types of Kubernetes deployments created,
 separating the control and data flow:
@@ -344,6 +344,6 @@ Both of those deployments can be scaled independently.
 For more hands on experience with Gateway Discovery please see [our guide][gd-guide]
 
 [admin]: /gateway/latest/admin-api/
-[gd-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
+[gd-guide]: /kong-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
 
 {% endif_version %}

@@ -63,7 +63,7 @@ features:
         links:
           - text: Learn more
             icon: /assets/images/icons/icn-doc.svg
-            url: /kubernetes-ingress-controller/
+            url: /kong-ingress-controller/
 
       - name: Declarative Configuration
         description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.

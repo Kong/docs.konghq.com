@@ -9,7 +9,7 @@ proxy behavior.
 
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
-> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/).
+> [annotations](/kong-ingress-controller/{{page.kong_version}}/references/annotations/).
 > You can add these annotations directly to Service and Ingress resources
 > without creating a separate KongIngress resource. When an annotation is
 > available, it is the preferred means of configuring that setting, and the
@@ -301,7 +301,7 @@ four-Endpoint Service to eight would halve the weight of its targets (two
 weight `16` targets and eight weight `4` targets).
 
 KongIngress can also configure upstream [health checking behavior](/gateway/latest/reference/health-checks-circuit-breakers/) as well. See [the
-KongIngress reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/#kongingress)
+KongIngress reference](/kong-ingress-controller/{{page.kong_version}}/references/custom-resources/#kongingress)
 for the health check fields.
 
 ## Use KongIngress with Ingress resource
@@ -309,7 +309,7 @@ for the health check fields.
 {% if_version gte:2.8.x %}
 {:.note}
 > As of version 2.8, this configuration is deprecated in favor of the
-> `konghq.com/headers` annotation. The [Routing by Header](/kubernetes-ingress-controller/{{page.kong_version}}/guides/routing-by-header/)
+> `konghq.com/headers` annotation. The [Routing by Header](/kong-ingress-controller/{{page.kong_version}}/guides/routing-by-header/)
 > guide covers the modern version of this configuration.
 
 {% endif_version %}

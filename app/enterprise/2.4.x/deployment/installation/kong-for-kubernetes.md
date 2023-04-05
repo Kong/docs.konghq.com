@@ -161,7 +161,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 It might take a while for your cloud provider to associate the IP address to the `kong-proxy` service.
-After you have installed {{site.base_gateway}}, see the [getting started tutorial](/kubernetes-ingress-controller/latest/guides/getting-started/).
+After you have installed {{site.base_gateway}}, see the [getting started tutorial](/kong-ingress-controller/latest/guides/getting-started/).
 
 ## Next steps
 See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/deployment/using-kong-for-kubernetes/) for information about concepts, how-to guides, reference guides, and using plugins.

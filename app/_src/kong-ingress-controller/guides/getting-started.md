@@ -231,9 +231,9 @@ Pod Information:
 
 ## Next steps
 
-* To learn how to secure proxied routes, see the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configure-acl-plugin/).
-* The [External Services Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster.
+* To learn how to secure proxied routes, see the [ACL and JWT Plugins Guide](/kong-ingress-controller/{{page.kong_version}}/guides/configure-acl-plugin/).
+* The [External Services Guide](/kong-ingress-controller/{{page.kong_version}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster.
 {% if_version gte:2.4.x %}
 * [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
-configuring networking in Kubernetes. The Kong Ingress Controller supports Gateway API by default. To learn how to use Gateway API supported by the Kong Ingress Controller, see [Using Gateway API](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api/).
+configuring networking in Kubernetes. The Kong Ingress Controller supports Gateway API by default. To learn how to use Gateway API supported by the Kong Ingress Controller, see [Using Gateway API](/kong-ingress-controller/{{page.kong_version}}/guides/using-gateway-api/).
 {% endif_version %}

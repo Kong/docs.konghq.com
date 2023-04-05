@@ -25,17 +25,17 @@ before their initial general availability release.
 
 Currently, the {{site.kic_product_name}}'s implementation of the Gateway API supports the following resources:
 
-- [Gateway and GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses)
-- [HTTPRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes)
-- [TCPRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes)
-- [UDPRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes)
-- [TLSRoute](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes)
+- [Gateway and GatewayClass](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#gateways-and-gatewayclasses)
+- [HTTPRoute](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#httproutes)
+- [TCPRoute](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tcproutes)
+- [UDPRoute](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#udproutes)
+- [TLSRoute](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#tlsroutes)
 {% endif_version %}
 {% if_version gte:2.4.x lte:2.6.x %}
-- [`ReferencePolicy`](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies)
+- [`ReferencePolicy`](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencepolicies)
 {% endif_version %}
 {% if_version gte:2.6.x %}
-- [ReferenceGrant](/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
+- [ReferenceGrant](/kong-ingress-controller/{{page.kong_version}}/references/gateway-api-support/#referencegrants)
 {% endif_version %}
 
 ## Enable the feature
@@ -66,7 +66,7 @@ resources.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is set up correctly, making a request to Kong should return
 HTTP 404 Not Found.
@@ -95,7 +95,7 @@ This is expected, as Kong does not yet know how to proxy the request.
 Set up an echo service to demonstrate how to use the {{site.kic_product_name}}:
 
 ```bash
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
+kubectl apply -f {{site.links.web}}/assets/kong-ingress-controller/examples/echo-service.yaml
 ```
 
 ## Add a GatewayClass and Gateway
@@ -212,7 +212,7 @@ To configure KIC to reconcile the Gateway resource, you must set the
 `konghq.com/gatewayclass-unmanaged` annotation as the example in GatewayClass resource used in 
 `spec.gatewayClassName` in Gateway resource. Also, the 
 `spec.controllerName` of GatewayClass needs to be same as the value of the
-`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
+`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kong-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
 {% endif_version %}
 
 You can check to confirm if KIC has updated the bound Gateway by 
@@ -341,7 +341,7 @@ To do so, you can deploy a second echo Service so that you have
 a second `BackendRef` to use for traffic splitting.
 
 ```bach
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-services.yaml
+kubectl apply -f {{site.links.web}}/assets/kong-ingress-controller/examples/echo-services.yaml
 ```
 {:.note}
 > **Note**: This example contains the previous echo Service so you may deploy
@@ -421,8 +421,8 @@ Gateway APIs are supported. In particular:
 {% endif_version %}
 {% endif_version %}
 {% if_version gte: 2.5.x %}
-- Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
-- Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
+- Gateways [are not provisioned automatically](/kong-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
+- Kong [only supports a single Gateway per GatewayClass](/kong-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
 {% endif_version %}
 - HTTPRoutes cannot be bound to a specific port using a [ParentReference](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1beta1.ParentReference).
   Kong serves all HTTP routes on all HTTP listeners.

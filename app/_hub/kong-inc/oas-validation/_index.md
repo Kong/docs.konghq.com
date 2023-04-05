@@ -113,7 +113,7 @@ In Kong Gateway versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default.
 To enable the plugin, use one of the following methods:
   * Package install: Set `plugins=bundled,oas-validation` in `kong.conf` before starting Kong
   * Docker: Set `KONG_PLUGINS=bundled,oas-validation` in the environment
-  * Kubernetes: Set `KONG_PLUGINS=bundled,oas-validation` using [these instructions](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration)
+  * Kubernetes: Set `KONG_PLUGINS=bundled,oas-validation` using [these instructions](/kong-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration)
 
 {% endif_plugin_version %}
 

@@ -26,7 +26,7 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
-> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/).
+> [annotations](/kong-ingress-controller/{{page.kong_version}}/references/annotations/).
 > You can add these annotations directly to Service and Ingress resources
 > without creating a separate KongIngress resource. When an annotation is
 > available, it is the preferred means of configuring that setting, and the
@@ -61,7 +61,7 @@ when attached to an Ingress.
 
 The following diagram shows how the resources are linked with one another:
 
-![Associating Kong Ingress](/assets/images/docs/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
+![Associating Kong Ingress](/assets/images/docs/kong-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
 
 ## KongPlugin
 
@@ -73,18 +73,18 @@ on the traffic.
 
 Once this resource is created, the resource needs to be associated with an
 Ingress, Service, or KongConsumer resource in Kubernetes.
-For more details, read the reference documentation on [KongPlugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/).
+For more details, read the reference documentation on [KongPlugin](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/).
 
 The following diagram shows how you can link a KongPlugin resource to an
 Ingress, Service, or KongConsumer:
 
 |  |  |
 :-:|:-:
-![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association2.png)
+![](/assets/images/docs/kong-ingress-controller/kong-plugin-association1.png)|![](/assets/images/docs/kong-ingress-controller/kong-plugin-association2.png)
 
 ## KongClusterPlugin
 
-_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)._
+_This resource requires the [`kubernetes.io/ingress.class` annotation](/kong-ingress-controller/{{page.kong_version}}/references/annotations/)._
 
 KongClusterPlugin resource is exactly same as KongPlugin, except that it is a
 Kubernetes cluster-level resources instead of being a namespaced resource.

@@ -52,7 +52,7 @@ resource:
 The below diagram shows how the resources are linked
 with one another:
 
-![Associating Kong Ingress](/assets/images/docs/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
+![Associating Kong Ingress](/assets/images/docs/kong-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
 
 ## KongPlugin
 
@@ -71,11 +71,11 @@ The below diagram shows how you can link `KongPlugin` resource to an
 
 |  |  |
 :-:|:-:
-![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association2.png)
+![](/assets/images/docs/kong-ingress-controller/kong-plugin-association1.png)|![](/assets/images/docs/kong-ingress-controller/kong-plugin-association2.png)
 
 ## KongClusterPlugin
 
-_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)._
+_This resource requires the [`kubernetes.io/ingress.class` annotation](/kong-ingress-controller/{{page.kong_version}}/references/annotations/)._
 
 KongClusterPlugin resource is exactly same as KongPlugin, except that it is a
 Kubernetes cluster-level resources instead of being a namespaced resource.

@@ -150,9 +150,9 @@ DB-less deployment. No changes to Kubernetes resources are required if
 migrating in the opposite direction.
 
 [enterprise-download]: https://hub.docker.com/r/kong/kong-gateway/
-[admission-webhook]: /kubernetes-ingress-controller/latest/deployment/admission-webhook
+[admission-webhook]: /kong-ingress-controller/latest/deployment/admission-webhook
 [route-validation]: /gateway/{{page.kong_version}}/reference/configuration/#route_validation_strategy
-[supported-plugins]:/kubernetes-ingress-controller/latest/references/plugin-compatibility
+[supported-plugins]:/kong-ingress-controller/latest/references/plugin-compatibility
 [k4k8s-enterprise-install]: /gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart
 [k4k8s-with-enterprise-install]: /gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart
 [vitals-prometheus]: /gateway/{{page.kong_version}}/kong-enterprise/analytics/prometheus-strategy

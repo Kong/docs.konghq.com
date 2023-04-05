@@ -7,7 +7,7 @@ KongPlugin and KongClusterPlugin custom resources other configuration. These
 resources change how {{site.base_gateway}} handles proxied requests. This guide
 configures plugins that modify headers and enforce authentication requirements.
 
-See the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+See the [concept](/kong-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
 documentation for more information about the purpose of the `KongPlugin` resource.
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
@@ -30,7 +30,7 @@ applied to. Applying a plugin an Ingress or HTTPRoute will modify requests that
 match that resource's routing rules.
 
 {:.important}
-> The [validating admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
+> The [validating admission webhook](/kong-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
 > is not installed by this guide, but is recommended for all environments. The
 > webhook is required to validate plugin configuration. Not installing the
 > webhook can allow invalid plugin configuration, and invalid plugin
@@ -250,7 +250,7 @@ kongclusterplugin.configuration.konghq.com/auth created
 
 The `global='true'` label tells {{site.kic_product_name}} to create a global
 plugin. These plugins do not need annotations on other resources for them to
-take effect, but they do need [an `ingress.class` annotation](/kubernetes-ingress-controller/{{ page.kong_version }}/concepts/ingress-classes/)
+take effect, but they do need [an `ingress.class` annotation](/kong-ingress-controller/{{ page.kong_version }}/concepts/ingress-classes/)
 for the controller to recognize them.
 
 {{site.base_gateway}} will now reject requests to any route, because the global
@@ -451,4 +451,4 @@ consumer or just a route) always take precedence over less specific plugins.
 There's a lot more you can do with Kong plugins. Check the [Plugin Hub](/hub/) to see all of the available plugins and how to use them.
 
 Next, you might want to learn more about Ingress with the 
-[KongIngress resource guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource/).
+[KongIngress resource guide](/kong-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource/).

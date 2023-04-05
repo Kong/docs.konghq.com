@@ -54,7 +54,7 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
+Please refer to the [custom resources](/kong-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
 concept document for details.
 
 ### RBAC permissions
@@ -88,7 +88,7 @@ all namespaces and will need access to these resources at the cluster level
 In addition to these, it needs:
 
 - Create a ConfigMap and read and update ConfigMap for to facilitate
-  leader-election. Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
+  leader-election. Please read this [document](/kong-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.
@@ -199,7 +199,7 @@ Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows how this deployment looks like:
 
-![Kong DB-less](/assets/images/docs/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
+![Kong DB-less](/assets/images/docs/kong-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
 
 In this deployment, only one Deployment is required, which is comprised of
 a Pod with two containers, a Kong container which proxies the requests
@@ -219,7 +219,7 @@ is a little different.
 
 Please refer to the below figure:
 
-![Kong with a database](/assets/images/docs/kubernetes-ingress-controller/db-deployment.png "Kong with database")
+![Kong with a database](/assets/images/docs/kong-ingress-controller/db-deployment.png "Kong with database")
 
 In this type of deployment, there are two types of deployments created,
 separating the control and data flow:
@@ -299,7 +299,7 @@ Gateway in-order to take full-advantage of enterprise plugins.
 The {{site.kic_product_name}} is also compatible with the full-blown version of
 Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
-[This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
+[This doc](/kong-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
 overview of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/

@@ -458,4 +458,4 @@ After migrations are complete and the `my-kong-kong-<ID>` pod is running, contin
 
 
 ## Next steps
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for information about concepts, how-to guides, reference guides, and using plugins.
+See the [Kong Ingress Controller docs](/kong-ingress-controller/) for information about concepts, how-to guides, reference guides, and using plugins.

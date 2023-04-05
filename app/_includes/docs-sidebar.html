@@ -44,7 +44,7 @@
           <a href="/deck/latest/" {% if include.edition == 'deck' %}class="active"{% endif %}>decK</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}" >
-          <a href="/kubernetes-ingress-controller/latest/" {% if include.edition == 'kubernetes-ingress-controller' %}class="active"{% endif %}>Kong Ingress Controller</a>
+          <a href="/kong-ingress-controller/latest/" {% if include.edition == 'kubernetes-ingress-controller' %}class="active"{% endif %}>Kong Ingress Controller</a>
         </li>
         <li>
           <a href="https://docs.insomnia.rest/" target="_blank">Insomnia</a>
@@ -132,7 +132,7 @@
   {% elsif include.edition == 'konnect' %}
   {% assign docs_url = '/konnect' %}
   {% elsif include.edition == 'kubernetes-ingress-controller' %}
-  {% assign docs_url = '/kubernetes-ingress-controller/' | append: version %}
+  {% assign docs_url = '/kong-ingress-controller/' | append: version %}
   {% elsif include.edition == 'deck' %}
   {% assign docs_url = '/deck/' | append: version %}
   {% elsif include.edition == 'gateway-oss' %}

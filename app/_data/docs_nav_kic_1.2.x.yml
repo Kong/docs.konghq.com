@@ -1,6 +1,6 @@
 - title: Introduction
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  url: /kubernetes-ingress-controller/1.2.x/
+  url: /kong-ingress-controller/1.2.x/
   absolute_url: true
   items:
     - text: FAQ

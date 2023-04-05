@@ -152,7 +152,7 @@ gateway.gateway.networking.k8s.io/kong patched
 Next, install an example TCP service:
 
 ```bash
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/tcp-echo-service.yaml
+kubectl apply -f {{site.links.web}}/assets/kong-ingress-controller/examples/tcp-echo-service.yaml
 ```
 Response:
 ```text

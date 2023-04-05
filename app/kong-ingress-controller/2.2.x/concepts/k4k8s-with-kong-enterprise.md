@@ -24,7 +24,7 @@ a regular {{site.base_gateway}} proxy can be deployed there and connected to the
 same database. This provides a single pane of visibility of
 all services that are running in your infrastructure.
 
-![architecture-overview](/assets/images/docs/kubernetes-ingress-controller/k4k8s-with-kong-enterprise.png "K4K8S with Kong Enterprise")
+![architecture-overview](/assets/images/docs/kong-ingress-controller/k4k8s-with-kong-enterprise.png "K4K8S with Kong Enterprise")
 
 In this deployment model, the database for Kong can be hosted anywhere.
 It can be a managed DBaaS service like Amazon RDS, Google Cloud
@@ -39,5 +39,5 @@ If you are following this model, please keep in mind the following:
   connected to the same database must use the
   same version of kong Enterprise package.
 
-[This guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/kong-enterprise)
+[This guide](/kong-ingress-controller/{{page.kong_version}}/deployment/kong-enterprise)
 walks through the setup of the above architecture.

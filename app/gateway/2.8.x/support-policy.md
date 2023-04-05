@@ -85,4 +85,4 @@ These versions have reached the end of full support.
 ## See also
 
 * [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy/)
-* [Version support policy for {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/support-policy/)
+* [Version support policy for {{site.kic_product_name}}](/kong-ingress-controller/latest/support-policy/)

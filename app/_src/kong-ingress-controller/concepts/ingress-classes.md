@@ -128,7 +128,7 @@ resources that the controller uses as a basis for building Kong configuration.
 The Secret and KongPlugin _do not_ have class annotations, as they are
 referenced by other resources that do.
 
-[class-annotation]:/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
-[knative-class]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
+[class-annotation]:/kong-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
+[knative-class]:/kong-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
 [knative-override]:https://knative.tips/networking/ingress-override/
 [ingress-class-name]:https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation

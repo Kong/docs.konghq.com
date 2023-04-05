@@ -6,7 +6,7 @@ content_type: tutorial
 {% if_version lte:2.8.x %}
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Prerequisite
@@ -21,7 +21,7 @@ Ensure that you have it installed on your local system.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 If you haven't done so, follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure the `PROXY_IP` environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure the `PROXY_IP` environment variable.
 
 If everything is set up correctly, Kong returns
 `HTTP 404 Not Found` since the system does not know yet how to proxy the request. 
@@ -117,7 +117,7 @@ Ensure that you have it installed on your local system.
 
 ## Enable the `GatewayAlpha` feature gate
 
-If you are using the Gateway API, you need to enable the [`GatewayAlpha`](/kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates) feature gate in the Kong Ingress Controller.
+If you are using the Gateway API, you need to enable the [`GatewayAlpha`](/kong-ingress-controller/{{page.kong_version}}/references/feature-gates) feature gate in the Kong Ingress Controller.
 
 ## Deploy a gRPC test application
 

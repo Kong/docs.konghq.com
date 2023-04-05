@@ -1,19 +1,19 @@
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Please follow the [deployment](/kong-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Installing the Gateway APIs
 
 If you wish to use the Gateway APIs examples, follow the [supplemental
-Gateway APIs installation instructions](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
+Gateway APIs installation instructions](/kong-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
 
 ## Testing connectivity to {{site.base_gateway}}
 
 This guide assumes that `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to {{site.base_gateway}}.
 If you've not done so, follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kong-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to {{site.base_gateway}} should return back
 a HTTP `404 Not Found` status code:

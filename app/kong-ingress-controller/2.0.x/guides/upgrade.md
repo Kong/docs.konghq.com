@@ -147,7 +147,7 @@ the default value of `networking/v1`.
 See the [CLI Arguments Reference][flags] for a full list of these new options
 and their default values.
 
-[flags]:/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/
+[flags]:/kong-ingress-controller/{{page.kong_version}}/references/cli-arguments/
 
 
 ## Testing environment
@@ -293,4 +293,4 @@ consider using a [testing environment](#testing-environment) to
 identify and correct these issues, or reference the
 [troubleshooting documentation][troubleshooting].
 
-[troubleshooting]:/kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting/
+[troubleshooting]:/kong-ingress-controller/{{page.kong_version}}/troubleshooting/

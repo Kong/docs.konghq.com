@@ -215,4 +215,4 @@ Note that the Enterprise deployment includes a Postgres sub-chart provided by Bi
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [Kong Ingress Controller docs](/kong-ingress-controller/) for  how-to guides, reference guides, and more.
