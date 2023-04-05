@@ -34,9 +34,8 @@ If you don't have an existing KIC deployment, you need the following before usin
 
 After your KIC deployment is connected to Konnect, you can view the details for each runtime instance in your KIC runtime groups. 
 
-[SCREENSHOT]
-
-Table with things from screenshot of dashboard?
+![KIC runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
+> **Figure 2:** This image shows a KIC runtime instance dashboard. For each KIC runtime instance, you can see details about the runtime instance, analytics, and KIC status details.
 
 {:.note}
 > **Note**: The KIC deployment in Konnect is currently read-only. The configuration of the gateway runtime is controlled by changes to resources in the Kubernetes API, and reflected here. For more information about how to manage these resources in KIC, see [Custom Resources](/kubernetes-ingress-controller/latest/concepts/custom-resources/). 
