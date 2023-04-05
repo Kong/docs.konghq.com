@@ -11,9 +11,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2023
 
-**KIC in Konnect**
-: You can now add your Kubernetes Ingress Controller (KIC) for Kong runtime instances to Konnect. This allows you to view all your KIC runtime instances in Konnect, monitor analytics for KIC runtime instances, and publish services from your KIC runtime instances to Dev Portal. For more information, see [Kubernetes Ingress Controller Integration](/konnect/runtime-manager/kic/).
-
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).
 

@@ -1,6 +1,7 @@
 ---
 title: Kubernetes Ingress Controller Integration
 content_type: explanation
+beta: true
 ---
 
 You can use native Kubernetes resources to configure your clusters in Konnect by integrating your KIC deployment with Konnect. This set up is ideal for organizations who want to manage gateways in Konnect through native Kubernetes resources without having to use a hybrid deployment model. This guide explains how to add a KIC runtime group to {{site.konnect_short_name}} and the benefits of this integration. 
