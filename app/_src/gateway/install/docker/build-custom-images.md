@@ -18,8 +18,11 @@ chmod +x docker-entrypoint.sh
 
 1. Download the {{site.base_gateway}} package:
     * **Debian and Ubuntu**: [.deb]({{ site.links.download }}/gateway-3.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
-    * **RHEL**:[.rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.6.amd64.rpm)
     * **Alpine**: .apk ([amd64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.amd64.apk.tar.gz), [arm64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.arm64.apk.tar.gz))
+    * 
+    {% if_version eq:3.0.x %} **RHEL**:[ .rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.6.amd64.rpm){% endif_version %}
+    {% if_version gte:3.1.x %} **RHEL**:[ .rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.amd64.rpm){% endif_version %}
+
 
 1. Create a `Dockerfile`, ensuring you replace the filename by the first `COPY` with the name of the {{site.base_gateway}} file you downloaded in step 2:
 
@@ -120,7 +123,7 @@ COPY kong.apk.tar.gz /tmp/kong.apk.tar.gz
 RUN set -ex; \
     apk add --no-cache --virtual .build-deps tar gzip \
     && tar -C / -xzf /tmp/kong.apk.tar.gz \
-    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash curl ca-certificates \
+    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash curl ca-certicates \
     && adduser -S kong \
     && addgroup -S kong \
     && mkdir -p "/usr/local/kong" \
