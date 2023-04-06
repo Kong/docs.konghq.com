@@ -7,6 +7,6 @@ plus: No
 enterprise: Yes
 konnect: No
 network_config_opts: Self-managed traditional, DB-less, and hybrid
-notes: Application registration <b>is</b> available in Konnect Cloud, but doesn't require this plugin. <br>Learn how to <a href="/konnect/dev-portal/applications/enable-app-reg/">Enable Application Registration</a> in Konnect Cloud.
+notes: Application registration <b>is</b> available in Konnect, but doesn't require this plugin. <br>Learn how to <a href="/konnect/dev-portal/applications/enable-app-reg/">Enable Application Registration</a> in Konnect.
 categories:
   - authentication
