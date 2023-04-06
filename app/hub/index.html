@@ -7,9 +7,9 @@ body_id: page-hub
 ---
 
 {% assign hub = site.data.ssg_hub %}
+{% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
+{% assign third_extns = hub | where_exp: "extn", "extn.extn_publisher != 'kong-inc'" %}
 
-{% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
-{% assign third_extns = hub | where_exp: "extn", "extn.publisher != 'Kong Inc.'" %}
 {% assign categories = site.extensions.categories %}
 {% assign types = site.extensions.types %}
 
@@ -115,11 +115,11 @@ body_id: page-hub
           {% for cat in categories %}
             <div class="row category" id="{{cat.slug}}">
               <h4>{{ cat.name }}</h4>
-              {% assign extns = kong_extns | where_exp: "extn","extn.categories contains cat.slug" %}
+              {% assign extns = kong_extns | where_exp: "extn", "extn.metadata.categories contains cat.slug" %}
               {% for extn in extns  %}
                 {% include hub_cards.html header_icon=page.header_icon %}
               {% endfor %}
-              {% assign extns = third_extns | where_exp: "extn","extn.categories contains cat.slug" %}
+              {% assign extns = third_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
               {% for extn in extns  %}
                 {% include hub_cards.html header_icon=page.header_icon %}
               {% endfor %}
