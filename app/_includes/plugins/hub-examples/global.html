@@ -55,33 +55,5 @@ configuration file:
 
       {% endnavtab %}
     {% endunless %}
-
-    {% unless page.metadata.manager_examples == false or page.extn_publisher != "kong-inc" %}
-      {% navtab Kong Manager %}
-
-
-You can configure this plugin through the Kong Manager UI.
-
-1. In Kong Manager, select the workspace.
-2. Open **Plugins** from the menu, then click **New Plugin**.
-3. Find and select the **{{ page.name }}** plugin.{%
-    if page.enterprise == true or page.plus == true %}
-    <blockquote class="note">
-    <strong>Note:</strong> If the plugin is greyed out, then it is not available
-    for your product tier. See <a href="/gateway/latest/licenses/">{{site.base_gateway}} tiers</a>.
-    </blockquote>{% endif %}
-4. If the option is available, set the plugin scope to **Global**.
-{% unless kong_manager_fields.size == 0 -%}
-5. Configure the plugin's [parameters](#parameters).
-
-    You can test out the plugin with the following sample configuration:
-    {% for field in kong_manager_fields %}
-    * {{ field }}
-    {% endfor -%}
-{%- endunless %}
-6. Click **Create**.
-
-      {% endnavtab %}
-    {% endunless %}
   {% endnavtabs %}
 {% endif %}

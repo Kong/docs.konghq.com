@@ -25,10 +25,6 @@ module Jekyll
           @kubernetes ||= Examples::Yaml.new(type:, example:)
         end
 
-        def kong_manager
-          @kong_manager ||= Examples::KongManager.new(type:, example:)
-        end
-
         def plugin_name
           @plugin_name ||= @example.fetch('name')
         end
