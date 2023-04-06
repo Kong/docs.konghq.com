@@ -68,7 +68,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/',
           'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/_index.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x.html',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Overview'
         })

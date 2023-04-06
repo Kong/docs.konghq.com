@@ -57,7 +57,7 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/changelog/',
           'source_file' => '_hub/kong-inc/jwt-signer/_changelog.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/changelog.html',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/changelog/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Changelog'
         })

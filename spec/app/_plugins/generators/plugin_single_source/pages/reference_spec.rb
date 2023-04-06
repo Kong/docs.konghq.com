@@ -19,7 +19,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/reference/',
           'source_file' => nil,
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/reference.html',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/reference/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer plugin reference'
         })

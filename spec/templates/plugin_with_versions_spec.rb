@@ -8,7 +8,7 @@ RSpec.describe 'Plugin page with multiple versions' do
   end
 
   context 'versions with a specific file - _2.2.x' do
-    let(:page_url) { '/hub/kong-inc/jwt-signer/2.5.x.html' }
+    let(:page_url) { '/hub/kong-inc/jwt-signer/2.5.x/' }
 
     it 'renders the plugin\'s description' do
       expect(html).to have_css('p', text: 'From _2.2.x.md: The Kong JWT Signer plugin makes it possible to verify and (re-)sign one or two tokens in a request.')

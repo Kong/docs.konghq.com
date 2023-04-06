@@ -11,7 +11,7 @@ module PluginSingleSource
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/reference.html"
+          "#{base_url}#{@release.version}/reference/"
         end
       end
 

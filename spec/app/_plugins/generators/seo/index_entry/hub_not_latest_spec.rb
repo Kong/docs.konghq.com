@@ -1,5 +1,5 @@
 RSpec.describe SEO::IndexEntry::HubNotLatest do
-  let(:page) { find_page_by_url('/hub/kong-inc/jq/2.8.x.html') }
+  let(:page) { find_page_by_url('/hub/kong-inc/jq/2.8.x/') }
   let(:index) { {} }
 
   before do

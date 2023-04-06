@@ -46,7 +46,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
         expect(subject.data['is_latest']).to eq(false)
         expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/')
         expect(subject.data['seo_noindex']).to eq(true)
-        expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.8.x.html')
+        expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.8.x/')
         expect(subject.data['layout']).to eq('extension')
 
         expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/_index.md')
@@ -69,7 +69,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
           expect(subject.data['is_latest']).to eq(false)
           expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/')
           expect(subject.data['seo_noindex']).to eq(true)
-          expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.2.x.html')
+          expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.2.x/')
           expect(subject.data['layout']).to eq('extension')
 
           expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/_2.2.x/_index.md')

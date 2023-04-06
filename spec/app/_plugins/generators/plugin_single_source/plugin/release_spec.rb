@@ -67,10 +67,10 @@ RSpec.describe PluginSingleSource::Plugin::Release do
 
       it 'returns the relative path to the _index.md file inside the corresponding folder' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
-          '/hub/kong-inc/jwt-signer/2.5.x.html',
-          '/hub/kong-inc/jwt-signer/2.5.x/changelog.html',
-          '/hub/kong-inc/jwt-signer/2.5.x/how-to.html',
-          '/hub/kong-inc/jwt-signer/2.5.x/reference.html'
+          '/hub/kong-inc/jwt-signer/2.5.x/',
+          '/hub/kong-inc/jwt-signer/2.5.x/changelog/',
+          '/hub/kong-inc/jwt-signer/2.5.x/how-to/',
+          '/hub/kong-inc/jwt-signer/2.5.x/reference/'
         ])
       end
     end

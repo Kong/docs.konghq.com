@@ -56,7 +56,7 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/how-to/',
           'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/how-to/_index.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/how-to.html',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/how-to/',
           'ssg_hub' => false,
           'title' => 'Using the Kong JWT Signer plugin'
         })
@@ -69,7 +69,7 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
           expect(subject.data).to include({
             'canonical_url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',
             'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/how-to/nested/_tutorial.md',
-            'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/how-to/nested/tutorial.html',
+            'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/how-to/nested/tutorial/',
             'ssg_hub' => false,
             'title' => 'Using the Kong JWT Signer plugin'
           })
