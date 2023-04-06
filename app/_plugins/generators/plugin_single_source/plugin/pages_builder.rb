@@ -18,7 +18,7 @@ module PluginSingleSource
       def pages
         @pages ||= [
           @release.overview_page,
-          @release.references,
+          @release.reference,
           @release.how_tos,
           @release.changelog
         ].flatten.map(&:to_jekyll_page)
@@ -32,7 +32,7 @@ module PluginSingleSource
         @sidenav ||= ::Jekyll::Drops::Sidenav.new(
           [
             { 'title' => 'Overview', 'url' => @release.overview_page.permalink.gsub('.html', '/'), 'icon' => icon },
-            { 'title' => 'Configuration', 'items' => items_for(@release.references), 'icon' => icon },
+            { 'title' => 'Configuration Reference', 'url' => @release.reference.permalink.gsub('.html', '/'), 'icon' => icon },
             { 'title' => 'Using the plugin', 'items' => items_for(@release.how_tos), 'icon' => icon },
             { 'title' => 'Changelog', 'url' => @release.changelog.permalink.gsub('.html', '/'), 'icon' => icon }
           ]

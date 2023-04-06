@@ -4,8 +4,11 @@
       <a href="/hub/"><i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
     </p>
     <p>
-      <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.source_file }}">
-        <img src="/assets/images/logos/logo-github.svg" alt="github-edit-page"/>Edit this page</a>
+      {% if page.source_file %}
+        <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.source_file }}">
+          <img src="/assets/images/logos/logo-github.svg" alt="github-edit-page"/>Edit this page
+        </a>
+      {% endif %}
     </p>
     <p>
       <a href="https://github.com/Kong/docs.konghq.com/issues">

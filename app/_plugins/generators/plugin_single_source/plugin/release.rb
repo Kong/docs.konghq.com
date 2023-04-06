@@ -49,14 +49,12 @@ module PluginSingleSource
         end
       end
 
-      def references
-        @references ||= Dir.glob(File.expand_path('reference/**/*.md', pages_source_path)).map do |file|
-          Pages::Reference.new(
-            release: self,
-            file: file.gsub(pages_source_path, ''),
-            source_path: pages_source_path
-          )
-        end
+      def reference
+        @reference ||= Pages::Reference.new(
+          release: self,
+          file: nil,
+          source_path: pages_source_path
+        )
       end
 
       def overview_page

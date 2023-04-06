@@ -68,7 +68,7 @@ module PluginSingleSource
       def page_attributes
         @page_attributes ||= {
           'ssg_hub' => ssg_hub,
-          'layout' => 'plugins/show',
+          'layout' => layout,
           'title' => page_title,
           'versions_dropdown' => ::Jekyll::Drops::Plugins::VersionsDropdown.new(self),
           'breadcrumbs' => ::Jekyll::Drops::Plugins::Breadcrumbs.new(breadcrumbs).breadcrumbs
@@ -83,6 +83,10 @@ module PluginSingleSource
           { text: @release.name, url: "#{base_url}#{@release.latest? ? '' : @release.version}" },
           { text: page_title, url: permalink }
         ]
+      end
+
+      def layout
+        'plugins/show'
       end
     end
   end

@@ -79,10 +79,6 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
 {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
 
-{% if page.type == "plugin" and page.metadata %}
-  {% include plugins/configuration_reference.html %}
-{% endif %}
-
 {{ page.metadata.extra | markdownify }}
 
 {% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}

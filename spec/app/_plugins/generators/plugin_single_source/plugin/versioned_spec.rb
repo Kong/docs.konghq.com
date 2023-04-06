@@ -94,7 +94,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
         .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_index')
         .and_call_original
 
-      expect(subject.create_pages.size).to eq(12)
+      expect(subject.create_pages.size).to eq(16)
     end
 
     context 'when there is a file for a specific version or `source` present ' do
@@ -130,7 +130,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
           .with(site:, version: '2.3.x-CE', is_latest: false, plugin: subject, source: '_index')
           .and_call_original
 
-        expect(subject.create_pages.size).to eq(38)
+        expect(subject.create_pages.size).to eq(33)
       end
     end
   end

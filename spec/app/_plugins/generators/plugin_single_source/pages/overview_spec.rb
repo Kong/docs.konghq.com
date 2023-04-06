@@ -8,12 +8,10 @@ RSpec.describe PluginSingleSource::Pages::Overview do
   describe '#content' do
     let(:changelog) { markdown_content(File.expand_path('_hub/kong-inc/jwt-signer/_changelog.md', site.source)) }
     let(:how_to) { markdown_content(File.expand_path(how_to_file_path, site.source)) }
-    let(:reference) { markdown_content(File.expand_path(reference_file_path, site.source)) }
 
-    shared_examples_for 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md' do
+    shared_examples_for 'returns the content of the corresponding how-to/_index.md, and _changelog.md' do
       it do
         expect(subject.content).to include(how_to)
-        expect(subject.content).to include(reference)
         expect(subject.content).to include(changelog)
       end
     end
@@ -23,10 +21,9 @@ RSpec.describe PluginSingleSource::Pages::Overview do
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
       let(:how_to_file_path) { '_hub/kong-inc/jwt-signer/_2.2.x/how-to/_index.md' }
-      let(:reference_file_path) { '_hub/kong-inc/jwt-signer/_2.2.x/reference/_index.md' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
-      it_behaves_like 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md'
+      it_behaves_like 'returns the content of the corresponding how-to/_index.md, and _changelog.md'
     end
 
     context 'when using `_index.md`' do
@@ -34,9 +31,8 @@ RSpec.describe PluginSingleSource::Pages::Overview do
       let(:source) { '_index' }
       let(:version) { '2.8.x' }
       let(:how_to_file_path) { '_hub/kong-inc/jwt-signer/how-to/_index.md' }
-      let(:reference_file_path) { '_hub/kong-inc/jwt-signer/reference/_index.md' }
       let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
-      it_behaves_like 'returns the content of the corresponding how-to/_index.md, reference/_index.md and _changelog.md'
+      it_behaves_like 'returns the content of the corresponding how-to/_index.md, and _changelog.md'
     end
   end
 

@@ -83,7 +83,6 @@ RSpec.describe PluginSingleSource::Plugin::Release do
           '/hub/kong-inc/jwt-signer/how-to/',
           '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',
           '/hub/kong-inc/jwt-signer/reference/',
-          '/hub/kong-inc/jwt-signer/reference/api/',
         ])
       end
     end

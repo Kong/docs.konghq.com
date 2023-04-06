@@ -7,8 +7,6 @@ module PluginSingleSource
         @content ||= <<~CONTENT
           #{how_to}
 
-          #{reference}
-
           #{changelog}
         CONTENT
       end
@@ -17,14 +15,6 @@ module PluginSingleSource
         @how_to ||= Pages::HowTo.new(
           release: @release,
           file: 'how-to/_index.md',
-          source_path: @release.pages_source_path
-        ).content
-      end
-
-      def reference
-        @reference ||= Pages::Reference.new(
-          release: @release,
-          file: 'reference/_index.md',
           source_path: @release.pages_source_path
         ).content
       end
