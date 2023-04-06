@@ -18,7 +18,7 @@ Typical rate limit use cases:
 All rate limit algorithms are based on some form of request counting. In {{site.mesh_product_name}} we have two rate limiting mechanisms: 
 local and global rate limit. Local rate limit is applied per service instance, because of this counters can be stored in memory and rate limit 
 decision can be made instantaneously. Local rate limit should be enough in most cases (DoS protection and controlling traffic throughput).
-You can find more information about local rate limit and how to configure it in [MeshRateLimit docs](/docs/{{ page.version }}/policies/meshratelimit).
+You can find more information about local rate limit and how to configure it in [MeshRateLimit docs](/mesh/{{page.kong_version}}/policies/meshratelimit).
 
 There are some cases when local rate limit won't solve your problems. For example, you may want to limit the number of requests that not paying users can 
 make to your public API. In order to do that, you need to coordinate request counting between service instances. And that's where the Global Rate limit will be useful. 
@@ -98,7 +98,12 @@ increase response times of service you are rate limiting.
 
 ### Ratelimit service security
 
-TODO
+#### Securing communication between ratelimit service and Control Plane
+
+Communication between ratelimit service and control plane is encrypted. On top of that we are using on Universal we are using zone token
+for authorization and on Kubernetes we are using service account for authorization. 
+
+TODO: document how to generate and use zone token on universal. 
 
 ## TargetRef support matrix
 
@@ -110,7 +115,7 @@ TODO
 | MeshServiceSubset | ❌        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
 
-To learn more about the information in this table, see the [matching docs](/docs/{{ page.version }}/policies/targetref).
+To learn more about the information in this table, see the [matching docs](/mesh/{{page.kong_version}}/policies/targetref).
 
 ## Configuration
 
@@ -319,7 +324,7 @@ When local rate limit is reached, DPP will stop sending requests to ratelimit se
 
 This could **lower network traffic** between DPP and ratelimit service. Also, it can protect ratelimit service from being DDoSed by your services. 
 Moreover, this could be used to more **evenly distribute traffic** to ratelimit service and mitigate the problem of depleting whole limit at the begging of counter window.
-Described in [previous section](/docs/{{ page.version }}/features/meshglobalratelimit/#rate-limiting-algorithm).
+Described in [previous section](/mesh/{{page.kong_version}}/features/meshglobalratelimit/#rate-limiting-algorithm).
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -406,7 +411,7 @@ spec:
 
 ### External Service support
 
-In order to rate limit requests to [External Service](/docs/{{ page.version }}/policies/external-services) you need to deploy [ZoneEgress](/docs/{{ page.version }}/explore/zoneegress). 
+In order to rate limit requests to [External Service](/mesh/{{page.kong_version}}/policies/external-services) you need to deploy [ZoneEgress](/mesh/{{page.kong_version}}/explore/zoneegress). 
 
 After deploying Zone Egress, you need to enable mTLS in your mesh and configure zone egress routing. Example mesh config:
 
