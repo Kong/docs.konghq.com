@@ -1,5 +1,3 @@
-product: mesh
-release: 2.1.x
 generate: true
 assume_generated: true
 items:
@@ -314,7 +312,7 @@ items:
       - text: OPA policy support
         url: /features/opa
       - text: MeshOPA (beta)
-        url: /policies/meshopa
+        url: /features/meshopa
       - text: Multi-zone authentication
         url: /features/kds-auth
       - text: FIPS support

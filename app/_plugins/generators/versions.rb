@@ -125,6 +125,10 @@ module Jekyll
             page.data['release'] = version_data['release']
             page.data['version_data'] = version_data
             page.data['nav_items'] = site.data["docs_nav_mesh_#{parts[1].gsub(/\./, '')}"]
+            if page.data["release"] == "2.2.x"
+                Jekyll.logger.info("docs_nav_mesh_#{parts[1].gsub(/\./, '')}")
+                Jekyll.logger.info(site.data["docs_nav_mesh_#{parts[1].gsub(/\./, '')}"])
+            end
           end
         when 'konnect'
           page.data['edition'] = parts[0]

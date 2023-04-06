@@ -24,7 +24,7 @@ yarn.lock
 .netlify/
 
 # jekyll
-dist
+dist/
 .jekyll-metadata
 .jekyll-cache
 
