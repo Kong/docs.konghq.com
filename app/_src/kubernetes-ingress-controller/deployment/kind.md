@@ -18,14 +18,6 @@ we need to satisfy the following prerequisites:
 - [Kong Enterprise License secret](#kong-enterprise-license-secret)
 - [Kong Enterprise bootstrap password](#kong-enterprise-bootstrap-password)
 
-In order to create these secrets, let's provision the `kong`
-namespace first:
-
-```bash
-$ kubectl create namespace kong
-namespace/kong created
-```
-
 ### Set up Kind cluster
 
 ```bash
@@ -50,6 +42,17 @@ nodes:
     protocol: TCP
 EOF
 ```
+
+### Kong Enterprise namespace
+
+In order to create these secrets, let's provision the `kong`
+namespace first:
+
+```bash
+$ kubectl create namespace kong
+namespace/kong created
+```
+
 
 ### Kong Enterprise License secret
 
