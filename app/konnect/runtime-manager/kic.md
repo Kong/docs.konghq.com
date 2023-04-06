@@ -4,7 +4,7 @@ content_type: explanation
 beta: true
 ---
 
-You can use native Kubernetes resources to configure your clusters in {{site.konnect_short_name}} by associating your Kong Ingress Controller for K8 (KIC) deployment with {{site.konnect_short_name}}. 
+You can use native Kubernetes resources to configure your clusters in {{site.konnect_short_name}} by associating your Kong Ingress Controller (KIC) for Kubernetes deployment with {{site.konnect_short_name}}. 
 This setup is ideal for organizations who want to manage gateways in {{site.konnect_short_name}} through native Kubernetes resources without having to use a hybrid deployment model. 
 
 ## About KIC in {{site.konnect_short_name}}
