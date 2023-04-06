@@ -75,7 +75,7 @@
               url: /runtime-manager/configuration/vaults/how-to/
         - text: Manage Runtime Configuration using decK
           url: /runtime-manager/declarative-config/
-    - text: KIC Integration
+    - text: KIC Association
       url: /runtime-manager/kic/
     - text: Backup and Restore
       url: /runtime-manager/backup-restore/

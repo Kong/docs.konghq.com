@@ -1,10 +1,10 @@
 ---
-title: Kong Ingress Controller Integration
+title: Kong Ingress Controller for K8 Association
 content_type: explanation
 beta: true
 ---
 
-You can use native Kubernetes resources to configure your clusters in {{site.konnect_short_name}} by integrating your Kong Ingress Controller (KIC) deployment with {{site.konnect_short_name}}. 
+You can use native Kubernetes resources to configure your clusters in {{site.konnect_short_name}} by associating your Kong Ingress Controller for K8 (KIC) deployment with {{site.konnect_short_name}}. 
 This setup is ideal for organizations who want to manage gateways in {{site.konnect_short_name}} through native Kubernetes resources without having to use a hybrid deployment model. 
 
 ## About KIC in {{site.konnect_short_name}}
@@ -13,16 +13,20 @@ This setup is ideal for organizations who want to manage gateways in {{site.konn
 
 Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. For more information about KIC, see [{{site.kic_product_name}} Design](/kubernetes-ingress-controller/latest/concepts/design/). 
 
-By integrating your KIC deployment with {{site.konnect_short_name}}, this read-only integration allows you to view your runtime entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
+By associating your KIC deployment with {{site.konnect_short_name}}, this read-only association allows you to view your runtime entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
 
 Here are a few benefits of running KIC in {{site.konnect_short_name}} over a self-managed setup:
 * **Easy to set up:** The wizard allows you to add your KIC runtime group to {{site.konnect_short_name}} in minutes.
-* **Monitor your KIC analytics:** By integrating with {{site.konnect_short_name}}, you can view the analytics from your KIC runtime instances alongside any of your self-managed {{site.konnect_short_name}} runtime instances. 
-* **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers. 
+* **Centralized API management:** KIC in {{site.konnect_short_name}} allows organizations to have a centralized platform for API management, regardless of your individual teams' choice of API management, whether that is using Kubernetes or {{site.konnect_short_name}}. 
 
-## KIC in {{site.konnect_short_name}} integration
 
-To integrate your KIC runtime instances with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC runtime group.  
+<!-- Add this back in for milestone 2
+* **Monitor your KIC analytics:** By associating with {{site.konnect_short_name}}, you can view the analytics from your KIC runtime instances alongside any of your self-managed {{site.konnect_short_name}} runtime instances. 
+* **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers.-->
+
+## KIC in {{site.konnect_short_name}} association
+
+To associate your KIC runtime instances with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC runtime group.  
 
 In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Runtime Manager](https://cloud.konghq.com/runtime-manager)**, then click **New Runtime Group** > **Kubernetes Ingress Controller**.
 
