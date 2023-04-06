@@ -1,7 +1,7 @@
 {% assign extn_publisher = extn.extn_publisher %}
 
 <div class="card-group {{ extn.type }} {{ extn.categories | join: ' ' }} {%
-  if extn_publisher == 'kong-inc' %}pub-konghq {%
+  if extn_publisher == 'kong-inc' %}gateway {%
     if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
       if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
         unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
@@ -15,7 +15,7 @@
         <div class="name-desc">
           {% if extn.plus and extn_publisher == 'kong-inc' %}
           <span class="plugin-badge plus"></span>{% endif %}
-          {% if extn.enterprise and extn_publisher == 'kong-inc' %}
+          {% if extn.enterprise %}
           <span class="plugin-badge enterprise"></span> {% endif %}
           <img class="card-img-top" src="{{ extn.extn_icon }}" alt="" />
           <p class="plugin-name">{{ extn.name }}</p>

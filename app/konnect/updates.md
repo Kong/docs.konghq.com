@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2023
 
+**Identity API**
+: Konnect now supports [OIDC customization](/konnect/api/identity-management/sso/) through the Identity API. 
+
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).
 
