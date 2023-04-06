@@ -16,7 +16,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
 
   {% endnavtab %}
 
-  {% unless page.metadata.k8s_examples == false %}
+  {% unless page.k8s_examples == false %}
     {% navtab Kubernetes %}
 
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
@@ -59,7 +59,7 @@ Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that th
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.metadata.yaml_examples == false %}
+  {% unless page.yaml_examples == false %}
     {% navtab Declarative (YAML) %}
 
 Add this section to your declarative configuration file:

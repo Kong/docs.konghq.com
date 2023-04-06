@@ -5,21 +5,21 @@ type: plugin
 
 <h2 id="configuration">Configuration Reference</h2>
 
-{% if page.metadata.dbless_compatible == "yes" or page.metadata.dbless_compatible == true %}
+{% if page.dbless_compatible == "yes" or page.dbless_compatible == true %}
   <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
-{% elsif page.metadata.dbless_compatible == "partially" %}
+{% elsif page.dbless_compatible == "partially" %}
   <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
-{% elsif page.metadata.dbless_compatible != nil %}
+{% elsif page.dbless_compatible != nil %}
   <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
 {% endif %}
 
-{% if page.metadata.dbless_explanation %}
-  {{ page.metadata.dbless_explanation | markdownify }}
+{% if page.dbless_explanation %}
+  {{ page.dbless_explanation | markdownify }}
 {% endif %}
 
 {% if page.hub_examples.render? %}
   <h3 id="example-config">Example plugin configuration</h3>
-  {% include_cached hub-examples.html version=page.version configuration=page.metadata publisher=page.publisher name=page.name %}
+  {% include_cached hub-examples.html version=page.version configuration=page publisher=page.publisher name=page.name %}
 {% endif %}
 
 <h3 id="parameters">Parameters</h3>

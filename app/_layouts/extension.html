@@ -40,15 +40,15 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
   </div>
 {% endunless %}
 
-{% if page.bundled == false or page.metadata.bundled == false %}
+{% if page.bundled == false or page.bundled == false %}
   <blockquote class="important">
     <details>
     <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
 
     <ul>
-      <li>Package install: Set <strong>plugins=bundled,{{ page.metadata.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
-      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.metadata.name }}</strong> in the environment</li>
-      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.metadata.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+      <li>Package install: Set <strong>plugins=bundled,{{ page.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.name }}</strong> in the environment</li>
+      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
     </ul>
     </details>
   </blockquote>
@@ -79,7 +79,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
 {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
 
-{{ page.metadata.extra | markdownify }}
+{{ page.extra | markdownify }}
 
 {% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
 

@@ -36,13 +36,13 @@
         </ul>
       </td>
     </tr>
-    {% unless page.metadata.dbless_compatible == nil %}
+    {% unless page.dbless_compatible == nil %}
       <tr>
         <td>DB-less compatible?</td>
         <td>
-          <a href="/hub/plugins/compatibility/">{% if page.metadata.dbless_compatible == "yes" or page.metadata.dbless_compatible == true %}Yes{% endif %}{%
-            if page.metadata.dbless_compatible == "no" or page.metadata.dbless_compatible == false %}No{% endif %}{%
-            if page.metadata.dbless_compatible == "partially" %}Partially{% endif %}</a>
+          <a href="/hub/plugins/compatibility/">{% if page.dbless_compatible == "yes" or page.dbless_compatible == true %}Yes{% endif %}{%
+            if page.dbless_compatible == "no" or page.dbless_compatible == false %}No{% endif %}{%
+            if page.dbless_compatible == "partially" %}Partially{% endif %}</a>
         </td>
       </tr>
     {% endunless %}
@@ -56,11 +56,11 @@
          {% endif %}
       </tr>
     {% endif %}
-    {% if page.metadata.protocols %}
+    {% if page.protocols %}
       <tr>
         <td>Compatible protocols</td>
         <td>
-            {% for protocol in page.metadata.protocols %}{% if_plugin_version gte:protocol.minimum_version lte:protocol.maximum_version %}
+            {% for protocol in page.protocols %}{% if_plugin_version gte:protocol.minimum_version lte:protocol.maximum_version %}
               <div class="protocol">
                 <code>{{ protocol.name }}</code>
               </div>

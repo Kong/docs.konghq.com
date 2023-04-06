@@ -16,7 +16,7 @@ Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plu
 
   {% endnavtab %}
 
-  {% unless page.metadata.k8s_examples == false %}
+  {% unless page.k8s_examples == false %}
     {% navtab Kubernetes %}
 
 First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
@@ -60,7 +60,7 @@ Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plu
     {% endnavtab %}
   {% endunless %}
 
-  {% unless page.metadata.yaml_examples == false %}
+  {% unless page.yaml_examples == false %}
     {% navtab Declarative (YAML) %}
 
 Add this section to your declarative configuration file:

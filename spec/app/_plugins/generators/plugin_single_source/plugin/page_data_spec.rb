@@ -51,7 +51,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
       end
 
       it 'includes the attributes defined in _configuration.yml' do
-        expect(subject['metadata'])
+        expect(subject)
           .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_configuration.yml', site.source))))
       end
 
@@ -93,7 +93,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
       end
 
       it 'includes the attributes defined in _configuration.yml' do
-        expect(subject['metadata'])
+        expect(subject)
           .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_configuration.yml', site.source))))
       end
 

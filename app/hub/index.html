@@ -115,7 +115,7 @@ body_id: page-hub
           {% for cat in categories %}
             <div class="row category" id="{{cat.slug}}">
               <h4>{{ cat.name }}</h4>
-              {% assign extns = kong_extns | where_exp: "extn", "extn.metadata.categories contains cat.slug" %}
+              {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
               {% for extn in extns  %}
                 {% include hub_cards.html header_icon=page.header_icon %}
               {% endfor %}
