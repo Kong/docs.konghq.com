@@ -1,5 +1,5 @@
 ---
-title: Kong Ingress Controller for K8 Association
+title: Kong Ingress Controller for Kubernetes Association
 content_type: explanation
 beta: true
 ---
