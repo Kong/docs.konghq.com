@@ -22,6 +22,10 @@ This brings you to a set of installation options. Choose one of the options, the
 {:.note}
 > **Note:** Kong does not host runtime instances. You must install and host your own.
 
+### Forward proxy support
+
+{{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/){{site.base_gateway}} documentation for more information.
+
 ## Runtime instance dashboard
 ### Gateway runtime instance dashboard
 ![gateway runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-gateway.png)
@@ -39,3 +43,4 @@ This brings you to a set of installation options. Choose one of the options, the
 - [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) - Allow runtime instances to communicate with {{site.konnect_short_name}} through a forward proxy
 - [Runtime parameter reference](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/) - Reference for the default configuration parameters used in runtime instance installation
 - [Analytics dashboard](/konnect/analytics/) - Monitor and analyze your runtime instances, as well as specific entities
+- [Troubleshooting documentation](/konnect/runtime-manager/troubleshoot/) - Common runtime instance troubleshooting instruction documentation.
