@@ -775,7 +775,7 @@ jQuery(function () {
     '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
   );
   $(".badge.plus").append(
-    '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Konnect Cloud)</span></div>'
+    '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Kong Konnect)</span></div>'
   );
   $(".badge.free").append(
     '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>'
@@ -787,6 +787,6 @@ jQuery(function () {
     '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>'
   );
   $(".badge.konnect").append(
-    '<div class="tooltip"><span class="tooltiptext">Available in the Konnect Cloud app</span></div>'
+    '<div class="tooltip"><span class="tooltiptext">Available in the Kong Konnect app</span></div>'
   );
 });

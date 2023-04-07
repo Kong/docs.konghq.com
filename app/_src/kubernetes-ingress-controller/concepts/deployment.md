@@ -177,6 +177,10 @@ Following are the different options to consider while deploying the
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
   Using Kong or Kong Enterprise (for Kong Enterprise customers)
+{% if_version gte: 2.9.x %}
+- [**Gateway Discovery**](#gateway-discovery):
+  Dynamically discovering Kong's Admin API endpoints
+{% endif_version %}
 
 ### Kubernetes Service Types
 
@@ -308,3 +312,38 @@ overview of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 [k8s-rbac]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+{% if_version gte: 2.9.x %}
+### Gateway Discovery
+
+{{site.kic_product_name}} can also be configured to discover deployed Gateways.
+This works by using a separate {{site.base_gateway}} deployment which exposes a
+Kubernetes Service which is backed by [Kong Admin API][admin] endpoints.
+This Service endpoints can be then discovered by {{site.kic_product_name}}
+through Kubernetes EndpointSlice watch.
+
+The overview of this type of deployment can be found on the figure below:
+
+![Gateway Discovery overview](/assets/images/docs/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
+
+In this type of architecture, there are two types of Kubernetes deployments created,
+separating the control and data flow:
+
+- **Control-plane**: This deployment consists of a pod(s) running the controller.
+  This deployment does not proxy any traffic but only configures Kong.
+  Leader election is enforced in this deployment when running with Gateway Discovery
+  enabled to ensure only 1 controller instance is sending configuration to data
+  planes at a time.
+- **Data-plane**: This deployment consists of pods running Kong which can proxy
+  traffic based on the configuration it receives via the [Admin API][admin].
+  This deployment should be scaled to respond to change in traffic profiles
+  and add redundancy to safeguard from node failures.
+
+Both of those deployments can be scaled independently.
+
+For more hands on experience with Gateway Discovery please see [our guide][gd-guide]
+
+[admin]: /gateway/latest/admin-api/
+[gd-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
+
+{% endif_version %}

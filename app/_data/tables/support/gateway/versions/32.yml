@@ -6,6 +6,7 @@ lts: false
 distributions:
   - <<: *alpine
     docker: true
+    arm: true
   - <<: *amazonlinux2
     docker: true
     arm: true

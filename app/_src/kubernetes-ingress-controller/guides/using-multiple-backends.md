@@ -2,6 +2,8 @@
 title: Using multiple backend Services
 content_type: tutorial
 beta: true
+stability_message: |
+  Using multiple backend services will be GA once a non-beta version of the <a href="https://gateway-api.sigs.k8s.io/">Kubernetes Gateway API</a> is available.
 ---
 
 ## Overview
