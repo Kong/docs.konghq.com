@@ -28,8 +28,7 @@ params:
   config:
     - name: path
       required: semi
-      value_in_examples:
-        - /path
+      value_in_examples: /path
       datatype: string
       description: |
         Updates the upstream request path with given value/template. This value can only be used to update the path part of the URI, not the scheme, nor the hostname. One of `config.path` or `config.host` or `config.port` must be specified.
