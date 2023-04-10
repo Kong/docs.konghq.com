@@ -88,6 +88,7 @@
       url: /runtime-manager/troubleshoot/
 
 - title: Mesh Manager
+  icon: /assets/images/icons/documentation/icn-brain-color.svg
   items:
     - text: Overview
       url: /mesh-manager/
