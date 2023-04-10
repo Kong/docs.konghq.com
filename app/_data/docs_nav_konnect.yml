@@ -82,6 +82,13 @@
     - text: Troubleshooting
       url: /runtime-manager/troubleshoot/
 
+- title: Mesh Manager
+  items:
+    - text: Overview
+      url: /mesh-manager/
+    - text: FAQ
+      url: /mesh-manager/faq/
+
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
