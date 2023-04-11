@@ -16,12 +16,6 @@ we pin the plugin version to the Gateway version. These are marked with strategy
 We only want to show the compatibility matrix if the strategy = matrix (which is the default), or if the plugins are third-party.
 {% endcomment %}
 
-{% if extn_publisher == "kong-inc" %}
-  {% unless extn_data['strategy'] == "matrix" %}
-    {% assign compat = false %}
-  {% endunless %}
-{% endif %}
-
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
 {% assign extn_type = extn_type[0]['name'] %}
 

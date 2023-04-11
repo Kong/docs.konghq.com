@@ -25,17 +25,7 @@
     %}
   {% endunless %}
 
-  {% if include.about_this %}
-    {% include_cached plugins/about_this.html
-                      extn_type=include.extn_type
-                      extn_versions=include.extn_versions
-                      extn_data=include.extn_data
-                      extn_release=include.extn_release
-                      extn_publisher=include.extn_publisher
-                      extn_latest=include.extn_latest
-                      compat=include.compat
-                      ee_compatible=include.ee_compatible
-                      ce_compatible=include.ce_compatible
-    %}
+  {% if page.extn_publisher != 'kong-inc' %}
+    {% include plugins/about_this.html %}
   {% endif %}
 </aside>
