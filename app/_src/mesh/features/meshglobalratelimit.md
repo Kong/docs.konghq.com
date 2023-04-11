@@ -664,7 +664,7 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
                 status: 423
             backend:
               rateLimitService:
-                url: http://ratelimit-service.kong-mesh-system:10003
+                url: http://kong-mesh-ratelimit-service.kong-mesh-system:10003
                 timeout: 1s" | kubectl apply -f -
     ```
 
