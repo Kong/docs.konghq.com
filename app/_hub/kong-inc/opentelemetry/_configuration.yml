@@ -1,11 +1,21 @@
 name: OpenTelemetry
 konnect_examples: false
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - analytics-monitoring
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+version: 0.1.0
+desc: Propagate spans and report space to a backend server through OTLP protocol.
+description: |
+  Propagate distributed tracing spans and report low-level spans to a OTLP-compatible server.

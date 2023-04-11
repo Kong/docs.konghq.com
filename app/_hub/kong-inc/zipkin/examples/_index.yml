@@ -1,5 +1,0 @@
-name: zipkin
-config:
-  http_endpoint: http://your.zipkin.collector:9411/api/v2/spans
-  sample_ratio: 0.001
-  include_credential: true

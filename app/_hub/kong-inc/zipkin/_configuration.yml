@@ -1,11 +1,22 @@
 name: Zipkin
 konnect_examples: false
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - analytics-monitoring
+
+publisher: Kong Inc.
+desc: Propagate Zipkin spans and report space to a Zipkin server
+description: |
+  Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
+
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true

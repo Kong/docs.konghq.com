@@ -4,11 +4,20 @@ dbless_explanation: |
   The database will always be reported as reachable in Prometheus with DB-less.
   Additionally, the DB entity count metric (`kong_db_entities_total`) is not
   emitted in DB-less mode.
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - analytics-monitoring
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
+description: |
+  Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.

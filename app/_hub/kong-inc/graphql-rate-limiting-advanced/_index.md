@@ -1,27 +1,8 @@
----
-name: GraphQL Rate Limiting Advanced
-publisher: Kong Inc.
-desc: Provide rate limiting for GraphQL queries
-description: |
-  The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
-  GraphQL Rate Limiting plugin extends the
-  [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
-type: plugin
-enterprise: true
-cloud: true
-categories:
-  - traffic-control
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
----
-
 {:.note}
 > **Notes:**
   *  Redis configuration values are ignored if the `cluster` strategy is used.
   * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster datastore.
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
-
 The **GraphQL Rate Limiting Advanced** plugin is an extension of the
 **Rate Limiting Advanced** plugin and provides rate limiting for
 GraphQL queries.
@@ -64,7 +45,6 @@ query { # + 1
     }
   }
 }
-
 # total cost: 4
 ```
 
@@ -91,7 +71,6 @@ query { # + 1
     }
   }
 }
-
 # total cost: ((((4 * 10 + 1) + 1) + 1) * 20 + 1) + 1 = 862
 ```
 
@@ -125,7 +104,6 @@ query { # + 1
     }
   }
 }
-
 # total cost: ((((11 * 10 + 5) + 1) + 1) * 2 * 20 + 2) + 1 = 4683
 ```
 
@@ -227,7 +205,6 @@ curl -X POST http://kong:8001/services \
   --data "host=mockbin.org" \
   --data "port=443" \
   --data "protocol=https"
-
 curl -X POST http://kong:8001/services/example/routes \
   --data "hosts=example.com"
 ```
@@ -283,18 +260,13 @@ For example:
 curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
   --data type_path="Query.allPeople" \
   --data mul_arguments="first"
-
-
 curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
   --data type_path="Person.vehicleConnection" \
   --data mul_arguments="first"
   --data add_constant=42
-
 curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
   --data type_path="Vehicle.filmConnection" \
   --data mul_arguments="first"
-
-
 curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
   --data type_path="Film.characterConnection" \
   --data mul_arguments="first"

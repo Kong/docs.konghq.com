@@ -1,8 +1,0 @@
-name: http-log
-config:
-  http_endpoint: http://mockbin.org/bin/:id
-  method: POST
-  timeout: 1000
-  keepalive: 1000
-  flush_timeout: 2
-  retry_count: 15

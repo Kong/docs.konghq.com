@@ -1,11 +1,18 @@
 name: DeGraphQL
 konnect_examples: false
 dbless_compatible: 'yes'
-free: No
-plus: No
-enterprise: Yes
-konnect: No
+free: false
+plus: false
+enterprise: true
+konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --
 categories:
   - transformations
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Transform a GraphQL upstream into a REST API
+description: |
+  This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.

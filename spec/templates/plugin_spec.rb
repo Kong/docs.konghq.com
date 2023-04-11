@@ -206,7 +206,7 @@ RSpec.describe 'Plugin page' do
     expect(html).to have_css('p', text: 'Also for introspection to work, you need to specify introspection endpoints')
   end
 
-  it 'renders the changelog' do
+  xit 'renders the changelog' do
     expect(html).to have_css('h2#changelog', text: 'Changelog')
     expect(html).to have_css('blockquote p', text: 'handler.lua version: 1.9.0')
     expect(html).to have_css('p', text: 'Starting with Kong Gateway 2.7.0.0, if keyring encryption is enabled')

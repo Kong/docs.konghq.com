@@ -6,33 +6,28 @@ RSpec.describe PluginSingleSource::Pages::Overview do
   subject { described_class.new(release:, file:, source_path:) }
 
   describe '#content' do
-    let(:changelog) { markdown_content(File.expand_path('_hub/kong-inc/jwt-signer/_changelog.md', site.source)) }
-    let(:how_to) { markdown_content(File.expand_path(how_to_file_path, site.source)) }
+    let(:index_file_path) { File.expand_path('_index.md', source_path) }
+    let(:index) { markdown_content(File.expand_path(index_file_path, site.source)) }
 
-    shared_examples_for 'returns the content of the corresponding how-to/_index.md, and _changelog.md' do
-      it do
-        expect(subject.content).to include(how_to)
-        expect(subject.content).to include(changelog)
-      end
+    shared_examples_for 'returns the content of _index.md' do
+      it { expect(subject.content).to include(index) }
     end
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
-      let(:how_to_file_path) { '_hub/kong-inc/jwt-signer/_2.2.x/how-to/_index.md' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
-      it_behaves_like 'returns the content of the corresponding how-to/_index.md, and _changelog.md'
+      it_behaves_like 'returns the content of _index.md'
     end
 
     context 'when using `_index.md`' do
       let(:is_latest) { true }
       let(:source) { '_index' }
       let(:version) { '2.8.x' }
-      let(:how_to_file_path) { '_hub/kong-inc/jwt-signer/how-to/_index.md' }
       let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
-      it_behaves_like 'returns the content of the corresponding how-to/_index.md, and _changelog.md'
+      it_behaves_like 'returns the content of _index.md'
     end
   end
 

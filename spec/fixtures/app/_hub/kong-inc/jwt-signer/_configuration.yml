@@ -2,15 +2,6 @@ name: Kong JWT Signer
 dbless_compatible: 'yes'
 categories:
   - authentication
-config:
-  - name: realm
-    required: false
-    default: ngx.var.host
-    datatype: string
-    description: |
-      When authentication or authorization fails, or there is an unexpected
-      error, the plugin sends an `WWW-Authenticate` header with the `realm`
-      attribute value.
 extra: |
   **Configuration Notes:**
 
@@ -22,3 +13,18 @@ extra: |
 
   * Also for introspection to work, you need to specify introspection endpoints
   config.access_token_introspection_endpoint and/or `config.channel_token_introspection_endpoint.
+
+publisher: Kong Inc.
+desc: Verify and sign one or two tokens in a request
+description: |
+  From \_index.md: The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign
+  one or two tokens in a request. With a two token request, one token
+  is allocated to an end user and the other token to the client application,
+  for example.
+enterprise: true
+plus: true
+kong_version_compatibility:
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible: true

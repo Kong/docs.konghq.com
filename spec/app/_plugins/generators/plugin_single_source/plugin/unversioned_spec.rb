@@ -23,7 +23,7 @@ RSpec.describe PluginSingleSource::Plugin::Unversioned do
 
   describe '#create_pages' do
     it 'generates pages for the plugin' do
-      expect(subject.create_pages.size).to eq(4)
+      expect(subject.create_pages.size).to eq(3)
     end
   end
 end

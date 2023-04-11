@@ -1,4 +1,0 @@
-name: request-termination
-config:
-  status_code: 403
-  message: So long and thanks for all the fish!

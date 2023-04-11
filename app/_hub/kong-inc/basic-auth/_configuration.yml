@@ -5,11 +5,21 @@ dbless_explanation: |
 
   Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials are not available on DB-less mode.
 
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - authentication
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Add Basic Authentication to your Services
+description: |
+  Add Basic Authentication to a Service or a Route with username and password protection. The plugin
+  checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers (in that order).

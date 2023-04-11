@@ -1,4 +1,4 @@
-name: kong-service-virtualization
+name: Kong Service Virtualization
 api_id: true
 service_id: true
 consumer_id: false
@@ -23,3 +23,31 @@ extra: |
     `responseContentType` JSON represents the Content-Type of the HTTP response after successful virtual request match
 
     `response` JSON represents the Base64 encoded virtual response to send after successful virtual request match
+
+publisher: Optum
+
+categories:
+  - traffic-control
+
+desc: Mock virtual API request and response pairs through Kong Gateway
+
+description: |
+  This plugin will enable mocking virtual API request and response pairs through Kong Gateway.
+
+support_url: https://github.com/Optum/kong-service-virtualization/issues
+
+source_code: https://github.com/Optum/kong-service-virtualization
+
+license_type: Apache-2.0
+
+kong_version_compatibility:
+  community_edition:
+    compatible:
+      - 0.14.x
+      - 0.13.x
+
+  enterprise_edition:
+    compatible:
+      - 0.34-x
+      - 0.33-x
+      - 0.32-x

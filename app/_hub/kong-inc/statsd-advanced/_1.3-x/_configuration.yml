@@ -1,39 +1,29 @@
-name: statsd-advanced
-service_id: true
-route_id: true
-consumer_id: true
-config:
-  - name: host
-    required:
-    default: "`127.0.0.1`"
-    value_in_examples: 127.0.0.1
-    description: The IP address or host name of StatsD server to send data to
-  - name: port
-    required:
-    default: "`8125`"
-    value_in_examples: 8125
-    description: The port of StatsD server to send data to
-  - name: metrics
-    required:
-    default: "All metrics<br>are logged"
-    description: |
-      List of Metrics to be logged. Available values are described under [Metrics](#metrics).
-  - name: prefix
-    required:
-    default: "`kong`"
-    description: String to be prefixed to each metric's name
-  - name: udp_packet_size
-    required:
-    default: "`0` (not combined)"
-    description: Combine UDP packet up to the size configured
-  - name: use_tcp
-    required:
-    default: "`false`"
-    description: Use TCP instead of UDP
-  - name: allow_status_codes
-    required:
-    default: "All responses are passed to log metrics"
-    value_in_examples: ["200-205","400-499"]
-    description: List of status code ranges which are allowed to be logged in metrics  
+name: StatsD Advanced
+publisher: Kong Inc.
+version: 1.3-x
 extra: |
   By default the Plugin sends a packet for each metric it observes. `udp_packet_size` configures the greatest datagram size the Plugin can combine. It should be less than 65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
+
+desc: Send metrics to StatsD with more flexible options
+description: |
+  Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
+  to a StatsD server.
+  It can also be used to log metrics on [Collectd](https://collectd.org/)
+  daemon by enabling its [StatsD
+  plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+
+categories:
+  - analytics-monitoring
+
+kong_version_compatibility:
+    community_edition:
+      compatible:
+    enterprise_edition:
+      compatible:
+        - 2.1.x
+        - 1.5.x
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
+        - 0.34-x

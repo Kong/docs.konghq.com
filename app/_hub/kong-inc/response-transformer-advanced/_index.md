@@ -1,40 +1,276 @@
----
-name: Response Transformer Advanced
-publisher: Kong Inc.
-desc: Modify the upstream response before returning it to the client
-description: |
-  Transform the response sent by the upstream server on the fly before returning
-  the response to the client.
+Note: If the value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array notation must be used instead.
 
-  The Response Transformer Advanced plugin is a superset of the
-  open source [Response Transformer plugin](/hub/kong-inc/response-transformer/), and
-  provides additional features:
+## Order of execution
 
-  * When transforming a JSON payload, transformations are applied to nested JSON objects and
-    arrays. This can be turned off and on using the `config.dots_in_keys` configuration parameter.
-    See [Arrays and nested objects](#arrays-and-nested-objects).
-  * Transformations can be restricted to responses with specific status codes using various
-    `config.*.if_status` configuration parameters.
-  * JSON body contents can be restricted to a set of allowed properties with
-    `config.allow.json`.
-  * The entire response body can be replaced using `config.replace.body`.
-  * Arbitrary transformation functions written in Lua can be applied.
-  * The plugin will decompress and recompress Gzip-compressed payloads
-    when the `Content-Encoding` header is `gzip`.
+The plugin performs the response transformation in the following order:
 
-  Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
-  `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`,
-  `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
+remove --> replace --> add --> append
 
-  {:.important}
-  > **Note on transforming bodies:** Be aware of the performance of transformations on the
-  response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
-  which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
-  Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+## Arrays and nested objects
 
-type: plugin
-enterprise: true
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
----
+The plugin allows navigating complex JSON objects (arrays and nested objects)
+when `config.dots_in_keys` is set to `false` (the default is `true`).
+
+- `array[*]`: Loops through all elements of the array.
+- `array[N]`: Navigates to the nth element of the array (the index of the first element is `1`).
+- `top.sub`: Navigates to the `sub` property of the `top` object.
+
+These can be combined. For example, `config.remove.json: customers[*].info.phone` removes
+all `phone` properties from inside the `info` object of all entries in the `customers` array.
+
+## Examples
+
+In these examples, the plugin is enabled on a Route. This would work
+similarly for Services.
+
+- Add multiple headers by passing each `header:value` pair separately:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.add.headers[1]=h1:v1" \
+  --data "config.add.headers[2]=h2:v1"
+```
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+     <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
+- Add multiple headers by passing comma-separated `header:value` pair:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.add.headers=h1:v1,h2:v2"
+```
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
+
+- Add multiple headers passing config as a JSON body:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --header 'content-type: application/json' \
+  --data '{"name": "response-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
+```
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
+- Add a body property and a header:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.add.json=p1:v1,p2=v2" \
+  --data "config.add.headers=h1:v1"
+```
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v2</td>
+    <td>
+      <ul><li>h1: v2</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>h3: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
+
+| upstream response JSON body | proxied response body |
+| ---           | --- |
+| {}            | {"p1" : "v1", "p2": "v2"} |
+| {"p1" : "v2"}  | {"p1" : "v2", "p2": "v2"} |
+
+- Append multiple headers and remove a body property:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --header 'content-type: application/json' \
+  --data '{"name": "response-transformer-advanced", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
+```
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
+|upstream response JSON body | proxied response body |
+|---           | --- |
+|{"p2": "v2"}   | {"p2": "v2"} |
+|{"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"} |
+
+- Replace entire response body if response code is 500:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.replace.body='{\"error\": \"internal server error\"}'" \
+  --data "config.replace.if_status=500"
+```
+**Note**: The plugin doesn't validate the value in `config.replace.body` against
+the content type as defined in the `Content-Type` response header.
+
+- Remove nested JSON content:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.json=customers.info.phone" \
+  --data "config.dots_in_keys=false"
+```
+
+When `dots_in_keys` is `false`, the `customers.info.phone` value is interpreted as
+nested JSON objects. When `dots_in_keys` is `true` (default), `customers.info.phone` is
+treated as a single property.
+
+- Perform arbitrary transforms to a JSON body
+
+Use the power of embedding Lua to perform arbitrary transformations on JSON bodies. Transformation functions
+receive an argument with the JSON body, and must return the transformed response body:
+
+```lua
+-- transform.lua
+-- this function transforms
+-- { "foo": "something", "something": "else" }
+-- into
+-- { "foobar": "hello world", "something": "else" }
+return function (data)
+  if type(data) ~= "table" then
+    return data
+  end
+
+  -- remove foo key
+  data["foo"] = nil
+
+  -- add a new key
+  data["foobar"] = "hello world"
+
+  return data
+end
+```
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  -F "name=response-transformer-advanced" \
+  -F "config.transform.functions=@transform.lua" \
+  -F "config.transform.if_status=200"
+```
+
+- Remove the entire header field with a given header name:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1,h2"
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:v1,v2,v3   | {} |
+|h2:v2  | {} |
+
+- Remove a specific header value of a given header field:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1:v1,h1:v2"
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:v1,v2,v3   | h1:v3 |
+
+- Remove a specific header value from a comma-separated list of header values:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1:v1,h1:v2"
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:v1,v2,v3   | h1:v3 |
+
+**Note**: The plugin doesn't remove header values if the values are not separated by commas, unless it's a `Set-Cookie` header field
+(as specified in [RFC 7230](https://httpwg.org/specs/rfc7230.html#field.order)).
+
+- Remove a specific header value defined by a regular expression
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/"
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:JSESSIONID=1876832,path=/   | h1:path=/ |
+|h2:/match/status/,/status/no-match/   | h2:/status/no-match/ |
+
+[api-object]: /gateway/latest/admin-api/#api-object
+[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[configuration]: /gateway/latest/reference/configuration
+
+
+
+- Explicitly set the type of the added JSON value `-1` to be a `number` (instead of the implicitly inferred type `string`) if the response code is 500:
+
+```bash
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.add.json=p1:-1" \
+  --data "config.add.json_types=number" \
+  --data "config.add.if_status=500"
+```
+>>>>>>> 0ef6758f16 ([Plugin Hub] Move frontmatter to _configuration.yml)

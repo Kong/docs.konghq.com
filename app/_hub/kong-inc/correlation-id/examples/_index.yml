@@ -1,5 +1,0 @@
-name: correlation-id
-config:
-  header_name: Kong-Request-ID
-  generator: uuid#counter
-  echo_downstream: false

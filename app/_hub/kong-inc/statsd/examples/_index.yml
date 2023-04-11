@@ -1,9 +1,0 @@
-name: statsd
-config:
-  host: 127.0.0.1
-  port: 8125
-  allow_status_codes:
-    - 200-205
-    - 400-499
-  flush_timeout: 2
-  retry_count: 10

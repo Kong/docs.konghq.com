@@ -16,7 +16,7 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.frontmatter['name']} plugin reference"
+        "#{@release.metadata['name']} plugin reference"
       end
 
       def dropdown_url

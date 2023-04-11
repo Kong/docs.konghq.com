@@ -3,30 +3,6 @@
 module PluginSingleSource
   module Pages
     class Overview < Base
-      def content
-        @content ||= <<~CONTENT
-          #{how_to}
-
-          #{changelog}
-        CONTENT
-      end
-
-      def how_to
-        @how_to ||= Pages::HowTo.new(
-          release: @release,
-          file: 'how-to/_index.md',
-          source_path: @release.pages_source_path
-        ).content
-      end
-
-      def changelog
-        @changelog ||= Pages::Changelog.new(
-          release: @release,
-          file: '_changelog.md',
-          source_path: @release.plugin_base_path
-        ).content
-      end
-
       def canonical_url
         base_url
       end
@@ -40,7 +16,7 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.frontmatter['name']} Overview"
+        "#{@release.metadata['name']} Overview"
       end
 
       def dropdown_url

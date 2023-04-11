@@ -31,10 +31,6 @@ module PluginSingleSource
         ) || {}
       end
 
-      def frontmatter
-        @frontmatter ||= parsed_file.frontmatter
-      end
-
       def latest?
         @is_latest
       end
@@ -106,12 +102,6 @@ module PluginSingleSource
       end
 
       private
-
-      def parsed_file
-        @parsed_file ||= ::Utils::FrontmatterParser.new(
-          File.read(File.expand_path('_index.md', pages_source_path))
-        )
-      end
 
       def validate_source!
         return if @source.start_with?('_')

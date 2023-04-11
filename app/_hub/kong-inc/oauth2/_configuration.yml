@@ -12,10 +12,10 @@ extra: |
   To restrict usage to only some of the authenticated users, also add the
   [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
   denied groups of users.
-free: Yes
-plus: No
-enterprise: Yes
-konnect: No
+free: true
+plus: false
+enterprise: true
+konnect: false
 network_config_opts: Self-managed traditional only
 notes: |
   This plugin can't be used in Konnect, hybrid, or DB-less modes. It needs to
@@ -23,3 +23,19 @@ notes: |
   same node.
 categories:
   - authentication
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Add OAuth 2.0 authentication to your services
+description: |
+  Add an OAuth 2.0 authentication layer with the [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4),
+  [Implicit Grant](https://tools.ietf.org/html/rfc6749#section-4.2), or [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) flow.
+  {:.important}
+  > **Note:** As per the OAuth2 specs, this plugin requires the
+    underlying service to be served over HTTPS. To avoid any
+    confusion, we recommend that you configure the route used to serve the
+    underlying service to only accept HTTPS traffic (using its `protocols`
+    property).

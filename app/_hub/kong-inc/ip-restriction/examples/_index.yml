@@ -1,5 +1,0 @@
-name: ip-restriction
-config:
-  allow:
-  - 54.13.21.1
-  - 143.1.0.0/24

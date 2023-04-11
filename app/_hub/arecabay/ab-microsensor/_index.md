@@ -1,70 +1,21 @@
----
-name: ArecaBay MicroSensor
-publisher: ArecaBay
+## Installation
+The installation of ArecaBay's Kong Plugin and the corresponding ArecaBay components is extremely simple and easy. It involves the following two steps:
+1. Install and setup ArecaBay's Kong Plugin
+2. Access ArecaBay Cloud Webconsole and configure ArecaBay Kong Plugin as a MicroSensor
 
-categories:
-  - analytics-monitoring
+### Install and setup ArecaBay's Kong Plugin
+Install the ArecaBay's Kong plugin (ab-microsensor) on each node in your Kong cluster via luarocks. As this plugin source is already hosted in Luarocks.org, please run the below command:
 
-type: plugin
+```
+luarocks install kong-plugin-ab-microsensor
+```
 
-desc: Discover, Monitor, and Secure your APIs at object/data level.
-description: |
-  ArecaBay enables enterprises to Discover, Monitor, and Secure APIs at object/data level.
+Add to the custom_plugins list in your Kong configuration (on each Kong node):
 
-  ArecaBay's Kong plugin installed in the Kong cluster is one type of ArecaBay MicroSensors that are light-weight software components built to access real-time API call level data without any modification to the applications or their runtime. They enable ArecaBay’s <b>Dynamic API Risk Trackers (DART)</b> and <b>API DLP</b>: a set of API level trackers and Data Leakage Prevention.
+```
+custom_plugins = ab-microsensor
+```
 
-  DART provides an API data security posture dashboard for DevSecOps to continuously discover and monitor APIs across all clouds with zero-impact to apps. DART’s anomaly detection enables API DLP to take policy action against highly targeted data fields and transactions. Please visit this [link](https://www.arecabay.com/dart/){:target="_blank"}{:rel="noopener noreferrer"} for more details.
+### Access ArecaBay Cloud Webconsole and setup LocalBay
+Please visit the [Partners page](https://www.arecabay.com/partners/kong) and request your ArecaBay Cloud Webconsole account. Follow the quickstart guide within the Webconsole to configure your Kong Plugin as a MicroSensor. This involves providing details for the Kong Plugin MicroSensor and downloading the setup script. Run the setup script which internally uses the Kong Admin API to configure & run the Kong Plugin as a global plugin.  
 
-  In addition to API Security, for developers and/or DevOps, ArecaBay's Kong plugin can be used to monitor and log application API calls with selective object level data.  
-
-support_url:
-  https://www.arecabay.com/partners/kong#support
-
-source_code:
-  https://luarocks.org/modules/sekhar-arecabay/ab-microsensor
-
-#license_type:
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
-
-#license_url:
-  # (Optional) Link to your custom license.
-
-#privacy_policy:
-  # (Optional) If you have a custom privacy policy, place it here
-
-#privacy_policy_url:
-  # (Optional) Link to a remote privacy policy
-
-#terms_of_service:
-  # (Optional) Text describing your terms of service.
-
-#terms_of_service_url:
-  # (Optional) Link to your online TOS.
-
-# COMPATIBILITY
-# In the following sections, list Kong versions as array items.
-# Versions are categorized by Kong edition and their known compatibility.
-# Unlisted Kong versions will be considered to have "unknown" compatibility.
-# Uncomment at least one of 'community_edition' or 'enterprise_edition'.
-# Add array-formatted lists of versions under their appropriate subsection.
-
-kong_version_compatibility: 
-  community_edition:
-    compatible:
-      - 0.12.x
-      - 0.13.x
-      - 0.14.x
-    incompatible:
-  enterprise_edition: # optional
-    compatible:
-      - 0.32-x
-      - 0.33-x
-      - 0.34-x
-    incompatible:
-
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your extension is a plugin, ALL of the following lines must be completed.
-# If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
----

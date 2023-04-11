@@ -4,13 +4,22 @@ dbless_compatible: partially
 dbless_explanation: |
   The cluster strategy is not supported in DB-less and hybrid modes. For Kong
   Gateway in DB-less or hybrid mode, use the `redis` strategy.
-free: No
-plus: No
-enterprise: Yes
-konnect: No
+free: false
+plus: false
+enterprise: true
+konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   In DB-less and hybrid modes, the <code>cluster</code> config strategy
   is not supported. Use <code>redis</code> instead.
 categories:
   - traffic-control
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Provide rate limiting for GraphQL queries
+description: |
+  The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The
+  GraphQL Rate Limiting plugin extends the
+  [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.

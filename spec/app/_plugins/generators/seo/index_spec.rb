@@ -18,11 +18,9 @@ RSpec.describe SEO::Index do
         '/hub/kong-inc/jwt-signer/reference/' => { 'url' => '/hub/kong-inc/jwt-signer/reference/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/reference/') },
         '/hub/acme/kong-plugin/' => { 'url' => '/hub/acme/kong-plugin/', 'page' => find_page_by_url('/hub/acme/kong-plugin/') },
         '/hub/acme/kong-plugin/changelog/' => { 'url' => '/hub/acme/kong-plugin/changelog/', 'page' => find_page_by_url('/hub/acme/kong-plugin/changelog/') },
-        '/hub/acme/kong-plugin/how-to/' => { 'url' => '/hub/acme/kong-plugin/how-to/', 'page' => find_page_by_url('/hub/acme/kong-plugin/how-to/') },
         '/hub/acme/kong-plugin/reference/' => { 'url' => '/hub/acme/kong-plugin/reference/', 'page' => find_page_by_url('/hub/acme/kong-plugin/reference/') },
         '/hub/acme/unbundled-plugin/' => { 'url' => '/hub/acme/unbundled-plugin/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/') },
         '/hub/acme/unbundled-plugin/changelog/' => { 'url' => '/hub/acme/unbundled-plugin/changelog/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/changelog/') },
-        '/hub/acme/unbundled-plugin/how-to/' => { 'url' => '/hub/acme/unbundled-plugin/how-to/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/how-to/') },
         '/hub/acme/unbundled-plugin/reference/' => { 'url' => '/hub/acme/unbundled-plugin/reference/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/reference/') },
 
         '/' => { 'url' => '/', 'page' => find_page_by_url('/') },

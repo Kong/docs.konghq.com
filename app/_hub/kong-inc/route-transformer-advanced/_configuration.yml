@@ -1,11 +1,20 @@
 name: Route Transformer Advanced
 konnect_examples: false
 dbless_compatible: 'yes'
-free: No
-plus: No
-enterprise: Yes
-konnect: Yes
+free: false
+plus: false
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - transformations
+publisher: Kong Inc.
+desc: 'Transform routing by changing the upstream server, port, or path'
+description: |
+  This plugin transforms the routing on the fly in Kong, changing the upstream server, port, or path to hit. The substitutions can be configured via flexible templates.
+kong_version_compatibility:
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible: true

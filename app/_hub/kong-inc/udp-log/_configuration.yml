@@ -1,10 +1,20 @@
 name: UDP Log
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - logging
+publisher: Kong Inc.
+desc: Send request and response logs to a UDP server
+description: |
+  Log request and response data to an UDP server.
+
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true

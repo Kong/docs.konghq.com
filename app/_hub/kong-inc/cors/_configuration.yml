@@ -1,10 +1,20 @@
 name: CORS
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - security
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Allow developers to make requests from the browser
+description: |
+  Easily add __cross-origin resource sharing *(CORS)*__ to a Service and a Route
+  by enabling this plugin.

@@ -1,4 +1,4 @@
-name: kong-splunk-log
+name: Kong Splunk Log
 api_id: false
 service_id: true
 consumer_id: false
@@ -63,3 +63,30 @@ config:
     default: "`60000`"
     description: The amount of time to keep plugin connections with Splunk active
 extra: We recommend enabling the Splunk Logging plugin at a global level.
+publisher: Optum
+
+categories:
+  - logging
+
+desc: Log API transactions to Splunk using the Splunk HTTP collector
+
+description: |
+  Kong provides many great logging tools out of the box - this is a modified version of the Kong HTTP logging plugin that has been refactored and tailored to work with Splunk.
+
+support_url: https://github.com/Optum/kong-splunk-log/issues
+
+source_code: https://github.com/Optum/kong-splunk-log
+
+license_type: Apache-2.0
+
+kong_version_compatibility:
+  community_edition:
+    compatible:
+      - 0.14.x
+      - 0.13.x
+
+  enterprise_edition:
+    compatible:
+      - 0.34-x
+      - 0.33-x
+      - 0.32-x

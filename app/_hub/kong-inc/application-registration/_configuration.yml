@@ -2,11 +2,52 @@ name: Application Registration
 global: false
 konnect_examples: false
 dbless_compatible: 'no'
-free: No
-plus: No
-enterprise: Yes
-konnect: No
+free: false
+plus: false
+enterprise: true
+konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: Application registration <b>is</b> available in Konnect, but doesn't require this plugin. <br>Learn how to <a href="/konnect/dev-portal/applications/enable-app-reg/">Enable Application Registration</a> in Konnect.
 categories:
   - authentication
+cloud: false
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Allow portal developers to register applications against Services
+description: |
+
+  Applications allow registered developers on Kong Developer Portal to
+  authenticate against a Gateway Service. Dev Portal admins can
+  selectively admit access to Services using the
+  Application Registration plugin.
+
+  {:.note}
+  > **Note**: This plugin is for application registration in _self-managed_ Kong
+  > Gateway instances.
+  > <br>
+  > <br>
+  > In Konnect, the functionality is built into the Service Hub, so you don't need this plugin. See the following documentation:
+  * [Learn about app registration in Konnect](/konnect/dev-portal/applications/application-overview/)
+  * [Enable app registration](/konnect/dev-portal/applications/enable-app-reg/)
+
+  The Application Registration plugin is used in tandem with supported Kong Gateway authorization
+  plugins, depending on your configured Dev
+  Portal authorization provider. Either Kong Gateway (`kong-oauth2`) or a third-party OAuth provider
+  (`external-oauth2`) can be the system of record (SoR) for application credentials. For more
+  information, see
+  [Configure an Authorization Provider Strategy](/gateway/latest/kong-enterprise/dev-portal/applications/auth-provider-strategy/).
+
+  To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/kong-enterprise/dev-portal/applications/enable-key-auth-plugin/).
+
+  Supported authorization plugins for use with application registration:
+
+  | Kong Gateway Plugin | Portal authorization strategy                                 |
+  |:------|:--------------------------------------------------------------------|
+  | [OAuth2](/hub/kong-inc/oauth2/) | `kong-oauth2` |
+  | [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` |
+  | [OIDC](/hub/kong-inc/openid-connect/)| `external-oauth2` |
+
+  If you plan to use the external OAuth option with OIDC, review the
+  [supported OAuth workflows](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth/).

@@ -1,19 +1,3 @@
----
-name: AWS Lambda
-publisher: Kong Inc.
-desc: Invoke and manage AWS Lambda functions from Kong
-description: |
-  Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. The
-  AWS Lambda plugin can be used in combination with other request plugins to secure, manage, or
-  extend the function.
-type: plugin
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
----
-
 ## Sending parameters
 
 Any form parameter sent along with the request is also sent as an
@@ -167,7 +151,6 @@ Add a route and plugin to the declarative config file:
 routes:
 - name: lambda1
   paths: [ "/lambda1" ]
-
 plugins:
 - route: lambda1
   name: aws-lambda
@@ -203,5 +186,3 @@ JSON response:
 ```
 
 Have fun leveraging the power of AWS Lambda in Kong!
-
----

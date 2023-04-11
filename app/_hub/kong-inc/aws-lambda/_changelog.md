@@ -1,5 +1,12 @@
 ## Changelog
 
+
+**{{site.base_gateway}} 3.2.x**
+* Added the configuration parameter `aws_imds_protocol_version`, which
+lets you select the IMDS protocol version.
+This option defaults to `v1` and can be set to `v2` to enable IMDSv2.
+[#9962](https://github.com/Kong/kong/pull/9962)
+
 **{{site.base_gateway}} 3.1.x**
 * Added a `requestContext` field into `awsgateway_compatible` input data.
   [#9380](https://github.com/Kong/kong/pull/9380)
@@ -13,6 +20,8 @@
 removed in 3.x.x.
 * {{site.base_gateway}} 2.8.1.3: Added support for cross account invocation
 through configuration properties `aws_assume_role_arn` and `aws_role_session_name`.
+* {{site.base_gateway}} 2.8.4.0: Backported the parameter
+`aws_imds_protocol_version` into 2.8.x.
 
 **{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,

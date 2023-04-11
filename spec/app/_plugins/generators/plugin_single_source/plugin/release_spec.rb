@@ -29,32 +29,6 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     end
   end
 
-  describe '#frontmatter' do
-    let(:frontmatter) do
-      SafeYAML.load(
-        File.read(File.expand_path(file_path, site.source)).match(/---\n(.*)\n---/m)[1]
-      )
-    end
-
-    shared_examples_for 'returns the frontmatter section of the file parsed as yaml' do
-      it { expect(subject.frontmatter).to eq(frontmatter) }
-    end
-
-    context 'when there is a specific folder for the version' do
-      let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
-      let(:file_path) { '_hub/kong-inc/jwt-signer/_2.2.x/_index.md' }
-
-      it_behaves_like 'returns the frontmatter section of the file parsed as yaml'
-    end
-
-    context 'when using `_index.md`' do
-      let(:file_path) { '_hub/kong-inc/jwt-signer/_index.md' }
-      it_behaves_like 'returns the frontmatter section of the file parsed as yaml'
-    end
-  end
-
   describe '#latest?' do
     it { expect(subject.latest?).to eq(is_latest) }
   end

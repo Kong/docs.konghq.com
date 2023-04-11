@@ -2,11 +2,20 @@ name: Route By Header
 dbless_compatible: 'yes'
 konnect_examples: false
 manager_examples: false
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - traffic-control
+publisher: Kong Inc.
+desc: Route request based on request headers
+description: |
+  Kong Gateway plugin to route requests based on request headers.
+kong_version_compatibility:
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible: true

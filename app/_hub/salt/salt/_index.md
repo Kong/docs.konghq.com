@@ -1,57 +1,34 @@
----
-name: Salt Security
-publisher: Salt Security
+## Deployment
 
-categories:
-  - security
+Salt Security is easy to deploy as a Kong module.
 
-type: integration
+### Install the plugin
 
-desc: Integrate Kong API Gateway with Salt Security Discovery & Prevention for API-based apps
-description: |
-  The Salt Security Kong deployment is used to capture a mirror of application traffic and send it to the Salt Security Service for analysis.
-  This plugin has low CPU and memory consumption and adds no latency to the application since
-  it does not sit in line with the production traffic.
-  The plugin needs to see unencrypted traffic (after SSL termination)
-  to enable the Salt Security service to perform analysis.
+Once you have obtained the `.rock` file from your Salt Security distributor, install it using the LuaRocks package manager:
 
-#support_url:
-  # (Optional) A specific URL of your own for this extension.
-  # Defaults to the url setting in your publisher profile.
+```shell
+$ luarocks install kong-plugin-salt-agent-0.1.0-1.all.rock
+```
 
-#source_code:
-  # (Optional) If your extension is open source, provide a link to your code.
+If you need help with installation, see the documentation on [Installing a Plugin](/gateway/latest/plugin-development/distribution/).
 
-#license_type:
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
+### Configure the plugin
 
-#license_url:
-  # (Optional) Link to your custom license.
+Register the Salt Security backend as a Kong service:
 
-#privacy_policy:
-  # (Optional) If you have a custom privacy policy, place it here
+```shell
+$ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/plugins/ \
+  --data "name=salt-agent" \
+  --data "config.salt_domain=<salt_domain>" \
+  --data "config.salt_backend_port=<salt_backend_port>" \
+  --data "config.salt_token=<salt_token>"
+```
+> Note: installation may be different between Kong versions.
 
-#privacy_policy_url:
-  # (Optional) Link to a remote privacy policy
+### Plugin configuration reference
 
-#terms_of_service:
-  # (Optional) Text describing your terms of service.
-
-#terms_of_service_url:
-  # (Optional) Link to your online TOS.
-
-kong_version_compatibility:
-  community_edition:
-    compatible:
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-  enterprise_edition:
-    compatible:
-      - 0.35-x
-      - 0.34-x
----
+| Parameter                | Description          |
+|--------------------------|----------------------|
+|`config.salt_domain`      | Salt domain address. |
+|`config.salt_backend_port`| Salt backend port. Defaults to 443 if `config.salt_backend_port` is not provided. |
+|`config.salt_token`       | Salt-provided company token. |

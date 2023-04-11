@@ -1,3 +1,0 @@
-name: file-log
-config:
-  path: /tmp/file.log

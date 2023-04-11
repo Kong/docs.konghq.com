@@ -2,11 +2,20 @@ name: Exit Transformer
 yaml_examples: false
 konnect_examples: false
 dbless_compatible: 'yes'
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - transformations
+publisher: Kong Inc.
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+desc: Customize Kong exit responses sent downstream
+description: |
+  Transform and customize Kong response exit messages using Lua functions.
+  The capabilities range from changing messages, status codes, and headers,
+  to completely transforming the structure of Kong responses.

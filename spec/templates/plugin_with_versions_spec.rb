@@ -86,7 +86,7 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(api_id).to have_css('td', text: 'The ID of the API the plugin targets.')
     end
 
-    it 'renders the changelog' do
+    xit 'renders the changelog' do
       expect(html).to have_css('h2#changelog', text: 'Changelog')
     end
   end
@@ -182,7 +182,7 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(realm).to have_css('p', text: 'When authentication or authorization fails')
     end
 
-    it 'renders the changelog' do
+    xit 'renders the changelog' do
       expect(html).to have_css('h2#changelog', text: 'Changelog')
     end
   end

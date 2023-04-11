@@ -1,10 +1,20 @@
 name: Syslog
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - logging
+
+publisher: Kong Inc.
+desc: Send request and response logs to Syslog
+description: |
+  Log request and response data to Syslog.
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true

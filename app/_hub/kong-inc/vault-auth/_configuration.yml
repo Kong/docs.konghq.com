@@ -2,11 +2,18 @@ name: Vault Authentication
 dbless_compatible: 'yes'
 manager_examples: false
 konnect_examples: false
-free: No
-plus: No
-enterprise: Yes
-konnect: No
+free: false
+plus: false
+enterprise: true
+konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --
 categories:
   - authentication
+publisher: Kong Inc.
+desc: Add Vault authentication to your Services
+description: |
+  Add authentication to a Service or Route with an access token and secret token. Credential tokens are stored securely via Vault. Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true

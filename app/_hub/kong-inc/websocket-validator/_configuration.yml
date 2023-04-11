@@ -6,11 +6,28 @@ extra: |
     * `config.client.binary.type` and `config.client.binary.schema`
     * `config.upstream.text.type` and `config.upstream.text.schema`
     * `config.upstream.binary.type` and `config.upstream.binary.schema`
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - traffic-control
+
+publisher: Kong Inc.
+desc: Validate WebSocket messages before they are proxied
+description: |
+  Validate individual WebSocket messages against to a user-specified schema
+  before proxying them.
+
+  Message schema can be configured by type (text or binary) and sender (client
+  or upstream).
+
+  When an incoming message is invalid according to the schema, a close frame is
+  sent to the sender (status: `1007`) and the peer before closing the
+  connection.
+
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true

@@ -1,10 +1,22 @@
 name: Kafka Log
 dbless_compatible: 'yes'
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - logging
+kong_version_compatibility:
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Publish logs to a Kafka topic
+description: |
+  Publish request and response logs to an [Apache Kafka](https://kafka.apache.org/) topic.
+  For more information, see [Kafka topics](https://kafka.apache.org/documentation/#intro_concepts_and_terms).
+
+  Kong also provides a Kafka plugin for request transformations. See [Kafka Upstream](/hub/kong-inc/kafka-upstream/).

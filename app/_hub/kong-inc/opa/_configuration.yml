@@ -1,10 +1,19 @@
 name: OPA
 dbless_compatible: 'yes'
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - security
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Authorize requests against Open Policy Agent
+description: |
+  Forward request to Open Policy Agent and process the request only if the
+  authorization policy allows for it.
+

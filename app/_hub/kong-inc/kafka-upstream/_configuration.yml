@@ -1,10 +1,24 @@
 name: Kafka Upstream
 dbless_compatible: 'yes'
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - transformations
+publisher: Kong Inc.
+desc: Transform requests into Kafka messages in a Kafka topic.
+description: |
+  This plugin transforms requests into [Kafka](https://kafka.apache.org/) messages
+  in an [Apache Kafka](https://kafka.apache.org/) topic. For more information, see
+  [Kafka topics](https://kafka.apache.org/documentation/#intro_concepts_and_terms).
+
+  Kong also provides a Kafka Log plugin for publishing logs to a Kafka topic.
+  See [Kafka Log](/hub/kong-inc/kafka-log/).
+kong_version_compatibility:
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible: true

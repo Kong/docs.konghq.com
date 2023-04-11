@@ -9,11 +9,25 @@ extra: |
   To restrict usage to only some of the authenticated users, also add the
   [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
   denied groups of users.
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - authentication
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Add HMAC Authentication to your Services
+description: |
+  Add HMAC Signature authentication to a Service or a Route
+  to establish the integrity of incoming requests. The plugin validates the
+  digital signature sent in the `Proxy-Authorization` or `Authorization` header
+  (in that order). This plugin implementation is based off the
+  [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
+  draft with a slightly different signature scheme.

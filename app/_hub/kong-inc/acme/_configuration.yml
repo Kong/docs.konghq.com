@@ -1,10 +1,20 @@
 name: ACME
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - security
+publisher: Kong Inc.
+desc: Let's Encrypt and ACMEv2 integration with Kong
+description: |
+  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
+  Renewal is handled with a configurable threshold time.
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true

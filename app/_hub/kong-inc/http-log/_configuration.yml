@@ -1,10 +1,19 @@
 name: HTTP Log
 dbless_compatible: 'yes'
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - logging
+publisher: Kong Inc.
+desc: Send request and response logs to an HTTP server
+description: |
+  Send request and response logs to an HTTP server.
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true

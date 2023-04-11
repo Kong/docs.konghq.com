@@ -1,9 +1,19 @@
 name: OAS Validation
 dbless_compatible: 'yes'
 konnect_examples: true
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification
+description: |
+  Validate HTTP requests and responses based on an API Specification. Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
+
+  {:.important .no-icon}
+  > In Kong Gateway versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually [enable the plugin](#enable-the-plugin).

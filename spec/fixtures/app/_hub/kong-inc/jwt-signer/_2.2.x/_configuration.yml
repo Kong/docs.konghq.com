@@ -1,8 +1,19 @@
 name: Kong JWT Signer
 api_id: true
-service_id: true
-route_id: true
-consumer_id: false
 dbless_compatible: yes
 categories:
   - authentication
+
+publisher: Kong Inc.
+
+desc: Verify and (re-)sign one or two tokens in a request
+description: |
+  From \_2.2.x.md: The Kong JWT Signer plugin makes it possible to verify and (re-)sign one or two tokens in a request.
+
+enterprise: true
+plus: true
+kong_version_compatibility:
+    community_edition:
+      compatible: null
+    enterprise_edition:
+      compatible: true

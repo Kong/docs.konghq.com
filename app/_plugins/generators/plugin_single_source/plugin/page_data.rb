@@ -14,7 +14,6 @@ module PluginSingleSource
 
       def build_data
         @data
-          .merge!(@release.frontmatter)
           .merge!(metadata)
           .merge!(page_attributes)
           .merge!(frontmatter_overrides)

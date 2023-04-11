@@ -4,11 +4,24 @@ extra: |
   By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
   configures the greatest datagram size the plugin can combine. It should be less than
   65507 according to UDP protocol. Consider the MTU of the network when setting this parameter.
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - logging
+publisher: Kong Inc.
+desc: Send metrics to StatsD
+description: |
+  Log [metrics](#metrics) for a Service or Route to a StatsD server.
+  It can also be used to log metrics on [Collectd](https://collectd.org/)
+  daemon by enabling its
+  [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+
+  enterprise_edition:
+    compatible: true

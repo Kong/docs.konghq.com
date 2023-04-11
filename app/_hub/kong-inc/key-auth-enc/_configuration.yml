@@ -5,13 +5,28 @@ dbless_explanation: |
   Consumers and credentials can be created with declarative configuration.
 
   Admin API endpoints that do POST, PUT, PATCH, or DELETE on credentials are not available on DB-less mode.
-free: No
-plus: No
-enterprise: Yes
-konnect: No
+free: false
+plus: false
+enterprise: true
+konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   The time-to-live (ttl) does not work in Konnect or hybrid mode. This setting
   determines the length of time a credential remains valid.
 categories:
   - authentication
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Add key authentication to your services
+description: |
+  Add key authentication (also sometimes referred to as an _API key_) to a service
+  or a route. Consumers then add their key either in a query string parameter or a
+  header to authenticate their requests. This plugin is functionally identical to the
+  open source [Key Authentication](/hub/kong-inc/key-auth/) plugin, with the
+  exception that API keys are stored in an encrypted format within the API gateway datastore.
+
+  {:.note}
+  > **Note**: Before configuring this plugin, you must enable Kong Gateway's encryption keyring. See the
+  [keyring getting started guide](/gateway/latest/kong-enterprise/db-encryption#getting-started) for more details.

@@ -1,10 +1,19 @@
 name: XML Threat Protection
 dbless_compatible: 'yes'
-free: No
-plus: No
-enterprise: Yes
-konnect: Yes
+free: false
+plus: false
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - traffic-control
+publisher: Kong Inc.
+desc: Apply structural and size checks on XML payloads
+description: |
+  Reduce the risk of XML attacks by checking the structure of XML payloads. This
+  validates maximum complexity (depth of the tree), maximum size of elements
+  and attributes.
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true

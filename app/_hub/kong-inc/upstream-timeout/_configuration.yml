@@ -1,10 +1,20 @@
 name: Upstream Timeout
 dbless_compatible: yes
-free: No
-plus: No
-enterprise: Yes
-konnect: Yes
+free: false
+plus: false
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - traffic-control
+
+publisher: Kong Inc.
+desc: Set timeouts on routes and override service-level timeouts
+description: |
+  Use the Upstream Timeout plugin to configure route-specific timeouts.
+  This plugin overrides any service-level timeout settings.
+
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true

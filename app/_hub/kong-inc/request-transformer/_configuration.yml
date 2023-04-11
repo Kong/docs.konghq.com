@@ -8,11 +8,28 @@ extra: |
   * The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about
   client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the
   [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
-free: Yes
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: true
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - transformations
+publisher: Kong Inc.
+desc: Use regular expressions, variables, and templates to transform requests
+description: |
+  The Request Transformer plugin for Kong allows simple transformation of requests
+  before they reach the upstream server. These transformations can be simple substitutions
+  or complex ones matching portions of incoming requests using regular expressions, saving
+  those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
+
+  For additional request transformation features, check out the
+  [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/).
+  With the advanced plugin, you can also limit the list of allowed parameters in the request body.
+
+kong_version_compatibility:
+  community_edition:
+    compatible: true
+  enterprise_edition:
+    compatible: true

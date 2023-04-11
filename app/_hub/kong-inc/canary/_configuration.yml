@@ -1,10 +1,19 @@
 name: Canary Release
 dbless_compatible: 'yes'
-free: No
-plus: No
-enterprise: Yes
-konnect: Yes
+free: false
+plus: false
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - traffic-control
+kong_version_compatibility:
+  enterprise_edition:
+    compatible: true
+publisher: Kong Inc.
+desc: Slowly roll out software changes to a subset of users
+description: |
+  Reduce the risk of introducing a new software version in production by slowly
+  rolling out the change to a small subset of users. This plugin also enables rolling
+  back to your original upstream service, or shifting all traffic to the new version.

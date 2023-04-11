@@ -4,11 +4,35 @@ extra: |
   By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
   configures the greatest datagram size the plugin can combine, this should be less than
   65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
-free: No
-plus: Yes
-enterprise: Yes
-konnect: Yes
+free: false
+plus: true
+enterprise: true
+konnect: true
 network_config_opts: All
 notes: --
 categories:
   - logging
+publisher: Kong Inc.
+desc: Send metrics to StatsD with more flexible options
+description: |
+  Log [metrics](#metrics) for a Service, route
+  to a StatsD server.
+  It can also be used to log metrics on [Collectd](https://collectd.org/)
+  daemon by enabling its
+  [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+  {:.important}
+  > Starting in Gateway version 3.0.x, StatsD Advanced has been combined with the open-sourced [StatsD](/hub/kong-inc/statsd/) plugin.
+  StatsD Advanced has been deprecated.
+
+  The StatsD Advanced plugin provides
+  features not available in the open-source [StatsD](/hub/kong-inc/statsd/) plugin, such as:
+  * Ability to choose status codes to log to metrics.
+  * More granular status codes per workspace.
+  * Ability to use TCP instead of UDP.
+
+kong_version_compatibility:
+  community_edition:
+    compatible: null
+  enterprise_edition:
+    compatible: true

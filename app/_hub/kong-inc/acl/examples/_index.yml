@@ -1,6 +1,0 @@
-name: acl
-config:
-  allow:
-    - group1
-    - group2
-  hide_groups_header: true
