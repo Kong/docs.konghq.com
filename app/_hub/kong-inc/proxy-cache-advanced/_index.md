@@ -57,7 +57,9 @@ params:
         - application/json
       datatype: array of string elements
       description: |
-        Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
+        Upstream response content types considered cacheable.
+        The wildcard content type can be used to match any specific type or subtype.
+        For example, `application/*` matches any subtypes of the application, `*/*` matches all content types. Note that `*/*` does not match with a content type that contains a parameter. If the response content type does not match the configuration, a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
       default: null
@@ -448,6 +450,7 @@ Note that this endpoint purges all cache entities across all `proxy-cache-advanc
 
 **{{site.base_gateway}} 3.3.x**
 * Added the `ignore_uri_case` configuration parameter.
+* add wildcard and parameter match support for `config.content_type`.
 
 **{{site.base_gateway}} 3.1.x**
 * Added support for integrating with redis clusters using the `config.redis.cluster_addresses` configuration parameter.
