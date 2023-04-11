@@ -1,104 +1,87 @@
 ---
-title: Phrase starting with a verb # e.g. Get started with dynamic plugin ordering
+title: Health Check
 content_type: tutorial
-
-# Optional values. Uncomment any that apply to your document.
-
-# alpha: true # Labels the page as alpha; adds a banner to the top of the page.
-# beta: true # Labels the page as beta; adds a banner to the top of the page.
 ---
 
-Tutorials are docs that help users learn by doing. The goal of a tutorial is to guide the user, step-by-step through a series of tasks that help them achieve a certain goal. Keep in mind that the goal and the steps should be achievable even for a beginner. 
+This tutorial will guide you through the process of setting up and using the new Kong Status endpoint, which provides a more reliable and simple way to determine if Kong is ready to serve requests. The endpoint will return a 200 OK response when Kong is ready, or a 503 Service Unavailable response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
-Tutorials should include an introduction paragraph here. Good introductions explain who this tutorial is for and what this tutorial will help the user accomplish and learn. For example, if you were writing a tutorial about how to get started with a software product, your tutorial could include information about a general overview of what steps the user would be going through, what this software will help them accomplish, and that the end result of this tutorial will be that the software is installed with the basic settings configured. 
+## Prerequisites
 
-## Prerequisites <!-- Optional -->
+* Kong installed
+* Basic understanding of Kong configuration and deployment modes (Traditional, DB-less, and Hybrid)
 
-Tutorial topics typically don't contain any prerequisites because you should be helping the user install those things in the steps. The only prerequisites you should include are those for external tools, like jq or Docker, for example. 
+## Understanding the Status Endpoint
 
-In the rare circumstance that you need prerequisites, write them as a bulleted list.
+Before diving into the steps, it's important to understand the purpose of the Status Endpoint and how it determines whether a Kong instance is ready or not.
 
-* Docker installed
-* jq installed
+### Traditional mode
 
-## Task section <!-- Header optional if there's only one task section in the article -->
+In Traditional mode, the endpoint returns 200 OK when the Kong database connection is successful. Otherwise, it returns 503.
 
-A tutorial section title directs the user to perform an action and generally starts with a verb. For example, "Install the software" or "Configure basic settings".
+### DB-less mode (data_plane role)
 
-Each task section should include an introduction paragraph that explains what step the user doing, a brief explanation of the feature, and why the user is completing this step.
+In DB-less mode, the endpoint returns 200 OK when all of the following conditions are met:
 
-### Instructions
+* Kong database connection is successful
+* The current configuration hash is not nil and not all zeros
+* The counter `declarative_config:router_rebuilds` in shared memory is greater than the Nginx’s worker count
+* The counter `declarative_config:plugins_iterator_rebuilds` in shared memory is greater than the Nginx’s worker count
 
-Steps in each section should break down the tasks the user will complete in sequential order.
+To be short, the endpoint returns 200 OK when the router and plugins iterator are rebuilt for workers. Otherwise, it returns 503.
 
-Continuing the previous example of installing software, here's an example:
+This is the implementation details of the endpoint in DB-less mode. But if you're just using the endpoint to check the readiness of your Kong instance, you don't need to worry about the details.
 
-1. On your computer, open Terminal.
-1. Install ____ with Terminal:
-    ```sh
-    example code
+## Configuring the Status Endpoint
+
+To configure the Status Endpoint in your Kong instance, follow these steps:
+
+1. Ensure that Kong is installed and running on your system.
+2. Open the Kong configuration file (e.g., `kong.conf` or `kong.yml`).
+3. Make sure the Status API is enabled by including the following line:
+
+    ```yaml
+    status_listen = 0.0.0.0:8100
     ```
-    Explanation of the variables used in the sample code, like "Where `example` is the filename."
-1. Optional: To also install ____ to manage documents, install it using Terminal:
-    ```sh
-    example code
+
+    This will make the Status API listen on port 8100. You can change the port number to any available port on your system.
+
+4. Save the configuration file and restart Kong to apply the changes.
+
+    ```shell
+    kong reload
     ```
-    Explanation of the variables used in the sample code, like "Where `example` is the filename."
-1. To ______, do the following:
-    1. Click **Start**.
-    1. Click **Stop**.
-1. To ____, do one of the following:
-    * If you are using Kubernetes, start the software:
-        ```sh
-        example code
-        ```
-        Explanation of the variables used in the sample code, like "Where `example` is the filename."
-    * If you are using Docker, start the software:
-        ```sh
-        example code
-        ```
-        Explanation of the variables used in the sample code, like "Where `example` is the filename."
 
-You can also use tabs in a section. For example, if you can install the software with macOS or Docker, you might have a tab with instructions for macOS and a tab with instructions for Docker.
+## Using the Status Endpoint
 
-{% navtabs %}
-{% navtab macOS %}
+Once you've configured the Status Endpoint, you can send requests to it to check the readiness of your Kong instance.
 
-1. Open Terminal...
-1. Run....
+1. Send a GET request to the `/status/ready` endpoint. Replace `<status-api-url>` with the appropriate URL for your Status API, including the port number:
 
-{% endnavtab %}
-{% navtab Docker %}
+    ```shell
+    curl -I <status-api-url>/status/ready
+    ```
 
-1. Open Docker...
-1. Run....
+2. If the response is `200 OK`, your Kong instance is ready to serve requests. If the response is `503 Service Unavailable`, Kong is still loading the configuration or has failed to load it.
 
-{% endnavtab %}
-{% endnavtabs %}
+## Updating Readiness Probes
 
-### Explanation of instructions <!-- Optional, but recommended -->
+If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Status Endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
 
-This section should contain a brief, 2-3 sentence paragraph that summarizes what the user accomplished in these steps and what the outcome was. For example, "The software is now installed on your computer. You can't use it yet because the settings haven't been configured. In the next section, you will configure the basic settings so you can start using the software." 
+```yaml
+readinessProbe:
+    httpGet:
+        path: /status/ready
+        port: 8100
+    initialDelaySeconds: 10
+    periodSeconds: 5
+```
 
-{:.note}
-> **Note**: You can also use notes to highlight important information. Try to keep them short.
+Make sure to replace the port number with the one you configured for the Status API.
 
-## Second task section <!-- Optional -->
+## See also
 
-Adding additional sections can be helpful if you have to switch from working in one product to another or if you switch from one task, like installing to configuring. 
+For more information on Kong and related topics, check out the following resources:
 
-### Instructions
-
-1. First step.
-1. Second step.
-
-### Explanation of instructions <!-- Optional, but recommended -->
-
-## See also <!-- Optional, but recommended -->
-
-This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
-
-See the following examples of tutorial documentation:
-* [Get started with services and routes](https://docs.konghq.com/gateway/latest/get-started/services-and-routes/)
-* [Migrate from OSS to Enterprise](https://docs.konghq.com/gateway/latest/migrate-ce-to-ke/)
-* [Set up Vitals with InfluxDB](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/influx-strategy/)
+* [Kong Admin API Documentation](https://docs.konghq.com/gateway/latest/admin-api/)
+* [Get Started with Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/deployment/)
+* [Kong Helm Chart](https://github.com/Kong/charts/tree/main/charts/kong)
