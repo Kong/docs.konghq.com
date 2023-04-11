@@ -44,30 +44,30 @@ that we can use it in helm installation steps:
 $ export GATEWAY_RELEASE_NAME=gateway
 ```
 
-As {{site.kic_product_name}} and {{site.base_gateway}} deployments are separate, we
-should also enable TLS client verification for the Admin API service so that no one
+As {{site.kic_product_name}} and {{site.base_gateway}} deployments are separate, you
+should enable TLS client verification for the Admin API service so that no one
 from inside the cluster can access it without a valid certificate. This can be done
-by setting `ingressController.adminApi.tls.client.enabled` option in the helm chart 
+by setting `ingressController.adminApi.tls.client.enabled` option in the Helm chart 
 to `true`. It will create a CA certificate and a CA-signed certificate for the 
 client, and respective Kubernetes TLS Secrets for both.
 
-The CA certificate Secret's name can be set
+The CA certificate secret's name can be set
 with `ingressController.adminApi.tls.client.caSecretName` option. We will use that
-to have a static name for the CA certificate Secret, so that we can refer it in the
+to have a static name for the CA certificate secret, so that we can refer to it in the
 {{site.base_gateway}} deployment.
 
 {:.note}
-> **Note**: It is possible to provide your own certificates for the client 
+> **Note**: It is possible to provide your own certificates for client 
 > verification. `ingressController.adminApi.tls.client.certProvided=true`
-> and `ingressController.adminApi.tls.client.secretName` should be used 
-> for that purpose in the {{site.kic_product_name}} release, and 
+> and `ingressController.adminApi.tls.client.secretName` can be used 
+> for that purpose, in the {{site.kic_product_name}} release, and 
 > `admin.tls.client.secretName` or `admin.tls.client.caBundle` in the 
 > {{site.base_gateway}} release.
 > For more information, see the [helm chart's readme][kong-chart].
 
 Now we're ready to deploy controller's helm release:
 
-```terminal
+```sh
 $ helm upgrade --install controller kong/kong -n kong --create-namespace \
   --set ingressController.enabled=true \
   --set ingressController.gatewayDiscovery.enabled=true \
@@ -82,7 +82,7 @@ $ helm upgrade --install controller kong/kong -n kong --create-namespace \
 At this point you should be able to see a {{site.kic_product_name}} deployment with 
 2 replicas, waiting for {{site.base_gateway}} to be deployed:
 
-```terminal
+```sh
 $ kubectl get deployment -n kong
 NAME              READY   UP-TO-DATE   AVAILABLE   AGE
 controller-kong   0/2     2            2           1m
@@ -90,12 +90,12 @@ controller-kong   0/2     2            2           1m
 
 ### {{site.base_gateway}}
 
-As we enabled TLS client verification for the Admin API service, we need to provide a CA
-certificate to the {{site.base_gateway}} deployment. We can do that by setting
-`admin.tls.client.secretName` to the CA certificate Secret's name, which we set in the
+After enabling TLS client verification for the Admin API service, you need to provide a CA
+certificate to the {{site.base_gateway}} deployment. You can do that by setting
+`admin.tls.client.secretName` to the CA certificate Secret's name, which was set in the
 {{site.kic_product_name}} deployment.
 
-Now we can deploy {{site.base_gateway}}. In order to do that we can run:
+Now you can deploy {{site.base_gateway}}. In order to do that we can run:
 
 ```terminal
 $ helm upgrade --install gateway kong/kong -n kong --create-namespace \
@@ -109,16 +109,16 @@ $ helm upgrade --install gateway kong/kong -n kong --create-namespace \
 
 which will deploy {{site.base_gateway}} with 2 replicas, without {{site.kic_product_name}}.
 
-Once installed, set an environment variable, $PROXY_IP with the External IP address of
+Once installed, set an environment variable, `$PROXY_IP` with the External IP address of
 the `gateway-kong-proxy` service in `kong` namespace:
 
-```terminal
+```sh
 $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong gateway-kong-proxy)
 ```
 
 At this point you should be able to see both deployments ready:
 
-```terminal
+```sh
 $ kubectl get deployment -n kong
 NAME              READY   UP-TO-DATE   AVAILABLE   AGE
 controller-kong   2/2     2            2           1m
@@ -127,7 +127,7 @@ gateway-kong      2/2     2            2           1m
 
 You can also access the proxy service now:
 
-```terminal
+```sh
 $ curl $PROXY_IP
 {"message":"no Route matched with those values"}%
 ```
@@ -144,14 +144,14 @@ Additional replicas, will:
 
 We can test scaling those 2 deployments by invoking:
 
-```terminal
+```sh
 $ kubectl scale deployment -n kong gateway-kong --replicas 4
 $ kubectl scale deployment -n kong controller-kong --replicas 3
 ```
 
 At this point we should see 4 instances of gateway and 3 instances of controller:
 
-```terminal
+```sh
 $ kubectl get deployment -n kong
 NAME              READY   UP-TO-DATE   AVAILABLE   AGE
 controller-kong   3/3     3            3           5m
@@ -239,7 +239,7 @@ spec:
 With those manifests applied we can observe controller logs for entries that
 indicate successful configuration of all the discovered Gateways:
 
-```terminal
+```sh
 $ stern -n kong -lapp=controller-kong --since 1m --include "synced configuration"
 ...
 controller-kong-545d798874-q6h7m ingress-controller time="2023-03-02T15:11:42Z" level=info msg="successfully synced configuration to kong" kong_url="https://10.244.0.29:8444"
@@ -250,7 +250,7 @@ controller-kong-545d798874-q6h7m ingress-controller time="2023-03-02T15:11:42Z" 
 
 At this point we should be able to access the `/echo` endpoint from our `htptbin` service:
 
-```terminal
+```sh
 $ curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
 <!DOCTYPE html>
 <html lang="en">
@@ -266,7 +266,7 @@ After issuing several queries against that service we can see in Gateway logs
 that we're hitting all Pods which proxy the traffic as configured (mark the first
 column that contains the pod name):
 
-```terminal
+```sh
 $ stern -n kong -lapp=gateway-kong --since 1m --include "/echo"
 gateway-kong-5c98495ff7-rnq5c proxy 10.244.0.1 - - [02/Mar/2023:15:16:09 +0000] "GET /echo HTTP/1.1" 200 9593 "-" "curl/7.86.0"
 gateway-kong-5c98495ff7-s6rcw proxy 10.244.0.1 - - [02/Mar/2023:15:16:09 +0000] "GET /echo HTTP/1.1" 200 9593 "-" "curl/7.86.0"
