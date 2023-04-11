@@ -431,13 +431,6 @@ spec:
     backends:
       - name: ca-1
         type: builtin
-        dpCert:
-          rotation:
-            expiration: 1d
-        conf:
-          caCert:
-            RSAbits: 2048
-            expiration: 10y
 ```
 
 {% endnavtab %}
@@ -453,13 +446,6 @@ mtls:
   backends:
     - name: ca-1
       type: builtin
-      dpCert:
-        rotation:
-          expiration: 1d
-      conf:
-        caCert:
-          RSAbits: 2048
-          expiration: 10y
 ```
 
 {% endnavtab %}
@@ -668,7 +654,7 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
                 timeout: 1s" | kubectl apply -f -
     ```
 
-1. We are all set up. Now you can try making few requests to external IP of your gateway, and you will see error after reaching limits. You can find this IP with command:
+2. We are all set up. Now you can try making few requests to external IP of your gateway, and you will see error after reaching limits. You can find this IP with command:
 
     ```bash
     kubectl -n kuma-demo get service demo-app-gateway
