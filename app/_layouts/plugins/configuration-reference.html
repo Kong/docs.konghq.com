@@ -19,7 +19,7 @@ type: plugin
 
 {% if page.hub_examples.render? %}
   <h3 id="example-config">Example plugin configuration</h3>
-  {% include_cached hub-examples.html version=page.version configuration=page publisher=page.publisher name=page.name %}
+  {% include hub-examples.html %}
 {% endif %}
 
 <h3 id="parameters">Parameters</h3>
