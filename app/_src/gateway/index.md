@@ -85,7 +85,7 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 There are two ways to deploy {{site.base_gateway}}: cloud-hosted on {{ site.konnect_saas }}, and on-premises. If you're trying
 out {{site.base_gateway}} for the first time we, recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
-###Cloud-hosted with Konnect
+### Cloud-hosted with Konnect
 
 **{{site.base_gateway}}** (available in
 [Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
