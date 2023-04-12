@@ -2198,7 +2198,7 @@ The authorization code flow is the three-legged OAuth/OpenID Connect flow.
 The sequence diagram below describes the participants and their interactions
 for this usage scenario, including the use of session cookies:
 
-<img src="/assets/images/docs/openid-connect/authorization-code-flow.svg">
+![Authorization code flow diagram](/assets/images/docs/openid-connect/authorization-code-flow.svg)
 
 #### Patch the Plugin
 
