@@ -296,12 +296,16 @@ items:
       - text: MeshFaultInjection (Beta)
         url: /policies/meshfaultinjection/
         src: /.repos/kuma/app/_src/policies/meshfaultinjection/
+      - text: MeshGlobalRatelimit (beta)
+        url: /features/meshglobalratelimit
       - text: MeshHealthCheck (Beta)
         url: /policies/meshhealthcheck/
         src: /.repos/kuma/app/_src/policies/meshhealthcheck/
       - text: MeshHTTPRoute (Beta)
         url: /policies/meshhttproute/
         src: /.repos/kuma/app/_src/policies/meshhttproute/
+      - text: MeshOPA (beta)
+        url: /features/meshopa
       - text: MeshProxyPatch (Beta)
         url: /policies/meshproxypatch/
         src: /.repos/kuma/app/_src/policies/meshproxypatch/
