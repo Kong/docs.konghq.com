@@ -1,5 +1,5 @@
 ---
-title: MeshGlobalRateLimit (beta) - Global Rate Limiting Policy 
+title: MeshGlobalRateLimit Policy (beta)  
 content_type: reference
 beta: true
 badge: enterprise
@@ -7,108 +7,107 @@ badge: enterprise
 
 This policy adds Global Rate Limit support for {{site.mesh_product_name}}.
 
-## What is Global Rate limiting 
+## What is global rate limiting 
 
 Rate limiting is a mechanism used to control the number of requests received by a service in a time unit. 
 For example, you can limit your service to receive only 100 requests per second. 
-Typical rate limit use cases:
-- protect your service from DoS (Denial of Service) attack
-- limit your API usage
-- control traffic throughput
+Typical rate limit use cases include the following:
+- Protecting your service from DoS (Denial of Service) attack
+- Limiting your API usage
+- Controlling traffic throughput
 
-All rate limit algorithms are based on some form of request counting. In {{site.mesh_product_name}} we have two rate limiting mechanisms: 
-local and global rate limit. Local rate limit is applied per service instance, because of this counters can be stored in memory and rate limit 
-decision can be made instantaneously. Local rate limit should be enough in most cases (DoS protection and controlling traffic throughput).
+All rate limit algorithms are based on some form of request counting. In {{site.mesh_product_name}}, there are two rate limiting mechanisms: 
+local and global rate limit. 
+
+Local rate limit is applied per service instance. Because of this, counters can be stored in memory and rate limit 
+decisions can be made instantaneously. Local rate limiting should be enough in most cases (for example, DoS protection and controlling traffic throughput).
 You can find more information about local rate limit and how to configure it in [MeshRateLimit docs](/mesh/{{page.kong_version}}/policies/meshratelimit).
 
-There are some cases when local rate limit won't solve your problems. For example, you may want to limit the number of requests that not paying users can 
-make to your public API. In order to do that, you need to coordinate request counting between service instances. And that's where the Global Rate limit will be useful. 
-Global rate limit moves counters from Data Plane Proxy to distributed cache. Thanks to this, you can configure longer time units like
-week, month or year which will be immune to your service restarts.
+There are some cases when local rate limit won't solve your problems. For example, you may want to limit the number of requests that non-paying users can 
+make to your public API. To do that, you must coordinate request counting between service instances, which the global rate limit can help you with.
+Global rate limit moves counters from data plane proxy to distributed cache. Because of this, you can configure longer time units (like
+week, month, or year) which will be immune to your service restarts.
 
 ## How Global Rate limit works
 
-Global Rate limit is a more complex mechanism than local rate limit. It needs additional service that will take care of our global counters.
+Global rate limiting is a more complex than local rate limit. It needs an additional service that will manage the global counters.
 
 ### Architecture overview
 
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service.png"/>
 </center>
+> Figure 1: Diagram of how the global rate limit interacts with two services (Service A and Service B), {{site.service_mesh_name}}, and Redis.
 
-Global Rate limit adds two components to {{site.mesh_product_name}} deployment. We need ratelimit service that will manage our counters and 
-highly available in-memory data store where we will store our counters. {{site.mesh_product_name}} uses [Redis](https://redis.io/) for this.
+Global rate limit adds two components to your {{site.mesh_product_name}} deployment. You need the ratelimit service that will manage your counters and 
+highly available in-memory data store where you will store your counters. {{site.mesh_product_name}} uses [Redis](https://redis.io/) for this.
 
 ### Request flow
 
-Let's assume that we have configured rate limiting for **Service B** from our diagram. If any service/gateway makes requests to **Service B**
-it's Data Plane Proxy will make a request to ratelimit service to check if the request can be forwarded to **Service B**. Ratelimit service then
-checks if counter for this service is below limits. If it is below limits, it updates the counter and allows the request to pass. If counters are above
-limit, deny response is returned. 
+Let's assume that we have configured rate limiting for **Service B** from our diagram. If any service/gateway makes requests to **Service B**,
+it's data plane proxy will make a request to the ratelimit service to check if the request can be forwarded to **Service B**. The ratelimit service then
+checks if the counter for this service is below limits. If it is below limits, it updates the counter and allows the request to pass. If counters are above
+limits, deny response is returned. 
 
 {:.note}
-> **Note**: You need to remember that configuring global ratelimit will increase yours service response times. Since it needs additional request 
-> to ratelimit service and redis.
+> **Note**: Configuring global rate limit will increase your service response times because it needs additional requests to the ratelimit service and Redis.
 
 ### Ratelimit service configuration
 
-Beside basic service configuration that is provided on startup, ratelimit service needs limits configuration. Limits configuration
-is loaded dynamically from control plane. Ratelimit service uses xDS protocol for this, which is the same protocol that Data Plane Proxy
-uses for communicating with Control Plane. Control Plane will periodically compute new limits configuration and send it to ratelimit service.
+Besides the basic service configuration that is provided on startup, the ratelimit service needs a limits configuration. Limits configuration
+is loaded dynamically from the control plane. Ratelimit service uses xDS protocol for this, which is the same protocol that the data plane proxy
+uses for communicating with the control plane. The control plane will periodically compute any new limits configuration and send it to ratelimit service.
 
 ### Rate limiting algorithm
 
-Rate limit service uses fixed window algorithm. It allocates a new counter for every time unit. Let's assume that we have configured limits to 
+The ratelimit service uses a fixed window algorithm. It allocates a new counter for each time unit. Let's assume that we have configured limits to 
 10 requests per minute. At the beginning of each minute, ratelimit service will create a new counter. 
 
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-algorithm.png"/>
 </center>
 
-When a new request arrives, it updated counters in the window based on the request timestamp. This is simple algorithm but have two main problems about
-which you should be aware:
+When a new request arrives, it updates the counters in the window based on the request timestamp. Be aware of the following when configuring counters:
 
-1. counter can be depleted at the begging of the window
-2. first counter can be depleted at the end of the window and the second can be depleted at the beginning of the window
+* The counter can be depleted at the beginning of the window.
+* The first counter can be depleted at the end of the window and the second can be depleted at the beginning of the window.
 
-The first scenario can be problematic for long time units like hours, and days. Because the limit is reached at the beginning of the time window
-you service will not serve any requests for the rest of the time window. To solve this issue, you can split your limit from 60 per hour to 
-1 per minute.
+The first scenario can be problematic for long time units like hours and days. Because the limit is reached at the beginning of the time window,
+your service will not serve any requests for the rest of the time window. To solve this issue, you can split your limit from 60 per hour to 
+one per minute.
 
-The second scenario could result in requests burst around the window switch. In this scenario when you configure limit to 100 requests per minute
-you could end up in receiving 200 request in a couple of seconds.
+The second scenario could result in requests burst around the window switch. In this scenario, when you configure the ratelimit to 100 requests per minute
+you could end up receiving 200 request in a couple of seconds.
 
 ### Multizone deployment
 
-When it comes to multizone deployment, you should deploy ratelimit service in every zone. As for the Redis you have two options:
+When it comes to multizone deployment, you should deploy the ratelimit service in every zone. As for Redis, you have two options:
 
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service-multizone-multi-redis.png"/>
 </center>
 
-First option is to deploy Redis in every zone. In this setup, limits will be applied per zone. Since each zone will have its own counters cache, 
+The first option is to deploy Redis in every zone. In this setup, limits will be applied per zone. Since each zone will have its own counters cache, 
 requests will be faster, and it will be easier to distribute your system geographically.
 
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service-multizone-single-redis.png"/>
 </center>
 
-The second option is to deploy single Redis for all your zones. In this setup, the rate limit will be truly global. When deploying single Redis
-you need to remember that if your zones are distributed geographically requests to Redis can become slower which could drastically 
+The second option is to deploy a single Redis datastore for all your zones. In this setup, the rate limit will be truly global. When deploying a single Redis datastore, remember that if your zones are distributed geographically requests to Redis can become slower which could drastically 
 increase response times of service you are rate limiting. 
 
 ### Ratelimit service security
 
 #### Securing communication between ratelimit service and Control Plane
 
-Communication between ratelimit service and control plane is encrypted. On top of that we are using on Universal we are using zone token
-for authorization and on Kubernetes we are using service account for authorization. 
+Communication between the ratelimit service and control plane is encrypted. In addition, zone token authorization is used on Universal and  service account authorization is used on Kubernetes. 
 
-TODO: document how to generate and use zone token on universal. 
+<!--TODO: document how to generate and use zone token on universal.-->
 
 ## TargetRef support matrix
 
-| TargetRef type    | top level | to  | from |
+| TargetRef type    | Top level | To  | From |
 | ----------------- | --------- | --- | ---- |
 | Mesh              | ✅        | ❌  | ✅   |
 | MeshSubset        | ❌        | ❌  | ❌   |
@@ -120,7 +119,7 @@ To learn more about the information in this table, see the [matching docs](/mesh
 
 ## Configuration
 
-Below you can find examples for `MeshGlobalRateLimit` configuration
+In the following sections, you can find examples for the `MeshGlobalRateLimit` configuration.
 
 ### Full example
 
@@ -199,12 +198,12 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-#### Applying configuration to DPP and ratelimit service
+#### Applying configuration to the data plane proxy and the ratelimit service
 
-After applying your policy control plane is building two configs one for DPP and second one for ratelimit service. Ratelimit service configuration 
-is build from you service name and `requestRate` policy parameter. Rest of the policy is translated to DPP configuration. 
+After applying your policy, the control plane builds two configurations, one for the data plane proxy and one for the ratelimit service. The ratelimit service configuration 
+is built from you service name and `requestRate` policy parameter. The rest of the policy is translated to data plane proxy configuration. 
 
-### Configure reusable ratelimit service backend
+### Configure a reusable ratelimit service backend
 
 You can configure ratelimit service backend for the whole mesh. Which will simplify per service configuration.
 
@@ -269,7 +268,7 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-Then you can configure only limits for each service: 
+Then you only have to configure limits for each service: 
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -320,12 +319,12 @@ spec:
 
 ### Combining MeshRateLimit with MeshGlobalRateLimit
 
-You can combine MeshRateLimit and MeshGlobalRateLimit policies. By doing this, you can specify local limit that will be more strict than the global rate limit.
-When local rate limit is reached, DPP will stop sending requests to ratelimit service. 
+You can combine MeshRateLimit and MeshGlobalRateLimit policies. By doing this, you can specify a local limit that is more strict than the global rate limit.
+When the local rate limit is reached, the data plane proxy will stop sending requests to ratelimit service. 
 
-This could **lower network traffic** between DPP and ratelimit service. Also, it can protect ratelimit service from being DDoSed by your services. 
-Moreover, this could be used to more **evenly distribute traffic** to ratelimit service and mitigate the problem of depleting whole limit at the begging of counter window.
-Described in [previous section](/mesh/{{page.kong_version}}/features/meshglobalratelimit/#rate-limiting-algorithm).
+This could lower network traffic between the data plane proxy and the ratelimit service. Also, it can protect your ratelimit service from a DDoS "attack" by your services. 
+Moreover, this could be used to more evenly distribute traffic to the ratelimit service and mitigate the problem of depleting whole limit at the beginning of the counter window.
+This is described in the [previous section](/mesh/{{page.kong_version}}/features/meshglobalratelimit/#rate-limiting-algorithm).
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -410,11 +409,11 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-### External Service support
+### External service support
 
-In order to rate limit requests to [External Service](/mesh/{{page.kong_version}}/policies/external-services) you need to deploy [ZoneEgress](/mesh/{{page.kong_version}}/explore/zoneegress). 
+To rate limit requests to [External Service](/mesh/{{page.kong_version}}/policies/external-services) you must deploy [ZoneEgress](/mesh/{{page.kong_version}}/explore/zoneegress). 
 
-After deploying Zone Egress, you need to enable mTLS in your mesh and configure zone egress routing. Example mesh config:
+After deploying Zone Egress, you must enable mTLS in your mesh and configure zone egress routing. Here's an example mesh configuration:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -452,7 +451,7 @@ mtls:
 {% endnavtab %}
 {% endnavtabs %}
 
-After configuring your mesh you can create your External Service:
+After configuring your mesh, you can create your external service:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -492,7 +491,7 @@ networking:
 {% endnavtab %}
 {% endnavtabs %}
 
-When applying policies, External Services are treated as normal Mesh Services, so we could configure MeshGlobalRatelimit like this:
+When applying policies, external services are treated as normal mesh services, so we could configure MeshGlobalRateLimit like this:
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -541,33 +540,33 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
-## Ratelimit Service
+## Ratelimit service
 
-{{site.mesh_product_name}} is using **Envoy Rate Limit service reference implementation**. Its source code with documentation can be found [here](https://github.com/envoyproxy/ratelimit).
+{{site.mesh_product_name}} is using the Envoy Rate Limit service reference implementation. You can read the [source code and documentation](https://github.com/envoyproxy/ratelimit) from the Envoy Proxy GitHub repository.
 
 ### Deployment
 
-On Universal, you need to take care of deploying Redis and ratelimit service on your own. On Kubernetes, you could use {{site.mesh_product_name}} Helm charts 
+On Universal, you must deploy Redis and the ratelimit service on your own. On Kubernetes, you can use {{site.mesh_product_name}} Helm charts 
 to deploy ratelimit service, but you still need to deploy Redis on your own.
 
 ### How to read limits configuration
 
-When you expose debug port on ratelimit service, you can get access to limits configuration, at `/rlconfig` path.
-Here is an example configuration that you will see something like this:
+When you expose debug port on the ratelimit service, you can get access to the limits configuration at the `/rlconfig` path.
+Here is an example configuration:
 
 ```
 default.kuma.io/service_demo-app_kuma-demo_svc_5000: unit=SECOND requests_per_unit=10, shadow_mode: false
 ```
 
-This config follows a pattern: 
+This configuration follows this pattern: 
 ```
 mesh.descriptorKey_descriptorValue
 ```
-Descriptor key will always be `kuma.io/service`, and descriptor value will be your Mesh Service name. 
-Therefore, we can deduct that this config will apply to `demo-app_kuma-demo_svc_5000` service in `default`
-mesh. The second part of the configuration is rather straight forward. We have information of request limit and unit to which 
+The descriptor key will always be `kuma.io/service`, and the descriptor value will be your mesh service name. 
+Therefore, we can deduct that this configuration will apply to `demo-app_kuma-demo_svc_5000` service in the `default`
+mesh. For the second part of the configuration, we have information about the request limit and unit to which 
 this limit will be applied. Shadow mode specifies if request should be limited after reaching the configured limit. If `shadow_mode` is set 
-to `true`, ratelimit service will not deny requests to your service, it will only update ratelimit service metrics.
+to `true`, the ratelimit service will not deny requests to your service, it will only update the ratelimit service metrics.
 
 ### Performance improvements
 
@@ -578,7 +577,7 @@ You should refer to ratelimit service documentation for more concrete documentat
 
 ### Prerequisites
 
-- Kubernetes cluster on which you will run demo
+- A Kubernetes cluster to run the demo on
 - `Helm` installed
 - `kumactl` installed locally
 
@@ -593,13 +592,13 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
     helm install --create-namespace --namespace {{ site.mesh_namespace }} redis bitnami/redis
     ```
 
-1. Redis should be now installed, and you should have secret with Redis password. You can check if it is present with command:
+1. Redis should be now installed, and you should have secret with the Redis password. You can check if it is present:
   
     ```bash
     kubectl -n kong-mesh-system get secret redis 
     ```
 
-1. Next, you need to create value files that will be used for control plane installation
+1. Next, you need to create value files that will be used for control plane installation:
 
     ```
     echo "ratelimit:
@@ -615,13 +614,13 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
           Env: REDIS_AUTH" > values.yaml
     ```
 
-1. Now we can deploy our control plane
+1. Now we can deploy our control plane:
 
     ```bash
     kumactl install control-plane --values values.yaml | kubectl apply -f -
     ```
 
-1. We now have our control plane with ratelimit setup, so we can install demo app
+1. We now have our control plane with ratelimit setup, so we can install the demo app:
 
     ```bash
     kumactl install demo | k apply -f -
@@ -655,10 +654,10 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
                 timeout: 1s" | kubectl apply -f -
     ```
 
-2. We are all set up. Now you can try making few requests to external IP of your gateway, and you will see error after reaching limits. You can find this IP with command:
+2. We are all set up. Now you can try making few requests to the external IP of your gateway and you will see an error after reaching limits. You can find the IP with command:
 
     ```bash
     kubectl -n kuma-demo get service demo-app-gateway
     ```
 
-    We invite you to play more with this demo, change limits, or try out other examples from this documentation.
+    You can configure more with this demo, such as changing limits or trying out other examples from this documentation.
