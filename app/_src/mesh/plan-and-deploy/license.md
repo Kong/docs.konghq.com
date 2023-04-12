@@ -128,8 +128,7 @@ In Universal mode, configure a valid license by using the following environment 
 
 ### Kubernetes
 
-1. Update the license 
-  Update the `kong-mesh-license` Secret in `kong-mesh-system` namespace with a new license:
+1. Update the `kong-mesh-license` Secret in `kong-mesh-system` namespace with a new license:
   ```sh
   kubectl edit secrets -n kong-mesh-system kong-mesh-license
   ```
@@ -143,7 +142,7 @@ In Universal mode, configure a valid license by using the following environment 
 1. Update the license by doing one of the following:
   - If you used `KMESH_LICENSE_PATH`, update the content of the file.
   - If you used `KMESH_LICENSE_INLINE`, update the value of the environment variable.
-1. Restart the control plane
+1. Restart the control plane.
 
 ## Multi-zone
 
