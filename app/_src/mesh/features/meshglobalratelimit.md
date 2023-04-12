@@ -100,11 +100,11 @@ requests will be faster, and it will be easier to distribute your system geograp
 The second option is to deploy a single Redis datastore for all your zones. In this setup, the rate limit will be truly global. When deploying a single Redis datastore, remember that if your zones are distributed geographically requests to Redis can become slower which could drastically 
 increase response times of service you are rate limiting. 
 
-### Securing communication between ratelimit service and Control Plane
+<!-- ### Securing communication between ratelimit service and Control Plane
 
-Communication between the ratelimit service and control plane is encrypted. In addition, zone token authorization is used on Universal and  service account authorization is used on Kubernetes. 
+Communication between the ratelimit service and control plane is encrypted. In addition, zone token authorization is used on Universal and  service account authorization is used on Kubernetes.
 
-<!--TODO: document how to generate and use zone token on universal.-->
+TODO: document how to generate and use zone token on universal.-->
 
 ## TargetRef support matrix
 
