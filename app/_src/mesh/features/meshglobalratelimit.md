@@ -66,6 +66,7 @@ The ratelimit service uses a fixed window algorithm. It allocates a new counter 
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-algorithm.png"/>
 </center>
+> Figure 2: Diagram showing how rate limit counters are placed on timeline and how request is qualified for specific time window.
 
 When a new request arrives, it updates the counters in the window based on the request timestamp. Be aware of the following when configuring counters:
 
@@ -86,6 +87,7 @@ When it comes to multizone deployment, you should deploy the ratelimit service i
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service-multizone-multi-redis.png"/>
 </center>
+> Figure 3: Diagram of multizone ratelimit setup with Redis per zone.
 
 The first option is to deploy Redis in every zone. In this setup, limits will be applied per zone. Since each zone will have its own counters cache, 
 requests will be faster, and it will be easier to distribute your system geographically.
@@ -93,13 +95,12 @@ requests will be faster, and it will be easier to distribute your system geograp
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service-multizone-single-redis.png"/>
 </center>
+> Figure 4: Diagram of multizone ratelimit setup with global Redis.
 
 The second option is to deploy a single Redis datastore for all your zones. In this setup, the rate limit will be truly global. When deploying a single Redis datastore, remember that if your zones are distributed geographically requests to Redis can become slower which could drastically 
 increase response times of service you are rate limiting. 
 
-### Ratelimit service security
-
-#### Securing communication between ratelimit service and Control Plane
+### Securing communication between ratelimit service and Control Plane
 
 Communication between the ratelimit service and control plane is encrypted. In addition, zone token authorization is used on Universal and  service account authorization is used on Kubernetes. 
 
@@ -571,7 +572,7 @@ to `true`, the ratelimit service will not deny requests to your service, it will
 ### Performance improvements
 
 Ratelimit service offers two mechanisms for tweaking its performance. [Local cache for depleted counters](https://github.com/envoyproxy/ratelimit#local-cache) and [Redis query pipelining](https://github.com/envoyproxy/ratelimit#pipelining). 
-You should refer to ratelimit service documentation for more concrete documentation and setup.
+You should refer to [ratelimit service documentation](https://github.com/envoyproxy/ratelimit#overview) for more concrete documentation and setup.
 
 ## Example Ratelimit setup
 
