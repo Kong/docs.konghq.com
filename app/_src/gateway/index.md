@@ -82,19 +82,19 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 
 ## Packages and modes
 
-There are two ways to deploy {{site.base_gateway}} - {{ site.konnect_saas }} cloud and on-premises. If you're trying
-out {{site.base_gateway}} for the first time we recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
+There are two ways to deploy {{site.base_gateway}}: cloud-hosted on {{ site.konnect_saas }}, and on-premises. If you're trying
+out {{site.base_gateway}} for the first time we, recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
-### {{ site.konnect_saas }} Cloud
+###Cloud-hosted with Konnect
 
 **{{site.base_gateway}}** (available in
 [Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
 * <span class="badge free"></span> In **Free mode**,
-  this package gives you access to the {{ site.konnect_saas }} to help configure your services, routes and plugins.
+  this package gives you access to Konnect to help configure your services, routes and plugins.
 * <span class="badge plus"></span> In **Plus mode**, you have access to more
 {{site.base_gateway}} features.
-See the [{{site.konnect_saas}} documentation](/konnect/) and the
+See the [Konnect documentation](/konnect/) and the
 **Plus**-labelled plugins on the [Plugin Hub](/hub/#plus) for more information.
 * <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
