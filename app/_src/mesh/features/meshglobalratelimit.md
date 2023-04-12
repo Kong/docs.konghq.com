@@ -2,6 +2,7 @@
 title: MeshGlobalRateLimit (beta) - Global Rate Limiting Policy 
 content_type: reference
 beta: true
+badge: enterprise
 ---
 
 This policy adds Global Rate Limit support for {{site.mesh_product_name}}.
