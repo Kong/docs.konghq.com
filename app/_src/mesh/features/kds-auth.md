@@ -50,7 +50,7 @@ kumactl install control-plane \
   --zone=<zone name> \
   --cp-token-path=/tmp/token \
   --ingress-enabled \
-  --kds-global-address grpcs://`<global-kds-address>` | kubectl apply -f -
+  --kds-global-address grpcs://`<global-kds-address>`:5685 | kubectl apply -f -
 ```
 
 {% endnavtab %}
