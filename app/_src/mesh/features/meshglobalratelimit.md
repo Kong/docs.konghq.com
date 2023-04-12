@@ -205,7 +205,7 @@ is built from you service name and `requestRate` policy parameter. The rest of t
 
 ### Configure a reusable ratelimit service backend
 
-You can configure ratelimit service backend for the whole mesh. Which will simplify per service configuration.
+To simplify your per service configuration, you can configure the ratelimit service backend for the whole mesh. 
 
 {% navtabs %}
 {% navtab Kubernetes %}
