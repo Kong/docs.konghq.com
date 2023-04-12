@@ -45,7 +45,7 @@ highly available in-memory data store where you will store your counters. {{site
 ### Request flow
 
 Let's assume that we have configured rate limiting for **Service B** from our diagram. If any service/gateway makes requests to **Service B**,
-it's data plane proxy will make a request to the ratelimit service to check if the request can be forwarded to **Service B**. The ratelimit service then
+its data plane proxy will make a request to the ratelimit service to check if the request can be forwarded to **Service B**. The ratelimit service then
 checks if the counter for this service is below limits. If it is below limits, it updates the counter and allows the request to pass. If counters are above
 limits, deny response is returned. 
 
@@ -492,7 +492,7 @@ networking:
 {% endnavtab %}
 {% endnavtabs %}
 
-When applying policies, external services are treated as normal mesh services, so we could configure MeshGlobalRateLimit like this:
+When applying policies, external services are treated as normal mesh services, so we configure MeshGlobalRateLimit like this:
 
 {% navtabs %}
 {% navtab Kubernetes %}
