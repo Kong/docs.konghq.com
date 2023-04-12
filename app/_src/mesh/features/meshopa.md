@@ -29,7 +29,7 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 | MeshServiceSubset | ✅        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
 
-To learn more about the information in this table, see the [matching docs](/docs/{{ page.version }}/policies/targetref).
+To learn more about the information in this table, see the [matching docs](/mesh/{{page.kong_version}}/policies/targetref).
 
 ## Configuration
 
