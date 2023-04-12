@@ -98,6 +98,15 @@ params:
       datatype: number
       description: |
         The timeout, in milliseconds, for reading the response from the OTLP server.
+    - name: header_type
+      required: true
+      default: preserve
+      datatype: string
+      description: |
+        All HTTP requests going through the plugin are tagged with a tracing HTTP request.
+        This property codifies what kind of tracing header the plugin expects on incoming requests.
+
+        Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
 ---
 
 The OpenTelemetry plugin is built on top of {{site.base_gateway}}'s tracing API
