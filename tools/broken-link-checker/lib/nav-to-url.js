@@ -4,7 +4,7 @@ module.exports = function(filename) {
     deck: "deck",
     ee: "enterprise",
     gsg: "getting-started-guide",
-    kic: "kubernetes-ingress-controller",
+    kic: "kong-ingress-controller",
     konnect: "konnect",
     mesh: "mesh",
     gateway: "gateway",
