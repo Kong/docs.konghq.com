@@ -1,14 +1,29 @@
-{% assign extn_publisher = extn.extn_publisher %}
-
-<div class="card-group {{ extn.type }} {{ extn.categories | join: ' ' }} {%
-  if extn_publisher == 'kong-inc' %}gateway {%
-    if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
-      if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
-        unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
-          if extn.enterprise %}enterprise {%
-            else %}open-source {% endif %}{%
-              unless extn.cloud == false %} konnect{% endunless %}{%
-              else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
+{%- assign extn_publisher = extn.extn_publisher -%}
+{%- assign categories = extn.categories | join: ' ' -%}
+{%- assign css_classes = {{ extn.type | append: ' ' | append: categories -%}
+{%-if extn_publisher == 'kong-inc' -%}
+  {%- assign css_classes = css_classes | append: " gateway" -%}
+  {%- if extn.kong_version_compatibility.enterprise_edition.compatible != nil -%}
+    {%- assign css_classes = css_classes | append: " ee-compat" -%}
+  {%- endif -%}
+  {%- if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil -%}
+    {%- unless extn.cloud == false -%}
+      {%- assign css_classes =  css_classes | append: " plus" -%}
+    {%- endunless -%}
+  {%- endif -%}
+  {%- if extn.enterprise -%}
+    {%- assign css_classes = css_classes | append: " enterprise" -%}
+  {%- else -%}
+    {%- assign css_classes = css_classes | append: " open-source" -%}
+  {%- endif -%}
+  {%- unless extn.cloud == false -%}
+    {%- assign css_classes = css_classes | append: " konnect" -%}
+  {%- endunless -%}
+{%- else -%}
+  {%- assign third_party_classes = " pub-not-konghq pub-{{extn_publisher}}" -%}
+  {%- assign css_classes = css_classes | append: third_party_classes -%}
+{%- endif -%}
+<div class="card-group {{ css_classes }}">
   <div class="plugin-card">
     <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">
       <div>
