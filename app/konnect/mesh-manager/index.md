@@ -13,6 +13,26 @@ Here are a few benefits of creating a service mesh in {{site.konnect_short_name}
 * **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}} managed entities, and now service mesh data all from one central platform. 
 * **Managed UI wizard setup:** {{site.konnect_short_name}} simplifies the process of creating a service mesh by providing a setup wizard in the UI that guides you through the configuration steps. 
 
+<<<<<<< HEAD
+=======
+## Create a service mesh in {{site.mesh_product_name}}
+
+When you create a {{site.mesh_product_name}} control plane in {{site.konnect_short_name}}, you configure the settings for the control plane in the {{site.konnect_short_name}} UI and then deploy the control plane in {{site.mesh_product_name}} using `kumactl`. 
+
+### Prerequisites
+
+* Mutual TLS only: If you plan to automatically encrypt [mTLS](/mesh/latest/policies/mutual-tls/) traffic for all the services in your service mesh, you will need the mTLS certificate name and authority.
+* Logging only: If you plan to add a logging backend to log traffic via the TrafficLog policy, you will need the IP address and format (WHAT IS THIS) of your logging backend. [WHICH BACKENDS ARE AVAILABLE]
+* Tracing only: If you plan to add a tracing backend to ___ using the TrafficTrace policy, you will need the sampling [WHAT IS THIS] and the url of your backend. [WHICH BACKENDS ARE AVAILABLE]
+* Metrics only: If you want to port metrics from your data plane, you will need the data plane port and path of your metrics backend. [WHICH BACKENDS ARE AVAILABLE]
+
+### Deploy the service mesh in {{site.mesh_product_name}}
+
+After you create a service mesh in {{site.konnect_short_name}}, you must deploy it in {{site.mesh_product_name}} before you can view the service mesh details in {{site.konnect_short_name}}.
+
+Next, follow the instructions in the [Deploy a standalone control plane](/mesh/latest/production/cp-deployment/stand-alone/) {{site.mesh_product_name}} documentation.
+
+>>>>>>> b1e2c2607 (Fix broken links)
 ### View service mesh entities
 
 After your service mesh is deployed in {{site.mesh_product_name}}, the following information will be displayed in Mesh Manager for each control plane:
