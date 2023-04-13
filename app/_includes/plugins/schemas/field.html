@@ -33,11 +33,11 @@
       </span>
     {% endif %}
 
-    {% if include.field.default %}
+    {% unless include.field.default == nil %}
       <span>
         <strong>default: </strong><code>{{ include.field.default }}</code>
       </span>
-    {% endif %}
+    {% endunless %}
 
     {% if include.field.match %}
       <span>
