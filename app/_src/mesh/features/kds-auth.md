@@ -166,7 +166,7 @@ You can still authenticate a control plane using the separate [Control Plane Tok
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[zone-proxy]: https://kuma.io/docs/dev/security/zoneproxy-auth/
+[zone-proxy]: https://kuma.io/docs/latest/security/zoneproxy-auth/
 [auth]: https://kuma.io/docs/latest/security/certificates/#user-to-control-plane-communication
 [certs]: https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
