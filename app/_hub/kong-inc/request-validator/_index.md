@@ -66,7 +66,6 @@ params:
         done for `application/json` and skipped for any other allowed content types.
     - name: allowed_content_types
       maximum_version: "2.7.x"
-      maximum_version: "2.7.x"
       required: true
       default:
         - application/json
