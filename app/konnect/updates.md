@@ -11,8 +11,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2023
 
-** Kong Ingress Controller for Kubernetes in Konnect
-Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
+**Kong Ingress Controller for Kubernetes in Konnect**
+: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
 
 ## March 2023
 
