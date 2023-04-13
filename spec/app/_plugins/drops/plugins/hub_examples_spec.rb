@@ -1,8 +1,9 @@
 RSpec.describe Jekyll::Drops::Plugins::HubExamples do
   let(:version) { '3.2.2' }
   let(:schema) do
-    PluginSingleSource::Plugin::Schema.new(
+    PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: 'opentelemetry',
+      vendor: 'kong-inc',
       version: version
     )
   end

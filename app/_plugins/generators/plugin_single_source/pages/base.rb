@@ -4,6 +4,7 @@ module PluginSingleSource
   module Pages
     class Base
       attr_reader :site, :release
+      attr_accessor :sidenav
 
       def initialize(release:, file:, source_path:)
         @release = release
@@ -45,12 +46,6 @@ module PluginSingleSource
         ).gsub("#{@site.source}/", '')
       end
 
-      def nav_title
-        @nav_title ||= ::Utils::FrontmatterParser
-                       .new(File.read(File.expand_path(@file, @source_path)))
-                       .frontmatter.fetch('nav_title', 'Missing nav_title')
-      end
-
       def base_url
         @base_url ||= "/hub/#{@release.dir}/"
       end
@@ -71,7 +66,8 @@ module PluginSingleSource
           'layout' => layout,
           'title' => page_title,
           'versions_dropdown' => ::Jekyll::Drops::Plugins::VersionsDropdown.new(self),
-          'breadcrumbs' => ::Jekyll::Drops::Plugins::Breadcrumbs.new(breadcrumbs).breadcrumbs
+          'breadcrumbs' => ::Jekyll::Drops::Plugins::Breadcrumbs.new(breadcrumbs).breadcrumbs,
+          'sidenav' => sidenav
         }
       end
 

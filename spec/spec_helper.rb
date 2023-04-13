@@ -91,4 +91,11 @@ RSpec.configure do |config|
   config.order = :random
 
   config.include SharedContexts::Site
+
+  config.before(:each) do
+    stub_const(
+      'PluginSingleSource::Plugin::Schemas::ThirdParty::SCHEMAS_PATH',
+      'spec/fixtures/app/_hub'
+    )
+  end
 end

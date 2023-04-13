@@ -1,0 +1,217 @@
+{
+  "fields": [
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [
+            "http",
+            "https",
+            "tcp",
+            "tls",
+            "tls_passthrough",
+            "udp",
+            "grpc",
+            "grpcs"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https",
+          "tcp",
+          "tls",
+          "tls_passthrough",
+          "udp",
+          "grpc",
+          "grpcs"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "application_id": {
+              "type": "string",
+              "required": true,
+              "examples": ["MY_MOESIF_APPLICATION_ID"],
+              "description": "Your Moesif Application Id from your [Moesif](http://www.moesif.com) dashboard. Go to Top Right Menu -> Installation."
+            }
+          },
+          {
+            "api_endpoint": {
+              "type": "string",
+              "default": "https://api.moesif.net",
+              "description": "URL for the Moesif Collection API (Change to your secure proxy hostname if client-side encryption is used)."
+            }
+          },
+          {
+            "connect_timeout": {
+              "type": "number",
+              "default": 1000,
+              "description": "Timeout in milliseconds when connecting to Moesif."
+            }
+          },
+          {
+            "send_timeout": {
+              "type": "number",
+              "default": 2000,
+              "description": "Timeout in milliseconds when sending data to Moesif."
+            }
+          },
+          {
+            "timeout": {
+              "type": "number",
+              "default": 1000,
+              "description": "(Deprecated) timeout in milliseconds when connecting/sending to Moesif."
+            }
+          },
+          {
+            "keepalive": {
+              "type": "number",
+              "default": 1000,
+              "description": "Value in milliseconds that defines for how long an idle connection will live before being closed."
+            }
+          },
+          {
+            "api_version": {
+              "type": "string",
+              "default": "1.0",
+              "description": "API Version you want to tag this request with in Moesif."
+            }
+          },
+          {
+            "disable_capture_request_body": {
+              "type": "boolean",
+              "default": false,
+              "description": "Disable logging of request body."
+            }
+          },
+          {
+            "disable_capture_response_body": {
+              "type": "boolean",
+              "default": false,
+              "description": "Disable logging of response body."
+            }
+          },
+          {
+            "request_header_masks": {
+              "type": "map",
+              "default": "{}",
+              "description": "An array of request header fields to mask."
+            }
+          },
+          {
+            "request_query_masks": {
+              "type": "map",
+              "default": "{}",
+              "description": "An array of query string parameter fields to mask."
+            }
+          },
+          {
+            "request_body_masks": {
+              "type": "map",
+              "default": "{}",
+              "description": "An array of request body fields to mask."
+            }
+          },
+          {
+            "response_header_masks": {
+              "type": "map",
+              "default": "{}",
+              "description": "An array of response header fields to mask."
+            }
+          },
+          {
+            "response_body_masks": {
+              "type": "map",
+              "default": "{}",
+              "description": "An array of response body fields to mask."
+            }
+          },
+          {
+            "batch_size": {
+              "type": "number",
+              "default": 200,
+              "description": "Maximum batch size when sending to Moesif."
+            }
+          },
+          {
+            "user_id_header": {
+              "type": "string",
+              "default": "X-Consumer-Custom-Id",
+              "description": "Request or response header used to identify the User in Moesif."
+            }
+          },
+          {
+            "company_id_header": {
+              "type": "string",
+              "default": "",
+              "description": "Request or response header used to identify the Company (Account) in Moesif."
+            }
+          },
+          {
+            "authorization_header_name": {
+              "type": "string",
+              "default": "authorization",
+              "description": "Request header containing a Bearer or basic token to extract user id. See identifying users. Also, supports a comma-separated string. The plugin will check headers in order \"X-Api-Key, Authorization\"."
+            }
+          },
+          {
+            "authorization_user_id_field": {
+              "type": "string",
+              "default": "sub",
+              "description": "Field name in JWT/OpenId token’s payload for identifying users. Only applicable if authorization_header_name is set and is a Bearer token."
+            }
+          },
+          {
+            "event_queue_size": {
+              "type": "number",
+              "default": 5000,
+              "description": "Maximum number of events to hold in the queue before sending to Moesif. In case of network issues where the plugin is unable to connect or send an event to Moesif, skips adding new events to the queue to prevent memory overflow."
+            }
+          },
+          {
+            "disable_gzip_payload_decompression": {
+              "type": "boolean",
+              "default": false,
+              "description": "If set to `true`, disables decompressing body in Kong."
+            }
+          },
+          {
+            "max_callback_time_spent": {
+              "type": "number",
+              "default": 2000,
+              "description": "Limits the amount of time in milliseconds to send events to Moesif per worker cycle."
+            }
+          },
+          {
+            "request_max_body_size_limit": {
+              "type": "number",
+              "default": 100000,
+              "description": "Maximum request body size in bytes to log in Moesif."
+            }
+          },
+          {
+            "response_max_body_size_limit": {
+              "type": "number",
+              "default": 100000,
+              "description": "Maximum response body size in bytes to log in Moesif."
+            }
+          },
+          {
+            "debug": {
+              "type": "boolean",
+              "default": false,
+              "description": "An option if set to true, prints internal log messages for debugging integration issues."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

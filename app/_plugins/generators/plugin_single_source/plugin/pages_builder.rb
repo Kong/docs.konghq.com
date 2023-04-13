@@ -10,7 +10,11 @@ module PluginSingleSource
       def run
         assign_sidenav
 
-        pages
+        jekyll_pages
+      end
+
+      def jekyll_pages
+        pages.flatten.map(&:to_jekyll_page)
       end
 
       private
@@ -21,11 +25,11 @@ module PluginSingleSource
           @release.reference,
           @release.how_tos,
           @release.changelog
-        ].flatten.map(&:to_jekyll_page)
+        ].compact
       end
 
       def assign_sidenav
-        pages.each { |p| p.data['sidenav'] = sidenav }
+        pages.flatten.each { |p| p.sidenav = sidenav }
       end
 
       def sidenav
@@ -41,17 +45,13 @@ module PluginSingleSource
       end
 
       def sidenav_items
-        items = [
-          { 'title' => 'Overview', 'url' => @release.overview_page.permalink, 'icon' => icon },
-          { 'title' => 'Configuration Reference', 'url' => @release.reference.permalink, 'icon' => icon }
-        ]
-
-        if @release.how_tos.any?
-          items.push({ 'title' => 'Using the plugin', 'items' => items_for(@release.how_tos), 'icon' => icon })
+        pages.each_with_object([]) do |page, items|
+          if page.respond_to?(:each)
+            items.push({ 'title' => 'Using the plugin', 'items' => items_for(page), 'icon' => icon }) if page.any?
+          else
+            items.push({ 'title' => page.nav_title, 'url' => page.permalink, 'icon' => icon })
+          end
         end
-
-        items.push({ 'title' => 'Changelog', 'url' => @release.changelog.permalink, 'icon' => icon })
-        items
       end
     end
   end

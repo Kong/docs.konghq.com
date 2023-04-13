@@ -1,0 +1,140 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [
+            "http",
+            "https",
+            "grpc",
+            "grpcs"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https",
+          "grpc",
+          "grpcs"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "realm": {
+              "type": "string",
+              "encrypted": true,
+              "default": "ngx.var.host",
+              "description": "When authentication or authorization fails, or there is an unexpected\nerror, the plugin sends an `WWW-Authenticate` header with the `realm`\nattribute value."
+            },
+            "enable_hs_signatures": {
+              "type": "boolean",
+              "default": false,
+              "description": "Tokens signed with HMAC algorithms such as `HS256`, `HS384`, or `HS512` are not\naccepted by default. If you need to accept such tokens for verification,\nenable this setting."
+            },
+            "enable_instrumentation": {
+              "type": "boolean",
+              "default": false,
+              "description": "When you are experiencing problems in production and don't want to change\nthe logging level on Kong nodes, which requires a reload, use this\nparameter to enable instrumentation for the request. The parameter writes\nlog entries with some added information using `ngx.CRIT` (CRITICAL) level."
+            },
+            "access_token_issuer": {
+              "type": "string",
+              "default": "kong",
+              "description": "The `iss` claim of a signed or re-signed access token is set to this value.\nOriginal `iss` claim of the incoming token (possibly introspected) is\nstored in `original_iss` claim of the newly signed access token."
+            },
+            "access_token_keyset": {
+              "type": "string",
+              "default": "kong",
+              "description": "Selects the private key for access token signing."
+            },
+            "access_token_jwks_uri": {
+              "type": "string",
+              "default": null,
+              "description": "If you want to use config.verify_access_token_signature, you must specify\nthe URI where the plugin can fetch the public keys (JWKS) to verify the\nsignature of the access token. If you don't specify a URI and you pass a\nJWT token to the plugin, then the plugin responds with\n`401 Unauthorized`."
+            },
+            "access_token_request_header": {
+              "type": "string",
+              "default": "authorization",
+              "description": "This parameter tells the name of the header where to look for the access token.\nBy default, the plugin searches it from `Authorization: Bearer <token>` header\n(the value being magic key `authorization:bearer`). If you don't want to\ndo anything with `access token`, then you can set this to `null` or `\"\"` (empty string).\nAny header can be used to pass the access token to the plugin. Two predefined\nvalues are `authorization:bearer` and `authorization:basic`."
+            },
+            "access_token_leeway": {
+              "type": "number",
+              "default": 0,
+              "description": "Adjusts clock skew between the token issuer and Kong. The value\nis added to the token's `exp` claim before checking token expiry against\nKong servers' current time in seconds. You can disable access token\n`expiry` verification altogether with `config.verify_access_token_expiry`."
+            },
+            "access_token_scopes_required": {
+              "type": "array",
+              "default": null,
+              "elements": {
+                "type": "string"
+              },
+              "description": "Specify the required values (or scopes) that are checked by a\nclaim specified by `config.access_token_scopes_claim`. For example,\n`[ \"employee demo-service\", \"superadmin\" ]` can be given as\n`\"employee demo-service,superadmin\"` (form post) would mean that the claim\nneeds to have values `\"employee\"` and `\"demo-service\"` **OR** that the claim\nneeds to have the value of `\"superadmin\"` to be successfully authorized for\nthe upstream access. If required scopes are\nnot found in access token, the plugin responds with `403 Forbidden`."
+            },
+            "access_token_scopes_claim": {
+              "type": "array",
+              "default": ["scope"],
+              "elements": {
+                "type": "string"
+              },
+              "description": "Specify the claim in an access token to verify against values of\n`config.access_token_scopes_required`. This supports nested claims. For\nexample, with Keycloak you could use `[ \"realm_access\", \"roles\" ]`, which can\nbe given as `realm_access,roles` (form post).\nIf the claim is not found in the access token, and you have specified\n`config.access_token_scopes_required`,\nthe plugin responds with `403 Forbidden`."
+            },
+            "access_token_consumer_claim": {
+              "type": "array",
+              "default": null,
+              "elements": {
+                "type": "string"
+              },
+              "description": "When you set a value for this parameter, the plugin tries to map an arbitrary\nclaim specified with this configuration parameter (for example, `sub` or `username`) in\nan access token to Kong consumer entity. Kong consumers have an `id`, a `username`,\nand a `custom_id`. The `config.access_token_consumer_by` parameter\ntells the plugin which of these Kong consumer properties can be used for mapping.\nIf this parameter is enabled but the mapping fails, such as when there's\na non-existent Kong consumer, the plugin responds with `403 Forbidden`.\nKong [consumer mapping](#consumer-mapping) is useful when you want to communicate this information\nto other plugins such as [ACL](/hub/kong-inc/acl/) or [rate limiting](/hub/kong-inc/rate-limiting/).\nThe JWT Signer plugin also sets a couple of standard Kong\nupstream consumer headers."
+            },
+            "access_token_consumer_by": {
+              "type": "array",
+              "default": ["username", "custom_id"],
+              "elements": {
+                "type": "string"
+              },
+              "description": "When the plugin tries to apply an access token to a Kong consumer mapping,\nit tries to find a matching Kong consumer from properties defined using\nthis configuration parameter. The parameter can take an array of\nvalues. Valid values are `id`, `username`, and `custom_id`."
+            },
+            "access_token_upstream_header": {
+              "type": "string",
+              "default": "authorization:bearer",
+              "description": "Removes the config.access_token_request_header from the request after reading its\nvalue. With `config.access_token_upstream_header`, you can specify the upstream header where the\nplugin adds the Kong signed token. If you don't specify a value,\nsuch as use `null` or `\"\"` (empty string), the plugin does not even try to\nsign or re-sign the token."
+            },
+            "access_token_upstream_leeway": {
+              "type": "number",
+              "default": 0,
+              "description": "If you want to add or perhaps subtract (using a negative value) expiry\ntime of the original access token, you can specify a value that is added to\nthe original access token's `exp` claim."
+            },
+            "access_token_introspection_endpoint": {
+              "type": "string",
+              "default": null,
+              "description": "When you use opaque access tokens and you want to turn on access token\nintrospection, you need to specify the OAuth 2.0 introspection endpoint URI\nwith this configuration parameter. Otherwise, the plugin does not try\nintrospection and returns `401 Unauthorized` instead."
+            },
+            "access_token_introspection_authorization": {
+              "type": "string",
+              "default": null,
+              "description": "If the introspection endpoint requires client authentication (client being\nthe JWT Signer plugin), you can specify the `Authorization` header's value with this\nconfiguration parameter. For example, if you use client credentials, enter\nthe value of `\"Basic base64encode('client_id:client_secret')\"`\nto this configuration parameter. You are responsible for providing the full string\nof the header and doing all of the necessary encodings (such as base64)\nrequired on a given endpoint."
+            },
+            "access_token_introspection_body_args": {
+              "type": "string",
+              "default": null,
+              "description": "If you need to pass additional body arguments to an introspection endpoint\nwhen the plugin introspects the opaque access token, use this config parameter\nto specify them. You should URL encode the value. For example: `resource=` or `a=1&b=&c`."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

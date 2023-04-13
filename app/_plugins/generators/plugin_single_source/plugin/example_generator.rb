@@ -9,6 +9,8 @@ module PluginSingleSource
       end
 
       def generate
+        return { 'name' => @schema.plugin_name }.merge(@config)
+
         extract_examples_from_schema(config_field, @config)
 
         { 'name' => @schema.plugin_name }.merge(@config)

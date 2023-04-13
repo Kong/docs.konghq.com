@@ -23,6 +23,10 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/changelog/"
       end
 
+      def nav_title
+        'Changelog'
+      end
+
       private
 
       def ssg_hub

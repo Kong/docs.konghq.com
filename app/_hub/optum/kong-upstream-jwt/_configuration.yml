@@ -1,8 +1,5 @@
 name: Kong Upstream JWT
 api_id: true
-service_id: true
-consumer_id: false
-route_id: true
 dbless_compatible: yes
 extra: |
   Installing this plugin globally will ensure security across all proxies for service providers who implement the JWT validation correctly.

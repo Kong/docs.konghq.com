@@ -46,6 +46,8 @@ module PluginSingleSource
       end
 
       def reference
+        return nil if schema.empty?
+
         @reference ||= Pages::Reference.new(
           release: self,
           file: nil,
@@ -89,16 +91,7 @@ module PluginSingleSource
       end
 
       def schema
-        # XXX: Quick hack to make the site build
-        # Skips third-party plugins and versions older than 2.3.x for which
-        # the docker image isn't working
-        @schema ||= if vendor != 'kong-inc' ||
-                       Utils::Version.to_version(version) <= Utils::Version.to_version('2.3.x') ||
-                       %w[app-dynamics serverless-functions].include?(name)
-                      NullSchema.new(plugin_name: name, version:)
-                    else
-                      Schema.new(plugin_name: name, version:)
-                    end
+        @schema ||= Schemas::Base.make_for(vendor:, name:, version:)
       end
 
       private

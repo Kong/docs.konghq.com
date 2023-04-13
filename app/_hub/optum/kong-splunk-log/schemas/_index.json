@@ -1,0 +1,91 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "splunk_endpoint": {
+              "type": "string",
+              "required": true,
+              "examples": ["https://hec-splunk.company.com/services/collector"],
+              "description": "Splunk HTTP Event Collector(HEC) Endpoint"
+            }
+          },
+          {
+            "splunk_access_token": {
+              "type": "string",
+              "required": true,
+              "examples": ["aaaaaaaa-bbbb-cccc-dddd-ffffffffffff"],
+              "description": "Passes required Splunk header `Authorization Splunk:`\n`aaaaaaaa-bbbb-cccc-dddd-ffffffffffff`"
+            }
+          },
+          {
+            "method": {
+              "type": "string",
+              "default": "POST",
+              "examples": ["POST"],
+              "description": "HTTP Method to send to Splunk"
+            }
+          },
+          {
+            "content_type": {
+              "type": "string",
+              "default": "application/json",
+              "examples": ["application/json"],
+              "description": "Defines the Content-Type header to send to Splunk"
+            }
+          },
+          {
+            "timeout": {
+              "type": "number",
+              "default": 10000,
+              "examples": [10000],
+              "description": "The amount of time to wait on a Splunk transaction before timing out"
+            }
+          },
+          {
+            "retry_count": {
+              "type": "number",
+              "default": 5,
+              "examples": [5],
+              "description": "The number of attempts to retry logging an event on splunk connection errors"
+            }
+          },
+          {
+            "queue_size": {
+              "type": "number",
+              "default": 20,
+              "examples": [20],
+              "description": "The max number of event logs the plugin may send in a single request"
+            }
+          },
+          {
+            "flush_timeout": {
+              "type": "number",
+              "default": 30,
+              "examples": [30],
+              "description": "The time taken in seconds before flushing a queue of transactions to splunk that has not reached its max `queue_size`"
+            }
+          },
+          {
+            "keepalive": {
+              "type": "number",
+              "default": 60000,
+              "examples": [60000],
+              "description": "The amount of time to keep plugin connections with Splunk active"
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

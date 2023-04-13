@@ -78,17 +78,17 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     context 'kong-inc plugin' do
       context 'app-dynamics' do
         let(:plugin_name) { 'kong-inc/app-dynamics' }
-        it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::NullSchema) }
+        it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::Schemas::Kong) }
       end
 
       context 'otherwise' do
-        it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::Schema) }
+        it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::Schemas::Kong) }
       end
     end
 
     context 'third-party plugin' do
       let(:plugin_name) { 'okta/okta' }
-      it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::NullSchema) }
+      it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::Schemas::ThirdParty) }
     end
   end
 end

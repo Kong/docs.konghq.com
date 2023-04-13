@@ -23,6 +23,10 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/"
       end
 
+      def nav_title
+        'Overview'
+      end
+
       private
 
       def ssg_hub

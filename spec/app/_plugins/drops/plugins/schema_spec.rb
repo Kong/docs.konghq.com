@@ -3,8 +3,9 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
   let(:metadata_file) { 'app/_hub/kong-inc/application-registration/_configuration.yml' }
   let(:metadata) { SafeYAML.load(File.read(metadata_file)) }
   let(:schema) do
-    PluginSingleSource::Plugin::Schema.new(
+    PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: plugin_name,
+      vendor: 'kong-inc',
       version: '3.1.1'
     )
   end

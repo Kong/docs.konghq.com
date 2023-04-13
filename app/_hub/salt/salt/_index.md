@@ -24,11 +24,3 @@ $ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/
   --data "config.salt_token=<salt_token>"
 ```
 > Note: installation may be different between Kong versions.
-
-### Plugin configuration reference
-
-| Parameter                | Description          |
-|--------------------------|----------------------|
-|`config.salt_domain`      | Salt domain address. |
-|`config.salt_backend_port`| Salt backend port. Defaults to 443 if `config.salt_backend_port` is not provided. |
-|`config.salt_token`       | Salt-provided company token. |

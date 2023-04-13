@@ -23,6 +23,12 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/#{file_to_url_segment}/"
       end
 
+      def nav_title
+        @nav_title ||= ::Utils::FrontmatterParser
+                       .new(File.read(File.expand_path(@file, @source_path)))
+                       .frontmatter.fetch('nav_title', 'Missing nav_title')
+      end
+
       private
 
       def file_to_url_segment

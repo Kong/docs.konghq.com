@@ -1,0 +1,27 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "spec_url": {
+              "type": "string",
+              "required": true,
+              "examples": ["https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/json/petstore.json"],
+              "description": "The full path to the specification/documentation of your service."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

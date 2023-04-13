@@ -1,0 +1,79 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "virtual_tests": {
+              "type": "array",
+              "elements": {
+                "type": "record",
+                "fields": [
+                  {
+                    "name": {
+                      "type": "string",
+                      "required": true,
+                      "examples": ["TestCase1"],
+                      "description": "Represents a human readable test case name."
+                    }
+                  },
+                  {
+                    "requestHttpMethod": {
+                      "type": "string",
+                      "required": true,
+                      "examples": ["POST"],
+                      "description": "Represents the HTTP method associated to the virtual request."
+                    }
+                  },
+                  {
+                    "requestHash": {
+                      "type": "string",
+                      "required": true,
+                      "examples": ["0296217561490155228da9c17fc555cf9db82d159732f3206638c25f04a285c4"],
+                      "description": "Represents the Sha256 of the HTTP Body or QUERY Parameters of your request."
+                    }
+                  },
+                  {
+                    "responseHttpStatus": {
+                      "type": "number",
+                      "required": true,
+                      "examples": [200],
+                      "description": "Represents the HTTP response to send consumers after successful virtual match."
+                    }
+                  },
+                  {
+                    "responseContentType": {
+                      "type": "string",
+                      "required": true,
+                      "examples": ["application/json"],
+                      "description": "Represents the Content-Type of the HTTP response after successful virtual request match."
+                    }
+                  },
+                  {
+                    "response": {
+                      "type": "string",
+                      "required": true,
+                      "examples": ["eyJtZXNzYWdlIjogIkFub3RoZXIgU3VjY2VzcyEifQ=="],
+                      "description": "Represents the Base64 encoded virtual response to send after successful virtual request match."
+                    }
+                  }
+                ]
+              },
+              "required": true,
+              "description": "A JSON array as string representation of the plugin's configurable fields."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [
+            "http",
+            "https"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "destination_addr": {
+              "type": "string",
+              "required": true,
+              "encrypted": true,
+              "examples": ["10.0.0.1"],
+              "description": "Destination address of the API security receiver. \nThis can be an IP address or domain name, for example `logconsumer.myapisec.mydomain`."
+            }
+          },
+          {
+            "destination_port": {
+              "type": "number",
+              "default": 8080,
+              "one_of": [
+                8080,
+                80,
+                8443,
+                443
+              ],
+              "description": "Destination port of the API security receiver."
+            }
+          },
+          {
+            "connection_type": {
+              "type": "string",
+              "default": "tcp",
+              "one_of": [
+                "tcp",
+                "http"
+              ],
+              "description": "The connection protocol to use."
+            }
+          },
+          {
+            "method": {
+              "type": "string",
+              "default": "POST",
+              "one_of": [
+                "POST",
+                "PUT",
+                "PATCH"
+              ],
+              "description": "The request method to use."
+            }
+          },
+          {
+            "max_body_size": {
+              "type": "number",
+              "default": 1048576,
+              "description": "Maximum payload body size to capture, in bytes."
+            }
+          },
+          {
+            "ssl": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether or not to use an TLS/SSL tunnel to send API traffic capture to the destination."
+            }
+          },
+          {
+            "request_body_flag": {
+              "type": "boolean",
+              "default": true,
+              "description": "Determines whether to send the request body payload to the destination. \n\nSet to `false` to disable. Use **only** for debugging purposes. \nAPI security will not fully function without inspection of the request body payload."
+            }
+          },
+          {
+            "response_body_flag": {
+              "type": "boolean",
+              "default": true,
+              "description": "Determines whether to send the response body payload to the destination. \n\nSet to `false` to disable. Use **only** for debugging purposes. \nAPI security will not fully function without inspection of the response body payload."
+            }
+          },
+          {
+            "retry_count": {
+              "type": "number",
+              "default": 0,
+              "description": "Number of retries if sending the API call capture fails. No retry by default."
+            }
+          },
+          {
+            "queue_size": {
+              "type": "number",
+              "default": 1,
+              "description": "Number of API logs to keep in the queue for retries. Default is 1, meaning no retries. \nSet to a number larger than 1 to enable retries."
+            }
+          },
+          {
+            "flush_timeout": {
+              "type": "number",
+              "default": 2,
+              "description": "Number of seconds to wait before flushing the queue. "
+            }
+          },
+          {
+            "timeout": {
+              "type": "number",
+              "default":6000000 ,
+              "description": "Number of milliseconds to keep a single connection open to the destination. "
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

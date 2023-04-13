@@ -3,8 +3,9 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
   let(:parent) { '' }
   let(:field_schema) { schema.config }
   let(:schema) do
-    PluginSingleSource::Plugin::Schema.new(
+    PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: 'saml',
+      vendor: 'kong-inc',
       version: '3.2.2'
     )
   end

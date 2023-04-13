@@ -116,9 +116,9 @@ module Jekyll
         end
 
         def fields
-          @fields ||= [
-            SchemaField.new(name: 'config', parent: '', schema: @schema.config)
-          ]
+          return [] if @schema.config.empty?
+
+          [SchemaField.new(name: 'config', parent: '', schema: @schema.config)]
         end
       end
     end

@@ -1,9 +1,10 @@
-RSpec.describe PluginSingleSource::Plugin::Schema do
+RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
   let(:plugin_name) { 'acme'}
+  let(:vendor) { 'kong-inc' }
   let(:acme_schema) { JSON.parse(File.read('app/_src/.repos/kong-plugins/schemas/acme/3.1.x.json')) }
   let(:version) { '3.1.1' }
 
-  subject { described_class.new(plugin_name:, version:) }
+  subject { described_class.new(plugin_name:, vendor:, version:) }
 
   describe '#schema' do
     it 'returns the corresponding schema in JSON format' do

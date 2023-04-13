@@ -1,0 +1,88 @@
+{
+  "fields": [
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [
+            "http",
+            "https"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "aws_assume_role_arn": {
+              "type": "string",
+              "required": true,
+              "encrypted": true,
+              "examples": ["arn:aws:iam::123456789012:role/example-role"],
+              "description": "The ARN of the AWS IAM Role to assume before making the request to the AWS service."
+            }
+          },
+          {
+            "aws_assume_role_name": {
+              "type": "string",
+              "required": true,
+              "encrypted": true,
+              "examples": ["example-role"],
+              "description": "The name of the AWS IAM Role to assume before making the request to the AWS service."
+            }
+          },
+          {
+            "aws_region": {
+              "type": "string",
+              "required": true,
+              "examples": ["us-east-1"],
+              "description": "The AWS region in which the service is located."
+            }
+          },
+          {
+            "aws_service": {
+              "type": "string",
+              "required": true,
+              "examples": ["lambda"],
+              "description": "The name of the AWS service to be called."
+            }
+          },
+          {
+            "override_target_host": {
+              "type": "string",
+              "examples": ["example.com"],
+              "description": "An optional hostname or IP to use instead of the one specified in the service's endpoint."
+            }
+          },
+          {
+            "override_target_port": {
+              "type": "number",
+              "examples": [443],
+              "description": "An optional port to use instead of the one specified in the service's endpoint."
+            }
+          },
+          {
+            "override_target_protocol": {
+              "type": "string",
+              "one_of": [
+                "http",
+                "https"
+              ],
+              "examples": ["https"],
+              "description": "An optional protocol to use instead of the one specified in the service's endpoint."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}
