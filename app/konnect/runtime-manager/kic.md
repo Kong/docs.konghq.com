@@ -1,6 +1,7 @@
 ---
 title: Kong Ingress Controller for Kubernetes Association
 content_type: explanation
+badge: enterprise
 beta: true
 ---
 
