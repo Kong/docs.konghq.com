@@ -19,7 +19,7 @@ When you create a {{site.mesh_product_name}} control plane in {{site.konnect_sho
 
 ### Prerequisites
 
-* Mutual TLS only: If you plan to automatically encrypt [mTLS](/mesh/{{page.kong_version}}/policies/mutual-tls/) traffic for all the services in your service mesh, you will need the mTLS certificate name and authority.
+* Mutual TLS only: If you plan to automatically encrypt [mTLS](/mesh/latest/policies/mutual-tls/) traffic for all the services in your service mesh, you will need the mTLS certificate name and authority.
 * Logging only: If you plan to add a logging backend to log traffic via the TrafficLog policy, you will need the IP address and format (WHAT IS THIS) of your logging backend. [WHICH BACKENDS ARE AVAILABLE]
 * Tracing only: If you plan to add a tracing backend to ___ using the TrafficTrace policy, you will need the sampling [WHAT IS THIS] and the url of your backend. [WHICH BACKENDS ARE AVAILABLE]
 * Metrics only: If you want to port metrics from your data plane, you will need the data plane port and path of your metrics backend. [WHICH BACKENDS ARE AVAILABLE]
@@ -34,7 +34,7 @@ Next, follow the instructions in the [Deploy a standalone control plane](/mesh/l
 
 Now that your service mesh is deployed in {{site.mesh_product_name}}, the following information will be displayed in Mesh Manager for each control plane:
 
-* Meshes and data plane proxies with [mTLS](/mesh/{{page.kong_version}}/policies/mutual-tls/)
+* Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
 * RBAC
 * Zone control planes
 * [Zone Ingresses](/mesh/latest/explore/zone-ingress/)
