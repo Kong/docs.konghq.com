@@ -33,7 +33,7 @@ params:
       description: |
         The request body schema specification. One of `body_schema` or `parameter_schema`
         must be specified.
-    - name: allowed_content_types
+    - name: allowed_content_types # latest version of param
       minimum_version: "3.1.x"
       required: true
       default:
@@ -42,10 +42,14 @@ params:
       datatype: Set of string elements
       description: |
         List of allowed content types. The value can be configured with the `charset` parameter. For example, `application/json; charset=UTF-8`.
-        <br>**Note:** 
-        Body validation is only done for `application/json` and skipped for any other allowed content types. 
-        Only one parameter is supported at the most. If a request is sending more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated. Note that `application/json` doesn't match with `application/json; charset=UTF-8`.
+
+        {:.note}
+        > **Notes:** 
+        * Body validation is only done for `application/json` and skipped for any other allowed content types. 
+        * Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
+        * application/json` doesn't match with `application/json; charset=UTF-8`.
         The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
+        
     - name: allowed_content_types
       minimum_version: "3.0.x"
       maximum_version: "3.0.x"
@@ -55,9 +59,13 @@ params:
       value_in_examples: null
       datatype: Set of string elements
       description: |
-        List of allowed content types. <br>**Note:** Body validation is only
+        List of allowed content types. 
+        
+        {:.note}
+        > **Note:** Body validation is only
         done for `application/json` and skipped for any other allowed content types.
     - name: allowed_content_types
+      maximum_version: "2.7.x"
       maximum_version: "2.7.x"
       required: true
       default:
@@ -65,10 +73,14 @@ params:
       value_in_examples: null
       datatype: Set of string elements
       description: |
-        List of allowed content types. <br>**Note:** Body validation is only
+        List of allowed content types. 
+        
+        {:.note}
+        > **Note:** Body validation is only
         done for `application/json` and skipped for any other allowed content types.
     - name: allowed_content_types
       minimum_version: "2.8.x"
+      maximum_version: "2.8.x"
       required: true
       default:
         - application/json
@@ -76,10 +88,14 @@ params:
       datatype: Set of string elements
       description: |
           List of allowed content types. The value can be configured with the `charset` parameter. For example, `application/json; charset=UTF-8`.
-          <br>**Note:**
-          Body validation is only done for `application/json` and skipped for any other allowed content types.
-          Only one parameter is supported at the most. If a request is sending more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
+          
+          {:.note}
+          > **Notes:** 
+          * Body validation is only done for `application/json` and skipped for any other allowed content types. 
+          * Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
+          * application/json` doesn't match with `application/json; charset=UTF-8`.
           The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
+
     - name: version
       required: true
       default: kong
