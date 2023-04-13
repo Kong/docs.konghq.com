@@ -3,7 +3,7 @@ title: About Mesh Manager
 content_type: explanation
 ---
 
-Mesh Manager in {{site.konnect_product_name}} allows you to create a service mesh and view your {{site.mesh_product_name}} service meshes in the {{site.konnect_short_name}} UI. This allows you to use {{site.konnect_short_name}}'s federated access for platform tenants, deep API analytics, API productization with Dev Portal, and a service catalogue offering for service mesh managed services. 
+Mesh Manager in {{site.konnect_product_name}} allows you to create a service mesh and view your {{site.mesh_product_name}} service meshes in the {{site.konnect_short_name}} UI. This allows you to use {{site.konnect_short_name}}'s federated access for platform tenants, deep API analytics, API productization with Dev Portal, and a service catalogue offering for service mesh managed services.  
 
 Mesh Manager is ideal for organizations who want to have a global control plane that allows you to run your service mesh in multiple zones. You can run a mix of Kubernetes and Universal zones. Your mesh environment can include multiple isolated service meshes (multi-tenancy), and workloads running in different regions, on different clouds, or in different datacenters.
 
