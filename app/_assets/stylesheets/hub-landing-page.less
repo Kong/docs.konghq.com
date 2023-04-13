@@ -113,14 +113,20 @@
   }
 
   // Card rows
-  .row {
+  .hub-cards {
     display: flex;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    margin-bottom: 2rem;
-    width: 100%;
+    flex-direction: column;
+    flex-grow: 4;
+
+    .row {
+      display: flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      margin-bottom: 2rem;
+      width: 100%;
+    }
   }
 
   // Card container that defines relationships between cards
