@@ -100,7 +100,6 @@ params:
         The timeout, in milliseconds, for reading the response from the OTLP server.
     - name: header_type
       minimum_version: "3.3.x"
-      required: true
       default: preserve
       datatype: string
       description: |
