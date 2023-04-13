@@ -28,7 +28,7 @@ const lookup = {
   deck: "deck",
   enterprise: "ee",
   "getting-started-guide": "gsg",
-  "kubernetes-ingress-controller": "kic",
+  "kong-ingress-controller": "kic",
   konnect: "konnect",
   mesh: "mesh",
   gateway: "gateway",

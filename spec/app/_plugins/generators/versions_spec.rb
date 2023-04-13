@@ -24,7 +24,7 @@ RSpec.describe Jekyll::Versions do
   end
 
   let(:kubernetes_ingress_controller_versions) do
-    kong_versions.select { |v| v.fetch('edition') == 'kubernetes-ingress-controller'}
+    kong_versions.select { |v| v.fetch('edition') == 'kong-ingress-controller'}
   end
 
   let(:gateway_versions) do
@@ -40,7 +40,7 @@ RSpec.describe Jekyll::Versions do
   end
 
   let(:latest_kic) do
-    { 'release' => '2.7.x', 'version' => '2.7.0', 'edition' => 'kubernetes-ingress-controller' }
+    { 'release' => '2.7.x', 'version' => '2.7.0', 'edition' => 'kong-ingress-controller' }
   end
 
   let(:latest_deck) do
@@ -213,13 +213,13 @@ RSpec.describe Jekyll::Versions do
         it_behaves_like 'does not set `release` and `version` to the page'
       end
 
-      context 'kubernetes-ingress-controller' do
+      context 'kong-ingress-controller' do
         context 'latest' do
           let(:relative_path) { 'kubernetes-ingress-controller/2.2.x/index.md' }
 
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
-            expect(page.data['edition']).to eq('kubernetes-ingress-controller')
+            expect(page.data['edition']).to eq('kong-ingress-controller')
             expect(page.data['kong_version']).to eq('2.2.x')
             expect(page.data['kong_versions']).to eq(kubernetes_ingress_controller_versions)
             expect(page.data['kong_latest']).to eq(latest_kic)
@@ -234,7 +234,7 @@ RSpec.describe Jekyll::Versions do
 
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
-            expect(page.data['edition']).to eq('kubernetes-ingress-controller')
+            expect(page.data['edition']).to eq('kong-ingress-controller')
             expect(page.data['kong_version']).to eq('2.1.x')
             expect(page.data['kong_versions']).to eq(kubernetes_ingress_controller_versions)
             expect(page.data['kong_latest']).to eq(latest_kic)
@@ -395,12 +395,12 @@ RSpec.describe Jekyll::Versions do
           end
         end
 
-        context 'kubernetes-ingress-controller' do
+        context 'kong-ingress-controller' do
           let(:relative_path) { '_src/kubernetes-ingress-controller/index.md' }
 
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
-            expect(page.data['edition']).to eq('kubernetes-ingress-controller')
+            expect(page.data['edition']).to eq('kong-ingress-controller')
             expect(page.data['kong_version']).to eq('2.7.x')
             expect(page.data['kong_versions']).to eq(kubernetes_ingress_controller_versions)
             expect(page.data['kong_latest']).to eq(latest_kic)

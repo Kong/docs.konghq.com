@@ -32,7 +32,7 @@ module Jekyll
       end
 
       kic_versions = site.data['kong_versions'].select do |elem|
-        elem['edition'] && elem['edition'] == 'kubernetes-ingress-controller'
+        elem['edition'] && elem['edition'] == 'kong-ingress-controller'
       end
 
       contributing_versions = site.data['kong_versions'].select do |elem|
@@ -92,7 +92,7 @@ module Jekyll
           deck
           contributing
           konnect
-          kubernetes-ingress-controller
+          kong-ingress-controller
           gateway
           gateway-oss
         ].any? { |p| parts[0] == p }
@@ -130,7 +130,7 @@ module Jekyll
           page.data['edition'] = parts[0]
           page.data['kong_versions'] = konnect_versions
           page.data['nav_items'] = site.data['docs_nav_konnect']
-        when 'kubernetes-ingress-controller'
+        when 'kong-ingress-controller'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = kic_versions

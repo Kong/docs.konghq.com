@@ -3,7 +3,7 @@
 module SEO
   class IndexEntryBuilder
     VERSIONED_PRODUCTS = %w[
-      gateway gateway-oss enterprise mesh kubernetes-ingress-controller deck
+      gateway gateway-oss enterprise mesh kong-ingress-controller deck
     ].freeze
 
     GLOBAL_PAGES = %w[changelog].freeze

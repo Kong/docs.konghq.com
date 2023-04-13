@@ -27,7 +27,7 @@ const { SiteChecker } = require("broken-link-checker");
     deck: "deck",
     ee: "enterprise",
     gsg: "getting-started-guide",
-    kic: "kubernetes-ingress-controller",
+    kic: "kong-ingress-controller",
     konnect: "konnect",
     mesh: "mesh",
     gateway: "gateway",

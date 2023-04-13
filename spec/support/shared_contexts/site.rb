@@ -20,7 +20,7 @@ module SharedContexts
           { 'scope' => { 'path' => 'getting-started-guide' }, 'values' => { 'layout' => 'docs-v2' } },
           { 'scope' => { 'path' => 'deck' }, 'values' => { 'layout' => 'docs-v2' } },
           { 'scope' => { 'path' => 'mesh' }, 'values' => { 'layout' => 'docs-v2' } },
-          { 'scope' => { 'path' => 'kubernetes-ingress-controller' }, 'values' => { 'layout' => 'docs-v2' } },
+          { 'scope' => { 'path' => 'kong-ingress-controller' }, 'values' => { 'layout' => 'docs-v2' } },
           { 'scope' => { 'path' => 'konnect' }, 'values' => { 'layout' => 'docs-v2', 'no_version' => true } },
           { 'scope' => { 'path' => 'gateway' }, 'values' => { 'layout' => 'docs-v2' } },
           { 'scope' => { 'path' => 'gateway/2.6.x/' }, 'values' => { 'layout' => 'docs-v2', 'version-index' => 0 } },

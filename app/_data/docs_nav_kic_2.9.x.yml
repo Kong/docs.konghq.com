@@ -1,4 +1,4 @@
-product: kubernetes-ingress-controller
+product: kong-ingress-controller
 release: 2.9.x
 generate: true
 items:

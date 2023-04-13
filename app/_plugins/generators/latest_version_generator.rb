@@ -15,7 +15,7 @@ module LatestVersion
       'gateway' => 'gateway',
       'mesh' => 'mesh',
       'deck' => 'deck',
-      'kubernetes-ingress-controller' => 'KIC'
+      'kong-ingress-controller' => 'KIC'
     }.freeze
 
     def generate(site)
