@@ -36,7 +36,6 @@
             "application_id": {
               "type": "string",
               "required": true,
-              "examples": ["MY_MOESIF_APPLICATION_ID"],
               "description": "Your Moesif Application Id from your [Moesif](http://www.moesif.com) dashboard. Go to Top Right Menu -> Installation."
             }
           },

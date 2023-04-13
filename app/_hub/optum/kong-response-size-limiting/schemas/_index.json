@@ -8,7 +8,6 @@
               "type": "number",
               "required": true,
               "default": 128,
-              "examples": [128],
               "description": "Allowed upstream response payload size in megabytes, default is `128` (128000000 Bytes)"
             }
           }

@@ -1,0 +1,3 @@
+name: kong-plugin-moesif
+config:
+  application_id: MY_MOESIF_APPLICATION_ID

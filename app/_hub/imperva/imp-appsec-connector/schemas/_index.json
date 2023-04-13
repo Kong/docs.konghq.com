@@ -32,7 +32,6 @@
               "type": "string",
               "required": true,
               "encrypted": true,
-              "examples": ["10.0.0.1"],
               "description": "Destination address of the API security receiver. \nThis can be an IP address or domain name, for example `logconsumer.myapisec.mydomain`."
             }
           },
