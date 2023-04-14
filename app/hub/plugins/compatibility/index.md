@@ -53,9 +53,9 @@ data plane roles. Kong provides and hosts the control plane and a database with
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
-    {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.metadata.categories contains category.slug" %}
+    {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
     {% for plugin in plugins_for_category %}
-      {% assign n = plugin.metadata.network_config_opts | downcase %}
+      {% assign n = plugin.network_config_opts | downcase %}
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
@@ -82,14 +82,14 @@ data plane roles. Kong provides and hosts the control plane and a database with
           {% endif %}
         </td>
          <td style="text-align: center">
-          {% if plugin.metadata.konnect == true %}
+          {% if plugin.konnect == true %}
             <i class="fa fa-check"></i>
-          {% elsif plugin.metadata.konnect == false %}
+          {% elsif plugin.konnect == false %}
             <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td>
-          {{ plugin.metadata.notes }}
+          {{ plugin.notes }}
         </td>
       </tr>
     {% endfor %}
