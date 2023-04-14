@@ -366,7 +366,6 @@
 - edition: mesh
   version: 2.1.2
   release: 2.1.x
-  latest: true
   releaseDate: "2023-01-30"
   endOfLifeDate: "2024-01-30"
   branch: release-2.1
@@ -374,6 +373,9 @@
   version: 2.2.0
   release: 2.2.x
   branch: release-2.2
+  latest: true
+  releaseDate: "2023-04-14"
+  endOfLifeDate: "2024-04-14"
 - edition: mesh
   version: preview
   release: dev
