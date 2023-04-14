@@ -155,7 +155,7 @@ When installing a multi-data center setup, you might want to set Datadog's agent
 
 {:.note}
 > **Note:** `host` and `port` fields in the plugin config take precedence over environment variables.
-> For Kubernetes there's a known limitation that we cannot set `host` to null to use the environment variable. This can be workaround with a vault reference like `{vault://env/kong-datadog-agent-host}`.
+> For Kubernetes, there's a known limitation that we cannot set `host` to null to use the environment variable. You can work around this using a vault reference, for example: `{vault://env/kong-datadog-agent-host}`.
 
 Field           | Description                                           | Datatypes
 ---             | ---                                                   | ---
