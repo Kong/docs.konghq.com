@@ -95,6 +95,10 @@ RSpec.configure do |config|
   config.before(:each) do
     stub_const(
       'PluginSingleSource::Plugin::Schemas::ThirdParty::SCHEMAS_PATH',
+      'spec/fixtures/app/_hub/'
+    )
+    stub_const(
+      'PluginSingleSource::Plugin::Examples::ThirdParty::EXAMPLES_PATH',
       'spec/fixtures/app/_hub'
     )
   end

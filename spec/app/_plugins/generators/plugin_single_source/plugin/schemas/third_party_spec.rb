@@ -32,7 +32,15 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::ThirdParty do
   end
 
   describe '#example' do
-    xit 'it returns a valid example'
+    it 'it returns the corresponding example' do
+      expect(subject.example)
+        .to eq(YAML.load(File.read('spec/fixtures/app/_hub/acme/kong-plugin/examples/_index.yml')))
+    end
+
+    context 'when the file does not exist' do
+      let(:plugin_name) { 'unbundled-plugin' }
+      it { expect(subject.example).to be nil }
+    end
   end
 
   describe '#enable_on_consumer?' do

@@ -4,29 +4,11 @@ module PluginSingleSource
   module Plugin
     module Schemas
       class Base
-        NO_SERVICE = {
-          'service' => {
-            'type' => 'foreign',
-            'reference' => 'services',
-            'eq' => nil
-          }
-        }.freeze
+        NO_SERVICE = { 'service' => { 'type' => 'foreign', 'reference' => 'services', 'eq' => nil } }.freeze
 
-        NO_ROUTE = {
-          'route' => {
-            'type' => 'foreign',
-            'reference' => 'routes',
-            'eq' => nil
-          }
-        }.freeze
+        NO_ROUTE = { 'route' => { 'type' => 'foreign', 'reference' => 'routes', 'eq' => nil } }.freeze
 
-        NO_CONSUMER = {
-          'consumer' => {
-            'type' => 'foreign',
-            'reference' => 'consumers',
-            'eq' => nil
-          }
-        }.freeze
+        NO_CONSUMER = { 'consumer' => { 'type' => 'foreign', 'reference' => 'consumers', 'eq' => nil } }.freeze
 
         # Skips plugin versions older than 2.3.x for which
         # the docker image isn't working
@@ -66,7 +48,9 @@ module PluginSingleSource
         end
 
         def example
-          @example ||= ExampleGenerator.new(schema: self).generate
+          @example ||= Examples::Base
+                       .make_for(vendor:, name: plugin_name, version:)
+                       .example
         end
 
         def protocols

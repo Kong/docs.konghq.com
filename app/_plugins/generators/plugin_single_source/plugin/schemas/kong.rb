@@ -6,12 +6,11 @@ module PluginSingleSource
   module Plugin
     module Schemas
       class Kong < Base
-        SCHEMAS_PATH = 'app/_src/.repos/kong-plugins/'
+        SCHEMAS_PATH = 'app/_src/.repos/kong-plugins/schemas/'
 
         def file_path
           @file_path ||= File.join(
             SCHEMAS_PATH,
-            'schemas',
             plugin_name,
             "#{release_version}.json"
           )

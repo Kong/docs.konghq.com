@@ -31,7 +31,10 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
   end
 
   describe '#example' do
-    xit 'it returns a valid example'
+    it 'it returns the corresponding example' do
+      expect(subject.example)
+        .to eq(YAML.load(File.read('app/_src/.repos/kong-plugins/examples/acme/_3.1.x.yaml')))
+    end
   end
 
   describe '#enable_on_consumer?' do

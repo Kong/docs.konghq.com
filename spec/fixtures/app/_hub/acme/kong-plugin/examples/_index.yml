@@ -1,0 +1,3 @@
+name: kong-plugin
+config:
+  log_id: 'default-log-id'
