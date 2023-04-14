@@ -87,21 +87,40 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 
 ## Packages and modes
 
-{{site.base_gateway}} is available in the following modes:
+There are two ways to deploy {{site.base_gateway}}: cloud-hosted with {{ site.konnect_saas }}, and on-premises. If you're trying
+out {{site.base_gateway}} for the first time we, recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
+
+### Cloud-hosted with Konnect
+
+**{{site.base_gateway}}** (available in
+[Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
+with added functionality.
+* <span class="badge free"></span> In **Free mode**,
+  this package gives you access to Konnect to help configure your services, routes and plugins.
+* <span class="badge plus"></span> In **Plus mode**, you have access to more
+{{site.base_gateway}} features.
+See the [Konnect documentation](/konnect/) and the
+**Plus**-labelled plugins on the [Plugin Hub](/hub/#plus) for more information.
+* <span class="badge enterprise"></span> With an **Enterprise** subscription,
+  it also includes:
+    * [Dev Portal](/konnect/dev-portal/)
+    * [Analytics](/konnect/analytics/)
+    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
+    * [Enterprise plugins](/hub/#ee-compat)
+
+### On-premises
+
+{{site.base_gateway}} is available in two different packages on-premises: OSS and Enterprise.
 
 **{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
 with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
 
 **{{site.base_gateway}}** (available in
-[Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
+[Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
 * <span class="badge free"></span> In **Free mode**,
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
-* <span class="badge plus"></span> In **Plus mode**, you have access to more
-{{site.base_gateway}} features, but only through {{site.konnect_saas}}.
-See the [{{site.konnect_saas}} documentation](/konnect/) and the
-**Plus**-labelled plugins on the [Plugin Hub](/hub/) for more information.
 * <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
     * [Dev Portal](#kong-dev-portal)
@@ -111,9 +130,6 @@ See the [{{site.konnect_saas}} documentation](/konnect/) and the
 
 You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
-
-This package is also available as part of
-[{{site.konnect_product_name}}](/konnect/).
 
 ![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
@@ -205,7 +221,7 @@ own data planes.
 
 There are a few ways to test out the Gateway's Plus or Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://cloud.konghq.com/register).
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong
