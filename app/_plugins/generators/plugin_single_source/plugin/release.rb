@@ -64,6 +64,8 @@ module PluginSingleSource
       end
 
       def changelog
+        return nil unless File.exist?(File.join(plugin_base_path, '_changelog.md'))
+
         @changelog ||= Pages::Changelog.new(
           release: self,
           file: '_changelog.md',

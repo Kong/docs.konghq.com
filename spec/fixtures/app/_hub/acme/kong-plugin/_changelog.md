@@ -1,5 +1,0 @@
----
----
-## Changelog
-
-Empty for now

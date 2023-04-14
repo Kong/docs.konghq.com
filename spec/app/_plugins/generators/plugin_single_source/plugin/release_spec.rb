@@ -91,4 +91,15 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       it { expect(subject.schema).to be_an_instance_of(PluginSingleSource::Plugin::Schemas::ThirdParty) }
     end
   end
+
+  describe '#changelog' do
+    let(:plugin_name) { 'acme/unbundled-plugin' }
+    it { expect(subject.changelog).to be_an_instance_of(PluginSingleSource::Pages::Changelog) }
+
+    context 'when there is no _changelog.md' do
+      let(:plugin_name) { 'acme/kong-plugin' }
+
+      it { expect(subject.changelog).to be_nil }
+    end
+  end
 end

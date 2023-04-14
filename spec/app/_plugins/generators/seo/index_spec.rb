@@ -17,7 +17,6 @@ RSpec.describe SEO::Index do
         '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/nested/tutorial/') },
         '/hub/kong-inc/jwt-signer/reference/' => { 'url' => '/hub/kong-inc/jwt-signer/reference/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/reference/') },
         '/hub/acme/kong-plugin/' => { 'url' => '/hub/acme/kong-plugin/', 'page' => find_page_by_url('/hub/acme/kong-plugin/') },
-        '/hub/acme/kong-plugin/changelog/' => { 'url' => '/hub/acme/kong-plugin/changelog/', 'page' => find_page_by_url('/hub/acme/kong-plugin/changelog/') },
         '/hub/acme/kong-plugin/reference/' => { 'url' => '/hub/acme/kong-plugin/reference/', 'page' => find_page_by_url('/hub/acme/kong-plugin/reference/') },
         '/hub/acme/unbundled-plugin/' => { 'url' => '/hub/acme/unbundled-plugin/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/') },
         '/hub/acme/unbundled-plugin/changelog/' => { 'url' => '/hub/acme/unbundled-plugin/changelog/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/changelog/') },
