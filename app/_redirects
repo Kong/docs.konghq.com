@@ -675,6 +675,17 @@
 /mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
 /mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
 
+
+# Kuma IA Reference section
+
+/docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
+
+
+## Introduction
+/docs/:version/introduction/what-is-kuma/ /docs/:version/introduction/overview-of-kuma/ 302
+/docs/:version/introduction/what-is-a-service-mesh/ /docs/:version/introduction/what-is-a-service-mesh/ 302
+/docs/:version/introduction/deployments/  /docs/:version/production/deployment/ 302
+
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
 /about/faq/*               https://konghq.com/faqs/:splat
