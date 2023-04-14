@@ -152,7 +152,7 @@ Built on top of [Kuma 2.0.2](https://github.com/kumahq/kuma/releases/tag/2.0.2)
 ## 1.9.3
 > Released on 2023/01/13
 
-Built on top of [Kuma 1.8.3](https://github.com/kumahq/kuma/releases/tag/1.9.3)
+Built on top of [Kuma 1.8.3](https://github.com/kumahq/kuma/releases/tag/1.8.3)
 
 - Upgraded the Helm library version.
 - Upgraded the Go version to 1.18.9.
