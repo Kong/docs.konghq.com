@@ -33,7 +33,7 @@ items:
     icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     url: /gettingstarted
   - title: Kong Mesh in Production
-    icon: /assets/images/icons/documentation/icn-deployment-color.svg 
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
       - text: Overview
         url: /production/
@@ -57,7 +57,7 @@ items:
           - text: Kong Mesh license
             url: /production/cp-deployment/license/
           - text: Deploy a multi-zone global control plane
-            url: /production/cp-deployment/multi-zone/ 
+            url: /production/cp-deployment/multi-zone/
             src: /.repos/kuma/app/_src/production/cp-deployment/multi-zone/
           - text: Zone Ingress
             url: /production/cp-deployment/zone-ingress/
@@ -211,8 +211,6 @@ items:
         url: /documentation/configuration/
         src: /.repos/kuma/app/_src/documentation/configuration/
       - text: Requirements
-        url: /documentation/requirements/
-        src: /.repos/kuma/app/_src/documentation/requirements/
   - title: Policies
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
@@ -304,6 +302,9 @@ items:
       - text: MeshHTTPRoute (Beta)
         url: /policies/meshhttproute/
         src: /.repos/kuma/app/_src/policies/meshhttproute/
+      - text: MeshLoadBalancingStrategy (Beta)
+        url: /policies/meshloadbalancingstrategy/
+        src: /.repos/kuma/app/_src/policies/meshloadbalancingstrategy/
       - text: MeshOPA (beta)
         url: /features/meshopa
       - text: MeshProxyPatch (Beta)
