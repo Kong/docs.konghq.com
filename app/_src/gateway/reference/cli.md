@@ -359,6 +359,19 @@ Options:
  -c,--conf    (optional string)  configuration file
  -p,--prefix  (optional string)  override prefix directory
 
+Caveats:
+  This command doesn't work in DBless mode if <reference> uses vaults entity.
+  It doesn't affect the normal use of vault in kong instance though.
+
+  The reason is in DBless mode the vaults entity is stored in LMDB
+  which is implemented by a Nginx C module. However Everytime `resty` cli
+  (which is relied on by `kong` cli) runs it creates a temporary `nginx.conf`
+  which doesn't contain the lmdb-related directives.
+
+  A workaround is manully adding these directives prefixed with `lmdb_`
+  in `nginx.conf` into the `resty` script or via the `--main-conf` option
+  of `resty`.
+
 ```
 
 ---
