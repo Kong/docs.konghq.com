@@ -205,3 +205,4 @@ jekyll-generator-single-source:
 # Helm commands
 mesh_helm_repo: kong-mesh/kong-mesh
 mesh_helm_install_name: kong-mesh
+mesh_disabled_versions: [dev]

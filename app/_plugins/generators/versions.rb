@@ -23,7 +23,8 @@ module Jekyll
       end
 
       mesh_versions = site.data['kong_versions'].select do |elem|
-        elem['edition'] && elem['edition'] == 'mesh'
+        is_ignored = (site.config['mesh_disabled_versions'] || []).include?(elem['release'])
+        elem['edition'] && elem['edition'] == 'mesh' && !is_ignored
       end
 
       konnect_versions = site.data['kong_versions'].select do |elem|
@@ -60,7 +61,7 @@ module Jekyll
       # /getting-stared-guide/latest/ URL should redirect to /gateway/latest.
 
       latest_version_deck = deck_versions.last
-      latest_version_mesh = mesh_versions.last
+      latest_version_mesh = mesh_versions.find { |x| x['latest'] }
       latest_version_kic = kic_versions.last
       latest_version_gateway = gateway_versions.last
 

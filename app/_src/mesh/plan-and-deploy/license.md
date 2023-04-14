@@ -124,6 +124,26 @@ In Universal mode, configure a valid license by using the following environment 
 * `KMESH_LICENSE_PATH` - value with the path to a valid license file.
 * `KMESH_LICENSE_INLINE` - value with the actual contents of the license file.
 
+## Update a license
+
+### Kubernetes
+
+1. Update the `kong-mesh-license` Secret in `kong-mesh-system` namespace with a new license:
+  ```sh
+  kubectl edit secrets -n kong-mesh-system kong-mesh-license
+  ```
+1. Restart the control plane:
+  ```sh
+  kubectl rollout restart -n kong-mesh-system deployment kong-mesh-control-plane
+  ```
+
+### Universal
+
+1. Update the license by doing one of the following:
+  - If you used `KMESH_LICENSE_PATH`, update the content of the file.
+  - If you used `KMESH_LICENSE_INLINE`, update the value of the environment variable.
+1. Restart the control plane.
+
 ## Multi-zone
 
 In a multi-zone deployment of Kong Mesh, only the global control plane should be configured with a valid license. The global control plane automatically synchronizes the license to any remote control plane that is part of the cluster.

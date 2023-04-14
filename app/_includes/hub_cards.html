@@ -1,7 +1,7 @@
 {% assign extn_publisher = extn.extn_publisher %}
 
 <div class="card-group {{ extn.type }} {{ extn.categories | join: ' ' }} {%
-  if extn_publisher == 'kong-inc' %}pub-konghq {%
+  if extn_publisher == 'kong-inc' %}gateway {%
     if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
       if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
         unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
