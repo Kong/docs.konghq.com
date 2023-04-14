@@ -1,5 +1,5 @@
 ---
-title: Validating the Admission Webhook
+title: Enable the Validating Admission Webhook
 ---
 
 The {{site.kic_product_name}} ships with an admission webhook for KongPlugin

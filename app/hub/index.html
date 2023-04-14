@@ -1,10 +1,9 @@
 ---
 layout: default
-title: Kong Hub | Plugins and Integrations
+title: Kong Plugin Hub
 breadcrumbs: null
 permalink: /hub/
 body_id: page-hub
-
 ---
 
 {% assign hub = site.data.ssg_hub %}
@@ -43,6 +42,7 @@ body_id: page-hub
           </ul>
           <h3>Filters</h3>
           <ul class="nav flex-column" id="facet-filters" role="menu">
+            <p class="no-link">Plugin types</p>
             <li class="nav-item">
               <a href="" class="nav-link active" data-filter="" role="menuitem" tabindex="0">
                 All Plugins
@@ -50,7 +50,12 @@ body_id: page-hub
             </li>
             <li class="nav-item">
               <a href="#konnect" class="nav-link" data-filter="konnect" role="menuitem" tabindex="0">
-                Konnect
+                Bundled with Konnect
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#gateway" class="nav-link" data-filter="gateway" role="menuitem" tabindex="0">
+                Bundled with Kong Gateway
               </a>
             </li>
             <li class="nav-item">
@@ -58,7 +63,7 @@ body_id: page-hub
                 Third-Party
               </a>
             </li>
-            <p class="no-link">Subscription tiers</p>
+            <p class="no-link">Kong subscription tiers</p>
             <li class="nav-item">
               <a href="#open-source" class="nav-link" data-filter="open-source" role="menuitem" tabindex="0">
                 Free

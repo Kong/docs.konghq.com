@@ -89,6 +89,9 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 
    You should receive a large JSON response with {{site.base_gateway}} configuration information.
 
+1. Access Kong Manager
+   
+    While the rest of this guide demonstrates configuring {{site.base_gateway}} using the Admin API, you can also use Kong Manager to manage your Services, Routes, Plugins, and more. To access Kong Manager, go to the following URL: [http://localhost:8002](http://localhost:8002)
 
 Every step in this tutorial requires a running {{site.base_gateway}}, so leave
 everything running and proceed to the next steps in this tutorial.
