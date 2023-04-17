@@ -1,7 +1,6 @@
 ---
 title: Report Use Cases
 content_type: tutorial
-badge: plus
 ---
 
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
