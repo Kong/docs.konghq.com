@@ -33,6 +33,10 @@ module PluginSingleSource
         'Configuration Reference'
       end
 
+      def icon
+        '/assets/images/icons/documentation/hub/icn-configuration.svg'
+      end
+
       private
 
       def ssg_hub

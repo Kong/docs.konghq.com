@@ -37,7 +37,7 @@ module PluginSingleSource
       end
 
       def icon
-        '/assets/images/icons/documentation/icn-references-color.svg'
+        '/assets/images/icons/documentation/hub/icn-how-to.svg'
       end
 
       def items_for(pages)
@@ -49,7 +49,7 @@ module PluginSingleSource
           if page.respond_to?(:each)
             items.push({ 'title' => 'Using the plugin', 'items' => items_for(page), 'icon' => icon }) if page.any?
           else
-            items.push({ 'title' => page.nav_title, 'url' => page.permalink, 'icon' => icon })
+            items.push({ 'title' => page.nav_title, 'url' => page.permalink, 'icon' => page.icon })
           end
         end
       end

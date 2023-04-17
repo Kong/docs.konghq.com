@@ -27,6 +27,10 @@ module PluginSingleSource
         'Overview'
       end
 
+      def icon
+        '/assets/images/icons/documentation/hub/icn-overview.svg'
+      end
+
       private
 
       def ssg_hub

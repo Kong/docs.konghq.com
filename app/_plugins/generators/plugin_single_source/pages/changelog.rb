@@ -27,6 +27,10 @@ module PluginSingleSource
         'Changelog'
       end
 
+      def icon
+        '/assets/images/icons/documentation/hub/icn-changelog.svg'
+      end
+
       private
 
       def ssg_hub
