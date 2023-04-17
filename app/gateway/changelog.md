@@ -109,6 +109,8 @@ which lets you set the Nginx directive `ssl_session_cache`.
   Thanks [Michael Kotten](https://github.com/michbeck100) for contributing this change.
   [#10021](https://github.com/Kong/kong/pull/10021)
 * [`status_listen`](/gateway/latest/reference/configuration/#status_listen) now supports HTTP2. [#9919](https://github.com/Kong/kong/pull/9919)
+* The shared Redis connector now supports username + password authentication for cluster connections, improving on the existing single-node connection support. This automatically applies to all plugins using the shared Redis configuration. [#4333](https://github.com/Kong/kong-ee/pull/4333)
+
 
 #### Enterprise
 
@@ -260,13 +262,6 @@ These users could see the Workspaces Overview dashboard with the default workspa
 Now, if IdP users with no groups or roles attempt to log into Kong Manager, they will be denied access.
 
 #### Plugins
-  
-* Fixed an issue where the `redis.username` configuration parameter didn't work for the following plugins:
-    * GraphQL Rate Limiting Advanced
-    * Proxy Cache Advanced
-    * Rate Limiting Advanced
-
-    These plugins now accept Redis username and password authentication.
 
 * [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
   * Fixed an issue where the global plugin's sample ratio overrode the route-specific ratio.
