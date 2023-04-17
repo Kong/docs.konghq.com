@@ -1,9 +1,8 @@
 name: Amberflo.io API Metering
-dbless_compatible: 'yes'
-dbless_explanation: The plugin is compatible with any with DB-less mode, including `local`, `cluster`, and `redis`.
-name: Amberflo.io API Metering
 publisher: Amberflo.io Inc.
 version: 0.2.x
+dbless_compatible: 'yes'
+dbless_explanation: The plugin is compatible with any with DB-less mode, including `local`, `cluster`, and `redis`.
 
 categories:
   - analytics-monitoring
