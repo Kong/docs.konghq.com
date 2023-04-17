@@ -28,7 +28,7 @@ RSpec.describe SEO::Index do
 
         '/konnect/' => { 'url' => '/konnect/', 'page' => find_page_by_url('/konnect/') },
 
-        '/kubernetes-ingress-controller/VERSION/' => { 'url' => '/kubernetes-ingress-controller/latest/', 'page' => find_page_by_url('/kubernetes-ingress-controller/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/kong-ingress-controller/VERSION/' => { 'url' => '/kong-ingress-controller/latest/', 'page' => find_page_by_url('/kong-ingress-controller/latest/'), 'version' => Gem::Version.new('9999.9.9') },
 
         '/mesh/VERSION/' => { 'url' => '/mesh/latest/', 'page' => find_page_by_url('/mesh/latest/'), 'version' => Gem::Version.new('9999.9.9') },
         '/mesh/changelog/' => { 'url' => '/mesh/changelog/', 'page' => find_page_by_url('/mesh/changelog/'), 'version' => Gem::Version.new('9999.9.9') },

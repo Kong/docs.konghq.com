@@ -78,7 +78,7 @@ RSpec.describe LatestVersion::Generator do
         end
 
         context 'kic' do
-          let(:relative_path) { '_src/kubernetes-ingress-controller/index.md' }
+          let(:relative_path) { '_src/kong-ingress-controller/index.md' }
 
           it_behaves_like 'creates a latest page'
         end

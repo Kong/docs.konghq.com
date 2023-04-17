@@ -215,7 +215,7 @@ RSpec.describe Jekyll::Versions do
 
       context 'kong-ingress-controller' do
         context 'latest' do
-          let(:relative_path) { 'kubernetes-ingress-controller/2.2.x/index.md' }
+          let(:relative_path) { 'kong-ingress-controller/2.2.x/index.md' }
 
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
@@ -230,7 +230,7 @@ RSpec.describe Jekyll::Versions do
         end
 
         context 'previous' do
-          let(:relative_path) { 'kubernetes-ingress-controller/2.1.x/index.md' }
+          let(:relative_path) { 'kong-ingress-controller/2.1.x/index.md' }
 
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
@@ -396,7 +396,7 @@ RSpec.describe Jekyll::Versions do
         end
 
         context 'kong-ingress-controller' do
-          let(:relative_path) { '_src/kubernetes-ingress-controller/index.md' }
+          let(:relative_path) { '_src/kong-ingress-controller/index.md' }
 
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
