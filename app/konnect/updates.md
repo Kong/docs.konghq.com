@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## April 2023
+
+**Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
+: Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+
 ## March 2023
 
 **Identity API**
