@@ -29,9 +29,11 @@
       <div>
         <div class="name-desc">
           {% if extn.plus and extn_publisher == 'kong-inc' %}
-          <span class="plugin-badge plus"></span>{% endif %}
+            <span class="plugin-badge plus"></span>
+          {% endif %}
           {% if extn.enterprise %}
-          <span class="plugin-badge enterprise"></span> {% endif %}
+            <span class="plugin-badge enterprise"></span>
+          {% endif %}
           <img class="card-img-top" src="{{ extn.extn_icon }}" alt="" />
           <p class="plugin-name">{{ extn.name }}</p>
           <p class="plugin-desc">{{ extn.desc }}</p>

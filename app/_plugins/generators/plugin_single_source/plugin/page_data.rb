@@ -17,6 +17,7 @@ module PluginSingleSource
           .merge!(metadata)
           .merge!(page_attributes)
           .merge!(frontmatter_overrides)
+          .merge!(extn_data)
 
         @data
       end
@@ -72,6 +73,10 @@ module PluginSingleSource
           schema: @release.schema,
           metadata: @release.metadata
         )
+      end
+
+      def extn_data
+        { 'extn_data' => @release.ext_data.slice('strategy', 'releases') }
       end
     end
   end

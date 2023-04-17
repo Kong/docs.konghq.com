@@ -7,8 +7,6 @@
         <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% if include.extn_data['strategy'] == "gateway" %}
             Gateway
-          {% else %}
-            {{ include.extn_type | capitalize }}
           {% endif %}
 
           Version {{ include.extn_release }}{% if include.extn_release == include.extn_latest %}&nbsp;<em>(latest)</em>{% endif %}

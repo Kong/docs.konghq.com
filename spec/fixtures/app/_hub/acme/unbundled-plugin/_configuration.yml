@@ -12,7 +12,6 @@ extra: |
   * Also for introspection to work, you need to specify introspection endpoints
   `config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
 
-publisher: Kong Inc.
 desc: Verify and sign one or two tokens in a request
 description: |
   This is a sample unbundled plugin with overrides

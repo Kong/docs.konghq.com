@@ -3,11 +3,7 @@ layout: default
 type: plugin
 ---
 
-{% assign extn_data = site.data.extensions[page.extn_publisher][page.extn_slug] %}
-{% assign extn_type = site.extensions.types | where: "slug", page.type %}
-{% assign extn_type = extn_type[0]['name'] %}
-
-{% assign extn_versions = extn_data['releases'] %}
+{% assign extn_versions = page.extn_data['releases'] %}
 {% if extn_versions %}
   {% assign extn_latest = extn_versions | first %}
   {% assign extn_release = page.extn_release %}
@@ -22,33 +18,22 @@ type: plugin
       {{ content }}
     {% endcapture %}
 
-    {% include_cached plugins/sidebar.html
+    {% include plugins/sidebar.html
                       sidenav=page.sidenav
                       extn_versions=extn_versions
-                      extn_data=extn_data
+                      extn_data=page.extn_data
                       extn_type=extn_type
                       extn_release=extn_release
                       extn_latest=extn_latest
-                      extn_publisher=page.extn_publisher
-                      placeholder_url=page.placeholder_url
                       versions_dropdown=page.versions_dropdown
     %}
 
-    {% include_cached plugins/right_nav.html
-                      full_content=full_content
-                      extn_versions=extn_versions
-                      extn_data=extn_data
-                      extn_type=extn_type
-                      extn_release=extn_release
-                      extn_latest=extn_latest
-                      extn_publisher=page.extn_publisher
-                      extn_slug=page.extn_slug
-    %}
+    {% include plugins/right_nav.html full_content=full_content extn_publisher=page.extn_publisher %}
 
     <div class="page-content-container v2">
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% include_cached header.html
+          {% include header.html
                             is_latest=page.is_latest
                             id=page.id
                             url=page.url
@@ -58,10 +43,8 @@ type: plugin
                             plus=page.plus
                             enterprise=page.enterprise
                             cloud=page.cloud
-                            publisher=page.publisher
                             extn_versions=extn_versions
                             extn_publisher=page.extn_publisher
-                            extn_slug=page.extn_slug
           %}
           {{ full_content }}
           {% include book.html %}

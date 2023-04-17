@@ -7,20 +7,6 @@ breadcrumbs:
 
 ---
 
-{% assign extn_data = site.data.extensions[page.extn_publisher][page.extn_slug] %}
-
-{% comment %}
-We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
-we pin the plugin version to the Gateway version. These are marked with strategy = gateway
-
-We only want to show the compatibility matrix if the strategy = matrix (which is the default), or if the plugins are third-party.
-{% endcomment %}
-
-{% assign extn_type = site.extensions.types | where: "slug", page.type %}
-{% assign extn_type = extn_type[0]['name'] %}
-
-{% assign extn_versions = extn_data['releases'] %}
-
 {% if page.plus and page.extn_publisher == "kong-inc" %}
   <blockquote class="note" role="alert">
     Did you know that you can try this plugin without talking to anyone with a free

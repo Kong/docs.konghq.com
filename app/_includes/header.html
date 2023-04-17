@@ -31,7 +31,7 @@
 
         <h1 id="main" tabindex="-1">{{ header_title }}</h1>
         <div class="badge-container">
-        {% if include.publisher == "Kong Inc." %}
+        {% if include.extn_publisher == "kong-inc" %}
            {% unless include.cloud == false %}<a href="https://cloud.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"></a>{% endunless %}
            {% if include.plus %} <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"></a>{% endif %}
         {% endif %}
@@ -43,7 +43,7 @@
         {% unless include.is_latest %}
           <div class="old-version-banner">
           You are browsing documentation for an outdated plugin version.
-          See the <a href="/hub/{{ include.extn_publisher }}/{{ include.extn_slug }}/">latest documentation here</a>.
+          See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
           </div>
         {% endunless %}
       {% endif %}
