@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## April 2023
+
+**Metadata for runtime instance certificates**
+: {{site.konnect_saas}} now supports metadata for runtime instance certificates. You can now see **expiry date** and **updated date** from a certificates information page.
+
 ## March 2023
 
 **Identity API**
