@@ -27,6 +27,16 @@ data plane.
 | {{site.ee_product_name}} 2.4.x or earlier | <i class="fa fa-times"></i>    | --
 
 
+## {{site.mesh_product_name}} compatibility
+
+To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible version of {{site.mesh_product_name}}. 
+
+|                                  | {{site.konnect_saas}} | First supported patch version 
+|--------------------------------|:---------------------:|-----------------------------
+| {{site.mesh_product_name}} 2.2.x | <i class="fa fa-check"></i> | -- |
+| {{site.mesh_product_name}} 2.1.x | <i class="fa fa-times"></i> | N/A |
+
+
 ## Plugin compatibility
 
 Each [subscription tier](https://konghq.com/pricing) gives you
