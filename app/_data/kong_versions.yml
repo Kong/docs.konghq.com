@@ -307,7 +307,7 @@
   version: "2.8.2"
   edition: "kubernetes-ingress-controller"
 - release: "2.9.x"
-  version: "2.9.2"
+  version: "2.9.3"
   edition: "kubernetes-ingress-controller"
 - edition: mesh
   version: 1.2.6
