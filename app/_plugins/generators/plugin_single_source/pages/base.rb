@@ -73,8 +73,6 @@ module PluginSingleSource
 
       def breadcrumbs
         [
-          { text: 'Home', url: '/' },
-          { text: 'Plugin Hub', url: '/hub/' },
           { text: @release.vendor },
           { text: @release.name, url: "#{base_url}#{@release.latest? ? '' : @release.version}" },
           { text: page_title, url: permalink }

@@ -39,14 +39,6 @@
         {% if include.oss %}<a href="https://konghq.com/pricing" target="_blank" class="badge oss" aria-label="open-source only"></a>{% endif %}
         </div>
       </div>
-      {% if include.extn_versions %}
-        {% unless include.is_latest %}
-          <div class="old-version-banner">
-          You are browsing documentation for an outdated plugin version.
-          See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
-          </div>
-        {% endunless %}
-      {% endif %}
     </div>
   </header>
 {% endif %}

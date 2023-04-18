@@ -1,0 +1,99 @@
+{% if include.img %}
+  {% assign header_icon = include.img %}
+{% endif %}
+{% if include.name %}
+  {% assign header_title = include.name %}
+{% endif %}
+
+<header class="hub-page-header">
+  <div class="hub-page-header--nav">
+    {% if include.breadcrumbs %}
+      <ul class="breadcrumbs install">
+        <li class="breadcrumb-item">
+          <a href="/hub/">
+            <img src="/assets/images/icons/documentation/hub/icn-breadcrumbs.svg">
+          </a>
+        </li>
+        {% for breadcrumb in include.breadcrumbs %}
+          <li class="breadcrumb-item{% if include.url == breadcrumb.url %} active{% endif %}">
+            {% if breadcrumb.url %}
+              <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
+            {% else %}
+              {{ breadcrumb.text }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="github-links">
+      <div class="github-links--edit">
+        {% if page.source_file %}
+          <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.source_file }}">
+            <img src="/assets/images/logos/logo-github.svg" alt="github-edit-page"/>Edit this page
+          </a>
+        {% endif %}
+      </div>
+      <div class="github-links--issues">
+        <a href="https://github.com/Kong/docs.konghq.com/issues">
+          <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
+      </div>
+    </div>
+  </div>
+  <div class="hub-page-header--info">
+    <div class="hub-page-header--info-icon">
+      {% if header_icon %}
+      <img src="{{ header_icon }}" alt="header icon"/>
+      {% endif %}
+    </div>
+    <div class="hub-page-header--info-meta">
+      <div class="meta--title">
+        <h1 id="main" tabindex="-1">{{ header_title }}</h1>
+
+        {% if include.extn_versions %}
+          <div>
+            <div class="versions-dropdown dropdown">
+              <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if include.extn_data['strategy'] == "gateway" %}
+                Gateway
+                {% endif %}
+
+                Version {{ include.extn_release }}{% if include.extn_release == include.extn_latest %}&nbsp;<em>(latest)</em>{% endif %}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
+                {% assign versions_dropdown = include.versions_dropdown %}
+                {% for version in versions_dropdown.versions %}
+                <li class="{{ version.css_class }}">
+                  <a href="{{ version.url }}">
+                    {{ version.text }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <div class="meta--content">
+        <div class="meta--content-publisher"><span>By {{ page.publisher }}</span></div>
+        <div class="meta--content-badges">
+          {% if include.extn_publisher == "kong-inc" %}
+            {% unless include.cloud == false %}
+              <a href="https://cloud.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"></a>
+            {% endunless %}
+            {% if include.plus %}
+              <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"></a>
+            {% endif %}
+          {% endif %}
+          {% if include.enterprise %}
+            <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with enterprise subscription"></a>
+          {% endif %}
+          {% if include.oss %}
+            <a href="https://konghq.com/pricing" target="_blank" class="badge oss" aria-label="open-source only"></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -14,38 +14,43 @@ type: plugin
 
 <div class="page v2 hub" data-url={{ page.url | replace: '.html', '/' }}>
   <div class="container">
-    {% capture full_content %}
-      {{ content }}
-    {% endcapture %}
-
-    {% include plugins/sidebar.html
-                      sidenav=page.sidenav
+    {% include plugins/header.html
+                      id=page.id
+                      url=page.url
+                      breadcrumbs=page.breadcrumbs
+                      name=page.title
+                      img=page.extn_icon
+                      plus=page.plus
+                      enterprise=page.enterprise
+                      cloud=page.cloud
+                      extn_publisher=page.extn_publisher
                       extn_versions=extn_versions
                       extn_data=page.extn_data
-                      extn_type=extn_type
                       extn_release=extn_release
                       extn_latest=extn_latest
                       versions_dropdown=page.versions_dropdown
     %}
+
+    {% capture full_content %}
+      {% if extn_versions %}
+        {% unless page.is_latest %}
+          <div class="old-version-banner">
+          You are browsing documentation for an outdated plugin version.
+          See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+          </div>
+        {% endunless %}
+      {% endif %}
+
+      {{ content }}
+    {% endcapture %}
+
+    {% include plugins/sidebar.html sidenav=page.sidenav %}
 
     {% include plugins/right_nav.html full_content=full_content extn_publisher=page.extn_publisher %}
 
     <div class="page-content-container v2">
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% include header.html
-                            is_latest=page.is_latest
-                            id=page.id
-                            url=page.url
-                            breadcrumbs=page.breadcrumbs
-                            name=page.title
-                            img=page.extn_icon
-                            plus=page.plus
-                            enterprise=page.enterprise
-                            cloud=page.cloud
-                            extn_versions=extn_versions
-                            extn_publisher=page.extn_publisher
-          %}
           {{ full_content }}
           {% include book.html %}
         </div>

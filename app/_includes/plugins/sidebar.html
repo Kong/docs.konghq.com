@@ -1,31 +1,6 @@
 <aside class="docs-sidebar">
   <i class="fa fa-times close-sidebar"></i>
 
-  {% if include.extn_versions %}
-    <div class="sidebar-title-container">
-      <div class="versions-dropdown dropdown">
-        <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {% if include.extn_data['strategy'] == "gateway" %}
-            Gateway
-          {% endif %}
-
-          Version {{ include.extn_release }}{% if include.extn_release == include.extn_latest %}&nbsp;<em>(latest)</em>{% endif %}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
-          {% assign versions_dropdown = include.versions_dropdown %}
-          {% for version in versions_dropdown.versions %}
-            <li class="{{ version.css_class }}">
-              <a href="{{ version.url }}">
-                {{ version.text }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  {% endif %}
-
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
     {% for item in include.sidenav.nav_items %}
