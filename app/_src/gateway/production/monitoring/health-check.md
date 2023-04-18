@@ -16,20 +16,19 @@ Before diving into the steps, it's important to understand the purpose of the St
 
 ### Traditional mode
 
-In Traditional mode, the endpoint returns 200 OK when the Kong database connection is successful. Otherwise, it returns 503.
+In Traditional mode, the conditions that must be fulfilled simultaneously for the traditional mode are: 
+
+1. Successful connection to the database
+2. Successful initial build of all routers for all workers
+3. Successful initial build of all plugin iterators for all workers
 
 ### DB-less mode (data_plane role)
 
 In DB-less mode, the endpoint returns 200 OK when all of the following conditions are met:
 
-* Kong database connection is successful
-* The current configuration hash is not nil and not all zeros
-* The counter `declarative_config:router_rebuilds` in shared memory is greater than the Nginx’s worker count
-* The counter `declarative_config:plugins_iterator_rebuilds` in shared memory is greater than the Nginx’s worker count
-
-To be short, the endpoint returns 200 OK when the router and plugins iterator are rebuilt for workers. Otherwise, it returns 503.
-
-This is the implementation details of the endpoint in DB-less mode. But if you're just using the endpoint to check the readiness of your Kong instance, you don't need to worry about the details.
+1. The current configuration hash is not nil and not all zeros
+2. Successful initial build or a rebuild of all routers for all workers
+3. Successful initial build or a rebuild of all plugin iterators for all workers
 
 ## Configuring the Status Endpoint
 
