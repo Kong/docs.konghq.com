@@ -50,6 +50,10 @@ module PluginSingleSource
         @base_url ||= "/hub/#{@release.dir}/"
       end
 
+      def breadcrumb_title
+        raise NotImplementedError, 'implement this in subclass'
+      end
+
       private
 
       def url_attributes
@@ -73,9 +77,9 @@ module PluginSingleSource
 
       def breadcrumbs
         [
-          { text: @release.vendor },
-          { text: @release.name, url: "#{base_url}#{@release.latest? ? '' : @release.version}" },
-          { text: page_title, url: permalink }
+          { text: @release.metadata['categories'] },
+          { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
+          { text: breadcrumb_title, url: permalink }
         ]
       end
 

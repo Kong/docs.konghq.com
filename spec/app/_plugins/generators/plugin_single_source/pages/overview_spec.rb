@@ -48,7 +48,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
           'source_file' => '_hub/kong-inc/jwt-signer/_index.md',
           'permalink' => '/hub/kong-inc/jwt-signer/',
           'ssg_hub' => true,
-          'title' => 'Kong JWT Signer Overview'
+          'title' => 'Kong JWT Signer'
         })
       end
     end
@@ -65,7 +65,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
           'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/_index.md',
           'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/',
           'ssg_hub' => false,
-          'title' => 'Kong JWT Signer Overview'
+          'title' => 'Kong JWT Signer'
         })
       end
     end

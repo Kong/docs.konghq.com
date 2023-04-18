@@ -21,7 +21,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
           'source_file' => nil,
           'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/reference/',
           'ssg_hub' => false,
-          'title' => 'Kong JWT Signer plugin reference'
+          'title' => 'Kong JWT Signer Configuration Reference'
         })
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
           'source_file' => nil,
           'permalink' => '/hub/kong-inc/jwt-signer/reference/',
           'ssg_hub' => false,
-          'title' => 'Kong JWT Signer plugin reference'
+          'title' => 'Kong JWT Signer Configuration Reference'
         })
       end
     end

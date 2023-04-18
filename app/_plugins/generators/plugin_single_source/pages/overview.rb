@@ -16,7 +16,7 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} Overview"
+        @release.metadata['name'].to_s
       end
 
       def dropdown_url
@@ -29,6 +29,17 @@ module PluginSingleSource
 
       def icon
         '/assets/images/icons/documentation/hub/icn-overview.svg'
+      end
+
+      def breadcrumb_title
+        page_title
+      end
+
+      def breadcrumbs
+        [
+          { text: @release.metadata['categories'] },
+          { text: breadcrumb_title, url: permalink }
+        ]
       end
 
       private

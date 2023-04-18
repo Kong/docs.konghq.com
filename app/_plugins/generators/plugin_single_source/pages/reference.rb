@@ -3,6 +3,8 @@
 module PluginSingleSource
   module Pages
     class Reference < Base
+      TITLE = 'Configuration Reference'
+
       def canonical_url
         "#{base_url}reference/"
       end
@@ -16,7 +18,7 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} plugin reference"
+        "#{@release.metadata['name']} #{TITLE}"
       end
 
       def dropdown_url
@@ -30,7 +32,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        'Configuration Reference'
+        TITLE
+      end
+
+      def breadcrumb_title
+        TITLE
       end
 
       def icon

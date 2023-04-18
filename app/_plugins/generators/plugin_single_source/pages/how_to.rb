@@ -29,6 +29,10 @@ module PluginSingleSource
                        .frontmatter.fetch('nav_title', 'Missing nav_title')
       end
 
+      def breadcrumb_title
+        page_title
+      end
+
       private
 
       def file_to_url_segment

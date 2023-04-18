@@ -3,6 +3,8 @@
 module PluginSingleSource
   module Pages
     class Changelog < Base
+      TITLE = 'Changelog'
+
       def canonical_url
         "#{base_url}changelog/"
       end
@@ -16,7 +18,7 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} Changelog"
+        "#{@release.metadata['name']} #{TITLE}"
       end
 
       def dropdown_url
@@ -24,7 +26,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        'Changelog'
+        TITLE
+      end
+
+      def breadcrumb_title
+        TITLE
       end
 
       def icon
