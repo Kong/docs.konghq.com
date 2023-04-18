@@ -88,3 +88,9 @@ command:
 helm upgrade my-kong kong/kong -n kong \
   --values ./values.yaml
 ```
+
+## Connect a data plane to {{site.konnect_saas}} that is behind a non-trasparent forward proxy.
+
+In situations where forward proxies are non-transparent, you can still connect the {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane.
+To do this, you need to configure each {{site.base_gateway}} runtime instance to authenticate with the proxy server and allow traffic through.
+For more information, see [Control Plane and Data Plane Communication through a Forward Proxy](/gateway/latest/production/networking/cp-dp-proxy/) in the {{site.base_gateway}} documentation.

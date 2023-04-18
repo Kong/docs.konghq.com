@@ -101,7 +101,7 @@ To start creating your own plugins, check out the PDK documentation:
 
 If you are interested in sharing your custom plugin with other Kong users, you
 must also submit plugin reference documentation to the Kong Plugin Hub. See the
-[contribution guidelines](/contributing/)
+[contribution guidelines](/contributing/plugin-docs/)
 for adding documentation.
 
 ## Other key concepts

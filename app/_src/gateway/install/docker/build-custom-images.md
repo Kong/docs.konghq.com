@@ -1,8 +1,9 @@
 ---
 title: Build your own Docker images
+content_type: how-to
 ---
 
-Kong is distributed as prebuilt `apk`, `deb` and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
+Kong is distributed as prebuilt `apk`, `deb`, and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
 
 Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. [Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.
 
@@ -10,11 +11,20 @@ Our Debian and RHEL images are built with minimal dependencies (as of {{ site.ba
 
 If you would like to build your own images to further customise the base image and any dependencies, follow the instructions below:
 
-1. Download the [docker-entrypoint.sh](https://raw.githubusercontent.com/Kong/docker-kong/master/docker-entrypoint.sh) script from `docker-kong` and make it executable with `chmod +x docker-entrypoint.sh`
+1. Download [docker-entrypoint.sh](https://raw.githubusercontent.com/Kong/docker-kong/master/docker-entrypoint.sh) script from `docker-kong` and make it executable:
+```bash
+chmod +x docker-entrypoint.sh
+```
 
-1. Download the [.deb]({{ site.links.download }}/gateway-3.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb), [.rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.amd64.rpm) or .apk ([amd64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.amd64.apk.tar.gz), [arm64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.arm64.apk.tar.gz)) as required
+1. Download the {{site.base_gateway}} package:
+    * **Debian and Ubuntu**: [.deb]({{ site.links.download }}/gateway-3.x-ubuntu-focal/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
+    * **Alpine**: .apk ([amd64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.amd64.apk.tar.gz), [arm64]({{ site.links.download }}/gateway-3.x-alpine/kong-enterprise-edition-{{page.versions.ee}}.arm64.apk.tar.gz))
+    * 
+    {% if_version eq:3.0.x %} **RHEL**:[ .rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.6.amd64.rpm){% endif_version %}
+    {% if_version gte:3.1.x %} **RHEL**:[ .rpm]({{ site.links.download }}/gateway-3.x-rhel-8/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel8.amd64.rpm){% endif_version %}
 
-1. Create a `Dockerfile` with the following contents:
+
+1. Create a `Dockerfile`, ensuring you replace the filename by the first `COPY` with the name of the {{site.base_gateway}} file you downloaded in step 2:
 
 {% capture dockerfile_run_steps %}COPY docker-entrypoint.sh /docker-entrypoint.sh
 
@@ -111,15 +121,9 @@ FROM alpine:latest
 COPY kong.apk.tar.gz /tmp/kong.apk.tar.gz
 
 RUN set -ex; \
-    apk add bash curl ca-certificates; \
-    arch="$(apk --print-arch)"; \
-    case "${arch}" in \
-      x86_64) export ARCH='amd64'; KONG_SHA256=$KONG_AMD64_SHA ;; \
-      aarch64) export ARCH='arm64'; KONG_SHA256=$KONG_ARM64_SHA ;; \
-    esac; \
     apk add --no-cache --virtual .build-deps tar gzip \
     && tar -C / -xzf /tmp/kong.apk.tar.gz \
-    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash \
+    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash curl ca-certicates \
     && adduser -S kong \
     && addgroup -S kong \
     && mkdir -p "/usr/local/kong" \
@@ -142,8 +146,14 @@ RUN set -ex; \
 {% endcapture %}
 {{ dockerfile | indent }}
 
-1. Build your image with `docker build --no-cache -t kong-your-tag .`
+1. Build your image:
+```bash
+docker build --no-cache -t kong-image .
+```
 
-1. Test that the image built correctly with `docker run -it kong-your-tag kong version`
+1. Test that the image built correctly:
+```
+docker run -it --rm kong-image kong version
+```
 
-1. To run {{ site.base_gateway }} and process traffic, follow the [Docker install instructions](/gateway/latest/install/docker/), replacing the image name with your custom name
+1. To run {{ site.base_gateway }} and process traffic, follow the [Docker install instructions](/gateway/latest/install/docker/), replacing the image name with your custom name.

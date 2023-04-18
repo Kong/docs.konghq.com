@@ -1,7 +1,6 @@
 ---
 title: Reports Reference
 content_type: reference
-badge: plus
 ---
 
 ## Metrics

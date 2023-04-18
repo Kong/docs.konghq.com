@@ -16,6 +16,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * [DeGraphQL](/hub/kong-inc/degraphql/): Transform a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/): Rate limit GraphQL requests.
 
+**Kong Ingress Controller for Kubernetes in Konnect**
+: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
+
 ## March 2023
 
 **Identity API**
