@@ -2,7 +2,7 @@
 title: Plugin License Tiers
 header_title: Plugin License Tiers
 type: concept
-layout: extension
+layout: plugins/introduction
 ---
 
 Each [subscription tier](https://konghq.com/pricing) gives you

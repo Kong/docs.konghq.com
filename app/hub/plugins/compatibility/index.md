@@ -1,5 +1,6 @@
 ---
 title: Plugin Compatibility
+header_title: Plugin Compatibility
 no_version: true
 layout: plugins/introduction
 ---
