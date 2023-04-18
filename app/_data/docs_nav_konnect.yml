@@ -41,6 +41,8 @@
           url: /getting-started/publish-service/
         - text: Register Applications
           url: /getting-started/app-registration/
+    - text: Configure Configure a Global Control Plane
+      url: /getting-started/configure-mesh/
     - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import/
 

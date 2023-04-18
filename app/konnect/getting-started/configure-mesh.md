@@ -7,60 +7,56 @@ Using Mesh Manager, you can create a {{site.mesh_product_name}} global control p
 
 [IMAGE OF GLOBAL CONTROL PLANE MESH THING]
 
-For the purposes of this guide, you'll use {{site.mesh_product_name}} as your service mesh to create a global control plane to manage the service you created previously in the [Configure a Service](/konnect/getting-started/configure-service/) section of the Get Started in {{site.konnect_saas}} documentation.
+A global control plane configures the basic settings for all services associated with a service mesh. If you have a multi-zone deployment, you can have one global control plane and different control planes for each zone. This allows you to easily configure settings for all services by only editing one configuration file. 
 
-## Prerequisites <!-- Optional -->
+For the purposes of this guide, you'll use {{site.mesh_product_name}} as your service mesh to create a global control plane to manage the service you created previously in the [Configure a Service](/konnect/getting-started/configure-service/) section of the Get Started in {{site.konnect_saas}} documentation. This guide uses Kubernetes to install various service mesh components.
 
-Tutorial topics typically don't contain any prerequisites because you should be helping the user install those things in the steps. The only prerequisites you should include are those for external tools, like jq or Docker, for example. 
+## Prerequisites
 
-In the rare circumstance that you need prerequisites, write them as a bulleted list.
+* [Kubernetes installed](https://kubernetes.io/docs/setup/)
 
-* Docker installed
-* jq installed
+## Create and deploy a global control plane
 
-## Task section <!-- Header optional if there's only one task section in the article -->
-
-A tutorial section title directs the user to perform an action and generally starts with a verb. For example, "Install the software" or "Configure basic settings".
-
-Each task section should include an introduction paragraph that explains what step the user doing, a brief explanation of the feature, and why the user is completing this step.
+In this section, you will be installing a service mesh ({{site.mesh_product_name}}), creating a global control plane in {{site.konnect_short_name}}, and deploying the control plane in {{site.mesh_product_name}}.
 
 ### Instructions
-
-Steps in each section should break down the tasks the user will complete in sequential order.
-
-Continuing the previous example of installing software, here's an example:
 
 1. Download {{site.mesh_product_name}}:
     ```sh
     curl -L https://docs.konghq.com/mesh/installer.sh | VERSION=2.2.0 sh -
     ```
     Ensure that `VERSION` is replaced with the latest version of {{site.mesh_product_name}}. 
-1. ? Konnect steps?
-1. Hook back into Mesh
+1. From the left navigation menu in {{site.konnect_short_name}}, open [MESH MANAGER ICON HERE] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
+1. Click **New Control Plane**.
+1. Enter "example-cp" in the **Mesh name** field.
+1. Click **Next**.
+1. Copy and execute the Kubernetes mesh configuration that displays at the end of the wizard. 
+    Once {{site.konnect_short_name}} finds the newly created mesh, it will display it. 
+1. Click **Next**.
+1. ? Does this just take you to your list of meshes/control planes?
 
-### Explanation of instructions <!-- Optional, but recommended -->
+### Explanation of instructions
 
-This section should contain a brief, 2-3 sentence paragraph that summarizes what the user accomplished in these steps and what the outcome was. For example, "The software is now installed on your computer. You can't use it yet because the settings haven't been configured. In the next section, you will configure the basic settings so you can start using the software." 
+You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can't do anything at the moment until we add services and additional configurations to it.
 
-{:.note}
-> **Note**: You can also use notes to highlight important information. Try to keep them short.
+## Add a service to your service mesh
 
-## Second task section <!-- Optional -->
-
-Adding additional sections can be helpful if you have to switch from working in one product to another or if you switch from one task, like installing to configuring. 
+? 
 
 ### Instructions
 
-1. First step.
-1. Second step.
+1. Not sure how this is done, make a data plane proxy? Is this possible?
 
-### Explanation of instructions <!-- Optional, but recommended -->
+### Explanation of instructions 
 
-## See also <!-- Optional, but recommended -->
+Now you can see things in the Konnect UI?
 
-This section should include a list of tutorials or other pages that a user can visit to extend their learning from this tutorial.
+## More information
 
-See the following examples of tutorial documentation:
-* [Get started with services and routes](https://docs.konghq.com/gateway/latest/get-started/services-and-routes/)
-* [Migrate from OSS to Enterprise](https://docs.konghq.com/gateway/latest/migrate-ce-to-ke/)
-* [Set up Vitals with InfluxDB](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/influx-strategy/)
+After you complete this tutorial, you can continue to configure your service mesh in {{site.konnect_short_name}}.
+
+* [Zone Ingress](/mesh/latest/production/cp-deployment/zone-ingress/) - Set up zone ingress in {{site.mesh_product_name}}.
+* [Zone Egress](/mesh/latest/production/cp-deployment/zoneegress/) - Set up zone egress in {{site.mesh_product_name}}.
+* [Mutual TLS](/mesh/latest/policies/mutual-tls/) - Configure mTLS with {{site.mesh_product_name}}. 
+* [Observability](/mesh/latest/explore/observability/) - Find out how to configure observability with {{site.mesh_product_name}}.
+* [Traffic Log](/mesh/latest/policies/traffic-log/) - Learn how to configure logging with {{site.mesh_product_name}}.
