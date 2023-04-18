@@ -2200,6 +2200,9 @@ for this usage scenario, including the use of session cookies:
 
 <img src="/assets/images/docs/openid-connect/authorization-code-flow.svg">
 
+{:.note}
+> If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html). If it is not included, the PKCE `code_challenge` query parameter will not be sent.
+
 #### Patch the Plugin
 
 Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:

@@ -23,6 +23,9 @@ Add the tag that most closely resembles the concept, even if it doesn’t perfec
 : 
 : See our [contribution templates](/contributing/contribution-templates/) for more information about each content type.
 
+`description: DESCRIPTION`
+: A short description of what the page covers. This is used by Google and appears below the page title. Target length 50-160 characters.
+
 **Optional:**
 
 `no_version: true`

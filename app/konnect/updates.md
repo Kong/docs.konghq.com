@@ -11,6 +11,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2023
 
+
 **My Account**
 : {{site.konnect_saas}} now includes a **My Account** feature. Here users can easily edit their personal information, change their password and manage their account. **My Account** is available by selecting your user icon in the top-right corner of the {{site.konnect_saas}} manager and selecting **My Account**.
 
@@ -19,6 +20,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
 : Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+
+**Kong Ingress Controller for Kubernetes in Konnect**
+: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
 
 ## March 2023
 

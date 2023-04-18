@@ -31,7 +31,6 @@ You can also [export this historical data in CSV format](/konnect/analytics/serv
 
 
 ## Summary dashboard and custom reports
-{:.badge .plus}
 
 For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page.
 

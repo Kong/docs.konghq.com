@@ -34,7 +34,7 @@ no_version: true
 * Due to changes in GPG keys, using yum to install this release triggers a `Public key for kong-enterprise-edition-3.2.1.0.rhel7.amd64.rpm is not installed` error. The package *is* signed, however, it's signed with a different (rotated) key from the metadata service, which triggers the error in yum. To avoid this error, manually download the package from [download.konghq.com](https://download.konghq.com/) and install it. 
 
 ## 3.2.1.0
-**Release Date** 2023/02/30
+**Release Date** 2023/02/28
 
 ### Deprecations
 
