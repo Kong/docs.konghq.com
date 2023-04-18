@@ -21,26 +21,6 @@ Depending on your setup, renewing certificates might mean bringing up a new data
 plane, or generating new certificates and updating data planes with the new
 files.
 
-## Quick setup
-
-If you originally created your runtime instance container using the
-[quick setup Docker script](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup),
-we recommend running the script again to create a new instance with renewed
-certificates.
-
-1. Stop the runtime instance container.
-2. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group,
- and click **New Runtime Instance**.
-3. Run the script again to
-[create a new runtime instance](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup) with
-updated certificates.
-4. Remove the old runtime instance container.
-
-## Advanced setup
-
-If your runtime instances are running on Linux or Kubernetes, or if you have a
-Docker container that was _not_ created using the quick setup script, you must
-generate new certificates and replace them on the existing nodes.
 
 ### Generate new data plane certificate
 
@@ -140,3 +120,9 @@ Delete any old certificate and key files on your filesystem.
 
 {% endnavtab %}
 {% endnavtabs %}
+
+## Advanced setup
+
+If your runtime instances are running on Linux or Kubernetes, or if you have a
+Docker container that was _not_ created using the quick setup script, you must
+generate new certificates and replace them on the existing nodes.
