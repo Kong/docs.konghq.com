@@ -1,4 +1,4 @@
 <span>
   Must be one of:
-  {%- for value in include.one_of -%}<code>{{ value }}</code>{% unless forloop.last %},{% endunless %}{%- endfor -%}
+  {%- for value in include.one_of %} <code>{{ value }}</code>{% unless forloop.last %},{% endunless %}{%- endfor -%}
 </span>

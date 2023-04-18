@@ -1,16 +1,16 @@
 {%- assign schema = page.schema -%}
 
-<ul>
+<ul class="fields">
   <li class="field">
     <div class="field-overview">
       <h4 id="name">name</h4>
     </div>
     <div class="field-attributes">
       <span><strong>string</strong></span>
-      <span><strong>required</strong></span>
+      <span class="required"><strong>required</strong></span>
     </div>
     <div class="field-description-and-children">
-      <p class="field-description">The name of the plugin, in this case <code>{{ page.extn_slug }}</code></p>
+      <p class="field-description">The name of the plugin, in this case <code>{{ page.extn_slug }}</code>.</p>
     </div>
   </li>
 
