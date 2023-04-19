@@ -49,9 +49,9 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
         )
       end
 
-      it 'includes the attributes defined in _configuration.yml' do
+      it 'includes the attributes defined in _metadata.yml' do
         expect(subject)
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_configuration.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_metadata.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'
@@ -90,9 +90,9 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
         )
       end
 
-      it 'includes the attributes defined in _configuration.yml' do
+      it 'includes the attributes defined in _metadata.yml' do
         expect(subject)
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_configuration.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_metadata.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'

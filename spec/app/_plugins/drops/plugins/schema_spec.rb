@@ -1,6 +1,6 @@
 RSpec.describe Jekyll::Drops::Plugins::Schema do
   let(:plugin_name) { 'application-registration' }
-  let(:metadata_file) { 'app/_hub/kong-inc/application-registration/_configuration.yml' }
+  let(:metadata_file) { 'app/_hub/kong-inc/application-registration/_metadata.yml' }
   let(:metadata) { SafeYAML.load(File.read(metadata_file)) }
   let(:schema) do
     PluginSingleSource::Plugin::Schemas::Kong.new(
@@ -15,7 +15,7 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
   describe '#global?' do
     context 'returns true if the metadata does not have the `global` key' do
       let(:plugin_name) { 'acme' }
-      let(:metadata_file) { 'app/_hub/kong-inc/acme/_configuration.yml' }
+      let(:metadata_file) { 'app/_hub/kong-inc/acme/_metadata.yml' }
 
       it { expect(subject.global?).to eq(true) }
     end
@@ -65,7 +65,7 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
 
     context 'when it is not' do
       let(:plugin_name) { 'acme' }
-      let(:metadata_file) { 'app/_hub/kong-inc/acme/_configuration.yml' }
+      let(:metadata_file) { 'app/_hub/kong-inc/acme/_metadata.yml' }
 
       it { expect(subject.global?).to eq(true) }
     end

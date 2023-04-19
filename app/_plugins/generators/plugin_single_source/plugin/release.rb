@@ -25,7 +25,7 @@ module PluginSingleSource
       def metadata
         @metadata ||= SafeYAML.load(
           Utils::SafeFileReader.read(
-            file_name: '_configuration.yml',
+            file_name: '_metadata.yml',
             source_path: pages_source_path
           )
         ) || {}

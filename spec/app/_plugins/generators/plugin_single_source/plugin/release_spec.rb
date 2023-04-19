@@ -15,16 +15,16 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       let(:version) { '2.5.x' }
       let(:source) { '_2.2.x' }
 
-      it 'returns the content of the _configuration.yml inside the corresponding folder' do
+      it 'returns the content of the _metadata.yml inside the corresponding folder' do
         expect(subject.metadata)
-          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_configuration.yml', site.source))))
+          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_metadata.yml', site.source))))
       end
     end
 
     context 'when using `_index.md`' do
-      it 'returns the content of the _configuration.yml at the top level' do
+      it 'returns the content of the _metadata.yml at the top level' do
         expect(subject.metadata)
-          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_configuration.yml', site.source))))
+          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_metadata.yml', site.source))))
       end
     end
   end
