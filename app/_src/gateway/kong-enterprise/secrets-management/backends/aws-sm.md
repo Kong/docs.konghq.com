@@ -37,7 +37,7 @@ In this object, you have multiple key=value pairs.
 ```json
 {
   "foo": "bar",
-  "snip": "snap",
+  "snip": "snap"
 }
 ```
 
