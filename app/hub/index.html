@@ -8,124 +8,62 @@ body_id: page-hub
 
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
-{% assign third_extns = hub | where_exp: "extn", "extn.extn_publisher != 'kong-inc'" %}
+{% assign third_party_extns = hub | where_exp: "extn", "extn.extn_publisher != 'kong-inc'" %}
 
 {% assign categories = site.extensions.categories %}
 {% assign types = site.extensions.types %}
 
 <div class="page page-hub">
-  <div class="page-header">
-    <h1 id="main" tabindex="-1">Kong Plugin Hub</h1>
+  <div class="page-hub--header-background"></div>
+  <div class="page-hub--header">
+    <h1 id="main" tabindex="-1">Welcome to Kong Plugin Hub</h1>
     <h2>Extend {{site.base_gateway}} and {{site.konnect_product_name}} with powerful plugins and easy integrations</h2>
+    <h3>Learn more about <a href="/hub/plugins/overview/">Plugin Overview</a>, <a href="/hub/plugins/compatibility/">Compatibility</a> and <a href="/hub/plugins/license-tiers/">License tiers</a></h3>
   </div>
+
   <div class="container">
-    <div class="row">
-      <aside class="sidebar">
-        <div class="sticky-top">
-          <h3>Introduction</h3>
-          <ul class="nav flex-column" id="introduction" role="menu">
-            <li class="nav-item" role="menuitem">
-              <a class="nav-link" href="/hub/plugins/overview">
-                Plugin Overview
-              </a>
-            </li>
-            <li class="nav-item" role="menuitem">
-              <a class="nav-link" href="/hub/plugins/compatibility/">
-                Compatibility
-              </a>
-            </li>
-            <li class="nav-item" role="menuitem">
-              <a class="nav-link" href="/hub/plugins/license-tiers/">
-                License Tiers
-              </a>
-            </li>
-          </ul>
-          <h3>Filters</h3>
-          <ul class="nav flex-column" id="facet-filters" role="menu">
-            <p class="no-link">Plugin types</p>
-            <li class="nav-item">
-              <a href="" class="nav-link active" data-filter="" role="menuitem" tabindex="0">
-                All Plugins
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#konnect" class="nav-link" data-filter="konnect" role="menuitem" tabindex="0">
-                Bundled with Konnect
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#gateway" class="nav-link" data-filter="gateway" role="menuitem" tabindex="0">
-                Bundled with Kong Gateway
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#pub-not-konghq" class="nav-link" data-filter="pub-not-konghq" role="menuitem" tabindex="0">
-                Third-Party
-              </a>
-            </li>
-            <p class="no-link">Kong subscription tiers</p>
-            <li class="nav-item">
-              <a href="#open-source" class="nav-link" data-filter="open-source" role="menuitem" tabindex="0">
-                Free
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#plus" class="nav-link" data-filter="plus" role="menuitem" tabindex="0">
-                Plus
-              </a>
-            </li>
-            <li class="nav-item" role="menuitem">
-              <a href="#ee-compat" class="nav-link" data-filter="ee-compat" role="menuitem" tabindex="0">
-                Enterprise
-              </a>
-            </li>
-          </ul>
-          <h3>Functionality</h3>
-          <ul class="nav flex-column" id="scroll-sidebar" role="menu">
-            {% for cat in categories %}
-              <li class="nav-item" role="menuitem">
-                <a class="nav-link" data-link="scroll" href="#{{ cat.slug }}">
-                  {{ cat.name }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-          <h3>Custom Plugins</h3>
-          <ul class="nav flex-column" id="custom-plugins" role="menu">
-              <li class="nav-item" role="menuitem">
-                <a class="nav-link" href="/gateway/latest/pdk" target="_blank">
-                  PDK reference
-                </a>
-              </li>
-              <li class="nav-item" role="menuitem">
-                <a class="nav-link" href="/gateway/latest/plugin-development" target="_blank">
-                  Plugin development guide
-                </a>
-              </li>
-              <li class="nav-item" role="menuitem">
-                <a class="nav-link" href="/gateway/latest/reference/external-plugins" target="_blank">
-                  Plugins in other languages
-                </a>
-              </li>
-          </ul>
+    <div class="page-hub--wrapper">
+      <div class="page-hub--container">
+        <div class="page-hub--filters">
+          <div class="page-hub--filters__filter page-hub--filters__filter-name">
+            <input type='text' id='filter-plugins' placeholder="Filter plugins"/>
+          </div>
+          <div class="page-hub--filters__filter page-hub--filters__filter-tiers">
+            {% include components/dropdown.html label='Tiers' field_name='tier' options=site.hub-filters.tiers %}
+          </div>
+          <div class="page-hub--filters__filter page-hub--filters__filter-categories">
+            {% include components/dropdown.html label='Functionality' field_name='category' options=site.hub-filters.categories %}
+          </div>
+          <div class="page-hub--filters__filter page-hub--filters__filter-support">
+            {% include components/dropdown.html label='Support by' field_name='support' options=site.hub-filters.support %}
+          </div>
+          <div class="page-hub--filters__filter page-hub--filters__filter-compatibility">
+            {% include components/dropdown.html label='Compatibility' field_name='compatibility' options=site.hub-filters.compatibility %}
+          </div>
+          <div class="page-hub--filters__filter page-hub--filters__filter-advanced">
+            <div>Advanced filters</div>
+          </div>
         </div>
-      </div>
-      <div class="hub-cards">
-        <div class="row">
-          {% for cat in categories %}
-            <div class="row category" id="{{cat.slug}}">
-              <h4>{{ cat.name }}</h4>
-              {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
-              {% for extn in extns  %}
-                {% include hub_cards.html header_icon=page.header_icon %}
-              {% endfor %}
-              {% assign extns = third_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
-              {% for extn in extns  %}
-                {% include hub_cards.html header_icon=page.header_icon %}
-              {% endfor %}
+
+        {% for cat in categories %}
+          {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
+          {% assign third_extns = third_party_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
+
+          {% if extns.size > 0 or third_extns.size > 0 %}
+            <div class="page-hub--category active" id="{{cat.slug}}">
+              <h4 class="page-hub--category-title">{{ cat.name }}</h4>
+              <div class="page-hub--category-cards">
+                {% for extn in extns  %}
+                  {% include hub_cards.html header_icon=page.header_icon %}
+                {% endfor %}
+                {% for extn in third_extns  %}
+                  {% include hub_cards.html header_icon=page.header_icon %}
+                {% endfor %}
+              </div>
             </div>
-          {% endfor %}
-        </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
+  </div>
 </div>

@@ -1,0 +1,16 @@
+<div class="dropdown">
+  <button class="dropdown-button" type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="menu-button-{{ include.label }}">
+    {{ include.label }}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button-{{ include.label }}" tabindex="-1">
+    <li class="dropdown-item active" role="menuitem" tabindex="-1" id="{{ include.field_name }}-menu-item-0" data-value="all">
+      All
+    </li>
+    {% for option in include.options %}
+      <li class="dropdown-item"  role="menuitem" tabindex="-1" id="{{ include.field_name }}-menu-item-{{ forloop.index }}" data-value="{{ option.slug }}">
+        {{ option.name }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

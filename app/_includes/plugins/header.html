@@ -78,20 +78,13 @@
       <div class="meta--content">
         <div class="meta--content-publisher"><span>By {{ page.publisher }}</span></div>
         <div class="meta--content-badges">
-          {% if include.extn_publisher == "kong-inc" %}
-            {% unless include.cloud == false %}
-              <a href="https://cloud.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"></a>
-            {% endunless %}
-            {% if include.plus %}
-              <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"></a>
-            {% endif %}
-          {% endif %}
-          {% if include.enterprise %}
-            <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with enterprise subscription"></a>
-          {% endif %}
-          {% if include.oss %}
-            <a href="https://konghq.com/pricing" target="_blank" class="badge oss" aria-label="open-source only"></a>
-          {% endif %}
+          {% include plugins/badges.html
+                     extn_publisher=include.extn_publisher
+                     cloud=include.cloud
+                     plus=include.plus
+                     enterprise=include.enterprise
+                     oss=include.oss
+          %}
         </div>
       </div>
     </div>

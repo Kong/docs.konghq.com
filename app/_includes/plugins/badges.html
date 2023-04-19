@@ -1,0 +1,14 @@
+{% if include.extn_publisher == "kong-inc" %}
+  {% unless include.cloud == false %}
+    <a href="https://cloud.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"> </a>
+  {% endunless %}
+  {% if include.plus %}
+    <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"> </a>
+  {% endif %}
+{% endif %}
+{% if include.enterprise %}
+  <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with enterprise subscription"> </a>
+{% endif %}
+{% if include.oss %}
+  <a href="https://konghq.com/pricing" target="_blank" class="badge oss" aria-label="open-source only"> </a>
+{% endif %}

@@ -36,31 +36,39 @@ repos:
 
 # for Kong platform extensions (not Jekyll)
 extensions:
-  categories:
+  categories: &plugin_categories
     - name: Authentication
       slug: authentication
       desc: Protect your services with an authentication layer
+      # icon:
     - name: Security
       slug: security
       desc: Protect your services with additional security layer
+      # icon:
     - name: Traffic Control
       slug: traffic-control
       desc: Manage, throttle and restrict inbound and outbound API traffic
+      # icon:
     - name: Serverless
       slug: serverless
       desc: Invoke serverless functions in combination with other plugins
+      # icon:
     - name: Analytics & Monitoring
       slug: analytics-monitoring
       desc: Visualize, inspect and monitor APIs and microservices traffic
+      # icon:
     - name: Transformations
       slug: transformations
       desc: Transform request and responses on the fly on Kong
+      # icon:
     - name: Logging
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
+      # icon:
     - name: Deployment
       slug: deployment
       desc: Deploy and configure Kong in many environments
+      # icon:
   types:
     - name: plugin
       slug: plugin
@@ -167,6 +175,26 @@ defaults:
     values:
       layout: "docs-v2"
       no_version: true
+
+hub-filters:
+  tiers:
+    - name: Free
+      slug: open-source
+    - name: Plus
+      slug: plus
+    - name: Enterprise
+      slug: enterprise
+  support:
+    - name: Kong
+      slug: kong-inc
+    - name: Third-party
+      slug: third-party
+  compatibility:
+    - name: Konnect
+      slug: konnect
+  categories:
+    *plugin_categories
+
 
 # product name vars
 ee_product_name: Kong Enterprise
