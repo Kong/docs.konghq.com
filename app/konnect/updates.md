@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2023
 
+**Allow filtering of runtime instances based on connection status** 
+: Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, `all`.
+
 **GraphQL plugins**
 : {{site.konnect_short_name}} now supports the the following GraphQL plugins:
 * [DeGraphQL](/hub/kong-inc/degraphql/): Transform a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
