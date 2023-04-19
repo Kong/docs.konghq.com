@@ -6,7 +6,7 @@ description: |
   This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
 type: plugin
 enterprise: true
-cloud: false
+cloud: true
 categories:
   - transformations
 kong_version_compatibility:
@@ -15,7 +15,7 @@ kong_version_compatibility:
 params:
   name: degraphql
   service_id: true
-  konnect_examples: false
+  konnect_examples: true
   dbless_compatible: 'yes'
   protocols:
     - name: http
