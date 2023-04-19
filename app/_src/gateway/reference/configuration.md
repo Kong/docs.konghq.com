@@ -2030,7 +2030,7 @@ after Routes and Services updates.
 
 ### worker_state_update_frequency
 
-Defines how often the worker state changes are checked with a background job.
+Defines, in seconds, how often the worker state changes are checked with a background job.
 When a change is detected, a new router or balancer will be built, as needed.
 Raising this value will decrease the load on database servers and result in less
 jitter in proxy latency, but it might take more time to propagate changes to

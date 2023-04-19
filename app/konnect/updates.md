@@ -11,7 +11,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2023
 
-
 **My Account**
 : {{site.konnect_saas}} now includes a **My Account** feature. Here users can easily edit their personal information, change their password and manage their account. **My Account** is available by selecting your user icon in the top-right corner of the {{site.konnect_saas}} manager and selecting **My Account**.
 
@@ -20,6 +19,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
 : Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+
+**GraphQL plugins**
+: {{site.konnect_short_name}} now supports the the following GraphQL plugins:
+* [DeGraphQL](/hub/kong-inc/degraphql/): Transform a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/): Rate limit GraphQL requests.
 
 **Kong Ingress Controller for Kubernetes in Konnect**
 : Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
