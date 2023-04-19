@@ -2,6 +2,7 @@
 title: Kong Gateway
 breadcrumb: Overview
 subtitle: API gateway built for hybrid and multi-cloud, optimized for microservices and distributed architectures
+description: Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. Kong is a reverse proxy that lets you manage, configure, and route requests
 ---
 
 ## Quick Links
