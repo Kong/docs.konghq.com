@@ -12,7 +12,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## April 2023
 
 **Allow filtering of runtime instances based on connection status** 
-: Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, `all`.
+: Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, or `all`.
 
 **GraphQL plugins**
 : {{site.konnect_short_name}} now supports the the following GraphQL plugins:
