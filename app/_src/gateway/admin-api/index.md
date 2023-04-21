@@ -371,7 +371,7 @@ upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
-    `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`.  Default: `"round-robin"`.
+    `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`, `"latency"`,.  Default: `"round-robin"`.
     `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`, `"path"`, `"query_arg"`, `"uri_capture"`.  Default: `"none"`.
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`, `"path"`, `"query_arg"`, `"uri_capture"`.  Default: `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
