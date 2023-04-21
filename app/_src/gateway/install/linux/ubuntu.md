@@ -8,12 +8,12 @@ Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 {:.note}
-> This page will install {{ site.base_gateway }} in traditional mode, where it acts as both the Control Plane and Data Plane. Running in this mode may have a small performance impact.
+> This page will install {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
 > &nbsp;
 > 
 > &nbsp;
 > 
-> We recommend using [Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your Control Plane to allow your Data Plane to run at maximum performance and decrease your deployment complexity
+> We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ bash <(curl -sS https://install-script--getkong.netlify.app/install) -p kong -v 
 {% endnavtab %}
 {% endnavtabs_ee %}
 
-This script will detect your operating system and automatically install the correct package. It'll also install a Postgres database and bootstrap {{ site.base_gateway }} for you.
+This script detects your operating system and automatically installs the correct package. It will also install a Postgres database and bootstrap {{ site.base_gateway }} for you.
 
 If you'd prefer to install just the package, please see the [Package Install](#package-install) section.
 
@@ -53,9 +53,9 @@ You should receive a `200` status code.
 
 ### Next steps
 
-Once {{ site.base_gateway }} is running, you may want to:
+Once {{ site.base_gateway }} is running, you may want to do the following:
 
-* [Add your Enterprise license (optional)](/gateway/{{ page.kong_version }}/licenses/deploy).
+* Optional: [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy).
 * [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
 * [Enable Dev Portal](/gateway/{{ page.kong_version }}/kong-enterprise/dev-portal/enable/)
 * [Create services and routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes/).
@@ -161,7 +161,7 @@ apt install -y kong={{page.versions.ce}}
 
 {{ install_from_repo | indent | replace: " </code>", "</code>" }}
 
-4. (Optional) Prevent accidental upgrades by marking the package as `hold`:
+4. Optional: Prevent accidental upgrades by marking the package as `hold`:
 {% capture optional %}
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
