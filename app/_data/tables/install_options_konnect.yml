@@ -31,12 +31,12 @@ features:
 
   - name: "Cloud Providers"
     items:
-      - name: "AWS automated cloud launcher <span class=\"badge alpha\"></span>"
+      - name: "Automated cloud launcher to AWS <span class=\"badge alpha\"></span>"
         ga: false
         icon: /assets/images/icons/documentation/aws.svg
-      - name: "Azure automated cloud launcher <span class=\"badge alpha\"></span>"
+      - name: "Automated cloud launcher to Azure <span class=\"badge alpha\"></span>"
         ga: false
         icon: /assets/images/icons/documentation/azure.svg
-      - name: "Google Cloud automated cloud launcher <span class=\"badge alpha\"></span>"
+      - name: "Automated cloud launcher to Google Cloud <span class=\"badge alpha\"></span>"
         ga: false
         icon: /assets/images/icons/documentation/cloud-icon-color.svg
