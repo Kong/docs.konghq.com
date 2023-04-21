@@ -27,12 +27,12 @@ The quickest way to get started with {{ site.base_gateway }} is using our instal
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-bash <(curl -sS https://install-script--getkong.netlify.app/install) -v {{page.versions.ee}}
+bash <(curl -sS https://get.konghq.com/install) -v {{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-bash <(curl -sS https://install-script--getkong.netlify.app/install) -p kong -v {{page.versions.ce}}
+bash <(curl -sS https://get.konghq.com/install) -p kong -v {{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -83,7 +83,7 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.amd64.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -102,12 +102,12 @@ curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.download }}/gateway-
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo dpkg -i kong-enterprise-edition-{{page.versions.ee}}.all.deb
+sudo apt install -y ./kong-enterprise-edition-{{page.versions.ee}}.amd64.deb
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo dpkg -i kong-{{page.versions.ce}}.amd64.deb
+sudo apt install -y ./kong-{{page.versions.ce}}.amd64.deb
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
