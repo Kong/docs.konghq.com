@@ -152,7 +152,7 @@ Before you generate a PAT, keep the following in mind:
 {% navtabs %}
 {% navtab User Account Token %}
 
-To generate a PAT for a user account in {{site.konnect_short_name}}, select your user icon to open the context menu 
+To generate a PAT for a user account in {{site.konnect_short_name}}, select your name to open the context menu 
  and click **Personal access tokens**, then click **Generate token**. 
 
 {% endnavtab %}
@@ -166,7 +166,7 @@ To generate a PAT for a user account in {{site.konnect_short_name}}, select your
 
 {% if_version lte:1.17.x %}
 
-To generate a PAT for a user account in {{site.konnect_short_name}}, select your user icon to open the context menu 
+To generate a PAT for a user account in {{site.konnect_short_name}}, select your name to open the context menu 
  and click **Personal access tokens**, then click **Generate token**. 
 
 {% endif_version %}

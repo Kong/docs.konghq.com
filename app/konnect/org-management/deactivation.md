@@ -41,8 +41,3 @@ Contact [Kong Support](https://support.konghq.com/) to do any of the following:
 * Deactivate an organization that you registered
 * Reactivate an organization that has been deactivated
 * Unlock an email for use with another organization
-
-
-## Right To Be Forgotten
-
-If you want to exercise your data subject rights, including the right to be forgotten (RTBF) under GDPR review the [Privacy Policy](https://konghq.com/privacy) and start the request process.
