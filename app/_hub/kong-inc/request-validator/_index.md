@@ -47,7 +47,7 @@ params:
         > **Notes:** 
         * Body validation is only done for `application/json` and skipped for any other allowed content types. 
         * Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
-        * application/json` doesn't match with `application/json; charset=UTF-8`.
+        * From `3.1.x`, The parameter is checked forcibly, which means a request with parameter(e.g. `application/json; charset=UTF-8`) is **NOT** to be considered valid for the one without the parameter(e.g. `application/json`).
         The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
         
     - name: allowed_content_types
@@ -93,7 +93,7 @@ params:
           * Body validation is only done for `application/json` and skipped for any other allowed content types. 
           * Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
           The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
-
+          * Parameter does not need to be explicitly configured to allow a request passed with a parameter content-type. The parameter is checked only if the request carries the parameter and it's explicitly configured. For example, a request with `application/json; charset=UTF-8` is to be considered valid for `application/json`.
     - name: version
       required: true
       default: kong
@@ -550,3 +550,10 @@ For more information, see the Kong plugin docs on
 [RFC 3339]: https://tools.ietf.org/html/rfc3339
 [5.6]: https://tools.ietf.org/html/rfc3339#section-5.6
 [5.7]: https://tools.ietf.org/html/rfc3339#section-5.7
+
+## Changelog
+
+**{{site.base_gateway}} 3.1.x**
+
+* Breaking changes
+    * `allowed_content_types`: a request with parameter(e.g. `application/json; charset=UTF-8`) is **NOT** to be considered valid for the one without the parameter(e.g. `application/json`).
