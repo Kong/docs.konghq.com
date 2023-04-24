@@ -171,13 +171,22 @@
           order: 1;
           align-self: stretch;
           flex-grow: 0;
+          justify-content: space-between;
 
           &:hover {
             cursor: pointer;
           }
 
+          img {
+            display: none;
+          }
+
           &.active {
             background: @blue-100;
+
+            img {
+              display: flex;
+            }
           }
         }
       }
