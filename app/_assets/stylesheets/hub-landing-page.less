@@ -88,6 +88,7 @@
     align-items: flex-start;
     padding: 0px;
     gap: 48px;
+    width: 100%;
 
     *,
     ::after,
@@ -111,8 +112,9 @@
     align-self: stretch;
     flex-grow: 0;
     max-width: 1464px;
+    flex-wrap: wrap;
 
-    @media (max-width: 820px) {
+    @media (max-width: 990px) {
       flex-direction: column;
     }
 
@@ -148,6 +150,10 @@
           font-size: 16px;
           line-height: 26px;
           color: rgba(0, 0, 0, 0.85);
+
+          @media (max-width: 990px) {
+            justify-content: space-between;
+          }
         }
 
         &-menu {
@@ -195,8 +201,7 @@
         border-radius: 16px 0px 0px 16px;
         padding: 0px 24px;
         order: 0;
-        flex-grow: 0;
-        width: 395px;
+        flex-grow: 1;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -215,33 +220,28 @@
       &-tiers {
         order: 1;
         flex-grow: 1;
-        width: 226px;
       }
 
       &-categories {
         order: 2;
         flex-grow: 1;
-        width: 226px;
       }
 
       &-support {
         order: 3;
-        flex-grow: 1;
-        width: 226px;
+        flex-grow: 0;
       }
 
       &-compatibility {
         border-radius: 0px 8px 8px 0px;
         order: 4;
-        flex-grow: 1;
-        width: 226px;
+        flex-grow: 0;
       }
 
       &-advanced {
         border-radius: 0px 16px 16px 0px;
         order: 5;
-        flex-grow: 0;
-        width: 165px;
+        flex-grow: 1;
         justify-content: center;
         font-style: normal;
         font-size: 16px;
@@ -269,6 +269,7 @@
       flex: none;
       order: 0;
       flex-grow: 0;
+      margin: 0;
 
       h4 {
         display: flex;
@@ -321,7 +322,7 @@
     order: 0;
     align-self: stretch;
     flex: 1 31%;
-    max-width: 31%;
+    max-width: 33%;
 
     @media (min-width: 990px) {
       height: 305px;
@@ -329,7 +330,7 @@
 
     @media (max-width: 1350px) {
       flex: 1 47%;
-      max-width: 47%;
+      max-width: 50%;
     }
 
     @media (max-width: 690px) {
