@@ -235,6 +235,13 @@
 /hub/tomkerkhove/*                                 /hub/
 /hub/justeat/*                                     /hub/
 /hub/arecabay/*                                    /hub/imperva/imp-appsec-connector/
+/hub/revolution_systems/*                          /hub/
+/hub/peter-evans/*                                 /hub/
+/hub/critical-blue/*                               /hub/
+/hub/seifchen/*                                    /hub/
+/hub/flash/*                                       /hub/
+/hub/yesinteractive/*                              /hub/
+/hub/inspur/*                                      /hub/
 
 # KONNECT
 
@@ -642,6 +649,49 @@
 /mesh/:version/documentation/introduction/  /mesh/:version/
 /mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
 /mesh/:version/overview /mesh/:version/
+/mesh/:version/features/rbac    /mesh/:version/production/secure-deployment/
+/mesh/:version/features/fips-support  /mesh/:version/production/secure-deployment/fips-support/
+/mesh/:version/plan-and-deploy/license    /mesh/:version/production/cp-deployment/license/
+
+# kuma IA redirects
+/mesh/:version/introduction/deployments/  /mesh/:version/production/deployment/
+/mesh/:version/deployments/stand-alone/ /mesh/:version/production/deployment/stand-alone/
+/mesh/:version/deployments/multi-zone/  /mesh/:version/production/deployment/multi-zone/
+/mesh/:version/deployments/multi-zone/#usage  /mesh/:version/production/cp-deployment/multi-zone/
+/mesh/2.1.x/deployments/multi-zone/#usage /mesh/2.1.x/production/cp-deployment/multi-zone/
+/mesh/2.1.x/deployments/stand-alone/#usage  /mesh/2.1.x/production/cp-deployment/stand-alone/
+/mesh/:version/networking/networking/ /mesh/:version/production/deployment/networking/
+/mesh/:version/explore/zone-ingress/  /mesh/:version/production/cp-deployment/zone-ingress/
+/mesh/:version/security/zoneproxy-auth/ /mesh/:version/production/cp-deployment/zoneproxy-auth/
+/mesh/:version/explore/zoneegress/  /mesh/:version/production/cp-deployment/zoneegress/
+/mesh/:version/deployments/stand-alone/#usage /mesh/:version/production/stand-alone/
+/mesh/:version/policies/mesh/ /mesh/:version/production/mesh/
+/mesh/:version/explore/dpp/ /mesh/:version/production/dp-config/dpp/
+/mesh/:version/explore/dpp-on-kubernetes/ /mesh/:version/production/dp-config/dpp-on-kubernetes/
+/mesh/:version/explore/dpp-on-universal/  /mesh/:version/production/dp-config/dpp-on-universal/
+/mesh/:version/networking/cni/  /mesh/:version/production/dp-config/cni/
+/mesh/:version/networking/transparent-proxying/ /mesh/:version/production/dp-config/transparent-proxying/
+/mesh/:version/networking/ipv6/ /mesh/:version/production/dp-config/ipv6/ 
+/mesh/:version/security/secrets/  /mesh/:version/production/secure-deployment/secrets/
+/mesh/:version/security/api-access-control/ /mesh/:version/production/secure-deployment/api-access-control/
+/mesh/:version/security/api-server-auth/  /mesh/:version/production/secure-deployment/api-server-auth/
+/mesh/:version/security/dp-auth/  /mesh/:version/production/secure-deployment/dp-auth/
+/mesh/:version/security/dp-membership/  /mesh/:version/production/secure-deployment/dp-membership/
+/mesh/:version/security/certificates/ /mesh/:version/production/secure-deployment/certificates/
+/mesh/:version/explore/gui/ /mesh/:version/production/gui/
+/mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
+/mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
+
+
+# Kuma IA Reference section
+
+/docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
+
+
+## Introduction
+/docs/:version/introduction/what-is-kuma/ /docs/:version/introduction/overview-of-kuma/ 302
+/docs/:version/introduction/what-is-a-service-mesh/ /docs/:version/introduction/what-is-a-service-mesh/ 302
+/docs/:version/introduction/deployments/  /docs/:version/production/deployment/ 302
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/

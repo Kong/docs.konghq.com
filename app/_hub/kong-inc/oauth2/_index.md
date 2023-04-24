@@ -135,7 +135,7 @@ params:
     - name: anonymous
       required: false
       default: null
-      datatype: string      
+      datatype: string
       description: |
         An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
         If empty (default), the request fails with an authentication failure `4xx`. Note that this value
@@ -334,13 +334,13 @@ You can use this information on your side to implement additional logic. You can
 ### Client Credentials
 
 The [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) flow works out of the box, without building any authorization page.
-The clients need to use the `/oauth2/token` endpoint to request an access token.  
+The clients need to use the `/oauth2/token` endpoint to request an access token.
 
 You can access the `/oauth2/token` endpoint to retrieve the `access_token` in the following ways:
 
 * Using a POST request, set `Content-Type` to `application/x-www-form-urlencoded` and send the credentials as form data:
 
-    ```bash  
+    ```bash
     curl -i -X POST 'https://example.service.com/oauth2/token' \
       --header 'Content-Type: application/x-www-form-urlencoded' \
       --data-urlencode 'client_id=XXXX' \
@@ -439,15 +439,22 @@ In this flow, the steps that you need to implement are:
 
 ----
 
-## Resource Owner Password Credentials
+## (Legacy systems only) Resource owner password credentials
+
+
+{:.important}
+ > **Important**: The OAuth2 Security Best Practice explicitly mentions that Resource Owner Password Credentials
+  ["MUST NOT BE USED"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-13#section-3.4).
+  The following section is left here as a reference for supporting legacy systems.
+
 
 The [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) is a much simpler version of the Authorization Code flow, but it still requires to build an authorization backend (without the frontend) in order to make it work properly.
 
 ![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow2.png)
 
-1. On the first request, the client application make a request including some OAuth2 parameters, including `username` and `password` parameters, to your web-application.
+1. On the first request, the client application makes a request with some OAuth2 parameters to your web application.
 
-2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key`, `authenticated_userid` and `grant_type` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at, on the `/oauth2/token` endpoint of the configured plugin. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+2. The backend of your web application adds the `provision_key` and `grant_type` parameters to the parameters originally sent by the client, then makes a `POST` request to Kong using the `/oauth2/token` endpoint of the configured plugin. If an `Authorization` header is sent by the client, that must be added too. For example:
 
     ```bash
     curl https://your.service.com/oauth2/token \
