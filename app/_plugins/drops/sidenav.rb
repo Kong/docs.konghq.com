@@ -11,14 +11,15 @@ module Jekyll
       def url
         return unless @item['url']
 
-        @url ||= begin
-          url = if @item['absolute_url']
-                  @item['url']
-                else
-                  [@options['docs_url'], @options['version'], @item['url']].join('/')
-                end
-          standardize_url(url)
-        end
+        @url ||= if @item['absolute_url']
+                   if @item['url'].end_with?('/')
+                     @item['url']
+                   else
+                     @item['url'].concat('/')
+                   end
+                 else
+                   standardize_url([@options['docs_url'], @options['version'], @item['url']].join('/'))
+                 end
       end
 
       def icon
