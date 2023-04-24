@@ -246,6 +246,7 @@
 /hub/reedelk/*                                     /hub/
 /hub/qnap/*                                        /hub/
 /hub/signalfx/*                                    /hub/
+/hub/signal_sciences/*                             /hub/
 
 # KONNECT
 
