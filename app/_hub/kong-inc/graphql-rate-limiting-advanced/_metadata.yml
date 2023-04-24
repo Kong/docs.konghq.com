@@ -7,7 +7,8 @@ dbless_explanation: |
 free: false
 plus: false
 enterprise: true
-konnect: false
+konnect: true
+cloud: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   In DB-less and hybrid modes, the <code>cluster</code> config strategy
