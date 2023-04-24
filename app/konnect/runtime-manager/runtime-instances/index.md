@@ -20,7 +20,9 @@ This brings you to a set of installation options. Choose one of the options, the
 {% include install.html config=site.data.tables.install_options_konnect header='no-header' %}
 
 {:.note}
-> **Note:** Kong does not host runtime instances. You must install and host your own.
+> **Notes:** 
+> * Runtime Manager includes a feature called Runtime Launcher which can be used with any of AWS, Azure, or GCP. This feature is currently in tech preview.
+> * Kong does not host runtime instances. You must install and host your own.
 
 ### Forward proxy support
 

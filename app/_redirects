@@ -294,6 +294,7 @@
 /konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
+/konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
 
 #API Redirects
 
