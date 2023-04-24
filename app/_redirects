@@ -247,6 +247,7 @@
 /hub/qnap/*                                        /hub/
 /hub/signalfx/*                                    /hub/
 /hub/signal_sciences/*                             https://docs.signalsciences.net/install-guides/other-modules/kong/
+/hub/cleafy/*                                      /hub/
 
 # KONNECT
 
