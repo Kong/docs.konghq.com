@@ -3,7 +3,9 @@ title: Health Check
 content_type: tutorial
 ---
 
-This tutorial will guide you through the process of setting up and using the new Kong Status endpoint, which provides a more reliable and simple way to determine if Kong is ready to serve requests. The endpoint will return a 200 OK response when Kong is ready, or a 503 Service Unavailable response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
+This tutorial will guide you through the process of using the new Kong Status endpoint, which provides a more reliable and simple way to determine if Kong is ready to serve requests.
+
+To put it simply, health check endpoint will return a 200 OK response when Kong is ready, or a 503 Service Unavailable response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
 ## Prerequisites
 
@@ -27,14 +29,14 @@ In Traditional mode, the conditions that must be fulfilled simultaneously for th
 In DB-less mode, the endpoint returns 200 OK when all of the following conditions are met:
 
 1. The current configuration hash is not nil and not all zeros
-2. Successful initial build or rebuild of all routers for all workers
-3. Successful initial build or rebuild of all plugin iterators for all workers
+2. Successful initial build/rebuild of all routers for all workers
+3. Successful initial build/rebuild of all plugin iterators for all workers
 
 ## Configuring the Status Endpoint
 
 To configure the Status Endpoint in your Kong instance, follow these steps:
 
-1. Ensure that Kong is installed and running on your system.
+1. Ensure that Kong is setup.
 2. Open the Kong configuration file (e.g., `kong.conf` or `kong.yml`).
 3. Make sure the Status API is enabled by including the following line:
 
@@ -49,6 +51,8 @@ To configure the Status Endpoint in your Kong instance, follow these steps:
     ```shell
     kong reload
     ```
+    
+You can also use `KONG_STATUS_LISTEN` environment variable to configure it.
 
 ## Using the Status Endpoint
 
