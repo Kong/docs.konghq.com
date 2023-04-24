@@ -29,8 +29,9 @@ In this section, you will be installing a service mesh ({{site.mesh_product_name
 1. From the left navigation menu in {{site.konnect_short_name}}, open [MESH MANAGER ICON HERE] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
 1. Click **New Control Plane**.
 1. Enter "example-cp" in the **Mesh name** field.
-1. Click **Next**.
-1. Copy and execute the Kubernetes mesh configuration that displays at the end of the wizard. 
+1. Click **Save**.
+1. MAKE A ZONE 
+1. Copy and run the Kubernetes mesh configuration that displays at the end of the wizard. 
     Once {{site.konnect_short_name}} finds the newly created mesh, it will display it. 
 1. Click **Next**.
 1. ? Does this just take you to your list of meshes/control planes?
@@ -41,15 +42,13 @@ You now have a very basic {{site.mesh_product_name}} service mesh added to {{sit
 
 ## Add a service to your service mesh
 
-? 
+Now that you've added a global control plane and a zone to your service mesh in {{site.konnect_short_name}}, you can add services to your mesh. You can use the {{site.mesh_product_name}} demo app to set up two services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status.
 
-### Instructions
+For more information, see one of the following in the {{site.mesh_product_name}} documentation:
+* [Explore {{site.mesh_product_name}} with the Kubernetes demo app](/mesh/latest/quickstart/kubernetes/)
+* [Explore {{site.mesh_product_name}} with the Universal demo app](/mesh/latest/quickstart/universal/)
 
-1. Not sure how this is done, make a data plane proxy? Is this possible?
-
-### Explanation of instructions 
-
-Now you can see things in the Konnect UI?
+After you add a service to your service mesh, the {{site.konnect_short_name}} will be populated with metrics from your service mesh. 
 
 ## More information
 
