@@ -38,7 +38,7 @@ To configure the Status Endpoint in your Kong instance, follow these steps:
 2. Open the Kong configuration file (e.g., `kong.conf` or `kong.yml`).
 3. Make sure the Status API is enabled by including the following line:
 
-    ```yaml
+    ```conf
     status_listen = 0.0.0.0:8100
     ```
 
