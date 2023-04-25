@@ -249,6 +249,7 @@
 /hub/signal_sciences/*                             https://docs.signalsciences.net/install-guides/other-modules/kong/
 /hub/cleafy/*                                      /hub/
 /hub/smartparkingtechnology/*                      /hub/
+/hub/bitnami/*                                     /gateway/latest/install/
 
 # KONNECT
 
