@@ -199,6 +199,12 @@ params:
       datatype: integer
       description: |
         The TCP port that the plugin uses to connect to the server.
+    - name: disable_https
+      minimum_version: "3.3.x"
+      required: false
+      default: false
+      datatype: boolean
+      description: Whether to disable HTTPS to connect with the AWS Lambda Function service endpoint. This is useful for local test scenarios by using the [AWS SAM CLI tool](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html).
     - name: keepalive
       required: true
       default: '`60000`'
