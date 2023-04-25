@@ -242,6 +242,7 @@
 /hub/flash/*                                       /hub/
 /hub/yesinteractive/*                              /hub/
 /hub/inspur/*                                      /hub/
+/hub/stone-payments/*                              /hub/
 
 # KONNECT
 
