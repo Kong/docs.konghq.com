@@ -2310,8 +2310,8 @@ The router adds:
 
 Learn more about the router:
 
-[Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
-[Router Expressions language reference](/gateway/{{page.kong_version}}/reference/router-expressions-language/)
+[Configure routes using expressions](/gateway/latest/key-concepts/routes/expressions/)
+[Router Expressions language reference](/gateway/latest/reference/router-expressions-language/)
 
 
 #### Path handling algorithms
@@ -5601,11 +5601,11 @@ HTTP 204 No Content
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
-[cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
-[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+[clustering]: /gateway/latest/reference/clustering
+[cli]: /gateway/latest/reference/cli
+[active]: /gateway/latest/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/latest/how-kong-works/health-checks
+[secure-admin-api]: /gateway/latest/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/latest/how-kong-works/routing-traffic/
 
 {% endunless %}
