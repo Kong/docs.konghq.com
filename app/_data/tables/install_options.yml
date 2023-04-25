@@ -82,7 +82,7 @@ features:
 
   - name: "Other"
     items:
-      - name: "Terraform"
+      - name: "AWS with Terraform"
         oss: true
         enterprise: true
         support: true
