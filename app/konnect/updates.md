@@ -9,6 +9,9 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## May 2023
+: {{site.konnect_short_name}} now supports customers' integration with the portal developer workflows via public APIs. For more information, see the [Portal Client API spec](ADD URL HERE)
+
 ## April 2023
 
 **GraphQL plugins**
