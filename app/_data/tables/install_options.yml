@@ -80,3 +80,12 @@ features:
         url: /gateway/VERSION/install/docker/build-custom-images/
         icon: /assets/images/icons/documentation/alpinelinux-icon.svg
 
+  - name: "Other"
+    items:
+      - name: "Terraform"
+        oss: true
+        enterprise: true
+        support: true
+        url: https://github.com/kong/kong-terraform-aws
+        icon: /assets/images/icons/documentation/terraform.svg
+
