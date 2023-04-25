@@ -1,6 +1,8 @@
 ---
 title: Report Use Cases
 content_type: tutorial
+book: use-cases
+chapter: 1
 ---
 
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
@@ -186,7 +188,7 @@ You learned that:
 * You can use information from reports to dig deeper into any anomalies, performance, or stability issues to determine what is causing the problem
 * After you create a report, you can export and share the reports with stakeholders to let them draw conclusions based on further analysis
 
-If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, see [Analyze Services and Routes](/konnect/analytics/services-and-routes/).
+If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read the next use case [Diagnosing latency issues](/konnect/analytics/use-cases/latency/) or see [Analyze Services and Routes](/konnect/analytics/services-and-routes/).
 
 ## More information
 * [Reports reference for metrics, filtering and grouping, and time intervals](/konnect/analytics/reference/)
