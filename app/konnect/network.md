@@ -43,7 +43,7 @@ add the following hostnames to the firewall allowlist:
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
 * `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
     Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
-    Region can be `us` or `eu`.
+    Region can be `us`, `eu`, or `global`.
 * `<runtime-group-id>.<region>.cp0.konghq.com`: Handles configuration for a runtime group.
     Runtime instances connect to this host to receive configuration updates.
     This hostname is unique to each organization and runtime group.
