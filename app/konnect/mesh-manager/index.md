@@ -15,7 +15,7 @@ Here are a few benefits of creating a service mesh in {{site.konnect_short_name}
 
 ## Create a service mesh in {{site.mesh_product_name}}
 
-When you create a {{site.mesh_product_name}} control plane in {{site.konnect_short_name}}, you configure the settings for the control plane in the {{site.konnect_short_name}} UI and then deploy the control plane in {{site.mesh_product_name}} using `kumactl`. 
+When you create a {{site.mesh_product_name}} control plane in {{site.konnect_short_name}}, you configure the settings and zone for the control plane in the {{site.konnect_short_name}} UI and then deploy the control plane in {{site.mesh_product_name}} using `kumactl`. 
 
 ### Prerequisites
 
@@ -26,7 +26,7 @@ When you create a {{site.mesh_product_name}} control plane in {{site.konnect_sho
 
 ### Deploy the service mesh in {{site.mesh_product_name}}
 
-After you create a service mesh in {{site.konnect_short_name}}, you must deploy it in {{site.mesh_product_name}} before you can view the service mesh details in {{site.konnect_short_name}}.
+After you create a service mesh in {{site.konnect_short_name}}, you must deploy it in {{site.mesh_product_name}} before you can view the service mesh details in {{site.konnect_short_name}}. When you deploy the control plane in {{site.mesh_product_name}}, you must use the configuration file that you copied from {{site.konnect_short_name}}.
 
 Next, follow the instructions in the [Deploy a standalone control plane](/mesh/latest/production/cp-deployment/stand-alone/) {{site.mesh_product_name}} documentation.
 
