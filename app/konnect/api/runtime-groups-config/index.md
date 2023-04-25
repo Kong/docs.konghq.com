@@ -752,7 +752,7 @@ The API for configuring Kong Konnect Runtime Groups.
 
 
 
-This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few notable differences:
+This API is similar to the [Kong Gateway admin API](/gateway/latest/admin-api/) with a few notable differences:
 
 * `PATCH` methods are not supported
 > `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
@@ -787,7 +787,7 @@ a JSON representation of the data you want to send. Example:
 An example adding a Route to a Service named `test-service`:
 
 ```
-curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+curl -i -X POST http://https://{region}.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
      -H "Content-Type: application/json" \
      -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
 ```
@@ -2310,8 +2310,8 @@ The router adds:
 
 Learn more about the router:
 
-[Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
-[Router Expressions language reference](/gateway/{{page.kong_version}}/reference/router-expressions-language/)
+[Configure routes using expressions](/gateway/latest/key-concepts/routes/expressions/)
+[Router Expressions language reference](/gateway/latest/reference/router-expressions-language/)
 
 
 #### Path handling algorithms
@@ -5601,11 +5601,11 @@ HTTP 204 No Content
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
-[cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
-[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+[clustering]: /gateway/latest/reference/clustering
+[cli]: /gateway/latest/reference/cli
+[active]: /gateway/latest/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/latest/how-kong-works/health-checks
+[secure-admin-api]: /gateway/latest/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/latest/how-kong-works/routing-traffic/
 
 {% endunless %}
