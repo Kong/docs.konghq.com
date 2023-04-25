@@ -245,6 +245,7 @@
 /hub/stone-payments/*                              /hub/
 /hub/reedelk/*                                     /hub/
 /hub/qnap/*                                        /hub/
+/hub/signalfx/*                                    /hub/
 
 # KONNECT
 
