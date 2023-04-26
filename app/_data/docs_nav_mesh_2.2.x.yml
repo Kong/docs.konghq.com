@@ -187,7 +187,6 @@ items:
       - text: Control Plane Configuration
         url: /documentation/configuration/
         src: /.repos/kuma/app/_src/documentation/configuration/
-      - text: Requirements
   - title: Policies
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
@@ -335,6 +334,8 @@ items:
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
+      - text: ECS Support
+        url: /installation/ecs
       - text: Auditing
         url: /features/access-audit
   - title: Reference docs
@@ -431,9 +432,9 @@ items:
       - text: Open source License
         url: /community/license/
         src: /.repos/kuma/app/_src/community/license/
-      - text: Contribute to Mesh
-        url: /community/contribute-to-mesh/
-        src: /.repos/kuma/app/_src/community/contribute-to-kuma/
+      - text: Contribute to Kuma
+        url: https://kuma.io/community
+        absolute_url: true
 unlisted:
   # Kuma CP
   - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
