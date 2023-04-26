@@ -236,6 +236,10 @@
           absolute_url: true
         - text: Portal RBAC Guide
           url: /api/portal-auth/portal-rbac-guide/
+    - text: Mesh Manager API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/ADD URL
     - text: Runtime Configuration API
       items:
         - text: Overview
