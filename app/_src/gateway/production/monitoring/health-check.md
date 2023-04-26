@@ -15,7 +15,7 @@ amount of memory Kong node is using. You might want to check out the [`/status` 
 * Kong installed
 * Basic understanding of Kong configuration and deployment modes (Traditional, DB-less, and Hybrid)
 
-## Understanding the Status Endpoint
+## Understanding the Node Readiness Endpoint
 
 Before diving into the steps, it's important to understand the purpose of the Status Endpoint and how it determines whether a Kong instance is ready or not.
 
