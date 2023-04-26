@@ -47,7 +47,7 @@ To configure the Status Endpoint in your Kong instance, follow these steps:
     status_listen = 0.0.0.0:8100
     ```
 
-    This will make the Status API listen on port 8100. You can change the port number to any available port on your system.
+    This will make the Status API server listen on port `8100` on all interfaces of the system. You can change the port number to any available port on your system.
 
 4. Save the configuration file and restart Kong to apply the changes.
 
