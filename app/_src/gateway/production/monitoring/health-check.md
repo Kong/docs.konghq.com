@@ -57,7 +57,7 @@ To configure the Status Endpoint in your Kong instance, follow these steps:
     
 You can also use `KONG_STATUS_LISTEN` environment variable to configure it.
 
-## Using the Status Endpoint
+## Using the Node Readiness Endpoint
 
 Once you've configured the Status Endpoint, you can send requests to it to check the readiness of your Kong instance.
 
