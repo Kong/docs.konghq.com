@@ -47,7 +47,7 @@ params:
         > **Notes:** 
         * Body validation is only done for `application/json` and skipped for any other allowed content types. 
         * Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
-        * From `3.1.x`, The parameter is checked forcibly, which means a request with parameter(e.g. `application/json; charset=UTF-8`) is **NOT** to be considered valid for the one without the parameter(e.g. `application/json`).
+        * The parameter is strictly validated, which means a request with a parameter (e.g. `application/json; charset=UTF-8`) is **NOT** considered valid for one without the same parameter (e.g. `application/json`).
         The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
         
     - name: allowed_content_types
