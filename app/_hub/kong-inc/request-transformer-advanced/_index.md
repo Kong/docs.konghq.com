@@ -35,7 +35,7 @@ These can be combined. For example, `config.remove.json: customers[*].info.phone
 all `phone` properties from inside the `info` object of all entries in the `customers` array.
 {% endif_plugin_version %}
 
-### Advanced templates
+### Advanced templates {#advanced-templates}
 
 The content of the placeholder `$(...)` is evaluated as a Lua expression, so
 logical operators may be used. For example:
@@ -221,7 +221,4 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 | --------- | -----------
 | ?q1=v1 | ?q1=v1&q2=v1
 |        | ?q1=v2&q2=v1
-
-
----
 
