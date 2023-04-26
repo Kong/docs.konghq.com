@@ -92,7 +92,7 @@ params:
       value_in_examples: null
       datatype: boolean
       description: |
-        If set to `true`, requests will be cached while ignoring case sensitivity in the URI.
+        Determines whether to treat URIs as case sensitive. By default, case sensitivity is enabled. If set to `true`, requests are cached while ignoring case sensitivity in the URI.
     - name: storage_ttl
       required: false
       default: null
