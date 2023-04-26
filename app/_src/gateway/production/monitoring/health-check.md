@@ -61,7 +61,7 @@ You can also use `KONG_STATUS_LISTEN` environment variable to configure it.
 
 Once you've configured the Status Endpoint, you can send requests to it to check the readiness of your Kong instance.
 
-1. Send a GET request to the `/status/ready` endpoint. Replace `<status-api-url>` with the appropriate URL for your Status API, including the port number:
+1. Send a GET request to the `/status/ready` endpoint. Replace `<status-api-host>` with the appropriate host for your Status API server, including the port number:
 
     ```shell
     curl -I <status-api-url>/status/ready
