@@ -27,7 +27,7 @@ In Traditional mode, the conditions that must be fulfilled simultaneously for th
 2. Successful initial build of all routers for all workers
 3. Successful initial build of all plugin iterators for all workers
 
-### DB-less mode (data_plane role)
+### DB-less mode (`data_plane` role)
 
 In DB-less mode, the endpoint returns 200 OK when all of the following conditions are met:
 
