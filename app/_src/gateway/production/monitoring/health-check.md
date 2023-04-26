@@ -71,7 +71,7 @@ Once you've configured the Status Endpoint, you can send requests to it to check
 
 ## Updating Readiness Probes
 
-If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Status Endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
+If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Node Readiness Endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
 
 ```yaml
 readinessProbe:
