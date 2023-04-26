@@ -7,6 +7,9 @@ This tutorial will guide you through the process of using the new Kong Status en
 
 To put it simply, health check endpoint will return a `200 OK` response when Kong is ready, or a `503 Service Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
+Note that the readiness endpoint does not return detailed node health information such as the
+amount of memory Kong node is using. You might want to check out the [`/status` API](/gateway/{{page.kong_version}}/admin-api/#retrieve-node-status) as well.
+
 ## Prerequisites
 
 * Kong installed
