@@ -5,13 +5,13 @@ title: Reference Format
 We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe references to a secret store.
 
 ```text
-{vault://<vault-backend|entity>/<secret-id>[/<secret-key][?query]}
+{vault://<vault-backend|entity>/<secret-id>[:<secret-key>][?query]}
 ```
 
 ### Protocol/Scheme
 
 ```text
-{vault://<vault-backend|entity>/<secret-id>[/<secret-key]}
+{vault://<vault-backend|entity>/<secret-id>[:<secret-key>]}
  ^^^^^
 ```
 
@@ -20,8 +20,8 @@ The `vault` in the URL is used as an identifier for Kong. We use this to referen
 ### Host/Path
 
 ```text
-{vault://<vault-prefix>/<secret-id>[/<secret-key]}
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{vault://<vault-prefix>/<secret-id>[:<secret-key>]}
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
 The `host` and  `path` of the URL defines the following:
@@ -33,14 +33,14 @@ The prefix for a vault can be either the name of the backend or the name of vaul
 Examples:
 
 ```text
-{vault://env/<secret-id>[/<secret-key]}
+{vault://env/<secret-id>[:<secret-key>]}
          ^^^
 ```
 
 or using a vault entity
 
 ```text
-{vault://my-env-vault/<secret-id>[/<secret-key]}
+{vault://my-env-vault/<secret-id>[:<secret-key>]}
          ^^^^^^^^^^^^
 ```
 

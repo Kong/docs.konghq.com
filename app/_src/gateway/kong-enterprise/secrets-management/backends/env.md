@@ -30,8 +30,8 @@ export PG_CREDS='{"username":"user", "password":"pass"}'
 This allows you to reference the secrets separately:
 
 ```text
-{vault://env/pg-creds/username}
-{vault://env/pg-creds/password}
+{vault://env/pg-creds:username}
+{vault://env/pg-creds:password}
 ```
 
 {:.note}

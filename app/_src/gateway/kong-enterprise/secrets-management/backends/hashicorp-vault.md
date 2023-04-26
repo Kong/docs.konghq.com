@@ -144,13 +144,13 @@ version            1
 Access these secrets like this:
 
 ```bash
-{vault://hcv/hello/foo}
+{vault://hcv/hello:foo}
 ```
 
 Or, if you configured an entity:
 
 ```bash
-{vault://my-hashicorp-vault/hello/foo}
+{vault://my-hashicorp-vault/hello:foo}
 ```
 
 ## Vault configuration options

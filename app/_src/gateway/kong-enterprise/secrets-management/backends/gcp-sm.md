@@ -52,8 +52,8 @@ contains one or more properties:
 You can now reference the secret's individual resources like this:
 
 ```bash
-{vault://gcp/my-secret-name/foo?project_id=my_project_id}
-{vault://gcp/my-secret-name/snip?project_id=my_project_id}
+{vault://gcp/my-secret-name:foo?project_id=my_project_id}
+{vault://gcp/my-secret-name:snip?project_id=my_project_id}
 ```
 
 Note that both the provider (`gcp`) as well as the GCP project ID
@@ -67,8 +67,8 @@ export KONG_VAULT_GCP_PROJECT_ID=my_project_id
 Then you don't need to repeat it in references:
 
 ```bash
-{vault://gcp/my-secret-name/foo}
-{vault://gcp/my-secret-name/snip}
+{vault://gcp/my-secret-name:foo}
+{vault://gcp/my-secret-name:snip}
 ```
 
 ## Configuration via vaults entity
@@ -143,8 +143,8 @@ With the Vault entity in place, you can reference the GCP secrets
 through it:
 
 ```bash
-{vault://my-gcp-sm-vault/my-secret-name/foo}
-{vault://my-gcp-sm-vault/my-secret-name/snip}
+{vault://my-gcp-sm-vault/my-secret-name:foo}
+{vault://my-gcp-sm-vault/my-secret-name:snip}
 ```
 
 ## Vault entity configuration options

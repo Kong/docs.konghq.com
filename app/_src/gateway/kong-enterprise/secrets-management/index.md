@@ -37,7 +37,7 @@ The vault backend may store multiple related secrets inside an object, but the r
 should always point to a key that resolves to a string value. For example, the following reference:
 
 ```
-{vault://hcv/pg/username}
+{vault://hcv/pg:username}
 ```
 
 Would point to a secret object called `pg` inside a HashiCorp Vault, which may return the following value:
@@ -51,7 +51,7 @@ Would point to a secret object called `pg` inside a HashiCorp Vault, which may r
 
 <!-- vale off -->
 Kong receives the payload and extracts the `"username"` value of `"john"` for the secret reference of
-`{vault://hcv/pg/username}`.
+`{vault://hcv/pg:username}`.
 <!-- vale on -->
 
 ### What can be stored as a secret?

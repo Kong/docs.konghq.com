@@ -44,8 +44,8 @@ In this object, you have multiple key=value pairs.
 Access these secrets from `my-secret-name` like this:
 
 ```bash
-{vault://aws/my-secret-name/foo}
-{vault://aws/my-secret-name/snip}
+{vault://aws/my-secret-name:foo}
+{vault://aws/my-secret-name:snip}
 ```
 
 ## Configuration via vaults entity
@@ -118,8 +118,8 @@ With the Vault entity in place, you can now reference the secrets. This allows y
 environment variable.
 
 ```bash
-{vault://my-aws-sm-vault/my-secret-name/foo}
-{vault://my-aws-sm-vault/my-secret-name/snip}
+{vault://my-aws-sm-vault/my-secret-name:foo}
+{vault://my-aws-sm-vault/my-secret-name:snip}
 ```
 
 ## Secrets in different regions
@@ -134,8 +134,8 @@ curl -X PUT http://HOSTNAME:8001/vaults/aws-us-west-vault -d name=aws -d config.
 This lets you source secrets from different regions:
 
 ```bash
-{vault://aws-eu-central-vault/my-secret-name/foo}
-{vault://aws-us-west-vault/my-secret-name/snip}
+{vault://aws-eu-central-vault/my-secret-name:foo}
+{vault://aws-us-west-vault/my-secret-name:snip}
 ```
 
 ## Vault configuration options
