@@ -67,7 +67,7 @@ Once you've configured the Status Endpoint, you can send requests to it to check
     curl -I <status-api-url>/status/ready
     ```
 
-2. If the response is `200 OK`, your Kong instance is ready to serve requests. If the response is `503 Service Unavailable`, Kong is still loading the configuration or has failed to load it.
+2. If the response is `200 OK`, your Kong instance is ready to serve requests. If the response is `503 Service Unavailable`, Kong does not yet have a valid configuration.
 
 ## Updating Readiness Probes
 
