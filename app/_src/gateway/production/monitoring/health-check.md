@@ -3,7 +3,7 @@ title: Health Check
 content_type: tutorial
 ---
 
-This tutorial will guide you through the process of using the new Kong Status endpoint, which provides a more reliable and simple way to determine if Kong is ready to serve requests.
+This tutorial will guide you through the process of using the new Node Readiness Endpoint, which provides a more reliable and simple way to determine if Kong is ready to serve user requests.
 
 To put it simply, health check endpoint will return a `200 OK` response when Kong is ready, or a `503 Service Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
