@@ -64,7 +64,7 @@ Once you've configured the Status Endpoint, you can send requests to it to check
 1. Send a GET request to the `/status/ready` endpoint. Replace `<status-api-host>` with the appropriate host for your Status API server, including the port number:
 
     ```shell
-    curl -I <status-api-url>/status/ready
+    curl -I <status-api-host>/status/ready
     ```
 
 2. If the response is `200 OK`, your Kong instance is ready to serve requests. If the response is `503 Service Unavailable`, Kong does not yet have a valid configuration.
