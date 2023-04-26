@@ -86,6 +86,14 @@ params:
       datatype: boolean
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
+    - name: ignore_uri_case
+      minimum_version: "3.3.x"
+      required: false
+      default: false
+      value_in_examples: null
+      datatype: boolean
+      description: |
+        Determines whether to treat URIs as case sensitive. By default, case sensitivity is enabled. If set to `true`, requests are cached while ignoring case sensitivity in the URI.
     - name: storage_ttl
       required: false
       default: null
@@ -437,6 +445,9 @@ Note that this endpoint purges all cache entities across all `proxy-cache-advanc
 ---
 
 ## Changelog
+
+**{{site.base_gateway}} 3.3.x**
+* Added the `ignore_uri_case` configuration parameter.
 
 **{{site.base_gateway}} 3.1.x**
 * Added support for integrating with redis clusters using the `config.redis.cluster_addresses` configuration parameter.
