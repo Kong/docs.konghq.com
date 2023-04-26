@@ -153,7 +153,7 @@ items:
           - text: CP/DP Communication through a Forward Proxy
             url: /production/networking/cp-dp-proxy
           - text: PostgreSQL TLS
-            items: 
+            items:
             - text: Configure PostgreSQL TLS
               url: /production/networking/configure-postgres-tls
             - text: Troubleshooting PostgreSQL TLS
@@ -349,7 +349,7 @@ items:
       - text: About Control Plane Outage Management
         url: /kong-enterprise/cp-outage-handling-faq
       - text: FIPS 140-2
-        items: 
+        items:
           - text: Overview
             url: /kong-enterprise/fips-support/
             src: /gateway/kong-enterprise/fips-support/index
@@ -357,6 +357,8 @@ items:
             url: /kong-enterprise/fips-support/install
           - text: FIPS 140-2 Compliant Plugins
             url: /kong-enterprise/fips-support/plugins
+      - text: Use AWS IAM to connect RDS database in Kong Gateway Enterprise
+        url: /kong-enterprise/aws-iam-auth-to-rds-database
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
