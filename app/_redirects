@@ -647,8 +647,7 @@
 # KONG MESH
 /mesh/1.0.x/features/   /mesh/1.0.x/features/vault
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
-/mesh/*/features/windows/     /mesh/latest/installation/windows/
-/mesh/latest/features/windows/ /mesh/latest/installation/windows/
+/mesh/:version/features/windows/     /mesh/:version/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
 /policies/  /mesh/:version/policies/
 /mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
@@ -696,6 +695,9 @@
 # Kuma IA Reference section
 
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
+
+# Redirect missing policies to features (especially useful to make doc links work)
+/mesh/:version/policies/* /mesh/:version/features/:splat
 
 
 ## Introduction

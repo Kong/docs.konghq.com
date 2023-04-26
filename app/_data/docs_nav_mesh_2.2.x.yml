@@ -317,21 +317,24 @@ items:
         url: /features/opa
       - text: MeshOPA (beta)
         url: /features/meshopa
+        generate: false
       - text: MeshGlobalRatelimit (beta)
         url: /features/meshglobalratelimit
+        generate: false
       - text: Multi-zone authentication
         url: /features/kds-auth
       - text: FIPS support
         url: /production/secure-deployment/fips-support/
+        generate: false
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /production/secure-deployment/rbac/
+        generate: false
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
-        generate: false
       - text: Auditing
         url: /features/access-audit
   - title: Reference docs
