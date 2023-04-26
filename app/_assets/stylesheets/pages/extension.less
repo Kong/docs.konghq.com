@@ -269,7 +269,7 @@
       box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.15);
       border: 0 none;
       background: #fff;
-      overflow: scroll;
+      overflow: auto;
       z-index: 100;
       transform: translateX(100%);
       -webkit-transform: translateX(100%);
@@ -323,7 +323,7 @@ table {
 
 .hub {
   .container {
-    overflow: scroll;
+    overflow: auto;
   }
 
   .docs-toc {
@@ -379,7 +379,7 @@ table {
     font-size: 14px;
     line-height: 24px;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 35px;
 
     &--nav {
       display: flex;
@@ -408,19 +408,26 @@ table {
             font-weight: inherit;
           }
 
+          &:after {
+            font-size: 12px;
+            padding: 0 4px 0 10px;
+          }
+
           a {
             display: flex;
             color: white;
 
             &:hover {
               cursor: pointer;
+              transition: opacity 0.2s ease;
+              opacity: 0.7;
             }
           }
 
           img {
             width: 14px;
             height: 14px;
-            background: #D9D9D9;
+            background: none;
           }
         }
       }
@@ -438,6 +445,11 @@ table {
         a {
           display: flex;
           color: white;
+
+          &:hover {
+            transition: opacity 0.2s ease;
+            opacity: 0.7;
+          }
         }
 
         img {
@@ -572,7 +584,7 @@ table {
       padding-top: 6px;
       
       h4 {
-        color: @steel-700;
+        color: #031f53;
         font-size: 16px;
       }
     }
@@ -585,7 +597,7 @@ table {
       margin-left: 15px;
       border-bottom: 1px solid @gray;
       font-size: 14px;
-      color: @steel-500;
+      color: #031f53;
 
       span:not(:last-of-type)::after {
         content: "|";
