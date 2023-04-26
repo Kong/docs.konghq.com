@@ -87,6 +87,7 @@ params:
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
     - name: ignore_uri_case
+      minimum_version: "3.3.x"
       required: false
       default: false
       value_in_examples: null
