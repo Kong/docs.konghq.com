@@ -17,7 +17,7 @@ amount of memory Kong node is using. You might want to check out the [`/status` 
 
 ## Understanding the Node Readiness Endpoint
 
-Before diving into the steps, it's important to understand the purpose of the Status Endpoint and how it determines whether a Kong instance is ready or not.
+Before diving into the steps, it's important to understand the purpose of the Node Readiness Endpoint and how it determines whether a Kong instance is ready or not.
 
 ### Traditional mode
 
