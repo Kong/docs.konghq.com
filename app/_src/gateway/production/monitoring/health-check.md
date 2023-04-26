@@ -59,7 +59,7 @@ You can also use `KONG_STATUS_LISTEN` environment variable to configure it.
 
 ## Using the Node Readiness Endpoint
 
-Once you've configured the Status Endpoint, you can send requests to it to check the readiness of your Kong instance.
+Once you've configured the Node Readiness Endpoint, you can send requests to it to check the readiness of your Kong instance.
 
 1. Send a GET request to the `/status/ready` endpoint. Replace `<status-api-host>` with the appropriate host for your Status API server, including the port number:
 
