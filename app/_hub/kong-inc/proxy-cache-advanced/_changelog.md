@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.3.x**
+* Added the `ignore_uri_case` configuration parameter.
+
 **{{site.base_gateway}} 3.1.x**
 * Added support for integrating with redis clusters using the `config.redis.cluster_addresses` configuration parameter.
 
