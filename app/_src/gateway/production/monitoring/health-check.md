@@ -82,7 +82,7 @@ readinessProbe:
     periodSeconds: 5
 ```
 
-Make sure to replace the port number with the one you configured for the Status API.
+Make sure to replace the port number with the one you configured for the Status API Server.
 
 ## See also
 
