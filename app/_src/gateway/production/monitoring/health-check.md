@@ -32,8 +32,8 @@ In Traditional mode, the conditions that must be fulfilled simultaneously for th
 In DB-less mode, the endpoint returns 200 OK when all of the following conditions are met:
 
 1. The current configuration hash is not nil and not all zeros
-2. Successful initial build/rebuild of all routers for all workers
-3. Successful initial build/rebuild of all plugin iterators for all workers
+2. Successful initial build of all routers for all workers
+3. Successful initial build of all plugin iterators for all workers
 
 ## Configuring the Status Endpoint
 
