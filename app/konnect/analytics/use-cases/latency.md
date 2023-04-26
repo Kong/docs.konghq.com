@@ -8,7 +8,7 @@ chapter: 2
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
 Let's go through some example situations where you could leverage custom reports.
 
-In this scenario, Ryan is a platform owner who supervises the implementation and maintenance of the API Gateway infrastructure that governs all APIs at ACME. A few minutes ago, he received an email that stated that the response latency seemed to be very high and and causing a bad customer experience. To better understand the source of the delays, Ryan decides to create two reports to compare the **average upstream** and **latency** for all traffic to the production servers in the last hour.
+In this scenario, Ryan is a platform owner who supervises the implementation and maintenance of the API Gateway infrastructure that governs all APIs at ACME. A few minutes ago, he received an email that stated that the response latency seemed to be very high and and causing a bad customer experience. To better understand the source of the delays, Ryan decides to create two reports to compare the **average upstream** and **Kong latency** for all traffic to the production servers in the last hour.
 
 ## Build reports 
 
