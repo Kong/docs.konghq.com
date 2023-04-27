@@ -556,4 +556,4 @@ For more information, see the Kong plugin docs on
 **{{site.base_gateway}} 3.1.x**
 
 * Breaking changes
-    * `allowed_content_types`: a request with parameter(e.g. `application/json; charset=UTF-8`) is **NOT** to be considered valid for the one without the parameter(e.g. `application/json`).
+    * `allowed_content_types`: The parameter is strictly validated, which means a request with a parameter (e.g. `application/json; charset=UTF-8`) is **NOT** considered valid for one without the same parameter (e.g. `application/json`).
