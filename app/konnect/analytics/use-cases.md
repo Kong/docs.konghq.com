@@ -1,5 +1,5 @@
 ---
-title: Report Use Cases
+title: Analyze API Usage and Performance
 content_type: tutorial
 book: use-cases
 chapter: 1

@@ -8,7 +8,7 @@ chapter: 2
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to a CSV file. 
 Let's go through an example situation where you could leverage custom reports.
 
-In this scenario, Tal is a platform owner who supervises the implementation and maintenance of the API Gateway infrastructure that governs all APIs at ACME. A few minutes ago, he received an email that stated that the response latency seemed to be very high and and causing a bad customer experience. To better understand the source of the delays, Tal decides to create two reports to compare the **average upstream** and **Kong latency** for all traffic to the production servers in the last hour.
+In this scenario, Tal is a platform owner who supervises the implementation and maintenance of the API Gateway infrastructure that governs all APIs at ACME. A few minutes ago, they received an email that stated that the response latency seemed to be very high and and causing a bad customer experience. To better understand the source of the delays, Tal decides to create two reports to compare the **average upstream** and **Kong latency** for all traffic to the production servers in the last hour.
 
 ## Build reports 
 
@@ -26,7 +26,7 @@ For the Kong latency report, Tal configures the following:
 * **Group by**: Service
 * **Choose Granularity**: Minutely
 
-Then, he adds a filter to filter by the individual runtime group:
+Then, they add a filter to filter by the individual runtime group:
 
 * **Filter by**: Runtime Group
 * **Operator**: In
@@ -50,7 +50,7 @@ For the Upstream latency report, Tal configures the following:
 * **Group by**: Service
 * **Choose Granularity**: Minutely
 
-Then he adds a filter to filter by the individual Runtime Group 
+Then they add a filter to filter by the individual Runtime Group 
 
 * **Filter by**: Runtime Group
 * **Operator**: In

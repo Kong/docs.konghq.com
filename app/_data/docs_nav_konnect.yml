@@ -156,7 +156,7 @@
       url: /analytics/
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
-    - text: Use Cases
+    - text: Report Use Cases
       items: 
       - text: Analyze API Usage and Performance
         url: /analytics/use-cases/
