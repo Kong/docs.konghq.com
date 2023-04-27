@@ -11,7 +11,7 @@
       {%- assign css_classes =  css_classes | append: " plus" -%}
     {%- endunless -%}
   {%- endif -%}
-  {%- unless extn.cloud == false -%}
+  {%- unless extn.konnect == false -%}
     {%- assign css_classes = css_classes | append: " konnect" -%}
   {%- endunless -%}
 {%- else -%}
@@ -38,13 +38,19 @@
           {% if extn.enterprise %}
             <span class="badge enterprise"></span>
           {% endif %}
-          {% unless extn.cloud == false %}
-            <span class="badge konnect"></span>
-          {% endunless %}
+          {% if extn_publisher == 'kong-inc' %}
+            {% unless extn.konnect == false %}
+              <span class="badge konnect"></span>
+            {% endunless %}
+          {% endif %}
         </div>
         <div class="plugin-card--meta__description">{{ extn.desc }}</div>
       </div>
+    {% if extn_publisher == "kong-inc" %}
       <div class="plugin-card--publisher">
+    {% else %}
+      <div class="plugin-card--publisher third-party">
+    {% endif %}
         <div class="plugin-card--publisher__support">Support by:</div>
         <div class="plugin-card--publisher__name">
           {% if extn_publisher == "kong-inc" %}
