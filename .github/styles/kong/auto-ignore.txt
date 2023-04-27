@@ -43,6 +43,7 @@ ssl_client_verify
 start_cmd
 stream_listen
 stringified
+tolerations
 trusted_ips
 Gateway
 GatewayClass
