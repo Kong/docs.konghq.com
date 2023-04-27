@@ -1,6 +1,7 @@
 # DEPRECATED OS
 /gateway/3.0.x/install-and-run/centos    /gateway/latest/install-and-run/os-support
 /gateway/latest/install-and-run/centos   /gateway/latest/install-and-run/os-support
+/gateway/latest/install/macos/           /gateway/latest/install/
 
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
@@ -242,6 +243,13 @@
 /hub/flash/*                                       /hub/
 /hub/yesinteractive/*                              /hub/
 /hub/inspur/*                                      /hub/
+/hub/stone-payments/*                              /hub/
+/hub/reedelk/*                                     /hub/
+/hub/qnap/*                                        /hub/
+/hub/signalfx/*                                    /hub/
+/hub/signal_sciences/*                             https://docs.signalsciences.net/install-guides/other-modules/kong/
+/hub/cleafy/*                                      /hub/
+/hub/smartparkingtechnology/*                      /hub/
 
 # KONNECT
 
@@ -294,6 +302,7 @@
 /konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
+/konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
 
 #API Redirects
 
@@ -639,8 +648,7 @@
 # KONG MESH
 /mesh/1.0.x/features/   /mesh/1.0.x/features/vault
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
-/mesh/*/features/windows/     /mesh/latest/installation/windows/
-/mesh/latest/features/windows/ /mesh/latest/installation/windows/
+/mesh/:version/features/windows/     /mesh/:version/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
 /policies/  /mesh/:version/policies/
 /mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
@@ -671,7 +679,7 @@
 /mesh/:version/explore/dpp-on-universal/  /mesh/:version/production/dp-config/dpp-on-universal/
 /mesh/:version/networking/cni/  /mesh/:version/production/dp-config/cni/
 /mesh/:version/networking/transparent-proxying/ /mesh/:version/production/dp-config/transparent-proxying/
-/mesh/:version/networking/ipv6/ /mesh/:version/production/dp-config/ipv6/ 
+/mesh/:version/networking/ipv6/ /mesh/:version/production/dp-config/ipv6/
 /mesh/:version/security/secrets/  /mesh/:version/production/secure-deployment/secrets/
 /mesh/:version/security/api-access-control/ /mesh/:version/production/secure-deployment/api-access-control/
 /mesh/:version/security/api-server-auth/  /mesh/:version/production/secure-deployment/api-server-auth/
@@ -681,11 +689,16 @@
 /mesh/:version/explore/gui/ /mesh/:version/production/gui/
 /mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
 /mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
+/mesh/:version/installation/* /mesh/:version/production/install-kumactl/
+/mesh/:version/install/* /mesh/:version/production/install-kumactl/
 
 
 # Kuma IA Reference section
 
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
+
+# Redirect missing policies to features (especially useful to make doc links work)
+/mesh/:version/policies/* /mesh/:version/features/:splat
 
 
 ## Introduction

@@ -157,7 +157,7 @@ spec:
         mode: Limit # allowed: Limit, Shadow
         backend:
           rateLimitService:
-            url: http://ratelimit-service.{{ site.mesh_namespace }}:10003
+            url: http://kong-mesh-ratelimit-service.{{ site.mesh_namespace }}:10003
             timeout: 25ms
 ```
 
@@ -234,7 +234,7 @@ spec:
         mode: Limit
         backend:
           rateLimitService:
-            url: http://ratelimit-service.{{ site.mesh_namespace }}:10003
+            url: http://kong-mesh-ratelimit-service.{{ site.mesh_namespace }}:10003
             timeout: 25ms
 ```
 
@@ -651,7 +651,7 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
                 status: 423
             backend:
               rateLimitService:
-                url: http://kong-mesh-ratelimit-service.kong-mesh-system:10003
+                url: http://kong-mesh-ratelimit-service.{{ site.mesh_namespace }}:10003
                 timeout: 1s" | kubectl apply -f -
     ```
 

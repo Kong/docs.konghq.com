@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Kept for older releases of Kong-Mesh before we moved in 2.2.0 to the new package location
+
 $Arch             = If ($Arch) {$Arch} Else {"amd64"}
 $ProductName      = If ($ProductName) {$ProductName} Else {"Kuma"}
 $LatestVersionUrl = If ($LatestVersionUrl) {$LatestVersionUrl} Else {"https://docs.konghq.com/mesh/latest_version/"}
@@ -20,7 +22,7 @@ $RepoPrefix       = If ($RepoPrefix) {$RepoPrefix} Else {"kong-mesh"}
 $Distro           = If ($Distro) {$Distro} Else {"windows"}
 $ArchiveName      = "$RepoPrefix-$Version-$Distro-$Arch.tar.gz"
 $Pwd              = (Get-Item .).FullName
-$Url              = "https://download.konghq.com/kong-mesh-binaries-release/$ArchiveName"
+$Url              = "https://download.konghq.com/mesh-alpine/$ArchiveName"
 $ArchivePath      = "${Pwd}\$ArchiveName"
 $UnarchivePath    = "${Pwd}\$RepoPrefix-$Version"
 
