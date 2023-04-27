@@ -532,6 +532,10 @@ Have fun leveraging the power of AWS Lambda in Kong!
 
 ## Changelog
 
+**{{site.base_gateway}} 3.3.x**
+* Added a `disable_https` configuration field to support http connection to lambda service.
+  [#9799](https://github.com/Kong/kong/pull/9799)
+
 **{{site.base_gateway}} 3.1.x**
 * Added a `requestContext` field into `awsgateway_compatible` input data.
   [#9380](https://github.com/Kong/kong/pull/9380)
