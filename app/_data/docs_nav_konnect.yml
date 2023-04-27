@@ -158,7 +158,7 @@
       url: /analytics/services-and-routes/
     - text: Use Cases
       items: 
-      - text: Reports Use Cases
+      - text: Analyze API Usage and Performance
         url: /analytics/use-cases/
       - text: Diagnosing Latency Issues
         url: /analytics/use-cases/latency
