@@ -12,7 +12,7 @@ A maximum of 5 user-defined labels are allowed on each resource.
 
 **Key requirements:**
 * Keys must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumeric characters in between.
-* Keys must not start with `kong`, `konnect`, `insomnia`, `mesh`, `kic` or `_`. These strings are reserved for Kong.
+* Keys must not start with `kong`, `konnect`, `insomnia`, `mesh`, `kic`, `kuma`, or `_`. These strings are reserved for Kong.
 * Keys are case-sensitive.
 
 **Value requirements:**
