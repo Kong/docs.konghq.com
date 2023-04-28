@@ -155,7 +155,7 @@ When installing a multi-data center setup, you might want to set Datadog's agent
 
 {:.note}
 > **Note:** `host` and `port` fields in the plugin config take precedence over environment variables.
-> For Kubernetes there's a known limitation that we cannot set `host` to null to use the environment variable. This can be workaround with a vault reference like `{vault://env/kong-datadog-agent-host}`.
+> For Kubernetes there's a known limitation that we cannot set `host` to null to use the environment variable. This can be workaround with a vault reference like `{vault://env/kong-datadog-agent-host}`. Please refer to [configure with Kubernetes](#configure-with-kubernetes)
 
 Field           | Description                                           | Datatypes
 ---             | ---                                                   | ---
@@ -167,6 +167,72 @@ Field           | Description                                           | Dataty
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+## Configure with Kubernetes
+
+Please make sure the environment variable is visible from Kong.
+
+### Helm
+
+1. Modify the `env` section in `values.yaml` like below:
+
+```yaml
+env:
+  datadog_agent_host:
+    valueFrom:
+      fieldRef:
+        fieldPath: status.hostIP
+```
+
+1. update helm deployment
+
+```
+helm upgrade -f values.yaml RELEASE_NAME kong/kong --version VERSION --namespace NAMESPACE
+```
+
+1. Modify plugin's configuration like below:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: datadog
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+config:
+  host: "{vault://env/kong-datadog-agent-host}"
+  port: 8125
+```
+
+### Non-Helm
+
+1. Modify the `env` section in `values.yaml` like below:
+
+```yaml
+env:
+  - name: KONG_DATADOG_AGENT_HOST
+    valueFrom:
+      fieldRef:
+        fieldPath: status.hostIP
+```
+
+2. Modify plugin's configuration like below:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: datadog
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+config:
+  host: "{vault://env/kong-datadog-agent-host}"
+  port: 8125
+```
 
 ## Changelog
 
