@@ -276,7 +276,7 @@ These can be combined. For example, `config.remove.json: customers[*].info.phone
 all `phone` properties from inside the `info` object of all entries in the `customers` array.
 {% endif_plugin_version %}
 
-### Advanced templates
+### Advanced templates {#advanced-templates}
 
 The content of the placeholder `$(...)` is evaluated as a Lua expression, so
 logical operators may be used. For example:
@@ -468,6 +468,10 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 
 ## Changelog
 
+
+**{{site.base_gateway}} 3.3.x**
+- The plugin now honors the value configured for the global parameter: [untrusted_lua](/gateway/latest/reference/configuration/#untrusted_lua)
+  when [Advanced templates](#advanced-templates) are configured.
 
 **{{site.base_gateway}} 3.1.x**
 - Added support for navigating nested JSON objects and arrays when transforming a JSON payload.

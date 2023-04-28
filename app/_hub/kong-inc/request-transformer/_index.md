@@ -205,7 +205,7 @@ $('$(something_that_needs_to_escaped)')
 before transformation. Therefore, any update or removal of parameters used in a template
 does not affect the rendered value of a template.
 
-### Advanced templates
+### Advanced templates {#advanced-templates}
 
 The content of the placeholder `$(...)` is evaluated as a Lua expression, so
 logical operators may be used. For example:
@@ -495,3 +495,12 @@ plugins:
 |---           | ---
 |p1=v1&p2=v1   | p2=v1
 |p2=v1         | p2=v1
+
+---
+
+## Changelog
+
+
+**{{site.base_gateway}} 3.3.x**
+- The plugin now honors the value configured for the global parameter: [untrusted_lua](/gateway/latest/reference/configuration/#untrusted_lua)
+  when [Advanced templates](#advanced-templates) are configured.
