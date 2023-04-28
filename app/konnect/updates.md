@@ -11,8 +11,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2023
 
+**My Account**
+: {{site.konnect_saas}} now includes a **My Account** feature. Here, users can easily edit their personal information, change their password, and manage their account. **My Account** is available by selecting your user icon in the top-right corner of the {{site.konnect_saas}} manager and selecting **My Account**.
+
+**Navigation updates**
+: {{site.konnect_saas}} received a new navigation and layout update designed to provide a more intuitive and user-friendly experience. With this update, you will find the **Region Switcher** has moved to the bottom-left corner of the {{site.konnect_saas}} manager closer to region-specific features. 
+
+**Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
+: Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+
 **Version picker in Runtime Manager Quickstart**
-: {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/runtime-manager/runtime-instances/)
+: {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/runtime-manager/runtime-instances/).
 
 **GraphQL plugins**
 : {{site.konnect_short_name}} now supports the the following GraphQL plugins:
