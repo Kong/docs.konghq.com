@@ -5,7 +5,7 @@ desc: Terminates all requests with a specific response
 description: |
   This plugin terminates incoming requests with a specified status code and
   message. This can be used to (temporarily) stop traffic on a Service or a Route,
-  or even block a Consumer. It can also be used as a debug plugin see `echo` section.
+  or even block a Consumer. It can also be used for debugging, as described in the `echo` parameter.
 type: plugin
 categories:
   - traffic-control
