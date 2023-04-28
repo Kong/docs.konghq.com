@@ -188,7 +188,9 @@ params:
         Set a custom error message to return when the rate limit is exceeded.
 
 
-  extra: '<div class="alert alert-warning"> <strong>Note:</strong> At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured. </div>'
+  extra: |
+    {:.note}
+    > **Note:** At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured.
 ---
 
 ## Headers sent to the client

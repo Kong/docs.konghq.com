@@ -41,12 +41,13 @@ To let a runtime instances request and receive configuration, and send telemetry
 add the following hostnames to the firewall allowlist:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
-* `us.api.konghq.com`: The {{site.konnect_short_name}} API.
+* `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
     Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
-* `RUNTIME_GROUP_ID.us.cp0.konghq.com`: Handles configuration for a runtime group.
+    Region can be `us`, `eu`, or `global`.
+* `<runtime-group-id>.<region>.cp0.konghq.com`: Handles configuration for a runtime group.
     Runtime instances connect to this host to receive configuration updates.
     This hostname is unique to each organization and runtime group.
-* `RUNTIME_GROUP_ID.us.tp0.konghq.com`: Gathers telemetry data for a runtime group.
+* `<runtime-group-id>.<region>.tp0.konghq.com`: Gathers telemetry data for a runtime group.
     This hostname is unique to each organization and runtime group.
 
 You can find the configuration and telemetry hostnames through the Runtime Manager:

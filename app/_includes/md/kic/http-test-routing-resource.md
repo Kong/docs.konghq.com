@@ -24,7 +24,7 @@ spec:
           service:
             name: {{ service }}
             port:
-              number: 80
+              number: 1027
 " | kubectl apply -f -
 ```
 Response:
@@ -54,7 +54,7 @@ spec:
     backendRefs:
     - name: {{ service }}
       kind: Service
-      port: 80
+      port: 1027
 " | kubectl apply -f -
 ```
 Response:
