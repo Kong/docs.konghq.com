@@ -73,6 +73,9 @@ kong=> \du
 {:.note}
 > **Note:** The database user with `rds_iam` role granted cannot authenticate in the normal username/password way, you must use the IAM Database authentication instead.
 
+{:.note}
+> **Note:** Don't forget to provision the database with creating the database and granting enough permissions to the database user! You can check the docs at [Using a database](/gateway/latest/install/linux/debian/#using-a-database) in our Installation Options(/gateway/latest/install/)
+
 ## Getting started
 
 Enabling the AWS IAM Authentication feature is quite simple. You can enable it by using the environment variable or using the configuration file. Also, don't forget to remove the `pg_password` or `pg_ro_password` after switching to use the AWS IAM Authentication. You'll also need to check your `pg_user` or `pg_ro_user` is the same username defined in the IAM policy and created in the Postgres RDS database.
@@ -102,6 +105,8 @@ pg_iam_auth=on
 pg_ro_iam_auth=on
 ```
 
+{:.note}
+> **Note:** If you're enabling the feature in the configuration file, don't forget to specify the configuration file with the feature property on when you're running migrations command! For example `kong migrations bootstrap -c /path/to/kong.conf`
 
 ## Limitations
 
