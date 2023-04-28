@@ -1,5 +1,5 @@
 ---
-name: API Security 
+name: Imperva API Security 
 publisher: Imperva 
 
 categories: 
@@ -34,6 +34,7 @@ description: |
   receiver service endpoint though the plugin's configuration, so the API data is 
   kept under the control of the application owner.
 
+enterprise: true
 # (required) extended description.
 # Use YAML pipe notation for extended entries.
 # EXAMPLE long text format (do not use this entry)

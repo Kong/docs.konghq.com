@@ -29,7 +29,7 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 | MeshServiceSubset | ✅        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
 
-To learn more about the information in this table, see the [matching docs](/docs/{{ page.version }}/policies/targetref).
+To learn more about the information in this table, see the [matching docs](/mesh/{{page.kong_version}}/policies/targetref).
 
 ## Configuration
 
@@ -37,10 +37,12 @@ To apply a policy with MeshOPA, you must do the following:
 
 - Specify the group of data plane proxies to apply the policy to with the `targetRef` property.
 - Provide a policy with the `appendPolicies` property. Policies are defined in the [Rego language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+- Optionally provide custom configuration for the policy agent.
+
+{% if_version lte:2.1.x %}
   {:.note}
   > **Note:** You cannot currently apply multiple OPA policies. This limitation will be addressed in the future.
-
-- Optionally provide custom configuration for the policy agent.
+{% endif_version %}
 
 You must also specify the HTTP protocol in your mesh configuration:
 
@@ -91,6 +93,7 @@ networking:
 
 For more information, see [the {{site.mesh_product_name}} documentation about protocol support][protocols].
 
+{% if_version lte:2.1.x %}
 ### Inline
 
 {% navtabs %}
@@ -191,6 +194,114 @@ spec:
 
 {% endnavtab %}
 {% endnavtabs %}
+{% endif_version %}
+
+{% if_version gte:2.2.x %}
+### Inline
+
+{% navtabs %}
+{% navtab Kubernetes %}
+
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: MeshOPA
+metadata:
+  name: mopa-1
+  namespace: kong-mesh-system
+  labels:
+    kuma.io/mesh: default # optional, defaults to `default` if unset
+spec:
+  targetRef:
+    kind: Mesh
+  default:
+    agentConfig: # optional
+      inlineString: | # one of: inlineString, secret
+        decision_logs:
+          console: true
+    appendPolicies:
+      - ignoreDecision: false # optional, defaults to 'false'
+        rego:
+          inlineString: | # one of: inlineString, secret
+            package envoy.authz
+
+            import input.attributes.request.http as http_request
+
+            default allow = false
+
+            token = {"valid": valid, "payload": payload} {
+                [_, encoded] := split(http_request.headers.authorization, " ")
+                [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
+            }
+
+            allow {
+                is_token_valid
+                action_allowed
+            }
+
+            is_token_valid {
+              token.valid
+              now := time.now_ns() / 1000000000
+              token.payload.nbf <= now
+              now < token.payload.exp
+            }
+
+            action_allowed {
+              http_request.method == "GET"
+              token.payload.role == "admin"
+            }
+```
+
+{% endnavtab %}
+{% navtab Universal %}
+
+```yaml
+type: MeshOPA
+mesh: default
+name: mopa-1
+spec:
+  targetRef:
+    kind: Mesh
+  default:
+    agentConfig: # optional
+      inlineString: | # one of: inlineString, secret
+        decision_logs:
+          console: true
+    appendPolicies: # optional
+      - ignoreDecision: false # optional, defaults to 'false'
+        rego:
+          inlineString: | # one of: inlineString, secret
+            package envoy.authz
+
+            import input.attributes.request.http as http_request
+
+            default allow = false
+
+            token = {"valid": valid, "payload": payload} {
+                [_, encoded] := split(http_request.headers.authorization, " ")
+                [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
+            }
+
+            allow {
+                is_token_valid
+                action_allowed
+            }
+
+            is_token_valid {
+              token.valid
+              now := time.now_ns() / 1000000000
+              token.payload.nbf <= now
+              now < token.payload.exp
+            }
+
+            action_allowed {
+              http_request.method == "GET"
+              token.payload.role == "admin"
+            }
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+{% endif_version %}
 
 ### With secrets
 
@@ -216,6 +327,7 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
 
 1.  Pass the Secret to `MeshOPA`:
 
+{% if_version lte:2.1.x %}
     ```yaml
     apiVersion: kuma.io/v1alpha1
     kind: MeshOPA
@@ -231,6 +343,25 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
         appendPolicies:
           - secret: mopa-policy
     ```
+{% endif_version %}
+{% if_version gte:2.2.x %}
+    ```yaml
+    apiVersion: kuma.io/v1alpha1
+    kind: MeshOPA
+    metadata:
+      name: mopa-1
+      namespace: kong-mesh-system
+      labels:
+        kuma.io/mesh: default
+    spec:
+      targetRef:
+        kind: Mesh
+      default:
+        appendPolicies:
+          - rego:
+              secret: mopa-policy
+    ```
+{% endif_version %}
 
 {% endnavtab %}
 {% navtab Universal %}
@@ -246,6 +377,7 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
 
 1.  Pass the Secret to `MeshOPA`:
 
+{% if_version lte:2.1.x %}
     ```yaml
     type: MeshOPA
     mesh: default
@@ -257,6 +389,21 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
         appendPolicies:
           - secret: mopa-policy
     ```
+{% endif_version %}
+{% if_version gte:2.2.x %}
+    ```yaml
+    type: MeshOPA
+    mesh: default
+    name: mopa-1
+    spec:
+      targetRef:
+        kind: Mesh
+      default:
+        appendPolicies:
+          - rego:
+              secret: mopa-policy
+    ```
+{% endif_version %}
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -267,6 +414,8 @@ Encoding the policy in a [Secret][secrets] provides some security for policies t
 
 The following environment variables are available:
 
+{% if_version lte:2.1.x %}
+
 | Variable                   | Type      | What it configures     | Default value {:width=25%:}   |
 | -------------------------- | --------- | --------------------------------------| ------------------- |
 | KMESH_OPA_ADDR             | string    | Address OPA API server listens on     | `localhost:8181`    |
@@ -276,12 +425,19 @@ The following environment variables are available:
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
 | KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | `[plugins.envoy_ext_authz_grpc. query=data.envoy.authz.allow]` |
 
-{% navtabs %}
-{% navtab Kubernetes %}
+{% endif_version %}
+{% if_version gte:2.2.x %}
 
-You can customize the agent in either of the following ways:
+| Variable                   | Type      | What it configures     | Default value {:width=25%:}   |
+| -------------------------- | --------- | --------------------------------------| ------------------- |
+| KMESH_OPA_ADDR             | string    | Address OPA API server listens on     | `localhost:8181`    |
+| KMESH_OPA_CONFIG_PATH      | string    | Path to file of initial config        | N/A                 |
+| KMESH_OPA_DIAGNOSTIC_ADDR  | string    | Address of OPA diagnostics server     | `0.0.0.0:8282`      |
+| KMESH_OPA_ENABLED          | bool      | Whether `kuma-dp` starts embedded OPA | true                |
+| KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
+| KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | nil |
+{% endif_version %}
 
-- Override variables in the data plane proxy config:
 {% navtabs %}
 {% navtab kumactl %}
 
@@ -325,7 +481,25 @@ kuma:
 ```
 
 {% endnavtab %}
-{% endnavtabs %}
+{% navtab Pod %}
+
+Override the config for individual data plane proxies by placing the appropriate annotations on the Pod:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+  namespace: kuma-example
+spec:
+  ...
+  template:
+    metadata:
+      ...
+      annotations:
+        # indicate to {{site.mesh_product_name}} that this Pod doesn't need a sidecar
+        kuma.io/sidecar-env-vars: "KMESH_OPA_ENABLED=false;KMESH_OPA_ADDR=:8888;KMESH_OPA_CONFIG_OVERRIDES=config1:x,config2:y"
+```
 {% endnavtab %}
 {% navtab Universal %}
 
@@ -344,25 +518,9 @@ The `run` command on the data plane proxy accepts the following equivalent param
 {% endnavtab %}
 {% endnavtabs %}
 
-- Override the config for individual data plane proxies by placing the appropriate annotations on the Pod:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: example-app
-  namespace: kuma-example
-spec:
-  ...
-  template:
-    metadata:
-      ...
-      annotations:
-        # indicate to {{site.mesh_product_name}} that this Pod doesn't need a sidecar
-        kuma.io/sidecar-env-vars: "KMESH_OPA_ENABLED=false;KMESH_OPA_ADDR=:8888;KMESH_OPA_CONFIG_OVERRIDES=config1:x,config2:y"
-```
-
 ## Configuring the authorization filter
+
+You can configure the external authorization filter by adjusting the `authConfig` section.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -380,17 +538,12 @@ spec:
     kind: Mesh
   default:
     authConfig: # optional
-        statusOnError: 413 # optional: defaults to 403.
-        onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny' defines the behavior when communication with the agent fails or the policy execution fails.
-        requestBody: # optional
-            maxSize: 1024 # the max number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
-            sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
-    agentConfig: # optional
-      inlineString: | # one of: inlineString, secret
-        decision_logs:
-          console: true
-    appendPolicies:
-      - secret: opa-policy
+      statusOnError: 413 # optional: defaults to 403.
+      onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny' defines the behavior when communication with the agent fails or the policy execution fails.
+      requestBody: # optional
+          maxSize: 1024 # the max number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
+          sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
+...
 ```
 
 {% endnavtab %}
@@ -410,12 +563,7 @@ spec:
       requestBody: # optional
         maxSize: 1024 # the maximum number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
         sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
-    agentConfig: # optional
-      inlineString: | # one of: inlineString, secret
-        decision_logs:
-          console: true
-    appendPolicies: # optional
-      - secret: opa-policy
+...
 ```
 
 {% endnavtab %}
@@ -485,6 +633,106 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 
+{% if_version gte:2.2.x %}
+## Composing policies
+
+In your organization, the mesh operator may want to set a policy for subset of proxies in the mesh.
+At the same time, service owners may want to exercise additional policies.
+
+For example, the mesh operator may want to enable JWT token validation for all proxies in the mesh
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: MeshOPA
+metadata:
+  name: mopa-mesh-operator
+  namespace: kong-mesh-system
+  labels:
+    kuma.io/mesh: default
+spec:
+  targetRef:
+    kind: Mesh
+  default:
+    appendPolicies:
+      - rego:
+          inlineString: |
+            package operator
+            
+            import input.attributes.request.http as http_request
+            
+            default allow = false
+            
+            token = {"valid": valid, "payload": payload} {
+                [_, encoded] := split(http_request.headers.authorization, " ")
+                [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
+            }
+            
+            allow {
+                is_token_valid
+                action_allowed
+            }
+            
+            is_token_valid {
+              token.valid
+              now := time.now_ns() / 1000000000
+              token.payload.nbf <= now
+              now < token.payload.exp
+            }
+            
+            action_allowed {
+              http_request.method == "GET"
+              token.payload.role == "admin"
+            }
+```
+
+Service owner wants to block all requests on path `/blocked`:
+
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: MeshOPA
+metadata:
+  name: mopa-service-owner
+  namespace: kong-mesh-system
+  labels:
+    kuma.io/mesh: default
+spec:
+  targetRef:
+    kind: MeshService
+    name: test-server_kuma-demo_svc_80
+  default:
+    appendPolicies:
+      - rego:
+          inlineString: |
+            package serviceowner
+            
+            default allow = true
+            
+            deny {
+              input.parsed_path == ["blocked"]
+            }
+```
+
+`appendPolicies` is a list you can append, therefore in the case of the data plane proxy `test-server_kuma-demo_svc_80` service, both policies will be applied.
+
+Kong Mesh will autogenerate an additional OPA decision policy:
+```rego
+package implicitkmesh
+import data.operator
+import data.serviceowner
+
+allow {
+  data.operator.allow
+  not data.operator.deny
+  data.serviceowner.allow
+  not data.serviceowner.deny
+}
+```
+It also configures the OPA agent decision path (`plugins.envoy_ext_authz_grpc.path`) to `implicitkmesh/allow`.
+
+You can also add a rego policy which is not part of the decision.
+Set a `appendPolicies[*].ignoreDecision` to true so the rego policy won't be added to autogenerated decision policy.
+This way, the mesh operator can expose utility functions to service owner.
+{% endif_version %}
+
 ## Example
 
 The following example shows how to deploy and test a sample MeshOPA policy on Kubernetes, using the kuma-demo application.
@@ -538,6 +786,7 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
 
 1.  Apply a MeshOPA policy that requires a valid JWT token:
 
+{% if_version lte:2.1.x %}
     ```sh
     echo "
     apiVersion: kuma.io/v1alpha1
@@ -582,6 +831,54 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
               }
     " | kubectl apply -f -
     ```
+{% endif_version %}
+{% if_version gte:2.2.x %}
+    ```sh
+    echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: MeshOPA
+    metadata:
+      namespace: kong-mesh-system
+      name: mopa-1
+      labels:
+        kuma.io/mesh: default
+    spec:
+      targetRef:
+        kind: Mesh
+      default:
+        appendPolicies:
+          - rego:
+              inlineString: |
+                package envoy.authz
+
+                import input.attributes.request.http as http_request
+
+                default allow = false
+
+                token = {\"valid\": valid, \"payload\": payload} {
+                    [_, encoded] := split(http_request.headers.authorization, \" \")
+                    [valid, _, payload] := io.jwt.decode_verify(encoded, {\"secret\": \"secret\"})
+                }
+
+                allow {
+                    is_token_valid
+                    action_allowed
+                }
+
+                is_token_valid {
+                  token.valid
+                  now := time.now_ns() / 1000000000
+                  token.payload.nbf <= now
+                  now < token.payload.exp
+                }
+
+                action_allowed {
+                  http_request.method == \"GET\"
+                  token.payload.role == \"admin\"
+                }
+    " | kubectl apply -f -
+    ```
+{% endif_version %}
 
 1.  Make an invalid request from the frontend to the backend:
 

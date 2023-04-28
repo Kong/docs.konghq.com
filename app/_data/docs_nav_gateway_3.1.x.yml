@@ -611,7 +611,3 @@ items:
         url: /reference/router-expressions-language
       - text: FAQ
         url: /reference/faq
-
-unlisted:
-  - text: macOS
-    url: /install/macos

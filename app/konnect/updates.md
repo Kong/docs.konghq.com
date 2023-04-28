@@ -9,8 +9,23 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## April 2023
+
+**Version picker in Runtime Manager Quickstart**
+: {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/runtime-manager/runtime-instances/)
+
+**GraphQL plugins**
+: {{site.konnect_short_name}} now supports the the following GraphQL plugins:
+* [DeGraphQL](/hub/kong-inc/degraphql/): Transform a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/): Rate limit GraphQL requests.
+
+**Kong Ingress Controller for Kubernetes in Konnect**
+: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
+
 ## March 2023
 
+**Identity API**
+: Konnect now supports [OIDC customization](/konnect/api/identity-management/sso/) through the Identity API. 
 
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).

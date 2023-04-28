@@ -51,7 +51,7 @@
       url: /runtime-manager/
     - text: Runtime Instances
       items:
-        - text: Overview
+        - text: Installation Options
           url: /runtime-manager/runtime-instances/
         - text: Upgrade a Runtime Instance
           url: /runtime-manager/runtime-instances/upgrade/
@@ -75,6 +75,8 @@
               url: /runtime-manager/configuration/vaults/how-to/
         - text: Manage Runtime Configuration using decK
           url: /runtime-manager/declarative-config/
+    - text: KIC Association
+      url: /runtime-manager/kic/
     - text: Backup and Restore
       url: /runtime-manager/backup-restore/
     - text: Version Compatibility
@@ -213,6 +215,8 @@
           absolute_url: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
+        - text: SSO Customization
+          url: /api/identity-management/sso/
     - text: Runtime Groups API
       items:
         - text: API Documentation

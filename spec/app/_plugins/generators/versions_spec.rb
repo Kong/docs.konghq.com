@@ -36,7 +36,7 @@ RSpec.describe Jekyll::Versions do
   end
 
   let(:latest_mesh) do
-    { 'release' => '2.0.x', 'version' => '2.0.0', 'edition' => 'mesh' }
+    { 'release' => '2.0.x', 'version' => '2.0.0', 'edition' => 'mesh', 'latest' => true }
   end
 
   let(:latest_kic) do

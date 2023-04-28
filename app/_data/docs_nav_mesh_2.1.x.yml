@@ -81,6 +81,7 @@ items:
         src: /.repos/kuma/app/_src/production/cp-deployment/multi-zone/
       - text: License
         url: /plan-and-deploy/license
+        src: production/cp-deployment/license/
   - title: Explore
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
@@ -241,7 +242,7 @@ items:
         src: /.repos/kuma/app/_src/policies/circuit-breaker/
       - text: Proxy Template
         url: /policies/proxy-template/
-        src: /.repos/kuma/app/_src/policies/proxy-template/
+        src: /.repos/kuma/app/_src/reference/proxy-template/
       - text: External Service
         url: /policies/external-services/
         src: /.repos/kuma/app/_src/policies/external-services/
@@ -318,10 +319,12 @@ items:
         url: /features/kds-auth
       - text: FIPS support
         url: /features/fips-support
+        src: production/secure-deployment/fips-support/
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /features/rbac
+        src: production/secure-deployment/rbac/
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support

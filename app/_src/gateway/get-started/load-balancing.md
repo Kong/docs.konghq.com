@@ -80,8 +80,12 @@ If you haven't completed these steps already, complete them before proceeding.
 
 1. **Validate**
 
-   Validate that the upstream you configured is working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
-   Continue pinging the endpoint and the site should change from `httpbin` to `mockbin`.
+
+   Validate that the upstream you configured is working by visiting the route 
+   `http://localhost:8000/mock` using a web browser or CLI.
+  
+   * **Web browser**: Visit `http://localhost:8000/mock` and refresh the page several times to see the site change from `httpbin` to `mockbin`.
+   * **CLI**: Execute the command `curl -s http://localhost:8000/mock/headers |grep -i -A1 '"host"'` several times. You will see the hostname change between `httpbin` and `mockbin`.
 
 ## What's next
 
