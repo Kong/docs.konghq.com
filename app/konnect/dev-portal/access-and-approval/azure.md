@@ -3,7 +3,7 @@ title: Configure Azure IdP for Dev Portal
 content_type: how-to
 ---
 
-Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}} and the Dev Portal. This guide shows you how to configure Microsoft Azure for Dev Portal SSO.
+Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}} and the Dev Portal. This guide shows you how to configure Microsoft Azure for Dev Portal SSO. See [Set up SSO with Azure](/konnect/org-management/azure-idp/) for instructions on how to enable for all of Konnect.
 
 
 ## Create an application in Azure
@@ -53,6 +53,8 @@ Group claims automatically add or remove users from group memberships. To config
 
 1. Click **Add**.
 
+<!-- I'm not sure this still needs to be here? if yes, need to rewrite so that it only covers what's needed specifically for DevPortal
+
 ## Configure SSO in {{site.konnect_short_name}}
 
 From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from Azure.
@@ -64,5 +66,6 @@ This table maps the {{site.konnect_short_name}} values to the corresponding Azur
 | Provider URL      | The value stored in the `issuer` variable. |
 | Client ID   | Your Azure application ID.        |
 |Client Secret | Azure client secret.|
+-->
 
 You can test your configuration by navigating to the Dev Portal and using your Azure credentials to log in. 
