@@ -21,6 +21,7 @@ Before enabling the AWS IAM Authentication feature, you need to check the follow
 
 {:.note}
 > **Note:** You must enable SSL connection on your Postgres DB instance, which is usually done by setting `ssl` parameter value to 1 in the parameter group. After enabling the IAM database authentication, you cannot disable the SSL connection.
+> **Note:** Currently, TLSv1.3 is not supported by RDS Postgres so you cannot set `pg_ssl_version` to `tlsv1_3`.
 
 - **Ensure your Kong instance have been assigned an IAM role**. If your Kong cluster are deployed without a proper IAM role, you must assign one first. For example, if your Kong instance is running on an EC2 machine, you can assign EC2 IAM role on your EC2 machine; if you're running Kong in the ECS cluster, you can assign a IAM role as a task role to your ECS service task definition; if you're running Kong in the EKS cluster, you can configure a kubernetes service account that can assume to your assigned role, and configure your pods to use the service account. The Kong instance can discover and fetch the AWS credential to use the assigned IAM role automatically, just like the AWS SDK. For now, it supports fetching through the following ways(in order of precedence):
   - Use Environment variables like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
