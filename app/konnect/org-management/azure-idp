@@ -3,10 +3,16 @@ title: Set up SSO with Azure
 content_type: how-to
 ---
 
-Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}} and the Dev Portal. This guide shows you how to configure SSO for Konnect with Microsoft Azure. See [Configure Azure IdP for Dev Portal](/konnect/dev-portal/access-and-approval/azure/) for those instructions.
+As an alternative to Kong Konnect’s native authentication, you can set up single sign-on (SSO) access to Konnect through an identity provider (IdP) with OpenID Connect. This authentication method allows your users to log in to Kong Konnect using their IdP credentials, without needing a separate login.
+
+You can’t mix authentication methods in Kong Konnect. With IdP authentication enabled, all non-admin Konnect users have to log in through your IdP. Only the Konnect org owner can continue to log in with Konnect’s native authentication.
+
+{:.note}
+> This guide shows you how to configure SSO for Konnect with Microsoft Azure. See [Configure Azure IdP for Dev Portal](/konnect/dev-portal/access-and-approval/azure/) for those instructions.
 
 
-## Create an application in Azure
+## Prerequisites
+### Create an application in Azure
 
 1. In [Azure](https://portal.azure.com/), navigate to **App registrations**. 
 
@@ -21,7 +27,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 1. Save the application ID for later.
 
 
-## Configure the Azure application
+### Configure the Azure application
 
 1. Click **New client secret**, enter a description, select an expiration value, and click **Add**.
     
@@ -53,7 +59,7 @@ Group claims automatically add or remove users from group memberships. To config
 
 1. Click **Add**.
 
-## Configure SSO in {{site.konnect_short_name}}
+## Set up SSO in {{site.konnect_short_name}}
 
 From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from Azure.
 
@@ -65,4 +71,17 @@ This table maps the {{site.konnect_short_name}} values to the corresponding Azur
 | Client ID   | Your Azure application ID.        |
 |Client Secret | Azure client secret.|
 
-You can test your configuration by navigating to the Dev Portal and using your Azure credentials to log in. 
+Requirements:
+
+* The path must be unique across all {{site.konnect_short_name}} organizations. If your desired path is already taken, you must to choose another one.
+* The path can be any alphanumeric string.
+* The path does not require a slash (/).
+
+## Test and apply the configuration
+{:.important}
+
+> Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
+
+You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: cloud.konghq.com/login/examplepath. If your configuration is set up correctly, you will see the IdP sign-in window.
+
+You can now manage your organization's user permissions entirely from the IdP application.
