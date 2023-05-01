@@ -201,7 +201,7 @@
         - text: Set up SSO with Okta
           url: /org-management/okta-idp/
         - text: Set up SSO with Azure
-          url: /org-management/azure-idp
+          url: /org-management/azure-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/
     - text: Account and Org Deactivation
