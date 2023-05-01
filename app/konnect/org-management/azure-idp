@@ -42,7 +42,7 @@ You can’t mix authentication methods in Kong Konnect. With IdP authentication 
     
     The `issuer` value will be used as the provider URL when configuring SSO in {{site.konnect_short_name}}.
 
-## Configure group claims in Azure
+### Configure group claims in Azure
 
 Group claims automatically add or remove users from group memberships. To configure group claims, follow these steps: 
 
@@ -78,8 +78,8 @@ Requirements:
 * The path does not require a slash (/).
 
 ## Test and apply the configuration
-{:.important}
 
+{:.important}
 > Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
 You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: cloud.konghq.com/login/examplepath. If your configuration is set up correctly, you will see the IdP sign-in window.
