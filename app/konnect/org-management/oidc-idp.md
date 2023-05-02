@@ -46,7 +46,61 @@ authentication.
     * The path does not require a slash (`/`).
 
 1. Click **Save**.
+<!-- copied from okta instructions  as is also relevant to OIDC but needs SME edit for actual details  
+### Map {{site.konnect_short_name}} teams to Okta groups
 
+By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
+you can manage a user's {{site.konnect_short_name}} team membership directly through
+Okta group membership.
+
+After mapping is set up:
+* Okta users belonging to the mapped groups can log in to {{site.konnect_short_name}}.
+* When a user logs into {{site.konnect_short_name}} with their Okta account
+for the first time,
+{{site.konnect_short_name}} automatically provisions an account with the
+relevant roles.
+* If your org already has non-admin {{site.konnect_short_name}} users before
+mapping, on their next
+login they will be mapped to the teams defined by their Okta group membership.
+* An organization admin can view all registered users in
+{{site.konnect_short_name}},
+but cannot edit their team membership from the {{site.konnect_short_name}} side. To
+manage automatically-created users, adjust user permissions through Okta, or
+adjust the team mapping.
+
+Any changes to the mapped Okta groups on the Okta side are reflected in
+{{site.konnect_saas}}. For example:
+* Removing a user from a group in Okta also deactivates their
+{{site.konnect_short_name}} account.
+* Moving a user from one group to another changes their team in {{site.konnect_short_name}}
+to align with the new group-to-team mapping.
+
+1. Refer to the [token preview](#test-claims-and-find-groups-for-mapping)
+in Okta to locate the Okta groups you want to map.
+
+    You can also locate a list of all existing groups by going to
+    **Directory > Groups** in Okta. However, not all of these
+    groups may be accessible by the `groups` claim. See the
+    [claims](#set-up-claims-in-okta) setup step for details.
+
+1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and do at least one of the following:
+
+    * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
+    * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
+
+    Each {{site.konnect_short_name}} team can be mapped to **one** Okta group.
+
+    For example, if you have a `service_admin` group in Okta, you might map it
+    to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
+    over the info (`i`) icon beside each field to learn more about the team, or
+    see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
+    for more information.
+
+    You must have at least one group mapped to save configuration changes.
+
+1. Click **Save**.
+
+--> 
 ## Test and apply the configuration
 
 {:.important}
