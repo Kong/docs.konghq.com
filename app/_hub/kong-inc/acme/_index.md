@@ -568,8 +568,7 @@ own certificate.
 
 * Added the `account_key` configuration parameter
 * Added the `config.storage_config.redis.namespace` configuration parameter.
-  The namespace will be concatenated as a prefix of key and is default to empty string `""` for backward compatibility.
-  namespace can be any string that isn't prefixed with any of the reserved words.
+  The namespace will be concatenated as a prefix of the key. The default is an empty string (`""`) for backward compatibility. The namespace can be any string that isn't prefixed with any of the [Kong reserved words](/konnect/reference/labels/).
 
 {% endif_plugin_version %}
 
