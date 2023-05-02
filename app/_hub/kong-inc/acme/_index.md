@@ -28,7 +28,8 @@ the `eab_kid` or `eab_hmac_key`:
         "host": "127.0.0.1",
         "ssl": false,
         "ssl_verify": false,
-        "ssl_server_name": null
+        "ssl_server_name": null,
+        "namespace": "",
       },
        "consul": {
           "host": "127.0.0.1",
