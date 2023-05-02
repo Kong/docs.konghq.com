@@ -5,7 +5,6 @@ free: false
 plus: false
 enterprise: true
 konnect: true
-cloud: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --
 categories:

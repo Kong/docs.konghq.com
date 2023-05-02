@@ -93,10 +93,6 @@ kong_version_compatibility: # required
   #enterprise_edition: # optional
     #compatible: true
 
-cloud: # (Kong Inc plugins only) Boolean
-  # Specifies if your plugin is available in Konnect.
-  # Set true if available, or false if not.
-
 # SUBSCRIPTION TIERS (KONG INC PLUGINS ONLY)
 # Set the subscription tiers that your plugin is restricted to.
 # If your plugin is free/open-source, set `false` for both the enterprise and plus tiers.
