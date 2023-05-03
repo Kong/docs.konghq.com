@@ -12,7 +12,7 @@ statistics, monitor vital signs, and pinpoint anomalies in real time.
 Depending on your {{site.konnect_saas}} subscription tier, Analytics retains
 historical data for the following lengths of time:
 * **Free:** 24 hours
-* **Plus:** 6 months
+* **Plus:** 3 months
 * **Enterprise:** 1 year
 
 ## Contextual analytics for services and routes
