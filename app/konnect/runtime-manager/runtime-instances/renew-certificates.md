@@ -44,6 +44,8 @@ generate new certificates and replace them on the existing nodes.
 
 ### Generate new data plane certificate
 
+{% navtabs %}
+{% navtab Runtime Manager %}
 You can generate a new data plane certificate from the {% konnect_icon runtimes %} **Runtime Manager**.
 
 1. Select a runtime instance
@@ -56,6 +58,32 @@ You can generate a new data plane certificate from the {% konnect_icon runtimes 
     * private key: `tls.key`
 
 1. Store the files on the local file system.
+{% endnavtab %}
+
+{% navtab Konnect API %}
+
+You can generate a certificate locally and use the [pin data plane client certificate](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to Konnect
+
+
+1.  Generate a new certificate and key:
+
+    ```bash
+    openssl req -new -x509 -nodes -newkey rsa:2048 -subj "/CN=kongdp/C=US" -keyout ./tls.key -out ./tls.crt
+    ```
+
+1. Reformat the certificate in to a single line for the API call
+
+    ```bash
+    export CERT=$(awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' tls.crt)
+    ```
+
+1. `POST` the certificate to your runtime group using the Konnect API:
+
+    ```bash
+    curl https://us.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/dp-client-certificates --json '{"cert":"'$CERT'"}'
+    ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Update data plane
 
