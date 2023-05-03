@@ -118,7 +118,7 @@
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
     {% for item in include.sidenav.nav_items %}
-      {% include accordion_item.html item=item id=forloop.index %}
+      {% include_cached accordion_item.html item=item id=forloop.index %}
     {% endfor %}
   </ul>
 </aside>

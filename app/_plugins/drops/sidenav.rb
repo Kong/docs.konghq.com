@@ -40,6 +40,10 @@ module Jekyll
         end
       end
 
+      def hash
+        "#{@options['docs_url']}-#{@options['version']}-#{url}"
+      end
+
       private
 
       def standardize_url(url)
@@ -57,6 +61,10 @@ module Jekyll
         @nav_items ||= @config.map do |item|
           SidenavMenuItem.new(item:, options: @options)
         end
+      end
+
+      def hash
+        "#{@options['docs_url']}-#{@options['version']}"
       end
     end
   end

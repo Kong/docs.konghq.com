@@ -26,7 +26,7 @@
       <ul class="items">
         {% for sub_item in include.item.items %}
           {% assign id = include.id | append: '-' | append: forloop.index %}
-          {% include accordion_item.html item=sub_item id=id %}
+          {% include_cached accordion_item.html item=sub_item id=id %}
         {% endfor %}
       </ul>
     </div>
