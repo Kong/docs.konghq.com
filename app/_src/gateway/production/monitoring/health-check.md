@@ -35,27 +35,15 @@ In DB-less mode, the endpoint returns 200 OK when all of the following condition
 2. Successful initial build of all routers for all workers
 3. Successful initial build of all plugin iterators for all workers
 
-## Configuring the Status Endpoint
+## Enabling the Status Endpoint
 
-To configure the Status Endpoint in your Kong instance, follow these steps:
+In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server via the [status_listen](https://docs.konghq.com/gateway/latest/reference/configuration/#status_listen) configuration parameter.
 
-1. Ensure that Kong is setup.
-2. Open the Kong configuration file (e.g., `kong.conf` or `kong.yml`).
-3. Make sure the Status API server is enabled by including the following line:
+Example `kong.conf`:
 
     ```conf
     status_listen = 0.0.0.0:8100
     ```
-
-    This will make the Status API server listen on port `8100` on all interfaces of the system. You can change the port number to any available port on your system.
-
-4. Save the configuration file and restart Kong to apply the changes.
-
-    ```shell
-    kong reload
-    ```
-    
-You can also use `KONG_STATUS_LISTEN` environment variable to configure it.
 
 ## Using the Node Readiness Endpoint
 
