@@ -30,8 +30,7 @@ certificates.
 1. Stop the runtime instance container.
 2. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group,
  and click **New Runtime Instance**.
-3. Run the script again to
-[create a new runtime instance](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup) with
+3. Run the script to create a new runtime instance with
 updated certificates.
 4. Remove the old runtime instance container.
 
