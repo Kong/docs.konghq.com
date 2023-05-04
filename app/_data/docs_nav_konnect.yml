@@ -270,6 +270,8 @@
       items:
         - text: Filtering
           url: /api/filtering/
+        - text: API Errors
+          url: /api/errors/
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg
