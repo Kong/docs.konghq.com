@@ -43,10 +43,19 @@ In this object, you have multiple key=value pairs.
 
 Access these secrets from `my-secret-name` like this:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://aws/my-secret-name/foo}
+{vault://aws/my-secret-name/snip}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://aws/my-secret-name:foo}
 {vault://aws/my-secret-name:snip}
 ```
+{% endif_version %}
 
 ## Configuration via vaults entity
 
@@ -117,10 +126,19 @@ vaults:
 With the Vault entity in place, you can now reference the secrets. This allows you to drop the `AWS_REGION`
 environment variable.
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://my-aws-sm-vault/my-secret-name/foo}
+{vault://my-aws-sm-vault/my-secret-name/snip}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://my-aws-sm-vault/my-secret-name:foo}
 {vault://my-aws-sm-vault/my-secret-name:snip}
 ```
+{% endif_version %}
 
 ## Secrets in different regions
 
@@ -133,10 +151,19 @@ curl -X PUT http://HOSTNAME:8001/vaults/aws-us-west-vault -d name=aws -d config.
 
 This lets you source secrets from different regions:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://aws-eu-central-vault/my-secret-name/foo}
+{vault://aws-us-west-vault/my-secret-name/snip}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://aws-eu-central-vault/my-secret-name:foo}
 {vault://aws-us-west-vault/my-secret-name:snip}
 ```
+{% endif_version %}
 
 ## Vault configuration options
 

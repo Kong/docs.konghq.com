@@ -29,10 +29,19 @@ export PG_CREDS='{"username":"user", "password":"pass"}'
 
 This allows you to reference the secrets separately:
 
+{% if_version lte:3.2.x %}
+```text
+{vault://env/pg-creds/username}
+{vault://env/pg-creds/password}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```text
 {vault://env/pg-creds:username}
 {vault://env/pg-creds:password}
 ```
+{% endif_version %}
 
 {:.note}
 > When adding an environment variable with Helm, ensure that the variable being passed has `kong-` appended to it. 

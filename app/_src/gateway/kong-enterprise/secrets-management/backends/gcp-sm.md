@@ -51,10 +51,19 @@ contains one or more properties:
 
 You can now reference the secret's individual resources like this:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://gcp/my-secret-name/foo?project_id=my_project_id}
+{vault://gcp/my-secret-name/snip?project_id=my_project_id}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://gcp/my-secret-name:foo?project_id=my_project_id}
 {vault://gcp/my-secret-name:snip?project_id=my_project_id}
 ```
+{% endif_version %}
 
 Note that both the provider (`gcp`) as well as the GCP project ID
 (`my_project_id`) need to be specified. You can configure the project ID
@@ -66,10 +75,19 @@ export KONG_VAULT_GCP_PROJECT_ID=my_project_id
 
 Then you don't need to repeat it in references:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://gcp/my-secret-name/foo}
+{vault://gcp/my-secret-name/snip}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://gcp/my-secret-name:foo}
 {vault://gcp/my-secret-name:snip}
 ```
+{% endif_version %}
 
 ## Configuration via vaults entity
 
@@ -142,10 +160,19 @@ vaults:
 With the Vault entity in place, you can reference the GCP secrets
 through it:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://my-gcp-sm-vault/my-secret-name/foo}
+{vault://my-gcp-sm-vault/my-secret-name/snip}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://my-gcp-sm-vault/my-secret-name:foo}
 {vault://my-gcp-sm-vault/my-secret-name:snip}
 ```
+{% endif_version %}
 
 ## Vault entity configuration options
 

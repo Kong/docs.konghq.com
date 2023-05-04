@@ -4,25 +4,51 @@ title: Reference Format
 
 We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe references to a secret store.
 
+{% if_version lte:3.2.x %}
+```text
+{vault://<vault-backend|entity>/<secret-id>[/<secret-key>][?query]}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```text
 {vault://<vault-backend|entity>/<secret-id>[:<secret-key>][?query]}
 ```
+{% endif_version %}
 
 ### Protocol/Scheme
 
+{% if_version lte:3.2.x %}
+```text
+{vault://<vault-backend|entity>/<secret-id>[/<secret-key>]}
+ ^^^^^
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```text
 {vault://<vault-backend|entity>/<secret-id>[:<secret-key>]}
  ^^^^^
 ```
+{% endif_version %}
 
 The `vault` in the URL is used as an identifier for Kong. We use this to reference a vault.
 
 ### Host/Path
 
+{% if_version lte:3.2.x %}
+```text
+{vault://<vault-prefix>/<secret-id>[/<secret-key>]}
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```text
 {vault://<vault-prefix>/<secret-id>[:<secret-key>]}
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
+{% endif_version %}
 
 The `host` and  `path` of the URL defines the following:
 
@@ -32,17 +58,31 @@ The prefix for a vault can be either the name of the backend or the name of vaul
 
 Examples:
 
+{% if_version lte:3.2.x %}
+```text
+{vault://env/<secret-id>[/<secret-key>]}
+         ^^^
+```
+or using a vault entity:
+
+```text
+{vault://my-env-vault/<secret-id>[/<secret-key>]}
+         ^^^^^^^^^^^^
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```text
 {vault://env/<secret-id>[:<secret-key>]}
          ^^^
 ```
-
-or using a vault entity
+or using a vault entity:
 
 ```text
 {vault://my-env-vault/<secret-id>[:<secret-key>]}
          ^^^^^^^^^^^^
 ```
+{% endif_version %}
 
 #### Secret ID
 

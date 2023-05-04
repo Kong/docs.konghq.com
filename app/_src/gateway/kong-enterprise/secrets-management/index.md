@@ -36,9 +36,17 @@ A secret reference points to a string value. No other data types are currently s
 The vault backend may store multiple related secrets inside an object, but the reference
 should always point to a key that resolves to a string value. For example, the following reference:
 
+{% if_version lte:3.2.x %}
+```
+{vault://hcv/pg/username}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```
 {vault://hcv/pg:username}
 ```
+{% endif_version %}
 
 Would point to a secret object called `pg` inside a HashiCorp Vault, which may return the following value:
 
@@ -49,10 +57,15 @@ Would point to a secret object called `pg` inside a HashiCorp Vault, which may r
 }
 ```
 
-<!-- vale off -->
+{% if_version lte:3.2.x %}
+Kong receives the payload and extracts the `"username"` value of `"john"` for the secret reference of
+`{vault://hcv/pg/username}`.
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 Kong receives the payload and extracts the `"username"` value of `"john"` for the secret reference of
 `{vault://hcv/pg:username}`.
-<!-- vale on -->
+{% endif_version %}
 
 ### What can be stored as a secret?
 

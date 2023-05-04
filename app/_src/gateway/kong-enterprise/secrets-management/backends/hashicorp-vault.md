@@ -143,15 +143,31 @@ version            1
 
 Access these secrets like this:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://hcv/hello/foo}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://hcv/hello:foo}
 ```
+{% endif_version %}
 
 Or, if you configured an entity:
 
+{% if_version lte:3.2.x %}
+```bash
+{vault://my-hashicorp-vault/hello/foo}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
 ```bash
 {vault://my-hashicorp-vault/hello:foo}
 ```
+{% endif_version %}
 
 ## Vault configuration options
 
