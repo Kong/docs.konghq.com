@@ -2,6 +2,7 @@
 
 **{{site.base_gateway}} 3.3.x**
 * Added the `ignore_uri_case` configuration parameter.
+* Added wildcard and parameter match support for `config.content_type`.
 
 **{{site.base_gateway}} 3.1.x**
 * Added support for integrating with redis clusters using the `config.redis.cluster_addresses` configuration parameter.
