@@ -60,7 +60,7 @@ params:
       description: |
         Upstream response content types considered cacheable. 
         The wildcard content type can be used to match any specific type or subtype.
-        For example, `application/*` matches any subtypes of the application, `*/*` matches all content types. Note that `*/*` does not match with a content type that contains a parameter. If the response content type does not match the configuration, a `Bypass` cache status is returned.
+        For example, `application/*` matches any subtypes of the application, `*/*` matches all content types. Note that `*/*` does not match with a content type that contains a parameter (e.g. `*/*` would not match `application/json; charset=utf-8`). If the response content type does not match the configuration, a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
       default: null
