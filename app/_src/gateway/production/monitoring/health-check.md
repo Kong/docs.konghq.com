@@ -108,12 +108,13 @@ If you're using Kubernetes or Helm, you may need to update the readiness probe c
 readinessProbe:
     httpGet:
         path: /status/ready
+        # Make sure to replace the port number with the one you
+        # configured for the Status API Server.
         port: 8100
     initialDelaySeconds: 10
     periodSeconds: 5
 ```
 
-Make sure to replace the port number with the one you configured for the Status API Server.
 
 ## See also
 
