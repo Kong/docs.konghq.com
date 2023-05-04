@@ -5,7 +5,7 @@ content_type: tutorial
 
 This tutorial will guide you through the process of using the Node Readiness Endpoint, which provides a reliable and simple way to determine if Kong is ready to serve user requests.
 
-The health check endpoint returns a `200 OK` response when Kong is ready, or a `503 Service Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
+The health check endpoint returns a `200 OK` response when Kong is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
 Note that the readiness endpoint does not return detailed node health information such as the
 amount of memory Kong node is using. You might want to check out the [`/status` API](/gateway/{{page.kong_version}}/admin-api/#retrieve-node-status) as well.
@@ -21,7 +21,7 @@ Before diving into the steps, it's important to understand the purpose of the No
 
 ### Traditional mode
 
-In Traditional mode, the endpoint returns 200 OK when all of the following conditions are met:
+In Traditional mode, the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Successful connection to the database
 2. Successful initial build of all routers for all workers
@@ -29,7 +29,7 @@ In Traditional mode, the endpoint returns 200 OK when all of the following condi
 
 ### DB-less mode (`data_plane` role)
 
-In DB-less mode, the endpoint returns 200 OK when all of the following conditions are met:
+In DB-less mode, the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Kong has loaded a valid and non-empty config
 2. Successful initial build of all routers for all workers
@@ -56,7 +56,7 @@ Once you've enabled the Node Readiness Endpoint, you can send a GET request to i
 curl -i <status-api-host>/status/ready
 ```
 
-If the response is `200 OK`, your Kong instance is ready to serve requests:
+If the response code is `200`, your Kong instance is ready to serve requests:
 
 ```http
 HTTP/1.1 200 OK
@@ -71,7 +71,7 @@ Server: kong/3.3.0
 {"message":"ready"}
 ```
 
-If the response is `503 Service Unavailable`, your Kong instance is unhealthy and/or not yet ready to serve requests:
+If the response code is `503`, your Kong instance is unhealthy and/or not yet ready to serve requests:
 
 ```http
 HTTP/1.1 503 Service Temporarily Unavailable
