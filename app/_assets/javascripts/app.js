@@ -59,7 +59,7 @@ jQuery(function () {
   $('.dropdown-button').on('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    var dropdownMenu = $(e.target).next('.dropdown-menu')[0];
+    var dropdownMenu = $(e.currentTarget).next('.dropdown-menu')[0];
 
     $(".dropdown-menu").each(function(_index, element) {
       if (element !== dropdownMenu) {
@@ -70,7 +70,7 @@ jQuery(function () {
 
     $(document)
       .one("click", function closeMenu(e) {
-        if ($(".dropdown-menu").has(e.target).length === 0) {
+        if ($(".dropdown-menu").has(e.currentTarget).length === 0) {
           $(".dropdown-menu").removeClass("open");
         } else {
           $(document).one("click", closeMenu);
@@ -94,7 +94,7 @@ jQuery(function () {
       e.preventDefault();
       e.stopPropagation();
 
-      $(e.target).next('.dropdown-menu')
+      $(e.currentTarget).next('.dropdown-menu')
         .toggleClass("open")
         .setAttribute("aria-hidden", "false")
         .setAttribute("aria-expanded", "true");
