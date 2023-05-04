@@ -41,63 +41,63 @@ In order to use the Node Readiness Endpoint, make sure that you have enabled the
 
 Example `kong.conf`:
 
-    ```conf
-    status_listen = 0.0.0.0:8100
-    ```
+```conf
+status_listen = 0.0.0.0:8100
+```
 
 ## Using the Node Readiness Endpoint
 
-Once you've enabled the Node Readiness Endpoint, you can send requests to it to check the readiness of your Kong instance.
+Once you've enabled the Node Readiness Endpoint, you can send a GET request to it to check the readiness of your Kong instance:
 
-Send a GET request to the `/status/ready` endpoint. Replace `<status-api-host>` with the appropriate host for your Status API server, including the port number:
+```sh
+# Replace `<status-api-host>` with the appropriate host for
+# your Status API server, including the port number
 
-    ```shell
-    curl -i <status-api-host>/status/ready
-    ```
+curl -i <status-api-host>/status/ready
+```
 
 If the response is `200 OK`, your Kong instance is ready to serve requests:
 
-    ```
-    HTTP/1.1 200 OK
-    Date: Thu, 04 May 2023 22:00:52 GMT
-    Content-Type: application/json; charset=utf-8
-    Connection: keep-alive
-    Access-Control-Allow-Origin: *
-    Content-Length: 19
-    X-Kong-Admin-Latency: 3
-    Server: kong/3.3.0
+```http
+HTTP/1.1 200 OK
+Date: Thu, 04 May 2023 22:00:52 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Content-Length: 19
+X-Kong-Admin-Latency: 3
+Server: kong/3.3.0
 
-    {"message":"ready"}
-    ```
-
+{"message":"ready"}
+```
 
 If the response is `503 Service Unavailable`, your Kong instance is unhealthy and/or not yet ready to serve requests:
 
-    ```
-    HTTP/1.1 503 Service Temporarily Unavailable
-    Date: Thu, 04 May 2023 22:01:11 GMT
-    Content-Type: application/json; charset=utf-8
-    Connection: keep-alive
-    Access-Control-Allow-Origin: *
-    Content-Length: 43
-    X-Kong-Admin-Latency: 3
-    Server: kong/3.3.0
+```http
+HTTP/1.1 503 Service Temporarily Unavailable
+Date: Thu, 04 May 2023 22:01:11 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Content-Length: 43
+X-Kong-Admin-Latency: 3
+Server: kong/3.3.0
 
-    {"message":"failed to connect to database"}
-    ```
+{"message":"failed to connect to database"}
+```
 
-    ```
-    HTTP/1.1 503 Service Temporarily Unavailable
-    Date: Thu, 04 May 2023 22:06:58 GMT
-    Content-Type: application/json; charset=utf-8
-    Connection: keep-alive
-    Access-Control-Allow-Origin: *
-    Content-Length: 70
-    X-Kong-Admin-Latency: 16
-    Server: kong/3.3.0
+```http
+HTTP/1.1 503 Service Temporarily Unavailable
+Date: Thu, 04 May 2023 22:06:58 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Content-Length: 70
+X-Kong-Admin-Latency: 16
+Server: kong/3.3.0
 
-    {"message":"no configuration available (empty configuration present)"}
-    ```
+{"message":"no configuration available (empty configuration present)"}
+```
 
 
 ## Updating Readiness Probes
