@@ -1,5 +1,5 @@
 name: GraphQL Rate Limiting Advanced
-konnect_examples: false
+konnect_examples: true
 dbless_compatible: partially
 dbless_explanation: |
   The cluster strategy is not supported in DB-less and hybrid modes. For Kong
@@ -8,9 +8,10 @@ free: false
 plus: false
 enterprise: true
 konnect: true
+cloud: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
-  In DB-less and hybrid modes, the <code>cluster</code> config strategy
+  In DB-less, hybrid mode, and Konnect, the <code>cluster</code> config strategy
   is not supported. Use <code>redis</code> instead.
 categories:
   - traffic-control

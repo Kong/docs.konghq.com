@@ -16,6 +16,7 @@ free: true
 plus: false
 enterprise: true
 konnect: false
+cloud: false
 network_config_opts: Self-managed traditional only
 notes: |
   This plugin can't be used in Konnect, hybrid, or DB-less modes. It needs to

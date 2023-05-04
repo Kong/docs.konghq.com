@@ -4,10 +4,6 @@ dbless_explanation: |
   Consumers and JWT secrets can be created with declarative configuration.
 
   Admin API endpoints that do POST, PUT, PATCH, or DELETE on secrets are not available on DB-less mode.
-extra: |
-  <div class="alert alert-warning">
-      <center>The option <code>config.run_on_preflight</code> is only available from version <code>0.11.1</code> and later.</center>
-  </div>
 free: true
 plus: true
 enterprise: true

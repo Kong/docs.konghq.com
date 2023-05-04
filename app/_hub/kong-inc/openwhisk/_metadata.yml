@@ -9,6 +9,7 @@ free: true
 plus: true
 enterprise: true
 konnect: false
+cloud: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   Not bundled with Kong Gateway.

@@ -10,6 +10,7 @@ free: false
 plus: true
 enterprise: true
 konnect: true
+cloud: true
 network_config_opts: All
 notes: --
 categories:

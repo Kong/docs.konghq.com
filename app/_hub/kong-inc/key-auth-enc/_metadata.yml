@@ -9,6 +9,7 @@ free: false
 plus: false
 enterprise: true
 konnect: false
+cloud: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   The time-to-live (ttl) does not work in Konnect or hybrid mode. This setting

@@ -3,6 +3,8 @@ api_id: true
 dbless_compatible: yes
 publisher: Optum
 
+type: plugin
+
 categories:
   - security
 

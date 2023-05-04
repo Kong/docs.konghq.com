@@ -2,7 +2,7 @@ name: Kong Splunk Log
 dbless_compatible: yes
 extra: We recommend enabling the Splunk Logging plugin at a global level.
 publisher: Optum
-
+type: plugin
 categories:
   - logging
 
@@ -28,3 +28,5 @@ kong_version_compatibility:
       - 0.34-x
       - 0.33-x
       - 0.32-x
+
+extra: We recommend enabling the Splunk Logging plugin at a global level.
