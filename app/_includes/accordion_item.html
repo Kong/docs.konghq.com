@@ -2,7 +2,9 @@
   <input id="accordion-{{ include.id }}" type="checkbox" />
   <label for="accordion-{{ include.id }}">
     {% if include.item.icon %}
-      <img src="{{ include.item.icon }}" alt="{{ include.item.label }}">
+      {% unless include.item.url %}
+        <img src="{{ include.item.icon }}" alt="{{ include.item.label }}">
+      {% endunless %}
     {% endif %}
     {% if include.item.url %}
       <a
@@ -12,6 +14,9 @@
         tabindex="0"
         {% if include.item.target_blank %} target="_blank" {% endif %}
       >
+        {% if include.item.icon %}
+          <img src="{{ include.item.icon }}" alt="{{ include.item.label }}">
+        {% endif %}
         {{ include.item.label }}
       </a>
     {% else %}
