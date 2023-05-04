@@ -50,7 +50,18 @@ params:
       datatype: array of string elements
       description: |
         Downstream request methods considered cacheable.
-    - name: content_type
+    - name: content_type # old version of param
+      maximum_version: "3.2.x"
+      required: null
+      default: '`["text/plain", "application/json"]`'
+      value_in_examples:
+        - text/plain
+        - application/json
+      datatype: array of string elements
+      description: |
+        Upstream response content types considered cacheable. The plugin performs an **exact match** against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status is returned.
+    - name: content_type # current version of param
+      minimum_version: "3.3.x"
       required: null
       default: '`["text/plain", "application/json"]`'
       value_in_examples:
@@ -59,8 +70,12 @@ params:
       datatype: array of string elements
       description: |
         Upstream response content types considered cacheable. 
+
         The wildcard content type can be used to match any specific type or subtype.
-        For example, `application/*` matches any subtypes of the application, `*/*` matches all content types. Note that `*/*` does not match with a content type that contains a parameter (e.g. `*/*` would not match `application/json; charset=utf-8`). If the response content type does not match the configuration, a `Bypass` cache status is returned.
+        For example, `application/*` matches any subtypes of the application, `*/*` matches all content types. 
+        
+        Note that `*/*` does not match with a content type that contains a parameter (e.g. `*/*` would not match `application/json; charset=utf-8`). 
+        If the response content type does not match the configuration, a `Bypass` cache status is returned.
     - name: vary_headers
       required: false
       default: null
@@ -255,3 +270,10 @@ HTTP 204 No Content
 ```
 
 Note that this endpoint purges all cache entities across all `proxy-cache` plugins.
+
+---
+
+## Changelog 
+
+**{{site.base_gateway}} 3.3.x**
+* Added wildcard and parameter match support for `config.content_type`.
