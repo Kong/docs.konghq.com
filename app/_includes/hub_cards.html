@@ -2,18 +2,17 @@
 {%- assign categories = extn.categories | join: ' ' -%}
 {%- assign css_classes = {{ extn.type | append: ' ' | append: categories -%}
 {%-if extn_publisher == 'kong-inc' -%}
-  {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
-  {%- if extn.kong_version_compatibility.enterprise_edition.compatible != nil -%}
-    {%- assign css_classes = css_classes | append: " ee-compat" -%}
-  {%- endif -%}
-  {%- if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil -%}
-    {%- unless extn.cloud == false -%}
+  {%- if extn.free == true -%}
+    {%- assign css_classes = css_classes | append: " free" -%}
+  {%- else -%}
+    {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
+    {%- if extn.plus -%}
       {%- assign css_classes =  css_classes | append: " plus" -%}
+    {%- endif -%}
+    {%- unless extn.konnect == false -%}
+      {%- assign css_classes = css_classes | append: " konnect" -%}
     {%- endunless -%}
   {%- endif -%}
-  {%- unless extn.konnect == false -%}
-    {%- assign css_classes = css_classes | append: " konnect" -%}
-  {%- endunless -%}
 {%- else -%}
   {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
   {%- assign css_classes = css_classes | append: third_party_classes -%}
@@ -32,17 +31,19 @@
           <p>{{ extn.name }}</p>
         </div>
         <div class="plugin-card--meta__badges">
-          {% if extn.plus and extn_publisher == 'kong-inc' %}
-            <span class="badge plus"></span>
-          {% endif %}
-          {% if extn.enterprise %}
-            <span class="badge enterprise"></span>
-          {% endif %}
-          {% if extn_publisher == 'kong-inc' %}
-            {% unless extn.konnect == false %}
-              <span class="badge konnect"></span>
-            {% endunless %}
-          {% endif %}
+          {% unless extn.free == true %}
+            {% if extn.plus and extn_publisher == 'kong-inc' %}
+              <span class="badge plus"></span>
+            {% endif %}
+            {% if extn.enterprise %}
+              <span class="badge enterprise"></span>
+            {% endif %}
+            {% if extn_publisher == 'kong-inc' %}
+              {% unless extn.konnect == false %}
+                <span class="badge konnect"></span>
+              {% endunless %}
+            {% endif %}
+          {% endunless %}
         </div>
         <div class="plugin-card--meta__description">{{ extn.desc }}</div>
       </div>

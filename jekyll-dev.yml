@@ -195,7 +195,7 @@ defaults:
 hub-filters:
   tiers:
     - name: Free
-      slug: open-source
+      slug: free
     - name: Plus
       slug: plus
     - name: Enterprise
