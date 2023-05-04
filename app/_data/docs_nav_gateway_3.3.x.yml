@@ -178,6 +178,8 @@ items:
             url: /production/monitoring/statsd
           - text: Datadog
             url: /production/monitoring/datadog
+          - text: Health Check
+            url: /production/monitoring/health-check
       - text: Tracing
         items:
           - text: Overview
