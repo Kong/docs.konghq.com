@@ -3,9 +3,9 @@ title: Health Check
 content_type: tutorial
 ---
 
-This tutorial will guide you through the process of using the new Node Readiness Endpoint, which provides a more reliable and simple way to determine if Kong is ready to serve user requests.
+This tutorial will guide you through the process of using the Node Readiness Endpoint, which provides a reliable and simple way to determine if Kong is ready to serve user requests.
 
-To put it simply, health check endpoint will return a `200 OK` response when Kong is ready, or a `503 Service Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
+The health check endpoint returns a `200 OK` response when Kong is ready, or a `503 Service Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
 Note that the readiness endpoint does not return detailed node health information such as the
 amount of memory Kong node is using. You might want to check out the [`/status` API](/gateway/{{page.kong_version}}/admin-api/#retrieve-node-status) as well.
@@ -21,7 +21,7 @@ Before diving into the steps, it's important to understand the purpose of the No
 
 ### Traditional mode
 
-In Traditional mode, the conditions that must be fulfilled simultaneously for the traditional mode are: 
+In Traditional mode, the endpoint returns 200 OK when all of the following conditions are met:
 
 1. Successful connection to the database
 2. Successful initial build of all routers for all workers
