@@ -37,7 +37,7 @@ In DB-less mode, the endpoint returns `200 OK` when all of the following conditi
 
 ## Enabling the Status Endpoint
 
-In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server via the [status_listen](https://docs.konghq.com/gateway/latest/reference/configuration/#status_listen) configuration parameter.
+In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server via the [status_listen](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) configuration parameter.
 
 Example `kong.conf`:
 
