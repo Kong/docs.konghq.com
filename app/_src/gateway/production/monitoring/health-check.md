@@ -68,7 +68,9 @@ Content-Length: 19
 X-Kong-Admin-Latency: 3
 Server: kong/3.3.0
 
-{"message":"ready"}
+{
+  "message": "ready"
+}
 ```
 
 If the response code is `503`, your Kong instance is unhealthy and/or not yet ready to serve requests:
@@ -83,7 +85,9 @@ Content-Length: 43
 X-Kong-Admin-Latency: 3
 Server: kong/3.3.0
 
-{"message":"failed to connect to database"}
+{
+  "message": "failed to connect to database"
+}
 ```
 
 ```http
@@ -96,7 +100,9 @@ Content-Length: 70
 X-Kong-Admin-Latency: 16
 Server: kong/3.3.0
 
-{"message":"no configuration available (empty configuration present)"}
+{
+  "message": "no configuration available (empty configuration present)"
+}
 ```
 
 
