@@ -109,7 +109,13 @@ params:
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
-        data and sync configuration is isolated in each namespace.
+        data and sync configuration is isolated in each namespace. This value should be unique between
+        every instance of a plugin in most configurations.
+
+        If you use the same `namespace` value for multiple instances of the plugin, the rate limit will be shared
+        between all instances. For example, if you set `namespace: helloworld` when adding the rate limiting plugin
+        to `service-a` and use the same namespace on `service-b`, a request to either service will increment the
+        counter for the caller. This allows you to share rate limits between services.
 
         {:.important}
         > **Important**: If managing Kong Gateway with **declarative configuration** or running
