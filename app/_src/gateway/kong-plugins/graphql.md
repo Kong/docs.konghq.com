@@ -60,6 +60,3 @@ A more advanced strategy is available for GraphQL schemas that enforce quantifie
 
 Read more about rate-limiting here: [GraphQL Rate Limiting Advanced Plugin](/hub/kong-inc/graphql-rate-limiting-advanced/)
 
-### New upstream
-
-We have prepared a [quickstart guide](https://github.com/Kong/kong-apollo-quickstart) that will help you build your new GraphQL service on top of Kong and Apollo.
