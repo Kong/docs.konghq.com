@@ -23,9 +23,8 @@ files.
 
 ## Quick setup
 
-If you originally created your runtime instance container using the
-[quick setup Docker script](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker/#quick-setup),
-we recommend running the script again to create a new instance with renewed
+If you originally created your runtime instance container using one of the
+Docker options in Runtime Manager, we recommend creating a new instance with renewed
 certificates.
 
 1. Stop the runtime instance container.
@@ -62,8 +61,7 @@ You can generate a new data plane certificate from the {% konnect_icon runtimes 
 
 {% navtab Konnect API %}
 
-You can generate a certificate locally and use the [pin data plane client certificate](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to Konnect
-
+You can generate a certificate locally and use the [pin data plane client certificate](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to Konnect.
 
 1.  Generate a new certificate and key:
 
@@ -71,7 +69,7 @@ You can generate a certificate locally and use the [pin data plane client certif
     openssl req -new -x509 -nodes -newkey rsa:2048 -subj "/CN=kongdp/C=US" -keyout ./tls.key -out ./tls.crt
     ```
 
-1. Reformat the certificate in to a single line for the API call
+1. Reformat the certificate into a single line for the API call:
 
     ```bash
     export CERT=$(awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' tls.crt)
