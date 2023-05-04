@@ -17,8 +17,8 @@ and organization name.
 
 3. Create a password.
 
-    The new password must be 8 characters long and contain at least two of the
-    following: a lowercase letter, an uppercase letter, or a special
+    The new password must be between 8-128 characters, and contain at least three of the
+    following: a lowercase letter, an uppercase letter, a number, or a special
     character.
 
 4. From your {{site.konnect_short_name}} welcome email, click the link
