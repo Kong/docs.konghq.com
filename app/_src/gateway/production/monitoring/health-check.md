@@ -49,13 +49,56 @@ Example `kong.conf`:
 
 Once you've enabled the Node Readiness Endpoint, you can send requests to it to check the readiness of your Kong instance.
 
-1. Send a GET request to the `/status/ready` endpoint. Replace `<status-api-host>` with the appropriate host for your Status API server, including the port number:
+Send a GET request to the `/status/ready` endpoint. Replace `<status-api-host>` with the appropriate host for your Status API server, including the port number:
 
     ```shell
-    curl -I <status-api-host>/status/ready
+    curl -i <status-api-host>/status/ready
     ```
 
-2. If the response is `200 OK`, your Kong instance is ready to serve requests. If the response is `503 Service Unavailable`, Kong does not yet have a valid configuration.
+If the response is `200 OK`, your Kong instance is ready to serve requests:
+
+    ```
+    HTTP/1.1 200 OK
+    Date: Thu, 04 May 2023 22:00:52 GMT
+    Content-Type: application/json; charset=utf-8
+    Connection: keep-alive
+    Access-Control-Allow-Origin: *
+    Content-Length: 19
+    X-Kong-Admin-Latency: 3
+    Server: kong/3.3.0
+
+    {"message":"ready"}
+    ```
+
+
+If the response is `503 Service Unavailable`, your Kong instance is unhealthy and/or not yet ready to serve requests:
+
+    ```
+    HTTP/1.1 503 Service Temporarily Unavailable
+    Date: Thu, 04 May 2023 22:01:11 GMT
+    Content-Type: application/json; charset=utf-8
+    Connection: keep-alive
+    Access-Control-Allow-Origin: *
+    Content-Length: 43
+    X-Kong-Admin-Latency: 3
+    Server: kong/3.3.0
+
+    {"message":"failed to connect to database"}
+    ```
+
+    ```
+    HTTP/1.1 503 Service Temporarily Unavailable
+    Date: Thu, 04 May 2023 22:06:58 GMT
+    Content-Type: application/json; charset=utf-8
+    Connection: keep-alive
+    Access-Control-Allow-Origin: *
+    Content-Length: 70
+    X-Kong-Admin-Latency: 16
+    Server: kong/3.3.0
+
+    {"message":"no configuration available (empty configuration present)"}
+    ```
+
 
 ## Updating Readiness Probes
 
