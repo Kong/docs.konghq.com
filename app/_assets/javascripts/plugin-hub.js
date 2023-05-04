@@ -67,6 +67,14 @@ $(document).ready(function () {
     });
   }
 
+  function toggleCategoriesIfEmpty() {
+    $('.page-hub--category').each(function(_index, category) {
+      if ($(category).find('.plugin-card:visible').length === 0) {
+        $(category).toggle(false);
+      }
+    });
+  }
+
   function handleDropdownChange($filter, $target) {
     var value = $target.data("value");
     if (value === "all")  {
@@ -99,6 +107,7 @@ $(document).ready(function () {
 
       filterByCategories(selectedCategories);
       filterPluginCards();
+      toggleCategoriesIfEmpty();
     });
 
     $tierFilter.on("click", ".dropdown-item", function(e) {
