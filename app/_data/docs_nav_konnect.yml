@@ -204,10 +204,10 @@
             url: /org-management/okta-idp/
           - text: Login Sessions Reference
             url: /org-management/sessions-reference/
-      - text: Account and Org Deactivation
-        url: /org-management/deactivation/
-      - text: Troubleshoot
-        url: /org-management/troubleshoot/
+          - text: Account and Org Deactivation
+            url: /org-management/deactivation/
+          - text: Troubleshoot
+            url: /org-management/troubleshoot/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
