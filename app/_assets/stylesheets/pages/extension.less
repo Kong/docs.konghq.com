@@ -598,7 +598,6 @@ table {
       border-bottom: 1px solid @gray;
       font-size: 14px;
       color: #031f53;
-      overflow-x: scroll;
 
       span:not(:last-of-type)::after {
         content: "|";
@@ -608,6 +607,10 @@ table {
 
       .required {
         color: @red-700;
+      }
+
+      .default {
+        overflow-x: scroll;
       }
 
       code {
