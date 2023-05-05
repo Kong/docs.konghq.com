@@ -185,6 +185,11 @@ $(document).ready(function () {
       updateQueryParams();
     });
 
+    $(".page-hub--filters").on("click", ".clear-search", function(e) {
+      $searchInput.val("");
+      $searchInput.trigger("page-hub:filter");
+    });
+
     $tierFilter.on("click", ".dropdown-item", function(e) {
       handleDropdownChange($tierFilter, $(e.target));
     });
