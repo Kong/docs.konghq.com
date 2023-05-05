@@ -17,9 +17,51 @@ Kong is licensed under an
 You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
 
 {% navtabs %}
-{% navtab Package %}
+{% navtab Package (AL2023) %}
+Install {{site.base_gateway}} on Amazon Linux 2023 from the command line.
 
-Install {{site.base_gateway}} on Amazon Linux from the command line.
+1. Download the Kong package:
+
+{% capture download_package %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2023/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm"
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+curl -Lo kong-{{page.versions.ce}}.aws.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2023/Packages/k/kong-{{page.versions.ce}}.aws.amd64.rpm"
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ download_package | indent | replace: " </code>", "</code>" }}
+
+2. Install the package:
+
+{% capture install_package %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo yum install kong-{{page.versions.ce}}.aws.amd64.rpm
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ install_package | indent | replace: " </code>", "</code>" }}
+
+{% endnavtab %}
+{% navtab Package (Amazon Linux 2) %}
+
+Install {{site.base_gateway}} on Amazon Linux 2 from the command line.
 
 1. Download the Kong package:
 
