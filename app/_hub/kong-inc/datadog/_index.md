@@ -155,7 +155,8 @@ When installing a multi-data center setup, you might want to set Datadog's agent
 
 {:.note}
 > **Note:** `host` and `port` fields in the plugin config take precedence over environment variables.
-> For Kubernetes there's a known limitation that we cannot set `host` to null to use the environment variable. You can work around this using a vault reference, for example: `{vault://env/kong-datadog-agent-host}`. Please refer to [configure with Kubernetes](#configure-with-kubernetes)
+> <br>
+> For Kubernetes, there is a known limitation that you can't set `host` to null to use the environment variable. You can work around this by using a vault reference, for example: `{vault://env/kong-datadog-agent-host}`. Refer to [configure with Kubernetes](#configure-with-kubernetes).
 
 Field           | Description                                           | Datatypes
 ---             | ---                                                   | ---
@@ -170,11 +171,11 @@ Field           | Description                                           | Dataty
 
 ## Configure with Kubernetes
 
-Please make sure the environment variable is visible from Kong.
+Before going through the following steps, make sure the environment variable is visible from Kong.
 
 ### Helm
 
-1. Modify the `env` section in `values.yaml` like below:
+1. Modify the `env` section in `values.yaml`:
 
 ```yaml
 env:
@@ -184,13 +185,13 @@ env:
         fieldPath: status.hostIP
 ```
 
-1. update helm deployment
+1. Update the Helm deployment:
 
-```
+```sh
 helm upgrade -f values.yaml RELEASE_NAME kong/kong --version VERSION --namespace NAMESPACE
 ```
 
-1. Modify plugin's configuration like below:
+1. Modify the plugin's configuration:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -206,9 +207,9 @@ config:
   port: 8125
 ```
 
-### Non-Helm
+### Kubernetes YAML
 
-1. Modify the `env` section in `values.yaml` like below:
+1. Modify the `env` section in `values.yaml`:
 
 ```yaml
 env:
@@ -218,7 +219,7 @@ env:
         fieldPath: status.hostIP
 ```
 
-2. Modify plugin's configuration like below:
+2. Modify plugin's configuration:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
