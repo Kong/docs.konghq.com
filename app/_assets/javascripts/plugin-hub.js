@@ -93,6 +93,19 @@ $(document).ready(function () {
     if ($filter.find(".dropdown-item.active").length === 0) {
       $filter.find(".dropdown-item[data-value='all']").addClass("active");
     }
+    updateCounter($filter);
+  }
+
+  function updateCounter($filter) {
+    var selected = getSelectedValuesForFilter($filter);
+    var $counter = $filter.find(".selected-counter");
+
+    if (areAllSelected(selected)) {
+      $counter.css('visibility', 'hidden');
+    } else {
+      $counter.html(selected.length);
+      $counter.css('visibility', 'visible');
+    }
   }
 
   function handleDropdownChange($filter, $target) {

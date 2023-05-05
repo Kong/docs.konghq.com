@@ -1,6 +1,6 @@
 <div class="dropdown">
   <button class="dropdown-button" type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="menu-button-{{ include.label }}">
-    {{ include.label }}
+    <span class="dropdown-button__label">{{ include.label }}<span class="selected-counter"></span></span>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button-{{ include.label }}" tabindex="-1">

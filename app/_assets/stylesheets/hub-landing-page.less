@@ -143,13 +143,35 @@
           padding: 0px 24px;
           border: none;
           align-items: center;
-          justify-content: space-around;
           text-transform: none;
           font-style: normal;
           font-weight: 600;
           font-size: 16px;
           line-height: 26px;
           color: rgba(0, 0, 0, 0.85);
+
+          &__label {
+            display: flex;
+            gap: 8px;
+
+            .selected-counter {
+              background: #1155CB;
+              border-radius: 8px;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              width: 24px;
+              padding: 6px 8px;
+              justify-self: flex-start;
+              height: 28px;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 16px;
+              color: white;
+              visibility: hidden;
+            }
+          }
 
           @media (max-width: 990px) {
             justify-content: space-between;
