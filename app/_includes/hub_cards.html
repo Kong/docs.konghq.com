@@ -9,10 +9,10 @@
     {%- if extn.plus -%}
       {%- assign css_classes =  css_classes | append: " plus" -%}
     {%- endif -%}
-    {%- unless extn.konnect == false -%}
-      {%- assign css_classes = css_classes | append: " konnect" -%}
-    {%- endunless -%}
   {%- endif -%}
+  {%- unless extn.konnect == false -%}
+    {%- assign css_classes = css_classes | append: " konnect" -%}
+  {%- endunless -%}
 {%- else -%}
   {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
   {%- assign css_classes = css_classes | append: third_party_classes -%}
@@ -35,15 +35,15 @@
             {% if extn.plus and extn_publisher == 'kong-inc' %}
               <span class="badge plus"></span>
             {% endif %}
-            {% if extn.enterprise %}
-              <span class="badge enterprise"></span>
-            {% endif %}
-            {% if extn_publisher == 'kong-inc' %}
-              {% unless extn.konnect == false %}
-                <span class="badge konnect"></span>
-              {% endunless %}
-            {% endif %}
           {% endunless %}
+          {% if extn_publisher == 'kong-inc' %}
+            {% unless extn.konnect == false %}
+              <span class="badge konnect"></span>
+            {% endunless %}
+          {% endif %}
+          {% if extn.enterprise %}
+            <span class="badge enterprise"></span>
+          {% endif %}
         </div>
         <div class="plugin-card--meta__description">{{ extn.desc }}</div>
       </div>
