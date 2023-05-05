@@ -6,14 +6,14 @@ module PluginSingleSource
       TITLE = 'Configuration Reference'
 
       def canonical_url
-        "#{base_url}reference/"
+        "#{base_url}configuration/"
       end
 
       def permalink
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/reference/"
+          "#{base_url}#{@release.version}/configuration/"
         end
       end
 
@@ -22,7 +22,7 @@ module PluginSingleSource
       end
 
       def dropdown_url
-        @dropdown_url ||= "#{base_url}VERSION/reference/"
+        @dropdown_url ||= "#{base_url}VERSION/configuration/"
       end
 
       def source_file; end

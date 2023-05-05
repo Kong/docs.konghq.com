@@ -17,9 +17,9 @@ RSpec.describe PluginSingleSource::Pages::Reference do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => '/hub/kong-inc/jwt-signer/reference/',
+          'canonical_url' => '/hub/kong-inc/jwt-signer/configuration/',
           'source_file' => nil,
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/reference/',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Configuration Reference'
         })
@@ -36,7 +36,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
         expect(subject.data).to include({
           'canonical_url' => nil,
           'source_file' => nil,
-          'permalink' => '/hub/kong-inc/jwt-signer/reference/',
+          'permalink' => '/hub/kong-inc/jwt-signer/configuration/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Configuration Reference'
         })
