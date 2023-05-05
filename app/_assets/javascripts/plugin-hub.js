@@ -1,6 +1,8 @@
 /* Hub page */
 
 $(document).ready(function () {
+  var queryParams = new URLSearchParams(window.location.search);
+
   function getValuesForFilter(filter) {
     return $.map(filter.find(".dropdown-item"), function(t) {
       return $(t).data("value");
@@ -17,7 +19,8 @@ $(document).ready(function () {
     return JSON.stringify(values) === JSON.stringify(["all"]);
   }
 
-  function filterByCategories(selectedCategories) {
+  function filterByCategories($categoryFilter) {
+    var selectedCategories = getSelectedValuesForFilter($categoryFilter);
     var selectedIds = [];
     var unselectedIds = [];
     if (areAllSelected(selectedCategories)) {
@@ -65,6 +68,8 @@ $(document).ready(function () {
       }
       $(card).toggle(showCard);
     });
+
+    toggleCategoriesIfEmpty();
   }
 
   function toggleCategoriesIfEmpty() {
@@ -75,19 +80,24 @@ $(document).ready(function () {
     });
   }
 
-  function handleDropdownChange($filter, $target) {
-    var value = $target.data("value");
+  function toggleDropdownItem($filter, $dropdownItem) {
+    var value = $dropdownItem.data("value");
     if (value === "all")  {
       $filter.find(".dropdown-item").removeClass("active");
-      $target.addClass("active");
+      $dropdownItem.addClass("active");
     } else {
-      $target.toggleClass("active");
+      $dropdownItem.toggleClass("active");
       $filter.find(".dropdown-item[data-value='all']").removeClass("active");
     }
     // if none selected -> select "all"
     if ($filter.find(".dropdown-item.active").length === 0) {
       $filter.find(".dropdown-item[data-value='all']").addClass("active");
     }
+  }
+
+  function handleDropdownChange($filter, $target) {
+    toggleDropdownItem($filter, $target);
+
     $filter.trigger("page-hub:filter");
     $filter.find(".dropdown-menu").removeClass("open");
   }
@@ -102,12 +112,77 @@ $(document).ready(function () {
     var typingTimer;
     var typeInterval = 500;
 
-    $(".page-hub--filters").on("page-hub:filter", function(e) {
-      var selectedCategories = getSelectedValuesForFilter($categoryFilter);;
+    function populateFilter($filter, filterName) {
+      var values = queryParams.get(filterName).split(",");
+      values.forEach(function(val) {
+        var $dropdownItem = $filter.find(`.dropdown-item[data-value='${val}']`);
+        toggleDropdownItem($filter, $dropdownItem);
+      });
+    }
 
-      filterByCategories(selectedCategories);
+    function populateFiltersFromQueryString() {
+      if (queryParams.size !== 0) {
+        if (queryParams.has("category")) {
+          populateFilter($categoryFilter, "category");
+          filterByCategories($categoryFilter);
+        }
+        if (queryParams.has("tier")) {
+          populateFilter($tierFilter, "tier");
+        }
+        if (queryParams.has("support")) {
+          populateFilter($supportFilter, "support");
+        }
+        if (queryParams.has("compatibility")) {
+          populateFilter($compatibilityFilter, "compatibility");
+        }
+        if (queryParams.has("search")) {
+          $searchInput.val(decodeURIComponent(queryParams.get("search")));
+        }
+
+        filterPluginCards();
+      }
+    };
+
+    populateFiltersFromQueryString();
+
+    function updateQueryParamWithFilter(filterName, $filter) {
+      var selectedValues = getSelectedValuesForFilter($filter);
+
+      if (areAllSelected(selectedValues)) {
+        queryParams.delete(filterName);
+      } else {
+        queryParams.set(filterName, selectedValues.join(","));
+      }
+    }
+
+    function updateQueryParamWithInputValue() {
+      var inputValue = $searchInput[0].value.toLowerCase();
+      if (inputValue === "") {
+        queryParams.delete("search");
+      } else {
+        queryParams.set("search", encodeURIComponent(inputValue));
+      }
+    }
+
+    function updateQueryParams() {
+      var $categoryFilter = $(".page-hub--filters__filter-categories");
+      var $tierFilter = $(".page-hub--filters__filter-tiers");
+      var $supportFilter = $(".page-hub--filters__filter-support");
+      var $compatibilityFilter = $(".page-hub--filters__filter-compatibility");
+
+      updateQueryParamWithFilter("category", $categoryFilter);
+      updateQueryParamWithFilter("tier", $tierFilter);
+      updateQueryParamWithFilter("support", $supportFilter);
+      updateQueryParamWithFilter("compatibility", $compatibilityFilter);
+      updateQueryParamWithInputValue();
+
+      history.replaceState(null, "", `?${queryParams.toString()}`);
+    }
+
+    $(".page-hub--filters").on("page-hub:filter", function(e) {
+      filterByCategories($categoryFilter);
       filterPluginCards();
-      toggleCategoriesIfEmpty();
+      updateQueryParams();
     });
 
     $tierFilter.on("click", ".dropdown-item", function(e) {
