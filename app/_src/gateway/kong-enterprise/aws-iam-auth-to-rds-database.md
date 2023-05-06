@@ -60,14 +60,18 @@ For more details, please check the AWS documentation: [https://docs.aws.amazon.c
 - **Ensure you have the database account created in the RDS**. You need to create the database user and then grant them the `rds_iam` role as shown in the following example:
 
 ```text
-CREATE USER john;
-GRANT rds_iam TO john;
+# Connect to your RDS instance by using your master user/password
+$ psql "host=db-your-instance-1.ABCDEFGHIJ12345.us-east-1.rds.amazonaws.com port=5432 user=testmaster password=testpassword dbname=postgres"
+
+# psql shell
+postgres=> CREATE USER john;
+postgres=> GRANT rds_iam TO john;
 ```
 
 You can use `\du` in your RDS database to check you have the database account created:
 
 ```text
-kong=> \du
+postgres=> \du
                                                                List of roles
     Role name    |                         Attributes                         |                          Member of
 -----------------+------------------------------------------------------------+-------------------------------------------------------------
@@ -78,7 +82,7 @@ kong=> \du
 > **Note:** The database user with `rds_iam` role granted cannot authenticate in the normal username/password way, you must use the IAM Database authentication instead.
 
 {:.note}
-> **Note:** Don't forget to provision the database with creating the database and granting enough permissions to the database user! You can check the docs at [Using a database](/gateway/latest/install/linux/debian/#using-a-database) in our Installation Options(/gateway/latest/install/)
+> **Note:** Don't forget to provision the database with creating the database and granting enough permissions to the database user you've just created! You can check the docs at [Using a database](/gateway/latest/install/linux/debian/#using-a-database) in our Installation Options(/gateway/latest/install/)
 
 ## Getting started
 
@@ -93,7 +97,15 @@ You can enable by setting the `KONG_PG_IAM_AUTH` environment variable to `on`. A
 ```bash
 # Set KONG_PG_IAM_AUTH if you want to enable the feature on both read and write
 KONG_PG_IAM_AUTH=on
-# Set KONG_PG_RO_IAM_AUTH if you only want to enable on the read only connection
+```
+
+If you only want to enable this feature in read-only mode, you can set as following:
+
+```bash
+# This line can be omitted because off is a default value
+KONG_PG_IAM_AUTH=off
+
+# Set KONG_PG_RO_IAM_AUTH if you only want to enable on the read only connection.
 KONG_PG_RO_IAM_AUTH=on
 ```
 
