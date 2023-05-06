@@ -52,6 +52,9 @@ Before enabling the AWS IAM Authentication feature, you need to check the follow
 }
 ```
 
+{:.note}
+> **Note:** In this example, `db-ABCDEFGHIJKL01234` is the resource ID of the RDS instance, which can be found in the "Configuration" page on the AWS Console. If you're using Aurora RDS with Aurora PostgreSQL engine, you can also use a cluster ID to grant permission to authenticate to the cluster, for example `cluster-ABCDEFGHIJKL01234`.
+
 For more details, please check the AWS documentation: [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html)
 
 - **Ensure you have the database account created in the RDS**. You need to create the database user and then grant them the `rds_iam` role as shown in the following example:
