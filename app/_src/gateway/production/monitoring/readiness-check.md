@@ -35,6 +35,12 @@ In Hybrid mode (`data_plane` role) or DB-less mode, the endpoint returns `200 OK
 2. Successful initial build of all routers for all workers
 3. Successful initial build of all plugin iterators for all workers
 
+### Hybrid mode (`control_plane` role)
+
+In Hybrid Mode (`control_plane` role), this endpoint returns `200 OK` when all of the following conditions are met:
+
+1. Successful connection to the database
+
 ## Enabling the Status Endpoint
 
 In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server via the [status_listen](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) configuration parameter.
