@@ -18,7 +18,7 @@ This page describes why queues are needed and how batch queuing works.
 
 Some analytic and monitoring plugins, like HTTP Log and Datadog, must send request information that was processed by {{site.base_gateway}} to another server (the upstream server). 
 
-Without batch queuing, the information is sent during the log phase to avoid introducing any latency to request or response. This isn't ideal because directly sending data from the log handler to the upstream server creates a large number of requests when {{site.base_gateway}} is under a high load. Sending out a large number of concurrent outbound requests can overload the log server, which can negatively impact the ability of the machine running {{site.base_gateway}} to proxy requests.
+Without batch queuing, the information is sent during the log phase to avoid introducing any latency to request or response. This isn't ideal because directly sending data from the log handler to the upstream server creates a large number of requests when {{site.base_gateway}} is under a high load. Sending out a large number of concurrent outbound requests can overload the log server and can negatively impact the ability of the machine running {{site.base_gateway}} to proxy requests.
 
 The solution to this is to use batch requests. With batch queuing, request information is put in a configurable queue before being sent to the upstream server. This approach has the following benefits:
 * Reduces any possible concurrency on the upstream server
