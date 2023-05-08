@@ -46,9 +46,9 @@ authentication.
     * The path does not require a slash (`/`).
 
 1. Click **Save**.
+
 <!-- copied from okta instructions  as is also relevant to OIDC but needs SME edit for actual details  
 ### Map {{site.konnect_short_name}} teams to Okta groups
-
 By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
 Okta group membership.

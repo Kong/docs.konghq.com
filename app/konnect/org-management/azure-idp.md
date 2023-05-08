@@ -22,12 +22,14 @@ You can’t mix authentication methods in {{site.konnect_short_name}}. With IdP 
 
 1. Select **Accounts in this organizational directory only** for the **Supported account type**. 
 
-1. Select **Web** and enter the (ADD CORRECT URL FOR KONNECT HERE)
+1. Select **Web** and enter: `https://cloud.konghq.com/login`
     
 1. Save the application ID for later.
 
 
 ### Configure the Azure application
+
+1. On your new application page in Azure, click **Certificates & secrets** in the sidebar.
 
 1. Click **New client secret**, enter a description, select an expiration value, and click **Add**.
     
