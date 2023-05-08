@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.3.x**
+* The `host` configuration value is now referenceable.
+
 **{{site.base_gateway}} 3.1.x**
 * Added support for managing queues and connection retries when sending messages to the upstream with 
 the `queue_size`,`flush_timeout`, and `retry_count` configuration parameters. 
