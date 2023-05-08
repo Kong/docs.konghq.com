@@ -7,6 +7,8 @@ This tutorial guides you through the process of using the Node Readiness Endpoin
 
 The readiness check endpoint returns a `200 OK` response when Kong is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
+The status endpoint responds back with a `message` with the reason for unreadiness. This can be very helpful to debug situations where the user expects that the node should be ready but is not.
+
 Note that the readiness endpoint does not return detailed node status information.
 
 ## Prerequisites
@@ -23,16 +25,16 @@ Before diving into the steps, it's important to understand the purpose of the No
 In Traditional mode, the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Successful connection to the database
-2. Successful initial build of all routers for all workers
-3. Successful initial build of all plugin iterators for all workers
+2. All Kong workers are ready to route requests
+3. All routes and services have their plugins ready to process requests
 
 ### Hybrid mode (`data_plane` role) or DB-less mode
 
 In Hybrid mode (`data_plane` role) or DB-less mode, the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Kong has loaded a valid and non-empty config (`kong.yaml`)
-2. Successful initial build of all routers for all workers
-3. Successful initial build of all plugin iterators for all workers
+2. All Kong workers are ready to route requests
+3. All routes and services have their plugins ready to process requests
 
 ### Hybrid mode (`control_plane` role)
 
@@ -42,7 +44,7 @@ In Hybrid Mode (`control_plane` role), this endpoint returns `200 OK` when all o
 
 ## Enabling the Status Endpoint
 
-In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server via the [status_listen](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) configuration parameter.
+In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server (disabled by default) via the [status_listen](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) configuration parameter.
 
 Example `kong.conf`:
 
