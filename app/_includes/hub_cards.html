@@ -18,7 +18,9 @@
   {%- assign css_classes = css_classes | append: third_party_classes -%}
 {%- endif -%}
 {%- if extn.enterprise -%}
-  {%- assign css_classes = css_classes | append: " enterprise" -%}
+  {% unless extn.free == true %}
+    {%- assign css_classes = css_classes | append: " enterprise" -%}
+  {% endunless %}
 {%- else -%}
   {%- assign css_classes = css_classes | append: " open-source" -%}
 {%- endif -%}
@@ -42,7 +44,9 @@
             {% endunless %}
           {% endif %}
           {% if extn.enterprise %}
+            {% unless extn.free == true %}
             <span class="badge enterprise"></span>
+            {% endunless %}
           {% endif %}
         </div>
         <div class="plugin-card--meta__description">{{ extn.desc }}</div>
