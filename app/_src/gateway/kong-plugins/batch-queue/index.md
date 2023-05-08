@@ -18,7 +18,7 @@ This page describes why queues are needed and how batch queuing works.
 
 Some analytic and monitoring plugins, like HTTP Log and Datadog, must send request information that was processed by {{site.base_gateway}} to another server (the upstream server). 
 
-Without batch queuing, the information is during the log phase to avoid introducing any latency to request or response. This isn't ideal because directly sending data from the log handler to the upstream server creates a large number of requests when {{site.base_gateway}} is under a high load. This results in ....
+Without batch queuing, the information is sent during the log phase to avoid introducing any latency to request or response. This isn't ideal because directly sending data from the log handler to the upstream server creates a large number of requests when {{site.base_gateway}} is under a high load. Sending out a large number of concurrent outbound requests can overload the log server, which can negatively impact the ability of the machine running {{site.base_gateway}} to proxy requests.
 
 The solution to this is to use batch requests. With batch queuing, request information is put in a configurable queue before being sent to the upstream server. This approach has the following benefits:
 * Reduces any possible concurrency on the upstream server
@@ -43,12 +43,6 @@ Previously, the queue didn't have any capacity limits. This resulted in a worker
 
 Now, you can configure the maximum number of entries that can be queued at any time with the `max_entries` queue parameter. When a queue reaches the maximum number of entries queued and another entry is enqueued, the oldest entry in the queue is deleted to make space for the new entry.
 The queue code provides warning log entries when it reaches a capacity threshold of 80% and when it starts to delete entries from the queue. It also writes log entries when the situation normalizes.
-
-### Consumer-side batching
-
-Batch queuing is performed on the consumer-side of the queue. Plugins put each entry to be sent onto the queue and the consumer code creates a batch of up to the defined maximum size from the queue and sends it to the upstream server. Batch creation timing is also performed on the consuming side, which removes the need to create additional timers on the plugin side.
-
-Why is this important?
 
 ### Reduced timer usage
 
