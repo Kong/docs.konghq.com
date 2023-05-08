@@ -3,12 +3,12 @@ title: Set up SSO with Azure
 content_type: how-to
 ---
 
-As an alternative to Kong Konnect’s native authentication, you can set up single sign-on (SSO) access to Konnect through an identity provider (IdP) with OpenID Connect. This authentication method allows your users to log in to Kong Konnect using their IdP credentials, without needing a separate login.
+As an alternative to {{site.konnect_product_name}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} through an identity provider (IdP) with OpenID Connect. This authentication method allows your users to log in to {{site.konnect_short_name}} using their IdP credentials, without needing a separate login.
 
-You can’t mix authentication methods in Kong Konnect. With IdP authentication enabled, all non-admin Konnect users have to log in through your IdP. Only the Konnect org owner can continue to log in with Konnect’s native authentication.
+You can’t mix authentication methods in {{site.konnect_short_name}}. With IdP authentication enabled, all non-admin {{site.konnect_short_name}} users have to log in through your IdP. Only the {{site.konnect_short_name}} org owner can continue to log in with {{site.konnect_short_name}}’s native authentication.
 
 {:.note}
-> This guide shows you how to configure SSO for Konnect with Microsoft Azure. See [Configure Azure IdP for Dev Portal](/konnect/dev-portal/access-and-approval/azure/) for those instructions.
+> This guide shows you how to configure SSO for {{site.konnect_short_name}} with Microsoft Azure. See [Configure Azure IdP for Dev Portal](/konnect/dev-portal/access-and-approval/azure/) for those instructions.
 
 
 ## Prerequisites
