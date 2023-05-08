@@ -37,6 +37,7 @@ params:
   config:
     - name: host
       required: false
+      referenceable: true
       default: localhost
       value_in_examples: 127.0.0.1
       datatype: string
@@ -154,6 +155,12 @@ When installing a multi-data center setup, you might want to set Datadog's agent
 
 {:.note}
 > **Note:** `host` and `port` fields in the plugin config take precedence over environment variables.
+{% if_plugin_version gte:3.3.x %}
+> <br><br>
+> For Kubernetes, there is a known limitation that you can't set `host` to null to use the environment variable. 
+> You can work around this by using a vault reference, for example: `{vault://env/kong-datadog-agent-host}`. 
+> Refer to [Configure with Kubernetes](#configure-with-kubernetes).
+{% endif_plugin_version %}
 
 Field           | Description                                           | Datatypes
 ---             | ---                                                   | ---
@@ -166,7 +173,87 @@ Field           | Description                                           | Dataty
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
+{% if_plugin_version gte:3.3.x %}
+
+## Configure with Kubernetes
+
+In most Kubernetes setups, `datadog-agent` runs as a daemon set. 
+This means that a `datadog-agent` runs on each node in the Kubernetes cluster, and {{site.base_gateway}} must forward metrics to the `datadog-agent` running on the same node as {{site.base_gateway}}. 
+
+This can be accomplished by providing the IP address of the Kubernetes worker node to {{site.base_gateway}}, then configuring the plugin to use that IP address. 
+This is achieved using environment variables.
+
+{% navtabs %}
+{% navtab Helm %}
+
+1. Modify the `env` section in `values.yaml`:
+
+    ```yaml
+    env:
+      datadog_agent_host:
+        valueFrom:
+          fieldRef:
+            fieldPath: status.hostIP
+    ```
+
+1. Update the Helm deployment:
+
+    ```sh
+    helm upgrade -f values.yaml RELEASE_NAME kong/kong --version VERSION --namespace NAMESPACE
+    ```
+
+1. Modify the plugin's configuration:
+
+    ```yaml
+    apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: datadog
+      annotations:
+        kubernetes.io/ingress.class: kong
+      labels:
+        global: "true"
+    config:
+      host: "{vault://env/kong-datadog-agent-host}"
+      port: 8125
+    ```
+
+{% endnavtab %}
+{% navtab Kubernetes YAML %}
+
+1. Modify the `env` section in `values.yaml`:
+
+    ```yaml
+    env:
+      - name: KONG_DATADOG_AGENT_HOST
+        valueFrom:
+          fieldRef:
+            fieldPath: status.hostIP
+    ```
+
+2. Modify the plugin's configuration:
+
+    ```yaml
+    apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: datadog
+      annotations:
+        kubernetes.io/ingress.class: kong
+      labels:
+        global: "true"
+    config:
+      host: "{vault://env/kong-datadog-agent-host}"
+      port: 8125
+    ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endif_plugin_version %}
+
 ## Changelog
+
+**{{site.base_gateway}} 3.3.x**
+* The `host` configuration value is now referenceable.
 
 **{{site.base_gateway}} 3.1.x**
 * Added support for managing queues and connection retries when sending messages to the upstream with 
