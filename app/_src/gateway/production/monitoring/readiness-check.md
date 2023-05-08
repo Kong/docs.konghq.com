@@ -3,12 +3,11 @@ title: Readiness Check
 content_type: tutorial
 ---
 
-This tutorial will guide you through the process of using the Node Readiness Endpoint, which provides a reliable and simple way to determine if Kong is ready to serve user requests.
+This tutorial guides you through the process of using the Node Readiness Endpoint, which provides a reliable way to determine if Kong is ready to serve user requests.
 
 The readiness check endpoint returns a `200 OK` response when Kong is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances.
 
-Note that the readiness endpoint does not return detailed node readiness information such as the
-amount of memory Kong node is using. You might want to check out the [`/status` API](/gateway/{{page.kong_version}}/admin-api/#retrieve-node-status) as well.
+Note that the readiness endpoint does not return detailed node status information.
 
 ## Prerequisites
 
