@@ -171,7 +171,7 @@ Field           | Description                                           | Dataty
 
 ## Configure with Kubernetes
 
-Before going through the following steps, make sure the environment variable is visible from Kong.
+In most Kubernetes setups, datadog-agent runs as a daemon set, meaning, a datadog-agent runs on each node in the Kubernetes cluster and Kong must forward metrics to the datadog-agent running on the same node on which a Kong pod is running. This can be accomplished by providing the IP address of the Kubernetes worker node to Kong and then configuring the plugin to use that IP address. This is achieved using environment variables.
 
 ### Helm
 
