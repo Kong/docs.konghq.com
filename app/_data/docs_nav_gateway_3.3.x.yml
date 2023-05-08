@@ -616,6 +616,7 @@ items:
         url: /admin-api/audit-logs
       - text: Status API
         url: https://developer.konghq.com/spec/9542436a-58d1-4522-a00b-32125b5940f0
+        absolute_url: true
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
