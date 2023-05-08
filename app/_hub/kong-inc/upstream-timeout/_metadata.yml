@@ -18,5 +18,3 @@ description: |
 kong_version_compatibility:
   enterprise_edition:
     compatible: true
-
-cloud: true

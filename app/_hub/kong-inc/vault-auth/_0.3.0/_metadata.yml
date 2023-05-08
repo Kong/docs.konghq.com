@@ -2,7 +2,11 @@ name: Vault Authentication
 dbless_compatible: 'yes'
 manager_examples: false
 konnect_examples: false
-cloud: false
+free: false
+plus: false
+enterprise: true
+konnect: false
+
 
 publisher: Kong Inc.
 version: 2.1.x-2.7.x
