@@ -37,7 +37,7 @@ params:
     - name: queue
       required: false
       datatype: record
-      description: Configuration parameters for queue (XXX link to queue parameters missing)
+      description: Configuration parameters for queue
       minimum_version: "3.3.x"
 
     - name: headers # old version of headers parameter without 'referenceable' attribute
@@ -113,14 +113,25 @@ params:
         This property codifies what kind of tracing header the plugin expects on incoming requests.
 
         Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
+{% include /md/plugins-hub/queue-parameters.md %}
 ---
 
 ## Queueing
 
-{% include /md/plugins-hub/queue-parameters.md %}
+The OpenTelemetry plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
 
-The OpenTelemetry plugin is built on top of {{site.base_gateway}}'s tracing API
-and is intended to be fully compatible with the OpenTelemetry specification.
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Batch Queuing Reference](gateway/latest/kong-plugins/batch-queue/reference/)
+in the {{site.base_gateway}} documentation.
+
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
+
 
 ## Usage
 

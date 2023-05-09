@@ -103,11 +103,7 @@ params:
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
       maximum_version: "3.2.x"
-    - name: queue
-      required: false
-      datatype: record
-      description: Configuration parameters for queue (XXX link to queue parameters missing)
-      minimum_version: "3.3.x"
+{% include /md/plugins-hub/queue-parameters.md %}
 
     # ----- Old version of the 'headers' parameter -----
     - name: headers
@@ -161,8 +157,6 @@ The equivalence of the log server is determined by the parameters
 All plugin instances that have the same values for these parameters
 share one queue.
 
-
-{% include /md/plugins-hub/queue-parameters.md %}
 
 ## Log format
 

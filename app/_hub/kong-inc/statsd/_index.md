@@ -131,11 +131,7 @@ params:
       description: Maximum number of log entries to be sent on each message to the upstream server.
       minimum_version: "3.1.x"
       maximum_version: "3.2.x"
-    - name: queue
-      required: false
-      datatype: record
-      description: Configuration parameters for queue (XXX link to queue parameters missing)
-      minimum_version: "3.3.x"
+{% include /md/plugins-hub/queue-parameters.md %}
     - name: tag_style
       required: false
       datatype: string
@@ -149,7 +145,20 @@ params:
 
 ## Queueing
 
-{% include /md/plugins-hub/queue-parameters.md %}
+The StatsD plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
+
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Batch Queuing Reference](gateway/latest/kong-plugins/batch-queue/reference/)
+in the {{site.base_gateway}} documentation.
+
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
+
 
 ---
 

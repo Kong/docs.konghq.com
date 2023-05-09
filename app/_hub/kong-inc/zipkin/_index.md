@@ -81,11 +81,7 @@ params:
       datatype: integer
       description: |
         The length in bytes of each request's Trace ID. The value can be either `8` or `16`.
-    - name: queue
-      required: false
-      datatype: record
-      description: Configuration parameters for queue (XXX link to queue parameters missing)
-      minimum_version: "3.3.x"
+{% include /md/plugins-hub/queue-parameters.md %}
 
     # ----- 2.3.x and earlier version of the 'header_type' parameter -----
     - name: header_type
@@ -256,7 +252,19 @@ params:
 ---
 ## Queueing
 
-{% include /md/plugins-hub/queue-parameters.md %}
+The zipkin plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
+
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Batch Queuing Reference](gateway/latest/kong-plugins/batch-queue/reference/)
+in the {{site.base_gateway}} documentation.
+
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
 
 ---
 ## How it Works
