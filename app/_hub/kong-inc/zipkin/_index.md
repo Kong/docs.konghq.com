@@ -81,7 +81,6 @@ params:
       datatype: integer
       description: |
         The length in bytes of each request's Trace ID. The value can be either `8` or `16`.
-<!-- shared with plugins that use queues. -->
     - name: "queue.max_batch_size"
       type: number
       default: 1

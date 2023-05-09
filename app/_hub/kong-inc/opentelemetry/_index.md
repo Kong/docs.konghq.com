@@ -113,7 +113,6 @@ params:
         This property codifies what kind of tracing header the plugin expects on incoming requests.
 
         Possible values: `b3`, `b3-single`, `w3c`, `preserve`, `jaeger`, `ot`, or `ignore`.
-<!-- shared with plugins that use queues. -->
     - name: "queue.max_batch_size"
       type: number
       default: 1

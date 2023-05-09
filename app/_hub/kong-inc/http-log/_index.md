@@ -103,7 +103,6 @@ params:
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
       maximum_version: "3.2.x"
-<!-- shared with plugins that use queues. -->
     - name: "queue.max_batch_size"
       type: number
       default: 1
