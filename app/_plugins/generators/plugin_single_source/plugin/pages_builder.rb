@@ -22,7 +22,7 @@ module PluginSingleSource
       def pages
         @pages ||= [
           @release.overview_page,
-          @release.reference,
+          @release.configuration,
           @release.how_tos,
           @release.changelog
         ].compact

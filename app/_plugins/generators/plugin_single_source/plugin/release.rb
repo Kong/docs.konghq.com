@@ -45,10 +45,10 @@ module PluginSingleSource
         end
       end
 
-      def reference
+      def configuration
         return nil if schema.empty?
 
-        @reference ||= Pages::Reference.new(
+        @configuration ||= Pages::Configuration.new(
           release: self,
           file: nil,
           source_path: pages_source_path

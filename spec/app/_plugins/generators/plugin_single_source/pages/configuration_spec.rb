@@ -1,4 +1,4 @@
-RSpec.describe PluginSingleSource::Pages::Reference do
+RSpec.describe PluginSingleSource::Pages::Configuration do
   let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'kong-inc/jwt-signer', site:) }
   let(:release) { PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:, source:) }
 
@@ -21,7 +21,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
           'source_file' => nil,
           'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
           'ssg_hub' => false,
-          'title' => 'Kong JWT Signer Configuration Reference'
+          'title' => 'Kong JWT Signer Configuration'
         })
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe PluginSingleSource::Pages::Reference do
           'source_file' => nil,
           'permalink' => '/hub/kong-inc/jwt-signer/configuration/',
           'ssg_hub' => false,
-          'title' => 'Kong JWT Signer Configuration Reference'
+          'title' => 'Kong JWT Signer Configuration'
         })
       end
     end

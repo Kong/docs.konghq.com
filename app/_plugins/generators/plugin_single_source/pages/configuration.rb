@@ -2,8 +2,8 @@
 
 module PluginSingleSource
   module Pages
-    class Reference < Base
-      TITLE = 'Configuration Reference'
+    class Configuration < Base
+      TITLE = 'Configuration'
 
       def canonical_url
         "#{base_url}configuration/"
@@ -50,7 +50,7 @@ module PluginSingleSource
       end
 
       def layout
-        'plugins/configuration-reference'
+        'plugins/configuration'
       end
     end
   end
