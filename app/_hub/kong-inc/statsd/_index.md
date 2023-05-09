@@ -188,6 +188,7 @@ params:
     65507 according to UDP protocol. Consider the MTU of the network when setting this parameter.
 ---
 
+{% if_version gte:3.3.x %}
 ## Queueing
 
 The StatsD plugin uses a queue to decouple the production and
@@ -203,6 +204,7 @@ in the {{site.base_gateway}} documentation.
 
 The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
+{% endif_version %}
 
 
 ---

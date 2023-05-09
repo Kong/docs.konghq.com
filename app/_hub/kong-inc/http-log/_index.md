@@ -191,6 +191,7 @@ params:
       minimum_version: "2.4.x"
 ---
 
+{% if_version gte:3.3.x %}
 ## Queueing
 
 The HTTP Log plugin uses internal queues to decouple the production of
@@ -201,12 +202,19 @@ The equivalence of the log server is determined by the parameters
 `http_endpoint`, `method`, `content_type`, `timeout`, and `keepalive`.
 All plugin instances that have the same values for these parameters
 share one queue.
+{% endif_version %}
 
 
 ## Log format
 
+{% if_version lte:3.2.x %}
+{:.note}
+> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
+{% endif_version %}
+{% if_version gte:3.3.x %}
 {:.note}
 > **Note:** If the `max_batch_size` argument > 1, a request is logged as an array of JSON objects.
+{% endif_version %}
 
 {% include /md/plugins-hub/log-format.md %}
 
