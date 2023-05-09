@@ -93,6 +93,13 @@ $(document).ready(function () {
     if ($filter.find(".dropdown-item.active").length === 0) {
       $filter.find(".dropdown-item[data-value='all']").addClass("active");
     }
+    // if every option selected -> select all
+    if ($filter.find(".dropdown-item").length > 2) {
+      if ($filter.find(".dropdown-item.active").length === $filter.find(".dropdown-item[data-value!='all']").length) {
+        $filter.find(".dropdown-item[data-value!='all']").removeClass("active");
+        $filter.find(".dropdown-item[data-value='all']").addClass("active");
+      }
+    }
     updateCounter($filter);
   }
 
