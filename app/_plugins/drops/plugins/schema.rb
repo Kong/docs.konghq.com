@@ -97,7 +97,7 @@ module Jekyll
         extend Forwardable
 
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
-                       :enable_on_service?, :protocols
+                       :enable_on_service?
 
         def initialize(schema:, metadata:) # rubocop:disable Lint/MissingSuper
           @schema = schema
@@ -113,6 +113,10 @@ module Jekyll
 
         def api_id
           @api_id ||= @metadata['api_id']
+        end
+
+        def protocols
+          @protocols ||= SchemaField.new(name: 'protocols', parent: '', schema: @schema.protocols_field)
         end
 
         def fields

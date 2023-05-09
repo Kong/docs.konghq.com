@@ -118,6 +118,40 @@
     </li>
   {% endif %}
 
+  {% if schema.protocols %}
+    {% assign protocols = schema.protocols %}
+    <li class="field">
+      <div class="field-overview">
+        <h4 id="protocols">protocols</h4>
+      </div>
+      <div class="field-attributes">
+        <span><strong>{{ protocols.type }}</strong></span>
+        of type <code>{{ protocols.elements['type'] }}</code>
+
+        {% if protocols.required %}
+          <span class="required"><strong>required</strong></span>
+        {% endif %}
+
+        {% unless protocols.default == nil %}
+          <span class="default">
+            <strong>default: </strong><code>{{ protocols.default | join: ", " }}</code>
+          </span>
+        {% endunless %}
+
+        {% if protocols.elements %}
+          {% assign one_of = protocols.elements['one_of'] %}
+          {% if one_of %}
+            <span>
+              Compatible protocols:
+              {%- for value in one_of %} <code>{{ value }}</code>{% unless forloop.last %},{% endunless %}{%- endfor -%}
+            <span>
+          {% endif %}
+        {% endif %}
+
+      </div>
+    </li>
+  {% endif %}
+
   {% for field in schema.fields %}
     {% include plugins/schemas/field.html field=field %}
   {% endfor %}

@@ -53,11 +53,12 @@ module PluginSingleSource
                        .example
         end
 
+        def protocols_field
+          @protocols_field ||= fields.detect { |f| f.key?('protocols') }&.values&.first || {}
+        end
+
         def protocols
-          @protocols ||= begin
-            protocols = fields.detect { |f| f.key?('protocols') }&.values&.first || {}
-            protocols.dig('elements', 'one_of') || []
-          end
+          @protocols ||= protocols_field.dig('elements', 'one_of') || []
         end
 
         def enable_on_consumer?
