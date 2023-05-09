@@ -17,11 +17,6 @@ type: plugin
   {{ page.dbless_explanation | markdownify }}
 {% endif %}
 
-{% if page.hub_examples.render? %}
-  <h3 id="example-config">Example plugin configuration</h3>
-  {% include hub-examples.html %}
-{% endif %}
-
 <h3 id="parameters">Parameters</h3>
 
 <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>

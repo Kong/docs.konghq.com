@@ -23,6 +23,7 @@ module PluginSingleSource
         @pages ||= [
           @release.overview_page,
           @release.configuration,
+          @release.configuration_examples,
           @release.how_tos,
           @release.changelog
         ].compact
@@ -41,17 +42,42 @@ module PluginSingleSource
       end
 
       def items_for(pages)
-        pages.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
+        pages.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
       end
 
-      def sidenav_items
-        pages.each_with_object([]) do |page, items|
-          if page.respond_to?(:each)
-            items.push({ 'title' => 'Using the plugin', 'items' => items_for(page), 'icon' => icon }) if page.any?
-          else
-            items.push({ 'title' => page.nav_title, 'url' => page.permalink, 'icon' => page.icon })
-          end
+      def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+        items = [
+          { 'title' => @release.overview_page.nav_title,
+            'url' => @release.overview_page.permalink,
+            'icon' => @release.overview_page.icon }
+        ]
+
+        if @release.configuration
+          items.push({
+                       'title' => @release.configuration.nav_title,
+                       'items' => items_for([@release.configuration_examples]),
+                       'icon' => @release.configuration.icon,
+                       'url' => @release.configuration.permalink
+                     })
         end
+
+        if @release.how_tos.any?
+          items.push({
+                       'title' => 'Using the plugin',
+                       'items' => items_for(@release.how_tos),
+                       'icon' => icon
+                     })
+        end
+
+        if @release.changelog
+          items.push({
+                       'title' => @release.changelog.nav_title,
+                       'url' => @release.changelog.permalink,
+                       'icon' => @release.changelog.icon
+                     })
+        end
+
+        items
       end
     end
   end

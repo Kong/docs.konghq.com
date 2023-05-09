@@ -55,6 +55,16 @@ module PluginSingleSource
         )
       end
 
+      def configuration_examples
+        return nil if schema.empty? || (schema && !schema.example)
+
+        @configuration_examples ||= Pages::ConfigurationExamples.new(
+          release: self,
+          file: nil,
+          source_path: pages_source_path
+        )
+      end
+
       def overview_page
         @overview_page ||= Pages::Overview.new(
           release: self,
