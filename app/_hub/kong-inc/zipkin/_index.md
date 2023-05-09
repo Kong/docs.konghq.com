@@ -82,12 +82,12 @@ params:
       description: |
         The length in bytes of each request's Trace ID. The value can be either `8` or `16`.
 <!-- shared with plugins that use queues. -->
-    - name: queue.max_batch_size
+    - name: "queue.max_batch_size"
       type: number
       default: 1
       description: Maximum number of entries to be processed together
           as a batch.
-    - name: queue.max_coalescing_delay
+    - name: "queue.max_coalescing_delay"
       type: number
       default: 1
       description: >
@@ -96,14 +96,14 @@ params:
           processing entries.  This parameter has no effect when
           `batch_max_size` is one because queued entries will be sent
           immediately in that case.
-    - name: queue.max_entries
+    - name: "queue.max_entries"
       type: number
       default: 10000
       description: >
           Maximum number of entries that can be waiting on the queue.
           Once this number of requests is reached, the oldest entry is
           deleted from the queue before a new one is added.
-    - name: queue.max_bytes
+    - name: "queue.max_bytes"
       type: number
       default: nil
       description:
@@ -111,7 +111,7 @@ params:
           Once this many bytes are present on a queue, old entries
           up to the size of a new entry to be enqueued are deleted
           from the queue.
-    - name: queue.max_retry_time
+    - name: "queue.max_retry_time"
       type: number
       default: 60
       description: >
@@ -120,7 +120,7 @@ params:
           it is deleted from the queue without being sent.  If
           this parameter is set to -1, no retries will be made for a
           failed batch.
-    - name: queue.max_retry_delay
+    - name: "queue.max_retry_delay"
       type: number
       default: 60
       description: >
