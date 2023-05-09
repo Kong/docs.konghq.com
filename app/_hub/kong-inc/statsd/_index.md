@@ -198,7 +198,7 @@ buffering during temporary network or upstream outages.
 You can set several parameters to configure the behavior and capacity
 of the queues used by the plugin. For more information about how to
 use these parameters, see
-[Plugin Queuing Reference](gateway/latest/kong-plugins/queue/reference/)
+[Plugin Queuing Reference](/gateway/latest/kong-plugins/queue/reference/)
 in the {{site.base_gateway}} documentation.
 
 The queue parameters all reside in a record under the key `queue` in
