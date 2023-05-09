@@ -108,7 +108,7 @@ params:
       default: 1
       description: Maximum number of entries to be processed together
           as a batch.
-          minimum_version: "3.3.x"
+      minimum_version: "3.3.x"
     - name: "queue.max_coalescing_delay"
       type: number
       default: 1
@@ -118,7 +118,7 @@ params:
           processing entries.  This parameter has no effect when
           `batch_max_size` is one because queued entries will be sent
           immediately in that case.
-          minimum_version: "3.3.x"
+      minimum_version: "3.3.x"
     - name: "queue.max_entries"
       type: number
       default: 10000
@@ -126,7 +126,7 @@ params:
           Maximum number of entries that can be waiting on the queue.
           Once this number of requests is reached, the oldest entry is
           deleted from the queue before a new one is added.
-          minimum_version: "3.3.x"
+      minimum_version: "3.3.x"
     - name: "queue.max_bytes"
       type: number
       default: nil
@@ -135,7 +135,7 @@ params:
           Once this many bytes are present on a queue, old entries
           up to the size of a new entry to be enqueued are deleted
           from the queue.
-          minimum_version: "3.3.x"
+      minimum_version: "3.3.x"
     - name: "queue.max_retry_time"
       type: number
       default: 60
@@ -145,7 +145,7 @@ params:
           it is deleted from the queue without being sent.  If
           this parameter is set to -1, no retries will be made for a
           failed batch.
-          minimum_version: "3.3.x"
+      minimum_version: "3.3.x"
     - name: "queue.max_retry_delay"
       type: number
       default: 60
@@ -154,7 +154,7 @@ params:
           entries. The interval between retries follows an
           exponential back-off algorithm capped at this number of
           seconds.
-          minimum_version: "3.3.x"
+      minimum_version: "3.3.x"
 
     # ----- Old version of the 'headers' parameter -----
     - name: headers
