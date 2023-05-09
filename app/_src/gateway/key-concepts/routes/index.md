@@ -25,8 +25,9 @@ configured like prior releases, and the `expressions` mode which uses
 a new configuration scheme.
 
 The default mode of the router is `traditional_compat` and the
-following sections describe how it is operates.  For a description of
-the `expressions` mode, see
+following sections describe how it operates. `traditional_compat`
+mode is designed to behave like the router in versions before
+{{site.base_gateway}} 3.x. For a description of the `expressions` mode, see
 [How to Configure Routes using Expressions](expressions).
 
 In general, the router orders all defined routes by their priority and
@@ -35,6 +36,10 @@ are multiple matching routes with the same priority, it is not defined
 which of the matching routes will be used and {{site.base_gateway}}
 will use either of them according to how its internal data structures
 are organized.
+
+If a route contains prefix or regular expression paths, the priority
+of the route will be calculated separately for each of the paths and
+requests will be routed accordingly.
 
 In `traditional_compat` mode, the priority of a route is determined as
 follows, by the order of descending significance:
@@ -80,10 +85,9 @@ sorts the routes as follows:
    length of their paths. Routes with longer paths are considered
    before routes with shorter paths.
 
-If one of the paths is a regular expression, the whole route is
-considered before routes that have no regular expressions. Similarly,
-if a route contains multiple prefix paths (and no regular
-expressions), its priority is determined by the longest of the paths.
+For a route with multiple paths, each path will be considered
+separately for priority determination. Effectively, this means that
+separate routes exists for each of the paths.
 
 ## Regular expressions
 
