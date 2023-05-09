@@ -1,9 +1,9 @@
 ---
-title: Batch Queuing Reference
+title: Plugin Queuing Reference
 content_type: reference
 ---
 
-This page is a reference for general batch queuing parameters that you can set for certain plugins. Set these parameters in the configuration file for your plugin.
+This page is a reference for general plugin queuing parameters that you can set for certain plugins. Set these parameters in the configuration file for your plugin.
 
 For more information, see the following plugin documentation:
 
@@ -12,7 +12,7 @@ For more information, see the following plugin documentation:
 * [Datadog](/hub/kong-inc/datadog/)
 * [StatsD](/hub/kong-inc/statsd/)
 
-## Batch queuing parameters
+## Plugin queuing parameters
 
 The unified queue parameter set consists of the following parameters:
 
@@ -27,4 +27,4 @@ The unified queue parameter set consists of the following parameters:
 
 ## More information
 
-[About Batch Queuing](/gateway/{{page.kong_version}}/kong-plugins/batch-queue/) - Find out how batch queuing works.
+[About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/) - Find out how plugin queuing works.

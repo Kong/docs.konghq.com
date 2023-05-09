@@ -1,26 +1,27 @@
 ---
-title: About Batch Queuing 
+title: About Plugin Queuing 
 content_type: explanation
 ---
 
-Starting with {{site.base_gateway}} 3.3.x, some Kong plugins now use batch queuing to decouple the production of data in the proxy path and the submission of that data to a server, such as a log server. This ensures that the upstream server isn't taxed by recieving many proxy requests at the same time.
+Starting with {{site.base_gateway}} 3.3.x, some Kong plugins now use queuing to decouple the production of data in the proxy path and the submission of that data to a server, such as a log server. This ensures that the upstream server isn't taxed by recieving many proxy requests at the same time.
 
-The following plugins now use batch queuing:
+The following plugins now use queuing:
 
 * [HTTP Log](/hub/kong-inc/http-log/)
 * [OpenTelemetry](/hub/kong-inc/opentelemetry/)
 * [Datadog](/hub/kong-inc/datadog/)
 * [StatsD](/hub/kong-inc/statsd/)
+* [Zipkin](/hub/kong-inc/zipkin/)
 
-This page describes why queues are needed and how batch queuing works.
+This page describes why queues are needed and how plugin queuing works.
 
 ## Why are queues needed? 
 
 Some analytic and monitoring plugins, like HTTP Log and Datadog, must send request information that was processed by {{site.base_gateway}} to another server (the upstream server). 
 
-Without batch queuing, the information is sent during the log phase to avoid introducing any latency to request or response. This isn't ideal because directly sending data from the log handler to the upstream server creates a large number of requests when {{site.base_gateway}} is under a high load. Sending out a large number of concurrent outbound requests can overload the log server and can negatively impact the ability of the machine running {{site.base_gateway}} to proxy requests.
+Without queuing, the information is sent during the log phase to avoid introducing any latency to request or response. This isn't ideal because directly sending data from the log handler to the upstream server creates a large number of requests when {{site.base_gateway}} is under a high load. Sending out a large number of concurrent outbound requests can overload the log server and can negatively impact the ability of the machine running {{site.base_gateway}} to proxy requests.
 
-The solution to this is to use batch requests. With batch queuing, request information is put in a configurable queue before being sent to the upstream server. This approach has the following benefits:
+The solution to this is to use batch requests. With queuing, request information is put in a configurable queue before being sent to the upstream server. This approach has the following benefits:
 * Reduces any possible concurrency on the upstream server
 * Helps deal with temporary outages of the upstream server due to network or administrative changes
 * Can reduce resource usage both in {{site.base_gateway}} and in the upstream server by collecting multiple entries from the queue in one request
@@ -28,14 +29,16 @@ The solution to this is to use batch requests. With batch queuing, request infor
 {:.note}
 > **Note:** Because queues are structural elements for components in {{site.base_gateway}}, they only live in the main memory of each worker process and are not shared between workers. Therefore, queued content isn't preserved under abnormal operational situations, like power loss or unexpected worker process shutdown due to memory shortage or program errors.
  
-## How batch queuing works
+## How plugin queuing works
 
-When {{site.base_gateway}} processes a request from certain plugins, it uses batch queuing to group the requests togehter before sending them to the upstream server. 
+When {{site.base_gateway}} processes a request from certain plugins, it uses queuing to group the requests together before sending them to the upstream server. 
 
+<!--
 [DIAGRAM HERE?]
 > _**Figure 1:** Description of diagram._
+-->
 
-You can use several different configurable parameters for batch queuing. The following sections explain these features of batch queuing in detail.
+You can use several different configurable parameters for queuing. The following sections explain these features of plugin queuing in detail.
 
 ### Queue capacity limit
 
@@ -54,8 +57,8 @@ When a {{site.base_gateway}} shutdown is initiated, the queue is flushed. This a
 
 ### Retry logic
 
-If a batch queue fails to process, the queue library can automatically retry to process it if the failure is temporary (for example, there are network problems or upstream unavailability). Before retrying, the library waits for the amount of time specified by the `initial_retry_delay` parameter. This wait time is doubled every time the retry fails, until it reaches the maximum wait time specified by the `max_retry_time` parameter.
+If a queue fails to process, the queue library can automatically retry to process it if the failure is temporary (for example, there are network problems or upstream unavailability). Before retrying, the library waits for the amount of time specified by the `initial_retry_delay` parameter. This wait time is doubled every time the retry fails, until it reaches the maximum wait time specified by the `max_retry_time` parameter.
 
 ## More information
 
-[Batch Queuing Reference](/gateway/{{page.kong_version}}/kong-plugins/batch-queue/reference/) - Learn more about the batch queuing parameters you can configure.
+[Plugin Queuing Reference](/gateway/{{page.kong_version}}/kong-plugins/queue/reference/) - Learn more about the plugin queuing parameters you can configure.
