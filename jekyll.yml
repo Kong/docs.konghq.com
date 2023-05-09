@@ -65,10 +65,6 @@ extensions:
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
       # icon:
-    - name: Deployment
-      slug: deployment
-      desc: Deploy and configure Kong in many environments
-      # icon:
   types:
     - name: plugin
       slug: plugin
