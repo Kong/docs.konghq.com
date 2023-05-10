@@ -1,4 +1,4 @@
-name: openid-connect
+name: OpenID Connect
 dbless_compatible: 'yes'
 free: false
 plus: true
