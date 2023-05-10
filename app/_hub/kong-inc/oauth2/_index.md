@@ -571,6 +571,10 @@ request to the `my-websocket-route` route.
 
 ## Changelog
 
+**{{site.base_gateway}} 3.3.x**
+
+*  This plugin now restricts exchanging an authorization code created by one plugin instance for an access token by a different plugin instance.
+
 ### 2.1.1
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled
