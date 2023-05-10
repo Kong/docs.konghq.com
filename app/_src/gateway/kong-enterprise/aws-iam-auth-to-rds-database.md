@@ -1,37 +1,26 @@
 ---
-title: Use AWS IAM Authentication to connect to RDS database in Kong Gateway Enterprise
+title: Authenticate your Kong Gateway Amazon RDS database with AWS IAM
 badge: enterprise
-content_type: reference
+content_type: how-to
 ---
 
-Starting in version 3.3, {{site.base_gateway}} can be set up to use the AWS IAM Authentication to connect to the AWS RDS database(Postgres). This document describes the details about how to use this feature to secure your database configurations and database connections.
+Starting in {{site.base_gateway}} 3.3.x, you can use AWS Identity and Access Management(IAM) authentication to connect to the AWS RDS database that you use for {{site.base_gateway}}. This page describes how to use this feature to secure your database configurations and database connections.
 
+When you enable this feature, you don't need to use a password when you connect to a database instance. Instead, you use a temporary authentication token. Because AWS IAM manages the authentication externally, the database doesn't store user credentials. If you use AWS RDS for {{site.base_gateway}}'s database, you can enable this feature to your running cluster. This ensures that you don't have to store database user credentials on both the {{site.base_gateway}} (`pg_password`) and RDS database side. 
 
-## How does it work
+## Prerequisites
 
-The AWS RDS database provides the ability to allow you to use the AWS Identity and Access Management(IAM) to authenticate and connect.
-With this feature enabled, you don't need to use a password when you connect to a DB instance. Instead, you use a temporary authentication token, which is a unique string of characters that generates on request. The authentication still goes through the standard database authentication, and you don't need to store user credentials in the database, because the authentication is managed externally using IAM. If you're a Kong Enterprise user and use the AWS RDS as Kong's database, you can apply this feature with proper IAM configuration to your running cluster, so that you don't need to store any database user credentials on both Kong side(the `pg_password` in configuration) and the RDS database side.
+Before you enable the AWS IAM authentication, you must configure your AWS RDS database and the AWS IAM role that {{site.base_gateway}} uses.
 
-## Prerequisition
-
-Before enabling the AWS IAM Authentication feature, you need to check the following items are properly configured on both your AWS RDS database and your AWS IAM role that Kong instance uses.
-
-- **Enable the IAM database authentication on your DB instance**. This configuration is disabled by default. You can follow the AWS documentation step by step to enable the IAM database authentication on your RDS instance: [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html).
-  You can check the "Configuration" page on your database cluster details. Make sure the value of "IAM DB authentication" is "Enabled".
-
-{:.note}
-> **Note:** You must enable SSL connection on your Postgres DB instance, which is usually done by setting `ssl` parameter value to 1 in the parameter group. After enabling the IAM database authentication, you cannot disable the SSL connection.
-> **Note:** Currently, TLSv1.3 is not supported by RDS Postgres so you cannot set `pg_ssl_version` to `tlsv1_3`.
-
-- **Ensure your Kong instance have been assigned an IAM role**. If your Kong cluster are deployed without a proper IAM role, you must assign one first. For example, if your Kong instance is running on an EC2 machine, you can assign EC2 IAM role on your EC2 machine; if you're running Kong in the ECS cluster, you can assign a IAM role as a task role to your ECS service task definition; if you're running Kong in the EKS cluster, you can configure a kubernetes service account that can annotates with your assigned role, and configure your pods to use the service account; if you are running Kong locally, you can assign an IAM role by specifying env variables or credential file with proper access key and secret key. The Kong instance can discover and fetch the AWS credential to use the assigned IAM role automatically, just like the AWS SDK. For now, it supports fetching through the following ways(in order of precedence):
-  - Use Environment variables like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
-  - Use profile and credential file provided by the environment variable `AWS_PROFILE` and `AWS_SHARED_CREDENTIALS_FILE`.
-  - Use [ECS Task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-iam-roles.html) automatically when the Kong instance is running inside an ECS container
-  - Use [IAM role defined by serviceaccount](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html) inside EKS pod
-  - Use [EC2 IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) inside EC2 environment
-
-{:.warning}
-> You **cannot** change the value of the environment variables that used to provide the AWS Credential after Kong instance boot up. The change will be ignored and **will not take effect** inside Kong instance.
+- **Enable the IAM database authentication on your database instance.** For more information, see [Enabling and disabling IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html) in the Amazon RDS user guide.
+- **Assign an IAM role to your Kong Gateway instance.** {{site.base_gateway}} can automatically discover and fetch the AWS credentials to use for the IAM role.
+   - If you use an EC2 environment, use the [EC2 IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
+   - If you use an ECS cluster, use a [ECS task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-iam-roles.html).
+   - If you use an EKS cluster, configure a Kubernetes service account that can annotate your assigned role and configure the pods to use an [IAM role defined by serviceaccount](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html).
+   - If you run {{site.base_gateway}} locally, use the following environment variables: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_PROFILE`, and `AWS_SHARED_CREDENTIALS_FILE`
+   
+   {:.warning}
+   > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
 
 - **Ensure the IAM role you assinging to Kong has proper IAM policy**. Below is a simple example policy allows a user "john" to connect to a RDS instance "db-ABCDEFGHIJKL01234" by using the IAM database authentication:
 
