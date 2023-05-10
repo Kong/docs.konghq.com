@@ -1996,8 +1996,156 @@ a single query.
 
 **Default:** `off`
 
+---
+
+
+## Vaults section
+
+A secret is any sensitive piece of information required for API gateway
+operations. Secrets may be part of the core Kong Gateway configuration, used in
+plugins, or part of the configuration associated with APIs serviced by the
+gateway.
+
+Some of the most common types of secrets used by Kong Gateway include:
+
+- Data store usernames and passwords, used with PostgreSQL and Redis
+- Private X.509 certificates
+- API keys
+
+Sensitive plugin configuration fields are generally used for authentication,
+hashing, signing, or encryption. Kong Gateway lets you store certain values in a
+vault. Here are the vault specific configuration options.
 
 ---
+
+### vault_env_prefix
+
+Defines the environment variable vault's default prefix. For example if you
+have all your secrets stored in environment variables prefixed with `SECRETS_`,
+it can be configured here so that it isn't necessary to repeat them in Vault
+references.
+
+Default: none
+
+---
+{% if_version gte:3.1.x %}
+
+### vault_aws_region
+{:.badge .enterprise}
+The AWS region your vault is located in.
+
+Default: none
+
+---
+
+### vault_gcp_project_id
+{:.badge .enterprise}
+
+The project ID from your Google API Console.
+
+Default: none
+
+---
+
+### vault_hcv_protocol
+{:.badge .enterprise}
+
+The protocol to connect with. Accepts one of `http` or `https`.
+
+Default: `http`
+
+---
+
+### vault_hcv_host
+{:.badge .enterprise}
+
+The hostname of your HashiCorp vault.
+
+Default: `127.0.0.1`
+
+---
+
+### vault_hcv_port
+{:.badge .enterprise}
+
+The port number of your HashiCorp vault.
+
+Default: `8200`
+
+---
+
+### vault_hcv_namespace
+{:.badge .enterprise}
+
+Namespace for the HashiCorp Vault. Vault Enterprise requires a namespace to
+successfully connect to it.
+
+Default: none
+
+---
+
+### vault_hcv_mount
+{:.badge .enterprise}
+
+The mount point.
+
+Default: `secret`
+
+---
+
+### vault_hcv_kv
+{:.badge .enterprise}
+
+
+The secrets engine version. Accepts `v1` or `v2`.
+
+Default: `v1`
+
+---
+
+### vault_hcv_token
+{:.badge .enterprise}
+
+A token string.
+
+Default: none
+
+---
+
+### vault_hcv_auth_method
+{:.badge .enterprise}
+
+Defines the authentication mechanism when connecting to the Hashicorp Vault
+service.
+
+Accepted values are: `token`, or `kubernetes`.
+
+Default: `token`
+
+---
+
+### vault_hcv_kube_role
+{:.badge .enterprise}
+
+Defines the HashiCorp Vault role for the Kubernetes service account of the
+running pod. `vault_hcv_auth_method` must be set to `kubernetes` for this to
+activate.
+
+Default: none
+
+---
+
+### vault_hcv_kube_api_token_file
+{:.badge .enterprise}
+
+Defines where the Kubernetes service account token should be read from the
+pod's filesystem, if using a non-standard container platform setup.
+
+Default: none
+
+---
+{% endif_version %}
+
 
 ## Tuning & Behavior section
 
@@ -2066,9 +2214,67 @@ be used in case `traditional_compatible` did not work as expected.
 This flavor of router will be removed in the next major release of Kong.
 
 **Default:** `traditional_compatible`
+---
 
+### lua_max_req_headers
+
+Maximum number of request headers to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying the Kong sends all the request headers and this setting does not
+have any effect. It is used to limit Kong and its plugins from reading too many
+request headers.
+
+Default: `100`
 
 ---
+
+
+### lua_max_resp_headers
+
+Maximum number of response headers to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying, Kong returns all the response headers and this setting does not
+have any effect. It is used to limit Kong and its plugins from reading too many
+response headers.
+
+Default: `100`
+
+---
+
+### lua_max_uri_args
+
+Maximum number of request uri arguments to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying, Kong sends all the request query arguments and this setting does
+not have any effect.
+
+It is used to limit Kong and its plugins from reading too many query arguments.
+
+Default: `100`
+
+---
+
+### lua_max_post_args
+
+Maximum number of request post arguments to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying, Kong sends all the request post arguments and this setting does
+not have any effect.
+
+It is used to limit Kong and its plugins from reading too many post arguments.
+
+Default: `100`
+
+---
+
 
 ## Miscellaneous section
 

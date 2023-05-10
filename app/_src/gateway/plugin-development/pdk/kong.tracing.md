@@ -91,8 +91,12 @@ Adds an error event to a Span
 * **status** (`number`):  status code
 
 
-
+{% if_version gte:3.2.x %}
 ## kong.tracing.new_span()
+{% endif_version %}
+{% if_version gte:3.3.x %}
+## kong.tracing.active_span()
+{% endif_version %}
 
 Get the active span
  Returns the root span by default
@@ -107,9 +111,12 @@ Get the active span
 
 
 
-
+{% if_version lte:3.2.x %}
 ## kong.tracing.new_span(span)
-
+{% endif_version %}
+{% if_version gte:3.3.x %}
+## kong.tracing.set_active_span(span)
+{% endif_version %}
 Set the active span
 
 **Phases**
@@ -121,9 +128,12 @@ Set the active span
 * **span** (`table`):
 
 
-
+{% if_version lte:3.2.x %}
 ## kong.tracing.new_span(name, options)
-
+{% endif_version %}
+{% if_version gte:3.3.x %}
+## kong.tracing.start_span(name, options)
+{% endif_version %}
 Create a new Span
 
 **Phases**
@@ -156,3 +166,13 @@ Batch process spans
 * **processor** (`function`):  a function that accecpt a span as the parameter
 
 
+{% if_version gte:3.3.x %}
+## span:set_should_sample(should_sample)
+
+Update the value of should_sample for all spans
+
+**Parameters**
+
+* **should_sample** (`bool`):  value for the sample parameter
+
+{% endif_version %}
