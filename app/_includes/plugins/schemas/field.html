@@ -35,7 +35,11 @@
 
     {% unless include.field.default == nil %}
       <span class="default">
-        <strong>default: </strong><code>{{ include.field.default }}</code>
+        {% if include.field.type == 'array' or include.field.type == 'set' %}
+          <strong>default: </strong><code>{{ include.field.default | join: ", " }}</code>
+        {% else %}
+          <strong>default: </strong><code>{{ include.field.default }}</code>
+        {% endif %}
       </span>
     {% endunless %}
 
