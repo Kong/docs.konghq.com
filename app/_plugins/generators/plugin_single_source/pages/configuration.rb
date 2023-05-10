@@ -32,16 +32,14 @@ module PluginSingleSource
       end
 
       def nav_title
-        TITLE
+        'Reference'
       end
 
       def breadcrumb_title
         TITLE
       end
 
-      def icon
-        '/assets/images/icons/documentation/hub/icn-configuration.svg'
-      end
+      def icon; end
 
       private
 

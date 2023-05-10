@@ -52,4 +52,42 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
 
     it { expect(subject.source_file).to be_nil }
   end
+
+  describe '#canonical_url' do
+    let(:source) { '_index' }
+    let(:version) { '2.8.x' }
+    let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+    let(:is_latest) { true }
+
+    it { expect(subject.canonical_url).to eq('/hub/kong-inc/jwt-signer/configuration/') }
+  end
+
+  describe '#permalink' do
+    context 'when it is the latest release' do
+      let(:source) { '_index' }
+      let(:version) { '2.8.x' }
+      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+      let(:is_latest) { true }
+
+      it { expect(subject.permalink).to eq('/hub/kong-inc/jwt-signer/configuration/') }
+    end
+
+    context 'when it is not the latest release' do
+      let(:is_latest) { false }
+      let(:version) { '2.5.x' }
+      let(:source) { '_2.2.x' }
+      let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
+
+      it { expect(subject.permalink).to eq('/hub/kong-inc/jwt-signer/2.5.x/configuration/') }
+    end
+  end
+
+  describe '#nav_title' do
+    let(:is_latest) { true }
+    let(:source) { '_index' }
+    let(:version) { '2.8.x' }
+    let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+
+    it { expect(subject.nav_title).to eq('Reference') }
+  end
 end
