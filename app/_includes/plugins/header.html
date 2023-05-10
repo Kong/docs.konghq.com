@@ -81,10 +81,7 @@
         <div class="meta--content-publisher"><span>By {{ page.publisher }}</span></div>
         <div class="meta--content-badges">
           {% include plugins/badges.html
-                     extn_publisher=include.extn_publisher
-                     konnect=include.konnect
-                     plus=include.plus
-                     enterprise=include.enterprise
+                     badges=page.badges
                      oss=include.oss
           %}
         </div>

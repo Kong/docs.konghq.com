@@ -35,7 +35,8 @@ module PluginSingleSource
           'page_type' => 'plugin',
           'book' => "plugins/#{@release.vendor}/#{@release.name}/#{@release.version}",
           'hub_examples' => hub_examples,
-          'schema' => schema
+          'schema' => schema,
+          'badges' => badges
         }
       end
 
@@ -77,6 +78,13 @@ module PluginSingleSource
 
       def extn_data
         { 'extn_data' => @release.ext_data.slice('strategy', 'releases') }
+      end
+
+      def badges
+        Jekyll::Drops::Plugins::Badges.new(
+          metadata: @release.metadata,
+          publisher: @release.vendor
+        )
       end
     end
   end

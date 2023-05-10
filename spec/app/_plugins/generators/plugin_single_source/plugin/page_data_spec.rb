@@ -17,6 +17,10 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
     it { expect(subject['schema']).to be_an_instance_of(Jekyll::Drops::Plugins::Schema) }
   end
 
+  shared_examples_for 'includes the badges' do
+    it { expect(subject['badges']).to be_an_instance_of(Jekyll::Drops::Plugins::Badges) }
+  end
+
   describe '#build_data' do
     context 'when it is the latest version of the plugin' do
       let(:is_latest) { true }
@@ -57,6 +61,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
       it_behaves_like 'includes the hub_examples'
 
       it_behaves_like 'includes the schema'
+
+      it_behaves_like 'includes the badges'
     end
 
     context 'when it is not the latest version of the plugin' do
@@ -98,6 +104,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
       it_behaves_like 'includes the hub_examples'
 
       it_behaves_like 'includes the schema'
+
+      it_behaves_like 'includes the badges'
     end
 
     context 'when there are frontmatter overrides' do
