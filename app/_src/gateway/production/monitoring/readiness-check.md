@@ -3,24 +3,25 @@ title: Readiness Check
 content_type: tutorial
 ---
 
-This tutorial guides you through the process of using the Node Readiness Endpoint, which provides a reliable way to determine if Kong is ready to serve user requests.
+This tutorial guides you through the process of using the Node Readiness endpoint, which provides a reliable way to determine if {{site.base_gateway}} is ready to serve user requests.
 
-The readiness check endpoint returns a `200 OK` response when Kong is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances. When Kong is not ready, the endpoint responds back with a `message` field with the reason for unreadiness. This can be helpful to debug situations where the user expects that the node should be ready but is not.
+The readiness check endpoint returns a `200 OK` response when {{site.base_gateway}} is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances. When Kong is not ready, the endpoint responds back with a `message` field with the reason for unreadiness. This can be helpful to debug situations where the user expects that the node should be ready but is not.
 
-Note that the readiness endpoint does not return detailed node status information.
+{:.note}
+> **Note:**  The readiness endpoint does not return detailed information about the node status.
 
 ## Prerequisites
 
-* Kong installed
-* Basic understanding of Kong configuration and deployment modes (Traditional, DB-less, and Hybrid)
+* {{site.base_gateway}}
+* A basic understanding of {{site.base_gateway}} configuration and deployment modes (traditional, DB-less, and hybrid)
 
-## Understanding the Node Readiness Endpoint
+## Understanding the Node Readiness endpoint
 
-Before diving into the steps, it's important to understand the purpose of the Node Readiness Endpoint and how it determines whether a Kong instance is ready or not.
+Before diving into the steps, it's important to understand the purpose of the Node Readiness endpoint and how it determines whether a Kong instance is ready or not.
 
 ### Traditional mode
 
-In Traditional mode, the endpoint returns `200 OK` when all of the following conditions are met:
+In traditional mode, the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Successful connection to the database
 2. All Kong workers are ready to route requests
@@ -28,7 +29,7 @@ In Traditional mode, the endpoint returns `200 OK` when all of the following con
 
 ### Hybrid mode (`data_plane` role) or DB-less mode
 
-In Hybrid mode (`data_plane` role) or DB-less mode, the endpoint returns `200 OK` when all of the following conditions are met:
+In Hybrid mode (`data_plane` role) or DB-less mode, the endpoint returns `200 OK` when the following conditions are met:
 
 1. Kong has loaded a valid and non-empty config (`kong.yaml`)
 2. All Kong workers are ready to route requests
@@ -36,13 +37,13 @@ In Hybrid mode (`data_plane` role) or DB-less mode, the endpoint returns `200 OK
 
 ### Hybrid mode (`control_plane` role)
 
-In Hybrid Mode (`control_plane` role), this endpoint returns `200 OK` when all of the following conditions are met:
+In Hybrid Mode (`control_plane` role), this endpoint returns `200 OK` when the following condition is met:
 
 1. Successful connection to the database
 
-## Enabling the Status Endpoint
+## Enabling the Status endpoint
 
-In order to use the Node Readiness Endpoint, make sure that you have enabled the Status API Server (disabled by default) via the [status_listen](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) configuration parameter.
+In order to use the Node Readiness endpoint, make sure that you have enabled the Status API server (disabled by default) via the [status_listen](/gateway/latest/reference/configuration/#status_listen) configuration parameter.
 
 Example `kong.conf`:
 
@@ -50,9 +51,9 @@ Example `kong.conf`:
 status_listen = 0.0.0.0:8100
 ```
 
-## Using the Node Readiness Endpoint
+## Using the Node Readiness endpoint
 
-Once you've enabled the Node Readiness Endpoint, you can send a GET request to it to check the readiness of your Kong instance:
+Once you've enabled the Node Readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
 
 ```sh
 # Replace `<status-api-host>` with the appropriate host for
@@ -61,7 +62,7 @@ Once you've enabled the Node Readiness Endpoint, you can send a GET request to i
 curl -i <status-api-host>/status/ready
 ```
 
-If the response code is `200`, your Kong instance is ready to serve requests:
+If the response code is `200`, the {{site.base_gateway}} instance is ready to serve requests:
 
 ```http
 HTTP/1.1 200 OK
@@ -78,7 +79,7 @@ Server: kong/3.3.0
 }
 ```
 
-If the response code is `503`, your Kong instance is unhealthy and/or not yet ready to serve requests:
+If the response code is `503`, the {{site.base_gateway}} instance is unhealthy and/or not yet ready to serve requests:
 
 ```http
 HTTP/1.1 503 Service Temporarily Unavailable
@@ -113,7 +114,7 @@ Server: kong/3.3.0
 
 ## Updating Readiness Probes
 
-If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Node Readiness Endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
+If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Node Readiness endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
 
 ```yaml
 readinessProbe:
