@@ -21,7 +21,7 @@ multiple solutions:
    UDP or TCP and sends aggregated values to one or more backend services. {{site.base_gateway}} directly supports StatsD
    with the [StatsD plugin](/hub/kong-inc/statsd/). [Monitoring with StatsD](/gateway/latest/production/monitoring/statsd/) provides a 
    step-by-step guide to enabling StatsD.
-* For monitoring when {{site.base_gateway}} is ready to accept requests, use the built-in [Node Readiness Endpoint](/gateway/{{page.kong_version}}/production/monitoring/readiness-check/).
+* For monitoring when {{site.base_gateway}} is ready to accept requests, use the built-in [Node Readiness endpoint](/gateway/latest/production/monitoring/readiness-check/).
 
 Closely related to monitoring is tracing. See the {{site.base_gateway}} [Tracing Reference](/gateway/latest/production/tracing/)
 for details about instrumenting your API gateway.
