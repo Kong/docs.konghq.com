@@ -22,6 +22,7 @@ module PluginSingleSource
                   .generate(release: @release)
                   .merge!(url_attributes)
                   .merge!(page_attributes)
+                  .merge!(frontmatter_attributes)
       end
 
       def content
@@ -85,6 +86,15 @@ module PluginSingleSource
 
       def layout
         'plugins/show'
+      end
+
+      def frontmatter_attributes
+        return {} if @file.nil?
+        return {} unless File.exist?(File.expand_path(@file, @source_path))
+
+        @frontmatter_attributes ||= Utils::FrontmatterParser.new(
+          File.read(File.expand_path(@file, @source_path))
+        ).frontmatter
       end
     end
   end

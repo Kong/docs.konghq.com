@@ -69,6 +69,17 @@ RSpec.describe PluginSingleSource::Pages::Overview do
         })
       end
     end
+
+    context 'when the page has frontmatter' do
+      let(:is_latest) { true }
+      let(:version) { '2.8.x' }
+      let(:source) { '_index' }
+      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+
+      it 'includes makes the content available on the page' do
+        expect(subject.data.fetch('frontmatter_attr')).to eq('Metadata defined in frontmatter')
+      end
+    end
   end
 
   describe '#source_file' do
