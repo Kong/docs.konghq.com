@@ -573,7 +573,7 @@ request to the `my-websocket-route` route.
 
 **{{site.base_gateway}} 3.3.x**
 
-* Restricts an authorization code created by one plugin instance can be exchanged for an access token by a different plugin instance.
+*  This plugin now restricts exchanging an authorization code created by one plugin instance for an access token by a different plugin instance.
 
 ### 2.1.1
 
