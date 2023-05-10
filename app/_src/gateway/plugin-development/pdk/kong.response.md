@@ -122,12 +122,12 @@ Returns a Lua table holding the response headers.  Keys are header names.
  headers as the client would see them upon reception, including headers
  added by Kong itself.
 
-{% if_version lte:3.2 %}
+{% if_version lte:3.2.x %}
  By default, this function returns up to **100** headers. The optional
  `max_headers` argument can be specified to customize this limit, but must
  be greater than **1** and equal to or less than **1000**.
 {% endif_version %}
-{% if_version lte:3.3 %}
+{% if_version gte:3.3.x %}
  By default, this function returns up to **100** headers (or what has been
  configured using `lua_max_resp_headers`). The optional `max_headers` argument
  can be specified to customize this limit, but must be greater than **1** and

@@ -485,12 +485,12 @@ Returns the table of query arguments obtained from the query string.  Keys
  Note that a query string `?foo&bar` translates to two boolean `true`
  arguments, and `?foo=&bar=` translates to two string arguments containing
  empty strings.
-{% if_version lte 3.2 %}
+{% if_version lte:3.2.x %}
  By default, this function returns up to **100** arguments. The optional
  `max_args` argument can be specified to customize this limit, but must be
  greater than **1** and not greater than **1000**.
 {% endif_version %}
-{% if_version gte 3.3 %}
+{% if_version gte:3.3.x %}
  By default, this function returns up to **100** arguments (or what has been
  configured using `lua_max_uri_args`). The optional `max_args` argument can be
  specified to customize this limit, but must be greater than **1** and not

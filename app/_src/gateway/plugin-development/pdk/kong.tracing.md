@@ -91,7 +91,7 @@ Adds an error event to a Span
 * **status** (`number`):  status code
 
 
-{% if_version gte:3.2.x %}
+{% if_version lte:3.2.x %}
 ## kong.tracing.new_span()
 {% endif_version %}
 {% if_version gte:3.3.x %}
