@@ -3,7 +3,7 @@
 describe("plugin shows the correct sample", () => {
   // Set a baseline on a common plugin (basic-auth)
   test("basic-auth (kong inc)", async () => {
-    const $ = await fetchPage("/hub/kong-inc/basic-auth/configuration/");
+    const $ = await fetchPage("/hub/kong-inc/basic-auth/configuration/examples/");
     await expect($(".navtab-content").first()).toContainText(
       '--data "name=basic-auth"'
     );
@@ -12,7 +12,7 @@ describe("plugin shows the correct sample", () => {
   // Make sure that a different plugin shows the correct name too
   // In case we cached basic-auth by coincidence
   test("cors (kong inc)", async () => {
-    const $ = await fetchPage("/hub/kong-inc/cors/configuration/");
+    const $ = await fetchPage("/hub/kong-inc/cors/configuration/examples/");
     await expect($(".navtab-content").first()).toContainText(
       '--data "name=cors"'
     );
@@ -20,7 +20,7 @@ describe("plugin shows the correct sample", () => {
 
   // Show a community plugin too
   test("salt (community)", async () => {
-    const $ = await fetchPage("/hub/salt/salt/configuration/");
+    const $ = await fetchPage("/hub/salt/salt/configuration/examples/");
     await expect($(".content").first()).toContainText(
       '--data "name=salt-agent"'
     );
