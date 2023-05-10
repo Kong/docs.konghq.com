@@ -102,7 +102,36 @@ sudo yum install kong-{{page.versions.ce}}.aws.amd64.rpm
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
 {% endnavtab %}
-{% navtab YUM repository %}
+{% navtab YUM repository (AL2023) %}
+
+Install the YUM repository from the command line.
+
+1. Download the Kong APT repository:
+    ```bash
+    curl https://download.konghq.com/gateway-3.x-amazonlinux-2023/config.repo | sudo tee /etc/yum.repos.d/kong.repo
+    ```
+
+2. Install Kong:
+
+{% capture install_from_repo %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo yum install kong-{{page.versions.ce}}
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ install_from_repo | indent | replace: " </code>", "</code>" }}
+
+{% endnavtab %}
+{% navtab YUM repository (Amazon Linux 2) %}
 
 Install the YUM repository from the command line.
 
