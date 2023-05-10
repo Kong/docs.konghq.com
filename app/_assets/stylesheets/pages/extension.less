@@ -322,6 +322,11 @@ table {
 }
 
 .hub {
+  .sidebar-toggle {
+    background-color: white;
+    margin: 0;
+  }
+
   .container {
     overflow: auto;
   }
@@ -436,6 +441,10 @@ table {
         display: flex;
         text-align: right;
         gap: 24px;
+
+        @media (max-width: 480px) {
+          gap: 15px;
+        }
 
         &--edit, &--issues {
           display: flex;
