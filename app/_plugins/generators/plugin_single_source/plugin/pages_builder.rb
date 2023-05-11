@@ -34,7 +34,10 @@ module PluginSingleSource
       end
 
       def sidenav
-        @sidenav ||= ::Jekyll::Drops::Sidenav.new(sidenav_items)
+        @sidenav ||= ::Jekyll::Drops::Sidenav.new(
+          sidenav_items,
+          { 'plugin-key' => "#{@release.vendor}-#{@release.name}-#{@release.version}" }
+        )
       end
 
       def icon
