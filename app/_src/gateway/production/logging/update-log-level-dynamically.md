@@ -9,7 +9,7 @@ You can change the log level of {{site.base_gateway}} dynamically, without resta
 The log level change is propagated to all NGINX worker nodes, including the newly spawned workers.
 
 {:.important}
-> Be careful when changing the log level of a node to `debug` in a production environment, because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level such as `notice`, **or** specify a `timeout` as a request querystring parameter when issuing a request to modify the log level. To ensure stability, the `timeout` for all dynamically set log levels is 60 seconds **by default**.
+> Changing the log level to `debug` in a production environment can rapidly fill up the disk. After debug logging, switch back to a higher level like `notice` or use a `timeout` parameter in the request query string. **The default timeout for dynamically set log levels is 60 seconds**.
 
 
 ## View current log level
