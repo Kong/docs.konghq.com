@@ -1,3 +1,24 @@
+{% if_version gte:3.3.x %}
+## Queueing
+
+The StatsD plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
+
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Plugin Queuing Reference](/gateway/latest/kong-plugins/queue/reference/)
+in the {{site.base_gateway}} documentation.
+
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
+{% endif_version %}
+
+
+---
+
 ## Metrics
 
 {% if_plugin_version gte:3.0.x %}
