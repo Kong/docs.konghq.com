@@ -613,26 +613,6 @@ Default: none
 
 ---
 
-### cluster_dp_labels
-{:.badge .enterprise}
-
-Comma separated list of Labels for the data plane.
-
-Labels are key-value pairs that provide additional context information for each
-DP.
-
-Each label must be configured as a string in the format `key:value`.
-
-Labels are only compatible with hybrid mode deployments with Kong Konnect
-(SaaS), this configuration doesn't work with self-hosted deployments.
-
-Keys and values follow the AIP standards: https://kong-aip.netlify.app/aip/129/
-
-Example: `deployment:mycloud,region:us-east-1`
-
-Default: none
-
----
 {% endif_version %}
 
 ## Hybrid Mode Control Plane section
