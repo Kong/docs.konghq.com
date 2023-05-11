@@ -146,6 +146,7 @@ params:
           processing entries.  This parameter has no effect when
           `batch_max_size` is one because queued entries will be sent
           immediately in that case.
+          minimum_version: "3.3.x"
       minimum_version: "3.3.x"
     - name: "queue.max_entries"
       type: number
