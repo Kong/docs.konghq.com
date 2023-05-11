@@ -25,6 +25,8 @@ module SharedContexts
       layouts = {
         'extension' => Jekyll::Layout.new(site, '_layouts', 'extension.html'),
         'plugins/show' => Jekyll::Layout.new(site, '_layouts', 'plugins/show.html'),
+        'plugins/configuration' => Jekyll::Layout.new(site, '_layouts', 'plugins/configuration.html'),
+        'plugins/configuration_examples' => Jekyll::Layout.new(site, '_layouts', 'plugins/configuration_examples.html'),
         'default' => Jekyll::Layout.new(site, '_layouts', 'default.html'),
       }
       site.layouts = layouts
