@@ -93,6 +93,7 @@ around **500MB** of memory allocated per worker process.
 
 For example, on a machine with 4 CPU cores and 8 GB of RAM available, we recommend allocating between 4-6 GB to cache via the `mem_cache_size` directive, depending on what other processes are running alongside {{site.base_gateway}}.
 
+{% if_version gte:3.3.x %}
 ### Plugin queues
 
 Several plugins that are distributed with {{site.base_gateway}}
@@ -100,9 +101,7 @@ utilize internal, in-memory queues to decouple production of data from
 the transmission to an upstream server. These queues reduce the
 number of concurrent requests that are made to an upstream server
 under high load conditions and provide for buffering during temporary
-network and upstream outages. Please see the [Plugin Queues]()
-documentation for details on {{site.base_gateway}}'s internal
-queueing system.
+network and upstream outages. For more information about {{site.base_gateway}}'s internal queueing system, see [About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/).
 
 As queues utilize main memory to store queued entries, it is important
 to understand how many queues exist in the system and how many entries
@@ -129,6 +128,7 @@ configured limits.
 The default value of 10,000 entries for the `queue.max_entries` should
 provide for enough buffering in many installations while keeping the
 maximum memory usage of queues at reasonable levels.
+{% endif_version %}
 
 ## Scaling dimensions
 
