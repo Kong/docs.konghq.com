@@ -132,6 +132,20 @@ $(document).ready(function () {
     var typingTimer;
     var typeInterval = 500;
 
+    function handleOldFilters() {
+      var hash = window.location.hash;
+      if (hash) {
+        var value = hash.slice(1);
+        if (value === "plus" || value === "ee-compat") {
+          if (value === "ee-compat") {
+            value = "enterprise";
+          }
+          var $dropdownItem = $tierFilter.find(`.dropdown-item[data-value='${value}']`);
+          handleDropdownChange($tierFilter, $dropdownItem);
+          }
+      }
+    }
+
     function populateFilter($filter, filterName) {
       var values = queryParams.get(filterName).split(",");
       values.forEach(function(val) {
@@ -162,8 +176,6 @@ $(document).ready(function () {
         filterPluginCards();
       }
     };
-
-    populateFiltersFromQueryString();
 
     function updateQueryParamWithFilter(filterName, $filter) {
       var selectedValues = getSelectedValuesForFilter($filter);
@@ -232,5 +244,8 @@ $(document).ready(function () {
         $searchInput.trigger('page-hub:filter');
       }, typeInterval);
     });
+
+    populateFiltersFromQueryString();
+    handleOldFilters();
   }
 });
