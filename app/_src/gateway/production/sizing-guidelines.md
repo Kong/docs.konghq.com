@@ -113,7 +113,7 @@ the http-log plugin, which uses one queue per log server upstream
 configuration.
 
 The `queue.max_entries` configuration parameter determines how many
-entries can be waiting for transmission on a given queue.  Once this
+entries can be waiting for transmission in a given queue. Once this
 limit is reached, the oldest entry is removed when a new entry is
 enqueued. While it is not possible to precisely predict how much
 memory a single queue entry will occupy for a given plugin and in a
