@@ -15,8 +15,3 @@ description: |
   and translate requests and responses in a JSON format. Similar to
   [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/).
 license_type: MIT
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true

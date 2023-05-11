@@ -8,11 +8,6 @@ network_config_opts: All
 notes: --
 categories:
   - security
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Detect and block bots or custom clients
 description: |

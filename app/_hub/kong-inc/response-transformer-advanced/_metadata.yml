@@ -9,9 +9,6 @@ network_config_opts: All
 notes: --
 categories:
   - transformations
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Modify the upstream response before returning it to the client
 description: |

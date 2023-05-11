@@ -26,8 +26,3 @@ description: |
   for a configurable period of time, after which subsequent requests to the same
   resource will re-fetch and re-store the resource. Cache entities can also be
   forcefully purged via the Admin API prior to their expiration time.
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true

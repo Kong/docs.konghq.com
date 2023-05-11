@@ -7,9 +7,6 @@ enterprise: true
 konnect: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification
 description: |

@@ -9,11 +9,6 @@ network_config_opts: All
 notes: --
 categories:
   - analytics-monitoring
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Visualize metrics on Datadog
 description: |

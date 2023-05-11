@@ -33,8 +33,3 @@ description: |
   * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
   * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
   * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true

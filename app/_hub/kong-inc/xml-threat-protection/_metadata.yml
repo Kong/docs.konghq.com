@@ -14,6 +14,3 @@ description: |
   Reduce the risk of XML attacks by checking the structure of XML payloads. This
   validates maximum complexity (depth of the tree), maximum size of elements
   and attributes.
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true

@@ -8,9 +8,6 @@ network_config_opts: All
 notes: --
 categories:
   - traffic-control
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Slowly roll out software changes to a subset of users
 description: |

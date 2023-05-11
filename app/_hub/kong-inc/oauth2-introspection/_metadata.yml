@@ -9,11 +9,6 @@ network_config_opts: All
 notes: --
 categories:
   - authentication
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
   Validate access tokens sent by developers using a third-party OAuth 2.0

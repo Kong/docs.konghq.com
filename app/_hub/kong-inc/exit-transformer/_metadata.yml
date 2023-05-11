@@ -11,9 +11,6 @@ notes: --
 categories:
   - transformations
 publisher: Kong Inc.
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
 desc: Customize Kong exit responses sent downstream
 description: |
   Transform and customize Kong response exit messages using Lua functions.

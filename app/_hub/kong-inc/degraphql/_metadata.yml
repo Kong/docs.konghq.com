@@ -9,9 +9,6 @@ network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --
 categories:
   - transformations
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Transform a GraphQL upstream into a REST API
 description: |

@@ -12,11 +12,6 @@ network_config_opts: All
 notes: --
 categories:
   - analytics-monitoring
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |

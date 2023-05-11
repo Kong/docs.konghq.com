@@ -8,9 +8,6 @@ network_config_opts: All
 notes: --
 categories:
   - security
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Authorize requests against Open Policy Agent
 description: |

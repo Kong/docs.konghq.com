@@ -14,11 +14,6 @@ network_config_opts: All
 notes: --
 categories:
   - transformations
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Use powerful regular expressions, variables, and templates to transform API requests
 description: |

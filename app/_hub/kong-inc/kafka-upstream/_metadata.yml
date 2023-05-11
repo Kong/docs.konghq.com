@@ -17,8 +17,3 @@ description: |
 
   Kong also provides a Kafka Log plugin for publishing logs to a Kafka topic.
   See [Kafka Log](/hub/kong-inc/kafka-log/).
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true

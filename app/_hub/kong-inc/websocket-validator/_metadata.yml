@@ -28,6 +28,3 @@ description: |
   sent to the sender (status: `1007`) and the peer before closing the
   connection.
 
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true

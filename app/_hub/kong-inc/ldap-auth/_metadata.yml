@@ -8,11 +8,6 @@ network_config_opts: All
 notes: --
 categories:
   - authentication
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 version: 2.2.x
 desc: Integrate Kong with an LDAP server

@@ -34,8 +34,5 @@ description: |
   * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
 categories:
   - traffic-control
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true
+free: false
+enterprise: true

@@ -27,9 +27,3 @@ description: |
   For additional request transformation features, check out the
   [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/).
   With the advanced plugin, you can also limit the list of allowed parameters in the request body.
-
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true

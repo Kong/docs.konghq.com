@@ -16,6 +16,3 @@ description: |
 
 categories:
   - authentication
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true

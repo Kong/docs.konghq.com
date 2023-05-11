@@ -18,7 +18,3 @@ description: |
   the plugin makes the certificate available to other plugins acting on this request.  
 
   This plugin must be used in conjunction with the TLS Metadata Headers plugin.
-
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true

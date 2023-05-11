@@ -12,11 +12,6 @@ network_config_opts: All
 notes: --
 categories:
   - serverless
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
 publisher: Kong Inc.
 desc: Invoke and manage Azure functions from Kong
 description: |

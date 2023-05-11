@@ -12,8 +12,3 @@ publisher: Kong Inc.
 desc: Decrypt a JWE token in a request
 description: |
   The Kong JWE Decrypt plugin makes it possible to decrypt an inbound token(JWE) in a request.
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true

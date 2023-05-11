@@ -30,9 +30,3 @@ description: |
   * Ability to choose status codes to log to metrics.
   * More granular status codes per workspace.
   * Ability to use TCP instead of UDP.
-
-kong_version_compatibility:
-  community_edition:
-    compatible: null
-  enterprise_edition:
-    compatible: true

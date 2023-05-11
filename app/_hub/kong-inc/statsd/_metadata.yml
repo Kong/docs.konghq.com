@@ -19,9 +19,3 @@ description: |
   It can also be used to log metrics on [Collectd](https://collectd.org/)
   daemon by enabling its
   [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-
-  enterprise_edition:
-    compatible: true

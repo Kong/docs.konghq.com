@@ -11,12 +11,6 @@ network_config_opts: All
 notes: --
 categories:
   - transformations
-kong_version_compatibility:
-  enterprise_edition:
-    compatible:
-      - 2.8.x
-      - 2.7.x
-      - 2.6.x
 publisher: Kong Inc.
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |

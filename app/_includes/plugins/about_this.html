@@ -9,7 +9,7 @@
 
 <div class="about-extn-table">
   <table id="about-extn">
-    {% if compat %}
+    {% if compat and ee_compatible or ce_compatible %}
       <tr class="kong-editions">
         <th colspan="2">
             Version Compatibility

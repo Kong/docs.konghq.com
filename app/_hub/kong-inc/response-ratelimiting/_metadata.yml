@@ -33,9 +33,3 @@ description: |
   If the underlying Service/Route has no authentication
   layer, the **Client IP** address will be used; otherwise, the Consumer will be
   used if an authentication plugin has been configured.
-
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
