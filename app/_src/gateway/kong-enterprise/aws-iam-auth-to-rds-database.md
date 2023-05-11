@@ -8,6 +8,19 @@ Starting in {{site.base_gateway}} 3.3.x, you can use AWS Identity and Access Man
 
 When you enable this feature, you don't need to use a password when you connect to a database instance. Instead, you use a temporary authentication token. Because AWS IAM manages the authentication externally, the database doesn't store user credentials. If you use AWS RDS for {{site.base_gateway}}'s database, you can enable this feature to your running cluster. This ensures that you don't have to store database user credentials on both the {{site.base_gateway}} (`pg_password`) and RDS database side. 
 
+## AWS IAM authentication limitations
+
+AWS IAM authentication also has some limitations. Go through each one before you use this feature in your production environment:
+
+* The number of IAM database authentication connections must be less than the maximum of 200 in a traditional {{site.base_gateway}} cluster. Establishing more connections can result in throttling. For more information, see [Recommendations for IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.ConnectionsPerSecond) in the Amazon RDS user guide. 
+* Enabling AWS IAM authentication requires SSL connection to the database. To do this, you must configure your RDS cluster correctly and provide the correct SSL-related configurations on {{site.base_gateway}}'s side. Enabling SSL also results in some performance overhead if you didn't previously use it. Currently, TLSv1.3 isn't supported by AWS RDS.
+- Since the Postgres RDS does not support mTLS, you can't enable mTLS between the {{site.base_gateway}} and the Postgres RDS database when AWS IAM authentication is enabled.
+- After enabling AWS IAM authentication in read-write or read-only mode, the `pg_password` or `pg_ro_password` configuration is ignored when establishing connections.
+- You **can't** change the value of the environment variables that you use for the AWS credential after booting {{site.base_gateway}}.
+- A database user assigned to the `rds_iam` role can only authenticate with IAM database authentication.
+
+For additional recommendations and limitations, see [IAM database authentication for MariaDB, MySQL, and PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html) in the Amazon RDS user guide. 
+
 ## Prerequisites
 
 Before you enable the AWS IAM authentication, you must configure your AWS RDS database and the AWS IAM role that {{site.base_gateway}} uses.
@@ -22,104 +35,59 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
    {:.warning}
    > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
 
-- **Ensure the IAM role you assinging to Kong has proper IAM policy**. Below is a simple example policy allows a user "john" to connect to a RDS instance "db-ABCDEFGHIJKL01234" by using the IAM database authentication:
+- **Assign an IAM policy to the {{site.base_gateway}} IAM role**. For more information, see [Creating and using an IAM policy for IAM database access](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html) in the Amazon RDS documentation.
 
-```json
-{
-   "Version": "2012-10-17",
-   "Statement": [
-      {
-         "Effect": "Allow",
-         "Action": [
-             "rds-db:connect"
-         ],
-         "Resource": [
-             "arn:aws:rds-db:us-east-2:1234567890:dbuser:db-ABCDEFGHIJKL01234/john"
-         ]
-      }
-   ]
-}
-```
+- **Ensure you have the database account created in the RDS**. For more information, see [Using IAM authentication with PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html#UsingWithRDS.IAMDBAuth.DBAccounts.PostgreSQL) in the Amazon RDS documentation. 
 
 {:.note}
-> **Note:** In this example, `db-ABCDEFGHIJKL01234` is the resource ID of the RDS instance, which can be found in the "Configuration" page on the AWS Console. If you're using Aurora RDS with Aurora PostgreSQL engine, you can also use a cluster ID to grant permission to authenticate to the cluster, for example `cluster-ABCDEFGHIJKL01234`.
+> **Notes:** 
+> * The database user assigned to the `rds_iam` role can only use the IAM database authentication.
+> * Make sure to create the database and grant the correct permissions to the database user you just created. See [Using a database](/gateway/latest/install/linux/debian/#using-a-database) for more information.
 
-For more details, please check the AWS documentation: [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html)
+## Enabling AWS IAM authentication
 
-- **Ensure you have the database account created in the RDS**. You need to create the database user and then grant them the `rds_iam` role as shown in the following example:
-
-```text
-# Connect to your RDS instance by using your master user/password
-$ psql "host=db-your-instance-1.ABCDEFGHIJ12345.us-east-1.rds.amazonaws.com port=5432 user=testmaster password=testpassword dbname=postgres"
-
-# psql shell
-postgres=> CREATE USER john;
-postgres=> GRANT rds_iam TO john;
-```
-
-You can use `\du` in your RDS database to check you have the database account created:
-
-```text
-postgres=> \du
-                                                               List of roles
-    Role name    |                         Attributes                         |                          Member of
------------------+------------------------------------------------------------+-------------------------------------------------------------
- john            |                                                            | {rds_iam}
-```
+You can enable AWS IAM authentication by using an environment variable or using the {{site.base_gateway}} configuration file. You can either enable this feature in both read-only and read-write mode, or just enable it in read-only mode. 
 
 {:.note}
-> **Note:** The database user with `rds_iam` role granted cannot authenticate in the normal username/password way, you must use the IAM Database authentication instead.
+> **Note:** {{site.base_gateway}} ignores the `pg_ro_password` config property in read-only mode. It doesn't influence the read-write related configs, so `pg_user` and `pg_password` function normally. 
 
-{:.note}
-> **Note:** Don't forget to provision the database with creating the database and granting enough permissions to the database user you've just created! You can check the docs at [Using a database](/gateway/latest/install/linux/debian/#using-a-database) in our Installation Options(/gateway/latest/install/)
+Before you enable AWS IAM authentication, you must do the following in the `kong.conf` file:
+* Remove the `pg_password` or `pg_ro_password`.
+* Check that `pg_user` or `pg_ro_user` matches the username you defined in the IAM policy and created in the Postgres RDS database.
 
-## Getting started
+### Enable AWS IAM authentication with environment variables
 
-Enabling the AWS IAM Authentication feature is quite simple. You can enable it by using the environment variable or using the configuration file. Also, don't forget to remove the `pg_password` or `pg_ro_password` after switching to use the AWS IAM Authentication. You'll also need to check your `pg_user` or `pg_ro_user` is the same username defined in the IAM policy and created in the Postgres RDS database.
-
-You can either enable this feature on both read only connection and read write connection, or just enable it on the read only connection. Enabling the feature on readonly will make Kong ignore `pg_ro_password` config property, but it does not influence on the read-write related configs, which means that `pg_user` and `pg_password` will work as normal.
-
-### Environment variable
-
-You can enable by setting the `KONG_PG_IAM_AUTH` environment variable to `on`. Accordingly, if you only want to enable it on the readonly mode of Postgres connections, you can set `KONG_PG_RO_IAM_AUTH` environment variable to `on`.
+To enable AWS IAM authentication in read-write mode, set the `KONG_PG_IAM_AUTH` environment variable to `on`: 
 
 ```bash
-# Set KONG_PG_IAM_AUTH if you want to enable the feature on both read and write
 KONG_PG_IAM_AUTH=on
 ```
 
-If you only want to enable this feature in read-only mode, you can set as following:
+To enable AWS IAM authentication in read-only mode, you can set the following:
 
 ```bash
-# This line can be omitted because off is a default value
-KONG_PG_IAM_AUTH=off
-
-# Set KONG_PG_RO_IAM_AUTH if you only want to enable on the read only connection.
+KONG_PG_IAM_AUTH=off # This line can be omitted because off is a default value
 KONG_PG_RO_IAM_AUTH=on
 ```
 
-### Configuration file
+### Enable AWS IAM authentication in the configuration file
 
 The `kong.conf` file contains the property `pg_iam_auth` and `pg_ro_iam_auth`.
 Just like the environmen variable, you can set them to `on` accordingly, if you want to enable the IAM Authentication on both read and write connection, or just read-only connection to the RDS Postgres database.
 
+To enable AWS IAM authentication in read-write mode, set `pg_iam_auth` to `on`:
+
 ```text
-# Set pg_iam_auth if you want to enable the feature on both read and write
 pg_iam_auth=on
-# Set pg_ro_iam_auth if you only want to enable on the read only connection
+```
+
+To enable AWS IAM authentication in read-only mode, set `pg_ro_iam_auth` to `on`:
+```text
 pg_ro_iam_auth=on
 ```
 
+
+
+
 {:.note}
-> **Note:** If you're enabling the feature in the configuration file, don't forget to specify the configuration file with the feature property on when you're running migrations command! For example `kong migrations bootstrap -c /path/to/kong.conf`
-
-## Limitations
-
-The AWS IAM Authentication also has some limitations, some are from the AWS service and some are within the Kong runtime. Be sure to go through them one by one before you start to use this feature in your production environment.
-
-- According to the AWS documentation, the AWS IAM Authentication to the RDS will work "when your application requires fewer than 200 new IAM database authentication connections per second". Establishing database connections more than that number in every second may result in connection throttling, controlled by the IAM service. Note that this does not affect the total number of keep-alive connections from Kong to the database, it only affects the connection establishment. Especially if you're using a traditional cluster(in which every Kong node needs to connect to the database) deployment with many Kong nodes, make sure that your number of connection establish action in your whole cluster is lower than the maximum value of 200.
-- Enabling the AWS IAM Authentication feature requires mandatory SSL connection to the database, which needs you to configure both your RDS cluster properly, and provide correct ssl related configs on Kong's side. Enabling SSL will also introduce some performance overhead(but not much) if you do not use SSL connection to your database in the old time. Please also note that currently TLSv1.3 is not supported by AWS RDS.
-- Since the Postgres RDS does not support mTLS, enabling mTLS between the Kong and the Postgres RDS database is not allowed when using this feature.
-- After enabling this feature on the read/write mode or on the read-only mode, the `pg_password` or `pg_ro_password` configuration will be ignored accordingly when establishing connections.
-- As said in the Prerequisition section, you **cannot** change the value of the environment variables that used to provide the AWS Credential after Kong instance boot up. The change will be ignored and **will not take effect** inside Kong instance.
-- As said in the Prerequisition section, a database user with `rds_iam` role granted cannot authenticate in the normal username/password way, you must use the IAM Database authentication instead.
+> **Note:** If you enable AWS IAM authentication in the configuration file, you must specify the configuration file with the feature property on when you run the migrations command. For example, `kong migrations bootstrap -c /path/to/kong.conf`.
