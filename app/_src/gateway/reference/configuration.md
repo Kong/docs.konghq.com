@@ -360,6 +360,65 @@ authority.
 
 ---
 
+{% if_version gte:3.3.x %}
+
+### error_template_html
+
+Path to the custom html error template to override the default html kong error
+template.
+
+The template is required to contain one single `%s` placeholder for the error
+message, as in the following example:
+
+```
+<html>
+   <body>
+     <h1>My custom error template</h1>
+     <p>%s.</p>
+   </body>
+</html>
+```
+
+Default: none
+
+---
+
+### error_template_json
+
+Path to the custom json error template to override the default json kong error
+template.
+
+Similarly to `error_template_html`, the template is required to contain one
+single `%s` placeholder for the error message.
+
+Default: none
+
+---
+
+### error_template_xml
+
+Path to the custom xml error template to override the default xml kong error
+template
+
+Similarly to `error_template_html`, the template is required to contain one
+single `%s` placeholder for the error message.
+
+Default: none
+
+---
+
+### error_template_plain
+
+Path to the custom plain error template to override the default plain kong
+error template
+
+Similarly to `error_template_html`, the template is required to contain one
+single `%s` placeholder for the error message.
+
+Default: none
+
+---
+{% endif_version %}
 ## Hybrid Mode section
 
 ### role
@@ -532,6 +591,49 @@ The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
 
 ---
+{% if_version gte:3.3.x %}
+### cluster_dp_labels
+{:.badge .enterprise}
+
+Comma separated list of Labels for the data plane.
+
+Labels are key-value pairs that provide additional context information for each
+DP.
+
+Each label must be configured as a string in the format `key:value`.
+
+Labels are only compatible with hybrid mode deployments with Kong Konnect
+(SaaS), this configuration doesn't work with self-hosted deployments.
+
+Keys and values follow the AIP standards: https://kong-aip.netlify.app/aip/129/
+
+Example: `deployment:mycloud,region:us-east-1`
+
+Default: none
+
+---
+
+### cluster_dp_labels
+{:.badge .enterprise}
+
+Comma separated list of Labels for the data plane.
+
+Labels are key-value pairs that provide additional context information for each
+DP.
+
+Each label must be configured as a string in the format `key:value`.
+
+Labels are only compatible with hybrid mode deployments with Kong Konnect
+(SaaS), this configuration doesn't work with self-hosted deployments.
+
+Keys and values follow the AIP standards: https://kong-aip.netlify.app/aip/129/
+
+Example: `deployment:mycloud,region:us-east-1`
+
+Default: none
+
+---
+{% endif_version %}
 
 ## Hybrid Mode Control Plane section
 
@@ -4321,6 +4423,30 @@ Setting this attribute disables the search behavior and explicitly instructs
 Kong which OpenResty installation to use.
 
 **Default:** none
+{% if_version gte:3.3.x %}
+---
+
+### node_id
+{:.badge .enterprise}
+
+Node ID for the Kong node. Every Kong node in a Kong cluster must have a unique
+and valid UUID. When empty, node ID is automatically generated.
+
+Default: none
+
+---
+
+### cluster_fallback_config_import
+{:.badge .enterprise}
+
+Enable fallback configuration imports
+
+This should only be enabled for data plane
+
+Default: `off`
+
+---
+{% endif_version %}
 
 {% if_version gte:3.2.x %}
 
