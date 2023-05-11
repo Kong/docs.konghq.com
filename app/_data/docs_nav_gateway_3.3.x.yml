@@ -553,7 +553,12 @@ items:
         items:
           - text: Add a Body Value
             url: /kong-plugins/request-transformer/add-body-value
-
+      - text: Plugin Queuing
+        items:
+          - text: Overview
+            url: /kong-plugins/queue
+          - text: Plugin Queuing Reference
+            url: /kong-plugins/queue/reference
       - text: GraphQL
         url: /kong-plugins/graphql
       - text: gRPC
