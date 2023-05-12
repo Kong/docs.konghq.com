@@ -2,7 +2,7 @@
 title: Configuring a Service
 ---
 
-Using the [Service Hub](/konnect/servicehub), you can create, manage, and
+Using the [Service Hub](/konnect/servicehub/), you can create, manage, and
 implement {{site.konnect_short_name}} services. Each service consists of at least one
 service version, and each service version can have one implementation.
 
@@ -16,7 +16,7 @@ requester as responses.
 ## Prerequisites
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
-make sure you have [configured a runtime](/konnect/getting-started/configure-runtime).
+make sure you have [configured a runtime](/konnect/getting-started/configure-runtime/).
 
 ## Create a service
 
@@ -60,14 +60,14 @@ Let's set up the first version of your API service.
 
 1. Select a runtime group.
 
-    Choose a [group](/konnect/runtime-manager/runtime-groups) to
+    Choose a [group](/konnect/runtime-manager/runtime-groups/) to
     deploy this service version to. This lets you deploy to a specific group of
     runtime instances in a specific environment.
 
     {:.note}
     > **Note:** Application registration is only available for
     services in the default runtime group, so if you plan on using
-    [application registration](/konnect/dev-portal/applications/application-overview),
+    [application registration](/konnect/dev-portal/applications/application-overview/),
     choose `default` in this step.
 
     Different versions of the same service can run in different runtime groups.
@@ -83,4 +83,4 @@ Let's set up the first version of your API service.
 In this section, you added a service named `example_service` with the version
 `v1`.
 
-Next, go on to [implement the service version](/konnect/getting-started/implement-service).
+Next, go on to [implement the service version](/konnect/getting-started/implement-service/).

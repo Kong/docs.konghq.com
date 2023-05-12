@@ -8,7 +8,7 @@ description: |
   [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 type: plugin
 enterprise: true
-cloud: false
+cloud: true
 categories:
   - traffic-control
 kong_version_compatibility:
@@ -18,7 +18,7 @@ params:
   name: graphql-rate-limiting-advanced
   service_id: true
   route_id: true
-  konnect_examples: false
+  konnect_examples: true
   dbless_compatible: partially
   dbless_explanation: |
     The cluster strategy is not supported in DB-less and hybrid modes. For Kong
@@ -123,10 +123,8 @@ params:
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config strategy is not
-        supported.
-
-        In Konnect, the default strategy is `redis`.
+        In DB-less, hybrid mode, and Konnect, the `cluster` config strategy
+        is not supported.
 
         {:.important}
         > There is no local storage strategy. However, you can achieve local
@@ -308,15 +306,13 @@ params:
       datatype: boolean
       description: |
         Optionally hide informative response headers. Available options: `true` or `false`.
-  extra: |
-    > Note: Redis configuration values are ignored if the `cluster` strategy is used.
-
-    **Notes:**
-
-     * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
-
-     * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
 ---
+
+{:.note}
+> **Notes:**
+  *  Redis configuration values are ignored if the `cluster` strategy is used.
+  * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster datastore.
+  * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
 
 The **GraphQL Rate Limiting Advanced** plugin is an extension of the
 **Rate Limiting Advanced** plugin and provides rate limiting for
@@ -695,8 +691,8 @@ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 * The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be securely stored as
-[secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
+[secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the

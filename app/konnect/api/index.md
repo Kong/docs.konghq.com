@@ -17,7 +17,7 @@ The region-specific endpoints are used to manage {{site.konnect_short_name}} ent
 
 ## Authentication
 
-The recommended method of authentication for {{site.konnect_short_name}} is [Personal Access Token (PAT)](/konnect/runtime-manager/runtime-groups/declarative-config/#generate-a-personal-access-token), which can be obtained from the [personal access token page](https://cloud.konghq.com/global/tokens) in {{site.konnect_short_name}}. The PAT must be passed in the `Authorization` header of all requests, for example: 
+The recommended method of authentication for {{site.konnect_short_name}} is [Personal Access Token (PAT)](/konnect/runtime-manager/declarative-config/#generate-a-personal-access-token), which can be obtained from the [personal access token page](https://cloud.konghq.com/global/account/tokens) in {{site.konnect_short_name}}. The PAT must be passed in the `Authorization` header of all requests, for example: 
 
 `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT'`
 
@@ -28,10 +28,12 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/) - Interface for managing runtime groups.
 
-* [Runtime Configuration API](/konnect/api/runtime-groups-config/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
-
 * [Portal RBAC API Documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/) - Interface for portal developers, teams, and RBAC rules.
 
+* [Runtime Configuration API](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
+
+{:.note}
+> **Note**: This list represents the APIs supported for use in production environments. 
 
 ## More information
 

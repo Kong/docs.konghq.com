@@ -296,13 +296,12 @@ params:
         Unhandled errors while trying to retrieve a cache entry (such as redis down) are resolved with `Bypass`, with the request going upstream.
   extra: |
 
-    <div class="alert alert-ee red">
-    <strong>Warning:</strong> The <code>content_type</code> parameter requires
-    an exact match. For example, if your Upstream expects
-    <code>application/json; charset=utf-8</code> and the
-    <code>config.content_type</code> value is only <code>application/json</code>
-    (a partial match), then the proxy cache is bypassed.
-    </div>
+    {:.important}
+    > **Warning:** The `content_type` parameter requires
+    an exact match. For example, if your upstream expects
+    `application/json; charset=utf-8` and the
+    `config.content_type` value is only `application/json`
+    (a partial match), then the proxy cache is bypassed.  
 ---
 ### Strategies
 
@@ -477,8 +476,8 @@ parameters.
 
 * The `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be
-securely stored as [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
+securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 * Fixed plugin versions in the documentation. Previously, the plugin versions
 were labelled as `1.3-x` and `2.2.x`. They are now updated to align with the

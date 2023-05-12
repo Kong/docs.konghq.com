@@ -1,7 +1,6 @@
 ---
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 1.6.x
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
   The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
@@ -110,7 +109,13 @@ params:
       datatype: string
       description: |
         The rate limiting library namespace to use for this plugin instance. Counter
-        data and sync configuration is isolated in each namespace.
+        data and sync configuration is isolated in each namespace. This value should be unique between
+        every instance of a plugin in most configurations.
+
+        If you use the same `namespace` value for multiple instances of the plugin, the rate limit will be shared
+        between all instances. For example, if you set `namespace: helloworld` when adding the rate limiting plugin
+        to `service-a` and use the same namespace on `service-b`, a request to either service will increment the
+        counter for the caller. This allows you to share rate limits between services.
 
         {:.important}
         > **Important**: If managing Kong Gateway with **declarative configuration** or running
@@ -138,10 +143,8 @@ params:
         - `local`: Counters are stored locally in-memory on the node (same effect
            as setting `sync_rate` to `-1`).
 
-        In DB-less and hybrid modes, the `cluster` config strategy
+        In DB-less, hybrid mode, and Konnect, the `cluster` config strategy
         is not supported.
-
-        In Konnect, the default strategy is `redis`.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -162,13 +165,13 @@ params:
         - `redis`: Counters are stored on a Redis server and shared
            across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config strategy
-        is not supported. From `3.0.0.0` onwards, Kong disallows
-        the plugin enablement if strategy is `cluster` and `sync_rate` is `-1`
+        In DB-less, hybrid mode, and Konnect, the `cluster` config strategy
+        is not supported. 
+        
+        From `3.0.0.0` onwards, Kong disallows
+        the plugin enablement if the strategy is `cluster` and `sync_rate` is `-1`
         with DB-less or hybrid mode. From `3.2.0.0` onward, please
         use a different strategy or set `sync_rate` to `-1`.
-
-        In Konnect, the default strategy is `redis`.
 
         For details on which strategy should be used, refer to the
         [implementation considerations](/hub/kong-inc/rate-limiting/#implementation-considerations).
@@ -583,6 +586,9 @@ the Admin API documentation.
 
 ## Changelog
 
+**{{site.base_gateway}} 3.2.1**
+* The shared Redis connector now supports username + password authentication for cluster connections, improving on the existing single-node connection support. This automatically applies to all plugins using the shared Redis configuration.
+
 **{{site.base_gateway}} 3.1.x**
 * Added the ability to customize the error code and message with
 the configuration parameters `error_code` and `error_message`.
@@ -599,7 +605,7 @@ strategy is set with DB-less or hybrid mode.
 * The `redis.username`, `redis.password`, `redis.sentinel_username`, and `redis.sentinel_password`
 configuration fields are now marked as referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 **{{site.base_gateway}} 2.7.x**
 

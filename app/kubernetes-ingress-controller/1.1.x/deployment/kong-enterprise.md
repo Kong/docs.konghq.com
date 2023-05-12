@@ -3,7 +3,7 @@ title: Kong for Kubernetes with Kong Enterprise
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} using Kong
-Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
+Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
 
 We assume that we start from scratch and you don't have Kong Enterprise
 deployed. For the sake of simplicity, we will deploy Kong Enterprise and
@@ -56,7 +56,7 @@ Ingress Controller.
 ## Install
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-postgres-enterprise.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-postgres-enterprise.yaml
 ```
 
 It takes a little while to bootstrap the database.

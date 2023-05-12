@@ -47,8 +47,19 @@ When this setting has multiple tag values, entities must match every tag.
 
 {% endif_version %}
 
+{% if_version lte:1.18.x %}
+
 `--skip-consumers`
 :  do not reset consumers or any plugins associated with consumers. (Default: `false`)
+
+{% endif_version %}
+
+{% if_version gte:1.19.x %}
+
+`--skip-consumers`
+:   do not reset consumers, consumer-groups, or any plugins associated with them. (Default: `false`)
+
+{% endif_version %}
 
 `-w`, `--workspace`
 :  reset configuration of a specific workspace(Kong Enterprise only).
@@ -176,4 +187,4 @@ between decK and Kong. (Default: `0`)
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively

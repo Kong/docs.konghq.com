@@ -133,14 +133,13 @@ params:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
   extra: |
-
-    <div class="alert alert-ee red">
-    <strong>Warning:</strong> The <code>content_type</code> parameter requires
-    an exact match. For example, if your Upstream expects
-    <code>application/json; charset=utf-8</code> and the
-    <code>config.content_type</code> value is only <code>application/json</code>
+  
+    {:.important}
+    > **Warning:** The `content_type` parameter requires
+    an exact match. For example, if your upstream expects
+    `application/json; charset=utf-8` and the
+    `config.content_type` value is only `application/json`
     (a partial match), then the proxy cache is bypassed.
-    </div>
 ---
 ### Strategies
 

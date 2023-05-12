@@ -26,12 +26,12 @@ description: |
   `remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`,
   `allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
 
-  <div class="alert alert-warning">
-    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the
-    response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
-    which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
-    Because of Nginx's internals, the <code>Content-Length</code> header will not be set when transforming a response body.
-  </div>
+  {:.important}
+  > **Note on transforming bodies:** Be aware of the performance of transformations on the
+  response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory,
+  which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+  Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+
 type: plugin
 categories:
   - transformations

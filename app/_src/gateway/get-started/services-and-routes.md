@@ -52,9 +52,9 @@ See [Routes](../../key-concepts/routes/) for a description of how
 ## Managing services and routes
 
 The following tutorial walks through managing and testing services and routes using the 
-{{site.base_gateway}} [Admin API](/gateway/latest/admin-api). {{site.base_gateway}} 
+{{site.base_gateway}} [Admin API](/gateway/latest/admin-api/). {{site.base_gateway}} 
 also offers other options for configuration management including
-[Kong {{site.konnect_saas}}](/konnect/) and [decK](/deck/latest/).
+[{{site.konnect_saas}}](/konnect/) and [decK](/deck/latest/).
 
 In this section of the tutorial, you will complete the following steps:
 * Create a service pointing to the [Mockbin](https://mockbin.org/) API, which provides testing facilities 
@@ -148,7 +148,6 @@ complete that before proceeding.
      ...
    }
    ```
-
 1. **Updating services**
 
    Existing service configurations can be updated dynamically by sending a `PATCH`
@@ -184,6 +183,8 @@ complete that before proceeding.
 
 The [Admin API documentation](/gateway/latest/admin-api/#update-service) provides
 the full service update specification. 
+
+You can also view the configuration for your services in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/default/services](http://localhost:8002/default/services)
    
 ### Managing routes
 
@@ -369,6 +370,8 @@ the full service update specification.
 
 The [Admin API documentation](/gateway/latest/admin-api/#route-object) has the 
 full specification for managing route objects.
+
+You can also view the configuration for your routes in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/default/routes](http://localhost:8002/default/routes)
 
 ## Proxy a request 
 

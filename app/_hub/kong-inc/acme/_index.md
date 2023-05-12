@@ -190,8 +190,8 @@ the `eab_kid` or `eab_hmac_key`:
     }
 ```
 
-The `consul.token`, `redis.auth`, and `vault.token` fields are _referenceable_, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
+The `consul.token`, `redis.auth`, and `vault.token` fields are _referenceable_, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 To configure a storage type other than `kong`, refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
@@ -593,7 +593,7 @@ own certificate.
 
 * Added the `rsa_key_size` configuration parameter.
 * The `consul.token`, `redis.auth`, and `vault.token` are now marked as now marked as
-referenceable, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format).
+referenceable, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 {% endif_plugin_version %}
 

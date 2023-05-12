@@ -6,7 +6,7 @@ content_type: how-to
 You can use decK to back up and restore a subset or the entirety of
 {{site.base_gateway}}'s entity configuration. 
 
-See the reference for [Entities Managed by decK](/deck/{{page.kong_version}}/reference/entities)
+See the reference for [Entities Managed by decK](/deck/{{page.kong_version}}/reference/entities/)
 to find out which entity configurations can be backed up.
 
 ## Back up {{site.base_gateway}}'s entire configuration

@@ -98,11 +98,9 @@ params:
         - `redis`: Counters are stored on a Redis server and shared
         across the nodes.
 
-        In DB-less and hybrid modes, the `cluster` config policy is not supported.
-        For DB-less mode, use one of `redis` or `local`; for hybrid mode, use
+        In DB-less, hybrid mode, and Konnect, the `cluster` config policy is not supported.
+        For DB-less mode or Konnect, use one of `redis` or `local`; for hybrid mode, use
         `redis`, or `local` for data planes only.
-
-        In Konnect, the default policy is `redis`.
 
         For details on which policy should be used, refer to the
         [implementation considerations](#implementation-considerations).
@@ -190,7 +188,9 @@ params:
         Set a custom error message to return when the rate limit is exceeded.
 
 
-  extra: '<div class="alert alert-warning"> <strong>Note:</strong> At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured. </div>'
+  extra: |
+    {:.note}
+    > **Note:** At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured.
 ---
 
 ## Headers sent to the client

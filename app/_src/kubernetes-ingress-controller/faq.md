@@ -21,5 +21,5 @@ it creates.
 This means that if consumers and credentials are created dynamically, they
 won't be deleted by the Ingress Controller.
 
-[k8s-service]: http://kubernetes.io/docs/user-guide/services
-[kube-proxy]: http://kubernetes.io/docs/admin/kube-proxy
+[k8s-service]: https://kubernetes.io/docs/concepts/services-networking/service
+[kube-proxy]: https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy

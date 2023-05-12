@@ -2,20 +2,26 @@
 title: Kong Gateway
 breadcrumb: Overview
 subtitle: API gateway built for hybrid and multi-cloud, optimized for microservices and distributed architectures
+description: Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. Kong is a reverse proxy that lets you manage, configure, and route requests
 ---
 
 ## Quick Links
 
-<div class="docs-grid-install">
+<div class="docs-grid-install max-3">
 
   <a href="#features" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Features</div>
   </a>
 
+  <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/icn-cloud-blue.svg" alt="">
+    <div class="install-text">Quick Start (Cloud)</div>
+  </a>
+
   <a href="/gateway/{{page.kong_version}}/get-started/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Quick Start</div>
+    <div class="install-text">Quick Start (Docker)</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install/" class="docs-grid-install-block no-description">
@@ -78,37 +84,53 @@ Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
 Gateway deployments. You can also create your own custom plugins. For more
 information, see the
 [plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
-the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.kong_version}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.kong_version}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.kong_version}}/plugin-development/pluginserver/python)).
+the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.kong_version}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.kong_version}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.kong_version}}/plugin-development/pluginserver/python/)).
 
 ## Packages and modes
 
-{{site.base_gateway}} is available in the following modes:
+There are two ways to deploy {{site.base_gateway}}: cloud-hosted with {{ site.konnect_saas }}, and on-premises. If you're trying
+out {{site.base_gateway}} for the first time we, recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
+
+### Cloud-hosted with Konnect
+
+**{{site.base_gateway}}** (available in
+[Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
+with added functionality.
+* <span class="badge free"></span> In **Free mode**,
+  this package gives you access to Konnect to help configure your services, routes and plugins.
+* <span class="badge plus"></span> In **Plus mode**, you have access to more
+{{site.base_gateway}} features.
+See the [Konnect documentation](/konnect/) and the
+**Plus**-labelled plugins on the [Plugin Hub](/hub/#plus) for more information.
+* <span class="badge enterprise"></span> With an **Enterprise** subscription,
+  it also includes:
+    * [Dev Portal](/konnect/dev-portal/)
+    * [Analytics](/konnect/analytics/)
+    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
+    * [Enterprise plugins](/hub/#ee-compat)
+
+### On-premises
+
+{{site.base_gateway}} is available in two different packages on-premises: OSS and Enterprise.
 
 **{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
 with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
 
 **{{site.base_gateway}}** (available in
-[Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
+[Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
 * <span class="badge free"></span> In **Free mode**,
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
-* <span class="badge plus"></span> In **Plus mode**, you have access to more
-{{site.base_gateway}} features, but only through {{site.konnect_saas}}.
-See the [{{site.konnect_saas}} documentation](/konnect/) and the
-**Plus**-labelled plugins on the [Plugin Hub](/hub/) for more information.
 * <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
-    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference)
+    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
     * [Enterprise plugins](/hub/)
 
 You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
-
-This package is also available as part of
-[{{site.konnect_product_name}}](/konnect/).
 
 ![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
@@ -200,7 +222,7 @@ own data planes.
 
 There are a few ways to test out the Gateway's Plus or Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://cloud.konghq.com/register).
+* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong

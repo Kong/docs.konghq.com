@@ -3,7 +3,7 @@ layout: default
 type: plugin
 permalink: :path
 breadcrumbs:
-  Hub: '/hub'
+  Hub: '/hub/'
 
 ---
 
@@ -149,12 +149,13 @@ breadcrumbs:
 We used to show a compatibility matrix for all plugins. As of Gateway 3.0 (and backported to the 2.x series)
 we pin the plugin version to the Gateway version. These are marked with strategy = gateway
 
-We only want to show the compatibility matrix if the strategy = matrix (which is the default)
+We only want to show the compatibility matrix if the strategy = matrix (which is the default), or if the plugins are third-party.
 {% endcomment %}
-{% unless extn_data['strategy'] == "matrix" %}
-  {% assign compat = false %}
-{% endunless %}
-
+{% if extn_publisher == "kong-inc" %}
+  {% unless extn_data['strategy'] == "matrix" %}
+    {% assign compat = false %}
+  {% endunless %}
+{% endif %}
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
 {% assign extn_type = extn_type[0]['name'] %}
 
@@ -181,9 +182,17 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
     {% capture full_content %}
     {% if page.type == "plugin" or page.type == "integration" %}
+
+      {% if page.plus and extn_publisher == "kong-inc" %}
+        <blockquote class="note" role="alert">
+          Did you know that you can try this plugin without talking to anyone with a free
+          trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+        </blockquote>
+      {% endif %}
+
       {% unless extn_publisher == "kong-inc" %}
         <div class="alert alert-info blue" role="alert">
-          Community {{ extn_type | capitalize }}: This plugin is <b>developed, tested, and maintained</b> by a third-party contributor.
+          Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
         </div>
       {% endunless %}
     {% endif %}
@@ -312,7 +321,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
 
       <div class="github-links">
         <p>
-          <a href="/hub"><i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
+          <a href="/hub/"><i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
         </p>
         <p>
           <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.source_file }}">
@@ -378,7 +387,7 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
         {% endunless %}
         {% if extn_publisher == "kong-inc" %}
         <tr>
-          <td>Konnect Cloud compatible?</td>
+          <td>Bundled with Konnect?</td>
           <td>
            {% if page.cloud == false %} No{%
            elsif extn_release == extn_latest %}Yes{%
@@ -462,57 +471,30 @@ We only want to show the compatibility matrix if the strategy = matrix (which is
           </tr>
           <tr class="kong-compatibility">
             <td colspan="2">
+            {% if ee_compatible %}
               <ul class="compat-list">
-              {% for v in site.data.kong_versions_gateway reversed %}
-                {% if ee_compatible contains v.release %}
-                  {% unless first_ee %}
-                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
-                  {% endunless %}
+                {% unless first_ee %}
+                    <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
+                {% endunless %}
+                {% for v in ee_compatible %}
                   <li>
-                  {% if ee_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
+                    <i class="fa fa-check"></i> {{ v }}
                   </li>
-                {% endif %}
-              {% endfor %}
-              {% for v in site.data.kong_versions_ee reversed %}
-                {% if ee_compatible contains v.release %}
-                  {% unless first_ee %}
-                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ee_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-              </ul><ul class="compat-list">
-              {% for v in site.data.kong_versions_gateway reversed %}
-                {% if ce_compatible contains v.release %}
-                  {% unless first_ce %}
-                    <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ce_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-              {% for v in site.data.kong_versions_ce reversed %}
-                {% if ce_compatible contains v.release %}
-                  {% unless first_ce %}
-                    <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ce_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
+               {% endfor %}
               </ul>
+            {% endif %}
+            {% if ce_compatible %}
+              <ul class="compat-list">
+                {% unless first_ce %}
+                    <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
+                {% endunless %}
+                {% for v in ce_compatible %}
+                  <li>
+                    <i class="fa fa-check"></i> {{ v }}
+                  </li>
+               {% endfor %}
+              </ul>
+            {% endif %}
             </td>
           </tr>
         {% endif %}

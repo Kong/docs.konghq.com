@@ -7,7 +7,7 @@ API, where you'll manage entities including services, routes, and consumers.
 
 ## Start {{site.base_gateway}} using Docker with a database
 
-One quick way to get {{site.base_gateway}} up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install-and-run/docker). We recommend this method to test out basic {{site.base_gateway}} functionality.
+One quick way to get {{site.base_gateway}} up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install-and-run/docker/). We recommend this method to test out basic {{site.base_gateway}} functionality.
 
 For a comprehensive list of installation options, see our [Install page](/gateway/{{page.kong_version}}/install-and-run/).
 

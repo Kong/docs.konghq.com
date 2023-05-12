@@ -13,6 +13,7 @@ items:
         items:
         - text: Version Support Policy
           url: /support-policy
+          src: /gateway/support/index
         - text: Supported Installation Options
           url: /install-support
         - text: Supported Linux Distributions
@@ -113,8 +114,6 @@ items:
                 url: /install/linux/rhel
               - text: Ubuntu
                 url: /install/linux/ubuntu
-          - text: macOS
-            url: /install/macos
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
@@ -157,8 +156,6 @@ items:
         url: /production/kong-conf
       - text: Environment Variables
         url: /production/environment-variables
-      - text: Embedding Kong in Open Resty
-        url: /production/kong-openresty
       - text: Serving a Website and APIs from Kong
         url: /production/website-api-serving
       - text: Monitoring
@@ -202,7 +199,7 @@ items:
         items:
           - text: Upgrade Kong Gateway 3.1.x
             url: /upgrade/
-            src: /gateway/upgrade-31x
+            src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
   - title: Kong Enterprise

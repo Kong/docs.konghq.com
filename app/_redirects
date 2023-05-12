@@ -1,6 +1,8 @@
 # DEPRECATED OS
-/gateway/3.0.x/install-and-run/centos    /gateway/latest/install-and-run/os-support
-/gateway/latest/install-and-run/centos   /gateway/latest/install-and-run/os-support
+/gateway/3.0.x/install-and-run/centos    /gateway/latest/support-policy/#supported-versions
+/gateway/latest/install-and-run/centos   /gateway/latest/support-policy/#supported-versions
+/gateway/latest/install/macos/           /gateway/latest/support-policy/#supported-versions
+/gateway/latest/install/linux/os-support/  /gateway/latest/support-policy/#supported-versions
 
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
@@ -234,11 +236,29 @@
 /hub/kong-inc/zipkin/1.*                           /hub/kong-inc/zipkin/
 /hub/tomkerkhove/*                                 /hub/
 /hub/justeat/*                                     /hub/
+/hub/arecabay/*                                    /hub/imperva/imp-appsec-connector/
+/hub/revolution_systems/*                          /hub/
+/hub/peter-evans/*                                 /hub/
+/hub/critical-blue/*                               /hub/
+/hub/seifchen/*                                    /hub/
+/hub/flash/*                                       /hub/
+/hub/yesinteractive/*                              /hub/
+/hub/inspur/*                                      /hub/
+/hub/stone-payments/*                              /hub/
+/hub/reedelk/*                                     /hub/
+/hub/qnap/*                                        /hub/
+/hub/signalfx/*                                    /hub/
+/hub/signal_sciences/*                             https://docs.signalsciences.net/install-guides/other-modules/kong/
+/hub/cleafy/*                                      /hub/
+/hub/smartparkingtechnology/*                      /hub/
+/hub/bitnami/*                                     /gateway/latest/install/
+/hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
 
 # KONNECT
 
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
+/konnect/service-hub/manage-services                /konnect/servicehub/
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
@@ -249,7 +269,7 @@
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
 /konnect/migrate/                                   /konnect/getting-started/import/
-/konnect/getting-started/declarative-config/        /konnect/runtime-manager/runtime-groups/declarative-config/
+/konnect/getting-started/declarative-config/        /konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
@@ -257,12 +277,16 @@
 /konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
 /konnect/servicehub/plugins/enable-service-plugin/   /konnect/servicehub/enable-service-plugin/
 /konnect/servicehub/plugins/enable-route-plugin/     /konnect/servicehub/enable-route-plugin/
-/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/gateway-runtime-conf
-/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/gateway-runtime-docker
-/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/gateway-runtime-kubernetes
+/konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
+/konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
+/konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/renew-certificates          /konnect/runtime-manager/runtime-instances/renew-certificates
 /konnect/runtime-manager/runtime-parameter-reference /konnect/runtime-manager/runtime-instances/runtime-parameter-reference
 /konnect/runtime-manager/upgrade                     /konnect/runtime-manager/runtime-instances/upgrade
+/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/configuration/
+/konnect/runtime-manager/runtime-groups/declarative-config/ /konnect/runtime-manager/declarative-config/
+/konnect/runtime-manager/runtime-groups/manage/             /konnect/runtime-manager/
+/konnect/runtime-manager/runtime-groups/*            /konnect/runtime-manager/
 /konnect/dev-portal/administrators/customization/themes    /konnect/dev-portal/customization/
 /konnect/dev-portal/customization/appearance/              /konnect/dev-portal/customization/
 /konnect/dev-portal/customization/public-portal/           /konnect/dev-portal/access/
@@ -274,12 +298,14 @@
 /konnect/manage-plugins/                             /konnect/servicehub/plugins/
 /konnect/manage-plugins/enable-service-plugin/       /konnect/servicehub/enable-service-plugin/
 /konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
-/konnect/manage-plugins/shared-config                /konnect/runtime-manager/manage-proxy-config/
-/konnect/shared-config                               /konnect/runtime-manager/gateway-config/
+/konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
+/konnect/shared-config                               /konnect/runtime-manager/configuration/
 /konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
 /konnect/vitals/*                                    /konnect/analytics/:splat
+/konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
+/konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
-/konnect/runtime-manager/manage-proxy-config/        /konnect/runtime-manager/gateway-config/
+/konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
 
 #API Redirects
 
@@ -625,8 +651,7 @@
 # KONG MESH
 /mesh/1.0.x/features/   /mesh/1.0.x/features/vault
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
-/mesh/*/features/windows/     /mesh/latest/installation/windows/
-/mesh/latest/features/windows/ /mesh/latest/installation/windows/
+/mesh/:version/features/windows/     /mesh/:version/installation/windows/
 /mesh/:version/policies/introduction/  /mesh/:version/policies/
 /policies/  /mesh/:version/policies/
 /mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
@@ -634,6 +659,55 @@
 /install/:version/  /mesh/:version/install/
 /mesh/:version/documentation/introduction/  /mesh/:version/
 /mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
+/mesh/:version/overview /mesh/:version/
+/mesh/:version/features/rbac    /mesh/:version/production/secure-deployment/
+/mesh/:version/features/fips-support  /mesh/:version/production/secure-deployment/fips-support/
+/mesh/:version/plan-and-deploy/license    /mesh/:version/production/cp-deployment/license/
+
+# kuma IA redirects
+/mesh/:version/introduction/deployments/  /mesh/:version/production/deployment/
+/mesh/:version/deployments/stand-alone/ /mesh/:version/production/deployment/stand-alone/
+/mesh/:version/deployments/multi-zone/  /mesh/:version/production/deployment/multi-zone/
+/mesh/:version/deployments/multi-zone/#usage  /mesh/:version/production/cp-deployment/multi-zone/
+/mesh/2.1.x/deployments/multi-zone/#usage /mesh/2.1.x/production/cp-deployment/multi-zone/
+/mesh/2.1.x/deployments/stand-alone/#usage  /mesh/2.1.x/production/cp-deployment/stand-alone/
+/mesh/:version/networking/networking/ /mesh/:version/production/deployment/networking/
+/mesh/:version/explore/zone-ingress/  /mesh/:version/production/cp-deployment/zone-ingress/
+/mesh/:version/security/zoneproxy-auth/ /mesh/:version/production/cp-deployment/zoneproxy-auth/
+/mesh/:version/explore/zoneegress/  /mesh/:version/production/cp-deployment/zoneegress/
+/mesh/:version/deployments/stand-alone/#usage /mesh/:version/production/stand-alone/
+/mesh/:version/policies/mesh/ /mesh/:version/production/mesh/
+/mesh/:version/explore/dpp/ /mesh/:version/production/dp-config/dpp/
+/mesh/:version/explore/dpp-on-kubernetes/ /mesh/:version/production/dp-config/dpp-on-kubernetes/
+/mesh/:version/explore/dpp-on-universal/  /mesh/:version/production/dp-config/dpp-on-universal/
+/mesh/:version/networking/cni/  /mesh/:version/production/dp-config/cni/
+/mesh/:version/networking/transparent-proxying/ /mesh/:version/production/dp-config/transparent-proxying/
+/mesh/:version/networking/ipv6/ /mesh/:version/production/dp-config/ipv6/
+/mesh/:version/security/secrets/  /mesh/:version/production/secure-deployment/secrets/
+/mesh/:version/security/api-access-control/ /mesh/:version/production/secure-deployment/api-access-control/
+/mesh/:version/security/api-server-auth/  /mesh/:version/production/secure-deployment/api-server-auth/
+/mesh/:version/security/dp-auth/  /mesh/:version/production/secure-deployment/dp-auth/
+/mesh/:version/security/dp-membership/  /mesh/:version/production/secure-deployment/dp-membership/
+/mesh/:version/security/certificates/ /mesh/:version/production/secure-deployment/certificates/
+/mesh/:version/explore/gui/ /mesh/:version/production/gui/
+/mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
+/mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
+/mesh/:version/installation/* /mesh/:version/production/install-kumactl/
+/mesh/:version/install/* /mesh/:version/production/install-kumactl/
+
+
+# Kuma IA Reference section
+
+/docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
+
+# Redirect missing policies to features (especially useful to make doc links work)
+/mesh/:version/policies/* /mesh/:version/features/:splat
+
+
+## Introduction
+/docs/:version/introduction/what-is-kuma/ /docs/:version/introduction/overview-of-kuma/ 302
+/docs/:version/introduction/what-is-a-service-mesh/ /docs/:version/introduction/what-is-a-service-mesh/ 302
+/docs/:version/introduction/deployments/  /docs/:version/production/deployment/ 302
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
@@ -643,27 +717,13 @@
 
 
 # GATEWAY INSTALLATION AND DEPLOYMENT
-/enterprise/0.33-xinstallation/docker  /gateway/latest/install-and-run/docker
-/enterprise/0.35-x/deployment/installation/  /gateway/latest/install-and-run
-
-/install/                      https://konghq.com/install/
-/install/aws/                  /gateway/latest/install-and-run
+/gateway/:version/install-and-run/macos/ /gateway/latest/install/macos/
 /install/compile/              https://github.com/Kong/kong
-/install/aws-cloudformation/   /gateway/latest/install-and-run
-/install/aws-linux/            /gateway/latest/install-and-run/amazon-linux
-/install/aws-marketplace/      /gateway/latest/install-and-run
-/install/centos/               /gateway/latest/install-and-run/centos
 /install/dcos/                 https://github.com/Kong/kong-dist-dcos
-/install/debian/               /gateway/latest/install-and-run/debian
-/install/docker/               /gateway/latest/install-and-run/docker
 /install/google-cloud/         /kubernetes-ingress-controller/latest/deployment/gke/
-/install/kubernetes/           /gateway/latest/install-and-run/kubernetes
-/install/macos/                /gateway/latest/install-and-run/macos
-/install/osx/                  /gateway/latest/install-and-run/macos
-/install/redhat/               /gateway/latest/install-and-run/rhel
 /install/source/               https://github.com/Kong/kong
-/install/ubuntu/               /gateway/latest/install-and-run/ubuntu
 /install/vagrant/              https://github.com/Kong/kong-vagrant
+/install/*                     /gateway/latest/install/
 
 /gateway-oss/2.6.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
 /gateway-oss/2.7.x/kong-for-kubernetes/            /kubernetes-ingress-controller/
@@ -818,6 +878,7 @@
 /introduction              /
 /enterprise/               /gateway/
 /gateway-oss/              /gateway/
+/gateway/*/production/kong-openresty       /gateway/
 
 
 

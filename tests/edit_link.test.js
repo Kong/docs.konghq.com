@@ -25,6 +25,12 @@ describe("Edit this page link", () => {
       expected:
         "https://github.com/Kong/docs.konghq.com/edit/main/app/_src/deck/index.md",
     },
+    {
+      title: "Submoduled /mesh/",
+      src: "/mesh/latest/explore/dpp/",
+      expected:
+        "https://github.com/kumahq/kuma-website/edit/master/app/_src/production/dp-config/dpp.md",
+    },
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src)

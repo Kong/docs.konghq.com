@@ -20,15 +20,31 @@ Plugin Hub docs have specialized front matter elements. See the
 `content_type: how-to | explanation | reference | tutorial`
 : Add a tag to the front matter of each topic that you edit.
 Add the tag that most closely resembles the concept, even if it doesn’t perfectly align with a tag.
+: 
+: See our [contribution templates](/contributing/contribution-templates/) for more information about each content type.
+
+`description: DESCRIPTION`
+: A short description of what the page covers. This is used by Google and appears below the page title. Target length 50-160 characters.
 
 **Optional:**
 
 `no_version: true`
-: Disables the version selector dropdown. Set this on pages that belong to
-doc sets without versions like `/konnect/`.
+: Disables the version selector dropdown. Set this on pages that shouldn't be versioned.
+: 
+: Do not use if the page is part of `/contributing/` or `/konnect/`, 
+as both of those doc sets are not versioned by default.
 
 `beta: true` or `alpha: true`
-: Labels the page as beta or alpha; adds a banner to the top of the page.
+: Labels the page as beta or alpha; adds a banner to the top of the page. Can use `stability_message` to
+add a custom explanation.
+
+`stability_message: <message>`
+: Set a custom message about the stability of a release. Must be used with `beta: true` or `alpha: true`.
+: 
+: Use YAML pipe (`|`) notation if your message extends over one line.
+
+`badge: enterprise | plus | oss | free`
+: Sets a tier badge on the page title.
 
 `disable_image_expand: true`
 : Stops images from expanding in a modal on click. Sets it for the entire page.
@@ -59,6 +75,18 @@ disable_image_expand: true
 ---
 ```
 
+A page with a custom stability banner:
+
+```yaml
+---
+title: Using multiple backend Services
+content_type: tutorial
+beta: true
+stability_message: |
+  Using multiple backend services will be GA once a non-beta version of the 
+  <a href="https://gateway-api.sigs.k8s.io/">Kubernetes Gateway API</a> is available.
+---
+```
 
 ## Variables
 
@@ -134,18 +162,36 @@ them using three backticks, or fenced code blocks:
 
 ````
 ```bash
-some code here
+curl -i -X http://some-url \
+  --header 'content-type: application/json' \
+  --data '{"something":"example"}'
 ```
 ````
-
-Include a language whenever possible (in the example above, that language is
-`bash`). This will format your code blocks using language-specific syntax.
 
 You can also create tabbed code blocks, so that users can easily switch to
 their preferred format. See [tabs for code blocks](#tabs-for-code-blocks).
 
-<!-- If you're including placeholders in code blocks, use HTML tags instead of
-backticks. See [editable placeholders](#editable-placeholders-in-code-blocks). -->
+### Code block best practices 
+
+Use the following best practices for code blocks:
+
+* Wrap lines at 80 characters whenever possible. Use the `\` character to wrap a line.
+
+* Include a language (in the example above, that language is
+`bash`). This will format your code blocks using language-specific syntax.
+
+* Preface code examples with an introductory sentence. Use present tense, 
+avoid qualifiers, and end the statement with a colon (`:`). 
+
+  For example:
+
+  ✅ **Do:** The results should look like this:
+
+  ✅ **Do:** The output shows all of the connected data plane instances in the cluster:
+
+  ❌ **Don't:** The results should look _something_ like this:
+
+  ❌ **Don't:** The output will show...
 
 ## Placeholders
 
@@ -294,7 +340,7 @@ If there are multiple sets of tabs to enable, you can provide multiple tab names
 ```
 
 This will activate the `Using the Admin API` tab, then the `Using decK (YAML)` tabs. The order may be important if you are reusing tab names across contexts.
-See this [sample link to the getting started guide with Admin API and decK tabs selected](/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml).
+See this [sample link to the getting started guide with Admin API and decK tabs selected](/gateway/2.7.x/get-started/comprehensive/protect-services/?tab=using-the-admin-api,using-deck-yaml/).
 
 When using `?tab=`, it *must* come before any URL fragments (`#`) in the URL:
 
@@ -481,60 +527,6 @@ config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
   config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
   {% endnavtab %}
   {% endnavtabs %}
-
-## Admonitions
-
-When you need to highlight important information in some way, you can use an
-admonition. In our docs, we do this with Markdown blockquotes (`>`) and a class:
-
-```
-{:.note}
-> **Note**: Here's a note.
-```
-
-When using admonitions, think about whether the thing you're trying to note is
-_actually_ a note (or warning, or caution), or simply another piece of
-information that fits the flow of the task or content on the page. Avoid
-nesting too many elements inside admonitions, and try to keep them short.
-
-You can set the admonition label to anything you want. For example, you might
-want an `important` note to start with **Protect your password!**.
-
-Set a class on the admonition to display a specific style:
-
-* **Note:** {% raw %}`{:.note}`{% endraw %}
-
-    This is a generic note block that points out useful information that the
-    reader should pay attention to, but won't break anything if it's not followed.
-    If you don't use any class at all, the blockquote element defaults to this style.
-
-    {:.note}
-    > **Note:** Here's some info.
-
-* **Important:** {% raw %}`{:.important}`{% endraw %}
-
-    Use the `important` block for something that the reader really
-    needs to pay attention to, otherwise the thing they're trying to do won't work.
-
-    {:.important}
-    > **Important:** Be cautious about this thing.
-
-* **Warning:** {% raw %}`{:.warning}`{% endraw %}
-
-    Use the `warning` block for any big breaking changes, or for anything
-    irreversible.
-
-    {:.warning}
-    > **Warning:** Everything will break forever if you do this.
-
-* **No icon:** {% raw %}`{:.no-icon}`{% endraw %}
-
-    If you have a situation where you need to use a specific admonition type but
-    the icon doesn't belong, you can hide the icon by setting `no-icon` along
-    with any other admonition class. For example, here's the result of using `{:.warning .no-icon}`:
-
-    {:.warning .no-icon}
-    > This is something that's vital in a special way and the icon doesn't apply.
 
 ## Page-level navigation
 

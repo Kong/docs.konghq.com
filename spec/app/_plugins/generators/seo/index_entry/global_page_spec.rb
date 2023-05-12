@@ -19,8 +19,8 @@ RSpec.describe SEO::IndexEntry::GlobalPage do
       expect(page.data['is_latest']).to eq(true)
     end
 
-    it 'does not set the canonical url to the page' do
-      expect(page.data['canonical_url']).to be_nil
+    it 'sets the canonical url to the page' do
+      expect(page.data['canonical_url']).to eq "/gateway/changelog/"
     end
 
     it 'does not set seo_noindex to the page' do

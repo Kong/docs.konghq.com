@@ -52,7 +52,7 @@ header.navbar-v2 {
 
   .main-menu-item {
     list-style-type: none;
-    padding-top: 30px;
+    padding-top: 35px;
   }
 
   .navbar-item-submenu {
@@ -60,7 +60,7 @@ header.navbar-v2 {
   }
 
   #docs-link {
-    padding-top: 30px;
+    padding-top: 35px;
   }
 
   .navbar-content {
@@ -109,11 +109,12 @@ header.navbar-v2 {
     .search-input-wrapper {
       display: flex;
       align-items: center;
-      margin: 0 30px;
+      margin: 0 20px 0 30px;
       padding: 2px 16px;
       background: rgba(248, 249, 252, 1);
       border-radius: 100px;
       width: 208px;
+      min-width: 98px;
       color: #4c6d80;
 
       @media (min-width: 1600px) {
@@ -168,7 +169,7 @@ header.navbar-v2 {
         line-height: 22px;
         color: #043558;
         transition: color 0.25s;
-        margin-right: 40px;
+        margin-right: 30px;
         padding: 18px 0;
         white-space: nowrap;
         cursor: pointer;
@@ -260,21 +261,21 @@ header.navbar-v2 {
       .navbar-button {
         flex-shrink: 0;
         height: auto;
-        padding: 8px 24px;
-        border: 1px solid #0a2b66;
-        background-color: #0a2b66;
+        padding: 8px 16px;
+        border: 1px solid #1155cb;
+        background: linear-gradient(90deg,#1155cb 0, #1155cb 100%);
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Roboto;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 16px;
         line-height: 22px;
-        transition: background-color 0.25s, color 0.25s;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
         color: #fff;
-        margin-left: 24px;
+        margin-left: 8px;
 
         &:hover {
-          background: #1155cb;
+          background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
           color: white;
         }
       }
@@ -312,6 +313,18 @@ header.navbar-v2 {
           top: 16px;
           -webkit-transform-origin: bottom left;
           transform-origin: bottom left;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1330px) {
+
+    .navbar-content {
+      .navbar-items {
+        .navbar-button {
+          display: none;
+          transition: ease 0.5s;
         }
       }
     }
@@ -498,12 +511,12 @@ header.navbar-v2 {
     }
   }
 
-  #konnect-cta {
+  #top-cta {
     color: #1155cb;
-    background-color: #fff;
+    background: linear-gradient(90deg,#fff 0, #fff 100%);
 
     &:hover {
-      background-color: #1155cb;
+      background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
       color: #fff;
     }
   }

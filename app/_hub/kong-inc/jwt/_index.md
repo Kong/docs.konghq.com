@@ -100,10 +100,6 @@ params:
       datatype: number
       description: |
         A value between 0 and 31536000 (365 days) limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime is rejected (HTTP 403). If this value is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this setting.
-  extra: |
-    <div class="alert alert-warning">
-        <center>The option <code>config.run_on_preflight</code> is only available from version <code>0.11.1</code> and later.</center>
-    </div>
 ---
 
 ## Documentation
@@ -480,7 +476,7 @@ curl -i -f -X POST http://localhost:8001/routes \
 Add the plugin to your Route:
 
 ```bash
-curl -X POST http://localhost:8001/route/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=jwt"
 ```
 

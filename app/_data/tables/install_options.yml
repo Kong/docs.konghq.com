@@ -82,9 +82,10 @@ features:
 
   - name: "Other"
     items:
-      - name: "MacOS (Homebrew)"
-        url: /gateway/VERSION/install/macos/
+      - name: "AWS with Terraform"
         oss: true
-        enterprise_text: N/A
-        support: false
-        icon: /assets/images/icons/documentation/macos-logo.png
+        enterprise: true
+        support: true
+        url: https://github.com/kong/kong-terraform-aws
+        icon: /assets/images/icons/documentation/terraform.svg
+

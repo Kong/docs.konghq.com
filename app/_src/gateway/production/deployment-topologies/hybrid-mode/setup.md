@@ -378,9 +378,9 @@ on how data plane nodes process configuration.
 
 {% navtabs %}
 {% navtab Using Docker %}
-1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install/docker),
+1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install/docker/),
 follow the instructions to:
-    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/docker).
+    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/docker/).
     2. [Create a Docker network](/gateway/{{page.kong_version}}/install/docker/#install-gateway-in-db-less-mode).
 
     {:.warning}
@@ -506,7 +506,7 @@ kong:{{page.versions.ce}}-alpine
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
-1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install),
+1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install/),
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.base_gateway}} and install Kong.
 
@@ -634,7 +634,7 @@ The output shows all of the connected data plane instances in the cluster:
 When set as a DP node, {{site.base_gateway}} processes configuration in the
 following order:
 
-1. **Config cache**: If the file `config.json.gz` exists in the `kong_prefix`
+1. **Config cache**: If the local config cache `dbless.lmdb` exists in the `kong_prefix`
 path (`/usr/local/kong` by default), the DP node loads it as configuration.
 2. **`declarative_config` exists**: If there is no config cache and the
 `declarative_config` parameter is set, the DP node loads the specified file.
@@ -643,7 +643,7 @@ configuration file available, the node starts with empty configuration. In this
 state, it returns 404 to all requests.
 4. **Contact CP Node**: In all cases, the DP node contacts the CP node to retrieve
 the latest configuration. If successful, it gets stored in the local config
-cache (`config.json.gz`).
+cache (`dbless.lmdb`).
 
 ### Configuration reference
 

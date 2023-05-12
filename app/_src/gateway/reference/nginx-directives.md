@@ -32,7 +32,7 @@ large_client_header_buffers 16 128k;
 ```
 
 These directives can also be specified
-using [environment variables](/gateway/latest/production/environment-variables). For
+using [environment variables](/gateway/latest/production/environment-variables/). For
 example, if you declare an environment variable like this:
 
 ```bash
@@ -186,9 +186,8 @@ kong start -c kong.conf --nginx-conf custom_nginx.template
 
 ## More information
 
-* [Embedding {{site.base_gateway}} in OpenResty](/gateway/latest/production/kong-openresty)
-* [How to use `kong.conf`](/gateway/latest/production/kong-conf)
-* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving)
+* [How to use `kong.conf`](/gateway/latest/production/kong-conf/)
+* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving/)
 
 
 ---

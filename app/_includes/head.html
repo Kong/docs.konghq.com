@@ -5,6 +5,11 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
 {{ include.type }} | {{site.title}}{% endcapture %}
 {% endunless %}
 
+{% assign page_description = site.description %}
+{% if include.description %}
+{% assign page_description = include.description %}
+{% endif %}
+
 <head>
 
   {% if jekyll.environment == "production" %}
@@ -37,13 +42,13 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>{{ page_title }}</title>
-  <meta name="description" content="{{ site.description }}" />
+  <meta name="description" content="{{ page_description }}" />
   <meta name="author" content="KongHQ" />
   <meta property="og:title" content="{{ page_title }}" />
   <meta property="og:site_name" content="{{ site.name }}" />
   <!-- use share link for facebook -->
   <meta property="og:url" content="{{ site.links.share }}" />
-  <meta property="og:description" content="{{ site.description }}" />
+  <meta property="og:description" content="{{ page_description }}" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta
@@ -94,13 +99,13 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
   </script>
 
   <!-- Preload assets -->
-  <link rel="dns-prefetch" href="//cloud.typography.com" />
+  <link rel="dns-prefetch" href="https://cloud.typography.com" />
   <link
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
     rel="stylesheet"
   />
-  <link rel="dns-prefetch" href="//dev.visualwebsiteoptimizer.com" />
-  <link rel="dns-prefetch" href="//cdn.segment.com" />
+  <link rel="dns-prefetch" href="https://dev.visualwebsiteoptimizer.com" />
+  <link rel="dns-prefetch" href="https://cdn.segment.com" />
 
   <!-- Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>

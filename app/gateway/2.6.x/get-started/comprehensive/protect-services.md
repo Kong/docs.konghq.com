@@ -3,14 +3,14 @@ title: Protect your Services
 ---
 In this topic, you’ll learn how to enforce rate limiting using the Rate Limiting plugin.
 
-If you are following the getting started workflow, make sure you have completed [Exposing Your Services](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services) before moving on.
+If you are following the getting started workflow, make sure you have completed [Exposing Your Services](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services/) before moving on.
 
 ## What is Rate Limiting?
 
-Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting) lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
+Kong's [Rate Limiting plugin](/hub/kong-inc/rate-limiting/) lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
 
 {:.note}
-> The [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
+> The [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) <span class="badge enterprise"></span> plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
 
 ## Why Use Rate Limiting?
 
@@ -181,4 +181,4 @@ setting the rate limit to 5 times per minute.
 * If using Kong Manager, you enabled the Rate Limiting Advanced plugin,
 setting the rate limit to 5 times for every 30 seconds.
 
-Next, head on to learn about [proxy caching](/gateway/{{page.kong_version}}/get-started/comprehensive/improve-performance).
+Next, head on to learn about [proxy caching](/gateway/{{page.kong_version}}/get-started/comprehensive/improve-performance/).

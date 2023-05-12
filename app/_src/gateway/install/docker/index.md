@@ -22,6 +22,10 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
+{:.note}
+> **Note:**
+> If you want to run Kong Gateway without managing a control plane or a database, [you can get started with Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=docker-install) in under 5 minutes using our Docker quick start script.
+
 * A Docker-enabled system with proper Docker access
 * (Enterprise only) A `license.json` file from Kong
 
@@ -33,8 +37,7 @@ configuration files to configure Kong.
 Store Kong configuration in-memory on the node. In this mode, the Admin API is
 read only, and you have to manage Kong using declarative configuration.
 
-If this is your first time trying out {{site.base_gateway}}, we recommend installing it
-with a database.
+If you're not sure which option to use, we recommend starting [with a database](#install-kong-gateway-with-a-database)
 
 ## Install {{site.base_gateway}} with a database
 
@@ -237,9 +240,9 @@ Now that you have a running Gateway instance, Kong provides a series of
 
 
 In particular, right after installation you might want to:
-* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes)
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication)
+* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting/)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication/)
 
 ### Clean up containers
 
@@ -424,9 +427,9 @@ to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting?tab=using-deck-yaml)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication?tab=using-deck-yaml)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/load-balancing/?tab=using-deck-yaml)
+* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting?tab=using-deck-yaml/)
+* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication?tab=using-deck-yaml/)
+* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/load-balancing/?tab=using-deck-yaml/)
 
 ### Clean up containers
 
@@ -439,12 +442,69 @@ docker container rm kong-dbless
 docker network rm kong-net
 ```
 
+## Running Kong in read-only mode
+
+Starting with {{site.base_gateway}} 3.2.0, you can run the container in read-only mode. To do so, mount a Docker volume to the locations where Kong needs to write data. The default configuration requires write access to `/tmp` and to the prefix path:
+
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```sh
+docker run --read-only -d --name kong-dbless \
+ --network=kong-net \
+ -v "$(pwd)/declarative:/kong/declarative/" \
+ -v "$(pwd)/tmp_volume:/tmp" \
+ -v "$(pwd)/prefix_volume:/var/run/kong" \
+ -e "KONG_PREFIX=/var/run/kong" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+ -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+ -e KONG_LICENSE_DATA \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 8001:8001 \
+ -p 8444:8444 \
+ -p 8002:8002 \
+ -p 8445:8445 \
+ -p 8003:8003 \
+ -p 8004:8004 \
+ kong/kong-gateway:{{page.versions.ee}}
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```sh
+docker run --read-only -d --name kong-dbless \
+ --network=kong-net \
+ -v "$(pwd)/declarative:/kong/declarative/" \
+ -v "$(pwd)/tmp_volume:/tmp" \
+ -v "$(pwd)/prefix_volume:/var/run/kong" \
+ -e "KONG_PREFIX=/var/run/kong" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8444:8444 \
+ kong:{{page.versions.ce}}
+ ```
+{% endnavtab %}
+{% endnavtabs_ee %}
+
 ## Troubleshooting
 
 For troubleshooting license issues, see:
 * [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy/)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples/)
 
 If you did not receive a `200 OK` status code or need assistance completing
 setup, reach out to your support contact or head over to the

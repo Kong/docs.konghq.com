@@ -772,6 +772,12 @@ ul.navbar-item-submenu {
     height: auto;
   }
 
+  img.image-border {  
+    border: 1px solid @grey-200;
+    padding: 8px;
+    border-radius: 5px;
+  }
+
   img.inline {
     display: inline-block;
     padding-left: 0.25rem;
@@ -1332,6 +1338,12 @@ Generic Styling for Desktop
     }
   }
 
+  @media (min-width: 991px) {
+    .max-3 {
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+  }
+
   .docs-grid-install {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1392,18 +1404,15 @@ Generic Styling for Desktop
       &.no-description {
         justify-content: center;
       }
-
-      &:hover,
-      &.focus {
-        .install-text {
-          color: @blue-500;
-        }
-      }
     }
 
-    .docs-grid-install-block:hover,
-    .docs-grid-install-block:focus {
+    a.docs-grid-install-block:hover, 
+    a.docs-grid-install-block:focus {
       background-color: #f8f9fc;
+
+      .install-text {
+        color: @blue-500;
+      }
     }
 
     @media (max-width: 991px) {

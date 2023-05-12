@@ -65,7 +65,7 @@ If you are using an external IdP, follow these steps.
 
 ## Next Steps
 
-1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration) on a Service.
+1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a Service.
 
 2. Enable a supported authentication plugin on the same Service as the Application Registration plugin,
    as appropriate for your authorization strategy.
@@ -79,7 +79,7 @@ If you are using an external IdP, follow these steps.
     * If using the `kong-oauth2` authorization strategy with key authentication, configure the
     [Key Auth](/hub/kong-inc/key-auth/) plugin on the same Service as the Application
     Registration plugin. You can use the
-    [Kong Manager GUI](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-key-auth-plugin)
+    [Kong Manager GUI](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-key-auth-plugin/)
     or cURL commands as documented on the Plugin Hub. 
 
     Strategy `external-oauth2`:
@@ -90,11 +90,11 @@ If you are using an external IdP, follow these steps.
     2. If using the third-party authorization strategy
     (`external-oauth2`), configure the OIDC plugin on the same Service as the
     Application Registration plugin. You can use the Kong Manager GUI
-    or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect).
+    or cURL commands as documented on the [Plugin Hub](/hub/kong-inc/openid-connect/).
     When your deployment is hybrid mode, the OIDC plugin must be configured to handle
     authentication for the Portal Application Registration plugin.
 
     3. Configure the identity provider for your application, configure your
     application in {{site.base_gateway}}, and associate them with each other. See the
-    [Okta](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config)
-    or the [Azure](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config) setup examples.
+    [Okta](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config/)
+    or the [Azure](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config/) setup examples.

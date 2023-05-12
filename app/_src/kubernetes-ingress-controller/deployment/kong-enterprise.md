@@ -3,7 +3,7 @@ title: Kong for Kubernetes with Kong Enterprise
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} using Kong
-Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
+Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
 
 We assume that we start from scratch and you don't have Kong Enterprise
 deployed. For the sake of simplicity, we will deploy Kong Enterprise and
@@ -25,20 +25,7 @@ $ kubectl create namespace kong
 namespace/kong created
 ```
 
-### Kong Enterprise License secret
-
-Kong Enterprise requires a valid license to run.
-As part of sign up for Kong Enterprise, you should have received a license file.
-Save the license file temporarily to disk and execute the following:
-
-```bash
-$ kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
-secret/kong-enterprise-license created
-```
-
-Please note that `-n kong` specifies the namespace in which you are deploying
-  the {{site.kic_product_name}}. If you are deploying in a different namespace,
-  please change this value.
+{% include_cached /md/kic/kong-enterprise-license-secret.md version=page.version %}
 
 ### Kong Enterprise bootstrap password
 
