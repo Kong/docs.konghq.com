@@ -16,9 +16,6 @@ Kong is licensed under an
 
 You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
 
-{:.note}
-> **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
-
 {% navtabs %}
 {% navtab Package (AL2023) %}
 Install {{site.base_gateway}} on Amazon Linux 2023 from the command line.
