@@ -7,7 +7,7 @@ You can set [labels](/konnect/reference/labels/) on each runtime instance (data 
 
 Labels are commonly used for metadata information. Set anything that you need to identify your runtime instances -- deployment type, region, size, the team that the instance belongs to, the purpose it serves, and much more. 
 
-Using labels makes it easier to manage runtime instances at scale, since you're able to identify all of this information at a glance. For example, debugging and troubleshooting become much easier when you're able to attribute a runtime instance to a specific region or team.
+Using labels makes it easier to manage runtime instances at scale since you're able to identify all of this information at a glance. For example, debugging and troubleshooting become much easier when you're able to attribute a runtime instance to a specific region or team.
 
 Any labels you set on a runtime instance are visible from the control plane via the [`/nodes`](/konnect/api/runtime-groups-config/#nodes) {{site.konnect_short_name}} API endpoint.
 
