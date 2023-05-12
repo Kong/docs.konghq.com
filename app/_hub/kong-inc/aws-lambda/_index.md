@@ -38,7 +38,7 @@ params:
         The AWS key credential to be used when invoking the function. The `aws_key` value is required
         if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
-        if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
+        if using Kong Gateway and [data encryption](/gateway/latest/kong-enterprise/db-encryption/)
         is configured.
     - name: aws_secret
       required: semi
@@ -52,7 +52,7 @@ params:
         The AWS secret credential to be used when invoking the function. The `aws_secret` value is required
         if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an
         IAM role inherited from the instance running Kong to authenticate. Can be symmetrically encrypted
-        if using Kong Gateway and [data encryption](/gateway/latest/kong-production/db-encryption/)
+        if using Kong Gateway and [data encryption](/gateway/latest/kong-enterprise/db-encryption/)
         is configured.
     - name: aws_region  # old version, do not update
       maximum_version: "2.5.x"
