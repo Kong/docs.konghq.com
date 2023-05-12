@@ -67,7 +67,10 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
 {:.note .no-icon}
-> We currently package {{ site.base_gateway }} for Ubuntu Bionic and Focal. If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below. To check your release name run `lsb_release -sc`.
+> We currently package {{ site.base_gateway }} for Ubuntu Bionic and Focal.
+> If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below.
+> <br /><br />
+> To check your release name run `lsb_release -sc`.
 
 {% navtabs %}
 {% navtab Package %}
