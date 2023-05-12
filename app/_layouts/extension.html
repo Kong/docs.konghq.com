@@ -7,12 +7,14 @@ breadcrumbs:
 
 ---
 
-{% if page.plus and page.extn_publisher == "kong-inc" %}
-  <blockquote class="note" role="alert">
-    Did you know that you can try this plugin without talking to anyone with a free
-    trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
-  </blockquote>
-{% endif %}
+{% unless page.free %}
+  {% if page.plus and page.extn_publisher == "kong-inc" %}
+    <blockquote class="note" role="alert">
+      Did you know that you can try this plugin without talking to anyone with a free
+      trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+    </blockquote>
+  {% endif %}
+{% endunless %}
 
 {% unless page.extn_publisher == "kong-inc" %}
   <div class="alert alert-info blue" role="alert">
