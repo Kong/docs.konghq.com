@@ -12,12 +12,11 @@ When you enable this feature, you don't need to use a password when you connect 
 
 AWS IAM authentication also has some limitations. Go through each one before you use this feature in your production environment:
 
-* The number of IAM database authentication connections must be less than the maximum of 200 in a traditional {{site.base_gateway}} cluster. Establishing more connections can result in throttling. For more information, see [Recommendations for IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.ConnectionsPerSecond) in the Amazon RDS user guide. 
+* For a traditional {{site.base_gateway}} cluster, only use IAM database authentication if {{site.base_gateway}} requires less than 200 new IAM database authentications per second. Establishing more connections per second can result in throttling. For more information, see [Recommendations for IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.ConnectionsPerSecond) in the Amazon RDS user guide. 
 * Enabling AWS IAM authentication requires SSL connection to the database. To do this, you must configure your RDS cluster correctly and provide the correct SSL-related configurations on {{site.base_gateway}}'s side. Enabling SSL also results in some performance overhead if you didn't previously use it. Currently, TLSv1.3 isn't supported by AWS RDS.
 - Since the Postgres RDS does not support mTLS, you can't enable mTLS between the {{site.base_gateway}} and the Postgres RDS database when AWS IAM authentication is enabled.
 - After enabling AWS IAM authentication in read-write or read-only mode, the `pg_password` or `pg_ro_password` configuration is ignored when establishing connections.
 - You **can't** change the value of the environment variables that you use for the AWS credential after booting {{site.base_gateway}}.
-- A database user assigned to the `rds_iam` role can only authenticate with IAM database authentication.
 
 For additional recommendations and limitations, see [IAM database authentication for MariaDB, MySQL, and PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html) in the Amazon RDS user guide. 
 
@@ -57,7 +56,7 @@ Before you enable AWS IAM authentication, you must do the following in the `kong
 
 ### Enable AWS IAM authentication with environment variables
 
-To enable AWS IAM authentication in read-write mode, set the `KONG_PG_IAM_AUTH` environment variable to `on`: 
+To enable AWS IAM authentication in read-write and read-only mode, set the `KONG_PG_IAM_AUTH` environment variable to `on`: 
 
 ```bash
 KONG_PG_IAM_AUTH=on
