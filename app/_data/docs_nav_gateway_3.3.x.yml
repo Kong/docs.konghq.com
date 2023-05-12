@@ -18,6 +18,8 @@ items:
             url: /support/third-party
           - text: Browser Support
             url: /support/browser
+          - text: Software Bill of Materials
+            url: /support/sobm
       - text: Stability
         url: /stability
       - text: Release Notes
