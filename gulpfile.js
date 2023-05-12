@@ -20,9 +20,7 @@ var paths = {
 
 // Sources
 var sources = {
-  content: [
-    "app/**/*.{markdown,md,html,txt,yml,yaml}",
-  ],
+  content: ["app/**/*.{markdown,md,html,txt,yml,yaml}"],
   styles: paths.assets + "stylesheets/**/*",
   js: [
     paths.assets + "javascripts/jquery-3.6.0.min.js",
@@ -37,7 +35,7 @@ var sources = {
     // uncomment the path to promo-banner.js when adding a new promo banner
     // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
     // paths.assets + "javascripts/promo-banner.js",
-    paths.assets + "javascripts/copy-code-snippet-support.js"
+    paths.assets + "javascripts/copy-code-snippet-support.js",
   ],
   images: paths.assets + "images/**/*",
   manifests: paths.assets + "manifests/**/*",
@@ -45,6 +43,7 @@ var sources = {
     paths.modules + "font-awesome/fonts/**/*.*",
     paths.assets + "fonts/*.*",
   ],
+  keys: paths.assets + "keys/**/*",
 };
 
 // Destinations
@@ -79,28 +78,30 @@ function styles() {
 }
 
 function js() {
-  return gulp
-    .src(sources.js)
-    // Add Segment write key
-    .pipe($.replace(/__WRITE_KEY__/, 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'))
-    .pipe($.plumber())
-    .pipe($.if(dev, $.sourcemaps.init()))
-    .pipe(
-      $.if(
-        !dev,
-        $.minify({
-          noSource: true,
-          ext: {
-            min: ".js",
-          },
-        })
+  return (
+    gulp
+      .src(sources.js)
+      // Add Segment write key
+      .pipe($.replace(/__WRITE_KEY__/, "X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ"))
+      .pipe($.plumber())
+      .pipe($.if(dev, $.sourcemaps.init()))
+      .pipe(
+        $.if(
+          !dev,
+          $.minify({
+            noSource: true,
+            ext: {
+              min: ".js",
+            },
+          })
+        )
       )
-    )
-    .pipe($.concat("app.js"))
-    .pipe($.if(dev, $.sourcemaps.write()))
-    .pipe(gulp.dest("dist/assets"))
-    .pipe($.if(!dev, $.size()))
-    .pipe(browserSync.stream());
+      .pipe($.concat("app.js"))
+      .pipe($.if(dev, $.sourcemaps.write()))
+      .pipe(gulp.dest("dist/assets"))
+      .pipe($.if(!dev, $.size()))
+      .pipe(browserSync.stream())
+  );
 }
 
 function images() {
@@ -119,6 +120,14 @@ function manifests() {
     .pipe($.if(!dev, $.size()));
 }
 
+function keys() {
+  return gulp
+    .src(sources.keys)
+    .pipe($.plumber())
+    .pipe(gulp.dest(paths.dist + "assets/keys"))
+    .pipe($.if(!dev, $.size()));
+}
+
 function fonts() {
   return gulp
     .src(sources.fonts)
@@ -134,7 +143,7 @@ function jekyll(cb) {
     profile = "-dev";
   }
 
-  var command = `bundle exec jekyll build --config jekyll${profile}.yml --profile`
+  var command = `bundle exec jekyll build --config jekyll${profile}.yml --profile`;
 
   childProcess.exec(command, function (err, stdout, stderr) {
     log(stdout);
@@ -406,6 +415,7 @@ gulp.task("css", css);
 gulp.task("styles", styles);
 gulp.task("images", gulp.series(set_dev, images));
 gulp.task("manifests", gulp.series(set_dev, manifests));
+gulp.task("keys", keys);
 gulp.task("fonts", fonts);
 gulp.task("jekyll", jekyll);
 
@@ -428,7 +438,10 @@ function build_site(steps, append) {
   if (process.env.JEKYLL_ENV == "preview") {
     var configFilePath = "./jekyll.yml";
     var doc = fs.readFileSync(configFilePath, "utf8");
-    var newDoc = doc.replace(/  web: https:\/\/docs.konghq.com/, `  web: ${process.env.DEPLOY_PRIME_URL}`);
+    var newDoc = doc.replace(
+      /  web: https:\/\/docs.konghq.com/,
+      `  web: ${process.env.DEPLOY_PRIME_URL}`
+    );
 
     fs.writeFileSync(configFilePath, newDoc);
   }
@@ -436,7 +449,7 @@ function build_site(steps, append) {
   // These are the steps that always run for every build
   // If set_dev is called, some of these methods behave differently
   steps = steps.concat([
-    gulp.parallel(js, images, manifests, fonts, css),
+    gulp.parallel(js, images, manifests, keys, fonts, css),
     jekyll,
     styles,
   ]);
