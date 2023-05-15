@@ -48,7 +48,7 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
 You can enable AWS IAM authentication by using an environment variable or using the {{site.base_gateway}} configuration file. You can either enable this feature in both read-only and read-write mode, or just enable it in read-only mode. 
 
 {:.note}
-> **Note:** {{site.base_gateway}} ignores the `pg_ro_password` config property in read-only mode. It doesn't influence the read-write related configs, so `pg_user` and `pg_password` function normally. 
+> **Note:** When the AWS IAM authentication is enabled, {{site.base_gateway}} will ignore the related password configs. Enabling the authentication only in read-only mode will not influence the read-write related configs, so `pg_user` and `pg_password` function normally. 
 
 Before you enable AWS IAM authentication, you must do the following in the `kong.conf` file:
 * Remove `pg_password` or `pg_ro_password`.
