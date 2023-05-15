@@ -27,6 +27,7 @@ privacy_policy_url: https://www.amberflo.io/privacy-policy
 
 terms_of_service_url: https://www.amberflo.io/terms-of-use
 
+free: true
 kong_version_compatibility:
   community_edition:
     compatible:

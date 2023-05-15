@@ -77,6 +77,8 @@ license_url: https://github.com/LEGO/kong-aws-request-signing/blob/main/LICENSE
 # Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
 # 'enterprise_edition' (Kong Gateway Enterprise) and set `compatible: true`.
 
+free: true
+
 kong_version_compatibility: # required
   community_edition: # optional
     compatible: true

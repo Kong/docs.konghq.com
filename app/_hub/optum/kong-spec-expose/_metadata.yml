@@ -24,6 +24,8 @@ source_code: https://github.com/Optum/kong-spec-expose/
 
 license_type: Apache-2.0
 
+free: true
+
 kong_version_compatibility:
   community_edition:
     compatible:
