@@ -14,6 +14,7 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'jekyll'
 require 'jekyll-generator-single-source'
+require 'capybara'
 
 Dir[File.expand_path('../app/_plugins/**/*.rb', __dir__)].each do |file|
   require file
@@ -90,4 +91,15 @@ RSpec.configure do |config|
   config.order = :random
 
   config.include SharedContexts::Site
+
+  config.before(:each) do
+    stub_const(
+      'PluginSingleSource::Plugin::Schemas::ThirdParty::SCHEMAS_PATH',
+      'spec/fixtures/app/_hub/'
+    )
+    stub_const(
+      'PluginSingleSource::Plugin::Examples::ThirdParty::EXAMPLES_PATH',
+      'spec/fixtures/app/_hub'
+    )
+  end
 end

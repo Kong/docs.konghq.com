@@ -134,7 +134,7 @@ describe("sidenav versions", () => {
       title: "Versioned sub page links to the correct version",
       src: "/gateway/2.8.x/admin-api/",
       link_text: "Docker",
-      expected_url: "/gateway/2.8.x/install-and-run/docker",
+      expected_url: "/gateway/2.8.x/install-and-run/docker/",
     },
   ].forEach((t) => {
     test(t.title, async () => {

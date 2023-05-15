@@ -1,39 +1,52 @@
 .badge {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border-radius: 2px;
+
   &:after {
-    display: inline-block;
+    padding: 4px 12px;
+    font-style: normal;
     font-weight: 600;
     font-size: 11px;
-    vertical-align: middle;
+    flex: none;
+    line-height: 12px;
+    display: flex;
+    height: auto;
     text-align: center;
-    max-width: 200px;
-    line-height: 15px;
-    height: 15px;
-    width: auto;
-    padding: 2px 8px;
-    font-family: @family-display;
-    border-radius: 10px;
-    position: relative;
+    align-items: center;
+    border-radius: 2px;
   }
 
-  &.plus::after {
-    content: "PLUS";
-    color: white;
-    border-color: @blue-500;
-    background-color: @blue-500;
+  &.plus {
+    background: #F2F6FE;
+
+    &::after {
+      content: "PLUS";
+      color: #0364AC;
+    }
   }
 
-  &.konnect::after {
-    content: "KONNECT COMPATIBLE";
-    color: black;
-    border-color: @blue-200;
-    background-color: @blue-200;
+  &.konnect {
+    background: @blue-100;
+
+    &::after {
+      content: "KONNECT COMPATIBLE";
+      background: linear-gradient(90deg, #5052FD 0%, #033796 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
   }
 
-  &.enterprise::after {
-    content: "ENTERPRISE";
-    color: white;
-    border-color: @black-80;
-    background-color: @black-80;
+  &.enterprise {
+    background: @steel-100;
+
+    &::after {
+      content: "ENTERPRISE";
+      color: @steel-700;
+    }
   }
 
   &.free::after {
@@ -203,8 +216,6 @@ h5.badge {
 }
 
 a.badge {
-  margin-top: 6px;
-
   &:hover,
   &:focus {
     opacity: 1;

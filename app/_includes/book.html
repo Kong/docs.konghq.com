@@ -1,0 +1,17 @@
+{% if page.book %}
+  <div class="book-nav-container">
+    <hr />
+    {% if page.book.previous %}
+      <div class="book-nav previous">
+        <span class="direction">Previous</span>
+        <a href="{{ page.book.previous.url }}">{{ page.book.previous.title  }}</a>
+      </div>
+    {% endif %}
+    {% if page.book.next %}
+      <div class="book-nav next">
+        <span class="direction">Next</span>
+        <a href="{{ page.book.next.url }}">{{ page.book.next.title  }}</a>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

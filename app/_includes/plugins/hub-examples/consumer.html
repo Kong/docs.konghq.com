@@ -1,0 +1,69 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
+
+The following examples provide some typical configurations for enabling
+the <code>{{ hub_example.plugin_name }}</code> plugin on a
+[consumer](/gateway/latest/admin-api/#consumer-object).
+
+{% navtabs %}
+  {% navtab Admin API %}
+
+Make the following request:
+
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
+
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+
+{% if page.service_id and page.route_id %}
+You can combine `consumer.id`, `service.id`, or `route.id`
+{% elsif page.service_id %} and `service.id`
+{% elsif page.route_id %} and `route.id`
+{% endif %} in the same request, to further narrow the scope of the plugin.
+
+  {% endnavtab %}
+
+  {% unless page.k8s_examples == false %}
+    {% navtab Kubernetes %}
+
+First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+resource:
+
+{% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
+
+Then, apply it to a [consumer](/gateway/latest/admin-api/#consumer-object) by
+annotating the KongConsumer resource as follows:
+
+``` yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: CONSUMER_NAME|CONSUMER_ID
+  annotations:
+    konghq.com/plugins: {{ hub_example.plugin_name }}-example
+    kubernetes.io/ingress.class: kong
+  ```
+
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+
+<blockquote class="note">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any service, consumer, or route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</blockquote>
+
+    {% endnavtab %}
+  {% endunless %}
+
+  {% unless page.yaml_examples == false %}
+    {% navtab Declarative (YAML) %}
+
+Add this section to your declarative configuration file:
+
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
+
+Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+
+    {% endnavtab %}
+  {% endunless %}
+{% endnavtabs %}

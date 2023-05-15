@@ -30,6 +30,7 @@ var sources = {
     "node_modules/js-cookie/dist/js.cookie.js",
     paths.assets + "javascripts/app.js",
     paths.assets + "javascripts/compat-dropdown.js",
+    paths.assets + "javascripts/plugin-hub.js",
     paths.assets + "javascripts/subscribe.js",
     paths.assets + "javascripts/editable-code-snippet.js",
     paths.assets + "javascripts/navbar.js",

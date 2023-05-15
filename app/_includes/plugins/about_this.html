@@ -1,0 +1,48 @@
+{% if page.kong_version_compatibility.community_edition %}
+  {% assign compat = true %}
+  {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
+{% endif %}
+{% if page.kong_version_compatibility.enterprise_edition %}
+  {% assign compat = true %}
+  {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
+{% endif %}
+
+<div class="about-extn-table">
+  <table id="about-extn">
+    {% if compat and ee_compatible or ce_compatible %}
+      <tr class="kong-editions">
+        <th colspan="2">
+            Version Compatibility
+        </th>
+      </tr>
+      <tr class="kong-compatibility">
+        <td colspan="2">
+          {% if ee_compatible %}
+            <ul class="compat-list">
+              {% unless first_ee %}
+                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
+              {% endunless %}
+              {% for v in ee_compatible %}
+                <li>
+                  <i class="fa fa-check"></i> {{ v }}
+                </li>
+             {% endfor %}
+            </ul>
+          {% endif %}
+          {% if ce_compatible %}
+            <ul class="compat-list">
+              {% unless first_ce %}
+                  <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
+              {% endunless %}
+              {% for v in ce_compatible %}
+                <li>
+                  <i class="fa fa-check"></i> {{ v }}
+                </li>
+             {% endfor %}
+            </ul>
+          {% endif %}
+        </td>
+      </tr>
+    {% endif %}
+  </table>
+</div>

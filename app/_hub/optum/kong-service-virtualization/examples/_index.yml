@@ -1,0 +1,9 @@
+name: kong-service-virtualization
+config:
+  virtual_tests:
+    name: TestCase1
+    requestHttpMethod: POST
+    requestHash: 0296217561490155228da9c17fc555cf9db82d159732f3206638c25f04a285c4
+    responseHttpStatus: 200
+    responseContentType: application/json
+    response: eyJtZXNzYWdlIjogIkFub3RoZXIgU3VjY2VzcyEifQ==
