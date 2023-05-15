@@ -33,16 +33,12 @@ Add the following entry to the `plugins:` section in the declarative configurati
 ``` yaml
 plugins:
 - name: websocket-validator
-  service: SERVICE
+  service: SERVICENAME
   config:
     client:
       text:
+        schema: '{ "type": "object", "required": ["name"] }'
         type: draft4
-        schema: |
-          {
-            "type": "object",
-            "required": [ "name" ]
-          }
 ```
 
 {% endnavtab %}
