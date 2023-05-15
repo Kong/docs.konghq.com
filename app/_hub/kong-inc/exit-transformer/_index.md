@@ -51,7 +51,7 @@ unexpected error on an _unknown_ Service or Route will pass through the Exit Tra
 - [429 Too many requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
 - [431 Request header fields too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431)
 - [451 Unavailable for legal reasons](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/451)
-- [494 Request header or cookie too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/494)
+- [494 Request header or cookie too large (Nginx-specific)](https://www.nginx.com/resources/wiki/extending/api/http/)
 
 **5xx** codes are server error responses:
 

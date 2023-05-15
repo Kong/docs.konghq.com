@@ -154,7 +154,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents in the [example](#stock-spec) into the new file.
 
-Alternatively, you can also use the [Portal Files API](/gateway/latest/developer-portal/files-api/#post-a-content-file)
+Alternatively, you can also use the [Portal Files API](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1#/)
 to upload a spec to the Dev Portal.
 
 #### Deploy a spec to Insomnia {#deploy-spec-insomnia}
