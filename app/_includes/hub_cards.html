@@ -1,28 +1,56 @@
-{% assign extn_publisher = extn.extn_publisher %}
-
-<div class="card-group {{ extn.type }} {{ extn.categories | join: ' ' }} {%
-  if extn_publisher == 'kong-inc' %}gateway {%
-    if extn.kong_version_compatibility.enterprise_edition.compatible != nil %}ee-compat {% endif %}{%
-      if extn.plus or extn.kong_version_compatibility.community_edition.compatible != nil %}{%
-        unless extn.cloud == false %}plus {% endunless %}{% endif %}{%
-          if extn.enterprise %}enterprise {%
-            else %}open-source {% endif %}{%
-              unless extn.cloud == false %} konnect{% endunless %}{%
-              else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
-  <div class="plugin-card">
-    <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">
-      <div>
-        <div class="name-desc">
-          {% if extn.plus and extn_publisher == 'kong-inc' %}
-          <span class="plugin-badge plus"></span>{% endif %}
-          {% if extn.enterprise %}
-          <span class="plugin-badge enterprise"></span> {% endif %}
-          <img class="card-img-top" src="{{ extn.extn_icon }}" alt="" />
-          <p class="plugin-name">{{ extn.name }}</p>
-          <p class="plugin-desc">{{ extn.desc }}</p>
+{%- assign extn_publisher = extn.extn_publisher -%}
+{%- assign badges = extn.badges -%}
+{%- assign categories = extn.categories | join: ' ' -%}
+{%- assign css_classes = {{ extn.type | append: ' ' | append: categories -%}
+{%- if badges.plus? -%}
+  {%- assign css_classes =  css_classes | append: " plus" -%}
+{%- endif -%}
+{%- if badges.konnect? -%}
+  {%- assign css_classes =  css_classes | append: " konnect" -%}
+{%- endif -%}
+{%- if badges.enterprise? -%}
+  {%- assign css_classes =  css_classes | append: " enterprise" -%}
+{%- endif -%}
+{%- unless extn.enterprise -%}
+  {%- assign css_classes = css_classes | append: " open-source" -%}
+{%- endunless -%}
+{%- if extn.free == true -%}
+  {%- assign css_classes = css_classes | append: " free" -%}
+{%- endif -%}
+{%- if extn_publisher == 'kong-inc' -%}
+  {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
+{%- else -%}
+  {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
+  {%- assign css_classes = css_classes | append: third_party_classes -%}
+{%- endif -%}
+<div class="plugin-card {{ css_classes }}">
+  <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">
+    <div class="plugin-card--content">
+      <div class="plugin-card--meta">
+        <div class="plugin-card--meta__name">
+          <img src="{{ extn.extn_icon }}" alt="{{ extn.name }} icon" />
+          <p>{{ extn.name }}</p>
         </div>
-        <div class="publisher">
-          Support by:<br>
+        <div class="plugin-card--meta__badges">
+          {% if badges.plus? %}
+              <span class="badge plus"></span>
+          {% endif %}
+          {% if badges.konnect? %}
+              <span class="badge konnect"></span>
+          {% endif %}
+          {% if badges.enterprise? %}
+            <span class="badge enterprise"></span>
+          {% endif %}
+        </div>
+        <div class="plugin-card--meta__description">{{ extn.desc }}</div>
+      </div>
+    {% if extn_publisher == "kong-inc" %}
+      <div class="plugin-card--publisher">
+    {% else %}
+      <div class="plugin-card--publisher third-party">
+    {% endif %}
+        <div class="plugin-card--publisher__support">Support by:</div>
+        <div class="plugin-card--publisher__name">
           {% if extn_publisher == "kong-inc" %}
             {% include svgs.html img='team-kong-icon' %}
           {% else %}
@@ -30,6 +58,6 @@
           {% endif %}
         </div>
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
 </div>

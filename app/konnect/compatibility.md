@@ -37,12 +37,11 @@ access to a subset of plugins:
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
-<!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
-
-{% assign categories = site.data.tables.plugin_index %}
+{% assign categories = site.extensions.categories %}
+{% assign kong_extns = site.data.ssg_hub | where: "extn_publisher", "kong-inc" %}
 
 {% for category in categories %}
-<h3 id="{{ category.name | downcase | split: " " | join: "-" }}">
+<h3 id="{{ category.slug }}">
   {{ category.name }}
 </h3>
 
@@ -56,41 +55,42 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
-    {% for plugin in category.plugins %}
+    {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.metadata.categories contains category.slug" %}
+    {% for plugin in plugins_for_category %}
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
         </td>
         <td style="text-align: center">
-          {% if plugin.free == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.free == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.free == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.free == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.plus == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.plus == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.plus == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.plus == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.enterprise == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.enterprise == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.enterprise == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.enterprise == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
          <td style="text-align: center">
-          {% if plugin.konnect == true %}
-          <i class="fa fa-check"></i>
-          {% elsif plugin.konnect == false %}
-          <i class="fa fa-times"></i>
+          {% if plugin.metadata.konnect == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.metadata.konnect == false %}
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td>
-          {{ plugin.notes }}
+          {{ plugin.metadata.notes }}
         </td>
       </tr>
     {% endfor %}

@@ -1,0 +1,14 @@
+name: Loggly
+dbless_compatible: 'yes'
+free: true
+plus: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - logging
+publisher: Kong Inc.
+desc: Send request and response logs to Loggly
+description: |
+  Log request and response data over UDP to [Loggly](https://www.loggly.com).

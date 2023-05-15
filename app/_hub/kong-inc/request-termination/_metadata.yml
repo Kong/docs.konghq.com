@@ -1,0 +1,20 @@
+name: Request Termination
+dbless_compatible: 'yes'
+extra: |
+  Once applied, every request (within the configured plugin scope of a Service,
+  Route, Consumer, or global) will be immediately terminated by
+  sending the configured response.
+free: true
+plus: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - traffic-control
+publisher: Kong Inc.
+desc: Terminates all requests with a specific response
+description: |
+  This plugin terminates incoming requests with a specified status code and
+  message. This can be used to (temporarily) stop traffic on a Service or a Route,
+  or even block a Consumer. This plugin can also be used for debugging, as described in the `echo` parameter.

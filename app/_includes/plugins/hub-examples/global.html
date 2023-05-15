@@ -1,0 +1,59 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
+
+{% if page.global == false %}
+  {:.important}
+  > This plugin cannot be enabled globally. Please select another tab.
+{% else %}
+A plugin which is not associated to any service, route, or consumer is
+considered _global_, and will be run on every request. Read the
+[Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
+sections for more information.
+
+The following examples provide some typical configurations for enabling
+the <code>{{page.name}}</code> plugin globally.
+  {% navtabs %}
+    {% navtab Admin API %}
+
+Make the following request:
+
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
+
+    {% endnavtab %}
+
+    {% unless page.k8s_examples == false %}
+      {% navtab Kubernetes %}
+
+Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
+resource and label it as global:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: <global-{{ hub_example.plugin_name }}>
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: \"true\"
+config:
+  {%- for line in hub_example.kubernetes.example_config %}
+  {{ line }}{%- endfor %}
+plugin: {{ hub_example.plugin_name }}
+```
+
+      {% endnavtab %}
+    {% endunless %}
+
+    {% unless page.yaml_examples == false %}
+      {% navtab Declarative (YAML) %}
+
+Add a <code>plugins</code> entry in the declarative
+configuration file:
+
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
+
+      {% endnavtab %}
+    {% endunless %}
+  {% endnavtabs %}
+{% endif %}

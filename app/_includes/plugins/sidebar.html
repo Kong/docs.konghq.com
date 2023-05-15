@@ -1,0 +1,10 @@
+<aside class="docs-sidebar">
+  <i class="fa fa-times close-sidebar"></i>
+
+  <ul class="accordion-container">
+    <input id="accordion-opened" type="text" />
+    {% for item in include.sidenav.nav_items %}
+      {% include_cached accordion_item.html item=item id=forloop.index %}
+    {% endfor %}
+  </ul>
+</aside>

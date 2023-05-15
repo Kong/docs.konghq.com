@@ -1,107 +1,3 @@
----
-name: JWT
-publisher: Kong Inc.
-desc: Verify and authenticate JSON Web Tokens
-description: |
-  Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified
-  in [RFC 7519](https://tools.ietf.org/html/rfc7519)). Each of your Consumers
-  will have JWT credentials (public and secret keys), which must be used to sign
-  their JWTs. A token can then be passed through:
-
-  - a query string parameter
-  - a cookie
-  - HTTP request headers
-
-  Kong will either proxy the request to your Upstream services if the token's
-  signature is verified, or discard the request if not. Kong can also perform
-  verifications on some of the registered claims of RFC 7519 (exp and nbf).
-type: plugin
-categories:
-  - authentication
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: jwt
-  service_id: true
-  route_id: true
-  consumer_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: partially
-  dbless_explanation: |
-    Consumers and JWT secrets can be created with declarative configuration.
-
-    Admin API endpoints that do POST, PUT, PATCH, or DELETE on secrets are not available on DB-less mode.
-  config:
-    - name: uri_param_names
-      required: false
-      default: '`jwt`'
-      datatype: set of string elements
-      description: A list of querystring parameters that Kong will inspect to retrieve JWTs.
-    - name: cookie_names
-      required: false
-      default: null
-      datatype: set of string elements
-      description: A list of cookie names that Kong will inspect to retrieve JWTs.
-    - name: header_names
-      required: false
-      default: '`authorization`'
-      datatype: set of string elements
-      description: A list of HTTP header names that Kong will inspect to retrieve JWTs.
-    - name: claims_to_verify
-      required: false
-      default: null
-      datatype: set of string elements
-      description: |
-        A list of registered claims (according to [RFC 7519](https://tools.ietf.org/html/rfc7519)) that Kong can verify as well. Accepted values: one of `exp` or `nbf`.
-    - name: key_claim_name
-      required: false
-      default: '`iss`'
-      datatype: string
-      description: |
-        The name of the claim in which the `key` identifying the secret **must** be passed. Starting with version `0.13.1`, the plugin will attempt to read this claim from the JWT payload and the header, in that order.
-    - name: secret_is_base64
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64-encoded secret for your Consumer, and sign your JWT with the original secret.
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string
-      description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
-      minimum_version: "3.1.x"
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string      
-      description: |
-        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
-        If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
-        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
-      maximum_version: "3.0.x"
-    - name: run_on_preflight
-      required: true
-      default: '`true`'
-      datatype: boolean
-      description: |
-        A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests will always be allowed.
-    - name: maximum_expiration
-      required: false
-      default: 0
-      datatype: number
-      description: |
-        A value between 0 and 31536000 (365 days) limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime is rejected (HTTP 403). If this value is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this setting.
----
-
 ## Documentation
 
 To use the plugin, you first need to create a Consumer and associate one or more
@@ -154,7 +50,6 @@ curl -X POST http://localhost:8001/consumers/CONSUMER/jwt -H "Content-Type: appl
 Response:
 ```json
 HTTP/1.1 201 Created
-
 {
 	"id": "0701ad83-949c-423f-b553-091d5a6bae52",
 	"secret": "C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X",
@@ -385,7 +280,6 @@ curl -X POST http://localhost:8001/consumers/{consumer}/jwt \
 Response:
 ```json
 HTTP/1.1 201 Created
-
 {
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
@@ -498,7 +392,6 @@ Create a Consumer with the Auth0 public key:
 curl -i -X POST http://localhost:8001/consumers \
   --data "username=<USERNAME>" \
   --data "custom_id=<CUSTOM_ID>"
-
 curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
   -F "algorithm=RS256" \
   -F "rsa_public_key=@./pubkey.pem" \
@@ -601,7 +494,6 @@ Response:
             "consumer": {
                "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" 
               }
-
         }
     ]
 }
@@ -642,10 +534,3 @@ associated [Consumer][consumer-object].
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
 [consumer-object]: /gateway/latest/admin-api/#consumer-object
-
-## Changelog
-
-**{{site.base_gateway}} 3.2.x**
-
-* Breaking changes
-  * Denies a request that has different tokens in the JWT token search locations.
