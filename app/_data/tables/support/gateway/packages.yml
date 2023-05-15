@@ -23,12 +23,6 @@ _packages:
     package: true
     arm: false
     fips: false
-  amazonlinux2023: &amazonlinux2023
-    os: Amazon Linux
-    version: 2023
-    package: true
-    arm: false
-    fips: false
   centos7: &centos7
     os: CentOS
     version: 7
