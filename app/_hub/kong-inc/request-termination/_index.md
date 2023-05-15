@@ -1,20 +1,3 @@
-<<<<<<< HEAD
----
-name: Request Termination
-publisher: Kong Inc.
-desc: Terminates all requests with a specific response
-description: |
-  This plugin terminates incoming requests with a specified status code and
-  message. This can be used to (temporarily) stop traffic on a Service or a Route,
-  or even block a Consumer. This plugin can also be used for debugging, as described in the `echo` parameter.
-type: plugin
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
----
-=======
 ## Example Use Cases
 
 - Temporarily disable a Service (e.g. it is under maintenance).
@@ -22,5 +5,3 @@ kong_version_compatibility:
 - Temporarily disable a Consumer (e.g. excessive consumption).
 - Block anonymous access with multiple auth plugins in a logical `OR` setup.
 - Debugging erroneous requests in live systems.
-
->>>>>>> 0ef6758f16 ([Plugin Hub] Move frontmatter to _configuration.yml)
