@@ -19,7 +19,7 @@ items:
           - text: Browser Support
             url: /support/browser
           - text: Software Bill of Materials
-            url: /support/sobm
+            url: /support/sbom
       - text: Stability
         url: /stability
       - text: Release Notes
