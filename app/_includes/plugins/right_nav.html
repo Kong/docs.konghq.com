@@ -1,0 +1,14 @@
+<aside class="docs-toc" id="plugin-toc" >
+  {% unless page.toc == false %}
+    {% include_cached toc.html
+                      html=include.full_content
+                      anchor_class="scroll-to"
+                      h_min=2
+                      h_max=3
+    %}
+  {% endunless %}
+
+  {% if page.extn_publisher != 'kong-inc' %}
+    {% include plugins/about_this.html %}
+  {% endif %}
+</aside>

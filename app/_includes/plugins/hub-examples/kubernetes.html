@@ -1,0 +1,10 @@
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: {{ include.example.plugin_name }}-example
+config:
+  {%- for line in include.example.example_config %}
+  {{ line }}{%- endfor %}
+plugin: {{ include.example.plugin_name }}
+```

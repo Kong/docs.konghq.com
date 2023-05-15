@@ -1,0 +1,74 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
+
+The following examples provide some typical configurations for enabling
+the <code>{{ hub_example.plugin_name }}</code> plugin on a
+[route](/gateway/latest/admin-api/#route-object).
+
+{% navtabs %}
+  {% navtab Admin API %}
+
+Make the following request:
+
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
+
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
+
+  {% endnavtab %}
+
+  {% unless page.k8s_examples == false %}
+    {% navtab Kubernetes %}
+
+First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
+resource:
+
+{% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
+
+Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route-object))
+by annotating the ingress as follows:
+
+``` yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ROUTE_NAME|ROUTE_ID
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: {{ hub_example.plugin_name }}-example
+spec:
+  rules:
+  - host: examplehostname.com
+    http:
+      paths:
+      - path: /bar
+        backend:
+          service:
+            name: echo
+            port:
+              number: 80
+  ```
+
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
+
+<blockquote class="note">
+  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
+  and can be applied to any service, consumer, or route in the namespace. If you
+  want the plugin to be available cluster-wide, create the resource as a
+  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+</blockquote>
+
+    {% endnavtab %}
+  {% endunless %}
+
+  {% unless page.yaml_examples == false %}
+    {% navtab Declarative (YAML) %}
+
+Add this section to your declarative configuration file:
+
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
+
+Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration
+  will target.
+{% endnavtab %}
+{% endunless %}
+{% endnavtabs %}

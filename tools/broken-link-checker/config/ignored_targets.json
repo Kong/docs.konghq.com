@@ -24,5 +24,6 @@
   "https://manager.7f000001.nip.io/*",
   "https://admin.okta.com/*",
   "https://kong.example.com",
-  "https://kong.127-0-0-1.nip.io/api"
+  "https://kong.127-0-0-1.nip.io/api",
+  "https://twitter.com/thekonginc"
 ]

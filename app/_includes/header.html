@@ -4,6 +4,7 @@
 {% if include.name %}
   {% assign header_title = include.name %}
 {% endif %}
+
 {% if header_title %}
   <header class="page-header">
     <div class="container">
@@ -17,11 +18,11 @@
         {% if include.breadcrumbs %}
           <ul class="breadcrumbs install">
             {% for breadcrumb in include.breadcrumbs %}
-              <li class="breadcrumb-item{% if include.url == breadcrumb[1] %} active{% endif %}">
-                {% if include.id == 'page-plugin' %}
-                <a href="https://konghq.com/plugins">Plugins</a>
+              <li class="breadcrumb-item{% if include.url == breadcrumb.url %} active{% endif %}">
+                {% if breadcrumb.url %}
+                  <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
                 {% else %}
-                <a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a>
+                  {{ breadcrumb.text }}
                 {% endif %}
               </li>
             {% endfor %}
@@ -30,7 +31,7 @@
 
         <h1 id="main" tabindex="-1">{{ header_title }}</h1>
         <div class="badge-container">
-        {% if include.publisher == "Kong Inc." %}
+        {% if include.extn_publisher == "kong-inc" %}
            {% unless include.cloud == false %}<a href="https://cloud.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"></a>{% endunless %}
            {% if include.plus %} <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"></a>{% endif %}
         {% endif %}
@@ -38,14 +39,6 @@
         {% if include.oss %}<a href="https://konghq.com/pricing" target="_blank" class="badge oss" aria-label="open-source only"></a>{% endif %}
         </div>
       </div>
-      {% if include.extn_versions %}
-        {% unless include.is_latest %}
-          <div class="old-version-banner">
-          You are browsing documentation for an outdated plugin version.
-          See the <a href="/hub/{{ include.extn_publisher }}/{{ include.extn_slug }}/">latest documentation here</a>.
-          </div>
-        {% endunless %}
-      {% endif %}
     </div>
   </header>
 {% endif %}

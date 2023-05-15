@@ -1,73 +1,3 @@
----
-name: Exit Transformer
-publisher: Kong Inc.
-desc: Customize Kong exit responses sent downstream
-description: |
-  Transform and customize Kong response exit messages using Lua functions.
-  The capabilities range from changing messages, status codes, and headers,
-  to completely transforming the structure of Kong responses.
-type: plugin
-enterprise: true
-plus: true
-categories:
-  - transformations
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
-params:
-  name: exit-transformer
-  service_id: true
-  route_id: true
-  consumer_id: false
-  yaml_examples: false
-  konnect_examples: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: functions
-      required: true
-      value_in_examples:
-        - '@example/my_function.lua'
-      value_in_examples_serialized:
-        - |
-          |
-            local responses = {
-              ["Invalid authentication credentials"] = {
-                message = "Invalid API key",
-              },
-            }
-
-            return function(status, body, headers)
-              if not body or not body.message then
-                return status, body, headers
-              end
-
-              local response = responses[body.message]
-
-              body.message = response.message or body.message
-              status = response.status or status
-              headers = response.headers or headers
-
-              return status, body, headers
-            end
-      datatype: array of string elements
-      description: Array of functions used to transform any Kong proxy exit response.
-    - name: handle_unknown
-      default: '`false`'
-      required: false
-      datatype: boolean
-      description: 'Allow transform to apply to unmatched Service, Route, or Workspace (404) responses.'
-    - name: handle_unexpected
-      default: '`false`'
-      required: false
-      datatype: boolean
-      description: Allow transform to apply to unexpected request (400) responses.
----
-
 ## Transforming 4xx and 5xx Responses
 
 By default, the Exit Transformer is only applied to requests that match its
@@ -121,7 +51,7 @@ unexpected error on an _unknown_ Service or Route will pass through the Exit Tra
 - [429 Too many requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
 - [431 Request header fields too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431)
 - [451 Unavailable for legal reasons](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/451)
-- [494 Request header or cookie too large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/494)
+- [494 Request header or cookie too large (Nginx-specific)](https://www.nginx.com/resources/wiki/extending/api/http/)
 
 **5xx** codes are server error responses:
 
@@ -178,9 +108,7 @@ return function(status, body, headers)
   if not body or not body.message then
     return status, body, headers
   end
-
   body.status = status
-
   return 200, body, headers
 end
 ```
@@ -199,18 +127,14 @@ local responses = {
   },
   -- ...
 }
-
 return function(status, body, headers)
   if not body or not body.message then
     return status, body, headers
   end
-
   local response = responses[body.message]
-
   body.message = response.message or body.message
   status = response.status or status
   headers = response.headers or headers
-
   return status, body, headers
 end
 ```
@@ -224,13 +148,11 @@ return function(status, body, headers)
   else
     body.message = "This replaces a formerly non-empty body"
   end
-
   if not headers then
     headers = { ["X-Message"] = "This adds X-Message to an empty set of headers" }
   else
     headers["X-Message"] = "This adds X-Message to an existing set of headers"
   end
-
   return status, body, headers
 end
 ```
@@ -290,14 +212,12 @@ following example adds a header, appends "arr!" to any message, and adds
       if not body or not body.message then
         return status, body, headers
       end
-
       headers = { ["x-some-header"] = "some value" }
       local new_body = {
         error = true,
         status = status,
         message = body.message .. ", arr!",
       }
-
       return status, new_body, headers
     end
 ```
@@ -378,7 +298,6 @@ Response:
     HTTP/1.1 200 OK
     ...
     X-Some-Header: some value
-
     {
         "error": true,
         "status": 401,
@@ -412,7 +331,6 @@ http :8001/plugins \
   name=exit-transformer \
   config.handle_unknown=true \
   config.functions=@transform.lua
-
 http :8000 Host:non-existent.com
 ```
 
@@ -425,7 +343,6 @@ Response:
     HTTP/1.1 200 OK
     ...
     X-Some-Header: some value
-
     {
         "error": true,
         "status": 404,
@@ -447,7 +364,6 @@ response `The upstream server responded with <status code>`.
 ```lua
 local template = require "resty.template"
 local split = require "kong.tools.utils".split
-
 local HTTP_MESSAGES = {
     s400 = "Bad request",
     s401 = "Unauthorized",
@@ -456,11 +372,9 @@ local HTTP_MESSAGES = {
     s511 = "Network authentication required",
     default = "The upstream server responded with %d"
 }
-
 local function get_message(status)
   return HTTP_MESSAGES["s" .. status] or HTTP_MESSAGES.default.format(status)
 end
-
 local html = template.compile([[
 <!doctype html>
 <html>
@@ -475,7 +389,6 @@ local html = template.compile([[
   </body>
 </html>
 ]])
-
 -- Customize responses based on content type
 local formats = {
   ["application/json"] = function(status, message, headers)
@@ -485,12 +398,10 @@ local formats = {
     return status, html { status = status, error = message }, headers
   end,
 }
-
 return function(status, body, headers)
   if status < 400 then
     return status, body, headers
   end
-
   local accept = kong.request.get_header("accept")
   -- Gets just first accept value. Can be improved to be compliant quality
   -- etc parser. Look into kong.pdk.response get_response_type
@@ -498,11 +409,9 @@ return function(status, body, headers)
     accept = accept[1]
   end
   accept = split(accept, ",")[1]
-
   if not formats[accept] then
     return status, body, headers
   end
-
   return formats[accept](status, get_message(status), headers)
 end
 ```

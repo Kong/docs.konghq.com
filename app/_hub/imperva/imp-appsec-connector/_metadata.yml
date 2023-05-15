@@ -1,0 +1,84 @@
+name: Imperva API Security 
+publisher: Imperva 
+
+categories: 
+  #- authentication
+  - security
+  #- traffic-control
+  #- serverless
+  #- analytics-monitoring
+  #- transformations
+  #- logging
+  #- deployment
+# Array format only; if your plugin applies to multiple categories,
+# uncomment the most applicable category.
+
+type: plugin # (required) String, one of:
+  # plugin          | extensions of the core platform
+  # integration     | extensions of the Kong Admin API
+
+desc: Integrate Kong Gateway with Imperva API Security to discover, monitor, and protect APIs
+description: |
+  The Imperva API Security plugin connects Kong Gateway with the Imperva 
+  API Security service, providing continuous discovery and monitoring of APIs 
+  exposed by the API gateway. This enables security teams to protect business 
+  applications and data against unauthorized access. 
+  
+  The plugin operates with a very low CPU and memory footprint, avoiding any 
+  negative impact on the inline performance of the gateway or your applications.
+  
+  The Imperva API Security plugin captures API calls with request/response payloads 
+  and sends them to the Imperva API Security service for inspection. API calls are 
+  copied and streamed through Kong Gateway. You provide the API Security 
+  receiver service endpoint though the plugin's configuration, so the API data is 
+  kept under the control of the application owner.
+
+enterprise: true
+# (required) extended description.
+# Use YAML pipe notation for extended entries.
+# EXAMPLE long text format (do not use this entry)
+# description: |
+#   Maintain an indentation of two (2) spaces after denoting a block with
+#   YAML pipe notation.
+#
+#   Lorem Ipsum is simply dummy text of the printing and typesetting
+#   industry. Lorem Ipsum has been the industry's standard dummy text ever
+#   since the 1500s.
+
+#support_url:
+  # (Optional) A specific URL of your own for this extension.
+  # Defaults to the url setting in your publisher profile.
+
+#source_code:
+  # (Optional) If your extension is open source, provide a link to your code.
+
+#license_type:
+  # (Optional) For open source, use the abbreviations in parentheses at:
+  # https://opensource.org/licenses/alphabetical
+
+#license_url:
+  # (Optional) Link to your custom license.
+
+#privacy_policy:
+  # (Optional) If you have a custom privacy policy, place it here
+
+#privacy_policy_url:
+  # (Optional) Link to a remote privacy policy
+
+#terms_of_service:
+  # (Optional) Text describing your terms of service.
+
+#terms_of_service_url:
+  # (Optional) Link to your online TOS.
+
+# COMPATIBILITY
+# Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
+# 'enterprise_edition' (Kong Gateway Enterprise) and set `compatible: true`.
+
+kong_version_compatibility: # required
+  #community_edition: # optional
+    #compatible: true
+  enterprise_edition: # optional
+    compatible:
+      - 3.0.x
+      - 3.2.x

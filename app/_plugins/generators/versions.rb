@@ -179,6 +179,7 @@ module Jekyll
         # Clean up nav_items for generated pages as there's an
         # additional level of nesting
         page.data['nav_items'] = page.data['nav_items']['items'] if page.data['nav_items'].is_a?(Hash)
+        page.data['sidenav'] = DocsSingleSource::Sidenav.new(page).generate
       end
     end
   end
