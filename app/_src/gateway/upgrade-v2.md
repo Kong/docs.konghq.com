@@ -111,6 +111,20 @@ affect your current installation.
 You may need to adopt different upgrade paths depending on your deployment methods, set of features in use,
 custom plugins, for example.
 
+{% if_version gte:3.3.x %}
+### Plugin queuing
+
+The plugin queuing system was reworked in {{site.base_gateway}} 3.3.x, so some plugin parameters may not function as expected anymore. If you use queues in the following plugins, new parameters must be configured:
+
+* [HTTP Log](/hub/kong-inc/http-log/)
+* [OpenTelemetry](/hub/kong-inc/opentelemetry/)
+* [Datadog](/hub/kong-inc/datadog/)
+* [StatsD](/hub/kong-inc/statsd/)
+* [Zipkin](/hub/kong-inc/zipkin/)
+
+For more information about how plugin queuing works and the plugin queuing paramemters you can configure, see [About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/) and [Plugin Queuing Reference](/gateway/{{page.kong_version}}/kong-plugins/queue/reference/).
+{% endif_version %}
+
 {% if_version gte:3.2.x %}
 
 ### PostgreSQL SSL version bump
