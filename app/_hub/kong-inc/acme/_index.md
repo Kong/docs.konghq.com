@@ -224,7 +224,7 @@ services:
     routes:
       - name: acme-dummy
         protocols:
-          - name: http
+          - http
         paths:
           - /.well-known/acme-challenge
 plugins:
