@@ -64,14 +64,20 @@ instead of the previous 1 (trace all requests).
   The standard queue parameter set is available to control queuing behavior.
   [#10753](https://github.com/Kong/kong/pull/10753)
 
-### Features
+#### Reminders 
 
-* SBOM files in SPDX and CycloneDX are now generated for Kong Gateway's Docker images.
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. 
+These images and packages are still available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
+It is planned for removal with {{site.base_gateway}} 3.4.
+
+### Features
 
 #### Enterprise
 
-* When using the [Data Plane resilience feature](/gateway/latest/kong-enterprise/cp-outage-handling-faq/), the server-side certificate of the backend Amazon S3 or GCP Cloud Storage service will now be validated if it goes through HTTPS.
-* When [managing secrets](/gateway/latest/kong-enterprise/secrets-management/) with an AWS or GCP backend, the backend server's certificate is validated if it goes through HTTPS.
+* When using the [data plane resilience feature](/gateway/latest/kong-enterprise/cp-outage-handling-faq/), the server-side certificate of the backend Amazon S3 or GCP Cloud Storage service will now be validated if it goes through HTTPS.
+* When [managing secrets](/gateway/latest/kong-enterprise/secrets-management/) with an AWS or GCP backend, the backend server's certificate is now validated if it goes through HTTPS.
 * Kong Enterprise now supports [using AWS IAM database authentication to connect to the Amazon RDS](/gateway/latest/kong-enterprise/aws-iam-auth-to-rds-database/) (PostgreSQL) database.
 * Kong Manager:
   * Kong Manager and Konnect now share the same UI for the navbar, sidebar, and all entity lists. 
@@ -79,6 +85,7 @@ instead of the previous 1 (trace all requests).
   * **CA Certificates** and **TLS Verify** are now supported in the Kong Gateway service form. 
   * Added a GitHub star in the free mode navbar. 
   * Upgraded the Konnect CTA in free mode.
+* SBOM files in SPDX and CycloneDX are now generated for Kong Gateway's Docker images.
 
 #### Kong Gateway with Konnect
 
@@ -114,6 +121,7 @@ instead of the previous 1 (trace all requests).
   [#10288](https://github.com/Kong/kong/pull/10288)
 
 #### Admin API
+
 * Added a new `updated_at` field for the following entities: `ca_certificates`, `certificates`, `consumers`, `targets`, `upstreams`, `plugins`, `workspaces`, `clustering_data_planes`, `consumer_group_consumers`, `consumer_group_plugins`, `consumer_groups`, `credentials`, `document_objects`, `event_hooks`, `files`, `group_rbac_roles`, `groups`, `keyring_meta`, `legacy_files`, `login_attempts`, `parameters`, `rbac_role_endpoints`, `rbac_role_entities`, `rbac_roles`, `rbac_users`, and `snis`.
 [#10400](https://github.com/Kong/kong/pull/10400)
 * The `/upstreams/<upstream>/health?balancer_health=1` endpoint always shows the balancer health
@@ -121,6 +129,9 @@ through a new attribute: `balancer_health`. This always returns `HEALTHY` or `UN
 the true state of the balancer, even if the overall upstream health status is `HEALTHCHECKS_OFF`.
 This is useful for debugging.
 [#5885](https://github.com/Kong/kong/pull/5885)
+* **Beta**: OpenAPI specs are now available for the Kong Gateway Admin API:
+  * [Kong Gateway Admin API - OSS spec](https://developer.konghq.com/spec/680541e5-de6e-46e5-b43d-0bd1b2369453/e2a0ef29-573d-4fc4-86df-216c417f4aa9)
+  * [Kong Gateway Admin API - Enterprise spec](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60)
 
 #### Status API
 
@@ -134,6 +145,9 @@ prepared to process user requests.
     Kong Gateway's availability to distribute incoming requests.
     [#10610](https://github.com/Kong/kong/pull/10610)
     [#10787](https://github.com/Kong/kong/pull/10787)
+* **Beta**: An OpenAPI spec is now available for the 
+[Kong Gateway Status API](https://developer.konghq.com/spec/9542436a-58d1-4522-a00b-32125b5940f0/5feb007a-348b-486d-8d06-92f615471d22).
+
 
 #### PDK
 
