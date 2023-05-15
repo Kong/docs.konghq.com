@@ -14,12 +14,11 @@
 {%- unless extn.enterprise -%}
   {%- assign css_classes = css_classes | append: " open-source" -%}
 {%- endunless -%}
+{%- if extn.free == true -%}
+  {%- assign css_classes = css_classes | append: " free" -%}
+{%- endif -%}
 {%- if extn_publisher == 'kong-inc' -%}
-  {%- if extn.free == true -%}
-    {%- assign css_classes = css_classes | append: " free" -%}
-  {%- else -%}
-    {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
-  {%- endif -%}
+  {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
 {%- else -%}
   {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
   {%- assign css_classes = css_classes | append: third_party_classes -%}
