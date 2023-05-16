@@ -1,4 +1,7 @@
 name: OpenID Connect
+search_aliases:
+  - oidc
+  - oauth2
 dbless_compatible: 'yes'
 free: false
 plus: true

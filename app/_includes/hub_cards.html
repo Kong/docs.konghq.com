@@ -27,7 +27,7 @@
   <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">
     <div class="plugin-card--content">
       <div class="plugin-card--meta">
-        <div class="plugin-card--meta__name">
+        <div class="plugin-card--meta__name" data-search="{{ extn.search_aliases | join: ', ' }}">
           <img src="{{ extn.extn_icon }}" alt="{{ extn.name }} icon" />
           <p>{{ extn.name }}</p>
         </div>
