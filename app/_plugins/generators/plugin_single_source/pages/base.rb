@@ -78,10 +78,15 @@ module PluginSingleSource
 
       def breadcrumbs
         [
-          { text: @release.metadata['categories'] },
+          { text: @release.metadata['categories'], url: category_url(@release.metadata['categories']) },
           { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
           { text: breadcrumb_title, url: permalink }
         ]
+      end
+
+      def category_url(categories)
+        return nil if categories.nil?
+        "/hub/?category=#{categories.first}"
       end
 
       def layout
