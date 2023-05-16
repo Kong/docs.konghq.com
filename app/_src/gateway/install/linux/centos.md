@@ -50,8 +50,6 @@ Install {{site.base_gateway}} on CentOS from the command line.
 
 Install the YUM repository from the command line.
 
-{% include_cached /md/gateway/rpm-gpg-key-2023.md kong_version=page.kong_version %}
-
 1. Download the Kong YUM repository:
     ```bash
     curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-centos-%{centos_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
