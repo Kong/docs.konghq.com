@@ -1,5 +1,5 @@
 .badge {
-  display: flex;
+  display: inline-flex;
   margin: 0;
   padding: 0;
   border-radius: 2px;
@@ -40,13 +40,10 @@
     }
   }
 
-  &.enterprise {
+  &.enterprise::after {
+    content: "ENTERPRISE";
+    color: @steel-700;
     background: @steel-100;
-
-    &::after {
-      content: "ENTERPRISE";
-      color: @steel-700;
-    }
   }
 
   &.free::after {
