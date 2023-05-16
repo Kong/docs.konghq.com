@@ -6,6 +6,8 @@ plus: true
 enterprise: true
 konnect: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
+categories:
+  - traffic-control
 notes: --
 publisher: Kong Inc.
 desc: Validate HTTP requests and responses based on an OpenAPI 3.0 or Swagger API Specification
