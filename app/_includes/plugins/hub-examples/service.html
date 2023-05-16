@@ -24,30 +24,14 @@ resource:
 
 {% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
-Next, apply the KongPlugin resource to a
-[service](/gateway/latest/admin-api/#service-object) by annotating the
-service as follows:
+Next, apply the `KongPlugin` resource to an ingress by annotating the `service` as follows:
 
 ```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: SERVICE_NAME|SERVICE_ID
-  labels:
-    app: SERVICE_NAME|SERVICE_ID
-  annotations:
-    konghq.com/plugins: {{ hub_example.plugin_name }}-example
-spec:
-  ports:
-  - port: 80
-    targetPort: 80
-    protocol: TCP
-    name: SERVICE_NAME|SERVICE_ID
-  selector:
-    app: SERVICE_NAME|SERVICE_ID
-  ```
+kubectl annotate service SERVICE_NAME konghq.com/plugins={{ hub_example.kubernetes.plugin_name }}-example
+```
 
-Replace `SERVICE_NAME|SERVICE_ID` with the `id` or `name` of the service that this plugin configuration will target.
+Replace `SERVICE_NAME` with the name of the service that this plugin configuration will target.
+You can see your available ingresses by running `kubectl get service`.
 
 <blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
