@@ -37,7 +37,7 @@ module PluginSingleSource
 
       def breadcrumbs
         [
-          { text: @release.metadata['categories'], url: category_url(@release.metadata['categories']) },
+          { text: category_title, url: category_url },
           { text: breadcrumb_title, url: permalink }
         ]
       end

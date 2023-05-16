@@ -78,15 +78,27 @@ module PluginSingleSource
 
       def breadcrumbs
         [
-          { text: @release.metadata['categories'], url: category_url(@release.metadata['categories']) },
+          { text: category_title, url: category_url },
           { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
           { text: breadcrumb_title, url: permalink }
         ]
       end
 
-      def category_url(categories)
+      def category_url
+        categories = @release.metadata['categories']
         return nil if categories.nil?
         "/hub/?category=#{categories.first}"
+      end
+
+      def category_title
+        categories = @release.metadata['categories']
+        return nil if categories.nil? # This happens when the plugin is not categorized
+
+        @site_categories ||= @site.config['extensions']['categories']
+
+        cat = @site_categories.detect { |category| category['slug'] == categories.first }
+        return categories[0] if cat.nil?
+        cat['name']
       end
 
       def layout
