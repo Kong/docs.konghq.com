@@ -37,7 +37,7 @@ When {{site.base_gateway}} processes a request from certain plugins, it uses que
 > _**Figure 1:** Example of how requests from plugins are sent to {{site.base_gateway}}._
 
 ![Plugin Queuing Part 2 ](/assets/images/docs/konnect/konnect-plugin-queuing-2.png)
-> _**Figure 1:** After the plugin requests are sent to {{site.base_gateway}}, the queue can be sent to the upstream server._
+> _**Figure 2:** After the plugin requests are sent to {{site.base_gateway}}, the queue can be sent to the upstream server._
 
 You can use several different configurable parameters for queuing. The following sections explain these features of plugin queuing in detail.
 
