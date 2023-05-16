@@ -63,8 +63,17 @@ $(document).ready(function () {
       showCard = showCard && passesFilters(card, selectedCompatibility);
 
       if (searchQuery !== '') {
-        var cardTitle = $(card).find('.plugin-card--meta__name')[0].innerText.toLowerCase();
-        showCard = showCard && cardTitle.includes(searchQuery);
+        var meta = $(card).find('.plugin-card--meta__name')[0];
+
+        var searchStrings = $(meta).data("search").split(", "); // Search aliases
+        searchStrings.push(meta.innerText.toLowerCase()) // Card title
+
+        var searchMatches = false;
+        searchStrings.forEach(function(value){
+          searchMatches = searchMatches || value.includes(searchQuery)
+        });
+
+        showCard = showCard && searchMatches;
       }
       $(card).toggle(showCard);
     });
