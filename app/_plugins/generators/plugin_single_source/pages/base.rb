@@ -87,6 +87,7 @@ module PluginSingleSource
       def category_url
         categories = @release.metadata['categories']
         return nil if categories.nil?
+
         "/hub/?category=#{categories.first}"
       end
 
@@ -98,6 +99,7 @@ module PluginSingleSource
 
         cat = @site_categories.detect { |category| category['slug'] == categories.first }
         return categories[0] if cat.nil?
+
         cat['name']
       end
 
