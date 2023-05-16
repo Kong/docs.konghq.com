@@ -30,7 +30,7 @@ RSpec.describe 'Plugin page' do
     expect(name).to have_css('h4', text: 'name')
     expect(name).to have_css('strong', text: 'string')
     expect(name).to have_css('.required', text: 'required')
-    expect(name).to have_css('.field-description', text: 'The name of the plugin, in this case unbundled-plugin.')
+    expect(name).to have_css('.field-description', text: 'The name of the plugin, in this case unbundled-plugin.', normalize_ws: true)
 
     service = fields.find('> .field:nth-of-type(2)')
     expect(service).to have_css('h4', text: 'service.name or service.id')

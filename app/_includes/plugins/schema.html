@@ -10,7 +10,10 @@
       <span class="required"><strong>required</strong></span>
     </div>
     <div class="field-description-and-children">
-      <p class="field-description">The name of the plugin, in this case <code>{{ page.extn_slug }}</code>.</p>
+      {% capture plugin_name %}
+        {%- if page.reference_param_name != nil -%}{{ page.reference_param_name }}{%- else -%}{{ page.extn_slug }}{%- endif -%}
+      {% endcapture %}
+      <p class="field-description">The name of the plugin, in this case <code>{{ plugin_name }}</code>.</p>
     </div>
   </li>
 
