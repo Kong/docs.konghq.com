@@ -334,6 +334,16 @@ table {
   .docs-sidebar {
     top: 75px;
     height: ~"calc(100vh - 75px)";
+
+    .accordion-item.plugin-hub {
+      img {
+        background: gray;
+      }
+
+      @media (min-width: 801px) {
+        display: none;
+      }
+    }
   }
 
   .page-content-container {

@@ -3,6 +3,22 @@
 
   <ul class="accordion-container">
     <input id="accordion-opened" type="text" />
+
+    <li class="accordion-item plugin-hub">
+      <input id="accordion-0" type="checkbox" />
+      <label for="accordion-0">
+        <img src="/assets/images/icons/documentation/hub/icn-breadcrumbs.svg" alt="Plugin Hub">
+        <a
+          href="/hub/"
+          class="accordion-link"
+          role="menuitem"
+          tabindex="0"
+        >
+          Plugin Hub
+        </a>
+      </label>
+    </li>
+
     {% for item in include.sidenav.nav_items %}
       {% include_cached accordion_item.html item=item id=forloop.index %}
     {% endfor %}
