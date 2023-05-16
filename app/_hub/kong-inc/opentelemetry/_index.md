@@ -16,8 +16,6 @@ The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
 {% endif_version %}
 
->>>>>>> ce6fc59bed (Reworked plugin queues (#5088))
-
 ## Usage
 
 {% if_plugin_version gte:3.2.x %}
