@@ -5,6 +5,25 @@ no_version: true
 
 <!-- vale off -->
 
+
+## 3.2.2.2
+**Release Date** 2023/05/19
+
+### Fixes
+
+#### Core 
+* Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
+  lead to the corruption of chunk-encoded response data.
+  [#10816](https://github.com/Kong/kong/pull/10816)
+  [#10824](https://github.com/Kong/kong/pull/10824)
+* Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
+  [#10691](https://github.com/Kong/kong/pull/10691)
+
+#### Plugins 
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+    * Fixed the log flooding issue caused by low `sync_rate` settings.
+
+
 ## 3.2.2.1
 **Release Date** 2023/04/03
 
@@ -355,7 +374,8 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 ### Fixes 
 
 #### Core 
-* Fixed a UDP socket leak in `resty.dns.client`.
+* Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
+  [#10691](https://github.com/Kong/kong/pull/10691)
 * Hybrid mode: Fixed an issue where Vitals/Analytics couldn't communicate through the cluster telemetry endpoint.
 * Fixed an issue where `alpine` and `ubuntu` ARM64 artifacts incorrectly handled HTTP/2 requests, causing the protocol to fail.
 * Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
