@@ -1,10 +1,11 @@
 ---
 title: Dev Portal Service Documentation
+content_type: how-to
 ---
 
 A core function of the Dev Portal is publishing service descriptions and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your services.
 
-Through Service Hub, you can also publish any service in your catalog and its
+Through API Products, you can also publish any service in your catalog and its
 documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
 ## Service descriptions
@@ -20,7 +21,7 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
   <img src="/assets/images/docs/konnect/konnect_service_docs_description.png" />
 </p>
 
-All service descriptions are managed from the **Documentation** section in the service overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
+All service descriptions are managed from the **Documentation** section in the API Product overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
 
 ## API specification
 

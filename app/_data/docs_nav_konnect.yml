@@ -93,8 +93,6 @@
   items:
     - text: Overview
       url: /servicehub/
-    - text: Manage Service Documentation
-      url: /servicehub/service-documentation/
 
     - text: Manage Plugins
       items:
@@ -104,6 +102,16 @@
           url: /servicehub/enable-service-plugin/
         - text: Configure a Plugin on a Route
           url: /servicehub/enable-route-plugin/
+
+- title: API Products
+  icon: 
+  items:
+    - text: Overview
+      url: /api-products/
+    - text: Manage API Product Documentation
+      url: /api-products/service-documentation/
+    - text: Use Case Doc?
+
 
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
