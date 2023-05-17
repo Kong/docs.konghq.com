@@ -24,31 +24,14 @@ resource:
 
 {% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
-Then, apply it to an ingress ([route or routes](/gateway/latest/admin-api/#route-object))
-by annotating the ingress as follows:
+Next, apply the `KongPlugin` resource to an ingress by annotating the `ingress` as follows:
 
-``` yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ROUTE_NAME|ROUTE_ID
-  annotations:
-    kubernetes.io/ingress.class: kong
-    konghq.com/plugins: {{ hub_example.plugin_name }}-example
-spec:
-  rules:
-  - host: examplehostname.com
-    http:
-      paths:
-      - path: /bar
-        backend:
-          service:
-            name: echo
-            port:
-              number: 80
-  ```
+```yaml
+kubectl annotate ingress INGRESS_NAME konghq.com/plugins={{ hub_example.kubernetes.plugin_name }}-example
+```
 
-Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
+Replace `INGRESS_NAME` with the name of the ingress that this plugin configuration will target.
+You can see your available ingresses by running `kubectl get ingress`.
 
 <blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
