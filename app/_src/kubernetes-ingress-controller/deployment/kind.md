@@ -5,19 +5,6 @@ title: Kong for Kubernetes with Kong Enterprise
 This guide walks through setting up the {{site.kic_product_name}} using Kong
 Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
 
-We assume that we start from scratch and you don't have Kong Enterprise
-deployed. For the sake of simplicity, we will deploy Kong Enterprise and
-its database in Kubernetes itself. You can safely run them outside
-Kubernetes as well.
-
-## Prerequisites
-
-Before we can deploy the {{site.kic_product_name}} with Kong Enterprise,
-we need to satisfy the following prerequisites:
-
-- [Kong Enterprise License secret](#kong-enterprise-license-secret)
-- [Kong Enterprise bootstrap password](#kong-enterprise-bootstrap-password)
-
 ### Set up Kind cluster
 
 ```bash
@@ -30,9 +17,6 @@ nodes:
   kubeadmConfigPatches:
   - |
     kind: InitConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        node-labels: "ingress-ready=true"
   extraPortMappings:
   - containerPort: 80
     hostPort: 80
@@ -50,9 +34,7 @@ namespace first:
 
 ```bash
 $ kubectl create namespace kong
-namespace/kong created
 ```
-
 
 ### Kong Enterprise License secret
 
@@ -62,25 +44,20 @@ Save the license file temporarily to disk and execute the following:
 
 ```bash
 $ kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
-secret/kong-enterprise-license created
 ```
 
-Please note that `-n kong` specifies the namespace in which you are deploying
-  the {{site.kic_product_name}}. If you are deploying in a different namespace,
-  please change this value.
+### Set your Kong Manager password
 
-### Kong Enterprise bootstrap password
+Kong Manager requires authentication. {{site.kic_product_name}} uses the `kong-enterprise-superuser-password`
+secret to set the default value for the admin user.
 
-Next, we need to create a secret containing the password using which we can login into Kong Manager.
-Please replace `cloudnative` with a random password of your choice and note it down.
+Run the following, replacing `cloudnative` with a random password of your choice and note it down.
 
 ```bash
 $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=cloudnative
-secret/kong-enterprise-superuser-password created
 ```
 
-Once these are created, we are ready to deploy Kong Enterprise
-Ingress Controller.
+Once these resources have been created, we are ready to deploy {{site.kic_product_name}}.
 
 ## Install
 
@@ -88,7 +65,8 @@ Ingress Controller.
 kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-postgres-enterprise.yaml
 ```
 
-It takes a little while to bootstrap the database.
+This may take a few minutes if this is the first time you're running Kong Gateway in Docker with a database.
+
 Once bootstrapped, you should see the {{site.kic_product_name}} running with
 Kong Enterprise as its core:
 
@@ -100,28 +78,10 @@ kong-migrations-pzrzz           0/1     Completed   0          4m3s
 postgres-0                      1/1     Running     0          4m3s
 ```
 
-Apply kind specific patches to forward the hostPorts to the ingress controller, set taint tolerations, and schedule it to the custom labeled node.
+Apply kind specific patches to forward the hostPorts to the ingress controller:
 
 ```bash
-kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"containers":[{"name":"proxy","ports":[{"containerPort":8000,"hostPort":80,"name":"proxy","protocol":"TCP"},{"containerPort":8443,"hostPort":443,"name":"proxy-ssl","protocol":"TCP"}]}],"nodeSelector":{"ingress-ready":"true"},"tolerations":[{"key":"node-role.kubernetes.io/control-plane","operator":"Equal","effect":"NoSchedule"},{"key":"node-role.kubernetes.io/master","operator":"Equal","effect":"NoSchedule"}]}}}}'
-```
-
-Apply kind specific patch to change service type to NodePort
-
-```bash
-kubectl patch service -n kong kong-proxy -p '{"spec":{"type":"NodePort"}}'
-kubectl patch service -n kong kong-manager -p '{"spec":{"type":"NodePort"}}'
-kubectl patch service -n kong kong-admin -p '{"spec":{"type":"NodePort"}}'
-```
-
-```bash
-kubectl get services -n kong
-NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
-kong-admin                NodePort    10.96.66.102    <none>        80:30980/TCP                 62m
-kong-manager              NodePort    10.96.244.156   <none>        80:31640/TCP                 62m
-kong-proxy                NodePort    10.96.87.68     <none>        80:31134/TCP,443:32025/TCP   62m
-kong-validation-webhook   ClusterIP   10.96.37.107    <none>        443/TCP                      62m
-postgres                  ClusterIP   10.96.84.4      <none>        5432/TCP                     62m
+kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"containers":[{"name":"proxy","ports":[{"containerPort":8000,"hostPort":80,"name":"proxy","protocol":"TCP"},{"containerPort":8443,"hostPort":443,"name":"proxy-ssl","protocol":"TCP"}]}]}}}}'
 ```
 
 ### Setup Kong Manager
@@ -201,7 +161,8 @@ kubectl patch deployment -n kong ingress-kong -p "{\"spec\": { \"template\" : { 
 ```
 
 It will take a few minutes to roll out the updated deployment and once the new
-`ingress-kong` pod is up and running, you should be able to log into the Kong Manager UI.
+`ingress-kong` pod is up and running, refresh the page and you should be able to log
+into the Kong Manager UI.
 
 As you follow along with other guides on how to use your newly deployed the {{site.kic_product_name}},
 you will be able to browse Kong Manager and see changes reflected in the UI as Kong's
@@ -213,10 +174,13 @@ Let's setup an environment variable to hold the IP address of `kong-proxy` servi
 
 ```bash
 export PROXY_IP="proxy.127-0-0-1.nip.io"
+curl $PROXY_IP
+```
 
-curl proxy.127-0-0-1.nip.io/
+Output:
+
+```
 {"message":"no Route matched with those values"}%
-
 ```
 
 Once you've installed Kong for Kubernetes Enterprise, please follow our
