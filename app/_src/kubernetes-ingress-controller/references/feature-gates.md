@@ -46,9 +46,9 @@ Features that reach GA and become stable are removed from this table, but they c
 
 ### Using feature gates
 
-To enable feature gates you can provide the `--feature-gates` flag when launching KIC, or set the `CONTROLLER_FEATURE_GATES` environment variable.
+To enable feature gates, provide the `--feature-gates` flag when launching KIC, or set the `CONTROLLER_FEATURE_GATES` environment variable.
 
-Feature gates are a comma delimited set of `key=value` pairs. If you wanted to enable `CombinedRoutes` and `CombinedServices`, you'd set `CONTROLLER_FEATURE_GATES=CombinedRoutes=true,CombinedServices=true`
+Feature gates consist of a comma-delimited set of `key=value` pairs. For example, if you wanted to enable `CombinedRoutes` and `CombinedServices`, you'd set `CONTROLLER_FEATURE_GATES=CombinedRoutes=true,CombinedServices=true`.
 
 To enable features via Helm, set the following in your `values.yaml`:
 
