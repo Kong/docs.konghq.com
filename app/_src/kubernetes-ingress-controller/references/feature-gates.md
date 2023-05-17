@@ -44,6 +44,20 @@ Features that reach GA and become stable are removed from this table, but they c
 {:.important}
 >**Important:** To avoid disruption to your services consider not using features until they have reached GA status. 
 
+### Using feature gates
+
+To enable feature gates, provide the `--feature-gates` flag when launching KIC, or set the `CONTROLLER_FEATURE_GATES` environment variable.
+
+Feature gates consist of a comma-delimited set of `key=value` pairs. For example, if you wanted to enable `CombinedRoutes` and `CombinedServices`, you'd set `CONTROLLER_FEATURE_GATES=CombinedRoutes=true,CombinedServices=true`.
+
+To enable features via Helm, set the following in your `values.yaml`:
+
+```yaml
+ingressController:
+  env:
+    feature_gates: CombinedRoutes=true,CombinedServices=true
+```
+
 ### Documentation
 
 You can find feature preview documentation for alpha maturity features in the [kubernetes-ingress-controller repository](https://github.com/Kong/kubernetes-ingress-controller/blob/main/FEATURE_PREVIEW_DOCUMENTATION.md)..
