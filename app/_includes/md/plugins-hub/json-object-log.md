@@ -19,7 +19,7 @@
   * `balancer_latency`: The latency of the balancer expressed in milliseconds.
 * `client_ip`: The original client IP address.
 * `workspace`: The UUID of the workspace associated with this request.
-{% if_plugin_version gte:3.3.x %}
+{% if_plugin_version gte:3.4.x %}
 * `workspace_name`: The name of the workspace associated with this request.
 {% endif_plugin_version %}
 * `upstream_uri`: The URI, including query parameters, for the configured upstream.
