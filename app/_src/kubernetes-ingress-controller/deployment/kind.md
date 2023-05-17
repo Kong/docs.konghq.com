@@ -29,13 +29,13 @@ nodes:
 EOF
 ```
 
-We're going to be creating resources in the `kong` namespace. Create this now:
+We're going create our resources in the `kong` namespace. Create this now:
 
 ```bash
 $ kubectl create namespace kong
 ```
 
-### Kong Enterprise License secret (optional)
+### Create a Kong Enterprise License secret (optional)
 
 If you have a Kong Enterprise license, save it to disk as `license.json` and create a secret:
 
@@ -56,7 +56,7 @@ $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --fr
 
 Once these resources have been created, we are ready to deploy {{site.kic_product_name}}.
 
-## Install
+## Install Kong
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-postgres-enterprise.yaml
@@ -74,17 +74,9 @@ kong-migrations-pzrzz           0/1     Completed   0          4m3s
 postgres-0                      1/1     Running     0          4m3s
 ```
 
-### Expose the proxy to your host machine
-
-We need to apply some `kind` specific patches to make our proxy accessible on our host machine:
-
-```bash
-kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"containers":[{"name":"proxy","ports":[{"containerPort":8000,"hostPort":80,"name":"proxy","protocol":"TCP"},{"containerPort":8443,"hostPort":443,"name":"proxy-ssl","protocol":"TCP"}]}]}}}}'
-```
-
 ### Configure your ingress
 
-Kong's Admin API, Kong Manager and the proxy will all be exposed on the same port.
+Kong's Admin API, Kong Manager UI and the proxy will all be exposed on the same port.
 We use Kong to route to the correct internal port based on the `host` provided.
 
 Let's create some `ingress` configurations to enable this:
@@ -151,16 +143,22 @@ spec:
 " | kubectl apply -f -
 ```
 
-If you browse to <http://manager.127-0-0-1.nip.io/> in your Browser, you should see the Kong Manager login page. Unfortunately we can't log in yet as the Kong Manager UI doesn't know how to speak to the Admin API.
-
-Apply the following patch to set the `KONG_ADMIN_API_URI` to the hostname we set in the ingress above:
+Finally, apply the following patch to set the `KONG_ADMIN_API_URI` to the hostname we set in the ingress above:
 
 ```bash
 kubectl patch deployment -n kong ingress-kong -p "{\"spec\": { \"template\" : { \"spec\" : {\"containers\":[{\"name\":\"proxy\",\"env\": [{ \"name\" : \"KONG_ADMIN_API_URI\", \"value\": \"http://admin-api.127-0-0-1.nip.io\" }]}]}}}}"
 ```
 
+### Expose the proxy to your host machine
+
+We need to apply some `kind` specific patches to make our proxy accessible on our host machine:
+
+```bash
+kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"containers":[{"name":"proxy","ports":[{"containerPort":8000,"hostPort":80,"name":"proxy","protocol":"TCP"},{"containerPort":8443,"hostPort":443,"name":"proxy-ssl","protocol":"TCP"}]}]}}}}'
+```
+
 It will take a few minutes to roll out the updated deployment. Once the new
-`ingress-kong` pod is up and running, refresh the page and you should be able to log
+`ingress-kong` pod is up and running, visit <http://manager.127-0-0-1.nip.io/> and you should be able to log
 in to the Kong Manager UI.
 
 As you follow along with other guides on how to use your newly deployed the {{site.kic_product_name}},
