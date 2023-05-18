@@ -54,7 +54,7 @@ Run the following, replacing `cloudnative` with a random password of your choice
 kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=cloudnative
 ```
 
-Once these resources have been created, we are ready to deploy {{site.kic_product_name}}.
+Once these resources have been created, you're ready to deploy {{site.kic_product_name}}.
 
 ## Install Kong
 
