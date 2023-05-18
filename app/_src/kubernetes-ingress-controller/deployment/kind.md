@@ -56,7 +56,7 @@ kubectl create secret generic kong-enterprise-superuser-password  -n kong --from
 
 Once these resources have been created, you're ready to deploy {{site.kic_product_name}}.
 
-## Install Kong
+## Install {{site.base_gateway}}
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-postgres-enterprise.yaml
