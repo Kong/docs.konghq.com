@@ -167,7 +167,7 @@ configuration changes.
 
 ## Making a request through the proxy
 
-Finally, let's setup an environment variable to hold the IP address of `kong-proxy` service:
+Let's set up an environment variable to hold the IP address of `kong-proxy` service:
 
 ```bash
 export PROXY_IP="proxy.127-0-0-1.nip.io"
