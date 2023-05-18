@@ -33,6 +33,10 @@ Features that reach GA and become stable are removed from this table, but they c
 {% if_version gte: 2.8.x %}
 | CombinedRoutes         | `true`  | Beta  | 2.8.0 | TBD   |
 {% endif_version %}
+{% if_version gte: 2.10.x %}
+| ExpressionRoutes       | `false` | Alpha | 2.10.0 | TBD   |
+| CombinedServices       | `false` | Alpha | 2.10.0 | TBD   |
+{% endif_version %}
 
 ### Feature gates details
 
