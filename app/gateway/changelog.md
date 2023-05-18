@@ -402,6 +402,11 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
   [#10766](https://github.com/Kong/kong/pull/10766)
 * Bumped `kong-openid-connect` from 2.5.4 to 2.5.5
 
+### Known Issues
+
+* Due to known issues, Kong recommends not enabling page-level lmbd encryption in versions 3.0.x-3.3.x. 
+  
+  Don't set `declarative_config_encryption_mode`; leave it at its default value of `off`. Continue relying on disk-level encryption to encrypt the configuration on disk.
 
 ## 3.2.2.1
 **Release Date** 2023/04/03
