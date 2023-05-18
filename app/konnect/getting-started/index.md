@@ -31,7 +31,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
     [Create a service &gt;](/konnect/getting-started/configure-service/)
 
-3.  **Implement the new service**:
+3.  **Deploy the new API Product version**:
 
     Attach the new {{site.konnect_short_name}} service to an upstream service
     and define a route.
@@ -40,19 +40,19 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     is the next step. Here you set up a route to a mocking API service,
     then proxy traffic through the route.
 
-    [Implement the service &gt;](/konnect/getting-started/implement-service/)
+    [Deploy the API Product version &gt;](/konnect/getting-started/implement-service/)
 
 ## Share APIs and enable development
 
 Ready to share your API with developers?
-Use the Service Hub to manage your API documentation, then publish it to the Dev Portal:
+Use API Products to manage your API Product documentation, then publish it to the Dev Portal:
 
 1. **Upload your spec to {{site.konnect_short_name}} and publish to Dev Portal**
 
-    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the service.
-    Then, publish your service documentation to the Dev Portal and preview it from the developer perspective.
+    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the API Product.
+    Then, publish your API Product documentation to the Dev Portal and preview it from the developer perspective.
 
-    [Import docs and publish a service &gt;](/konnect/getting-started/publish-service/)
+    [Import docs and publish an API Product &gt;](/konnect/getting-started/publish-service/)
 
 1. **Register an application**
 
