@@ -151,7 +151,7 @@ kubectl patch deployment -n kong ingress-kong -p "{\"spec\": { \"template\" : { 
 
 ### Expose the proxy to your host machine
 
-We need to apply some `kind` specific patches to make our proxy accessible on our host machine:
+Apply the following `kind`-specific patches to make the proxy accessible on the host machine:
 
 ```bash
 kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"containers":[{"name":"proxy","ports":[{"containerPort":8000,"hostPort":80,"name":"proxy","protocol":"TCP"},{"containerPort":8443,"hostPort":443,"name":"proxy-ssl","protocol":"TCP"}]}]}}}}'
