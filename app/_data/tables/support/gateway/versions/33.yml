@@ -13,7 +13,6 @@ distributions:
   - <<: *amazonlinux2022
     docker: true
     arm: true
-  - *centos7
   - *debian10
   - <<: *debian11
     docker: true
