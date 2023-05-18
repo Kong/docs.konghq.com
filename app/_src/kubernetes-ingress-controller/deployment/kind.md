@@ -67,7 +67,7 @@ This may take a few minutes.
 Once bootstrapped, you should see the {{site.kic_product_name}} running:
 
 ```bash
-$ kubectl get pods -n kong
+kubectl get pods -n kong
 NAME                            READY   STATUS      RESTARTS   AGE
 ingress-kong-548b9cff98-n44zj   2/2     Running     0          21s
 kong-migrations-pzrzz           0/1     Completed   0          4m3s
