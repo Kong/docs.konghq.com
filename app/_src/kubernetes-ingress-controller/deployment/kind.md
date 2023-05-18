@@ -5,7 +5,7 @@ title: Kong for Kubernetes with Kong Enterprise
 This guide walks through setting up the {{site.kic_product_name}} with Kong
 Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
 
-### Set up Kind cluster
+## Set up Kind cluster
 
 First, create a `kind` cluster to deploy {{site.kic_product_name}} to:
 
