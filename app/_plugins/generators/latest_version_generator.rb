@@ -94,6 +94,7 @@ module LatestVersion
       @data['alias'] = [@dir.sub('latest/', '')] if @dir.end_with?('/latest/')
 
       @relative_path = original_page.relative_path
+      @data['sidenav'] = DocsSingleSource::Sidenav.new(self).generate
     end
   end
 end

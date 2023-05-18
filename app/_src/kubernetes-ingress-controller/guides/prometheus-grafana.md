@@ -185,7 +185,7 @@ We will set up three services: billing, invoice, and comments.
 Execute the following to spin these services up:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/docs.konghq.com/main/src/kubernetes-ingress-controller/examples/001_multiple-services.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kong/docs.konghq.com/main/app/_src/kubernetes-ingress-controller/examples/001_multiple-services.yaml
 ```
 
 ### Install Ingress for the Services

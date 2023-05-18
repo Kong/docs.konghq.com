@@ -1,0 +1,15 @@
+name: Correlation ID
+dbless_compatible: 'yes'
+free: true
+plus: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - transformations
+publisher: Kong Inc.
+version: 2.0.x
+desc: Correlate requests and responses using a unique ID
+description: |
+  Correlate requests and responses using a unique ID transmitted over an HTTP header.

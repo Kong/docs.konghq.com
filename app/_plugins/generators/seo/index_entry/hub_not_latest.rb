@@ -9,25 +9,10 @@ module SEO
         false
       end
 
-      def process!(index)
-        super(index)
-
-        set_seo_noindex
-      end
-
       private
 
       def url
-        @url ||= begin
-          # Remove the version at the end
-          segments = @page.url.split('/')
-          segments.pop
-          segments.join('/').concat('/')
-        end
-      end
-
-      def set_seo_noindex
-        @page.data['seo_noindex'] = true
+        @url ||= @page.data['canonical_url']
       end
     end
   end

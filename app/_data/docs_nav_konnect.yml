@@ -156,8 +156,12 @@
       url: /analytics/
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
-    - text: Reports Use Cases
-      url: /analytics/use-cases/
+    - text: Report Use Cases
+      items: 
+      - text: Analyze API Usage and Performance
+        url: /analytics/use-cases/
+      - text: Diagnosing Latency Issues
+        url: /analytics/use-cases/latency
     - text: Reports Reference
       url: /analytics/reference/
     - text: Troubleshoot
@@ -174,34 +178,36 @@
           url: /account-management/change-plan/
         - text: Manage Payment Methods and Invoices
           url: /account-management/billing/
-    - text: Authentication and Authorization
+    - text: Org Management
       items:
-        - text: Overview
-          url: /org-management/auth/
-        - text: Teams
-          items:
-            - text: Overview
-              url: /org-management/teams-and-roles/
-            - text: Manage Teams
-              url: /org-management/teams-and-roles/manage/
-            - text: Teams Reference
-              url: /org-management/teams-and-roles/teams-reference/
-            - text: Roles Reference
-              url: /org-management/teams-and-roles/roles-reference/
-        - text: Manage Users
-          url: /org-management/users/
-        - text: Manage System Accounts
-          url: /org-management/system-accounts/
-        - text: Set up SSO with OIDC
-          url: /org-management/oidc-idp/
-        - text: Set up SSO with Okta
-          url: /org-management/okta-idp/
-        - text: Login Sessions Reference
-          url: /org-management/sessions-reference/
-    - text: Account and Org Deactivation
-      url: /org-management/deactivation/
-    - text: Troubleshoot
-      url: /org-management/troubleshoot/
+      - text: Authentication and Authorization
+        items:
+          - text: Overview
+            url: /org-management/auth/
+          - text: Teams
+            items:
+              - text: Overview
+                url: /org-management/teams-and-roles/
+              - text: Manage Teams
+                url: /org-management/teams-and-roles/manage/
+              - text: Teams Reference
+                url: /org-management/teams-and-roles/teams-reference/
+              - text: Roles Reference
+                url: /org-management/teams-and-roles/roles-reference/
+          - text: Manage Users
+            url: /org-management/users/
+          - text: Manage System Accounts
+            url: /org-management/system-accounts/
+          - text: Set up SSO with OIDC
+            url: /org-management/oidc-idp/
+          - text: Set up SSO with Okta
+            url: /org-management/okta-idp/
+          - text: Login Sessions Reference
+            url: /org-management/sessions-reference/
+          - text: Account and Org Deactivation
+            url: /org-management/deactivation/
+          - text: Troubleshoot
+            url: /org-management/troubleshoot/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -266,6 +272,8 @@
       items:
         - text: Filtering
           url: /api/filtering/
+        - text: API Errors
+          url: /api/errors/
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg

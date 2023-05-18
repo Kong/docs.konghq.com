@@ -20,7 +20,7 @@ no_version: true
 
 ### Fixes 
 #### Enterprise
-* In Kong 3.2.1.0 and 3.2.1.1, `alpine` and `ubuntu` ARM64 artifacts incorrecty handled HTTP2 requests, causing the protocol to fail. These artifacts have been removed. 
+* In Kong 3.2.1.0 and 3.2.1.1, `alpine` and `ubuntu` ARM64 artifacts incorrectly handled HTTP/2 requests, causing the protocol to fail. These artifacts have been removed. 
 * Added the default logrotate file `/etc/logrotate.d/kong-enterprise-edition`. This file was missing in all 3.x versions of Kong Gateway prior to this release.
 
 #### Plugins
@@ -109,7 +109,7 @@ which lets you set the Nginx directive `ssl_session_cache`.
   Thanks [Michael Kotten](https://github.com/michbeck100) for contributing this change.
   [#10021](https://github.com/Kong/kong/pull/10021)
 * [`status_listen`](/gateway/latest/reference/configuration/#status_listen) now supports HTTP2. [#9919](https://github.com/Kong/kong/pull/9919)
-* The shared Redis connector now supports username + password authentication for cluster connections, improving on the existing single-node connection support. This automatically applies to all plugins using the shared Redis configuration. [#4333](https://github.com/Kong/kong-ee/pull/4333)
+* The shared Redis connector now supports username + password authentication for cluster connections, improving on the existing single-node connection support. This automatically applies to all plugins using the shared Redis configuration.
 
 
 #### Enterprise
@@ -322,7 +322,7 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 
 * Bumped`lua-resty-openssl` from 0.8.15 to 0.8.17
 * Bumped `libexpat` from 2.4.9 to 2.5.0
-* Bumoed `kong-openid-connect` from v2.5.0 to v2.5.2
+* Bumped `kong-openid-connect` from v2.5.0 to v2.5.2
 * Bumped `openssl` from 1.1.1q to 1.1.1t
 * `libyaml` is no longer built with Kong Gateway. System `libyaml` is used instead.
 * Bumped `luarocks` from 3.9.1 to 3.9.2
@@ -340,6 +340,55 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
   [#10199](https://github.com/Kong/kong/pull/10199)
   [#10230](https://github.com/Kong/kong/pull/10230)
 * Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
+
+
+## 3.1.1.4
+**Release Date** 2023/05/16
+
+### Features
+
+* Kong Manager with OIDC:
+  * Added the configuration option
+  [`admin_auto_create`](/gateway/latest/kong-manager/auth/oidc/mapping/) to enable or disable automatic admin creation.
+  This option is `true` by default.
+
+### Fixes 
+
+#### Core 
+* Fixed a UDP socket leak in `resty.dns.client`.
+* Hybrid mode: Fixed an issue where Vitals/Analytics couldn't communicate through the cluster telemetry endpoint.
+* Fixed an issue where `alpine` and `ubuntu` ARM64 artifacts incorrectly handled HTTP/2 requests, causing the protocol to fail.
+* Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
+  lead to the corruption of chunk-encoded response data.
+  [#10816](https://github.com/Kong/kong/pull/10816)
+  [#10824](https://github.com/Kong/kong/pull/10824)
+* Fixed the Dynatrace implementation. Due to a build system issue, Kong Gateway 3.1.x packages prior to 3.1.1.4 
+didn't contain the debug symbols that Dynatrace requires.
+
+#### Enterprise
+
+**Kong Manager**:
+* Fixed configuration fields for the StatsD plugin:
+  * Added missing metric fields: `consumer_identifier`, `service_identifier`, and `workspace_identifier`. 
+  * Removed the non-existent `custom_identifier` field.
+* Fixed an issue where the `Copy JSON` for a plugin didn't copy the full plugin configuration.
+* Fixed an issue where the Zipkin plugin didn't allow the addition of `static_tags` through the Kong Manager UI.
+* Added missing default values to the Vault configuration page.
+* Fixed the broken Konnect link in free mode banners.
+
+* OIDC authentication issues:
+  * The `/auth` endpoint, used by Kong Manager for OIDC authentication, now correctly supports the HTTP POST method.
+  * Fixed an issue with OIDC authentication in Kong Manager, where the default roles 
+(`workspace-super-admin`, `workspace-read-only`, `workspace-portal-admin`, and `workspace-admin`) were missing from any 
+newly created workspace.
+  * Fixed an issue where users with newly registered Dev Portal accounts created through OIDC were unable to log into 
+  Dev Portal until the Kong Gateway container was restarted. 
+  This happened when `by_username_ignore_case` was set to `true`, which incorrectly caused consumers to always load from cache.
+
+#### Plugins
+
+* [**Request Transformer Advanced**](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
+  * Fixed an issue that was causing some requests to be proxied with the wrong query parameters.
 
 ## 3.1.1.3
 **Release Date** 2023/01/30

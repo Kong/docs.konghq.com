@@ -22,4 +22,4 @@ curl -L https://kuma.io/installer.sh | \
   PRODUCT_NAME="Kong Mesh" \
   REPO="kong/kong-mesh" \
   LATEST_VERSION="https://docs.konghq.com/mesh/latest_version/" \
-  sh -
+  sh -s - "$@"

@@ -357,6 +357,29 @@ ul.navbar-item-submenu {
       }
     }
 
+    &.hub {
+      .page-header {
+        padding: 0 0 40px 0;
+        margin: auto;
+        background-image: none;
+
+        .container {
+          display: flex;
+          flex-direction: row;
+          width: auto;
+          flex-wrap: wrap;
+
+          .page-header-title {
+            flex-grow: 20;
+          }
+
+          .page-header-icon, .old-version-banner {
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+
     &.homepage {
       .title-version-search-container {
         flex-direction: column;

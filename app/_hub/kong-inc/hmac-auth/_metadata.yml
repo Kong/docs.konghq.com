@@ -1,0 +1,28 @@
+name: HMAC Auth
+dbless_compatible: partially
+dbless_explanation: |
+  Consumers and Credentials can be created with declarative configuration.
+
+  Admin API endpoints that do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
+extra: |
+  Once applied, any user with a valid credential can access the Service/Route.
+  To restrict usage to only some of the authenticated users, also add the
+  [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+  denied groups of users.
+free: true
+plus: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - authentication
+publisher: Kong Inc.
+desc: Add HMAC Authentication to your Services
+description: |
+  Add HMAC Signature authentication to a Service or a Route
+  to establish the integrity of incoming requests. The plugin validates the
+  digital signature sent in the `Proxy-Authorization` or `Authorization` header
+  (in that order). This plugin implementation is based off the
+  [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
+  draft with a slightly different signature scheme.

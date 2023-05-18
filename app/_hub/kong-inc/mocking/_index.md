@@ -1,123 +1,3 @@
----
-name: Mocking
-publisher: Kong Inc.
-desc: Provide mock endpoints to test your APIs against your services
-description: |
-  Provide mock endpoints to test your APIs in development against your services.
-  The Mocking plugin leverages standards based on the Open API Specification (OAS)
-  for sending out mock responses to APIs. Mocking supports both Swagger 2.0 and OpenAPI 3.0.
-
-  Benefits of service mocking with the Kong Mocking plugin:
-
-  - Conforms to a design-first approach since mock responses are within OAS.
-  - Accelerates development of services and APIs.
-  - Promotes parallel development of APIs across distributed teams.
-  - Provides an enhanced full lifecycle API development experience with Dev Portal
-    integration.
-  - Easily enable and disable the Mocking plugin for flexibility when
-    testing API behavior.
-
-  This plugin can mock `200`, `201`, and `204` responses.
-
-enterprise: true
-plus: true
-type: plugin
-categories:
-  - traffic-control
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
-params:
-  name: mocking
-  service_id: true
-  consumer_id: true
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  dbless_explanation: |
-    {:.note}
-    > Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
-    instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
-  examples: true
-  config:
-    - name: api_specification_filename
-      required: semi
-      default: null
-      datatype: string
-      value_in_examples: null
-      description: |
-        The path and name of the specification file loaded into Kong Gateway's database. You cannot
-        use this option for DB-less or hybrid mode.
-    - name: api_specification
-      required: semi
-      default: null
-      datatype: string
-      value_in_examples: <my_spec_contents>
-      description: |
-        The contents of the specification file. You must use this option for hybrid or DB-less mode.
-        With this configuration option, you can include the full specification as part of the configuration,
-        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway.
-        In Kong Manager, you can copy and paste the contents of the spec directly into
-        the `Config.Api Specification` text field.
-    - name: random_delay
-      required: false
-      default: false
-      datatype: boolean
-      value_in_examples: true
-      description: |
-        Enables a random delay in the mocked response. Introduces delays to simulate
-        real-time response times by APIs.
-    - name: max_delay_time
-      required: semi
-      default: 1
-      datatype: number
-      value_in_examples: 1
-      description: |
-        The maximum value in seconds of delay time. Set this value when `random_delay` is enabled
-        and you want to adjust the default. The value must be greater than the
-        `min_delay_time`.
-    - name: min_delay_time
-      required: semi
-      default: 0.001
-      datatype: number
-      value_in_examples: 0.001
-      description: |
-        The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
-        and you want to adjust the default. The value must be less than the
-        `max_delay_time`.
-    - name: random_examples
-      required: false
-      default: false
-      datatype: boolean
-      value_in_examples: true
-      description: |
-        Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
-      minimum_version: "2.7.x"
-    - name: included_status_codes
-      required: false
-      default: null
-      datatype: array of integers
-      description: |
-        A global list of the HTTP status codes that can only be selected and returned.
-      minimum_version: "3.1.x"
-    - name: random_status_code
-      required: false
-      default: false
-      datatype: boolean
-      description: |
-        Determines whether to randomly select an HTTP status code from the responses of the corresponding API method.
-        The default value is `false`, which means the minimum HTTP status code is always selected and returned.
-      minimum_version: "3.1.x"
-  extra: |
-
-    Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
-    or the `api_specification` parameter. The plugin requires a spec to work.
----
-
 ## Behavioral Headers
 
 Behavioral headers allow you to change the behavior of the Mocking plugin for the individual request without changing the configuration.
@@ -274,7 +154,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents in the [example](#stock-spec) into the new file.
 
-Alternatively, you can also use the [Portal Files API](/gateway/latest/developer-portal/files-api/#post-a-content-file)
+Alternatively, you can also use the [Portal Files API](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1#/)
 to upload a spec to the Dev Portal.
 
 #### Deploy a spec to Insomnia {#deploy-spec-insomnia}
@@ -954,19 +834,3 @@ ensure you set the actual URL for your service so that the response can be recei
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
 
----
-
-## Changelog
-
-**{{site.base_gateway}} 3.1.x**
-
-* Added `config.included_status_codes`, `config.random_status_codes` configuration parameters for status code selection.
-* Added behavioral headers feature.
-* $ref and schema support.
-* Added MIME types priority match support.
-
-
-**{{site.base_gateway}} 2.7.x**
-
-* Added the `random_examples` parameter.
-Use this setting to randomly select one example from a set of mocked responses.
