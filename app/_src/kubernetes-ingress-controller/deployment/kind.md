@@ -48,7 +48,7 @@ kubectl create secret generic kong-enterprise-license --from-file=license=./lice
 The Kong Manager UI requires authentication. {{site.kic_product_name}} uses the `kong-enterprise-superuser-password`
 secret to set the default value for the default `kong_admin` user.
 
-Run the following, replacing `cloudnative` with a random password of your choice and note it down.
+Run the following, replacing `cloudnative` with a random password of your choice and note it down:
 
 ```bash
 $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=cloudnative
