@@ -143,7 +143,7 @@ spec:
 " | kubectl apply -f -
 ```
 
-Finally, apply the following patch to set the `KONG_ADMIN_API_URI` to the hostname we set in the ingress above:
+Apply the following patch to set the `KONG_ADMIN_API_URI` to the hostname you set in the ingress above:
 
 ```bash
 kubectl patch deployment -n kong ingress-kong -p "{\"spec\": { \"template\" : { \"spec\" : {\"containers\":[{\"name\":\"proxy\",\"env\": [{ \"name\" : \"KONG_ADMIN_API_URI\", \"value\": \"http://admin-api.127-0-0-1.nip.io\" }]}]}}}}"
