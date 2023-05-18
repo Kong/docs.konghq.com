@@ -158,7 +158,7 @@ kubectl patch deployment -n kong ingress-kong -p '{"spec":{"template":{"spec":{"
 ```
 
 It will take a few minutes to roll out the updated deployment. Once the new
-`ingress-kong` pod is up and running, visit <http://manager.127-0-0-1.nip.io/> and you should be able to log
+`ingress-kong` pod is up and running, visit `http://manager.127-0-0-1.nip.io` and you should be able to log
 in to the Kong Manager UI.
 
 As you follow along with other guides on how to use your newly deployed the {{site.kic_product_name}},
