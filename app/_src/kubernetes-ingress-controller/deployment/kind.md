@@ -40,7 +40,7 @@ kubectl create namespace kong
 If you have a Kong Enterprise license, save it to disk as `license.json` and create a secret:
 
 ```bash
-$ kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
+kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
 ```
 
 ### Set your Kong Manager password
