@@ -42,6 +42,7 @@ description: |
   # (Optional) Link to your online TOS.
 
 enterprise: true
+techpartner: true
 
 kong_version_compatibility:
   community_edition:

@@ -23,8 +23,12 @@ module Jekyll
           !!@metadata['enterprise'] && !!!@metadata['free']
         end
 
+        def techpartner?
+          !!@metadata['techpartner'] && @publisher != KONG_INC
+        end
+
         def hash
-          "publisher:#{@publisher}-plus:#{plus?}-konnect:#{konnect?}-enterprise:#{enterprise?}"
+          "publisher:#{@publisher}-plus:#{plus?}-konnect:#{konnect?}-enterprise:#{enterprise?}-techpartner:#{techpartner?}"
         end
       end
     end
