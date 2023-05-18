@@ -180,5 +180,5 @@ Output:
 {"message":"no Route matched with those values"}%
 ```
 
-This `$PROXY_IP` variable will be used in future guides. Please follow our
+This `$PROXY_IP` variable will be used in future guides. Follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
