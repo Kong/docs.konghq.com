@@ -264,8 +264,11 @@
           absolute_url: true
     - text: Portal Client API
       items: 
-          - text: API Documentation
-            url: https://developer.konghq.com/spec/ADD URL HERE    
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/ADD URL HERE
+          absolute_url: true 
+        - text: Open Source Developer Portal Guide
+          url: /api/portal-client/open-source-portal-guide/  
     - text: Reference
       items:
         - text: Filtering
