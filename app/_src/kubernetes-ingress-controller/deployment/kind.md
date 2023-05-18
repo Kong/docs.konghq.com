@@ -76,8 +76,8 @@ postgres-0                      1/1     Running     0          4m3s
 
 ### Configure your ingress
 
-Kong's Admin API, Kong Manager UI and the proxy will all be exposed on the same port.
-We use Kong to route to the correct internal port based on the `host` provided.
+{{site.base_gateway}}'s Admin API, Kong Manager UI, and the proxy will all be exposed on the same port.
+Use {{site.base_gateway}} to route to the correct internal port based on the `host` provided.
 
 Let's create some `ingress` configurations to enable this:
 
