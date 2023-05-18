@@ -6,7 +6,7 @@ no_version: true
 <!-- vale off -->
 
 ## 3.3.0.0
-**Release Date** TBA
+**Release Date** 2023/05/19
 
 ### Breaking changes and deprecations
 
