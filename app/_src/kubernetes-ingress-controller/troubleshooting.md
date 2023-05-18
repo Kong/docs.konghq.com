@@ -243,7 +243,7 @@ approaches to isolate issues:
   purposes, run `curl https://get.konghq.com/quickstart | bash -s -- -D`.
 
   Once this image is running, run `curl http://localhost:8001/config @last_bad.json`
-  to try applying the configuration and see any errors
+  to try applying the configuration and see any errors.
   
 ## Inspecting network traffic with a tcpdump sidecar
 
