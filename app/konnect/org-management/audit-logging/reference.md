@@ -87,7 +87,7 @@ Property | Description
 
 ## Access logs
 
-Access logs include information about requests to the {{site.konnect_short_name}} API.
+Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
 
 In addition to the defaults, each access log entry also contains the following attributes:
 
@@ -95,7 +95,7 @@ Property | Description
 ---------|-------------
 `request` | The endpoint that was called.
 `query` | The request query parameters, if any.
-`act` | The HTTP request method; for example, `GET` or `POST`.
+`act` | The HTTP request method; for example, `POST`, `PATCH`, `PUT`, or `DELETE`.
 `status` | The HTTP response code; for example, `200` or `403`.
 
 
