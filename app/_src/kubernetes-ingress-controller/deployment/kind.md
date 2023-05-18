@@ -29,7 +29,7 @@ nodes:
 EOF
 ```
 
-We're going create our resources in the `kong` namespace. Create this now:
+Next, create a `kong` namespace for your resources:
 
 ```bash
 $ kubectl create namespace kong
