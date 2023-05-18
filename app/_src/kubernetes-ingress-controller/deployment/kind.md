@@ -62,7 +62,7 @@ Once these resources have been created, you're ready to deploy {{site.kic_produc
 kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-postgres-enterprise.yaml
 ```
 
-This may take a few minutes if this is the first time you're running {{ site.base_gateway }} in Docker with a database.
+This may take a few minutes.
 
 Once bootstrapped, you should see the {{site.kic_product_name}} running:
 
