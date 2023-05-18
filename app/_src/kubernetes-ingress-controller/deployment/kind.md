@@ -32,7 +32,7 @@ EOF
 Next, create a `kong` namespace for your resources:
 
 ```bash
-$ kubectl create namespace kong
+kubectl create namespace kong
 ```
 
 ### Create a Kong Enterprise License secret (optional)
