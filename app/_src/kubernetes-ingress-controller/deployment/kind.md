@@ -161,7 +161,7 @@ It will take a few minutes to roll out the updated deployment. Once the new
 `ingress-kong` pod is up and running, visit `http://manager.127-0-0-1.nip.io` and you should be able to log
 in to the Kong Manager UI.
 
-As you follow along with other guides on how to use your newly deployed the {{site.kic_product_name}},
+As you follow along with other guides on how to use your newly deployed {{site.kic_product_name}},
 you will be able to browse Kong Manager and see changes reflected in the UI as Kong's
 configuration changes.
 
