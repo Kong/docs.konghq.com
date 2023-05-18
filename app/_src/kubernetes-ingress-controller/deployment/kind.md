@@ -7,7 +7,7 @@ Enterprise. This architecture is described in detail in [this doc](/kubernetes-i
 
 ### Set up Kind cluster
 
-The first thing we need to do is create a `kind` cluster to deploy {{site.kic_product_name}} to:
+First, create a `kind` cluster to deploy {{site.kic_product_name}} to:
 
 ```bash
 cat <<EOF | kind create cluster --config=-
