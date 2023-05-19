@@ -397,6 +397,18 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
   [#10766](https://github.com/Kong/kong/pull/10766)
 * Bumped `kong-openid-connect` from 2.5.4 to 2.5.5
 
+### Known Issues
+
+* Due to known issues, Kong recommends not enabling page-level LMDB encryption in versions 3.0.x-3.3.x. 
+  
+  Don't set `declarative_config_encryption_mode`; leave it at its default value of `off`. Continue relying on disk-level encryption to encrypt the configuration on disk.
+
+* When sending an invalid configuration to the `/config` endpoint while running in DB-less mode and with `flatten_errors=1` set, Kong Gateway incorrectly returns a 500.
+This should be a 400 because the configuration is invalid.
+
+* When the OpenID Connect (OIDC) plugin is configured to reference HashiCorp Vault in the `config.client_secret` field (for example, `{vault://hcv/clientSecret}`),
+it does not look up the secret correctly.
+
 ## 3.2.2.2
 **Release Date** 2023/05/19
 
