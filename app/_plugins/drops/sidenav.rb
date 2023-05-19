@@ -47,7 +47,10 @@ module Jekyll
       private
 
       def standardize_url(url)
-        url.prepend('/').concat('/').gsub(%r{/+}, '/')
+        # Make sure that we add the trailing / before any URL fragment
+        parts = url.split('#')
+        parts[0] = parts[0].prepend('/').concat('/').gsub(%r{/+}, '/')
+        parts.join('#')
       end
     end
 
