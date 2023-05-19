@@ -150,6 +150,8 @@
           url: /dev-portal/applications/dev-gen-creds/
     - text: Customize Dev Portal
       url: /dev-portal/customization/
+    - text: Configure an Open Source Dev Portal 
+      url: /dev-portal/open-source-portal/
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
