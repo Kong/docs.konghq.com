@@ -1,107 +1,3 @@
----
-name: Apache OpenWhisk
-publisher: Kong Inc.
-
-source_code: https://github.com/Kong/kong-plugin-openwhisk
-
-desc: Invoke and manage OpenWhisk actions from Kong
-description: |
-  This plugin invokes
-  [OpenWhisk Action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
-  The Apache OpenWhisk plugin can be used in combination with other request plugins to secure, manage,
-  or extend the function.
-
-type: plugin
-cloud: false
-categories:
-  - serverless
-
-installation: |
-
-  You can either use the LuaRocks package manager to install the plugin
-
-  ```bash
-  luarocks install kong-plugin-openwhisk
-  ```
-
-  or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
-  For more information on plugin installation, see the documentation
-  [Plugin Development - (un)Install your plugin](/gateway/latest/plugin-development/distribution/).
-
-params:
-  name: openwhisk
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  dbless_compatible: 'yes'
-  config:
-    - name: host
-      required: true
-      default:
-      value_in_examples: <OPENWHISK_HOST>
-      datatype: string
-      description: Host of the OpenWhisk server.
-    - name: port
-      required: true
-      default: "`443`"
-      datatype: integer
-      description: Port of the OpenWhisk server.
-    - name: path
-      required: true
-      default:
-      value_in_examples: <PATH_TO_ACTION>
-      datatype: string
-      description: |
-        The path to `Action` resource.
-    - name: action
-      required: true
-      default:
-      value_in_examples: <ACTION_NAME>
-      datatype: string
-      description: |
-        Name of the `Action` to be invoked by the plugin.
-    - name: service_token
-      required: false
-      default:
-      value_in_examples: <AUTHENTICATION_TOKEN>
-      datatype: string
-      description: The service token to access Openwhisk resources.
-    - name: https_verify
-      required: false
-      default: "`false`"
-      datatype: boolean
-      description: |
-        Set to `true` to authenticate Openwhisk server.
-    - name: https
-      required: false
-      default: "`true`"
-      datatype: boolean
-      description: Option to use HTTPS to connect with the OpenWhisk server.
-    - name: result
-      required: false
-      default: "`true`"
-      datatype: boolean
-      description: |
-        Return only the result of the invoked `Action`.
-    - name: timeout
-      required: false
-      default: "`60000`"
-      datatype: integer
-      description: Timeout in milliseconds before closing a connection to OpenWhisk server.
-    - name: keepalive
-      required: false
-      default: "`60000`"
-      datatype: integer
-      description: Time in milliseconds for which an idle connection to OpenWhisk server lives before being closed.
-
-  extra: |
-    Note: If `config.https_verify` is set to `true`, then the server certificate
-    is verified according to the CA certificates specified by the
-    `lua_ssl_trusted_certificate` directive in your Kong configuration.
-
----
-
 ## Demonstration
 
 For this demonstration, we are running Kong and
@@ -169,7 +65,6 @@ Add a service and an associated route on the declarative config file:
 services:
 - name: openwhisk-test
   url: http://example.com
-
 routes:
 - service: openwhisk-test
   paths: ["/"]
@@ -233,7 +128,6 @@ plugins:
   ```
   HTTP/1.1 200 OK
   ...
-
   {
     "payload": "Hello, World!"
   }
@@ -248,7 +142,6 @@ plugins:
   ```
   HTTP/1.1 200 OK
   ...
-
   {
     "payload": "Hello, bar!"
   }
@@ -264,7 +157,6 @@ plugins:
   ```
   HTTP/1.1 200 OK
   ...
-
   {
     "payload": "Hello, bar!"
   }
@@ -278,10 +170,8 @@ plugins:
   Response:
   ```
   HTTP/1.1 100 Continue
-
   HTTP/1.1 200 OK
   ...
-
   {
     "payload": "Hello, bar!"
   }
@@ -296,7 +186,6 @@ plugins:
   ```
   HTTP/1.1 200 OK
   ...
-
   {
     "payload": "Hello, foo!"
   }
@@ -314,7 +203,6 @@ plugins:
   ```
   HTTP/1.1 200 OK
   ...
-
   {
     "duration": 4,
     "name": "hello",

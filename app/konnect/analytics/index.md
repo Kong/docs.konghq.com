@@ -12,7 +12,7 @@ statistics, monitor vital signs, and pinpoint anomalies in real time.
 Depending on your {{site.konnect_saas}} subscription tier, Analytics retains
 historical data for the following lengths of time:
 * **Free:** 24 hours
-* **Plus:** 6 months
+* **Plus:** 3 months
 * **Enterprise:** 1 year
 
 ## Contextual analytics for services and routes
@@ -31,7 +31,6 @@ You can also [export this historical data in CSV format](/konnect/analytics/serv
 
 
 ## Summary dashboard and custom reports
-{:.badge .plus}
 
 For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page.
 
@@ -40,7 +39,7 @@ From {% konnect_icon analytics %} Analytics, you can view dashboards, access his
 * [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
-The summary dashboard provides metrics for services cataloged by Service Hub within a selected time interval for the following categories:
+The summary dashboard provides metrics across all services in your organization within a selected time interval for the following categories:
 
 * **Traffic**
 * **Errors**

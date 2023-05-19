@@ -22,6 +22,10 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
+{:.note}
+> **Note:**
+> If you want to run Kong Gateway without managing a control plane or a database, [you can get started with Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=docker-install) in under 5 minutes using our Docker quick start script.
+
 * A Docker-enabled system with proper Docker access
 * (Enterprise only) A `license.json` file from Kong
 
@@ -33,8 +37,7 @@ configuration files to configure Kong.
 Store Kong configuration in-memory on the node. In this mode, the Admin API is
 read only, and you have to manage Kong using declarative configuration.
 
-If this is your first time trying out {{site.base_gateway}}, we recommend installing it
-with a database.
+If you're not sure which option to use, we recommend starting [with a database](#install-kong-gateway-with-a-database)
 
 ## Install {{site.base_gateway}} with a database
 

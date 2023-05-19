@@ -26,7 +26,7 @@ To run Kong Mesh on Windows you can choose among different installation methods:
 Run the following script in PowerShell to automatically detect the operating system and download {{site.mesh_product_name}}:
 
 ```powershell
-Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Uri https://docs.konghq.com/mesh/installer.ps1).Content))
+Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Uri https://docs.konghq.com/mesh/installer_old.ps1).Content))
 ```
 
 {% endnavtab %}

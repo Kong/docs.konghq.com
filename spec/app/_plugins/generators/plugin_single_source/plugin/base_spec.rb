@@ -3,7 +3,7 @@ RSpec.describe PluginSingleSource::Plugin::Base do
     subject { described_class.make_for(dir:, site:) }
 
     context 'a plugin with a `versions.yml`' do
-      let(:dir) { 'acme/jq' }
+      let(:dir) { 'kong-inc/jq' }
 
       it { expect(subject).to be_an_instance_of(PluginSingleSource::Plugin::Versioned) }
     end

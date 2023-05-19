@@ -1,35 +1,3 @@
----
-name: DeGraphQL
-publisher: Kong Inc.
-desc: Transform a GraphQL upstream into a REST API
-description: |
-  This plugin transforms a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
-type: plugin
-enterprise: true
-cloud: false
-categories:
-  - transformations
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
-params:
-  name: degraphql
-  service_id: true
-  konnect_examples: false
-  dbless_compatible: 'yes'
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  config:
-    - name: graphql_server_path
-      required: true
-      default: "/graphql"
-      datatype: string
-      description: The path to the GraphQL server.
-      minimum_version: "3.0.x"
----
 ## Usage
 
 DeGraphQL needs a GraphQL endpoint to query. As an example, we are going to
@@ -46,7 +14,6 @@ Create a Service and Route in {{site.base_gateway}}:
 curl -X POST http://localhost:8001/services \
   --data name="github" \
   --data url="https://api.github.com"
-
 curl -X POST http://localhost:8001/services/github/routes \
   --data paths="/api"
 ```
@@ -76,12 +43,10 @@ by defining URIs and associating them to GraphQL queries.
 {:.note}
 > Don't include the GraphQL server path prefix in the URI parameter
 (`/graphql` by default).
-
 ```bash
 curl -X POST http://localhost:8001/services/github/degraphql/routes \
   --data uri="/me" \
   --data query="query { viewer { login } }"
-
 curl http://localhost:8000/api/me \
   --header "Authorization: Bearer some-token"
 {
@@ -106,7 +71,6 @@ curl -X POST http://localhost:8001/services/github/degraphql/routes \
                     description
                  }
                }'
-
 curl http://localhost:8000/api/kong/kong \
   --header "Authorization: Bearer some-token"
 {
@@ -132,7 +96,6 @@ curl -X POST http://localhost:8001/services/github/degraphql/routes \
                     description
                   }
                 }'
-
 curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
   --header "Authorization: Bearer some-token"
 {
@@ -174,10 +137,3 @@ curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
 **Delete a DeGraphQL Route for a Service**
 
 <div class="endpoint delete">/services/:service_name/degraphql/routes/:id</div>
-
----
-## Changelog
-
-**{{site.base_gateway}} 3.0.x**
-
-* Added the `graphql_server_path` configuration parameter.

@@ -25,3 +25,7 @@
       title: Conflict
       description: The requested action is valid but can't be executed due to the current state on the server
       resolution: N/A
+    too-many-requests:
+      title: Too Many Requests
+      description: Too many requests have been sent in a given amount of time. 
+      resolution: A Retry-After header might be included to this response indicating how long to wait before making a new request.

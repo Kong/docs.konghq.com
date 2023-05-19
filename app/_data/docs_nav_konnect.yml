@@ -51,7 +51,7 @@
       url: /runtime-manager/
     - text: Runtime Instances
       items:
-        - text: Overview
+        - text: Installation Options
           url: /runtime-manager/runtime-instances/
         - text: Upgrade a Runtime Instance
           url: /runtime-manager/runtime-instances/upgrade/
@@ -61,6 +61,9 @@
           url: /runtime-manager/runtime-instances/renew-certificates/
         - text: Runtime Parameter Reference
           url: /runtime-manager/runtime-instances/runtime-parameter-reference/
+        - text: Using Custom DP Labels
+          url: /runtime-manager/runtime-instances/custom-dp-labels
+
     - text: Runtime Configuration
       items:
         - text: Overview
@@ -75,12 +78,15 @@
               url: /runtime-manager/configuration/vaults/how-to/
         - text: Manage Runtime Configuration using decK
           url: /runtime-manager/declarative-config/
+    - text: KIC Association
+      url: /runtime-manager/kic/
     - text: Backup and Restore
       url: /runtime-manager/backup-restore/
     - text: Version Compatibility
       url: /runtime-manager/version-compatibility/
     - text: Troubleshooting
       url: /runtime-manager/troubleshoot/
+
 
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
@@ -154,8 +160,12 @@
       url: /analytics/
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
-    - text: Reports Use Cases
-      url: /analytics/use-cases/
+    - text: Report Use Cases
+      items: 
+      - text: Analyze API Usage and Performance
+        url: /analytics/use-cases/
+      - text: Diagnosing Latency Issues
+        url: /analytics/use-cases/latency
     - text: Reports Reference
       url: /analytics/reference/
     - text: Troubleshoot
@@ -172,44 +182,46 @@
           url: /account-management/change-plan/
         - text: Manage Payment Methods and Invoices
           url: /account-management/billing/
-    - text: Authentication and Authorization
+    - text: Org Management
       items:
-        - text: Overview
-          url: /org-management/auth/
-        - text: Teams
-          items:
-            - text: Overview
-              url: /org-management/teams-and-roles/
-            - text: Manage Teams
-              url: /org-management/teams-and-roles/manage/
-            - text: Teams Reference
-              url: /org-management/teams-and-roles/teams-reference/
-            - text: Roles Reference
-              url: /org-management/teams-and-roles/roles-reference/
-        - text: Manage Users
-          url: /org-management/users/
-        - text: Manage System Accounts
-          url: /org-management/system-accounts/
-        - text: Set up SSO with OIDC
-          url: /org-management/oidc-idp/
-        - text: Set up SSO with Okta
-          url: /org-management/okta-idp/
-        - text: Login Sessions Reference
-          url: /org-management/sessions-reference/
-    - text: Audit Logging
-      items:
-        - text: Overview
-          url: /org-management/audit-logging/
-        - text: Set up an Audit Log Webhook
-          url: /org-management/audit-logging/webhook/
-        - text: Set up an Audit Log Replay Job
-          url: /org-management/audit-logging/replay-job/
-        - text: Log Reference
-          url: /org-management/audit-logging/reference/
-    - text: Account and Org Deactivation
-      url: /org-management/deactivation/
-    - text: Troubleshoot
-      url: /org-management/troubleshoot/
+      - text: Authentication and Authorization
+        items:
+          - text: Overview
+            url: /org-management/auth/
+          - text: Teams
+            items:
+              - text: Overview
+                url: /org-management/teams-and-roles/
+              - text: Manage Teams
+                url: /org-management/teams-and-roles/manage/
+              - text: Teams Reference
+                url: /org-management/teams-and-roles/teams-reference/
+              - text: Roles Reference
+                url: /org-management/teams-and-roles/roles-reference/
+          - text: Manage Users
+            url: /org-management/users/
+          - text: Manage System Accounts
+            url: /org-management/system-accounts/
+          - text: Set up SSO with OIDC
+            url: /org-management/oidc-idp/
+          - text: Set up SSO with Okta
+            url: /org-management/okta-idp/
+          - text: Login Sessions Reference
+            url: /org-management/sessions-reference/
+          - text: Troubleshoot
+            url: /org-management/troubleshoot/
+      - text: Audit Logging
+        items:
+          - text: Overview
+            url: /org-management/audit-logging/
+          - text: Set up an Audit Log Webhook
+            url: /org-management/audit-logging/webhook/
+          - text: Set up an Audit Log Replay Job
+            url: /org-management/audit-logging/replay-job/
+          - text: Log Reference
+            url: /org-management/audit-logging/reference/
+      - text: Account and Org Deactivation
+        url: /org-management/deactivation/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -223,6 +235,8 @@
           absolute_url: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
+        - text: SSO Customization
+          url: /api/identity-management/sso/
     - text: Runtime Groups API
       items:
         - text: API Documentation
@@ -279,6 +293,8 @@
       items:
         - text: Filtering
           url: /api/filtering/
+        - text: API Errors
+          url: /api/errors/
 
 - title: Reference
   icon: /assets/images/icons/documentation/icn-references-color.svg

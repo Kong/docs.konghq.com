@@ -1,0 +1,11 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    }
+  ]
+}

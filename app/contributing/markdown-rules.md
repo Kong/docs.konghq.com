@@ -20,15 +20,31 @@ Plugin Hub docs have specialized front matter elements. See the
 `content_type: how-to | explanation | reference | tutorial`
 : Add a tag to the front matter of each topic that you edit.
 Add the tag that most closely resembles the concept, even if it doesn’t perfectly align with a tag.
+: 
+: See our [contribution templates](/contributing/contribution-templates/) for more information about each content type.
+
+`description: DESCRIPTION`
+: A short description of what the page covers. This is used by Google and appears below the page title. Target length 50-160 characters.
 
 **Optional:**
 
 `no_version: true`
-: Disables the version selector dropdown. Set this on pages that belong to
-doc sets without versions like `/konnect/`.
+: Disables the version selector dropdown. Set this on pages that shouldn't be versioned.
+: 
+: Do not use if the page is part of `/contributing/` or `/konnect/`, 
+as both of those doc sets are not versioned by default.
 
 `beta: true` or `alpha: true`
-: Labels the page as beta or alpha; adds a banner to the top of the page.
+: Labels the page as beta or alpha; adds a banner to the top of the page. Can use `stability_message` to
+add a custom explanation.
+
+`stability_message: <message>`
+: Set a custom message about the stability of a release. Must be used with `beta: true` or `alpha: true`.
+: 
+: Use YAML pipe (`|`) notation if your message extends over one line.
+
+`badge: enterprise | plus | oss | free`
+: Sets a tier badge on the page title.
 
 `disable_image_expand: true`
 : Stops images from expanding in a modal on click. Sets it for the entire page.
@@ -59,6 +75,18 @@ disable_image_expand: true
 ---
 ```
 
+A page with a custom stability banner:
+
+```yaml
+---
+title: Using multiple backend Services
+content_type: tutorial
+beta: true
+stability_message: |
+  Using multiple backend services will be GA once a non-beta version of the 
+  <a href="https://gateway-api.sigs.k8s.io/">Kubernetes Gateway API</a> is available.
+---
+```
 
 ## Variables
 

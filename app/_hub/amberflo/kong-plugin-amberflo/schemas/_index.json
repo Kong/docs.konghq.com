@@ -1,0 +1,108 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [
+            "http",
+            "https"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "apiKey": {
+              "type": "string",
+              "required": true,
+              "description": "Your Amberflo API key."
+            }
+          },
+          {
+            "meterApiName": {
+              "type": "string",
+              "required": true,
+              "description": "The meter for metering the requests."
+            }
+          },
+          {
+            "customerHeader": {
+              "type": "string",
+              "required": true,
+              "description": "The header to get the Amberflo `customerId` from."
+            }
+          },
+          {
+            "intervalSeconds": {
+              "type": "number",
+              "default": 1,
+              "description": "The rate (in seconds) at which to send the meter record batch."
+            }
+          },
+          {
+            "batchSize": {
+              "type": "number",
+              "default": 10,
+              "description": "The size at which to send the meter record batch."
+            }
+          },
+          {
+            "methodDimension": {
+              "type": "string",
+              "description": "The dimension name for the request method."
+            }
+          },
+          {
+            "hostDimension": {
+              "type": "string",
+              "description": "The dimension name for the target URL host."
+            }
+          },
+          {
+            "routeDimension": {
+              "type": "string",
+              "description": "The dimension name for the route name."
+            }
+          },
+          {
+            "serviceDimension": {
+              "type": "string",
+              "description": "The dimension name for the service name."
+            }
+          },
+          {
+            "dimensionHeaders": {
+              "type": "map",
+              "description": "The map of \"dimension name\" to \"header name\", for inclusion in the meter record."
+            }
+          },
+          {
+            "replacements": {
+              "type": "map",
+              "default": "{ \"/\": \":\" }",
+              "description": "The map of \"old\" to \"new\" values for transforming dimension values."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

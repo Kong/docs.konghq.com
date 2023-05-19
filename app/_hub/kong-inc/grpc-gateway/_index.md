@@ -1,50 +1,3 @@
----
-name: gRPC-gateway
-publisher: Kong Inc.
-categories:
-  - transformations
-type: plugin
-desc: Access gRPC services through HTTP REST
-description: |
-  A Kong plugin to allow access to a gRPC service via HTTP REST requests
-  and translate requests and responses in a JSON format. Similar to
-  [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/).
-license_type: MIT
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: grpc-gateway
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: tcp
-    - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
-  dbless_compatible: 'yes'
-  config:
-    - name: proto
-      required: false
-      default: null
-      value_in_examples: path/to/hello.proto
-      datatype: string
-      description: |
-        Describes the gRPC types and methods.
-        [HTTP configuration](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto)
-        must be defined in the file.
----
-
 ## Purpose
 
 This plugin translates requests and responses between gRPC and HTTP REST.
@@ -109,9 +62,7 @@ The example uses the following mapping:
 
 ```protobuf
 syntax = "proto2";
-
 package hello;
-
 service HelloService {
   rpc SayHello(HelloRequest) returns (HelloResponse) {
     option (google.api.http) = {
@@ -124,13 +75,10 @@ service HelloService {
     }
   }
 }
-
-
 // The request message containing the user's name.
 message HelloRequest {
   string name = 1;
 }
-
 // The response message containing the greetings
 message HelloResponse {
   string message = 1;
@@ -145,13 +93,10 @@ gRPC requests:
 ```bash
 curl -XGET localhost:8000/v1/messages/Kong2.0
 {"message":"Hello Kong2.0"}
-
 curl -XGET localhost:8000/v1/messages/legacy/Kong2.0
 {"message":"Hello Kong2.0"}
-
 curl -XGET localhost:8000/v1/messages/legacy/Kong2.0/more/paths
 {"message":"Hello Kong2.0\/more\/paths"}
-
 curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 {"message":"Hello kong2.0"}
 ```
@@ -186,10 +131,3 @@ Currently only unary requests are supported; streaming requests are not supporte
 ## See also
 
 [Introduction to Kong gRPC plugins](/gateway/latest/configure/grpc)
-
----
-## Changelog
-
-**{{site.base_gateway}} 2.6.x**
-* Fields of type `.google.protobuf.Timestamp` on the gRPC side are now transcoded to and from ISO8601 strings on the REST side.
-* URI arguments like `..?foo.bar=x&foo.baz=y` are interpreted as structured fields, equivalent to `{"foo": {"bar": "x", "baz": "y"}}`.

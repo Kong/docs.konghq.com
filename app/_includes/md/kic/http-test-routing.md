@@ -17,24 +17,18 @@ curl -i http://{{ hostname }}{{ path }} --resolve {{ hostname }}:80:$PROXY_IP
 Response:
 ```text
 HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Transfer-Encoding: chunked
+Content-Type: text/plain; charset=utf-8
+Content-Length: 140
 Connection: keep-alive
-Date: Thu, 10 Nov 2022 22:10:40 GMT
-Server: echoserver
+Date: Fri, 21 Apr 2023 12:24:55 GMT
 X-Kong-Upstream-Latency: 0
-X-Kong-Proxy-Latency: 0
-Via: kong/3.0.0
+X-Kong-Proxy-Latency: 1
+Via: kong/3.2.2
 
-
-
-Hostname: echo-fc6fd95b5-6lqnc
-
-Pod Information:
-	node name:	kind-control-plane
-	pod name:	echo-fc6fd95b5-6lqnc
-	pod namespace:	default
-	pod IP:	10.244.0.9
+Welcome, you are connected to node docker-desktop.
+Running on Pod echo-7f87468b8c-tzzv6.
+In namespace default.
+With IP address 10.1.0.237.
 ...
 ```
 

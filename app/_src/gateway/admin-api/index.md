@@ -187,6 +187,7 @@ consumer_json: |
     {
         "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
@@ -196,6 +197,7 @@ consumer_data: |
     "data": [{
         "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
@@ -226,6 +228,7 @@ plugin_json: |
         "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
         "name": "rate-limiting",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "route": null,
         "service": null,
         "consumer": null,
@@ -241,7 +244,9 @@ plugin_data: |
     "data": [{
         "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
         "name": "rate-limiting",
+        "instance_name": "rate-limiting-foo",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "route": null,
         "service": null,
         "consumer": null,
@@ -279,6 +284,7 @@ certificate_json: |
     {
         "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "cert_alt": "-----BEGIN CERTIFICATE-----...",
@@ -290,6 +296,7 @@ certificate_data: |
     "data": [{
         "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "cert_alt": "-----BEGIN CERTIFICATE-----...",
@@ -298,6 +305,7 @@ certificate_data: |
     }, {
         "id": "a9b2107f-a214-47b3-add4-46b942187924",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "cert_alt": "-----BEGIN CERTIFICATE-----...",
@@ -316,6 +324,7 @@ ca_certificate_json: |
     {
         "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["user-level", "low-priority"]
@@ -325,12 +334,14 @@ ca_certificate_data: |
     "data": [{
         "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["admin", "high-priority", "critical"]
@@ -348,6 +359,7 @@ sni_json: |
         "id": "91020192-062d-416f-a275-9addeeaffaf2",
         "name": "my-sni",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "tags": ["user-level", "low-priority"],
         "certificate": {"id":"a2e013e8-7623-4494-a347-6d29108ff68b"}
     }
@@ -357,12 +369,14 @@ sni_data: |
         "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
         "name": "my-sni",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "tags": ["user-level", "low-priority"],
         "certificate": {"id":"a3ad71a8-6685-4b03-a101-980a953544f6"}
     }, {
         "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
         "name": "my-sni",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "tags": ["admin", "high-priority", "critical"],
         "certificate": {"id":"4e8d95d4-40f2-4818-adcb-30e00c349618"}
     }],
@@ -371,7 +385,7 @@ upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
-    `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`.  Default: `"round-robin"`.
+    `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`, `"latency"`.  Default: `"round-robin"`.
     `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`, `"path"`, `"query_arg"`, `"uri_capture"`.  Default: `"none"`.
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`, `"path"`, `"query_arg"`, `"uri_capture"`.  Default: `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
@@ -415,6 +429,7 @@ upstream_json: |
     {
         "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "name": "my-upstream",
         "algorithm": "round-robin",
         "hash_on": "none",
@@ -468,6 +483,7 @@ upstream_data: |
     "data": [{
         "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "name": "my-upstream",
         "algorithm": "round-robin",
         "hash_on": "none",
@@ -518,6 +534,7 @@ upstream_data: |
     }, {
         "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "name": "my-upstream",
         "algorithm": "round-robin",
         "hash_on": "none",
@@ -578,6 +595,7 @@ target_json: |
     {
         "id": "173a6cee-90d1-40a7-89cf-0329eca780a6",
         "created_at": 1422386534,
+         "updated_at": 1422386534,
         "upstream": {"id":"bdab0e47-4e37-4f0b-8fd0-87d95cc4addc"},
         "target": "example.com:8000",
         "weight": 100,
@@ -730,6 +748,10 @@ key_set_data: |
 
 
 ---
+
+
+{:.note .no-icon}
+> **Try our Beta API specs for [Kong Gateway Enterprise](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60) and [Kong Gateway Open Source](https://developer.konghq.com/spec/680541e5-de6e-46e5-b43d-0bd1b2369453/e2a0ef29-573d-4fc4-86df-216c417f4aa9)**
 
 <!-- vale off -->
 {% unless page.edition == "gateway" %}

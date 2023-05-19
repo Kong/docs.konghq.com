@@ -187,6 +187,7 @@ consumer_json: |
     {
         "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
@@ -196,6 +197,7 @@ consumer_data: |
     "data": [{
         "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
@@ -226,6 +228,7 @@ plugin_json: |
         "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
         "name": "rate-limiting",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "route": null,
         "service": null,
         "consumer": null,
@@ -241,7 +244,9 @@ plugin_data: |
     "data": [{
         "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
         "name": "rate-limiting",
+        "instance_name": "rate-limiting-foo",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "route": null,
         "service": null,
         "consumer": null,
@@ -278,6 +283,7 @@ certificate_json: |
     {
         "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "cert_alt": "-----BEGIN CERTIFICATE-----...",
@@ -289,6 +295,7 @@ certificate_data: |
     "data": [{
         "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "cert_alt": "-----BEGIN CERTIFICATE-----...",
@@ -297,6 +304,7 @@ certificate_data: |
     }, {
         "id": "a9b2107f-a214-47b3-add4-46b942187924",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "cert_alt": "-----BEGIN CERTIFICATE-----...",
@@ -315,6 +323,7 @@ ca_certificate_json: |
     {
         "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["user-level", "low-priority"]
@@ -324,12 +333,14 @@ ca_certificate_data: |
     "data": [{
         "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["admin", "high-priority", "critical"]
@@ -347,6 +358,7 @@ sni_json: |
         "id": "91020192-062d-416f-a275-9addeeaffaf2",
         "name": "my-sni",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "tags": ["user-level", "low-priority"],
         "certificate": {"id":"a2e013e8-7623-4494-a347-6d29108ff68b"}
     }
@@ -356,12 +368,14 @@ sni_data: |
         "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
         "name": "my-sni",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "tags": ["user-level", "low-priority"],
         "certificate": {"id":"a3ad71a8-6685-4b03-a101-980a953544f6"}
     }, {
         "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
         "name": "my-sni",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "tags": ["admin", "high-priority", "critical"],
         "certificate": {"id":"4e8d95d4-40f2-4818-adcb-30e00c349618"}
     }],
@@ -414,6 +428,7 @@ upstream_json: |
     {
         "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "name": "my-upstream",
         "algorithm": "round-robin",
         "hash_on": "none",
@@ -467,6 +482,7 @@ upstream_data: |
     "data": [{
         "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "name": "my-upstream",
         "algorithm": "round-robin",
         "hash_on": "none",
@@ -517,6 +533,7 @@ upstream_data: |
     }, {
         "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
         "created_at": 1422386534,
+        "updated_at": 1422386534,
         "name": "my-upstream",
         "algorithm": "round-robin",
         "hash_on": "none",
@@ -577,6 +594,7 @@ target_json: |
     {
         "id": "173a6cee-90d1-40a7-89cf-0329eca780a6",
         "created_at": 1422386534,
+         "updated_at": 1422386534,
         "upstream": {"id":"bdab0e47-4e37-4f0b-8fd0-87d95cc4addc"},
         "target": "example.com:8000",
         "weight": 100,
@@ -752,7 +770,7 @@ The API for configuring Kong Konnect Runtime Groups.
 
 
 
-This API is similar to the [Kong Gateway admin API](/gateway/admin-api/) with a few notable differences:
+This API is similar to the [Kong Gateway admin API](/gateway/latest/admin-api/) with a few notable differences:
 
 * `PATCH` methods are not supported
 > `PATCH` methods are not yet available in the Konnect core entities endpoint. Update operations can be performed with the `PUT` method. 
@@ -787,7 +805,7 @@ a JSON representation of the data you want to send. Example:
 An example adding a Route to a Service named `test-service`:
 
 ```
-curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+curl -i -X POST http://https://{region}.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
      -H "Content-Type: application/json" \
      -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
 ```
@@ -800,7 +818,6 @@ curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_grou
 * [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
 * [Plugin Hub](/hub/)
 
----
 ## Nodes
 ### List Runtime Instance Records
 
@@ -1145,6 +1162,12 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 ---
 
+## Using the API in workspaces 
+{:.badge .enterprise}
+
+{% include_cached /md/gateway/admin-api-workspaces.md %}
+
+---
 
 ## Information Routes
 
@@ -1350,9 +1373,8 @@ HTTP 200 OK
 ```
 
 
-{% endunless %}
-
 ---
+{% endunless %}
 
 ### Retrieve Plugin Schema
 {:.badge .dbless}
@@ -1386,10 +1408,9 @@ HTTP 200 OK
 }
 ```
 
-{% unless page.edition == "konnect" %}
 
 ---
-
+{% unless page.edition == "konnect" %}
 ### Validate A Plugin Configuration against The Schema
 {:.badge .dbless}
 
@@ -1617,9 +1638,9 @@ HTTP 200 OK
 
 {% endunless %}
 
-{% unless page.edition == "konnect" %}
-
 ---
+
+{% unless page.edition == "konnect" %}
 
 ## Tags
 
@@ -1929,7 +1950,6 @@ HTTP 200 OK
     "message": "log level changed"
 }
 ```
-
 
 {% endunless %}
 
@@ -2310,8 +2330,8 @@ The router adds:
 
 Learn more about the router:
 
-[Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
-[Router Expressions language reference](/gateway/{{page.kong_version}}/reference/router-expressions-language/)
+[Configure routes using expressions](/gateway/latest/key-concepts/routes/expressions/)
+[Router Expressions language reference](/gateway/latest/reference/router-expressions-language/)
 
 
 #### Path handling algorithms
@@ -5601,11 +5621,11 @@ HTTP 204 No Content
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
-[cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
-[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+[clustering]: /gateway/latest/reference/clustering
+[cli]: /gateway/latest/reference/cli
+[active]: /gateway/latest/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/latest/how-kong-works/health-checks
+[secure-admin-api]: /gateway/latest/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/latest/how-kong-works/routing-traffic/
 
 {% endunless %}

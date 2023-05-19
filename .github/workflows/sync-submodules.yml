@@ -2,6 +2,10 @@ name: Submodule Sync
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   submodule-sync:
     name: Submodule Sync

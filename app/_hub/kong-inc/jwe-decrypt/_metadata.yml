@@ -1,0 +1,14 @@
+name: JWE Decrypt
+dbless_compatible: 'yes'
+free: false
+plus: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - authentication
+publisher: Kong Inc.
+desc: Decrypt a JWE token in a request
+description: |
+  The Kong JWE Decrypt plugin makes it possible to decrypt an inbound token(JWE) in a request.

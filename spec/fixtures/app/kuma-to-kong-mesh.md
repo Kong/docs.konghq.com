@@ -25,6 +25,16 @@ The word "Kuma" means "bear" in Japanese (クマ).
 [kuma-dp run](/docs/{{ page.version }}/generated/cmd/kuma-dp/kuma-dp_run)
 [kumactl apply](/docs/{{ page.version }}/generated/cmd/kumactl/kumactl_apply)
 
+
+#### Dashboards
+
+<center>
+<img src="/assets/images/docs/0.4.0/kuma_dp1.jpeg" alt="Kuma Dataplane dashboard" style="width: 600px; padding-top: 20px; padding-bottom: 10px;"/>
+<img src="/assets/images/docs/0.4.0/kuma_dp2.png" alt="Kuma Dataplane dashboard" style="width: 600px; padding-top: 20px; padding-bottom: 10px;"/>
+<img src="/assets/images/docs/0.4.0/kuma_dp3.png" alt="Kuma Dataplane dashboard" style="width: 600px; padding-top: 20px; padding-bottom: 10px;"/>
+<img src="/assets/images/docs/1.1.2/kuma_dp4.png" alt="Kuma Dataplane dashboard" style="width: 600px; padding-top: 20px; padding-bottom: 10px;"/>
+</center>
+
 ## Exact links transforms
 
 [Install Kuma](/install/)
