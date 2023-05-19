@@ -11,6 +11,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2023
 
+
+**Allow filtering of runtime instances based on connection status** 
+: Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, or `all`.
+
 **My Account**
 : {{site.konnect_saas}} now includes a **My Account** feature. Here, users can easily edit their personal information, change their password, and manage their account. **My Account** is available by selecting your user icon in the top-right corner of the {{site.konnect_saas}} manager and selecting **My Account**.
 

@@ -7,8 +7,9 @@ categories:
 type: integration
 
 enterprise: true
+techpartner: true
 
-desc: Integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway.
+desc: Integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway
 
 description: |
   [This integration guide](https://github.com/tom-smith-okta/okta-api-center/tree/master/gateways/kong){:target="_blank"}{:rel="noopener noreferrer"} describes how to integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway.
