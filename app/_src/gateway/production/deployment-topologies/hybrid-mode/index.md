@@ -139,7 +139,7 @@ In case the control plane stops working, the data plane will keep serving reques
 cached configurations. It does so while constantly trying to reestablish communication
 with the control plane.
 
-This means that the data plane nodes can be stopped even for extended periods
+This means that the control plane nodes can be stopped even for extended periods
 of time, and the data plane will still proxy traffic normally. Data plane
 nodes can be restarted while in disconnected mode, and will load the last
 configuration in the cache to start working. When the control plane is brought
