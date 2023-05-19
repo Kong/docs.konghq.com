@@ -204,6 +204,16 @@ temporary file. To use the diagnostic mode:
 1. Set the `--dump-config` flag (or `CONTROLLER_DUMP_CONFIG` environment
    variable) to `true`. Optionally set the `--dump-sensitive-config` flag to
    `true` to include un-redacted TLS certificate keys and credentials.
+
+   If you're deploying with the Helm chart, add the following to your
+   `values.yaml` file:
+
+   ```yaml
+   ingressController:
+    env:
+      dump_config: "true"
+      dump_sensitive_config: "true"
+    ```
 1. (Optional) Make a change to a Kubernetes resource that you know will
    reproduce the issue. If you are unsure what change caused the issue
    originally, you can omit this step.
@@ -229,7 +239,12 @@ approaches to isolate issues:
   and responses (passing `--verbose 2` to decK will show all requests) and
    add debug Kong Lua code when controller requests result in an
   unhandled error (500 response).
+- To run a DB-less {{ site.base_gateway }} instance with Docker for testing
+  purposes, run `curl https://get.konghq.com/quickstart | bash -s -- -D`.
 
+  Once this image is running, run `curl http://localhost:8001/config @last_bad.json`
+  to try applying the configuration and see any errors.
+  
 ## Inspecting network traffic with a tcpdump sidecar
 
 Inspecting network traffic allows you to review traffic between the ingress

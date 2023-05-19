@@ -1,5 +1,5 @@
 .badge {
-  display: flex;
+  display: inline-flex;
   margin: 0;
   padding: 0;
   border-radius: 2px;
@@ -40,13 +40,16 @@
     }
   }
 
-  &.enterprise {
-    background: @steel-100;
+  &.techpartner::after {
+    content: "TECH PARTNER";
+    color: #008871;
+    background: #E8F8F5;
+  }
 
-    &::after {
-      content: "ENTERPRISE";
-      color: @steel-700;
-    }
+  &.enterprise::after {
+    content: "ENTERPRISE";
+    color: @steel-700;
+    background: @steel-100;
   }
 
   &.free::after {
@@ -153,7 +156,6 @@
 
 span.badge {
   vertical-align: text-bottom;
-  display: inline-flex;
 }
 
 h2.badge,
@@ -162,6 +164,9 @@ h4.badge,
 h5.badge {
   &:after {
     margin-left: 7px;
+    max-height: 12px;
+    align-self: center;
+    padding: 5px 12px 4px;
   }
 
   &:hover,

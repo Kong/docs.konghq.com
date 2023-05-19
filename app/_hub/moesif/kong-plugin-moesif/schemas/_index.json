@@ -70,7 +70,7 @@
           {
             "keepalive": {
               "type": "number",
-              "default": 1000,
+              "default": 5000,
               "description": "Value in milliseconds that defines for how long an idle connection will live before being closed."
             }
           },
@@ -168,7 +168,7 @@
           {
             "event_queue_size": {
               "type": "number",
-              "default": 5000,
+              "default": 1000,
               "description": "Maximum number of events to hold in the queue before sending to Moesif. In case of network issues where the plugin is unable to connect or send an event to Moesif, skips adding new events to the queue to prevent memory overflow."
             }
           },
@@ -182,7 +182,7 @@
           {
             "max_callback_time_spent": {
               "type": "number",
-              "default": 2000,
+              "default": 750,
               "description": "Limits the amount of time in milliseconds to send events to Moesif per worker cycle."
             }
           },

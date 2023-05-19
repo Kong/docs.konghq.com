@@ -5,6 +5,7 @@ no_version: true
 
 <!-- vale off -->
 
+
 ## 3.3.0.0
 **Release Date** 2023/05/19
 
@@ -288,10 +289,20 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
   [#10775](https://github.com/Kong/kong/pull/10775)
 * Fixed an issue where vault configuration stayed sticky and cached even when configurations were changed.
   [#10776](https://github.com/Kong/kong/pull/10776)
+
+
+## 3.2.2.2
+**Release Date** 2023/05/19
+
+### Fixes
+
+#### Core 
+
 * Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
   lead to the corruption of chunk-encoded response data.
   [#10816](https://github.com/Kong/kong/pull/10816)
   [#10824](https://github.com/Kong/kong/pull/10824)
+
 
 * Fixed the following PostgreSQL TTL clean-up timer issues: 
   * Timers will now only run on traditional and control plane nodes that have enabled the Admin API.
@@ -401,7 +412,12 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
 * Bumped `lua-resty-lmdb` from 1.0.0 to 1.1.0
   [#10766](https://github.com/Kong/kong/pull/10766)
 * Bumped `kong-openid-connect` from 2.5.4 to 2.5.5
+* Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
+  [#10691](https://github.com/Kong/kong/pull/10691)
 
+#### Plugins 
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+    * Fixed the log flooding issue caused by low `sync_rate` settings.
 
 ## 3.2.2.1
 **Release Date** 2023/04/03
@@ -753,7 +769,8 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 ### Fixes 
 
 #### Core 
-* Fixed a UDP socket leak in `resty.dns.client`.
+* Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
+  [#10691](https://github.com/Kong/kong/pull/10691)
 * Hybrid mode: Fixed an issue where Vitals/Analytics couldn't communicate through the cluster telemetry endpoint.
 * Fixed an issue where `alpine` and `ubuntu` ARM64 artifacts incorrectly handled HTTP/2 requests, causing the protocol to fail.
 * Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that

@@ -11,6 +11,9 @@
 {%- if badges.enterprise? -%}
   {%- assign css_classes =  css_classes | append: " enterprise" -%}
 {%- endif -%}
+{%- if badges.techpartner? -%}
+  {%- assign css_classes =  css_classes | append: " techpartner" -%}
+{%- endif -%}
 {%- unless extn.enterprise -%}
   {%- assign css_classes = css_classes | append: " open-source" -%}
 {%- endunless -%}
@@ -40,6 +43,9 @@
           {% endif %}
           {% if badges.enterprise? %}
             <span class="badge enterprise"></span>
+          {% endif %}
+          {% if badges.techpartner? %}
+            <span class="badge techpartner"></span>
           {% endif %}
         </div>
         <div class="plugin-card--meta__description">{{ extn.desc }}</div>

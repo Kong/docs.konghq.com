@@ -8,9 +8,9 @@ downgrade to the free version, or continue with a paid Plus subscription.
 
 ## Set up a new {{site.konnect_saas}} account
 
-1. Go to [cloud.konghq.com/register](https://cloud.konghq.com/register).
+1. Go to {{site.konnect_short_name}}'s [registration page](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-get-started).
 
-2. On the registration screen, fill in your email address, first and last name,
+2. In the registration form, fill in your email address, first and last name,
 and organization name.
 
     All fields are required.
