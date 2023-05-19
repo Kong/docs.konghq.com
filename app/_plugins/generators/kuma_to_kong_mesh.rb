@@ -33,7 +33,7 @@ module KumaToKongMesh
       # Links can be wrapped with " (html) or ( and ) (markdown)
       page.content = page
                      .content
-                     .gsub(%r{([("]/.*)kuma(?!(?:-cp|-dp|ctl))([^\s]*)([)"])}, '\1kong-mesh\2\3')
+                     .gsub(%r{([("]/(?!assets/).*)kuma(?!(?:-cp|-dp|ctl))([^\s]*)([)"])}, '\1kong-mesh\2\3')
                      .gsub('kong-mesh.io', 'kuma.io')
     end
 

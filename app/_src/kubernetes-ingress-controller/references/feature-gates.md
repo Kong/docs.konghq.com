@@ -33,6 +33,10 @@ Features that reach GA and become stable are removed from this table, but they c
 {% if_version gte: 2.8.x %}
 | CombinedRoutes         | `true`  | Beta  | 2.8.0 | TBD   |
 {% endif_version %}
+{% if_version gte: 2.10.x %}
+| ExpressionRoutes       | `false` | Alpha | 2.10.0 | TBD   |
+| CombinedServices       | `false` | Alpha | 2.10.0 | TBD   |
+{% endif_version %}
 
 ### Feature gates details
 
@@ -43,6 +47,20 @@ Features that reach GA and become stable are removed from this table, but they c
 
 {:.important}
 >**Important:** To avoid disruption to your services consider not using features until they have reached GA status. 
+
+### Using feature gates
+
+To enable feature gates, provide the `--feature-gates` flag when launching KIC, or set the `CONTROLLER_FEATURE_GATES` environment variable.
+
+Feature gates consist of a comma-delimited set of `key=value` pairs. For example, if you wanted to enable `CombinedRoutes` and `CombinedServices`, you'd set `CONTROLLER_FEATURE_GATES=CombinedRoutes=true,CombinedServices=true`.
+
+To enable features via Helm, set the following in your `values.yaml`:
+
+```yaml
+ingressController:
+  env:
+    feature_gates: CombinedRoutes=true,CombinedServices=true
+```
 
 ### Documentation
 

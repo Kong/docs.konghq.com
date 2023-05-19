@@ -192,7 +192,7 @@ spec:
         mode: Limit # allowed: Limit, Shadow
         backend:
           rateLimitService:
-            url: http://ratelimit-service:10003
+            url: http://kong-mesh-ratelimit-service:10003
             timeout: 25ms
 ```
 
@@ -262,7 +262,7 @@ spec:
         mode: Limit
         backend:
           rateLimitService:
-            url: http://ratelimit-service:10003
+            url: http://kong-mesh-ratelimit-service:10003
             timeout: 25ms
 ```
 

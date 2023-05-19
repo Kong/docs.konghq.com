@@ -322,6 +322,9 @@ Kubernetes Service which is backed by [Kong Admin API][admin] endpoints.
 This Service endpoints can be then discovered by {{site.kic_product_name}}
 through Kubernetes EndpointSlice watch.
 
+{:.important}
+> Gateway Discovery is only supported with DB-less deployments of Kong.
+
 The overview of this type of deployment can be found on the figure below:
 
 ![Gateway Discovery overview](/assets/images/docs/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
