@@ -33,5 +33,18 @@ RSpec.describe Jekyll::Drops::SidenavMenuItem do
         expect(subject.url).to eq('/gateway/3.2.x/kong-enterprise/dev-portal/workspaces/')
       end
     end
+
+    context 'when the URL contains a fragment' do
+      let(:item) do
+        {
+         'text' => 'Health Routes',
+         'url' => 'admin-api#health-routes'
+        }
+      end
+
+      it 'adds the trailing slash before the fragment' do
+        expect(subject.url).to eq('/gateway/3.2.x/admin-api/#health-routes')
+      end
+    end
   end
 end
