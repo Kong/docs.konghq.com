@@ -289,21 +289,6 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
   [#10775](https://github.com/Kong/kong/pull/10775)
 * Fixed an issue where vault configuration stayed sticky and cached even when configurations were changed.
   [#10776](https://github.com/Kong/kong/pull/10776)
-
-
-## 3.2.2.2
-**Release Date** 2023/05/19
-
-### Fixes
-
-#### Core 
-
-* Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
-  lead to the corruption of chunk-encoded response data.
-  [#10816](https://github.com/Kong/kong/pull/10816)
-  [#10824](https://github.com/Kong/kong/pull/10824)
-
-
 * Fixed the following PostgreSQL TTL clean-up timer issues: 
   * Timers will now only run on traditional and control plane nodes that have enabled the Admin API.
   [#10405](https://github.com/Kong/kong/pull/10405)
@@ -314,7 +299,6 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
   * Kong Gateway now deletes expired rows based on the database server-side timestamp to avoid potential
   problems caused by the differences in clock time between Kong Gateway and the database server.
   [#10389](https://github.com/Kong/kong/pull/10389)
-
 * Fixed an issue where an empty value for the URI argument `custom_id` crashed the `/consumer` API.
   [#10475](https://github.com/Kong/kong/pull/10475)
 
@@ -412,10 +396,21 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
 * Bumped `lua-resty-lmdb` from 1.0.0 to 1.1.0
   [#10766](https://github.com/Kong/kong/pull/10766)
 * Bumped `kong-openid-connect` from 2.5.4 to 2.5.5
+
+## 3.2.2.2
+**Release Date** 2023/05/19
+
+### Fixes
+
+#### Core 
+* Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
+  lead to the corruption of chunk-encoded response data.
+  [#10816](https://github.com/Kong/kong/pull/10816)
+  [#10824](https://github.com/Kong/kong/pull/10824)
 * Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
   [#10691](https://github.com/Kong/kong/pull/10691)
 
-#### Plugins 
+#### Plugins
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
     * Fixed the log flooding issue caused by low `sync_rate` settings.
 
