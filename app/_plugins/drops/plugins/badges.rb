@@ -28,7 +28,11 @@ module Jekyll
         end
 
         def hash
-          "publisher:#{@publisher}-plus:#{plus?}-konnect:#{konnect?}-enterprise:#{enterprise?}-techpartner:#{techpartner?}"
+          "publisher:#{@publisher}-" \
+            "plus:#{plus?}-" \
+            "konnect:#{konnect?}-" \
+            "enterprise:#{enterprise?}-" \
+            "techpartner:#{techpartner?}"
         end
       end
     end
