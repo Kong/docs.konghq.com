@@ -178,7 +178,7 @@ in that order.
 ```
 
 Using the JWT debugger at https://jwt.io with the header (HS256), claims (`iss`, etc.),
-and `secret` associated with this `key` (C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X), you'll end up with a JWT token of:
+and `secret` associated with this `key` `C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X`, you'll end up with a JWT token of:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9FTGdBVk5jeiIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.WuLdHyvZGj2UAsnBl6YF9A4NqGQpaDftHjX18ooK8YY
