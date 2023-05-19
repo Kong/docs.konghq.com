@@ -404,7 +404,7 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
 
 ### Known Issues
 
-* Due to known issues, Kong recommends not enabling page-level lmbd encryption in versions 3.0.x-3.3.x. 
+* Due to known issues, Kong recommends not enabling page-level LMDB encryption in versions 3.0.x-3.3.x. 
   
   Don't set `declarative_config_encryption_mode`; leave it at its default value of `off`. Continue relying on disk-level encryption to encrypt the configuration on disk.
 
