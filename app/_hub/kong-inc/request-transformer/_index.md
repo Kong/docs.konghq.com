@@ -20,7 +20,8 @@ $('$(something_that_needs_to_escaped)')
 > **Note:** The plugin creates a non-mutable table of request headers, query strings, and captured URIs
 before transformation. Therefore, any update or removal of parameters used in a template
 does not affect the rendered value of a template.
-### Advanced templates
+
+### Advanced templates {#advanced-templates}
 
 The content of the placeholder `$(...)` is evaluated as a Lua expression, so
 logical operators may be used. For example:
@@ -305,3 +306,4 @@ plugins:
 |---           | ---
 |p1=v1&p2=v1   | p2=v1
 |p2=v1         | p2=v1
+

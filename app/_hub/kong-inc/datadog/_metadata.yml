@@ -5,6 +5,7 @@ free: true
 plus: true
 enterprise: true
 konnect: true
+referenceable: true
 network_config_opts: All
 notes: --
 categories:

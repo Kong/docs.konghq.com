@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.3.x**
+* Added the `disable_https` configuration field to support HTTP connections to a lambda service.
+  [#9799](https://github.com/Kong/kong/pull/9799)
 
 **{{site.base_gateway}} 3.2.x**
 * Added the configuration parameter `aws_imds_protocol_version`, which

@@ -536,6 +536,14 @@ messages:
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
       [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/)
+  - ID: D155
+    Severity: error
+    Description: |
+      Plugin `datadog-tracing` is not available in Kong Gateway versions < 3.2.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.2` or above.
+    DocumentationURL: |
+      [Datadog Tracing plugin](/hub/kong-inc/datadog-tracing/)
   - ID: D156
     Severity: warning
     Description: |
@@ -736,6 +744,68 @@ messages:
       Please upgrade Kong Gateway to version `3.2.0.0` or above.  
     DocumentationURL: |
       [Service entity](/gateway/latest/admin-api/#service-object)
+  - ID: D172
+    Severity: error
+    Description: |
+      For the `opa` plugin, one or more of the following `config` fields are set:
+      `include_uri_captures_in_opa_input` but Kong Gateway versions < 3.1.0.0 do not
+      support these fields. Plugin features that rely on these fields are not working
+      as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [OPA plugin](/hub/kong-inc/opa/)
+  - ID: D173
+    Severity: error
+    Description: |
+      For the `degraphql` plugin, one or more of the following `config` fields are
+      set: `graphql_server_path` but Kong Gateway versions < 3.0.0.0 do not support
+      these fields. Plugin features that rely on these fields are not working as
+      intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.0.0.0` or above.
+    DocumentationURL: |
+      [DeGraphQL](/hub/kong-inc/degraphql)
+  - ID: D174
+    Severity: error
+    Description: |
+      The degraphql plugin has been disabled because of known issues on Kong Gateway <
+      3.0.0.0.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.0.0.0` or above.
+    DocumentationURL: |
+      [DeGraphQL](/hub/kong-inc/degraphql)
+  - ID: D175
+    Severity: error
+    Description: |
+      The deGraphQL Route entities have been removed because of known issues with Kong
+      Gateway < 3.0.0.0.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.0.0.0` or above.
+    DocumentationURL: |
+      [DeGraphQL](/hub/kong-inc/degraphql)
+  - ID: D176
+    Severity: error
+    Description: |
+      For the `jwt-signer` plugin, one or more of the following `config` fields are
+      set: `add_claims`, `set_claims` but Kong Gateway versions < 3.3.0.0 do not
+      support these fields. Plugin features that rely on these fields are not working
+      as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [JWT Signer plugin](/hub/kong-inc/jwt-signer/)
+  - ID: D177
+    Severity: error
+    Description: |
+      For the `proxy-cache-advanced` plugin, one or more of the following `config`
+      fields are set: `ignore_uri_case` but Kong Gateway versions < 3.3 do not support
+      these fields. Plugin features that rely on these fields are not working as
+      intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [Proxy Cache Advanced plugin](/hub/kong-inc/proxy-cache-advanced/) 
   - ID: P101
     Severity: error
     Description: |
@@ -1377,4 +1447,200 @@ messages:
       Unset the `service`, `route`, and `consumer` fields for the plugin, or upgrade
       Kong Gateway to a version >= 3.2.
     DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)     
+  - ID: P163
+    Severity: error
+    Description: |
+      For the `graphql-rate-limiting-advanced` plugin on Kong Gateway versions <3.2.0,
+      the `cluster` option is not supported on hybrid mode. The plugin instance has
+      been removed to avoid system crashes.
+    Resolution: |
+      Please upgrade to Kong Gateway 3.2.0 or later, which supports the `cluster` mode
+      with the `sync_rate = -1` option, or change to the `redis` mode.
+    DocumentationURL: |
+      [Graphql Rate Limiting Advanced plugin](/hub/kong-inc/graphql-rate-limiting-advanced/)
+  - ID: P164
+    Severity: error
+    Description: |
+      For the `datadog` plugin, one or more of the following `config` fields are set:
+      `retry_count`, `queue_size`, `flush_timeout` but Kong Gateway versions >=
+      3.3.0.0 do not support these fields. Plugin features that rely on these fields
+      are not working as intended.
+    Resolution: |
+      Starting with version 3.3.0.0, the plugin `datadog` uses the field `queue`
+      instead of `retry_count`, `queue_size`, `flush_timeout` used previously. Please
+      update the configuration to use the new fields.
+    DocumentationURL: |
+      [Datadog plugin](/hub/kong-inc/datadog/)
+  - ID: P165
+    Severity: error
+    Description: |
+      For the `datadog` plugin, one or more of the following `config` fields are set:
+      `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields. Plugin
+      features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [Datadog plugin](/hub/kong-inc/datadog/)
+  - ID: P166
+    Severity: error
+    Description: |
+      For the `http-log` plugin, one or more of the following `config` fields are set:
+      `retry_count`, `queue_size`, `flush_timeout` but Kong Gateway versions >=
+      3.3.0.0 do not support these fields. Plugin features that rely on these fields
+      are not working as intended.
+    Resolution: |
+      Starting with version 3.3.0.0, the plugin `http-log` uses the field `queue`
+      instead of `retry_count`, `queue_size`, `flush_timeout` used previously. Please
+      update the configuration to use the new fields.
+    DocumentationURL: |
+      [Http Log plugin](/hub/kong-inc/http-log/)
+  - ID: P167
+    Severity: error
+    Description: |
+      For the `http-log` plugin, one or more of the following `config` fields are set:
+      `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields. Plugin
+      features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [Http Log plugin](/hub/kong-inc/http-log/)
+  - ID: P168
+    Severity: error
+    Description: |
+      For the `statsd` plugin, one or more of the following `config` fields are set:
+      `retry_count`, `queue_size`, `flush_timeout` but Kong Gateway versions >=
+      3.3.0.0 do not support these fields. Plugin features that rely on these fields
+      are not working as intended.
+    Resolution: |
+      Starting with version 3.3.0.0, the plugin `statsd` uses the field `queue`
+      instead of `retry_count`, `queue_size`, `flush_timeout` used previously. Please
+      update the configuration to use the new fields.
+    DocumentationURL: |
+      [StatsD plugin](/hub/kong-inc/statsd/)
+  - ID: P169
+    Severity: error
+    Description: |
+      For the `statsd` plugin, one or more of the following `config` fields are set:
+      `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields. Plugin
+      features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [StatsD plugin](/hub/kong-inc/statsd/)
+  - ID: P170
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, one or more of the following `config` fields are
+      set: `batch_span_count`, `batch_flush_delay` but Kong Gateway versions >=
+      3.3.0.0 do not support these fields. Plugin features that rely on these fields
+      are not working as intended.
+    Resolution: |
+      Starting with version 3.3.0.0, the plugin `opentelemetry` uses the field `queue`
+      instead of `batch_span_count`, `batch_flush_delay` used previously. Please
+      update the configuration to use the new fields.
+    DocumentationURL: |
       [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P171
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, one or more of the following `config` fields are
+      set: `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields.
+      Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P172
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, one or more of the following `config` fields are
+      set: `header_type` but Kong Gateway versions >= 3.3 do not support these fields.
+      Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P173
+    Severity: error
+    Description: |
+      For the `acme` plugin, one or more of the following `config` fields are set:
+      `account_key`, `storage_config.redis.namespace` but Kong Gateway versions < 3.3
+      do not support these fields. Plugin features that rely on these fields are not
+      working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3` or above.
+    DocumentationURL: |
+      [ACME plugin](/hub/kong-inc/acme/)
+  - ID: P174
+    Severity: error
+    Description: |
+      For the `proxy-cache` plugin, one or more of the following `config` fields are
+      set: `ignore_uri_case` but Kong Gateway versions < 3.3 do not support these
+      fields. Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3` or above.
+    DocumentationURL: |
+      [Proxy Cache plugin](/hub/kong-inc/proxy-cache/)
+  - ID: P175
+    Severity: error
+    Description: |
+      For the `aws-lambda` plugin, one or more of the following `config` fields are
+      set: `disable_https` but Kong Gateway versions < 3.3 do not support these
+      fields. Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3` or above.
+    DocumentationURL: |
+      [AWS Lambda plugin](/hub/kong-inc/aws-lambda/)
+  - ID: P176
+    Severity: error
+    Description: |
+      For the `datadog` plugin, one or more of the following `config` fields are set:
+      `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields. Plugin
+      features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [Datadog plugin](/hub/kong-inc/datadog/)
+  - ID: P177
+    Severity: error
+    Description: |
+      For the `statsd` plugin, one or more of the following `config` fields are set:
+      `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields. Plugin
+      features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [StatsD plugin](/hub/kong-inc/statsd/)
+  - ID: P178
+    Severity: error
+    Description: |
+      For the `http-log` plugin, the `config.content_type` field has been set to
+      `application/json; charset=utf-8`. This is not supported in Kong Gateway
+      versions < 3.3. The plugin configuration has been changed to
+      `config.content_type=application/json` in the data-plane.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3` or above.
+    DocumentationURL: |
+      [Http Log plugin](/hub/kong-inc/http-log/)
+  - ID: P179
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, one or more of the following `config` fields are
+      set: `http_response_header_for_traceid` but Kong Gateway versions >= 3.3 do not
+      support these fields. Plugin features that rely on these fields are not working
+      as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P180
+    Severity: error
+    Description: |
+      For the `zipkin` plugin, one or more of the following `config` fields are set:
+      `queue` but Kong Gateway versions < 3.3.0.0 do not support these fields. Plugin
+      features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [Zipkin plugin](/hub/kong-inc/zipkin/)

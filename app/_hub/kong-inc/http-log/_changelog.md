@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.3.x**
+
+* This plugin now supports the `application/json; charset=utf-8` content type.
+
 **{{site.base_gateway}} 3.0.x**
 
 * The `headers` parameter now takes a single string per header name, where it
