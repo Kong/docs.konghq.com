@@ -297,26 +297,16 @@ It has now been reverted back to `kong-enterprise-edition.service` to keep consi
 ### Fixes
 
 #### Core 
-
 * Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
   lead to the corruption of chunk-encoded response data.
   [#10816](https://github.com/Kong/kong/pull/10816)
   [#10824](https://github.com/Kong/kong/pull/10824)
+* Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
+  [#10691](https://github.com/Kong/kong/pull/10691)
 
-
-* Fixed the following PostgreSQL TTL clean-up timer issues: 
-  * Timers will now only run on traditional and control plane nodes that have enabled the Admin API.
-  [#10405](https://github.com/Kong/kong/pull/10405)
-  * Kong Gateway now runs a batch delete loop on each TTL-enabled table with a number of `50.000` rows per batch.
-  [#10407](https://github.com/Kong/kong/pull/10407)
-  * The cleanup job now runs every 5 minutes instead of every 60 seconds.
-  [#10389](https://github.com/Kong/kong/pull/10389)
-  * Kong Gateway now deletes expired rows based on the database server-side timestamp to avoid potential
-  problems caused by the differences in clock time between Kong Gateway and the database server.
-  [#10389](https://github.com/Kong/kong/pull/10389)
-
-* Fixed an issue where an empty value for the URI argument `custom_id` crashed the `/consumer` API.
-  [#10475](https://github.com/Kong/kong/pull/10475)
+#### Plugins 
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+    * Fixed the log flooding issue caused by low `sync_rate` settings.
 
 #### PDK
 
