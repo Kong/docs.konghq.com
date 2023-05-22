@@ -7,12 +7,15 @@ distributions:
   - <<: *alpine
     docker: true
     arm: true
+    graviton: true
   - <<: *amazonlinux2
     docker: true
     arm: true
+    graviton: true
   - <<: *amazonlinux2022
     docker: true
     arm: true
+    graviton: true
   - *debian10
   - <<: *debian11
     docker: true
@@ -29,6 +32,7 @@ distributions:
     fips: true
   - <<: *ubuntu2204
     arm: true
+    graviton: true
     docker: true
     fips: true
 
