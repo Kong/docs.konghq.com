@@ -19,7 +19,7 @@ _packages:
     package: true
     arm: false
     fips: false
-    graviton: true
+    graviton: false
   amazonlinux2022: &amazonlinux2022
     os: Amazon Linux
     version: 2022
@@ -110,18 +110,18 @@ _packages:
     package: true
     arm: false
     fips: false
-    graviton: true
+    graviton: false
   ubuntu2004: &ubuntu2004
     os: Ubuntu
     version: 20.04
     package: true
     arm: false
     fips: false
-    graviton: true
+    graviton: false
   ubuntu2204: &ubuntu2204
     os: Ubuntu
     version: 22.04
     package: true
     arm: false
     fips: false
-    graviton: true
+    graviton: false
