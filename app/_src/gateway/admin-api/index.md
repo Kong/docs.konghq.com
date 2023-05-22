@@ -750,8 +750,8 @@ key_set_data: |
 
 ---
 
-{:.note}
-> **Kong Gateway beta API specs now available!**
+{:.note .no-icon }
+> <span class="badge beta"></span> **Kong Gateway API specs now available!**
 > 
 | Spec | Developer portal link | Insomnia link |
 |------|-----------------------|---------------|
