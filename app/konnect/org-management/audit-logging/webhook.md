@@ -30,6 +30,24 @@ You can configure a webhook into any application that supports the [ArcSight CEF
 
 ## Create a webhook
 
+{% navtabs %}
+{% navtab Konnect UI %}
+
+1. From the navigation menu, open {% konnect_icon organizations %} **Organization**, then **Audit Logs Setup**.
+1. Fill in the fields in the **Setup** tab.
+   * **Region endpoint**: The external endpoint that will receive audit log messages. 
+   * **Authorization Header**: The authorization type and credential to pass to your log collection endpoint. 
+    {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint.
+
+     For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: 
+     `"authorization":"Splunk example-token12234352535235"`.
+        
+    * **Log Format**: The output format of each log message. Can be CEF or JSON.
+1. Switch the toggle to `Enabled`, then save your webhook configuration.
+
+{% endnavtab %}
+{% navtab API %}
+
 Now that you have an external endpoint and authorization credentials, you can set up a webhook in {{site.konnect_short_name}}.
 
 Create a webhook by sending a request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
@@ -38,7 +56,7 @@ Create a webhook by sending a request to the `/audit-log-webhook` endpoint with 
 curl -i -X PATCH https://global.api.konghq.com/v2/audit-log-webhook \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
-    --data '{"endpoint":"https://example.com/audit-logs","enabled":true,"authorization":"Bearer example-token"}'
+    --data '{"endpoint":"https://example.com/audit-logs","enabled":true,"authorization":"Bearer example-token","log_format":"cef"}'
 ```
 
 Replace the following placeholders with your own data:
@@ -52,7 +70,9 @@ Replace the following placeholders with your own data:
 * `"authorization":"Bearer example-token"`: The authorization type and credential to pass to your log collection endpoint. 
 {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint.
 
-    For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`
+    For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`.
+
+* `log_format`: The output format of each log message. Can be `cef` or `json`.
 
 If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details: 
 
@@ -64,6 +84,9 @@ If the request is successful, you will receive a `200` response code, and a resp
     "updated_at":"2023-04-01T00:00:01Z"
 }
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Your webhook should now start receiving audit logs. 
 
@@ -89,6 +112,21 @@ You will receive a `200` response code and the following data. Note that the `au
 
 ## View webhook status
 
+{% navtabs %}
+{% navtab Konnect UI %}
+
+You can view the status of your webhook through the **Audit Logs Setup** page under 
+{% konnect_icon organizations %} **Organization**.
+
+Notice the status badge next to title of the webhook. For example, the following webhook is active:
+
+![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
+
+To find the last attempt timestamp and the last response code, use the audit log API.
+
+{% endnavtab %}
+{% navtab API %}
+
 You can view your audit log webhook status by running the following command:
 
 ```sh
@@ -106,6 +144,9 @@ You will receive a `200` response code and a response body with information abou
     "webhook_status": "active"
 }
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 The attributes are defined as follows:
 

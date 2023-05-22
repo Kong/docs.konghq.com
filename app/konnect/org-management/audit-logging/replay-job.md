@@ -18,7 +18,23 @@ must be enabled and ready to receive data.
 
 ## Configure a replay job
 
-Configure the replay job for a region by sending a `PUT` request to `/audit-log-replay-job` in the region where you want to retrieve data. The example below is for the `us` region.
+{% navtabs %}
+{% navtab Konnect UI %}
+
+1. From the navigation menu, open {% konnect_icon organizations %} **Organization**, then **Audit Logs Setup**.
+1. Switch to the **Replay** tab.
+1. Choose a timeframe for which you want to replay the logs. 
+
+   You can choose one of the preset relative increments for up to 24 hours, or 
+   set a custom timeframe for up to 7 days.
+
+1. Apply the timeframe, then click **Send Replay**.
+
+{% endnavtab %}
+{% navtab API %}
+
+Configure the replay job for a region by sending a `PUT` request to `/audit-log-replay-job` in the region where you want to retrieve data. 
+The following example creates an `audit-log-replay-job` in the `us` region:
 
 ```sh
 curl -i -X PUT https://us.api.konghq.com/v2/audit-log-replay-job \
@@ -27,10 +43,10 @@ curl -i -X PUT https://us.api.konghq.com/v2/audit-log-replay-job \
     --data '{"start_at":"2023-03-27T20:00:00Z","end_at":"2023-03-27T20:00:00Z"}'
 ```
 
-Replace the following placeholder with your own data:
+Replace the following placeholders with your own data:
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or 
   [system account token](/konnect/org-management/system-accounts).
-* `start_at` and `end_at`: specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
+* `start_at` and `end_at`: Specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
 
 If the request is successful, you will receive a `202` response code and a response body containing the replay job details: 
 
@@ -43,9 +59,26 @@ If the request is successful, you will receive a `202` response code and a respo
 }
 ```
 
+{% endnavtab %}
+{% endnavtabs %}
+
 ## View replay job
 
-You can view the audit log replay job in a given region by issuing a GET request. The example below retrieves an `audit-log-replay-job` in the `us` region:
+{% navtabs %}
+{% navtab Konnect UI %}
+
+1. From the navigation menu, open {% konnect_icon organizations %} **Organization**, then **Audit Logs Setup**.
+1. Switch to the **Replay** tab.
+1. Check the status table below the configuration field.
+
+![Audit log replay](/assets/images/docs/konnect/konnect-audit-log-replay.png)
+
+{% endnavtab %}
+{% navtab API %}
+
+
+You can view the audit log replay job in a given region by issuing a GET request. 
+The following example retrieves an `audit-log-replay-job` in the `us` region:
 
 ```sh
 curl https://us.api.konghq.com/v2/audit-log-replay-job \
@@ -62,6 +95,9 @@ You will receive a `200` response code and the job details:
     "status":"accepted"
 }
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Replay job status
 
