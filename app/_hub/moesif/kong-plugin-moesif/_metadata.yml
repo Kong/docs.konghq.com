@@ -1,4 +1,4 @@
-name: Moesif API Analytics
+name: Moesif API Analytics and Monetization
 api_id: true
 dbless_compatible: 'yes'
 dbless_explanation: The plugin is compatible with any with DB-less mode including `local`, `cluster`, and `redis`
