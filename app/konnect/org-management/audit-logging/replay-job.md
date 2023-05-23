@@ -5,7 +5,7 @@ badge: enterprise
 beta: true
 ---
 
-You can use the {{site.konnect_short_name}} Organization Settings API to configure replay jobs for [audit logging](/konnect/org-management/audit-logging/). 
+You can use the {{site.konnect_short_name}} Audit Logs API to configure replay jobs for [audit logging](/konnect/org-management/audit-logging/). 
 
 Replay jobs are useful when you have missed audit log entries due to an error or a misconfigured audit
 log webhook. You may have one replay job at a time per region, and request data from up to one week ago.
@@ -116,4 +116,4 @@ When a replay job is `running`, a request to update the job will return a `409` 
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
-* [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
+* [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)

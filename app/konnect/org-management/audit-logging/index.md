@@ -22,7 +22,7 @@ You can do this by [setting up a webhook](/konnect/org-management/audit-logging/
 log collection service that supports [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or JSON-formatted data.
 
 Audit logging webhooks can be configured through the {{site.konenct_short_name}} **Organization** menu, or
-using the [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced).
+using the [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced).
 Only {{site.konnect_short_name}} organization administrators can configure and view audit log webhooks. 
 
 ![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
@@ -38,4 +38,4 @@ See the [audit log reference](/konnect/org-management/audit-logging/reference/) 
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
-* [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
+* [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)

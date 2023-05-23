@@ -9,6 +9,12 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
+## May 2023
+
+**Audit logging**
+* Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
+
 ## April 2023
 
 
