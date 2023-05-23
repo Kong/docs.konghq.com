@@ -256,7 +256,7 @@
 
 # KONNECT
 
-/konnect/api/organization-settings/audit-logging    /konnect/org-management/audit-logging/webhook/
+/api/audit-logs/webhook/                            /konnect/org-management/audit-logging/webhook/
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
 /konnect/service-hub/manage-services                /konnect/servicehub/

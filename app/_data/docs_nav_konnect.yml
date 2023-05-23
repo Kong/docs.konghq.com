@@ -288,7 +288,7 @@
           url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
           absolute_url: true
         - text: Audit Log Webhooks
-          url: /api/organization-settings/audit-logging
+          url: /api/audit-logs/webhook/
     - text: Reference
       items:
         - text: Filtering
