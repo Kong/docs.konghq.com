@@ -20,9 +20,9 @@ A retry is performed on connection error, server error (`500` HTTP status code),
 Before you can push {{site.konnect_short_name}} audit logs to an external service, you need to configure the service to receive logs. 
 This configuration is specific to your vendor.
 
-You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm).
+You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON.
 
-1. Check your SIEM documentation to find out where to send CEF data.
+1. Check your SIEM documentation to find out where to send CEF or raw JSON data.
 
 1. In your log collection service, configure a data collection endpoint to push logs to.
 
@@ -90,9 +90,24 @@ If the request is successful, you will receive a `200` response code, and a resp
 
 Your webhook should now start receiving audit logs. 
 
-## View webhook configuration
+## View webhook configuration and status
 
-You can view your audit log webhook configuration by running the following command:
+{% navtabs %}
+{% navtab Konnect UI %}
+
+You can view the status of your webhook through the **Audit Logs Setup** page under 
+{% konnect_icon organizations %} **Organization**.
+
+Notice the status badge next to title of the webhook. For example, the following webhook is active:
+
+![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
+
+To find the last attempt timestamp and the last response code, use the audit log API.
+
+{% endnavtab %}
+{% navtab API %}
+
+View your audit log webhook configuration by running the following command:
 
 ```sh
 curl https://global.api.konghq.com/v2/audit-log-webhook \
@@ -110,24 +125,7 @@ You will receive a `200` response code and the following data. Note that the `au
 }
 ```
 
-## View webhook status
-
-{% navtabs %}
-{% navtab Konnect UI %}
-
-You can view the status of your webhook through the **Audit Logs Setup** page under 
-{% konnect_icon organizations %} **Organization**.
-
-Notice the status badge next to title of the webhook. For example, the following webhook is active:
-
-![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
-
-To find the last attempt timestamp and the last response code, use the audit log API.
-
-{% endnavtab %}
-{% navtab API %}
-
-You can view your audit log webhook status by running the following command:
+View your audit log webhook status by running the following command:
 
 ```sh
 curl https://global.api.konghq.com/v2/audit-log-webhook/status \
@@ -171,4 +169,5 @@ false           | `unconfigured` | The webhook for this region has not been conf
 ## See also
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
+* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)

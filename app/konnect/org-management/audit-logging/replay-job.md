@@ -112,7 +112,6 @@ A replay job can be in one of the following statuses:
 
 When a replay job is `running`, a request to update the job will return a `409` response code until it has completed or failed.
 
-
 ## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook)

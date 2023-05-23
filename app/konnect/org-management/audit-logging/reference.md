@@ -119,4 +119,5 @@ Property | Description
 ## See also
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
+* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
