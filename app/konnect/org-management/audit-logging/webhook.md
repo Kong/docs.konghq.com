@@ -60,6 +60,7 @@ curl -i -X PATCH https://global.api.konghq.com/v2/audit-log-webhook \
 ```
 
 Replace the following placeholders with your own data:
+* `global.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, or `eu`.
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or 
   [system account token](/konnect/org-management/system-accounts/).
 * `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages. 
