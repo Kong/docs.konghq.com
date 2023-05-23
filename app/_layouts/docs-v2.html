@@ -147,18 +147,56 @@ id: documentation
   {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
 
   <script type="text/javascript">
-    function toggleContentHeader() {
-      var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      if (w <= 800 && $(window).scrollTop() < 8) {
-        $('.content').toggleClass('scrolled', false);
-        $('.content-header').toggleClass('scrolled', false);
-        $('.content-version').show(250);
-      } else {
-        $('.content').toggleClass('scrolled', true);
-        $('.content-header').toggleClass('scrolled', true);
-        $('.content-version').hide(250);
+    (async () => {
+      function toggleContentHeader() {
+        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (w <= 800 && $(window).scrollTop() < 8) {
+          $('.content').toggleClass('scrolled', false);
+          $('.content-header').toggleClass('scrolled', false);
+          $('.content-version').show(250);
+        } else {
+          $('.content').toggleClass('scrolled', true);
+          $('.content-header').toggleClass('scrolled', true);
+          $('.content-version').hide(250);
+        }
       }
-    }
 
-    window.addEventListener('scroll', toggleContentHeader);
+      window.addEventListener('scroll', toggleContentHeader);
+
+      const widget = await import('https://docs.speechify.com/speechifyapi.mjs')
+      if (!widget) {
+        console.log('Could not fetch Speechify widget, skipping initialization')
+        return
+      }
+
+      const rootElement = document.querySelector('.page-content .content')
+      if (!rootElement) {
+        console.log('Could not find root content element for text-to-speech, skipping initialization')
+        return
+      }
+
+      const speechifyConfig = {
+        rootElement,
+        defaultVoice: 'Matthew',
+        ignoreElements: (element) =>
+          element.classList.contains('content-header') ||
+          element.classList.contains('breadcrumbs') ||
+          element.classList.contains('page-content-title') ||
+          element.classList.contains('page-content-subtitle') ||
+          element.classList.contains('header-link') ||
+          element.classList.contains('docs-grid-install') ||
+          element.tagName.toLowerCase() === 'blockquote',
+      }
+
+      await widget.makeSpeechifyExperience(speechifyConfig).mount()
+
+      // Hide advertisement banner
+      setTimeout(
+        () => document
+          .getElementById('speechify-root')
+          .shadowRoot
+          .querySelector('.sc-khAkCZ a')
+          ?.setAttribute?.('style', 'display:none')
+      , 300);
+    })()
   </script>
