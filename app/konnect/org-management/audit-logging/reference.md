@@ -38,8 +38,10 @@ Authentication attempts and their outcomes are logged whenever a user logs in to
 
 Example log entry:
 
+{% navtabs codeblock %}
+{% navtab CEF %}
 ```log
-Jan 16 18:25:28 
+2023-05-19T00:03:39Z
 konghq.com CEF:0|ExampleOrg|Konnect|1.0|AUTHENTICATION_TYPE_PAT|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
 src=127.0.0.1 
 request=/api/v1/personal-access-tokens/introspect 
@@ -49,6 +51,31 @@ principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b
 trace_id=3895213347334635099 
 user_agent=grpc-go/1.51.0
 ```
+{% endnavtab %}
+{% navtab JSON %}
+```json
+{
+    "cef_version": 0,
+    "event_class_id": "AUTHENTICATION_TYPE_BASIC",
+    "event_product": "Konnect",
+    "event_ts": "2023-05-16T00:28:01Z",
+    "event_vendor": "KongInc",
+    "event_version": "1.0",
+    "name": "AUTHENTICATION_OUTCOME_SUCCESS",
+    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
+    "request": "/api/v1/authenticate",
+    "rt": "1684524079524",
+    "severity": 0,
+    "sig": "N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg",
+    "src": "127.0.0.6",
+    "success": "true",
+    "trace_id": 6891110586028963295,
+    "user_agent": "grpc-node-js/1.8.10"
+}
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 In addition to the defaults, each authentication log entry also contains the following attributes:
 
@@ -64,8 +91,10 @@ Authorization log entries are created for every permission check in {{site.konne
 
 Example log entry:
 
+{% navtabs codeblock %}
+{% navtab CEF %}
 ```log
-Jan 16 00:25:40 
+2023-05-19T00:03:39Z
 konghq.com CEF:0|ExampleOrg|Konnect|1.0|konnect|Authz.portals|1|rt=16738287345642 
 src=127.0.0.6 
 action=retrieve 
@@ -76,6 +105,31 @@ actor_id=
 trace_id=8809518331550410226 
 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
 ```
+{% endnavtab %}
+{% navtab JSON %}
+```json
+{
+    "action": "list",
+    "cef_version": 0,
+    "event_class_id": "konnect",
+    "event_product": "Konnect",
+    "event_ts": "2023-05-16T00:28:01Z",
+    "event_vendor": "KongInc",
+    "event_version": "1.0",
+    "granted": true,
+    "name": "Authz.portals",
+    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
+    "rt": "1684196881193",
+    "severity": 1,
+    "sig": "N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg",
+    "src": "127.0.0.6",
+    "trace_id": 6891110586028963295,
+    "user_agent": "grpc-node-js/1.8.10"
+}
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 In addition to the defaults, each authorization log entry also contains the following attributes:
 
@@ -91,10 +145,12 @@ Access logs include information about create, update, and delete requests to the
 
 Example log entry:
 
+{% navtabs codeblock %}
+{% navtab CEF %}
 ```log
 2023-05-16T20:09:54Z 
 konghq.com CEF:0|KongInc|Konnect|1.0|KongGateway|Ingress|1|rt=1684267794226 
-src=71.218.184.162 
+src=127.0.0.6
 request=/konnect-api/api/vitals/v1/explore 
 act=POST 
 status=200 
@@ -105,6 +161,34 @@ trace_id=1146381705542353508
 query={"end":"1684270800","start":"1684098000"} 
 sig=JxJaQG3Bozrb5WdHE_Y0HaOsim2F1Xsq_bCfk71VgsfldkLAD_SF234cnKNS
 ```
+{% endnavtab %}
+{% navtab JSON %}
+```json
+
+{
+    "act": "POST",
+    "cef_version": 0,
+    "event_class_id": "KongGateway",
+    "event_product": "Konnect",
+    "event_ts": "2023-05-16T00:28:01Z",
+    "event_vendor": "KongInc",
+    "event_version": "1.0",
+    "name": "Ingress",
+    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
+    "query": "{}",
+    "request": "/konnect-api/api/runtime_groups/1c026712-c17d-4e30-ac27-53a6cdc56b9c/services",
+    "rt": "1684196881193",
+    "severity": 1,
+    "src": "127.0.0.6",
+    "status": 201,
+    "trace_id": 6891110586028963295,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
+    "sig": "N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg",
+}
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 In addition to the defaults, each access log entry also contains the following attributes:
 
