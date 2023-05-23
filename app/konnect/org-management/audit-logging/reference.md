@@ -164,7 +164,6 @@ sig=JxJaQG3Bozrb5WdHE_Y0HaOsim2F1Xsq_bCfk71VgsfldkLAD_SF234cnKNS
 {% endnavtab %}
 {% navtab JSON %}
 ```json
-
 {
     "act": "POST",
     "cef_version": 0,

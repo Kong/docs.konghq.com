@@ -13,8 +13,10 @@ A replay job in a region will resend data for the requested timeframe to the web
 
 ## Prerequisites
 
-Before you can request a replay job, your [audit log webhook](/konnect/org-management/audit-logging/webhook/) 
-must be enabled and ready to receive data. 
+Before you can request a replay job:
+* You must have **Org Admin** permissions.
+* Your [audit log webhook](/konnect/org-management/audit-logging/webhook/) must be enabled and ready to receive data. 
+
 
 ## Configure a replay job
 

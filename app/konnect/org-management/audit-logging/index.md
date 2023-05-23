@@ -23,7 +23,7 @@ log collection service that supports [ArcSight CEF Format](https://docs.centrify
 
 Audit logging webhooks can be configured through the {{site.konenct_short_name}} **Organization** menu, or
 using the [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced).
-Only {{site.konnect_short_name}} organization administrators can configure and view audit log webhooks. 
+Only {{site.konnect_short_name}} org admins can configure and view audit log webhooks. 
 
 ![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
 

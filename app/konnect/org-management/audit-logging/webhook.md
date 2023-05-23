@@ -17,7 +17,9 @@ A retry is performed on connection error, server error (`500` HTTP status code),
 
 ## Prerequisites
 
-Before you can push {{site.konnect_short_name}} audit logs to an external service, you need to configure the service to receive logs. 
+You must have **Org Admin** permissions to set up audit log webhooks.
+
+Before you can push {{site.konnect_short_name}} audit logs to an external service, you also need to configure the service to receive logs. 
 This configuration is specific to your vendor.
 
 You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON.
