@@ -45,7 +45,7 @@ curl -i -X PUT https://us.api.konghq.com/v2/audit-log-replay-job \
 
 Replace the following placeholders with your own data:
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or 
-  [system account token](/konnect/org-management/system-accounts).
+  [system account token](/konnect/org-management/system-accounts/).
 * `start_at` and `end_at`: Specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
 
 If the request is successful, you will receive a `202` response code and a response body containing the replay job details: 
@@ -114,6 +114,6 @@ When a replay job is `running`, a request to update the job will return a `409` 
 
 ## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-* [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook)
+* [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
 * [Organization Settings API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)

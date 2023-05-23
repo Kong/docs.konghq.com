@@ -5,7 +5,7 @@ badge: enterprise
 beta: true
 ---
 
-You can use the {{site.konnect_short_name}} Organization Settings API to configure webhooks for [audit logging](/konnect/org-management/audit-logging). 
+You can use the {{site.konnect_short_name}} Organization Settings API to configure webhooks for [audit logging](/konnect/org-management/audit-logging/). 
 
 Webhooks are invoked via an HTTP request using the following retry rules:
 
@@ -61,7 +61,7 @@ curl -i -X PATCH https://global.api.konghq.com/v2/audit-log-webhook \
 
 Replace the following placeholders with your own data:
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or 
-  [system account token](/konnect/org-management/system-accounts).
+  [system account token](/konnect/org-management/system-accounts/).
 * `"endpoint":"https://example.com/audit-logs"`: The external endpoint that will receive audit log messages. 
    
    {:.note}

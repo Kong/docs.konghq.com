@@ -40,7 +40,7 @@ Example log entry:
 
 {% navtabs codeblock %}
 {% navtab CEF %}
-```log
+```
 2023-05-19T00:03:39Z
 konghq.com CEF:0|ExampleOrg|Konnect|1.0|AUTHENTICATION_TYPE_PAT|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
 src=127.0.0.1 
@@ -93,7 +93,7 @@ Example log entry:
 
 {% navtabs codeblock %}
 {% navtab CEF %}
-```log
+```
 2023-05-19T00:03:39Z
 konghq.com CEF:0|ExampleOrg|Konnect|1.0|konnect|Authz.portals|1|rt=16738287345642 
 src=127.0.0.6 
@@ -147,7 +147,7 @@ Example log entry:
 
 {% navtabs codeblock %}
 {% navtab CEF %}
-```log
+```
 2023-05-16T20:09:54Z 
 konghq.com CEF:0|KongInc|Konnect|1.0|KongGateway|Ingress|1|rt=1684267794226 
 src=127.0.0.6
