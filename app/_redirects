@@ -663,6 +663,8 @@
 /mesh/:version/features/rbac    /mesh/:version/production/secure-deployment/
 /mesh/:version/features/fips-support  /mesh/:version/production/secure-deployment/fips-support/
 /mesh/:version/plan-and-deploy/license    /mesh/:version/production/cp-deployment/license/
+/mesh/:version/features/meshopa   /mesh/:version/policies/meshopa
+/mesh/:version/features/meshglobalratelimit   /mesh/:version/policies/meshglobalratelimit
 
 # kuma IA redirects
 /mesh/:version/introduction/deployments/  /mesh/:version/production/deployment/
