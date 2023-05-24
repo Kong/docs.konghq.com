@@ -146,19 +146,24 @@ id: documentation
 
   {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
 
-  <script type="text/javascript">
-    function toggleContentHeader() {
-      var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      if (w <= 800 && $(window).scrollTop() < 8) {
-        $('.content').toggleClass('scrolled', false);
-        $('.content-header').toggleClass('scrolled', false);
-        $('.content-version').show(250);
-      } else {
-        $('.content').toggleClass('scrolled', true);
-        $('.content-header').toggleClass('scrolled', true);
-        $('.content-version').hide(250);
-      }
+<script type="text/javascript">
+  function toggleContentHeader() {
+    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (w <= 800 && $(window).scrollTop() < 8) {
+      $('.content').toggleClass('scrolled', false);
+      $('.content-header').toggleClass('scrolled', false);
+      $('.content-version').show(250);
+    } else {
+      $('.content').toggleClass('scrolled', true);
+      $('.content-header').toggleClass('scrolled', true);
+      $('.content-version').hide(250);
     }
+  }
 
-    window.addEventListener('scroll', toggleContentHeader);
-  </script>
+  window.addEventListener('scroll', toggleContentHeader);
+</script> 
+
+
+{% if page.edition == 'konnect' %}
+  <script src="https://cdn.jsdelivr.net/gh/RelevanceAI/ask-relevance-widget/dist/bundle.min.js" config="eyJ1cmwiOiJodHRwczovL2FwaS1iY2JlNWEuc3RhY2sudHJ5cmVsZXZhbmNlLmNvbS9sYXRlc3QvZGF0YXNldHMva29ubmVjdC1hc2stcmVsZXZhbmNlLWFzay1yZWxldmFuY2Uvc2ltcGxlX3NlYXJjaCIsImZpZWxkIjoicGFnZSBjb250ZW50IiwidmVjdG9yX2ZpZWxkIjoicGFnZSBjb250ZW50X3ZlY3Rvcl8iLCJhdXRoX2hlYWRlciI6ImNiOWNjZDE4M2RlNC00MWFjLTg4YTAtMGQyMTc5ZjFmY2UwOnNrLU16aGxZVGszWVRNdFpUSTFNaTAwT1RGbExUa3lZbUl0TURsaU9USTJPV1ZsTmpWaiIsInJlZmVyZW5jZV90aXRsZV9maWVsZCI6InBhZ2VfdGl0bGUiLCJyZWZlcmVuY2VfdXJsX2ZpZWxkIjoidXJsIiwic2hvd0RvY3VtZW50cyI6dHJ1ZX0=" defer />
+{% endif %}
