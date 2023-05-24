@@ -135,7 +135,7 @@ data plane roles. Kong provides and hosts the control plane and a database with
         <td style="text-align: center">N/A</td>
         <td style="text-align: center">N/A</td>
       {% else %}
-        {% assign protocols = extn.schema.protocols %}
+      {% assign protocols = extn.schema.protocols.elements.one_of %}
         <td style="text-align: center"> 
           {% if protocols contains "http" %}
             <i class="fa fa-check"></i>
