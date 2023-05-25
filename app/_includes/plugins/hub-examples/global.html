@@ -35,7 +35,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
   labels:
-    global: \"true\"
+    global: "true"
 config:
   {%- for line in hub_example.kubernetes.example_config %}
   {{ line }}{%- endfor %}
