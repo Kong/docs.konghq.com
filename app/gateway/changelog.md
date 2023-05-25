@@ -2202,7 +2202,7 @@ openid-connect
 
 ## 2.8.4.1
 
-**Release Date** 2023/05/12
+**Release Date** 2023/05/25
 
 ### Breaking Changes
 #### Plugins
