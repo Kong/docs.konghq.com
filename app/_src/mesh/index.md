@@ -141,7 +141,7 @@ Example of a multi-zone deployment for multiple Kubernetes clusters, or a
 hybrid Kubernetes/VM cluster:
 
 <center>
-  <img src="/assets/images/diagrams/gslides/kuma-mesh_multizone.svg" alt="Kuma service mesh multi zone deployment" style="padding-top: 20px; padding-bottom: 10px;">
+  <img src="/assets/images/diagrams/gslides/kuma_multizone.svg" alt="Kuma service mesh multi zone deployment" style="padding-top: 20px; padding-bottom: 10px;">
 </center>
 
 ## Support policy
