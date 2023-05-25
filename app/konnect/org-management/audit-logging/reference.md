@@ -9,7 +9,7 @@ beta: true
 
 * **Authentication**: Triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used.
 * **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
-* **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
+<!-- * **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API. -->
 
 ## Log formats
 
@@ -138,7 +138,7 @@ Property | Description
 `action` | The type of action the user performed on the resource. For example, `retrieve`, `list`, or `edit`.
 `granted` | Boolean indicating whether the authorization was granted or not.
 
-
+<!-- 
 ## Access logs
 
 Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
@@ -196,7 +196,7 @@ Property | Description
 `request` | The endpoint that was called.
 `query` | The request query parameters, if any.
 `act` | The HTTP request method; for example, `POST`, `PATCH`, `PUT`, or `DELETE`.
-`status` | The HTTP response code; for example, `200` or `403`.
+`status` | The HTTP response code; for example, `200` or `403`. -->
 
 
 ## See also

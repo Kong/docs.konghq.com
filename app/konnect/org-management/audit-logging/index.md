@@ -27,7 +27,7 @@ Only {{site.konnect_short_name}} org admins can configure and view audit log web
 
 ![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
 
-Audit information includes authentication attempts, authorization requests, and gateway access logs. 
+Audit information includes authentication attempts and authorization requests.
 Each of the audit events contains a trace ID that allows events to be correlated to specific actions. 
 See the [audit log reference](/konnect/org-management/audit-logging/reference/) for details on what is logged.
 
