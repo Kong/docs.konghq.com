@@ -50,7 +50,7 @@ Or, if you have different subdomains for the `portal_api_url` and `portal_gui_ho
 and `cookie_same_site` properties as follows:
 
 ```
-portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false,"cookie_domain":"<.your_subdomain.com>","cookie_same_site":"off"  }
+portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","storage":"kong","cookie_secure":false,"cookie_domain":"<.your_subdomain.com>","cookie_same_site":"Lax"  }
 ```
 {% endif_version %}
 

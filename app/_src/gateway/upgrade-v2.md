@@ -208,6 +208,9 @@ from session configuration to avoid unpredictable behavior.
 
 #### Session plugin
 
+The following parameters and the values that they accept have changed. 
+For details on the new accepted values, see the [Seesion plugin](/hub/kong-inc/session/) documentation.
+
 Old parameter name | New parameter name
 -------------------|--------------------
 `cookie_lifetime` | `rolling_timeout`
@@ -219,6 +222,9 @@ Old parameter name | New parameter name
   
 
 #### SAML plugin
+
+The following parameters and the values that they accept have changed. 
+For details on the new accepted values, see the [SAML plugin](/hub/kong-inc/saml/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------
@@ -237,6 +243,9 @@ Old parameter name | New parameter name
 `session_compressor` | Removed, no replacement parameter. 
 
 #### OpenID Connect plugin
+
+The following parameters and the values that they accept have changed. 
+For details on the new accepted values, see the [OpenID Connect plugin](/hub/kong-inc/openid-connect/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------
