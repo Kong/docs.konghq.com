@@ -2200,6 +2200,34 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.1
+
+**Release Date** 2023/05/25
+
+### Breaking Changes
+#### Plugins
+* [Request Validator](/hub/kong-inc/request-validator/) (`request-validator`)
+  * The plugin now allows requests carrying a `content-type` with a parameter to match its `content-type` without a parameter.
+
+### Features
+* Redis Cluster: Added username and password authentication to Redis Cluster 6 and later versions.
+
+### Fixes
+* Fixed an issue where the RBAC token was not re-hashed after an update on the `user_token` field.
+* Fixed the Dynatrace implementation. Due to a build system issue, Kong Gateway 2.8.4 packages prior to 2.8.4.1
+didn't contain the debug symbols that Dynatrace requires.
+
+#### Plugins
+* [Forward Proxy](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  * Fixed an issue which occurred when receiving an HTTP `408` from the upstream through a forward proxy. 
+  Nginx exited the process with this code, which resulted in Nginx ending the request without any contents.
+
+* [Request Validator](/hub/kong-inc/request-validator/) (`request-validator`)
+  * The plugin now allows requests carrying a `content-type` with a parameter to match its `content-type` without a parameter.
+
+### Dependencies
+* Bumped `pgmoon` from 2.2.0.1 to 2.3.2.0.
+
 ## 2.8.4.0
 **Release Date** 2023/03/28
 
