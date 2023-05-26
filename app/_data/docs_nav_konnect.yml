@@ -149,9 +149,13 @@
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
     - text: Customize Dev Portal
-      url: /dev-portal/customization/
-    - text: Configure an Open Source Dev Portal 
-      url: /dev-portal/open-source-portal/
+      items:
+        - text: Overview
+          url: /dev-portal/customization/
+        - text: About Self-Hosted Dev Portal
+          url: /dev-portal/customization/self-hosted-portal/
+        - text: Self-Host your Dev Portal with Netlify 
+          url: /dev-portal/customization/netlify/
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 

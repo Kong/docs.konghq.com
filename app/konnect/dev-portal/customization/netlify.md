@@ -1,16 +1,18 @@
 ---
-title: Configure an Open Source Dev Portal with _____
-content_type: tutorial
+title: Self-Host your Dev Portal with Netlify
+content_type: how-to
 badge: oss
 ---
 
-You can use the open source Dev Portal to display your APIs to developers on a self-hosted website. This guide shows you how to configure an example open source Dev Portal, which you can further customize by adjusting the code of the sample app and self-hosting it on a frontend application of your choice.
+You can use the self-hosted, open source Dev Portal to display your APIs to developers on a self-hosted website. This guide shows you how to configure an example open source Dev Portal, which you can further customize by adjusting the code of the sample app and self-hosting it on a frontend application of your choice.
+
+<!--Some explanation of what features are configured in the example app. -->
 
 ## Prerequisites
 
 * [A {{site.konnect_saas}} account](/konnect/getting-started/access-account/)
 * [Yarn 1.22.x installed](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
-* If you want to follow the example instructions and use Netlify to deploy your Dev Portal, you need a [Netlify account](https://www.netlify.com/). Otherwise, you'll need another static site generator of your choice.
+* A [Netlify account](https://www.netlify.com/)
 
 ## Configure your self-hosted domains in {{site.konnect_short_name}}
 
@@ -23,8 +25,7 @@ You can use the open source Dev Portal to display your APIs to developers on a s
     api.mycompany.com   CNAME   3600    client.mycompany.com
     ```
 
-### Results?
-askdjflaj
+<!-- what is the result here? the self-hosted portal isn't working, we just turned it on and disabled the Konnect hosted one, right?-->
 
 ## Deploy your self-hosted Dev Portal with Netlify
 
@@ -57,35 +58,15 @@ In this example, you will deploy the self-hosted example Dev Portal using Netlif
 1. Click **Domain settings** and **Add a domain**.
 1. Enter your custom portal client domain (`client.mycompany.com`) in the **Custom domain or subdomain** field. 
 1. Click **Verify**.
-1. Configure name servers (ns records) in your domain registrar. The values can be found in the “Team Overview > Domains Tab”. Note: ns records can take time to propagate. Be patient!
+1. Click **Domains** in the sidebar and then click the domain you just added.
+1. In the Name servers pane, note the listed name servers. Then, [configure the name servers in your domain registrar](https://docs.netlify.com/domains-https/netlify-dns/delegate-to-netlify/).
 
-site is now hosted.
-
-## Configure the example open source Dev Portal
-
-1. Create a local .env file:
-    ```sh
-    cp .env.example .env
-    ```
-1. Set the `VITE_PORTAL_API_URL` value in your current environment. This should match either the Kong-supplied portal URL ending in `portal.konghq.com` or the [custom Dev Portal URL set in {{site.konnect_short_name}}](/konnect/dev-portal/customization/#custom-dev-portal-url).
-1. Run Vite dev:
-    ```sh
-    yarn dev #optional --verbose
-    ```
-1. Run tests:
-    ```sh
-    yarn test:e2e
-    ```
+Once your name servers are propogated (this may take a few minutes), your Dev Portal will now be deployed by Netlify.
 
 ## Customize the example open source Dev Portal 
 
-Adding additional sections can be helpful if you have to switch from working in one product to another or if you switch from one task, like installing to configuring.
-
-1. First step.
-1. Second step.
+If you want to further customize the example self-hosted Dev Portal, you can... 
 
 ## More information
 
-* [Analytics reports](https://docs.konghq.com/gateway/latest/kong-enterprise/analytics/reports/)
-* [Service directory mapping](https://docs.konghq.com/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/)
-* [Custom entities](https://docs.konghq.com/gateway/latest/plugin-development/custom-entities/)
+[About Self-Hosted Dev Portal](/konnect/dev-portal/self-hosted-portal/) - Learn more about how the self-hosted Dev Portal works and why you should use it.
