@@ -69,4 +69,4 @@ If you want to further customize the example self-hosted Dev Portal, you can...
 
 ## More information
 
-[About Self-Hosted Dev Portal](/konnect/dev-portal/self-hosted-portal/) - Learn more about how the self-hosted Dev Portal works and why you should use it.
+[About Self-Hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) - Learn more about how the self-hosted Dev Portal works and why you should use it.

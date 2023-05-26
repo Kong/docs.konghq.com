@@ -36,4 +36,4 @@ To enable the self-hosted Dev Portal in {{site.konnect_short_name}}, click {% ko
 
 ## More information
 
-[Self-Host your Dev Portal with Netlify](/konnect/dev-portal/self-hosted-portal/netlify/) - Learn how to deploy your self-hosted Dev Portal with Netlify.
+[Self-Host your Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) - Learn how to deploy your self-hosted Dev Portal with Netlify.
