@@ -3671,7 +3671,7 @@ To access old Kong Immunity documentation, see the
 * Cassandra as a backend database for Kong Gateway
 is deprecated with this release and will be removed in a future version.
 
-  The target for Cassandra removal is the Kong Gateway 4.0 release.
+  The target for Cassandra removal is the Kong Gateway 3.4 release.
   Starting with the Kong Gateway 3.0 release, some new features might
   not be supported with Cassandra. Our intent is to provide our users with ample
   time and alternatives for satisfying the use cases that they have been able to
