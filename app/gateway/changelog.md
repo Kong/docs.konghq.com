@@ -11,6 +11,12 @@ no_version: true
 
 ### Breaking changes and deprecations
 
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. 
+These images and packages are still available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
+It is planned for removal with {{site.base_gateway}} 3.4.
+
 #### Core
 
 * The `traditional_compat` router mode has been made more compatible with the
@@ -64,14 +70,6 @@ instead of the previous 1 (trace all requests).
   This plugin now uses queues for internal buffering. 
   The standard queue parameter set is available to control queuing behavior.
   [#10753](https://github.com/Kong/kong/pull/10753)
-
-#### Reminders 
-
-* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. 
-These images and packages are still available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
-
-* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
-It is planned for removal with {{site.base_gateway}} 3.4.
 
 ### Features
 
