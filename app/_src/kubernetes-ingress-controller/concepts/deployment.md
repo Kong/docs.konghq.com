@@ -180,6 +180,8 @@ Following are the different options to consider while deploying the
 {% if_version gte: 2.9.x %}
 - [**Gateway Discovery**](#gateway-discovery):
   Dynamically discovering Kong's Admin API endpoints
+- [**Konnect integration**](#konnect-integration):
+  Integration with the Kong's Konnect platform
 {% endif_version %}
 
 ### Kubernetes Service Types
@@ -344,9 +346,39 @@ separating the control and data flow:
 
 Both of those deployments can be scaled independently.
 
-For more hands on experience with Gateway Discovery please see [our guide][gd-guide]
+For more hands on experience with Gateway Discovery please see [our guide][gd-guide].
 
 [admin]: /gateway/latest/admin-api/
 [gd-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
+
+### Konnect Integration
+
+{:.warning .no-icon}
+> This feature is released as [beta](/gateway/latest/availability-stages/#beta) and should not be deployed in a production environment.
+
+{{site.kic_product_name}} can be integrated with Kong's [Konnect][konnect] platform. It's an
+optional feature that allows configuring a Konnect's Runtime Group with the same configuration as the one used
+by {{site.kic_product_name}} for configuring local Kong Gateways. It enables using Konnect UI
+to inspect the configuration of your Kong instances in a **read-only** mode, track [Analytics][konnect-analytics],
+and more.
+
+For installation steps, please see the [Kong Ingress Controller for Kubernetes Association][konnect-kic] page.
+
+![KIC Konnect overview](/assets/images/docs/kubernetes-ingress-controller/kic-konnect-diagram.png "KIC Konnect overview")
+
+From the architecture perspective, the integration is similar to the [Gateway Discovery](#gateway-discovery) and
+builds on top of it. The difference is that {{site.kic_product_name}} additionally configures a Runtime Group in Konnect
+using the public [Admin API][admin] of the Konnect's Runtime Manager. The connection between {{site.kic_product_name}}
+and Konnect is secured using mutual TLS. 
+
+{:.important}
+> {{site.kic_product_name}}'s configured Runtime Group in Konnect is **read-only** and is not used for any runtime
+> traffic. {{site.kic_product_name}} still uses the local Kong instances for proxying. In the case of a connection
+> failure between {{site.kic_product_name}} and Konnect, {{site.kic_product_name}} will continue to operate normally
+> not affecting the basic functionality - only the Runtime Group's configuration in Konnect will not be updated.
+
+[konnect]: /konnect/
+[konnect-kic]: /konnect/runtime-manager/kic/
+[konnect-analytics]: /konnect/analytics/
 
 {% endif_version %}
