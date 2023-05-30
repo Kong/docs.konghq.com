@@ -55,4 +55,29 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
       expect(subject.fields).to all(be_an(described_class))
     end
   end
+
+  describe '#referenceable' do
+    context 'when the field is referenceable' do
+      let(:name) { 'token' }
+      let(:parent) { 'vault' }
+      let(:field_schema) { { "referenceable" => true, "type" => "string" } }
+
+      it { expect(subject.referenceable).to eq(true) }
+    end
+
+    context 'when the field is of type array and its elements are referenceable' do
+      let(:name) { 'body' }
+      let(:parent) { 'rename' }
+      let(:field_schema) do
+        {
+          "default" => [],
+          "type" => "array",
+          "elements" => { "type" => "string", "referenceable" => true },
+          "description" => "List of parameters..."
+        }
+      end
+
+      it { expect(subject.referenceable).to eq(true) }
+    end
+  end
 end
