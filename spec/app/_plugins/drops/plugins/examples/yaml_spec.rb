@@ -35,7 +35,7 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Yaml do
     context 'type route' do
       let(:type) { 'route' }
 
-      it { expect(subject.type_field).to eq('route: ROUTE_NAME') }
+      it { expect(subject.type_field).to eq('route: ROUTE_NAME|ROUTE_ID') }
     end
 
     context 'type service' do
