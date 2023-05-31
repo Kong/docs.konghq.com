@@ -82,19 +82,10 @@ Scroll to view all of the available examples.
 
 ### Make a request with the key as a query string parameter
 
-{% navtabs codeblock %}
-{% navtab cURL %}
+
 ```bash
 curl -X POST {proxy}/{route}?apikey={CLIENT_ID}
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http {proxy}/{route}?apikey={CLIENT_ID}
-```
-{% endnavtab %}
-{% endnavtabs %}
-
 Response (will be the same for all valid requests regardless of key location):
 
 ```bash
@@ -104,34 +95,17 @@ HTTP/1.1 200 OK
 
 ### Make a request with the key in a header
 
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```bash
 curl -X POST {proxy}/{route} \
 --header "apikey: {CLIENT_ID}"
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http {proxy}/{route} apikey:{CLIENT_ID}
-```
-{% endnavtab %}
-{% endnavtabs %}
 
 ### Make a request with the key in the body
 
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```bash
 curl -X POST {proxy}/{route} \
 --data "apikey:={CLIENT_ID}"
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http {proxy}/{route} apikey={CLIENT_ID}
-```
-{% endnavtab %}
-{% endnavtabs %}
 
-**Note:** The `key_in_body` parameter must be set to `true`.
+{:.note}
+> **Note:** The `key_in_body` parameter must be set to `true`.

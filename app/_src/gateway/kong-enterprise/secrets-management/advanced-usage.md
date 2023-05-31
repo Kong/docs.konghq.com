@@ -43,28 +43,12 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 
 Create a Vault entity:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
   --data name=env \
   --data description='ENV vault for secrets' \
   --data config.prefix=SECRET_
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f PUT :8001/vaults/my-env-vault-1 \
-  name=env \
-  description="ENV vault for secrets" \
-  config.prefix=SECRET_
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 
