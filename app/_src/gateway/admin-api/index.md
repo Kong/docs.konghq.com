@@ -2650,7 +2650,7 @@ See POST and PATCH responses.
 
 ##### Delete Route
 
-<div class="endpoint delete indent">{{ prefix }}/routes/{route name or id}</div>#
+<div class="endpoint delete indent">{{ prefix }}/routes/{route name or id}</div>
 
 {:.indent}
 Attributes | Description
