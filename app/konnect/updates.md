@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## June 2023
+
+**Self-hosted, open source Dev Portal**
+: You can now self-host an open source Dev Portal on the static site of your choice. Kong provides an [example application](https://github.com/Kong/konnect-portal) you can use for an out-of-the-box experience with a self-hosted Dev Portal. You can also customize the self-hosted portal using the Portal Management and Portal APIs as well as the Portal SDK. For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/).
+
 ## April 2023
 
 
