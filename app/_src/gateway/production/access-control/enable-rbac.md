@@ -23,6 +23,10 @@ access control over their Workspace, which is possible with RBAC.
 To sum up, workspaces and RBAC are complementary: workspaces provide segmentation of
 Admin API entities, while RBAC provides access control.
 
+{:.note}
+> **Note:** The example responses in this guide are often partial excerpts 
+focusing on the most relevant part of the response, as the full response can be very long.
+
 ## Bootstrapping the first RBAC user
 
 The first RBAC user is called the super admin.
@@ -307,29 +311,27 @@ workspace.
       -H 'Kong-Admin-Token:vajeOlkbsn0q0VD9qw9B3nHYOErgY7b8'
     ```
 
-    Response:
+    Response: 
+
     ```json
     {
       "roles": [
-        {
-          "comment": "Default user role generated for adminA",
-          "created_at": 1531014784000,
-          "id": "e2941b41-92a4-4f49-be89-f1a452bdecd0",
-          "name": "adminA"
-        },
-        {
-          "created_at": 1531016728000,
-          "id": "d40e61ab-8dad-4ef2-a48b-d11379f7b8d1",
-          "name": "admin"
-        }
+          {
+              "created_at": 1685551877,
+              "id": "42809ada-650c-4575-b0a0-d464a64ffb70",
+              "name": "admin",
+              "ws_id": "9dc7adbb-9b64-4121-bf76-653cf5871bc2"
+          }
       ],
       "user": {
-        "created_at": 1531014784000,
-        "id": "1faaacd1-709f-4762-8c3e-79f268ec8faf",
-        "name": "adminA",
-        "enabled": true,
-        "user_token": "n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG"
-      }
+          "comment": "null",
+          "created_at": 1685552809,
+          "enabled": true,
+          "id": "bca4e390-fbbf-4a46-b55d-f4642efc14bb",
+          "name": "adminA",
+          "user_token": "$2b$09$oLyKTIDuKriPZ.SD5wYtxeMclGYNDn4udJkQG0NGx/Aq3j9j/tWsa",
+          "user_token_ident": "0ebb5"
+            }
     }
     ```
 
@@ -1062,8 +1064,6 @@ Response:
   "id": "6ee76f74-3c96-46a9-ae48-72df0717d244"
 }
 ```
-
----
 
 [workspaces-examples]: /gateway/{{page.kong_version}}/kong-enterprise/workspaces
 [getting-started-guide]: /gateway/{{page.kong_version}}/get-started/
