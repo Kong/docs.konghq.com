@@ -39,6 +39,8 @@ items:
         url: /concepts/ingress-versions
       - text: Gateway API
         url: /concepts/gateway-api
+      - text: Expression Based Router
+        url: /concepts/expression-based-router
   - title: Deployment
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /deployment/overview
