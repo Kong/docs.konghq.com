@@ -365,7 +365,6 @@ metadata:
     konghq.com/protocols: grpcs
     kubernetes.io/ingress.class: kong
   name: httpbin
-  uid: 3dcd75e9-c076-46a0-8cd3-3cc62f081920
 spec:
   rules:
   - http:
@@ -418,24 +417,19 @@ the number of times the problem occurred, and when it occurred:
 apiVersion: v1
 kind: Event
 count: 1
-eventTime: null
 firstTimestamp: "2023-02-21T22:42:48Z"
 involvedObject:
   apiVersion: networking.k8s.io/v1
   kind: Ingress
   name: httpbin
   namespace: default
-  uid: 3dcd75e9-c076-46a0-8cd3-3cc62f081920
 kind: Event
 lastTimestamp: "2023-02-21T22:42:48Z"
 message: 'invalid methods: cannot set ''methods'' when ''protocols'' is ''grpc''
   or ''grpcs'''
 metadata:
-  creationTimestamp: "2023-02-21T22:42:48Z"
   name: httpbin.1745f83aefeb8dde
   namespace: default
-  resourceVersion: "861"
-  uid: ab78a0fa-ebe7-4d86-a465-a4e7d636ccff
 reason: KongConfigurationApplyFailed
 reportingComponent: ""
 reportingInstance: ""
