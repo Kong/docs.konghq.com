@@ -29,6 +29,8 @@ To add a custom URL to Dev Portal, you need:
 * A domain and access to configure the domain's DNS `CNAME` records.
 * Your organization's auto-generated default Dev Portal URL.
 
+You can also choose to self-host Dev Portal. For more information about this feature, see [About Self-Hosted Dev Portal](/konnect/dev-portal/customization/netlify/).
+
 ### Configure DNS
 
 In your DNS configuration, create a CNAME record for the domain you want to use using the automatically generated Dev Portal URL.
@@ -42,9 +44,9 @@ The record will look like this:
 
 To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps:
 
-1. Open the **Portal URL** tab.
+1. Open the **Portal Domain** tab.
 
-3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable, into the **Custom Portal URL** field.
+3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable, into the **Custom Hosted Domain** field.
    Don't include a path or protocol (e.g. `https://`).
 
 4. Click **Save Custom Domain**.
@@ -81,7 +83,7 @@ Delete a custom Dev Portal URL through your organization's {{site.konnect_short_
 
 1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
 
-2. Open the **Portal URL** tab.
+2. Open the **Portal Domain** tab.
 
 3. Click **Delete Custom Domain**
 

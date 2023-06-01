@@ -13,6 +13,9 @@ The Dev Portal URL looks like this:
     
     https://example.us.portal.konghq.com/
 
+{:.note}
+> **Note:** If you've enabled the self-hosted Dev Portal, the Dev Portal URL will be the one you specified in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
+
 ## View a service in the Dev Portal {#url}
 
 The Dev Portal page contains a list of services that are published on the Dev Portal. 
