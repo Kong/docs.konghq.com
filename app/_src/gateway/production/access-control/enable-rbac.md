@@ -379,7 +379,7 @@ a similar set up, with an admin role and an admin user, both restricted to the
 team's workspace.
 
 The super admin's job is now done. 
-Individual team admins are now able to set up their teams users and entities!
+Individual team admins are now able to set up their team's users and entities!
 
 ## Team admins create regular users
 
