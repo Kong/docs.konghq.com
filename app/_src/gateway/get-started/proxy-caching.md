@@ -106,12 +106,12 @@ will potentially be cached.
 
    The `X-Cache-Status` headers can return the following cache results:
 
-   |State| Description|
-   |---|---|
-   |Miss| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.|
-   |Hit| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.|
-   |Refresh| The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold.|
-   |Bypass| The request could not be satisfied from cache based on plugin configuration.|
+   |State| Description                                                                                                                                          |
+   |---|------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |Miss| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.                 |
+   |Hit| The request was satisifed and served from the cache.                                                                                                 |
+   |Refresh| The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold. |
+   |Bypass| The request could not be satisfied from cache based on plugin configuration.                                                                         |
 
 ### Service level proxy caching
 
