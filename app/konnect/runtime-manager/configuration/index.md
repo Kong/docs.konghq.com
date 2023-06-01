@@ -125,3 +125,34 @@ With **Keys**, you can centrally store and easily access key sets and keys in {{
 * PEM
 
 To learn more about the details of this feature, reference the [{{site.base_gateway}} key reference documentation](/gateway/latest/reference/key-management/). The {{site.konnect_short_name}} keys feature is built using {{site.base_gateway}} ability to manage keys, the documentation available can serve as a reference for both {{site.base_gateway}} and {{site.konnect_short_name}}.
+
+## Configuration limits
+
+The following limits apply to each runtime group for the configuration resources:
+
+| Resource Name | Limit |
+| --- | --- |
+| Access Control List | 50,000 |
+| Asymmetric Key | 1,000 |
+| Asymmetric KeySet | 1,000 |
+| Basic Authentication | 50,000 |
+| Certificate Authority Certificate | 1,000 |
+| Certificate | 1,000 |
+| Consumer | 50,000 |
+| Consumer Group | 1,000 |
+| Consumer Group Rate Limiting Advanced Configuration | 1,000 |
+| Custom Plugins | 100 |
+| Data Plane Client Certificate | 32 |
+| DeGraphQL Route | 1,000 |
+| GraphQL Rate Limiting Cost Decoration | 1,000 |
+| Hash-based Message Authentication | 50,000 |
+| JSON Web Token | 50,000 |
+| Key (API Key) Authentication | 50,000 |
+| Mutual Transport Layer Security Authentication | 50,000 |
+| Plugin Configuration | 10,000 |
+| Route | 10,000 |
+| Server Name Indication | 1,000 |
+| Service | 10,000 |
+| Target | 10,000 |
+| Upstream | 10,000 |
+| Vault | 1,000 |
