@@ -49,10 +49,10 @@ module PluginSingleSource
         return nil unless File.exist?(File.join(plugin_base_path, '_api.md'))
 
         @references ||= Pages::References.new(
-            release: self,
-            file: '_api.md',
-            source_path: plugin_base_path
-          )
+          release: self,
+          file: '_api.md',
+          source_path: plugin_base_path
+        )
       end
 
       def configuration
