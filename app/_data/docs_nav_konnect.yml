@@ -265,7 +265,7 @@
     - text: Portal Client API
       items: 
         - text: API Documentation
-          url: https://developer.konghq.com/spec/ADD URL HERE
+          url: https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356
           absolute_url: true   
     - text: Reference
       items:

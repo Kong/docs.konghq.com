@@ -9,10 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## May 2023
+## June 2023
 
 **Portal Client API**
-: {{site.konnect_short_name}} now supports customers' integration with DevPortal workflows via public APIs. For more information, see the [Portal Client API spec](https://developer.konghq.com/spec/ADD URL HERE) 
+: {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. For more information, see the [Portal Client API spec](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356).
 
 ## April 2023
 

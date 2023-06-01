@@ -32,7 +32,7 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 * [Runtime Configuration API](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
 
-* [Portal Client API]](https://developer.konghq.com/spec/ADD URL HERE) - Interface for managing DevPortal workflows via public APIs.
+* [Portal Client API](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356) - Interface for managing Dev Portal workflows via public APIs.
 
 {:.note}
 > **Note**: This list represents the APIs supported for use in production environments. 
