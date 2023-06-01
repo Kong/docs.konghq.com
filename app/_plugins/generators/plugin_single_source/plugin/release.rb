@@ -45,6 +45,16 @@ module PluginSingleSource
         end
       end
 
+      def references
+        return nil unless File.exist?(File.join(plugin_base_path, '_api.md'))
+
+        @references ||= Pages::References.new(
+            release: self,
+            file: '_api.md',
+            source_path: plugin_base_path
+          )
+      end
+
       def configuration
         return nil if schema.empty?
 

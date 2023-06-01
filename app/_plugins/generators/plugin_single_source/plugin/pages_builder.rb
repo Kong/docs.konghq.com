@@ -25,7 +25,8 @@ module PluginSingleSource
           @release.configuration,
           @release.configuration_examples,
           @release.how_tos,
-          @release.changelog
+          @release.changelog,
+          @release.references
         ].compact
       end
 
@@ -68,6 +69,14 @@ module PluginSingleSource
                        'title' => 'Using the plugin',
                        'items' => items_for(@release.how_tos),
                        'icon' => icon
+                     })
+        end
+
+        if @release.references
+          items.push({
+                       'title' => @release.references.nav_title,
+                       'url' => @release.references.permalink,
+                       'icon' => @release.references.icon
                      })
         end
 
