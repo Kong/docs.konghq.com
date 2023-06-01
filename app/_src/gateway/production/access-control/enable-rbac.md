@@ -24,7 +24,7 @@ To sum up, workspaces and RBAC are complementary: workspaces provide segmentatio
 Admin API entities, while RBAC provides access control.
 
 {:.note}
-> **Note:** The example responses in this guide are often partial excerpts 
+> **Note:** The example responses in this guide are often excerpts of full responses,
 focusing on the most relevant part of the response, as the full response can be very long.
 
 ## Bootstrapping the first RBAC user
@@ -40,7 +40,7 @@ with RBAC enabled.
 If you chose this option, skip to [Enforcing RBAC](#enforcing-rbac).
 
 {{site.base_gateway}} ships with a set of default RBAC roles: `super-admin`,
-the `admin`, and `read-only`, which the task of creating a Super Admin user easy:
+the `admin`, and `read-only`, which makes the task of creating a super admin user easy:
 
 1. Create the RBAC user, named `super-admin`:
 
@@ -93,15 +93,15 @@ the `admin`, and `read-only`, which the task of creating a Super Admin user easy
 
 ## Enforcing RBAC
 
-As the `super-admin` user has just been created, the Kong admin may now
-restart Kong with RBAC enforced:
+With the `super-admin` user created, the Kong admin can now restart 
+{{site.base_gateway}} with RBAC enforced:
 
 ```
 KONG_ENFORCE_RBAC=on kong restart
 ```
 
 This is one of the possible ways of enforcing RBAC and restarting
-Kong. Another possibility is editing the Kong configuration file and
+Kong. Another options is editing the {{site.base_gateway}} configuration file and
 restarting.
 
 Before moving on, note that this guide uses the super admin user, but you 
@@ -198,7 +198,7 @@ one workspace for each and one admin for each.
     }
     ```
 
-1. With this, both of the teams have one admin and each admin can only be seen
+1. Both of the teams now have one admin and each admin can only be seen
 in their corresponding workspace. To verify, run:
 
     ```sh
@@ -251,7 +251,7 @@ The super admin is now done creating RBAC admin users for each team. The next
 task is to create admin roles that will effectively grant permissions to admin
 users.
 
-The admin role must have access to all of the Admin API, restricted to their
+The admin role must have access to all of the Admin API, restricted to its
 workspace.
 
 1. Set up the admin role, paying close attention to the request parameters:
@@ -335,7 +335,7 @@ workspace.
     }
     ```
 
-1. With these steps, Team A's admin user is now able to manage their team. To
+1. Team A's admin user is now able to manage their team. To
 validate that, let's try to list RBAC users in Team B using Team A's admin
 user token:
 
@@ -351,7 +351,7 @@ user token:
     }
     ```
 
-1. Now try to list RBAC users in Team A's workspace:
+1. Now try listing RBAC users in Team A's workspace:
 
     ```sh
     curl -i -X GET http://localhost:8001/teamA/rbac/users \
@@ -388,9 +388,9 @@ step is to create team users, such as engineers that are part of Team A or B.
 Let's go ahead and do that, using Admin A's user token.
 
 Before regular users can be created, a role needs to be available for them.
-This role needs to have permissions to all of Admin API endpoints, except
-RBAC and workspaces. Regular users don't need access to these endpoints in general
-and if they do, the admin can grant them.
+This role needs to have permissions to all of the Admin API endpoints, except
+RBAC and workspaces. Regular users don't need access to these endpoints,
+and if they do, the admin can grant them individually.
 
 ### Create the users role
 
@@ -496,10 +496,10 @@ and if they do, the admin can grant them.
 
 {:.important}
 > **Important**: As explained in the [Wildcards in Permissions](#wildcards-in-permissions)
-section, the meaning of `*` is not the expected generic globbing one might
-be used to. As such, `/rbac/*` or `/workspaces/*` do not match all of the
+section, the meaning of `*` is not the same as generic globbing.
+ As such, `/rbac/*` or `/workspaces/*` do not match all of the
 RBAC and Workspaces endpoints. For example, to cover all of the RBAC API,
-one would have to define permissions for the following endpoints:
+you would have to define permissions for the following endpoints:
 >
 > - `/rbac/*`
 > - `/rbac/*/*`
@@ -710,14 +710,14 @@ can be allowed or disallowed access in a role.
 
 RBAC is [enforced](#enforcing-rbac) with the `enforce_rbac`
 configuration directive, or with its `KONG_ENFORCE_RBAC` environment variable
-counterpart. Such directive is an enum, with 4 possible values:
+counterpart. The directive is an enum, with the following possible values:
 
 - `on`: Applies endpoint-levelaccess control
 - `entity`: Applies **only** Entity-level access control
 - `both`: Applies **both Endpoint and Entity level access control**
 - `off`: disables RBAC enforcement
 
-If set to `entity` or `both`, Kong will enforce entity-level
+If set to `entity` or `both`, Kong enforces entity-level
 access control. However, as with endpoint-level access control, permissions
 must be bootstrapped before enforcement is enabled.
 
@@ -864,7 +864,7 @@ the two entities over Kong's admin API.
 
 Let's assume that Admin A [enabled entity-level enforcement](#enforcing-rbac) as well.
 Note that as `qux` has **no endpoint-level permissions**. If both endpoint and
-entity-level enforcement is enabled, `qux` won't  be able to read their entities, as
+entity-level enforcement is enabled, `qux` won't be able to read their entities, as
 endpoint-level validation comes before entity-level.
 
 1. As `qux`, try listing all RBAC users:
