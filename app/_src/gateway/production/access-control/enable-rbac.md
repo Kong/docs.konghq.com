@@ -827,7 +827,7 @@ to use entity-level RBAC.
         "read"
       ]
     }
-
+    ```
 
 1. Add the user `qux` to `qux-role`:
 
