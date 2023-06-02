@@ -15,6 +15,9 @@
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
 
+  [plugins.inputs]
+    run_on_success = "true"
+
   [plugins.inputs.settings]
     preset = "desktop"
 
