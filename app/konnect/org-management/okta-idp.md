@@ -152,8 +152,7 @@ value is present.
 
 ### Provide Okta connection details
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-1. Click ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-**Settings**, and then **Auth Settings**.
+1. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
 1. Click **Configure provider** for **OIDC**.
 
 1. In Okta, locate your issuer URI.
@@ -229,7 +228,7 @@ in Okta to locate the Okta groups you want to map.
     groups may be accessible by the `groups` claim. See the
     [claims](#set-up-claims-in-okta) setup step for details.
 
-1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and do at least one of the following:
+1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization > Auth Settings > Team Mappings** and do at least one of the following:
 
     * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
     * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
@@ -260,8 +259,7 @@ application.
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
     If you ever need to find the path again, you can always find it under
-    ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-     **Settings > Auth Settings**, then copy the **Organization Login URI**
+    {% konnect_icon organizations %} **Organization > Auth Settings**, then copy the **Organization Login URI**
      and append it to `cloud.konghq.com/login/`.
 
 1. Paste the URI into a browser address bar. An Okta login page should appear.

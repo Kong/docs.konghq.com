@@ -45,6 +45,8 @@ items:
     items:
       - text: Kong Ingress on Minikube
         url: /deployment/minikube
+      - text: Kong Ingress on Kind
+        url: /deployment/kind
       - text: Kong for Kubernetes
         url: /deployment/k4k8s
       - text: Kong for Kubernetes Enterprise
@@ -133,6 +135,8 @@ items:
         url: /guides/using-multiple-backends
       - text: Using Gateway Discovery
         url: /guides/using-gateway-discovery
+      - text: Routing by Header
+        url: /guides/routing-by-header/
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:

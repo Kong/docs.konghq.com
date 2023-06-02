@@ -1,0 +1,11 @@
+name: kong-splunk-log
+config:
+  splunk_endpoint: https://hec-splunk.company.com/services/collector
+  splunk_access_token: aaaaaaaa-bbbb-cccc-dddd-ffffffffffff
+  method: POST
+  content_type: application/json
+  timeout: 10000
+  retry_count: 5
+  queue_size: 20
+  flush_timeout: 30
+  keepalive: 60000

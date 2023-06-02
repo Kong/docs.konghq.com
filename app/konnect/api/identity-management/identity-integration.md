@@ -131,7 +131,7 @@ If [single sign on](/konnect/org-management/okta-idp/) is enabled, an organizati
 Update the team mappings by issuing a `PUT` request containing `team_ids` in the request body: 
 
     curl --request PUT \
-    --url https://us.api.konghq.com/v2/identity-provider/team-mappings \
+    --url https://global.api.konghq.com/v2/identity-provider/team-mappings \
     --header 'Content-Type: application/json' \
     --data '{
     "mappings": [

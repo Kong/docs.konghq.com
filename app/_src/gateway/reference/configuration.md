@@ -360,6 +360,65 @@ authority.
 
 ---
 
+{% if_version gte:3.3.x %}
+
+### error_template_html
+
+Path to the custom html error template to override the default html kong error
+template.
+
+The template is required to contain one single `%s` placeholder for the error
+message, as in the following example:
+
+```
+<html>
+   <body>
+     <h1>My custom error template</h1>
+     <p>%s.</p>
+   </body>
+</html>
+```
+
+Default: none
+
+---
+
+### error_template_json
+
+Path to the custom json error template to override the default json kong error
+template.
+
+Similarly to `error_template_html`, the template is required to contain one
+single `%s` placeholder for the error message.
+
+Default: none
+
+---
+
+### error_template_xml
+
+Path to the custom xml error template to override the default xml kong error
+template
+
+Similarly to `error_template_html`, the template is required to contain one
+single `%s` placeholder for the error message.
+
+Default: none
+
+---
+
+### error_template_plain
+
+Path to the custom plain error template to override the default plain kong
+error template
+
+Similarly to `error_template_html`, the template is required to contain one
+single `%s` placeholder for the error message.
+
+Default: none
+
+---
+{% endif_version %}
 ## Hybrid Mode section
 
 ### role
@@ -532,6 +591,29 @@ The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
 
 ---
+{% if_version gte:3.3.x %}
+### cluster_dp_labels
+{:.badge .enterprise}
+
+Comma separated list of Labels for the data plane.
+
+Labels are key-value pairs that provide additional context information for each
+DP.
+
+Each label must be configured as a string in the format `key:value`.
+
+Labels are only compatible with hybrid mode deployments with Kong Konnect
+(SaaS), this configuration doesn't work with self-hosted deployments.
+
+Keys and values follow the AIP standards: https://kong-aip.netlify.app/aip/129/
+
+Example: `deployment:mycloud,region:us-east-1`
+
+Default: none
+
+---
+
+{% endif_version %}
 
 ## Hybrid Mode Control Plane section
 
@@ -1996,8 +2078,156 @@ a single query.
 
 **Default:** `off`
 
+---
+
+
+## Vaults section
+
+A secret is any sensitive piece of information required for API gateway
+operations. Secrets may be part of the core Kong Gateway configuration, used in
+plugins, or part of the configuration associated with APIs serviced by the
+gateway.
+
+Some of the most common types of secrets used by Kong Gateway include:
+
+- Data store usernames and passwords, used with PostgreSQL and Redis
+- Private X.509 certificates
+- API keys
+
+Sensitive plugin configuration fields are generally used for authentication,
+hashing, signing, or encryption. Kong Gateway lets you store certain values in a
+vault. Here are the vault specific configuration options.
 
 ---
+
+### vault_env_prefix
+
+Defines the environment variable vault's default prefix. For example if you
+have all your secrets stored in environment variables prefixed with `SECRETS_`,
+it can be configured here so that it isn't necessary to repeat them in Vault
+references.
+
+Default: none
+
+---
+{% if_version gte:3.1.x %}
+
+### vault_aws_region
+{:.badge .enterprise}
+The AWS region your vault is located in.
+
+Default: none
+
+---
+
+### vault_gcp_project_id
+{:.badge .enterprise}
+
+The project ID from your Google API Console.
+
+Default: none
+
+---
+
+### vault_hcv_protocol
+{:.badge .enterprise}
+
+The protocol to connect with. Accepts one of `http` or `https`.
+
+Default: `http`
+
+---
+
+### vault_hcv_host
+{:.badge .enterprise}
+
+The hostname of your HashiCorp vault.
+
+Default: `127.0.0.1`
+
+---
+
+### vault_hcv_port
+{:.badge .enterprise}
+
+The port number of your HashiCorp vault.
+
+Default: `8200`
+
+---
+
+### vault_hcv_namespace
+{:.badge .enterprise}
+
+Namespace for the HashiCorp Vault. Vault Enterprise requires a namespace to
+successfully connect to it.
+
+Default: none
+
+---
+
+### vault_hcv_mount
+{:.badge .enterprise}
+
+The mount point.
+
+Default: `secret`
+
+---
+
+### vault_hcv_kv
+{:.badge .enterprise}
+
+
+The secrets engine version. Accepts `v1` or `v2`.
+
+Default: `v1`
+
+---
+
+### vault_hcv_token
+{:.badge .enterprise}
+
+A token string.
+
+Default: none
+
+---
+
+### vault_hcv_auth_method
+{:.badge .enterprise}
+
+Defines the authentication mechanism when connecting to the Hashicorp Vault
+service.
+
+Accepted values are: `token`, or `kubernetes`.
+
+Default: `token`
+
+---
+
+### vault_hcv_kube_role
+{:.badge .enterprise}
+
+Defines the HashiCorp Vault role for the Kubernetes service account of the
+running pod. `vault_hcv_auth_method` must be set to `kubernetes` for this to
+activate.
+
+Default: none
+
+---
+
+### vault_hcv_kube_api_token_file
+{:.badge .enterprise}
+
+Defines where the Kubernetes service account token should be read from the
+pod's filesystem, if using a non-standard container platform setup.
+
+Default: none
+
+---
+{% endif_version %}
+
 
 ## Tuning & Behavior section
 
@@ -2030,7 +2260,7 @@ after Routes and Services updates.
 
 ### worker_state_update_frequency
 
-Defines how often the worker state changes are checked with a background job.
+Defines, in seconds, how often the worker state changes are checked with a background job.
 When a change is detected, a new router or balancer will be built, as needed.
 Raising this value will decrease the load on database servers and result in less
 jitter in proxy latency, but it might take more time to propagate changes to
@@ -2066,9 +2296,67 @@ be used in case `traditional_compatible` did not work as expected.
 This flavor of router will be removed in the next major release of Kong.
 
 **Default:** `traditional_compatible`
+---
 
+### lua_max_req_headers
+
+Maximum number of request headers to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying the Kong sends all the request headers and this setting does not
+have any effect. It is used to limit Kong and its plugins from reading too many
+request headers.
+
+Default: `100`
 
 ---
+
+
+### lua_max_resp_headers
+
+Maximum number of response headers to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying, Kong returns all the response headers and this setting does not
+have any effect. It is used to limit Kong and its plugins from reading too many
+response headers.
+
+Default: `100`
+
+---
+
+### lua_max_uri_args
+
+Maximum number of request uri arguments to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying, Kong sends all the request query arguments and this setting does
+not have any effect.
+
+It is used to limit Kong and its plugins from reading too many query arguments.
+
+Default: `100`
+
+---
+
+### lua_max_post_args
+
+Maximum number of request post arguments to parse by default.
+
+This argument can be set to an integer between 1 and 1000.
+
+When proxying, Kong sends all the request post arguments and this setting does
+not have any effect.
+
+It is used to limit Kong and its plugins from reading too many post arguments.
+
+Default: `100`
+
+---
+
 
 ## Miscellaneous section
 
@@ -4115,6 +4403,30 @@ Setting this attribute disables the search behavior and explicitly instructs
 Kong which OpenResty installation to use.
 
 **Default:** none
+{% if_version gte:3.3.x %}
+---
+
+### node_id
+{:.badge .enterprise}
+
+Node ID for the Kong node. Every Kong node in a Kong cluster must have a unique
+and valid UUID. When empty, node ID is automatically generated.
+
+Default: none
+
+---
+
+### cluster_fallback_config_import
+{:.badge .enterprise}
+
+Enable fallback configuration imports
+
+This should only be enabled for data plane
+
+Default: `off`
+
+---
+{% endif_version %}
 
 {% if_version gte:3.2.x %}
 

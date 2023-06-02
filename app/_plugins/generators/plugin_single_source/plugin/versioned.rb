@@ -19,12 +19,12 @@ module PluginSingleSource
       end
 
       def ext_data
-        {
+        super.merge(
           'releases' => releases,
           'strategy' => data['strategy'],
           'overrides' => data['overrides'],
           'frontmatter' => data['frontmatter']
-        }
+        )
       end
 
       private

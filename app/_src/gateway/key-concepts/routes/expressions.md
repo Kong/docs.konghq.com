@@ -64,7 +64,7 @@ For a list of all available operators, see the [reference documentation](/gatewa
 
 When the Expressions router is used, available expressions are evaluated using the `priority` field of the corresponding `Route` object
 where the expression is configured. Routes are evaluated in order of priority, where the highest priority integer is evaluated first. If two routes have the same priority, then
-the newest route (that is, routes with the highest `created_at`) will be evaluated first.
+the route with the higher `id` (UUID) will be evaluated first as a tie-breaker.
 
 The Expressions router stops evaluating the remaining rules as soon as the first match is found.
 
@@ -72,17 +72,17 @@ For example, given the following config:
 
 ```
 Route 1 =>
-created_at: 100000001
+id: 82c8e89f-ddff-42f0-a1b8-4d1120547624
 priority: 100,
 expression: ...
 
 Route 2 =>
-created_at: 100000000
+id: 72c8e89f-ddff-42f0-a1b8-4d1120547624
 priority: 100,
 expression: ...
 
 Route 3 =>
-created_at: 100000002
+id: 92c8e89f-ddff-42f0-a1b8-4d1120547624
 priority: 99,
 expression: ...
 ```

@@ -5,7 +5,7 @@ require 'nokogiri'
 module Jekyll
   Jekyll::Hooks.register :pages, :post_render do |page|
     # Only process pages. This prevents _redirects being output with a HTML doctype
-    next unless page.instance_of?(Jekyll::Page)
+    next unless page.is_a?(Jekyll::Page)
 
     has_changes = false
     doc = ::Nokogiri::HTML(page.output)

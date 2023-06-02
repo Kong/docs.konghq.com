@@ -343,7 +343,7 @@ spec:
           service:
             name: echo
             port:
-              number: 80
+              number: 1027
 " | kubectl apply -f -
 ```
 {% endnavtab %}

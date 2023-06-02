@@ -1,108 +1,3 @@
----
-name: Key Authentication
-publisher: Kong Inc.
-desc: Add key authentication to your Services
-description: |
-  Add key authentication (also sometimes referred to as an _API key_) to a service or a route.
-  Consumers then add their API key either in a query string parameter, a header, or a
-  request body to authenticate their requests.
-
-  This plugin can be used for authentication in conjunction with the
-  [Application Registration](/hub/kong-inc/application-registration/) plugin.
-
-  **Tip:** The Kong Gateway [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/)
-    plugin provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
-type: plugin
-categories:
-  - authentication
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: key-auth
-  service_id: true
-  route_id: true
-  consumer_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
-  dbless_compatible: partially
-  dbless_explanation: |
-    Consumers and Credentials can be created with declarative configuration.
-
-    Admin API endpoints that do POST, PUT, PATCH, or DELETE on Credentials are not available on DB-less mode.
-  config:
-    - name: key_names
-      required: true
-      default: '[`apikey`]'
-      value_in_examples:
-        - apikey
-      datatype: array of strings
-      description: |
-        Describes an array of parameter names where the plugin will look for a key. The client must send the
-        authentication key in one of those key names, and the plugin will try to read the credential from a
-        header, request body, or query string parameter with the same name.
-        <br>**Note**: The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
-    - name: key_in_body
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        If enabled, the plugin reads the request body (if said request has one and its MIME type is supported) and tries to find the key in it. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
-    - name: key_in_header
-      minimum_version: "2.3.x"
-      required: true
-      default: '`true`'
-      datatype: boolean
-      description: |
-        If enabled (default), the plugin reads the request header and tries to find the key in it.
-    - name: key_in_query
-      minimum_version: "2.3.x"
-      required: true
-      default: '`true`'
-      datatype: boolean
-      description: |
-        If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
-    - name: hide_credentials
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: |
-        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`,
-        the plugin strips the credential from the request (i.e., the header, query string, or request body containing the key) before proxying it.
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string
-      description:
-        An optional string (consumer UUID or username) value to use as an “anonymous” consumer if authentication fails. If empty (default null), the request will fail with an authentication failure `4xx`. Note that this value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
-      minimum_version: "3.1.x"
-    - name: anonymous
-      required: false
-      default: null
-      datatype: string
-      description: |
-        An optional string (consumer UUID) value to use as an anonymous consumer if authentication fails.
-        If empty (default), the request will fail with an authentication failure `4xx`. Note that this value
-        must refer to the consumer `id` attribute that is internal to Kong Gateway, and **not** its `custom_id`.
-        For more information, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
-      maximum_version: "3.0.x"
-    - name: run_on_preflight
-      required: true
-      default: '`true`'
-      datatype: boolean
-      description: |
-        A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests.
-        If set to `false`, then `OPTIONS` requests are always allowed.
----
 ## Case sensitivity
 
 Note that, according to their respective specifications, HTTP header names are treated as
@@ -187,7 +82,6 @@ Response:
 
 ```
 HTTP/1.1 201 Created
-
 {
   "key": "5SRmk6gLnTy1SyQ1Cl9GzoRXJbjYGGbZ",
   "created_at": 1655412883,
@@ -404,13 +298,3 @@ No API key is provided. | No | 401
 The API key is known to {{site.base_gateway}} | No | 401
 A runtime error occurred. | No | 500
 
-
----
-## Changelog
-
-**{{site.base_gateway}} 3.0.x**
-* The deprecated `X-Credential-Username` header has been removed.
-* The `key-auth` plugin priority has changed from 1003 to 1250.
-
-**{{site.base_gateway}} 2.3.x**
-* Added the configuration parameters `key_in_header` and `key_in_query`.

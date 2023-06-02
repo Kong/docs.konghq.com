@@ -182,16 +182,35 @@ settings (`admin_gui_auth_conf`).
   its API. For example, if you use `api.admin.kong.example` and
   `manager.admin.kong.example` for the Admin API and Kong Manager,
   `cookie_domain` should be `admin.kong.example`.
-- {% if_version lte:3.1.x %}`cookie_samesite`{% endif_version %}
-  {% if_version gte:3.2.x %}`cookie_same_site`{% endif_version %}
-  should typically be left at its default, `strict`. `none`
-  is not necessary if you have your DNS records and `cookie_domain` set
-  following the examples in this document. `off` is only needed if the GUI and
-  API are on entirely separate hostnames, e.g. `admin.kong.example` for the API
-  and `manager.example.com` for Kong Manager. This configuration is not
-  recommended because `off` opens a vector for cross-site request forgery
-  attacks. It may be needed in some development or testing environments, but
-  should not be used in production.
+
+{% if_version lte:3.1.x %}
+- `cookie_samesite` should typically be left at 
+  its default, `strict`. 
+   - `none` is not necessary if you have your DNS records and 
+    `cookie_domain` set following the examples in this document. 
+   - `off` is only needed if the GUI and
+    API are on entirely separate hostnames, e.g. `admin.kong.example` for the API
+    and `manager.example.com` for Kong Manager. This configuration is not
+    recommended because `off` opens a vector for cross-site request forgery
+    attacks. It may be needed in some development or testing environments, but
+    should not be used in production.
+{% endif_version %} 
+
+{% if_version gte:3.2.x %}
+- `cookie_same_site` should typically be left at its default, `Strict`.
+  
+    - `None` is 
+    not necessary if you have your DNS records and 
+    `cookie_domain` set following the examples in this document.
+
+    - `Lax` is only needed if the GUI and
+    API are on entirely separate hostnames, e.g. `admin.kong.example` for the API
+    and `manager.example.com` for Kong Manager. This configuration is not
+    recommended because `Lax` opens a vector for cross-site request forgery
+    attacks. It may be needed in some development or testing environments, but
+    should not be used in production.
+{% endif_version %}
+
 - `cookie_secure` controls whether cookies can be sent over unsecured
   (plaintext HTTP) requests. By default, it is set to `true`, which does not
   permit sending the cookie over unsecured connections. This setting should

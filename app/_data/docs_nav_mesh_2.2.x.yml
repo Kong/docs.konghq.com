@@ -52,10 +52,19 @@ items:
           - text: Default ports
             url: /production/deployment/networking/
             src: /.repos/kuma/app/_src/production/deployment/networking/
+      - text: Install kumactl
+        url: /production/install-kumactl/
+        src: /.repos/kuma/app/_src/production/install-kumactl/
+      - text: Use Kuma
+        url: /production/use-kuma/
+        src: /.repos/kuma/app/_src/production/use-kuma/
       - text: Control plane deployment
         items:
           - text: Kong Mesh license
             url: /production/cp-deployment/license/
+          - text: Deploy a standalone control plane
+            url: /production/cp-deployment/stand-alone/
+            src: /.repos/kuma/app/_src/production/cp-deployment/stand-alone/
           - text: Deploy a multi-zone global control plane
             url: /production/cp-deployment/multi-zone/
             src: /.repos/kuma/app/_src/production/cp-deployment/multi-zone/
@@ -68,9 +77,6 @@ items:
           - text: Configure zone proxy authentication
             url: /production/cp-deployment/zoneproxy-auth/
             src: /.repos/kuma/app/_src/production/cp-deployment/zoneproxy-auth/
-          - text: Deploy a standalone control plane
-            url: /production/cp-deployment/stand-alone/
-            src: /.repos/kuma/app/_src/production/cp-deployment/stand-alone/
           - text: Control plane configuration reference
             url: /generated/kuma-cp/
             src: /.repos/kuma/app/_src/generated/kuma-cp/
@@ -133,35 +139,6 @@ items:
           - text: Performance fine-tuning
             url: /production/upgrades-tuning/fine-tuning/
             src: /.repos/kuma/app/_src/production/upgrades-tuning/fine-tuning/
-  - title: Install
-    icon: /assets/images/icons/documentation/icn-deployment-color.svg
-    items:
-      - text: Installation Options
-        url: /install/
-      - text: Kubernetes
-        url: /installation/kubernetes/
-      - text: Helm
-        url: /installation/helm/
-      - text: OpenShift
-        url: /installation/openshift/
-      - text: Docker
-        url: /installation/docker/
-      - text: Amazon ECS
-        url: /installation/ecs
-      - text: Amazon Linux
-        url: /installation/amazonlinux/
-      - text: Red Hat
-        url: /installation/redhat/
-      - text: CentOS
-        url: /installation/centos/
-      - text: Debian
-        url: /installation/debian/
-      - text: Ubuntu
-        url: /installation/ubuntu/
-      - text: macOS
-        url: /installation/macos/
-      - text: Windows
-        url: /installation/windows
   - title: Deploy
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
@@ -210,7 +187,6 @@ items:
       - text: Control Plane Configuration
         url: /documentation/configuration/
         src: /.repos/kuma/app/_src/documentation/configuration/
-      - text: Requirements
   - title: Policies
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
@@ -295,7 +271,7 @@ items:
         url: /policies/meshfaultinjection/
         src: /.repos/kuma/app/_src/policies/meshfaultinjection/
       - text: MeshGlobalRatelimit (beta)
-        url: /features/meshglobalratelimit
+        url: /policies/meshglobalratelimit
       - text: MeshHealthCheck (Beta)
         url: /policies/meshhealthcheck/
         src: /.repos/kuma/app/_src/policies/meshhealthcheck/
@@ -306,7 +282,7 @@ items:
         url: /policies/meshloadbalancingstrategy/
         src: /.repos/kuma/app/_src/policies/meshloadbalancingstrategy/
       - text: MeshOPA (beta)
-        url: /features/meshopa
+        url: /policies/meshopa
       - text: MeshProxyPatch (Beta)
         url: /policies/meshproxypatch/
         src: /.repos/kuma/app/_src/policies/meshproxypatch/
@@ -339,22 +315,27 @@ items:
       - text: OPA policy support
         url: /features/opa
       - text: MeshOPA (beta)
-        url: /features/meshopa
+        url: /policies/meshopa
+        generate: false
       - text: MeshGlobalRatelimit (beta)
-        url: /features/meshglobalratelimit
+        url: /policies/meshglobalratelimit
+        generate: false
       - text: Multi-zone authentication
         url: /features/kds-auth
       - text: FIPS support
         url: /production/secure-deployment/fips-support/
+        generate: false
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /production/secure-deployment/rbac/
+        generate: false
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
-        generate: false
+      - text: ECS Support
+        url: /installation/ecs
       - text: Auditing
         url: /features/access-audit
   - title: Reference docs
@@ -451,9 +432,9 @@ items:
       - text: Open source License
         url: /community/license/
         src: /.repos/kuma/app/_src/community/license/
-      - text: Contribute to Mesh
-        url: /community/contribute-to-mesh/
-        src: /.repos/kuma/app/_src/community/contribute-to-kuma/
+      - text: Contribute to Kuma
+        url: https://kuma.io/community
+        absolute_url: true
 unlisted:
   # Kuma CP
   - url: /generated/cmd/kuma-cp/kuma-cp_migrate/

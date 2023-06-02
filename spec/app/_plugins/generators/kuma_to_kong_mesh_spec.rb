@@ -40,6 +40,15 @@ RSpec.describe KumaToKongMesh::Generator do
           expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kuma-dp/kuma-dp_run')
           expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kumactl/kumactl_apply')
         end
+
+        context 'assets' do
+          it 'does not replace `kuma` in assets' do
+            expect(page.content).to include('<img src="/assets/images/docs/0.4.0/kuma_dp1.jpeg"')
+            expect(page.content).to include('<img src="/assets/images/docs/0.4.0/kuma_dp2.png"')
+            expect(page.content).to include('<img src="/assets/images/docs/0.4.0/kuma_dp3.png"')
+            expect(page.content).to include('<img src="/assets/images/docs/1.1.2/kuma_dp4.png"')
+          end
+        end
       end
 
       context 'transforms specific links' do

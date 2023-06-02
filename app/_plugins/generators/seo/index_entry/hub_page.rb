@@ -13,24 +13,12 @@ module SEO
         end
       end
 
-      def process!(index)
-        super(index)
-
-        set_canonical_url
-      end
-
       def key
         @key ||= url
       end
 
       def attributes
         super.merge('url' => url, 'page' => @page)
-      end
-
-      private
-
-      def set_canonical_url
-        @page.data['canonical_url'] = url
       end
     end
   end
