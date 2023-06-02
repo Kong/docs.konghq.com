@@ -128,9 +128,9 @@ To learn more about the details of this feature, reference the [{{site.base_gate
 
 ## Configuration limits
 
-The following limits apply to each runtime group for the configuration resources:
+The following entity resource limits apply to each runtime group for the configuration:
 
-| Resource Name | Limit |
+| Resource name | Entity resource limit |
 | --- | --- |
 | Access Control List | 50,000 |
 | Asymmetric Key | 1,000 |
