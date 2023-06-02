@@ -45,26 +45,11 @@ This allows you to reference the secrets separately:
 {% navtabs %}
 {% navtab Admin API %}
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault \
   --data name=env \
   --data description="Store secrets in environment variables"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f PUT :8001/vaults/my-env-vault \
-  name="env" \
-  description="Store secrets in environment variables"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 

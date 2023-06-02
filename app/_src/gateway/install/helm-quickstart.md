@@ -325,18 +325,7 @@ For local deployments, Kong Manager is locally accessible at `https://kong.127-0
 
 You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
     curl --silent --insecure -X GET https://kong.127-0-0-1.nip.io/api -H 'kong-admin-token:kong'
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-    http --verify=no get https://kong.127-0-0-1.nip.io/api kong-admin-token:kong
-
-{% endnavtab %}
-{% endnavtabs %}
 
 ## Teardown 
 
