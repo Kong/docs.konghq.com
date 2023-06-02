@@ -1689,3 +1689,23 @@ messages:
       Please upgrade Kong Gateway to version `3.3.0.0` or above.
     DocumentationURL: |
       [Zipkin plugin](/hub/kong-inc/zipkin/)
+  - ID: P181
+    Severity: error
+    Description: |
+      For the `zipkin` plugin, one or more of the fields `header_type`,
+      `default_header_type` has been set to `datadog`. This is not supported in Kong
+      Gateway versions < 3.0.0.0. Impacted fields have been updated to their default
+      values: `header_type=preserve` and/or `default_header_type=b3`
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.0.0.0` or above.
+    DocumentationURL: |
+      [Zipkin plugin](/hub/kong-inc/zipkin/)
+  - ID: P182
+    Severity: error
+    Description: |
+      For the `upstream` entity, one or more of the following schema fields are set:
+      `use_srv_name` but Kong Gateway versions < 3.1.0.0 do not support these fields.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
