@@ -22,6 +22,12 @@
     path = "hub"
 
   [[plugins.inputs.audits]]
+    path = "hub/kong-inc/jwt-signer/"
+
+  [[plugins.inputs.audits]]
+    path = "hub/kong-inc/jwt-signer/configuration/"
+
+  [[plugins.inputs.audits]]
     path = "gateway/latest/"
 
   [[plugins.inputs.audits]]
@@ -35,3 +41,6 @@
 
   [[plugins.inputs.audits]]
     path = "kubernetes-ingress-controller/latest/"
+
+  [[plugins.inputs.audits]]
+    path = "konnect/analytics/use-cases/"
