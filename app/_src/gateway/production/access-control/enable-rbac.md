@@ -46,8 +46,9 @@ the `admin`, and `read-only`, which makes the task of creating a super admin use
 
     ```sh
     curl -i -X POST http://localhost:8001/rbac/users \
-      -H Kong-Admin-Token:secureadmintoken \
-      --data name=super-admin
+      -H 'Kong-Admin-Token:secureadmintoken' \
+      --data name=super-admin \
+      --data user_token=exampletoken
     ```
 
     Response:
@@ -56,7 +57,8 @@ the `admin`, and `read-only`, which makes the task of creating a super admin use
       "user_token": "M8J5A88xKXa7FNKsMbgLMjkm6zI2anOY",
       "id": "da80838d-49f8-40f6-b673-6fff3e2c305b",
       "enabled": true,
-      "created_at": 1531009435000,
+      "created_at": 1531009435,
+      "updated_at": 1531009435,
       "name": "super-admin"
     }
     ```
@@ -76,13 +78,15 @@ the `admin`, and `read-only`, which makes the task of creating a super admin use
       "roles": [
         {
           "comment": "Full access to all endpoints, across all workspaces",
-          "created_at": 1531009724000,
+          "created_at": 1531009724,
+          "updated_at": 1531009724,
           "name": "super-admin",
           "id": "b924ac91-e83f-4136-a5a4-4a7ff92594a8"
         }
       ],
       "user": {
-        "created_at": 1531009858000,
+        "created_at": 1531009435,
+        "updated_at": 1531009724,
         "id": "e6897cc0-0c34-4a9c-9f0b-cc65b4f04d68",
         "name": "super-admin",
         "enabled": true,
@@ -134,7 +138,8 @@ one workspace for each and one admin for each.
     ```json
     {
       "name": "teamA",
-      "created_at": 1531014100000,
+      "created_at": 1531014100,
+      "updated_at": 1531014100,
       "id": "1412f3a6-4d9b-4b9d-964e-60d8d63a9d46"
     }
     ```
@@ -151,7 +156,8 @@ one workspace for each and one admin for each.
     ```json
     {
       "name": "teamB",
-      "created_at": 1531014143000,
+      "created_at": 1531014143,
+      "updated_at": 1531014143,
       "id": "7dee8c56-c6db-4125-b87a-b508baa33c66"
     }
     ```
@@ -173,7 +179,8 @@ one workspace for each and one admin for each.
       "user_token": "qv1VLIpl8kHj7lC1QOKwRdCMXanqEDii",
       "id": "4d315ff9-8c1a-4844-9ea2-21b16204a154",
       "enabled": true,
-      "created_at": 1531015165000,
+      "created_at": 1531015165,
+      "updated_at": 1531015165,
       "name": "adminA"
     }
     ```
@@ -193,7 +200,8 @@ one workspace for each and one admin for each.
       "user_token": "IX5vHVgYqM40tLcctdmzRtHyfxB4ToYv",
       "id": "49641fc0-8c9d-4507-bc7a-2acac8f2903a",
       "enabled": true,
-      "created_at": 1531015221000,
+      "created_at": 1531015221,
+      "updated_at": 1531015221,
       "name": "adminB"
     }
     ```
@@ -207,12 +215,14 @@ in their corresponding workspace. To verify, run:
     ```
 
     Response:
+
     ```json
     {
       "total": 1,
       "data": [
         {
-          "created_at": 1531014784000,
+          "created_at": 1531014784,
+          "updated_at": 1531014784,
           "id": "1faaacd1-709f-4762-8c3e-79f268ec8faf",
           "name": "adminA",
           "enabled": true,
@@ -230,12 +240,14 @@ in their corresponding workspace. To verify, run:
     ```
 
     Response:
+
     ```json
     {
       "total": 1,
       "data": [
         {
-          "created_at": 1531014805000,
+          "created_at": 1531014805,
+          "updated_at": 1531014805,
           "id": "3a829408-c1ee-4764-8222-2d280a5de441",
           "name": "adminB",
           "enabled": true,
@@ -265,7 +277,8 @@ workspace.
     Response:
     ```json
     {
-      "created_at": 1531016728000,
+      "created_at": 1531016728,
+      "updated_at": 1531016728,
       "id": "d40e61ab-8dad-4ef2-a48b-d11379f7b8d1",
       "name": "admin"
     }
@@ -288,7 +301,8 @@ workspace.
       "data": [
         {
           "endpoint": "*",
-          "created_at": 1531017322000,
+          "created_at": 1531017322,
+          "updated_at": 1531017322,
           "role_id": "d40e61ab-8dad-4ef2-a48b-d11379f7b8d1",
           "actions": [
             "delete",
@@ -318,6 +332,7 @@ workspace.
       "roles": [
           {
               "created_at": 1685551877,
+              "updated_at": 1531014805,
               "id": "42809ada-650c-4575-b0a0-d464a64ffb70",
               "name": "admin",
               "ws_id": "9dc7adbb-9b64-4121-bf76-653cf5871bc2"
@@ -326,6 +341,7 @@ workspace.
       "user": {
           "comment": "null",
           "created_at": 1685552809,
+          "updated_at": 1531014805,
           "enabled": true,
           "id": "bca4e390-fbbf-4a46-b55d-f4642efc14bb",
           "name": "adminA",
@@ -364,7 +380,8 @@ user token:
       "total": 1,
       "data": [
         {
-          "created_at": 1531014784000,
+          "created_at": 1531014784,
+          "updated_at": 1531014784,
           "id": "1faaacd1-709f-4762-8c3e-79f268ec8faf",
           "name": "adminA",
           "enabled": true,
@@ -405,7 +422,8 @@ and if they do, the admin can grant them individually.
     Response:
     ```json
     {
-      "created_at": 1531020346000,
+      "created_at": 1531020346,
+      "updated_at": 1531020346,
       "id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
       "name": "users"
     }
@@ -425,7 +443,8 @@ and if they do, the admin can grant them individually.
     ```json
     {
       "endpoint": "*",
-      "created_at": 1531020573000,
+      "created_at": 1531020573,
+      "udpated_at": 1531020573,
       "role_id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
       "actions": [
         "delete",
@@ -454,7 +473,8 @@ and if they do, the admin can grant them individually.
     ```json
     {
       "endpoint": "/rbac/*",
-      "created_at": 1531020744000,
+      "created_at": 1531020744,
+      "updated_at": 1531020744,
       "role_id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
       "actions": [
         "delete",
@@ -481,7 +501,8 @@ and if they do, the admin can grant them individually.
     ```json
     {
       "endpoint": "/workspaces/*",
-      "created_at": 1531020778000,
+      "created_at": 1531020778,
+      "updated_at": 1531020778,
       "role_id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
       "actions": [
         "delete",
@@ -525,7 +546,8 @@ access to Kong.
     Response:
     ```json
     {
-      "created_at": 1531019797000,
+      "created_at": 1531019797,
+      "updated_at": 1531019797,
       "id": "0b4111da-2827-4767-8651-a327f7a559e9",
       "name": "foogineer",
       "enabled": true,
@@ -547,18 +569,21 @@ access to Kong.
       "roles": [
         {
           "comment": "Default user role generated for foogineer",
-          "created_at": 1531019797000,
+          "created_at": 1531019797,
+          "updated_at": 1531019797,
           "id": "125c4212-b882-432d-a323-9cbe38b1d0df",
           "name": "foogineer"
         },
         {
-          "created_at": 1531020346000,
+          "created_at": 1531020346,
+          "updated_at": 1531020346,
           "id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
           "name": "users"
         }
       ],
       "user": {
-        "created_at": 1531019797000,
+        "created_at": 1531019797,
+        "updated_at": 1531019797,
         "id": "0b4111da-2827-4767-8651-a327f7a559e9",
         "name": "foogineer",
         "enabled": true,
@@ -579,7 +604,8 @@ access to Kong.
     Response:
     ```json
     {
-      "created_at": 1531019797000,
+      "created_at": 1531019797,
+      "updated_at": 1531019797,
       "id": "e8926efa-11b4-43a3-9a28-767c05d8e9d8",
       "name": "bargineer",
       "enabled": true,
@@ -601,18 +627,21 @@ access to Kong.
       "roles": [
         {
           "comment": "Default user role generated for bargineer",
-          "created_at": 1531019797000,
+          "created_at": 1531019797,
+          "updated_at": 1531019797,
           "id": "125c4212-b882-432d-a323-9cbe38b1d0df",
           "name": "bargineer"
         },
         {
-          "created_at": 1531020346000,
+          "created_at": 1531020346,
+          "updated_at": 1531020346,
           "id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
           "name": "users"
         }
       ],
       "user": {
-        "created_at": 1531019797000,
+        "created_at": 1531019797,
+        "updated_at": 1531019797,
         "id": "e8926efa-11b4-43a3-9a28-767c05d8e9d8",
         "name": "bargineer",
         "enabled": true,
@@ -652,7 +681,8 @@ confines of their Team A workspace. Let's validate this.
     Response:
     ```json
     {
-      "created_at": 1531021732000,
+      "created_at": 1531021732,
+      "updated_at": 1531021732,
       "config": {
         "key_in_body": false,
         "run_on_preflight": true,
@@ -681,7 +711,8 @@ confines of their Team A workspace. Let's validate this.
       "total": 1,
       "data": [
         {
-          "created_at": 1531021732000,
+          "created_at": 1531021732,
+          "updated_at": 1531021732,
           "config": {
             "key_in_body": false,
             "run_on_preflight": true,
@@ -742,7 +773,8 @@ to use entity-level RBAC.
     ```json
     {
       "name": "qux-role",
-      "created_at": 1531065975000,
+      "created_at": 1531065975,
+      "updated_at": 1531065975,
       "id": "ffe93269-7993-4308-965e-0286d0bc87b9"
     }
     ```
@@ -762,7 +794,8 @@ to use entity-level RBAC.
     Response:
     ```json
     {
-      "created_at": 1531066684000,
+      "created_at": 1531066684,
+      "updated_at": 1531066684,
       "role_id": "ffe93269-7993-4308-965e-0286d0bc87b9",
       "entity_id": "3ed24101-19a7-4a0b-a10f-2f47bcd4ff43",
       "negative": false,
@@ -784,7 +817,8 @@ to use entity-level RBAC.
     Response:
     ```json
     {
-      "created_at": 1531066684000,
+      "created_at": 1531066684,
+      "updated_at": 1531066684,
       "role_id": "ffe93269-7993-4308-965e-0286d0bc87b9",
       "entity_id": "d25afc46-dc59-48b2-b04f-d3ebe19f6d4b",
       "negative": false,
@@ -809,18 +843,21 @@ to use entity-level RBAC.
       "roles": [
         {
           "comment": "Default user role generated for qux",
-          "created_at": 1531065373000,
+          "created_at": 1531065373,
+          "updated_at": 1531065373,
           "name": "qux",
           "id": "31614171-4174-42b4-9fae-43c9ce14830f"
         },
         {
-          "created_at": 1531065975000,
+          "created_at": 1531065975,
+          "updated_at": 1531065975,
           "name": "qux-role",
           "id": "ffe93269-7993-4308-965e-0286d0bc87b9"
         }
       ],
       "user": {
-        "created_at": 1531065373000,
+        "created_at": 1531065373,
+        "created_at": 1531065373,
         "id": "4d87bf78-5824-4756-b0d0-ceaa9bd9b2d5",
         "name": "qux",
         "enabled": true,
@@ -893,6 +930,7 @@ endpoint-level validation comes before entity-level.
     {
       "host": "httpbin.org",
       "created_at": 1531066074,
+      "updated_at": 1531066074,
       "connect_timeout": 60000,
       "id": "3ed24101-19a7-4a0b-a10f-2f47bcd4ff43",
       "protocol": "http",
@@ -962,9 +1000,9 @@ Response:
   "data": [
     {
       "created_at": 1531066253,
+      "updated_at": 1531066253,
       "id": "d25afc46-dc59-48b2-b04f-d3ebe19f6d4b",
       "hosts": null,
-      "updated_at": 1531066253,
       "preserve_host": false,
       "regex_priority": 0,
       "service": {
@@ -1002,7 +1040,8 @@ Response:
   "total": 2,
   "data": [
     {
-      "created_at": 1531070344000,
+      "created_at": 1531070344,
+      "updated_at": 1531070344,
       "config": {
         "key_in_body": false,
         "run_on_preflight": true,
@@ -1045,11 +1084,11 @@ Response:
 ```json
 {
   "created_at": 1531070828,
+  "updated_at": 1531070828,
   "strip_path": false,
   "hosts": null,
   "preserve_host": false,
   "regex_priority": 0,
-  "updated_at": 1531070828,
   "paths": [
     "/anything"
   ],
