@@ -105,7 +105,7 @@ KONG_ENFORCE_RBAC=on kong restart
 ```
 
 This is one of the possible ways of enforcing RBAC and restarting
-Kong. Another options is editing the {{site.base_gateway}} configuration file and
+Kong. Another option is editing the {{site.base_gateway}} configuration file and
 restarting.
 
 Before moving on, note that this guide uses the super admin user, but you 
