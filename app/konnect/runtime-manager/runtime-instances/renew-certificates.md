@@ -9,7 +9,7 @@ expiration date and associated metadata.
 
 Renew your certificates to prevent any interruption in communication between
 {{site.konnect_saas}} and any configured runtimes, or data planes. If a
-certificate expires and is not replaced
+The following happens if a certificate expires and isn't replaced: 
 * The runtime instance stops receiving configuration updates from
 the control plane.
 * The runtime instance stops sending [analytics](/konnect/analytics/) and usage data
