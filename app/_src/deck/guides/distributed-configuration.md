@@ -88,7 +88,22 @@ configuration.
 You can delete only a subset of entities sharing a tag using the `--select-tag`
 flag on the `reset` command.
 
-## Initial setup problem
+## Convert distributed configuration into one file
+
+You can convert multiple distributed declarative configuration files into one
+using `deck convert`. 
+
+For example:
+
+```sh
+deck convert \
+  --from distributed \
+  --to kong-gateway \
+  --input-file {"deck1.yaml", "deck2.yaml"} \
+  --output-file kong.yaml
+```
+
+## Troubleshooting initial setup
 
 When you initially get started with a distributed configuration
 management, you will likely run into a problem where the related entities

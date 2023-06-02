@@ -17,15 +17,16 @@ deck convert [command-specific flags] [global flags]
 ## Flags
 
 `--from`
-:  format of the source file, allowed formats:
-{% if_version gte:1.15.x %}[`kong-gateway` `kong-gateway-2.x`]{% endif_version %}{%
+:  format of the source file, allowed formats: {% 
+   if_version gte:1.22.x %}[`kong-gateway` `kong-gateway-2.x` `distributed`]{% endif_version %}{% 
+   if_version gte:1.15.x lte:1.22.x %}[`kong-gateway` `kong-gateway-2.x`]{% endif_version %}{%
    if_version gte:1.7.x lte:1.14.x %}`kong-gateway`{% endif_version %}
 
 `-h`, `--help`
 :  help for convert (Default: `false`)
 
 `--input-file`
-:  configuration file to be converted. Use `-` to read from stdin.
+:  configuration files to be converted. Use `-` to read from stdin.
 
 `--output-file`
 :  file to write configuration to after conversion. Use `-` to write to stdout.
