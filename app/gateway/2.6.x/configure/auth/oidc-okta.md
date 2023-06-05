@@ -119,7 +119,7 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
-[add-certificate]: /1.0.x/admin-api/#add-certificate
+[add-certificate]: /gateway/latest/admin-api/#add-certificate
 [add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /gateway/{{page.kong_version}}/kong-manager/#plugin-object
+[enable-plugin]: /gateway/{{page.kong_version}}/admin-api/#plugin-object

@@ -8,7 +8,7 @@ disable_image_expand: true
 <div class="docs-grid-install">
 
   <a href="https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title" class="docs-grid-install-block">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS EKS" />
+    <img class="install-icon" src="/assets/images/icons/documentation/aws.svg" alt="AWS EKS" />
     <div class="install-text">AWS (EKS)</div>
     <div class="install-description">Install the Kong Ingress Controller with the Kong Gateway (Enterprise) on AWS</div>
   </a>
@@ -71,17 +71,17 @@ disable_image_expand: true
 <div class="docs-grid-install">
 
   <a href="https://aws.amazon.com/marketplace/pp/B084L6PQPY?ref_=srh_res_product_title" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS AMI" />
+    <img class="install-icon" src="/assets/images/icons/documentation/aws.svg" alt="AWS AMI" />
     <div class="install-text">AWS (AMI)</div>
   </a>
 
   <a href="https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS EKS" />
+    <img class="install-icon" src="/assets/images/icons/documentation/aws.svg" alt="AWS EKS" />
     <div class="install-text">AWS (EKS)</div>
   </a>
 
   <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/05/Azure_.png" alt="Azure" />
+    <img class="install-icon" src="/assets/images/icons/documentation/azure.svg" alt="Azure" />
     <div class="install-text">Azure</div>
   </a>
 
@@ -91,7 +91,7 @@ disable_image_expand: true
   </a>
 
   <a href="https://marketplace.redhat.com/en-us/products/kong-enterprise-rhm" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/05/Red-Hat-Marketplace-logo-832-320-1.png" alt="Red Hat Marketplace" />
+    <img class="install-icon" src="/assets/images/icons/documentation/rhel.jpg" alt="Red Hat Marketplace" />
     <div class="install-text">Red Hat</div>
   </a>
 
