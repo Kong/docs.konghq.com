@@ -14,7 +14,7 @@ disable_image_expand: true
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
+    <img class="install-icon" src="/assets/images/icons/documentation/docker.png" alt="docker" />
     <div class="install-text">Docker</div>
     <div class="install-description">Install {{site.ee_product_name}} on Docker</div>
   </a>
@@ -40,22 +40,22 @@ disable_image_expand: true
 {% navtab Operating Systems %}
 <div class="docs-grid-install">
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/centos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/centos.gif" alt="centos" />
+    <img class="install-icon" src="/assets/images/icons/documentation/centos.gif" alt="centos" />
     <div class="install-text">CentOS</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="aws" />
+    <img class="install-icon" src="/assets/images/icons/documentation/amazon-linux.png" alt="aws" />
     <div class="install-text">Amazon Linux 1</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="aws" />
+    <img class="install-icon" src="/assets/images/icons/documentation/amazon-linux.png" alt="aws" />
     <div class="install-text">Amazon Linux 2</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/ubuntu" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/ubuntu.png" alt="aws" />
+    <img class="install-icon" src="/assets/images/icons/documentation/ubuntu.png" alt="aws" />
     <div class="install-text">Ubuntu</div>
   </a>
 

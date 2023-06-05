@@ -106,8 +106,6 @@ Email templates can now be edited in the Portal Editor along with the rest of th
 
 The email templates can be found under the **Emails** section in the Portal Editor sidebar:
 
-![Portal Editor - Emails](https://doc-assets.konghq.com/1.3/dev-portal/editor/dev-portal-emails.png)
-
 ### Editing via the Portal CLI Tool
 
 1. Clone [https://github.com/Kong/kong-portal-templates] master branch, and navigate into its directory.

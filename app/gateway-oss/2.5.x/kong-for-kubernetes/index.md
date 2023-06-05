@@ -10,5 +10,3 @@ title: Kong for Kubernetes
 - Use the power of kubectl (or any custom tooling around kubectl) to configure Kong and get benefits of all Kubernetes, such as declarative configuration, cloud-provider agnostic deployments, RBAC, reconciliation of desired state, and elastic scalability.
 - Kong is configured using a combination of Ingress Resource and Custom Resource Definitions(CRDs).
 - DB-less by default, meaning Kong has the capability of running without a database and using only memory storage for entities.
-
-<img src="https://doc-assets.konghq.com/kubernetes/Kong-for-Kubernetes-Diagram.png" alt="Kong for Kubernetes control diagram">

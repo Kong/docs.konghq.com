@@ -30,41 +30,21 @@ as an authorized redirect URI in Okta (under the **Authentication** section of y
 
 1. [Register an Application][okta-register-app]. Select the **Applications** page, click **Add Application**.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/01-add-application.png">
-
 2. Select **Web** as the platform.
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/02-web-app.png">
 
 3. Fill out the Application's Settings.
 
     **Login re-direct URIs** is a URI that corresponds to a Route you have configured in Kong that will use Okta to authenticate. **Group Assignment** defines who is allowed to use this application. **Grant Type Allowed** indicates the Grant types to allow for your application.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/03-app-settings.png">
-
 4. After submitting the Application configuration, the client credentials will display on the **General** page.
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/04-client-id-secret.png">
 
 5. [Define and configure an Authorization server][okta-authorization-server]. Select the **API** page and add an Authorization Server if you don't have an existing one to use.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/05-auth-server.png">
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/06-name-auth.png">
-
 6. Click **Save** and view your Authorization Server Settings.
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/07-auth-server-settings.png">
 
 7. If you created a new Authorization server in step 5, also create a default policy under **Access Policies**.
 
-    ![Access Policy](/assets/images/docs/ee/plugins/oidc-use-case/okta8.png)
-
-    ![default Policy](/assets/images/docs/ee/plugins/oidc-use-case/okta9.png)
-
 8. If you want to control access based on groups, create a new **Claim** in the Authorization server.
-
-    ![groups claim](/assets/images/docs/ee/plugins/oidc-use-case/okta10.png)
 
 ## Plugin Configuration
 
