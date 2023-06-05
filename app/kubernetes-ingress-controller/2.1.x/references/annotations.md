@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller annotations
+title: Kong Ingress Controller annotations
 ---
 
 The {{site.kic_product_name}} supports the following annotations on various

@@ -132,6 +132,6 @@ readinessProbe:
 
 For more information on Kong and related topics, check out the following resources:
 
-* [Kong Admin API Documentation](https://docs.konghq.com/gateway/latest/admin-api/)
-* [Get Started with Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/deployment/)
+* [Kong Admin API Documentation](/gateway/latest/admin-api/)
+* [Get Started with Kong Ingress Controller](/kubernetes-ingress-controller/latest/deployment/overview/)
 * [Kong Helm Chart](https://github.com/Kong/charts/tree/main/charts/kong)
