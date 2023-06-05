@@ -81,6 +81,35 @@ sudo systemctl status kong
 The official systemd service is located at `/lib/systemd/system/kong-enterprise-edition.service` for
 {{site.base_gateway}}, or at `/lib/systemd/system/kong.service` for {{site.ce_product_name}}.
 
+## Add a sample systemd service file for reference
+
+```
+[Unit]
+Description=Kong Enterprise Edition
+Documentation=https://docs.konghq.com/enterprise/
+After=syslog.target network.target remote-fs.target nss-lookup.target
+[Service]
+User=root
+Group=root
+ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong -c /home/ec2-user/kong.conf
+ExecStart=/usr/local/openresty/nginx/sbin/nginx -p /usr/local/kong -c nginx.conf
+ExecReload=/usr/local/bin/kong prepare -p /usr/local/kong
+ExecReload=/usr/local/openresty/nginx/sbin/nginx -p /usr/local/kong -c nginx.conf -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+# All environment variables prefixed with KONG_ and capitalized will override
+# the settings specified in the /etc/kong/kong.conf.default file.
+#
+# For example:
+#   log_level = debug in the .conf file -> KONG_LOG_LEVEL=debug env var.
+Environment=KONG_NGINX_DAEMON=off
+# You can control this limit through /etc/security/limits.conf
+LimitNOFILE=infinity
+[Install]
+WantedBy=multi-user.target
+```
+
+
 For scenarios where customizations are needed (for example, configuring Kong
 or modifying the service file behavior), we recommend creating another service
 at `/etc/systemd/system/kong-enterprise-edition.service` for
