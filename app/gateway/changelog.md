@@ -6,6 +6,15 @@ no_version: true
 <!-- vale off -->
 
 
+## 3.2.2.3 
+**Release Date 2023/06/06**
+
+### Fixes
+* Fixed an error with the '/config' endpoint. If 'flatten_errors=1' was set and an invalid config was sent to the endpoint, a 500 error was incorrectly returned.
+
+### Deprecations
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
 ## 3.3.0.0
 **Release Date** 2023/05/19
 
