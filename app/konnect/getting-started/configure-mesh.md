@@ -5,34 +5,34 @@ content_type: tutorial
 
 Using Mesh Manager, you can create a {{site.mesh_product_name}} global control plane to manage your {{site.konnect_saas}} services. 
 
-[IMAGE OF GLOBAL CONTROL PLANE MESH THING]
-
 A global control plane configures the basic settings for all services associated with a service mesh. If you have a multi-zone deployment, you can have one global control plane and different control planes for each zone. This allows you to easily configure settings for all services by only editing one configuration file. 
 
-For the purposes of this guide, you'll use {{site.mesh_product_name}} as your service mesh to create a global control plane to manage the service you created previously in the [Configure a Service](/konnect/getting-started/configure-service/) section of the Get Started in {{site.konnect_saas}} documentation. This guide uses Kubernetes to install various service mesh components.
+![mesh global control plane](/assets/images/diagrams/gslides/kuma_multizone.svg)
+
+> _**Figure 1:** {{site.mesh_product_name}} can support multiple zones (like a Kubernetes cluster, VPC, data center, etc.) together in the same distributed deployment. Then, you can create multiple isolated virtual meshes with the same control plane in order to support every team and application in the organization._
+
+For the purposes of this guide, you'll use {{site.mesh_product_name}} as your service mesh to create a global control plane. You will use Kubernetes to install various service mesh components.
 
 ## Prerequisites
 
 * [A Kubernetes cluster with a load balancer](https://kubernetes.io/docs/setup/)
-* `kubectl` installed and configured to communicate with your Kubernetes cluster
+* [`kubectl` installed and configured to communicate with your Kubernetes cluster](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [Download the latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
 
-## Create and deploy a global control plane
-
-In this section, you will be installing a service mesh ({{site.mesh_product_name}}), creating a global control plane in {{site.konnect_short_name}}, and deploying the control plane in {{site.mesh_product_name}}.
-
-### Instructions
-
-1. Download {{site.mesh_product_name}}:
-    ```sh
-    curl -L https://docs.konghq.com/mesh/installer.sh | VERSION=2.2.0 sh -
-    ```
-    Ensure that `VERSION` is replaced with the latest version of {{site.mesh_product_name}}. 
+## Create a global control plane in {{site.konnect_short_name}}
+ 
 1. From the left navigation menu in {{site.konnect_short_name}}, open [MESH MANAGER ICON HERE] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
 1. Click **New Control Plane**.
 1. Enter "example-cp" in the **Mesh name** field.
 1. Click **Save**.
-1. Click the `example-cp` control plane you just created, and then click **Zone CPs** in the sidebar. 
-    You must add a zone to the control plane because...
+
+You now have a {{site.mesh_product_name}} global control plane. This control plane can't do anything at the moment because we need to connect a zone to it next. 
+
+## Create a zone in the global control plane
+
+<!-- some explanation of why you need to add a zone, also mention the token stuff-->
+
+1. In [MESH MANAGER ICON HERE] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager), click the `example-cp` control plane you just created, and then click **Zone CPs** in the sidebar.
 1. Click **Create Zone**. 
 1. Enter "eu" in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
     {:.note}
@@ -45,11 +45,9 @@ In this section, you will be installing a service mesh ({{site.mesh_product_name
 1. Click **Next**.
 1. <!--Does this just take you to your list of meshes/control planes?-->
 
-### Explanation of instructions
-
 You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can't do anything at the moment until we add services and additional configurations to it.
 
-## Configure `kumactl` to connect to your mesh global control plane
+## Configure `kumactl` to connect to your global control plane
 
 <!--Why do we need to do this? Why do the two need to be connected?-->
 
@@ -89,11 +87,9 @@ After you add a service to your service mesh, the {{site.konnect_short_name}} wi
 
 ## Conclusion
 
-Explain everything that happened and what they did/recap. 
+By following the instructions in this guide, you've created a {{site.mesh_product_name}} global control plane, added a zone to it, configured `kumactl` to connect to your global control plane, and added services to the control plane. 
 
-Then provide some links for potential other things they could do (mTLS, policies).
-
-After you complete this tutorial, you can continue to configure your service mesh in {{site.konnect_short_name}}.
+Now that you've completed this tutorial, you can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
 
 * [Zone Ingress](/mesh/latest/production/cp-deployment/zone-ingress/) - Set up zone ingress in {{site.mesh_product_name}}.
 * [Zone Egress](/mesh/latest/production/cp-deployment/zoneegress/) - Set up zone egress in {{site.mesh_product_name}}.
