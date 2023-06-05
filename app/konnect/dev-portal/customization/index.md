@@ -29,7 +29,7 @@ To add a custom URL to Dev Portal, you need:
 * A domain and access to configure the domain's DNS `CNAME` records.
 * Your organization's auto-generated default Dev Portal URL.
 
-You can also choose to self-host Dev Portal. For more information about this feature, see [About Self-Hosted Dev Portal](/konnect/dev-portal/customization/netlify/).
+You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/).
 
 ### Configure DNS
 
