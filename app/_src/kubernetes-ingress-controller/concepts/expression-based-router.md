@@ -53,15 +53,15 @@ The following table displays which Kubernetes resources are supported when trans
 
 | Kubernetes resource | Supported? |
 | ------------------- | ---------- |
-| [`Ingress`](ingress) | ✅ &nbsp; |
-| [`HTTPRoute`](gateway-api-httproute) | ✅ &nbsp; |
-| [`GRPCRoute` in gateway APIs](gateway-api-grpcroute) | ✅ &nbsp; |
-| [`knative.Service`](knative-service) | ❌ &nbsp; |
-| [`TCPIngress`](crd-tcpingress) | ❌ &nbsp; |
-| [`UDPIngress`](crd-udpingress) | ❌ &nbsp; |
-| [`TCPRoute`](gateway-api-tcproute) | ❌ &nbsp; |
-| [`TLSRoute`](gateway-api-tlsroute) | ❌ &nbsp; |
-| [`UDPRoute`](gateway-api-udproute) | ❌ &nbsp; |
+| [`Ingress`][ingress] | ✅ &nbsp; |
+| [`HTTPRoute`][gateway-api-httproute] | ✅ &nbsp; |
+| [`GRPCRoute` in gateway APIs][gateway-api-grpcroute] | ✅ &nbsp; |
+| [`knative.Service`][knative-service] | ❌ &nbsp; |
+| [`TCPIngress`][crd-tcpingress] | ❌ &nbsp; |
+| [`UDPIngress`][crd-udpingress] | ❌ &nbsp; |
+| [`TCPRoute`][gateway-api-tcproute] | ❌ &nbsp; |
+| [`TLSRoute`][gateway-api-tlsroute] | ❌ &nbsp; |
+| [`UDPRoute`][gateway-api-udproute] | ❌ &nbsp; |
 
 ## Unsupported methods of overriding routes
 
