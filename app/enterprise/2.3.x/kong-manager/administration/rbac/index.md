@@ -48,9 +48,7 @@ mirror the cluster-level **Roles**, and a fourth unique to each **Workspace**:
 `workspace-read-only`, `workspace-admin`, `workspace-super-admin`, and
 `workspace-portal-admin`.
 
-These roles can be viewed in the **Teams** tab under **Roles**
-
-![Default Roles in New Workspaces](https://doc-assets.konghq.com/1.3/manager/teams/kong-manager-default-roles.png)
+These roles can be viewed in the **Teams** tab under **Roles**.
 
 ⚠️ **IMPORTANT**: Any Role assigned in the **Default Workspace** will have
 **Permissions** applied to all subsequently created **Workspaces**. A **Super Admin** in
