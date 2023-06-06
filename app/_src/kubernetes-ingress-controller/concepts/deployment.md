@@ -372,10 +372,12 @@ using the public [Admin API][admin] of the {{site.konnect_short_name}}'s Runtime
 and {{site.konnect_short_name}} is secured using mutual TLS.
 
 {:.important}
-> {{site.kic_product_name}}'s configured Runtime Group in {{site.konnect_short_name}} is **read-only** and is not used for any runtime
-> traffic. {{site.kic_product_name}} still uses the local Kong instances for proxying. In the case of a connection
-> failure between {{site.kic_product_name}} and {{site.konnect_short_name}}, {{site.kic_product_name}} will continue to operate normally
-> not affecting the basic functionality - only the Runtime Group's configuration in {{site.konnect_short_name}} will not be updated.
+> {{site.kic_product_name}}'s Runtime Group in {{site.konnect_short_name}} is **read-only**.
+> Although the configuration displayed in {{site.konnect_short_name}} will match the configuration used by proxy instances, it cannot be modified from the GUI.
+> You must still modify the associated Kubernetes resources to change proxy configuration.
+> In the event of a connection  failure between {{site.kic_product_name}} and {{site.konnect_short_name}},
+> {{site.kic_product_name}} will continue to update data plane proxy configuration normally, but will not
+> update the Runtime Group's configuration until it can connect to {{site.konnect_short_name}} again.
 
 [konnect]: /konnect/
 [konnect-kic]: /konnect/runtime-manager/kic/
