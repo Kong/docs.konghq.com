@@ -63,13 +63,13 @@ The following table displays which Kubernetes resources are supported when trans
 | [`TLSRoute`](gateway-api-tlsroute) | ❌ &nbsp; |
 | [`UDPRoute`](gateway-api-udproute) | ❌ &nbsp; |
 
-## Unsupport methods of overriding routes
+## Unsupported methods of overriding routes
 
 Because Kubernetes objects can't fully express {{site.base_gateway}} configuration specifications, {{site.kic_product_name}} provides methods to override services, routes, plugins, consumers, and other objects in {{site.base_gateway}} configurations after translating from Kubernetes objects. These methods include overriding using the `KongIngress` resource and annotations
 of resources. When the expression-based router is enabled, some of the methods of overriding routes in {{site.base_gateway}} configurations after translating are not supported:
 
-* You can't override routes in {{site.base_gateway}} configurations using `KongIngress` isn't supported when expression routes is enabled. The `route` fields of `KongIngress` resources will be ignored when {{site.kic_product_name}} translate Kubernetes resources to expression based routes.
-* You can't override `Ingress` with the `konghq.com/path_handling` and `konghq.com/regex_priority` annotations because the `path_handling` and `regex_priority` fields are not supported in {{site.base_gateway}} route configurations when {{site.base_gateway}} is running expression-based router.
+* Overriding routes in {{site.base_gateway}} configurations using `KongIngress` isn't supported when expression routes is enabled. The `route` fields of `KongIngress` resources will be ignored when {{site.kic_product_name}} translates Kubernetes resources to expression based routes.
+* You can't override `Ingress` with the `konghq.com/path_handling` and `konghq.com/regex_priority` annotations because the `path_handling` and `regex_priority` fields are not supported in {{site.base_gateway}} route configurations when {{site.base_gateway}} is running the `expressions` router.
 * For `HTTPRoute` and `GRPCRoute`, the `konghq.com/path_handling` and `konghq.com/regex_priority` annotations aren't supported for the same reason. Besides this, the `konghq.com/host_aliases`, `konghq.com/methods`, and `konghq.com/headers` annotations can't be used to override hosts, methods, and headers.
 
 ### Other unsupported features and breaking changes
@@ -86,6 +86,6 @@ of resources. When the expression-based router is enabled, some of the methods o
 [gateway-api-tcproute]:https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1alpha2.TCPRoute
 [gateway-api-tlsroute]:https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1alpha2.TLSRoute
 [gateway-api-udproute]:https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1alpha2.UDPRoute
-[crd-tcpingress]:/kubernetes-ingress-controller/{{page.version}}/refereces/custom-resources/#tcpingress
-[crd-tcpingress]:/kubernetes-ingress-controller/{{page.version}}/refereces/custom-resources/#udpingress
+[crd-tcpingress]:/kubernetes-ingress-controller/{{page.version}}/references/custom-resources/#tcpingress
+[crd-udpingress]:/kubernetes-ingress-controller/{{page.version}}/references/custom-resources/#udpingress
 [knative-service]:https://knative.dev/docs/serving/reference/serving-api/#serving.knative.dev/v1.Service
