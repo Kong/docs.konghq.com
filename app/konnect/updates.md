@@ -12,7 +12,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## May 2023
 
 **Gateway 3.3 Support**
-: Konnect now supports the latest Gateway release version of 3.3 including all [Konnect-compatible plugins](konnect/compatibility/).
+: Konnect now supports the latest Gateway release version of 3.3 including all [Konnect-compatible plugins](/konnect/compatibility/).
 
 ## April 2023
 
