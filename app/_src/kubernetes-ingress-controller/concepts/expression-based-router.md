@@ -3,7 +3,7 @@ title: Using Expression Based Router
 alpha: true
 ---
 
-The [expression-based routers](gateway-expression-router), introduced in {{site.base_gateway}} 3.0, have higher performance and allow more precise priority specification than the traditional router. By using the expression-based router, {{site.kic_product_name}} can reduce most of generated routes with regular expression match on path, and therefore improve the performance of the router. 
+The [expression-based routers][gateway-expression-router], introduced in {{site.base_gateway}} 3.0, have higher performance and allow more precise priority specification than the traditional router. By using the expression-based router, {{site.kic_product_name}} can reduce most of generated routes with regular expression match on path, and therefore improve the performance of the router. 
 
 This page explains how {{site.kic_product_name}} can use the expression-based router, and the supported features and limitations of the current version.
 
@@ -86,6 +86,6 @@ of resources. When the expression-based router is enabled, some of the methods o
 [gateway-api-tcproute]:https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1alpha2.TCPRoute
 [gateway-api-tlsroute]:https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1alpha2.TLSRoute
 [gateway-api-udproute]:https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1alpha2.UDPRoute
-[crd-tcpingress]:/kubernetes-ingress-controller/{{page.version}}/references/custom-resources/#tcpingress
-[crd-udpingress]:/kubernetes-ingress-controller/{{page.version}}/references/custom-resources/#udpingress
+[crd-tcpingress]:/kubernetes-ingress-controller/{{page.release}}/references/custom-resources/#tcpingress/kubernetes-ingress-controller/latest/references/custom-resources/#tcpingress
+[crd-udpingress]:/kubernetes-ingress-controller/{{page.release}}/references/custom-resources/#udpingress
 [knative-service]:https://knative.dev/docs/serving/reference/serving-api/#serving.knative.dev/v1.Service
