@@ -9,8 +9,12 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## April 2023
+## May 2023
 
+**Gateway 3.3 Support**
+: Konnect now supports the latest Gateway release version of 3.3 including all [Konnect-compatible plugins](/konnect/compatibility/).
+
+## April 2023
 
 **Allow filtering of runtime instances based on connection status** 
 : Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, or `all`.
