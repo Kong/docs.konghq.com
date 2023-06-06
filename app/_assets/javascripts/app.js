@@ -489,7 +489,7 @@ jQuery(function () {
    * {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
    *
    * To disable for a specific img tag add 'no-image-expand' class. Example:
-   * <img class="install-icon no-image-expand" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
+   * <img class="install-icon no-image-expand" src="/assets/images/docs/install-logos/docker.png" alt="docker" />
    *
    * To disable for whole page you can add 'disable_image_expand: true' to page Front Matter block. Example:
    * ---

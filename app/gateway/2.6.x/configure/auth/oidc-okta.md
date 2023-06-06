@@ -30,31 +30,17 @@ as an authorized redirect URI in Okta (under the **Authentication** section of y
 
 1. [Register an Application][okta-register-app]. Select the **Applications** page, click **Add Application**.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/01-add-application.png">
-
 2. Select **Web** as the platform.
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/02-web-app.png">
 
 3. Fill out the Application's Settings.
 
     **Login re-direct URIs** is a URI that corresponds to a Route you have configured in Kong that will use Okta to authenticate. **Group Assignment** defines who is allowed to use this application. **Grant Type Allowed** indicates the Grant types to allow for your application.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/03-app-settings.png">
-
 4. After submitting the Application configuration, the client credentials will display on the **General** page.
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/04-client-id-secret.png">
 
 5. [Define and configure an Authorization server][okta-authorization-server]. Select the **API** page and add an Authorization Server if you don't have an existing one to use.
 
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/05-auth-server.png">
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/06-name-auth.png">
-
 6. Click **Save** and view your Authorization Server Settings.
-
-    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/07-auth-server-settings.png">
 
 ## Plugin Configuration
 
@@ -133,7 +119,7 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
-[add-certificate]: /1.0.x/admin-api/#add-certificate
+[add-certificate]: /gateway/latest/admin-api/#add-certificate
 [add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /gateway/{{page.kong_version}}/kong-manager/#plugin-object
+[enable-plugin]: /gateway/{{page.kong_version}}/admin-api/#plugin-object

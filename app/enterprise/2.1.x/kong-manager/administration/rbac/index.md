@@ -50,8 +50,6 @@ mirror the cluster-level **Roles**, and a fourth unique to each **Workspace**:
 
 These roles can be viewed in the **Teams** tab under **Roles**
 
-![Default Roles in New Workspaces](https://doc-assets.konghq.com/1.3/manager/teams/kong-manager-default-roles.png)
-
 ⚠️ **IMPORTANT**: Any Role assigned in the **Default Workspace** will have
 **Permissions** applied to all subsequently created **Workspaces**. A **Super Admin** in
 in `default` has RBAC **Permissions** across all **Workspaces**.
