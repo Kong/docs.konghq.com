@@ -21,7 +21,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 <tr>
   <th>Kubernetes Version</th>
   <th>OpenShift Version</th>
-  <th>Upstream k8s EOL</th>
+  <th>Upstream K8s EOL</th>
   <th>Supported {{site.base_gateway}} Versions</th>
   <th>Recommended KIC Version</th>
   <th>EOL</th>
@@ -109,6 +109,14 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
     <td>{{ site.data.kong_latest_KIC.release }}</td>
     <td>Sept 2023</td>
   </tr>
+    <tr>
+    <td>1.27</td>
+    <td>N/A</td>
+    <td>Jun 2024</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ site.data.kong_latest_KIC.release }}</td>
+    <td>Sept 2023</td>
+  </tr>
 </tbody>
 </table>
 
@@ -116,6 +124,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  2.10.x  |  2023-06-02   |     2024-06-02      |      2025-06-02       |
 |  2.9.x   |  2023-03-09   |     2024-03-09      |      2025-03-09       |
 |  2.8.x   |  2022-12-19   |     2023-12-19      |      2024-12-19       |
 |  2.7.x   |  2022-09-27   |     2023-09-27      |      2024-09-27       |
