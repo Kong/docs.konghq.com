@@ -1,7 +1,6 @@
 ---
 title: Self-Host your Dev Portal with Netlify
 content_type: how-to
-badge: oss
 ---
 
 You can use the open-source Dev Portal to display your APIs to developers on a self-hosted website.
@@ -36,11 +35,13 @@ Now the self-hosted Dev Portal is enabled and the {{site.konnect_short_name}}-ho
 
 In this example, you will deploy the self-hosted example Dev Portal using Netlify. You can use any static site generator of your choice to host your Dev Portal.
 
+### Fork and configure the GitHub repository
+
 1. In GitHub, [fork](https://docs.github.com/get-started/quickstart/fork-a-repo) the [open source Dev Portal application example](https://github.com/Kong/konnect-portal).
 1. In the forked repository, [create a new branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch) that you will use to deploy your Dev Portal. For example, `prod`. 
     Upstream changes from `kong/konnect-portal` are merged into `main` and then finally merged into `prod` to trigger a deploy.
 1. On the `prod` branch, create a new `netlify.toml` file:
-    ```sh
+    ```toml
     [[redirects]]
       from = "/*"
       to = "/index.html"
@@ -51,17 +52,21 @@ In this example, you will deploy the self-hosted example Dev Portal using Netlif
 1. Push changes to the `prod` branch.
 1. In Netlify, on the Team Overview dashboard, click **Add new site**, then select **Import an existing project**. 
 1. Click **GitHub** for your Git provider.
-1. Grant Netlify access to GitHub, then click **Configure Netlify on Github**.
-1. When prompted, install Netlify on your GitHub account with the example Dev Portal repository.
+1. Grant Netlify access to GitHub, then click **Configure Netlify on Github**. When prompted, install Netlify on your GitHub account with the example Dev Portal repository.
+
+### Configure deployment settings in Netlify
+
 1. In Netlify, select the Dev Portal repository you just forked.
 1. Select **prod** from the **Branch to deploy** drop-down menu.
 1. Click **Show advanced**. 
 1. In the **Environment variables** section, click **New variable**.
 1. Enter `VITE_PORTAL_API_URL` in the **Key** field and your custom portal domain API (`api.mycompany.com`) in the **Value** field.
 1. Click **Deploy site**. 
-1. Click **Domain settings**, then **Add a domain**.
-1. Enter your custom portal client domain (`client.mycompany.com`) in the **Custom domain or subdomain** field. 
-1. Click **Verify**.
+
+### Add your domain to Netlify
+
+1. In Netlify, click **Domain settings**, then **Add a domain**.
+1. Enter your custom portal client domain (`client.mycompany.com`) in the **Custom domain or subdomain** field, then click **Verify**.
 1. Click **Domains** in the sidebar and then click the domain you just added.
 1. In the **Name servers** pane, note the listed name servers. Then, [configure the name servers in your domain registrar](https://docs.netlify.com/domains-https/netlify-dns/delegate-to-netlify/).
 

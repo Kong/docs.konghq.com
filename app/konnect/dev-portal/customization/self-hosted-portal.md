@@ -16,7 +16,7 @@ There are several benefits to keep in mind when deciding whether to use a {{site
 
 * **Fully customizable:** Use the [example frontend Dev Portal application](https://github.com/Kong/konnect-portal) as a starting point and then customize Dev Portal for your needs using the Portal API. You can also integrate the API specs with workflows tailored to your organization's own processes.
 * **Hosting service choice:** When you self-host, you also get to choose which hosting service you use to deploy your Dev Portal. 
-* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box or you can use the Portal API to have more fine-grained control.
+* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box, or you can use the Portal API for more fine-grained control.
 
 ## How the self-hosted Dev Portal works 
 
