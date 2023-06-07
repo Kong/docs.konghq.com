@@ -152,9 +152,9 @@
       items:
         - text: Overview
           url: /dev-portal/customization/
-        - text: Self-hosted Portal SDK
-          url: https://www.npmjs.com/package/@kong/sdk-portal-js
-          absolute_url: true
+    - text: Dev Portal SDK
+      url: https://www.npmjs.com/package/@kong/sdk-portal-js
+      absolute_url: true
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
