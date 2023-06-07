@@ -90,8 +90,8 @@ flag on the `reset` command.
 
 ## Convert distributed configuration into one file
 
-You can convert multiple distributed declarative configuration files into one
-{{site.base_gateway}} declarative configuration file using `deck convert`. 
+You can convert multiple distributed decK configuration files into one
+{{site.base_gateway}} file using `deck convert`. 
 
 For example:
 
