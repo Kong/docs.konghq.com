@@ -54,8 +54,6 @@ If a mail server is not yet set up, it is still possible to invite Admins to reg
 2. If the "View" link is clicked next to the invited Admin's name, a
     `register_url` is displayed on the invitee's details page.
 
-    ![Registration URL](https://doc-assets.konghq.com/1.3/manager/teams/teams-invite-admin-generate-registration-link.png)
-
 3. Copy and directly send this link to the invited Admin so that they may set
     up their credentials and log in.
 

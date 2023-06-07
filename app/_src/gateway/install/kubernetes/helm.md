@@ -85,7 +85,7 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
     {% endif_version %}
     {% if_version gte:3.2.x %}
     ```bash
-    echo '{"cookie_name":"admin_session","cookie_same_site":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
+    echo '{"cookie_name":"admin_session","cookie_same_site":"Lax","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
     ```
     {% endif_version %}
 
@@ -105,14 +105,14 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
     {% endif_version %}
     {% if_version gte:3.2.x %}
     ```bash
-    echo '{"cookie_name":"portal_session","cookie_same_site":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    echo '{"cookie_name":"portal_session","cookie_same_site":"Lax","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
 
     Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
     and `cookie_same_site` properties as follows:
 
     ```
-    echo '{"cookie_name":"portal_session","cookie_same_site":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    echo '{"cookie_name":"portal_session","cookie_same_site":"Lax","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
     {% endif_version %}
 

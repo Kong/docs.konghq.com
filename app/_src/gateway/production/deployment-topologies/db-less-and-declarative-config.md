@@ -61,13 +61,13 @@ verify that `database` is set to `off`.
 
 Command:
 
-```
-http :8001/
+```sh
+curl -i -X GET http://localhost:8001
 ```
 
 Sample response:
 
-```
+```json
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
 Connection: keep-alive
@@ -92,13 +92,13 @@ services, or entities of any kind.
 
 Command:
 
-```
-http :8001/routes
+```sh
+curl -i -X GET http://localhost:8001/routes
 ```
 
 Sample response:
 
-```
+```json
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
 Connection: keep-alive
@@ -231,10 +231,11 @@ kong start -c kong.conf
 
 You can also load a declarative configuration file into a running
 Kong node with the Admin API, using the `/config` endpoint. The
-following example loads `kong.yml` using HTTPie:
+following example loads `kong.yml`:
 
-```
-http :8001/config config=@kong.yml
+```sh
+curl -i -X GET http://localhost:8001/config \
+  --data config=@kong.yml
 ```
 
 {:.important}

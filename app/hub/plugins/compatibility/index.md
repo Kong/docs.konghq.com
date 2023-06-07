@@ -99,11 +99,6 @@ data plane roles. Kong provides and hosts the control plane and a database with
 
 {% endfor %}
 
-### Deployment
-
-[Deployment plugins](/hub/#deployment) are not bundled with any version of {{site.base_gateway}} or {{site.konnect_short_name}}, and are
-simply tools to help you deploy {{ site.base_gateway }} in various environments.
-
 ## Protocols
 
 {{site.base_gateway}} and {{site.konnect_short_name}} plugins are compatible with the following protocols:
@@ -140,7 +135,7 @@ simply tools to help you deploy {{ site.base_gateway }} in various environments.
         <td style="text-align: center">N/A</td>
         <td style="text-align: center">N/A</td>
       {% else %}
-        {% assign protocols = extn.schema.protocols %}
+      {% assign protocols = extn.schema.protocols.elements.one_of %}
         <td style="text-align: center"> 
           {% if protocols contains "http" %}
             <i class="fa fa-check"></i>

@@ -85,7 +85,7 @@ const { SiteChecker } = require("broken-link-checker");
   });
 
   // Add known list of exclusions
-  excluded = excluded.concat(require("./excluded.json"));
+  excluded = excluded.concat(require("./config/ignored_targets.json"));
 
   // Excluded external sites for full scan only
   excluded.push("https://github.com/*");

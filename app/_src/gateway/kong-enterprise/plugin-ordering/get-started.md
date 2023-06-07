@@ -22,9 +22,6 @@ authentication method.
 Call the Admin API on port `8001` and enable the
 `rate-limiting` plugin, configuring it to run before `key-auth`:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=rate-limiting \
@@ -33,22 +30,9 @@ curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data config.limit_by=ip \
   --data ordering.before.access=key-auth
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http -f post :8001/plugins \
-  name=rate-limiting \
-  config.minute=5 \
-  config.policy=local \
-  config.limit_by=ip \
-  ordering.before.access=key-auth
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 {% endnavtab %}
-{% navtab  Kubernetes %}
+{% navtab Kubernetes %}
 ```yaml
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
@@ -175,27 +159,14 @@ plugin, you can change the order of the authentication plugin
 Call the Admin API on port `8001` and enable the
 `basic-auth` plugin, configuring it to run after `request-transformer`:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=basic-auth \
   --data ordering.after.access=request-transformer
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http -f post :8001/plugins \
-  name=basic-auth \
-  ordering.after.access=request-transformer
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 {% endnavtab %}
-{% navtab  Kubernetes %}
+{% navtab Kubernetes %}
 ```yaml
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin

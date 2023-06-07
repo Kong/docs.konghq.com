@@ -148,7 +148,7 @@ The dev portal `portal_gui_host` and the dev
 portal api `portal_api_url` must share a domain or subdomain. The following
 example assumes subdomains of `portal.xyz.com` and `portalapi.xyz.com`.
 Set a subdomain such as ``"cookie_domain": ".xyz.com"`` and set
-`cookie_same_site` to `off`.
+`cookie_same_site` to `Lax`.
 
 ```
 portal_auth = basic-auth
@@ -159,7 +159,7 @@ portal_session_conf = {
     "secret":"super-secret"
     "cookie_secure":false
     "rolling_timeout":31557600,
-    "cookie_same_site":"off"
+    "cookie_same_site":"Lax"
 }
 ```
 {% endif_version %}

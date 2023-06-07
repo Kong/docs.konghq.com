@@ -79,28 +79,12 @@ that encapsulates the provider and the GCP project ID:
 {% navtabs %}
 {% navtab Admin API %}
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
   --data name=gcp \
   --data description="Storing secrets in GCP Secrets Manager" \
   --data config.project_id="my_project_id"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
-  name="gcp" \
-  description="Storing secrets in GCP Secrets Manager" \
-  config.project_id="my_project_id"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 

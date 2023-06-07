@@ -9,14 +9,17 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-
-## May 2023
+## June 2023
 
 **Audit logging**
 * Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
 
-## April 2023
+## May 2023
 
+**Gateway 3.3 Support**
+: Konnect now supports the latest Gateway release version of 3.3 including all [Konnect-compatible plugins](/konnect/compatibility/).
+
+## April 2023
 
 **Allow filtering of runtime instances based on connection status** 
 : Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, or `all`.
