@@ -22,7 +22,7 @@ The compatibilities of router flavors between different {{site.kic_product_name}
 (*) Most use cases are supported. Regexes with a backslash (`\`) followed by a non-escaped character (for example, `\j` or `\/`) in matches of paths or headers
 may not be accepted when {{site.base_gateway}} 3.x is configured to use the `traditional_compatible` router.
 
-(**) Limited support of expression based router (alpha stage). Please refer to [expression router concept page][kic-expression-router-2-10]
+(**) Limited support of expression based router (alpha maturity). Please refer to [expression router concept page][kic-expression-router-2-10]
 to see detailed status of supporting {{site.base_gateway}} with expression router.
 
 [gateway-expression-router]:/gateway/latest/key-concepts/routes/expressions/
