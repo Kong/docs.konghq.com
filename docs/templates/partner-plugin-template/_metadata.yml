@@ -1,0 +1,72 @@
+
+# This file sets metadata an individual Kong partner plugin.
+# View the full instructions for documenting a plugin
+# at https://docs.konghq.com/contributing/partner-plugins
+
+name: # (required) The name of your plugin.
+  # Use capitals and spaces as needed.
+
+publisher: # (required) The company name of the publisher of this plugin.
+  # Use capitals and spaces as needed.
+  # Note that every plugin by a given publisher must have the exact same value.
+
+categories: # (required) Uncomment ONE that applies.
+  #- authentication
+  #- security
+  #- traffic-control
+  #- serverless
+  #- analytics-monitoring
+  #- transformations
+  #- logging
+  #- deployment
+# Array format only; if your plugin applies to multiple categories,
+# uncomment the most applicable category.
+
+type: # (required) Uncomment one of the following:
+  # plugin          # Extensions of the core platform.
+  # integration     # Extensions of the Kong Admin API.
+
+
+desc: # (required) 1-liner description; max 80 chars
+description: #|
+  # (required) extended description.
+  # Use YAML pipe notation for extended entries.
+  # EXAMPLE long text format (do not use this entry)
+  # description: |
+  #   Maintain an indentation of two (2) spaces after denoting a block with
+  #   YAML pipe notation.
+  #
+  #   Lorem Ipsum is simply dummy text of the printing and typesetting
+  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
+  #   since the 1500s.
+
+#support_url:
+  # (Optional) A specific URL of your own for this extension.
+  # Defaults to the url setting in your publisher profile.
+
+#source_code:
+  # (Optional) If your extension is open source, provide a link to your code.
+
+# COMPATIBILITY
+# Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
+# 'enterprise_edition' (Kong Gateway Enterprise) and list the compatible verisons in 
+# n.n.x format. For example, 3.2.x.
+
+kong_version_compatibility: # (Required)
+  #community_edition: # (Optional)
+    #compatible:
+       #- 3.0.x
+  #enterprise_edition: # (Optional)
+    #compatible:
+       #- 3.0.x
+
+enterprise: # true or false
+  # (Required) Set false if your plugin is open-source and works with open-source Kong Gateway.
+  # Set true if the plugin is only available with an Enterprise subscription.
+
+dbless_compatible:
+  # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
+  # One of the following values allowed: 'yes', 'no' or 'partially'.
+#dbless_explanation: 
+  # (Optional) Free-text explanation containing details about the degree of
+  # compatibility with DB-less mode.

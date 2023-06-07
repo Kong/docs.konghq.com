@@ -1,0 +1,8 @@
+# Yaml-formatted configuration example for your plugin. 
+# This is the default example that readers will see on the "Using this plugin" page.
+# For example:
+
+# name: imp-app-sec-connector
+# config:
+#  destination_addr: 10.0.0.1
+
