@@ -3,7 +3,7 @@ title: Configure Kong Ingress Controller as a gateway
 content_type: how-to
 ---
 
-This guide explains how to configure [Kong Ingress Controller (KIC)](link to KIC doc) as a gateway for Kong Mesh. This allows you to _______. 
+This guide explains how to configure [{{site.kic_product_name}} (KIC)](link to KIC doc) as a gateway for Kong Mesh. This allows you to _______. 
 
 To configure KIC as a gateway, you must (general overview of the steps here). 
 

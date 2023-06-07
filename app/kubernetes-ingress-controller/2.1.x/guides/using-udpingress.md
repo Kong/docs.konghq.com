@@ -40,7 +40,7 @@ the {{site.kic_product_name}} on your Kubernetes cluster.
 
 > **Note**: This feature is compatible with:
 > * {{site.base_gateway}} versions 2.0.0 and above.
-> * Kong Ingress Controller versions 2.0.0 and above.
+> * {{site.kic_product_name}} versions 2.0.0 and above.
 
 ## Create a namespace
 

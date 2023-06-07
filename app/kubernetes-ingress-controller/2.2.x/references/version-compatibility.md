@@ -2,7 +2,7 @@
 title: Version Compatibility
 ---
 
-Kong's Ingress Controller is compatible with different flavors of Kong.
+Kong's Kubernetes ingress controller is compatible with different flavors of Kong.
 The following sections detail on compatibility between versions for the last
 five controller versions. Compatibility for older versions is available in
 those versions' documentation.

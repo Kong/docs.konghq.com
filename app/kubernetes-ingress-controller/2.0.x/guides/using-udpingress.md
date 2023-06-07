@@ -23,7 +23,7 @@ DNS server Kubernetes uses for internal DNS
 * Deploy a CoreDNS `Pod` and `Service`
 * Route UDP traffic to it using `UDPIngress`
 
-This guide assumes that you've deployed the Kong Ingress Controller (KIC)
+This guide assumes that you've deployed the {{site.kic_product_name}} (KIC)
 using the [Helm Chart][chart]. If you have deployed the KIC in a different way, you
 may need to make some manual adjustments to some of the provided instructions.
 
@@ -40,7 +40,7 @@ the {{site.kic_product_name}} on your Kubernetes cluster.
 
 > **Note**: This feature is compatible with:
 > * {{site.base_gateway}} versions 2.0.0 and above.
-> * Kong Ingress Controller versions 2.0.0 and above.
+> * {{site.kic_product_name}} versions 2.0.0 and above.
 
 ## Create a namespace
 
@@ -225,7 +225,7 @@ DNS server outside of the cluster using Kong's `UDPIngress` resource.
 
 ## Exposing UDP Ports on Kong
 
-The Kong Ingress Controller (KIC) doesn't have a
+The {{site.kic_product_name}} (KIC) doesn't have a
 mechanism to automatically enable new UDP ports for exposing your
 Kubernetes UDP `Services`, so you need to explicitly configure {{site.base_gateway}} to expose
 these ports prior to deploying any `UDPIngress` resources.
