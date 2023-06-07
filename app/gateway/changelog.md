@@ -7,7 +7,7 @@ no_version: true
 
 
 ## 3.2.2.3 
-**Release Date** 2023/06/06
+**Release Date** 2023/06/07
 
 ### Fixes
 * Fixed an error with the `/config` endpoint. If `flatten_errors=1` was set and an invalid config was sent to the endpoint, a 500 error was incorrectly returned.
