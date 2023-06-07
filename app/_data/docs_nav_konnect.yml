@@ -92,6 +92,8 @@
   items:
     - text: Overview
       url: /mesh-manager/
+    - text: Create a service mesh
+      url: /mesh-manager/service-mesh/
     - text: FAQ
       url: /mesh-manager/faq/
 
