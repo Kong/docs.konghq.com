@@ -39,7 +39,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Upstream Admin | Access to configure upstreams for an existing runtime group. |
 | Vault Admin | Access to configure vaults for an existing runtime group. |
 
-## Mesh control planes
+## Mesh control planes 
 
 | Role                        | Description  |
 |-----------------------------|--------------|
