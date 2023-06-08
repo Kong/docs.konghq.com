@@ -169,8 +169,9 @@ false           | `inactive`     |Last attempt to send data failed, and customer
 false           | `unconfigured` | The webhook for this region has not been configured yet.
 
 
-## See also
+## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
+* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
 * [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
