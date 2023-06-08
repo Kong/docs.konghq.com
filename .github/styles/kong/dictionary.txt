@@ -27,6 +27,8 @@ Fargate
 Github
 Goroutine
 Grafana
+Gzip
+Gziped
 HTTPie
 istioctl
 Istio
