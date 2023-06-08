@@ -68,7 +68,7 @@ For example, `_app/_hub/company-name/example-plugin`.
     explain how the plugin works, how to install it, and how to use it.
 
     * `_changelog.md`: A changelog for your plugin. For the first entry, note when the 
-    plugin was published and which version of Gateway it has been tested against.
+    plugin was published and which versions of Gateway it has been tested against.
 
 1. Add an icon for your plugin into the `/app/_assets/images/icons/hub/` directory. 
     
@@ -76,7 +76,7 @@ For example, `_app/_hub/company-name/example-plugin`.
     should be a square-format PNG or SVG file, 120x120 pixels in size. 
 
     The filename of your image should be `publisher_plugin-name` using 
-    the `publisher` and `plugin` name from step 2.
+    the `publisher` and `plugin` from the directory structure.
     For example, `my-company_oas-validation`.
 
 ## Adding images

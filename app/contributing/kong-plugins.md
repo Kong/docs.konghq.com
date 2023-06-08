@@ -46,11 +46,11 @@ For example, `_app/_hub/kong-inc/your-plugin`.
     * `_metadata.yml`: Sets the metadata for the plugin. 
     Follow the instructions in the file to fill it out.
 
-    * `_index.md`: Introduction of your plugin. This is where you
+    * `_index.md`: Introduction for your plugin. This is where you
     explain how the plugin works and why someone would want to use it.
 
-    * `_changelog.md`: A changelog for your plugin. For the first entry, note when the 
-    plugin was published and which version of Gateway it has been tested against.
+    * `_changelog.md`: A changelog for your plugin. For the first entry,
+    just note when the plugin was published. 
 
     * `how-to/_index.md`: Markdown documentation on how to use the plugin.
       You can create any number of files in the `how-to` folder, e.g. 
@@ -65,7 +65,7 @@ For example, `_app/_hub/kong-inc/your-plugin`.
 directory. 
     
     Plugin icons are required for publication on the Kong plugin hub. Icons
-    should be a square-format PNG or SVG file, 120x120 pixels in size. 
+    should be a PNG or SVG file, 120x120 pixels in size. 
 
     The filename of your image should be `kong-inc_plugin-name`.
     For example, `kong-inc_oas-validation`.
@@ -83,8 +83,7 @@ If you have any diagrams or screenshots that you want to add to your plugin docu
 
    Make sure that any screenshots follow the [screenshot guidelines](/contributing/user-interfaces/#screenshots).
 
-1. Insert them into the file at `app/_hub/kong-inc/example-plugin/_index.md`
-using the following format:
+1. Insert images into any of the markdown files for your plugin using the following format:
 
     ```
     ![Authentication flow diagram](/assets/images/docs/plugins/my-plugin-auth-flow.png)
