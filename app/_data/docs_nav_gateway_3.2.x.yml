@@ -80,6 +80,8 @@ items:
               url: /production/deployment-topologies/hybrid-mode/
             - text: Deploy Kong Gateway in Hybrid mode
               url: /production/deployment-topologies/hybrid-mode/setup
+            - text: Hybrid mode communication spec
+              url: /production/deployment-topologies/hybrid-mode/hybrid-mode-spec
           - text: DB-less Deployment
             url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
