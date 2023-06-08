@@ -1,16 +1,15 @@
-
 # This file sets metadata for an individual Kong partner plugin.
 # View the full instructions for documenting a plugin
 # at https://docs.konghq.com/contributing/partner-plugins
 
-name: # (required) The name of your plugin.
+name: # (Required) The name of your plugin.
   # Use capitals and spaces as needed.
 
-publisher: # (required) The company name of the publisher of this plugin.
+publisher: # (Required) The company name of the publisher of this plugin.
   # Use capitals and spaces as needed.
   # Note that every plugin by a given publisher must have the exact same value.
 
-categories: # (required) Uncomment ONE that applies.
+categories: # (Required) Uncomment ONE that applies.
   #- authentication
   #- security
   #- traffic-control
@@ -22,23 +21,20 @@ categories: # (required) Uncomment ONE that applies.
 # Array format only; if your plugin applies to multiple categories,
 # uncomment the most applicable category.
 
-type: # (required) Uncomment one of the following:
+type: # (Required) Uncomment one of the following:
   # plugin          # Extensions of the core platform.
   # integration     # Extensions of the Kong Admin API.
 
 
-desc: # (required) 1-liner description; max 80 chars
+desc: # (Required) 1-liner description; max 80 chars
+
 description: #|
-  # (required) extended description.
-  # Use YAML pipe notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
+  # (Required) Extended description.
+  # Use YAML pipe notation (|) and indent the text two spaces. 
+  # For example:
   #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
+  # description: |
+  #   My plugin is a great plugin that does cool things.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
@@ -47,12 +43,11 @@ description: #|
 #source_code:
   # (Optional) If your extension is open source, provide a link to your code.
 
-# COMPATIBILITY
-# Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
-# 'enterprise_edition' (Kong Gateway Enterprise) and list the compatible verisons in 
-# n.n.x format. For example, 3.2.x.
-
 kong_version_compatibility: # (Required)
+# Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
+# 'enterprise_edition' (Kong Gateway Enterprise) below and list the compatible versions 
+# in n.n.x format. For example, 3.2.x.
+
   #community_edition: # (Optional)
     #compatible:
        #- 3.0.x
@@ -67,6 +62,7 @@ enterprise: # true or false
 dbless_compatible:
   # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
   # One of the following values allowed: 'yes', 'no' or 'partially'.
+
 #dbless_explanation: 
   # (Optional) Free-text explanation containing details about the degree of
   # compatibility with DB-less mode.

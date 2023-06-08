@@ -4,10 +4,15 @@ content_type: how-to
 ---
 
 Plugin documentation is posted on the [Plugin Hub](/hub/). 
-All partner plugin docs must follow a [specific template](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates/partner-plugin-template).
 
-We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. 
-For more information, see the [Kong Partners page](https://konghq.com/partners/).
+We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis.
+For more information on technical partnerships, see the [Kong Partners page](https://konghq.com/partners/).
+
+If you're looking to develop a plugin, see our plugin documentation:
+* [Plugin development guide](/gateway/latest/plugin-development/)
+* [PDK reference](/gateway/latest/plugin-development/pdk/)
+
+If you have a plugin that's verified and ready to go, the following guide walks you through submitting plugin docs to our Hub.
 
 {:.note}
 > The Kong Plugin Hub is a documentation site. We **do not** host plugin source code or downloads.
@@ -114,5 +119,12 @@ repository to add your documentation to the Plugin Hub.
 The Kong docs team will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Plugin Hub addition!
 
+## Custom plugins and documentation
 
+If you're not interested in becoming a technical partner, there are other ways to publicize your plugin.
 
+To write custom plugin for your own needs, start with the [Plugin Development Guide](/gateway/latest/plugin-development/).
+
+If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the [distribution section](/gateway/latest/plugin-development/distribution/#distribute-your-plugin) of the Plugin Development Guide.
+
+To give visibility to your plugin, you can create a post in the [Announcements](https://discuss.konghq.com/c/announcements/7) category of Kong Nation.

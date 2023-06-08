@@ -1,7 +1,3 @@
----
-nav_title: # Set a title for the navigation menu
----
-
 ## How it works
 
 <!--How does your plugin work? -->
@@ -11,9 +7,13 @@ nav_title: # Set a title for the navigation menu
 <!-- If your plugin can be installed via luarocks, change {YOUR_PLUGIN_NAME} to your own plugin, e.g. example-plugin.
 If the plugin is an integration in your catalog, or is installed in some other way, replace the following instructions with your own. -->
 
-The `.rock` file is a self-contained package that can be installed locally or from a remote server.
+Custom plugins can be installed via LuaRocks. A Lua plugin is distributed in `.rock` format, which is 
+a self-contained package that can be installed locally or from a remote server.
 
-If the LuaRocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the `rock` in your LuaRocks tree, that is, the directory in which LuaRocks installs Lua modules.
+If you used one of the official {{site.base_gateway}} installation packages, the LuaRocks utility 
+should already be installed in your system.
+Install the `.rock` in your LuaRocks tree, that is, the directory in which LuaRocks 
+installs Lua modules. 
 
 1. Install the {YOUR_PLUGIN_NAME} plugin:
 

@@ -1,5 +1,4 @@
 ---
-nav_title: Title to appear in the left side docs menu
+nav_title: # Set a title for the navigation menu, for example "Using the example-name plugin"
 ---
-
 <!-- Describe how to use your plugin -->

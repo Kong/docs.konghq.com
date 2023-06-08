@@ -6,6 +6,7 @@ name: # (Required) The name of your plugin.
   # Use capitals and spaces as needed.
 
 publisher: Kong Inc.
+
 type: plugin
 
 categories: # (Required) Uncomment ONE that applies.
@@ -21,17 +22,14 @@ categories: # (Required) Uncomment ONE that applies.
 # uncomment the most applicable category.
 
 desc: # (Required) 1-liner description; max 80 chars
+
 description: #|
-  # (Required) extended description.
-  # Use YAML pipe notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
+  # (Required) Extended description.
+  # Use YAML pipe notation (|) and indent the text two spaces. 
+  # For example:
   #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
+  # description: |
+  #   My plugin is a great plugin that does cool things.
 
 free: # true OR false
   # (Required) Set true if your plugin is open-source and available in the 
