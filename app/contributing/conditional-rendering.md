@@ -36,7 +36,7 @@ You can use conditional rendering by version for any content in the `app/_src` o
 As we add new functionality, we want content on a page to be displayed only for specific releases of a product. 
 You can use the `if_version` block for this, or `if_plugin_version` for any content in the Plugin Hub.
 
-* `if_version` is used by {{site.base_gateway}}, {{site.mesh_product_name}}, Kubernetes Ingress Controller, and decK documentation.
+* `if_version` is used by {{site.base_gateway}}, {{site.mesh_product_name}}, {{site.kic_product_name}}, and decK documentation.
 * `if_plugin_version` can only be used for plugin documentation in the `app/_hub` directory.
 
 `if_version` and `if_plugin_version` support the following filters:

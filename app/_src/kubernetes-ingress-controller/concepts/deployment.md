@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller Deployment
+title: Kong Ingress Controller Deployment
 ---
 
 The {{site.kic_product_name}} is designed to be deployed in a variety of ways
@@ -213,7 +213,7 @@ loss of functionality.
 
 #### Without a database
 
-In DB-less deployments, Kong's Ingress controller runs
+In DB-less deployments, Kong's Kubernetes ingress controller runs
 alongside and dynamically configures
 Kong as per the changes it receives from the Kubernetes API server.
 
@@ -362,7 +362,7 @@ by {{site.kic_product_name}} for configuring local Kong Gateways. It enables usi
 to inspect the configuration of your Kong instances in a **read-only** mode, track [Analytics][konnect-analytics],
 and more.
 
-For installation steps, please see the [Kong Ingress Controller for Kubernetes Association][konnect-kic] page.
+For installation steps, please see the [{{site.kic_product_name}} for Kubernetes Association][konnect-kic] page.
 
 ![KIC {{site.konnect_short_name}} overview](/assets/images/docs/kubernetes-ingress-controller/kic-konnect-diagram.png "KIC {{site.konnect_short_name}} overview")
 

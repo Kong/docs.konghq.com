@@ -211,7 +211,7 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
-kic_product_name: Kubernetes Ingress Controller
+kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
 konnect_saas: Kong Konnect

@@ -57,7 +57,7 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /hub/
 
-      - name: Kubernetes Ingress Controller
+      - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
         icon: /assets/images/landing-page/kubernetes.svg
         links:
