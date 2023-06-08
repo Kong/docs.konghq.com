@@ -19,7 +19,7 @@ The Dev Portal lives at a separate URL from {{site.konnect_short_name}} and requ
 
 ## Developer self service
 
-Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through Service Hub, they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
+Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage aspects of the application development lifecycle on their own. Developers can manage their own API keys, register and unregister applications, and view analytics for their applications from the Dev Portal. 
 
 For more information on this topic, we offer several pieces of documentation depending on your use case.
 
@@ -40,8 +40,24 @@ For developers:
 
 * [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform.
 
+### Contextual developer analytics 
+
+The Developer Portal supports built-in analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This feature gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs using a fully customizable **Dashboard**. Each application has it's own dashboard that provides a high-level summary of **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
+
+* Requests by version
+* P99 Latency by version
+* Error code distribution 
+
+All of these metrics can be configured across a time range up to **30 days**. 
+
+{:.note}
+> Free accounts will only have access to a time range of 24 hours.
+
+
 ## Customization
 
 {{site.konnect_short_name}} has built-in customization options for managing the Dev Portal so that you can build a consistent experience for the consumers of your API. Customizing your Dev Portal to reflect the likeness of your brand can help convince Developers to create applications with your services. With {{site.konnect_short_name}}, you don’t need to have knowledge of any web frameworks, because you customize everything from the application. {{site.konnect_short_name}} also has built-in themes if customization is not your immediate priority.
 
 For more information please read our doc on [customization](/konnect/dev-portal/customization/).
+
+
