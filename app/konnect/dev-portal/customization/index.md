@@ -24,10 +24,9 @@ For details on the requirements for each customizable option, hover over the inf
 
 {{site.konnect_short_name}} admins can customize the charts on the dev portal analytics page from the **Appearance** menu. You can modify the colors for the following analytics properties:   
 
-* Lines and bars
-* Status codes 
+* Graph artifacts (lines, bars, text)
 * Trends
-* Text 
+* Text
 * Fonts
 
 ## Custom Dev Portal URL
