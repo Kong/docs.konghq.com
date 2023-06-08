@@ -33,7 +33,7 @@ Now the self-hosted Dev Portal is enabled and the {{site.konnect_short_name}}-ho
 
 ## Deploy your self-hosted Dev Portal with Netlify
 
-In this example, you will deploy the self-hosted example Dev Portal using Netlify. You can use any static site generator of your choice to host your Dev Portal.
+You will deploy the self-hosted example Dev Portal using Netlify in this example, but you can use any hosting provider to host the Dev Portal.
 
 ### Fork and configure the GitHub repository
 
@@ -66,9 +66,9 @@ In this example, you will deploy the self-hosted example Dev Portal using Netlif
 ### Add your domain to Netlify
 
 1. In Netlify, click **Domain settings**, then **Add a domain**.
-1. Enter your custom portal client domain (`client.mycompany.com`) in the **Custom domain or subdomain** field, then click **Verify**.
-1. Click **Domains** in the sidebar and then click the domain you just added.
-1. In the **Name servers** pane, note the listed name servers. Then, [configure the name servers in your domain registrar](https://docs.netlify.com/domains-https/netlify-dns/delegate-to-netlify/).
+1. Enter your custom portal client domain in the **Custom domain or subdomain** field, then click **Verify**.
+1. Click **Domains** in the sidebar, then select your domain.
+1. [Configure the name servers in your domain registrar](https://docs.netlify.com/domains-https/netlify-dns/delegate-to-netlify/).
 
 Once your name servers are propogated (this may take a few minutes), your Dev Portal will be deployed by Netlify.
 

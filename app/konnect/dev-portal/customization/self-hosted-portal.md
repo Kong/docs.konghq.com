@@ -6,7 +6,7 @@ badge: oss
 
 In {{site.konnect_saas}}, you have two hosting options for your Dev Portal: a cloud hosted Dev Portal with {{site.konnect_short_name}} or a self-hosted, open source Dev Portal. 
 * **Cloud hosted Dev Portal in {{site.konnect_short_name}}**: Your Dev Portal is hosted for you and it simplifies your deployment experience. 
-* **Self-hosted, open source Dev Portal**: Provides all the same features as the cloud-hosted portal, but also gives you control over your hosting service and where your Dev Portal is hosted. 
+* **Self-hosted, open source Dev Portal**: Provides all the same features as the cloud-hosted portal, but also gives you control over your hosting service. 
 
 You can use the open source Dev Portal to display your APIs to developers on a self-hosted website. This page explains the benefits of using a self-hosted Dev Portal, a high-level overview of how the self-hosted portal works, and how to enable it.
 
@@ -35,11 +35,11 @@ The following fields are required:
 * Custom Hosted Domain
 * Custom Self-Hosted UI Domain
 
-After enabling the portal, you must configure the settings in your static site generator to deploy your Dev Portal.
+After enabling the portal, configure your hosting provider to serve your Dev Portal. You can host it with Netlify using our [instructions](/konnect/dev-portal/customization/netlify/).
 
 {:.note}
 > **Note:** Enabling the self-hosted Dev Portal disables the {{site.konnect_short_name}}-hosted Dev Portal. Only one can be enabled at a time.
 
 ## More information
 
-[Self-Host your Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) - Learn how to deploy your self-hosted Dev Portal with Netlify.
+[Self-Host your Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) - Learn how to deploy your self-hosted Dev Portal on Netlify.
