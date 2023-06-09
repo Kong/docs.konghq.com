@@ -42,16 +42,18 @@ For developers:
 
 ### Contextual developer analytics 
 
-The Developer Portal supports built-in analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This feature gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs using a fully customizable **Dashboard**. Each application has it's own dashboard that provides a high-level summary of **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
+You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs using a fully customizable dashboard. 
+
+Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
 
 * Requests by version
-* P99 Latency by version
+* P99 latency by version
 * Error code distribution 
 
 All of these metrics can be configured across a time range up to **30 days**. 
 
 {:.note}
-> Free accounts will only have access to a time range of 24 hours.
+> Free accounts only have access to a time range of 24 hours.
 
 
 ## Customization
