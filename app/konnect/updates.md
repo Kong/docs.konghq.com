@@ -14,8 +14,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Self-hosted, open source Dev Portal**
 : You can now self-host an open-source Dev Portal on the hosting provider of your choice. Kong provides an [example application](https://github.com/Kong/konnect-portal) you can use for an out-of-the-box experience with a self-hosted Dev Portal. You can also customize the self-hosted portal using the Portal Management and Portal APIs, and the Portal SDK. For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/).
 
-## April 2023
+## May 2023
 
+**Gateway 3.3 Support**
+: Konnect now supports the latest Gateway release version of 3.3 including all [Konnect-compatible plugins](/konnect/compatibility/).
+
+## April 2023
 
 **Allow filtering of runtime instances based on connection status** 
 : Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, or `all`.

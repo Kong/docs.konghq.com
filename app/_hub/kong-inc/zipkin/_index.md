@@ -36,7 +36,7 @@ The `http_endpoint` configuration variable must contain the full uri including s
 
 The plugin does *request sampling*. For each request which triggers the plugin, a random number between 0 and 1 is chosen.
 
-If the number is greater than the configured `sample_ratio`, then a trace with several spans will be generated. If `sample_ratio` is set to 1, then all requests will generate a trace (this might be very noisy).
+If the number is smaller than the configured `sample_ratio`, then a trace with several spans will be generated. If `sample_ratio` is set to 1, then all requests will generate a trace (this might be very noisy).
 
 For each request that gets traced, the following spans are produced:
 

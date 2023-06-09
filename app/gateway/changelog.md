@@ -6,10 +6,25 @@ no_version: true
 <!-- vale off -->
 
 
+## 3.2.2.3 
+**Release Date** 2023/06/07
+
+### Fixes
+* Fixed an error with the `/config` endpoint. If `flatten_errors=1` was set and an invalid config was sent to the endpoint, a 500 error was incorrectly returned.
+
+### Deprecations
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
 ## 3.3.0.0
 **Release Date** 2023/05/19
 
 ### Breaking changes and deprecations
+
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. 
+These images and packages are still available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
+It is planned for removal with {{site.base_gateway}} 3.4.
 
 #### Core
 
@@ -64,14 +79,6 @@ instead of the previous 1 (trace all requests).
   This plugin now uses queues for internal buffering. 
   The standard queue parameter set is available to control queuing behavior.
   [#10753](https://github.com/Kong/kong/pull/10753)
-
-#### Reminders 
-
-* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. 
-These images and packages are still available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
-
-* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
-It is planned for removal with {{site.base_gateway}} 3.4.
 
 ### Features
 
@@ -2200,6 +2207,34 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.1
+
+**Release Date** 2023/05/25
+
+### Breaking Changes
+#### Plugins
+* [Request Validator](/hub/kong-inc/request-validator/) (`request-validator`)
+  * The plugin now allows requests carrying a `content-type` with a parameter to match its `content-type` without a parameter.
+
+### Features
+* Redis Cluster: Added username and password authentication to Redis Cluster 6 and later versions.
+
+### Fixes
+* Fixed an issue where the RBAC token was not re-hashed after an update on the `user_token` field.
+* Fixed the Dynatrace implementation. Due to a build system issue, Kong Gateway 2.8.4 packages prior to 2.8.4.1
+didn't contain the debug symbols that Dynatrace requires.
+
+#### Plugins
+* [Forward Proxy](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  * Fixed an issue which occurred when receiving an HTTP `408` from the upstream through a forward proxy. 
+  Nginx exited the process with this code, which resulted in Nginx ending the request without any contents.
+
+* [Request Validator](/hub/kong-inc/request-validator/) (`request-validator`)
+  * The plugin now allows requests carrying a `content-type` with a parameter to match its `content-type` without a parameter.
+
+### Dependencies
+* Bumped `pgmoon` from 2.2.0.1 to 2.3.2.0.
+
 ## 2.8.4.0
 **Release Date** 2023/03/28
 
@@ -2299,7 +2334,7 @@ RBAC rules involving deny (negative) rules now correctly take precedence over al
 
 * [HTTP Log](/hub/kong-inc/http-log/) (`http-log`)
   * Fixed the `could not update kong admin` internal error caused by empty headers.
-  This error occurred when using this plugin with the Kubernetes Ingress Controller.
+  This error occurred when using this plugin with the Kong Ingress Controller.
 
 * [JWT](/hub/kong-inc/jwt/) (`jwt`)
   * Fixed an issue where the JWT plugin could potentially forward an unverified token to the upstream. 
@@ -3643,7 +3678,7 @@ To access old Kong Immunity documentation, see the
 * Cassandra as a backend database for Kong Gateway
 is deprecated with this release and will be removed in a future version.
 
-  The target for Cassandra removal is the Kong Gateway 4.0 release.
+  The target for Cassandra removal is the Kong Gateway 3.4 release.
   Starting with the Kong Gateway 3.0 release, some new features might
   not be supported with Cassandra. Our intent is to provide our users with ample
   time and alternatives for satisfying the use cases that they have been able to

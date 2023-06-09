@@ -37,7 +37,7 @@ module Jekyll
         end
 
         def referenceable
-          @schema['referenceable']
+          @schema['referenceable'] || @schema.dig('elements', 'referenceable')
         end
 
         def description

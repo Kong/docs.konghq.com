@@ -1,5 +1,5 @@
 ---
-title: Getting started with the Kubernetes Ingress Controller
+title: Getting started with the Kong Ingress Controller
 ---
 
 ## Installation

@@ -271,7 +271,7 @@ items:
         url: /policies/meshfaultinjection/
         src: /.repos/kuma/app/_src/policies/meshfaultinjection/
       - text: MeshGlobalRatelimit (beta)
-        url: /features/meshglobalratelimit
+        url: /policies/meshglobalratelimit
       - text: MeshHealthCheck (Beta)
         url: /policies/meshhealthcheck/
         src: /.repos/kuma/app/_src/policies/meshhealthcheck/
@@ -282,7 +282,7 @@ items:
         url: /policies/meshloadbalancingstrategy/
         src: /.repos/kuma/app/_src/policies/meshloadbalancingstrategy/
       - text: MeshOPA (beta)
-        url: /features/meshopa
+        url: /policies/meshopa
       - text: MeshProxyPatch (Beta)
         url: /policies/meshproxypatch/
         src: /.repos/kuma/app/_src/policies/meshproxypatch/
@@ -315,10 +315,10 @@ items:
       - text: OPA policy support
         url: /features/opa
       - text: MeshOPA (beta)
-        url: /features/meshopa
+        url: /policies/meshopa
         generate: false
       - text: MeshGlobalRatelimit (beta)
-        url: /features/meshglobalratelimit
+        url: /policies/meshglobalratelimit
         generate: false
       - text: Multi-zone authentication
         url: /features/kds-auth

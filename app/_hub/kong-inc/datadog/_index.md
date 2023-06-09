@@ -18,7 +18,6 @@ the `config` parameter section of the plugin.
 
 ---
 
->>>>>>> ce6fc59bed (Reworked plugin queues (#5088))
 ## Metrics
 The Datadog plugin currently logs the following metrics to the Datadog server about a service or route.
 

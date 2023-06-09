@@ -10,7 +10,7 @@ module Jekyll
           FIELD = {
             'consumer' => 'consumer: CONSUMER_NAME|CONSUMER_ID',
             'global' => nil,
-            'route' => 'route: ROUTE_NAME',
+            'route' => 'route: ROUTE_NAME|ROUTE_ID',
             'service' => 'service: SERVICE_NAME|SERVICE_ID'
           }.freeze
 

@@ -159,160 +159,84 @@ end
 
 ## Demonstration
 
-### Step 1: Create a Service in Kong
+1. Create a service in Kong:
 
-   {% navtabs %}
-   {% navtab Using cURL %}
+    ```bash
+    curl -i -X POST http://<admin-hostname>:8001/services \
+      --data name=example.com \
+      --data url='http://mockbin.org'
+    ```
 
-   ```bash
-   curl -i -X POST http://<admin-hostname>:8001/services \
-     --data name=example.com \
-     --data url='http://mockbin.org'
-   ```
+2. Create a route in Kong:
 
-   {% endnavtab %}
-   {% navtab Using HTTPie %}
+    ```bash
+    curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
+      --data 'hosts[]=example.com'
+    ```
 
-   ```bash
-   http :8001/services name=example.com host=mockbin.org
-   ```
+1. Create a file named `transform.lua` with the transformation code. The
+  following example adds a header, appends "arr!" to any message, and adds
+  `error` and `status` fields on the response body.
 
-   {% endnavtab %}
-   {% endnavtabs %}
+    ```lua
+        -- transform.lua
+        return function(status, body, headers)
+          if not body or not body.message then
+            return status, body, headers
+          end
+          headers = { ["x-some-header"] = "some value" }
+          local new_body = {
+            error = true,
+            status = status,
+            message = body.message .. ", arr!",
+          }
+          return status, new_body, headers
+        end
+    ```
 
-### Step 2: Create a Route in Kong
+1. Configure the `exit-transformer` plugin with `transform.lua`.
 
-   {% navtabs %}
-   {% navtab Using cURL %}
+    ```bash
+    curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+      -F "name=exit-transformer"  \
+      -F "config.functions=@transform.lua"
+    ```
 
-```bash
-curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
-  --data 'hosts[]=example.com'
-```
+1. Add the `key-auth` plugin to test a forced generation of an exit transform
+response in the following step:
 
-   {% endnavtab %}
-   {% navtab Using HTTPie %}
+    ```bash
+    curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+      --data "name=key-auth"
+    ```
 
-```bash
-http -f :8001/services/example.com/routes hosts=example.com
-```
+1. Test a forced generation of an exit response.
 
-   {% endnavtab %}
-   {% endnavtabs %}
+    Attempt a request to the service to get the custom error. Because the
+    request did not provide credentials (API key), a 401 response is returned
+    in the message body.
 
-### Step 3: Create a Transform
+    ```bash
+    curl --header 'Host: example.com' 'localhost:8000'
+    ```
 
-Create a file named `transform.lua` with the transformation code. The
-following example adds a header, appends "arr!" to any message, and adds
-`error` and `status` fields on the response body.
+    Response:
 
-```lua
-    -- transform.lua
-    return function(status, body, headers)
-      if not body or not body.message then
-        return status, body, headers
-      end
-      headers = { ["x-some-header"] = "some value" }
-      local new_body = {
-        error = true,
-        status = status,
-        message = body.message .. ", arr!",
-      }
-      return status, new_body, headers
-    end
-```
+    ```json
+        HTTP/1.1 200 OK
+        ...
+        X-Some-Header: some value
+        {
+            "error": true,
+            "status": 401,
+            "kong_message": "No API key found in request, arr!"
+        }
+    ```
 
-### Step 4: Configure the Plugin with its Transform
 
-Configure the `exit-transformer` plugin with `transform.lua`.
-
-   {% navtabs %}
-   {% navtab Using cURL %}
-
-   ```bash
-   curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
-     -F "name=exit-transformer"  \
-     -F "config.functions=@transform.lua"
-   ```
-   {% endnavtab %}
-   {% navtab Using HTTPie %}
-
-   ```bash
-   http -f :8001/services/example.com/plugins \
-     name=exit-transformer \
-     config.functions=@transform.lua
-   ```
-
-   {% endnavtab %}
-   {% endnavtabs %}
-
-### Step 5: Configure the Key-Auth Plugin to Test the Exit Transform
-
-Add the `key-auth` plugin to test a forced generation of an exit transform
-response in [step 6](#testy-exit):
-
-   {% navtabs %}
-   {% navtab Using cURL %}
-
-   ```bash
-   curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
-     --data "name=key-auth"
-   ```
-
-   {% endnavtab %}
-   {% navtab Using HTTPie %}
-
-   ```bash
-   http :8001/services/example.com/plugins name=key-auth
-   ```
-
-   {% endnavtab %}
-   {% endnavtabs %}
-
-### Step 6: Test a Forced Generation of an Exit Response {#testy-exit}
-
-Attempt a request to the Service to get the custom error. Because the
-request did not provide credentials (API key), a 401 response is returned
-in the message body.
-
-{% navtabs %}
-{% navtab Using cURL %}
-
-```bash
-curl --header 'Host: example.com' 'localhost:8000'
-```
-
-{% endnavtab %}
-{% navtab Using HTTPie %}
-
-```bash
-http :8000 Host:example.com
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
-Response:
-
-```bash
-    HTTP/1.1 200 OK
-    ...
-    X-Some-Header: some value
-    {
-        "error": true,
-        "status": 401,
-        "kong_message": "No API key found in request, arr!"
-    }
-```
-
-## More Examples
-
-### Apply the Plugin Globally to Handle Unknown Responses
+### Apply the plugin globally to handle unknown responses
 
 The plugin can also be applied globally:
-
-{% navtabs %}
-{% navtab Using cURL %}
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/plugins/ \
@@ -323,34 +247,20 @@ curl -X POST http://<admin-hostname>:8001/plugins/ \
 curl --header 'Host: non-existent.com' 'localhost:8000'
 ```
 
-{% endnavtab %}
-{% navtab Using HTTPie %}
-
-```bash
-http :8001/plugins \
-  name=exit-transformer \
-  config.handle_unknown=true \
-  config.functions=@transform.lua
-http :8000 Host:non-existent.com
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
 Response:
 
 ```bash  
-    HTTP/1.1 200 OK
-    ...
-    X-Some-Header: some value
-    {
-        "error": true,
-        "status": 404,
-        "kong_message": "No Route matched with those values, arr!"
-    }
-  ```
+HTTP/1.1 200 OK
+...
+X-Some-Header: some value
+{
+    "error": true,
+    "status": 404,
+    "kong_message": "No Route matched with those values, arr!"
+}
+```
 
-### Custom Errors by MIME Type
+### Custom errors by MIME type
 
 This example shows a use case where you want custom JSON and HTML responses
 based on an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
@@ -416,10 +326,7 @@ return function(status, body, headers)
 end
 ```
 
-Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`.
-
-{% navtabs %}
-{% navtab Using cURL %}
+Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`:
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
@@ -428,16 +335,3 @@ curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
   -F "config.handle_unexpected=true" \
   -F "config.functions=@examples/custom-errors-by-mimetype.lua"
 ```
-
-{% endnavtab %}
-{% navtab Using HTTPie %}
-
-```bash
-http -f :8001/plugins name=exit-transformer \
-  config.handle_unknown=true \
-  config.handle_unexpected=true \
-  config.functions=@examples/custom-errors-by-mimetype.lua
-```
-
-{% endnavtab %}
-{% endnavtabs %}

@@ -55,8 +55,12 @@ other, the only difference being that it's created by Kong, at migration time.
 In a fresh {{site.base_gateway}} install, submit the
 following request:
 
+```sh
+curl -i -X GET http://localhost:8001/workspaces
 ```
-http GET :8001/workspaces
+
+Response:
+```json
 {
   "total": 1,
   "data": [
@@ -72,110 +76,114 @@ http GET :8001/workspaces
 ## Creating a workspace
 
 A more interesting example would be segmenting entities by teams; for the sake of
-example, let's say they are teamA, teamB, and teamC.
+example, let's say they are teamA and teamB.
 
 Each of these teams has its own set of entities—say, upstream services and
 routes—and want to segregate their configurations and traffic; they can
 achieve that with workspaces.
 
-```
-http POST :8001/workspaces name=teamA
-{
-    "created_at": 1528843468000,
-    "id": "735af96e-206f-43f7-88f0-b930d5fd4b7e",
-    "name": "teamA"
-}
-```
 
-```
-http POST :8001/workspaces name=teamB
-{
-  "name": "teamB",
-  "created_at": 1529628574000,
-  "id": "a25728ac-6036-497c-82ee-524d4c22fcae"
-}
-```
+1. Create teamA:
 
-```
-http POST :8001/workspaces name=teamC
-{
-  "name": "teamC",
-  "created_at": 1529628622000,
-  "id": "34b28f10-e1ec-4dad-9ac0-74780baee182"
-}
-```
+    ```sh
+    curl -i -X POST http://localhost:8001/workspaces \
+      --data name=teamA
+    ```
 
-At this point, if we list workspaces, we will get a total of 4—remember,
-Kong provisions a "default" workspace and, on top of that, we created other
-3.
-
-```
-{
-  "data": [
+    Response:
+    ```json
     {
-      "created_at": 1529627841000,
-      "id": "a43fc3f9-98e4-43b0-b703-c3b1004980d5",
-      "name": "default"
-    },
-    {
-      "created_at": 1529628818000,
-      "id": "5ed1c043-78cc-4fe2-924e-40b17ecd97bc",
-      "name": "teamA"
-    },
-    {
-      "created_at": 1529628574000,
-      "id": "a25728ac-6036-497c-82ee-524d4c22fcae",
-      "name": "teamB"
-    },
-    {
-      "created_at": 1529628622000,
-      "id": "34b28f10-e1ec-4dad-9ac0-74780baee182",
-      "name": "teamC"
+        "created_at": 1528843468000,
+        "id": "735af96e-206f-43f7-88f0-b930d5fd4b7e",
+        "name": "teamA"
     }
-  ]
-  "total": 4,
-}
+    ```
 
-```
+1. Create teamB:
+
+    ```sh
+    curl -i -X POST http://localhost:8001/workspaces \
+      --data name=teamB
+    ```
+
+    Response:
+    ```json
+    {
+      "name": "teamB",
+      "created_at": 1529628574000,
+      "id": "a25728ac-6036-497c-82ee-524d4c22fcae"
+    }
+    ```
+
+1. At this point, if you list workspaces, you get a total of three: 
+the default workspace and the two team workspaces.
+
+    ```json
+    {
+      "data": [
+        {
+          "created_at": 1529627841000,
+          "id": "a43fc3f9-98e4-43b0-b703-c3b1004980d5",
+          "name": "default"
+        },
+        {
+          "created_at": 1529628818000,
+          "id": "5ed1c043-78cc-4fe2-924e-40b17ecd97bc",
+          "name": "teamA"
+        },
+        {
+          "created_at": 1529628574000,
+          "id": "a25728ac-6036-497c-82ee-524d4c22fcae",
+          "name": "teamB"
+        }
+      ]
+      "total": 3,
+    }
+
+    ```
 
 ## Entities in different workspaces can have the same name!
 
 Different teams—belonging to different workspaces—are allowed to give any
-name to their entities. To provide an example of that, let's say that Teams A, B,
-and C want a particular consumer named `guest`—a different consumer for each
+name to their entities. To provide an example of that, let's say that Teams A and
+B want a particular consumer named `guest`—a different consumer for each
 team, sharing the same username.
 
-```
-http :8001/teamA/consumers username=guest
-{
-    "created_at": 1529703386000,
-    "id": "2e230275-2a4a-41fd-b06b-bae37008aed2",
-    "type": 0,
-    "username": "guest"
-}
-```
+1. Create a consumer named `guest` in teamA:
 
-```
-http :8001/teamB/consumers username=guest
-{
-    "created_at": 1529703390000,
-    "id": "8533e404-8d56-4481-a919-0ee35b8a768c",
-    "type": 0,
-    "username": "guest"
-}
-```
+    ```sh
+    curl -i -X POST http://localhost:8001/teamA/consumers \
+      --data username=guest
+    ```
 
-```
-http :8001/teamC/consumers username=guest
-{
-    "created_at": 1529703393000,
-    "id": "5fb180b0-0cd0-42e1-8d75-ce42a54b2909",
-    "type": 0,
-    "username": "guest"
-}
-```
+    Response:
+    ```json
+    {
+        "created_at": 1529703386000,
+        "id": "2e230275-2a4a-41fd-b06b-bae37008aed2",
+        "type": 0,
+        "username": "guest"
+    }
+    ```
 
-With this, Teams A, B, and C will have the freedom to operate their `guest`
+
+1. Create a consumer named `guest` in teamB:
+    ```sh
+    curl -i -X POST http://localhost:8001/teamB/consumers \
+      --data username=guest
+    ```
+
+    Response:
+    ```json
+    {
+        "created_at": 1529703390000,
+        "id": "8533e404-8d56-4481-a919-0ee35b8a768c",
+        "type": 0,
+        "username": "guest"
+    }
+    ```
+
+With this, Teams A and B will have the freedom to operate their `guest`
 consumer independently, choosing authentication plugins or doing any other
 operation that is allowed in the non-workspaced Kong world.
 

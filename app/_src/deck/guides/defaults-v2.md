@@ -398,18 +398,9 @@ For the most accurate default values for your version of {{site.base_gateway}}, 
 [`/schemas`](/gateway/latest/admin-api/#retrieve-entity-schema) endpoint. For example, you can check the schema for `targets` and look for any value that
 has defined defaults:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i -X GET http://localhost:8001/schemas/targets
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http :8001/schemas/targets
-```
-{% endnavtab %}
-{% endnavtabs %}
 
 ## See also
 * [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration/)
