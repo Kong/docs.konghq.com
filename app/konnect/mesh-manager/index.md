@@ -27,6 +27,5 @@ Now that your service mesh is deployed in {{site.mesh_product_name}}, the follow
 * Data plane proxies
 * Policies
 
-[SCREENSHOT]
-
-[TABLE WITH ALL THE THINGS THAT DESCRIBE THE SCREENSHOT] 
+![control plane dashboard](/assets/images/docs/konnect/konnect-control-plane-dashboard.png)
+> _**Figure 1:** Example control plane dashboard with several zones and services, a service mesh, and data plane proxies._
