@@ -1,5 +1,5 @@
 ---
-title: Self-Host your Dev Portal with Netlify
+title: Host your Dev Portal with Netlify
 content_type: how-to
 ---
 

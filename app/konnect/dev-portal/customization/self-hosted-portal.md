@@ -1,11 +1,10 @@
 ---
 title: About Self-Hosted Dev Portal
 content_type: explanation
-badge: oss
 ---
 
 In {{site.konnect_saas}}, you have two hosting options for your Dev Portal: a cloud hosted Dev Portal with {{site.konnect_short_name}} or a self-hosted, open source Dev Portal. 
-* **Cloud hosted Dev Portal in {{site.konnect_short_name}}**: Your Dev Portal is hosted for you and it simplifies your deployment experience. 
+* **Cloud-hosted Dev Portal in {{site.konnect_short_name}}**: Your Dev Portal is hosted for you and it simplifies your deployment experience. 
 * **Self-hosted, open source Dev Portal**: Provides all the same features as the cloud-hosted portal, but also gives you control over your hosting service. 
 
 You can use the open source Dev Portal to display your APIs to developers on a self-hosted website. This page explains the benefits of using a self-hosted Dev Portal, a high-level overview of how the self-hosted portal works, and how to enable it.
@@ -26,6 +25,11 @@ The following diagram explains how the self-hosted Dev Portal works by using the
 
 > Figure 1: Diagram that shows how the example frontend application communicates with the developer's browser and {{site.konnect_short_name}}. The self-hosted Dev Portal is hosted in your infrastructure and the application is served to the developer browser. The developer browser communicates with the Portal API for API requests and {{site.konnect_short_name}} supplies the corresponding content. 
 
+The Dev Portal API is always hosted by {{site.konnect_short_name}}, no matter if you use the self-hosted or {{site.konnect_short_name}}-hosted Dev Portal. The Dev Portal API maps to the Portal Domain (and optional Custom Hosted Domain, which is a CNAME). Depending on which domain settings you configure and if you are self-hosting or not, the Dev Portal UI domain will differ.
+
+![DIAGRAM HERE](/assets/images/docs/konnect/diagram.png)
+
+> Figure 2: Diagram that shows that self-hosted and {{site.konnect_short_name}}-hosted Dev Portals use different UI domains, but both use the same {{site.konnect_short_name}}-hosted Dev Portal API.
  
 ## Enable a self-hosted Dev Portal
 
