@@ -13,30 +13,34 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
 <head>
 
   {% if jekyll.environment == "production" %}
-  <!-- OneTrust Cookies Consent Notice start for konghq.com -->
-  <script
-    type="text/javascript"
-    src="https://cdn.cookielaw.org/consent/2c4de954-6bec-4e93-8086-64cb113f151a/OtAutoBlock.js" >
-  </script>
-  <script
-    src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
-    type="text/javascript"
-    charset="UTF-8"
-    data-domain-script="2c4de954-6bec-4e93-8086-64cb113f151a" >
-  </script>
-  <script type="text/javascript">
-  function OptanonWrapper() { }
-  </script>
-  <!-- OneTrust Cookies Consent Notice end for konghq.com -->
+    <!-- OneTrust Cookies Consent Notice start for konghq.com -->
+    <script
+      type="text/javascript"
+      src="https://cdn.cookielaw.org/consent/2c4de954-6bec-4e93-8086-64cb113f151a/OtAutoBlock.js" >
+    </script>
+    <script
+      src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+      type="text/javascript"
+      charset="UTF-8"
+      data-domain-script="2c4de954-6bec-4e93-8086-64cb113f151a" >
+    </script>
+    <script type="text/javascript">
+    function OptanonWrapper() { }
+    </script>
+    <!-- OneTrust Cookies Consent Notice end for konghq.com -->
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NL48VKT');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   {% endif %}
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NL48VKT');</script>
-  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,15 +75,6 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
     content="CrU3zp02dNKTe8NSAipL4NCPkrIjDXG8fViTZ-MIzP4"
   />
 
-  <!-- FontAwesome icon font -->
-  <script
-    src="https://kit.fontawesome.com/1332a92967.js" 
-    crossorigin="anonymous">
-  </script>
-
-  <!-- FullStory -->
-  <!-- {% include fullstory.html %} -->
-
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -104,29 +99,29 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
   <link rel="dns-prefetch" href="https://dev.visualwebsiteoptimizer.com" />
   <link rel="dns-prefetch" href="https://cdn.segment.com" />
 
-  <!-- Recaptcha -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
   />
-  <link
-    rel="stylesheet"
-    href="/assets/styles.css?v={{ site.time | date: '%s' }}"
-  />
 
-  {% assign latest_include.url = include.url | replace: include.kong_version, include.kong_latest.release %}
-  
   {% if include.canonical_url %}
     <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
   {% endif %}
 
   {% if include.seo_noindex %}
-  <meta name="robots" content="follow,noindex" />
+    <meta name="robots" content="follow,noindex" />
   {% else %}
-  <meta name="robots" content="follow,index" />
+    <meta name="robots" content="follow,index" />
   {% endif %}
 
+  <!-- FontAwesome icon font -->
+  <script
+    src="https://kit.fontawesome.com/1332a92967.js"
+    crossorigin="anonymous">
+  </script>
+
+  {% vite_client_tag %}
+  {% vite_javascript_tag application %}
+  {% vite_stylesheet_tag application.less %}
 </head>
