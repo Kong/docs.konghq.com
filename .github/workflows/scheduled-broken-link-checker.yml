@@ -46,8 +46,7 @@ jobs:
       # Build the Docs
       - name: Build Docs
         run: |
-          npm ci
-          ./node_modules/.bin/gulp build
+          exe/build
 
       - name: Run site
         run: |
