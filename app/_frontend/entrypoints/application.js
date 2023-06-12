@@ -12,6 +12,7 @@ import "~/javascripts/editable-code-snippet.js";
 import "~/javascripts/navbar.js";
 import "~/javascripts/feedback-widget.js";
 import "~/javascripts/copy-code-snippet-support.js";
+import "~/javascripts/analytics.js";
 
 // uncomment the path to promo-banner.js when adding a new promo banner
 // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
