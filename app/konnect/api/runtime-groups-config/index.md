@@ -1381,7 +1381,7 @@ understand what fields a plugin accepts, and can be used for building
 third-party integrations to the Kong's plugin system.
 
 
-<div class="endpoint get">/schemas/plugins/{plugin name}</div>
+<div class="endpoint get">/{runtimeGroupId}/core-entities/schemas/plugins/{plugin_name}</div>
 
 #### Response
 
