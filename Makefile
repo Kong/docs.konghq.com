@@ -14,12 +14,13 @@ install-prerequisites:
 # Installs npm packages and gems.
 install: ruby-version-check
 	npm ci
+	gem install foreman
 	bundle install
 	git submodule update --init
 
-# Using local dependencies, starts a doc site instance on http://localhost:3000.
+# Using local dependencies, starts a doc site instance on http://localhost:4000.
 run: ruby-version-check
-	exe/dev
+	foreman start
 
 build: ruby-version-check
 	exe/build
@@ -31,6 +32,7 @@ clean:
 	-rm -rf dist
 	-rm -rf app/.jekyll-cache
 	-rm -rf app/.jekyll-metadata
+	-rm -rf .jekyll-cache/vite
 
 # Runs tests
 test:
