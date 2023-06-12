@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+if which hivemind >/dev/null; then
+  hivemind Procfile.dev
+else
+  echo "Install hivemind or modify exe/dev to use a different Procfile launcher."
+  echo "https://github.com/DarthSim/hivemind"
+fi
