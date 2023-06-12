@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "gulp build"
+  command = "exe/build"
   environment = { JEKYLL_ENV = "development", BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
 
 [context.main.environment]
@@ -11,6 +11,7 @@
 
 [dev]
   autoLaunch = false
+  targetPort = 4000
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"

@@ -9,7 +9,7 @@ ifndef RUBY_MATCH
 endif
 
 install-prerequisites:
-	npm install -g gulp netlify-cli
+	npm install -g netlify-cli
 
 # Installs npm packages and gems.
 install: ruby-version-check
@@ -19,10 +19,10 @@ install: ruby-version-check
 
 # Using local dependencies, starts a doc site instance on http://localhost:3000.
 run: ruby-version-check
-	./node_modules/.bin/gulp
+	exe/dev
 
 build: ruby-version-check
-	./node_modules/.bin/gulp build
+	exe/build
 
 # Cleans up all temp files in the build.
 # Run `make clean` locally whenever you're updating dependencies, or to help
