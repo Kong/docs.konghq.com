@@ -30,26 +30,28 @@ You now have a {{site.mesh_product_name}} global control plane. This control pla
 
 ## Create a zone in the global control plane
 
-<!-- some explanation of why you need to add a zone, also mention the token stuff-->
+After creating the global control plane, you must add a zone to that control plane. Adding a zone allows you to manage services added to that zone and send and receive configuration changes to the zone. 
 
 1. In [MESH MANAGER ICON HERE] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager), click the `example-cp` control plane you just created, and then click **Zone CPs** in the sidebar.
 1. Click **Create Zone**. 
 1. Enter "eu" in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
     {:.note}
     > **Note:** The zone name must consist of lower case alphanumeric characters, `.`, or `-`. It must also start and end with an alphanumeric character.
-1. <!-- Should we have them enable Ingress and Egress? --> 
-1. <!-- can/should they use our Helm charts? those could be nice to get started quickly in this getting started section-->
+1. Ensure both [**Zone Ingress**](/mesh/latest/production/cp-deployment/zone-ingress/) and [**Zone Egress**](/mesh/latest/production/cp-deployment/zoneegress/) are enabled.
 1. Follow the instructions that display to set up Helm and a secret token. 
     Once {{site.konnect_short_name}} finds the newly created mesh, it will display it. 
-1. <!--I was prompted to add a license, is that necessary?-->
 1. Click **Next**.
-1. <!--Does this just take you to your list of meshes/control planes?-->
 
 You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can't do anything at the moment until we add services and additional configurations to it.
 
 ## Configure `kumactl` to connect to your global control plane
 
-<!--Why do we need to do this? Why do the two need to be connected?-->
+`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can do the following:
+
+* Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. 
+* Read and create resources in {{site.mesh_product_name}} in Universal mode.
+
+You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
 
 1. In {{site.konnect_short_name}}, select your user icon to open the context menu and click **Personal access tokens**, then click **Generate token**.
 1. Enter "control-plane" in the **Name** field and click **Generate**.
@@ -62,9 +64,8 @@ You now have a very basic {{site.mesh_product_name}} service mesh added to {{sit
     ```
     * **MGCP_ID:** Replace this with the control plane ID.
     * **KPAT:** Replace this with the personal access token you created for the control plane.
-<!-- I got this error: Error: HTTPS is used. You need to specify either --ca-cert-file so kumactl can verify authenticity of the Control Plane or --skip-verify to skip verification-->
 
-<!-- some sentence that explains what the result is-->
+You can now run commands against your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/generated/cmd/kumactl/kumactl/) for more information about the commands you can use.
 
 ## Add services to your service mesh using the Kubernetes demo app
 
