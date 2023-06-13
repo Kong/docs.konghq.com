@@ -26,7 +26,7 @@ The example application is pre-configured with the following:
 1. Enter a name for your custom portal client domain in the **Custom Self-Hosted UI Domain** field. For example, `client.mycompany.com`.
 1. Add a CNAME record to your domain's DNS records that points the custom API domain to the default portal domain. For example:
     ```sh
-    api.mycompany.com   CNAME   3600    client.mycompany.com
+    api.mycompany.com   CNAME   3600    portal29asdfj278.us.portal.konghq.com
     ```
 
 Now the self-hosted Dev Portal is enabled and the {{site.konnect_short_name}}-hosted Dev Portal is disabled. The custom portal domain API you specified will be used as the API domain of your portal and the custom portal client domain will be used to access the UI of your self-hosted portal.
