@@ -8,7 +8,7 @@ content_type: reference
 As a general rule, we do not directly document CRUD (create, read, update, delete) tasks in the Kong documentation without any context.
 
 When documenting UI instructions, make sure to write them as part of workflows. 
-For example, you might have a multi-section task where you [set up a vault object and use it](/konnect/runtime-manager/vaults/how-to/), part of which walks you through creating the object in the {{site.konnect_short_name}} UI.
+For example, you might have a multi-section task where you [set up a vault object and use it](/konnect/runtime-manager/configuration/vaults/how-to/), part of which walks you through creating the object in the {{site.konnect_short_name}} UI.
 
 {:.note}
 > In cases of escalation around a specific task (for example, users keep struggling to delete a route in Kong Manager), create a troubleshooting doc for that content.

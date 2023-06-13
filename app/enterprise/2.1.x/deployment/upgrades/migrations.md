@@ -32,7 +32,7 @@ Plan accordingly.
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
   [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
-  [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
+  [migrate to 1.5](https://legacy-gateway--kongdocs.netlify.app/enterprise/1.5.x/deployment/migrations/) first.
 
 
 ### Upgrade Considerations and Breaking Changes
