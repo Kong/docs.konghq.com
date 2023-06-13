@@ -66,6 +66,22 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
+      # Configure Node to build assets
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - run: npm ci
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
