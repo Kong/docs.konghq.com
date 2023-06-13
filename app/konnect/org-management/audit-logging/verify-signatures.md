@@ -52,13 +52,13 @@ Calculating the signature is slightly different for these formats.
 For a CEF entry, the signature is computed on the CEF value with the signature field, value, and 
 preceding whitespace removed. 
 
-For example, this CEF entry:
+For example, for the following CEF entry:
 
 ```
 Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=1681450748406 src=127.0.0.6 action=retrieve granted=true org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b trace_id=3895213347334635099 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges) sig=fnjOUISTC2uLWTqCcmwUuOWa_daa4vEPxxUn2-QPVU1dmB-Ed2y2mwoB9dq94JJz2tF6Ok41Bci4FGwk4FhxAg
 ```
 
-Would have the signature calculated on this payload:
+You would calculate the signature on this payload:
 
 ```
 Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=1681450748406 src=127.0.0.6 action=retrieve granted=true org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b trace_id=3895213347334635099 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
@@ -68,13 +68,13 @@ Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=16
 
 For a JSON entry, the `sig` field, value, and prepended comma is removed from the entry. 
 
-For example, this JSON entry:
+For example, for the following JSON entry:
 
 ```json
 {"action":"read","cef_version":"0","event_class_id":"identity","event_product":"Konnect","event_ts":"2023-04-28T20:52:09Z","event_vendor":"KongInc","event_version":"1.0","granted":true,"name":"Authz.identity-provider","org_id":"b065b594-6afc-4658-9101-5d9cf3f36b7b","principal_id":"87655c36-8d63-48fe-9a1e-53b28dfbc19b","rt":1682715129807,"severity":1,"src":"127.0.0.6","trace_id":3895213347334635099,"user_agent":"grpc-go/1.54.0","sig":"Jm73seSwAiacSBysDmgQ3D_R_1c39_T0Iuus9GqUEnAjCc-UnyKhFgS8jDx5UIl4J6PTCH5ouuPizwnjnMDECg"}
 ```
 
-Would have the signature calculated on this JSON payload:
+You would calculate the signature on this payload:
 
 {:.note}
 > **Note**: Don't add any extra whitespace or make any formatting changes to the JSON entries.
