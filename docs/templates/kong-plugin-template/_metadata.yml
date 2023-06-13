@@ -21,7 +21,7 @@ categories: # (Required) Uncomment ONE that applies.
 # Array format only; if your plugin applies to multiple categories,
 # uncomment the most applicable category.
 
-desc: # (Required) 1-liner description; max 80 chars
+desc: # (Required) Short, one sentence description; max 80 characters.
 
 description: #|
   # (Required) Extended description.

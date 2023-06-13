@@ -21,12 +21,9 @@ categories: # (Required) Uncomment ONE that applies.
 # Array format only; if your plugin applies to multiple categories,
 # uncomment the most applicable category.
 
-type: # (Required) Uncomment one of the following:
-  # plugin          # Extensions of the core platform.
-  # integration     # Extensions of the Kong Admin API.
+type: plugin
 
-
-desc: # (Required) 1-liner description; max 80 chars
+desc: # (Required) Short, one sentence description; max 80 characters.
 
 description: #|
   # (Required) Extended description.
@@ -37,11 +34,11 @@ description: #|
   #   My plugin is a great plugin that does cool things.
 
 #support_url:
-  # (Optional) A specific URL of your own for this extension.
-  # Defaults to the url setting in your publisher profile.
+  # (Optional) A support URL for plugin users to file tickets,
+  # bug reports, or support requests.
 
 #source_code:
-  # (Optional) If your extension is open source, provide a link to your code.
+  # (Optional) If your plugin is open-source, provide a link to your code.
 
 kong_version_compatibility: # (Required)
 # Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
@@ -55,9 +52,9 @@ kong_version_compatibility: # (Required)
     #compatible:
        #- 3.0.x
 
-enterprise: # true or false
-  # (Required) Set false if your plugin is open-source and works with open-source Kong Gateway.
-  # Set true if the plugin is only available with an Enterprise subscription.
+enterprise: # true OR false
+  # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
+  # Set false if your plugin is open-source and works with open-source Kong Gateway.
 
 dbless_compatible:
   # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
