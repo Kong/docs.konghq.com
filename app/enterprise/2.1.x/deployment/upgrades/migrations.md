@@ -80,9 +80,9 @@ cluster you can use the following steps to cache entities and continue serving
 traffic while the upgrade is performed:
 
 1. Update the Kong 1.5.x cluster and set the
-   [`db_cache_warmup_entities`](/enterprise/1.5.x/property-reference/#db_cache_warmup_entities)
+   [`db_cache_warmup_entities`]({{site.links.web}}/enterprise/1.5.x/property-reference/#db_cache_warmup_entities)
    configuration value. Specify all the entities Kong has configured.
-2. Perform a rolling [restart](/enterprise/1.5.x/cli/#kong-restart) of the Kong 1.5.x nodes
+2. Perform a rolling [restart]({{site.links.web}}/enterprise/1.5.x/cli/#kong-restart) of the Kong 1.5.x nodes
    to pick up this new configuration value:
 
    ```shell
