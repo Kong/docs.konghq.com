@@ -1750,7 +1750,7 @@ complete list of changes and new features.
 - The `server_tokens` and `latency_tokens` configuration properties have been
   removed. Instead, a new `headers` configuration properties replaces them.
   See the default configuration file or the [configuration
-  reference](/0.14.x/configuration/) for more details.
+  reference]({{site.links.archive}}/gateway-oss/0.14.x/configuration/) for more details.
 - The Nginx configuration file has changed, which means that you need to update
   it if you are using a custom template. The changes are detailed in a diff
   included below.
