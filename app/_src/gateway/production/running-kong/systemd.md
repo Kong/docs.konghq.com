@@ -81,7 +81,7 @@ sudo systemctl status kong
 The official systemd service is located at `/lib/systemd/system/kong-enterprise-edition.service` for
 {{site.base_gateway}}, or at `/lib/systemd/system/kong.service` for {{site.ce_product_name}}.
 
-## Add a sample systemd service file for reference
+Note that the official Kong systemd service doesn't set `user` or `group` as `root`, which is required to run the system file. See the example below with both `user` and `group` both set to `root`:
 
 ```
 [Unit]
