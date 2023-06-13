@@ -351,7 +351,7 @@
 
 # COMMUNITY DOC REBRANDING
 /community   https://konghq.com/community-resources/
-/VERSION/*   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/VERSION/:splat
+/:version/*   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/:version/:splat
 
 # STUDIO
 /enterprise/2.3.x/studio/*                  https://support.insomnia.rest/

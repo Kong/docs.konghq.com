@@ -4080,3 +4080,4 @@ HTTP 200 OK
 [healthchecks]: /gateway-oss/{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /gateway-oss/{{page.kong_version}}/secure-admin-api
 [proxy-reference]: /gateway-oss/{{page.kong_version}}/proxy
+[db-less]: /gateway-oss/{{page.kong_version}}/db-less-and-declarative-config
