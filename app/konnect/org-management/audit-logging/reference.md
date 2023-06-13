@@ -31,6 +31,7 @@ Timestamp | Time and date of the event in UTC.
 `kong_initiated` | Whether the action was performed by Kong
 `trace_id` | The correlation ID of the request. Use this value to find all log entries for a given request.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
+`sig` | An ED25519 signature.
 
 ## Authentication logs
 
@@ -50,6 +51,7 @@ org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b
 principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b 
 trace_id=3895213347334635099 
 user_agent=grpc-go/1.51.0
+sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg
 ```
 {% endnavtab %}
 {% navtab JSON %}
@@ -104,6 +106,7 @@ principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b
 actor_id= 
 trace_id=8809518331550410226 
 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
+sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg
 ```
 {% endnavtab %}
 {% navtab JSON %}
@@ -203,4 +206,5 @@ Property | Description
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
+* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
 * [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
