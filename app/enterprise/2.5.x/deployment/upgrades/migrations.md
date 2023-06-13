@@ -36,7 +36,7 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 1.5.x to 2.1.x to 2.2.x to 2.3.x to 2.4.x to 2.5.x. Plan accordingly.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
-  [migrate to 1.5](https://legacy-gateway--kongdocs.netlify.app/enterprise/1.5.x/deployment/migrations/) first.
+  [migrate to 1.5]({{site.links.archive}}/enterprise/1.5.x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.1,
   [migrate to 2.1](/enterprise/2.1.x/deployment/upgrades/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.2,
