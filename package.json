@@ -34,7 +34,7 @@
     "lodash": "4.17.21",
     "node-fetch": "2.6.12",
     "prettier": "3.0.0",
-    "skeleton-css": "2.0.4"
+    "skeleton-css": "2.0.4",
     "vite": "^4.3.9",
     "vite-plugin-ruby": "^3.2.2"
   },
