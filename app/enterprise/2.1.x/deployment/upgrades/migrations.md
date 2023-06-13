@@ -30,9 +30,9 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 Plan accordingly.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
-  [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
+  [migrate to 1.3]({{site.links.archive}}/enterprise/1.3-x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
-  [migrate to 1.5](https://legacy-gateway--kongdocs.netlify.app/enterprise/1.5.x/deployment/migrations/) first.
+  [migrate to 1.5]({{site.links.archive}}/enterprise/1.5.x/deployment/migrations/) first.
 
 
 ### Upgrade Considerations and Breaking Changes
@@ -80,9 +80,9 @@ cluster you can use the following steps to cache entities and continue serving
 traffic while the upgrade is performed:
 
 1. Update the Kong 1.5.x cluster and set the
-   [`db_cache_warmup_entities`](https://docs.konghq.com/enterprise/1.5.x/property-reference/#db_cache_warmup_entities)
+   [`db_cache_warmup_entities`](/enterprise/1.5.x/property-reference/#db_cache_warmup_entities)
    configuration value. Specify all the entities Kong has configured.
-2. Perform a rolling [restart](https://docs.konghq.com/1.5.x/cli/#kong-restart) of the Kong 1.5.x nodes
+2. Perform a rolling [restart](/enterprise/1.5.x/cli/#kong-restart) of the Kong 1.5.x nodes
    to pick up this new configuration value:
 
    ```shell
