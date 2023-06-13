@@ -46,6 +46,7 @@ jobs:
       # Build the Docs
       - name: Build Docs
         run: |
+          npm ci
           exe/build
 
       - name: Run site
