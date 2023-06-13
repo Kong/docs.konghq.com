@@ -3,12 +3,6 @@ title: Konnect APIs
 content-type: explanation
 ---
 
-{:.note .no-icon }
-> <span class="badge beta"></span> **Kong Konnect API spec is now available!**
->
-| Spec | Developer portal link | Insomnia link |
-|------|-----------------------|---------------|
-| Konnect beta API spec |[Developer Portal](https://developer.konghq.com/spec/ffada861-b53f-4780-9cc1-4032858c874f/3b0abc15-73fb-43ef-b63d-0216b22b8ff8)  | <a href="https://insomnia.rest/run/?label=Konnect%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fjson%2Fkonnect.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 ## Base URLs
 
