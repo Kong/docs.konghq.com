@@ -24,7 +24,11 @@ gateway:
 {% endnavtab %}
 {% endnavtabs %}
 
-Once these changes have been made, run `helm upgrade <release_name> <chart_name> -n <namespace> --values ./values.yaml` to switch to the new image.
+Once these changes have been made, switch to the new image:
+
+```sh
+helm upgrade <release_name> <chart_name> -n <namespace> --values ./values.yaml
+```
 
 You can check which images are being used with the following query:
 
