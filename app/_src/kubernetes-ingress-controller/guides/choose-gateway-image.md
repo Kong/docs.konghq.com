@@ -4,7 +4,7 @@ title: Using Kong Enterprise
 
 {{ site.kic_product_name }} supports both {{ site.base_gateway }} OSS and Enterprise. If you install {{ site.kic_product_name }} using the default Helm charts, {{ site.base_gateway }} OSS will be installed.
 
-To switch from {{ site.base_gateway }} OSS to {{ site.base_gateway }} Enterprise, choose the correct tab for the Helm chart that you are using then set the following keys in your `values.yaml`:
+To switch from {{ site.base_gateway }} OSS to {{ site.base_gateway }} Enterprise, choose the tab for the Helm chart that you're using, then set the following keys in your `values.yaml`:
 
 {% navtabs %}
 {% navtab kong/kong %}
