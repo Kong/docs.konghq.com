@@ -1,11 +1,3 @@
-GIT
-  remote: git@github.com:Kong/jekyll-generator-single-source.git
-  revision: 4f3f0e3dcd3c9fdcc2760e3b3892db9947277e73
-  branch: fix-page-paths
-  specs:
-    jekyll-generator-single-source (0.0.7)
-      jekyll (>= 4.2, < 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -54,6 +46,8 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 2.0)
+    jekyll-generator-single-source (0.0.8)
+      jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.16.0)
@@ -154,7 +148,7 @@ DEPENDENCIES
   activesupport
   capybara
   jekyll (= 4.2.2)
-  jekyll-generator-single-source!
+  jekyll-generator-single-source
   jekyll-include-cache
   jekyll-redirect-from
   kramdown-parser-gfm
