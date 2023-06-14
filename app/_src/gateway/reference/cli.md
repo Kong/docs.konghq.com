@@ -69,10 +69,6 @@ Options:
 
 ```
 
-{:.note}
-> **Note:** `db_export` is only supported with open-source
-{{site.base_gateway}} packages.
-
 ---
 
 
