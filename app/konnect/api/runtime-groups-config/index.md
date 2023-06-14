@@ -1,7 +1,7 @@
 ---
 title: Konnect Runtime Configuration API
 toc: false
-
+disable_image_expand: true
 service_body: |
     Attributes | Description
     ---:| ---
