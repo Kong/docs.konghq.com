@@ -59,7 +59,7 @@ module PluginSingleSource
         if @release.configuration
           items.push({
                        'title' => 'Configuration',
-                       'items' => items_for([@release.configuration, @release.configuration_examples]),
+                       'url' => @release.configuration.permalink,
                        'icon' => '/assets/images/icons/documentation/hub/icn-configuration.svg'
                      })
         end
@@ -67,7 +67,7 @@ module PluginSingleSource
         if @release.how_tos.any?
           items.push({
                        'title' => 'Using the plugin',
-                       'items' => items_for(@release.how_tos),
+                       'items' => items_for([@release.configuration_examples, @release.how_tos]),
                        'icon' => icon
                      })
         end
