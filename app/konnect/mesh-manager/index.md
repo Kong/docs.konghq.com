@@ -15,7 +15,7 @@ Here are a few benefits of creating a service mesh in {{site.konnect_short_name}
 
 ### View service mesh entities
 
-Now that your service mesh is deployed in {{site.mesh_product_name}}, the following information will be displayed in Mesh Manager for each control plane:
+After your service mesh is deployed in {{site.mesh_product_name}}, the following information will be displayed in Mesh Manager for each control plane:
 
 * Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
 * RBAC
