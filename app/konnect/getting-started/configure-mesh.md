@@ -58,7 +58,7 @@ You connect `kumactl` to the global control plane in {{site.konnect_short_name}}
 1. Copy the personal access token that displays.
 1. From the left navigation menu in {{site.konnect_short_name}}, open [MESH MANAGER ICON HERE] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
 1. Copy your control plane ID.
-1. Run the following to ?:
+1. Run the following to connect your global control plane to {{site.product_mesh_name}}:
     ```sh
     kumactl config control-planes add --address https://us.api.konghq.com/v0/mesh/control-planes/MGCP_ID/api --name mink-dev --headers 'authorization=Bearer KPAT'
     ```
