@@ -1,6 +1,7 @@
 ---
 title: Konnect APIs
 content-type: explanation
+disable_image_expand: true
 ---
 
 
