@@ -24,7 +24,7 @@ categories:
 publisher: Kong Inc.
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
-Rate limit how many HTTP requests can be made in a given time frame.
+  Rate limit how many HTTP requests can be made in a given time frame.
 
  The Rate Limiting Advanced plugin offers more functionality than the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/), such as:
   * Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
