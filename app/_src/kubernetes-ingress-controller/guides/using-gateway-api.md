@@ -154,10 +154,6 @@ spec:
     port: 80
     hostname: kong.example
     protocol: HTTP
-  - name: proxy-ssl
-    port: 443
-    hostname: kong.example
-    protocol: HTTPS
 " | kubectl apply -f -
 ```
 {% endif_version %}
@@ -175,10 +171,6 @@ spec:
     port: 80
     hostname: kong.example
     protocol: HTTP
-  - name: proxy-ssl
-    port: 443
-    hostname: kong.example
-    protocol: HTTPS
 " | kubectl apply -f -
 ```
 {% endif_version %}
@@ -188,13 +180,28 @@ gateway.gateway.networking.k8s.io/kong created
 ```
 {% if_version gte: 2.5.x %}
 
-This configuration does not load any certificates, and will use a default
-self-signed certificate for HTTPS requests. If you have a [TLS
-Secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets)
-you wish to use, you can add it with:
+This configuration does create an HTTPS listen, as this requires a certificate.
+If you have a [TLS Secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets)
+you wish to use, you can add an HTTPS listen with:
 
-```
-kubectl patch --type=json gateway kong -p='[{"op":"add","path":"/spec/listeners/1/tls","value":{"certificateRefs":[{"group":"","kind":"Secret","name":"example-cert-secret"}]}}]'
+```bash
+kubectl patch --type=json gateway kong -p='[{
+    "op":"add",
+	"path":"/spec/listeners/-",
+	"value":{
+		"name":"proxy-ssl",
+		"hostname":"kong.example",
+		"port":443,
+		"protocol":"HTTPS",
+		"tls":{
+				"certificateRefs":[{
+				    "group":"",
+					"kind":"Secret",
+					"name":"example-cert-secret"
+				}]
+		}
+    }
+}]'
 ```
 
 Change `example-cert-secret` to the name of your Secret.
