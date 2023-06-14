@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:Kong/jekyll-generator-single-source.git
-  revision: 4513d9195a54538ab79e2019446d931189cf90a4
+  revision: 65947101dce1cc238470ace397bf31e5e4ac8239
   branch: fix-nav_items
   specs:
     jekyll-generator-single-source (0.0.6)
