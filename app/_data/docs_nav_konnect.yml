@@ -31,10 +31,10 @@
       url: /getting-started/access-account/
     - text: Set up a Runtime
       url: /getting-started/configure-runtime/
-    - text: Configure a Service
-      url: /getting-started/configure-service/
-    - text: Deploy and Test an API Product
+    - text: Deploy and Test a Service
       url: /getting-started/implement-service/
+    - text: Productize a Service
+      url: /getting-started/configure-service/
     - text: Get Started with the Dev Portal
       items:
         - text: Publish and Consume Services
