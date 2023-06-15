@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2023
+
+** API Products API released**
+: The API products API has been released to support the objective of making API consumption straightforward for developers. Explore the API spec on our [Dev Portal](REPLACE)
+
 ## May 2023
 
 **Gateway 3.3 Support**
