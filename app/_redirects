@@ -303,10 +303,11 @@
 /konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
 /konnect/shared-config                               /konnect/runtime-manager/configuration/
-/konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
+/konnect/vitals/analyze/                             /konnect/analytics/
 /konnect/vitals/*                                    /konnect/analytics/:splat
 /konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
+/konnect/analytics/services-and-routes/              /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
 

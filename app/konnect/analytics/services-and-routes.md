@@ -3,6 +3,8 @@ title: Analyze Services and Routes
 content_type: how-to
 ---
 
+<!-- this page is deprecated-->
+
 In the Service Hub, the service, service version, and route graphs provide dynamic
 graphs with up to 30 days of data. To view data beyond this time frame, export
 the data into a comma-separated values (CSV) file.
