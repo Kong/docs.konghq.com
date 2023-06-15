@@ -309,6 +309,9 @@
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
+/servicehub/plugins/   /runtime-manager/plugins/
+/servicehub/enable-service-plugin/ /runtime-manager/enable-service-plugin/
+/servicehub/enable-route-plugin/   /runtime-manager/enable-route-plugin/
 
 #API Redirects
 

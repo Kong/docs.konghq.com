@@ -80,6 +80,14 @@
           url: /runtime-manager/declarative-config/
     - text: KIC Association
       url: /runtime-manager/kic/
+    - text: Manage Plugins
+      items:
+        - text: Overview
+          url: /runtime-manager/plugins/
+        - text: Configure a Plugin on a Service
+          url: /runtime-manager/enable-service-plugin/
+        - text: Configure a Plugin on a Route
+          url: /runtime-manager/enable-route-plugin/
     - text: Backup and Restore
       url: /runtime-manager/backup-restore/
     - text: Version Compatibility
@@ -93,15 +101,6 @@
   items:
     - text: Overview
       url: /servicehub/
-
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /servicehub/plugins/
-        - text: Configure a Plugin on a Service
-          url: /servicehub/enable-service-plugin/
-        - text: Configure a Plugin on a Route
-          url: /servicehub/enable-route-plugin/
 
 - title: API Products
   icon: 

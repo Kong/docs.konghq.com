@@ -3,47 +3,83 @@ title: About API Products
 content_type: explanation
 ---
 
-Explanation topics are understanding-oriented because they clarify and discuss a particular topic. These topics take a broader view of the software by discussing how something works, the background or context of a topic, what its benefits are, and drawbacks or alternatives.
+API Products makes internal APIs discoverable, consumable, and reusable for internal development teams. By leveraging API Products, your application developers can search, discover, and consume existing API products to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications.
 
-Explanation topics should start with an introduction paragraph. Good explanation documentation introductions explain who this explanation topic is for and what this topic will cover. 
+**[Access {{site.konnect_short_name}} API Products](https://cloud.konghq.com/us/apiproducts).**
 
-For example, you could start an explanation introduction paragraph about computers like the following:
+![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/konnect-servicehub.png)
 
-"Computers are digital machines that are used to perform operations, both arithmetic and logical, automatically. They can be useful in a variety of situations, such as typing a document, coding software, or watching a video. This guide is for users who are new to computers and explains what computers are, their history, the benefits of using a computer, and drawbacks of using computers."
+## API Products Dashboard
 
-## First context section <!-- Header optional if there's only one section in the article -->
+The API Products Dashboard is the place to manage API products, versions, and documentation. The dashboard is available by clicking any API product in API Products. 
 
-The first section should be about the main idea of the topic. The title for an explanation section generally starts with a noun. For example, "History of computers".
+Here are some of the things you can do from the API Products Dashboard: 
 
-For example, if you were writing about computers, you could go into more detail about what they do, how they work, and so on. This would expand on the information that was in the introduction paragraph. 
+* Configure an API product
+* Publish a service to the Dev Portal
+* Manage API product versions. 
+* View traffic, error, and latency data. 
 
-{:.note}
-> **Note**: You can also use notes to highlight important information. Try to keep them short. 
 
-### Subsection with more details <!-- Optional --> 
+![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/image.png)
 
-Subsections go into more detail about some aspect of the functionality, concept, or bigger picture context of the topic. Subsection titles should also start with a noun. For example, "Computers and the internet".
 
-For example, if you were writing about the larger context of computers in the main section, you could write about the history of computers in this section or the history of a particular computer.
- 
-Keep in mind that H2 is the highest header level a topic can have. If you are using nested headers, make sure that they're sequential. An H2 can contain an H3, but not the other way around.
- 
-## Second context section <!-- Optional -->
+Number | Item | Description
+-------|------|------------
+1 | **API Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
+2 | **Analytics** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/)
+3 | **Documentation** | You can add markdown documentation for your API product, as well as an API specification for each version of the API product. You can control the individual publishing status of each document you upload to a API product.
 
-Additional sections contain more information about another element of your topic. You could write about the benefits and drawbacks of your topic or you could write about how your topic interacts with another part of the software in depth.
 
-For example, if you were writing about computers, this section could cover the benefits of using a computer, with the title "Computer benefits".
+### API product versions
 
-"Using a computer has the following benefits:
+A {{site.konnect_short_name}} API product version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). As such, the configurations, plugins, specific implementations that are associated with the runtime group are also associated with the API product version. 
 
-* Complete tasks in a faster amount of time than if you were completing them manually
-* Surf the internet"
+API products can have multiple API product versions, and each version can be associated with a different runtime group. API products can be made available in multiple environments by creating API product versions in different runtime groups.
 
-## See also <!-- Optional -->
+A common use case is environment specialization.
+For example, if you have three runtime groups for `development`, `staging`, and
+`production`, you can manage which environment the API product is available in by
+assigning a version to that group at creation time. You might have v1 running
+in `production`, and be actively working on v2 in `development`. Once it's
+ready to test, you'd create v2 in `staging` before finally creating v2 in
+`production` alongside v1.
 
-This section should include a list of tutorials or how-to guides that a user can visit to extend their learning from this explanation article.
 
-See the following examples of explanation documentation:
-* [Routes](https://docs.konghq.com/gateway/latest/key-concepts/routes/)
-* [Hybrid-mode](https://docs.konghq.com/gateway/latest/production/deployment-topologies/hybrid-mode/)
-* [Plugin ordering](https://docs.konghq.com/gateway/latest/kong-enterprise/plugin-ordering/)
+### Analytics
+
+The analytics dashboard shown in the API product **Overview** is a high level overview of **traffic**, **error**, and **latency** for the API product. These reports are generated automatically based on the traffic to the API product. 
+
+Learn more: 
+
+* [Analytics overview](/konnect/analytics/)
+* [How to analyze services and routes](/konnect/analytics/services-and-routes/)
+* [How to generate reports](/konnect/analytics/generate-reports/)
+
+### Documentation
+
+The API product **Documentation** can be used to manage documentation for your API product. Documentation can be either an API spec, or Markdown documentation for the API product. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the API product is published.
+
+Learn more: 
+
+* [Manage service documentation](/konnect/api-products/service-documentation/)
+
+### {{site.base_gateway}} deployments
+
+When configuring a {{site.base_gateway}} deployment of an API product, you'll
+need to specify a route. Routes determine how successful requests are sent to
+their services after they reach the API gateway. A single API product version
+can have only one deployment, but potentially many routes.
+
+{:.important}
+> **Important**: Starting with {{site.base_gateway}} 3.0.0.0, the router supports logical expressions.
+Regex routes must begin with a `~` character. For example: `~/foo/bar/(?baz\w+)`.
+Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
+
+After configuring the API product, version, implementation, and at least one route,
+you’ll be able to start making requests through {{site.konnect_saas}}.
+
+## More information
+
+* [Deploy and Test a Service](/getting-started/implement-service/) - Learn how to deploy and test a service with Runtime Manager.
+* [Productize a Service](/getting-started/configure-service/) - Learn how to productize a service with API Products.

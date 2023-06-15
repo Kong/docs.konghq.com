@@ -3,14 +3,14 @@ title: Dev Portal Service Documentation
 content_type: how-to
 ---
 
-A core function of the Dev Portal is publishing service descriptions and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your services.
+A core function of the Dev Portal is publishing API product descriptions and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your API product.
 
-Through API Products, you can also publish any service in your catalog and its
-documentation to the Dev Portal. Publishing services to the Dev Portal is the only way to expose your service to developers. Once the service is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
+Through API Products, you can also publish any API product in your catalog and its
+documentation to the Dev Portal. Publishing API products to the Dev Portal is the only way to expose your service to developers. Once the API product is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
 
-## Service descriptions
+## API product descriptions
 
-You can provide extended descriptions of your services with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. Service descriptions can be any markdown document that describes your service: 
+You can provide extended descriptions of your API products with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. API product descriptions can be any markdown document that describes your service: 
 
 * Release notes
 * Support and SLA 
@@ -21,7 +21,7 @@ You can provide extended descriptions of your services with a Markdown (`.md`) f
   <img src="/assets/images/docs/konnect/konnect_service_docs_description.png" />
 </p>
 
-All service descriptions are managed from the **Documentation** section in the API Product overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
+All API product descriptions are managed from the **Documentation** section in the API Product overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
 
 ## API specification
 
