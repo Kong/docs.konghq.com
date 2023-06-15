@@ -35,7 +35,7 @@ module SEO
     private
 
     def hub_page?
-      @page.path.start_with?('_hub') || @page.url == '/hub/'
+      @page.path.start_with?('_hub') || @page.url.start_with?('/hub/')
     end
 
     def versioned_product?

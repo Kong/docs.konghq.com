@@ -1,6 +1,6 @@
 ---
 title: The Konnect Service Hub
-subtitle: Track every service accross your architecture
+subtitle: Track every service across your architecture
 content-type: explanation
 ---
 

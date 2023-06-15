@@ -32,9 +32,7 @@ invitation, they will only be able to log in with that email address. Assign the
     directly. See the next section.
 
 
-4. On the **Teams** page, the new invitee will appear on the **Admins** list with the under **Invited**. Once they accept the invitation, the user will be listed in the main **Admins** list. 
-
-    ![Invited Admins](https://doc-assets.konghq.com/1.3/manager/teams/teams-invited-admin.png)
+4. On the **Teams** page, the new invitee will appear on the **Admins** list with the under **Invited**. Once they accept the invitation, the user will be listed in the main **Admins** list.
 
 5. The newly invited **Admin** will have the ability to set a password. If the **Admin** ever forgets the password, it is possible for them to reset it through a recovery email.
 
@@ -46,9 +44,7 @@ If a mail server is not yet set up, it is still possible to invite Admins to reg
 1. Invite an **Admin** as described in the section above. 
 
 2. If the "View" link is clicked next to the invited Admin's name, a 
-    `register_url` is displayed on the invitee's details page. 
-
-    ![Registration URL](https://doc-assets.konghq.com/1.3/manager/teams/teams-invite-admin-generate-registration-link.png)
+    `register_url` is displayed on the invitee's details page.
 
 3. Copy and directly send this link to the invited Admin so that they may set 
     up their credentials and log in. 

@@ -31,7 +31,7 @@ Here are a few benefits of running KIC in {{site.konnect_short_name}} over a sel
 
 To associate your KIC runtime instances with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC runtime group.  
 
-In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Runtime Manager](https://cloud.konghq.com/runtime-manager)**, then click **New Runtime Group** > **Kubernetes Ingress Controller**.
+In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Runtime Manager](https://cloud.konghq.com/runtime-manager)**, then click **New Runtime Group** > **Kong Ingress Controller**.
 
 {:.note}
 > **Note**: KIC OSS users can connect to {{site.konnect_short_name}}’s Free tier, while KIC Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier.

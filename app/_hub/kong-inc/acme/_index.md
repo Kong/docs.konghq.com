@@ -1,130 +1,3 @@
----
-name: ACME
-publisher: Kong Inc.
-desc: Let's Encrypt and ACMEv2 integration with Kong
-description: |
-  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve them dynamically.
-  Renewal is handled with a configurable threshold time.
-type: plugin
-categories:
-  - security
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: acme
-  service_id: false
-  route_id: false
-  consumer_id: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: account_email
-      required: 'yes'
-      default: null
-      value_in_examples: example@example.com
-      encrypted: true
-      datatype: string
-      referenceable: true
-      description: |
-        The account identifier. Can be reused in a different plugin instance.
-    - name: api_uri
-      required: false
-      default: '` https://acme-v02.api.letsencrypt.org/directory`'
-      datatype: string
-      description: |
-        The ACMEv2 API endpoint to use. You can specify the
-        [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) for testing. Kong doesn't automatically delete staging certificates. If you use the same domain in test and production environments, you need to manually delete those certificates after testing.
-    - name: cert_type
-      required: false
-      default: '`rsa`'
-      datatype: string
-      description: |
-        The certificate type to create. The possible values are `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
-    - name: domains
-      required: false
-      default: '`[]`'
-      datatype: array of string elements
-      description: |
-        The list of domains to create certificates for. To match subdomains under `example.com`, use `*.example.com`.
-        Regex pattern is not supported.
-
-        This parameter is only used to match domains, not to specify the Common Name
-        or Subject Alternative Name to create certificates. Each domain must have its own certificate.
-        The ACME plugin checks this configuration before checking any certificate in `storage` when serving the certificate of a request.
-
-        If this field is left empty, all top-level domains (TLDs) are allowed.
-    - name: allow_any_domain
-      minimum_version: "3.0.x"
-      required: false
-      default: false
-      datatype: boolean
-      description: |
-        If set to `true`, the plugin allows all domains and ignores any values in the `domains` list.
-    - name: fail_backoff_minutes
-      minimum_version: "2.1.x"
-      required: false
-      default: 5
-      datatype: number
-      description: |
-        Minutes to wait for each domain that fails to create a certificate. This applies to both a
-        new certificate and a renewal certificate.
-    - name: renew_threshold_days
-      required: false
-      default: '`14`'
-      datatype: number
-      description: |
-        Days remaining to renew the certificate before it expires.
-    - name: storage
-      required: false
-      default: '`shm`'
-      datatype: string
-      description: |
-        The backend storage type to use. The possible values are `"kong"`, `"shm"`, `"redis"`, `"consul"`, or `"vault"`. In DB-less mode, `"kong"` storage is unavailable. Note that `"shm"` storage does not persist during Kong restarts and does not work for Kong running on different machines, so consider using one of `"kong"`, `"redis"`, `"consul"`, or `"vault"` in production. Please refer to the Hybrid Mode sections below as well.
-    - name: storage_config
-      required: false
-      default: null
-      datatype: record
-      description: |
-        Storage configs for each backend storage. See [Storage configuration considerations](#storage-config)
-        for information on its default values.
-    - name: tos_accepted
-      required: false
-      default: '`false`'
-      datatype: boolean
-      description: |
-        If you are using Let's Encrypt, you must set this to `true` to agree the [Terms of Service](https://letsencrypt.org/repository/).
-    - name: eab_kid
-      minimum_version: "2.4.x"
-      required: false
-      datatype: string
-      encrypted: true
-      referenceable: true
-      description: |
-        External account binding (EAB) key id. You usually don't need to set this unless it is explicitly required by the CA.
-    - name: eab_hmac_key
-      minimum_version: "2.4.x"
-      required: false
-      datatype: string
-      encrypted: true
-      referenceable: true
-      description: |
-        External account binding (EAB) base64-encoded URL string of the HMAC key. You usually don't need to set this unless it is explicitly required by the CA.
-    - name: rsa_key_size
-      minimum_version: "2.8.x"
-      required: false
-      datatype: number
-      default: 4096
-      description: |
-        RSA private key size for the certificate. The possible values are 2048, 3072, or 4096.
----
-
 {% if_plugin_version gte:2.4.x %}
 
 ## EAB support
@@ -155,7 +28,8 @@ the `eab_kid` or `eab_hmac_key`:
         "host": "127.0.0.1",
         "ssl": false,
         "ssl_verify": false,
-        "ssl_server_name": null
+        "ssl_server_name": null,
+        "namespace": "",
       },
        "consul": {
           "host": "127.0.0.1",
@@ -224,13 +98,16 @@ services:
     routes:
       - name: acme-dummy
         protocols:
-          - name: http
+          - http
         paths:
           - /.well-known/acme-challenge
 plugins:
   - name: acme
     config:
       account_email: example@myexample.com
+      account_key:
+        key_id: "1234"
+        key_set: "example-key-set"
       domains:
         - "*.example.com"
         - "example.com"
@@ -241,6 +118,50 @@ plugins:
           host: redis.service
           port: 6379
 ```
+
+{% if_plugin_version gte:3.3.x %}
+
+Here is another example that uses a `key_id` and `key_set` to configure the `account_key`:
+
+```yaml
+_format_version: "3.0"
+# this section is not necessary if there's already a route that matches
+# /.well-known/acme-challenge path with http protocol
+key_sets:
+  name: example-key-set
+keys:
+  example-key:
+    set: example-key-set
+    pem:
+      private_key: {vault://env/example-private-key}
+services:
+  - name: acme-dummy
+    url: http://127.0.0.1:65535
+    routes:
+      - name: acme-dummy
+        protocols:
+          - name: http
+        paths:
+          - /.well-known/acme-challenge
+plugins:
+  - name: acme
+    config:
+      account_email: example@myexample.com
+      account_key:
+        key_id: example-key
+        key_set: example-key-set
+      domains:
+        - "*.example.com"
+        - "example.com"
+      tos_accepted: true
+      storage: redis
+      storage_config:
+        redis:
+          host: redis.service
+          port: 6379
+```
+
+{% endif_plugin_version %}
 
 ### Enable the plugin
 
@@ -255,13 +176,11 @@ If not, add a route and a dummy service to catch this route.
 curl http://localhost:8001/services \
   -d name=acme-dummy \
   -d url=http://127.0.0.1:65535
-
 # add a dummy route if needed
 curl http://localhost:8001/routes \
   -d name=acme-dummy \
   -d paths[]=/.well-known/acme-challenge \
   -d service.name=acme-dummy
-
 # add the plugin
 curl http://localhost:8001/plugins \
   -d name=acme \
@@ -287,15 +206,12 @@ Assume Kong proxy is accessible via http://mydomain.com and https://mydomain.com
 # The following request returns immediately with Kong's default certificate
 # Wait up to 1 minute for the background process to finish
 curl https://mydomain.com -k
-
 # OR create from Admin API synchronously
 # User can also use this endpoint to force "renew" a certificate
 curl http://localhost:8001/acme -d host=mydomain.com
-
 # Furthermore, it's possible to run a sanity test on your Kong setup
 # before creating any certificate
 curl http://localhost:8001/acme -d host=mydomain.com -d test_http_challenge_flow=true
-
 curl https://mydomain.com
 # Now gives you a valid Let's Encrypt certicate
 ```
@@ -461,7 +377,6 @@ Leave the process running.
 curl http://localhost:8001/services \
   -d name=acme-test \
   -d url=http://mockbin.org
-
 curl http://localhost:8001/routes \
   -d service.name=acme-test \
   -d hosts=$NGROK_HOST \
@@ -503,50 +418,3 @@ response.
 IP and set up a resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
 Also, note that a wildcard or star (`*`) certificate is not supported. Each domain must have its
 own certificate.
-
----
-
-## Changelog
-
-{% if_plugin_version gte:3.1.x %}
-**{{site.base_gateway}}  3.1.x**
-
-* Added the `config.storage_config.redis.ssl`, `config.storage_config.redis.ssl_verify`, and `config.storage_config.redis.ssl_server_name` configuration parameters.
-
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:3.0.x %}
-
-**{{site.base_gateway}} 3.0.x**
-* The `storage_config.vault.auth_method` configuration parameter now defaults to `token`.
-* Added the `allow_any_domain` configuration parameter. If enabled, it lets {{site.base_gateway}}
-  ignore the `domains` field.
-
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.8.x %}
-**{{site.base_gateway}} 2.8.x**
-
-* Added the `rsa_key_size` configuration parameter.
-* The `consul.token`, `redis.auth`, and `vault.token` are now marked as now marked as
-referenceable, which means they can be securely stored as [secrets](/gateway/latest/kong-enterprise/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
-
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.7.x %}
-**{{site.base_gateway}} 2.7.x**
-
-* Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
- the `account_email`, `eab_kid`, and `eab_hmac_kid` parameter values will be
- encrypted.
-
-{% endif_plugin_version %}
-
-{% if_plugin_version gte:2.4.x %}
-**{{site.base_gateway}} 2.4.x**
-* Added external account binding (EAB) support with the `eab_kid` and `eab_hmac_key` configuration parameters.
-
-{% endif_plugin_version %}
-
-**{{site.base_gateway}} 2.1.x**
-* Added the `fail_backoff_minutes` configuration parameter.

@@ -77,43 +77,7 @@ vault backend. These fields are labelled as `referenceable`.
 The following plugins support vault references for specific fields. 
 See each plugin's documentation for more information on each field:
 
-{% assign hub = site.data.ssg_hub %}
-{% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
-
-<table>
-  <thead>
-      <th>Plugin</th>
-      <th>Referenceable fields</th>
-  </thead>
-  <tbody>
-    {% for extn in kong_extns %}
-    {% assign ref = extn.params.config | find: "referenceable", "true" %}
-    {% if ref %}
-      <tr>
-        <td>
-          <a href="{{extn.url}}">{{ extn.name }}</a>
-        </td>
-        <td> 
-          {% for c in extn.params.config %}
-            {% if c.referenceable == true %}
-            <code>{{ c.name }}</code>
-            {% endif %}
-          {% endfor %}
-        </td>
-      </tr>
-      {% endif %}
-    {% endfor %}
-    <tr>
-      <td>
-        <a href="/hub/kong-inc/vault-auth/">Vault Authentication</a>
-      </td>
-      <td> 
-        <code>vaults.vault_token</code>
-        <code>vault_credentials.secret_token</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
+{% referenceable_fields_table %}
 
 ## Supported backends
 

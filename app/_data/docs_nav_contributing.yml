@@ -6,40 +6,44 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: Style guide
-      url: /style-guide
+      url: /style-guide/
     - text: Word choice and naming
-      url: /word-choice
+      url: /word-choice/
     - text: Notes and other notices
-      url: /notices
+      url: /notices/
     - text: Documenting user interfaces
-      url: /user-interfaces
+      url: /user-interfaces/
     - text: Contribution templates
-      url: /contribution-templates
+      url: /contribution-templates/
     - text: Plugin documentation
-      url: /plugin-docs
+      items:
+        - text: Documenting Kong-owned plugins
+          url: /kong-plugins/
+        - text: Documenting partner plugins
+          url: /partner-plugins/
 
 - title: Markdown rules and formatting
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: Markdown rules
-      url: /markdown-rules
+      url: /markdown-rules/
     - text: Reusable content
-      url: /includes
+      url: /includes/
     - text: Variables
-      url: /variables
+      url: /variables/
     - text: Single-sourced versions
-      url: /single-sourced-versions
+      url: /single-sourced-versions/
     - text: Single-sourced plugins
-      url: /single-sourced-plugins
+      url: /single-sourced-plugins/
     - text: Conditional rendering
-      url: /conditional-rendering
+      url: /conditional-rendering/
 
 - title: Community
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: Welcome to the Kong Docs community
-      url: /community
+      url: /community/
     - text: Community expectations
-      url: /community-expectations
+      url: /community-expectations/
     - text: Hackathons
-      url: /hackathons
+      url: /hackathons/

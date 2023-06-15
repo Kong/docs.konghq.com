@@ -11,3 +11,39 @@
 
 [dev]
   autoLaunch = false
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+  [plugins.inputs]
+    run_on_success = "true"
+
+  [plugins.inputs.settings]
+    preset = "desktop"
+
+  [[plugins.inputs.audits]]
+    path = "hub"
+
+  [[plugins.inputs.audits]]
+    path = "hub/kong-inc/jwt-signer/"
+
+  [[plugins.inputs.audits]]
+    path = "hub/kong-inc/jwt-signer/configuration/"
+
+  [[plugins.inputs.audits]]
+    path = "gateway/latest/"
+
+  [[plugins.inputs.audits]]
+    path = "konnect"
+
+  [[plugins.inputs.audits]]
+    path = "mesh/latest/"
+
+  [[plugins.inputs.audits]]
+    path = "deck/latest/"
+
+  [[plugins.inputs.audits]]
+    path = "kubernetes-ingress-controller/latest/"
+
+  [[plugins.inputs.audits]]
+    path = "konnect/analytics/use-cases/"

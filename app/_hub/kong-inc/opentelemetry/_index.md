@@ -1,107 +1,20 @@
----
-name: OpenTelemetry
-publisher: Kong Inc.
-version: 0.1.0
-desc: Propagate spans and report space to a backend server through OTLP protocol.
-description: |
-  Propagate distributed tracing spans and report low-level spans to a OTLP-compatible server.
-type: plugin
-categories:
-  - analytics-monitoring
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: opentelemetry
-  service_id: true
-  route_id: true
-  consumer_id: true
-  konnect_examples: false
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: endpoint
-      required: true
-      value_in_examples: 'http://opentelemetry.collector:4318/v1/traces'
-      datatype: string
-      description: |
-        The full HTTP(S) endpoint that Kong Gateway should send OpenTelemetry spans to.
-        The endpoint must be a [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) endpoint.
+{% if_version gte:3.3.x %}
+## Queueing
 
-    - name: headers # old version of headers parameter without 'referenceable' attribute
-      maximum_version: "3.0.x"
-      required: false
-      datatype: map
-      value_in_examples:
-        - X-Auth-Token:secret-token
-      description: |
-        The custom headers to be added in the HTTP request sent to the OTLP server.
-        This setting is useful for adding the authentication headers (token)
-        for the APM backend.
+The OpenTelemetry plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
 
-    - name: headers  # current version of headers parameter
-      minimum_version: "3.1.x"
-      referenceable: true
-      required: false
-      datatype: map
-      value_in_examples:
-        - X-Auth-Token:secret-token
-      description: |
-        The custom headers to be added in the HTTP request sent to the OTLP server.
-        This setting is useful for adding the authentication headers (token)
-        for the APM backend.
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Plugin Queuing Reference](/gateway/latest/kong-plugins/queue/reference/)
+in the {{site.base_gateway}} documentation.
 
-    - name: resource_attributes
-      required: false
-      datatype: map
-      description: |
-        The attributes specified on this property are added to the OpenTelemetry resource object.
-        Kong follows the OpenTelemetry specification for [Semantic Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/README.md#service).
-
-        The following attributes are automatically added to the resource object:
-        - `service.name`: The name of the service. This is `kong` by default.
-        - `service.version`: The version of Kong Gateway.
-        - `service.instance.id`: The node id of Kong Gateway.
-
-        The default values for the above attributes can be overridden by specifying them in this property. For example,
-        to override the default value of `service.name` to `my-service`, you can specify `{ "service.name": "my-service" }`.
-    - name: batch_span_count
-      required: true
-      default: 200
-      datatype: number
-      description: |
-        The number of spans to be sent in a single batch.
-    - name: batch_flush_delay
-      required: true
-      default: 3
-      datatype: number
-      description: |
-        The delay, in seconds, between two consecutive batches.
-    - name: connect_timeout
-      default: 1000
-      datatype: number
-      description: |
-        The timeout, in milliseconds, for the OTLP server connection.
-    - name: send_timeout
-      default: 5000
-      datatype: number
-      description: |
-        The timeout, in milliseconds, for sending spans to the OTLP server.
-    - name: read_timeout
-      default: 5000
-      datatype: number
-      description: |
-        The timeout, in milliseconds, for reading the response from the OTLP server.
----
-
-The OpenTelemetry plugin is built on top of {{site.base_gateway}}'s tracing API
-and is intended to be fully compatible with the OpenTelemetry specification.
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
+{% endif_version %}
 
 ## Usage
 
@@ -334,13 +247,3 @@ Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.2
   It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
 {% endif_plugin_version %}
-
-## Changelog
-
-**{{site.base_gateway}} 3.2.x**
-* This plugin can now be scoped to individual services, routes, and consumers.
-
-**{{site.base_gateway}} 3.1.x**
-* The `headers` field is now marked as referenceable, which means it can be securely stored as a
-[secret](/gateway/latest/kong-enterprise/secrets-management/)
-in a vault.

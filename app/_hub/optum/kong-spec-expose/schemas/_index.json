@@ -1,0 +1,26 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "spec_url": {
+              "type": "string",
+              "required": true,
+              "description": "The full path to the specification/documentation of your service."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}
