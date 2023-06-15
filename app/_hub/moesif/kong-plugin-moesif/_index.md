@@ -1,12 +1,12 @@
 ### How it works
 
-When enabled, this plugin captures API traffic and logs it to
-[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
-This plugin logs to Moesif with an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) and doesn't add any latency to your API calls.
+This plugin logs API traffic to
+[Moesif API Analytics and Monetization](https://www.moesif.com/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
+It batches data and leverages an [asynchronous design](https://www.moesif.com/enterprise/api-analytics-infrastructure?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) to ensure no latency is added to your API.
 
 [Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif)
 
-Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
+Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more. Moesif is SOC 2 Type 2 compliant and has features like [client-side encryption](https://www.moesif.com/enterprise/security-compliance?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) so data stays private to your organization.
 
 ## How to install
 
@@ -56,3 +56,34 @@ If you don't see any logs in Moesif, you may need to restart Kong again.
 ```shell
 kong restart
 ```
+
+## Updating Plugin Configuration
+
+[View upgrade steps on Moesif docs](https://www.moesif.com/docs/server-integration/kong-api-gateway/#updating-plugin-configuration?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
+
+##  Identifying users
+
+This plugin will automatically identify API users so you can associate a user's API traffic to user data and other app analytics.
+The default algorithm covers most authorization designs and works as follows:
+
+1. If the `config.user_id_header` option is set, read the value from the specified HTTP header key `config.user_id_header`.
+2. Else if Kong defined a value for `x-consumer-custom-id`, `x-consumer-username`, or `x-consumer-id` (in that order), use that value.
+3. Else if an authorization token is present in `config.authorization_header_name`, parse the user id from the token as follows:
+   * If header contains `Bearer`, base64 decode the string and use the value defined by `config.authorization_user_id_field` (by default is `sub`).
+   * If header contains `Basic`, base64 decode the string and use the username portion (before the `:` character).
+
+For advanced configurations, you can define a custom header containing the user id via `config.user_id_header` or override the options `config.authorization_header_name` and `config.authorization_user_id_field`.
+
+## Identifying companies
+
+You can associate API users to companies for tracking account-level usage similar to user-level usage. This can be done either:
+1. Defining `config.company_id_header`, Moesif will use the value present in that header. 
+2. Use the Moesif [update user API](https://www.moesif.com/docs/api#update-a-user) to set a `company_id` for a user. Moesif will associate the API calls automatically.
+3. Else if an authorization token is present in `config.authorization_header_name`, parse the company id from the token as follows:
+   * If header contains `Bearer`, base64 decode the string and use the value defined by `config.authorization_company_id_field` (by default is ``).
+
+[More info on identifying customers](https://www.moesif.com/docs/getting-started/identify-customers/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong)
+
+## Troubleshooting
+
+[View troubleshooting Moesif docs](https://www.moesif.com/docs/server-integration/kong-api-gateway/#troubleshooting?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong) for troubleshooting steps. 
