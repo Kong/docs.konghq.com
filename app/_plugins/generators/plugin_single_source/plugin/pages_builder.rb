@@ -46,7 +46,7 @@ module PluginSingleSource
       end
 
       def items_for(pages)
-        pages.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
+        pages.flatten.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
       end
 
       def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
@@ -58,7 +58,7 @@ module PluginSingleSource
 
         if @release.configuration
           items.push({
-                       'title' => 'Configuration',
+                       'title' => @release.configuration.nav_title,
                        'url' => @release.configuration.permalink,
                        'icon' => '/assets/images/icons/documentation/hub/icn-configuration.svg'
                      })

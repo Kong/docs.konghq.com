@@ -32,11 +32,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        "Basic Config Examples"
+        TITLE
       end
 
       def breadcrumb_title
-        "#{TITLE}"
+        TITLE
       end
 
       def icon

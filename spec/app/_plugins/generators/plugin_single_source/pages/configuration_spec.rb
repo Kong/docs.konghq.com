@@ -88,6 +88,6 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
     let(:version) { '2.8.x' }
     let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
 
-    it { expect(subject.nav_title).to eq('Reference') }
+    it { expect(subject.nav_title).to eq('Configuration Reference') }
   end
 end
