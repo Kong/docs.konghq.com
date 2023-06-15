@@ -270,6 +270,11 @@
           - text: Vaults
             url: /api/runtime-groups-config/#vaults-object
         - text: API Spec
+          url: <replace>
+          absolute_url: true
+    - text: API products
+      items: 
+        - text: API Documentation
           url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
           absolute_url: true
     - text: Reference
