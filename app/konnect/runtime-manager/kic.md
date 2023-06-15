@@ -72,7 +72,7 @@ The following table describes which {{site.base_gateway}} versions are compatibl
     Learn about the various deployment methods for KIC. 
 * [Getting started with the Kong Ingress Controller](/kubernetes-ingress-controller/latest/guides/getting-started/):
     This guide walks through setting up an HTTP(S) route and plugin using {{site.base_gateway}} and KIC.
-* [Analyze Services and Routes](/konnect/analytics/services-and-routes/):
+* [Analyze Services and Routes](/konnect/analytics/)
     Learn how to use monitoring tools in Konnect to analyze KIC entities.
 * [Publish and Consume Services](/konnect/getting-started/publish-service/):
     Find out how to publish services to the Dev Portal.
