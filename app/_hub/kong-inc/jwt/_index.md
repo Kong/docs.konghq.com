@@ -44,7 +44,7 @@ parameter                       | description
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-curl -X POST http://localhost:8001/consumers/CONSUMER/jwt -H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://localhost:8001/consumers/{consumer}/jwt -H "Content-Type: application/x-www-form-urlencoded"
 ```
 
 Response:
@@ -477,7 +477,7 @@ Response:
 You can filter the list by consumer by using another path:
 
 ```bash
-curl -X GET http://localhost:8001/consumers/USERNAME|ID/jwt
+curl -X GET http://localhost:8001/consumers/{username or id}/jwt
 ```
 
 Response:
