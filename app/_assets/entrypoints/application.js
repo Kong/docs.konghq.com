@@ -3,7 +3,6 @@
 // When using a plain API, perhaps it's better to generate an HTML entrypoint
 // and link to the scripts and stylesheets, and let Vite transform it.
 
-import "~/javascripts/jquery-3.6.0.min.js";
 import "~/javascripts/app.js";
 import "~/javascripts/compat-dropdown.js";
 import "~/javascripts/plugin-hub.js";
