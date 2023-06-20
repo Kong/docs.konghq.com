@@ -7,9 +7,12 @@ RSpec.describe Jekyll::PluginExample do
   let(:liquid_block) do
     <<~BLOCK
 {% plugin_example %}
-name: jwt-signer-example
 plugin: kong-inc/jwt-signer
-example: complex-example
+name: jwt-signer
+config:
+  access_token_introspection_scopes_claim:
+    - scope
+    - realm_access
 targets:
   - service
   - route
