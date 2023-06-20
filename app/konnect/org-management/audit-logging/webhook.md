@@ -30,6 +30,9 @@ You can configure a webhook into any application that supports the [ArcSight CEF
 
 1. Take note of the authorization credentials that you need to access this endpoint. {{site.konnect_short_name}} supports any HTTP authorization header type.
 
+1. Configure your firewall settings to allow traffic through the port that you're going to use. 
+See the [Konnect ports and network requirements](/konnect/network/).
+
 ## Create a webhook
 
 {% navtabs %}

@@ -8,15 +8,10 @@ The {{site.konnect_saas}} control plane uses the following port:
 
 | Port      | Protocol  | Description |
 |:----------|:----------|:------------|
-| `443`    | TCP <br>HTTPS | Cluster communication port for configuration and telemetry data. The {{site.konnect_saas}} control plane uses this port to listen for runtime node connections and to communicate with the runtime nodes. |
+| `443`    | TCP <br>HTTPS | Cluster communication port for configuration and telemetry data. The {{site.konnect_saas}} control plane uses this port to listen for runtime node connections and to communicate with the runtime nodes. <br> The cluster communication port must be accessible by all the data planes within the same cluster. This port is protected by mTLS to ensure end-to-end security and integrity. |
+| `8071`   | TCP <br> UDP | Port used for audit logging. |
 
-Kong's hosted control plane expects traffic on this port, so the cluster port
-can't be customized.
-
-The cluster communication port must be accessible by all
-the data planes within the same cluster.
-This port is protected by mTLS to
-ensure end-to-end security and integrity.
+Kong's hosted control plane expects traffic on these ports, so they can't be customized. 
 
 ## Runtime instance ports
 
