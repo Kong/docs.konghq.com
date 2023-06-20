@@ -1,4 +1,0 @@
-name: rate-limiting
-config:
-  hour: 5
-  policy: local
