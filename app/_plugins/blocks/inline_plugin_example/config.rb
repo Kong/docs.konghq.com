@@ -13,17 +13,9 @@ module Jekyll
         validate!
       end
 
-      def name
-        @name ||= @config['name']
-      end
-
       # this must have the vendor
       def plugin
         @plugin ||= @config['plugin']
-      end
-
-      def example_name
-        @example_name ||= @config['example']
       end
 
       def targets
@@ -46,9 +38,7 @@ module Jekyll
       end
 
       def example
-        @example ||= ::PluginSingleSource::Plugin::Examples::Base
-                     .make_for(vendor:, name: plugin_name, version:, example_name:)
-                     .example
+        @example ||= { 'name' => @config['name'], 'config' => @config['config'] }
       end
 
       private

@@ -1,4 +1,0 @@
-name: jwt-signer
-config:
-  access_token_introspection_scopes_claim:
-    - scope

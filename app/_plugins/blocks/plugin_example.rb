@@ -5,9 +5,11 @@
 # ----------------------------------------
 #
 # {% plugin_example %}
-# name: rate-limit-example
 # plugin: kong-inc/rate-limiting
-# example: complex-example
+# name: rate-limiting
+# config:
+#  hour: 5
+#  policy: local
 # targets:
 #   - service
 #   - route
