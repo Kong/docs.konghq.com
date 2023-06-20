@@ -20,15 +20,6 @@ From the **Appearance** menu you have the ability to modify the following option
 
 For details on the requirements for each customizable option, hover over the information (`i`) icon next to each item in the UI.
 
-### Developer analytics dashboard
-
-{{site.konnect_short_name}} admins can customize the charts on the dev portal analytics page from the **Appearance** menu. You can modify the colors for the following analytics properties:   
-
-* Graph artifacts (lines, bars, text)
-* Trends
-* Text
-* Fonts
-
 ## Custom Dev Portal URL
 
 Every Dev Portal instance has an auto-generated default URL. You can also manage custom URLs within {{site.konnect_short_name}}. This gives users the ability to access the Dev Portal from either the default URL, for example `https://example.us.portal.konghq.com`, or a custom URL like `portal.example.com`.
