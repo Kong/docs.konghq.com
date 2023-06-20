@@ -24,7 +24,9 @@ module PluginSingleSource
       end
 
       def nav_title
-        'API Reference'
+        @nav_title ||= ::Utils::FrontmatterParser
+                       .new(File.read(File.expand_path(@file, @source_path)))
+                       .frontmatter.fetch('nav_title', 'Missing nav_title')
       end
 
       def icon

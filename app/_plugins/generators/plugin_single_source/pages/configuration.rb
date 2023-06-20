@@ -32,7 +32,7 @@ module PluginSingleSource
       end
 
       def nav_title
-        'Configuration Reference'
+        'Configuration reference'
       end
 
       def breadcrumb_title

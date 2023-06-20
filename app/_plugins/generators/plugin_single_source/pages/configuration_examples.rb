@@ -3,7 +3,7 @@
 module PluginSingleSource
   module Pages
     class ConfigurationExamples < Base
-      TITLE = 'Basic Config Examples'
+      TITLE = 'Basic config examples'
 
       def canonical_url
         "#{base_url}how-to/basic-example/"
