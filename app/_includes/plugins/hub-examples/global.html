@@ -13,6 +13,7 @@ sections for more information.
 The following examples provide some typical configurations for enabling
 the <code>{{page.name}}</code> plugin globally.
   {% navtabs %}
+    {% if hub_example.render_curl? %}
     {% navtab Admin API %}
 
 Make the following request:
@@ -20,8 +21,10 @@ Make the following request:
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
     {% endnavtab %}
+    {% endif %}
 
     {% unless page.k8s_examples == false %}
+      {% if hub_example.render_kubernetes? %}
       {% navtab Kubernetes %}
 
 Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
@@ -43,9 +46,11 @@ plugin: {{ hub_example.plugin_name }}
 ```
 
       {% endnavtab %}
+      {% endif %}
     {% endunless %}
 
     {% unless page.yaml_examples == false %}
+      {% if hub_example.render_yaml? %}
       {% navtab Declarative (YAML) %}
 
 Add a <code>plugins</code> entry in the declarative
@@ -54,6 +59,7 @@ configuration file:
 {% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
       {% endnavtab %}
+      {% endif %}
     {% endunless %}
   {% endnavtabs %}
 {% endif %}
