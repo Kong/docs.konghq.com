@@ -1,4 +1,4 @@
-{%- assign hub_examples = page.hub_examples -%}
+{%- assign hub_examples = include.hub_examples -%}
 
 {% capture global_content %}
 {%- include plugins/hub-examples/global.html hub_example=hub_examples.global -%}
@@ -24,9 +24,11 @@
       {% endnavtab %}
     {% endif %}
 
-    {% navtab Enable globally %}
-      {{ global_content | markdownify }}
-    {% endnavtab %}
+    {% if hub_examples.enable_globally? %}
+      {% navtab Enable globally %}
+        {{ global_content | markdownify }}
+      {% endnavtab %}
+    {% endif %}
   {% endnavtabs %}
 {% else %}
   {{ global_content | markdownify }}
