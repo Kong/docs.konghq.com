@@ -7,6 +7,9 @@ nav_title: ACME Plugin API Reference
 The ACME plugin exposes several endpoints through Admin API that can be used for
 debugging and monitoring certificate creation and renewal.
 
+To configure and enable the plugin itself, [use the `/plugins` API endpoint](/hub/kong-inc/acme/how-to/basic-example/).
+The `/acme` endpoints only appear once the plugin has been enabled. 
+
 ### Apply certificate
 
 **Endpoint**

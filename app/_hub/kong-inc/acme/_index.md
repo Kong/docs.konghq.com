@@ -128,5 +128,6 @@ To configure a storage type other than `kong`, refer to [lua-resty-acme](https:/
 * [Configuration reference](/hub/kong-inc/acme/configuration/)
 * [Basic configuration example](/hub/kong-inc/acme/configuration/examples/)
 * [Learn how to use the plugin](/hub/kong-inc/acme/how-to/)
+* [Configure the ACME plugin with Redis](/hub/kong-inc/acme/how-to/re)
 * [Local testing and development](/hub/kong-inc/acme/how-to/local-testing-development/)
 * [ACME plugin API reference](/hub/kong-inc/acme/api/)

@@ -4,6 +4,11 @@ nav_title: Using the ACLs API
 
 ## Using the ACLs API
 
+The ACL plugin exposes endpoints for configuring ACLs.
+
+To configure and enable the plugin itself, [use the `/plugins` API endpoint](/hub/kong-inc/acl/how-to/basic-example/).
+The `/acls` endpoints only appear once the plugin has been enabled. 
+
 ### Return ACLs
 
 Retrieves paginated ACLs.
@@ -13,7 +18,7 @@ curl -X GET http://{HOST}:8001/acls
 ```
 
 Result:
-```
+```json
 {
     "total": 3,
     "data": [
@@ -48,7 +53,7 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
 ```
 
 Result:
-```
+```json
 {
     "total": 1,
     "data": [
@@ -73,7 +78,7 @@ curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 ```
 
 Result:
-```
+```json
 {
     "group": "foo-group",
     "created_at": 1511391159000,
@@ -96,7 +101,7 @@ curl -X GET http://{HOST}:8001/acls/{ID}/consumer
 ```
 
 Result:
-```
+```json
 {
    "created_at":1507936639000,
    "username":"foo",

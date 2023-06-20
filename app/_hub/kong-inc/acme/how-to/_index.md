@@ -4,6 +4,10 @@ nav_title: Getting started with ACME
 
 ## Using the plugin
 
+You can follow the [basic examples](/hub/kong-inc/acme/how-to/basic-example/) to enable
+your plugin using your preferred method. Or, follow this guide to set up and 
+test the plugin from start to finish.
+
 ### Prerequisites
 
 - Kong needs to listen on port 80 or proxy a load balancer that listens for port 80.
@@ -12,86 +16,7 @@ verify the Let's Encrypt API. The CA-bundle file is usually `/etc/ssl/certs/ca-c
 Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL. Starting with Kong v2.2,
 users can set this config to `system` to auto pick CA-bundle from OS.
 
-### Configure plugin
-
-Here's a sample declarative configuration with `redis` as storage:
-
-```yaml
-_format_version: "3.0"
-# this section is not necessary if there's already a route that matches
-# /.well-known/acme-challenge path with http protocol
-services:
-  - name: acme-dummy
-    url: http://127.0.0.1:65535
-    routes:
-      - name: acme-dummy
-        protocols:
-          - name: http
-        paths:
-          - /.well-known/acme-challenge
-plugins:
-  - name: acme
-    config:
-      account_email: example@myexample.com
-      account_key:
-        key_id: "1234"
-        key_set: "example-key-set"
-      domains:
-        - "*.example.com"
-        - "example.com"
-      tos_accepted: true
-      storage: redis
-      storage_config:
-        redis:
-          host: redis.service
-          port: 6379
-```
-
-{% if_plugin_version gte:3.3.x %}
-
-Here is another example that uses a `key_id` and `key_set` to configure the `account_key`:
-
-```yaml
-_format_version: "3.0"
-# this section is not necessary if there's already a route that matches
-# /.well-known/acme-challenge path with http protocol
-key_sets:
-  name: example-key-set
-keys:
-  example-key:
-    set: example-key-set
-    pem:
-      private_key: {vault://env/example-private-key}
-services:
-  - name: acme-dummy
-    url: http://127.0.0.1:65535
-    routes:
-      - name: acme-dummy
-        protocols:
-          - name: http
-        paths:
-          - /.well-known/acme-challenge
-plugins:
-  - name: acme
-    config:
-      account_email: example@myexample.com
-      account_key:
-        key_id: example-key
-        key_set: example-key-set
-      domains:
-        - "*.example.com"
-        - "example.com"
-      tos_accepted: true
-      storage: redis
-      storage_config:
-        redis:
-          host: redis.service
-          port: 6379
-```
-
-{% endif_plugin_version %}
-
-### Enable the plugin
+### Getting started with the ACME plugin
 
 For each the domain that needs a certificate, make sure `DOMAIN/.well-known/acme-challenge`
 is mapped to a route in Kong. You can check this by sending
@@ -99,25 +24,34 @@ is mapped to a route in Kong. You can check this by sending
 You can also [use the Admin API](/hub/kong-inc/acme/reference/api/#create-certificates) to verify the setup.
 If not, add a route and a dummy service to catch this route.
 
-```bash
-# add a dummy service if needed
-curl http://localhost:8001/services \
-  -d name=acme-dummy \
-  -d url=http://127.0.0.1:65535
-# add a dummy route if needed
-curl http://localhost:8001/routes \
-  -d name=acme-dummy \
-  -d paths[]=/.well-known/acme-challenge \
-  -d service.name=acme-dummy
-# add the plugin
-curl http://localhost:8001/plugins \
-  -d name=acme \
-  -d config.account_email=yourname@yourdomain.com \
-  -d config.tos_accepted=true \
-  -d config.domains[]=my.secret.domains.com
-```
+1. Add a sample service if needed:
 
-Note by setting `tos_accepted` to *true* implies that you have read and accepted
+    ```sh
+    curl http://localhost:8001/services \
+      -d name=acme-example \
+      -d url=http://127.0.0.1:65535
+    ```
+
+2. Add a sample route if needed:
+
+    ```
+    curl http://localhost:8001/routes \
+      -d name=acme-example \
+      -d paths[]=/.well-known/acme-challenge \
+      -d service.name=acme-example
+    ```
+
+3. Enable the plugin:
+
+    ```sh
+    curl http://localhost:8001/plugins \
+      -d name=acme \
+      -d config.account_email=yourname@yourdomain.com \
+      -d config.tos_accepted=true \
+      -d config.domains[]=my.secret.domains.com
+    ```
+
+Setting `tos_accepted` to *true* implies that you have read and accepted
 [terms of service](https://letsencrypt.org/repository/).
 
 **This plugin can only be configured as a global plugin.** The plugin terminates
@@ -129,20 +63,38 @@ and terminate challenges only for certain domains, refer to the
 
 Assume Kong proxy is accessible via http://mydomain.com and https://mydomain.com.
 
-```bash
-# Trigger asynchronous creation from proxy requests
-# The following request returns immediately with Kong's default certificate
-# Wait up to 1 minute for the background process to finish
-curl https://mydomain.com -k
-# OR create from Admin API synchronously
-# User can also use this endpoint to force "renew" a certificate
-curl http://localhost:8001/acme -d host=mydomain.com
-# Furthermore, it's possible to run a sanity test on your Kong setup
-# before creating any certificate
-curl http://localhost:8001/acme -d host=mydomain.com -d test_http_challenge_flow=true
-curl https://mydomain.com
-# Now gives you a valid Let's Encrypt certicate
-```
+1. Run a sanity test on your Kong setup before creating any certificate:
+
+    ```sh
+    curl http://localhost:8001/acme \
+    -d host=mydomain.com \
+    -d test_http_challenge_flow=true
+    ```
+
+1. Trigger certificate creation:
+
+    You can trigger asynchronous creation from proxy requests.
+
+    The following request returns Kong's default certificate: 
+
+    ```sh
+    curl https://mydomain.com -k
+    ```
+    Wait up to 1 minute for the background process to finish.
+
+    Or, create it synchronously from the Admin API:
+
+    ```sh
+    curl http://localhost:8001/acme -d host=mydomain.com
+    ```
+
+    You can also use this endpoint to force renew a certificate.
+
+1. Now, the following request gives you a valid Let's Encrypt certicate:
+
+    ```sh
+    curl https://mydomain.com
+    ```
 
 ### Renew certificates
 
