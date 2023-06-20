@@ -4,7 +4,7 @@ title: Ports and Network Requirements
 
 ## Control plane ports
 
-The {{site.konnect_saas}} control plane uses the following port:
+The {{site.konnect_saas}} control plane uses the following ports:
 
 | Port      | Protocol  | Description |
 |:----------|:----------|:------------|
