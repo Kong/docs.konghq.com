@@ -94,7 +94,7 @@ By following the instructions in this guide, you've created a {{site.mesh_produc
 
 ## Next steps
 
-Now that you've configured a global control plane, you can continue by [importing {{site.base_gateway}} entities into {{site.konnect_short_name}}](/getting-started/import/).
+Now that you've configured a global control plane, you can continue by [importing {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import/).
 
 You can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
 
