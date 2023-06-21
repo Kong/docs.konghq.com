@@ -1,6 +1,7 @@
 ---
 title: Configure a Global Control Plane with Kong Mesh
 content_type: tutorial
+beta: true
 ---
 
 Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. 
