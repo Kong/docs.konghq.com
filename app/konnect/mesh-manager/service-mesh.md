@@ -3,7 +3,7 @@ title: Create a service mesh
 content_type: how-to
 ---
 
-Creating a fully-functioning {{site.mesh_product_name}} global control plane in {{site.konnect_short_name}} involves the following steps:
+Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.konnect_short_name}} involves the following steps:
 
 1. Create the global control plane in {{site.konnect_short_name}}.
 1. Add and configure a zone for your control plane.
