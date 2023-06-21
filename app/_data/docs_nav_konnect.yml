@@ -88,9 +88,12 @@
       url: /runtime-manager/troubleshoot/
 
 - title: Mesh Manager
+  icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
   items:
     - text: Overview
       url: /mesh-manager/
+    - text: Create a service mesh
+      url: /mesh-manager/service-mesh/
     - text: FAQ
       url: /mesh-manager/faq/
 
