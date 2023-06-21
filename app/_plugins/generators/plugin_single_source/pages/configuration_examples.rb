@@ -43,6 +43,10 @@ module PluginSingleSource
         ''
       end
 
+      def edit_link
+        "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/_layouts/plugins/configuration_examples.html"
+      end
+
       private
 
       def ssg_hub
