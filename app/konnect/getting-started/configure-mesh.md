@@ -32,7 +32,7 @@ You now have a {{site.mesh_product_name}} global control plane. This control pla
 
 After creating the global control plane, you must add a zone to that control plane. Adding a zone allows you to manage services added to that zone and send and receive configuration changes to the zone. 
 
-1. In  (/assets/images/icons/konnect/icn-mesh-manager.svg) [**Mesh Manager**](https://cloud.konghq.com/mesh-manager), click the `example-cp` control plane you just created, and then click **Zones** in the sidebar.
+1. In {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager), click the `example-cp` control plane you just created, and then click **Zones** in the sidebar.
 1. Click **Create Zone**. 
 1. Enter "eu" in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
     {:.note}
@@ -46,17 +46,16 @@ You now have a very basic {{site.mesh_product_name}} service mesh added to {{sit
 
 ## Configure `kumactl` to connect to your global control plane
 
-`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can do the following:
-
-<!--* Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. -->
-* Create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
+`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
+<!--* (not sure if I removed the right line, so keeping in for easy swap 
+Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. -->
 
 You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
 
 1. In {{site.konnect_short_name}}, select your user icon to open the context menu and click **Personal access tokens**, then click **Generate token**.
 1. Enter "control-plane" in the **Name** field and click **Generate**.
 1. Copy the personal access token that displays.
-1. From the left navigation menu in {{site.konnect_short_name}}, open  (/assets/images/icons/konnect/icn-mesh-manager.svg) [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
+1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
 1. Copy your control plane ID.
 1. Run the following to connect your global control plane to {{site.product_mesh_name}}:
     ```sh
