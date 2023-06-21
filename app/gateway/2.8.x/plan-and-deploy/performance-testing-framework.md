@@ -12,7 +12,7 @@ The framework is implemented as an extension to Kong's integration test suite.
 
 ## Installation
 
-The framework uses [busted](https://olivinelabs.com/busted/) and some
+The framework uses [busted](https://github.com/lunarmodules/busted) and some
 Lua development dependencies of Kong. To set up the environment,
 run `make dev` on your Kong repository to install all Lua dependencies.
 
