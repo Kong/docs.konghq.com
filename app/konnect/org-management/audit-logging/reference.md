@@ -2,7 +2,6 @@
 title: Audit log reference
 badge: enterprise
 content_type: reference
-beta: true
 ---
 
 {{site.konnect_short_name}} captures three types of events:

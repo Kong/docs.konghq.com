@@ -2,7 +2,6 @@
 title: Set up an audit log webhook
 content_type: how-to
 badge: enterprise
-beta: true
 ---
 
 You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/org-management/audit-logging/). 

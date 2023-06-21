@@ -2,7 +2,6 @@
 title: Set up an audit log replay job
 content_type: how-to
 badge: enterprise
-beta: true
 ---
 
 You can use the {{site.konnect_short_name}} Audit Logs API to configure replay jobs for [audit logging](/konnect/org-management/audit-logging/). 

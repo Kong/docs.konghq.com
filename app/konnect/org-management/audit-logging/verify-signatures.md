@@ -2,7 +2,6 @@
 title: Verify audit log signatures
 content_type: how-to
 badge: enterprise
-beta: true
 ---
 
 {{site.konnect_short_name}} uses an [ED25519 signature](https://ed25519.cr.yp.to/) on the audit logs it produces.

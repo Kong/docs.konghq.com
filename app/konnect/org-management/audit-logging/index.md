@@ -2,7 +2,6 @@
 title: Audit Logging in Konnect
 badge: enterprise
 content_type: explanation
-beta: true
 ---
 
 Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure. 
