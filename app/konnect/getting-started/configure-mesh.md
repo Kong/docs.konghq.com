@@ -21,7 +21,7 @@ For the purposes of this guide, you'll use {{site.mesh_product_name}} as your se
 
 ## Create a global control plane in {{site.konnect_short_name}}
  
-1. From the left navigation menu in {{site.konnect_short_name}}, open (/assets/images/icons/konnect/icn-mesh-manager.svg) [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
+1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
 1. Click **New Control Plane**.
 1. Enter "example-cp" in the **Name** field.
 1. Click **Save**.
