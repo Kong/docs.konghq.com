@@ -96,8 +96,6 @@
       url: /mesh-manager/
     - text: Create a service mesh
       url: /mesh-manager/service-mesh/
-    - text: FAQ
-      url: /mesh-manager/faq/
 
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
