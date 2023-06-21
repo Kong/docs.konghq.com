@@ -65,18 +65,18 @@ module PluginSingleSource
         end
 
         if @release.configuration_examples
-          if @release.vendor == 'kong-inc' 
-              items.push({
-                          'title' => 'Using the plugin',
-                          'items' => items_for([@release.configuration_examples, @release.how_tos]),
-                          'icon' => icon
-                        })
+          if @release.vendor == 'kong-inc'
+            items.push({
+                         'title' => 'Using the plugin',
+                         'items' => items_for([@release.configuration_examples, @release.how_tos]),
+                         'icon' => icon
+                       })
           else
-              items.push({
-                'title' => @release.configuration_examples.nav_title,
-                'url' => @release.configuration_examples.permalink,
-                'icon' => icon
-              })
+            items.push({
+                         'title' => @release.configuration_examples.nav_title,
+                         'url' => @release.configuration_examples.permalink,
+                         'icon' => icon
+                       })
           end
         end
 
