@@ -48,7 +48,7 @@ You now have a very basic {{site.mesh_product_name}} service mesh added to {{sit
 
 `kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can do the following:
 
-* Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. 
+<!--* Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. -->
 * Create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
 
 You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
@@ -92,14 +92,15 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 
 By following the instructions in this guide, you've created a {{site.mesh_product_name}} global control plane, added a zone to it, configured `kumactl` to connect to your global control plane, and added services to the mesh. 
 
-Now that you've completed this tutorial, you can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
-
-* [Zone Ingress](/mesh/latest/production/cp-deployment/zone-ingress/) - Set up zone ingress in {{site.mesh_product_name}}.
-* [Zone Egress](/mesh/latest/production/cp-deployment/zoneegress/) - Set up zone egress in {{site.mesh_product_name}}.
-* [Mutual TLS](/mesh/latest/policies/mutual-tls/) - Configure mTLS with {{site.mesh_product_name}}. 
-* [Observability](/mesh/latest/explore/observability/) - Find out how to configure observability with {{site.mesh_product_name}}.
-* [Traffic Log](/mesh/latest/policies/traffic-log/) - Learn how to configure logging with {{site.mesh_product_name}}.
 
 ## Next steps
 
 Now that you've configured a global control plane, you can continue by [importing {{site.base_gateway}} entities into {{site.konnect_short_name}}](/getting-started/import/).
+
+You can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
+
+<!--* * [Zone Ingress](/mesh/latest/production/cp-deployment/zone-ingress/) - Set up zone ingress in {{site.mesh_product_name}}.
+* [Zone Egress](/mesh/latest/production/cp-deployment/zoneegress/) - Set up zone egress in {{site.mesh_product_name}}.-->
+* [Mutual TLS](/mesh/latest/policies/mutual-tls/) - Configure mTLS with {{site.mesh_product_name}}. 
+* [Observability](/mesh/latest/explore/observability/) - Find out how to configure observability with {{site.mesh_product_name}}.
+* [Traffic Log](/mesh/latest/policies/traffic-log/) - Learn how to configure logging with {{site.mesh_product_name}}.
