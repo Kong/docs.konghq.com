@@ -1,5 +1,9 @@
 {%- assign hub_examples = include.hub_examples -%}
 
+{% if include.title %}
+  <h3 id="{{ include.title | slugify }}">{{ include.title }}</h3>
+{% endif %}
+
 {% capture global_content %}
 {%- include plugins/hub-examples/global.html hub_example=hub_examples.global -%}
 {% endcapture %}

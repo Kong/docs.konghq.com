@@ -5,6 +5,7 @@
 # ----------------------------------------
 #
 # {% plugin_example %}
+# title: Rate Limiting Opinionated Example
 # plugin: kong-inc/rate-limiting
 # name: rate-limiting
 # config:
@@ -28,15 +29,18 @@ module Jekyll
       contents = super
       page = context.environments.first['page']
 
-      examples = Jekyll::InlinePluginExample::Config.new(
+      config = Jekyll::InlinePluginExample::Config.new(
         config: SafeYAML.load(contents),
         page:
-      ).examples
+      )
 
       Liquid::Template
         .parse(template)
         .render(
-          { 'page' => page, 'include' => { 'hub_examples' => examples } },
+          {
+            'page' => page,
+            'include' => { 'hub_examples' => config.examples, 'title' => config.title }
+          },
           { registers: context.registers }
         )
     end
