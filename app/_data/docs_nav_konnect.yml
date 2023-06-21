@@ -32,9 +32,9 @@
     - text: Set up a Runtime
       url: /getting-started/configure-runtime/
     - text: Deploy and Test a Service
-      url: /getting-started/implement-service/
+      url: /getting-started/deploy-service/
     - text: Productize a Service
-      url: /getting-started/configure-service/
+      url: /getting-started/productize-service/
     - text: Get Started with the Dev Portal
       items:
         - text: Publish and Consume Services
@@ -103,13 +103,12 @@
       url: /servicehub/
 
 - title: API Products
-  icon: 
+  icon: /assets/images/icons/konnect/icn-api-product.svg
   items:
     - text: Overview
       url: /api-products/
     - text: Manage API Product Documentation
       url: /api-products/service-documentation/
-    - text: Use Case Doc?
 
 
 - title: Dev Portal

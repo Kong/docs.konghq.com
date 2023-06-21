@@ -309,9 +309,12 @@
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
-/servicehub/plugins/   /runtime-manager/plugins/
-/servicehub/enable-service-plugin/ /runtime-manager/enable-service-plugin/
-/servicehub/enable-route-plugin/   /runtime-manager/enable-route-plugin/
+/konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
+/konnect/servicehub/enable-service-plugin/            /konnect/runtime-manager/enable-service-plugin/
+/konnect/servicehub/enable-route-plugin/              /konnect/runtime-manager/enable-route-plugin/
+/konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
+/konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
+/konnect/servicehub/service-documentation/            /konnect/api-products/service-documentation
 
 #API Redirects
 

@@ -1,0 +1,9 @@
+- output: ../../app/_assets/images/docs/konnect/api-products/api-products-manage.png
+  url: https://cloud.konghq.com/us/api-products/bb48757b-16ca-4c3d-8bb8-ae08dece9d5a/overview
+  wait: 4000
+  width: 1920
+  height: 1080
+  javascript: |
+    const analytics = document.querySelector("#overview-tab > div")
+    const productversions = document.querySelector("#versions-tab > div")
+    const documentation = document.querySelector("#documentation-tab > div")

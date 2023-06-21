@@ -7,7 +7,7 @@ API Products makes internal APIs discoverable, consumable, and reusable for inte
 
 **[Access {{site.konnect_short_name}} API Products](https://cloud.konghq.com/us/apiproducts).**
 
-![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/konnect-servicehub.png)
+![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/api-products/api-products-overview.png)
 
 ## API Products Dashboard
 
@@ -21,14 +21,14 @@ Here are some of the things you can do from the API Products Dashboard:
 * View traffic, error, and latency data. 
 
 
-![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/image.png)
+![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/api-products/api-products-manage.png)
 
 
-Number | Item | Description
+| Item | Description
 -------|------|------------
-1 | **API Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
-2 | **Analytics** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/)
-3 | **Documentation** | You can add markdown documentation for your API product, as well as an API specification for each version of the API product. You can control the individual publishing status of each document you upload to a API product.
+**Analytics** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/).
+**API Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
+**Documentation** | You can add markdown documentation for your API product, as well as an API specification for each version of the API product. You can control the individual publishing status of each document you upload to a API product.
 
 
 ### API product versions

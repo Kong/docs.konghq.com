@@ -23,14 +23,3 @@ You can provide extended descriptions of your API products with a Markdown (`.md
 
 All API product descriptions are managed from the **Documentation** section in the API Product overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
 
-## API specification
-
-API specifications, or specs, can be uploaded and attached to a specific version within your Dev Portal.
-You can have different API specs that correspond to different service versions.
-{{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
-
-<p align="center">
-  <img src="/assets/images/docs/konnect/konnect_service_docs_spec.png" />
-</p>
-
-Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also be able to filter by tag when in full-page view. 
