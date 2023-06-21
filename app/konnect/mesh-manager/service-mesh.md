@@ -1,6 +1,7 @@
 ---
 title: Create a service mesh
 content_type: how-to
+beta: true
 ---
 
 Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.konnect_short_name}} involves the following steps:
