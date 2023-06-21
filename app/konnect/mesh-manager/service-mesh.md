@@ -18,7 +18,7 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 
 ### Create and configure the global control plane
 
-1. From the left navigation menu in {{site.konnect_short_name}}, open [/assets/images/icons/konnect/icn-mesh-manager.svg] [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
+1. From the left navigation menu in {{site.konnect_short_name}}, open  (/assets/images/icons/konnect/icn-mesh-manager.svg) [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
 1. Click **New Control Plane** and complete the fields as needed.
 1. Select the control plane you just created, and then click **Zones** in the sidebar.
 1. Click **Create Zone**, configure the fields as needed, and follow the steps in the wizard to connect your zone to {{site.konnect_short_name}}.
