@@ -7,6 +7,7 @@ description: Kong Gateway is a lightweight, fast, and flexible cloud-native API 
 
 
 {% plugin_example %}
+title: Opinionated Example
 plugin: TheLEGOGroup/aws-request-signing
 name: aws-request-signing
 config:
