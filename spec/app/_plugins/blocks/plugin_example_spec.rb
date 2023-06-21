@@ -7,6 +7,7 @@ RSpec.describe Jekyll::PluginExample do
   let(:liquid_block) do
     <<~BLOCK
 {% plugin_example %}
+title: Opinionated Example
 plugin: kong-inc/jwt-signer
 name: jwt-signer
 config:
@@ -31,6 +32,7 @@ formats:
     subject { Capybara::Node::Simple.new(block.render(liquid_context)) }
 
     it 'renders the plugin example for the provided targets in the specified formats' do
+      expect(subject).to have_css('h3', text: 'Opinionated Example')
       expect(subject).to have_css('.navtab-title', text: 'Enable on a service')
       expect(subject).to have_css('.navtab-title', text: 'Enable on a route')
 

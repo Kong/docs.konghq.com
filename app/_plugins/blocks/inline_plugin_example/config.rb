@@ -13,6 +13,10 @@ module Jekyll
         validate!
       end
 
+      def title
+        @title ||= @config['title']
+      end
+
       # this must have the vendor
       def plugin
         @plugin ||= @config['plugin']

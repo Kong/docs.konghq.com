@@ -3,6 +3,7 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
   let(:config) do
     SafeYAML.load(
       <<~CONFIG
+        title: Opinionated Example
         plugin: kong-inc/jwt-signer
         name: jwt-signer
         config:
@@ -90,5 +91,9 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
 
       it { expect{ subject }.to raise_error(ArgumentError) }
     end
+  end
+
+  describe '#title' do
+    it { expect(subject.title).to eq('Opinionated Example') }
   end
 end
