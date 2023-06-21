@@ -29,7 +29,7 @@ Here are the steps you need to complete, in both Okta and
 {{site.konnect_short_name}}.
 First, complete the following in Okta:
 * [Set up an Okta application](#prepare-the-okta-application)
-* [Set up claims in Okta](#set-up-claims-in-okta)
+* [Set up claims in Okta](#set-up-claims-in-okta) (if using group claims for team mapping)
 
 Then, you can set up {{site.konnect_short_name}} to talk to the Okta application:
 * [Set up Okta IDP in {{site.konnect_short_name}}](#set-up-konnect), referring
@@ -66,9 +66,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
 
 ### Set up claims in Okta
 
-The connection between {{site.konnect_short_name}} and Okta uses OpenID Connect
-tokens. To have Okta send the correct information to your {{site.konnect_short_name}} org, set up
-claims to extract that information.
+This only needs to be followed if intending to use group claims for Konnect team mappings, this is an optional step. The connection between {{site.konnect_short_name}} and Okta uses OpenID Connect tokens. To have Okta send the correct information to your {{site.konnect_short_name}} org, set up claims to extract that information.
 
 1. Open your Okta account in a new browser tab.
 
