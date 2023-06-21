@@ -45,14 +45,17 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% navtab 3.3 %}
+    {% include_cached gateway-support.html version="3.3" data=site.data.tables.support.gateway.versions.33 eol="May 2024" %}
+  {% endnavtab %}
   {% navtab 3.2 %}
-    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="February 2024" %}
+    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="Feb 2024" %}
   {% endnavtab %}
   {% navtab 3.1 %}
-    {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.31 eol="December 2023" %}
+    {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.31 eol="Dec 2023" %}
   {% endnavtab %}
   {% navtab 3.0 %}
-    {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.30 eol="September 2023" %}
+    {% include_cached gateway-support.html version="3.0" data=site.data.tables.support.gateway.versions.30 eol="Sept 2023" %}
   {% endnavtab %}
   {% navtab 2.8 LTS %}
     {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
@@ -81,3 +84,8 @@ These versions have reached the end of full support.
 |   0.32   |  2018-05-22   |     2019-05-21      |      2020-05-21       |
 |   0.31   |  2018-03-13   |     2019-03-12      |      2020-03-12       |
 |   0.30   |  2018-01-22   |     2019-01-21      |      2020-01-21       |
+
+## See also
+
+* [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy/)
+* [Version support policy for {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/support-policy/)

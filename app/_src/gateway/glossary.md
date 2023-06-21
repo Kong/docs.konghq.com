@@ -8,7 +8,7 @@ title: Glossary
 |Admin | An admin is a {{site.base_gateway}} user account capable of accessing the Admin API or Kong Manager. |
 |Authentication| Authentication is the process by which a system validates the identity of a user account. |
 |Authorization| Authorization is the system of defining access to certain resources. In {{site.base_gateway}}, role-based access control (RBAC) is the main authorization mode. |
-|Beta| See [stability](/gateway/{{page.kong_version}}/stability). |
+|Beta| See [stability](/gateway/{{page.kong_version}}/stability/). |
 |Catalog| A list of all specs within a Dev Portal instance. This catalog can react to developer permissions, allowing a given developer to see whatever specs their role permits.|
 |Client| A Kong client refers to the downstream client making requests to {{site.base_gateway}}’s proxy port. It could be another service in a distributed application, a user’s identity, a user’s browser, or a specific device. |
 |Consumer| A consumer object represents the client of a service. A consumer is also the Admin API entity representing a developer or machine using the API. |
@@ -28,7 +28,7 @@ title: Glossary
 |Spec|  An OpenAPI definition of your service in YAML or JSON format. Can be uploaded to Dev Portal to share with developers in your organization.   |
 |Tags| Tags are customer-defined labels that let you manage, search for, and filter core entities using the `?tags` querystring parameter. Tags can be added when creating or editing most core entities. Each tag must be composed of one or more alphanumeric characters,` \_\`, `-`, `.` or `~`. |
 |Teams| Teams organize developers into working groups.|
-|Tech preview | See [stability](/gateway/latest/stability). |
+|Tech preview | See [stability](/gateway/latest/stability/). |
 |Third-party or community plugin| A custom plugin developed, maintained, and supported by an external developer, not by Kong. Kong does not test these plugins, or update their version compatibility.|
 |Upstream| An upstream object refers to the API or service managed by {{site.base_gateway}}, to which client requests are forwarded. An upstream object represents a virtual hostname and can be used to load balance incoming requests over multiple services.|
 |Workspaces| Workspaces enable an organization to segment objects and admins into namespaces. The segmentation allows teams of admins sharing the same {{site.base_gateway}} cluster to adopt roles for interacting with specific objects.|

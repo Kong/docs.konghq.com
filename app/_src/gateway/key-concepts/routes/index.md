@@ -25,8 +25,9 @@ configured like prior releases, and the `expressions` mode which uses
 a new configuration scheme.
 
 The default mode of the router is `traditional_compat` and the
-following sections describe how it is operates.  For a description of
-the `expressions` mode, see
+following sections describe how it operates. `traditional_compat`
+mode is designed to behave like the router in versions before
+{{site.base_gateway}} 3.x. For a description of the `expressions` mode, see
 [How to Configure Routes using Expressions](expressions).
 
 In general, the router orders all defined routes by their priority and
@@ -35,6 +36,10 @@ are multiple matching routes with the same priority, it is not defined
 which of the matching routes will be used and {{site.base_gateway}}
 will use either of them according to how its internal data structures
 are organized.
+
+If a route contains prefix or regular expression paths, the priority
+of the route will be calculated separately for each of the paths and
+requests will be routed accordingly.
 
 In `traditional_compat` mode, the priority of a route is determined as
 follows, by the order of descending significance:
@@ -80,10 +85,9 @@ sorts the routes as follows:
    length of their paths. Routes with longer paths are considered
    before routes with shorter paths.
 
-If one of the paths is a regular expression, the whole route is
-considered before routes that have no regular expressions. Similarly,
-if a route contains multiple prefix paths (and no regular
-expressions), its priority is determined by the longest of the paths.
+For a route with multiple paths, each path will be considered
+separately for priority determination. Effectively, this means that
+separate routes exists for each of the paths.
 
 ## Regular expressions
 
@@ -112,7 +116,7 @@ Routes can be configured dynamically to rewrite the requested URL to a different
 
 {{site.base_gateway}} can also handle more complex URL rewriting cases by using regular expression capture groups in the route path and the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) plugin. For example, this can be used when you must replace `/api/<function>/old` with `/new/api/<function>`.
 
-{{site.base_gateway}} 3.0.x or later ships with a new router. The new router can use regex expression capture groups to describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. For more information about how to configure the router using Expressions, see [How to configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions).
+{{site.base_gateway}} 3.0.x or later ships with a new router. The new router can use regex expression capture groups to describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. For more information about how to configure the router using Expressions, see [How to configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions/).
 
 ## Plugins for routes
 

@@ -1,50 +1,74 @@
 ---
-title: Service Hub Overview
+title: The Konnect Service Hub
+subtitle: Track every service across your architecture
+content-type: explanation
 ---
 
-The Service Hub is a {{site.konnect_saas}} functionality module that
-lets you catalog all of your services in a single system of record. This
-catalog represents the single source of truth of your organization’s service
-inventory and their dependencies.
+The Service Hub makes internal APIs discoverable, consumable, and reusable for internal development teams. Catalog all your services through the Service Hub to create a single source of truth for your organization’s service inventory. By leveraging Service Hub, your application developers can search, discover, and consume existing services to accelerate their time-to-market, while enabling a more consistent end-user experience across the organization’s applications.
 
-Using the Service Hub, you can catalog, manage, and track every service in your
-entire architecture.
+**[Access the {{site.konnect_short_name}} service hub](https://cloud.konghq.com/us/servicehub).**
 
-## Services in the Service Hub catalog
+![{{site.konnect_short_name}} service hub](/assets/images/docs/konnect/konnect-servicehub.png)
 
-Each entry in the Service Hub is called a _{{site.konnect_short_name}} service_, or _service_.
-A {{site.konnect_short_name}} service is an abstraction of an upstream service.
 
-A service in the Service Hub breaks down into multiple
-configuration _versions_, and can be _implemented_ to route to any
-endpoint.
 
-![{{site.konnect_short_name}} service diagram](/assets/images/docs/konnect/konnect-services-diagram.png)
 
-* **Service**: The abstraction of one of
-your own services. For example, it might represent a data
-transformation microservice or a billing API.
+## Service Package Dashboard
 
-* **Service version**: One instance, or implementation, of the
-service with a unique configuration. A service can have many versions,
-and each version can have different configurations, set up for a RESTful API,
-gPRC endpoint, GraphQL endpoint, and others.
 
-* **Service implementation**: A runnable service version. Each service version can only have one implementation.
+The Service Package Dashboard is the place to manage services, versions, and documentation. The dashboard is available by clicking any Service Package in the Service Hub. 
 
-A {{site.konnect_short_name}} service isn't associated with any specific runtime group, but every
-service version is. When you create a version of the service, you must select a
-group for the version to run on.
+Here are some of the things you can do from the Service Package Dashboard: 
 
-{:.note}
-> **Note:** Currently, the only supported implementation type is a
-{{site.base_gateway}} runtime.
+* Configure a service
+* Publish a service to the Dev Portal
+* Manage versions and labels. 
+* View traffic, error, and latency data. 
 
-The main attribute of a service version is its upstream URL, where the service
-listens for requests. You can specify the URL with a single string, or by
-specifying its protocol, host, port, and path individually.
 
-[Get started with service management &rarr;](/konnect/servicehub/manage-services)
+![{{site.konnect_short_name}} service hub](/assets/images/docs/konnect/konnect-service-package-versions.png)
+
+
+Number | Item | Description
+-------|------|------------
+1 | **Service Versions** | This section displays the status of a service version. From the context menu you can **Delete** a service version, or use the **View Details** button to navigate to that versions dashboard. 
+2 | **Analytics** | Analytics data for the service. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/)
+3 | **Documentation** | You can add markdown documentation for your service, as well as an API specification for each version of the service. You can control the individual publishing status of each document you upload to a service.
+
+
+
+### Service versions
+
+A {{site.konnect_short_name}} service version is associated with a [runtime group](/konnect/runtime-manager/runtime-groups/). As such, the configurations, plugins, specific implementations that are associated with the runtime group are also associated with the service version. 
+
+Services can have multiple service versions, and each version can be associated with a different runtime group. Services can be made available in multiple environments by creating service versions in different runtime groups.
+
+A common use case is environment specialization.
+For example, if you have three runtime groups for `development`, `staging`, and
+`production`, you can manage which environment the service is available in by
+assigning a version to that group at creation time. You might have v1 running
+in `production`, and be actively working on v2 in `development`. Once it's
+ready to test, you'd create v2 in `staging` before finally creating v2 in
+`production` alongside v1.
+
+
+### Analytics
+
+The analytics dashboard shown in the **Service Dashboard** is a high level overview of **traffic**, **error**, and **latency** for the service. These reports are generated automatically based on the traffic to the service. 
+
+Learn more: 
+
+* [Analytics overview](/konnect/analytics/)
+* [How to analyze services and routes](/konnect/analytics/services-and-routes/)
+* [How to generate reports](/konnect/analytics/generate-reports/)
+
+### Documentation
+
+The **Service Dashboard** can be used to manage documentation for your service. Documentation can be either an API spec, or Markdown documentation for the service. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the service is published.
+
+Learn more: 
+
+* [Manage service documentation](/konnect/servicehub/service-documentation/)
 
 ### {{site.base_gateway}} implementations
 
@@ -61,31 +85,10 @@ Learn more in the [route configuration guide](/gateway/latest/key-concepts/route
 After configuring the service, version, implementation, and at least one route,
 you’ll be able to start making requests through {{site.konnect_saas}}.
 
-[Implement a service version &rarr;](/konnect/servicehub/service-implementations)
+### Plugins
 
-## Dev Portal
+Plugins can be configured to run in a variety of contexts, ranging from a specific service version or route to all service versions. Plugins can execute actions inside Kong Konnect before or after a request has been proxied to the upstream API, as well as on any incoming responses.
 
-Service Hub natively integrates the Dev Portal into service configuration.
-Admins can publish services directly from Service Hub to the Dev Portal, where
-application developers can search, discover, and consume existing services.
+Learn more:
 
-The Dev Portal in {{site.konnect_product_name}} contains an API catalog,
-allowing you to document all of your services and their versions.
-
-Through Service Hub, publish your service to the Dev Portal and set up
-the following for any service:
-* **Markdown documentation**: A description of your service. Applies to every
-service version.
-* **Version spec**: An OpenAPI (Swagger) document in YAML or JSON format.
-Applies to a specific service version.
-
-[Upload and publish service documentation to the Dev Portal &rarr;](/konnect/servicehub/service-documentation)
-
-## {{site.base_gateway}} plugins
-
-Plugins can be configured to run in a variety of contexts,
-ranging from a specific service version or route to all service versions. Plugins
-can execute actions inside {{site.konnect_product_name}} before or after a request
-has been proxied to the upstream API, as well as on any incoming responses.
-
-[Manage plugins &rarr;](/konnect/servicehub/plugins/)
+* [Manage Plugins](/konnect/servicehub/plugins/)

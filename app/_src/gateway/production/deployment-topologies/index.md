@@ -49,7 +49,7 @@ In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topol
 
 Running {{ site.base_gateway }} in traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database, like rate-limiting with the cluster strategy, or OAuth2. However, there are some downsides too.
 
-When running in traditional mode, every {{ site.base_gateway }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, the entire running gateway configuration is compromised. In contrast, hybrid mode (shown below) has distinct CP and DP nodes reducing the attack surface.
+When running in traditional mode, every {{ site.base_gateway }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, the entire running gateway configuration is compromised. In contrast, [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) has distinct CP and DP nodes reducing the attack surface.
 
 In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
 
@@ -61,7 +61,7 @@ You can enable [DB-less mode](/gateway/{{page.kong_version}}/production/deployme
 
 When running in DB-less mode, configuration is provided to {{ site.base_gateway }} using a second file. This file contains your configuration in YAML or JSON format using Kong's declarative configuration syntax.
 
-DB-less mode is also used by the Kong Ingress Controller, where the Kubernetes API server uses Kong's `/config` endpoint to update the running configuration in memory any time a change is made.
+DB-less mode is also used by the {{site.kic_product_name}}, where the Kubernetes API server uses Kong's `/config` endpoint to update the running configuration in memory any time a change is made.
 
 The combination of DB-less mode and declarative configuration has a number
 of benefits:

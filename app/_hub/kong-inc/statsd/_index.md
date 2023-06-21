@@ -1,148 +1,28 @@
----
-name: StatsD
-publisher: Kong Inc.
-desc: Send metrics to StatsD
-description: |
-  Log [metrics](#metrics) for a Service or Route to a StatsD server.
-  It can also be used to log metrics on [Collectd](https://collectd.org/)
-  daemon by enabling its
-  [StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
-type: plugin
-categories:
-  - analytics-monitoring
-kong_version_compatibility:
-  community_edition:
-    compatible: true
+{% if_version gte:3.3.x %}
+## Queueing
 
-  enterprise_edition:
-    compatible: true
+The StatsD plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
 
-params:
-  name: statsd
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: tcp
-    - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
-  dbless_compatible: 'yes'
-  config:
-    - name: host
-      required: true
-      default: '`127.0.0.1`'
-      value_in_examples: 127.0.0.1
-      datatype: string
-      description: The IP address or hostname of StatsD server to send data to.
-    - name: port
-      required: true
-      default: '`8125`'
-      value_in_examples: 8125
-      datatype: integer
-      description: The port of StatsD server to send data to.
-    - name: metrics
-      required: true
-      default: All metrics are logged
-      datatype: Array of record elements
-      description: |
-        List of metrics to be logged. Available values are described under [Metrics](#metrics).
-    - name: prefix
-      required: true
-      default: '`kong`'
-      datatype: string
-      description: String to prefix to each metric's name.
-    - name: hostname_in_prefix
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: Include the `hostname` in the `prefix` for each metric name.
-      minimum_version: "3.0.x"
-    - name: udp_packet_size
-      required: true
-      default: '`0` (not combined)'
-      datatype: number
-      description: |
-        Combine UDP packet up to the size configured. If zero (0), don't combine the
-        UDP packet. Must be a number between 0 and 65507 (inclusive).
-    - name: use_tcp
-      required: true
-      default: '`false`'
-      datatype: boolean
-      description: Use TCP instead of UDP.
-      minimum_version: "3.0.x"
-    - name: allow_status_codes
-      required: true
-      default: All responses are passed to log metrics
-      value_in_examples:
-        - 200-205
-        - 400-499
-      datatype: array of string elements
-      description: List of status code ranges that are allowed to be logged in metrics.
-      minimum_version: "3.0.x"
-    - name: consumer_identifier_default
-      required: true
-      default: 'custom_id'
-      datatype: string
-      description: The default consumer identifier of metrics. This takes effect when a metric's consumer identifier is omitted. Allowed values are `custom_id`, `consumer_id`, `username`.
-      minimum_version: "3.0.x"
-    - name: service_identifier_default
-      required: true
-      default: 'service_name_or_host'
-      datatype: string
-      description: The default service identifier of metrics. This takes effect when a metric's service identifier is omitted. Allowed values are `service_name_or_host`, `service_id`, `service_name`, `service_host`.
-      minimum_version: "3.0.x"
-    - name: workspace_identifier_default
-      required: true
-      default: 'workspace_id'
-      datatype: string
-      description: The default workspace identifier of metrics. This will take effect when a metric's workspace identifier is omitted. Allowed values are `workspace_id`, `workspace_name`.
-      minimum_version: "3.0.x"
-    - name: flush_timeout
-      required: true
-      default: '`2`'
-      value_in_examples: 2
-      datatype: number
-      description: |
-        Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.
-      minimum_version: "3.1.x"
-    - name: retry_count
-      required: true
-      default: 10
-      value_in_examples: 10
-      datatype: integer
-      description: Number of times to retry when sending data to the upstream server.
-      minimum_version: "3.1.x"
-    - name: queue_size
-      required: true
-      default: 1
-      datatype: integer
-      description: Maximum number of log entries to be sent on each message to the upstream server.
-      minimum_version: "3.1.x"
-    - name: tag_style
-      required: false
-      datatype: string
-      description: The tag style configurations to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics. Allowed values are  `dogstatsd`, `influxdb`, `librato`, and `signalfx`.
-      minimum_version: 3.2.x
-  extra: |
-    By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
-    configures the greatest datagram size the plugin can combine. It should be less than
-    65507 according to UDP protocol. Consider the MTU of the network when setting this parameter.
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Plugin Queuing Reference](/gateway/latest/kong-plugins/queue/reference/)
+in the {{site.base_gateway}} documentation.
+
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
+{% endif_version %}
+
+
 ---
 
 ## Metrics
 
 {% if_plugin_version gte:3.0.x %}
-Metric                     | Description | Namespace
+Metric                     | Description | Namespace syntax
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.service.<service_identifier>.request.count`
 `request_size`             | The request's body size in bytes. | `kong.service.<service_identifier>.request.size`
@@ -156,7 +36,7 @@ Metric                     | Description | Namespace
 `status_count_per_user`    | Tracks the status code per consumer per service. | `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`
 `status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
 `status_count_per_user_per_route`    | The status code per consumer per route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
-`shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.node.<node_hostname>.shdict.<shdict_name>.free_space` and `kong.node.<node_hostname>.shdict.<shdict_name>.capacity`
+`shdict_usage`             | The usage of a shared dict, sent once every minute. <br><br> Monitors any `lua_shared_dict` used by {{site.base_gateway}}. You can find all the shared dicts {{site.base_gateway}} has configured using the [`/status`](/gateway/latest/admin-api/#health-routes) endpoint of the Admin API. <br><br>For example, the metric might report on `shdict.kong_locks` or `shdict.kong_counters`. | `kong.node.<node_hostname>.shdict.<lua_shared_dict>.free_space` and <br>`kong.node.<node_hostname>.shdict.<lua_shared_dict>.capacity`
 `cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
 `cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
 
@@ -189,6 +69,7 @@ Metric                     | Description | Namespace
 
 {% if_plugin_version gte:3.2.x %}
 If you enable the `tag_style` configuration for the StatsD plugin, the following metrics are sent instead:
+
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.request.count`
@@ -205,28 +86,30 @@ Metric                     | Description | Namespace
 
 The StatsD plugin supports Librato, InfluxDB, DogStatsD, and SignalFX-style tags, which are used like Prometheus labels.
 
-For Librato-style tags, they must be appended to the metric name with a delimiting #, for example:
+* **Librato-style tags**: Must be appended to the metric name with a delimiting #, for example:
 `metric.name#tagName=val,tag2Name=val2:0|c`
 See the [Librato StatsD](https://github.com/librato/statsd-librato-backend#tags) documentation for more information.
 
-For InfluxDB-style tags, they must be appended to the metric name with a delimiting comma, for example:
+* **InfluxDB-style tags**: Must be appended to the metric name with a delimiting comma, for example:
 `metric.name,tagName=val,tag2Name=val2:0|c`
 See the [InfluxDB StatsD](https://www.influxdata.com/blog/getting-started-with-sending-statsd-metrics-to-telegraf-influxdb/#introducing-influx-statsd) documentation for more information.
 
-For DogStatsD-style tags, they're appended as a |# delimited section at the end of the metric, for example:
+* **DogStatsD-style tags**: Appended as a |# delimited section at the end of the metric, for example:
 `metric.name:0|c|#tagName:val,tag2Name:val2`
 See the [Datadog StatsD Tags](https://docs.datadoghq.com/developers/dogstatsd/data_types/#tagging) documentation for more information about the concept description and Datagram Format.
-(AWS CloudWatch)[https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html] also uses the DogStatsD protocol.
+[AWS CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-custom-metrics-statsd.html) also uses the DogStatsD protocol.
 
-For SignalFX dimension, add the tags to the metric name in square brackets, for example:
+* **SignalFX dimension**: Add the tags to the metric name in square brackets, for example:
 `metric.name[tagName=val,tag2Name=val2]:0|c`
 See the [SignalFX StatsD](https://github.com/signalfx/signalfx-agent/blob/main/docs/monitors/collectd-statsd.md#adding-dimensions-to-statsd-metrics) documentation for more information.
 
-So when the `tag_style` config is enabled, {{site.base_gateway}} uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
+When the `tag_style` config is enabled, {{site.base_gateway}} uses a filter label, like `service`, `route`, `workspace`, `consumer`, `node`, or `status`, on the metrics tags to see if these can be found. For `shdict_usage` metrics, only `node` and `shdict` are added.
 
 For example:
 
-`kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c`
+```
+kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c
+```
 
 {% endif_plugin_version %}
 
@@ -266,26 +149,3 @@ Field         | Description                                             | Dataty
 ## Kong Process Errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
-
----
-## Changelog
-
-**{{site.base_gateway}} 3.2.x**
-* Added the `tag_style` configuration parameter. This allows you to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics.
-
-**{{site.base_gateway}} 3.1.x**
-* Added support for managing queues and connection retries when sending messages to the upstream with 
-the `queue_size`,`flush_timeout`, and `retry_count` configuration parameters. 
-
-### {{site.base_gateway}} 3.0.x
-
-* Merged features of the StatsD Advanced plugin into the StatsD plugin. The StatsD plugin now includes the following:
-  * New parameters for StatsD: `hostname_in_prefix`, `udp_packet_size`, `ues_tcp`, `allow_status_codes`, `consumer_identifier_default`, `service_identifier_default`, `workspace_identifier_default`.
-  * New metrics: `status_count_per_workspace`, `status_count_per_user_per_route`, `shdict_usage`
-  * New metric fields: `service_identifier`, `workspace_identifier`
-
-* Breaking changes
-  * The metric name that is related to the service has been renamed by adding a `service.` prefix. e.g. `kong.service.<service_identifier>.request.count`
-  * The metric `kong.<service_identifier>.request.status.<status>.count` from metrics `status_count` and `status_count_per_user` has been renamed to `kong.service.<service_identifier>.status.<status>.count`
-  * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
-  * The metric `kong.<service_identifier>.request_size` and `kong.<service_identifier>.response_size` stat type has been changed from `timer` to `counter`.

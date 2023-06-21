@@ -6,7 +6,7 @@ There are two types of PATs available for {{site.konnect_short_name}}:
 * Personal access tokens associated with user accounts
 * System account access tokens associated with system accounts
 
-Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts).
+Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts/).
 
 Before you generate a PAT, keep the following in mind:
 
@@ -18,7 +18,7 @@ Before you generate a PAT, keep the following in mind:
 {% navtabs %}
 {% navtab User Account Token %}
 
-To generate a PAT for a user account in {{site.konnect_short_name}}, select your name to open the context menu 
+To generate a PAT for a user account in {{site.konnect_short_name}}, select your user icon to open the context menu 
  and click **Personal access tokens**, then click **Generate token**. 
 
 {% endnavtab %}

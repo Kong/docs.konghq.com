@@ -1,5 +1,5 @@
 ---
-title: Running the Kubernetes Ingress Controller with Istio
+title: Running the Kong Ingress Controller with Istio
 ---
 
 This guide walks you through deploying {{site.base_gateway}} with {{site.kic_product_name}}

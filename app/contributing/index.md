@@ -41,10 +41,10 @@ version to version. Chances are good that a typo on a page in one version appear
 
 Before you change anything except for typos or grammatical errors, explore these resources:
 
-* Our [style guide](/contributing/style-guide) provides a minimal set of style guidelines.
-* Our set of [markdown rules](/contributing/markdown-rules) for making your content work with our Jekyll implementation. Specifies how you must
+* Our [style guide](/contributing/style-guide/) provides a minimal set of style guidelines.
+* Our set of [markdown rules](/contributing/markdown-rules/) for making your content work with our Jekyll implementation. Specifies how you must
 work with certain kinds of content - includes, variables, new pages.
-* Our [list of Kong-specific terms](/contributing/terms). Includes product names and other terms the Kong docs use in specific ways.
+* Our [list of Kong-specific terms](/contributing/word-choice/). Includes product names and other terms the Kong docs use in specific ways.
 * Our [documentation templates](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates). You can use these templates to create new documentation pages. 
 
 ### Build locally
@@ -68,9 +68,8 @@ you're used to. Resources we've found helpful, with thanks to the Write the Docs
 * [Learn Git in a Month of Lunches](https://www.amazon.com/Learn-Month-Lunches-Rick-Umali/dp/1617292419) (book). Recommended by the Write the Docs
 community as a great "how to be productive with Git" tutorial.
 * [Pro Git](https://git-scm.com/book/en/v2) (book).
-* [Git Immersion](http://gitimmersion.com) (open source online course).
+* [Git Immersion](http://gitimmersion.com) (open-source online course).
 * [Git and GitHub for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV) (YouTube series, course).
-* [Git and GitHub for Writers](https://www.udemy.com/course/git-and-github-for-writers) (Udemy course).
 
 Or consider a GUI client instead of the command line, such as GitHub Desktop, TortoiseGit (Windows), Tower, Sourcetree, or GitKraken.
 

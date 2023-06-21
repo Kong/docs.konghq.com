@@ -20,7 +20,7 @@ Use one of the following installation methods to install Kong for Kubernetes:
 To deploy Kong via `kubectl`, use:
 
 ```
-kubectl apply -f https://bit.ly/kong-ingress-dbless
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
 ```
 
 > Important! This is not a production-grade deployment.

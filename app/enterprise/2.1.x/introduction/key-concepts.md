@@ -83,7 +83,7 @@ A Role is a set of permissions that may be reused and assigned to Admins. For ex
 ![Role](/assets/images/docs/ee/role.png)
 
 ## Route
-A Route, also referred to as Route object, defines rules to match client requests to upstream services. Each Route is associated with a Service, and a Service may have multiple Routes associated with it. Routes are entry-points in Kong and define rules to match client requests. Once a Route is matched, Kong proxies the request to its associated Service. See the [Proxy Reference](/enterprise/{{page.kong_version}}/proxy) for a detailed explanation of how Kong proxies traffic.
+A Route, also referred to as Route object, defines rules to match client requests to upstream services. Each Route is associated with a Service, and a Service may have multiple Routes associated with it. Routes are entry-points in Kong and define rules to match client requests. Once a Route is matched, Kong proxies the request to its associated Service. See the [Proxy Reference](/enterprise/{{page.kong_version}}/proxy/) for a detailed explanation of how Kong proxies traffic.
 
 ## Service
 A Service, also referred to as a Service object, is the upstream APIs and microservices Kong manages. Examples of Services include a data transformation microservice, a billing API, and so on. The main attribute of a Service is its URL (where Kong should proxy traffic to), which can be set as a single string or by specifying its protocol, host, port and path individually. The URL can be composed by specifying a single string or by specifying its protocol, host, port, and path individually.

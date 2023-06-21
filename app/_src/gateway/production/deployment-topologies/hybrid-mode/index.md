@@ -53,7 +53,7 @@ You can run {{site.base_gateway}} in hybrid mode on any platform where
 ### Kubernetes Support and Additional Documentation
 
 [{{site.base_gateway}} on Kubernetes](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart)
-fully supports hybrid mode deployments, with or without the Kong Ingress Controller.
+fully supports hybrid mode deployments, with or without the {{site.kic_product_name}}.
 
 For the full Kubernetes hybrid mode documentation, see
 [hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
@@ -139,7 +139,7 @@ In case the control plane stops working, the data plane will keep serving reques
 cached configurations. It does so while constantly trying to reestablish communication
 with the control plane.
 
-This means that the data plane nodes can be stopped even for extended periods
+This means that the control plane nodes can be stopped even for extended periods
 of time, and the data plane will still proxy traffic normally. Data plane
 nodes can be restarted while in disconnected mode, and will load the last
 configuration in the cache to start working. When the control plane is brought
@@ -192,13 +192,16 @@ control plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
 have limitations in hybrid mode:
 
-* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
+* [**Key Auth Encrypted**](/hub/kong-inc/key-auth-enc/): The time-to-live setting
 (`ttl`), which determines the length of time a credential remains valid, does
 not work in hybrid mode.
-* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
-This plugin does not support the `cluster` strategy in hybrid mode. The `redis`
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/), [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/), and [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/):
+These plugins don't support the `cluster` strategy/policy in hybrid mode. One of 
+the `local` or `redis` strategies/policies must be used instead.
+* [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/):
+This plugins doesn't support the `cluster` strategy in hybrid mode. The `redis` 
 strategy must be used instead.
-* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
+* [**OAuth 2.0 Authentication**](/hub/kong-inc/oauth2/): This plugin is not
 compatible with hybrid mode. For its regular workflow, the plugin needs to both
 generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
@@ -217,7 +220,7 @@ multiple control planes and redirecting the traffic using a TCP proxy.
 
 ## Readonly Status API endpoints on data plane
 
-Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api)
+Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api/)
 are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
 
 - [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)

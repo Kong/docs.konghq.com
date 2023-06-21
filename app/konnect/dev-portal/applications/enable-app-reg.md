@@ -3,7 +3,7 @@ title: Enable or Disable Application Registration for a Service
 content_type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service), you must enable application registration for a service version.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for a service version.
 When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
 These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the service and are managed by
 {{site.konnect_saas}}.
@@ -27,7 +27,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 
   - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
 
-- The service version must have an [implementation](/konnect/servicehub/service-implementations).
+- The service version must have an [implementation](/konnect/servicehub/service-implementations/).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
@@ -38,7 +38,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/runtime-groups/declarative-config).
+> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/declarative-config/).
 
 ## Enable app registration with key authentication {#key-auth-flow}
 

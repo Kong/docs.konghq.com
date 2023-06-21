@@ -7,6 +7,11 @@ module SEO
         @key ||= @page.url
       end
 
+      def process!(index)
+        super(index)
+        @page.data['canonical_url'] = @page.url
+      end
+
       def attributes
         super.merge('url' => @page.url, 'page' => @page)
       end

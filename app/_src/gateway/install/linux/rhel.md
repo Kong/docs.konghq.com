@@ -9,7 +9,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user) access.
+* A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
 ## Download and Install
@@ -81,7 +81,9 @@ rpm -iv kong-{{page.versions.ce}}.rpm
 
 Install the YUM repository from the command line.
 
-1. Download the Kong APT repository:
+{% include_cached /md/gateway/rpm-gpg-key-2023.md kong_version=page.kong_version %}
+
+1. Download the Kong YUM repository:
     ```bash
     curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
     ```

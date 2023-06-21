@@ -51,6 +51,7 @@ items:
     items:
       - text: License
         url: /plan-and-deploy/license
+        src: production/cp-deployment/license/
 
   - title: Enterprise Features
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
@@ -65,10 +66,12 @@ items:
         url: /features/kds-auth
       - text: FIPS support
         url: /features/fips-support
+        src: production/secure-deployment/fips-support/
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /features/rbac
+        src: production/secure-deployment/rbac/
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support

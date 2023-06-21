@@ -1,123 +1,3 @@
----
-name: Mocking
-publisher: Kong Inc.
-desc: Provide mock endpoints to test your APIs against your services
-description: |
-  Provide mock endpoints to test your APIs in development against your services.
-  The Mocking plugin leverages standards based on the Open API Specification (OAS)
-  for sending out mock responses to APIs.
-
-  Benefits of service mocking with the Kong Mocking plugin:
-
-  - Conforms to a design-first approach since mock responses are within OAS.
-  - Accelerates development of services and APIs.
-  - Promotes parallel development of APIs across distributed teams.
-  - Provides an enhanced full lifecycle API development experience with Dev Portal
-    integration.
-  - Easily enable and disable the Mocking plugin for flexibility when
-    testing API behavior.
-
-  This plugin can mock `200`, `201`, and `204` responses.
-
-enterprise: true
-plus: true
-type: plugin
-categories:
-  - traffic-control
-kong_version_compatibility:
-  enterprise_edition:
-    compatible: true
-params:
-  name: mocking
-  service_id: true
-  consumer_id: true
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  dbless_explanation: |
-    {:.note}
-    > Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
-    instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
-  examples: true
-  config:
-    - name: api_specification_filename
-      required: semi
-      default: null
-      datatype: string
-      value_in_examples: null
-      description: |
-        The path and name of the specification file loaded into Kong Gateway's database. You cannot
-        use this option for DB-less or hybrid mode.
-    - name: api_specification
-      required: semi
-      default: null
-      datatype: string
-      value_in_examples: <my_spec_contents>
-      description: |
-        The contents of the specification file. You must use this option for hybrid or DB-less mode.
-        With this configuration option, you can include the full specification as part of the configuration,
-        instead of referring to a separate file with `api_specification_filename` that lives next to the Kong Gateway.
-        In Kong Manager, you can copy and paste the contents of the spec directly into
-        the `Config.Api Specification` text field.
-    - name: random_delay
-      required: false
-      default: false
-      datatype: boolean
-      value_in_examples: true
-      description: |
-        Enables a random delay in the mocked response. Introduces delays to simulate
-        real-time response times by APIs.
-    - name: max_delay_time
-      required: semi
-      default: 1
-      datatype: number
-      value_in_examples: 1
-      description: |
-        The maximum value in seconds of delay time. Set this value when `random_delay` is enabled
-        and you want to adjust the default. The value must be greater than the
-        `min_delay_time`.
-    - name: min_delay_time
-      required: semi
-      default: 0.001
-      datatype: number
-      value_in_examples: 0.001
-      description: |
-        The minimum value in seconds of delay time. Set this value when `random_delay` is enabled
-        and you want to adjust the default. The value must be less than the
-        `max_delay_time`.
-    - name: random_examples
-      required: false
-      default: false
-      datatype: boolean
-      value_in_examples: true
-      description: |
-        Randomly selects one example and returns it. This parameter requires the spec to have multiple examples configured.
-      minimum_version: "2.7.x"
-    - name: included_status_codes
-      required: false
-      default: null
-      datatype: array of integers
-      description: |
-        A global list of the HTTP status codes that can only be selected and returned.
-      minimum_version: "3.1.x"
-    - name: random_status_code
-      required: false
-      default: false
-      datatype: boolean
-      description: |
-        Determines whether to randomly select an HTTP status code from the responses of the corresponding API method.
-        The default value is `false`, which means the minimum HTTP status code is always selected and returned.
-      minimum_version: "3.1.x"
-  extra: |
-
-    Depending on the Kong Gateway deployment mode, set either the `api_specification_filename`
-    or the `api_specification` parameter. The plugin requires a spec to work.
----
-
 ## Behavioral Headers
 
 Behavioral headers allow you to change the behavior of the Mocking plugin for the individual request without changing the configuration.
@@ -274,7 +154,7 @@ copy and paste the `stock-01.json` example file into the Dev Portal using Editor
 2. Name the file `stock-01.json`.
 3. Copy and paste the contents in the [example](#stock-spec) into the new file.
 
-Alternatively, you can also use the [Portal Files API](/gateway/latest/developer-portal/files-api/#post-a-content-file)
+Alternatively, you can also use the [Portal Files API](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1#/)
 to upload a spec to the Dev Portal.
 
 #### Deploy a spec to Insomnia {#deploy-spec-insomnia}
@@ -415,14 +295,10 @@ IP address or URL for {{site.base_gateway}}.
 }
 ```
 
-### Step 2. Create the stock service {#create-stock-service}
+### Create the stock service {#create-stock-service}
 
 This example creates a service named `Stock-Service`.
 
-Command:
-
-{% navtabs %}
-{% navtab cURL %}
 
 ```bash
 curl -i -X POST http://<admin-hostname>:8001/services \
@@ -430,19 +306,9 @@ curl -i -X POST http://<admin-hostname>:8001/services \
   --data url='http://httpbin.org/anything'
 ```
 
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http :8001/services name=Stock-Service url='http://httpbin.org/anything'
-```
-
-{% endnavtab %}
-{% endnavtabs %}
-
 Response:
 
-```
+```json
 HTTP/1.1 201 Created
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: http://localhost:8002
@@ -476,28 +342,15 @@ vary: Origin
 }
 ```
 
-### Step 3. Create the get stock quote route {#create-stock-quote-route}
+### Create the get stock quote route {#create-stock-quote-route}
 
 This example creates a route named `getStockQuote` on the service named `Stock-Service`.
-
-{% navtabs %}
-{% navtab cURL %}
 
 ```bash
 curl -X POST http://localhost:8001/services/Stock-Service/routes \
     --data "name=getStockQuote" \
     --data paths="/stock/historical"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f :8001/services/Stock-Service/routes name='getStockQuote' paths="/stock/historical"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Response:
 
@@ -546,14 +399,9 @@ vary: Origin
 }
 ```
 
-### Step 4. Enable the Mocking plugin {#enable-mock-plugin}
+### Enable the Mocking plugin {#enable-mock-plugin}
 
 This example enables the Mocking plugin on the `getStockQuote` route.
-
-Command:
-
-{% navtabs %}
-{% navtab cURL %}
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
@@ -594,28 +442,6 @@ In Kong Manager, you can copy and paste the contents of the spec directly into
 the `Config.Api Specification` text field.
 
 ![Kong Manager Config API Spec Text Field](/assets/images/docs/dev-portal/km-config-api-spec-txt-fld.png)
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json
-```
-
-Optional configuration for random simulated delay using default maximum and minimum delays:
-
-```bash
-http -f :8001/routes/getStockQuote/plugins name=mocking config.api_specification_filename=stock-0.1.json config.random_delay=true
-```
-
-Specify the path to your spec file if you are using `config.api_specification`:
-
-```bash
-http -f localhost:8001/routes/mocking/plugins name=mocking config.api_specification=@../stock-0.1.json
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Response (random delay not enabled):
 
@@ -701,31 +527,16 @@ vary: Origin
 }
 ```
 
-### Step 5. Enable the CORS plugin {#enable-cors-plugin}
+### Enable the CORS plugin {#enable-cors-plugin}
 
 Cross-origin resource sharing (CORS) is disabled by default for security reasons. To test the mock response
 from the Dev Portal, enable the [CORS plugin](/hub/kong-inc/cors/) on the `getStockQuote` route.
-
-Command:
-
-{% navtabs %}
-{% navtab cURL %}
 
 ```bash
 curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
     --data "name=cors"  \
     --data "config.origins=*"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f :8001/routes/getStockQuote/plugins name=cors config.origins=*
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Response:
 
@@ -783,7 +594,7 @@ vary: Origin
 }
 ```
 
-### Step 6. Test the mock response {#testing123}
+### Test the mock response {#testing123}
 
 Test the mocked response from within the Dev Portal Service,
 [Insomnia](https://insomnia.rest/download), or from the command line.
@@ -820,23 +631,10 @@ Test the mock response from within the Insomnia spec using the **Try it out** fe
 
 #### Command line test
 
-{% navtabs %}
-{% navtab cURL %}
-
 ```bash
 curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" \
   -H "accept: application/json"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http :8000/stock/historical?tickers=AAPL accept:application/json
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 The response matches the mocked response from within the spec:
 
@@ -876,7 +674,7 @@ vary: Origin
 }
 ```
 
-### Step 7. Disable the Mocking plugin and update the Service URL {#post-test}
+### Disable the Mocking plugin and update the Service URL {#post-test}
 
 When your API mock testing is completed, disable the Mocking plugin and update the service
 URL.
@@ -886,24 +684,11 @@ or by using a command. You can copy and paste the plugin ID from within Kong Man
 
 ![Copy Plugin ID](/assets/images/docs/dev-portal/km-copy-plugin-id.png)
 
-{% navtabs %}
-{% navtab cURL %}
-
 ```
 curl -X PATCH http://localhost:8001/plugins/<plugin-id>  -i \
     --data "name=mocking"  \
     --data "enabled=false"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```
-http PATCH :8001/plugins/<plugin-id> enabled=false -f
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Response:
 
@@ -954,19 +739,3 @@ ensure you set the actual URL for your service so that the response can be recei
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
 
----
-
-## Changelog
-
-**{{site.base_gateway}} 3.1.x**
-
-* Added `config.included_status_codes`, `config.random_status_codes` configuration parameters for status code selection.
-* Added behavioral headers feature.
-* $ref and schema support.
-* Added MIME types priority match support.
-
-
-**{{site.base_gateway}} 2.7.x**
-
-* Added the `random_examples` parameter.
-Use this setting to randomly select one example from a set of mocked responses.

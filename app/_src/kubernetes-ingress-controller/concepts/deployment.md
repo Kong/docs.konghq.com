@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller Deployment
+title: Kong Ingress Controller Deployment
 ---
 
 The {{site.kic_product_name}} is designed to be deployed in a variety of ways
@@ -54,7 +54,7 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources)
+Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
 concept document for details.
 
 ### RBAC permissions
@@ -68,31 +68,49 @@ of a service as any service is scaled in or out.
 For this reason, it requires [RBAC][k8s-rbac] permissions to access resources
 stored in the Kubernetes object store.
 
-It needs read permissions (get,list,watch)
-on the following Kubernetes resources:
+It needs read permissions (get, list, watch) on the following Kubernetes resources:
+
+{% if_version lte:2.9.x inline: true%}
 
 - Endpoints
+
+{%- endif_version %}
+{% if_version gte:2.9.x inline: true%}
+
+- EndpointSlices
+
+{%- endif_version %}
+- Events
 - Nodes
 - Pods
 - Secrets
 - Ingress
+{% if_version gte:2.4.x inline:true %}
+
+- IngressClassParameters
+
+{%- endif_version %}
+- KongClusterPlugins
 - KongPlugins
 - KongConsumers
 - KongIngress
+- TCPIngresses
+- UDPIngresses
 
-By default, the controller listens for events and above resources across
-all namespaces and will need access to these resources at the cluster level
+By default, the controller listens above resources across all namespaces and will
+need access to these resources at the cluster level
 (using `ClusterRole` and `ClusterRoleBinding`).
 
 In addition to these, it needs:
 
-- Create a ConfigMap and read and update ConfigMap for to facilitate
-  leader-election. Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling)
+- Create, list, get, watch, delete and update `ConfigMap`s and `Leases` to
+  facilitate leader-election.
+  Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.
 
-If the Ingress Controller is listening for events on a single namespace,
+If the {{site.kic_product_name}} is listening for events on a single namespace,
 these permissions can be updated to restrict these permissions to a specific
 namespace using `Role` and `RoleBinding resources`.
 
@@ -102,8 +120,8 @@ has the above permissions. The Ingress Controller Pod then has this
 necessary authentication and authorization tokens to communicate with the
 Kubernetes API-server.
 
-[rbac.yaml](https://github.com/Kong/kubernetes-ingress-controller/tree/main/config/rbac) contains the permissions
-needed for the Ingress Controller to operate correctly.
+[rbac.yaml](https://github.com/Kong/kubernetes-ingress-controller/tree/v{{ page.version }}/config/rbac)
+contains the permissions needed for the {{site.kic_product_name}} to operate correctly.
 
 ### Ingress Controller deployment
 
@@ -152,7 +170,7 @@ To figure out if you should be using a database or not, please refer to the
 
 ## Deployment options
 
-Following are the difference options to consider while deploying the
+Following are the different options to consider while deploying the
 {{site.kic_product_name}} for your specific use case:
 
 - [**Kubernetes Service Type**](#kubernetes-service-types):
@@ -163,6 +181,12 @@ Following are the difference options to consider while deploying the
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
   Using Kong or Kong Enterprise (for Kong Enterprise customers)
+{% if_version gte: 2.9.x %}
+- [**Gateway Discovery**](#gateway-discovery):
+  Dynamically discovering Kong's Admin API endpoints
+- [**{{site.konnect_short_name}} integration**](#konnect-integration):
+  Integration with the Kong's {{site.konnect_short_name}} platform
+{% endif_version %}
 
 ### Kubernetes Service Types
 
@@ -174,7 +198,8 @@ to the rest of the cluster or outside the cluster.
 If your Kubernetes cluster is running in a cloud environment, where
 Load Balancers can be provisioned with relative ease, it is recommended
 that you use a Service of type `LoadBalancer` to expose Kong to the outside
-world. For the Ingress Controller to function correctly, it is also required
+world.
+For the {{site.kic_product_name}} to function correctly, it is also required
 that a L4 (or TCP) Load Balancer is used and not an L7 (HTTP(s)) one.
 
 If your Kubernetes cluster doesn't support a service of type `LoadBalancer`,
@@ -192,7 +217,7 @@ loss of functionality.
 
 #### Without a database
 
-In DB-less deployments, Kong's Ingress controller runs
+In DB-less deployments, Kong's Kubernetes ingress controller runs
 alongside and dynamically configures
 Kong as per the changes it receives from the Kubernetes API server.
 
@@ -242,7 +267,7 @@ A database driven deployment should be used if your use-case requires
 dynamic creation of Consumers and/or credentials in Kong at a scale large
 enough that the consumers will not fit entirely in memory.
 
-## Multiple Ingress Controllers
+### Multiple Ingress Controllers
 
 It is possible to run multiple instances of the {{site.kic_product_name}} or
 run a Kong {{site.kic_product_name}} alongside other Ingress Controllers inside
@@ -273,17 +298,17 @@ There are a few different ways of accomplishing this:
   two approaches to segment Ingress resources into different Workspaces in
   Kong Enterprise.
 
-## Runtime
+### Runtime
 
 The {{site.kic_product_name}} is compatible with a variety of runtimes:
 
-### {{site.ce_product_name}}
+#### {{site.ce_product_name}}
 
 This is the [Open-Source Gateway](https://github.com/kong/kong) runtime.
 The Ingress Controller is primarily developed against releases of the
 open-source gateway.
 
-### Kong Enterprise
+#### Kong Enterprise
 
 The {{site.kic_product_name}} is also compatible with the full-blown version of
 Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
@@ -293,3 +318,73 @@ overview of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 [k8s-rbac]:https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+
+{% if_version gte: 2.9.x %}
+### Gateway Discovery
+
+{{site.kic_product_name}} can also be configured to discover deployed Gateways.
+This works by using a separate {{site.base_gateway}} deployment which exposes a
+Kubernetes Service which is backed by [Kong Admin API][admin] endpoints.
+This Service endpoints can be then discovered by {{site.kic_product_name}}
+through Kubernetes EndpointSlice watch.
+
+{:.important}
+> Gateway Discovery is only supported with DB-less deployments of Kong.
+
+The overview of this type of deployment can be found on the figure below:
+
+![Gateway Discovery overview](/assets/images/docs/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
+
+In this type of architecture, there are two types of Kubernetes deployments created,
+separating the control and data flow:
+
+- **Control-plane**: This deployment consists of a pod(s) running the controller.
+  This deployment does not proxy any traffic but only configures Kong.
+  Leader election is enforced in this deployment when running with Gateway Discovery
+  enabled to ensure only 1 controller instance is sending configuration to data
+  planes at a time.
+- **Data-plane**: This deployment consists of pods running Kong which can proxy
+  traffic based on the configuration it receives via the [Admin API][admin].
+  This deployment should be scaled to respond to change in traffic profiles
+  and add redundancy to safeguard from node failures.
+
+Both of those deployments can be scaled independently.
+
+For more hands on experience with Gateway Discovery please see [our guide][gd-guide].
+
+[admin]: /gateway/latest/admin-api/
+[gd-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
+
+### {{site.konnect_short_name}} Integration
+
+{:.warning .no-icon}
+> This feature is released as [beta](/gateway/latest/availability-stages/#beta) and should not be deployed in a production environment.
+
+{{site.kic_product_name}} can be integrated with Kong's [{{site.konnect_short_name}}][konnect] platform. It's an
+optional feature that allows configuring a {{site.konnect_short_name}}'s Runtime Group with the same configuration as the one used
+by {{site.kic_product_name}} for configuring local Kong Gateways. It enables using {{site.konnect_short_name}} UI
+to inspect the configuration of your Kong instances in a **read-only** mode, track [Analytics][konnect-analytics],
+and more.
+
+For installation steps, please see the [{{site.kic_product_name}} for Kubernetes Association][konnect-kic] page.
+
+![KIC {{site.konnect_short_name}} overview](/assets/images/docs/kubernetes-ingress-controller/kic-konnect-diagram.png "KIC {{site.konnect_short_name}} overview")
+
+From the architecture perspective, the integration is similar to the [Gateway Discovery](#gateway-discovery) and
+builds on top of it. The difference is that {{site.kic_product_name}} additionally configures a Runtime Group in {{site.konnect_short_name}}
+using the public [Admin API][admin] of the {{site.konnect_short_name}}'s Runtime Manager. The connection between {{site.kic_product_name}}
+and {{site.konnect_short_name}} is secured using mutual TLS.
+
+{:.important}
+> {{site.kic_product_name}}'s Runtime Group in {{site.konnect_short_name}} is **read-only**.
+> Although the configuration displayed in {{site.konnect_short_name}} will match the configuration used by proxy instances, it cannot be modified from the GUI.
+> You must still modify the associated Kubernetes resources to change proxy configuration.
+> In the event of a connection  failure between {{site.kic_product_name}} and {{site.konnect_short_name}},
+> {{site.kic_product_name}} will continue to update data plane proxy configuration normally, but will not
+> update the Runtime Group's configuration until it can connect to {{site.konnect_short_name}} again.
+
+[konnect]: /konnect/
+[konnect-kic]: /konnect/runtime-manager/kic/
+[konnect-analytics]: /konnect/analytics/
+
+{% endif_version %}

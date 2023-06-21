@@ -3,7 +3,7 @@ title: Kong for Kubernetes
 ---
 
 Kong for Kubernetes is an Ingress Controller based on the
-Open-Source Kong Gateway. It consists of two components:
+Open-Source {{site.base_gateway}}. It consists of two components:
 
 - **Kong**: the Open-Source Gateway
 - **Controller**: a daemon process that integrates with the
@@ -22,10 +22,10 @@ on using it.
 
 Please pick one of the following guides depending on your platform:
 
-- [Minikube](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube)
-- [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/gke)
-- [Elastic Kubernetes Service(EKS) by Amazon](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/eks)
-- [Azure Kubernetes Service(AKS) by Microsoft](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/aks)
+- [Minikube](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube/)
+- [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/gke/)
+- [Elastic Kubernetes Service(EKS) by Amazon](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/eks/)
+- [Azure Kubernetes Service(AKS) by Microsoft](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/aks/)
 
 ### Kustomize
 

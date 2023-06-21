@@ -1,0 +1,30 @@
+{
+  "fields": [
+    {
+      "config": {
+        "fields": [
+          {
+            "salt_domain": {
+              "type": "string",
+              "description": "Salt domain address."
+            }
+          },
+          {
+            "salt_backend_port": {
+              "type": "number",
+              "description": "Salt backend port. Defaults to 443 if `config.salt_backend_port` is not provided."
+            }
+          },
+          {
+            "salt_token": {
+              "type": "string",
+              "description": "Salt-provided company token."
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

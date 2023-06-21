@@ -46,7 +46,8 @@ ul.navbar-item-submenu {
   &.v2 {
     .container {
       padding: 0;
-      width: 1600px;
+      width: 90%;
+      max-width: 100%;
 
       @media screen and (max-width: 1600px) {
         width: 99%;
@@ -305,8 +306,8 @@ ul.navbar-item-submenu {
         padding-right: 250px;
 
         .page-content {
-          padding-left: 50px;
-          padding-right: 50px;
+          padding-left: 70px;
+          padding-right: 70px;
         }
 
         @media screen and (min-width: 1081px) {
@@ -354,6 +355,29 @@ ul.navbar-item-submenu {
 
       > .container {
         max-width: none;
+      }
+    }
+
+    &.hub {
+      .page-header {
+        padding: 0 0 40px 0;
+        margin: auto;
+        background-image: none;
+
+        .container {
+          display: flex;
+          flex-direction: row;
+          width: auto;
+          flex-wrap: wrap;
+
+          .page-header-title {
+            flex-grow: 20;
+          }
+
+          .page-header-icon, .old-version-banner {
+            flex-grow: 1;
+          }
+        }
       }
     }
 
@@ -770,6 +794,12 @@ ul.navbar-item-submenu {
     display: block;
     max-width: 100%;
     height: auto;
+  }
+
+  img.image-border {  
+    border: 1px solid @grey-200;
+    padding: 8px;
+    border-radius: 5px;
   }
 
   img.inline {
@@ -1332,6 +1362,12 @@ Generic Styling for Desktop
     }
   }
 
+  @media (min-width: 991px) {
+    .max-3 {
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+  }
+
   .docs-grid-install {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1392,18 +1428,15 @@ Generic Styling for Desktop
       &.no-description {
         justify-content: center;
       }
-
-      &:hover,
-      &.focus {
-        .install-text {
-          color: @blue-500;
-        }
-      }
     }
 
-    .docs-grid-install-block:hover,
-    .docs-grid-install-block:focus {
+    a.docs-grid-install-block:hover, 
+    a.docs-grid-install-block:focus {
       background-color: #f8f9fc;
+
+      .install-text {
+        color: @blue-500;
+      }
     }
 
     @media (max-width: 991px) {

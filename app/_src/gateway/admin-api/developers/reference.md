@@ -96,11 +96,11 @@ Attribute                     | Description
 Example request:
 
 ```sh
-http POST :8001/developers \
-  email=example@example.com \
-  meta="{\"full_name\":\"Wally\"}" \
-  password=mypass \
-  id=62d17e63-0628-43a3-b936-97b8dcbd366f
+curl -i -X POST http://localhost:8001/developers \
+  --data email=example@example.com \
+  --data meta="{\"full_name\":\"Wally\"}" \
+  --data password=mypass \
+  --data id=62d17e63-0628-43a3-b936-97b8dcbd366f
 ```
 
 **Response**
@@ -141,7 +141,9 @@ Attribute                     | Description
 
 Example request:
 ```sh
-http POST :8001/developers/invite emails:='["example@example.com", "example2@example.com"]'
+curl -i -X POST http://localhost:8001/developers/invite \
+  --data "emails[]=example@example.com" \
+  --data "emails[]=example2@example.com"
 ```
 
 **Response**
@@ -458,7 +460,7 @@ Applications consume Services in {{site.base_gateway}} via application-level
 authentication. Developers, or the persona that logs into the Dev Portal,
 create and manage applications through the Dev Portal.
 
-Admins must first [enable application registration](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration) through so that Developers can associate Services with applications.
+Admins must first [enable application registration](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration/) through so that Developers can associate Services with applications.
 
 ### List all applications for a developer
 
@@ -948,9 +950,9 @@ Plugin configuration fields | Any configuration parameters for the plugin that y
 Example request:
 
 ```sh
-http POST :8001/developers/example@example.com/plugins \
-  name=proxy-cache \
-  config.strategy=memory
+curl -i -X POST http://localhost:8001/developers/example@example.com/plugins \
+  --data name=proxy-cache \
+  --data config.strategy=memory
 ```
 
 **Response**
@@ -1244,7 +1246,7 @@ Plugin configuration fields | Any authentication credentials for the plugin that
 
 Example request for creating a `key-auth` credential:
 ```sh
-http POST :8001/developers/91a1fb59-d90f-4f07-b609-4c2a1e3d847e/credentials/key-auth
+curl -i -X POST http://localhost:8001/developers/91a1fb59-d90f-4f07-b609-4c2a1e3d847e/credentials/key-auth
 ```
 
 **Response**
@@ -1422,7 +1424,7 @@ HTTP/1.1 200 OK
 ### Create a credential for an application
 
 Create an OAuth2 authentication credential for an application.
-This request configures an instance of the [OAuth2 plugin](/hub/kong-inc/oauth2).
+This request configures an instance of the [OAuth2 plugin](/hub/kong-inc/oauth2/).
 
 **Endpoint**
 
@@ -1445,7 +1447,9 @@ Attribute                    | Description
 Example request for creating an `oauth2` credential:
 
 ```sh
-http POST :8001/developers/5f60930a-ad12-4303-ac5a-59d121ad4942/applications/5ff48aaf-3951-4c99-a636-3b682081705c/credentials/oauth2 client_id=myclient client_secret=mysecret
+curl -i -X POST http://localhost:8001/developers/5f60930a-ad12-4303-ac5a-59d121ad4942/applications/5ff48aaf-3951-4c99-a636-3b682081705c/credentials/oauth2 \ 
+  --data client_id=myclient \
+  --data client_secret=mysecret
 ```
 
 **Response**

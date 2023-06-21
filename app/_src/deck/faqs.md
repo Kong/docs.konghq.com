@@ -65,7 +65,7 @@ your use case:
 
 - If you have a very large installation, it can take some time for decK to
   sync up the configuration to Kong. This can be mitigated by adopting
-  [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration) for your
+  [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration/) for your
   Kong installation and tweaking the `--parallelism` value.
   Kong's `db_import` will usually be faster by orders of magnitude.
 - decK cannot export and re-import fields that are hashed in the database.
@@ -87,7 +87,7 @@ upgrading to decK 1.12 to take advantage of the new `--konnect` CLI flags.
 
 {:.important}
 > Cassandra as a backend database for {{site.base_gateway}}
-is deprecated with 2.7.0.0 and will be removed in a future Gateway version.
+is deprecated with 2.7.0.0 and will be removed in version 3.4.0.0.
 
 You can use decK with Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to

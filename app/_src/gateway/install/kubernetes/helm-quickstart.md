@@ -21,7 +21,7 @@ Docker Desktop Kubernetes is a tool for running a local Kubernetes cluster using
 - [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/)
 
 {:.note}
-> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Configure Kubectl
 
@@ -45,7 +45,7 @@ Kind or "Kubernetes-in-Docker", is a tool for running local Kubernetes clusters 
 - [KinD](https://kind.sigs.k8s.io/)
 
 {:.note}
-> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
+> [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/) & [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) services will be published to `localhost` at the domain name `kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service is used to automatically resolve this domain to the localhost address. 
 
 ## Create Kubernetes Cluster
 
@@ -153,8 +153,8 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
        {% if_version gte:3.2.x %}
 
        kubectl create secret generic kong-config-secret -n kong \
-           --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_same_site":"off","cookie_secure":false}' \
-           --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_same_site":"off","cookie_secure":false}' \
+           --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_same_site":"Lax","cookie_secure":false}' \
+           --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_same_site":"Lax","cookie_secure":false}' \
            --from-literal=pg_host="enterprise-postgresql.kong.svc.cluster.local" \
            --from-literal=kong_admin_password=kong \
            --from-literal=password=kong
@@ -329,24 +329,14 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 ## Use {{site.base_gateway}}
 
-{{site.base_gateway}} is now serving the [Kong Manager](/gateway/{{page.kong_version}}/kong-manager) Web UI and the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api).
+{{site.base_gateway}} is now serving the [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) Web UI and the [Kong Admin API](/gateway/{{page.kong_version}}/admin-api/).
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 
 You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
     curl --silent --insecure -X GET https://kong.127-0-0-1.nip.io/api -H 'kong-admin-token:kong'
 
-{% endnavtab %}
-{% navtab HTTPie %}
-
-    http --verify=no get https://kong.127-0-0-1.nip.io/api kong-admin-token:kong
-
-{% endnavtab %}
-{% endnavtabs %}
 
 ## Teardown 
 
@@ -450,4 +440,4 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
 
 ## Next Steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

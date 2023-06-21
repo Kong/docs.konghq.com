@@ -16,16 +16,6 @@ log in through Okta. Only the {{site.konnect_short_name}} org
 owner can continue to log in with {{site.konnect_short_name}}'s native
 authentication.
 
-{:.important}
-> **Important:** Enabling SSO through Okta for a particular
-{{site.konnect_short_name}} organization is **irreversible**. You cannot revert
-to native {{site.konnect_short_name}} authentication after the switch has been
-made.
-> <br><br>
-> Make sure that you are certain you want to switch, and are
-ready to manage authentication and authorization through Okta for this
-{{site.konnect_short_name}} organization.
-
 ## Prerequisites and overview of steps
 
 To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need
@@ -162,8 +152,7 @@ value is present.
 
 ### Provide Okta connection details
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-1. Click ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-**Settings**, and then **Auth Settings**.
+1. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
 1. Click **Configure provider** for **OIDC**.
 
 1. In Okta, locate your issuer URI.
@@ -205,7 +194,7 @@ application into {{site.konnect_saas}}.
 
 ### Map {{site.konnect_short_name}} teams to Okta groups
 
-By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles),
+By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
 Okta group membership.
 
@@ -239,7 +228,7 @@ in Okta to locate the Okta groups you want to map.
     groups may be accessible by the `groups` claim. See the
     [claims](#set-up-claims-in-okta) setup step for details.
 
-1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and do at least one of the following:
+1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization > Auth Settings > Team Mappings** and do at least one of the following:
 
     * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
     * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
@@ -249,7 +238,7 @@ in Okta to locate the Okta groups you want to map.
     For example, if you have a `service_admin` group in Okta, you might map it
     to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
     over the info (`i`) icon beside each field to learn more about the team, or
-    see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference)
+    see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
     for more information.
 
     You must have at least one group mapped to save configuration changes.
@@ -270,8 +259,7 @@ application.
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
     If you ever need to find the path again, you can always find it under
-    ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-     **Settings > Auth Settings**, then copy the **Organization Login URI**
+    {% konnect_icon organizations %} **Organization > Auth Settings**, then copy the **Organization Login URI**
      and append it to `cloud.konghq.com/login/`.
 
 1. Paste the URI into a browser address bar. An Okta login page should appear.

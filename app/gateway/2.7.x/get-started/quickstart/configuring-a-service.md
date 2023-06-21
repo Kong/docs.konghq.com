@@ -20,7 +20,7 @@ Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, i
 Routes, is made via requests on that API.
 
 ## Before you start
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run).
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/).
 
 ## 1. Add your Service using the Admin API
 

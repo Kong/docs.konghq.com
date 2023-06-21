@@ -23,7 +23,7 @@ For example, the following query uses an option called `prefix` with the value `
 ```
 
 For more information on available configuration options,
-refer to respective [vault backend documentation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends).
+refer to respective [vault backend documentation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/).
 
 ## Environment variables
 
@@ -43,28 +43,12 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 
 Create a Vault entity:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
   --data name=env \
   --data description='ENV vault for secrets' \
   --data config.prefix=SECRET_
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f PUT :8001/vaults/my-env-vault-1 \
-  name=env \
-  description="ENV vault for secrets" \
-  config.prefix=SECRET_
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 
@@ -83,7 +67,7 @@ Result:
 }
 ```
 
-Config options depend on the associated [backend](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends) used.
+Config options depend on the associated [backend](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/) used.
 
 This lets you drop the configuration from environment variables and query arguments and use the entity name in the reference:
 
@@ -128,7 +112,7 @@ vaults:
 ```
 
 For more information on configuring vaults and using secret references in declarative
-configuration files, see [Secret Management with decK](/deck/latest/guides/vaults).
+configuration files, see [Secret Management with decK](/deck/latest/guides/vaults/).
 
 ## Shared configuration parameters
 

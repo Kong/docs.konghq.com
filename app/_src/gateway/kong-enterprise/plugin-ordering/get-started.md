@@ -12,8 +12,8 @@ Let's say you want to limit the amount of requests against your service and rout
 *before* Kong requests authentication. You can describe this dependency with the
 token `before`.
 
-The following example uses the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced)
-plugin with the [Key Authentication](/hub/kong-inc/key-auth) plugin as the
+The following example uses the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+plugin with the [Key Authentication](/hub/kong-inc/key-auth/) plugin as the
 authentication method.
 
 {% navtabs %}
@@ -22,9 +22,6 @@ authentication method.
 Call the Admin API on port `8001` and enable the
 `rate-limiting` plugin, configuring it to run before `key-auth`:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=rate-limiting \
@@ -33,22 +30,9 @@ curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data config.limit_by=ip \
   --data ordering.before.access=key-auth
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http -f post :8001/plugins \
-  name=rate-limiting \
-  config.minute=5 \
-  config.policy=local \
-  config.limit_by=ip \
-  ordering.before.access=key-auth
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 {% endnavtab %}
-{% navtab  Kubernetes %}
+{% navtab Kubernetes %}
 ```yaml
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
@@ -165,9 +149,9 @@ The following example is similar to running [rate limiting before authentication
 For example, you may want to first transform a request, then request authentication
 *after* transformation. You can describe this dependency with the token `after`.
 
-Instead of changing the order of the [Request Transformer](/hub/kong-inc/request-transformer)
+Instead of changing the order of the [Request Transformer](/hub/kong-inc/request-transformer/)
 plugin, you can change the order of the authentication plugin
-([Basic Authentication](/hub/kong-inc/basic-auth), in this example).
+([Basic Authentication](/hub/kong-inc/basic-auth/), in this example).
 
 {% navtabs %}
 {% navtab Admin API %}
@@ -175,27 +159,14 @@ plugin, you can change the order of the authentication plugin
 Call the Admin API on port `8001` and enable the
 `basic-auth` plugin, configuring it to run after `request-transformer`:
 
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```sh
 curl -i -X POST http://<admin-hostname>:8001/plugins \
   --data name=basic-auth \
   --data ordering.after.access=request-transformer
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http -f post :8001/plugins \
-  name=basic-auth \
-  ordering.after.access=request-transformer
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
 
 {% endnavtab %}
-{% navtab  Kubernetes %}
+{% navtab Kubernetes %}
 ```yaml
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin

@@ -40,7 +40,7 @@ series from the beginning.
 Start with the introduction [Get Kong](/gateway/latest/get-started/), which includes
 a list of prerequisites and instructions for running a local {{site.base_gateway}}.
 
-Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes),
+Step two of the guide, [Services and Routes](/gateway/latest/get-started/services-and-routes/),
 includes instructions for installing a mock service used throughout this series.
 
 If you haven't completed these steps already, complete them before proceeding.
@@ -78,7 +78,7 @@ will potentially be cached.
 1. **Validate**
 
    You can check that the Proxy Cache plugin is working by sending `GET` requests and examining
-   the returned headers. In step two of this guide, [services and routes](/gateway/latest/get-started/services-and-routes),
+   the returned headers. In step two of this guide, [services and routes](/gateway/latest/get-started/services-and-routes/),
    you setup a `/mock` route and service that can help you see proxy caching in action.
 
    First, make an initial request to the `/mock` route. The Proxy Cache plugin returns status
@@ -106,12 +106,12 @@ will potentially be cached.
 
    The `X-Cache-Status` headers can return the following cache results:
 
-   |State| Description|
-   |---|---|
-   |Miss| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.|
-   |Hit| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.|
-   |Refresh| The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold.|
-   |Bypass| The request could not be satisfied from cache based on plugin configuration.|
+   |State| Description                                                                                                                                          |
+   |---|------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |Miss| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.                 |
+   |Hit| The request was satisfied and served from the cache.                                                                                                 |
+   |Refresh| The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold. |
+   |Bypass| The request could not be satisfied from cache based on plugin configuration.                                                                         |
 
 ### Service level proxy caching
 

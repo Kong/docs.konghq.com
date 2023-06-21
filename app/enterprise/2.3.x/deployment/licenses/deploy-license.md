@@ -3,7 +3,7 @@ title: Deploy an Enterprise License
 ---
 
 Deploy a enterprise license to a {{site.base_gateway}} installation to gain access
-to [Enterprise-specific features](/enterprise/2.3.x/deployment/licensing).
+to [Enterprise-specific features](/enterprise/2.3.x/deployment/licensing/).
 
 You can deploy a license file in one of the following ways:
 

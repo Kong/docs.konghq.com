@@ -34,7 +34,7 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 1.5.x to 2.1.x to 2.2.x to 2.3.x to 2.4.x to 2.5.x to 2.6.x., plan accordingly.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
-  [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
+  [migrate to 1.5]({{site.links.archive}}/enterprise/1.5.x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.1,
   [migrate to 2.1](/enterprise/2.1.x/deployment/upgrades/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.2,
@@ -76,7 +76,7 @@ upgrade the Control Plane first, and then the Data Planes.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the Control Plane and the Data Planes in Hybrid mode. Install the
   plugins on the Control Plane first, and then the Data Planes.
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 ### Kong for Kubernetes considerations

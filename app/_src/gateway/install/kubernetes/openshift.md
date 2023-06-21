@@ -3,7 +3,7 @@ title: Install on OpenShift with Helm
 badge: enterprise
 ---
 
-This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} with a database. To install in DB-less mode, see the documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart).
+This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} with a database. To install in DB-less mode, see the documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart/).
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).
@@ -197,4 +197,4 @@ Note that this deployment includes a Postgres sub-chart provided by Bitnami. You
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

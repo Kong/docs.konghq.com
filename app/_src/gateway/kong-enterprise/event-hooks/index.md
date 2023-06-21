@@ -16,35 +16,21 @@ To create a webhook event hook:
 2. Select **Copy to clipboard** next to **Your unique URL**.
 3. Create a webhook event hook on the `consumers` event (Kong entity the event hook will listen to for events),
    on the `crud` source (action that triggers logging), and the URL you copied from step 2 using the following HTTP request:
-{% capture the_code %}
-{% navtabs codeblock %}
-{% navtab cURL %}
 
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
--d source=crud \
--d event=consumers \
--d handler=webhook \
--d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+    ```sh
+    curl -i -X POST http://{HOSTNAME}:8001/event-hooks \
+      -d source=crud \
+      -d event=consumers \
+      -d handler=webhook \
+      -d config.url={WEBHOOK_URL}
+    ```
 
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
-source=crud \
-event=consumers \
-handler=webhook \
-config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
-
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ the_code | indent }}
 
 4. Navigate to the URL from step 2. You should see a POST request, of type `ping`, notifying our webhook endpoint
    about the creation of this webhook.
 5. In Kong Manager or Kong Admin API, add a consumer from any workspace.
 
-{% capture the_code2 %}
+{% capture the_code %}
 {% navtabs %}
 {% navtab Kong Manager %}
 
@@ -60,28 +46,19 @@ config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
 
 Create a consumer, Ada Lovelace, by making the following HTTP request to your instance of the Kong Admin API:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/consumers \
--d username="Ada Lovelace"</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/consumers \
-username="Ada Lovelace"</code></pre><div>
+```
+curl -i -X POST http://{HOSTNAME}:8001/consumers \
+  -d username="Ada Lovelace"
+```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-{% endnavtab %}
-{% endnavtabs %}
 {% endcapture %}
-{{ the_code2 | indent }}
+{{ the_code | indent }}
 
-6. Check the URL from the [https://webhook.site](https://webhook.site) page.
-   You should see an entry with data for the new consumer in its payload.
+1. Check the URL from the [https://webhook.site](https://webhook.site) page.
+    You should see an entry with data for the new consumer in its payload.
 
     ```json
     {
@@ -115,38 +92,21 @@ To create a custom webhook event hook:
 2. Activate incoming webhooks in the settings for your new app.
 3. Select to **Add New Webhook to Workspace**, select the channel where you wish to receive notices, and select **Allow**.
 4. Copy the **Webhook URL**, for example `https://hooks.slack.com/services/foo/bar/baz`.
-5. Create a webhook event hook on the `admins` event (Kong entity the event hook will listen to for events),
-   and the `crud` source (action that triggers logging), and format the payload as, {% raw %}"Admin account \`{{ entity.username }}\` {{ operation }}d; e-mail address set to \`{{ entity.email }}\`"{% endraw %}, using the following HTTP request:
+5. Create a webhook event hook on the `admins` event (Kong entity the event hook will listen to for events)
+   and the `crud` source (action that triggers logging). 
+   
+   Format the payload as `{% raw %}"Admin account \`{{ entity.username }}\` {{ operation }}d; e-mail address set to \`{{ entity.email }}\`"{% endraw %}`, using the following HTTP request:
 
-{% capture the_code3 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
--d source=crud \
--d event=admins \
--d handler=webhook-custom \
--d config.method=POST \
--d config.url=<div contenteditable="true">{WEBHOOK_URL}</div> \
--d config.headers.content-type="application/json" \
--d config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
-source=crud \
-event=admins \
-handler=webhook-custom \
-config.method=POST \
-config.url=<div contenteditable="true">{WEBHOOK_URL}</div> \
-config.headers.content-type="application/json" \
-config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}</code></pre></div>
-
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ the_code3 | indent }}
+    ```sh
+    curl -i -X POST http://{HOSTNAME}:8001/event-hooks \
+      -d source=crud \
+      -d event=admins \
+      -d handler=webhook-custom \
+      -d config.method=POST \
+      -d config.url={WEBHOOK_URL} \
+      -d config.headers.content-type="application/json" \
+      -d config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}
+    ```
 
 6. Turn on RBAC.
 
@@ -178,24 +138,12 @@ Create an admin, Arya Stark, by making the following HTTP request to your instan
 > **Note:** Replace `{KONG_ADMIN_PASSWORD`} with your `kong_admin` password. This is the initial
   `KONG_PASSWORD` you used when you ran migrations during installation.
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/admins \
+```sh
+curl -i -X POST http://{HOSTNAME}:8001/admins \
 -d username="Arya Stark" \
 -d email=arya@gameofthrones.com \
--H Kong-Admin-Token:{KONG_ADMIN_PASSWORD}</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/admins \
-username="Arya Stark" \
-email=arya@gameofthrones.com \
-Kong-Admin-Token={KONG_ADMIN_PASSWORD}</code></pre><div>
-
-{% endnavtab %}
-{% endnavtabs %}
+-H Kong-Admin-Token:{KONG_ADMIN_PASSWORD}
+```
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -214,31 +162,16 @@ To create a log event hook:
 1. Create a log event hook on the `consumers` event (Kong entity the event hook will listen to for events)
   and on the `crud` source (action that triggers logging) using the following HTTP request:
 
-{% capture the_code5 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
--d source=crud \
--d event=consumers \
--d handler=log</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
-source=crud \
-event=consumers \
-handler=log</code></pre></div>
-
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ the_code5 | indent }}
+    ```sh
+    curl -i -X POST http://{HOSTNAME}:8001/event-hooks \
+      -d source=crud \
+      -d event=consumers \
+      -d handler=log
+    ```
 
 2. In Kong Manager or Kong Admin API, add a consumer from any workspace.
 
-{% capture the_code6 %}
+{% capture the_code3 %}
 {% navtabs %}
 {% navtab Kong Manager %}
 
@@ -254,25 +187,15 @@ handler=log</code></pre></div>
 
 Create a consumer, Elizabeth Bennet, by making the following HTTP request to your instance of the Kong Admin API:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/consumers \
--d username="Elizabeth Bennet"</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/consumers \
-username="Elizabeth Bennet"</code></pre><div>
-
-{% endnavtab %}
-{% endnavtabs %}
+```sh
+curl -i -X POST http://{HOSTNAME}:8001/consumers \
+-d username="Elizabeth Bennet"
+```
 
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
-{{ the_code6 | indent }}
+{{ the_code3 | indent }}
 
 3. You should see an entry with data for the new consumer in the payload in Kong's error log,
    which is typically accessible at `/usr/local/kong/logs/error.log`.
@@ -319,33 +242,17 @@ To create a lambda event hook:
 2. Create a lambda event hook on the `consumers` event (Kong entity the event hook will listen to for events)
   and on the `crud` source (action that triggers logging) using the following HTTP request:
 
-{% capture the_code7 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
--d source=crud \
--d event=consumers \
--d handler=lambda \
--F config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
-source=crud \
-event=consumers \
-handler=lambda \
-config.functions[]=@~/lambda.lua</code></pre></div>
-
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ the_code7 | indent }}
+    ```sh
+    curl -i -X POST http://{HOSTNAME}:8001/event-hooks \
+      -d source=crud \
+      -d event=consumers \
+      -d handler=lambda \
+      -F config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'
+    ```
 
 3. In Kong Manager or Kong Admin API, add a consumer to any workspace.
 
-{% capture the_code8 %}
+{% capture the_code4 %}
 {% navtabs %}
 {% navtab Kong Manager %}
 
@@ -361,25 +268,15 @@ config.functions[]=@~/lambda.lua</code></pre></div>
 
 Create a consumer, Lois Lane, by making the following HTTP request to your instance of the Kong Admin API:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/consumers \
--d username="Lois Lane"</code></pre></div>
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/consumers \
-username="Lois Lane"</code></pre></div>
-
-{% endnavtab %}
-{% endnavtabs %}
+```sh
+curl -i -X POST http://{HOSTNAME}:8001/consumers \
+  -d username="Lois Lane"
+```
 
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
-{{ the_code8 | indent }}
+{{ the_code4 | indent }}
 
 3. You should see an entry "Event hook on consumer Lois Lane" in Kong's error log,
    which is typically accessible at `/usr/local/kong/logs/error.log`.

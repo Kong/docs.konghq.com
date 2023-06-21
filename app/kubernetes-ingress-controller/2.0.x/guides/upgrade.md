@@ -6,7 +6,7 @@ This guide walks through backwards incompatible changes in the Kong Kubernetes
 Ingress Controller (KIC) from v1.3.x to v2.0.x to help operators evaluate if any
 changes to their configuration are needed to upgrade, provides
 guidance on how to build testing environments to validate the upgrade, and
-walks through an upgrade of the Kubernetes Ingress Controller (KIC) using
+walks through an upgrade of the Kong Ingress Controller (KIC) using
 its [Helm Chart][chart].
 
 ## Prerequisites
@@ -254,7 +254,7 @@ Update Complete. ⎈Happy Helming!⎈
 ### Perform the upgrade
 
 Run the following command, specifying the old release name, the namespace where
-you've configured Kong Gateway, and the existing `values.yaml` configuration file:
+you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file:
 
 ```shell
 $ helm upgrade ${YOUR_RELEASE_NAME} kong/kong \

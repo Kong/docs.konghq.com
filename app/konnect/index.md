@@ -72,7 +72,7 @@ across the organization’s applications.
 
 ### Runtime Manager
 
-[Runtime Manager](/konnect/runtime-manager) empowers your teams to securely
+[Runtime Manager](/konnect/runtime-manager/) empowers your teams to securely
 collaborate and manage their own set of runtimes and services without
 the risk of impacting other teams and projects. Runtime Manager instantly
 provisions hosted {{site.base_gateway}} control planes and supports securely
@@ -80,13 +80,13 @@ attaching {{site.base_gateway}} data planes from your cloud or hybrid environmen
 
 Through the Runtime Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
-[Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager)
+[Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager/)
 
 [Check out {{site.konnect_short_name}}-compatible plugins &rarr;](/hub)
 
 ### Dev Portal
 
-Streamline developer onboarding with the [Dev Portal](/konnect/dev-portal), which offers a self-service developer experience
+Streamline developer onboarding with the [Dev Portal](/konnect/dev-portal/), which offers a self-service developer experience
 to discover, register, and consume published services from your Service Hub catalog.
 This customizable experience can be used to match your own unique branding and
 highlights the documentation and interactive API specifications of your services.
@@ -97,7 +97,7 @@ Enable application registration to automatically secure your APIs with a
 
 ### Analytics
 
-Use [Analytics](/konnect/analytics) to gain deep insights
+Use [Analytics](/konnect/analytics/) to gain deep insights
 into service, route, and application usage and health monitoring data. Keep your finger
 on the pulse of the health of your API products with custom reports and contextual dashboards.
 In addition, you can enhance the native monitoring and analytics capabilities with
@@ -109,7 +109,7 @@ third-party analytics providers, such as Datadog and Prometheus.
 ### Teams
 
 To help secure and govern your environment, {{site.konnect_short_name}} provides
-the ability to manage authorization with [teams](/konnect/org-management/teams-and-roles).
+the ability to manage authorization with [teams](/konnect/org-management/teams-and-roles/).
 You can use {{site.konnect_short_name}}'s predefined teams for a standard set of roles,
 or create custom teams with any roles you choose. Invite users and add them to these teams to manage user
 access. You can also map groups from your existing identity provider into {{site.konnect_short_name}} teams.

@@ -54,7 +54,7 @@ Kong receives the payload and extracts the `"username"` value of `"john"` for th
 `{vault://hcv/pg/username}`.
 <!-- vale on -->
 
-### What can be stored as a secret?
+## What can be stored as a secret?
 
 Most of the [Kong configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
 can be stored as a secret, such as [`pg_user`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
@@ -69,27 +69,15 @@ a `KONG_LICENSE_DATA` environment variable, can be stored as a secret.
 The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)
 can be stored as a secret.
 
-The following plugins have fields that can be stored as secrets in a
-vault backend. These fields are labelled as `referenceable`. See the
-documentation for each plugin to identify the referenceable fields:
+### Referenceable plugin fields
 
-* [ACME](/hub/kong-inc/acme/)
-* [AWS Lambda](/hub/kong-inc/aws-lambda/)
-* [Azure Functions](/hub/kong-inc/azure-funtions/)
-* [Forward Proxy](/hub/kong-inc/forward-proxy/)
-* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/)
-* [Kafka Log](/hub/kong-inc/kafka-log/)
-* [Kafka Upstream](/hub/kong-inc/kafka-upstream/)
-* [LDAP Authentication Advanced](/hub/kong-inc/ldap-auth-advanced/)
-* [Loggly](/hub/kong-inc/loggly/)
-* [OpenID Connect](/hub/kong-inc/openid-connect/)
-* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
-* [Rate Limiting](/hub/kong-inc/rate-limiting/)
-* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
-* [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/)
-* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
-* [Session](/hub/kong-inc/session/)
-* [Vault Authentication](/hub/kong-inc/vault-auth/)
+Some plugins have fields that can be stored as secrets in a
+vault backend. These fields are labelled as `referenceable`. 
+
+The following plugins support vault references for specific fields. 
+See each plugin's documentation for more information on each field:
+
+{% referenceable_fields_table %}
 
 ## Supported backends
 

@@ -188,7 +188,7 @@ If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
 
-See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable) for more information.
+See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable/) for more information.
 
 {% endif_version %}
 {% if_version lte:2.8.x %}
@@ -272,9 +272,9 @@ or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gate
 {% if_version gte:3.0.x %}
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy)
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy/)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
@@ -290,9 +290,9 @@ out of {{site.base_gateway}}.
 {% if_version lte:2.8.x %}
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license)
+* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
 * [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples)
+* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the

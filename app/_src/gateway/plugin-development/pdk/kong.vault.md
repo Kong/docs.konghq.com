@@ -12,6 +12,17 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 <!-- vale off -->
 This module can be used to resolve, parse, and verify vault references.
+{% if_version gte:3.3.x %}
+## kong.vault.flush()
+
+Flushes vault config and the references LRU cache.
+
+**Usage**
+
+``` lua
+kong.vault.flush()
+```
+{% endif_version %}
 
 
 ## kong.vault.is_reference(reference)

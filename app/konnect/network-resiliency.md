@@ -96,7 +96,7 @@ functioning the same as before the restart.
 
 ### Can I create a new data plane node when the connection is down?
 
-No.
+Yes. Starting in version 3.2, Kong Gateway can be configured to support configuring new data planes in the event of a control plane outage. See [How to Configure Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/) for more information. 
 
 ## Backups and alternative options
 

@@ -1,5 +1,5 @@
 ---
-title: Integrate the Kubernetes Ingress Controller with Prometheus/Grafana
+title: Integrate the Kong Ingress Controller with Prometheus/Grafana
 ---
 
 The {{site.kic_product_name}} can give you visibility into how {{site.base_gateway}} is performing and how the services in your Kubernetes cluster are responding to the inbound traffic.
@@ -11,7 +11,7 @@ This guide walks you through setting up monitoring for
 > As of {{site.kic_product_name}} 2.0, there are additional
 > performance metrics associated with the configuration process
 > (as opposed to the runtime performance of the Gateway), described in detail
-> in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus).
+> in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
 
 This guide was originally posted on [Kong blog](https://konghq.com/blog/observability-kubernetes-kong/).
 
@@ -185,7 +185,7 @@ We will set up three services: billing, invoice, and comments.
 Execute the following to spin these services up:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/docs.konghq.com/main/src/kubernetes-ingress-controller/examples/001_multiple-services.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kong/docs.konghq.com/main/app/_src/kubernetes-ingress-controller/examples/001_multiple-services.yaml
 ```
 
 ### Install Ingress for the Services

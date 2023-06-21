@@ -9,12 +9,15 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/install/linux/os-support) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user) access.
+* A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong.
 
 ## Download and Install
 
 You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
+
+{:.note}
+> **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}
 {% navtab Package %}
@@ -64,7 +67,9 @@ sudo yum install kong-{{page.versions.ce}}.aws.amd64.rpm
 
 Install the YUM repository from the command line.
 
-1. Download the Kong APT repository:
+{% include_cached /md/gateway/rpm-gpg-key-2023.md kong_version=page.kong_version %}
+
+1. Download the Kong YUM repository:
     ```bash
     curl https://download.konghq.com/gateway-3.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
     ```

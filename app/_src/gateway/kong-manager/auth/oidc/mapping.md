@@ -3,7 +3,7 @@ title: OIDC Authenticated Group Mapping
 badge: enterprise
 ---
 
-Using Kong's [OpenID Connect plugin](/hub/kong-inc/openid-connect) (OIDC), you can map identity provider (IdP)
+Using Kong's [OpenID Connect plugin](/hub/kong-inc/openid-connect/) (OIDC), you can map identity provider (IdP)
 groups to Kong roles. Adding a user to Kong in this way gives them access to
 Kong based on their group in the IdP.
 
@@ -24,7 +24,7 @@ Manager. The mapping removes the task of manually managing access in
 ## Prerequisites
 
 * An IdP with an authorization server and users with groups assigned
-* [{{site.base_gateway}} installed and configured](/gateway/{{page.kong_version}}/get-started)
+* [{{site.base_gateway}} installed and configured](/gateway/{{page.kong_version}}/get-started/)
 * Kong Manager enabled
 * RBAC enabled
 * (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
@@ -57,6 +57,10 @@ creation when automatically creating admins with OpenID Connect. The default is
   * Set to `true` to disable automatic token creation for admins
   * Set to `false` to enable automatic token creation for admins
 
+* The `admin_auto_create` boolean enables or disables admin auto-creation 
+with OpenID Connect. The default is `true`.
+  * Set to `true` to enable automatic admin creation
+  * Set to `false` to disable automatic admin creation
 
 ### Set up mapping
 
@@ -84,7 +88,8 @@ creation when automatically creating admins with OpenID Connect. The default is
         "logout_redirect_uri": ["{YOUR_LOGOUT_REDIRECT_URI}"],
         "scopes": ["openid","profile","email","offline_access"],
         "auth_methods": ["authorization_code"],
-        "admin_auto_create_rbac_token_disabled": false
+        "admin_auto_create_rbac_token_disabled": false,
+        "admin_auto_create": true
     }
     ```
 
@@ -140,7 +145,8 @@ echo "
       \"logout_redirect_uri\": [\"{YOUR_LOGOUT_REDIRECT_URI}\"],
       \"scopes\": [\"openid\",\"profile\",\"email\",\"offline_access\"],
       \"auth_methods\": [\"authorization_code\"],
-      \"admin_auto_create_rbac_token_disabled\": false
+      \"admin_auto_create_rbac_token_disabled\": false,
+      \"admin_auto_create\": true
     }' kong reload exit" | docker exec -i {KONG_CONTAINER_ID} /bin/sh
 ```
 
@@ -177,7 +183,8 @@ properties to the file.
         "logout_redirect_uri": ["{YOUR_LOGOUT_REDIRECT_URI}"],
         "scopes": ["openid","profile","email","offline_access"],
         "auth_methods": ["authorization_code"],
-        "admin_auto_create_rbac_token_disabled": false
+        "admin_auto_create_rbac_token_disabled": false,
+        "admin_auto_create": true
     }
     ```
 

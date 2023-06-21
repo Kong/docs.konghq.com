@@ -74,7 +74,7 @@ upgrade the control plane first, and then the data planes.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
   plugins on the control plane first, and then the data planes.
-* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) plugin does not
+* The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin does not
     support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 
 ### Kong for Kubernetes considerations

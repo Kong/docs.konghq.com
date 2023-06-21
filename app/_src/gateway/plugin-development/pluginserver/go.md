@@ -127,7 +127,7 @@ const Priority = 1
 
 ## Example configuration
 
-To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
+To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf/), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.
 Here are two examples of loading plugins within `kong.conf`:
 
 ```
@@ -155,6 +155,6 @@ pluginserver_other_one_query_cmd = /usr/local/bin/other-one -dump
 ## More information
 
 * [PDK Reference](/gateway/latest/plugin-development/pdk/)
-* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes)
-* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python)
-* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript)
+* [Plugins with Containers](/gateway/latest/plugin-development/pluginserver/plugins-kubernetes/)
+* [Develop plugins with Python](/gateway/latest/plugin-development/pluginserver/python/)
+* [Develop plugins with JavaScript](/gateway/latest/plugin-development/pluginserver/javascript/)

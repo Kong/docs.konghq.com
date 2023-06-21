@@ -50,7 +50,7 @@ control and monitor the status of the entire Kong cluster.
 ## Platform Compatibility
 
 You can run {{site.ee_product_name}} in Hybrid mode on any platform where
-{{site.ee_product_name}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview).
+{{site.ee_product_name}} is [supported](/enterprise/{{page.kong_version}}/deployment/installation/overview/).
 
 ### Kubernetes Support and Additional Documentation
 [Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/deployment/installation/kong-on-kubernetes)
@@ -76,13 +76,13 @@ Control Plane, all plugin configuration has to occur from the CP. Due to this
 setup, and the configuration sync format between the CP and the DP, some plugins
 have limitations in Hybrid mode:
 
-* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc) The time-to-live setting
+* [**Key Auth Encrypted:**](/hub/kong-inc/key-auth-enc/) The time-to-live setting
 (`ttl`), which determines the length of time a credential remains valid, does
 not work in Hybrid mode.
-* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced)
+* [**Rate Limiting Advanced:**](/hub/kong-inc/rate-limiting-advanced/)
 This plugin does not support the `cluster` strategy in Hybrid mode. The `redis`
 strategy must be used instead.
-* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2) This plugin is not
+* [**OAuth 2.0 Authentication:**](/hub/kong-inc/oauth2/) This plugin is not
 compatible with Hybrid mode. For its regular workflow, the plugin needs to both
 generate and delete tokens, and commit those changes to the database, which is
 not possible with CP/DP separation.
