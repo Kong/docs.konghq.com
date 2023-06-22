@@ -29,7 +29,7 @@ Here are the steps you need to complete, in both Okta and
 {{site.konnect_short_name}}.
 First, complete the following in Okta:
 * [Set up an Okta application](#prepare-the-okta-application)
-* (Optional) If using group claims for team mapping, [set up claims in Okta](#set-up-claims-in-okta).
+* (Optional) If using group claims for team mapping, [set up claims in Okta](#optional-set-up-claims-in-okta).
 
 Then, you can set up {{site.konnect_short_name}} to talk to the Okta application:
 * [Set up Okta IDP in {{site.konnect_short_name}}](#set-up-konnect), referring
