@@ -9,10 +9,8 @@ module PluginSingleSource
 
     def generate(site)
       site.data['ssg_hub'] = []
-      site.data['extensions'] ||= {}
 
       generate_pages(site)
-      generate_extension_data(site)
     end
 
     def generate_pages(site)
@@ -22,15 +20,10 @@ module PluginSingleSource
         site.pages.concat(pages)
 
         # Make sure we add the page to site.hub for later iteration
-        site.data['ssg_hub'].concat(pages.select { |p| p.data['is_latest'] })
-      end
-    end
-
-    def generate_extension_data(site)
-      # Populate site.data so that our existing version listing will work
-      plugins(site).select(&:extension?).each do |plugin|
-        site.data['extensions'][plugin.vendor] ||= {}
-        site.data['extensions'][plugin.vendor][plugin.name] ||= plugin.ext_data
+        # only overview pages...
+        site.data['ssg_hub'].concat(
+          pages.select { |p| p.data['ssg_hub'] == true }
+        )
       end
     end
 

@@ -29,8 +29,7 @@ upgrade to 2.8.2, [then migrate to {{page.kong_version}}](#migrate-db).
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
 (both this version and prior versions) and in the
-[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.2.x/CHANGELOG.md#310) and
-[Enterprise](/gateway/changelog/#3210) Gateway changelogs. Since {{site.base_gateway}}
+[open-source (OSS) and Enterprise Gateway changelogs](/gateway/changelog/). Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to {{page.kong_version}}.
@@ -60,7 +59,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
-{% if_version gte: 3.2.x %}
+{% if_version eq: 3.2.x %}
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
@@ -80,6 +79,29 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
+{% if_version eq: 3.3.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.x | Traditional | No | [Upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | No | [Upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.x | DB less | No | [Upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.2.x | Traditional | Yes | [Upgrade to 3.3.x](#migrate-db). |
+| 3.2.x | Hybrid | Yes | [Upgrade to 3.3.x](#migrate-db). |
+| 3.2.x | DB less | Yes | [Upgrade to 3.3.x](#migrate-db). |
+
+{% endif_version %}
+
 ## Upgrade considerations and breaking changes
 
 Before upgrading, review any configuration or breaking changes in this version and prior versions that
@@ -87,6 +109,29 @@ affect your current installation.
 
 You may need to adopt different upgrade paths depending on your deployment methods, set of features in use,
 custom plugins, for example.
+
+### Plugins
+
+For breaking changes to plugins, see the [Kong Gateway Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
+
+{% if_version gte:3.3.x %}
+### Plugin queuing
+
+The plugin queuing system was reworked in {{site.base_gateway}} 3.3.x, so some plugin parameters may not function as expected anymore. If you use queues in the following plugins, new parameters must be configured:
+
+* [HTTP Log](/hub/kong-inc/http-log/)
+* [OpenTelemetry](/hub/kong-inc/opentelemetry/)
+* [Datadog](/hub/kong-inc/datadog/)
+* [StatsD](/hub/kong-inc/statsd/)
+* [Zipkin](/hub/kong-inc/zipkin/)
+
+For more information about how plugin queuing works and the plugin queuing parameters you can configure, see [About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/) and [Plugin Queuing Reference](/gateway/{{page.kong_version}}/kong-plugins/queue/reference/).
+
+### Traditional compatibility router
+
+The `traditional_compat` router mode has been made more compatible with the behavior of `traditional` mode by splitting routes with multiple paths into multiple `atc` routes with separate priorities. Since the introduction of the new router in {{site.base_gateway}} 3.0, `traditional_compat` mode assigned only one priority to each route, even if different prefix path lengths and regular expressions were mixed in a route. This was not how multiple paths were handled in the `traditional` router and the behavior has now been changed so that a separate priority value is assigned to each path in a route.
+
+{% endif_version %}
 
 {% if_version gte:3.2.x %}
 
@@ -163,6 +208,9 @@ from session configuration to avoid unpredictable behavior.
 
 #### Session plugin
 
+The following parameters and the values that they accept have changed. 
+For details on the new accepted values, see the [Seesion plugin](/hub/kong-inc/session/) documentation.
+
 Old parameter name | New parameter name
 -------------------|--------------------
 `cookie_lifetime` | `rolling_timeout`
@@ -174,6 +222,9 @@ Old parameter name | New parameter name
   
 
 #### SAML plugin
+
+The following parameters and the values that they accept have changed. 
+For details on the new accepted values, see the [SAML plugin](/hub/kong-inc/saml/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------
@@ -192,6 +243,9 @@ Old parameter name | New parameter name
 `session_compressor` | Removed, no replacement parameter. 
 
 #### OpenID Connect plugin
+
+The following parameters and the values that they accept have changed. 
+For details on the new accepted values, see the [OpenID Connect plugin](/hub/kong-inc/openid-connect/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------

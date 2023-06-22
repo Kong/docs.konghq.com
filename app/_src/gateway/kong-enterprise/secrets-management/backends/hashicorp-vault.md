@@ -44,9 +44,6 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtabs %}
 {% navtab Admin API %}
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
   --data name="hcv" \
@@ -58,24 +55,6 @@ curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
   --data config.kv="v2" \
   --data config.token="<mytoken>"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f PUT :8001/vaults/my-hashicorp-vault \
-  name="hcv" \
-  description="Storing secrets in HashiCorp Vault" \
-  config.protocol="https" \
-  config.host="localhost" \
-  config.port="8200" \
-  config.mount="secret" \
-  config.kv="v2" \
-  config.token="<mytoken>"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 

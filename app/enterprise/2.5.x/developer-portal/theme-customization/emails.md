@@ -104,9 +104,7 @@ Email templates can now be edited in the Portal Editor along with the rest of th
 1. Log into Kong Manager and navigate to the Workspace whose Dev Portal you wish to edit.
 2. Select the **Editor** from the sidebar under **Dev Portal**.
 
-The email templates can be found under the **Emails** section in the Portal Editor sidebar:
-
-![Portal Editor - Emails](https://doc-assets.konghq.com/1.3/dev-portal/editor/dev-portal-emails.png)
+The email templates can be found under the **Emails** section in the Portal Editor sidebar.
 
 ### Editing via the Portal CLI Tool
 

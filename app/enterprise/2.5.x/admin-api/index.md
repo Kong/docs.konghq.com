@@ -571,7 +571,7 @@ of methods to secure the Admin API.
 
 ## DB-less mode
 
-In [DB-less mode](../db-less-and-declarative-config), the Admin API can be used to load a new declarative
+In [DB-less mode](/enterprise/{{page.kong_version}}/db-less-and-declarative-config/), the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
 of that particular Kong node. This is the case because there is no database
@@ -620,7 +620,7 @@ are erased from memory, and the entities specified in the
 given file take their place.
 
 To learn more about the file format, see the
-[declarative configuration](../db-less-and-declarative-config) documentation.
+[declarative configuration](/enterprise/{{page.kong_version}}/db-less-and-declarative-config/) documentation.
 
 
 <div class="endpoint post indent">/config</div>

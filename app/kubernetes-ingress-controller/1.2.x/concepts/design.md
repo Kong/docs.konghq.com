@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller Design
+title: Kong Ingress Controller Design
 ---
 
 ## Overview

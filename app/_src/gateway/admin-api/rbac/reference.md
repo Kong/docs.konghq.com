@@ -814,7 +814,7 @@ HTTP 200 OK
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
+| `name_or_id` | The RBAC user name or UUID. |
 
 
 **Request Body**
@@ -857,7 +857,7 @@ HTTP 201 Created
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
+| `name_or_id` | The RBAC user name or UUID. |
 
 
 **Response**
@@ -901,7 +901,7 @@ HTTP 200 OK
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
+| `name_or_id` | The RBAC user name or UUID. |
 
 
 **Request Body**
@@ -925,7 +925,7 @@ HTTP 204 No Content
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
+| `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
 

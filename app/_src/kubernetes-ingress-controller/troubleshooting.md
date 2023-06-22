@@ -204,6 +204,16 @@ temporary file. To use the diagnostic mode:
 1. Set the `--dump-config` flag (or `CONTROLLER_DUMP_CONFIG` environment
    variable) to `true`. Optionally set the `--dump-sensitive-config` flag to
    `true` to include un-redacted TLS certificate keys and credentials.
+
+   If you're deploying with the Helm chart, add the following to your
+   `values.yaml` file:
+
+   ```yaml
+   ingressController:
+    env:
+      dump_config: "true"
+      dump_sensitive_config: "true"
+    ```
 1. (Optional) Make a change to a Kubernetes resource that you know will
    reproduce the issue. If you are unsure what change caused the issue
    originally, you can omit this step.
@@ -229,7 +239,12 @@ approaches to isolate issues:
   and responses (passing `--verbose 2` to decK will show all requests) and
    add debug Kong Lua code when controller requests result in an
   unhandled error (500 response).
+- To run a DB-less {{ site.base_gateway }} instance with Docker for testing
+  purposes, run `curl https://get.konghq.com/quickstart | bash -s -- -D`.
 
+  Once this image is running, run `curl http://localhost:8001/config @last_bad.json`
+  to try applying the configuration and see any errors.
+  
 ## Inspecting network traffic with a tcpdump sidecar
 
 Inspecting network traffic allows you to review traffic between the ingress
@@ -350,7 +365,6 @@ metadata:
     konghq.com/protocols: grpcs
     kubernetes.io/ingress.class: kong
   name: httpbin
-  uid: 3dcd75e9-c076-46a0-8cd3-3cc62f081920
 spec:
   rules:
   - http:
@@ -403,24 +417,19 @@ the number of times the problem occurred, and when it occurred:
 apiVersion: v1
 kind: Event
 count: 1
-eventTime: null
 firstTimestamp: "2023-02-21T22:42:48Z"
 involvedObject:
   apiVersion: networking.k8s.io/v1
   kind: Ingress
   name: httpbin
   namespace: default
-  uid: 3dcd75e9-c076-46a0-8cd3-3cc62f081920
 kind: Event
 lastTimestamp: "2023-02-21T22:42:48Z"
 message: 'invalid methods: cannot set ''methods'' when ''protocols'' is ''grpc''
   or ''grpcs'''
 metadata:
-  creationTimestamp: "2023-02-21T22:42:48Z"
   name: httpbin.1745f83aefeb8dde
   namespace: default
-  resourceVersion: "861"
-  uid: ab78a0fa-ebe7-4d86-a465-a4e7d636ccff
 reason: KongConfigurationApplyFailed
 reportingComponent: ""
 reportingInstance: ""

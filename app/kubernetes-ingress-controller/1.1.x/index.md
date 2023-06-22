@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller
+title: Kong Ingress Controller
 ---
 
 ## Concepts

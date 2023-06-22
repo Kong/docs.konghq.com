@@ -9,8 +9,8 @@ In Gateway version 3.0.0, the tracing API became part of the Kong core applicati
 The API is in the `kong.tracing` namespace.
 
 The tracing API follows the [OpenTelemetry API specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md).
-This specification defines how to use the API as an instrument to your module. 
-If you are familiar with the OpenTelemetry API, the tracing API will be familiar. 
+This specification defines how to use the API as an instrument to your module.
+If you are familiar with the OpenTelemetry API, the tracing API will be familiar.
 
 With the tracing API, you can set the instrumentation of your module with the following operations:
 - [Span](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span)
@@ -27,7 +27,7 @@ By default, the tracer is a [NoopTracer](https://github.com/open-telemetry/opent
 {% if_version gte:3.2.x %}
 By default, the tracer is a [NoopTracer](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#get-a-tracer). The tracer is first initialized when `tracing_instrumentations` configuration is enabled.
 {% endif_version %}
-You can create a new tracer manually, or use the global tracer instance: 
+You can create a new tracer manually, or use the global tracer instance:
 
 ```lua
 local tracer
@@ -41,7 +41,7 @@ tracer = kong.tracing
 
 ### Sampling traces
 
-The sampling rate of a tracer can be configured: 
+The sampling rate of a tracer can be configured:
 
 ```lua
 local tracer = kong.tracing.new("custom-tracer", {
@@ -50,7 +50,7 @@ local tracer = kong.tracing.new("custom-tracer", {
 })
 ```
 
-The default sampling rate is `1.0`, which samples all traces.
+A `sampling_rate` of `0.1` means that 1 of every 10 requests will be traced. A rate of `1` means that all requests will be traced.
 
 ## Create a span
 

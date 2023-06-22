@@ -7,6 +7,6 @@ swap:
 
   Developer Portal: Dev Portal
   Kong Gateway: "{{site.base_gateway}}"
-  Konnect Cloud: "{{site.konnect_saas}}"
+  Kong Konnect: "{{site.konnect_product_name}}"
   ServiceHub: Service Hub
   dbless: DB-less

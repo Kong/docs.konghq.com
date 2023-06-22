@@ -1,0 +1,9 @@
+name: aws-request-signing
+config:
+  aws_assume_role_arn: "arn:aws:iam::123456789012:role/example-role"
+  aws_assume_role_name: example-role
+  aws_region: us-east-1
+  aws_service: lambda
+  override_target_host: example.com
+  override_target_port: 443
+  override_target_protocol: https

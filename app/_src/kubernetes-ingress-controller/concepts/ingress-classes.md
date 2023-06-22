@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller and Ingress Class
+title: Kong Ingress Controller and Ingress Class
 ---
 
 ## Introduction
@@ -130,5 +130,5 @@ referenced by other resources that do.
 
 [class-annotation]:/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
 [knative-class]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
-[knative-override]:https://knative.tips/networking/ingress-override/
+[knative-override]:https://knative.dev/docs/serving/services/ingress-class/
 [ingress-class-name]:https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation

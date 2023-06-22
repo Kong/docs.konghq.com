@@ -30,7 +30,7 @@ build: ruby-version-check
 clean:
 	-rm -rf dist
 	-rm -rf app/.jekyll-cache
-	-rm app/.jekyll-metadata
+	-rm -rf app/.jekyll-metadata
 
 # Runs tests
 test:

@@ -103,7 +103,13 @@ Sets the client certificate used while handshaking with the Service.
 
 **Phases**
 
+{% if_version lte:3.2.x %}
 * `rewrite`, `access`, `balancer`
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
+* `rewrite`, `access`, `balancer`, `preread`
+{% endif_version %}
 
 **Parameters**
 
@@ -181,7 +187,13 @@ Sets the maximum depth of verification when validating upstream server's TLS cer
 
 **Phases**
 
+{% if_version lte:3.2.x %}
 * `rewrite`, `access`, `balancer`
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
+* `rewrite`, `access`, `balancer`, `preread`
+{% endif_version %}
 
 **Parameters**
 
@@ -219,7 +231,13 @@ Sets the CA trust store to use when validating upstream server's TLS certificate
 
 **Phases**
 
+{% if_version lte:3.2.x %}
 * `rewrite`, `access`, `balancer`
+{% endif_version %}
+
+{% if_version gte:3.3.x %}
+* `rewrite`, `access`, `balancer`, `preread`
+{% endif_version %}
 
 **Parameters**
 
