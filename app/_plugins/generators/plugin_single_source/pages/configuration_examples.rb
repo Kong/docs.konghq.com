@@ -44,7 +44,12 @@ module PluginSingleSource
       end
 
       def edit_link
-        "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/_layouts/plugins/configuration_examples.html"
+        if @release.vendor == 'kong-inc'
+          name = @release.name == 'serverless-functions' ? 'pre-function' : @release.name
+          "https://github.com/Kong/docs-plugin-toolkit/edit/main/examples/#{name}/_#{@release.version}.yaml"
+        else
+          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/_hub/#{@release.vendor}/#{@release.name}/examples/_index.yml"
+        end
       end
 
       private
