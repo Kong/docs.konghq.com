@@ -106,6 +106,10 @@ module PluginSingleSource
         @schema ||= Schemas::Base.make_for(vendor:, name:, version:)
       end
 
+      def enterprise_plugin?
+        !!metadata['enterprise'] && !!!metadata['free']
+      end
+
       private
 
       def validate_source!

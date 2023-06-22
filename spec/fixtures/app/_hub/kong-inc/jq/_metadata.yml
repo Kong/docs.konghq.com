@@ -6,6 +6,8 @@ examples: false
 categories:
   - transformations
 
+free: true
+enterprise: true
 publisher: Kong Inc.
 desc: Transform JSON objects included in API requests or responses using jq programs.
 description: |

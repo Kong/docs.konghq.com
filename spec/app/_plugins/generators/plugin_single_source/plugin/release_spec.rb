@@ -104,4 +104,18 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       it { expect(subject.changelog).to be_nil }
     end
   end
+
+  describe '#enterprise_plugin?' do
+    context 'when the plugin is `enterprise` and not `free`' do
+      let(:plugin_name) { 'acme/unbundled-plugin' }
+
+      it { expect(subject.enterprise_plugin?).to eq(true) }
+    end
+
+    context 'otherwise' do
+      let(:plugin_name) { 'acme/jq' }
+
+      it { expect(subject.enterprise_plugin?).to eq(false) }
+    end
+  end
 end
