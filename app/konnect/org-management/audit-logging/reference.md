@@ -8,7 +8,7 @@ content_type: reference
 
 * **Authentication**: Triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used.
 * **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
-<!-- * **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API. -->
+* **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
 
 ## Log formats
 
