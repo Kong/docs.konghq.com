@@ -12,24 +12,76 @@ specified in the API product deployment.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[set up a runtime](/konnect/getting-started/configure-runtime).
+[configured a runtime](/konnect/getting-started/configure-service).
 
-## Create a service in Runtime Manager
+## Implement a Gateway service
 
-<!--add steps here-->
+In the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us/runtime-manager), select the **Default** runtime group and follow these steps:
 
-## Create a route in Runtime Manager
+1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 
-<!--add steps here-->
+1. From the **Add a Gateway Service** dialog, create a new service: 
 
-## Verify your configuration
+    1. Enter a unique name for the Gateway service, or
+    specify a Gateway service that doesn't yet have a version connected to it.
 
-<!--add steps here-->
+      For the purpose of this example, enter `example_gateway_service`.
+
+      The name can be any string containing letters, numbers, or the following
+      characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+
+      For example, you can use `example_service`, `ExampleService`, `Example-Service`.
+      However, `Example Service` is invalid.
+
+    1. In the URL field, enter `http://mockbin.org`.
+
+    1. Use the defaults for the remaining fields.
+
+    1. Click **Save**.
+
+1. Add a route to your service implementation by clicking the **Routes** tab, then **New Route**.
+
+    For this example, enter the following:
+
+    * **Name**: `mockbin`
+    * **Protocols**: `HTTP`, `HTTPS`
+    * **Path(s)**: `/mock`
+
+1. Click **Save**.
+
+    The `v1` service version overview displays.
+
+    If you want to view the configuration, edit or delete the implementation,
+    or delete the version, click the **Version actions** menu.
+
+## Verify the implementation
+
+If you used the Docker script to create a container
+earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime/),
+your runtime's default proxy URL is `localhost:8000`.
+
+Enter the proxy URL into your browser’s address bar and append the route path
+you just set. The final URL should look something like this:
+
+```
+http://localhost:8000/mock
+```
+
+If successful, you should see the homepage for `mockbin.org`. On your service
+version overview page, you’ll see a record for status code 200. This might
+take a few moments.
+
+And that's it! You have your first service set up, running, and routing
+traffic proxied through a {{site.base_gateway}} runtime.
 
 ## Summary and next steps
 
-In this section, you added a service named `example_service` with the route `/mock`. This means if an HTTP
+To summarize, in this topic you:
+
+* Implemented the service version `v1` with the route `/mock`. This means if an HTTP
 request is sent to the {{site.base_gateway}} node and it matches route `/mock`, that
 request is sent to `http://mockbin.org`.
+* Abstracted a backend/upstream service and put a route of your choice on the
+front end, which you can now give to clients to make requests.
 
 Next, [productize your service with an API product](/konnect/getting-started/configure-service/).

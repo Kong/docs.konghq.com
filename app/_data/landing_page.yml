@@ -1,13 +1,13 @@
 features:
   - title: Key features
     items:
-      - name: Service Hub
+      - name: API Product Builder
         description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
         icon: /assets/images/landing-page/service-hub.svg
         links:
           - text: Cloud
             icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/servicehub
+            url: /konnect/api-products
 
       - name: Dev Portal
         description: Streamline developer onboarding with a self-service developer experience, letting developers discover, register, and consume published services.
