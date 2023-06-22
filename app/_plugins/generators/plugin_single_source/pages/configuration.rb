@@ -41,6 +41,19 @@ module PluginSingleSource
 
       def icon; end
 
+      def edit_link
+        if @release.vendor == 'kong-inc'
+          if @release.enterprise_plugin?
+            "https://github.com/Kong/kong-ee/edit/master/plugins-ee/#{@release.name}/kong/plugins/#{@release.name}/schema.lua"
+          else
+            name = @release.name == 'serverless-functions' ? 'pre-function' : @release.name
+            "https://github.com/Kong/kong/edit/master/kong/plugins/#{name}/schema.lua"
+          end
+        elsif @release.schema
+          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/#{@release.schema.file_path}"
+        end
+      end
+
       private
 
       def ssg_hub
