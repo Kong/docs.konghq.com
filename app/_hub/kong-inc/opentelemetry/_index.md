@@ -165,6 +165,9 @@ The OpenTelemetry plugin propagates the following headers:
 - `jaeger`: [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot`: [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
 - `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing) (Enterprise only)
+{% if_plugin_version gte:3.4.x %}
+- `aws`: [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
+{% endif_plugin_version %}
 
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.
