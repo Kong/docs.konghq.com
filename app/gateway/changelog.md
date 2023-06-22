@@ -5,6 +5,18 @@ no_version: true
 
 <!-- vale off -->
 
+## 3.3.1.0
+**Release Date** 2023/06/26
+
+### Fixes
+
+
+### Deprecations
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
+It is planned for removal with {{site.base_gateway}} 3.4.
+
 ## 3.3.0.0
 **Release Date** 2023/05/19
 
