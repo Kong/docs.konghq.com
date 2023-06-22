@@ -147,7 +147,7 @@
           {
             "company_id_header": {
               "type": "string",
-              "default": "",
+              "default": null,
               "description": "Request or response header used to identify the Company (Account) in Moesif. [See identifying companies](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-companies)."
             }
           },
@@ -168,7 +168,7 @@
           {
             "authorization_company_id_field": {
               "type": "string",
-              "default": "sub",
+              "default": null,
               "description": "Field name in JWT/OpenId token’s payload for identifying companies. Only applicable if `authorization_header_name` is set and is a Bearer token. [See identifying companies](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-companies)."
             }
           },
