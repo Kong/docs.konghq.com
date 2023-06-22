@@ -1,9 +1,11 @@
 {%- assign hub_example = include.hub_example -%}
 {%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
+{% if include.render_intro_text %}
 The following examples provide some typical configurations for enabling
 the <code>{{ hub_example.plugin_name }}</code> plugin on a
 [service](/gateway/latest/admin-api/#service-object).
+{% endif %}
 
 {% navtabs %}
   {% if hub_example.render_curl? %}
