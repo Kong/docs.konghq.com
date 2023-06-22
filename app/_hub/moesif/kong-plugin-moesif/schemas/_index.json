@@ -148,28 +148,28 @@
             "company_id_header": {
               "type": "string",
               "default": "",
-              "description": "Request or response header used to identify the Company (Account) in Moesif. [See identifying companies](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-companies)"
+              "description": "Request or response header used to identify the Company (Account) in Moesif. [See identifying companies](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-companies)."
             }
           },
           {
             "authorization_header_name": {
               "type": "string",
               "default": "authorization",
-              "description": "Request header containing a Bearer or basic token to extract user id. See identifying users. Also, supports a comma-separated string. The plugin will check headers in order \"X-Api-Key, Authorization\". [See identifying users](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-users)"
+              "description": "Request header containing a Bearer or basic token to extract user id. See identifying users. Also, supports a comma-separated string. The plugin will check headers in order \"X-Api-Key, Authorization\". [See identifying users](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-users)."
             }
           },
           {
             "authorization_user_id_field": {
               "type": "string",
               "default": "sub",
-              "description": "Field name in JWT/OpenId token’s payload for identifying users. Only applicable if authorization_header_name is set and is a Bearer token. [See identifying users](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-users)"
+              "description": "Field name in JWT/OpenId token’s payload for identifying users. Only applicable if `authorization_header_name` is set and is a Bearer token. [See identifying users](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-users)."
             }
           },
           {
             "authorization_company_id_field": {
               "type": "string",
               "default": "sub",
-              "description": "Field name in JWT/OpenId token’s payload for identifying companies. Only applicable if authorization_header_name is set and is a Bearer token. [See identifying companies](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-companies)"
+              "description": "Field name in JWT/OpenId token’s payload for identifying companies. Only applicable if `authorization_header_name` is set and is a Bearer token. [See identifying companies](https://www.moesif.com/docs/server-integration/kong-api-gateway/#identifying-companies)."
             }
           },
           {
@@ -190,7 +190,7 @@
             "disable_transaction_id": {
               "type": "boolean",
               "default": false,
-              "description": "Disable adding the X-Moesif-Transaction-Id response header for debugging."
+              "description": "Disable adding the `X-Moesif-Transaction-Id` response header for debugging."
             }
           },
           {

@@ -57,30 +57,30 @@ If you don't see any logs in Moesif, you may need to restart Kong again.
 kong restart
 ```
 
-## Updating Plugin Configuration
+## Updating plugin configuration
 
-[View upgrade steps on Moesif docs](https://www.moesif.com/docs/server-integration/kong-api-gateway/#updating-plugin-configuration?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
+[View upgrade steps in the Moesif docs](https://www.moesif.com/docs/server-integration/kong-api-gateway/#updating-plugin-configuration?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong). 
 
-##  Identifying users
+## Identifying users
 
-This plugin will automatically identify API users so you can associate a user's API traffic to user data and other app analytics.
-The default algorithm covers most authorization designs and works as follows:
+This plugin automatically identifies API users so you can associate a user's API traffic to user data and other app analytics.
+The default algorithm covers most authorization designs and works as follows, in this order of precedence::
 
 1. If the `config.user_id_header` option is set, read the value from the specified HTTP header key `config.user_id_header`.
-2. Else if Kong defined a value for `x-consumer-custom-id`, `x-consumer-username`, or `x-consumer-id` (in that order), use that value.
-3. Else if an authorization token is present in `config.authorization_header_name`, parse the user id from the token as follows:
-   * If header contains `Bearer`, base64 decode the string and use the value defined by `config.authorization_user_id_field` (by default is `sub`).
+2. Else, if Kong has a value defined for `x-consumer-custom-id`, `x-consumer-username`, or `x-consumer-id` (in that order), use that value.
+3. Else, if an authorization token is present in `config.authorization_header_name`, parse the user ID from the token as follows:
+   * If header contains `Bearer`, base64 decode the string and use the value defined by `config.authorization_user_id_field` (default value is `sub`).
    * If header contains `Basic`, base64 decode the string and use the username portion (before the `:` character).
 
 For advanced configurations, you can define a custom header containing the user id via `config.user_id_header` or override the options `config.authorization_header_name` and `config.authorization_user_id_field`.
 
 ## Identifying companies
 
-You can associate API users to companies for tracking account-level usage similar to user-level usage. This can be done either:
-1. Defining `config.company_id_header`, Moesif will use the value present in that header. 
+You can associate API users to companies for tracking account-level usage similar to user-level usage. This can be done in one of the following ways, by order of precedence:
+1. Define `config.company_id_header`. Moesif will use the value present in that header. 
 2. Use the Moesif [update user API](https://www.moesif.com/docs/api#update-a-user) to set a `company_id` for a user. Moesif will associate the API calls automatically.
-3. Else if an authorization token is present in `config.authorization_header_name`, parse the company id from the token as follows:
-   * If header contains `Bearer`, base64 decode the string and use the value defined by `config.authorization_company_id_field` (by default is ``).
+3. Else if an authorization token is present in `config.authorization_header_name`, parse the company ID from the token as follows:
+   * If header contains `Bearer`, base64 decode the string and use the value defined by `config.authorization_company_id_field` (default value is ``).
 
 [More info on identifying customers](https://www.moesif.com/docs/getting-started/identify-customers/?language=kong-api-gateway&utm_medium=docs&utm_campaign=partners&utm_source=kong)
 
