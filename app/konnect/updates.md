@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## June 2023
+
+**Makelog Integration**
+: Makelog integration will allow {{site.konnect_saas}} feature teams to publish product updates in time with the feature releases and also manage the in-product release annoucements based on feature flags. Once integrated, customers will see the latest feature updates easily and quickly in UI.
+
 ## May 2023
 
 **Gateway 3.3 Support**
