@@ -163,8 +163,6 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Analyze Services and Routes
-      url: /analytics/services-and-routes/
     - text: Report Use Cases
       items: 
       - text: Analyze API Usage and Performance

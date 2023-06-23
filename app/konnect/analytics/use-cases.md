@@ -32,7 +32,7 @@ To build a report that displays the total number of requests across all of your 
 * **Chart type**: Horizontal bar chart
 * **Date/Time**: Last 30 days
 * **Select a metric**: Request Count
-* **Group by**: Service
+* **Group by**: API Product
 * **Then by**: None
 
 ![API usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-api-requests.png){:.image-border}
@@ -62,30 +62,17 @@ Set the following options in the UI:
 * **Chart type**: Line chart
 * **Date/Time**: Last 30 days
 * **Select a metric**: Request Count
-* **Group by**: Service
+* **Group by**: API Product
 * **Choose granularity**: Daily
 
 Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
 
-* **Filter by**: Service
+* **Filter by**: API Product
 * **Operator**: In
 * **Filter value**: Accounts API (or your own API name)
 
 ![Daily Accounts API Usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-usage-accounts-api-30.png){:.image-border}
 > _**Figure 2:** Line chart showing the daily usage for the Accounts API over the last 30 days._
-
-Now that you know what day or days this spike happened on, let's dig a little deeper. 
-Edit the report to switch the metric from **Request Count** to **Requests per Minute**.
-
-Your configuration should now look like this, with the filter unchanged:
-
-* **Date/Time**: Last 30 days
-* **Select a metric**: Requests Per Minute
-* **Group by**: Service
-* **Choose granularity**: Daily
-
-![Daily Accounts API Usage (last 30 days)](/assets/images/docs/konnect/custom-reports/total-api-usage-by-application-minute.png){:.image-border}
-> _**Figure 3:** Line chart showing the daily usage for the Accounts API over the last 30 days, broken down by requests per minute._
 
 These reports can provide your stakeholders with the answers to questions like:
 
@@ -118,7 +105,7 @@ To configure the {{site.konnect_saas}} to create a look back report of total tra
 * **Chart type**: Vertical bar chart
 * **Date/Time**: Last 30 days
 * **Select a metric**: Request Count
-* **Group by**: Service
+* **Group by**: API Product
 * **Then by**: Application
 
 
@@ -143,13 +130,13 @@ Your company determines that it is critical that payments are processed quickly 
 * **Date/Time**: Last 30 days
 * **Chart type**: Line chart
 * **Select a metric**: Response Latency (p99)
-* **Group by**: Service
+* **Group by**: API Product
 * **Choose granularity**: Daily
 * **Entity Selection**: Payment 
 
 Add a filter for the Payment API. Click **Add Filter**, then set the following options:
  
-* **Filter by**: Service
+* **Filter by**: API Product
 * **Operator**: In
 * **Filter value**: Payment
 
@@ -188,7 +175,7 @@ You learned that:
 * You can use information from reports to dig deeper into any anomalies, performance, or stability issues to determine what is causing the problem
 * After you create a report, you can export and share the reports with stakeholders to let them draw conclusions based on further analysis
 
-If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read the next use case [Diagnosing latency issues](/konnect/analytics/use-cases/latency/) or see [Analyze Services and Routes](/konnect/analytics/services-and-routes/).
+If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read the next use case [Diagnosing latency issues](/konnect/analytics/use-cases/latency/).
 
 ## More information
 * [Reports reference for metrics, filtering and grouping, and time intervals](/konnect/analytics/reference/)
