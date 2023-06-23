@@ -81,5 +81,5 @@ you’ll be able to start making requests through {{site.konnect_saas}}.
 
 ## More information
 
-* [Deploy and Test a Service](/getting-started/implement-service/) - Learn how to deploy and test a service with Runtime Manager.
-* [Productize a Service](/getting-started/configure-service/) - Learn how to productize a service with API Products.
+* [Deploy and Test a Service](/getting-started/deploy-service/) - Learn how to deploy and test a service with Runtime Manager.
+* [Productize a Service](/getting-started/productize-service/) - Learn how to productize a service with API Products.

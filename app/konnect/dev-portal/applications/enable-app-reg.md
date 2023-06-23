@@ -42,7 +42,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
-To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-products %} **API Products**, select a
+To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
 1. Click **Versions** to select a version.
@@ -65,7 +65,7 @@ support for {{site.base_gateway}} versions less than 3.0.
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
-To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-products %} **API Products**, select a
+To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
 

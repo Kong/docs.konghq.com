@@ -13,7 +13,7 @@ In {{site.konnect_short_name}}, API products can be published to the Dev Portal 
 
 * [API product Documentation](/konnect/api-products/service-documentation/): This doc explains how to upload and publish product documentation using the **API Products** dashboard and publish services to the Dev Portal so they can be publicly consumed.
 
-* [Manage Konnect API product versions](/konnect/api-products/overview/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished". 
+* [Manage Konnect API product versions](/konnect/api-products/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished". 
 
 ### API specification
 
