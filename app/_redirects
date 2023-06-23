@@ -315,6 +315,7 @@
 /konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
 /konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
 /konnect/servicehub/service-documentation/            /konnect/api-products/service-documentation
+/konnect/servicehub/service-implementations/          /konnect/api-products/
 
 #API Redirects
 

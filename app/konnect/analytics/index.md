@@ -2,7 +2,7 @@
 title: Introduction to Monitoring Health with Analytics
 ---
 
-You can monitor the health and performance of any service, service version,
+You can monitor the health and performance of any API product, Gateway service,
 route, or application managed by {{site.konnect_saas}}.
 
 Analytics provides traffic reports to help you track the performance and
@@ -17,17 +17,16 @@ historical data for the following lengths of time:
 
 ## Contextual analytics for services and routes
 
-In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
-[activity graphs](/konnect/analytics/services-and-routes/) for services, service versions, or
-routes for the past 30 days.
-For services, these graphs display request counts. For service versions and
+From the API Products builder (https://cloud.konghq.com/api-products/), you can see
+[activity graphs](/konnect/analytics/services-and-routes/) for products and product versions for the past 30 days.
+For services, these graphs display request counts. For API product version and
 routes, the graphs show requests broken down by status codes.
 
 ![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png){:.image-border}
 
 > _**Figure 1:** Graph showing throughput for a service with interval filter options._
 
-You can also [export this historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
+You can also [export this historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, API product version, or route.
 
 
 ## Summary dashboard and custom reports
@@ -36,7 +35,7 @@ For greater insights into your service usage, access the dedicated {% konnect_ic
 
 From {% konnect_icon analytics %} Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
-* [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
+* [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, API product, or route.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 The summary dashboard provides metrics across all services in your organization within a selected time interval for the following categories:

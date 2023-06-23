@@ -239,7 +239,7 @@ This release includes a new user interface that provides information about which
 **Dynamic client registration <span class="badge beta"></span>**
 : {{site.konnect_saas}} Dev Portal supports integration with Okta for end-to-end client management. This feature is released as a private beta. This feature allows Dev Portal developers to automatically create applications in Okta and receive credentials to access services proxied through {{site.base_gateway}}.
 
-**Service version lifecycle**
+**API product version lifecycle**
 : You can identify the [lifecycle stage](/konnect/servicehub/service-versions/#manage-the-service-version-lifecycle) of your APIs and notify Dev Portal developers if a particular API will be deprecated soon.  
 
 **{{site.base_gateway}} 3.0.0.0 support**

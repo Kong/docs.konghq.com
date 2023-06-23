@@ -49,11 +49,6 @@ In the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.co
 
 1. Click **Save**.
 
-    The `v1` service version overview displays.
-
-    If you want to view the configuration, edit or delete the implementation,
-    or delete the version, click the **Version actions** menu.
-
 ## Verify the implementation
 
 If you used the Docker script to create a container
@@ -67,8 +62,7 @@ you just set. The final URL should look something like this:
 http://localhost:8000/mock
 ```
 
-If successful, you should see the homepage for `mockbin.org`. On your service
-version overview page, you’ll see a record for status code 200. This might
+If successful, you should see the homepage for `mockbin.org`. In the runtime manager for the route, you’ll see a record for status code 200. This might
 take a few moments.
 
 And that's it! You have your first service set up, running, and routing
@@ -78,7 +72,7 @@ traffic proxied through a {{site.base_gateway}} runtime.
 
 To summarize, in this topic you:
 
-* Implemented the service version `v1` with the route `/mock`. This means if an HTTP
+* Implemented the API product version `v1` with the route `/mock`. This means if an HTTP
 request is sent to the {{site.base_gateway}} node and it matches route `/mock`, that
 request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the

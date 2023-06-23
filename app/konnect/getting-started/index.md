@@ -23,9 +23,9 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 2.  **Create a service**:
 
-    Catalog a new service using the {{site.konnect_short_name}} Service Hub.
+    Catalog a new service using the {{site.konnect_short_name}} API Product builder.
 
-    Using Service Hub, you can catalog, manage, and track every service in your
+    Using the API product builder, you can catalog, manage, and track every service in your
     entire architecture. In this step, you create the first version of a service,
     adding the first entry to your catalog.
 

@@ -7,18 +7,18 @@ The {{site.konnect_short_name}} Dev Portal is a customizable website for develop
 
 ## Publish service documentation
 
-In {{site.konnect_short_name}}, services created in the Service Hub can be published to the Dev Portal with one click. Published services become immediately available to users who have access to the Dev Portal. When a service is published, the API spec and any service document become discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications using your specific APIs.
+In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published services become immediately available to users who have access to the Dev Portal. When a service is published, the API spec and any service document become discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications using your specific APIs.
 
 * [Getting started guide](/konnect/getting-started/publish-service/): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
 
-* [API product Documentation](/konnect/servicehub/service-documentation/): This doc explains how to upload and publish product documentation using the **API Products** dashboard and publish services to the Dev Portal so they can be publicly consumed.
+* [API product Documentation](/konnect/api-products/service-documentation/): This doc explains how to upload and publish product documentation using the **API Products** dashboard and publish services to the Dev Portal so they can be publicly consumed.
 
-* [Manage Konnect Service Versions](/konnect/servicehub/service-versions/): This explains how to manage the service versions for your services, including the status of the service version. Service versions can have a status of "Published", "Deprecated", or "Unpublished". 
+* [Manage Konnect API product versions](/konnect/api-products/overview/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished". 
 
 ### API specification
 
-API specifications can be uploaded and attached to a specific version within the Dev Portal.
-You can have different API specs that correspond to different service versions.
+API specifications can be uploaded and attached to a specific API product version within the [**API Product builder**](https://cloud.konghq.com/us/api-products/)
+You can have different API specs that correspond to different API product versions.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
 Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also be able to filter by tag when in full-page view. 
@@ -26,7 +26,7 @@ The Dev Portal lives at a separate URL from {{site.konnect_short_name}} and requ
 
 ## Developer self service
 
-Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through Service Hub, they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
+Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through the API product builder they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
 
 For more information on this topic, we offer several pieces of documentation depending on your use case.
 

@@ -3,7 +3,7 @@ title: Analyze Services and Routes
 content_type: how-to
 ---
 
-In the Service Hub, the service, service version, and route graphs provide dynamic
+In the API product builder the API product, API product version, and route graphs provide dynamic
 graphs with up to 30 days of data. To view data beyond this time frame, export
 the data into a comma-separated values (CSV) file.
 
@@ -14,11 +14,11 @@ You can generate and export a CSV file for:
 
 * A service, including daily requests by status codes for all versions of the
 service.
-* A service version, including a report of daily requests and status codes.
+* an API product version, including a report of daily requests and status codes.
 
 For a route, you can [view status codes](#view-performance-for-a-route)
 for a specified time frame but you can't export a route traffic report through
-Service Hub.
+API products.
 
 If you want to combine multiple services, routes, or applications in one report,
 see [custom reports](/konnect/analytics/generate-reports/).
@@ -30,7 +30,7 @@ see [custom reports](/konnect/analytics/generate-reports/).
 You can view traffic health and performance of an individual service, including across all of a
 service's versions.
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
+From the {% konnect_icon api-product %} [**API Products builder**](https://cloud.konghq.com/servicehub), select a service.
 On the service's detail page, the **Throughput** graph displays all API calls
 that have been made across every version for the given time frame.
 
@@ -52,21 +52,21 @@ hours.
 Generate a CSV file for a service, including requests by time or date and
 status codes for all versions of the service.
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service, then follow these steps:
+From the {% konnect_icon api-product %} [**API Product builder**](https://cloud.konghq.com/api-products), select a service, then follow these steps:
 
 1. On the **Throughput** graph, click **Export**.
 1. Select the time frame to include in the report. To customize the time frame,
 click **Custom** and select a date range.
 1. Click **Export** to generate and download CSV file.
 
-## Analyze service versions
+## Analyze API product versions
 
-### View performance for a service version
+### View performance for an API product version
 
-You can view traffic health and performance for a service version.
+You can view traffic health and performance for an API product version.
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version.
-On the service version's detail page, the **Traffic by status code** graph
+From the {% konnect_icon api-product %} [**API Product builder**](https://cloud.konghq.com/api-products), select a service, then follow these steps:
+On the product version's detail page, the **Traffic by status code** graph
 displays any API calls that have been made against the current version of the
 service for the given time frame, grouped by status code.
 
@@ -83,13 +83,13 @@ If you choose 5m, the graph displays all events that occurred in the last five
 minutes. If you choose 6h, the graph displays all events from the last six
 hours.
 
-### Export service version history
+### Export API product version history
 
-Generate a CSV file for a service version, including requests by time or
+Generate a CSV file for an API product version, including requests by time or
  date and status codes for the selected version.
 
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then follow these steps:
+From the {% konnect_icon api-product %} [**API Product builder**](https://cloud.konghq.com/api-products), select a service, then follow these steps:
 
 1. On the **Traffic by Status Code** graph, click the **Export** button.
 1. Select the time frame to include in the report. To customize the time frame,
@@ -102,7 +102,7 @@ click **Custom** and select a date range.
 
 You can view traffic health and performance for a route.
 
-From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service version, then choose a route.
+From the {% konnect_icon api-product %} [**API Product builder**](https://cloud.konghq.com/api-products), select a service, then follow these steps:
 
 On the route's detail page, the **Traffic by Status Code** graph displays any API
 calls that have been made using the current route in the given time frame,
@@ -129,6 +129,6 @@ class and count.
 ## See also
 
 In this topic, you viewed the health and monitoring information for individual
-services, service versions, and routes.
+services, API product versions, and routes.
 
 For reports comparing multiple {{site.konnect_short_name}} entities, see [custom reports](/konnect/analytics/generate-reports/).
