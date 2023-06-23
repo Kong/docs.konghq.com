@@ -20,7 +20,7 @@
         - text: Control Plane Upgrades FAQ
           url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /install-support/
+          url: /runtime-manager/runtime-instances/
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -31,7 +31,7 @@
       url: /getting-started/access-account/
     - text: Set up a Runtime
       url: /getting-started/configure-runtime/
-    - text: Deploy and Test a Service
+    - text: Proxy and Test a Service
       url: /getting-started/deploy-service/
     - text: Productize a Service
       url: /getting-started/productize-service/

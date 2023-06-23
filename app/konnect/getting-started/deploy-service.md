@@ -12,7 +12,7 @@ specified in the API product deployment.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[configured a runtime](/konnect/getting-started/configure-service).
+[Deployed and tested a Gateway service](/konnect/getting-started/deploy-service).
 
 ## Implement a Gateway service
 
@@ -33,13 +33,13 @@ In the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.co
       For example, you can use `example_service`, `ExampleService`, `Example-Service`.
       However, `Example Service` is invalid.
 
-    1. In the URL field, enter `http://mockbin.org`.
+    1. In the **add using upstream URL** field, enter `http://mockbin.org`.
 
     1. Use the defaults for the remaining fields.
 
     1. Click **Save**.
 
-1. Add a route to your service implementation by clicking the **Routes** tab, then **New Route**.
+1. Add a route to your service implementation by clicking the **Add a Route** button now visible from the Gateway service dashboard.
 
     For this example, enter the following:
 
@@ -62,8 +62,7 @@ you just set. The final URL should look something like this:
 http://localhost:8000/mock
 ```
 
-If successful, you should see the homepage for `mockbin.org`. In the runtime manager for the route, you’ll see a record for status code 200. This might
-take a few moments.
+If successful, you should see the homepage for `mockbin.org`. In the runtime manager you will now see a **200** responses recorded in the **Analytics** tab.
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} runtime.
@@ -72,10 +71,10 @@ traffic proxied through a {{site.base_gateway}} runtime.
 
 To summarize, in this topic you:
 
-* Implemented the API product version `v1` with the route `/mock`. This means if an HTTP
+* Implemented a Gateway service `example_gateway_service` and the route `/mock`. This means if an HTTP
 request is sent to the {{site.base_gateway}} node and it matches route `/mock`, that
 request is sent to `http://mockbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, [productize your service with an API product](/konnect/getting-started/configure-service/).
+Next, [productize your service with an API product](/konnect/getting-started/productize-service/).

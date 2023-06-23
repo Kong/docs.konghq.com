@@ -6,7 +6,62 @@ The Dev Portal is an API catalog that lets you document your {{site.konnect_shor
 and share them with your developers. Developers can use the Dev Portal to
 locate, access, consume, and register applications against the services.
 
-This guide walks you through the Dev Portal, viewing any published content, and Dev Portal specific customization options.
+This guide walks you through associating API specs and product documentation with your API products, and viewing any published content, and Dev Portal specific customization options.
+
+
+### Add Product Documentation
+
+You can provide extended descriptions of your {{site.konnect_short_name}} API products with a Markdown (`.md`) file.
+The contents of this file will be displayed as the introduction to your API in the Dev Portal.
+
+1. Write a description for your API in Markdown (`.md`).
+
+    If you don't have a file you can use for testing, copy the following text
+    into a blank `.md` file:
+
+    ```md
+    Here's a description with some **formatting**.
+
+    Here's a bulleted list:
+    * One
+    * Two
+    * Three
+
+    You can [add relative links](/) and [absolute links](https://cloud.konghq.com).
+
+    Try adding a codeblock for code snippets:
+
+        This is a test
+
+    ```
+
+1. In the {% konnect_icon api-product %} [**API product builder**](https://cloud.konghq.com/apiproducts), select a service.
+
+1. Select **Documentation**, upload your documentation, add a **Page name**, and an optional **URL slug**. 
+1. Click **Save**.
+
+
+### Add an API Spec 
+
+Every version can have one OpenAPI spec associated with it, in JSON or YAML format.
+
+If you have a spec, use it in the following steps. Otherwise, you can
+use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
+
+
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/apiproducts) dashboard, select **Product Version** then **Upload**. 
+
+1. Find the **Version Spec** section and click **Upload Spec**.
+
+1. Select a spec file to upload.
+
+    The spec must be in YAML or JSON format. To test this functionality, you
+    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml/) as a sample spec.
+
+This OpenAPI spec will be shown under the version name when this service is
+published to the Dev Portal.
+
+
 ## View the published content on Dev Portal
 
 In this section, you can take one of two paths: keep the Dev Portal private

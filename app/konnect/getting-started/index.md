@@ -21,26 +21,25 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     [Set up a runtime instance &gt;](/konnect/getting-started/configure-runtime/)
 
 
-2.  **Create a service**:
+2.  **Create a Gateway service**:
 
-    Catalog a new service using the {{site.konnect_short_name}} API Product builder.
-
-    Using the API product builder, you can catalog, manage, and track every service in your
-    entire architecture. In this step, you create the first version of a service,
-    adding the first entry to your catalog.
-
-    [Create a service &gt;](/konnect/getting-started/configure-service/)
-
-3.  **Deploy the new API Product version**:
-
-    Attach the new {{site.konnect_short_name}} service to an upstream service
-    and define a route.
+    Catalog a new service using the {{site.konnect_short_name}} Runtime Manager
 
     After you've configured a service and the runtime proxy is ready, testing
     is the next step. Here you set up a route to a mocking API service,
     then proxy traffic through the route.
 
-    [Deploy the API Product version &gt;](/konnect/getting-started/implement-service/)
+
+    [Create a service &gt;](/konnect/getting-started/configure-service/)
+
+3.  **Productize an API product**:
+    
+    Using the API product builder, you can catalog, manage, and track every service in your
+    entire architecture. In this step, you create the first version of a service,
+    adding the first entry to your catalog.
+    
+
+    [Deploy the API Product version &gt;](/konnect/getting-started/productize-service/)
 
 ## Share APIs and enable development
 

@@ -7,7 +7,7 @@ You can find any Gateway service through the {% konnect_icon runtimes %} [**Runt
 
 ## Enable a plugin
 
-From the service page, enable a plugin:
+From a Gateway service dashboard, enable a plugin:
 
 1. From the **Plugins** section, click **New Plugin**.
 
