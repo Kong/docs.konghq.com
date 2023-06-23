@@ -48,6 +48,14 @@ breadcrumbs:
   </blockquote>
 {% endif %}
 
+{% if page.extn_publisher == "kong-inc" %}
+<blockquote>
+  <p>
+    <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.url }}configuration/">{{page.name}} configuration reference</a> doc.</em>
+  </p>
+</blockquote>
+{% endif %}
+
 {{ page.description | markdownify }}
 
 {% if page.installation %}

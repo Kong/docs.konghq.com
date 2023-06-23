@@ -25,7 +25,8 @@ module PluginSingleSource
           @release.configuration,
           @release.configuration_examples,
           @release.how_tos,
-          @release.changelog
+          @release.changelog,
+          @release.references
         ].compact
       end
 
@@ -45,7 +46,7 @@ module PluginSingleSource
       end
 
       def items_for(pages)
-        pages.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
+        pages.flatten.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
       end
 
       def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
@@ -57,17 +58,33 @@ module PluginSingleSource
 
         if @release.configuration
           items.push({
-                       'title' => 'Configuration',
-                       'items' => items_for([@release.configuration, @release.configuration_examples]),
+                       'title' => @release.configuration.nav_title,
+                       'url' => @release.configuration.permalink,
                        'icon' => '/assets/images/icons/documentation/hub/icn-configuration.svg'
                      })
         end
 
-        if @release.how_tos.any?
+        if @release.configuration_examples
+          if @release.vendor == 'kong-inc'
+            items.push({
+                         'title' => 'Using the plugin',
+                         'items' => items_for([@release.configuration_examples, @release.how_tos]),
+                         'icon' => icon
+                       })
+          else
+            items.push({
+                         'title' => @release.configuration_examples.nav_title,
+                         'url' => @release.configuration_examples.permalink,
+                         'icon' => icon
+                       })
+          end
+        end
+
+        if @release.references
           items.push({
-                       'title' => 'Using the plugin',
-                       'items' => items_for(@release.how_tos),
-                       'icon' => icon
+                       'title' => @release.references.nav_title,
+                       'url' => @release.references.permalink,
+                       'icon' => @release.references.icon
                      })
         end
 
