@@ -55,3 +55,13 @@ You can test the SSO configuration by navigating to the login URI based on the o
 
 You can now manage your organization's user permissions entirely from the IdP
 application.
+
+## Advanced Settings
+
+You can configure customize IdP specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
+
+1. Scopes - Scopes allow you to specify the list of scopes Konnect will request from the IdP. By default, we request the `openid`, `email` and `profile` scopes. The `openid` scope is required and cannot be removed.
+2. Claim Mappings - Claim mappings allows you to customize the mapping of required attributes to different claim in the id_token we receive from the IdP. By default, Konnect requires three attributes: Name, Email and Groups, which are mapped as follows:
+    - Name from `name` - used as the Konnect accounts `full_name`.
+    - Email from `email` - used as the Konnect account's `email`.
+    - Groups from `groups` - used to map users to teams defined in the team mappings upon login.
