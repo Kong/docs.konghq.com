@@ -1,5 +1,5 @@
 product: mesh
-release: 2.2.x
+release: 2.3.x
 generate: true
 assume_generated: true
 items:
@@ -10,7 +10,7 @@ items:
         url: /introduction/what-is-a-service-mesh/
         src: /.repos/kuma/app/_src/introduction/about-service-meshes
       - text: Overview of Kong Mesh
-        url: /mesh/2.2.x/
+        url: /mesh/2.3.x/
         absolute_url: true
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
@@ -292,6 +292,9 @@ items:
       - text: MeshRetry (Beta)
         url: /policies/meshretry/
         src: /.repos/kuma/app/_src/policies/meshretry/
+      - text: MeshTCPRoute (Beta)
+        url: /policies/meshtcproute/
+        src: /.repos/kuma/app/_src/policies/meshtcproute/
       - text: MeshTimeout (Beta)
         url: /policies/meshtimeout/
         src: /.repos/kuma/app/_src/policies/meshtimeout/
