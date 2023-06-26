@@ -292,6 +292,9 @@ items:
       - text: MeshRetry (Beta)
         url: /policies/meshretry/
         src: /.repos/kuma/app/_src/policies/meshretry/
+      - text: MeshTCPRoute (Beta)
+        url: /policies/meshtcproute/
+        src: /.repos/kuma/app/_src/policies/meshtcproute/
       - text: MeshTimeout (Beta)
         url: /policies/meshtimeout/
         src: /.repos/kuma/app/_src/policies/meshtimeout/
