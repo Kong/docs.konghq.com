@@ -1,3 +1,9 @@
+PATH
+  remote: app/_src/.repos/kuma/jekyll-kuma-plugins
+  specs:
+    jekyll-kuma-plugins (0.1.0)
+      jekyll (>= 4.2, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -150,6 +156,7 @@ DEPENDENCIES
   jekyll (= 4.2.2)
   jekyll-generator-single-source
   jekyll-include-cache
+  jekyll-kuma-plugins!
   jekyll-redirect-from
   kramdown-parser-gfm
   liquid-c
