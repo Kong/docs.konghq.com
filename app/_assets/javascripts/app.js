@@ -578,25 +578,27 @@ jQuery(function () {
 
 // Tooltips for badges
 jQuery(function () {
-  $(".badge.enterprise").append(
-    '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
-  );
-  $(".badge.plus").append(
-    '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Kong Konnect)</span></div>'
-  );
-  $(".badge.free").append(
-    '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>'
-  );
-  $(".badge.oss").append(
-    '<div class="tooltip"><span class="tooltiptext" >Available in Kong open-source only</span></div>'
-  );
-  $(".badge.dbless").append(
-    '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>'
-  );
-  $(".badge.konnect").append(
-    '<div class="tooltip"><span class="tooltiptext">Available in the Kong Konnect app</span></div>'
-  );
-  $(".badge.techpartner").append(
-    '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
-  );
+  if ($(".page.page-hub").length === 0) {
+    $(".badge.enterprise").append(
+      '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
+    );
+    $(".badge.plus").append(
+      '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Kong Konnect)</span></div>'
+    );
+    $(".badge.free").append(
+      '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>'
+    );
+    $(".badge.oss").append(
+      '<div class="tooltip"><span class="tooltiptext" >Available in Kong open-source only</span></div>'
+    );
+    $(".badge.dbless").append(
+      '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>'
+    );
+    $(".badge.konnect").append(
+      '<div class="tooltip"><span class="tooltiptext">Available in the Kong Konnect app</span></div>'
+    );
+    $(".badge.techpartner").append(
+      '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
+    );
+  }
 });

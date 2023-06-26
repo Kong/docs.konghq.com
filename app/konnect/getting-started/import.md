@@ -89,8 +89,6 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
         * OAuth2 Authentication
         * Apache OpenWhisk
         * Vault Auth
-        * DeGraphQL
-        * GraphQL Rate Limiting Advanced
         * Key Authentication Encrypted
 
 1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff/)

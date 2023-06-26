@@ -23,11 +23,11 @@ privileged system calls in the operating system.
 ## Prerequisites
 
 {{site.ce_product_name}} is installed on one of the following Linux distributions:
-* [Amazon Linux](/install/aws-linux/)
-* [CentOS](/install/centos/)
-* [Debian](/install/debian/)
-* [Red Hat](/install/redhat/)
-* [Ubuntu](/install/ubuntu/)
+* [Amazon Linux](/gateway/latest/install/linux/amazon-linux/)
+* [Debian](/gateway/latest/install/linux/debian/)
+* [Red Hat](/gateway/latest/install/linux/rhel/)
+* [Ubuntu](/gateway/latest/install/linux/ubuntu/)
+* CentOS
 
 ## Run {{site.base_gateway}} as the built-in kong user
 

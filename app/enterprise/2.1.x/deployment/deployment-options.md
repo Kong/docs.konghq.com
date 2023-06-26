@@ -20,7 +20,7 @@ reside on the same node. This option is normally used for testing and developmen
 
 ![Classic embedded mode](/assets/images/docs/ee/deployment/deployment-classic-dev.png)
 
-To learn more, see the [installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/).
+To learn more, see the [installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/overview/).
 
 ### Distributed
 
@@ -31,7 +31,7 @@ which can be Postgres or Cassandra.
 ![Classic distributed mode](/assets/images/docs/ee/deployment/deployment-classic-distributed.png)
 
 To set up a distributed deployment, install the Control Plane Kong instance
-following the [embedded installation instructions](/enterprise/{{page.kong_version}}/deployment/installation/)
+following the [embedded installation instructions](/enterprise/{{page.kong_version}}/deployment/installation/overview/)
 for your platform, then bring up subsequent instances for the Data Planes without
 enabling any add-ons (e.g., Kong Manager, Developer Portal).
 

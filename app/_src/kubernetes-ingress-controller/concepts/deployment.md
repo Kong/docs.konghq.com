@@ -70,7 +70,11 @@ stored in the Kubernetes object store.
 
 It needs read permissions (get, list, watch) on the following Kubernetes resources:
 
+{% if_version lte:2.9.x inline: true%}
+
 - Endpoints
+
+{%- endif_version %}
 {% if_version gte:2.9.x inline: true%}
 
 - EndpointSlices

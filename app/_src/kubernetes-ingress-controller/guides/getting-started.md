@@ -48,13 +48,18 @@ Gateway APIs.
 ```bash
 kubectl patch --type=json gateway kong -p='[{
     "op":"add",
-	"path":"/spec/listeners/1/tls",
+	"path":"/spec/listeners/-",
 	"value":{
-	    "certificateRefs":[{
-		    "group":"",
-			"kind":"Secret",
-			"name":"kong.example"
-		}]
+		"name":"proxy-ssl",
+		"port":443,
+		"protocol":"HTTPS",
+		"tls":{
+				"certificateRefs":[{
+				    "group":"",
+					"kind":"Secret",
+					"name":"kong.example"
+				}]
+		}
     }
 }]'
 ```
