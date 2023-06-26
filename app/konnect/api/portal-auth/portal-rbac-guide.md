@@ -70,7 +70,7 @@ To get a list of the available roles, make a GET request to the roles endpoint. 
 
 ```bash
 curl --request GET \
-  --url https://us.api.konghq.com/v2/portal-roles \
+  --url https://<region>.api.konghq.com/v2/portal-roles \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
@@ -90,7 +90,7 @@ To assign a role to a team, you must make a POST request to the team roles endpo
 
 ```bash
 curl --request POST \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -117,7 +117,7 @@ To remove a role from a team, you must make a DELETE request to the team roles e
 
 ```bash
 curl --request DELETE \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles/<role-id> \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles/<role-id> \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
@@ -131,7 +131,7 @@ You can make a GET request to the developers endpoint to retrieve all the inform
 
 ```bash
 curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/developers \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/developers \
   --header 'Authorization: Bearer <personal-access-token>'
 ```
 
@@ -139,7 +139,7 @@ To add a developer to a team, you make a POST request to the team members endpoi
 
 ```bash
 curl --request POST \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -153,7 +153,7 @@ To remove a developer from a team, you make a DELETE request to the team members
 
 ```bash
 curl --request DELETE \
-  --url https://us.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers/<developer-id> \
+  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/developers/<developer-id> \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json'
 ```

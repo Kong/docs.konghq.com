@@ -23,8 +23,7 @@ authentication.
 
 ## Set up SSO in {{site.konnect_short_name}}
 
-1. In [{{site.konnect_saas}}](https://cloud.konghq.com), click {% konnect_icon cogwheel %}
-**Settings**, and then **Auth Settings**.
+1. In [{{site.konnect_saas}}](https://cloud.konghq.com), click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
 
 1. Click **Configure provider** for **OIDC**.
 

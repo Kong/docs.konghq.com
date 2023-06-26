@@ -1,53 +1,3 @@
----
-name: Correlation ID
-publisher: Kong Inc.
-version: 2.0.x
-desc: Correlate requests and responses using a unique ID
-description: |
-  Correlate requests and responses using a unique ID transmitted over an HTTP header.
-type: plugin
-categories:
-  - transformations
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: correlation-id
-  service_id: true
-  route_id: true
-  consumer_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-  dbless_compatible: 'yes'
-  config:
-    - name: header_name
-      required: false
-      default: Kong-Request-ID
-      value_in_examples: Kong-Request-ID
-      datatype: string
-      description: |
-        The HTTP header name to use for the correlation ID.
-    - name: generator
-      required: false
-      default: uuid#counter
-      value_in_examples: uuid#counter
-      datatype: string
-      description: |
-        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter`, and `tracker`. See [Generators](#generators).
-    - name: echo_downstream
-      required: false
-      default: false
-      value_in_examples: false
-      datatype: boolean
-      description: |
-        Whether to echo the header back to downstream (the client).
----
-
 ## How it works
 
 When you enable this plugin, it adds a new header to all of the requests processed by Kong. This header bears the name configured in `config.header_name`, and a unique value is generated according to `config.generator`.
@@ -155,8 +105,3 @@ To edit your Nginx parameters, do the following:
 Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/reference/configuration/#custom-nginx-templates--embedding-kong).
 
 You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
-
-## Changelog
-
-**{{site.base_gateway}} 2.2.x**
-* The plugin now generates a `correlation-id` value by default if the correlation ID header arrives empty.

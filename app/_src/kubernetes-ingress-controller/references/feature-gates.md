@@ -2,7 +2,7 @@
 title: Feature Gates
 ---
 
-Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the Kubernetes Ingress Controller (KIC), we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
+Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the {{site.kic_product_name}} (KIC), we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
 
 Using feature gates enables contributors to add and manage new (and potentially experimental) functionality to the KIC in a controlled manner. The features will be "hidden" until generally available (GA) and the progress and maturity of features on their path to GA will be documented. Feature gates also create a clear path for deprecating features.
 
@@ -33,6 +33,10 @@ Features that reach GA and become stable are removed from this table, but they c
 {% if_version gte: 2.8.x %}
 | CombinedRoutes         | `true`  | Beta  | 2.8.0 | TBD   |
 {% endif_version %}
+{% if_version gte: 2.10.x %}
+| ExpressionRoutes       | `false` | Alpha | 2.10.0 | TBD   |
+| CombinedServices       | `false` | Alpha | 2.10.0 | TBD   |
+{% endif_version %}
 
 ### Feature gates details
 
@@ -43,6 +47,20 @@ Features that reach GA and become stable are removed from this table, but they c
 
 {:.important}
 >**Important:** To avoid disruption to your services consider not using features until they have reached GA status. 
+
+### Using feature gates
+
+To enable feature gates, provide the `--feature-gates` flag when launching KIC, or set the `CONTROLLER_FEATURE_GATES` environment variable.
+
+Feature gates consist of a comma-delimited set of `key=value` pairs. For example, if you wanted to enable `CombinedRoutes` and `CombinedServices`, you'd set `CONTROLLER_FEATURE_GATES=CombinedRoutes=true,CombinedServices=true`.
+
+To enable features via Helm, set the following in your `values.yaml`:
+
+```yaml
+ingressController:
+  env:
+    feature_gates: CombinedRoutes=true,CombinedServices=true
+```
 
 ### Documentation
 

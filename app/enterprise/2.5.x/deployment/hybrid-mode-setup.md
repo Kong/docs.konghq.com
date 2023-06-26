@@ -437,7 +437,7 @@ follow the instructions to:
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
-1. Find the documentation for [your platform](/enterprise/{{page.kong_version}}/deployment/installation/),
+1. Find the documentation for [your platform](/enterprise/{{page.kong_version}}/deployment/installation/overview/),
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.ee_product_name}} and the Enterprise license, then install Kong.
 

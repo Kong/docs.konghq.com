@@ -13,7 +13,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-- A Kubernetes cluster, v1.19 or later
+- A Kubernetes cluster v1.19 or later
 - `kubectl` v1.19 or later
 - (Enterprise only) A `license.json` file from Kong
 - Helm 3
@@ -197,4 +197,4 @@ Note that this deployment includes a Postgres sub-chart provided by Bitnami. You
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

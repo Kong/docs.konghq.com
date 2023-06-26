@@ -1,8 +1,8 @@
 {% unless include.name and include.path contains '_hub' %}
 {% capture page_title %}{{
 include.title | escape }}{% if include.kong_version and include.no_version != true %} - v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
-site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.path contains "/hub/" %}{{ include.title }}{% else %}{{ include.name }}{% endif %}
-{{ include.type }} | {{site.title}}{% endcapture %}
+site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.title }}
+| {{site.title}}{% endcapture %}
 {% endunless %}
 
 {% assign page_description = site.description %}
@@ -76,9 +76,6 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{% if include.p
     src="https://kit.fontawesome.com/1332a92967.js" 
     crossorigin="anonymous">
   </script>
-
-  <!-- New Relic -->
-  {% include newrelic.html %}
 
   <!-- FullStory -->
   <!-- {% include fullstory.html %} -->

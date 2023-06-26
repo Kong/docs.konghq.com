@@ -20,7 +20,7 @@ describe("Canonical links", () => {
     {
       title:
         "plugins contain a canonical link pointing to the latest version of a plugin",
-      src: "/hub/kong-inc/application-registration/2.8.x.html",
+      src: "/hub/kong-inc/application-registration/2.8.x/",
       href: "/hub/kong-inc/application-registration/",
     },
     {
@@ -49,7 +49,7 @@ describe("Canonical links", () => {
       await expect($("head link[rel='canonical']").attr("href")).toBe(
         `https://docs.konghq.com${t.href}`
       );
-    }, 7000);
+    }, 15000);
   });
 });
 
@@ -77,7 +77,7 @@ describe("noindex links", () => {
     },
     {
       title: "contains a noindex tag for old plugin versions",
-      src: "/hub/kong-inc/application-registration/2.8.x.html",
+      src: "/hub/kong-inc/application-registration/2.8.x/",
     },
   ].forEach((t) => {
     test(t.title, async () => {

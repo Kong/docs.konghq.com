@@ -6,7 +6,7 @@ This guide walks through backwards incompatible changes in the Kong Kubernetes
 Ingress Controller (KIC) from v1.3.x to v2.0.x to help operators evaluate if any
 changes to their configuration are needed to upgrade, provides
 guidance on how to build testing environments to validate the upgrade, and
-walks through an upgrade of the Kubernetes Ingress Controller (KIC) using
+walks through an upgrade of the Kong Ingress Controller (KIC) using
 its [Helm Chart][chart].
 
 ## Prerequisites

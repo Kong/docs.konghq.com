@@ -17,10 +17,13 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
+* A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
 ## Installation
+
+{:.note}
+> **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 The quickest way to get started with {{ site.base_gateway }} is using our install script:
 
@@ -67,10 +70,8 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
 {:.note .no-icon}
-> We currently package {{ site.base_gateway }} for Ubuntu Bionic and Focal.
-> If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below.
-> <br /><br />
-> To check your release name run `lsb_release -sc`.
+> * We currently package {{ site.base_gateway }} for Ubuntu Bionic and Focal. If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below. To check your release name run `lsb_release -sc`.
+> * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}
 {% navtab Package %}

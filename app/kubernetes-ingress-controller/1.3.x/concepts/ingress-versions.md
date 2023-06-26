@@ -168,4 +168,4 @@ v1beta1 Ingresses.
 [lambda-plugin]: /hub/kong-inc/aws-lambda/
 [external-name]: https://kubernetes.io/docs/concepts/services-networking/service/#externalname
 [deprecated-annotation]: https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation
-[ingress-class-api]: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingressclass-v1-networking-k8s-io
+[ingress-class-api]: https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-class-v1/

@@ -94,8 +94,7 @@ then click **Create**.
 
 ## Verify an implementation
 
-For any runtime instance created with the provided Docker script (see
-[Setting up a {{site.base_gateway}} Runtime](/konnect/runtime-manager/runtime-instances/gateway-runtime-docker)),
+For any runtime instance created with default values,
 the default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append any route path.

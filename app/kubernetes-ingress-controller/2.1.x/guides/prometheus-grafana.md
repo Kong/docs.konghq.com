@@ -1,5 +1,5 @@
 ---
-title: Integrate the Kubernetes Ingress Controller with Prometheus/Grafana
+title: Integrate the Kong Ingress Controller with Prometheus/Grafana
 ---
 
 The {{site.kic_product_name}} can give you visibility into how {{site.base_gateway}} is performing and how the services in your Kubernetes cluster are responding to the inbound traffic.

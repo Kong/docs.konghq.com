@@ -17,6 +17,7 @@ data plane.
 
 |                                | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------
+| {{site.ee_product_name}} 3.3.x | <i class="fa fa-check"></i>    | 3.3.0.0
 | {{site.ee_product_name}} 3.2.x | <i class="fa fa-check"></i>    | 3.2.1.0
 | {{site.ee_product_name}} 3.1.x | <i class="fa fa-check"></i>    | 3.1.0.0
 | {{site.ee_product_name}} 3.0.x | <i class="fa fa-check"></i>    | 3.0.0.0
@@ -37,12 +38,13 @@ access to a subset of plugins:
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
-<!-- To add or edit table entries in this topic, see /app/_data/tables/plugin_index.yml in this repo -->
-
-{% assign categories = site.data.tables.plugin_index %}
+{% assign hub = site.data.ssg_hub %}
+{% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
+{% assign categories = site.extensions.categories %}
+{% assign plugins = site.data.ssg_hub | where: "extn_publisher", "kong-inc" %}
 
 {% for category in categories %}
-<h3 id="{{ category.name | downcase | split: " " | join: "-" }}">
+<h3 id="{{ category.slug }}">
   {{ category.name }}
 </h3>
 
@@ -56,37 +58,38 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
-    {% for plugin in category.plugins %}
+    {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
+    {% for plugin in plugins_for_category %}
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
         </td>
         <td style="text-align: center">
           {% if plugin.free == true %}
-          <i class="fa fa-check"></i>
+            <i class="fa fa-check"></i>
           {% elsif plugin.free == false %}
-          <i class="fa fa-times"></i>
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
           {% if plugin.plus == true %}
-          <i class="fa fa-check"></i>
+            <i class="fa fa-check"></i>
           {% elsif plugin.plus == false %}
-          <i class="fa fa-times"></i>
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td style="text-align: center">
           {% if plugin.enterprise == true %}
-          <i class="fa fa-check"></i>
+            <i class="fa fa-check"></i>
           {% elsif plugin.enterprise == false %}
-          <i class="fa fa-times"></i>
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
-         <td style="text-align: center">
+        <td style="text-align: center">
           {% if plugin.konnect == true %}
-          <i class="fa fa-check"></i>
+            <i class="fa fa-check"></i>
           {% elsif plugin.konnect == false %}
-          <i class="fa fa-times"></i>
+            <i class="fa fa-times"></i>
           {% endif %}
         </td>
         <td>
@@ -98,8 +101,3 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
 </table>
 
 {% endfor %}
-
-### Deployment
-
-[Deployment plugins](/hub/#deployment) are not bundled with any version of {{site.konnect_short_name}}, and are
-simply tools to help you deploy {{site.base_gateway}} in various environments.

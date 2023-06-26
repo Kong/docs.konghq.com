@@ -87,7 +87,7 @@ upgrading to decK 1.12 to take advantage of the new `--konnect` CLI flags.
 
 {:.important}
 > Cassandra as a backend database for {{site.base_gateway}}
-is deprecated with 2.7.0.0 and will be removed in a future Gateway version.
+is deprecated with 2.7.0.0 and will be removed in version 3.4.0.0.
 
 You can use decK with Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to

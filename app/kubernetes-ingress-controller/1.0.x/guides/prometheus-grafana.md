@@ -1,5 +1,5 @@
 ---
-title: Integrate the Kubernetes Ingress Controller with Prometheus/Grafana
+title: Integrate the Kong Ingress Controller with Prometheus/Grafana
 ---
 
 The {{site.kic_product_name}} can give you visibility not only into how Kong is

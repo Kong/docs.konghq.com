@@ -58,7 +58,7 @@ the {{site.kic_product_name}}:
 - [Preserving Client IP address](/kubernetes-ingress-controller/{{page.kong_version}}/guides/preserve-client-ip/)
   This guide gives an overview of different methods to preserve the Client
   IP address.
-- [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongclusterplugin-resource/)
+- [Using KongClusterPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/)
   This guide walks through setting up plugins that can be shared across
   Kubernetes namespaces.
 - [Using Kong with Knative](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/)

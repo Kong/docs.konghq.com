@@ -20,7 +20,7 @@ $RepoPrefix       = If ($RepoPrefix) {$RepoPrefix} Else {"kong-mesh"}
 $Distro           = If ($Distro) {$Distro} Else {"windows"}
 $ArchiveName      = "$RepoPrefix-$Version-$Distro-$Arch.tar.gz"
 $Pwd              = (Get-Item .).FullName
-$Url              = "https://download.konghq.com/mesh-alpine/$ArchiveName"
+$Url              = "https://download.konghq.com/kong-mesh-binaries-release/$ArchiveName"
 $ArchivePath      = "${Pwd}\$ArchiveName"
 $UnarchivePath    = "${Pwd}\$RepoPrefix-$Version"
 
