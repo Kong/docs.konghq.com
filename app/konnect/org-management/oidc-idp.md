@@ -58,10 +58,10 @@ application.
 
 ## Advanced Settings
 
-You can configure customize IdP specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
+You can configure custom IdP-specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
 
-1. Scopes - Scopes allow you to specify the list of scopes Konnect will request from the IdP. By default, we request the `openid`, `email` and `profile` scopes. The `openid` scope is required and cannot be removed.
-2. Claim Mappings - Claim mappings allows you to customize the mapping of required attributes to different claim in the id_token we receive from the IdP. By default, Konnect requires three attributes: Name, Email and Groups, which are mapped as follows:
-    - Name from `name` - used as the Konnect accounts `full_name`.
-    - Email from `email` - used as the Konnect account's `email`.
-    - Groups from `groups` - used to map users to teams defined in the team mappings upon login.
+1. **Scopes**: Specify the list of scopes {{site.konnect_short_name}} requests from the IdP. By default, {{site.konnect_short_name}} requests the `openid`, `email`, and `profile` scopes. The `openid` scope is required and cannot be removed.
+2. **Claim Mappings**: Customize the mapping of required attributes to a different claim in the `id_token` {{site.konnect_short_name}} receives from the IdP. By default, {{site.konnect_short_name}} requires three attributes: Name, Email, and Groups. The values in these attributes are mapped as follows:
+    - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
+    - `email`: Used as the {{site.konnect_short_name}} account's `email`.
+    - `groups`: Used to map users to teams defined in the team mappings upon login.
