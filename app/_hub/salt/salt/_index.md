@@ -1,3 +1,9 @@
+The Salt Security Kong deployment is used to capture a mirror of application traffic and send it to the Salt Security Service for analysis.
+This plugin has low CPU and memory consumption and adds no latency to the application since
+it does not sit in line with the production traffic.
+The plugin needs to see unencrypted traffic (after SSL termination)
+to enable the Salt Security service to perform analysis.
+
 ## Deployment
 
 Salt Security is easy to deploy as a Kong module.
