@@ -22,7 +22,7 @@ legal agreements API.
 
 ## Enable app registration
 
-1. From the {% konnect_icon api-product %} [**API Product builder**](https://cloud.konghq.com/api-products/),
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products/),
 open an API product version.
 
 1. From the **Actions** dropdown menu, select **Enable app registration**.

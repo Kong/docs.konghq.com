@@ -27,7 +27,7 @@ service won't be attached to an API product by default.
 
 To see if a Gateway service is connected to an API product, open its
 detail page from {% konnect_icon runtimes %} **Runtime Manager** > **Gateway Services**. If it's attached to an
-an API product you will see the name of the API product under **API Product**, and the API product version under **API product version**, you should see a tag in the following format: [`_KonnectService:{SERVICE_NAME}`](/deck/latest/guides/konnect/#konnect-service-tags).
+an API product you will see the name of the API product under **API Product**, and the API product version under **API product version**.
 
 Learn more about [Gateway services in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/#gateway-services) or
 check out the [service object API reference](/gateway/latest/admin-api/#service-object)

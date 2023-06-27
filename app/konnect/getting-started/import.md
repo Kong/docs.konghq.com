@@ -144,7 +144,7 @@ you can shut them down now.
 See the following docs to set up any additional things you may need:
 
 * **Dev Portal files:** You can migrate API specs and markdown service descriptions
-into the API product builder using the {{site.konnect_saas}} GUI. Each {{site.konnect_short_name}} service accepts
+into API Products using the {{site.konnect_saas}} GUI. Each API product accepts
 one markdown description file, and each API product version accepts one API spec.
 See [Dev Portal Service Documentation](/konnect/api-products/service-documentation/).
 

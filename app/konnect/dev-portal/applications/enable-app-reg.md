@@ -18,7 +18,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 
 ## Prerequisites
 
-- A service that is versioned and published to the
+- An API product that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
 - The API product version can be in any runtime group, as long as the following conditions are met:
@@ -27,7 +27,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 
   - API product versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
 
-- The API product version must have an [implementation](/konnect/servicehub/service-implementations/).
+- It is recommended that an API product version is linked to a Gateway service.
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
@@ -45,7 +45,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
-1. Click **Versions** to select a version.
+1. Click **Product Versions** to select a version.
 
 2. From the **Version actions** drop-down menu, select **Enable app registration**.
 
@@ -133,7 +133,7 @@ In the `default` runtime group, applications are linked to {{site.base_gateway}}
 
 ### Known limitations
 
-The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version in the `default` runtime group, which still supports consumer mapping with the `acl` plugin.
+The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` runtime group, which still supports consumer mapping with the `acl` plugin.
 
 The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default runtime group currently don't support rate limiting plugins. This will be addressed in a future release.
 

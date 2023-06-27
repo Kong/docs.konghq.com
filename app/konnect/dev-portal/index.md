@@ -17,7 +17,7 @@ In {{site.konnect_short_name}}, API products can be published to the Dev Portal 
 
 ### API specification
 
-API specifications can be uploaded and attached to a specific API product version within the [**API Product builder**](https://cloud.konghq.com/us/api-products/)
+API specifications can be uploaded and attached to a specific API product version within the [**API Product**](https://cloud.konghq.com/api-products/)
 You can have different API specs that correspond to different API product versions.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
@@ -26,7 +26,7 @@ The Dev Portal lives at a separate URL from {{site.konnect_short_name}} and requ
 
 ## Developer self service
 
-Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with services that have been exposed through the API product builder they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
+Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage that aspect of the application development lifecycle on their own. When developers register their application to interact with API product versions that have been exposed through API Products, they will have access to an overview page for the application that they registered, on this page, they can manage their API keys. Developers can also unregister for specific services independently.
 
 For more information on this topic, we offer several pieces of documentation depending on your use case.
 

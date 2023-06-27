@@ -23,8 +23,8 @@ Runtime Manager.
 
 ### Application registration
 
-Application registration is built into the API product builder.
-[Enabling it on a service](/konnect/dev-portal/applications/enable-app-reg/)
+Application registration is built into API Products.
+[Enabling it on an API product version](/konnect/dev-portal/applications/enable-app-reg/)
 also enables two plugins in read-only mode: ACL, and one of Key Auth or OpenID
 Connect. These plugins appear in the service's plugin list, and you can view their
 configurations, but you can't edit or delete them directly.

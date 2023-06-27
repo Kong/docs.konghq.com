@@ -1,8 +1,8 @@
 features:
   - title: Key features
     items:
-      - name: API Product Builder
-        description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
+      - name: API Products
+        description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
         icon: /assets/images/landing-page/service-hub.svg
         links:
           - text: Cloud

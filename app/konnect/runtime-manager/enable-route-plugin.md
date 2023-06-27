@@ -3,11 +3,11 @@ title: Configure a Plugin on a Route
 ---
 Enable, update, disable, or delete a plugin for a route.
 
-You can find a route's overview page through the {% konnect_icon api-product %} [**API Product Builder**](https://cloud.konghq.com/api-products): open any API product version, then open a route.
+You can find any route through the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager/) by selecting **Routes**.
 
 ## Enable a plugin
 
-1. From the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us/runtime-manager/), select a runtime group.
+1. From the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager/), select a runtime group.
 
 1. From the **Routes** section, select a route.
 

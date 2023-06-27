@@ -23,7 +23,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 2.  **Create a Gateway service**:
 
-    Catalog a new service using the {{site.konnect_short_name}} Runtime Manager
+    Proxy a service using the {{site.konnect_short_name}} Runtime Manager
 
     After you've configured a service and the runtime proxy is ready, testing
     is the next step. Here you set up a route to a mocking API service,
@@ -32,26 +32,26 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
     [Create a service &gt;](/konnect/getting-started/configure-service/)
 
-3.  **Productize an API product**:
+3.  **Productize an API**:
     
-    Using the API product builder, you can catalog, manage, and track every service in your
+    Using API Products, you can bundle and manage every service in your
     entire architecture. In this step, you create the first version of a service,
     adding the first entry to your catalog.
     
 
-    [Deploy the API Product version &gt;](/konnect/getting-started/productize-service/)
+    [Create an API product version &gt;](/konnect/getting-started/productize-service/)
 
 ## Share APIs and enable development
 
 Ready to share your API with developers?
-Use API Products to manage your API Product documentation, then publish it to the Dev Portal:
+Use API Products to manage your API product documentation, then publish it to the Dev Portal:
 
 1. **Upload your spec to {{site.konnect_short_name}} and publish to Dev Portal**
 
-    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the API Product.
-    Then, publish your API Product documentation to the Dev Portal and preview it from the developer perspective.
+    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the API product.
+    Then, publish your API product documentation to the Dev Portal and preview it from the developer perspective.
 
-    [Import docs and publish an API Product &gt;](/konnect/getting-started/publish-service/)
+    [Import docs and publish an API product &gt;](/konnect/getting-started/publish-service/)
 
 1. **Register an application**
 

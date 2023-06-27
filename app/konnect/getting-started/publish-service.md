@@ -35,7 +35,7 @@ The contents of this file will be displayed as the introduction to your API in t
 
     ```
 
-1. In the {% konnect_icon api-product %} [**API product builder**](https://cloud.konghq.com/apiproducts), select a service.
+1. In the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select a service.
 
 1. Select **Documentation**, upload your documentation, add a **Page name**, and an optional **URL slug**. 
 1. Click **Save**.
@@ -49,7 +49,7 @@ If you have a spec, use it in the following steps. Otherwise, you can
 use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 
 
-1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/apiproducts) dashboard, select **Product Version** then **Upload**. 
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) dashboard, select **Product Version** then **Upload**. 
 
 1. Find the **Version Spec** section and click **Upload Spec**.
 
@@ -160,4 +160,4 @@ In this topic, you:
 * Logged into the Dev Portal to check out the API product documentation live
 * Customized the Dev Portal
 
-Next, [register an application against the service](/konnect/getting-started/app-registration/).
+Next, [register an application against the API product](/konnect/getting-started/app-registration/).

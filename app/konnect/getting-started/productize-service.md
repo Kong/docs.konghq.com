@@ -15,7 +15,7 @@ make sure you have [configured a runtime](/konnect/getting-started/configure-run
 
 ## Create an API product <!--these steps will need to be verified once customer 0 happens-->
 
-Let's set up your first API product and API product version, by clicking {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/apiproducts) from the {{site.konnect_short_name}} side navigation bar.
+Let's set up your first API product and API product version, by clicking {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) from the {{site.konnect_short_name}} side navigation bar.
 
 1. Select **API Product** from the API products dashboard to add a new API product.
 
@@ -58,7 +58,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 
 ## Publish an API product
 
-API products can be productized by publishing them to the Dev Portal. To productize your new API product navigate to the {% konnect_icon api-product %} [**API Product builder**](https://cloud.konghq.com/apiproducts) and follow these steps: 
+API products can be published to the Dev Portal. To publish your new API product navigate to the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) and follow these steps: 
 
 1. Select the API product that you created in the previous step.
 2. Navigate to the **Actions** menu, then select **publish**. 
@@ -68,7 +68,7 @@ Your API product is now consumable by developers from the **Dev Portal**.
 
 ## Next steps
 
-In this section, you added an API product, associated a product version to it, and productized it by publishing to the Dev Portal. 
+In this section, you added an API product, linked a Gateway service via an API product version to it, and published it to the Dev Portal. 
 
 Next, [publish the API product to the Dev Portal](/konnect/getting-started/publish-service/)
 and test out the Dev Portal from the perspective of a developer.
