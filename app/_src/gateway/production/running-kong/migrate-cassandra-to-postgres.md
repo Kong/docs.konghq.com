@@ -101,7 +101,5 @@ The purpose of this phase is to migrate traffic in a controlled manner, with a r
 
 Going forward, the basic authentication credentials can be managed through the Kong deck. See below document to integrate with GCP secrets and secrets management with deck.
 
-Gateway secret management GCP
-https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/#main
-Secrets management with deck
-https://docs.konghq.com/deck/latest/guides/vaults/#configure-a-secret-vault
+[Gateway secret management GCP](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/#main)
+[Secrets Management with Deck](/deck/latest/guides/vaults/#configure-a-secret-vault)
