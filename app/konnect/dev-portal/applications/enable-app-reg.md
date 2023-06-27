@@ -1,11 +1,11 @@
 ---
-title: Enable or Disable Application Registration for a Service
+title: Enable or Disable Application Registration for an API Product Version
 content_type: how-to
 ---
 
 To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for an API product version.
 When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
-These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the service and are managed by
+These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
 ## Support for any runtime group
@@ -21,8 +21,6 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 - An API product that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
-- It is recommended that an API product version is linked to a Gateway service.
-
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
   - Set up your application, claims, and scopes in your OpenID identity provider. Refer to your IdP/OP provider's documentation for instructions.
@@ -32,7 +30,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/declarative-config/).
+> **Note:** It is recommended but not required for an API product version is linked to a Gateway service.
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
@@ -41,7 +39,7 @@ service, and follow these steps:
 
 1. Click **Product Versions** to select a version.
 
-2. From the **Version actions** drop-down menu, select **Enable app registration**.
+2. Select **Disabled** under **App Registration**
 
 3. Select `key-auth` from the **Auth Type** list.
 
@@ -65,7 +63,7 @@ service, and follow these steps:
 
 1. Click **Versions** to select a version.
 
-2. From the **Version actions** drop-down menu, select **Enable app registration**.
+2. Select **Disabled** under **App Registration**
 
 3. Select `openid-connect` from the **Auth Type** list.
 

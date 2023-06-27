@@ -106,7 +106,7 @@ You can't use your {{site.konnect_short_name}} credentials to log in here.
 1. Check your email for a confirmation link. Click the link, then log
 into the Dev Portal.
 
-1. Open the service you published to check it out.
+1. Open the API product you published to check it out.
 
 {% endnavtab %}
 {% navtab Public Dev Portal %}

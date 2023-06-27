@@ -1,5 +1,5 @@
 ---
-title: Manage Application Service Connections
+title: Manage Application Registrations
 content_type: reference
 ---
 
@@ -19,9 +19,9 @@ In this section you can:
 - View details of an application, such as its name, developer, creation date, and description.
 - Access connection details for an application. 
 
-To access an application's details page, open the **Applications** section and click on an application. This details page displays traffic and service connection information for a specific application. From this page you can:
+To access an application's details page, open the **Applications** section and click on an application. This details page displays traffic and API Product version connection information for a specific application. From this page you can:
 
-## Revoke an application's connection to a service {#revoke-app-connection}
+## Revoke an application's connection to an API product version {#revoke-app-connection}
 
 A connection that has been revoked can be
 [approved again](#approve-revoked-service-connection) at any time. You can also
@@ -36,7 +36,7 @@ The status updates from **Approved** to **Revoked**.
 
 ## Approve a revoked connection {#approve-revoked-service-connection}
 
-Revoking access to a connection ends the connection between an application and its associated service. This action _can_ be undone.
+Revoking access to a connection ends the connection between an application and its associated API product version. This action _can_ be undone.
 To approve a revoked connection, follow these steps: 
 
 1. Navigate to an application's details page, by clicking on a specific application from the **Applications** section. 
@@ -48,7 +48,7 @@ This status updates from **revoked** to **approved**.
 
 ## Delete connection {#delete-app-connection}
 
-When an a connection to a service is deleted, if a developer wants to reconnect to the service, they must submit a new application registration request. 
+When an a connection to an API product version is deleted, if a developer wants to reconnect to the API product version, they must submit a new application registration request. 
 To delete a connection from an application, follow these steps: 
 
 1. Navigate to the application's details page, by clicking on a specific application from the **Applications** section. 
@@ -59,11 +59,11 @@ The connection will be removed from the applications page.
 
 ## Application connection statuses
 
-The following status conditions reflect the current state of an application's connection to a service:
+The following status conditions reflect the current state of an application's connection to an API product version:
 
 **Approved**
-: An application connection to a service was approved by a {{site.konnect_short_name}} admin.
+: An application connection to an API product version was approved by a {{site.konnect_short_name}} admin.
 
 **Revoked**
-: An application connection to a service that was formerly approved has been revoked by a
+: An application connection to an API product version that was formerly approved has been revoked by a
 {{site.konnect_short_name}} admin.
