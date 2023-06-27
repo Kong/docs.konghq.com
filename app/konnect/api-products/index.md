@@ -35,7 +35,7 @@ Here are some of the things you can do from the API Products Dashboard:
 
 A {{site.konnect_short_name}} API product version is linked to a Gateway service inside a [runtime group](/konnect/runtime-manager/runtime-groups/). As such, the configurations or plugins that are associated with the Gateway Service are also associated with the API product version. 
 
-API products can have multiple API product versions, and each version can be linked to a Gateway service. API products can be made available in multiple environments by linking API product versions to Gateway services in different runtime groups.
+API products can have multiple API product versions, and each version can be linked to a Gateway service. API products can be made available in multiple environments by linking API product versions to Gateway services in different runtime groups. You can also associate an API spec with a product version and make the spec accessible in the Dev Portal.
 
 A common use case is environment specialization.
 For example, if you have three runtime groups for `development`, `staging`, and
@@ -53,12 +53,11 @@ The analytics dashboard shown in the API product **Overview** is a high level ov
 Learn more: 
 
 * [Analytics overview](/konnect/analytics/)
-* [How to analyze services and routes](/konnect/analytics/services-and-routes/)
 * [How to generate reports](/konnect/analytics/generate-reports/)
 
 ### Documentation
 
-The API product **Documentation** can be used to manage documentation for your API product. Documentation can be either an API spec, or Markdown documentation for the API product. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the API product is published.
+The API product **Documentation** can be used to manage documentation for your API product. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the API product is published.
 
 Learn more: 
 
