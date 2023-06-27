@@ -10,7 +10,3 @@ categories:
   - traffic-control
 publisher: Kong Inc.
 desc: Apply structural and size checks on XML payloads
-description: |
-  Reduce the risk of XML attacks by checking the structure of XML payloads. This
-  validates maximum complexity (depth of the tree), maximum size of elements
-  and attributes.

@@ -1,3 +1,12 @@
+Allows operators to specify a maximum size for incoming WebSocket messages.
+
+Separate limits can be applied to clients and upstreams.
+
+When an incoming message exceeds the limit:
+  1. A close frame with status code `1009` is sent to the sender
+  2. A close frame with status code `1001` is sent to the peer
+  3. Both sides of the connection are closed
+
 ## Usage
 
 Limits can be applied to client messages, upstream messages, or both.

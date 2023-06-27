@@ -1,3 +1,5 @@
+Propagate Zipkin distributed tracing spans and report spans to a Zipkin server.
+
 {% if_version gte:3.3.x %}
 ## Queueing
 

@@ -1,3 +1,6 @@
+Forward requests to Open Policy Agent and process the requests only if the
+authorization policy allows it.
+
 ## Usage
 
 ### Set up an OPA server

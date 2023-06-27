@@ -1,9 +1,5 @@
 name: Azure Functions
 dbless_compatible: 'yes'
-extra: |
-  Note: If `config.https_verify` is set as `true`, then the server certificate
-  is verified according to the CA certificates specified by the
-  `lua_ssl_trusted_certificate` directive in your Kong configuration.
 free: true
 plus: true
 enterprise: true
@@ -14,8 +10,3 @@ categories:
   - serverless
 publisher: Kong Inc.
 desc: Invoke and manage Azure functions from Kong
-description: |
-  This plugin invokes
-  [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
-  It can be used in combination with other request plugins to secure, manage,
-  or extend the function.

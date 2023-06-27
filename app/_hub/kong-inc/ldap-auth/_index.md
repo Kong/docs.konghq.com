@@ -1,3 +1,15 @@
+Add LDAP Bind Authentication to a route with username and password protection. The plugin
+checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers, 
+in that order.
+
+This plugin is the open-source version of the [LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced/),
+which is available with an Enterprise subscription. 
+Advanced functionality includes:
+* LDAP searches for group and consumer mapping
+* Ability to authenticate based on username or custom ID
+* The ability to bind to an enterprise LDAP directory with a password
+* The ability to authenticate/authorize using a group base DN and specific group member or group name attributes
+
 ## Usage
 
 To authenticate a user, the client must set credentials in either the
