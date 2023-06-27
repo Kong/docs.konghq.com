@@ -3,7 +3,7 @@ title: About Self-Hosted Dev Portal
 content_type: explanation
 ---
 
-In {{site.konnect_saas}}, you have two hosting options for your Dev Portal: a cloud hosted Dev Portal with {{site.konnect_short_name}} or a self-hosted, open source Dev Portal. 
+In {{site.konnect_saas}}, you have two out-of-the-box solutions for your Dev Portal: a cloud-hosted Dev Portal with {{site.konnect_short_name}} or a self-hosted, open source Dev Portal. 
 * **Cloud-hosted Dev Portal in {{site.konnect_short_name}}**: Your Dev Portal is hosted for you and it simplifies your deployment experience. 
 * **Self-hosted, open source Dev Portal**: Provides all the same features as the cloud-hosted portal, but also gives you control over your hosting service. 
 
