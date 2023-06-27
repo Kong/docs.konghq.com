@@ -3,7 +3,7 @@ title: Host your Dev Portal with Netlify
 content_type: how-to
 ---
 
-You can use the open-source Dev Portal to display your APIs to developers on a self-hosted website.
+You can use the self-hosted, open source Dev Portal to offer a fully-customizable user experience for your developers.
 
 This guide shows you how to configure an example open-source Dev Portal with Netlify. Using this example as a starting point, you can adjust the code of the sample app and self-host it on a frontend application of your choice.
 
