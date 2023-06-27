@@ -16,8 +16,8 @@ This plugin can mock `200`, `201`, and `204` responses.
 
 {:.note}
 > **Note**: The plugin requires a spec to work. Depending on the Kong Gateway deployment mode, 
-set either the [`api_specification_filename`](/hub/kong-inc/mocking/configuration/#api_specification_filename) 
-or the [`api_specification`](/hub/kong-inc/mocking/configuration/#api_specification) parameter. 
+set either the [`api_specification_filename`](/hub/kong-inc/mocking/configuration/#config-api_specification_filename) 
+or the [`api_specification`](/hub/kong-inc/mocking/configuration/#config-api_specification) parameter. 
 
 ## Behavioral Headers
 
