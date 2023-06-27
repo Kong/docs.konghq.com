@@ -12,11 +12,11 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 
 | Role                        | Description  |
 |-----------------------------|--------------|
-| Admin | Admin of an existing {{site.konnect_short_name}} service. The admins have all write access related to a gateway service and API product versions. |
+| Admin | Admin of an existing {{site.konnect_short_name}} service. The admins have all write access related to a Gateway service and API product versions. |
 | Application Registration | Access to enable or disable application registration for an API Product. |
 | Creator | Access to create new API product to productize services in API Products. The creator becomes the owner of the API product they create, gaining admin access to the API product. <br><br>This role does not provide access to creating sub-entities in an API product such as API product versions. See the `API Product Admin` or `Maintainer` roles. |
 | Deployer | Access to implement and associate a {{site.konnect_short_name}} Gateway version to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
-| Maintainer | Access to read, edit, and deploy a {{site.konnect_short_name}} gateway service and its corresponding API product version versions, and manage its plugins. |
+| Maintainer | Access to read, edit, and deploy a Gateway service and its corresponding API product version versions, and manage its plugins. |
 | Plugins Admin | Access to install plugins on the {{site.konnect_short_name}} gateway service, runtime group, consumers, and routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
 | Publisher | Access to publish an API product to the Dev Portal. |
 | Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} service, including attributes, versions, Analytics reports, and plugins. |
@@ -31,7 +31,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Deployer | Access to deploy a Gateway service to the runtime group. Must also have the Deployer role for the service being deployed.  |
 | Viewer | Read-only access to all the configurations of a runtime group and its runtime instances. |
 | Consumer Admin | Access to configure consumers for an existing runtime group. |
-| Gateway Service Admin | Access to configure gateway services for an existing runtime group. |
+| Gateway Service Admin | Access to configure Gateway services for an existing runtime group. |
 | Key Admin | Access to configure keys for an existing runtime group. |
 | Plugin Admin | Access to configure plugins for an existing runtime group. |
 | Route Admin | Access to configure routes for an existing runtime group. |

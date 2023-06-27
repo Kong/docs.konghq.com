@@ -17,7 +17,7 @@ In {{site.konnect_short_name}}, API products can be published to the Dev Portal 
 
 ### API specification
 
-API specifications can be uploaded and attached to a specific API product version within the [**API Product**](https://cloud.konghq.com/api-products/)
+API specifications can be uploaded and attached to a specific API product version within the [**API Product**](https://cloud.konghq.com/api-products/). 
 You can have different API specs that correspond to different API product versions.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
