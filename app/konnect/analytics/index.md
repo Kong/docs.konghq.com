@@ -3,7 +3,7 @@ title: Introduction to Monitoring Health with Analytics
 ---
 
 
-You can monitor the health and performance of any service, route, or application managed by {{site.konnect_saas}}.
+You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_saas}}.
 
 Analytics provides traffic reports to help you track the performance and
 behavior of your APIs and runtimes. Use these reports to quickly access key

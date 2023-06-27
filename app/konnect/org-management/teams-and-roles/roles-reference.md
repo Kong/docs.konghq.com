@@ -18,7 +18,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Deployer | Access to implement and associate a {{site.konnect_short_name}} Gateway version to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
 | Maintainer | Access to read, edit, and deploy a {{site.konnect_short_name}} gateway service and its corresponding API product version versions, and manage its plugins. |
 | Plugins Admin | Access to install plugins on the {{site.konnect_short_name}} gateway service, runtime group, consumers, and routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
-| Publisher | Access to publish a {{site.konnect_short_name}} service to the Dev Portal. |
+| Publisher | Access to publish an API product to the Dev Portal. |
 | Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} service, including attributes, versions, Analytics reports, and plugins. |
 
 ## Runtime groups
@@ -28,7 +28,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Admin | Owner of an existing runtime group. The owners have all write access related to a runtime group, the group's runtime instances, and its configuration. |
 | Creator | Access to create a new runtime group in Runtime Manager. The creator becomes the owner of the runtime group they create, gaining admin access to the new runtime group. <br><br>This role does not grant access to _existing_ runtime groups, their runtime instances, or their configurations. See the runtime group `Admin` or `Deployer` roles. |
 | Certificate Admin | Access to configure certificates for an existing runtime group. |
-| Deployer | Access to deploy a service to the runtime group. Must also have the Deployer role for the service being deployed.  |
+| Deployer | Access to deploy a Gateway service to the runtime group. Must also have the Deployer role for the service being deployed.  |
 | Viewer | Read-only access to all the configurations of a runtime group and its runtime instances. |
 | Consumer Admin | Access to configure consumers for an existing runtime group. |
 | Gateway Service Admin | Access to configure gateway services for an existing runtime group. |
