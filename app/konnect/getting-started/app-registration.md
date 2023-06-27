@@ -3,7 +3,7 @@ title: Register an Application to a Service
 ---
 
 Along with hosting API documentation, the Dev Portal can let your developers
-register applications against {{site.konnect_short_name}} services. Your applications can then
+register applications against API products. Your applications can then
 consume those services using application-level authentication.
 
 For example, the application can represent a mobile banking app and the
@@ -12,9 +12,9 @@ legal agreements API.
 
 ## Prerequisites
 
-* You have a {{site.konnect_short_name}} service with at least one version.
+* You have an API product with at least one version.
 
-* You have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/).
+* You have [productized the API product to the Dev Portal](/konnect/getting-started/publish-service/).
 
   * To use app registration, the Dev Portal must be protected by
   some sort of authentication. That means you can't have a public portal for this step.
@@ -25,7 +25,7 @@ legal agreements API.
 1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products/),
 open an API product version.
 
-1. From the **Actions** dropdown menu, select **Enable app registration**.
+1. Under **App Registration** select the **Disabled** From the **Actions** dropdown menu.
 
 1. Accept the `key-auth` setting, toggle **Auto-Approve** to enable it,
  then click **Enable**.

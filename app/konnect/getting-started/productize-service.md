@@ -11,7 +11,7 @@ This guide will walk you through creating an API product and productizing it by 
 ## Prerequisites
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
-make sure you have [configured a runtime](/konnect/getting-started/configure-runtime/).
+make sure you have followed the steps in [Proxy and test a service](/konnect/getting-started/deploy-service).
 
 ## Create an API product <!--these steps will need to be verified once customer 0 happens-->
 
@@ -43,12 +43,6 @@ After creating the new version, you will see **Link with a Gateway Service** as 
     deploy this API product version to. This lets you deploy to a specific group of
     runtime instances in a specific environment.
 
-    {:.note}
-    > **Note:** Application registration is only available for
-    services in the default runtime group, so if you plan on using
-    [application registration](/konnect/dev-portal/applications/application-overview/),
-    choose `default` in this step.
-
     Different versions of the same API product can run in different runtime groups.
     The version name is unique within a group:
 
@@ -70,5 +64,5 @@ Your API product is now consumable by developers from the **Dev Portal**.
 
 In this section, you added an API product, linked a Gateway service via an API product version to it, and published it to the Dev Portal. 
 
-Next, [publish the API product to the Dev Portal](/konnect/getting-started/publish-service/)
+Next, [add documentation](/konnect/getting-started/publish-service/)
 and test out the Dev Portal from the perspective of a developer.

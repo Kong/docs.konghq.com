@@ -57,6 +57,20 @@ preferred network environment.
 </div>
 ## {{site.konnect_short_name}} modules
 
+### Service Hub
+
+[Service Hub](/konnect/servicehub) makes internal APIs discoverable,
+consumable, and reusable for internal development teams. Catalog
+all your services through the Service Hub to create a single source of
+truth for your organization’s service inventory. By leveraging Service Hub,
+your application developers
+can search, discover, and consume existing services to accelerate their
+time-to-market, while enabling a more consistent end-user experience
+across the organization’s applications.
+
+[Start cataloging services with Service Hub &rarr;](/konnect/servicehub)
+
+
 ### Runtime Manager
 
 [Runtime Manager](/konnect/runtime-manager/) empowers your teams to securely
@@ -73,9 +87,7 @@ Through the Runtime Manager, increase the security of your APIs with out-of-the-
 
 ### API Products
 
-[API Products](/konnect/api-products/) makes internal APIs discoverable,
-consumable, productized, and reusable. You can use API Products to version your services as well as upload documentation for your API product. This allows you to prepare to productize your services by publishing your API products to Dev Portal.
-
+Use API Products to bundle and manage multiple services via API products. You can use API products to version your services as well as upload documentation for your API product. This allows you to prepare to productize your services by publishing your API products to Dev Portal.
 [Start productizing services with API Products &rarr;](/konnect/api-products)
 
 ### Dev Portal

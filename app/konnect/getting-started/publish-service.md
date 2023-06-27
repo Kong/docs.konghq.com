@@ -1,10 +1,10 @@
 ---
-title: Publish and Consume Services
+title: Add Documentation
 ---
 
-The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} services
+The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} API products
 and share them with your developers. Developers can use the Dev Portal to
-locate, access, consume, and register applications against the services.
+locate, access, consume, and register applications against the products.
 
 This guide walks you through associating API specs and product documentation with your API products, and viewing any published content, and Dev Portal specific customization options.
 
@@ -41,7 +41,7 @@ The contents of this file will be displayed as the introduction to your API in t
 1. Click **Save**.
 
 
-### Add an API Spec 
+### Add an API Spec {#add-api-spec}
 
 Every version can have one OpenAPI spec associated with it, in JSON or YAML format.
 

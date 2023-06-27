@@ -2,7 +2,7 @@
 title: Proxy and Test a Service
 ---
 
-Create a {{site.konnect_short_name}} service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Runtime Manager in {{site.konnect_short_name}}. 
+Create a {{site.konnect_short_name}} Gateaway service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Runtime Manager in {{site.konnect_short_name}}. 
 
 When you create a service, you also specify the route to it. This route,
 combined with the proxy URL for the service, will lead to the endpoint
@@ -12,7 +12,7 @@ specified in the API product deployment.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[Deployed and tested a Gateway service](/konnect/getting-started/deploy-service).
+[Configured a runtime](/konnect/getting-started/configure-runtime).
 
 ## Implement a Gateway service
 

@@ -21,12 +21,6 @@ We are rolling out full support in any non-`default` runtime group, using the `k
 - An API product that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
 
-- The API product version can be in any runtime group, as long as the following conditions are met:
-
-  - API product versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
-
-  - API product versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
-
 - It is recommended that an API product version is linked to a Gateway service.
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:

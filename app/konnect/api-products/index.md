@@ -26,7 +26,7 @@ Here are some of the things you can do from the API Products Dashboard:
 
 | Item | Description
 -------|------|------------
-**Analytics** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/).
+**Overview** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/).
 **Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
 **Documentation** | You can add markdown documentation for your API product, as well as an API specification for each version of the API product. You can control the individual publishing status of each document you upload to a API product.
 
@@ -62,21 +62,6 @@ The API product **Documentation** can be used to manage documentation for your A
 Learn more: 
 
 * [Manage service documentation](/konnect/api-products/service-documentation/)
-
-### {{site.base_gateway}} deployments
-
-When configuring a {{site.base_gateway}} deployment of an API product, you'll
-need to specify a route. Routes determine how successful requests are sent to
-their services after they reach the API gateway. A single API product version
-can have only one deployment, but potentially many routes.
-
-{:.important}
-> **Important**: Starting with {{site.base_gateway}} 3.0.0.0, the router supports logical expressions.
-Regex routes must begin with a `~` character. For example: `~/foo/bar/(?baz\w+)`.
-Learn more in the [route configuration guide](/gateway/latest/key-concepts/routes/expressions/).
-
-After configuring the API product, version, implementation, and at least one route,
-you’ll be able to start making requests through {{site.konnect_saas}}.
 
 ## More information
 
