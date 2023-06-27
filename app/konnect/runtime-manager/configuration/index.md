@@ -21,7 +21,7 @@ upstream services, such as a data transformation microservice, or a billing API.
 
 Gateway services can be managed though Runtime Manager:
 
-* When you create a {{site.konnect_short_name}} service implementation through the S, it automatically creates a Gateway service.
+* When you create a {{site.konnect_short_name}} service implementation through the Setup Wizard, it automatically creates a Gateway service.
 * You can also create a Gateway service directly through Runtime Manager. This
 service won't be attached to an API product by default.
 
