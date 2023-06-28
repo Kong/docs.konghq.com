@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2023
 
+**API Products**
+: Introducing a new {{site.konnect_short_name}} module, API Products, where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
 **Composite runtime groups**
 : {{site.konnect_short_name}} now supports composite runtime groups, which enable users to leverage shared infrastructure across multiple teams in a secure, compliant fashion. 
 With composite runtime groups, organizations can reduce infrastructure costs while providing the appropriate access to teams through RBAC.
@@ -52,7 +55,6 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 
 **OIDC Configuration API**
 : Enterprise orgs using OIDC login can now specify [additional scopes](/konnect/api/identity-management/sso/) to be requested during the authorization grant flow. This allows organizations to request [custom claims](/konnect/api/identity-management/sso/) from their IdP. The custom claims can then be used to override the default mapping for the `name`, `email` and `groups` attributes which are used during the login flow. For example, the `upn` scope may be required to retrieve the `userPrincipalName` claim from Azure which can then be  mapped to `email` attribute in Konnect.
-
 
 ## May 2023
 

@@ -2,8 +2,8 @@
 title: Introduction to Monitoring Health with Analytics
 ---
 
-You can monitor the health and performance of any service,
-route, or application managed by {{site.konnect_saas}}.
+
+You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_saas}}.
 
 Analytics provides traffic reports to help you track the performance and
 behavior of your APIs and runtimes. Use these reports to quickly access key
@@ -28,11 +28,14 @@ In the [Runtime Manager](https://docs.konghq.com/konnect/runtime-manager/), you 
 activity graphs for gateway services or routes for the past 30 days.
 For gateway services and routes, the graphs show requests broken down by status codes.
 
+
 ![service graph](/assets/images/docs/konnect/konnect-analytics-gateway-service.png){:.image-border}
 
 > _**Figure 1:** Graph showing traffic for the last 15 minutes by status code for a gateway service._
 
+
 You can also [export historical data in CSV](#export-analytics-data) format from any graph.
+
 
 
 ## Summary dashboard and custom reports
