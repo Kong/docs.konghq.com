@@ -1,0 +1,759 @@
+overlay: 1.0.0
+info:
+  title: Add descriptions
+  version: 0.1
+actions:
+- target: $.paths["/ca_certificates"].get
+  update:
+    description: Retrieve a list of all available Certificate Authority (CA) certificates,
+      including the certificate ID, creation date, and other details. You can use
+      query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.
+- target: $.paths["/ca_certificates/{ca_certificate_id}"].delete
+  update:
+    description: Delete the specified Certificate Authority (CA) certificate using
+      the provided ca_certificate_id.
+- target: $.paths["/ca_certificates/{ca_certificate_id}"].get
+  update:
+    description: Retrieve details about the specified Certificate Authority (CA) certificate
+      using the provided path parameter `ca_certificate_id`.
+- target: $.paths["/ca_certificates/{ca_certificate_id}"].patch
+  update:
+    description: Update a CA Certificate
+- target: $.paths["/ca_certificates/{ca_certificate_id}"].put
+  update:
+    description: 'Update the specified Certificate Authority (CA) certificate using
+      the provided `ca_certificate_id`. Use this endpoint to modify an existing CA
+      certificate in the system. The request body should include the fields of the
+      CA certificate that need to be updated. '
+- target: $.paths["/certificates"].get
+  update:
+    description: Retrieve a list of all available CA Certificate Authority (CA) certificates.
+      You can use query parameters to filter the results by size or tags, for example
+      `/certificates?size=50&tags=enterprise`.
+- target: $.paths["/certificates/{certificate_id}"].delete
+  update:
+    description: Delete a Certificate
+- target: $.paths["/certificates/{certificate_id}"].get
+  update:
+    description: Get a Certificate using ID.
+- target: $.paths["/certificates/{certificate_id}"].patch
+  update:
+    description: 'Update a Certificate
+
+
+      Inserts (or replaces) the certificate under the requested `certificate_id`with
+      the definition specified in the request body. When the `name` or `id` attribute
+      has the structure of a UUID, the certificate being inserted/replaced will be
+      identified by its `id`. Otherwise it will be identified by the `name`.
+
+
+      When creating a new Certificate without specifying `id` (neither in the path
+      or the request body), then it will be auto-generated.
+
+      '
+- target: $.paths["/certificates/{certificate_id}"].put
+  update:
+    description: 'Update details about the specified certificate using the provided
+      path parameter `certificate_id`.
+
+
+      Inserts (or replaces) the certificate under the requested `certificate_id`with
+      the definition specified in the request body. When the `name` or `id` attribute
+      has the structure of a UUID, the certificate being inserted/replaced will be
+      identified by its `id`. Otherwise it will be identified by the `name`.
+
+
+      When creating a new Certificate without specifying `id` (neither in the path
+      or the request body), then it will be auto-generated.
+
+      '
+- target: $.paths["/certificates/{certificate_name_or_id}/snis"].get
+  update:
+    description: Retrieve a paginated list of all SNIs associated with a certificate.
+      Use this endpoint to retrieve a list of SNIs that are linked to a specific certificate.
+      You can use the optional query parameters to filter the results based on specific
+      criteria. The response will include the list of SNIs and pagination information.
+      See the response schema for details on the expected format of the response body.
+- target: $.paths["/certificates/{certificate_id}/snis/{sni_name_or_id}"].delete
+  update:
+    description: 'Delete a an SNI associated with a Certificate using ID or name.
+
+      '
+- target: $.paths["/certificates/{certificate_id}/snis/{sni_name_or_id}"].get
+  update:
+    description: Get an SNI associated with a Certificate using ID or name.
+- target: $.paths["/certificates/{certificate_id}/snis/{sni_name_or_id}"].patch
+  update:
+    description: 'Update an existing SNI associated with a certificate in the system
+      using the SNI ID or name. The request body should include the fields of the
+      SNI that need to be updated, such as the name, description, or other properties.
+      If the request body contains valid data, the endpoint will update the SNI and
+      return a success response. '
+- target: $.paths["/certificates/{certificate_id}/snis/{sni_name_or_id}"].put
+  update:
+    description: 'Create or Update an SNI associated with a Certificate using ID or
+      name.
+
+
+      Inserts (or replaces) the SNI under the requested resource with the definition
+      specified in the body. The SNI will be identified via the name or id attribute.
+
+
+      When the name or id attribute has the structure of a UUID, the SNI being inserted/replaced
+      will be identified by its id. Otherwise it will be identified by its name.
+
+
+      When creating a new SNI without specifying id (neither in the URL nor in the
+      body), then it will be auto-generated.
+
+      '
+- target: $.paths["/consumers"].get
+  update:
+    description: Retrieve a list of all consumers.You can use query parameters to
+      filter the results by size or tags, for example `/consumers?size=50&tags=enterprise`.
+- target: $.paths["/consumers/{consumer_username_or_id}"].delete
+  update:
+    description: Delete a Consumer
+- target: $.paths["/consumers/{consumer_username_or_id}"].get
+  update:
+    description: 'Retrieve the details of a specific consumer in the system using
+      either the consumer ID or the consumer username. If the consumer with the specified
+      ID or username cannot be found, the endpoint will return a 404.
+
+      '
+- target: $.paths["/consumers/{consumer_username_or_id}"].patch
+  update:
+    description: 'Update the details of a specific consumer in the system using either
+      the consumer ID or the consumer username.If the consumer with the specified
+      ID or username cannot be found, the endpoint will return a 404.
+
+      '
+- target: $.paths["/consumers/{consumer_username_or_id}"].put
+  update:
+    description: 'Create or Update Consumer using ID or username. The consumer will
+      be identified via the username or id attribute.If the consumer with the specified
+      ID or username cannot be found, the endpoint will return a 404.
+
+
+      When the username or id attribute has the structure of a UUID, the Consumer
+      being inserted/replaced will be identified by its id. Otherwise it will be identified
+      by its username.
+
+
+      When creating a new Consumer without specifying id (neither in the URL nor in
+      the body), then it will be auto-generated.
+
+
+      Notice that specifying a username in the URL and a different one in the request
+      body is not allowed.'
+- target: $.paths["/consumers/{consumer_username_or_id}/plugins"].get
+  update:
+    description: 'Retrieve a list of all plugins associated with a consumer. '
+- target: $.paths["/consumers/{consumer_name_or_id}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin associated with a aconsumer using ID.
+- target: $.paths["/consumers/{consumer_name_or_id}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin associated with a Consumer using ID.
+- target: $.paths["/consumers/{consumer_name_or_id}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin associated with a consumer using the consumer username
+      or ID.
+- target: $.paths["/consumers/{consumer_name_or_id}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update a plugin associated with a Consumer using ID.
+- target: $.paths["/key-sets"].get
+  update:
+    description: 'Retrieve a list of all Key-sets in the system. A Key Set object
+      holds a collection of asymmetric key objects. This entity allows to logically
+      group keys by their purpose. Key Sets can be both tagged and filtered by tags.
+
+      '
+- target: $.paths["/key-sets/{key-set_id_or_name}"].delete
+  update:
+    description: Delete a Key-set
+- target: $.paths["/key-sets/{key-set_id_or_name}"].get
+  update:
+    description: 'Get a Key-set using ID or name. This endpoint retrieves information
+      about a specific key-set based on its ID or name.
+
+      '
+- target: $.paths["/key-sets/{key-set_id_or_name}"].patch
+  update:
+    description: 'Update a Key-set using ID or name.
+
+
+      Note: This API is not available in DB-less mode.
+
+
+      Inserts (or replaces) the Key Set under the requested resource with the definition
+      specified in the body. The Key Set will be identified via the name or id attribute.
+
+
+      When the name or id attribute has the structure of a UUID, the Key Set being
+      inserted/replaced will be identified by its id. Otherwise it will be identified
+      by its name.
+
+
+      When creating a new Key Set without specifying id (neither in the URL nor in
+      the body), then it will be auto-generated.
+
+
+      Notice that specifying a name in the URL and a different one in the request
+      body is not allowed.'
+- target: $.paths["/key-sets/{key-set_id_or_name}"].put
+  update:
+    description: 'Update a Key-set using ID or name.
+
+      '
+- target: $.paths["/keys"].get
+  update:
+    description: List all Keys
+- target: $.paths["/keys/{key_id_or_name}"].delete
+  update:
+    description: Delete a Key
+- target: $.paths["/keys/{key_id_or_name}"].get
+  update:
+    description: Get a Key using ID or name.
+- target: $.paths["/keys/{key_id_or_name}"].patch
+  update:
+    description: Update a Key
+- target: $.paths["/keys/{key_id_or_name}"].put
+  update:
+    description: 'Create or update a key using ID or name.
+
+      '
+- target: $.paths["/plugins"].get
+  update:
+    description: List all plugins
+- target: $.paths["/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin
+- target: $.paths["/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin using ID.
+- target: $.paths["/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin
+- target: $.paths["/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update plugin using ID.
+- target: $.paths["/routes"].get
+  update:
+    description: 'List all routes
+
+
+      route entities define rules to match client requests. Each route is associated
+      with a service, and a service may have multiple routes associated to it. Every
+      request matching a given route will be proxied to its associated service.
+
+
+      Note: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0,
+      when router_flavor is set to expressions, route.path_handling will be unconfigurable
+      and the path handling behavior will be "v0"; when router_flavor is set to traditional_compatible,
+      the path handling behavior will be "v0" regardless of the value of route.path_handling.
+      Only router_flavor = traditional will support path_handling "v1'' behavior.'
+- target: $.paths["/routes/{route_id_or_name}"].delete
+  update:
+    description: Delete a route
+- target: $.paths["/routes/{route_id_or_name}"].get
+  update:
+    description: Get a route using ID or name.
+- target: $.paths["/routes/{route_id_or_name}"].patch
+  update:
+    description: Update a route
+- target: $.paths["/routes/{route_id_or_name}"].put
+  update:
+    description: Create or update a route using ID or name.
+- target: $.paths["/routes/{route_id_or_name}/plugins"].get
+  update:
+    description: List all plugins associated with a route
+- target: $.paths["/routes/{route_id_or_name}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin associated with a route using ID.
+- target: $.paths["/routes/{route_id_or_name}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin associated with a route using ID.
+- target: $.paths["/routes/{route_id_or_name}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin associated with a route using ID.
+- target: $.paths["/routes/{route_id_or_name}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update a plugin associated with a route using ID.
+- target: $.paths["/services"].get
+  update:
+    description: List all Services
+- target: $.paths["/services/{service_id_or_name}"].delete
+  update:
+    description: Delete a Service
+- target: $.paths["/services/{service_id_or_name}"].get
+  update:
+    description: Get a Service using ID or name.
+- target: $.paths["/services/{service_id_or_name}"].patch
+  update:
+    description: Update a Service
+- target: $.paths["/services/{service_id_or_name}"].put
+  update:
+    description: Create or Update Service using ID or name.
+- target: $.paths["/services/{service_id_or_name}/plugins"].get
+  update:
+    description: List all plugins associated with a Service
+- target: $.paths["/services/{service_id_or_name}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin associated with a Service using ID.
+- target: $.paths["/services/{service_id_or_name}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin associated with a Service using ID.
+- target: $.paths["/services/{service_id_or_name}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin associated with a Service using ID.
+- target: $.paths["/services/{service_id_or_name}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update a plugin associated with a Service using ID.
+- target: $.paths["/services/{service_id_or_name}/routes"].get
+  update:
+    description: List all routes associated with a Service
+- target: $.paths["/services/{service_id_or_name}/routes/{route_id_or_name}"].delete
+  update:
+    description: Delete a route associated with a Service using ID or name.
+- target: $.paths["/services/{service_id_or_name}/routes/{route_id_or_name}"].get
+  update:
+    description: Get a route associated with a service using ID or name.
+- target: $.paths["/services/{service_id_or_name}/routes/{route_id_or_name}"].patch
+  update:
+    description: Update a route associated with a Service using ID or name.
+- target: $.paths["/services/{service_id_or_name}/routes/{route_id_or_name}"].put
+  update:
+    description: Create or Update a route associated with a Service using ID or name.
+- target: $.paths["/snis"].get
+  update:
+    description: List all SNIs
+- target: $.paths["/snis/{sni_name_or_id}"].delete
+  update:
+    description: Delete an SNI
+- target: $.paths["/snis/{sni_name_or_id}"].get
+  update:
+    description: Get an SNI using ID or name.
+- target: $.paths["/snis/{sni_name_or_id}"].patch
+  update:
+    description: Update an SNI
+- target: $.paths["/snis/{sni_name_or_id}"].put
+  update:
+    description: Create or Update SNI using ID or name.
+- target: $.paths["/upstreams"].get
+  update:
+    description: 'List all registered upstreams. You can filter the results by pagination
+      size, offset, or tags like /upstreams?size=10&offset=0.
+
+      '
+- target: $.paths["/upstreams/{upstream_id_or_name}"].delete
+  update:
+    description: Delete an Upstream
+- target: $.paths["/upstreams/{upstream_id_or_name}"].get
+  update:
+    description: Get an Upstream using ID or name.
+- target: $.paths["/upstreams/{upstream_id_or_name}"].patch
+  update:
+    description: Update an Upstream
+- target: $.paths["/upstreams/{upstream_id_or_name}"].put
+  update:
+    description: Create or Update Upstream using ID or name.
+- target: $.paths["/upstreams/{upstream_id_or_name}/targets"].get
+  update:
+    description: List all Targets associated with a an Upstream
+- target: $.paths["/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].delete
+  update:
+    description: Delete a Target associated with a an Upstream using ID or target.
+- target: $.paths["/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].get
+  update:
+    description: Get a Target associated with an Upstream using ID or target.
+- target: $.paths["/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].patch
+  update:
+    description: Update a Target associated with a an Upstream using ID or target.
+- target: $.paths["/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].put
+  update:
+    description: Create or Update a Target associated with an Upstream using ID or
+      target.
+- target: $.paths["/vaults"].get
+  update:
+    description: List all Vaults
+- target: $.paths["/vaults/{vault_id_or_prefix}"].delete
+  update:
+    description: Delete a Vault
+- target: $.paths["/vaults/{vault_id_or_prefix}"].get
+  update:
+    description: 'Fetch a Vault using ID or prefix.
+
+
+      Vault entities are used to configure different Vault connectors.
+
+      '
+- target: $.paths["/vaults/{vault_id_or_prefix}"].patch
+  update:
+    description: Update a Vault
+- target: $.paths["/vaults/{vault_id_or_prefix}"].put
+  update:
+    description: Create or Update Vault using ID or prefix.
+- target: $.paths["/workspaces"].get
+  update:
+    description: 'List all Workspaces
+
+
+      For workspace use cases and configuration examples, see [Workspace examples](https://docs.konghq.com/gateway/3.2.x/kong-enterprise/workspaces/).'
+- target: $.paths["/workspaces/{workspace_id_or_name}"].delete
+  update:
+    description: Delete a Workspace
+- target: $.paths["/workspaces/{workspace_id_or_name}"].get
+  update:
+    description: Get a Workspace using ID or name.
+- target: $.paths["/workspaces/{workspace_id_or_name}"].patch
+  update:
+    description: Update a Workspace
+- target: $.paths["/workspaces/{workspace_id_or_name}"].put
+  update:
+    description: Create or Update Workspace using ID or name.
+- target: $.paths["/{workspace}/certificates"].get
+  update:
+    description: List all Certificates in a workspace
+- target: $.paths["/{workspace}/certificates/{certificate_id}"].delete
+  update:
+    description: Delete a Certificate in a workspace
+- target: $.paths["/{workspace}/certificates/{certificate_id}"].get
+  update:
+    description: Get a Certificate using ID in a workspace.
+- target: $.paths["/{workspace}/certificates/{certificate_id}"].patch
+  update:
+    description: Update a Certificate in a workspace
+- target: $.paths["/{workspace}/certificates/{certificate_id}"].put
+  update:
+    description: Create or Update Certificate using ID in a workspace.
+- target: $.paths["/{workspace}/certificates/{certificate_id}/snis"].get
+  update:
+    description: List all SNIs associated with a Certificate in a workspace
+- target: $.paths["/{workspace}/certificates/{certificate_id}/snis/{sni_name_or_id}"].delete
+  update:
+    description: Delete a an SNI associated with a Certificate using ID or name in
+      a workspace.
+- target: $.paths["/{workspace}/certificates/{certificate_id}/snis/{sni_name_or_id}"].get
+  update:
+    description: Get an SNI associated with a Certificate using ID or name in a workspace.
+- target: $.paths["/{workspace}/certificates/{certificate_id}/snis/{sni_name_or_id}"].patch
+  update:
+    description: Update a an SNI associated with a Certificate using ID or name in
+      a workspace.
+- target: $.paths["/{workspace}/certificates/{certificate_id}/snis/{sni_name_or_id}"].put
+  update:
+    description: Create or Update an SNI associated with a Certificate using ID or
+      name in a workspace.
+- target: $.paths["/{workspace}/consumers"].get
+  update:
+    description: List all Consumers in a workspace
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}"].delete
+  update:
+    description: Delete a Consumer in a workspace
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}"].get
+  update:
+    description: Get a Consumer using ID or username in a workspace.
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}"].patch
+  update:
+    description: Update a Consumer in a workspace
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}"].put
+  update:
+    description: Create or Update Consumer using ID or username in a workspace.
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}/plugins"].get
+  update:
+    description: List all plugins associated with a Consumer in a workspace
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin associated with a Consumer using ID in a workspace.
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin associated with a Consumer using ID in a workspace.
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin associated with a Consumer using ID in a workspace.
+- target: $.paths["/{workspace}/consumers/{consumer_username_or_id}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update a plugin associated with a Consumer using ID in
+      a workspace.
+- target: $.paths["/{workspace}/key-sets"].get
+  update:
+    description: List all Key-sets in a workspace
+- target: $.paths["/{workspace}/key-sets/{key-set_id_or_name}"].delete
+  update:
+    description: Delete a Key-set in a workspace
+- target: $.paths["/{workspace}/key-sets/{key-set_id_or_name}"].get
+  update:
+    description: Get a Key-set using ID or name in a workspace.
+- target: $.paths["/{workspace}/key-sets/{key-set_id_or_name}"].patch
+  update:
+    description: Update a Key-set in a workspace
+- target: $.paths["/{workspace}/key-sets/{key-set_id_or_name}"].put
+  update:
+    description: Create or Update Key-set using ID or name in a workspace.
+- target: $.paths["/{workspace}/keys"].get
+  update:
+    description: List all Keys in a workspace
+- target: $.paths["/{workspace}/keys/{key_id_or_name}"].delete
+  update:
+    description: Delete a Key in a workspace
+- target: $.paths["/{workspace}/keys/{key_id_or_name}"].get
+  update:
+    description: Get a Key using ID or name in a workspace.
+- target: $.paths["/{workspace}/keys/{key_id_or_name}"].patch
+  update:
+    description: Update a Key in a workspace
+- target: $.paths["/{workspace}/keys/{key_id_or_name}"].put
+  update:
+    description: Create or Update Key using ID or name in a workspace.
+- target: $.paths["/{workspace}/plugins"].get
+  update:
+    description: List all plugins in a workspace
+- target: $.paths["/{workspace}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin in a workspace
+- target: $.paths["/{workspace}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin using ID in a workspace.
+- target: $.paths["/{workspace}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin in a workspace
+- target: $.paths["/{workspace}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update plugin using ID in a workspace.
+- target: $.paths["/{workspace}/routes"].get
+  update:
+    description: List all routes in a workspace
+- target: $.paths["/{workspace}/routes/{route_id_or_name}"].delete
+  update:
+    description: Delete a route in a workspace
+- target: $.paths["/{workspace}/routes/{route_id_or_name}"].get
+  update:
+    description: Get a route using ID or name in a workspace.
+- target: $.paths["/{workspace}/routes/{route_id_or_name}"].patch
+  update:
+    description: Update a route in a workspace
+- target: $.paths["/{workspace}/routes/{route_id_or_name}"].put
+  update:
+    description: Create or Update route using ID or name in a workspace.
+- target: $.paths["/{workspace}/routes/{route_id_or_name}/plugins"].get
+  update:
+    description: List all plugins associated with a route in a workspace
+- target: $.paths["/{workspace}/routes/{route_id_or_name}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin associated with a route using ID in a workspace.
+- target: $.paths["/{workspace}/routes/{route_id_or_name}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin associated with a route using ID in a workspace.
+- target: $.paths["/{workspace}/routes/{route_id_or_name}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin associated with a route using ID in a workspace.
+- target: $.paths["/{workspace}/routes/{route_id_or_name}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update a plugin associated with a route using ID in a workspace.
+- target: $.paths["/{workspace}/services"].get
+  update:
+    description: List all Services in a workspace
+- target: $.paths["/{workspace}/services/{service_id_or_name}"].delete
+  update:
+    description: Delete a Service in a workspace
+- target: $.paths["/{workspace}/services/{service_id_or_name}"].get
+  update:
+    description: Get a Service using ID or name in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}"].patch
+  update:
+    description: Update a Service in a workspace
+- target: $.paths["/{workspace}/services/{service_id_or_name}"].put
+  update:
+    description: Create or Update Service using ID or name in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/plugins"].get
+  update:
+    description: List all plugins associated with a Service in a workspace
+- target: $.paths["/{workspace}/services/{service_id_or_name}/plugins/{plugin_id}"].delete
+  update:
+    description: Delete a plugin associated with a Service using ID in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/plugins/{plugin_id}"].get
+  update:
+    description: Get a plugin associated with a Service using ID in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/plugins/{plugin_id}"].patch
+  update:
+    description: Update a plugin associated with a Service using ID in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/plugins/{plugin_id}"].put
+  update:
+    description: Create or Update a plugin associated with a Service using ID in a
+      workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/routes"].get
+  update:
+    description: List all routes associated with a Service in a workspace
+- target: $.paths["/{workspace}/services/{service_id_or_name}/routes/{route_id_or_name}"].delete
+  update:
+    description: Delete a route associated with a Service using ID or name in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/routes/{route_id_or_name}"].get
+  update:
+    description: Get a route associated with a Service using ID or name in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/routes/{route_id_or_name}"].patch
+  update:
+    description: Update a route associated with a Service using ID or name in a workspace.
+- target: $.paths["/{workspace}/services/{service_id_or_name}/routes/{route_id_or_name}"].put
+  update:
+    description: Create or Update a route associated with a Service using ID or name
+      in a workspace.
+- target: $.paths["/{workspace}/snis"].get
+  update:
+    description: List all SNIs in a workspace
+- target: $.paths["/{workspace}/snis/{sni_name_or_id}"].delete
+  update:
+    description: Delete an SNI in a workspace
+- target: $.paths["/{workspace}/snis/{sni_name_or_id}"].get
+  update:
+    description: Get an SNI using ID or name in a workspace.
+- target: $.paths["/{workspace}/snis/{sni_name_or_id}"].patch
+  update:
+    description: Update an SNI in a workspace
+- target: $.paths["/{workspace}/snis/{sni_name_or_id}"].put
+  update:
+    description: Create or Update SNI using ID or name in a workspace.
+- target: $.paths["/{workspace}/upstreams"].get
+  update:
+    description: List all Upstreams in a workspace
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}"].delete
+  update:
+    description: Delete an Upstream in a workspace
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}"].get
+  update:
+    description: Get an Upstream using ID or name in a workspace.
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}"].patch
+  update:
+    description: Update an Upstream in a workspace
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}"].put
+  update:
+    description: Create or Update Upstream using ID or name in a workspace.
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}/targets"].get
+  update:
+    description: List all Targets associated with a an Upstream in a workspace
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].delete
+  update:
+    description: Delete a Target associated with a an Upstream using ID or target
+      in a workspace.
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].get
+  update:
+    description: Get a Target associated with an Upstream using ID or target in a
+      workspace.
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].patch
+  update:
+    description: Update a Target associated with a an Upstream using ID or target
+      in a workspace.
+- target: $.paths["/{workspace}/upstreams/{upstream_id_or_name}/targets/{target_id_or_target}"].put
+  update:
+    description: Create or Update a Target associated with an Upstream using ID or
+      target in a workspace.
+- target: $.paths["/{workspace}/vaults"].get
+  update:
+    description: List all Vaults in a workspace
+- target: $.paths["/{workspace}/vaults/{vault_id_or_prefix}"].delete
+  update:
+    description: Delete a Vault in a workspace
+- target: $.paths["/{workspace}/vaults/{vault_id_or_prefix}"].get
+  update:
+    description: Get a Vault using ID or prefix in a workspace.
+- target: $.paths["/{workspace}/vaults/{vault_id_or_prefix}"].patch
+  update:
+    description: Update a Vault in a workspace
+- target: $.paths["/{workspace}/vaults/{vault_id_or_prefix}"].put
+  update:
+    description: Create or Update Vault using ID or prefix in a workspace.
+- target: $.paths["/consumer_groups"].get
+  update:
+    description: 'List all consumer groups
+
+
+      Use consumer groups to manage custom rate limiting configuration for subsets
+      of consumers. For more information read the [consumer group examples documentation](https://docs.konghq.com/gateway/3.2.x/kong-enterprise/consumer-groups/).
+
+      '
+- target: $.paths["/consumer_groups/{group_name_or_id}"].get
+  update:
+    description: 'Returns a consumer group by passing either the `group_name` or `group_id`
+      as a path parameter. '
+- target: $.paths["/consumer_groups/{group_name_or_id}"].put
+  update:
+    description: Create a consumer group by passing a new group name as the path parameter
+- target: $.paths["/consumer_groups/{group_name_or_id}"].delete
+  update:
+    description: 'Delete a consumer group. Deleting a consumer group removes all consumers
+      from that group. This operation does not delete existing consuemrs.
+
+      '
+- target: $.paths["/consumers/{consumer_username_or_id}/consumer_groups"].get
+  update:
+    description: 'View all consumer groups that a consumer is assigned to.
+
+      '
+- target: $.paths["/consumers/{consumer_username_or_id}/consumer_groups"].delete
+  update:
+    description: Remove a consumer from all groups.
+- target: $.paths["/consumer_groups/{group_name_or_id}/consumers"].get
+  update:
+    description: List all consumers in a consumer group
+- target: $.paths["/consumer_groups/{group_name_or_id}/consumers"].delete
+  update:
+    description: Removes all consumers from a specified consumer group.
+- target: $.paths["/consumers/{consumer_name_or_id}/consumer_groups/{group_name_or_id}"].delete
+  update:
+    description: Removes a consumer from a consumer group. This operation does not
+      delete the consumer group.
+- target: $.paths["/consumer_groups/{group_name_or_id}/consumers/{consumer_username_or_id}"].delete
+  update:
+    description: The consumer groups endpoint for removing a consumer from a specified
+      consumer group.
+- target: $.paths["/consumer_groups/{group_name_or_id}/overrides/plugins/rate-limiting-advanced"].put
+  update:
+    description: 'Define custom rate limiting settings for a consumer group. This
+      endpoint overrides the settings of the Rate Limiting Advanced plugin.
+
+      '
+- target: $.paths["/consumer_groups/{group_name_or_id}/overrides/plugins/rate-limiting-advanced"].delete
+  update:
+    description: 'Delete custom rate limiting settings for a consumer group.
+
+      '
+- target: $.paths["/licenses"].get
+  update:
+    description: 'List active licenses. The data planes use the most recent updated_at
+      license.
+
+      '
+- target: $.paths["/licenses/{license-id}"].get
+  update:
+    description: List a specific license using the license id parameter.
+- target: $.paths["/licenses/{license-id}"].put
+  update:
+    description: "When using `PUT`, if the request payload does not contain an entity\u2019\
+      s primary key (`id` for licenses), the license will be added and assigned the\
+      \ given ID.\n\nIf the request payload does contain an entity\u2019s primary\
+      \ key (id for Licenses), the license will be replaced with the given payload\
+      \ attribute. If the ID is not a valid UUID, a `400 BAD REQUEST` will be returned.\
+      \ If the ID is omitted, a `405 NOT ALLOWED` will be returned."
+- target: $.paths["/licenses/{license-id}"].patch
+  update:
+    description: "When using `PATCH`, if the request payload does contain an entity\u2019\
+      s primary key (`id` for licenses), the license will be replaced with the given\
+      \ payload attribute.\n\nIf the request payload does not contain an entity\u2019\
+      s primary key (`id` for licenses), a `404 NOT FOUND `will be returned or if\
+      \ the request payload contains a invalid licence, a `400 BAD REQUEST` will be\
+      \ returned."
+- target: $.paths["/licenses/{license-id}"].delete
+  update:
+    description: Delete a license by passing the license ID as a path parameter.
+- target: $.paths["/license/report"].get
+  update:
+    description: 'Generate a report on the Kong Gateway instance to gather monthly
+      usage data.
+
+      '
+- target: $.paths["/keyring"].get
+  update:
+    description: Kong Gateway provides a mechanism to store sensitive data fields,
+      such as consumer secrets, in an encrypted format within the database.This provides
+      for encryption-at-rest security controls in a Kong cluster. For more information
+      review the [keyring and data encryption documentation](https://docs.konghq.com/gateway/latest/kong-enterprise/db-encryption/#getting-started).
