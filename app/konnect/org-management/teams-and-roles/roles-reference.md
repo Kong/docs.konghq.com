@@ -15,9 +15,9 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Admin | Admin of an existing {{site.konnect_short_name}} service. The admins have all write access related to a Gateway service and API product versions. |
 | Application Registration | Access to enable or disable application registration for an API Product. |
 | Creator | Access to create new API product to productize services in API Products. The creator becomes the owner of the API product they create, gaining admin access to the API product. <br><br>This role does not provide access to creating sub-entities in an API product such as API product versions. See the `API Product Admin` or `Maintainer` roles. |
-| Deployer | Access to implement and associate a {{site.konnect_short_name}} Gateway version to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
+| Deployer | Access to implement and associate a Gateway service to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
 | Maintainer | Access to read, edit, and deploy a Gateway service and its corresponding API product version versions, and manage its plugins. |
-| Plugins Admin | Access to install plugins on the {{site.konnect_short_name}} gateway service, runtime group, consumers, and routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
+| Plugins Admin | Access to install plugins on the Gateway service, runtime group, consumers, and routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
 | Publisher | Access to publish an API product to the Dev Portal. |
 | Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} service, including attributes, versions, Analytics reports, and plugins. |
 
