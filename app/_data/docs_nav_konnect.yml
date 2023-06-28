@@ -142,6 +142,8 @@
               url: /dev-portal/applications/dynamic-client-registration/curity/
             - text: Auth0
               url: /dev-portal/applications/dynamic-client-registration/auth0/
+            - text: Azure
+              url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
         - text: Register an Application with a Service
@@ -161,7 +163,7 @@
     - text: Analyze Services and Routes
       url: /analytics/services-and-routes/
     - text: Report Use Cases
-      items: 
+      items:
       - text: Analyze API Usage and Performance
         url: /analytics/use-cases/
       - text: Diagnosing Latency Issues
