@@ -208,10 +208,22 @@
             url: /org-management/okta-idp/
           - text: Login Sessions Reference
             url: /org-management/sessions-reference/
-          - text: Account and Org Deactivation
-            url: /org-management/deactivation/
           - text: Troubleshoot
             url: /org-management/troubleshoot/
+      - text: Audit Logging
+        items:
+          - text: Overview
+            url: /org-management/audit-logging/
+          - text: Set up an Audit Log Webhook
+            url: /org-management/audit-logging/webhook/
+          - text: Set up an Audit Log Replay Job
+            url: /org-management/audit-logging/replay-job/
+          - text: Verify Audit Log Signatures
+            url: /org-management/audit-logging/verify-signatures/
+          - text: Log Reference
+            url: /org-management/audit-logging/reference/
+      - text: Account and Org Deactivation
+        url: /org-management/deactivation/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -277,6 +289,13 @@
         - text: API Spec
           url: https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0
           absolute_url: true
+    - text: Audit Logs API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
+          absolute_url: true
+        - text: Audit Log Webhooks
+          url: /api/audit-logs/webhook/
     - text: Reference
       items:
         - text: Filtering

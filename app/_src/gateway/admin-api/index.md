@@ -231,7 +231,7 @@ plugin_json: |
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"],
-        "ordering": {"before":{"access":["plugin-name"]}}
+        "ordering": {"before":["plugin-name"]}
     }
 
 plugin_data: |
@@ -248,7 +248,7 @@ plugin_data: |
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"],
-        "ordering": {"before":{"access":["plugin-name"]}}
+        "ordering": {"before":["plugin-name"]}
     }, {
         "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "name": "rate-limiting",

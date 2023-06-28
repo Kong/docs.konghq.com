@@ -10,7 +10,8 @@ module SharedContexts
         ).merge(
           source: File.expand_path('../../fixtures/app', __dir__),
           destination: File.expand_path('../../fixtures/dist', __dir__),
-          quiet: true
+          quiet: true,
+          git_branch: 'main'
         )
       )
     end

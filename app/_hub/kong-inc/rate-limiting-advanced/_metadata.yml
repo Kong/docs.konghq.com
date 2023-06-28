@@ -24,9 +24,9 @@ categories:
 publisher: Kong Inc.
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
-  The Rate Limiting Advanced plugin for Konnect Enterprise is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
+  Rate limit how many HTTP requests can be made in a given time frame.
 
-  As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
+  The Rate Limiting Advanced plugin offers more functionality than the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/), such as:
   * Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
   * Support for Redis Sentinel, Redis cluster, and Redis SSL
   * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.

@@ -1,7 +1,7 @@
 ---
 title: Konnect Runtime Configuration API
 toc: false
-
+disable_image_expand: true
 service_body: |
     Attributes | Description
     ---:| ---
@@ -744,19 +744,17 @@ key_set_data: |
 <!-- vale off -->
 {% unless page.edition == "gateway" %}
 
-The API for configuring Kong Konnect Runtime Groups.
-
-{:.note .no-icon }
-> <span class="badge beta"></span> **Kong Konnect API spec is now available!**
->
-| Spec | Developer portal link | Insomnia link |
-|------|-----------------------|---------------|
-| Konnect beta API spec |[Developer Portal](https://developer.konghq.com/spec/ffada861-b53f-4780-9cc1-4032858c874f/3b0abc15-73fb-43ef-b63d-0216b22b8ff8)  | <a href="https://insomnia.rest/run/?label=Konnect%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fjson%2Fkonnect.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
-
 {% assign prefix = "" %}
 {% if page.edition == "konnect" %}
 {% assign prefix = "/core-entities" %}
 {% endif %}
+
+{:.note .no-icon }
+> <span class="badge beta"></span> **A beta API spec for the runtime group configuration API is now available!**
+>
+| Spec | Developer portal link | Insomnia link |
+|------|-----------------------|---------------|
+| Konnect runtime group configuration beta API spec |[Developer Portal](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf)  | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 | URL                | Description                                                                                                                         |
