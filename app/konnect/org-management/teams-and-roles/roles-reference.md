@@ -12,14 +12,14 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 
 | Role                        | Description  |
 |-----------------------------|--------------|
-| Admin | Admin of an existing {{site.konnect_short_name}} service. The admins have all write access related to a Gateway service and API product versions. |
+| Admin | Admin of an existing API product. The admins have all write access permissions related to a API product, API product version, etc. |
 | Application Registration | Access to enable or disable application registration for an API Product. |
-| Creator | Access to create new API product to productize services in API Products. The creator becomes the owner of the API product they create, gaining admin access to the API product. <br><br>This role does not provide access to creating sub-entities in an API product such as API product versions. See the `API Product Admin` or `Maintainer` roles. |
+| Creator | Access to create new API product in API Products. The creator becomes the owner of the API product they create, gaining admin access to the API product. This role does not provide access to creating sub-entities in an API product such as API product versions or API specs, or link the API product version to a Gateway service. See the Admin or Maintaine role. |
 | Deployer | Access to implement and associate a Gateway service to a runtime group. <br><br> Must also have the `Deployer` role for the associated runtime group. |
-| Maintainer | Access to read, edit, and deploy a Gateway service and its corresponding API product version versions, and manage its plugins. |
+| Maintainer | Access to fully manage an API product and its API product versions including app registration, publishing documentation, etc. |
 | Plugins Admin | Access to install plugins on the Gateway service, runtime group, consumers, and routes. <br><br> Must also have the `Admin` role in the associated runtime group. |
 | Publisher | Access to publish an API product to the Dev Portal. |
-| Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} service, including attributes, versions, Analytics reports, and plugins. |
+| Viewer | Read-only access on an API product including API product versions and its configuration, analytics, and documentation. |
 
 ## Runtime groups
 
