@@ -42,11 +42,11 @@ This report can provide your stakeholders with the answers to questions like:
 
 * How many requests were made to the API during the current month? 
 * How does this month compare to the previous months? 
-* Which service receives the most requests?
+* Which API product receives the most requests?
 
 The data can be used to support other types of exploratory questions about your API: 
 
-* What is the most popular service? 
+* What is the most popular API product? 
 * Are there spikes in requests across months? 
 * Are there any errors or issues that might be impacting the number of requests our API is receiving? 
 
@@ -76,7 +76,7 @@ Add a filter for the Accounts API. Click **Add Filter**, then set the following 
 
 These reports can provide your stakeholders with the answers to questions like:
 
-* What does average traffic over time look like for this service?
+* What does average traffic over time look like for this API product?
 * Are there any anomalies, such as spikes or drops in traffic?
 * If there are anomalies, do they repeat? Are there any patterns in the data?
 * If there's an issue with API traffic, has it been resolved or is it ongoing?
@@ -97,7 +97,7 @@ If the Accounts API is seeing a low amount traffic per day, but the per minute r
 
 ### Total API usage by {{site.konnect_saas}} application over the last 30 days
 
-You can track requests per minute, per day, and even differentiate it across different APIs. However, because {{site.konnect_saas}} allows applications to consume services, you must be able to explain which applications drive the most traffic to your APIs. Applications can be anything: public web applications, mobile applications, and internal services that consume APIs.
+You can track requests per minute, per day, and even differentiate it across different APIs. However, because {{site.konnect_saas}} allows applications to consume API products, you must be able to explain which applications drive the most traffic to your APIs. Applications can be anything: public web applications, mobile applications, and internal Gateway services that consume APIs.
 
 To configure the {{site.konnect_saas}} to create a look back report of total traffic across different applications, set the following options in the UI: 
 

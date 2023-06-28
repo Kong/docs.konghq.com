@@ -9,6 +9,9 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2023
+: Introducing a new Konnect module, API Products, where technical & non-technical audiences can document their Services, link to Gateway Services for application registration, and publish API Products to a Developer Portal for consumption. Existing Konnect customers will find that their Services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
 ## May 2023
 
 **Gateway 3.3 Support**

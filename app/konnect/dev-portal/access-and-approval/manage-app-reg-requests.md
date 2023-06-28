@@ -3,15 +3,15 @@ title: Manage Application Registration Requests
 content_type: how-to
 ---
 
-When a developer [registers an application with a service](/konnect/dev-portal/applications/dev-reg-app-service/),
+When a developer [registers an application with an API product](/konnect/dev-portal/applications/dev-reg-app-service/),
 the requests must be approved by an admin if
 [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),
-developers must register their applications with a service. This guide explains different options available to you from the **Requests** page that is available through the {% konnect_icon dev-portal %} **Dev Portal** section.
+developers must register their applications with an API product. This guide explains different options available to you from the **Requests** page that is available through the {% konnect_icon dev-portal %} **Dev Portal** section.
 
 ## Approve a Request {#approve-app-reg}
 
-From the **Requests** page, the **App Registrations** tab is for managing developer's requests to register an application with a service, any pending application requests are
+From the **Requests** page, the **App Registrations** tab is for managing developer's requests to register an application with an API product, any pending application requests are
 displayed here.
 To manage an application registration request:
 
@@ -21,8 +21,8 @@ The status is updated from **Pending** to **Approved**. The application moves
 from the **App Registrations** tab to the **Applications** page.
 
 An email is sent to the developer to let them know their application to register
-for a service was approved. In the Dev Portal, the status for the request
-is also updated in the **Services** pane of the
+for a product was approved. In the Dev Portal, the status for the request
+is also updated in the **My Apps** pane of the
 [application details](/konnect/dev-portal/applications/dev-apps#app-details-page) page.
 
 If there are no pending requests, the **No app registration requests** message is displayed.
@@ -31,7 +31,7 @@ If there are no pending requests, the **No app registration requests** message i
 
 An application registration request that
 is rejected requires the developer submit another request after
-unregistering their application from a service.
+unregistering their application from a product.
 
 From the **App Registrations** tab, reject an application registration request:
 
@@ -51,7 +51,7 @@ From the **App Registrations**, delete an application registration request:
    **Delete** from the context menu.
 
 The request is deleted from the **App Registrations** tab. The pending request is also
-deleted from the **Services** pane of an application in the {{site.konnect_short_name}} Dev Portal.
+deleted from the **My Apps** pane of an application in the {{site.konnect_short_name}} Dev Portal.
 
  Any pending application requests are displayed in the **Access Requests** page **App Registrations** tab.
 
@@ -64,10 +64,10 @@ To prevent a user from submitting requests, you must [revoke](#revoke-dev-access
 The following status conditions reflect the current state of a registration request:
 
 **Approved**
-: An application created by a developer has been approved to access a service in the {{site.konnect_short_name}} Dev Portal.
+: An application created by a developer has been approved to access an API product in the {{site.konnect_short_name}} Dev Portal.
 
 **Pending**
-: A developer who has requested access to a service, but has not
+: A developer who has requested access to an API product, but has not
 yet had their request reviewed by a {{site.konnect_short_name}} admin. 
 
 **Rejected**
