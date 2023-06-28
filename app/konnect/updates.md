@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## June 2023
+
+**Contextual Developer Analytics**
+: {{site.konnect_saas}} launches new contextual analytics information for third-party developers inside the Dev Portal. Developers can now use that information to not only optimize but also keep on eye on their applications usage and therefore understand the interaction between them and the providers APIs.
+
 ## May 2023
 
 **Gateway 3.3 Support**
