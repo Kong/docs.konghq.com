@@ -2220,6 +2220,7 @@ openid-connect
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
 * Fixed an issue where the slow startup of the Go plugin server caused a deadlock.
+* Fixed an internal error that occurred while validating the schema if `http_endpoint` contained userinfo but the headers were empty.
 
 ## 2.8.4.1
 
