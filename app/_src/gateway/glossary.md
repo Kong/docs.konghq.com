@@ -13,7 +13,7 @@ title: Glossary
 |Client| A Kong client refers to the downstream client making requests to {{site.base_gateway}}’s proxy port. It could be another service in a distributed application, a user’s identity, a user’s browser, or a specific device. |
 |Consumer| A consumer object represents the client of a service. A consumer is also the Admin API entity representing a developer or machine using the API. |
 |Credential| A unique string associated with a consumer; also referred to as an API key.      |
-|Dev Portal| A web application that functions as a collection of service version specs and documentation objects. The purpose of a portal is to allow registration and consumption of services running through Kong to other teams, developers, and partners.|
+|Dev Portal| A web application that functions as a collection of API products, specs and documentation objects. The purpose of a portal is to allow registration and consumption of services running through Kong to other teams, developers, and partners.|
 |Groups| Sets of role-defined entities.|
 |Host | A host represents the domain hosts (using DNS) intended to receive upstream traffic. In {{site.base_gateway}}, it is a list of domain names that match a route object. |
 | Kong plugin|  A plugin developed, maintained, and supported by Kong.|

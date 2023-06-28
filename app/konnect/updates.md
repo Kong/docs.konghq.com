@@ -12,14 +12,16 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2023
 
-** API Products API released**
+**API Products**
+: Introducing a new Konnect module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their Services, link to Gateway Services for application registration, and publish API Products to a Developer Portal for consumption. Existing Konnect customers will find that their Services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
+**API Products API released**
 : The API products API has been released to support the objective of making API consumption straightforward for developers. Explore the API spec on our [Dev Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
 
 ## June 2023
 
 **Audit logging**
 : Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
-
 
 ## May 2023
 
