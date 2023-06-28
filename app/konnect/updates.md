@@ -13,7 +13,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## July 2023
 
 ** API Products API released**
-: The API products API has been released to support the objective of making API consumption straightforward for developers. Explore the API spec on our [Dev Portal](REPLACE)
+: The API products API has been released to support the objective of making API consumption straightforward for developers. Explore the API spec on our [Dev Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
 
 ## June 2023
 
