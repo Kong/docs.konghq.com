@@ -42,12 +42,6 @@ After creating the new version, you will see **Link with a Gateway Service** as 
     Choose a [runtime group](/konnect/runtime-manager/runtime-groups/) and [Gateway Service](/konnect/runtime-manager/configuration/#gateway-services) to
     deploy this API product version to. This lets you deploy to a specific group of
     runtime instances in a specific environment.
-
-    Different versions of the same API product can run in different runtime groups.
-    The version name is unique within a group:
-
-    * If you create multiple versions in the _same group_, they must have unique names.
-    * If you create multiple versions in _different groups_, the versions can have the same name.
 1. Click **Save**.
 
 ## Publish an API product

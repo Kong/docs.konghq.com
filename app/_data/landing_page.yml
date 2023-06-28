@@ -1,13 +1,13 @@
 features:
   - title: Key features
     items:
-      - name: API Products
-        description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
+      - name: Service Hub
+        description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
         icon: /assets/images/landing-page/service-hub.svg
         links:
           - text: Cloud
             icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/api-products
+            url: /konnect/servicehub
 
       - name: Dev Portal
         description: Streamline developer onboarding with a self-service developer experience, letting developers discover, register, and consume published services.
@@ -38,6 +38,14 @@ features:
           - text: Cloud
             icon: /assets/images/icons/icn-cloud-blue.svg
             url: /konnect/runtime-manager
+      
+      - name: API Products
+        description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
+        icon: /assets/images/landing-page/service-hub.svg
+        links:
+          - text: Cloud
+            icon: /assets/images/icons/icn-cloud-blue.svg
+            url: /konnect/api-products
 
       - name: Insomnia
         description: Streamline workflows by enabling users to instantly drop into Insomnia to design, document, and test APIs and microservices.
