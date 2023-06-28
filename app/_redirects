@@ -1,3 +1,38 @@
+# Redirects are evaluated in order of appearance.
+# Newer, more relevant redirects should appear at the top of the file.
+# More general/sweeping redirects should be at the bottom.
+
+#3.2
+
+/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/latest/os-support/                     /gateway/latest/support-policy/
+/gateway/latest/install-support/                /gateway/latest/support-policy/
+/gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
+/gateway/3.2.x/install-support/                /gateway/latest/support-policy/
+
+# 3.1
+
+/gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
+
+# 3.0
+
+/gateway/2.8.x/install-and-run/                   /gateway/latest/support-policy/
+/gateway/2.8.x/install-and-run/centos/            /gateway/latest/support-policy/
+/gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
+/gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
+/gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
+/gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
+/gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
+/gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
+/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
+
+
+# CONTRIBUTING & STYLE GUIDE
+/contributing/plugin-docs/               /contributing/contribution-templates/
+
 # DEPRECATED OS
 /gateway/3.0.x/install-and-run/centos    /gateway/latest/support-policy/#supported-versions
 /gateway/latest/install-and-run/centos   /gateway/latest/support-policy/#supported-versions
@@ -256,6 +291,7 @@
 
 # KONNECT
 
+/konnect/api/audit-logs/webhook/                    /konnect/org-management/audit-logging/webhook/
 /konnect/service-hub                                /konnect/servicehub/
 /konnect/service-hub/*                              /konnect/servicehub/:splat
 /konnect/service-hub/manage-services                /konnect/servicehub/
@@ -312,55 +348,9 @@
 /konnect/identity-management-api/   https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
 /gateway/*/kong-enterprise/dev-portal/portal-api/ https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
 
-
-# COMMUNITY DOC REBRANDING
-/community                                  https://konghq.com/community-resources/
-/2.5.x/*                                    /gateway-oss/2.5.x/:splat
-/2.4.x/*                                    /gateway-oss/2.4.x/:splat
-/2.3.x/*                                    /gateway-oss/2.3.x/:splat
-/2.2.x/*                                    /gateway-oss/2.2.x/:splat
-/2.1.x/*                                    /gateway-oss/2.1.x/:splat
-/2.0.x/*                                    /gateway-oss/2.0.x/:splat
-/1.5.x/*                                    /gateway-oss/1.5.x/:splat
-/1.4.x/*                                    /gateway-oss/1.4.x/:splat
-/1.3.x/*                                    /gateway-oss/1.3.x/:splat
-/1.2.x/*                                    /gateway-oss/1.2.x/:splat
-/1.1.x/*                                    /gateway-oss/1.1.x/:splat
-/1.0.x/*                                    /gateway-oss/1.0.x/:splat
-/0.14.x/*                                   /gateway-oss/0.14.x/:splat
-/0.13.x/*                                   /gateway-oss/0.13.x/:splat
-
-# COMMUNITY DOC ARCHIVES
-/0.12.x/*                                   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.12.x/:splat
-/0.11.x/*                                   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.11.x/:splat
-/0.10.x/*                                   https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.10.x/:splat
-/0.9.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.9.x/:splat
-/0.8.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.8.x/:splat
-/0.7.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.7.x/:splat
-/0.6.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.6.x/:splat
-/0.5.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.5.x/:splat
-/0.4.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.4.x/:splat
-/0.3.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.3.x/:splat
-/0.2.x/*                                    https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.2.x/:splat
-/gateway-oss/0.12.x/*                       https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.12.x/:splat
-/gateway-oss/0.11.x/*                       https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.11.x/:splat
-/gateway-oss/0.10.x/*                       https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.10.x/:splat
-/gateway-oss/0.9.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.9.x/:splat
-/gateway-oss/0.8.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.8.x/:splat
-/gateway-oss/0.7.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.7.x/:splat
-/gateway-oss/0.6.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.6.x/:splat
-/gateway-oss/0.5.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.5.x/:splat
-/gateway-oss/0.4.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.4.x/:splat
-/gateway-oss/0.3.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.3.x/:splat
-/gateway-oss/0.2.x/*                        https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.2.x/:splat
-
-
 # STUDIO
-/enterprise/2.3.x/studio                    https://support.insomnia.rest/
 /enterprise/2.3.x/studio/*                  https://support.insomnia.rest/
-/studio                                     https://support.insomnia.rest/
 /studio/*                                   https://support.insomnia.rest/
-
 
 # DEV PORTAL
 /enterprise/2.1.x/developer-portal/introduction            /enterprise/2.1.x/developer-portal
@@ -863,12 +853,11 @@
 /enterprise/latest/introduction/support-policy  /gateway/latest/support-policy/
 /latest/*                  /
 /latest                    /
-/2.6.x/*                   /gateway/2.6.x/
+
 /enterprise/2.6.x/*        /gateway/2.6.x/
 /gateway-oss/2.6.x/*       /gateway/2.6.x/
 /enterprise/2.6.x/         /gateway/2.6.x/
 /gateway-oss/2.6.x/        /gateway/2.6.x/
-/2.7.x/*                   /gateway/2.7.x/
 /enterprise/2.7.x/*        /gateway/2.7.x/
 /gateway-oss/2.7.x/*       /gateway/2.7.x/
 /enterprise/2.7.x/         /gateway/2.7.x/
@@ -882,31 +871,54 @@
 /gateway-oss/              /gateway/
 /gateway/*/production/kong-openresty       /gateway/
 
+# ENTERPRISE DOC ARCHIVES
 
+/enterprise/0.31-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.31-x/:splat
+/enterprise/0.32-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.32-x/:splat
+/enterprise/0.33-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.33-x/:splat
+/enterprise/0.34-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.34-x/:splat
+/enterprise/0.35-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.35-x/:splat
+/enterprise/0.36-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.36-x/:splat
+/enterprise/1.3-x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/1.3-x/:splat
+/enterprise/1.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/1.5.x/:splat
 
-# 3.0
+# COMMUNITY DOC REBRANDING
+/community   https://konghq.com/community-resources/
+/2.5.x/*                                    /gateway-oss/2.5.x/:splat
+/2.4.x/*                                    /gateway-oss/2.4.x/:splat
+/2.3.x/*                                    /gateway-oss/2.3.x/:splat
+/2.2.x/*                                    /gateway-oss/2.2.x/:splat
+/2.1.x/*                                    /gateway-oss/2.1.x/:splat
 
-/gateway/2.8.x/install-and-run/                   /gateway/latest/support-policy/
-/gateway/2.8.x/install-and-run/centos/            /gateway/latest/support-policy/
-/gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
-/gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
-/gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
-/gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
-/gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
-/gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
-/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
-
-# 3.1
-/gateway/latest/production/logging/     /gateway/latest/production/logging/log-reference/
-
-
-#3.2
-
-/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
-/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
-/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
-/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
-/gateway/latest/os-support/                     /gateway/latest/support-policy/
-/gateway/latest/install-support/                /gateway/latest/support-policy/
-/gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
-/gateway/3.2.x/install-support/                /gateway/latest/support-policy/
+# COMMUNITY DOC ARCHIVES
+/gateway-oss/2.0.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.0.x/:splat
+/gateway-oss/1.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.5.x/:splat
+/gateway-oss/1.4.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.4.x/:splat
+/gateway-oss/1.3.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.3.x/:splat
+/gateway-oss/1.2.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.2.x/:splat
+/gateway-oss/1.1.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.1.x/:splat
+/gateway-oss/1.0.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.0.x/:splat
+/gateway-oss/0.14.x/*                       https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.14.x/:splat
+/gateway-oss/0.13.x/*                       https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.13.x/:splat
+/gateway-oss/0.12.x/*                       https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.12.x/:splat
+/gateway-oss/0.11.x/*                       https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.11.x/:splat
+/gateway-oss/0.10.x/*                       https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.10.x/:splat
+/gateway-oss/0.9.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.9.x/:splat
+/gateway-oss/0.8.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.8.x/:splat
+/gateway-oss/0.7.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.7.x/:splat
+/gateway-oss/0.6.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.6.x/:splat
+/gateway-oss/0.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.5.x/:splat
+/gateway-oss/0.4.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
+/gateway-oss/0.3.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
+/gateway-oss/0.2.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat
+/0.12.x/*                                   https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.12.x/:splat
+/0.11.x/*                                   https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.11.x/:splat
+/0.10.x/*                                   https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.10.x/:splat
+/0.9.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.9.x/:splat
+/0.8.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.8.x/:splat
+/0.7.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.7.x/:splat
+/0.6.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.6.x/:splat
+/0.5.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.5.x/:splat
+/0.4.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
+/0.3.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
+/0.2.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat

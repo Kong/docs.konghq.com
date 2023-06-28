@@ -146,6 +146,15 @@
     width: 250px;
     top: 75px;
 
+    @media screen and (min-width: 1101px) {
+      &.collapsed {
+        width: 50px;
+      }
+    }
+    .collapse-toc, .expand-toc {
+      top: 0;
+    }
+
     // "On this page" title
     .docs-toc-title {
       a {

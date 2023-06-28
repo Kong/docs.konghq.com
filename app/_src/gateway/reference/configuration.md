@@ -243,7 +243,7 @@ Tracer samples a fixed percentage of all spans following the sampling rate.
 
 Example: `0.25`, this should account for 25% of all traces.
 
-**Default:** `1.0`
+**Default:** `0.01`
 
 {% endif_version %}
 
