@@ -56,7 +56,7 @@ use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 1. Select a spec file to upload.
 
     The spec must be in YAML or JSON format. To test this functionality, you
-    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml/) as a sample spec.
+    can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec.
 
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.

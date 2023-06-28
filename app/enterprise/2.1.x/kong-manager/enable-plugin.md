@@ -15,7 +15,7 @@ Plugin via the command line, checkout the
 
 ### Prerequisites
 
-- **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation/)
+- **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation/overview/)
 - **Kong Enterprise** is [started](/enterprise/{{page.kong_version}}/start-kong-securely/)
 - A [**Service and Route**](/enterprise/{{page.kong_version}}/kong-manager/add-service/)
 (optional)

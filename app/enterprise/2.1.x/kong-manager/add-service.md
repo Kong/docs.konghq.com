@@ -20,7 +20,7 @@ including adding **Services and Routes**, is made via requests on to the
 
 ### Prerequisites
 
-- **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation/)
+- **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation/overview/)
 - **Kong Enterprise** is [started](/enterprise/{{page.kong_version}}/start-kong-securely/)
 - **Super Admin** or [**Admin**](/enterprise/{{page.kong_version}}/kong-manager/administration/admins/add-admin/)
 access to **Kong Manager**

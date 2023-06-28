@@ -38,7 +38,7 @@ guaranteed if you are upgrading incrementally between versions, from 0.36.x to 1
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
   [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
-  [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
+  [migrate to 1.5]({{site.links.archive}}/enterprise/1.5.x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 2.1,
   [migrate to 2.1](/enterprise/2.1.x/deployment/upgrades/migrations/) first.
 
