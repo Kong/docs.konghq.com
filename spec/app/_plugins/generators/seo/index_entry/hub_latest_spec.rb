@@ -12,14 +12,6 @@ RSpec.describe SEO::IndexEntry::HubLatest do
     it { expect(subject.indexable?(index)).to eq(true) }
   end
 
-  describe '#process!' do
-    it 'sets the canonical url to the page' do
-      subject.process!(index)
-
-      expect(page.data['canonical_url']).to eq('/hub/acme/kong-plugin/')
-    end
-  end
-
   describe '#attributes' do
     it { expect(subject.attributes).to eq({ 'url' => '/hub/acme/kong-plugin/', 'page' => page }) }
   end

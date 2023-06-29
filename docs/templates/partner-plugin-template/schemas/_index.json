@@ -1,0 +1,44 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [ 
+            "http",
+            "https",
+            "etc"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https",
+          "etc"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "example_field": {
+              "type": "string",
+              "required": true,
+              "default": "something",
+              "description": "Description of the field and its options."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

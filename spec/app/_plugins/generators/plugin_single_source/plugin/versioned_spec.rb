@@ -1,7 +1,7 @@
 RSpec.describe PluginSingleSource::Plugin::Versioned do
   let(:dir) { [author, name].join('/') }
   let(:name) { 'jq' }
-  let(:author) { 'acme' }
+  let(:author) { 'kong-inc' }
 
   subject { described_class.new(dir:, site:) }
 
@@ -31,7 +31,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
     context 'when `maximum_version` is not set' do
       let(:data) do
         data = SafeYAML.load(
-          File.read('spec/fixtures/app/_hub/acme/jwt-signer/versions.yml')
+          File.read('spec/fixtures/app/_hub/kong-inc/jwt-signer/versions.yml')
         )
         data['releases'].delete('maximum_version')
         data
@@ -77,60 +77,60 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
 
   describe '#create_pages' do
     it 'creates a page for each version of the plugin' do
-      expect(PluginSingleSource::SingleSourcePage)
+      expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
         .with(site:, version: '3.0.x', is_latest: true, plugin: subject, source: '_index')
         .and_call_original
-      expect(PluginSingleSource::SingleSourcePage)
+      expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
         .with(site:, version: '2.8.x', is_latest: false, plugin: subject, source: '_index')
         .and_call_original
-      expect(PluginSingleSource::SingleSourcePage)
+      expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
         .with(site:, version: '2.7.x', is_latest: false, plugin: subject, source: '_index')
         .and_call_original
-      expect(PluginSingleSource::SingleSourcePage)
+      expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
         .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_index')
         .and_call_original
 
-      expect(subject.create_pages.size).to eq(4)
+      expect(subject.create_pages.size).to eq(20)
     end
 
     context 'when there is a file for a specific version or `source` present ' do
       let(:name) { 'jwt-signer' }
 
       it 'creates a page for each version of the plugin, except for those for which a .md file exist' do
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.8.x', is_latest: true, plugin: subject, source: '_index')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.7.x', is_latest: false, plugin: subject, source: '_index')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_index')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.5.x', is_latest: false, plugin: subject, source: '_2.2.x')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.4.x', is_latest: false, plugin: subject, source: '_2.2.x')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.3.x-EE', is_latest: false, plugin: subject, source: '_index')
           .and_call_original
-        expect(PluginSingleSource::SingleSourcePage)
+        expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
           .with(site:, version: '2.3.x-CE', is_latest: false, plugin: subject, source: '_index')
           .and_call_original
 
-        expect(subject.create_pages.size).to eq(7)
+        expect(subject.create_pages.size).to eq(36)
       end
     end
   end

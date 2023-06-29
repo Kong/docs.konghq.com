@@ -42,7 +42,7 @@ For example, consider a query to the Admin API to the `/status`
 endpoint:
 
 ```sh
-http :8001/status
+curl -i -X GET http://localhost:8001/status
 ```
 
 You get the following response:
@@ -87,7 +87,7 @@ The above interaction with the Admin API generates a correlating entry in
 the audit log table. Querying the audit log via the Admin API returns the details of the previous interaction:
 
 ```sh
-http :8001/audit/requests
+curl -i -X GET http://localhost:8001/audit/requests
 ```
 
 {% if_version lte:3.1.x %}
@@ -318,7 +318,7 @@ Database update audit logs are also associated with Admin API request unique
 IDs. Consider the following request to create a consumer:
 
 ```sh
-http :8001/consumers username=bob
+curl -i -X POST http://localhost:8001/consumers username=bob
 ```
 
 Response:
@@ -346,7 +346,7 @@ Note the presence of the `payload` field, recorded when the request body is
 present:
 
 ```sh
-http :8001/audit/requests
+curl -i -X GET http://localhost:8001/audit/requests
 ```
 
 ```sh
@@ -382,7 +382,7 @@ Additionally, audit logs are generated to track the creation of the
 database entity:
 
 ```sh
-http :8001/audit/objects
+curl -i -X GET http://localhost:8001/audit/objects
 ```
 
 Response:

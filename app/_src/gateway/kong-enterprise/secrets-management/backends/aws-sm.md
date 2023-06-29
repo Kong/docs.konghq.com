@@ -37,7 +37,7 @@ In this object, you have multiple key=value pairs.
 ```json
 {
   "foo": "bar",
-  "snip": "snap",
+  "snip": "snap"
 }
 ```
 
@@ -55,27 +55,12 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtabs %}
 {% navtab Admin API %}
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-aws-sm-vault  \
   --data name=aws \
   --data description="Storing secrets in AWS Secrets Manager" \
   --data config.region="us-east-1"
 ```
-
-{% endnavtab %}
-{% navtab HTTPie %}
-
-```bash
-http -f PUT :8001/vaults/my-aws-sm-vault name="aws" \
-  description="Storing secrets in AWS Secrets Manager" \
-  config.region="us-east-1"
-```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 

@@ -17,7 +17,7 @@ features:
         tooltip: Drive a GitOps flow of API design and execution
         oss: true
         enterprise: true
-      - name: Kubernetes Ingress Controller
+      - name: Kong Ingress Controller
         tooltip: Deploy APIs to Kubernetes in a native fashion
         oss: true
         enterprise: true

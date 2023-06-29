@@ -47,7 +47,7 @@ For example, you can not perform string comparisons on a integer type field.
 
 | Field | Description | Type |
 | --- | ----------- | -------|
-| `net.protocol` | The protocol used to communicate with the upstream application. | String |
+| `net.protocol` | The protocol used to communicate with the downstream application. | String |
 | `net.port` | Server end port number. | Int |
 | `tls.sni`  | Server name indication. | String |
 | `http.method` | HTTP methods that match a route. | String |

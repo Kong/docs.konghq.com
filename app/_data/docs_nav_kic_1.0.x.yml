@@ -1,4 +1,4 @@
-- title: Kubernetes Ingress Controller
+- title: Kong Ingress Controller
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   url: /kubernetes-ingress-controller/1.0.x/
   absolute_url: true

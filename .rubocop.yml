@@ -1,4 +1,5 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - 'bin/**'
 
@@ -117,5 +118,3 @@ Naming/FileName:
   Enabled: true
   Exclude:
     - "**/Gemfile"
-AllCops:
-  NewCops: enable

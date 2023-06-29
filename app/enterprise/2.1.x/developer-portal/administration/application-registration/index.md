@@ -67,7 +67,7 @@ Available options:
             # Currently accepts kong-oauth2 or external-oauth2.
    ```
 
-2. [Restart](https://docs.konghq.com/2.1.x/cli/#kong-restart) your Kong Enterprise
+2. [Restart](/enterprise/{{page.kong_version}}/cli/#kong-restart) your Kong Enterprise
    instance.
 
 ### Next steps

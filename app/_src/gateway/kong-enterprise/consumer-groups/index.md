@@ -35,23 +35,10 @@ For all possible requests, see the
 
 1. Create a consumer group named `Gold`:
 
-{% capture create_consumer_group %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
-  --data name=Gold
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumer_groups name=Gold
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ create_consumer_group | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    --data name=Gold
+    ```
 
     Response:
 
@@ -66,23 +53,10 @@ http POST :8001/consumer_groups name=Gold
 
 1. Create a consumer, `Amal`:
 
-{% capture create_consumer %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumers \
-  --data username=Amal
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumers username=Amal
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ create_consumer | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumers \
+    --data username=Amal
+    ```
 
     Response:
 
@@ -100,23 +74,10 @@ http POST :8001/consumers username=Amal
 
 1. Add `Amal` to the `Gold` consumer group:
 
-{% capture add_consumer %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Gold/consumers \
-  --data consumer=Amal
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumer_groups/Gold/consumers consumer=Amal
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ add_consumer | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Gold/consumers \
+    --data consumer=Amal
+    ```
 
     Response:
 
@@ -146,36 +107,16 @@ http POST :8001/consumer_groups/Gold/consumers consumer=Amal
 setting the rate limit to five requests (`config.limit`) for every
 30 seconds (`config.window_size`):
 
-{% capture add_plugin %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
-  --data name=rate-limiting-advanced \
-  --data config.limit=5 \
-  --data config.window_size=30 \
-  --data config.window_type=sliding \
-  --data config.retry_after_jitter_max=0 \
-  --data config.enforce_consumer_groups=true \
-  --data config.consumer_groups=Gold
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http -f :8001/plugins/  \
-  name=rate-limiting-advanced \
-  config.limit=5 \
-  config.window_size=30 \
-  config.window_type=sliding \
-  config.retry_after_jitter_max=0 \
-  config.enforce_consumer_groups=true \
-  config.consumer_groups=Gold
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ add_plugin | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
+    --data name=rate-limiting-advanced \
+    --data config.limit=5 \
+    --data config.window_size=30 \
+    --data config.window_type=sliding \
+    --data config.retry_after_jitter_max=0 \
+    --data config.enforce_consumer_groups=true \
+    --data config.consumer_groups=Gold
+    ```
 
     For consumer groups, the following parameters are required:
     * `config.enforce_consumer_groups=true`: enables consumer groups for this plugin.
@@ -192,28 +133,12 @@ http -f :8001/plugins/  \
 the rate limiting configuration for the `Gold` consumer group only, setting
 the limit to ten requests for every ten seconds:
 
-{% capture override %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
-  --data config.limit=10 \
-  --data config.window_size=10 \
-  --data config.retry_after_jitter_max=1
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http PUT :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
-  config.limit=10 \
-  config.window_size=10 \
-  config.retry_after_jitter_max=1
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ override | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
+    --data config.limit=10 \
+    --data config.window_size=10 \
+    --data config.retry_after_jitter_max=1
+    ```
 
     Response:
 
@@ -235,22 +160,9 @@ http PUT :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
 
 1. Check that it worked by looking at the `Gold` consumer group object:
 
-{% capture check_group1 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http :8001/consumer_groups/Gold
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ check_group1 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    ```
 
     Notice the `plugins` object in the response, along with the parameters that you
     just set for the Rate Limiting Advanced plugin:
@@ -302,7 +214,9 @@ You can remove a consumer from a group by accessing `/consumers` or
 
 1. Check the `Gold` consumer group for the consumer name:
 
-{{ check_group1 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    ```
 
     Response:
 
@@ -329,22 +243,9 @@ You can remove a consumer from a group by accessing `/consumers` or
 1. Using the username or ID of the consumer (`Amal` in this example),
 remove the consumer from the group:
 
-{% capture delete_consumer1 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/consumers/Amal
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumer_groups/Gold/consumers/Amal
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ delete_consumer1 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/consumers/Amal
+    ```
 
     If successful, you receive the following response:
     ```
@@ -353,7 +254,9 @@ http DELETE :8001/consumer_groups/Gold/consumers/Amal
 
 1. To verify, check the consumer group configuration again:
 
-{{ check_group1 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    ```
 
     Response, with no consumers assigned:
 
@@ -376,22 +279,9 @@ You can remove a consumer from a group by accessing `/consumers` or
 1. If you know the consumer name and not the consumer group name,
 you can look up the group through the consumer:
 
-{% capture check_group2 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal/consumer_groups
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http :8001/consumers/Amal/consumer_groups
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ check_group2 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal/consumer_groups
+    ```
 
     Response:
 
@@ -411,22 +301,9 @@ http :8001/consumers/Amal/consumer_groups
 1. Using the username or ID of the group (`Gold` in this example),
 remove the consumer from the group:
 
-{% capture delete_consumer2 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumers/Amal/consumer_groups/Gold
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumers/Amal/consumer_groups/Gold
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ delete_consumer2 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X DELETE http://{HOSTNAME}:8001/consumers/Amal/consumer_groups/Gold
+    ```
 
     If successful, you receive the following response:
     ```
@@ -435,7 +312,9 @@ http DELETE :8001/consumers/Amal/consumer_groups/Gold
 
 1. To verify, check the consumer object configuration:
 
-{{ check_group1 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    ```
 
     Response, with no consumers assigned:
 
@@ -458,22 +337,9 @@ With this method, the consumers in the group aren't deleted and are still in the
 
 1. Delete the consumer group configuration using the following request:
 
-{% capture delete_consumer_group_config %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ delete_consumer_group_config | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
+    ```
 
     If successful, you receive see the following response:
     ```
@@ -482,7 +348,9 @@ http DELETE :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
     
 1. To verify, check the consumer object configuration:
 
-{{ check_group1 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    ```
 
     Response, without a `plugins` object:
 
@@ -498,7 +366,6 @@ http DELETE :8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
     ```
 
 
-
 ## Delete consumer group
 
 If you don't need a consumer group anymore, you can delete it. This removes
@@ -507,22 +374,9 @@ the group are not deleted.
 
 1. Delete a consumer group using the following request:
 
-{% capture delete_consumer2 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumer_groups/Gold
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ delete_consumer2 | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold
+    ```
 
     If successful, you receive see the following response:
     ```
@@ -531,22 +385,9 @@ http DELETE :8001/consumer_groups/Gold
 
 1. Check the list of consumer groups to verify that the `Gold` group is gone:
 
-{% capture check_all_groups %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumer_groups
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http :8001/consumer_groups
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ check_all_groups | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups
+    ```
 
     Response:
     ```json
@@ -558,22 +399,9 @@ http :8001/consumer_groups
 
 1. Check a consumer that was in the group to make sure it still exists:
 
-{% capture check_consumer %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http :8001/consumers/Amal
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ check_consumer | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal
+    ```
 
     An `HTTP/1.1 200 OK` response means the consumer exists.
 
@@ -585,74 +413,31 @@ You can perform many `/consumer_groups` operations in bulk.
 1. Assuming you deleted the group `Gold` in the previous section, create it again,
 along with another group named `Speedsters`:
 
-{% capture create_consumer_group2 %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
-  --data name=Gold
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    --data name=Gold
 
-curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
-  --data name=Speedsters
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumer_groups name=Gold
-
-http POST :8001/consumer_groups name=Speedsters
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ create_consumer_group2 | indent | replace: " </code>", "</code>" }}
+    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    --data name=Speedsters
+    ```
 
 1. Create two consumers, `BarryAllen` and `WallyWest`:
 
-{% capture create_two_consumers %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumers \
-  --data username=BarryAllen
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumers \
+    --data username=BarryAllen
 
-curl -i -X POST http://{HOSTNAME}:8001/consumers \
-  --data username=WallyWest
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumers username=BarryAllen
-
-http POST :8001/consumers username=WallyWest
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ create_two_consumers | indent | replace: " </code>", "</code>" }}
+    curl -i -X POST http://{HOSTNAME}:8001/consumers \
+    --data username=WallyWest
+    ```
 
 1. Add both consumers to the `Speedsters` group:
-{% capture add_two_consumers %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers \
-  --data consumer=BarryAllen \
-  --data consumer=WallyWest
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumer_groups/Speedsters/consumers \
-  consumer:='["BarryAllen", "WallyWest"]'
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
 
-{{ add_two_consumers | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers \
+    --data consumer=BarryAllen \
+    --data consumer=WallyWest
+    ```
 
     {{site.base_gateway}} validates the provided list of consumers before assigning
     them to the consumer group. To pass validation, consumers must exist and must
@@ -694,22 +479,9 @@ if you need to cycle the group for a new batch of users.
 
     For example, delete all consumers from the `Speedsters` group:
 
-{% capture delete_all_consumers %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumer_groups/Speedsters/consumers
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ delete_all_consumers | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers
+    ```
 
     Response:
     ```
@@ -724,25 +496,11 @@ http DELETE :8001/consumer_groups/Speedsters/consumers
 
     Add `BarryAllen` to two groups, `Gold` and `Speedsters`:
 
-{% capture add_consumer_many_groups %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X POST http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups \
-  --data group=Gold \
-  --data group=Speedsters
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/consumers/BarryAllen/consumer_groups \
-  group:='["Gold", "Speedsters"]'
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ add_consumer_many_groups | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups \
+    --data group=Gold \
+    --data group=Speedsters
+    ```
 
     The response should look something like this:
 
@@ -776,22 +534,9 @@ http POST :8001/consumers/BarryAllen/consumer_groups \
 
 1. Finally, you can also remove a consumer from all groups:
 
-{% capture add_consumer_many_groups %}
-{% navtabs codeblock %}
-{% navtab cURL %}
-```bash
-curl -i -X DELETE http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http DELETE :8001/consumers/BarryAllen/consumer_groups
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-
-{{ add_consumer_many_groups | indent | replace: " </code>", "</code>" }}
+    ```bash
+    curl -i -X DELETE http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups
+    ```
 
     Response:
     ```

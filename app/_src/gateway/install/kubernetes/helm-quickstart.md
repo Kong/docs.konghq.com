@@ -153,8 +153,8 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
        {% if_version gte:3.2.x %}
 
        kubectl create secret generic kong-config-secret -n kong \
-           --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_same_site":"off","cookie_secure":false}' \
-           --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_same_site":"off","cookie_secure":false}' \
+           --from-literal=portal_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"portal_session","cookie_same_site":"Lax","cookie_secure":false}' \
+           --from-literal=admin_gui_session_conf='{"storage":"kong","secret":"super_secret_salt_string","cookie_name":"admin_session","cookie_same_site":"Lax","cookie_secure":false}' \
            --from-literal=pg_host="enterprise-postgresql.kong.svc.cluster.local" \
            --from-literal=kong_admin_password=kong \
            --from-literal=password=kong
@@ -335,18 +335,8 @@ For local deployments, Kong Manager is locally accessible at `https://kong.127-0
 
 You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
 
-{% navtabs codeblock %}
-{% navtab cURL %}
-
     curl --silent --insecure -X GET https://kong.127-0-0-1.nip.io/api -H 'kong-admin-token:kong'
 
-{% endnavtab %}
-{% navtab HTTPie %}
-
-    http --verify=no get https://kong.127-0-0-1.nip.io/api kong-admin-token:kong
-
-{% endnavtab %}
-{% endnavtabs %}
 
 ## Teardown 
 
@@ -450,4 +440,4 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
 
 ## Next Steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

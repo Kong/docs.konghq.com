@@ -1,67 +1,3 @@
----
-name: gRPC-Web
-publisher: Kong Inc.
-categories:
-  - transformations
-type: plugin
-desc: Allow browser clients to call gRPC services
-description: |
-  A Kong plugin to allow access to a gRPC service via the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2).
-  Primarily, this means JavaScript browser applications using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
-license_type: MIT
-kong_version_compatibility:
-  community_edition:
-    compatible: true
-  enterprise_edition:
-    compatible: true
-params:
-  name: grpc-web
-  route_id: true
-  protocols:
-    - name: http
-    - name: https
-    - name: grpc
-    - name: grpcs
-    - name: tcp
-    - name: tls
-    - name: tls_passthrough
-      minimum_version: "2.7.x"
-    - name: udp
-    - name: ws
-      minimum_version: "3.0.x"
-    - name: wss
-      minimum_version: "3.0.x"
-  dbless_compatible: 'yes'
-  config:
-    - name: proto
-      required: false
-      default: null
-      value_in_examples: path/to/hello.proto
-      datatype: string
-      description: |
-        If present, describes the gRPC types and methods.
-        Required to support payload transcoding. When absent, the
-        web client must use application/grpw-web+proto content.
-    - name: pass_stripped_path
-      minimum_version: "2.2.x"
-      required: false
-      default: null
-      value_in_examples: null
-      datatype: boolean
-      description: If set to `true` causes the plugin to pass the stripped request path to the upstream gRPC service (see the `strip_path` Route attribute).
-    - name: allow_origin_header
-      minimum_version: "2.5.x"
-      required: false
-      datatype: string
-      default: '*'
-      value_in_examples: null
-      description: |
-        The value of the `Access-Control-Allow-Origin` header in the response to
-        the gRPC-Web client.  The default of `*` is appropriate for requests without
-        credentials.  In other cases, specify the allowed origins of the client code.
-        For more information, see [MDN Web Docs - Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin).
----
-
 ## Purpose
 
 A service that presents a gRPC API can be used by clients written in many languages,
@@ -207,10 +143,4 @@ separate records if it has to support multiple response messages.
 [Introduction to Kong gRPC plugins](/gateway/latest/configure/grpc)
 
 ---
-## Changelog
 
-**{{site.base_gateway}} 2.5.x**
-* Added support for setting the `Access-Control-Allow-Origin` header.
-
-**{{site.base_gateway}} 2.2.x**
-* Added the `pass_stripped_path` configuration parameter, which, if set to true, causes the plugin to pass the stripped request path to the upstream gRPC service.

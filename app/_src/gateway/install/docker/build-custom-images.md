@@ -123,7 +123,7 @@ COPY kong.apk.tar.gz /tmp/kong.apk.tar.gz
 RUN set -ex; \
     apk add --no-cache --virtual .build-deps tar gzip \
     && tar -C / -xzf /tmp/kong.apk.tar.gz \
-    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash curl ca-certicates \
+    && apk add --no-cache libstdc++ libgcc openssl pcre perl tzdata libcap zlib zlib-dev bash curl ca-certificates \
     && adduser -S kong \
     && addgroup -S kong \
     && mkdir -p "/usr/local/kong" \

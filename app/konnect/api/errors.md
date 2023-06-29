@@ -3,6 +3,8 @@ title: Konnect API Errors
 content-type: reference
 ---
 
+<!-- To edit Konnect API errors, make changes in this file: https://github.com/Kong/docs.konghq.com/blob/main/app/_data/konnect_errors.yml -->
+
 {% for entry in site.data.konnect_errors %}
 
 <h2>{{ entry.title }}</h2>

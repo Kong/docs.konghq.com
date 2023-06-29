@@ -589,18 +589,11 @@ provides:
 
 To check whether the CP and DP nodes you just brought up are connected, run the
 following on a control plane:
-{% navtabs %}
-{% navtab Using cURL %}
+
 ```bash
 curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
 ```
-{% endnavtab %}
-{% navtab Using HTTPie %}
-```bash
-http :8001/clustering/data-planes
-```
-{% endnavtab %}
-{% endnavtabs %}
+
 The output shows all of the connected data plane instances in the cluster:
 
 ```json

@@ -18,7 +18,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-- A Kubernetes cluster, v1.19 or later
+- A Kubernetes cluster v1.19 or later
 - `kubectl` v1.19 or later
 - (Enterprise only) A `license.json` file from Kong
 - Helm 3
@@ -77,7 +77,7 @@ If you plan to use RBAC, you must create a secret for the superuser account pass
 If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal, you must also configure the Session plugin and store its config in a Kubernetes secret:
 
 1.  Create a session config file for Kong Manager:
-    
+
     {% if_version lte:3.1.x %}
     ```bash
     echo '{"cookie_name":"admin_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
@@ -85,7 +85,7 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
     {% endif_version %}
     {% if_version gte:3.2.x %}
     ```bash
-    echo '{"cookie_name":"admin_session","cookie_same_site":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
+    echo '{"cookie_name":"admin_session","cookie_same_site":"Lax","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > admin_gui_session_conf
     ```
     {% endif_version %}
 
@@ -105,14 +105,14 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
     {% endif_version %}
     {% if_version gte:3.2.x %}
     ```bash
-    echo '{"cookie_name":"portal_session","cookie_same_site":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    echo '{"cookie_name":"portal_session","cookie_same_site":"Lax","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
 
     Or, if you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
     and `cookie_same_site` properties as follows:
 
     ```
-    echo '{"cookie_name":"portal_session","cookie_same_site":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    echo '{"cookie_name":"portal_session","cookie_same_site":"Lax","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
     {% endif_version %}
 
@@ -215,4 +215,4 @@ Note that the Enterprise deployment includes a Postgres sub-chart provided by Bi
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

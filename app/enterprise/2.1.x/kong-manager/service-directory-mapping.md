@@ -56,7 +56,7 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 
 * Under all circumstances, the secret must be manually set to a string.
 *  If using HTTP instead of HTTPS, cookie_secure must be manually set to false.
-*  If using different domains for the Admin API and Kong Manager, cookie_samesite must be set to off. Learn more about these properties in [_Session Security in Kong Manager_](https://docs.konghq.com/enterprise/0.36-x/kong-manager/authentication/sessions/#session-security), and see [_example configurations_](https://docs.konghq.com/enterprise/0.36-x/kong-manager/authentication/sessions/#example-configurations).
+*  If using different domains for the Admin API and Kong Manager, cookie_samesite must be set to off. Learn more about these properties in [_Session Security in Kong Manager_](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [_example configurations_](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
 
 ### Step 4: Configure LDAP Authentication for Kong Manager
 

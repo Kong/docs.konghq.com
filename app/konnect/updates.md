@@ -9,6 +9,57 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## June 2023
+
+**Self-hosted, open source Dev Portal**
+: You can now self-host an open-source Dev Portal on the hosting provider of your choice. 
+Kong provides an [example application](https://github.com/Kong/konnect-portal) you can use for an out-of-the-box experience with a self-hosted Dev Portal. 
+You can also customize the self-hosted portal using the Portal Management and Portal APIs, and the Portal SDK. 
+For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/).
+
+**Portal Client API**
+: {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
+For more information, see the [Portal Client API spec](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356).
+
+**Audit logging**
+: Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
+You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. 
+For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
+
+## May 2023
+
+**Gateway 3.3 Support**
+: Konnect now supports the latest Gateway release version of 3.3 including all [Konnect-compatible plugins](/konnect/compatibility/).
+
+## April 2023
+
+**Metadata for runtime instance certificates**
+: {{site.konnect_saas}} now supports metadata for runtime instance certificates. You can now see **expiry date** and **updated date** from a certificate's information page.
+
+**Allow filtering of runtime instances based on connection status** 
+: Runtime administrators can now filter runtime instances based on connection statuses `connected`, `disconnected`, or `all`.
+
+**My Account**
+: {{site.konnect_saas}} now includes a **My Account** feature. Here, users can easily edit their personal information, change their password, and manage their account. **My Account** is available by selecting your user icon in the top-right corner of the {{site.konnect_saas}} manager and selecting **My Account**.
+
+**Navigation updates**
+: {{site.konnect_saas}} received a new navigation and layout update designed to provide a more intuitive and user-friendly experience. With this update, you will find the **Region Switcher** has moved to the bottom-left corner of the {{site.konnect_saas}} manager closer to region-specific features. 
+
+**Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
+: Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+
+**Version picker in Runtime Manager Quickstart**
+: {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/runtime-manager/runtime-instances/).
+
+**GraphQL plugins**
+: {{site.konnect_short_name}} now supports the the following GraphQL plugins:
+* [DeGraphQL](/hub/kong-inc/degraphql/): Transform a GraphQL upstream into a traditional endpoint by mapping URIs into GraphQL queries.
+* [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/): Rate limit GraphQL requests.
+
+**Kong Ingress Controller for Kubernetes in Konnect**
+: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
+
+
 ## March 2023
 
 **Identity API**

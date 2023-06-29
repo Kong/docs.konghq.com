@@ -16,16 +16,6 @@ log in through Okta. Only the {{site.konnect_short_name}} org
 owner can continue to log in with {{site.konnect_short_name}}'s native
 authentication.
 
-{:.important}
-> **Important:** Enabling SSO through Okta for a particular
-{{site.konnect_short_name}} organization is **irreversible**. You cannot revert
-to native {{site.konnect_short_name}} authentication after the switch has been
-made.
-> <br><br>
-> Make sure that you are certain you want to switch, and are
-ready to manage authentication and authorization through Okta for this
-{{site.konnect_short_name}} organization.
-
 ## Prerequisites and overview of steps
 
 To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need
@@ -39,7 +29,7 @@ Here are the steps you need to complete, in both Okta and
 {{site.konnect_short_name}}.
 First, complete the following in Okta:
 * [Set up an Okta application](#prepare-the-okta-application)
-* [Set up claims in Okta](#set-up-claims-in-okta)
+* (Optional) If using group claims for team mapping, [set up claims in Okta](#optional-set-up-claims-in-okta).
 
 Then, you can set up {{site.konnect_short_name}} to talk to the Okta application:
 * [Set up Okta IDP in {{site.konnect_short_name}}](#set-up-konnect), referring
@@ -74,11 +64,11 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
 
     Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
-### Set up claims in Okta
+### (Optional) Set up claims in Okta
 
-The connection between {{site.konnect_short_name}} and Okta uses OpenID Connect
-tokens. To have Okta send the correct information to your {{site.konnect_short_name}} org, set up
-claims to extract that information.
+If you are intending to use group claims for Konnect team mappings, follow this guide to set them up. Otherwise, skip to [Add a user to your application](#add-a-user-to-your-application).
+
+The connection between {{site.konnect_short_name}} and Okta uses OpenID Connect tokens. To have Okta send the correct information to your {{site.konnect_short_name}} org, set up claims to extract that information.
 
 1. Open your Okta account in a new browser tab.
 
@@ -162,8 +152,7 @@ value is present.
 
 ### Provide Okta connection details
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-1. Click ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-**Settings**, and then **Auth Settings**.
+1. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
 1. Click **Configure provider** for **OIDC**.
 
 1. In Okta, locate your issuer URI.
@@ -239,7 +228,7 @@ in Okta to locate the Okta groups you want to map.
     groups may be accessible by the `groups` claim. See the
     [claims](#set-up-claims-in-okta) setup step for details.
 
-1. In {{site.konnect_saas}}, go to ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand} **Settings > Auth Settings > Team Mappings** and do at least one of the following:
+1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization > Auth Settings > Team Mappings** and do at least one of the following:
 
     * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
     * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
@@ -270,8 +259,7 @@ application.
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
     If you ever need to find the path again, you can always find it under
-    ![](/assets/images/icons/konnect/konnect-settings.svg){:.inline .no-image-expand}
-     **Settings > Auth Settings**, then copy the **Organization Login URI**
+    {% konnect_icon organizations %} **Organization > Auth Settings**, then copy the **Organization Login URI**
      and append it to `cloud.konghq.com/login/`.
 
 1. Paste the URI into a browser address bar. An Okta login page should appear.

@@ -1,0 +1,51 @@
+{
+  "fields": [
+    {
+      "service": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "services"
+      }
+    },
+    {
+      "route": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "routes"
+      }
+    },
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [
+            "http",
+            "https"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https"
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": [
+          {
+            "log_id": {
+              "type": "string",
+              "encrypted": true,
+              "default": "default-log-id",
+              "description": "The log id"
+            }
+          }
+        ],
+        "type": "record",
+        "required": true
+      }
+    }
+  ]
+}

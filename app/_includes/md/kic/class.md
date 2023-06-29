@@ -56,9 +56,6 @@ spec:
   - name: proxy
     port: 80
     protocol: HTTP
-  - name: proxy-ssl
-    port: 443
-    protocol: HTTPS
 " | kubectl apply -f -
 ```
 Response:

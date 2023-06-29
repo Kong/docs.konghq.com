@@ -10,6 +10,7 @@ gem 'liquid-c'
 gem 'rouge', '3.30.0'
 gem 'activesupport'
 gem 'nokogiri'
+gem 'jekyll-kuma-plugins', path: './app/_src/.repos/kuma/jekyll-kuma-plugins'
 
 group :development do
   gem 'pry'
@@ -17,4 +18,5 @@ group :development do
   gem 'reek'
   gem 'rubocop'
   gem 'rspec'
+  gem 'capybara'
 end

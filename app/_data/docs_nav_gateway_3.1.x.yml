@@ -544,6 +544,7 @@ items:
     items:
       - text: Overview
         url: /admin-api/
+        src: admin-api/admin-api-3.1.x
       - text: Information Routes
         url: /admin-api/#information-routes
       - text: Health Routes
@@ -611,7 +612,3 @@ items:
         url: /reference/router-expressions-language
       - text: FAQ
         url: /reference/faq
-
-unlisted:
-  - text: macOS
-    url: /install/macos
