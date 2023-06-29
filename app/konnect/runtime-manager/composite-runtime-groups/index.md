@@ -19,15 +19,19 @@ _For example, Team Blue configures Runtime Group Blue, which is then combined wi
 _The runtime instances in the cluster use the combined configuration._
 
 A composite runtime group can contain up to 256 runtime groups. 
+You can add or remove up to 50 child runtime groups at a time.
+
 Each standard group can have up to 5 parent composite runtime groups.
 
 ## Runtime instances 
 
-A runtime instance (also known as a {{site.base_gateway}} data plane node) can only connect to a single runtime group. 
 In a composite runtime group, the composite configuration from all child runtime groups is pushed to each runtime instance.
 
-Each composite runtime group has its own unique control plane endpoint. 
-A runtime instance that is connected to a composite runtime group has no knowledge of any other runtime groups.
+A runtime instance (also known as a {{site.base_gateway}} data plane node) can only connect to a single runtime group in a cluster.
+This means that in a composite runtime group, all runtime instances must be managed from the composite group itself. 
+Members of a composite group can't have their own runtime instances. 
+
+When adding a standard group to a composite, make sure it has no connected runtime instances.
 
 The runtime instances of a composite runtime group are not visible to a member runtime group.
 

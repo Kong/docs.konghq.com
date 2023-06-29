@@ -41,7 +41,7 @@ Create some standard runtime groups.
 1. Create group `SRG1`:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
         --data "name=SRG1" \
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
@@ -50,7 +50,7 @@ Create some standard runtime groups.
 1. Create group `SRG2`:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
         --data "name=SRG2" \
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
@@ -78,7 +78,7 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
 Create a composite runtime group:
 
 ```sh
-curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
+curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
     -H "Authorization: Bearer <your_KPAT>" \
     --data "name=CRG" \
     --data "cluster_type=CLUSTER_TYPE_COMPOSITE"
@@ -119,7 +119,7 @@ For this example, you can use the following values:
 1. Find the IDs of the runtime groups `SRG1` and `SRG2`:
 
     ```sh
-    curl -i -X GET https://us.api.konghq.com/v2/runtime-groups/
+    curl -i -X GET https://<region>.api.konghq.com/v2/runtime-groups/
     ```
 
     Response:
@@ -182,14 +182,14 @@ For this example, you can use the following values:
 1. In `SRG1`, create a service and a route:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "name=example_service" \
         --data "host=mockbin.org"
     ```
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services/example_service/routes \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services/example_service/routes \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "paths[]=/mock"
     ```
@@ -239,7 +239,7 @@ This time, you should receive a prompt to enter a username and password.
 1. Find the ID of `SRG2`. In `SRG2`, set up the basic authentication plugin:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/plugins \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/plugins \
             -H "Authorization: Bearer <your_KPAT>"  \
             --data "name=basic-auth"
     ```

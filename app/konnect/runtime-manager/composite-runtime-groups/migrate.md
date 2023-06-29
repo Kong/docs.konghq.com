@@ -17,14 +17,14 @@ Therefore, when migrating, you will need at least two new groups: a composite ru
 
 * **Runtime group admin** permissions
 * decK v1.12 or later [installed](/deck/latest/installation/)
-* You have a Konnect access token and you have made sure that decK can connect to your account
+* You have a Konnect access token and you have [made sure that decK can connect to your account](/konnect/runtime-manager/declarative-config/)
 
 ## Prepare runtime groups for migration
 
 1. Create a composite runtime group:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
         --data name=CRG \
         --data cluster_type=CLUSTER_TYPE_COMPOSITE
@@ -33,7 +33,7 @@ Therefore, when migrating, you will need at least two new groups: a composite ru
 1. Create a new standard runtime group:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
         --data name=SRG1 \
         --data cluster_type=CLUSTER_TYPE_HYBRID
@@ -42,10 +42,17 @@ Therefore, when migrating, you will need at least two new groups: a composite ru
 1. Add the new group to the composite runtime group as a member:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
         -H "Authorization: Bearer <your_KPAT>" \
         --json '{"members": [{"id": "062e2f2c-0f42-4938-91b4-f73f399260f5"}]}'
     ```
+
+    When adding a standard group to a composite, make sure it has no connected runtime instances.
+
+    A composite runtime group can contain up to 256 runtime groups. 
+    You can add or remove up to 50 child runtime groups at a time.
+
+    Each standard group can have up to 5 parent composite runtime groups.
 
 ## Scenario: Migrate runtime group configuration into a composite group
 
