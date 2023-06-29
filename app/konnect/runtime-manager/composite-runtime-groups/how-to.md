@@ -42,18 +42,18 @@ Create some standard runtime groups.
 
     ```sh
     curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
-    -H "Authorization: Bearer <your_KPAT>" \
-    --data name=SRG1 \
-    --data cluster_type=CLUSTER_TYPE_HYBRID
+        -H "Authorization: Bearer <your_KPAT>" \
+        --data "name=SRG1" \
+        --data "cluster_type=CLUSTER_TYPE_HYBRID"
     ```
 
 1. Create group `SRG2`:
 
     ```sh
     curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
-    -H "Authorization: Bearer <your_KPAT>" \
-    --data name=SRG2 \ 
-    --data cluster_type=CLUSTER_TYPE_HYBRID
+        -H "Authorization: Bearer <your_KPAT>" \
+        --data "name=SRG2" \
+        --data "cluster_type=CLUSTER_TYPE_HYBRID"
     ```
 
 {% endnavtab %}
@@ -80,8 +80,8 @@ Create a composite runtime group:
 ```sh
 curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
     -H "Authorization: Bearer <your_KPAT>" \
-    --data name=CRG \
-    --data cluster_type=CLUSTER_TYPE_COMPOSITE
+    --data "name=CRG" \
+    --data "cluster_type=CLUSTER_TYPE_COMPOSITE"
 ```
 
 {% endnavtab %}
@@ -89,7 +89,8 @@ curl -i -X POST https://us.api.konghq.com/v2/runtime-groups \
 
 ### Set up a runtime instance
 
-Set up a runtime instance in the composite runtime group. Navigate to {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager/), select group `CRG`, then click on **New Runtime Instance**.
+Set up a runtime instance in the composite runtime group. 
+Navigate to {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager/), select group `CRG`, then click on **New Runtime Instance**.
 
 Choose your installation method, then follow the instructions in {{site.konnect_short_name}} to set up the runtime instance.
 
@@ -181,14 +182,14 @@ For this example, you can use the following values:
 1. In `SRG1`, create a service and a route:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services 
+    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "name=example_service" \
         --data "host=mockbin.org"
     ```
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services/example_service/routes 
+    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services/example_service/routes \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "paths[]=/mock"
     ```
@@ -238,9 +239,9 @@ This time, you should receive a prompt to enter a username and password.
 1. Find the ID of `SRG2`. In `SRG2`, set up the basic authentication plugin:
 
     ```sh
-    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/plugins 
+    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/plugins \
             -H "Authorization: Bearer <your_KPAT>"  \
-            --data name=basic-auth
+            --data "name=basic-auth"
     ```
 
 1. Wait a few seconds, then try to access the route again. This time, you shouldn't be able to access it:
