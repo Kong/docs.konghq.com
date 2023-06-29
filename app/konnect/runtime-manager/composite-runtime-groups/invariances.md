@@ -1,6 +1,7 @@
 ---
 title: Invariances in runtime groups
 content_type: reference
+badge: enterprise
 ---
 
 An invariance is a conflict or potential issue in composite configuration. 

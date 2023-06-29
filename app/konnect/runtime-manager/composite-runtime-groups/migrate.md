@@ -42,11 +42,10 @@ Therefore, when migrating, you will need at least two new groups: a composite ru
 1. Add the new group to the composite runtime group as a member:
 
     ```sh
-    curl -i -X PATCH https://us.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
+    curl -i -X POST https://us.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
         -H "Authorization: Bearer <your_KPAT>" \
-        --json '{"members": [{"id": "SRG1"}]}`
+        --json '{"members": [{"id": "062e2f2c-0f42-4938-91b4-f73f399260f5"}]}'
     ```
-
 
 ## Scenario: Migrate runtime group configuration into a composite group
 
@@ -93,7 +92,7 @@ Use decK to migrate a self-managed {{site.base_gateway}} workspace into a compos
 1. Run [`deck dump`](/deck/latest/reference/deck_dump/) to export workspace configuration into a file:
 
     ```sh
-    deck dump--workspace ws1 -o ws1.yaml
+    deck dump --workspace ws1 -o ws1.yaml
     ```
 
 1. Open the file. Remove the following:
