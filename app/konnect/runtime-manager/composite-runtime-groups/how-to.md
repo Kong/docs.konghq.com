@@ -75,14 +75,90 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
 {% endnavtab %}
 {% navtab API %}
 
-Create a composite runtime group:
+1. Create a composite runtime group:
 
-```sh
-curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
-    -H "Authorization: Bearer <your_KPAT>" \
-    --data "name=CRG" \
-    --data "cluster_type=CLUSTER_TYPE_COMPOSITE"
-```
+    ```sh
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
+        -H "Authorization: Bearer <your_KPAT>" \
+        --data "name=CRG" \
+        --data "cluster_type=CLUSTER_TYPE_COMPOSITE"
+    ```
+
+    Copy the runtime group ID from the response:
+
+    ```json
+    HTTP/2 201
+
+    {
+        "id": "2b802e10-fd6b-4b12-8dbd-ffff4ac8b258",
+        "name": "CRG",
+        "description": "",
+        "labels": {},
+        "config": {
+            "control_plane_endpoint": "https://c89sa6fgas.us.cp0.konghq.com",
+            "telemetry_endpoint": "https://c89sa6fgas.us.tp0.konghq.com",
+            "cluster_type": "CLUSTER_TYPE_COMPOSITE"
+        },
+        "created_at": "2023-06-29T04:55:26.590Z",
+        "updated_at": "2023-06-29T04:55:26.590Z"
+        }
+    ```
+
+1. Find the IDs of `SRG1` and `SRG2`:
+
+    ```sh
+    curl -i -X GET https://<region>.api.konghq.com/v2/runtime-groups/
+    ```
+
+    ```json
+    HTTP/1.1 200 OK
+
+    {
+        "data": [
+            {
+                "config": {
+                    "cluster_type": "CLUSTER_TYPE_HYBRID",
+                    "control_plane_endpoint": "https://27faf0d0dsf.us.cp0.konghq.com",
+                    "telemetry_endpoint": "https://27faf0d0dsf.us.tp0.konghq.com"
+                },
+                "created_at": "2023-06-29T04:55:26.590Z",
+                "description": "",
+                "id": "fb2fc564-96bc-4667-80af-c00e9aed2ab2",
+                "labels": {},
+                "name": "SRG1",
+                "updated_at": "2023-06-29T04:55:26.590Z"
+            },
+            {
+                "config": {
+                    "cluster_type": "CLUSTER_TYPE_HYBRID",
+                    "control_plane_endpoint": "https://27faf0d0dsf.us.cp0.konghq.com",
+                    "telemetry_endpoint": "https://27faf0d0dsf.us.tp0.konghq.com"
+                },
+                "created_at": "2023-06-29T04:55:26.590Z",
+                "description": "",
+                "id": "e78012ce-553b-4305-adb2-3231bc0570b4",
+                "labels": {},
+                "name": "SRG2",
+                "updated_at": "2023-06-29T04:55:26.590Z"
+            }
+            ...
+        ],
+    }
+    ```
+
+1. Add the groups SRG1 and SRG2 to your composite runtime group:
+
+    ```sh
+    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
+        -H "Authorization: Bearer <your_KPAT>" \
+        --json '{"members": [{"id": "<SRG1-ID>", "id": "<SRG2-ID>"}]}'
+    ```
+
+    Response:
+
+    ```
+    HTTP/2 204
+    ```
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -157,7 +233,7 @@ For this example, you can use the following values:
             },
             {
                 "config": {
-                    "cluster_type": "CLUSTER_TYPE_HYBRID",
+                    "cluster_type": "CLUSTER_TYPE_COMPOSITE",
                     "control_plane_endpoint": "https://27faf0d0dsf.us.cp0.konghq.com",
                     "telemetry_endpoint": "https://27faf0d0dsf.us.tp0.konghq.com"
                 },
