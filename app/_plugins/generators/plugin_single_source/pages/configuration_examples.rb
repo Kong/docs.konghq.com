@@ -3,26 +3,26 @@
 module PluginSingleSource
   module Pages
     class ConfigurationExamples < Base
-      TITLE = 'Examples'
+      TITLE = 'Basic config examples'
 
       def canonical_url
-        "#{base_url}configuration/examples/"
+        "#{base_url}how-to/basic-example/"
       end
 
       def permalink
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/configuration/examples/"
+          "#{base_url}#{@release.version}/how-to/basic-example/"
         end
       end
 
       def page_title
-        "#{@release.metadata['name']} Configuration #{TITLE}"
+        "#{TITLE} for #{@release.metadata['name']}"
       end
 
       def dropdown_url
-        @dropdown_url ||= "#{base_url}VERSION/configuration/examples"
+        @dropdown_url ||= "#{base_url}VERSION/how-to/basic-example/"
       end
 
       def source_file; end
@@ -36,11 +36,20 @@ module PluginSingleSource
       end
 
       def breadcrumb_title
-        "Configuration #{TITLE}"
+        TITLE
       end
 
       def icon
         ''
+      end
+
+      def edit_link
+        if @release.vendor == 'kong-inc'
+          name = @release.name == 'serverless-functions' ? 'pre-function' : @release.name
+          "https://github.com/Kong/docs-plugin-toolkit/edit/main/examples/#{name}/_#{@release.version}.yaml"
+        else
+          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/_hub/#{@release.vendor}/#{@release.name}/examples/_index.yml"
+        end
       end
 
       private

@@ -26,6 +26,7 @@ links:
   download: https://download.konghq.com
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
+  archive: https://legacy-gateway--kongdocs.netlify.app
 repos:
   kong: https://github.com/Kong/kong
   docs: https://github.com/Kong/docs.konghq.com
@@ -86,6 +87,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
   - jekyll-generator-single-source
+  - jekyll-kuma-plugins
 
 defaults:
   - scope:
@@ -211,7 +213,7 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
-kic_product_name: Kubernetes Ingress Controller
+kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
 konnect_saas: Kong Konnect

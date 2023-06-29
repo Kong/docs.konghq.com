@@ -1,5 +1,5 @@
 ---
-title: Running the Kubernetes Ingress Controller with Istio
+title: Running the Kong Ingress Controller with Istio
 ---
 
 This guide walks you through deploying {{site.base_gateway}} with {{site.kic_product_name}} 
@@ -38,7 +38,7 @@ This guide shows how to:
 
 ### Prerequisites
 
-* A Kubernetes cluster, v1.19 or later
+* A Kubernetes cluster v1.19 or later
 * [kubectl][kubectl] v1.19 or later
 * [Helm][helm] v3.5 or later
 * [cURL][curl] version 7.x.x

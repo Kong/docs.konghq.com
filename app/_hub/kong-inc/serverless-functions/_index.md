@@ -197,5 +197,5 @@ curl file upload `@file.lua` (see demonstration) or to minify your Lua code
 using a [minifier][lua-minifier].
 
 
-[service-url]: https://getkong.org/docs/latest/admin-api/#service-object
+[service-url]: /gateway/latest/admin-api/#service-object
 [lua-minifier]: https://mothereff.in/lua-minifier

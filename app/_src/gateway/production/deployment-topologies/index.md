@@ -61,7 +61,7 @@ You can enable [DB-less mode](/gateway/{{page.kong_version}}/production/deployme
 
 When running in DB-less mode, configuration is provided to {{ site.base_gateway }} using a second file. This file contains your configuration in YAML or JSON format using Kong's declarative configuration syntax.
 
-DB-less mode is also used by the Kong Ingress Controller, where the Kubernetes API server uses Kong's `/config` endpoint to update the running configuration in memory any time a change is made.
+DB-less mode is also used by the {{site.kic_product_name}}, where the Kubernetes API server uses Kong's `/config` endpoint to update the running configuration in memory any time a change is made.
 
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
