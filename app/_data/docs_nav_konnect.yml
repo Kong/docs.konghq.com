@@ -156,6 +156,9 @@
           url: /dev-portal/customization/self-hosted-portal/
         - text: Host your Dev Portal with Netlify 
           url: /dev-portal/customization/netlify/
+    - text: Dev Portal SDK
+      url: https://www.npmjs.com/package/@kong/sdk-portal-js
+      absolute_url: true
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
