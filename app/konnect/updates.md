@@ -11,8 +11,14 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## June 2023
 
+**Portal Client API**
+: {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
+For more information, see the [Portal Client API spec](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356).
+
 **Audit logging**
-* Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
+: Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
+You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. 
+For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
 
 ## May 2023
 
