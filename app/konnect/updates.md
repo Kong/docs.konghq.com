@@ -9,6 +9,21 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2023
+
+**Composite runtime groups**
+: {{site.konnect_short_name}} now supports composite runtime groups, which enable users to leverage shared infrastructure across multiple teams in a secure, compliant fashion. 
+With composite runtime groups, organizations can reduce infrastructure costs while providing the appropriate access to teams through RBAC.
+
+: Learn more about composite runtime groups:
+* [Intro to composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/)
+* [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
+* [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
+* [Invariances in runtime groups](/konnect/runtime-manager/composite-runtime-groups/invariances/)
+
+**Analytics for composite runtime groups**
+: Custom reports now support grouping and filtering by composite runtime group.
+
 ## June 2023
 
 **Audit logging**
