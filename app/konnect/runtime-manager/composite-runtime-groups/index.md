@@ -21,19 +21,6 @@ _The runtime instances in the cluster use the combined configuration._
 A composite runtime group can contain up to 256 runtime groups. 
 Each standard group can have up to 5 parent composite runtime groups.
 
-## Limitations
-
-A composite runtime group composition will be applied even if the configurations of the standard runtime groups are not combined successfully. 
-This means that even if there is some confict and the member groups weren't merged successfully, a composite runtime group still gets created.
-
-Composite runtime groups are read-only (with some exceptions), so configuration modifications must be made via a member standard runtime group. 
-
-The following are exceptions to the read-only rule:
-* A runtime instance client certificate can be generated in the UI or uploaded to a composite runtime group.
-* Runtime instances can be connected to a composite runtime group, however members of a composite runtime group cannot have any runtime instances connected to them.
-
-Kong Ingress Controller runtime groups can't be part of a composite runtime group.
-
 ## Runtime instances 
 
 A runtime instance (also known as a {{site.base_gateway}} data plane node) can only connect to a single runtime group. 
@@ -90,6 +77,22 @@ Multiple instances of the same global plugin can be combined into the composite 
 * **Vaults**: The prefix of each Vault must be unique.
 Once a Vault from a standard runtime group becomes part of a composite runtime group, it becomes available to the whole composite runtime group.
 An entity field in a standard runtime group can successfully reference a secret in a Vault from another standard runtime group, now both part of the composite runtime group.
+
+## Limitations
+
+A composite runtime group composition will be applied even if the configurations of the standard runtime groups are not combined successfully. 
+This means that even if there is some confict and the member groups weren't merged successfully, a composite runtime group still gets created.
+
+Composite runtime groups are read-only (with some exceptions), so configuration modifications must be made via a member standard runtime group. 
+
+The following are exceptions to the read-only rule:
+* A runtime instance client certificate can be generated in the UI or uploaded to a composite runtime group.
+* Runtime instances can be connected to a composite runtime group, however members of a composite runtime group cannot have any runtime instances connected to them.
+
+Kong Ingress Controller runtime groups can't be part of a composite runtime group.
+
+Analytics for a composite runtime group are only available at the composite level. 
+Member standard runtime groups have no individual analytics reporting.
 
 ## More information
 * [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)

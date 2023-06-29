@@ -31,6 +31,9 @@ This runtime group is causing an invariance with the parent composite runtime gr
 
 ![Specific runtime group invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)
 
+You can follow the link from the notification to **View** the invariances in each group, 
+then **View** again to open the resource that's causing the issue.
+
 These issues must be resolved to continue using composite configuration. 
 The control plane won't send any config updates to its data planes until invariances are resolved.
 
