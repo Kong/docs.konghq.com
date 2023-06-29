@@ -11,10 +11,10 @@ These plugins run inside the {{site.base_gateway}} runtime instances to support 
 ## Support for any runtime group
 
 App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
-We are rolling out full support in any non-`default` runtime group, using the `konnect-application-auth` plugin that was created for {{site.base_gateway}} 3.0.
+For non-`default` runtime groups, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
 
 {:.note}
-> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#default-runtime-group) for additional context.
+> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#runtime-groups) for additional context.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ We are rolling out full support in any non-`default` runtime group, using the `k
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** It is recommended but not required for an API product version is linked to a Gateway service.
+> **Note:** Generally, it's only recommended for an API product version to be linked to a Gateway service. However, for app registration to work, the link between API product version and a Gateway service is required. 
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
