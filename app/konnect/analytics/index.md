@@ -19,7 +19,7 @@ historical data for the following lengths of time:
 > **Important**: Analytics for a composite runtime group are only available at the composite level. 
 Member standard runtime groups have no individual analytics reporting. This means that:
 * In the Runtime Manager, contextual analytics are logged in the composite runtime group only.
-* When creating custom reports, children of a composite runtime group won't show up as individual entities. 
+* When creating custom reports, members of a composite runtime group won't show up as individual entities. 
 Reports will only show the composite group.
 
 ## Contextual analytics for services and routes

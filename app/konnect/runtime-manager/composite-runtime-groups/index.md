@@ -19,13 +19,13 @@ _For example, Team Blue configures Runtime Group Blue, which is then combined wi
 _The runtime instances in the cluster use the combined configuration._
 
 A composite runtime group can contain up to 256 runtime groups. 
-You can add or remove up to 50 child runtime groups at a time.
+You can add or remove up to 50 member runtime groups at a time.
 
-Each standard group can have up to 5 parent composite runtime groups.
+Each standard group can be a member of no more than 5 composite runtime groups.
 
 ## Runtime instances 
 
-In a composite runtime group, the composite configuration from all child runtime groups is pushed to each runtime instance.
+In a composite runtime group, the composite configuration from all member runtime groups is pushed to each runtime instance.
 
 A runtime instance (also known as a {{site.base_gateway}} data plane node) can only connect to a single runtime group in a cluster.
 This means that in a composite runtime group, all runtime instances must be managed from the composite group itself. 
@@ -76,7 +76,7 @@ Consumer groups names in the Rate Limiting Advanced plugin can reference group n
 
 * **Global plugins**: A plugin that is globally scoped in the standard runtime group remains globally scoped in the composite runtime group. 
 This plugin will affect the entire composite runtime group.
-Multiple instances of the same global plugin can be combined into the composite runtime group. (for example, two instances of the Rate Limiting plugin).
+For example, two instances of the Rate Limiting plugin cannot be installed in the composite runtime group.
 
 * **Vaults**: The prefix of each Vault must be unique.
 Once a Vault from a standard runtime group becomes part of a composite runtime group, it becomes available to the whole composite runtime group.

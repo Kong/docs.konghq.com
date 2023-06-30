@@ -9,7 +9,7 @@ There are a few situations in which you might want to migrate existing configura
 * Migrate standard runtime group configuration into a composite group. In this scenario, you are migrating config from Konnect to a different group in Konnect.
 * Migrate self-managed Kong Gateway workspace configuration into a composite group in Konnect. In this scenario, you are migrating from self-managed to cloud managed.
 
-A composite runtime group **can't be configured directly**. It compiles configuration from its child runtime groups.
+A composite runtime group **can't be configured directly**. It compiles configuration from its member runtime groups.
 
 Therefore, when migrating, you will need at least two new groups: a composite runtime group and a standard runtime group.
 
@@ -69,7 +69,7 @@ We recommend this workflow because it gives you the opportunity to review shared
 It also decouples any team, dev portal, or identity permissions from the group. This way, you won't accidentally 
 grant access to the wrong resources to a new group of users.
 
-Assuming you already have a composite runtime group and a child standard runtime group, you can export configuration from the old group and apply it to the new one.
+Assuming you already have a composite runtime group and a member runtime group, you can export configuration from the old group and apply it to the new one.
 
 1. Export the configuration of the old runtime group via `deck dump`:
 
@@ -89,7 +89,7 @@ Assuming you already have a composite runtime group and a child standard runtime
         --konnect-runtime-group-name SRG1
     ```
 
-    Note that you can't sync the configuration to the composite group `CRG`. Composite runtime groups don't have their own configuration. They use combined configuration from all of their child groups.
+    Note that you can't sync the configuration to the composite group `CRG`. Composite runtime groups don't have their own configuration. They use combined configuration from all of their member runtime groups.
 
 
 ## Scenario: Migrate workspaces to composite runtime groups
