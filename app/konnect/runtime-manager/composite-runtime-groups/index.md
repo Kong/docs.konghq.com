@@ -8,15 +8,22 @@ A composite runtime group is a read-only group that combines configuration from
 its members, which are standard runtime groups. All of the standard runtime groups within a 
 composite runtime group share the same cluster of runtime instances. 
 
-![Standard runtime group](/assets/images/docs/konnect/konnect-standard-rg.svg)
-> _**Figure 1:** In a standard runtime group setup, each team configures and manages their own runtime instances._
-_For example, Team Blue configures Runtime Group Blue, which then uses a set of runtime instances that only run Blue configuration._
+## Composite vs standard groups
 
+In a standard runtime group setup, each team configures and manages their own runtime instances.
+For example, in the following diagram Team Blue configures Runtime Group Blue, which then uses a set of runtime instances that only run Blue configuration; the same happens with Team Yellow.
+
+![Standard runtime group](/assets/images/docs/konnect/konnect-standard-rg.svg)
+> _**Figure 1:** Standard runtime group workflow_
+
+In a composite runtime group setup, each team still administers their own runtime group, but the runtime instances are shared. 
+
+The following diagram illustrates using a composite runtime group for a federated platform administrator model. In this example, Team Blue configures Runtime Group Blue, which is then combined with the configuration from Team Yellow. In addition, the composite runtime group contains Runtime Group Green, which is managed by a central platform team. The central team provides global plugin configuration, which is added to any configuration that teams Blue and Yellow provide.
+
+The runtime instances in the cluster use the combined configuration from all three groups.
 
 ![Composite runtime group](/assets/images/docs/konnect/konnect-composite-rg.svg)
-> _**Figure 2:** In a composite runtime group setup, each team still configures their own runtime groups, but the runtime instances are shared._
-_For example, Team Blue configures Runtime Group Blue, which is then combined with the configuration from Team Green and Team Yellow._
-_The runtime instances in the cluster use the combined configuration._
+> _**Figure 2:** Composite runtime group workflow_
 
 A composite runtime group can contain up to 256 runtime groups. 
 You can add or remove up to 50 member runtime groups at a time.

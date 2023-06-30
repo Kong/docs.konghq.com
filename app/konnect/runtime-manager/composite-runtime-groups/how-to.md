@@ -72,6 +72,10 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
 
     In the **Runtime Groups** field, add the `SRG1` and `SRG2` groups.
 
+    {:.note}
+    > **Note**: When adding a standard group to a composite, make sure it has no connected 
+    runtime instances.
+
 {% endnavtab %}
 {% navtab API %}
 
@@ -159,6 +163,10 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
     ```
     HTTP/2 204
     ```
+
+    {:.note}
+    > **Note**: When adding a standard group to a composite, make sure it has no connected 
+    runtime instances.
 
 {% endnavtab %}
 {% endnavtabs %}

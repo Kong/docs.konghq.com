@@ -47,12 +47,9 @@ Therefore, when migrating, you will need at least two new groups: a composite ru
         --json '{"members": [{"id": "062e2f2c-0f42-4938-91b4-f73f399260f5"}]}'
     ```
 
-    When adding a standard group to a composite, make sure it has no connected runtime instances.
-
-    A composite runtime group can contain up to 256 runtime groups. 
-    You can add or remove up to 50 child runtime groups at a time.
-
-    Each standard group can have up to 5 parent composite runtime groups.
+    {:.note}
+    > **Note**: When adding a standard group to a composite, make sure it has no connected 
+    runtime instances.
 
 ## Scenario: Migrate runtime group configuration into a composite group
 
