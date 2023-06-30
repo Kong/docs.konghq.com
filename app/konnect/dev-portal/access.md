@@ -13,6 +13,9 @@ The Dev Portal URL looks like this:
     
     https://example.us.portal.konghq.com/
 
+{:.note}
+> **Note:** If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
+
 ## View a service in the Dev Portal {#url}
 
 The Dev Portal page contains a list of services that are published on the Dev Portal. 
