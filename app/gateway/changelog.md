@@ -15,9 +15,12 @@ no_version: true
 * Fixed a queueing-related bug that meant the `event_hooks` did not fire and led to errors in the logs. 
 * Updated the datafile library that meant when Kong was started with systemd, the SAML plugin did not load. 
 * Fixed a bug that the anonymous report can't be silenced by setting `anonymous_reports=false`.
+* Fixed a Jenkins issue where `kong/kong-gateway:3.3.0.0-alpine` was missing `resty.dns.resolver` patch. 
+* Fixed an issue addressing occassional issues attaching a workspace with the cache's consumer well.
 
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
+
 
 ### Deprecations
 * **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
