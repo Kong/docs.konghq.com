@@ -10,7 +10,3 @@ categories:
   - security
 publisher: Kong Inc.
 desc: Authorize requests against Open Policy Agent
-description: |
-  Forward request to Open Policy Agent and process the request only if the
-  authorization policy allows for it.
-

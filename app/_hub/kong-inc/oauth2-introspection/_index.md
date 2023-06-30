@@ -1,3 +1,14 @@
+Validate access tokens sent by developers using a third-party OAuth 2.0
+Authorization Server by leveraging its introspection endpoint
+([RFC 7662](https://tools.ietf.org/html/rfc7662)). This plugin assumes that
+the consumer already has an access token that will be validated against a
+third-party OAuth 2.0 server.
+
+{:.note}
+> **Note**: The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) supports
+OAuth 2.0 Token Introspection as well and offers functionality beyond
+this plugin, such as restricting access by scope.
+
 ## Flow
 
 ![OAuth2 Introspection Flow](/assets/images/docs/oauth2/oauth2-introspection.png)

@@ -1,3 +1,6 @@
+Log [metrics](#metrics) for a service or route to a local
+[Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
+
 {% if_version gte:3.3.x %}
 ## Queueing
 

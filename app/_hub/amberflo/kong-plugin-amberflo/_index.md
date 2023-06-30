@@ -1,4 +1,10 @@
-### How it works
+This plugin allows you to understand customer [API usage](https://www.amberflo.io/products/metering-cloud) and implement [usage-based price & billing](https://www.amberflo.io/products/billing-cloud) by metering the requests with [Amberflo.io](https://amberflo.io).
+
+It supports high-volume HTTP(S) usage without adding latency.
+
+[Amberflo](https://amberflo.io) is the simplest way to integrate metering into your application. [Sign up for free](https://ui.amberflo.io/) to get started.
+
+## How it works
 
 This plugin intercepts the requests, detects which customer is making it, generates a meter event and sends it to Amberflo.
 

@@ -1,4 +1,14 @@
-### Headers sent to the client
+Rate limit how many HTTP requests can be made in a given time frame.
+
+The Rate Limiting Advanced plugin offers more functionality than the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/), such as:
+* Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
+* Support for Redis Sentinel, Redis cluster, and Redis SSL
+* Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
+* More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
+* Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
+* More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
+
+## Headers sent to the client
 
 When this plugin is enabled, Kong sends some additional headers back to the client
 indicating the allowed limits, how many requests are available, and how long it will take
@@ -45,7 +55,7 @@ may increase due to the rate calculation for the sliding window.
 {:.important}
 > The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-02) and may change in the future to respect specification updates.
 
-### Multiple Limits and Window Sizes {#multi-limits-windows}
+## Multiple limits and window sizes {#multi-limits-windows}
 
 An arbitrary number of limits/window sizes can be applied per plugin instance. This allows you to create
 multiple rate limiting windows (e.g., rate limit per minute and per hour, and per any arbitrary window size).

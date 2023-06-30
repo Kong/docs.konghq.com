@@ -1,8 +1,12 @@
-### Caveat
+Block upstream responses whose body is greater than a specific size in megabytes.
+
+Proxy consumers will receive an HTTP Status of 413 and message body "Response size limit exceeded" in the event the body is greater than configured size.
+
+## Caveat
 This plugin currently accomplishes response limiting by validating the Content-Length header on upstream responses.
 If the upstream lacks the response header, then this plugin will allow the response to pass.
 
-### Installation
+## Installation
 Recommended:
 
 ```bash

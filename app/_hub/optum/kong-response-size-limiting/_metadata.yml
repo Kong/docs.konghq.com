@@ -3,11 +3,6 @@ dbless_compatible: yes
 publisher: Optum
 
 desc: Block responses with bodies greater than a specified size
-description: |
-
-  Block upstream responses whose body is greater than a specific size in megabytes.
-
-  Proxy consumers will receive an HTTP Status of 413 and message body "Response size limit exceeded" in the event the body is greater than configured size.
 
 categories:
   - traffic-control
