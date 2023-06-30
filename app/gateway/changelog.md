@@ -21,7 +21,6 @@ no_version: true
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
 
-
 ### Deprecations
 * **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
 
