@@ -1,10 +1,9 @@
-@color-text: #043558;
+@color-text: rgba(0, 0, 0, 0.70);
 @color-blue: #1155cb;
 
 .accordion-container {
   position: relative;
-  margin: 0;
-  margin-bottom: 25px;
+  margin: 0 15px 25px 15px;
   padding: 0;
 
   li.accordion-item {
@@ -49,7 +48,7 @@
       cursor: pointer;
       margin: 0;
       color: @color-text;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 400;
       line-height: 30px;
 
@@ -72,8 +71,8 @@
 
       i {
         position: absolute;
-        color: #5b5b5b;
-        font-size: 12px;
+        color: #3972d5;
+        font-size: 15px;
         opacity: 0.3;
         right: 16px;
         top: 18px;
@@ -89,43 +88,39 @@
 
     &.active {
       > label {
+          border-radius: 5px;
+          background-color: #F2F6FE;
         a {
           color: @color-blue;
           font-weight: 600;
         }
       }
+
+      > div {
+        border-radius: 5px;
+        background-color: #F2F6FE;
+      }
     }
   }
 
   > li.accordion-item {
-    border-bottom: 1px solid #ebebeb;
-
-    &:first-of-type {
-      border-top: 1px solid #ebebeb;
-    }
-
     > input {
       &:checked {
         + label {
           color: @color-blue;
-          border-left-color: rgb(0, 112, 191);
         }
       }
     }
 
     > label {
-      font-size: 14px;
+      font-size: 15px;
       padding: 16px 16px 16px 15px;
-      border-left: 2px solid transparent;
-      transition: border-left-color 0.25s linear;
-
       i {
         top: 24px;
       }
     }
 
     > div {
-      border-left: 2px solid rgb(0, 112, 191);
       padding-left: 46px;
     }
   }
