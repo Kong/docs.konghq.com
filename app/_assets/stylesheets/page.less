@@ -587,7 +587,7 @@ ul.navbar-item-submenu {
   }
 
   h5 {
-    .font-source-sans-sc();
+    font: @family-display;
     font-size: 14px;
     color: @gray-darker;
     margin-bottom: 8px;
@@ -726,8 +726,8 @@ ul.navbar-item-submenu {
 
 .content {
   padding: 50px 0;
-  .font-source-sans();
-  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
   line-height: 1.5;
 
   .big {
@@ -775,6 +775,7 @@ ul.navbar-item-submenu {
 
   a {
     text-decoration: none;
+    font-weight: 500;
     color: @blue-500;
 
     &:hover,
@@ -816,7 +817,7 @@ ul.navbar-item-submenu {
     border: 1px solid #efefef;
     border-radius: 0 0 3px 3px;
     background-color: #fcfcfc;
-    .font-source-sans();
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     padding: 14px 13px;
     line-height: 1;
@@ -1221,7 +1222,7 @@ Generic Styling for Desktop
       padding: 15px 18px;
       opacity: 1;
       font-style: normal;
-      font-size: 17px;
+      font-size: 16px;
     }
 
     &.warning {
