@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## June 2023
 
+**Contextual Developer Analytics**
+: {{site.konnect_saas}} launches new [contextual analytics](/konnect/dev-portal/#contextual-developer-analytics) information for third-party developers inside the Dev Portal. Developers can now use that information to not only optimize but also keep on eye on their applications usage and therefore understand the interaction between them and the providers APIs.
+
 **Self-hosted, open source Dev Portal**
 : You can now self-host an open-source Dev Portal on the hosting provider of your choice. 
 Kong provides an [example application](https://github.com/Kong/konnect-portal) you can use for an out-of-the-box experience with a self-hosted Dev Portal. 
@@ -28,6 +31,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 
 **OIDC Configuration API**
 : Enterprise orgs using OIDC login can now specify [additional scopes](/konnect/api/identity-management/sso/) to be requested during the authorization grant flow. This allows organizations to request [custom claims](/konnect/api/identity-management/sso/) from their IdP. The custom claims can then be used to override the default mapping for the `name`, `email` and `groups` attributes which are used during the login flow. For example, the `upn` scope may be required to retrieve the `userPrincipalName` claim from Azure which can then be  mapped to `email` attribute in Konnect.
+
 
 ## May 2023
 

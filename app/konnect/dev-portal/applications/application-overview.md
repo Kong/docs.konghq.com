@@ -18,6 +18,7 @@ You can perform the following actions from an application's details page:
 - [Generate or delete credentials](/konnect/dev-portal/applications/dev-gen-creds/).
 - View a catalog of services that can be [registered with the application](/konnect/dev-portal/applications/dev-reg-app-service/), if no services are registered yet.
 - View the status of an application registration to a Service.
+- Open the analytics dashboard and view metrics about an application.
 
 The guides within this section cover these topics:
 
