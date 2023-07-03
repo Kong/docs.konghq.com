@@ -5,6 +5,28 @@ no_version: true
 
 <!-- vale off -->
 
+## 3.3.1.0
+**Release Date** 2023/07/03
+
+### Fixes
+
+* Fixed a bug that causes `POST /config?flatten_errors=1` to throw an exception and return a 500 error under certain circumstances. 
+* Fixed a bug that would cause an error when the header `x-datadog-parent-id` is not passed to Kong. 
+* Fixed a queueing-related bug that meant the `event_hooks` did not fire and led to errors in the logs. 
+* Updated the datafile library that meant when Kong was started with systemd, the SAML plugin did not load. 
+* Fixed a bug that the anonymous report can't be silenced by setting `anonymous_reports=false`.
+* Fixed a Jenkins issue where `kong/kong-gateway:3.3.0.0-alpine` was missing `resty.dns.resolver` patch. 
+* Fixed an issue addressing occassional issues attaching a workspace with the cache's consumer well.
+
+#### Plugins
+* Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
+
+### Deprecations
+* **Alpine deprecation reminder:** Kong has announced our intent to remove support for Alpine images and packages later this year. These images and packages are available in 3.2 and will continue to be available in 3.3. We will stop building Alpine images and packages in Kong Gateway 3.4.
+
+* **Cassandra deprecation and removal reminder:** Using Cassandra as a backend database for Kong Gateway is deprecated. 
+It is planned for removal with {{site.base_gateway}} 3.4.
+
 ## 3.3.0.0
 **Release Date** 2023/05/19
 
