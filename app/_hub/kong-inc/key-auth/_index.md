@@ -1,3 +1,12 @@
+This plugin lets you add API key authentication to a service or a route.
+Consumers then add their API key either in a query string parameter, a header, or a
+request body to authenticate their requests.
+
+This plugin can be used for authentication in conjunction with the
+[Application Registration](/hub/kong-inc/application-registration/) plugin.
+
+This plugin also comes in an enterprise version: [Key Authentication Encrypted](/hub/kong-inc/key-auth-enc/), which provides the ability to encrypt keys. Keys are encrypted at rest in the API gateway datastore.
+
 ## Case sensitivity
 
 Note that, according to their respective specifications, HTTP header names are treated as

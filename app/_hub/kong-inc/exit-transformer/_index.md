@@ -1,3 +1,7 @@
+Transform and customize {{site.base_gateway}} response exit messages using Lua functions.
+The plugin's capabilities range from changing messages, status codes, and headers,
+to completely transforming the structure of {{site.base_gateway}} responses.
+
 ## Transforming 4xx and 5xx Responses
 
 By default, the Exit Transformer is only applied to requests that match its

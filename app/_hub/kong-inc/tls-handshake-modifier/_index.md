@@ -1,3 +1,9 @@
+The TLS Handshake Modifier plugin requests, but does not require the client certificate. 
+It doesn't perform any validation of the client certificate. If a client certificate exists,
+the plugin makes the certificate available to other plugins acting on this request.  
+
+This plugin must be used in conjunction with the [TLS Metadata Headers](/hub/kong-inc/tls-metadata-headers/) plugin.
+
 ## Client certificate request
 
 Client certificates are requested in the `ssl_certificate_by_lua` phase where {{site.base_gateway}} does not

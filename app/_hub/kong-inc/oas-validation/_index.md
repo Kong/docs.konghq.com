@@ -1,3 +1,12 @@
+Validate HTTP requests and responses based on an API specification. 
+Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. 
+For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
+
+{% if_plugin_version gte:3.2.x %}
+{:.important .no-icon}
+> In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually [enable the plugin](/hub/kong-inc/oas-validation/3.1.x/#enable-the-plugin).
+{% endif_plugin_version %}
+
 {% if_plugin_version eq:3.1.x %}
 ## Enable the plugin
 

@@ -1,3 +1,7 @@
+The ACME plugin allows {{site.base_gateway}} to apply certificates from Let's Encrypt 
+or any other ACMEv2 service and serve them dynamically.
+Renewal is handled with a configurable threshold time.
+
 {:.note}
 > **Notes**: 
 > * The plugin only supports the http-01 challenge, meaning a user needs a public

@@ -1,20 +1,6 @@
 name: Unbundled Plugin
 dbless_compatible: 'yes'
-extra: |
-  **Configuration Notes:**
-
-  Most of the parameters are optional, but you need to specify some options to actually
-  make the plugin work:
-
-  * For example, signature verification cannot be done without the plugin knowing about
-  `config.access_token_jwks_uri` and/or `config.channel_token_jwks_uri`.
-
-  * Also for introspection to work, you need to specify introspection endpoints
-  `config.access_token_introspection_endpoint` and/or `config.channel_token_introspection_endpoint`.
-
 desc: Verify and sign one or two tokens in a request
-description: |
-  This is a sample unbundled plugin with overrides
 enterprise: true
 plus: true
 type: plugin

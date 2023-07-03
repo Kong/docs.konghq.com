@@ -1,7 +1,6 @@
-### Overview
-This plugin will enable mocking virtual API request and response pairs through Kong Gateway.
+This plugin enables mocking virtual API request and response pairs through {{site.base_gateway}}.
 
-### Explanation
+## Explanation
 
 `kong-service-virtualization` schema `virtual_tests` arguments:
 
@@ -75,7 +74,7 @@ Content-Type: application/json; charset=utf-8
 {"message":"No matching virtual request found!"}
 ```
 
-### Installation
+## Installation
 Recommended:
 
 ```bash
@@ -90,7 +89,7 @@ $ cd /path/to/kong/plugins/kong-service-virtualization
 $ luarocks make *.rockspec
 ```
 
-### Maintainers
+## Maintainers
 [jeremyjpj0916](https://github.com/jeremyjpj0916){:target="_blank"}{:rel="noopener noreferrer"}  
 [rsbrisci](https://github.com/rsbrisci){:target="_blank"}{:rel="noopener noreferrer"}  
 
