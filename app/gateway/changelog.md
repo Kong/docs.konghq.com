@@ -2230,7 +2230,7 @@ openid-connect
 
 ## 2.8.4.2
 
-**Release Date** 2023/06/30
+**Release Date** 2023/07/07
 
 ### Fixes
 * Fixed a bug where subrequests produced by the `error_page` directive could interfere with worker processes when *buffered proxying* is enabled.
