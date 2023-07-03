@@ -6,7 +6,7 @@ no_version: true
 <!-- vale off -->
 
 ## 3.3.1.0
-**Release Date** 2023/06/30
+**Release Date** 2023/07/03
 
 ### Fixes
 
