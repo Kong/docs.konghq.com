@@ -296,10 +296,10 @@ HTTP 204 No Content
 ```
 
 
-Recursively delete a workspace. Normally, deleting a workspace requires its entities to be deleted first. This option allows you to recursively delete a workspace without manually deleting its entities first.
+Cascading delete a workspace. Normally, deleting a workspace requires its entities to be deleted first. This option allows you to cascading delete a workspace without manually deleting its entities first.
 
 ```
-DELETE /workspaces/{name or id}?recursive=true
+DELETE /workspaces/{name or id}?cascade=true
 ```
 
 ## Update a workspace
