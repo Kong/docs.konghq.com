@@ -73,7 +73,7 @@ gateway.gateway.networking.k8s.io/kong patched
 After, requests will serve the configured certificate:
 
 ```bash
-curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
+curl -ksv https://kong.example/echo --connect-to kong.example:443:${PROXY_IP##http://} 2>&1 | grep -A1 "certificate:"
 ```
 Response:
 ```text
@@ -127,7 +127,7 @@ Kong will now apply your plugin configuration to all routes associated with
 this resource. To test it, send another request through the proxy:
 
 ```bash
-curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+curl -i http://kong.example/echo --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```text
@@ -202,7 +202,7 @@ service/echo annotated
 Kong will now enforce a rate limit to requests proxied to this Service:
 
 ```bash
-curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+curl -i http://kong.example/echo --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```text

@@ -105,7 +105,7 @@ This Ingress will create a Kong route attached to the service we created above.
 It will preserve its path but honor the service's hostname, so this request:
 
 ```bash
-$ curl -svX GET http://myapp.example.com/myapp/foo --resolve myapp.example.com:80:$PROXY_IP
+$ curl -svX GET http://myapp.example.com/myapp/foo --connect-to kong.example:80:${PROXY_IP##http://}
 GET /myapp/foo HTTP/1.1
 Host: myapp.example.com
 User-Agent: curl/7.70.0

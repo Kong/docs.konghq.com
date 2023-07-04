@@ -251,7 +251,7 @@ controller-kong-545d798874-q6h7m ingress-controller time="2023-03-02T15:11:42Z" 
 At this point we should be able to access the `/echo` endpoint from our `htptbin` service:
 
 ```sh
-$ curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+$ curl -i http://kong.example/echo --connect-to kong.example:80:${PROXY_IP##http://}
 <!DOCTYPE html>
 <html lang="en">
 

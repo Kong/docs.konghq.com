@@ -55,7 +55,7 @@ right ACL.
 Requests without credentials are now rejected:
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```text
@@ -169,7 +169,7 @@ Do the same for `USER_JWT` for the `user-jwt` Secret.
 Once you have the JWTs stored, you can send them in an `Authorization` header:
 
 ```bash
-curl -I -H "Authorization: Bearer ${USER_JWT}" http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
+curl -I -H "Authorization: Bearer ${USER_JWT}" http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```text
@@ -313,8 +313,8 @@ kongconsumer.configuration.konghq.com/user patched
 The `admin` consumer can now access either URL:
 
 ```bash
-curl -sI http://kong.example/lemon -H "Authorization: Bearer ${ADMIN_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
-curl -sI http://kong.example/lime -H "Authorization: Bearer ${ADMIN_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
+curl -sI http://kong.example/lemon -H "Authorization: Bearer ${ADMIN_JWT}" --connect-to kong.example:80:${PROXY_IP##http://} | grep HTTP
+curl -sI http://kong.example/lime -H "Authorization: Bearer ${ADMIN_JWT}" --connect-to kong.example:80:${PROXY_IP##http://} | grep HTTP
 ```
 Response:
 ```text
@@ -325,8 +325,8 @@ HTTP/1.1 200 OK
 `user`, however, can only access the URL that permits the `user` group:
 
 ```bash
-curl -sI http://kong.example/lemon -H "Authorization: Bearer ${USER_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
-curl -sI http://kong.example/lime -H "Authorization: Bearer ${USER_JWT}" --resolve kong.example:80:$PROXY_IP | grep HTTP
+curl -sI http://kong.example/lemon -H "Authorization: Bearer ${USER_JWT}" --connect-to kong.example:80:${PROXY_IP##http://} | grep HTTP
+curl -sI http://kong.example/lime -H "Authorization: Bearer ${USER_JWT}" --connect-to kong.example:80:${PROXY_IP##http://} | grep HTTP
 ```
 Response:
 ```text

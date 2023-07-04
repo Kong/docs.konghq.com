@@ -321,7 +321,7 @@ After creating an HTTPRoute, accessing `/echo/hostname` forwards a request to th
 echo service's `/hostname` path, which yields the name of the pod that served the request:
 
 ```bash
-curl -i http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl -i http://kong.example/echo/hostname --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 
 ```
@@ -389,13 +389,13 @@ Now, accessing `/echo/hostname` should distribute around 75% of requests to Serv
 echo and around 25% of requests to Service echo2.
 
 ```bash
-curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --connect-to kong.example:80:${PROXY_IP##http://}
 echo2-7cb798f47-gh4xg%
-curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --connect-to kong.example:80:${PROXY_IP##http://}
 echo-658c5ff5ff-8cvgj%
-curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --connect-to kong.example:80:${PROXY_IP##http://}
 echo-658c5ff5ff-8cvgj%
-curl http://kong.example/echo/hostname --resolve kong.example:80:$PROXY_IP
+curl http://kong.example/echo/hostname --connect-to kong.example:80:${PROXY_IP##http://}
 echo-658c5ff5ff-8cvgj%
 ```
 

@@ -90,7 +90,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
 Requests that match the `lemon` rules will now include the plugin header:
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-route
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} | grep x-added-route
 ```
 Response:
 ```text
@@ -100,7 +100,7 @@ x-added-route: demo
 Requests to the `lime` rules will not:
 
 ```bash
-curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-route | wc -l
+curl -si http://kong.example/lime --connect-to kong.example:80:${PROXY_IP##http://} | grep x-added-route | wc -l
 ```
 Response:
 ```text
@@ -153,7 +153,7 @@ With the Service plugin in place, send requests through the `lemon` and `lime`
 routes:
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} | grep x-added-
 ```
 Response:
 ```text
@@ -161,7 +161,7 @@ x-added-route: demo
 ```
 
 ```bash
-curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-
+curl -si http://kong.example/lime --connect-to kong.example:80:${PROXY_IP##http://} | grep x-added-
 ```
 Response:
 ```text
@@ -202,7 +202,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
 Requests through the `lemon` route now use the Service's plugin:
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} | grep x-added-
 ```
 Response:
 ```text
@@ -258,7 +258,7 @@ plugin requires authentication for all of them:
 
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```text
@@ -295,7 +295,7 @@ Including this key will now satisfy the authentication requirement enforced by
 the global plugin:
 
 ```bash
-curl -sI http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
+curl -sI http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} -H "apikey: gav"
 ```
 Response:
 ```text
@@ -368,7 +368,7 @@ Requests made by the `kotenok` consumer will now include this header, since
 consumer plugins take precedence over both route and service plugins:
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H "apikey: gav" | grep x-added
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} -H "apikey: gav" | grep x-added
 ```
 Response:
 ```text
@@ -419,8 +419,8 @@ kongconsumer.configuration.konghq.com/kotenok annotated
 The header returned now depend on which route the consumer uses:
 
 ```bash
-echo "lemon\!"; curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H "apikey: gav" | grep x-added
-echo "lime\!"; curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H "apikey: gav" | grep x-added
+echo "lemon\!"; curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} -H "apikey: gav" | grep x-added
+echo "lime\!"; curl -si http://kong.example/lime --connect-to kong.example:80:${PROXY_IP##http://} -H "apikey: gav" | grep x-added
 ```
 Response:
 ```text
@@ -436,7 +436,7 @@ Service plugin. When plugins are associated with multiple resources, requests
 must match _all_ of them:
 
 ```bash
-curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added 
+curl -si http://kong.example/lemon --connect-to kong.example:80:${PROXY_IP##http://} | grep x-added 
 ```
 Response:
 ```text

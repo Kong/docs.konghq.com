@@ -64,7 +64,7 @@ Any request matching the proxying rules defined in the `echo` routing
 configuration will now require a valid API key:
 
 ```bash
-curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+curl -si http://kong.example/echo --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```
@@ -101,7 +101,7 @@ Now, send a request including the credential (`key-auth` expects an `apikey`
 header with the key by default):
 
 ```bash
-curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
+curl -si http://kong.example/echo --connect-to kong.example:80:${PROXY_IP##http://} -H "apikey: gav"
 ```
 Response:
 ```text

@@ -38,7 +38,7 @@ service/echo created
 ## Test the Service
 
 ```bash
-curl -si http://kong.example/httpbin/anything --resolve kong.example:80:$PROXY_IP
+curl -si http://kong.example/httpbin/anything --connect-to kong.example:80:${PROXY_IP##http://}
 ```
 Response:
 ```
