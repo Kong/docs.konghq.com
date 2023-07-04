@@ -233,4 +233,4 @@ mesh_helm_install_name: kong-mesh
 mesh_disabled_versions: [dev]
 
 # binary options
-mesh_install_archive_name: kong
+mesh_install_archive_name: kong-mesh
