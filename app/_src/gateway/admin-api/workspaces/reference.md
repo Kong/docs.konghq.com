@@ -295,6 +295,13 @@ workspace itself can be.
 HTTP 204 No Content
 ```
 
+
+Recursively delete a workspace. Normally, deleting a workspace requires its entities to be deleted first. This option allows you to recursively delete a workspace without manually deleting its entities first.
+
+```
+DELETE /workspaces/{name or id}?recursive=true
+```
+
 ## Update a workspace
 
 **Endpoint**
