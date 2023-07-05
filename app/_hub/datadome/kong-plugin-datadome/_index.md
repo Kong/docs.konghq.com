@@ -1,0 +1,1 @@
+[This integration guide](https://docs.datadome.co/docs/kong-plugin) describes how to integrate DataDome with Kong API Gateway.

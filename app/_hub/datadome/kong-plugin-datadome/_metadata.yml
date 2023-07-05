@@ -1,0 +1,23 @@
+name: Kong DataDome Plugin
+
+publisher: DataDome
+
+categories:
+  - security
+
+type: plugin
+
+desc: DataDome’s bot and online fraud protection detects and mitigates attacks on mobile apps, websites, and APIs with unparalleled accuracy and zero compromise.
+
+kong_version_compatibility:
+  community_edition:
+    compatible:
+       - 3.0.x
+       - 3.2.x
+       - 3.3.x
+
+enterprise: false
+  # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
+  # Set false if your plugin is open-source and works with open-source Kong Gateway.
+
+dbless_compatible: yes

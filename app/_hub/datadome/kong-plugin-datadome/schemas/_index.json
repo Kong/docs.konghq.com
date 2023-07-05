@@ -1,0 +1,30 @@
+{
+	"fields": [
+    { "datadome_api_key" : {
+        "type": "string",
+        "required": true,
+        "default": " " 
+      } 
+    },
+    { "datadome_api_endpoint" : {
+        "type": "string",
+        "required": false 
+      } 
+    },
+    { "datadome_api_config_timeout" : {
+        "type": "integer",
+        "required": false 
+      } 
+    },
+    { "datadome_api_config_uri_regex" : {
+        "type": "string",
+        "required": false 
+      } 
+    },
+    { "datadome_api_config_uri_regex_exclusion" : {
+        "type": "string",
+        "required": false 
+      }
+    }
+ 	]
+}
