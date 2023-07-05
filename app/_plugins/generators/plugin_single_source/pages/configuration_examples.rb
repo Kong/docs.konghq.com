@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative './how_to'
+
 module PluginSingleSource
   module Pages
-    class ConfigurationExamples < Base
+    class ConfigurationExamples < HowTo
       TITLE = 'Basic config examples'
 
       def canonical_url
