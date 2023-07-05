@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2023
+
+**Kong Ingress Controller for Kubernetes in Konnect**
+: The read-only [Ingress Controller association with Konnect](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. KIC in Konnect also now allows you to view analytics for your KIC runtime instances.
+
 ## June 2023
 
 **Contextual Developer Analytics**
