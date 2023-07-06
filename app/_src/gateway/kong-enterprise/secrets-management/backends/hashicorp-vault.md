@@ -154,7 +154,7 @@ Parameter | Field name | Description
 `vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
 `vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
 `vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
-`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the AWS vault when cached by this node.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the AWS vault when cached.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a AWS vault miss (no secret).
 `vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for which stale secrets from the AWS vault should be resurrected forwhen they cannot be refreshed (e.g., the HashiCorp vault is unreachable).
 

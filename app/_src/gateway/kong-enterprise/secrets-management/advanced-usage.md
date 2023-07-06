@@ -128,8 +128,8 @@ Most of the vaults also support secret rotation by using TTLs:
 
 Parameter | Field name | Description
 ----------|------------|------------
-`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when cached by this node.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when cached.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret).
-`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for which stale secrets should be resurrected forwhen they cannot be refreshed (e.g., the vault is unreachable).
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long previous secret values should remained in use when they cannot be refreshed (e.g., the vault is unreachable).
 
 [Read more about secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/).

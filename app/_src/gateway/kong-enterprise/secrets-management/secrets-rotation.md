@@ -30,7 +30,7 @@ Kong PDK API that can be used to rotate secrets on failure: [kong.vault.try](/ga
 
 ## Periodically rotating secrets using TTLs
 
-Kong employs a background job that runs periodically on **every minute** (thus you cannot currently
+Kong employs a background job that runs periodically **once every minute** (thus you cannot currently
 automatically rotate more often than that). Its job is to rotate secrets that are about to expire.
 The TTL can be configured  with the Vault (for all the secrets) or in secret reference (for a single secret).
 By default, Kong does not rotate any secrets, so **remember to configure the TTLs** if you want to turn on
@@ -90,7 +90,7 @@ Now when using certificates you can reference them with:
 {vault://aws-certs/certs/web-site}
 ```
 
-And the all secrets (certificates in this case) referenced with `aws-certs` vault
+The secrets (certificates in this case) referenced with `aws-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
 
@@ -134,7 +134,7 @@ Now when using certificates you can reference them with:
 {vault://gcp-certs/certs/web-site}
 ```
 
-And all the secrets (certificates in this case) referenced with `gcp-certs` vault
+The secrets (certificates in this case) referenced with `gcp-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
 
@@ -178,6 +178,6 @@ Now you can reference certificates with:
 {vault://hcv-certs/certs/web-site}
 ```
 
-And all the secrets (certificates in this case) referenced with `hcv-certs` vault
+The secrets (certificates in this case) referenced with `hcv-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
