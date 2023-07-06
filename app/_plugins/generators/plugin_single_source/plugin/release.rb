@@ -60,7 +60,7 @@ module PluginSingleSource
 
         @configuration ||= Pages::Configuration.new(
           release: self,
-          file: nil,
+          file: schema.file_path,
           source_path: pages_source_path
         )
       end
@@ -70,7 +70,7 @@ module PluginSingleSource
 
         @configuration_examples ||= Pages::ConfigurationExamples.new(
           release: self,
-          file: nil,
+          file: schema.example_file_path,
           source_path: pages_source_path
         )
       end
