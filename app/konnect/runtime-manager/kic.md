@@ -32,7 +32,7 @@ To associate your KIC runtime instances with {{site.konnect_short_name}}, use th
 In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Runtime Manager](https://cloud.konghq.com/runtime-manager)**, then click **New Runtime Group** > **Kong Ingress Controller**.
 
 {:.note}
-> **Note**: KIC OSS and Free tier users can connect to {{site.konnect_short_name}}’s Free tier, while KIC Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
+> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.base_gateway}} Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
 
 ### Prerequisites
 
