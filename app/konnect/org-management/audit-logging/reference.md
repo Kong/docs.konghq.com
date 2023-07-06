@@ -10,6 +10,9 @@ content_type: reference
 * **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
 * **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
 
+## Data Retention Period
+{{site.konnect_short_name}} will retain all of the admin logs for 7 days. 
+
 ## Log formats
 
 {{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or JSON. You may specify which format to use in the [audit log webhook](/konnect/org-management/audit-logging/webhook/) endpoint.
