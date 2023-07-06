@@ -19,9 +19,9 @@ Conflicts have been detected between these runtime groups:
 <group name>
 ```
 
-<!-- commenting out until we have replacements with UI changes ![Composite runtime group invariances](/assets/images/docs/konnect/konnect-invariances-composite.png)
+![Composite runtime group invariances](/assets/images/docs/konnect/konnect-invariances-composite.png)
 
-![Standard runtime group invariances](/assets/images/docs/konnect/konnect-invariances-members.png)-->
+![Standard runtime group invariances](/assets/images/docs/konnect/konnect-invariances-members.png)
 
 
 Standard runtime group:
@@ -29,7 +29,7 @@ Standard runtime group:
 This runtime group is causing a conflict with the parent composite runtime group.
 ```
 
-<!-- commenting out until we have replacements with UI changes![Specific runtime group invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)-->
+![Specific runtime group invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)
 
 You can follow the link from the notification to **View** the conflicts in each group, 
 then **View** again to open the resource that's causing the issue.
