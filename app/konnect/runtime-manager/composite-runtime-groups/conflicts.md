@@ -1,11 +1,11 @@
 ---
-title: Invariances in runtime groups
+title: Conflicts in runtime groups
 content_type: reference
 badge: enterprise
 ---
 
-An invariance is a conflict or potential issue in composite configuration. 
-For example, an invariance might be a name conflict between services, or it might be the existance of consumer credentials, 
+A conflict is a potential issue in composite configuration. 
+For example, there might be a name conflict between services, or the existance of consumer credentials, 
 which become available to all members of a composite group.
 
 Once you have at least one runtime instance connected to your composite runtime group, 
@@ -14,32 +14,32 @@ you may see one of the following error messages:
 Composite runtime group:
 
 ```
-Invariances have been detected between these runtime groups: 
+Conflicts have been detected between these runtime groups: 
 <group name>
 <group name>
 ```
 
-![Composite runtime group invariances](/assets/images/docs/konnect/konnect-invariances-composite.png)
+<!-- commenting out until we have replacements with UI changes ![Composite runtime group invariances](/assets/images/docs/konnect/konnect-invariances-composite.png)
 
-![Standard runtime group invariances](/assets/images/docs/konnect/konnect-invariances-members.png)
+![Standard runtime group invariances](/assets/images/docs/konnect/konnect-invariances-members.png)-->
 
 
 Standard runtime group:
 ```
-This runtime group is causing an invariance with the parent composite runtime group.
+This runtime group is causing a conflict with the parent composite runtime group.
 ```
 
-![Specific runtime group invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)
+<!-- commenting out until we have replacements with UI changes![Specific runtime group invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)-->
 
-You can follow the link from the notification to **View** the invariances in each group, 
+You can follow the link from the notification to **View** the conflicts in each group, 
 then **View** again to open the resource that's causing the issue.
 
 These issues must be resolved to continue using composite configuration. 
-The control plane won't send any config updates to its data planes until invariances are resolved.
+The control plane won't send any config updates to its data planes until conflicts are resolved.
 
 See the following table for a breakdown of potential issues, their causes, and recommended solutions:
 
-Invariance | Description | Action
+Conflict | Description | Action
 -----------|-------------|--------
 Duplicate names across composite runtime group members | Entity names within a standard runtime group must be unique. However, it's possible to create entities with the same name in different standard runtime groups. When those groups are added as members of the same composite group, the composite group ends up having entities with duplicate names. The duplicate entities behave as regular entities in the data plane. | Resolve the conflict by removing or renaming one of the instances.
 Shared credentials across composite runtime group members | Consumer credentials in one composite runtime group member can be used to authenticate to everything registered in the group.| If you don't want to share credentials across the members, identify and remove those credentials.
