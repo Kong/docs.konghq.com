@@ -71,8 +71,8 @@
           url: /runtime-manager/composite-runtime-groups/how-to/
         - text: Migrate Configuration into Composite Runtime Groups
           url: /runtime-manager/composite-runtime-groups/migrate/
-        - text: Invariances in Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/invariances/
+        - text: Conflicts in Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/conflicts/
 
     - text: Runtime Configuration
       items:

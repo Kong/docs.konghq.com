@@ -48,7 +48,7 @@ There are some special cases and behaviors to note for core entities in a compos
 
 All entities in a composite runtime group must have unique names and IDs. 
 For example, if two members of a composite runtime group both have a service named `example_service`, 
-it will cause an [invariance](/konnect/runtime-manager/composite-runtime-groups/invariances/) which must be resolved to restore function.
+it will cause a [conflict](/konnect/runtime-manager/composite-runtime-groups/conflicts/) which must be resolved to restore function.
 
 A number of Kong entities can be associated with another Kong entity.
 Based on the type of association, the behavior of these associated entities in a composite runtime group follows one of these patterns:
@@ -102,9 +102,12 @@ The following are exceptions to the read-only rule:
 
 Kong Ingress Controller runtime groups can't be part of a composite runtime group.
 
+One composite runtime group cannot be a member of another composite runtime group. 
+
 Analytics for a composite runtime group are only available at the composite level. 
 Member standard runtime groups have no individual analytics reporting.
 
+Conflict detection in a composite runtime group happens only after you have added a runtime instance to the composite runtime group.
 ## More information
 * [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)

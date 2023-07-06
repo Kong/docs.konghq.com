@@ -28,7 +28,7 @@ If you already have some standard runtime groups in your org that you want to ad
 1. From the navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
 1. Click the **New Runtime Group** button and select **{{site.base_gateway}}**.
    
-   Kong Ingress Controller runtime groups can't be part of composite groups.
+   Kong Ingress Controller runtime groups can't be part of composite groups. One composite runtime group cannot be a member of another composite runtime group. 
 
 1. Set up your group and save. For the purpose of this example, the group name will be SRG1.
 1. Create another {{site.base_gateway}} group, this time calling it SRG2.

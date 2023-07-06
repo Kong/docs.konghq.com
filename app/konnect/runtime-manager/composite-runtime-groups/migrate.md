@@ -57,8 +57,8 @@ If you want to migrate a standard runtime group into a composite, Kong recommend
 
 1. Create a composite runtime group.
 1. Create a new standard runtime group and add as a member to the composite group.
-1. Dump configuration from old group.
-1. Apply configuration to new member group.
+1. Dump the configuration from the old standard runtime group.
+1. Apply configuration to new standard runtime group that is a member of the composite runtime group.
 1. Start new runtime instances in composite runtime group and test routes.
 1. Decommission the old standard runtime group.
 
