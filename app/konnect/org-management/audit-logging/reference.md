@@ -11,7 +11,7 @@ content_type: reference
 * **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
 
 ## Data Retention Period
-{{site.konnect_short_name}} will retain all of the admin logs for 7 days. 
+{{site.konnect_short_name}} retains audit logs for 7 days. 
 
 ## Log formats
 
