@@ -148,6 +148,9 @@ Configuration options for a GCP Secrets Manager vault in {{site.base_gateway}}:
 Parameter | Field name | Description
 ----------|------------|------------
 `vaults.config.project_id` | **Google Project ID** | The project ID from your Google API Console. Visit your Google API Console and select **Manage all projects** in the projects list to see your project ID.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the AWS vault when cached by this node.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a AWS vault miss (no secret).
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for which stale secrets from the AWS vault should be resurrected forwhen they cannot be refreshed (e.g., the GCP vault is unreachable).
 
 Common options:
 

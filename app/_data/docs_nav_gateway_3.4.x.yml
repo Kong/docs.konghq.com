@@ -235,6 +235,8 @@ items:
             url: /kong-enterprise/secrets-management/
           - text: Getting Started
             url: /kong-enterprise/secrets-management/getting-started
+          - text: Secrets Rotation
+            url: /kong-enterprise/secrets-management/secrets-rotation
           - text: Advanced Usage
             url: /kong-enterprise/secrets-management/advanced-usage
           - text: Backends
