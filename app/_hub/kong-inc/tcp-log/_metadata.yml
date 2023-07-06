@@ -10,5 +10,3 @@ categories:
   - logging
 publisher: Kong Inc.
 desc: Send request and response logs to a TCP server
-description: |
-  Log request and response data to a TCP server.

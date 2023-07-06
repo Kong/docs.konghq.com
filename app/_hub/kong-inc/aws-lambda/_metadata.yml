@@ -1,13 +1,5 @@
 name: AWS Lambda
 dbless_compatible: 'yes'
-extra: |
-  **Reminder**: By default, cURL sends payloads with an
-  `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
-  decoded by Kong. To ensure special characters that are likely to appear in
-  your AWS key or secret (like `+`) are correctly decoded, you must
-  URL-encode them with `--data-urlencode`.
-  Alternatives to this approach would be to send your payload with a
-  different MIME type (like `application/json`), or to use a different HTTP client.
 free: true
 plus: true
 enterprise: true
@@ -18,7 +10,3 @@ categories:
   - serverless
 publisher: Kong Inc.
 desc: Invoke and manage AWS Lambda functions from Kong
-description: |
-  Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. The
-  AWS Lambda plugin can be used in combination with other request plugins to secure, manage, or
-  extend the function.

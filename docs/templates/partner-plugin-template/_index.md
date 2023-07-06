@@ -1,3 +1,18 @@
+<!-- 
+Introduce your plugin with a long description. What does it do, and why would someone want to use it? 
+
+For example: 
+
+    Use the Mocking plugin to provide mock endpoints to test your APIs in development against your services.
+    The plugin leverages standards based on the Open API Specification (OAS)
+    for sending out mock responses to APIs. Mocking supports both Swagger 2.0 and OpenAPI 3.0.
+
+    Benefits of service mocking with the Kong Mocking plugin:
+
+    - Conforms to a design-first approach since mock responses are within OAS.
+    - Accelerates development of services and APIs.
+-->
+
 ## How it works
 
 <!--How does your plugin work? -->

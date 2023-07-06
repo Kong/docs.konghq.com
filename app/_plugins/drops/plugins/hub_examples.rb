@@ -1,16 +1,27 @@
 # frozen_string_literal: true
 
-require 'forwardable'
-
 module Jekyll
   module Drops
     module Plugins
       class Example < Liquid::Drop
         attr_reader :example, :type
 
-        def initialize(type:, example:) # rubocop:disable Lint/MissingSuper
+        def initialize(type:, example:, formats:) # rubocop:disable Lint/MissingSuper
           @type = type
           @example = example
+          @formats = formats
+        end
+
+        def render_curl?
+          @formats.include?(:curl)
+        end
+
+        def render_yaml?
+          @formats.include?(:yaml)
+        end
+
+        def render_kubernetes?
+          @formats.include?(:kubernetes)
         end
 
         def curl
@@ -31,43 +42,59 @@ module Jekyll
       end
 
       class HubExamples < Liquid::Drop
-        extend Forwardable
+        attr_reader :example, :formats
 
-        def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
-                       :enable_on_service?, :example
-
-        def initialize(schema:) # rubocop:disable Lint/MissingSuper
+        def initialize(schema:, example:, targets:, formats:) # rubocop:disable Lint/MissingSuper
           @schema = schema
+          @example = example
+          @targets = targets
+          @formats = formats
         end
 
         def render?
-          !example.nil?
+          !@example.nil?
         end
 
         def navtabs?
           enable_on_consumer? || enable_on_service? || enable_on_route?
         end
 
+        def enable_on_consumer?
+          @targets.include?(:consumer) && @schema.enable_on_consumer?
+        end
+
+        def enable_on_route?
+          @targets.include?(:route) && @schema.enable_on_route?
+        end
+
+        def enable_on_service?
+          @targets.include?(:service) && @schema.enable_on_service?
+        end
+
+        def enable_globally?
+          @targets.include?(:global)
+        end
+
         def consumer
           return unless enable_on_consumer?
 
-          @consumer ||= Example.new(type: 'consumer', example:)
+          @consumer ||= Example.new(type: 'consumer', example:, formats:)
         end
 
         def global
-          @global ||= Example.new(type: 'global', example:)
+          @global ||= Example.new(type: 'global', example:, formats:)
         end
 
         def route
           return unless enable_on_route?
 
-          @route ||= Example.new(type: 'route', example:)
+          @route ||= Example.new(type: 'route', example:, formats:)
         end
 
         def service
           return unless enable_on_service?
 
-          @service ||= Example.new(type: 'service', example:)
+          @service ||= Example.new(type: 'service', example:, formats:)
         end
       end
     end

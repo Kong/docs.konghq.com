@@ -1,8 +1,36 @@
-Note: if the value contains a `,` then the comma separated format for lists cannot be used. The array notation must be used instead.
+Transform the response sent by the upstream server on the fly before returning the response to the client.
+
+For additional response transformation features, check out the
+[Response Transformer Advanced plugin](/hub/kong-inc/response-transformer-advanced/).
+
+The advanced plugin adds the following abilities:
+* When transforming a JSON payload, transformations are applied to nested JSON objects and
+  arrays. This can be turned off and on using the `config.dots_in_keys` configuration parameter.
+  See [Response Transformer Advanced arrays and nested objects](/hub/kong-inc/response-transformer-advanced/#arrays-and-nested-objects).
+* Transformations can be restricted to responses with specific status codes using various
+  `config.*.if_status` configuration parameters.
+* JSON body contents can be restricted to a set of allowed properties with
+  `config.allow.json`.
+* The entire response body can be replaced using `config.replace.body`.
+* Arbitrary transformation functions written in Lua can be applied.
+* The plugin will decompress and recompress Gzip-compressed payloads
+  when the `Content-Encoding` header is `gzip`.
+Response Transformer Advanced includes the following additional configurations: `add.if_status`, `append.if_status`,
+`remove.if_status`, `replace.body`, `replace.if_status`, `transform.functions`, `transform.if_status`,
+`allow.json`, `rename.if_status`, `transform.json`, and `dots_in_keys`.
+
+{:.important}
+> **Notes:** 
+* Transformations on the response body can cause changes in performance.
+To parse and modify a JSON body, the plugin needs to retain it in memory,
+which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+* If the value contains a `,` then the comma separated format for lists cannot be used. 
+Array notation must be used instead.
 
 ## Order of execution
 
-Plugin performs the response transformation in following order
+The plugin performs the response transformation in following order:
 
 remove --> rename --> replace --> add --> append
 

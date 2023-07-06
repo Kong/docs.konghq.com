@@ -1,3 +1,8 @@
+Add mutual TLS authentication based on client-supplied or server-supplied certificate, 
+and on the configured trusted CA list.
+
+The mTLS plugin automatically maps certificates to consumers based on the common name field.
+
 ## Usage
 
 In order to authenticate the consumer, it must provide a valid certificate and

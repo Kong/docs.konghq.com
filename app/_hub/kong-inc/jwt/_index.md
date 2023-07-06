@@ -1,4 +1,19 @@
-## Documentation
+THe JWT plugin lets you verify requests containing HS256 or RS256 signed JSON Web Tokens, 
+as specified in [RFC 7519](https://tools.ietf.org/html/rfc7519).
+
+When you enable this plugin, it grants JWT credentials (public and secret keys) 
+to each of your consumers, which must be used to sign their JWTs.
+You can then pass a token through any of the following:
+
+- A query string parameter
+- A cookie
+- HTTP request headers
+
+Kong will either proxy the request to your upstream services if the token's
+signature is verified, or discard the request if not. Kong can also perform
+verifications on some of the registered claims of RFC 7519 (`exp` and `nbf`).
+
+## Using the plugin
 
 To use the plugin, you first need to create a Consumer and associate one or more
 JWT credentials (holding the public and private keys used to verify the token) to it.
@@ -14,7 +29,7 @@ A Consumer can have many credentials.
 To create a Consumer, you can execute the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://localhost:8001/consumers/
+curl -d "username=<user123>&custom_id=<SOME_CUSTOM_ID>" http://localhost:8001/consumers/
 ```
 {% endnavtab %}
 {% navtab Declarative (YAML) %}
@@ -23,8 +38,8 @@ on the `consumers:` yaml section:
 
 ``` yaml
 consumers:
-- username: user123
-  custom_id: SOME_CUSTOM_ID
+- username: <user123>
+  custom_id: <SOME_CUSTOM_ID>
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -44,7 +59,7 @@ parameter                       | description
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-curl -X POST http://localhost:8001/consumers/CONSUMER/jwt -H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://localhost:8001/consumers/<consumer>/jwt -H "Content-Type: application/x-www-form-urlencoded"
 ```
 
 Response:
@@ -69,7 +84,7 @@ You can add JWT credentials on your declarative config file on the `jwt_secrets:
 
 ``` yaml
 jwt_secrets:
-- consumer: {consumer}
+- consumer: <consumer>
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -104,7 +119,7 @@ You can remove a Consumer's JWT credential by issuing the following HTTP
 request:
 
 ```bash
-curl -X DELETE http://localhost:8001/consumers/{consumer}/jwt/{id}
+curl -X DELETE http://localhost:8001/consumers/<consumer>/jwt/<jwt-id>
 ```
 
 Response:
@@ -113,7 +128,7 @@ HTTP/1.1 204 No Content
 ```
 
 - `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-- `id`: The `id` of the JWT credential.
+- `jwt-id`: The `id` of the JWT credential.
 
 ### List JWT credentials
 
@@ -121,7 +136,7 @@ You can list a Consumer's JWT credentials by issuing the following HTTP
 request:
 
 ```bash
-curl -X GET http://localhost:8001/consumers/{consumer}/jwt
+curl -X GET http://localhost:8001/consumers/<consumer>/jwt
 ```
 
 Response:
@@ -189,20 +204,20 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9
 The JWT can now be included in a request to Kong by adding it as a header, if configured in `config.header_names` (which contains `Authorization` by default):
 
 ```bash
-curl http://localhost:8000/{route path} \
+curl http://localhost:8000/<route-path> \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9FTGdBVk5jeiIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.WuLdHyvZGj2UAsnBl6YF9A4NqGQpaDftHjX18ooK8YY'
 ```
 
 as a query string parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
 
 ```bash
-curl http://localhost:8000/{route path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9FTGdBVk5jeiIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.WuLdHyvZGj2UAsnBl6YF9A4NqGQpaDftHjX18ooK8YY
+curl http://localhost:8000/<route-path>?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9FTGdBVk5jeiIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.WuLdHyvZGj2UAsnBl6YF9A4NqGQpaDftHjX18ooK8YY
 ```
 
 or as cookie, if the name is configured in `config.cookie_names` (which is not enabled by default):
 
 ```bash
-curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9FTGdBVk5jeiIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.WuLdHyvZGj2UAsnBl6YF9A4NqGQpaDftHjX18ooK8YY http://localhost:8000/{route path}
+curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJZSmRtYUR2VlRKeHRjV1JDdmtNaWtjOG9FTGdBVk5jeiIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.WuLdHyvZGj2UAsnBl6YF9A4NqGQpaDftHjX18ooK8YY http://localhost:8000/<route-path>
 ```
 
 gRPC requests can include the JWT in a header:
@@ -252,7 +267,7 @@ Enable this option in the plugin's configuration.
 You can patch an existing Route:
 
 ```bash
-curl -X PATCH http://localhost:8001/routes/{route id}/plugins/{jwt plugin id} \
+curl -X PATCH http://localhost:8001/routes/<route-id>/plugins/<jwt-plugin-id> \
   --data "config.secret_is_base64=true"
 ```
 
@@ -260,7 +275,7 @@ Then, base64 encode your Consumers' secrets:
 
 ```bash
 # secret is: "blob data"
-curl -X POST http://localhost:8001/consumers/{consumer}/jwt \
+curl -X POST http://localhost:8001/consumers/<consumer>/jwt \
   --data "secret=YmxvYiBkYXRh"
 ```
 
@@ -273,7 +288,7 @@ select `RS256` or `ES256` as the `algorithm`, and explicitly upload the public k
 in the `rsa_public_key` field (including for ES256 signed tokens). For example:
 
 ```bash
-curl -X POST http://localhost:8001/consumers/{consumer}/jwt \
+curl -X POST http://localhost:8001/consumers/<consumer>/jwt \
   -F "rsa_public_key=@/path/to/public_key.pem" \
 ```
 
@@ -317,7 +332,7 @@ Then, create the signature using your private keys. Using the JWT debugger at
 associated public key. Then, append the resulting value in the `Authorization` header, for example:
 
 ```bash
-curl http://localhost:8000/{route path} \
+curl http://localhost:8000/<route-path> \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxM2Q1ODE0NTcyZTc0YTIyYjFhOWEwMDJmMmQxN2MzNyJ9.uNPTnDZXVShFYUSiii78Q-IAfhnc2ExjarZr_WVhGrHHBLweOBJxGJlAKZQEKE4rVd7D6hCtWSkvAAOu7BU34OnlxtQqB8ArGX58xhpIqHtFUkj882JQ9QD6_v2S2Ad-EmEx5402ge71VWEJ0-jyH2WvfxZ_pD90n5AG5rAbYNAIlm2Ew78q4w4GVSivpletUhcv31-U3GROsa7dl8rYMqx6gyo9oIIDcGoMh3bu8su5kQc5SQBFp1CcA5H8sHGfYs-Et5rCU2A6yKbyXtpHrd1Y9oMrZpEfQdgpLae0AfWRf6JutA9SPhst9-5rn4o3cdUmto_TBGqHsFmVyob8VQ'
 ```
 
@@ -361,7 +376,7 @@ Then create a Route:
 
 ```bash
 curl -i -f -X POST http://localhost:8001/routes \
-  --data "service.id={example-service's id}" \
+  --data "service.id=<example-service-id>" \
   --data "paths[]=/example_path"
 ```
 
@@ -370,20 +385,20 @@ curl -i -f -X POST http://localhost:8001/routes \
 Add the plugin to your Route:
 
 ```bash
-curl -X POST http://localhost:8001/routes/{route id}/plugins \
+curl -X POST http://localhost:8001/routes/<route-id>/plugins \
   --data "name=jwt"
 ```
 
 Download your Auth0 account's X509 Certificate:
 
 ```bash
-curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.{REGION-ID}.auth0.com/pem
+curl -o <COMPANYNAME>.pem https://<COMPANYNAME>.<REGION-ID>.auth0.com/pem
 ```
 
 Extract the public key from the X509 Certificate:
 
 ```bash
-openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
+openssl x509 -pubkey -noout -in <COMPANYNAME>.pem > pubkey.pem
 ```
 
 Create a Consumer with the Auth0 public key:
@@ -392,15 +407,15 @@ Create a Consumer with the Auth0 public key:
 curl -i -X POST http://localhost:8001/consumers \
   --data "username=<USERNAME>" \
   --data "custom_id=<CUSTOM_ID>"
-curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
+curl -i -X POST http://localhost:8001/consumers/<consumer>/jwt \
   -F "algorithm=RS256" \
   -F "rsa_public_key=@./pubkey.pem" \
-  -F "key=https://{COMPANYNAME}.auth0.com/" # the `iss` field
+  -F "key=https://<COMPANYNAME>.auth0.com/" # the `iss` field
 ```
 
 The JWT plugin by default validates the `key_claim_name` against the `iss`
 field in the token. Keys issued by Auth0 have their `iss` field set to
-`http://{COMPANYNAME}.auth0.com/`. You can use [jwt.io](https://jwt.io) to
+`http://<COMPANYNAME>.auth0.com/`. You can use [jwt.io](https://jwt.io) to
 validate the `iss` field for the `key` parameter when creating the
 Consumer.
 
@@ -477,7 +492,7 @@ Response:
 You can filter the list by consumer by using another path:
 
 ```bash
-curl -X GET http://localhost:8001/consumers/USERNAME|ID/jwt
+curl -X GET http://localhost:8001/consumers/<username-or-id>/jwt
 ```
 
 Response:
@@ -512,7 +527,7 @@ Retrieve a [Consumer][consumer-object] associated with a JWT
 using the following request:
 
 ```bash
-curl -X GET http://localhost:8001/jwts/{key or id}/consumer
+curl -X GET http://localhost:8001/jwts/<key-or-id>/consumer
 ```
 
 Response:

@@ -23,14 +23,6 @@ categories: # (Required) Uncomment ONE that applies.
 
 desc: # (Required) Short, one sentence description; max 80 characters.
 
-description: #|
-  # (Required) Extended description.
-  # Use YAML pipe notation (|) and indent the text two spaces. 
-  # For example:
-  #
-  # description: |
-  #   My plugin is a great plugin that does cool things.
-
 free: # true OR false
   # (Required) Set true if your plugin is open-source and available in the 
   # free version of Kong Gateway. Set false if not.

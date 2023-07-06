@@ -1,4 +1,9 @@
-### Usage
+The Canary Release plugin lets you reduce the risk of introducing a new software version in 
+production by slowly rolling out the change to a small subset of users. 
+This plugin also enables rolling back to your original upstream service, or shifting 
+all traffic to the new version.
+
+## Usage
 
 The Canary Release plugin allows you to route traffic to two separate upstream
 **Services** referred to as _Service A_ and _Service B_. The location of _Service A_

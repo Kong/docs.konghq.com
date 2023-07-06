@@ -1,14 +1,5 @@
 name: Proxy Caching Advanced
 dbless_compatible: 'yes'
-extra: |
-
-  {:.important}
-  > **Warning:** The `content_type` parameter requires
-  an exact match. For example, if your upstream expects
-  `application/json; charset=utf-8` and the
-  `config.content_type` value is only `application/json`
-  (a partial match), then the proxy cache is bypassed.  
-
 free: false
 plus: true
 enterprise: true
@@ -19,10 +10,3 @@ categories:
   - traffic-control
 publisher: Kong Inc.
 desc: Cache and serve commonly requested responses in Kong
-description: |
-  This plugin provides a reverse proxy cache implementation for Kong. It caches
-  response entities based on configurable response code and content type, as well
-  as request method. It can cache per-Consumer or per-API. Cache entities are stored
-  for a configurable period of time, after which subsequent requests to the same
-  resource will re-fetch and re-store the resource. Cache entities can also be
-  forcefully purged via the Admin API prior to their expiration time.
