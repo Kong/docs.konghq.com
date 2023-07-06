@@ -13,7 +13,7 @@ This setup is ideal for organizations who want to manage gateways in {{site.konn
 
 Kong Ingress Controller (KIC) for Kubernetes configures {{site.base_gateway}} using Ingress or [Gateway API](https://gateway-api.sigs.k8s.io/) resources created inside a Kubernetes cluster. 
 
-Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. KIC runtime instances are compatible with all the same plugins as regular runtime instances (open source and enterprise). For more information, see [Plugin compatiblity](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
+Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. KIC runtime instances are compatible with all the plugins in the same subscription tier (Free, Plus, and Enterprise) as regular runtime instances. For more information, see [Plugin compatiblity](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
 
 By associating your KIC deployment with {{site.konnect_short_name}}, this read-only association allows you to view your runtime entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
 
@@ -22,7 +22,7 @@ Here are a few benefits of running KIC in {{site.konnect_short_name}} over a sel
 * **Centralized API management:** KIC in {{site.konnect_short_name}} allows organizations to have a centralized platform for API management, regardless of your individual teams' choice of API management, whether that is using Kubernetes or {{site.konnect_short_name}}. 
 * **Monitor your KIC analytics:** By associating with {{site.konnect_short_name}}, you can [view the analytics](/konnect/analytics/) from your KIC runtime instances alongside any of your self-managed {{site.konnect_short_name}} runtime instances. 
 
-<!-- I think this can be commented out unless it works with dev portal pre API Products
+<!-- Uncomment this once API Products is GA
 * **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers with [API Products](/konnect/api-products/). -->
 
 ## KIC in {{site.konnect_short_name}} association
@@ -32,7 +32,7 @@ To associate your KIC runtime instances with {{site.konnect_short_name}}, use th
 In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Runtime Manager](https://cloud.konghq.com/runtime-manager)**, then click **New Runtime Group** > **Kong Ingress Controller**.
 
 {:.note}
-> **Note**: KIC OSS users can connect to {{site.konnect_short_name}}’s Free tier, while KIC Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
+> **Note**: KIC OSS and Free tier users can connect to {{site.konnect_short_name}}’s Free tier, while KIC Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
 
 ### Prerequisites
 
