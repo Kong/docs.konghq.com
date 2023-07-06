@@ -2233,7 +2233,9 @@ openid-connect
 **Release Date** 2023/07/07
 
 ### Fixes
-* Fixed a bug where subrequests produced by the `error_page` directive could interfere with worker processes when *buffered proxying* is enabled.
+* Fixed a bug where internal redirects, such as those produced by the `error_page` directive,
+  could interfere with worker process handling the request when *buffered proxying* is
+  being used.
 
 #### Kong Manager
 * Fixed an issue where the Zipkin plugin didn’t allow the addition of `static_tags` through the Kong Manager UI. 
