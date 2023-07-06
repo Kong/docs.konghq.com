@@ -12,7 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## July 2023
 
 **Kong Ingress Controller for Kubernetes in Konnect**
-: The read-only [Ingress Controller association with Konnect](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. KIC in Konnect also now allows you to view analytics for your KIC runtime instances.
+: The read-only [Ingress Controller association with Konnect](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
+* Konnect now manages license and entitlement for KIC-managed Gateways so that customers do not need to worry about license management. There is a seamless upgrade path available for customers that wish to move from the OSS experience to the Enterprise experience.
+* Konnect now supports analytics for KIC runtime groups. Customers can get detailed visibility into their K8 native managed Gateways on the Konnect platform.
 
 ## June 2023
 
