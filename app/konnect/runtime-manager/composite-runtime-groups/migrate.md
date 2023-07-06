@@ -6,8 +6,8 @@ badge: enterprise
 
 There are a few situations in which you might want to migrate existing configuration into a composite runtime group.
 
-* Migrate standard runtime group configuration into a composite group. In this scenario, you are migrating config from Konnect to a different group in Konnect.
-* Migrate self-managed Kong Gateway workspace configuration into a composite group in Konnect. In this scenario, you are migrating from self-managed to cloud managed.
+* Migrate standard runtime group configuration into a composite group. In this scenario, you are migrating config from {{site.konnect_short_name}} to a different group in {{site.konnect_short_name}}.
+* Migrate self-managed {{site.base_gateway}} workspace configuration into a composite group in {{site.konnect_short_name}}. In this scenario, you are migrating from self-managed to cloud managed.
 
 A composite runtime group **can't be configured directly**. It compiles configuration from its member runtime groups.
 
