@@ -85,6 +85,8 @@ Consumer groups names in the Rate Limiting Advanced plugin can reference group n
 This plugin will affect the entire composite runtime group.
 For example, two instances of the Rate Limiting plugin cannot be installed in the composite runtime group.
 
+If you want to limit which users can apply global plugins, add all global plugins into a single runtime group, and then grant access to only your limited set of users. If any other member runtime groups add a global plugin to their configuration, a conflict will result and prevent the changed configuration from being applied. 
+
 * **Vaults**: The prefix of each Vault must be unique.
 Once a Vault from a standard runtime group becomes part of a composite runtime group, it becomes available to the whole composite runtime group.
 An entity field in a standard runtime group can successfully reference a secret in a Vault from another standard runtime group, now both part of the composite runtime group.
