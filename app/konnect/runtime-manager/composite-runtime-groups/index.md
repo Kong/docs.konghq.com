@@ -81,15 +81,15 @@ The ID of a consumer from one composite runtime group member can't be used in au
 * **Consumer groups**: Only consumers from the same runtime group can be added to a consumer group.
 Consumer groups names in the Rate Limiting Advanced plugin can reference group names from other composite runtime group members.
 
+* **Vaults**: The prefix of each Vault must be unique.
+Once a Vault from a standard runtime group becomes part of a composite runtime group, it becomes available to the whole composite runtime group.
+An entity field in a standard runtime group can successfully reference a secret in a Vault from another standard runtime group, now both part of the composite runtime group.
 * **Global plugins**: A plugin that is globally scoped in the standard runtime group remains globally scoped in the composite runtime group. 
 This plugin will affect the entire composite runtime group.
 For example, two instances of the Rate Limiting plugin cannot be installed in the composite runtime group.
 
-If you want to limit which users can apply global plugins, add all global plugins into a single runtime group, and then grant access to only your limited set of users. If any other member runtime groups add a global plugin to their configuration, a conflict will result and prevent the changed configuration from being applied. 
-
-* **Vaults**: The prefix of each Vault must be unique.
-Once a Vault from a standard runtime group becomes part of a composite runtime group, it becomes available to the whole composite runtime group.
-An entity field in a standard runtime group can successfully reference a secret in a Vault from another standard runtime group, now both part of the composite runtime group.
+{:.note}
+> **Note:** If you want to limit which users can apply global plugins, add all global plugins into a single runtime group, and then grant access to only your limited set of users. If any other member runtime groups add a global plugin to their configuration, a conflict will result and prevent the changed configuration from being applied.
 
 ## Limitations
 
@@ -113,4 +113,4 @@ Conflict detection in a composite runtime group happens only after you have adde
 ## More information
 * [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
-* [Invariances in runtime groups](/konnect/runtime-manager/composite-runtime-groups/invariances/)
+* [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)

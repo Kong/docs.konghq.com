@@ -20,7 +20,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 * [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
 * [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
-* [API documentation] (/https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9)
+* [API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9)
 
 **Analytics for composite runtime groups**
 : Custom reports now support grouping and filtering by composite runtime group.

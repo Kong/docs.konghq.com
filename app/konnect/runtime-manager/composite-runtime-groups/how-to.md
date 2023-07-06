@@ -4,7 +4,7 @@ content_type: how-to
 badge: enterprise
 ---
 
-A composite runtime group (CRG) is a type of runtime group in {{site.konnect_short_name}} where `cluster_type = CLUSTER_TYPE_COMPOSITE`.
+A composite runtime group (CRG) is a read-only group that combines configuration from its members, which are standard runtime groups (SRG). All of the standard runtime groups within a composite runtime group share the same cluster of runtime instances.
 
 In this guide, you will set up a composite runtime groups with two members, then test that the configuration from both member groups is applied to the composite.
 
