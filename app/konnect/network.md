@@ -66,11 +66,11 @@ You can find the configuration and telemetry hostnames through the Runtime Manag
 
 {% navtab Kong Ingress Controller %}
 
-{{site.kic_product_name}} initiates the connection to {{site.konnect_short_name}} [Runtime Configuration API](/konnect/api/runtime-groups-config/) to:
+{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Runtime Configuration API](/konnect/api/runtime-groups-config/) to:
 
-* synchronize the configuration of the {{site.base_gateway}} instances with {{site.konnect_short_name}},
-* register runtime instances,
-* fetch license information.
+* Synchronize the configuration of the {{site.base_gateway}} instances with {{site.konnect_short_name}}
+* Register runtime instances
+* Fetch license information
 
 Runtime instances initiate the connection to {{site.konnect_short_name}} APIs to report Analytics data.
 
