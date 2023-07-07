@@ -4,10 +4,17 @@ module PluginSingleSource
   module Plugin
     module Examples
       class ThirdParty < Base
-        EXAMPLES_PATH = 'app/_hub'
-
         def file_path
-          File.join(EXAMPLES_PATH, @vendor, @name, 'examples/_index.yml')
+          base_path = File.join(HUB_PATH, @vendor, @name, 'examples')
+
+          if @example_name
+            Utils::SingleSourceFileFinder.find(
+              file_path: File.join(base_path, @example_name),
+              version: @version
+            )
+          else
+            File.join(base_path, '_index.yml')
+          end
         end
       end
     end

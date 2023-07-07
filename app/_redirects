@@ -639,6 +639,7 @@
 
 
 # KONG MESH
+/mesh/konnect/* /mesh/latest/:splat
 /mesh/1.0.x/features/   /mesh/1.0.x/features/vault
 /mesh/1.1.x/features/   /mesh/1.1.x/features/vault
 /mesh/:version/features/windows/     /mesh/:version/installation/windows/

@@ -98,7 +98,7 @@ RSpec.configure do |config|
       'spec/fixtures/app/_hub/'
     )
     stub_const(
-      'PluginSingleSource::Plugin::Examples::ThirdParty::EXAMPLES_PATH',
+      'PluginSingleSource::Plugin::Examples::Base::HUB_PATH',
       'spec/fixtures/app/_hub'
     )
   end

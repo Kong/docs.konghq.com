@@ -4,18 +4,21 @@ module PluginSingleSource
   module Plugin
     module Examples
       class Base
-        def self.make_for(vendor:, name:, version:)
+        HUB_PATH = 'app/_hub'
+
+        def self.make_for(vendor:, name:, version:, example_name: nil)
           if vendor == 'kong-inc'
-            Kong.new(vendor:, name:, version:)
+            Kong.new(vendor:, name:, version:, example_name:)
           else
-            ThirdParty.new(vendor:, name:, version:)
+            ThirdParty.new(vendor:, name:, version:, example_name:)
           end
         end
 
-        def initialize(vendor:, name:, version:)
+        def initialize(vendor:, name:, version:, example_name: nil)
           @vendor = vendor
           @name = name
           @version = version
+          @example_name = example_name
         end
 
         def example

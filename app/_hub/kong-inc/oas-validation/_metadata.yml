@@ -1,4 +1,8 @@
 name: OAS Validation
+search_aliases:
+  - specification
+  - openapi
+  - swagger
 dbless_compatible: 'yes'
 konnect_examples: true
 free: false
