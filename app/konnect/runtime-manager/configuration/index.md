@@ -13,6 +13,10 @@ the plugin configuration will apply to all services in the group.
 Consumers, SNIs, upstreams, and certificates are all global. Plugins
 can either be global or scoped.
 
+{:.note}
+> **Exceptions in composite runtime groups**: Some core entities have specific requirements and limitations 
+when part of a composite runtime group. See the [Composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/#configuring-core-entities) documentation for details.
+
 ### Gateway services
 
 The **Gateway Service** configuration page lists all {{site.base_gateway}} services
