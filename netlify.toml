@@ -1,15 +1,13 @@
 [build]
   publish = "dist"
   command = "exe/build"
-  environment = { JEKYLL_ENV = "development", VITE_JEKYLL_ENV = "development", BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
+  environment = { JEKYLL_ENV = "development", BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
 
 [context.main.environment]
   JEKYLL_ENV = "production"
-  VITE_JEKYLL_ENV = "production"
 
 [context.deploy-preview.environment]
   JEKYLL_ENV = "preview"
-  VITE_JEKYLL_ENV = "preview"
 
 [dev]
   autoLaunch = false
