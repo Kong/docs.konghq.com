@@ -53,17 +53,8 @@ Perform read-only operations on {{site.mesh_product_name}} resources on Kubernet
 
 You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
 
-1. In {{site.konnect_short_name}}, select your user icon to open the context menu and click **Personal access tokens**, then click **Generate token**.
-1. Enter "control-plane" in the **Name** field and click **Generate**.
-1. Copy the personal access token that displays.
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
-1. Copy your control plane ID.
-1. Run the following to connect your global control plane to {{site.product_mesh_name}}:
-    ```sh
-    kumactl config control-planes add --address https://us.api.konghq.com/v0/mesh/control-planes/MGCP_ID/api --name mesh-konnect --headers 'authorization=Bearer KPAT'
-    ```
-    * **MGCP_ID:** Replace this with the control plane ID.
-    * **KPAT:** Replace this with the personal access token you created for the control plane.
+1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 
 You can now run commands against your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/generated/cmd/kumactl/kumactl/) for more information about the commands you can use.
 

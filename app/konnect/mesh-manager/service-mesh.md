@@ -23,13 +23,8 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 1. Click **New Control Plane** and complete the fields as needed.
 1. Select the control plane you just created, and then click **Zones** in the sidebar.
 1. Click **Create Zone**, configure the fields as needed, and follow the steps in the wizard to connect your zone to {{site.konnect_short_name}}.
-1. Create a [personal access token in {{site.konnect_short_name}}](/konnect/getting-started/import/#generate-a-personal-access-token). This will be used to connect your global control plane with your {{site.product_mesh_name}} service mesh.
-1. Run the following to connect your global control plane to {{site.product_mesh_name}}:
-    ```sh
-    kumactl config control-planes add --address https://us.api.konghq.com/v0/mesh/control-planes/MGCP_ID/api --name mink-dev --headers 'authorization=Bearer KPAT'
-    ```
-    * **MGCP_ID:** Replace this with the control plane ID found on the overview page for your global control plane.
-    * **KPAT:** Replace this with the personal access token you created for the control plane.
+1. From the {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) navigation menu, and select the `example-cp` control plane.
+1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 
 ### Add services to your service mesh
 
