@@ -20,7 +20,7 @@ install: ruby-version-check
 
 # Using local dependencies, starts a doc site instance on http://localhost:4000.
 run: ruby-version-check
-	foreman start
+	netlify dev
 
 build: ruby-version-check
 	exe/build
