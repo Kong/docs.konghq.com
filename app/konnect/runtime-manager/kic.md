@@ -43,6 +43,9 @@ If you don't have an existing KIC deployment, you need the following before usin
 * `kubectl` or `oc` (if you're working with OpenShift) installed and configured to communicate with your Kubernetes TLS
 * [Helm 3](https://helm.sh/docs/intro/install/) installed
 
+Also, as {{site.kic_product_name}} calls the {{site.konnect_short_name}}'s APIs, outbound traffic from the
+{{site.kic_product_name}}'s pods must be allowed to reach {{site.konnect_short_name}}'s `*.konghq.com` hosts.
+
 ### View KIC entities
 
 After your KIC deployment is connected to {{site.konnect_short_name}}, you can view the details for each runtime instance in your KIC runtime groups. 
