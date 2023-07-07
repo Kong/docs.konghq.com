@@ -21,6 +21,7 @@ RSpec.describe SEO::Index do
         '/hub/acme/kong-plugin/' => { 'url' => '/hub/acme/kong-plugin/', 'page' => find_page_by_url('/hub/acme/kong-plugin/') },
         '/hub/acme/kong-plugin/configuration/' => { 'url' => '/hub/acme/kong-plugin/configuration/', 'page' => find_page_by_url('/hub/acme/kong-plugin/configuration/') },
         '/hub/acme/kong-plugin/how-to/basic-example/' => { 'url' => '/hub/acme/kong-plugin/how-to/basic-example/', 'page' => find_page_by_url('/hub/acme/kong-plugin/how-to/basic-example/') },
+        '/hub/acme/kong-plugin/how-to/local-testing/' => { 'url' => '/hub/acme/kong-plugin/how-to/local-testing/', 'page' => find_page_by_url('/hub/acme/kong-plugin/how-to/local-testing/') },
         '/hub/acme/unbundled-plugin/' => { 'url' => '/hub/acme/unbundled-plugin/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/') },
         '/hub/acme/unbundled-plugin/changelog/' => { 'url' => '/hub/acme/unbundled-plugin/changelog/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/changelog/') },
         '/hub/acme/unbundled-plugin/configuration/' => { 'url' => '/hub/acme/unbundled-plugin/configuration/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/configuration/') },
