@@ -1,11 +1,12 @@
-## Purpose
+The gRPC-Web plugins allows access to a gRPC service via the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2).
+Primarily, this means JavaScript browser applications using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
 
 A service that presents a gRPC API can be used by clients written in many languages,
 but the network specifications are oriented primarily to connections within a
-data center. [gRPC-Web] lets you expose the gRPC API to the Internet so
+data center. gRPC-Web lets you expose the gRPC API to the Internet so
 that it can be consumed by browser-based JavaScript applications.
 
-This plugin translates requests and responses between [gRPC-Web] and
+This plugin translates requests and responses between gRPC-Web and
 [gRPC](https://github.com/grpc/grpc). The plugin supports both HTTP/1.1
 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 

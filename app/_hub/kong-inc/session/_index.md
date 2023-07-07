@@ -1,23 +1,33 @@
-## Usage
+The Kong Session plugin can be used to manage browser sessions for APIs proxied
+through the {{site.base_gateway}}. It provides configuration and management for
+session data storage, encryption, renewal, expiry, and sending browser cookies.
+It is built using
+[lua-resty-session](https://github.com/bungle/lua-resty-session).
 
-The Kong Session plugin can be configured globally or with an entity (e.g., Service, Route)
-and is always used in conjunction with another Kong Authentication [Plugin]. This
-plugin is intended to work similarly to the [multiple authentication] setup.
+For information about configuring and using the Session plugin with the Dev
+Portal, see [Sessions in the Dev Portal](/gateway/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
 
-After the Kong Session plugin is enabled in conjunction with an Authentication plugin,
-it runs prior to the credential verification. If no session is found, then the
+## How it works
+
+The Session plugin can be configured globally or with an entity (for example, a service or a route)
+and is always used in conjunction with another [Kong authentication plugin](/hub/#authentication). This
+plugin is intended to work similarly to the [multiple authentication setup](/gateway/latest/configure/auth/#multiple-authentication).
+
+When the Session plugin is enabled in conjunction with an authentication plugin,
+it runs before credential verification. If no session is found, then the
 authentication plugin runs again and credentials are checked normally. If the
 credential verification is successful, then the Session plugin creates a new
 session for usage with subsequent requests.
 
-When a new request comes in and a session is already present, then the Kong Session
+When a new request comes in and a session is already present, then the Session
 plugin attaches the `ngx.ctx` variables to let the authentication
 plugin know that authentication has already occurred via session validation.
 As this configuration is a logical OR scenario, and it's desired that anonymous
-access be forbidden, you should configure the [Request Termination](https://docs.konghq.com/hub/kong-inc/request-termination/) plugin on an anonymous consumer. Failure to do so allows unauthorized
-requests. For more information, see [multiple authentication](https://docs.konghq.com/gateway/latest/configure/auth/#multiple-authentication).
+access be forbidden, you should configure the [Request Termination](/hub/kong-inc/request-termination/) plugin on an anonymous consumer. 
+Failure to do so allows unauthorized requests. 
+For more information, see [multiple authentication](/gateway/latest/configure/auth/#multiple-authentication).
 
-### Set up With a Database
+### Set up with a database
 
 For usage with [Key Auth] plugin
 
@@ -136,7 +146,7 @@ For usage with [Key Auth] plugin
      --data "consumer.id=<anonymous_consumer_id>"
    ```
 
-### Set up Without a Database
+### Set up without a database
 
 Add all these to the declarative config file:
 
@@ -237,7 +247,7 @@ By default, the Kong Session plugin favors security using a `Secure`, `HTTPOnly`
 `Samesite=Strict` cookie. `cookie_domain` is automatically set using Nginx
 variable host, but can be overridden.
 
-### Session Data Storage
+### Session data storage
 
 The session data can be stored in the cookie itself (encrypted) `storage=cookie`,
 or inside [Kong](#kong-storage-adapter). The session data stores these context
@@ -259,7 +269,7 @@ authentication plugins and the session plugin will store them in the data of
 the current session. Since the session plugin runs before authentication
 plugins, it also sets `authenticated_groups` associated headers.
 
-## Kong Storage Adapter
+## Kong storage adapter
 
 The Session plugin extends the functionality of [lua-resty-session] with its own
 session data storage adapter when `storage=kong`. This stores encrypted
@@ -270,7 +280,7 @@ DAO `ttl` mechanism that destroys sessions after specified `rolling_timeout` unl
 occurs during normal browser activity. Log out the application via XHR request
 (or something similar) to manually handle the redirects.
 
-## Logging Out
+## Logging out
 
 It is typical to provide users the ability to log out (i.e., to manually destroy) their
 current session. Logging out is possible with either query parameters or `POST` parameters in
@@ -283,7 +293,7 @@ present and the incoming request is a logout request, the Kong Session plugin
 returns a 200 before continuing in the plugin run loop, and the request does not
 continue to the upstream.
 
-## Known Limitations
+## Known limitations
 
 Due to limitations of OpenResty, the `header_filter` phase cannot connect to the
 database, which poses a problem for initial retrieval of a cookie (fresh session).

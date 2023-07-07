@@ -1,3 +1,5 @@
+Log request and response data to Syslog.
+
 ## Log format
 
 Every request is logged to the System log in [SYSLOG](https://en.wikipedia.org/wiki/Syslog) standard, with the

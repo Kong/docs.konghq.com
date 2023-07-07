@@ -55,6 +55,18 @@ module PluginSingleSource
         raise NotImplementedError, 'implement this in subclass'
       end
 
+      def edit_link
+        "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/#{source_file}"
+      end
+
+      def breadcrumbs
+        [
+          { text: category_title, url: category_url },
+          { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
+          { text: breadcrumb_title, url: permalink }
+        ]
+      end
+
       private
 
       def url_attributes
@@ -72,16 +84,9 @@ module PluginSingleSource
           'title' => page_title,
           'versions_dropdown' => ::Jekyll::Drops::Plugins::VersionsDropdown.new(self),
           'breadcrumbs' => ::Jekyll::Drops::Plugins::Breadcrumbs.new(breadcrumbs).breadcrumbs,
-          'sidenav' => sidenav
+          'sidenav' => sidenav,
+          'edit_link' => edit_link
         }
-      end
-
-      def breadcrumbs
-        [
-          { text: category_title, url: category_url },
-          { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
-          { text: breadcrumb_title, url: permalink }
-        ]
       end
 
       def category_url

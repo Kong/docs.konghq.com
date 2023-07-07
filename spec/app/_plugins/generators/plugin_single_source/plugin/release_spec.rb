@@ -45,7 +45,7 @@ RSpec.describe PluginSingleSource::Plugin::Release do
           '/hub/kong-inc/jwt-signer/2.5.x/changelog/',
           '/hub/kong-inc/jwt-signer/2.5.x/how-to/',
           '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
-          '/hub/kong-inc/jwt-signer/2.5.x/configuration/examples/'
+          '/hub/kong-inc/jwt-signer/2.5.x/how-to/basic-example/'
         ])
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe PluginSingleSource::Plugin::Release do
           '/hub/kong-inc/jwt-signer/how-to/',
           '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',
           '/hub/kong-inc/jwt-signer/configuration/',
-          '/hub/kong-inc/jwt-signer/configuration/examples/',
+          '/hub/kong-inc/jwt-signer/how-to/basic-example/',
         ])
       end
     end
@@ -102,6 +102,20 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       let(:plugin_name) { 'acme/kong-plugin' }
 
       it { expect(subject.changelog).to be_nil }
+    end
+  end
+
+  describe '#enterprise_plugin?' do
+    context 'when the plugin is `enterprise` and not `free`' do
+      let(:plugin_name) { 'acme/unbundled-plugin' }
+
+      it { expect(subject.enterprise_plugin?).to eq(true) }
+    end
+
+    context 'otherwise' do
+      let(:plugin_name) { 'acme/jq' }
+
+      it { expect(subject.enterprise_plugin?).to eq(false) }
     end
   end
 end

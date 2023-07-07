@@ -1,4 +1,15 @@
-## Configuring Quotas
+This plugin allows you to limit the number of requests a developer can make
+based on a custom response header returned by the upstream service. You can
+arbitrarily set as many rate limiting objects (or quotas) as you want and
+instruct Kong to increase or decrease them by any number of units. Each custom
+ratelimiting object can limit the inbound requests per seconds, minutes, hours,
+days, months, or years.
+
+If the underlying service or route has no authentication
+layer, the **Client IP** address is used. Otherwise, the consumer is
+used if an authentication plugin has been configured.
+
+## Configuring quotas
 
 After adding the plugin, you can increment the configured limits by adding the following response header:
 
@@ -44,7 +55,7 @@ X-RateLimit-Remaining-Videos-Minute: 10
 If any of the limits configured is being reached, the plugin
 returns an `HTTP/1.1 429` (Too Many Requests) status code and an empty response body.
 
-### Upstream Headers
+### Upstream headers
 
 The plugin appends the usage headers for each limit before proxying it to the
 upstream service, so that you can properly refuse to process the request if there

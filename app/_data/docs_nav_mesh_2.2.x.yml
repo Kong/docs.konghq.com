@@ -55,8 +55,8 @@ items:
       - text: Install kumactl
         url: /production/install-kumactl/
         src: /.repos/kuma/app/_src/production/install-kumactl/
-      - text: Use Kuma
-        url: /production/use-kuma/
+      - text: Use Kong Mesh
+        url: /production/use-mesh/
         src: /.repos/kuma/app/_src/production/use-kuma/
       - text: Control plane deployment
         items:

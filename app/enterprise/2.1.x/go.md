@@ -50,7 +50,7 @@ See the [go-pdk](https://pkg.go.dev/github.com/Kong/go-pdk) GoDoc page for refer
 When compared to the Kong Lua PDK, the Go PDK has the following limitations:
 
 * Kong plugins written using the Go PDK are slower than plugins written with Lua.
-* There are no [`header_filter`](https://docs.konghq.com/2.0.x/plugin-development/custom-logic/#available-contexts) or [`body_filter`](https://docs.konghq.com/2.0.x/plugin-development/custom-logic/#available-contexts) phases.
+* There are no [`header_filter`](/enterprise/{{page.kong_version}}/plugin-development/custom-logic/#available-contexts) or [`body_filter`](/enterprise/{{page.kong_version}}/plugin-development/custom-logic/#available-contexts) phases.
 * There are certain [environment consistency constraints](#environment-consistency-constraints)
 requiring matching versions of libraries and packages, and matching environment
 variables.

@@ -105,4 +105,18 @@ RSpec.describe PluginSingleSource::Pages::Overview do
       end
     end
   end
+
+  describe '#breadcrumbs' do
+    let(:is_latest) { true }
+    let(:version) { '2.8.x' }
+    let(:source) { '_index' }
+    let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+
+    it 'returns a hash containing the page\'s breadcrumbs' do
+      expect(subject.breadcrumbs).to eq([
+        { text: 'Authentication', url: '/hub/?category=authentication' },
+        { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' }
+      ])
+    end
+  end
 end

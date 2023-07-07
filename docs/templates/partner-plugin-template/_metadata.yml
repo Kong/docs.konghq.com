@@ -25,14 +25,6 @@ type: plugin
 
 desc: # (Required) Short, one sentence description; max 80 characters.
 
-description: #|
-  # (Required) Extended description.
-  # Use YAML pipe notation (|) and indent the text two spaces. 
-  # For example:
-  #
-  # description: |
-  #   My plugin is a great plugin that does cool things.
-
 #support_url:
   # (Optional) A support URL for plugin users to file tickets,
   # bug reports, or support requests.
