@@ -55,4 +55,8 @@ jQuery(function () {
   $("#plugin-link").on("focus", function (e) {
     $(".with-submenu").removeClass("submenu-opened");
   });
+
+  $("#top-module-list").on("click", function(e) {
+      toggleSubmenuVisible($(e.target));
+  });
 });
