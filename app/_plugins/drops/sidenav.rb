@@ -35,7 +35,7 @@ module Jekyll
       end
 
       def items
-        @items ||= @item.fetch('items', []).map do |item|
+        @items ||= @item.fetch('items', []).compact.map do |item|
           SidenavMenuItem.new(item:, options: @options)
         end
       end
@@ -61,7 +61,7 @@ module Jekyll
       end
 
       def nav_items
-        @nav_items ||= @config.map do |item|
+        @nav_items ||= @config.compact.map do |item|
           SidenavMenuItem.new(item:, options: @options)
         end
       end

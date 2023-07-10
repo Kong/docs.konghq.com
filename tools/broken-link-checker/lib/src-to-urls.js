@@ -10,7 +10,8 @@ async function loadNavEntries(pattern) {
       return yaml.load(fs.readFileSync(f, "utf8"));
     })
     .filter((n) => {
-      return n.generate;
+      // Skip inherited nav files
+      return n.generate && !n.inherit;
     });
 }
 

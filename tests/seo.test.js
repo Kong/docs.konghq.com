@@ -143,7 +143,7 @@ describe("sitemap includes", () => {
     "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
-    "/mesh/changelog/",
+    "/mesh/latest/introduction/changelog/",
     "/hub/",
   ].forEach((t) => {
     test(t, async () => {
