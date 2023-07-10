@@ -47,8 +47,8 @@ After your KIC deployment is connected to {{site.konnect_short_name}}, you can v
 {:.note}
 > **Note**: The KIC deployment in {{site.konnect_short_name}} is currently read-only. The configuration of the gateway runtime is controlled by changes to resources in the Kubernetes API, and reflected here. For more information about how to manage these resources in KIC, see [Custom Resources](/kubernetes-ingress-controller/latest/concepts/custom-resources/).
 
-![KIC runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
-> **Figure 1:** This image shows a KIC runtime instance dashboard. For each KIC runtime instance, you can see details about the runtime instance, analytics, and KIC status details.
+<!-- ![KIC runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
+> **Figure 1:** This image shows a KIC runtime instance dashboard. For each KIC runtime instance, you can see details about the runtime instance, analytics, and KIC status details. -->
 
 Item | Description
 ------|------------
@@ -72,7 +72,7 @@ The following table describes which {{site.base_gateway}} versions are compatibl
     Learn about the various deployment methods for KIC. 
 * [Getting started with the Kong Ingress Controller](/kubernetes-ingress-controller/latest/guides/getting-started/):
     This guide walks through setting up an HTTP(S) route and plugin using {{site.base_gateway}} and KIC.
-* [Analyze Services and Routes](/konnect/analytics/services-and-routes/):
+* [Analyze Services and Routes](/konnect/analytics/)
     Learn how to use monitoring tools in Konnect to analyze KIC entities.
 * [Publish and Consume Services](/konnect/getting-started/publish-service/):
     Find out how to publish services to the Dev Portal.

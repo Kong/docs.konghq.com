@@ -27,7 +27,7 @@ This brings you to a set of installation options. Choose one of the options, the
 
 ### Forward proxy support
 
-{{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/){{site.base_gateway}} documentation for more information.
+{{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) {{site.base_gateway}} documentation for more information.
 
 ## Runtime instance dashboard
 ### Gateway runtime instance dashboard

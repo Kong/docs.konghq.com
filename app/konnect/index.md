@@ -70,6 +70,7 @@ across the organization’s applications.
 
 [Start cataloging services with Service Hub &rarr;](/konnect/servicehub)
 
+
 ### Runtime Manager
 
 [Runtime Manager](/konnect/runtime-manager/) empowers your teams to securely
@@ -84,10 +85,15 @@ Through the Runtime Manager, increase the security of your APIs with out-of-the-
 
 [Check out {{site.konnect_short_name}}-compatible plugins &rarr;](/hub)
 
+### API Products
+
+Use API Products to bundle and manage multiple services via API products. You can use API products to version your services as well as upload documentation for your API product. This allows you to prepare to productize your services by publishing your API products to Dev Portal.
+[Start productizing services with API Products &rarr;](/konnect/api-products)
+
 ### Dev Portal
 
 Streamline developer onboarding with the [Dev Portal](/konnect/dev-portal/), which offers a self-service developer experience
-to discover, register, and consume published services from your Service Hub catalog.
+to discover, register, and consume published API products from your API Products catalog.
 This customizable experience can be used to match your own unique branding and
 highlights the documentation and interactive API specifications of your services.
 Enable application registration to automatically secure your APIs with a
