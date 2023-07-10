@@ -15,6 +15,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **API Products**
 : Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
 
+: **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
+
 **Composite runtime groups**
 : {{site.konnect_short_name}} now supports composite runtime groups, which enable users to leverage shared infrastructure across multiple teams in a secure, compliant fashion. 
 With composite runtime groups, organizations can reduce infrastructure costs while providing the appropriate access to teams through RBAC.
