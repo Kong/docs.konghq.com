@@ -8,7 +8,7 @@ See [Manage Teams and Roles](/konnect/org-management/teams-and-roles/).
 
 The following predefined roles are available in {{site.konnect_short_name}}:
 
-## Services
+## API products
 
 | Role                        | Description  |
 |-----------------------------|--------------|
