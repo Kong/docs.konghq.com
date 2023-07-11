@@ -30,10 +30,12 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
+{% if_version lte:3.3.x %}
 If your plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
 
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% endif_version %}
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
 folder to it. If there is no `init.lua` file inside already, you should create one.
@@ -79,6 +81,94 @@ return {
   "001_100_to_110",
 }
 ```
+
+{% if_version gte:3.4.x %}
+
+## Migration file syntax
+
+A migration file is a Lua file which returns a table with the following structure:
+
+``` lua
+-- `<plugin_name>/migrations/000_base_my_plugin.lua`
+return {
+  postgresql = {
+    up = [[
+      CREATE TABLE IF NOT EXISTS "my_plugin_table" (
+        "id"           UUID                         PRIMARY KEY,
+        "created_at"   TIMESTAMP WITHOUT TIME ZONE,
+        "col1"         TEXT
+      );
+
+      DO $$
+      BEGIN
+        CREATE INDEX IF NOT EXISTS "my_plugin_table_col1"
+                                ON "my_plugin_table" ("col1");
+      EXCEPTION WHEN UNDEFINED_COLUMN THEN
+        -- Do nothing, accept existing state
+      END$$;
+    ]],
+  }
+}
+
+-- `<plugin_name>/migrations/001_100_to_110.lua`
+return {
+  postgresql = {
+    up = [[
+      DO $$
+      BEGIN
+        ALTER TABLE IF EXISTS ONLY "my_plugin_table" ADD "cache_key" TEXT UNIQUE;
+      EXCEPTION WHEN DUPLICATE_COLUMN THEN
+        -- Do nothing, accept existing state
+      END;
+    $$;
+    ]],
+    teardown = function(connector, helpers)
+      assert(connector:connect_migrations())
+      assert(connector:query([[
+        DO $$
+        BEGIN
+          ALTER TABLE IF EXISTS ONLY "my_plugin_table" DROP "col1";
+        EXCEPTION WHEN UNDEFINED_COLUMN THEN
+          -- Do nothing, accept existing state
+        END$$;
+      ]])
+    end,
+  }
+}
+```
+
+Each strategy section has two parts, `up` and `teardown`.
+
+* `up` is an optional string of raw SQL statements. Those statements are executed
+  when `kong migrations up` is executed. 
+  
+  We recommend that all the non-destructive 
+  operations, such as creation of new tables and addition of new records, 
+  are done on the `up` sections.
+
+* `teardown` is an optional Lua function, which takes a `connector` parameter. The connector
+  can invoke the `query` method to execute SQL queries. Teardown is triggered by
+  `kong migrations finish`. 
+  
+  We recommend that destructive operations, such as
+  removal of data, changing row types, and insertion of new data, are done on 
+  the `teardown` sections.
+
+All SQL statements should be written so that they are as reentrant as possible. 
+For example, use `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
+`CREATE INDEX IF NOT EXIST` instead of `CREATE INDEX`, and so on. If a migration fails for some
+reason, it is expected that the first attempt at fixing the problem will be simply
+re-running the migrations.
+
+{:.important}
+> If your `schema` uses a `unique` constraint, you must set this constraint in
+the migrations for PostgreSQL.
+
+To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).
+
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
 
 ## Migration file syntax
 
@@ -191,6 +281,8 @@ the migrations.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).
 
+{% endif_version %}
+
 
 ## Define a schema
 
@@ -281,8 +373,11 @@ Here is a description of some top-level properties:
   <td>
     Field names forming the entity's primary key.
     Schemas support composite keys, even if most Kong core entities currently use an UUID named
-    <code>id</code>. If you are using Cassandra and need a composite key, it should have the same
+    <code>id</code>. 
+    {% if_version lte:3.3.x %}
+    If you are using Cassandra and need a composite key, it should have the same
     fields as the partition key.
+    {% endif_version %}
   </td>
 </tr>
 <tr>
@@ -402,7 +497,10 @@ Here's a non-exhaustive explanation of some of the field attributes available:
     but another entity already has the given value on said field.</p>
 
   <p>This attribute <em>must</em> be backed up by declaring fields as <code>UNIQUE</code> in migrations when using
-    PostgreSQL. The Cassandra strategy does a check in Lua before attempting inserts, so it doesn't require any special treatment.
+    PostgreSQL. 
+    {% if_version lte:3.3.x %}
+    The Cassandra strategy does a check in Lua before attempting inserts, so it doesn't require any special treatment.
+    {% endif_version %}
   </p>
   </td>
 </tr>
@@ -444,8 +542,14 @@ Here's a non-exhaustive explanation of some of the field attributes available:
     </ul>
 
     <br><br>
+    {% if_version lte:3.3.x %}
     In Cassandra this is handled with pure Lua code, but in PostgreSQL it will be necessary to declare the references
     as <code>ON DELETE CASCADE/NULL/RESTRICT</code> in a migration.
+    {% endif_version %}
+    {% if_version gte:3.4.x %}
+    In PostgreSQL, you must declare the references
+    as <code>ON DELETE CASCADE/NULL/RESTRICT</code> in a migration.
+    {% endif_version %}
   </td>
 </tr>
 </tbody>
