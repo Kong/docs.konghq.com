@@ -19,9 +19,7 @@ Here are a few benefits of running KIC in {{site.konnect_short_name}} over a sel
 * **Easy to set up:** The wizard allows you to add your KIC runtime group to {{site.konnect_short_name}} in minutes.
 * **Centralized API management:** KIC in {{site.konnect_short_name}} allows organizations to have a centralized platform for API management, regardless of your individual teams' choice of API management, whether that is using Kubernetes or {{site.konnect_short_name}}. 
 * **Monitor your KIC analytics:** By associating with {{site.konnect_short_name}}, you can [view the analytics](/konnect/analytics/) from your KIC runtime instances alongside any of your self-managed {{site.konnect_short_name}} runtime instances. 
-
-<!-- Uncomment this once API Products is GA
-* **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers with [API Products](/konnect/api-products/). -->
+* **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers with [API Products](/konnect/api-products/).
 
 ## KIC in {{site.konnect_short_name}} association
 
