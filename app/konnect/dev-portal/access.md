@@ -3,12 +3,12 @@ title: Access the Dev Portal
 content_type: reference
 ---
 
-Access the Dev Portal to view any [published services](/konnect/servicehub/service-documentation/)
-and [register applications against services](/konnect/dev-portal/applications/dev-reg-app-service/).
+Access the Dev Portal to view any [Published API Product](/konnect/api-products/service-documentation/)
+and [register applications against API Products](/konnect/dev-portal/applications/dev-reg-app-service/).
 
 ## Access the Dev Portal
 
-You can access the Dev Portal using the Dev Portal URL. The URL is displayed when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview page.
+You can access the Dev Portal using the Dev Portal URL. The URL is displayed when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published API Products** overview page.
 The Dev Portal URL looks like this: 
     
     https://example.us.portal.konghq.com/
@@ -16,15 +16,15 @@ The Dev Portal URL looks like this:
 {:.note}
 > **Note:** If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
 
-## View a service in the Dev Portal {#url}
+## View an API product in the Dev Portal {#url}
 
-The Dev Portal page contains a list of services that are published on the Dev Portal. 
+The Dev Portal page contains a list of API Products that are published on the Dev Portal. 
 
-To find a service in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published Services** overview. This page lists every published service that is being managed by {{site.konnect_short_name}}. 
+To find an API product in the Dev Portal, click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published API Products** overview. This page lists every published API Product that is being managed by {{site.konnect_short_name}}. 
 
-To open a published service in the Dev Portal:  
+To open a published API Product in the Dev Portal:  
 
-* Find a service, click the **more information** icon, then select **View in portal**.
+* Find an API product, click the **more information** icon, then select **View in portal**.
 
 
 ## Enable or disable public access for a Dev Portal {#access}

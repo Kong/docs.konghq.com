@@ -66,7 +66,7 @@ instead of the previous 1 (trace all requests).
       If you use queues in these plugins, new parameters must be configured.
       See each plugin's documentation for details.
 
-  * The module `kong.tools.batch_queue` has been renamed to `kong.tools.batch` and 
+  * The module `kong.tools.batch_queue` has been renamed to `kong.tools.queue` and 
   the API was changed.  If your custom plugin uses queues, it must 
   be updated to use the new API.
   [#10172](https://github.com/Kong/kong/pull/10172)

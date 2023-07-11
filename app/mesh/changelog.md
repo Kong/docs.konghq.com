@@ -606,4 +606,3 @@ Built on top of Kuma 1.1.2 with [fixes and improvements](https://github.com/kuma
 - Added FIPS support to the data plane proxy sidecar
 - Added XDSv3 for control plane to data plane proxy communication
 - Build on top of Kuma 1.1.0 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#110)
-

@@ -14,6 +14,30 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **API Products API released**
 : The API products API has been released to support the objective of making API consumption straightforward for developers. Explore the API spec on our [Dev Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
 
+**API Products**
+: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
+: **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
+
+**Composite runtime groups**
+: {{site.konnect_short_name}} now supports composite runtime groups, which enable users to leverage shared infrastructure across multiple teams in a secure, compliant fashion. 
+With composite runtime groups, organizations can reduce infrastructure costs while providing the appropriate access to teams through RBAC.
+
+: Learn more about composite runtime groups:
+* [Intro to composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/)
+* [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
+* [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
+* [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
+* [API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9)
+
+**Analytics for composite runtime groups**
+: Custom reports now support grouping and filtering by composite runtime group.
+
+**Kong Ingress Controller for Kubernetes in {{site.konnect_short_name}}**
+: The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
+* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
+* {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
+
 ## June 2023
 
 **Contextual Developer Analytics**
@@ -36,7 +60,6 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 
 **OIDC Configuration API**
 : Enterprise orgs using OIDC login can now specify [additional scopes](/konnect/api/identity-management/sso/) to be requested during the authorization grant flow. This allows organizations to request [custom claims](/konnect/api/identity-management/sso/) from their IdP. The custom claims can then be used to override the default mapping for the `name`, `email` and `groups` attributes which are used during the login flow. For example, the `upn` scope may be required to retrieve the `userPrincipalName` claim from Azure which can then be  mapped to `email` attribute in Konnect.
-
 
 ## May 2023
 

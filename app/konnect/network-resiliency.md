@@ -57,8 +57,7 @@ connection gets interrupted. You can't access the control plane or
 change any configuration during this time.
 
 A connection interruption has no negative effect on the function of your
-data plane proxies. They continue to proxy and route traffic normally, and any
-services implemented through the Service Hub continue to work as before.
+data plane proxies. They continue to proxy and route traffic normally.
 
 ### What happens if the control plane and data plane disconnect?
 

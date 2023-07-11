@@ -336,13 +336,21 @@
 /konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
 /konnect/shared-config                               /konnect/runtime-manager/configuration/
-/konnect/vitals/analyze/                             /konnect/analytics/services-and-routes/
+/konnect/vitals/analyze/                             /konnect/analytics/
 /konnect/vitals/*                                    /konnect/analytics/:splat
 /konnect/analytics/generate-reports                  /konnect/analytics/use-cases/
 /konnect/analytics/summary-dashboard                 /konnect/analytics/
+/konnect/analytics/services-and-routes/              /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
-
+/konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
+/konnect/servicehub/enable-service-plugin/            /konnect/runtime-manager/enable-service-plugin/
+/konnect/servicehub/enable-route-plugin/              /konnect/runtime-manager/enable-route-plugin/
+/konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
+/konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
+/konnect/servicehub/service-documentation/            /konnect/api-products/service-documentation
+/konnect/servicehub/service-implementations/          /konnect/api-products/
+/konnect/servicehub/service-versions/                 /konnect/api-products/
 #API Redirects
 
 /konnect/identity-management-api/   https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
