@@ -106,7 +106,7 @@ Learn more about composite runtime groups:
 * [Intro to composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/)
 * [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
-* [Invariances in runtime groups](/konnect/runtime-manager/composite-runtime-groups/invariances/)
+* [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
 
 ### Runtime group dashboard
 
