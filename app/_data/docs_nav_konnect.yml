@@ -314,6 +314,14 @@
           absolute_url: true
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
+    - text: Mesh Manager API
+      items:
+        - text: API Documentation
+          url: https://deploy-preview-252--kong-platform-api.netlify.app/konnect/mesh-control-planes/v0/
+          absolute_url: true
+        - text: Kong Mesh API Reference
+          url: https://mink-beta--kongdocs.netlify.app/mesh/latest/reference/http-api/
+          absolute_url: true
     - text: Reference
       items:
         - text: Filtering

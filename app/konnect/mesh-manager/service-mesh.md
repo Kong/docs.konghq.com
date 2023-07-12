@@ -1,5 +1,5 @@
 ---
-title: Create a service mesh
+title: Create a mesh
 content_type: how-to
 beta: true
 ---
@@ -9,7 +9,7 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 1. Create the global control plane in {{site.konnect_short_name}}.
 1. Add and configure a zone for your control plane.
 1. Configure `kumactl` to connect to your global control plane.
-1. Add services to your service mesh.
+1. Add services to your mesh.
 
 ### Prerequisites
 
@@ -23,16 +23,16 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 1. Click **New Control Plane** and complete the fields as needed.
 1. Select the control plane you just created, and then click **Zones** in the sidebar.
 1. Click **Create Zone**, configure the fields as needed, and follow the steps in the wizard to connect your zone to {{site.konnect_short_name}}.
-1. From the {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) navigation menu, and select the `example-cp` control plane.
+1. From the {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) navigation menu, and select the control plane you created in step 2.
 1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 
-### Add services to your service mesh
+### Add services to your mesh
 
-After you've configured your global control plane, you can ensure your services are added to your service mesh in {{site.konnect_short_name}}. 
+After you've configured your global control plane, you can begin adding your services to your mesh in {{site.konnect_short_name}}. 
 
-If you're using Kubernetes, you must add the [kuma.io/sidecar-injection](/mesh/latest/reference/kubernetes-annotations/#kumaiosidecar-injection) label to the namespace. This will automatically enable {{site.product_mesh_name}} and register the service or pod in the service mesh.
+If you're using Kubernetes, you must add the [kuma.io/sidecar-injection](/mesh/latest/reference/kubernetes-annotations/#kumaiosidecar-injection) label to the namespace or deployments you want to bring into the mesh. This will automatically enable {{site.product_mesh_name}} and register the service pods in the mesh.
 
-If you are using universal, you must create a [dataplane definition](/mesh/latest/production/dp-config/dpp-on-universal/), pass it to the `kuma-dp run` command on a virtual machine, and point it to the local zone control plane. When you use universal, you connect the local zone control plane to {{site.konnect_short_name}} instead of the dataplanes.
+If you are using universal, you must create a [dataplane definition](/mesh/latest/production/dp-config/dpp-on-universal/), pass it to the `kuma-dp run` command on a virtual machine, and point it to the local zone control plane.
 
 
 ## More information
