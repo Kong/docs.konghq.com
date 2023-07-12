@@ -75,8 +75,6 @@ You can override or set the TTLs directly with the references too:
 You can also create multiple vaults for different types of secrets,
 and set the TTLs by secret types, e.g.:
 
-{% navtabs %}
-{% navtab Admin API %}
 
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/aws-certs  \
@@ -122,9 +120,6 @@ You can override or set the TTLs directly with the references too:
 You can also create multiple vaults for different types of secrets,
 and set the TTLs by secret types, e.g.:
 
-{% navtabs %}
-{% navtab Admin API %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/gcp-certs  \
   --data name=gcp \
@@ -169,9 +164,6 @@ You can override or set the TTLs directly with the references too:
 You can also create multiple vaults for different types of secrets,
 and set the TTLs by secret types, e.g.:
 
-{% navtabs %}
-{% navtab Admin API %}
-
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/hcv-certs  \
   --data name=hcv \
@@ -179,9 +171,6 @@ curl -i -X PUT http://HOSTNAME:8001/vaults/hcv-certs  \
   --data config.token="<my-token>" \
   --data config.ttl=21600
 ```
-
-{% endnavtab %}
-{% endnavtabs %}
 
 Now you can reference certificates with:
 
