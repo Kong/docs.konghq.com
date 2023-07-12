@@ -32,7 +32,7 @@ Token endpoints for IdPs are:
 | Auth0 | POST `https://YOUR_AUTH0_SUBDOMAIN.REGION.auth0.com/oauth/token` | `{ "grant_type": "client_credentials", "audience": "<your_audience>" }` |
 | Curity | POST `https://YOUR_CURITY_DOMAIN/oauth/v2/oauth-token` | `{ "grant_types": "client_credentials" }` |
 | Okta | POST `https://YOUR_OKTA_SUBDOMAIN.okta.com/oauth2/default/v1/token` | `{ "grant_types": "client_credentials" }` |
-| Azure | GET `https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/token` | `{"grant_type": "client_credentials", "scope":"https://graph.microsoft.com/.default"}|
+| Azure | GET `https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/token` | `{"grant_type": "client_credentials", "scope":"https://graph.microsoft.com/.default"}`|
 
 ### Authentication with session cookie
 
