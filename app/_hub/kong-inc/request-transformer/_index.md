@@ -182,7 +182,7 @@ plugins:
 ```bash
 curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
-  --data "config.add.headers=h1:v1,h2:v2"
+  --data "config.add.headers=h1:v1,h2:v1"
 ```
 
 <table>
@@ -206,7 +206,7 @@ curl -X POST http://localhost:8001/services/example-service/plugins \
 ```bash
 curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
-  --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
+  --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v1", "h2:v1"]}}}'
 ```
 
 <table>
