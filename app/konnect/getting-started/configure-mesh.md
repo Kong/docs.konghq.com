@@ -86,9 +86,9 @@ By following the instructions in this guide, you've created a {{site.mesh_produc
 
 ## Next steps
 
-Now that you've configured a global control plane, you can continue by [importing {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import/).
-
-You can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
+Now that you've configured a global control plane, you can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
+{:.note}
+> **Note:** When following these or any of the other guides for Kong Mesh, use the instructions for Universal mode as they will show you how to utilize `kumactl` to interact with Konnect Mesh Manager.
 
 <!--* * [Zone Ingress](/mesh/latest/production/cp-deployment/zone-ingress/) - Set up zone ingress in {{site.mesh_product_name}}.
 * [Zone Egress](/mesh/latest/production/cp-deployment/zoneegress/) - Set up zone egress in {{site.mesh_product_name}}.-->
