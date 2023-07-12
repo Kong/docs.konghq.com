@@ -94,7 +94,7 @@
   items:
     - text: Overview
       url: /mesh-manager/
-    - text: Create a service mesh
+    - text: Create a mesh
       url: /mesh-manager/service-mesh/
 
 - title: Service Hub
