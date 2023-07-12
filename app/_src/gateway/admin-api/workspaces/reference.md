@@ -296,7 +296,7 @@ HTTP 204 No Content
 ```
 
 
-Cascading delete a workspace. Normally, deleting a workspace requires its entities to be deleted first. This option allows you to cascading delete a workspace without manually deleting its entities first.
+Perform a cascading delete. Normally, deleting a workspace requires its entities to be deleted first. The `cascade` option lets you delete a workspace and all of its entities in one request.
 
 ```
 DELETE /workspaces/{name or id}?cascade=true
