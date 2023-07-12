@@ -1,0 +1,9 @@
+---
+layout: default
+---
+
+<div id="app"></div>
+
+<script>
+  window.oas = { "product": {{ page.product_info | jsonify }}, "version": {{ page.version | jsonify }} }
+</script>
