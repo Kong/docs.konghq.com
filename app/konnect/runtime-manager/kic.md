@@ -19,9 +19,7 @@ Here are a few benefits of running KIC in {{site.konnect_short_name}} over a sel
 * **Easy to set up:** The wizard allows you to add your KIC runtime group to {{site.konnect_short_name}} in minutes.
 * **Centralized API management:** KIC in {{site.konnect_short_name}} allows organizations to have a centralized platform for API management, regardless of your individual teams' choice of API management, whether that is using Kubernetes or {{site.konnect_short_name}}. 
 * **Monitor your KIC analytics:** By associating with {{site.konnect_short_name}}, you can [view the analytics](/konnect/analytics/) from your KIC runtime instances alongside any of your self-managed {{site.konnect_short_name}} runtime instances. 
-
-<!-- Uncomment this once API Products is GA
-* **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers with [API Products](/konnect/api-products/). -->
+* **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers with [API Products](/konnect/api-products/).
 
 ## KIC in {{site.konnect_short_name}} association
 
@@ -47,8 +45,8 @@ After your KIC deployment is connected to {{site.konnect_short_name}}, you can v
 {:.note}
 > **Note**: The KIC deployment in {{site.konnect_short_name}} is currently read-only. The configuration of the gateway runtime is controlled by changes to resources in the Kubernetes API, and reflected here. For more information about how to manage these resources in KIC, see [Custom Resources](/kubernetes-ingress-controller/latest/concepts/custom-resources/).
 
-<!-- ![KIC runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
-> **Figure 1:** This image shows a KIC runtime instance dashboard. For each KIC runtime instance, you can see details about the runtime instance, analytics, and KIC status details. -->
+![KIC runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
+> **Figure 1:** This image shows a KIC runtime instance dashboard. For each KIC runtime instance, you can see details about the runtime instance, analytics, and KIC status details.
 
 Item | Description
 ------|------------
