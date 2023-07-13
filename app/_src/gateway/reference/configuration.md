@@ -419,6 +419,17 @@ Default: none
 
 ---
 {% endif_version %}
+
+{% if_version gte:3.4.x %}
+### worker_events_max_payload
+
+Specifies the max payload size the `worker_events` can accept. The max allowed
+is 16MB. **Note:** Increasing this value has potential negative impact on Kong's
+response latency and memory usage.
+
+**Default:** `65535`. 
+{% endif_version %}
+
 ## Hybrid Mode section
 
 ### role
