@@ -37,6 +37,13 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Upstream Admin | Access to configure upstreams for an existing runtime group. |
 | Vault Admin | Access to configure vaults for an existing runtime group. |
 
+## Administration
+
+| Role                        | Description  |
+|-----------------------------|--------------|
+| Identity Management | Identity management admin allows write access to users, teams, system accounts, tokens, IdP configurations, and authentication settings. |
+| Audit Logs Setup | Audit Logs Setup allows configuring Webhooks for receiving region-specific Audit Logs. Admin permission for each region grants full write access to Audit Logs configuration. |
+
 <!-- ## Organizations
 
 | Role                        | Description  |
