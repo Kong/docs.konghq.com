@@ -600,24 +600,30 @@ The output shows all of the connected data plane instances in the cluster:
 {
     "data": [
         {
-            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
-            "hostname": "data-plane-2",
-            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
-            "ip": "192.168.10.3",
-            "last_seen": 1580623199,
-            "status": "connected"
+            "ip": "172.24.0.10",
+            "updated_at": 1689266492,
+            "config_hash": "595214af5fb356cc569313184c64d9b7",
+            "sync_status": "normal",
+            "version": "3.3.0.0",
+            "id": "10424658-f139-476c-b74f-e0a6e6ec9402",
+            "hostname": "kongDP1",
+            "ttl": 1209593,
+            "last_seen": 1689266492
         },
         {
-            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
-            "hostname": "data-plane-1",
-            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
-            "ip": "192.168.10.4",
-            "last_seen": 1580623200,
-            "status": "connected"
+            "ip": "172.24.0.11",
+            "updated_at": 1689266472,
+            "config_hash": "595214af5fb356cc569313184c64d9b7",
+            "sync_status": "normal",
+            "version": "3.3.0.0",
+            "id": "3487f520-4f52-4ee5-ad6f-50756822f0c5",
+            "hostname": "kongDP2",
+            "ttl": 1209572,
+            "last_seen": 1689266472
         }
     ],
     "next": null
-}
+}%
 ```
 
 ## References
