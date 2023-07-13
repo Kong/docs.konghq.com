@@ -596,6 +596,7 @@ curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
 
 The output shows all of the connected data plane instances in the cluster:
 
+{% if_version gte:3.3.x %}
 ```json
 {
     "data": [
@@ -623,8 +624,31 @@ The output shows all of the connected data plane instances in the cluster:
         }
     ],
     "next": null
-}%
+}
 ```
+{% endif_version %}
+{% if_version lte:3.2.x %}
+```
+{
+    "data": [
+        {
+            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
+            "hostname": "data-plane-2",
+            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
+            "ip": "192.168.10.3",
+            "last_seen": 1580623199,
+            "status": "connected"
+        },
+        {
+            "config_hash": "a9a166c59873245db8f1a747ba9a80a7",
+            "hostname": "data-plane-1",
+            "id": "ed58ac85-dba6-4946-999d-e8b5071607d4",
+            "ip": "192.168.10.4",
+            "last_seen": 1580623200,
+            "status": "connected"
+        }
+```
+{% endif_version %}
 
 ## References
 
