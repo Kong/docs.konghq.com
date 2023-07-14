@@ -1,3 +1,22 @@
+This plugin invokes
+[OpenWhisk Action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
+The Apache OpenWhisk plugin can be used in combination with other request plugins to secure, manage,
+or extend the function.
+
+## Installation 
+
+This plugin is not bundled with {{site.base_gateway}}.
+
+You can either use the LuaRocks package manager to install the plugin:
+
+```bash
+luarocks install kong-plugin-openwhisk
+```
+
+Or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
+For more information on plugin installation, see the documentation
+[Plugin Development - (un)Install your plugin](/gateway/latest/plugin-development/distribution/).
+
 ## Demonstration
 
 For this demonstration, we are running Kong and
@@ -114,6 +133,11 @@ plugins:
 
     {% endnavtab %}
     {% endnavtabs %}
+
+{:.note}
+> **Note**: If `config.https_verify` is set to `true`, then the server certificate
+is verified according to the CA certificates specified by the
+`lua_ssl_trusted_certificate` directive in your Kong configuration.
 
 ### Step 4. Make a request to invoke the action
 

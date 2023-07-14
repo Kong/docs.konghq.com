@@ -42,7 +42,7 @@ Server: kong/1.2.1
 1. Add a gRPC deployment and service:
 
     ```bash
-    kubectl apply -f https://bit.ly/grpcbin-service
+    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/sample-apps/grpc.yaml
     service/grpcbin created
     deployment.apps/grpcbin created
     ```
@@ -117,7 +117,9 @@ Ensure that you have it installed on your local system.
 
 ## Enable the `GatewayAlpha` feature gate
 
-If you are using the Gateway API, you need to enable the [`GatewayAlpha`](/kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates) feature gate in the Kubernetes Ingress Controller.
+If you are using the Gateway API, you need to enable the 
+[`GatewayAlpha`](/kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates) 
+feature gate in the {{site.kic_product_name}}.
 
 ## Deploy a gRPC test application
 

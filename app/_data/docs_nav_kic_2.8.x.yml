@@ -71,6 +71,8 @@ items:
         url: /guides/upgrade
       - text: Upgrading to Kong 3.x
         url: /guides/upgrade-kong-3x
+      - text: Using Kong Enterprise
+        url: /guides/choose-gateway-image
       - text: Getting Started using Istio
         url: /guides/getting-started-istio
       - text: Using Custom Resources

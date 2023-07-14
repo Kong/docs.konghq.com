@@ -1,9 +1,25 @@
+Validate individual WebSocket messages against to a user-specified schema
+before proxying them.
+
+Message schema can be configured by type (text or binary) and sender (client
+or upstream).
+
+When an incoming message is invalid according to the schema, a close frame is
+sent to the sender (status: `1007`) and the peer before closing the
+connection.
+
 ## Usage
 
 {:.note}
 > **Note**: Currently, the only supported validation type is [JSON schema
 draft4](https://json-schema.org/specification-links.html#draft-4), so all
 examples will use this.
+
+At least one of the following complete message validation configurations must be defined:
+  * `config.client.text.type` and `config.client.text.schema`
+  * `config.client.binary.type` and `config.client.binary.schema`
+  * `config.upstream.text.type` and `config.upstream.text.schema`
+  * `config.upstream.binary.type` and `config.upstream.binary.schema`
 
 ### Validate client text frames
 

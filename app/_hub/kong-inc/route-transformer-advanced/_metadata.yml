@@ -10,6 +10,4 @@ notes: --
 categories:
   - transformations
 publisher: Kong Inc.
-desc: 'Transform routing by changing the upstream server, port, or path'
-description: |
-  This plugin transforms the routing on the fly in Kong, changing the upstream server, port, or path to hit. The substitutions can be configured via flexible templates.
+desc: Transform routing by changing the upstream server, port, or path

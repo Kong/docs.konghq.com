@@ -25,14 +25,16 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/configuration/"
       end
 
-      def source_file; end
+      def source_file
+        @file.gsub('app/', '')
+      end
 
       def content
         ''
       end
 
       def nav_title
-        'Reference'
+        'Configuration reference'
       end
 
       def breadcrumb_title
@@ -40,6 +42,19 @@ module PluginSingleSource
       end
 
       def icon; end
+
+      def edit_link
+        if @release.vendor == 'kong-inc'
+          if @release.enterprise_plugin?
+            "https://github.com/Kong/kong-ee/edit/master/plugins-ee/#{@release.name}/kong/plugins/#{@release.name}/schema.lua"
+          else
+            name = @release.name == 'serverless-functions' ? 'pre-function' : @release.name
+            "https://github.com/Kong/kong/edit/master/kong/plugins/#{name}/schema.lua"
+          end
+        elsif @release.schema
+          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/#{@release.schema.file_path}"
+        end
+      end
 
       private
 

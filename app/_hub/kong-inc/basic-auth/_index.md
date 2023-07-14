@@ -1,6 +1,10 @@
+Add Basic Authentication to a service or a route with username and password protection. 
+The plugin checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers (in that order).
+
 ## Usage
 
-To use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
+To use the plugin, you first need to create a Consumer to associate one or more credentials to. 
+The Consumer represents a developer or an application consuming the upstream service.
 
 ### Create a Consumer
 

@@ -2,7 +2,7 @@
 title: Version Compatibility
 ---
 
-Kong's Ingress Controller is compatible with different flavors of Kong.
+Kong's Kubernetes ingress controller is compatible with different flavors of Kong.
 The following sections detail on compatibility between versions for the last
 five controller versions. Compatibility for older versions is available in
 those versions' documentation.
@@ -115,6 +115,7 @@ For each {{site.kic_product_name}} release, tests are run to verify this documen
 | Istio 1.15                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Istio 1.16                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Istio 1.17                | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Istio 1.18                | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
 [istio]:https://istio.io
 [istio-guide]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started-istio/

@@ -6,7 +6,7 @@ chapter: 5
 ---
 
 Authentication is the process of verifying that a requester has permissions to access a resource. 
-As it's name implies, API gateway authentication authenticates the flow of data to and from your upstream services. 
+As its name implies, API gateway authentication authenticates the flow of data to and from your upstream services. 
 
 {{site.base_gateway}} has a library of plugins that support 
 the most widely used [methods of API gateway authentication](/hub/#authentication). 

@@ -70,3 +70,11 @@
       node.style.position = 'unset';
       body.appendChild(num);
     }
+- type: function
+  name: zoomPercentage
+  javascript: |
+    function (percentage) {
+      const currentZoom = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('zoom')) || 1;
+      const newZoom = currentZoom + (currentZoom * percentage / 100);
+      document.documentElement.style.transform = `scale(${newZoom})`;
+    }

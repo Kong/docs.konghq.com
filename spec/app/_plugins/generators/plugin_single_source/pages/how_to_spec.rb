@@ -129,4 +129,57 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
       end
     end
   end
+
+  describe '#breadcrumbs' do
+    context 'when _index.md exists' do
+      let(:is_latest) { true }
+      let(:version) { '2.8.x' }
+      let(:source) { '_index' }
+      let(:file) { 'how-to/nested/_tutorial.md' }
+      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+
+      it 'returns a hash containing the page\'s breadcrumbs' do
+        expect(subject.breadcrumbs).to eq([
+          { text: 'Authentication', url: '/hub/?category=authentication' },
+          { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+          { text: 'How to', url: '/hub/kong-inc/jwt-signer/how-to/' },
+          { text: 'Using the Kong JWT Signer plugin', url: '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' }
+        ])
+      end
+
+      context 'for older versions' do
+        let(:is_latest) { false }
+        let(:version) { '2.5.x' }
+        let(:source) { '_2.2.x' }
+        let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
+
+        it 'returns a hash containing the page\'s breadcrumbs' do
+          expect(subject.breadcrumbs).to eq([
+            { text: 'Authentication', url: '/hub/?category=authentication' },
+            { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/2.5.x/' },
+            { text: 'How to', url: '/hub/kong-inc/jwt-signer/2.5.x/how-to/' },
+            { text: 'Using the Kong JWT Signer plugin', url: '/hub/kong-inc/jwt-signer/2.5.x/how-to/nested/tutorial/' }
+          ])
+        end
+      end
+    end
+
+    context 'when _index.md does not exist' do
+      let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'acme/kong-plugin', site:) }
+      let(:is_latest) { true }
+      let(:version) { '2.8.x' }
+      let(:source) { '_index' }
+      let(:file) { 'how-to/_local-testing.md' }
+      let(:source_path) { File.expand_path("_hub/acme/kong-plugin/#{source}/", site.source) }
+
+      it 'returns a hash containing the page\'s breadcrumbs' do
+        expect(subject.breadcrumbs).to eq([
+          { text: 'Logging', url: '/hub/?category=logging' },
+          { text: 'Sample plugin', url: '/hub/acme/kong-plugin/' },
+          { text: 'How to', url: nil },
+          { text: 'Using the Sample plugin plugin', url: '/hub/acme/kong-plugin/how-to/local-testing/' }
+        ])
+      end
+    end
+  end
 end

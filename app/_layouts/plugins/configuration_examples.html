@@ -3,8 +3,8 @@ layout: plugins/show
 type: plugin
 ---
 
-<h2 id="configuration">Configuration Examples</h2>
+<h2 id="configuration">Basic configuration examples</h2>
 
 {% if page.hub_examples.render? %}
-  {% include hub-examples.html %}
+  {% include hub-examples.html hub_examples=page.hub_examples render_intro_text=true %}
 {% endif %}

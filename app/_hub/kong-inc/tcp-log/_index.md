@@ -1,3 +1,5 @@
+Log request and response data to a TCP server.
+
 ## Log format
 
 {% include /md/plugins-hub/log-format.md %}

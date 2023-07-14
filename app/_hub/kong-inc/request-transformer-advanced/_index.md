@@ -1,4 +1,16 @@
-## Template as Value
+Transform client requests before they reach the upstream server. The plugin lets you match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute the strings into transformed requests via flexible templates.
+
+In addition to the basic functionality available in the open-source [Request Transformer plugin](/hub/kong-inc/request-transformer/), 
+the advanced version of the plugin also lets you limit the list of allowed parameters in the request body.
+Set this up with the [`allow.body`](/hub/kong-inc/request-transformer-advanced/configuration/#config-allow-body) configuration parameter.
+
+{:.note}
+> **Notes**:
+* If a value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array
+notation must be used instead.
+* The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
+
+## Template as value
 
 You can use any of the current request headers, query parameters, and captured
 URI groups as templates to populate supported config fields.

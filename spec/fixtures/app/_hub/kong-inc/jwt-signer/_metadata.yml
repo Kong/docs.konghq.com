@@ -2,25 +2,8 @@ name: Kong JWT Signer
 dbless_compatible: 'yes'
 categories:
   - authentication
-extra: |
-  **Configuration Notes:**
-
-  Most of the parameters are optional, but you need to specify some options to actually
-  make the plugin work:
-
-  * For example, signature verification cannot be done without the plugin knowing about
-  config.access_token_jwks_uri and/or config.channel_token_jwks_uri.
-
-  * Also for introspection to work, you need to specify introspection endpoints
-  config.access_token_introspection_endpoint and/or `config.channel_token_introspection_endpoint.
-
 publisher: Kong Inc.
 desc: Verify and sign one or two tokens in a request
-description: |
-  From \_index.md: The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign
-  one or two tokens in a request. With a two token request, one token
-  is allocated to an end user and the other token to the client application,
-  for example.
 enterprise: true
 plus: true
 kong_version_compatibility:

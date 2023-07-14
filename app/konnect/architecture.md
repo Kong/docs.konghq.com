@@ -20,9 +20,9 @@ plugins as necessary.
 For example, before routing a request, the client might be required to
 authenticate. This delivers several benefits, including:
 
-* The service doesn’t need its own authentication logic since the data plane is
+* The Gateway service doesn’t need its own authentication logic since the data plane is
 handling authentication.
-* The service only receives valid requests and therefore cycles are not wasted
+* The Gateway service only receives valid requests and therefore cycles are not wasted
 processing invalid requests.
 * All requests are logged for central visibility of traffic.
 

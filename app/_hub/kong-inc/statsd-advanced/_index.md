@@ -1,3 +1,25 @@
+Log [metrics](#metrics) for a service or a route
+to a StatsD server.
+It can also be used to log metrics on [Collectd](https://collectd.org/)
+daemon by enabling its
+[StatsD plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+By default, the plugin sends a packet for each metric it observes. The `udp_packet_size` option
+configures the greatest datagram size the plugin can combine, this should be less than
+65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
+
+{:.important}
+> Starting in Gateway version 3.0.x, StatsD Advanced has been combined with the open-sourced [StatsD](/hub/kong-inc/statsd/) plugin.
+StatsD Advanced has been deprecated.
+
+{% if_plugin_version lte:2.8.x %}
+The StatsD Advanced plugin provides
+features not available in the open-source [StatsD](/hub/kong-inc/statsd/) plugin, such as:
+* Ability to choose status codes to log to metrics.
+* More granular status codes per workspace.
+* Ability to use TCP instead of UDP.
+{% endif_plugin_version %}
+
 ## Metrics
 
 Metric                     | Description | Namespace
