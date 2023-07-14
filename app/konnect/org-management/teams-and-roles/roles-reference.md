@@ -41,8 +41,8 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 
 | Role                        | Description  |
 |-----------------------------|--------------|
-| Identity Management | Identity management admin allows write access to users, teams, system accounts, tokens, IdP configurations, and authentication settings. |
-| Audit Logs Setup | Audit Logs Setup allows configuring Webhooks for receiving region-specific Audit Logs. Admin permission for each region grants full write access to Audit Logs configuration. |
+| Identity Management | Access to users, teams, system accounts, tokens, IdP configurations, and authentication settings. |
+| Audit Logs Setup | Access to configuring web-hooks to receive region-specific audit logs and to trigger audit logs replays. |
 
 <!-- ## Organizations
 
