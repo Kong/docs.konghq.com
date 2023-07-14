@@ -36,6 +36,13 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 * {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
 
+**Identity Management and Audit Log Roles**
+: Introducing two new administrative roles in Konnect, `Identity Management` and `Audit Logs Setting`.
+- `Identity Management` - access to users, teams, system accounts, tokens, IdP configurations, and authentication settings.
+- `Audit Logs Setting` - access to configuring web-hooks to receive region-specific audit logs and to trigger audit logs replays.
+
+These roles provide finer control over administrative capabilities inline with least privilege principles.
+
 ## June 2023
 
 **Contextual Developer Analytics**
