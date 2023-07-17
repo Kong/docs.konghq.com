@@ -59,7 +59,7 @@ Group claims automatically add or remove users from group memberships. To config
 
 1. Click **Add optional claim**, select **ID** as the token type, and **email** as the claim.
 
-1. Click **Add**.
+1. Click **Add**. If you're prompted to enable permissions, click **Add** again. 
 
 ## Set up SSO in {{site.konnect_short_name}}
 
