@@ -22,7 +22,7 @@ deck file openapi2kong [command-specific flags] [global flags]
 :  Output format: yaml or json. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  Help for openapi2kong. (Default: `false`)
+:  Help for openapi2kong.
 
 `-o`, `--output-file`
 :  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)

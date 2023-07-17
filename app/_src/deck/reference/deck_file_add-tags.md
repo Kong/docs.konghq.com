@@ -21,7 +21,7 @@ deck file add-tags [command-specific flags] [global flags]
 :  Output format: JSON or YAML. (Default: `"YAML"`)
 
 `-h`, `--help`
-:  Help for add-tags. (Default: `false`)
+:  Help for add-tags.
 
 `-o`, `--output-file`
 :  Output file to write. Use `-` to write to stdout. (Default: `"-"`)

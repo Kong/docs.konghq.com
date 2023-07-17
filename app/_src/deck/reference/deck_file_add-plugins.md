@@ -46,7 +46,7 @@ multiple plugins.
 :  Output format: JSON or YAML. (Default: `"YAML"`)
 
 `-h`, `--help`
-:  Help for add-plugins. (Default: `false`)
+:  Help for add-plugins.
 
 `-o`, `--output-file`
 :  Output file to write. Use `-` to write to stdout. (Default: `"-"`)

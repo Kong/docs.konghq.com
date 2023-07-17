@@ -31,7 +31,7 @@ deck file remove-tags [command-specific flags] [global flags]
 :  Output format: JSON or YAML. (Default: `"YAML"`)
 
 `-h`, `--help`
-:  Help for remove-tags. (Default: `false`)
+:  Help for remove-tags.
 
 `--keep-empty-array`
 :  Keep empty tag arrays in output. (Default: `false`)

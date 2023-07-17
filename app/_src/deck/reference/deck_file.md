@@ -9,7 +9,7 @@ Subcommand to host the decK file manipulation operations.
 ## Flags
 
 `-h`, `--help`
-:  Help for file. (Default: `false`)
+:  Help for file.
 
 
 

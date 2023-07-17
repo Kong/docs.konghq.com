@@ -55,7 +55,7 @@ deck file patch [command-specific flags] [global flags]
 :  Output format: yaml or json. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  Help for patch. (Default: `false`)
+:  Help for patch.
 
 `-o`, `--output-file`
 :  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)

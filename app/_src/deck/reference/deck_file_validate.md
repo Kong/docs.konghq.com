@@ -22,7 +22,7 @@ deck file validate [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  Help for validate. (Default: `false`)
+:  Help for validate.
 
 `--online`
 :  Perform validations against the Kong API. When this flag is used, validation is done

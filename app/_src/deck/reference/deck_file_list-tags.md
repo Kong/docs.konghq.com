@@ -21,7 +21,7 @@ deck file list-tags [command-specific flags] [global flags]
 :  Output format: JSON, YAML, or PLAIN. (Default: `"PLAIN"`)
 
 `-h`, `--help`
-:  Help for list-tags. (Default: `false`)
+:  Help for list-tags.
 
 `-o`, `--output-file`
 :  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)

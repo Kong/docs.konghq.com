@@ -27,7 +27,7 @@ deck file merge [command-specific flags] [global flags]
 :  Output format: yaml or json. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  Help for merge. (Default: `false`)
+:  Help for merge.
 
 `-o`, `--output-file`
 :  Output file to write to. Use `-` to write to stdout. (Default: `"-"`).

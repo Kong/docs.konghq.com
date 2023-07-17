@@ -20,7 +20,7 @@ deck file convert [command-specific flags] [global flags]
 :  Format of the source file. Allowed formats: [`kong-gateway` `kong-gateway-2.x`].
 
 `-h`, `--help`
-:  Help for convert. (Default: `false`)
+:  Help for convert.
 
 `--input-file`
 :  Source configuration file to be converted. Use `-` to read from stdin.
