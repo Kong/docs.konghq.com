@@ -10,7 +10,7 @@ parsing issues. It also checks for foreign relationships
 and alerts if there are broken relationships, or missing links present.
 
 No communication takes places between decK and Kong during the execution of
-this command unless --online flag is used.
+this command unless the `--online` flag is used.
 
 
 ## Syntax
@@ -22,10 +22,10 @@ deck file validate [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for validate (Default: `false`)
+:  Help for validate. (Default: `false`)
 
 `--online`
-:  perform validations against Kong API. When this flag is used, validation is done
+:  Perform validations against the Kong API. When this flag is used, validation is done
 via communication with Kong. This increases the time for validation but catches 
 significant errors. No resource is created in Kong. (Default: `false`)
 
@@ -33,16 +33,16 @@ significant errors. No resource is created in Kong. (Default: `false`)
 :  Maximum number of concurrent requests to Kong. (Default: `10`)
 
 `--rbac-resources-only`
-:  indicate that the state file(s) contains RBAC resources only (Kong Enterprise only). (Default: `false`)
+:  Indicate that the state file(s) contains RBAC resources only (Kong Enterprise only). (Default: `false`)
 
 `-s`, `--state`
-:  file(s) containing Kong's configuration.
+:  File(s) containing Kong's configuration.
 This flag can be specified multiple times for multiple files.
-Use '-' to read from stdin. (Default: `[kong.yaml]`)
+Use `-` to read from stdin. (Default: `[kong.yaml]`)
 
 `-w`, `--workspace`
-:  validate configuration of a specific workspace (Kong Enterprise only).
-This takes precedence over _workspace fields in state files.
+:  Validate configuration of a specific workspace (Kong Enterprise only).
+This takes precedence over `_workspace` fields in state files.
 
 
 

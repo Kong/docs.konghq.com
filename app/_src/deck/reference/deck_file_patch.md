@@ -6,38 +6,41 @@ content_type: reference
 
 Apply patches on top of a decK file.
 
-The input file will be read, the patches will be applied, and if successful, written
-to the output file. The patches can be specified by a '--selector' and one or more
-'--value' tags, or via patch-files.
+The input file is read, the patches are applied, and if successful, written
+to the output file. The patches can be specified by a `--selector` and one or more
+`--value` tags, or via patch files.
 
-When using '--selector' and '--values', the items will be selected by the 'selector' which is
-a JSONpath query. From the array of nodes found, only the objects will be updated.
-The 'values' will be applied on each of the JSONobjects returned by the 'selector'.
+When using `--selector` and `--values`, the items are selected by the `selector`, 
+which is a JSONpath query. From the array of nodes found, only the objects are updated.
+The `values` are applied on each of the JSONObjects returned by the `selector`.
 
-The value part must be a valid JSON snippet, so make sure to use single/double quotes
-appropriately. If the value is empty, the field will be removed from the object.
-Examples:
-  --selector="$..services[*]" --value="read_timeout:10000"
-  --selector="$..services[*]" --value='_comment:"comment injected by patching"'
-  --selector="$..services[*]" --value='_ignore:["ignore1","ignore2"]'
-  --selector="$..services[*]" --value='_ignore:' --value='_comment:'
+The value must be a valid JSON snippet, so use single/double quotes
+appropriately. If the value is empty, the field is removed from the object.
 
-The patch-files have the following format (JSON or Yaml) and can contain multiple
-patches that will be applied in order;
+Examples of valid values:
 
-  { "_format_version": "1.0",
-    "patches": [
-      { "selectors": [
-					"$..services[*]"
-				],
-        "values": {
-          "read_timeout": 10000,
-          "_comment": "comment injected by patching"
-        },
-        "remove": [ "_ignore" ]
-      }
-    ]
-  }
+    --selector="$..services[*]" --value="read_timeout:10000"
+    --selector="$..services[*]" --value='_comment:"comment injected by patching"'
+    --selector="$..services[*]" --value='_ignore:["ignore1","ignore2"]'
+    --selector="$..services[*]" --value='_ignore:' --value='_comment:'
+
+
+Patch files have the following format (JSON or YAML) and can contain multiple
+patches that are applied in order:
+
+    { "_format_version": "1.0",
+      "patches": [
+        { "selectors": [
+            "$..services[*]"
+          ],
+          "values": {
+            "read_timeout": 10000,
+            "_comment": "comment injected by patching"
+          },
+          "remove": [ "_ignore" ]
+        }
+      ]
+    }`
 
 
 ## Syntax
@@ -49,22 +52,22 @@ deck file patch [command-specific flags] [global flags]
 ## Flags
 
 `--format`
-:  output format: yaml or json (Default: `"yaml"`)
+:  Output format: yaml or json. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  help for patch (Default: `false`)
+:  Help for patch. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)
 
 `--selector`
-:  json-pointer identifying element to patch (can be specified more than once)
+:  json-pointer identifying the element to patch. Repeat for multiple selectors.
 
 `-s`, `--state`
-:  decK file to process. Use - to read from stdin (Default: `"-"`)
+:  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
 
 `--value`
-:  a value to set in the selected entry in format <key:value> (can be specified more than once)
+:  A value to set in the selected entry in `<key:value>` format. Can be specified multiple times.
 
 
 

@@ -6,11 +6,13 @@ content_type: reference
 
 Merge multiple decK files into one.
 
-The files can be either JSON or YAML format. Will merge all top-level arrays by
-concatenating them. Any other keys will be copied. The files will be processed in the order
-provided. No checks on content will be done, e.g. duplicates, nor any validations.
+The files can be in either JSON or YAML format. Merges all top-level arrays by
+concatenating them. Any other keys are copied. The files are processed in the order
+provided. 
 
-If the input files are not compatible an error will be returned. Compatibility is
+Doesn't perform any checks on content, e.g. duplicates, or any validations.
+
+If the input files are not compatible, returns an error. Compatibility is
 determined by the `_transform` and `_format_version` fields.
 
 ## Syntax
@@ -22,13 +24,13 @@ deck file merge [command-specific flags] [global flags]
 ## Flags
 
 `--format`
-:  output format: yaml or json (Default: `"yaml"`)
+:  Output format: yaml or json. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  help for merge (Default: `false`)
+:  Help for merge. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write to. Use `-` to write to stdout. (Default: `"-"`).
 
 
 

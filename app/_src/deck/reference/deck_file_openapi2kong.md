@@ -6,9 +6,9 @@ content_type: reference
 
 Convert OpenAPI files to Kong's decK format.
 
-The example file has extensive annotations explaining the conversion
-process, as well as all supported custom annotations (`x-kong-...` directives).
-See: https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml
+The example file at [Kong/go-apiops](https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml)
+has extensive annotations explaining the conversion process, as well as all supported 
+custom annotations (`x-kong-...` directives).
 
 ## Syntax
 
@@ -19,24 +19,24 @@ deck file openapi2kong [command-specific flags] [global flags]
 ## Flags
 
 `--format`
-:  output format: yaml or json (Default: `"yaml"`)
+:  Output format: yaml or json. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  help for openapi2kong (Default: `false`)
+:  Help for openapi2kong. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)
 
 `--select-tag`
-:  select tags to apply to all entities (if omitted will use the "x-kong-tags"
-directive from the file)
+:  Select tags to apply to all entities. If omitted, uses the `"x-kong-tags"`
+directive from the file.
 
 `-s`, `--spec`
-:  OpenAPI spec file to process. Use - to read from stdin (Default: `"-"`)
+:  OpenAPI spec file to process. Use `-` to read from stdin. (Default: `"-"`)
 
 `--uuid-base`
-:  the unique base-string for uuid-v5 generation of entity id's (if omitted
-will use the root-level "x-kong-name" directive, or fall back to 'info.title')
+:  The unique base-string for uuid-v5 generation of entity IDs. If omitted,
+uses the root-level `"x-kong-name"` directive, or falls back to `info.title`.
 
 
 

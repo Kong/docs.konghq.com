@@ -7,10 +7,10 @@ content_type: reference
 Add plugins to objects in a decK file.
 
 The plugins are added to all objects that match the selector expressions. If no
-selectors are given, they will be added to the top-level `plugins` array.
+selectors are given, the plugins are added to the top-level `plugins` array.
 
-The plugin-files have the following format (JSON or YAML) and are applied in the
-order they are given;
+The plugin files have the following format (JSON or YAML) and are applied in the
+order they are given:
 
 	{ "_format_version": "1.0",
 		"add-plugins": [
@@ -43,24 +43,24 @@ deck file add-plugins [command-specific flags] [global flags]
 multiple plugins.
 
 `--format`
-:  output format: JSON or YAML (Default: `"YAML"`)
+:  Output format: JSON or YAML. (Default: `"YAML"`)
 
 `-h`, `--help`
-:  help for add-plugins (Default: `false`)
+:  Help for add-plugins. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write. Use `-` to write to stdout. (Default: `"-"`)
 
 `--overwrite`
-:  specifying this flag will overwrite plugins by the same name if they already
-exist in an array. The default is to skip existing plugins. (Default: `false`)
+:  Specify this flag to overwrite plugins by the same name if they already
+exist in an array. The default behavior is to skip existing plugins. (Default: `false`)
 
 `--selector`
-:  JSON path expression to select plugin-owning objects to add plugins to,
-defaults to the top-level (selector '$'). Repeat for multiple selectors.
+:  JSON path expression to select plugin-owning objects to add plugins to.
+Defaults to the top level (selector `$`). Repeat for multiple selectors.
 
 `-s`, `--state`
-:  decK file to process. Use - to read from stdin (Default: `"-"`)
+:  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
 
 
 

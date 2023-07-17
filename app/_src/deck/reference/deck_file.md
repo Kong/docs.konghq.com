@@ -4,12 +4,12 @@ source_url: https://github.com/Kong/deck/tree/main/cmd
 content_type: reference
 ---
 
-Sub-command to host the decK file manipulation operations
+Subcommand to host the decK file manipulation operations.
 
 ## Flags
 
 `-h`, `--help`
-:  help for file (Default: `false`)
+:  Help for file. (Default: `false`)
 
 
 

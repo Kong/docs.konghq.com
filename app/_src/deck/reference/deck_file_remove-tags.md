@@ -7,7 +7,7 @@ content_type: reference
 Remove tags from objects in a decK file.
 
 The listed tags are removed from all objects that match the selector expressions.
-If no selectors are given, all Kong entities will be selected.
+If no selectors are given, all Kong entities are selected.
 
 ## Syntax
 
@@ -18,37 +18,37 @@ deck file remove-tags [command-specific flags] [global flags]
 ## Examples
 
 ```
-  # clear tags 'tag1' and 'tag2' from all services in file 'kong.yml'
+# clear tags 'tag1' and 'tag2' from all services in file 'kong.yml'
   cat kong.yml | go-apiops remove-tags --selector='services[*]' tag1 tag2
 
-  # clear all tags except 'tag1' and 'tag2' from the file 'kong.yml'
+# clear all tags except 'tag1' and 'tag2' from the file 'kong.yml'
   cat kong.yml | go-apiops remove-tags --keep-only tag1 tag2
 ```
 
 ## Flags
 
 `--format`
-:  output format: JSON or YAML (Default: `"YAML"`)
+:  Output format: JSON or YAML. (Default: `"YAML"`)
 
 `-h`, `--help`
-:  help for remove-tags (Default: `false`)
+:  Help for remove-tags. (Default: `false`)
 
 `--keep-empty-array`
-:  keep empty tag-arrays in output (Default: `false`)
+:  Keep empty tag arrays in output. (Default: `false`)
 
 `--keep-only`
-:  setting this flag will remove all tags except the ones listed
-(if none are listed, all tags will be removed) (Default: `false`)
+:  Setting this flag removes all tags except the ones listed.
+If none are listed, all tags will be removed. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)
 
 `--selector`
-:  JSON path expression to select objects to remove tags from,
-defaults to all Kong entities (repeat for multiple selectors)
+:  JSON path expression to select objects to remove tags from.
+Defaults to all Kong entities. Repeat for multiple selectors.
 
 `-s`, `--state`
-:  decK file to process. Use - to read from stdin (Default: `"-"`)
+:  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
 
 
 

@@ -18,20 +18,20 @@ deck file add-tags [command-specific flags] [global flags]
 ## Flags
 
 `--format`
-:  output format: JSON or YAML (Default: `"YAML"`)
+:  Output format: JSON or YAML. (Default: `"YAML"`)
 
 `-h`, `--help`
-:  help for add-tags (Default: `false`)
+:  Help for add-tags. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write. Use `-` to write to stdout. (Default: `"-"`)
 
 `--selector`
-:  JSON path expression to select objects to add tags to,
-defaults to all Kong entities (repeat for multiple selectors)
+:  JSON path expression to select objects to add tags to. 
+Defaults to all Kong entities. Repeat for multiple selectors.
 
 `-s`, `--state`
-:  decK file to process. Use - to read from stdin (Default: `"-"`)
+:  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
 
 
 

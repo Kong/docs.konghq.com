@@ -6,8 +6,8 @@ content_type: reference
 
 List current tags from objects in a decK file.
 
-The tags will be collected from all objects that match the selector expressions. If no
-selectors are given, all Kong entities will be scanned.
+The tags are collected from all objects that match the selector expressions. If no
+selectors are given, all Kong entities are scanned.
 
 ## Syntax
 
@@ -18,20 +18,20 @@ deck file list-tags [command-specific flags] [global flags]
 ## Flags
 
 `--format`
-:  output format: JSON, YAML, or PLAIN (Default: `"PLAIN"`)
+:  Output format: JSON, YAML, or PLAIN. (Default: `"PLAIN"`)
 
 `-h`, `--help`
-:  help for list-tags (Default: `false`)
+:  Help for list-tags. (Default: `false`)
 
 `-o`, `--output-file`
-:  output file to write. Use - to write to stdout (Default: `"-"`)
+:  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)
 
 `--selector`
-:  JSON path expression to select objects to scan for tags,
-defaults to all Kong entities (repeat for multiple selectors)
+:  JSON path expression to select objects to scan for tags.
+Defaults to all Kong entities. Repeat for multiple selectors.
 
 `-s`, `--state`
-:  decK file to process. Use - to read from stdin (Default: `"-"`)
+:  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
 
 
 

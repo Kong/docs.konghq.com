@@ -17,22 +17,22 @@ deck file convert [command-specific flags] [global flags]
 ## Flags
 
 `--from`
-:  format of the source file, allowed formats: [kong-gateway kong-gateway-2.x]
+:  Format of the source file. Allowed formats: [`kong-gateway` `kong-gateway-2.x`].
 
 `-h`, `--help`
-:  help for convert (Default: `false`)
+:  Help for convert. (Default: `false`)
 
 `--input-file`
-:  configuration file to be converted. Use `-` to read from stdin.
+:  Source configuration file to be converted. Use `-` to read from stdin.
 
 `--output-file`
-:  file to write configuration to after conversion. Use `-` to write to stdout. (Default: `"kong.yaml"`)
+:  File to write configuration to after conversion. Use `-` to write to stdout. (Default: `"kong.yaml"`)
 
 `--to`
-:  desired format of the output, allowed formats: [konnect kong-gateway-3.x]
+:  Format of the output. Allowed formats: [`konnect` `kong-gateway-3.x`].
 
 `--yes`
-:  assume `yes` to prompts and run non-interactively. (Default: `false`)
+:  Assume `yes` to prompts and run non-interactively. (Default: `false`)
 
 
 
