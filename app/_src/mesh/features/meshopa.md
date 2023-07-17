@@ -968,7 +968,7 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
 [secrets]: /mesh/{{page.kong_version}}/security/secrets/
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[secrets]: /mesh/{{page.kong_version}}//production/secure-deployment/secrets/
+[secrets]: /mesh/{{page.kong_version}}/production/secure-deployment/secrets/
 {% endif_version %}
 {% endif_version %}
 

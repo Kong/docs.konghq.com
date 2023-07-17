@@ -320,7 +320,7 @@ You must also make sure the global control plane communicates with Vault. When a
 [secrets]: /mesh/{{page.kong_version}}/security/secrets/
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[secrets]: /mesh/{{page.kong_version}}//production/secure-deployment/secrets/
+[secrets]: /mesh/{{page.kong_version}}/production/secure-deployment/secrets/
 {% endif_version %}
 [http-api]: /mesh/{{page.kong_version}}/reference/http-api/
 {% endif_version %}

@@ -650,7 +650,7 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
 [secrets]: /mesh/{{page.kong_version}}/security/secrets/
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[secrets]: /mesh/{{page.kong_version}}//production/secure-deployment/secrets/
+[secrets]: /mesh/{{page.kong_version}}/production/secure-deployment/secrets/
 {% endif_version %}
 {% endif_version %}
 
