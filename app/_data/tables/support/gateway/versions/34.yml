@@ -23,6 +23,7 @@ distributions:
     fips: true
   - <<: *rhel9
     docker: true
+    fips: true
   - <<: *ubuntu2004
     arm: false
     docker: false
