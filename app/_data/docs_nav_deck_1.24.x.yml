@@ -82,8 +82,6 @@ items:
         url: /reference/deck_file_add-plugins/
       - text: deck file add-tags
         url: /reference/deck_file_add-tags/
-      - text: deck file convert
-        url: /reference/deck_file_convert/
       - text: deck file list-tags
         url: /reference/deck_file_list-tags/
       - text: deck file merge
@@ -94,8 +92,6 @@ items:
         url: /reference/deck_file_patch/
       - text: deck file remove-tags
         url: /reference/deck_file_remove-tags/
-      - text: deck file validate
-        url: /reference/deck_file_validate/
       - text: deck ping
         url: /reference/deck_ping/
       - text: deck reset

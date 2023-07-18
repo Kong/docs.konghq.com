@@ -109,11 +109,9 @@ Sets the verbosity level of log output (higher is more verbose). (Default: `0`)
 * [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
 * [deck file add-plugins](/deck/{{page.kong_version}}/reference/deck_file_add-plugins)	 - Add plugins to objects in a decK file
 * [deck file add-tags](/deck/{{page.kong_version}}/reference/deck_file_add-tags)	 - Add tags to objects in a decK file
-* [deck file convert](/deck/{{page.kong_version}}/reference/deck_file_convert)	 - Convert files from one format into another format
 * [deck file list-tags](/deck/{{page.kong_version}}/reference/deck_file_list-tags)	 - List current tags from objects in a decK file
 * [deck file merge](/deck/{{page.kong_version}}/reference/deck_file_merge)	 - Merge multiple decK files into one
 * [deck file openapi2kong](/deck/{{page.kong_version}}/reference/deck_file_openapi2kong)	 - Convert OpenAPI files to Kong's decK format
 * [deck file patch](/deck/{{page.kong_version}}/reference/deck_file_patch)	 - Apply patches on top of a decK file
 * [deck file remove-tags](/deck/{{page.kong_version}}/reference/deck_file_remove-tags)	 - Remove tags from objects in a decK file
-* [deck file validate](/deck/{{page.kong_version}}/reference/deck_file_validate)	 - Validate the state file
 
