@@ -37,7 +37,7 @@ that if an entity is created in Kong and isn't added to the config file,
 decK will detect the change.
 
 * **Configuration Generation**: decK can generate gateway configurations from OpenAPI 
-Specifications
+Specifications.
 
 * **Configuration Transformations**: decK provides multiple transformation commands 
 to manipulate full and partial configuration files. This feature allows you to build 

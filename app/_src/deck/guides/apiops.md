@@ -118,9 +118,11 @@ of the full configuration and assemble them prior to syncronizing with {{site.ba
 This allows you to organize different aspects of the configuration in alignment with the rest of your
 software development artifacts.
 
-Continuing the example above, let's assume you have second team that builds a different API, and
-provides a {{site.base_gateway}} decK configuration segment for their service and route. Write the 
-following configuration in a file named `another-mockbin.yaml`:
+Continuing the example above, let's take a look at how commands can be pipelined to create API lifecycle automations.
+
+Let's assume you have second team that builds a different API, and
+provides a {{site.base_gateway}} decK configuration segment for their service and route. Copy the 
+following configuration into a file named `another-mockbin.yaml`:
 
 ```yaml
 _format_version: "3.0"
@@ -147,14 +149,15 @@ services:
 upstreams: []
 ```
 
-We can use the decK `file merge` command to bring these two configurations into one. 
+You can use the decK `file merge` command to bring these two configurations into one:
 
 ```sh
-deck file merge mockbin.yaml another-mockbin.yaml --output-file merged-kong.yaml
+deck file merge mockbin.yaml another-mockbin.yaml \
+  --output-file merged-kong.yaml
 ``` 
 
-The `merged-kong.yaml` file is now a single decK file with both services and routes merged. This file is
-also a complete deck file and could be syncronized to a gateway. Before we do, let's take the example one step further.
+You now have a file named `merged-kong.yaml`, which is a single decK file with both services and routes merged. This file is
+also a complete deck file and could be synchronized to a gateway. Before doing that, let's take the example one step further.
 
 Now assume you want to ensure that all services in your configuration communicate with the upstream endpoint 
 via `https` only. We can use the deck `file patch` command to accomplish this.
@@ -172,9 +175,7 @@ The final `kong.yaml` file is a full configuration we can syncronize to the gate
 deck sync -s kong.yaml
 ```
 
-These examples are trivial, but they intend to show how commands can be pipelined to create
-API lifecycle automations. Here is an example of putting the above together in
-an Unix style pipeline:
+Here is an example of putting the above together in a Unix-style pipeline:
 
 ```sh
 deck file openapi2kong --spec oas.yaml --output-file mockbin.yaml && 
@@ -183,7 +184,7 @@ deck file openapi2kong --spec oas.yaml --output-file mockbin.yaml &&
   deck sync -s -
 ```
 
-Most commonly you will use the commands from CI/CD tools built into your version control system
+Most commonly, you will use the commands from CI/CD tools built into your version control system
 to bring full and partial {{site.base_gateway}} configurations together to create APIOps for your 
 particular needs.
 
