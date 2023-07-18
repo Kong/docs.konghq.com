@@ -111,8 +111,8 @@ This can be accomplished with decK file _transformations_.
 
 ## Configuration transformations
 
-If you are building microservices or an API platform for multiple teams, you will likely have 
-multiple services and code repositories which may have their own decK configuration files. 
+If you are building microservices or an API platform for multiple teams, you likely have 
+multiple services and code repositories with their own decK configuration files. 
 Using decK file transformation commands, you can organize your decK configuration files into partial segments 
 of the full configuration and assemble them prior to syncronizing with {{site.base_gateway}}. 
 This allows you to organize different aspects of the configuration in alignment with the rest of your
