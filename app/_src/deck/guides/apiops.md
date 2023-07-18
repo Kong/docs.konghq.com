@@ -120,7 +120,7 @@ software development artifacts.
 
 Continuing the example above, let's take a look at how commands can be pipelined to create API lifecycle automations.
 
-Let's assume you have second team that builds a different API, and
+Let's assume you have a second team that builds a different API, and
 provides a {{site.base_gateway}} decK configuration segment for their service and route. Copy the 
 following configuration into a file named `another-mockbin.yaml`:
 
@@ -160,7 +160,7 @@ You now have a file named `merged-kong.yaml`, which is a single decK file with b
 also a complete deck file and could be synchronized to a gateway. Before doing that, let's take the example one step further.
 
 Now assume you want to ensure that all services in your configuration communicate with the upstream endpoint 
-via `https` only. We can use the deck `file patch` command to accomplish this.
+via `https` only. You can use the deck `file patch` command to accomplish this:
 
 ```sh
 deck file patch --state merged-kong.yaml \
@@ -169,7 +169,7 @@ deck file patch --state merged-kong.yaml \
   --output-file kong.yaml
 ```
 
-The final `kong.yaml` file is a full configuration we can syncronize to the gateway:
+The final `kong.yaml` file is a full configuration you can synchronize to the gateway:
 
 ```sh
 deck sync -s kong.yaml
