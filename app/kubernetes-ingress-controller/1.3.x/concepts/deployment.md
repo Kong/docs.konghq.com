@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Ingress Controller Deployment
+title: Kong Ingress Controller Deployment
 ---
 
 The {{site.kic_product_name}} is designed to be deployed in a variety of ways
@@ -193,7 +193,7 @@ loss of functionality.
 
 #### Without a database
 
-In DB-less deployments, Kong's Ingress controller runs
+In DB-less deployments, Kong's Kubernetes ingress controller runs
 alongside and dynamically configures
 Kong as per the changes it receives from the Kubernetes API server.
 

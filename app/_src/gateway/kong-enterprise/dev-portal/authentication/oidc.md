@@ -51,14 +51,14 @@ Provider:
   "logout_query_arg": "logout",
   "client_id": ["<CLIENT-ID>"],
   "login_action": "redirect",
-  "logout_redirect_uri": ["http://localhost:8003"],
+  "logout_redirect_uri": ["http://localhost:8003/default"],
   "ssl_verify": false,
   "consumer_claim": ["email"],
   "forbidden_redirect_uri": ["http://localhost:8003/unauthorized"],
   "client_secret": ["<CLIENT_SECRET>"],
   "issuer": "https://accounts.google.com/",
   "logout_methods": ["GET"],
-  "login_redirect_uri": ["http://localhost:8003"],
+  "login_redirect_uri": ["http://localhost:8003/default"],
   "login_redirect_mode": "query"
 }
 ```
@@ -67,12 +67,13 @@ The placeholders above should be replaced with your actual values:
 
   - `<CLIENT_ID>` - Client ID provided by IdP
   - `<CLIENT_SECRET>` - Client secret provided by IdP
+  - `default` - Your workspace name
 
 See the [documentation of the OpenID Connect plugin](/hub/kong-inc/openid-connect/)
 for more information.
 
 **Important:** The `redirect_uri` needs to be configured as an allowed URI in the IdP.
-If not set explicitly in the configuration object, the URI default is
+If not set explicitly in the configuration object, the default URI is
 `http://localhost:8004/<WORKSPACE_NAME>/auth`.
 
 If `portal_gui_host` and `portal_api_url` are set to share a domain but differ
@@ -88,12 +89,12 @@ Example:
   "scopes": ["openid","profile","email","offline_access"],
   "logout_query_arg": "logout",
   "client_id": ["<CLIENT_ID>"],
-  "login_redirect_uri": ["https://example.portal.com"],
+  "login_redirect_uri": ["https://example.portal.com/default"],
   "login_action": "redirect",
-  "logout_redirect_uri": ["https://example.portal.com"],
+  "logout_redirect_uri": ["https://example.portal.com/default"],
   "ssl_verify": false,
   "consumer_claim": ["email"],
-  "redirect_uri": ["https://exampleapi.portal.com/auth"],
+  "redirect_uri": ["https://exampleapi.portal.com/default/auth"],
   "session_cookie_domain": ".portal.com",
   "forbidden_redirect_uri": ["https://example.portal.com/unauthorized"],
   "client_secret": ["<CLIENT_SECRET"],

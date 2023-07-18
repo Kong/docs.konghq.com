@@ -26,17 +26,15 @@ See the data store section of the [Configuration Property Reference](/gateway/{{
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
 and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its data store.
 
-The following instructions use PostgreSQL as a database to store Kong configuration.
-
 {% endif_version %}
 
-{% if_version gte:2.7.x %}
-
-The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
+{% if_version gte:2.7.x lte:3.3.x %}
 
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 {% endif_version %}
+
+The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
 
 1. Provision a database and a user before starting {{site.base_gateway}}:
 

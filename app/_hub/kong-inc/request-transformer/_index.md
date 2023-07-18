@@ -1,4 +1,21 @@
-## Template as a Value
+The Request Transformer plugin for Kong allows simple transformation of requests
+before they reach the upstream server. These transformations can be simple substitutions
+or complex ones matching portions of incoming requests using regular expressions, saving
+those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
+
+For additional request transformation features, check out the
+[Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/).
+With the advanced plugin, you can also limit the list of allowed parameters in the request body.
+
+{:.note}
+> **Notes**:
+* If a value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array
+notation must be used instead.
+* The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about
+client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the
+[post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
+
+## Template as a value
 
 You can use any of the current request headers, query parameters, and captured URI
 groups as templates to populate supported configuration fields.
@@ -165,7 +182,7 @@ plugins:
 ```bash
 curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
-  --data "config.add.headers=h1:v1,h2:v2"
+  --data "config.add.headers=h1:v1,h2:v1"
 ```
 
 <table>
@@ -189,7 +206,7 @@ curl -X POST http://localhost:8001/services/example-service/plugins \
 ```bash
 curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
-  --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
+  --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v1", "h2:v1"]}}}'
 ```
 
 <table>

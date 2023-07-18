@@ -6,7 +6,7 @@ content-type: reference
 
 The support for {{site.kic_product_name}} software versions is explained in this topic.
 
-## Version support for Kong Ingress Controller (Enterprise)
+## Version support for {{site.kic_product_name}} (Enterprise)
 
 Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products.
 
@@ -141,7 +141,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 |  1.0.x   |  2020-10-05   |     2021-10-05      |      2023-10-05       |
 |  0.x.x   |  2018-06-02   |     2019-06-02      |      2020-06-02       |
 
-> *Table 1: Version Support for Kong Ingress Controller*
+> *Table 1: Version Support for {{site.kic_product_name}}*
 
 {% include_cached /md/support-policy.md %}
 

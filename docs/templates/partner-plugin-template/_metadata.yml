@@ -1,0 +1,57 @@
+# This file sets metadata for an individual Kong partner plugin.
+# View the full instructions for documenting a plugin
+# at https://docs.konghq.com/contributing/partner-plugins
+
+name: # (Required) The name of your plugin.
+  # Use capitals and spaces as needed.
+
+publisher: # (Required) The company name of the publisher of this plugin.
+  # Use capitals and spaces as needed.
+  # Note that every plugin by a given publisher must have the exact same value.
+
+categories: # (Required) Uncomment ONE that applies.
+  #- authentication
+  #- security
+  #- traffic-control
+  #- serverless
+  #- analytics-monitoring
+  #- transformations
+  #- logging
+  #- deployment
+# Array format only; if your plugin applies to multiple categories,
+# uncomment the most applicable category.
+
+type: plugin
+
+desc: # (Required) Short, one sentence description; max 80 characters.
+
+#support_url:
+  # (Optional) A support URL for plugin users to file tickets,
+  # bug reports, or support requests.
+
+#source_code:
+  # (Optional) If your plugin is open-source, provide a link to your code.
+
+kong_version_compatibility: # (Required)
+# Uncomment at least one of 'community_edition' (Kong Gateway open-source) or
+# 'enterprise_edition' (Kong Gateway Enterprise) below and list the compatible versions 
+# in n.n.x format. For example, 3.2.x.
+
+  #community_edition: # (Optional)
+    #compatible:
+       #- 3.0.x
+  #enterprise_edition: # (Optional)
+    #compatible:
+       #- 3.0.x
+
+enterprise: # true OR false
+  # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
+  # Set false if your plugin is open-source and works with open-source Kong Gateway.
+
+dbless_compatible:
+  # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
+  # One of the following values allowed: 'yes', 'no' or 'partially'.
+
+#dbless_explanation: 
+  # (Optional) Free-text explanation containing details about the degree of
+  # compatibility with DB-less mode.

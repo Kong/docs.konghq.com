@@ -1,0 +1,7 @@
+extends: existence
+message: "Use relative URLs for docs URLs. For example, use [Get Started](/gateway/latest/get-started/) instead of [Get Started](https://docs.konghq.com/gateway/3.3.x/get-started/). If a direct URL is necessary, use {{ site.links.web }} instead of `https://docs.konghq.com`."
+nonword: true
+level: error
+scope: raw
+tokens:
+  - '\[[^\]]*\]\(https?:\/\/docs\.konghq\.com[^\)]*\)'

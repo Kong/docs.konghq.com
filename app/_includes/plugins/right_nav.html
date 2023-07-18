@@ -1,4 +1,8 @@
 <aside class="docs-toc" id="plugin-toc" >
+  <i class="fa fa-times close-sidebar"></i>
+  <i class="fa fa-chevron-right collapse-toc"></i>
+  <i class="far fa-list-alt expand-toc"></i>
+
   {% unless page.toc == false %}
     {% include_cached toc.html
                       html=include.full_content

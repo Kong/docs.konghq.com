@@ -164,7 +164,6 @@ for _, section in ipairs(parsed) do
   end
 
   local pg_found = false
-  local cassandra_found = false
   local render_as_table = false
 
   for _, var in ipairs(section.vars) do
@@ -175,16 +174,6 @@ for _, section in ipairs(parsed) do
         pg_found = true
         write("")
         write("### Postgres settings")
-        write("")
-        write(table_header)
-      end
-
-    elseif string.match(var.name, "^cassandra_.+$") then
-      render_as_table = true
-      if not cassandra_found then
-        cassandra_found = true
-        write("")
-        write("### Cassandra settings")
         write("")
         write(table_header)
       end

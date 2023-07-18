@@ -55,3 +55,13 @@ You can test the SSO configuration by navigating to the login URI based on the o
 
 You can now manage your organization's user permissions entirely from the IdP
 application.
+
+## Advanced Settings
+
+You can configure custom IdP-specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
+
+1. **Scopes**: Specify the list of scopes {{site.konnect_short_name}} requests from the IdP. By default, {{site.konnect_short_name}} requests the `openid`, `email`, and `profile` scopes. The `openid` scope is required and cannot be removed.
+2. **Claim Mappings**: Customize the mapping of required attributes to a different claim in the `id_token` {{site.konnect_short_name}} receives from the IdP. By default, {{site.konnect_short_name}} requires three attributes: Name, Email, and Groups. The values in these attributes are mapped as follows:
+    - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
+    - `email`: Used as the {{site.konnect_short_name}} account's `email`.
+    - `groups`: Used to map users to teams defined in the team mappings upon login.

@@ -212,7 +212,7 @@ Valid values to this setting are:
 - `off`: do not enable instrumentations.
 - `request`: only enable request-level instrumentations.
 - `all`: enable all the following instrumentations.
-- `db_query`: trace database query, including Postgres and Cassandra.
+- `db_query`: trace database query.
 - `dns_query`: trace DNS query.
 - `router`: trace router execution, including router rebuilding.
 - `http_client`: trace OpenResty HTTP client requests.
@@ -243,7 +243,7 @@ Tracer samples a fixed percentage of all spans following the sampling rate.
 
 Example: `0.25`, this should account for 25% of all traces.
 
-**Default:** `1.0`
+**Default:** `0.01`
 
 {% endif_version %}
 
@@ -1704,10 +1704,8 @@ be optionally overwritten explicitly using the `pg_ro_*` config below.
 
 ### database
 
-Determines which of PostgreSQL or Cassandra this node will use as its
-datastore.
-
-Accepted values are `postgres`, `cassandra`, and `off`.
+Determines the database (or no database) for this node.
+Accepted values are `postgres` and `off`.
 
 **Default:** `postgres`
 
@@ -1792,6 +1790,7 @@ name   | description  | default
 
 {% endif_version %}
 
+{% if_version lte:3.3.x %}
 ### Cassandra settings
 
 
@@ -1817,6 +1816,8 @@ name   | description  | default
 **cassandra_repl_factor** | When migrating for the first time, Kong will create the keyspace with this replication factor when using the `SimpleStrategy`. | `1`
 **cassandra_data_centers** | When migrating for the first time, will use this setting when using the `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
 **cassandra_schema_consensus_timeout** | Defines the timeout (in ms) for the waiting period to reach a schema consensus between your Cassandra nodes. This value is only used during migrations. | `10000`
+
+{% endif_version %}
 
 ### declarative_config
 
@@ -1899,6 +1900,7 @@ purge the old cached entity and start using the new one.
 
 ### db_update_propagation
 
+{% if_version lte:3.3.x %}
 Time (in seconds) taken for an entity in the datastore to be propagated to
 replica nodes of another datacenter.
 
@@ -1911,6 +1913,20 @@ change of an entity.
 
 Single-datacenter setups or PostgreSQL servers should suffer no such delays,
 and this value can be safely set to 0.
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+Time (in seconds) taken for an entity in the datastore to be propagated to 
+replica nodes of another datacenter.
+
+When set, this property will increase the time taken by Kong to propagate the
+change of an entity.
+
+Single-datacenter setups or PostgreSQL servers should suffer no such delays,
+and this value can be safely set to 0. Postgres setups with read replicas 
+should set this value to maximum expected replication lag between the writer 
+and reader instances.
+{% endif_version %}
 
 **Default:** `0`
 
@@ -2393,8 +2409,19 @@ one found will be used:
 
 `system` can be used by itself or in conjunction with other CA filepaths.
 
+{% if_version gte:3.4.x %}
+
+When `pg_ssl_verify` is enabled, these certificate
+authority files will be used for verifying Kong's database connections.
+
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
+
 When `pg_ssl_verify` or `cassandra_ssl_verify` are enabled, these certificate
 authority files will be used for verifying Kong's database connections.
+
+{% endif_version %}
 
 {% if_version gte:3.1.x %}
 
@@ -2896,8 +2923,7 @@ and visualizations on the dashboard.
 ### vitals_strategy
 {:.badge .enterprise}
 
-Determines whether to use the Kong database (either PostgreSQL or Cassandra, as
-defined by the `database` config value above), or a separate storage engine, for
+Determines whether to use the Kong database or a separate storage engine for
 Vitals metrics.
 
 Accepted values are `database`, `prometheus`, or `influxdb`.
@@ -4033,8 +4059,11 @@ The following trace types are included:
   parsing, route matching, and balance preparation
 - `access.after`: trace the postprocess of access phase, like balancer
   execution and internal variable assigning
+{% if_version lte:3.3.x %}
 - `cassandra_iterate`: trace Cassandra driver to paginate over results
+{% endif_version %}
 - `plugin`: trace plugins phase handlers
+
 
 **Default:** `all`
 

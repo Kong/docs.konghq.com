@@ -1,3 +1,5 @@
+Propagate distributed tracing spans and report low-level spans to a OTLP-compatible server.
+
 {% if_version gte:3.3.x %}
 ## Queueing
 

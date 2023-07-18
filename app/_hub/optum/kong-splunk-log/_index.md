@@ -1,8 +1,12 @@
-### Example Log in Splunk UI
+Kong provides many great logging tools out of the box - this is a modified version of the Kong HTTP logging plugin that has been refactored and tailored to work with Splunk.
+
+We recommend enabling the Splunk Logging plugin at a global level.
+
+## Example Log in Splunk UI
 
 ![Splunk UI screen shot](https://konghq.com/wp-content/uploads/2018/09/SplunkLogSample.png)
 
-### Installation
+## Installation
 
 Recommended:
 
@@ -18,11 +22,11 @@ $ cd /path/to/kong/plugins/kong-splunk-log
 $ luarocks make *.rockspec
 ```
 
-### Configuration
+## Configuration
 
 The plugin requires an environment variable `SPLUNK_HOST`. This is how we define the `host=""` Splunk field in the example log picture embedded above in our README.
 
-#### Example Plugin Configuration
+### Example Plugin Configuration
 
 ![Splunk Config](https://konghq.com/wp-content/uploads/2018/09/SplunkConfig.png)
 
@@ -38,7 +42,7 @@ $ export SPLUNK_HOST="gateway.company.com"
 env SPLUNK_HOST;
 ```
 
-### Maintainers
+## Maintainers
 
 [jeremyjpj0916](https://github.com/jeremyjpj0916){:target="_blank"}{:rel="noopener noreferrer"}  
 [rsbrisci](https://github.com/rsbrisci){:target="_blank"}{:rel="noopener noreferrer"}  

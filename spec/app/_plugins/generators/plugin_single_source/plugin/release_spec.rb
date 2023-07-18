@@ -45,7 +45,7 @@ RSpec.describe PluginSingleSource::Plugin::Release do
           '/hub/kong-inc/jwt-signer/2.5.x/changelog/',
           '/hub/kong-inc/jwt-signer/2.5.x/how-to/',
           '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
-          '/hub/kong-inc/jwt-signer/2.5.x/configuration/examples/'
+          '/hub/kong-inc/jwt-signer/2.5.x/how-to/basic-example/'
         ])
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe PluginSingleSource::Plugin::Release do
           '/hub/kong-inc/jwt-signer/how-to/',
           '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',
           '/hub/kong-inc/jwt-signer/configuration/',
-          '/hub/kong-inc/jwt-signer/configuration/examples/',
+          '/hub/kong-inc/jwt-signer/how-to/basic-example/',
         ])
       end
     end
@@ -102,6 +102,46 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       let(:plugin_name) { 'acme/kong-plugin' }
 
       it { expect(subject.changelog).to be_nil }
+    end
+  end
+
+  describe '#enterprise_plugin?' do
+    context 'when the plugin is `enterprise` and not `free`' do
+      let(:plugin_name) { 'acme/unbundled-plugin' }
+
+      it { expect(subject.enterprise_plugin?).to eq(true) }
+    end
+
+    context 'otherwise' do
+      let(:plugin_name) { 'acme/jq' }
+
+      it { expect(subject.enterprise_plugin?).to eq(false) }
+    end
+  end
+
+  describe '#configuration' do
+    let(:source_path) { "#{site.source}/_hub/kong-inc/jwt-signer/" }
+    let(:file) { "app/_src/.repos/kong-plugins/schemas/jwt-signer/#{version}.json" }
+
+    it 'returns an instance of Pages::Configuration' do
+      expect(PluginSingleSource::Pages::Configuration)
+        .to receive(:new)
+        .with(release: subject, file: , source_path:)
+
+      subject.configuration
+    end
+  end
+
+  describe '#configuration_examples' do
+    let(:source_path) { "#{site.source}/_hub/kong-inc/jwt-signer/" }
+    let(:file) { "app/_src/.repos/kong-plugins/examples/jwt-signer/_#{version}.yaml" }
+
+    it 'returns an instance of Pages::ConfigurationExamples' do
+      expect(PluginSingleSource::Pages::ConfigurationExamples)
+        .to receive(:new)
+        .with(release: subject, file: , source_path:)
+
+      subject.configuration_examples
     end
   end
 end

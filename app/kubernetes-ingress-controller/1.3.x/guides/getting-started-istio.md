@@ -1,5 +1,5 @@
 ---
-title: Running the Kubernetes Ingress Controller with Istio
+title: Running the Kong Ingress Controller with Istio
 ---
 
 In this guide, you will:

@@ -1,3 +1,5 @@
+HTTP Log plugin lets you send request and response logs to an HTTP server.
+
 {% if_version gte:3.3.x %}
 ## Queueing
 
