@@ -136,7 +136,7 @@ your preferred deployment type.
 2. Once you have created or converted the data plane nodes, `kong stop` your
 old Gateway runtimes, then shut them down.
 
-3. If any of the old nodes have connected PostgreSQL or Cassandra instances,
+3. If any of the old nodes have connected database instances,
 you can shut them down now.
 
 ## Post-migration tasks

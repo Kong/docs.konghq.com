@@ -49,7 +49,6 @@ third-party:
         - 9
         - Amazon RDS
         - Amazon Aurora
-    - *cassandra
     - *redis
     - *influxdb
     - *kafka
