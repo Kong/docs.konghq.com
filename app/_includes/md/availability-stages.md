@@ -27,3 +27,24 @@ If feature documentation doesn't have a tech preview, alpha, or beta label, then
 You can deploy GA features to production environments.
 
 Interfaces are guaranteed to follow a [semantic versioning](https://semver.org/) model for any changes.
+
+## Sustaining mode
+
+No new features will be added to any components in Sustaining Mode. 
+
+Features in Sustaining Mode are no longer available in self-managed {{site.base_gateway}}, but are available in 
+{{site.konnect_short_name}}. The {{site.konnect_short_name}} versions of these features will continue 
+to have new development.
+
+## Deprecated
+
+A deprecated feature or functionality is no longer is active development, and is generally
+planned for removal in a future version. Deprecations are announced 6 months before removal.
+
+We recommend transitioning away from features when they become deprecated.
+
+Bug fixes for deprecated features may occur, but are not guaranteed. 
+
+## Removed
+
+When a feature is removed, it is no longer supported, compatible, or available in the product.
