@@ -1,3 +1,6 @@
+The DeGraphQL plugin transforms a GraphQL upstream into a traditional endpoint 
+by mapping URIs into GraphQL queries.
+
 ## Usage
 
 DeGraphQL needs a GraphQL endpoint to query. As an example, we are going to

@@ -66,7 +66,12 @@ module PluginSingleSource
       def hub_examples
         return unless @release.schema
 
-        ::Jekyll::Drops::Plugins::HubExamples.new(schema: @release.schema)
+        ::Jekyll::Drops::Plugins::HubExamples.new(
+          schema: @release.schema,
+          example: @release.schema.example,
+          targets: %i[consumer route global service],
+          formats: %i[curl yaml kubernetes]
+        )
       end
 
       def schema

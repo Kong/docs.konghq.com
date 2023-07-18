@@ -52,7 +52,7 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 2.0)
-    jekyll-generator-single-source (0.0.5)
+    jekyll-generator-single-source (0.0.8)
       jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)

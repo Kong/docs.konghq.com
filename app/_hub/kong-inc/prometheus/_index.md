@@ -1,3 +1,7 @@
+Expose metrics related to Kong and proxied upstream services in 
+[Prometheus](https://prometheus.io/docs/introduction/overview/) 
+exposition format, which can be scraped by a Prometheus Server.
+
 Metrics tracked by this plugin are available on both the Admin API and Status
 API at the `http://localhost:<port>/metrics`
 endpoint. Note that the URL to those APIs will be specific to your

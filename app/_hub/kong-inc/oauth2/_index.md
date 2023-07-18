@@ -1,3 +1,21 @@
+Add an OAuth 2.0 authentication layer with one of the following grant flows:
+* [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1)
+* [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4)
+* [Implicit Grant](https://tools.ietf.org/html/rfc6749#section-4.2)
+* [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) 
+
+{:.important}
+> **Important**: 
+* Once applied, any user with a valid credential can access the service.
+  To restrict usage to only some of the authenticated users, also add the
+  [ACL](/hub/kong-inc/acl/) plugin (not covered here) and create allowed or
+  denied groups of users.
+* As per the OAuth2 specs, this plugin requires the
+  underlying service to be served over HTTPS. To avoid any
+  confusion, we recommend that you configure the route used to serve the
+  underlying service to only accept HTTPS traffic (using its `protocols`
+  property).
+
 ## Usage
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.

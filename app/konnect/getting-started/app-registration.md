@@ -3,7 +3,7 @@ title: Register an Application to a Service
 ---
 
 Along with hosting API documentation, the Dev Portal can let your developers
-register applications against {{site.konnect_short_name}} services. Your applications can then
+register applications against API products. Your applications can then
 consume those services using application-level authentication.
 
 For example, the application can represent a mobile banking app and the
@@ -12,9 +12,9 @@ legal agreements API.
 
 ## Prerequisites
 
-* You have a {{site.konnect_short_name}} service with at least one version.
+* You have an API product with at least one version.
 
-* You have [published the {{site.konnect_short_name}} service to the Dev Portal](/konnect/getting-started/publish-service/).
+* You have [productized the API product to the Dev Portal](/konnect/getting-started/productize-service/).
 
   * To use app registration, the Dev Portal must be protected by
   some sort of authentication. That means you can't have a public portal for this step.
@@ -22,10 +22,10 @@ legal agreements API.
 
 ## Enable app registration
 
-1. From the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub/),
-open a service version.
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products/),
+open an API product version.
 
-1. From the **Actions** dropdown menu, select **Enable app registration**.
+1. Under **App Registration** select the **Disabled** From the **Actions** dropdown menu.
 
 1. Accept the `key-auth` setting, toggle **Auto-Approve** to enable it,
  then click **Enable**.
@@ -68,7 +68,7 @@ reference ID, and description. The reference ID must be unique.
 
 1. From your Dev Portal account, open the **Catalog** from the top menu and click on a service tile.
 
-1. Choose the version of the service you want to use and click **Register**.
+1. Choose the version of the API product you want to use and click **Register**.
 
     If you don't see the registration button, that means this version doesn't
     have application registration enabled.
@@ -78,7 +78,7 @@ reference ID, and description. The reference ID must be unique.
 1. Click **Request Access**.
 
     This opens the application's details page. If auto approval is enabled,
-    the service appears with the status `Approved`.
+    it appears with the status `Approved`.
 
 ## Generate a key auth credential
 
@@ -93,13 +93,13 @@ reference ID, and description. The reference ID must be unique.
     -H 'apikey: {API_KEY}'
    ```
 
-   Use this key in any applications that need to access this service.
+   Use this key in any applications that need to access this product.
 
 ## Summary and next steps
 
 In this topic, you:
-* Enabled application registration for the a service
-* Created an application through the Dev Portal and registered it against your service
+* Enabled application registration for the the API product version.
+* Created an application through the Dev Portal and registered it against your API product version.
 * Generated an API key for the application and made a call using this key
 
 You can learn more about [application registration](/konnect/dev-portal/applications/enable-app-reg/) 
@@ -110,6 +110,6 @@ For next steps, check out some of the other things you can do in
 
 * If you have existing {{site.base_gateway}} configuration you want to use,
 [import {{site.base_gateway}} entities into {{site.konnect_saas}}](/konnect/getting-started/import)
-* Enable plugins on a [service](/konnect/servicehub/enable-service-plugin/) or a
-[route](/konnect/servicehub/enable-route-plugin/)
+* Enable plugins on a [Gateway Service](/konnect/runtime-manager/enable-service-plugin/) or a
+[route](/konnect/runtime-manager/enable-route-plugin/)
 * [Manage your teams and roles](/konnect/org-management/teams-and-roles/)

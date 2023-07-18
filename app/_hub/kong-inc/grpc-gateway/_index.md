@@ -1,6 +1,7 @@
-## Purpose
+The gRPC-gateway plugin allows access to a gRPC service via HTTP REST requests
+by translating REST requests and responses into JSON format. 
 
-This plugin translates requests and responses between gRPC and HTTP REST.
+This plugin's implementation is similar to [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/).
 
 ![grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/assets/images/architecture_introduction_diagram.svg)
 

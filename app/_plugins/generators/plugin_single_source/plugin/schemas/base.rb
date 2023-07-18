@@ -53,6 +53,12 @@ module PluginSingleSource
                        .example
         end
 
+        def example_file_path
+          @example_file_path ||= Examples::Base
+                                 .make_for(vendor:, name: plugin_name, version:)
+                                 .file_path
+        end
+
         def protocols_field
           @protocols_field ||= fields.detect { |f| f.key?('protocols') }&.values&.first || {}
         end

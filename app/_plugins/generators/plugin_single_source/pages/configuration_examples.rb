@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative './how_to'
+
 module PluginSingleSource
   module Pages
-    class ConfigurationExamples < Base
+    class ConfigurationExamples < HowTo
       TITLE = 'Basic config examples'
 
       def canonical_url
@@ -25,7 +27,9 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/how-to/basic-example/"
       end
 
-      def source_file; end
+      def source_file
+        @file.gsub('app/', '')
+      end
 
       def content
         ''

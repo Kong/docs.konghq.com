@@ -46,6 +46,7 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/how-to/basic-example/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/how-to/local-testing/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/changelog/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/configuration/' }

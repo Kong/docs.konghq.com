@@ -1,3 +1,6 @@
+Use the Bot Detection plugin to protect a service or a route from the most common bots, 
+and set up allow and deny lists for custom clients.
+
 ## Default rules
 
 {% if_plugin_version gte:2.1.x and lte:2.8.x %}

@@ -9,10 +9,57 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2023
+
+**API Products API released**
+: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
+
+**API Products**
+: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
+: **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
+
+**Composite runtime groups**
+: {{site.konnect_short_name}} now supports composite runtime groups, which enable users to leverage shared infrastructure across multiple teams in a secure, compliant fashion. 
+With composite runtime groups, organizations can reduce infrastructure costs while providing the appropriate access to teams through RBAC.
+
+: Learn more about composite runtime groups:
+* [Intro to composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/)
+* [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
+* [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
+* [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
+* [API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9)
+
+**Analytics for composite runtime groups**
+: Custom reports now support grouping and filtering by composite runtime group.
+
+**Kong Ingress Controller for Kubernetes in {{site.konnect_short_name}}**
+: The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
+* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
+* {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
+
 ## June 2023
 
+**Contextual Developer Analytics**
+: {{site.konnect_saas}} launches new [contextual analytics](/konnect/dev-portal/#contextual-developer-analytics) information for third-party developers inside the Dev Portal. Developers can now use that information to not only optimize but also keep on eye on their applications usage and therefore understand the interaction between them and the providers APIs.
+
+**Self-hosted, open source Dev Portal**
+: You can now self-host an open-source Dev Portal on the hosting provider of your choice. 
+Kong provides an [example application](https://github.com/Kong/konnect-portal) you can use for an out-of-the-box experience with a self-hosted Dev Portal. 
+You can also customize the self-hosted portal using the Portal Management and Portal APIs, and the Portal SDK. 
+For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/).
+
+**Portal Client API**
+: {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
+For more information, see the [Portal Client API spec](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356).
+
 **Audit logging**
-* Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
+: Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
+You can send audit logs directly to a webhook enabling seamless integration with your SIEM services, and resend audit log entries through replay jobs. 
+For more information, see the documentation for [Audit Logging](/konnect/org-management/audit-logging/).
+
+**OIDC Configuration API**
+: Enterprise orgs using OIDC login can now specify [additional scopes](/konnect/api/identity-management/sso/) to be requested during the authorization grant flow. This allows organizations to request [custom claims](/konnect/api/identity-management/sso/) from their IdP. The custom claims can then be used to override the default mapping for the `name`, `email` and `groups` attributes which are used during the login flow. For example, the `upn` scope may be required to retrieve the `userPrincipalName` claim from Azure which can then be  mapped to `email` attribute in Konnect.
 
 ## May 2023
 
@@ -49,9 +96,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## March 2023
-
-**Identity API**
-: Konnect now supports [OIDC customization](/konnect/api/identity-management/sso/) through the Identity API. 
 
 **Reports V2**
 : {{site.konnect_saas}} users now have access to a new user interface for our custom reports feature within Konnect Analytics. The new interface not only makes creating reports easier but it also provides new capabilities such as a preview and a more advanced filtering experience. For more information, see these new [report use cases](/konnect/analytics/use-cases/).

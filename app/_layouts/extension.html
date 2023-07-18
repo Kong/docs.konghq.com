@@ -56,8 +56,6 @@ breadcrumbs:
 </blockquote>
 {% endif %}
 
-{{ page.description | markdownify }}
-
 {% if page.installation %}
   <hr>
   <h2 id="installation">Installation</h2>
@@ -68,8 +66,6 @@ breadcrumbs:
 {% endif %}
 
 {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
-
-{{ page.extra | markdownify }}
 
 {% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
 

@@ -1,3 +1,8 @@
+Publish request and response logs to an [Apache Kafka](https://kafka.apache.org/) topic.
+For more information, see [Kafka topics](https://kafka.apache.org/documentation/#intro_concepts_and_terms).
+
+Kong also provides a Kafka plugin for request transformations. See [Kafka Upstream](/hub/kong-inc/kafka-upstream/).
+
 ## Quickstart
 
 The following guidelines assume that both {{site.ee_product_name}} and `Kafka` have been
