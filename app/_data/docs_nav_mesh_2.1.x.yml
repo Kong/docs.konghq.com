@@ -24,6 +24,7 @@ items:
         url: /availability-stages/
       - text: Release notes
         url: /mesh/changelog
+        src: /mesh/changelog
         generate: false
         absolute_url: true
   - title: Getting Started

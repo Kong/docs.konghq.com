@@ -31,10 +31,9 @@ inherit:
       url: /support-policy/
       action: insert
       index: -3
-    # TODO change this entry once https://github.com/Kong/docs.konghq.com/pull/5797 is merged as we can use the one directly from Kuma
     - path: [ Introduction, Release notes]
-      url: /introduction/changelog/
-      src: /mesh/changelog.old
+      url: /mesh/changelog
+      src: /mesh/changelog
       action: modify
     - title: Getting Started
       action: insert
