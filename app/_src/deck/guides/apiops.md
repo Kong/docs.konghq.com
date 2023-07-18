@@ -14,13 +14,13 @@ decK commands break down into the following categories:
 * Configuration transformation
 * Gateway state management
 
-This document will provide a guide on using the configuration 
+This guide walks you through using the configuration 
 generation and transformation commands to build an API automation delivery pipeline.
 
-## Configuration Generation
+## Configuration generation
 
-[OpenAPI](https://swagger.io/specification/) is the de facto standard 
-for defining API behavior. OpenAPI Specifications (OAS) are very useful
+[OpenAPI](https://swagger.io/specification/) is the most commonly used standard 
+for defining API behavior. OpenAPI Specifications (OAS) are useful
 for many API development related tasks including generating documentation
 and API client code. With decK, you can also generate {{site.base_gateway}}
 configuration from OAS files.
@@ -47,7 +47,9 @@ paths:
 You can generate a {{site.base_gateway}} configuration with the following:
 
 ```sh
-deck file openapi2kong --spec oas.yaml --output-file mockbin.yaml
+deck file openapi2kong \
+  --spec oas.yaml \
+  --output-file mockbin.yaml
 ```
 
 Which produces a complete decK configuration file:
@@ -78,7 +80,7 @@ upstreams: []
 ```
 
 {:.note}
-> **Note**: The {{site.base_gateway}} [getting started guide](/gateway/{{page.kong_version}}/get-started/) 
+> **Note**: The {{site.base_gateway}} [getting started guide](/gateway/latest/get-started/) 
 can help you quickly run a gateway in Docker to follow along with these instructions.
 
 You can syncronize this directly to the gateway using `deck sync`:
@@ -87,7 +89,7 @@ You can syncronize this directly to the gateway using `deck sync`:
 deck sync -s mockbin.yaml
 ```
 
-And decK will create the service and route.
+Which creates the service and route:
 
 ```sh
 creating service mockbin-api
@@ -98,7 +100,7 @@ Summary:
   Deleted: 0
 ```
 
-However, you will generally want to configure more sophisticated {{site.base_gateway}} capabilities 
+This is a very simple example. In reality, you will generally want to configure more sophisticated {{site.base_gateway}} capabilities 
 for your API. Maybe you want to secure your API with an 
 [authentication plugin](https://docs.konghq.com/hub/?category=security), 
 or protect it with [traffic management](https://docs.konghq.com/hub/?category=traffic-control).
@@ -107,7 +109,7 @@ separation of concerns is achieved if they are configured independently of the s
 
 This can be accomplished with decK file _transformations_. 
 
-## Configuration Transformations
+## Configuration transformations
 
 If you are building microservices or an API platform for multiple teams, you will likely have 
 multiple services and code repositories which may have their own decK configuration files. 
