@@ -133,6 +133,16 @@ The `traditional_compat` router mode has been made more compatible with the beha
 
 {% endif_version %}
 
+{% if_version gte:3.3.x %}
+### Upgrading {{site.base_gateway}} after adopting PostgreSQL 15
+
+PostgreSQL 15 enforces different permission on the public schema than prior versions of PostgreSQL. This requires an extra step to grant the correct permissions to the Kong user to make schema changes. 
+
+You can grant the permissions in one of two ways:
+* Assign the Kong database owner to Kong by running `ALTER DATABASE kong OWNER TO kong`.
+* Temporarily give the Kong user the ability to modify the public schema and then revoke that permission. This option is more restrictive and is a two part process. First, you must grant the right to modify the schema with `GRANT CREATE ON SCHEMA public TO kong` before you run the bootstrap migration commands. After the migrations are done, you can remove this permission by running `REVOKE CREATE ON SCHEMA public FROM kong`.
+{% endif_version %}
+
 {% if_version gte:3.2.x %}
 
 ### PostgreSQL SSL version bump
