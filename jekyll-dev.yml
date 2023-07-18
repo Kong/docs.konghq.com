@@ -226,8 +226,8 @@ mesh_cp_name: kong-mesh-control-plane
 mesh_ignored_links_regex:
   - '\[.*\]\(https:\/\/github\.com\/[kK]ong\/kong-mesh.*\)'
 mesh_raw_generated_paths:
-  - app/_src/.repos/kuma/app/docs
   - app/mesh
+  - app/_src/.repos/kuma/app/docs
 # Helm commands
 set_flag_values_prefix: kuma.
 mesh_helm_repo: kong-mesh/kong-mesh
