@@ -1,0 +1,40 @@
+name: Generate Changelog
+
+on:
+  schedule:
+    - cron:  '0 0 * * 0'
+
+jobs:
+  build-changelog:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+    - name: Run changelog script
+      working-directory: tools/changelog-generator
+      run: python changelog.py
+      env:
+        API_KEY: ${{ secrets.PAT }}
+    - name: Install markdown link checker
+      run: pip install linkcheckmd
+    - name: Check links in changelog
+      working-directory: tools/changelog-generator
+      run: python -m linkcheckmd docs_changelog.md
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: docs-changelog
+        path: tools/changelog-generator/docs_changelog.md
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        title: Automated Changelog update
