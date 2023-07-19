@@ -1,21 +1,29 @@
 # frozen_string_literal: true
 
 class ProductsRenderer
+  MAPPINGS = {
+    'kic' => 'kubernetes-ingress-controller'
+  }.freeze
+
   def products
     @products ||= ENV.fetch('KONG_PRODUCTS', '')
                      .split(',')
-                     .map { |p| p == 'kic' ? 'kubernetes-ingress-controller' : p }
+                     .map { |p| p.split(':') }
+                     .map { |p, v| [MAPPINGS.fetch(p, p), v&.split(';')] }
+                     .each_with_object({}) { |(p, v), hash| hash[p] = v }
   end
 
   def read?(page)
-    products.any? do |product|
+    products.any? do |product, _versions|
       page.relative_path == 'index.html' || page.relative_path.start_with?(product)
     end
   end
 
   def render?(page)
-    products.any? do |product|
-      page.dir == '/' || page.dir.start_with?("/#{product}")
+    products.any? do |product, versions|
+      page.dir == '/' ||
+        (versions.nil? && page.dir.start_with?("/#{product}")) ||
+        (!versions.nil? && versions.any? { |v| page.dir.start_with?("/#{product}/#{v}") })
     end
   end
 end
