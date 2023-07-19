@@ -204,6 +204,14 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
+          - text: Breaking Changes
+            items:
+              - text: Kong Gateway 3.1.x breaking changes
+                url: /production/breaking-changes/3.1.x
+              - text: Kong Gateway 3.0.x breaking changes
+                url: /production/breaking-changes/3.0.x
+              - text: Kong Gateway 2.8.x or earlier breaking changes
+                url: /production/breaking-changes/2.8.x
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
