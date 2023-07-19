@@ -31,6 +31,7 @@
 
 #3.x
 /gateway/:version/kong-plugins/request-transformer/add-body-value/  /hub/kong-inc/request-transformer/how-to/add-body-value/
+/gateway/:version/kong-plugins/graphql/  /hub/kong-inc/graphql-proxy-cache-advanced/how-to/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/

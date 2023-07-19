@@ -543,9 +543,6 @@ items:
              #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               #- text: Configuring Fixed bucket
                # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
-
-      - text: GraphQL
-        url: /kong-plugins/graphql
       - text: gRPC
         items:
         - text: gRPC Plugins

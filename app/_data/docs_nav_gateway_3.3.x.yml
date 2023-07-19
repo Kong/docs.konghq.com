@@ -555,8 +555,6 @@ items:
             url: /kong-plugins/queue
           - text: Plugin Queuing Reference
             url: /kong-plugins/queue/reference
-      - text: GraphQL
-        url: /kong-plugins/graphql
       - text: gRPC
         items:
         - text: gRPC Plugins
