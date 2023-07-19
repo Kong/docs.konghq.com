@@ -29,6 +29,8 @@
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
 /gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
 
+#3.x
+/gateway/:version/kong-plugins/request-transformer/add-body-value/  /hub/kong-inc/request-transformer/how-to/add-body-value/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/
