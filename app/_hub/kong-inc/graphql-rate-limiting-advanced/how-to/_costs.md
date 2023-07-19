@@ -6,6 +6,8 @@ nav_title: Managing costs
 
 The following configuration example targets a GraphQL endpoint at our [SWAPI playground].
 
+See the [Costs API reference](/hub/kong-inc/graphql-rate-limiting-advanced/api/) for more information.
+
 ### Add a GraphQL service and route
 
 ```sh

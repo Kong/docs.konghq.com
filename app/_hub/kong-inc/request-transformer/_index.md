@@ -22,3 +22,10 @@ This plugin performs the response transformation in the following order:
 
 remove → rename → replace → add → append
 
+## Get started with the Request Transformer plugin
+
+* [Configuration reference](/hub/kong-inc/request-transformer/configuration/)
+* [Basic configuration example](/hub/kong-inc/request-transformer/how-to/basic-example/)
+* [Learn how to use the plugin](/hub/kong-inc/request-transformer/how-to/)
+* [Adding attributes to HTTP requests with Kong Gateway](/hub/kong-inc/request-transformer/how-to/add-body-value/)
+* [Using templates as values](/hub/kong-inc/request-transformer/how-to/templates/)

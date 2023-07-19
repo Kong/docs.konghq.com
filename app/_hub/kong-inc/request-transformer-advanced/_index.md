@@ -15,3 +15,10 @@ notation must be used instead.
 This plugin performs the response transformation in the following order:
 
 remove → rename → replace → add → append
+
+## Get started with the Request Transformer Advanced plugin
+
+* [Configuration reference](/hub/kong-inc/request-transformer-advanced/configuration/)
+* [Basic configuration example](/hub/kong-inc/request-transformer-advanced/how-to/basic-example/)
+* [Learn how to use the plugin](/hub/kong-inc/request-transformer-advanced/how-to/)
+* [Using templates as values](/hub/kong-inc/request-transformer-advanced/how-to/templates/)

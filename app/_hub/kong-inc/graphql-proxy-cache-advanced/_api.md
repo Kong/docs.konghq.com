@@ -1,5 +1,5 @@
 ---
-nav_title: GraphQL Proxy Cache Advanced API Reference
+nav_title: GraphQL Cache API reference
 ---
 
 ## Managing cache entities

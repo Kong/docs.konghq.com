@@ -2,13 +2,15 @@
 nav_title: Costs API reference
 ---
 
-The GraphQL Proxy Cache Advanced plugin exposes several endpoints for cost management. 
+## Managing costs in GraphQL queries
+
+The GraphQL Rate Limiting Advanced plugin exposes several endpoints for cost management. 
 They are available through the Kong Admin API.
 
 To configure and enable the plugin itself, [use the `/plugins` API endpoint](/hub/kong-inc/graphql-rate-limiting-advanced/how-to/basic-example/).
 The `/graphql-rate-limiting-advanced` endpoints only appear once the plugin has been enabled. 
 
-## Costs in GraphQL queries
+### About costs
 
 GraphQL query costs are evaluated by introspecting the endpoint's GraphQL schema
 and applying cost decoration to parts of the schema tree.

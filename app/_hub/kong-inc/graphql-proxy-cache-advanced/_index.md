@@ -5,6 +5,8 @@ Cache entities are stored for a configurable period of time, after which subsequ
 same resource will re-fetch and re-store the resource. 
 Cache entities can also be forcefully purged via the Admin API prior to their expiration time.
 
+Kong also provides a [GraphQL Rate Limiting Advanced plugin](/hub/kong-inc/graphql-rate-limiting-advanced/).
+
 ## Strategies
 
 The GraphQL Proxy Caching Advanced Plugin is designed to support storing GraphQL proxy cache data in different backend formats.
@@ -41,3 +43,11 @@ was proxied upstream.
 * `Refresh`: The resource was found in cache, but could not satisfy the request, due to `Cache-Control` behaviors or
 reaching its hard-coded `cache_ttl` threshold.
 * `Bypass`: The request could not be satisfied from cache based on plugin configuration.
+
+
+## Get started with the GraphQL Proxy Cache Advanced plugin
+
+* [Configuration reference](/hub/kong-inc/graphql-proxy-cache-advanced/configuration/)
+* [Basic configuration example](/hub/kong-inc/graphql-proxy-cache-advanced/how-to/basic-example/)
+* [Learn how to use the plugin](/hub/kong-inc/graphql-proxy-cache-advanced/how-to/)
+* [GraphQL Cache API reference](/hub/kong-inc/graphql-proxy-cache-advanced/api/)
