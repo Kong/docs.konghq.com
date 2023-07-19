@@ -647,25 +647,17 @@
 
 
 # KONG MESH
-/mesh/konnect/* /mesh/latest/:splat
-/mesh/1.0.x/features/   /mesh/1.0.x/features/vault
-/mesh/1.1.x/features/   /mesh/1.1.x/features/vault
-/mesh/:version/features/windows/     /mesh/:version/installation/windows/
-/mesh/:version/policies/introduction/  /mesh/:version/policies/
-/policies/  /mesh/:version/policies/
-/mesh/:version/introduction/how-kong-mesh-works/#kuma-vs-xyz  /mesh/:version/introduction/how-kong-mesh-works/#kong-mesh-vs-xyz
-/mesh/:version/introduction/what-is-kong-mesh   /mesh/:version/
-/install/:version/  /mesh/:version/install/
+/policies /mesh/latest/policies/introduction
 /mesh/:version/documentation/introduction/  /mesh/:version/
-/mesh/:version/policies/protocol-support-in-kuma/  /mesh/:version/policies/protocol-support-in-kong-mesh/
+/mesh/:version/introduction/overview-of-kong-mesh /mesh/:version/
 /mesh/:version/overview /mesh/:version/
-/mesh/:version/features/rbac    /mesh/:version/production/secure-deployment/
-/mesh/:version/features/fips-support  /mesh/:version/production/secure-deployment/fips-support/
-/mesh/:version/plan-and-deploy/license    /mesh/:version/production/cp-deployment/license/
-/mesh/:version/features/meshopa   /mesh/:version/policies/meshopa
-/mesh/:version/features/meshglobalratelimit   /mesh/:version/policies/meshglobalratelimit
+# Make GUI docs link work
+/mesh/konnect/* /mesh/latest/:splat
+/mesh/:version/installation/windows   /mesh/:version/features/windows
+/mesh/:version/policies/meshopa   /mesh/:version/features/meshopa
+/mesh/:version/policies/meshglobalratelimit   /mesh/:version/features/meshglobalratelimit
 
-# kuma IA redirects
+# kuma IA redirects (TODO review these they should likely only be for latest and most of them should be in Kuma's `_common_redirects`)
 /mesh/:version/introduction/deployments/  /mesh/:version/production/deployment/
 /mesh/:version/deployments/stand-alone/ /mesh/:version/production/deployment/stand-alone/
 /mesh/:version/deployments/multi-zone/  /mesh/:version/production/deployment/multi-zone/
@@ -695,20 +687,7 @@
 /mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
 /mesh/:version/installation/* /mesh/:version/production/install-kumactl/
 /mesh/:version/install/* /mesh/:version/production/install-kumactl/
-
-
-# Kuma IA Reference section
-
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
-
-# Redirect missing policies to features (especially useful to make doc links work)
-/mesh/:version/policies/* /mesh/:version/features/:splat
-
-
-## Introduction
-/docs/:version/introduction/what-is-kuma/ /docs/:version/introduction/overview-of-kuma/ 302
-/docs/:version/introduction/what-is-a-service-mesh/ /docs/:version/introduction/what-is-a-service-mesh/ 302
-/docs/:version/introduction/deployments/  /docs/:version/production/deployment/ 302
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
