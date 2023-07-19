@@ -36,7 +36,7 @@ is built on an open-source foundation, any breaking changes in OSS affect all {{
 If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
 {{page.kong_version}} from there.
 
-In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
+In either case, you can review the {% if_version lte:3.2.x %}[upgrade considerations and breaking changes](#upgrade-considerations-and-breaking-changes){% endif_version %} breaking changes for your version,
 then follow the [database migration](#migrate-db) instructions.
 
 ## Upgrade path for {{site.base_gateway}} {{page.kong_version}} 
@@ -102,6 +102,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
+{% if_version lte:3.2.x %}
 ## Upgrade considerations and breaking changes
 
 Before upgrading, review any configuration or breaking changes in this version and prior versions that
@@ -396,6 +397,7 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtab %}
 {% endnavtabs %}
 
+{% endif_version %}
 ## General upgrade path {#migrate-db}
 
 Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
