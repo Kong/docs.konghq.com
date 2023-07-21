@@ -12,7 +12,7 @@ If no selectors are given, all Kong entities are selected.
 ## Syntax
 
 ```
-deck file remove-tags [command-specific flags] [global flags]
+deck file remove-tags [command-specific flags] [global flags] tag [...tag]
 ```
 
 ## Examples

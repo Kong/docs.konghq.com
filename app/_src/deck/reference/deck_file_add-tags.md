@@ -12,7 +12,7 @@ selectors are given, all Kong entities are tagged.
 ## Syntax
 
 ```
-deck file add-tags [command-specific flags] [global flags]
+deck file add-tags [command-specific flags] [global flags] tag [...tag]
 ```
 
 ## Flags
