@@ -13,14 +13,11 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 <!-- vale off -->
 Tracer module  Application-level tracing for Kong.
 
-
-
-
 ## span:finish(end_time_ns)
 
-Ends a Span
- Set the end time and release the span,
- the span table MUST not being used after ended.
+Ends a Span.
+
+Set the end time and release the span, the span table MUST not be used after it is ended.
 
 **Parameters**
 
@@ -35,11 +32,9 @@ local time = ngx.now()
 span:finish(time * 100000000)
 ```
 
-
-
 ## span:set_attribute(key, value)
 
-Set an attribute to a Span
+Set an attribute to a Span.
 
 **Parameters**
 
@@ -54,52 +49,52 @@ span:set_attribute("net.peer.port", 443)
 span:set_attribute("exception.escaped", true)
 ```
 
-
-
 ## span:add_event(name, attributes, time_ns)
 
-Adds an event to a Span
+Adds an event to a Span.
 
 **Parameters**
 
-* **name** (`string`):  Event name
-* **attributes** (`table|nil`):  Event attributes
-* **time_ns** (`number|nil`):  Event timestamp
-
-
+* **name** (`string`): Event name
+* **attributes** (`table|nil`): Event attributes
+* **time_ns** (`number|nil`): Event timestamp
 
 ## span:record_error(err)
 
-Adds an error event to a Span
+Adds an error event to a Span.
 
 **Parameters**
 
-* **err** (`string`):  error string
-
-
+* **err** (`string`): error string
 
 ## span:set_status(status)
 
-Adds an error event to a Span
- Status codes:
- - `0` unset
- - `1` ok
- - `2` error
+Adds an error event to a Span.
+
+Status codes:
+
+* `0` unset
+* `1` ok
+* `2` error
 
 **Parameters**
 
-* **status** (`number`):  status code
-
+* **status** (`number`): status code
 
 {% if_version lte:3.2.x %}
+
 ## kong.tracing.new_span()
+
 {% endif_version %}
 {% if_version gte:3.3.x %}
+
 ## kong.tracing.active_span()
+
 {% endif_version %}
 
-Get the active span
- Returns the root span by default
+Get the active span.
+
+Returns the root span by default.
 
 **Phases**
 
@@ -109,13 +104,15 @@ Get the active span
 
 * `table`:  span
 
-
-
 {% if_version lte:3.2.x %}
+
 ## kong.tracing.new_span(span)
+
 {% endif_version %}
 {% if_version gte:3.3.x %}
+
 ## kong.tracing.set_active_span(span)
+
 {% endif_version %}
 Set the active span
 
@@ -127,12 +124,15 @@ Set the active span
 
 * **span** (`table`):
 
-
 {% if_version lte:3.2.x %}
+
 ## kong.tracing.new_span(name, options)
+
 {% endif_version %}
 {% if_version gte:3.3.x %}
+
 ## kong.tracing.start_span(name, options)
+
 {% endif_version %}
 Create a new Span
 
@@ -142,20 +142,18 @@ Create a new Span
 
 **Parameters**
 
-* **name** (`string`):  span name
-* **options** (`table`):  TODO(mayo)
+* **name** (`string`): span name
+* **options** (`table`): TODO(mayo)
 
 **Returns**
 
-* `table`:  span
-
-
-
+* `table`: span
 
 ## kong.tracing.process_span(processor)
 
-Batch process spans
- Please note that socket is not available in the log phase, use `ngx.timer.at` instead
+Batch process spans.
+
+Please note that socket is not available in the log phase, use `ngx.timer.at` instead.
 
 **Phases**
 
@@ -163,16 +161,16 @@ Batch process spans
 
 **Parameters**
 
-* **processor** (`function`):  a function that accecpt a span as the parameter
-
+* **processor** (`function`): a function that accept a span as the parameter
 
 {% if_version gte:3.3.x %}
+
 ## span:set_should_sample(should_sample)
 
-Update the value of should_sample for all spans
+Update the value of should_sample for all spans.
 
 **Parameters**
 
-* **should_sample** (`bool`):  value for the sample parameter
+* **should_sample** (`bool`): value for the sample parameter
 
 {% endif_version %}
