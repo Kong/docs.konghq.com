@@ -1,27 +1,27 @@
 {
 	"fields": [
-    { "datadome_api_key" : {
+    { "datadome_server_side_key" : {
         "type": "string",
         "required": true,
         "default": " " 
       } 
     },
-    { "datadome_api_endpoint" : {
+    { "datadome_endpoint" : {
         "type": "string",
         "required": false 
       } 
     },
-    { "datadome_api_config_timeout" : {
+    { "datadome_timeout" : {
         "type": "integer",
         "required": false 
       } 
     },
-    { "datadome_api_config_uri_regex" : {
+    { "datadome_url_pattern_inclusion" : {
         "type": "string",
         "required": false 
       } 
     },
-    { "datadome_api_config_uri_regex_exclusion" : {
+    { "datadome_url_pattern_exclusion" : {
         "type": "string",
         "required": false 
       }
