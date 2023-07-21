@@ -46,7 +46,7 @@ patches that are applied in order:
 ## Syntax
 
 ```
-deck file patch [command-specific flags] [global flags]
+deck file patch [command-specific flags] [global flags] [...patch-files]
 ```
 
 ## Flags

@@ -18,7 +18,7 @@ determined by the `_transform` and `_format_version` fields.
 ## Syntax
 
 ```
-deck file merge [command-specific flags] [global flags]
+deck file merge [command-specific flags] [global flags] filename [...filename]
 ```
 
 ## Flags

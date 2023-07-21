@@ -32,7 +32,7 @@ order they are given:
 ## Syntax
 
 ```
-deck file add-plugins [command-specific flags] [global flags]
+deck file add-plugins [command-specific flags] [global flags] [...plugin-files]
 ```
 
 ## Flags
