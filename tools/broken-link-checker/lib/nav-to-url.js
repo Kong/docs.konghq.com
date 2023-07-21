@@ -9,6 +9,7 @@ module.exports = function(filename) {
     mesh: "mesh",
     gateway: "gateway",
     contributing: "contributing",
+    shared: "shared",
   };
 
   filename = filename.replace("app/_data/docs_nav_", "").replace(/\.yml$/, "");

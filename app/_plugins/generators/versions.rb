@@ -39,6 +39,10 @@ module Jekyll
         elem['edition'] && elem['edition'] == 'contributing'
       end
 
+      shared_versions = site.data['kong_versions'].select do |elem|
+        elem['edition'] && elem['edition'] == 'shared'
+      end
+
       gateway_versions = site.data['kong_versions'].select do |elem|
         elem['edition'] && elem['edition'] == 'gateway'
       end
@@ -51,6 +55,7 @@ module Jekyll
       site.data['kong_versions_konnect'] = konnect_versions
       site.data['kong_versions_kic'] = kic_versions
       site.data['kong_versions_contributing'] = contributing_versions
+      site.data['kong_versions_shared'] = shared_versions
       site.data['kong_versions_gateway'] = gateway_versions
 
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
@@ -95,6 +100,7 @@ module Jekyll
           kubernetes-ingress-controller
           gateway
           gateway-oss
+          shared
         ].any? { |p| parts[0] == p }
 
         next unless is_product
@@ -153,6 +159,11 @@ module Jekyll
           page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = contributing_versions
           page.data['nav_items'] = site.data['docs_nav_contributing']
+        when 'shared'
+          page.data['edition'] = parts[0]
+          page.data['kong_version'] = parts[1] if has_version
+          page.data['kong_versions'] = shared_versions
+          page.data['nav_items'] = site.data['docs_nav_shared']
         when 'gateway-oss'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1] if has_version

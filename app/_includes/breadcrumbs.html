@@ -37,6 +37,9 @@
 {% elsif include.edition == 'contributing' %}
   {% capture product_url %}/contributing/{% endcapture %}
   {% capture product_title %}Style guide and contribution guidelines{% endcapture %}
+{% elsif include.edition == 'shared' %}
+  {% capture product_url %}/shared/{% endcapture %}
+  {% capture product_title %}Shared content{% endcapture %}
 {% endif %}
 
 <div id="breadcrumbs">

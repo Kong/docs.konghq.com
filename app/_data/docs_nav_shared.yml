@@ -1,0 +1,109 @@
+- title: Shared reference content
+  url: /references/
+
+- title: Key concepts
+  items:
+    - text: Services
+      url: /references/key-concepts/services/
+    - text: Routes
+      url: /references/key-concepts/routes/
+    - text: Plugins
+      url: /references/key-concepts/plugins/
+    - text: Upstreams
+      url: /references/key-concepts/upstreams/
+
+- title: Develop Custom Plugins
+  items:
+    - text: Overview
+      url: /references/plugin-development/
+    - text: File Structure
+      url: /references/plugin-development/file-structure
+    - text: Implementing Custom Logic
+      url: /references/plugin-development/custom-logic
+    - text: Plugin Configuration
+      url: /references/plugin-development/configuration
+    - text: Accessing the Data Store
+      url: /references/plugin-development/access-the-datastore
+    - text: Storing Custom Entities
+      url: /references/plugin-development/custom-entities
+    - text: Caching Custom Entities
+      url: /references/plugin-development/entities-cache
+    - text: Extending the Admin API
+      url: /references/plugin-development/admin-api
+    - text: Writing Tests
+      url: /references/plugin-development/tests
+    - text: (un)Installing your Plugin
+      url: /references/plugin-development/distribution
+    # - text: Plugin Development Kit
+    #   items:
+    #   - text: Overview
+    #     url: /references/plugin-development/pdk/
+    #   - text: kong.client
+    #     url: /references/plugin-development/pdk/kong.client
+    #   - text: kong.client.tls
+    #     url: /references/plugin-development/pdk/kong.client.tls
+    #   - text: kong.cluster
+    #     url: /references/plugin-development/pdk/kong.cluster
+    #   - text: kong.ctx
+    #     url: /references/plugin-development/pdk/kong.ctx
+    #   - text: kong.ip
+    #     url: /references/plugin-development/pdk/kong.ip
+    #   - text: kong.jwe
+    #     url: /references/plugin-development/pdk/kong.jwe
+    #   - text: kong.log
+    #     url: /references/plugin-development/pdk/kong.log
+    #   - text: kong.nginx
+    #     url: /references/plugin-development/pdk/kong.nginx
+    #   - text: kong.node
+    #     url: /references/plugin-development/pdk/kong.node
+    #   - text: kong.request
+    #     url: /references/plugin-development/pdk/kong.request
+    #   - text: kong.response
+    #     url: /references/plugin-development/pdk/kong.response
+    #   - text: kong.router
+    #     url: /references/plugin-development/pdk/kong.router
+    #   - text: kong.service
+    #     url: /references/plugin-development/pdk/kong.service
+    #   - text: kong.service.request
+    #     url: /references/plugin-development/pdk/kong.service.request
+    #   - text: kong.service.response
+    #     url: /references/plugin-development/pdk/kong.service.response
+    #   - text: kong.table
+    #     url: /references/plugin-development/pdk/kong.table
+    #   - text: kong.tracing
+    #     url: /references/plugin-development/pdk/kong.tracing
+    #   - text: kong.vault
+    #     url: /references/plugin-development/pdk/kong.vault
+
+    # - text: kong.websocket.client
+    #   url: /references/plugin-development/pdk/kong.websocket.client
+
+    # - text: kong.websocket.upstream
+    #   url: /references/plugin-development/pdk/kong.websocket.upstream
+
+    - text: Plugins in Other Languages
+      items:
+        - text: Go
+          url: /references/plugin-development/pluginserver/go
+        - text: Javascript
+          url: /references/plugin-development/pluginserver/javascript
+        - text: Python
+          url: /references/plugin-development/pluginserver/python
+        - text: Running Plugins in Containers
+          url: /references/plugin-development/pluginserver/plugins-kubernetes
+        - text: External Plugin Performance
+          url: /references/plugin-development/pluginserver/performance
+
+- title: Kong-bundled plugins
+  items:
+    - text: Compatibility
+      url: /references/plugin-compatibility/
+    - text: License Tiers
+      url: /references/license-tiers/
+
+- title: Glossary
+  url: /references/glossary/
+
+- title: Stages of software availability
+  url: /references/stability/
+      

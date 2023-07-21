@@ -16,12 +16,13 @@
           {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
+          {% elsif include.edition == 'shared' %}Shared content
           {% endif %}
         </span>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-right with-submenu" id="module-list" role="menu" aria-labelledby="module-dropdown" aria-hidden="true">
-
+        <span class="dropdown-submenu-title">Product manuals</span>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway' or include.edition == 'gateway-oss' or include.edition == 'enterprise' %}class="active"{% endif %}>
           <a href="/gateway/latest/" {% if include.edition == 'gateway' %}class="active"{% endif %}>Kong Gateway</a>
         </li>
@@ -45,6 +46,11 @@
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="https://kuma.io/docs/" target="_blank">Kuma</a>
+        </li>
+        <hr>
+        <span class="dropdown-submenu-title">Shared content</span>
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'shared' %} class="active"{% endif %}>
+          <a href="/shared/references/" {% if include.edition == 'shared' %}class="active"{% endif %}>References</a>
         </li>
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'contributing' %} class="active"{% endif %}>
@@ -80,7 +86,7 @@
           {% endunless %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if include.kong_version==ver.release %}class="active" {% endif %} role="menuitem" tabindex="-1">
-          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'shared' %}shared/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==include.kong_version %} class="active" {% endif %}
             data-version-id="{{ver.release}}"
           >

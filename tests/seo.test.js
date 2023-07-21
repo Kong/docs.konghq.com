@@ -119,6 +119,10 @@ describe("unversioned content", () => {
       title: "contributing",
       src: "/contributing/",
     },
+    {
+      title: "shared",
+      src: "/shared/references/",
+    },
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src);
