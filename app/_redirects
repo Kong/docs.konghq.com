@@ -2,6 +2,9 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+#3.3
+/gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/production/breaking-changes/33x
+
 #3.2
 
 /gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
