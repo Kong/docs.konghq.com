@@ -93,7 +93,7 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
     and `cookie_samesite` properties as follows:
 
     ```
-    echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com>","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
     {% endif_version %}
     {% if_version gte:3.2.x %}
@@ -105,7 +105,7 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
     and `cookie_samesite` properties as follows:
 
     ```
-    echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    echo '{"cookie_name":"portal_session","cookie_samesite":"off","cookie_domain":"<.your_subdomain.com>","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
     {% endif_version %}
 
