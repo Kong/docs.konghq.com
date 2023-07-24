@@ -63,6 +63,15 @@ deck file patch [command-specific flags] [global flags] [...patch-files]
 `--selector`
 :  json-pointer identifying the element to patch. Repeat for multiple selectors.
 
+{:.important}
+> **Warning**: The JSONPath implementation has a known issue related to 
+recursive descent with expressions. Expressions following a recusrive
+descent do not work as expected, however, a workaround is available by preceding the
+expression with a wildcard selection. For example, `$..plugins[?(@.regex_priority>100)]` must
+be expressed as `$..plugins[*][?(@.regex_priority>100)]`. See the 
+[go-apiops library documentation](https://github.com/Kong/go-apiops/blob/main/docs/README.md#notes) 
+for details on this issue.
+
 `-s`, `--state`
 :  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
 

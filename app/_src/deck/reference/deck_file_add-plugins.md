@@ -58,9 +58,17 @@ exist in an array. The default behavior is to skip existing plugins. (Default: `
 :  JSON path expression to select plugin-owning objects to add plugins to.
 Defaults to the top level (selector `$`). Repeat for multiple selectors.
 
+{:.important}
+> **Warning**: The JSONPath implementation has a known issue related to 
+recursive descent with expressions. Expressions following a recusrive
+descent do not work as expected, however, a workaround is available by preceding the
+expression with a wildcard selection. For example, `$..plugins[?(@.regex_priority>100)]` must
+be expressed as `$..plugins[*][?(@.regex_priority>100)]`. See the 
+[go-apiops library documentation](https://github.com/Kong/go-apiops/blob/main/docs/README.md#notes) 
+for details on this issue.
+
 `-s`, `--state`
 :  decK file to process. Use `-` to read from stdin. (Default: `"-"`)
-
 
 
 ## Global flags
@@ -148,8 +156,6 @@ This value can also be set using DECK_TLS_SKIP_VERIFY environment variable. (Def
 `--verbose`
 :  Enable verbose logging levels
 Sets the verbosity level of log output (higher is more verbose). (Default: `0`)
-
-
 
 ## See also
 
