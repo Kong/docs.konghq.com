@@ -146,8 +146,8 @@ If you are entirely using Docker, you may also be interested in checking out the
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/latest/introduction/deployments/
-[backends]: https://kuma.io/docs/latest/documentation/configuration/
-[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
-[get-started-universal]: https://kuma.io/docs/latest/quickstart/universal/
+[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
+[backends]: https://kuma.io/docs/1.8.x/documentation/configuration/
+[get-started-k8s]: https://kuma.io/docs/1.8.x/quickstart/kubernetes/
+[get-started-universal]: https://kuma.io/docs/1.8.x/quickstart/universal/
 {% endif_version %}

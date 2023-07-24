@@ -261,6 +261,6 @@ To start using {{site.mesh_product_name}}, see the
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/latest/introduction/deployments/
-[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
+[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
+[get-started-k8s]: https://kuma.io/docs/1.8.x/quickstart/kubernetes/
 {% endif_version %}

@@ -198,7 +198,6 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
-set_flag_values_prefix: kuma.
 kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
@@ -206,17 +205,22 @@ konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
 mesh_product_name: Kong Mesh
+# Mesh specific config
 mesh_namespace: kong-mesh-system
 mesh_cp_name: kong-mesh-control-plane
+mesh_ignored_links_regex:
+  - '\[.*\]\(https:\/\/github\.com\/[kK]ong\/kong-mesh.*\)'
+mesh_raw_generated_paths:
+  - app/mesh
+  - app/_src/.repos/kuma/app/docs
+# Helm commands
+set_flag_values_prefix: kuma.
+mesh_helm_repo: kong-mesh/kong-mesh
+mesh_helm_install_name: kong-mesh
+mesh_disabled_versions: [dev]
+# binary options
+mesh_install_archive_name: kong-mesh
 
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
-
-# Helm commands
-mesh_helm_repo: kong-mesh/kong-mesh
-mesh_helm_install_name: kong-mesh
-mesh_disabled_versions: [dev]
-
-# binary options
-mesh_install_archive_name: kong-mesh

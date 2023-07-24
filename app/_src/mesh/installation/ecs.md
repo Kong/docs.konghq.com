@@ -177,8 +177,8 @@ database as a PostgreSQL backend. It also uses ECS service discovery to enable E
 tasks to communicate with the {{site.mesh_product_name}} control plane.
 
 The example Cloudformation includes two Cloudformation stacks for
-[creating a cluster](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/vpc.yaml) and
-[deploying {{site.mesh_product_name}}](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/controlplane.yaml)
+[creating a cluster](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/vpc.yaml) and
+[deploying {{site.mesh_product_name}}](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml)
 
 #### Workload identity
 
@@ -196,7 +196,7 @@ must be restricted accordingly for your AWS account
 (which must be explicitly given to the CP, see below).
 
 The control plane must have the following options enabled. The example
-Cloudformation [sets them via environment variables](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/controlplane.yaml#L334-L337):
+Cloudformation [sets them via environment variables](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml#L334-L337):
 
 ```yaml
 - Name: KUMA_DP_SERVER_AUTH_TYPE
@@ -207,7 +207,7 @@ Cloudformation [sets them via environment variables](https://github.com/Kong/kon
   Value: !Ref AWS::AccountId # this tells the CP which accounts can be used by DPs to authenticate
 ```
 
-Every sidecar must have the [`--auth-type=aws` flag set as well](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/counter-demo/demo-app.yaml#L255).
+Every sidecar must have the [`--auth-type=aws` flag set as well](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L255).
 
 ## Services
 
@@ -223,7 +223,7 @@ service must enumerate all other mesh services this service contacts and include
 [in the `Dataplane` specification as `outbounds`][dpp-spec].
 
 See the example repository to learn
-[how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/counter-demo/demo-app.yaml#L31-L46).
+[how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L31-L46).
 
 ### IAM role
 
@@ -239,15 +239,21 @@ Additionally, you can set the `kuma.io/service` tag to further restrict its iden
 The sidecar must run as a container in the ECS task.
 
 See the example repository for [an example container
-definition](https://github.com/Kong/kong-mesh-ecs/blob/workload-identity/deploy/counter-demo/demo-app.yaml#L213-L261).
+definition](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L213-L261).
 {% endif_version %}
 
 <!-- links -->
-{% if_version gte:2.0.x %}
+{% if_version gte:2.2.x %}
+[dpp-spec]: /mesh/{{page.kong_version}}/production/dp-config/dpp-on-universal/
+{% endif_version %}
+{% if_version eq:2.1.x %}
+[dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
+{% endif_version %}
+{% if_version eq:2.0.x %}
 [dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[dpp-spec]: https://kuma.io/docs/latest/generated/resources/proxy_dataplane/
+[dpp-spec]: https://kuma.io/docs/1.8.x/generated/resources/proxy_dataplane/
 {% endif_version %}
 

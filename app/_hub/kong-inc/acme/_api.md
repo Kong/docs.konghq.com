@@ -4,7 +4,7 @@ nav_title: ACME Plugin API Reference
 
 ## Monitoring and debugging
 
-The ACME plugin exposes several endpoints through Admin API that can be used for
+The ACME plugin exposes several endpoints through the Admin API that can be used for
 debugging and monitoring certificate creation and renewal.
 
 To configure and enable the plugin itself, [use the `/plugins` API endpoint](/hub/kong-inc/acme/how-to/basic-example/).
