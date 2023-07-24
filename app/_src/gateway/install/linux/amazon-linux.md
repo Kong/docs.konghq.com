@@ -20,9 +20,51 @@ You can install {{site.base_gateway}} by downloading an installation package or 
 > **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}
-{% navtab Package %}
+{% navtab Package (AL2023) %}
+Install {{site.base_gateway}} on Amazon Linux 2023 from the command line.
 
-Install {{site.base_gateway}} on Amazon Linux from the command line.
+1. Download the Kong package:
+
+{% capture download_package %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2023/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm"
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+curl -Lo kong-{{page.versions.ce}}.aws.amd64.rpm "{{ site.links.download }}/gateway-3.x-amazonlinux-2023/Packages/k/kong-{{page.versions.ce}}.aws.amd64.rpm"
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ download_package | indent | replace: " </code>", "</code>" }}
+
+2. Install the package:
+
+{% capture install_package %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo yum install kong-{{page.versions.ce}}.aws.amd64.rpm
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ install_package | indent | replace: " </code>", "</code>" }}
+
+{% endnavtab %}
+{% navtab Package (Amazon Linux 2) %}
+
+Install {{site.base_gateway}} on Amazon Linux 2 from the command line.
 
 1. Download the Kong package:
 
@@ -63,13 +105,40 @@ sudo yum install kong-{{page.versions.ce}}.aws.amd64.rpm
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
 {% endnavtab %}
-{% navtab YUM repository %}
+{% navtab YUM repository (AL2023) %}
 
 Install the YUM repository from the command line.
 
-{% include_cached /md/gateway/rpm-gpg-key-2023.md kong_version=page.kong_version %}
+1. Download the Kong APT repository:
+    ```bash
+    curl https://download.konghq.com/gateway-3.x-amazonlinux-2023/config.repo | sudo tee /etc/yum.repos.d/kong.repo
+    ```
 
-1. Download the Kong YUM repository:
+2. Install Kong:
+
+{% capture install_from_repo %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+sudo yum install kong-{{page.versions.ce}}
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ install_from_repo | indent | replace: " </code>", "</code>" }}
+
+{% endnavtab %}
+{% navtab YUM repository (Amazon Linux 2) %}
+
+Install the YUM repository from the command line.
+
+1. Download the Kong APT repository:
     ```bash
     curl https://download.konghq.com/gateway-3.x-amazonlinux-2/config.repo | sudo tee /etc/yum.repos.d/kong.repo
     ```
