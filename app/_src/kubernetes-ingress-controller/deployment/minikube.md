@@ -30,14 +30,21 @@ Next, we will setup an environment variable with the IP address at which
 Kong is accessible. This will be used to actually send requests into the
 Kubernetes cluster.
 
+1. Get the IP address at which Kong is accessible:
 ```bash
-$ export PROXY_IP=$(minikube service -n kong kong-proxy --url | head -1)
+$ minikube service -n kong kong-proxy --url | head -1
 # If installed by helm, service name would be "<release-name>-kong-proxy".
-# $ export PROXY_IP=$(minikube service <release-name>-kong-proxy --url | head -1)
-$ echo $PROXY_IP
+# minikube service <release-name>-kong-proxy --url | head -1
+```
+The output is similar to:
+```bash
 http://192.168.99.100:32728
 ```
-
+1. To set the environment variable, replace `<ip-address>` with the IP address at which Kong is accessible:
+```bash
+export PROXY_IP=<ip-address>
+echo $PROXY_IP
+```
 Once you've installed the {{site.kic_product_name}}, please follow our
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.
