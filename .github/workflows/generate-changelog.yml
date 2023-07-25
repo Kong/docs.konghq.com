@@ -6,6 +6,10 @@ on:
     - cron: "0 0 * * 0"
   push: ~
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build-changelog:
     runs-on: ubuntu-latest
