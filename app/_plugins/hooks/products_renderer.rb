@@ -19,11 +19,17 @@ class ProductsRenderer
     end
   end
 
-  def render?(page)
+  def render?(page) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     products.any? do |product, versions|
-      page.dir == '/' ||
+      return true if page.dir == '/'
+
+      case product
+      when '*'
+        versions.any? { |v| page.dir.start_with?(%r{/(\w|-)+/#{v}/}) }
+      else
         (versions.nil? && page.dir.start_with?("/#{product}")) ||
-        (!versions.nil? && versions.any? { |v| page.dir.start_with?("/#{product}/#{v}") })
+          (!versions.nil? && versions.any? { |v| page.dir.start_with?(%r{/#{product}/#{v}}) })
+      end
     end
   end
 end
