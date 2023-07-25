@@ -4,6 +4,8 @@ concurrency:
   cancel-in-progress: true
 
 on:
+  workflow_dispatch: 
+    inputs: {}
   repository_dispatch:
     types: [UPDATE_SUBMODULE]
   pull_request:
