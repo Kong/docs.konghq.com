@@ -11,7 +11,7 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
 
-(async function () {
+async function main() {
   const type = argv._[0];
   const baseUrl = argv.base_url || "http://localhost:8888";
 
@@ -32,7 +32,7 @@ const octokit = new Octokit({
 
   const options = {
     ignore: ignoreFailures,
-    verbose: argv.verbose ? true : false
+    verbose: argv.verbose ? true : false,
   };
   let changes; // This will be set by one of the implementations
 
@@ -42,7 +42,9 @@ const octokit = new Octokit({
       argv.is_fork !== undefined
         ? argv.is_fork
         : github.context.payload.pull_request.head.repo.fork;
-    console.log(`Loading changed files for PR ${options.pull_number} (fork: ${options.is_fork})`)
+    console.log(
+      `Loading changed files for PR ${options.pull_number} (fork: ${options.is_fork})`,
+    );
     changes = await buildPrUrls(options);
   } else if (type == "product") {
     options.nav = argv.nav;
@@ -59,7 +61,7 @@ const octokit = new Octokit({
   if (changes.length) {
     // Remove any ignored paths
     const ignoredPaths = require("./config/ignored_paths.json").map(
-      (r) => new RegExp(r)
+      (r) => new RegExp(r),
     );
     const ignoredUrls = [];
     for (let item of ignoredPaths) {
@@ -74,7 +76,7 @@ const octokit = new Octokit({
 
     if (ignoredUrls.length) {
       console.log(
-        `IGNORING the following URLs:\n\n${ignoredUrls.join("\n")}\n`
+        `IGNORING the following URLs:\n\n${ignoredUrls.join("\n")}\n`,
       );
     }
 
@@ -82,7 +84,7 @@ const octokit = new Octokit({
     console.log(
       `Checking the following URLs on ${baseUrl}\n\n${changes
         .map((u) => u.url)
-        .join("\n")}\n`
+        .join("\n")}\n`,
     );
 
     // Prepend the base URL
@@ -111,26 +113,34 @@ const octokit = new Octokit({
   } else {
     console.log("No URLs detected to test");
   }
-})();
+}
 
 // Implementations for each mode
 async function buildPrUrls(options) {
+  if (github.context.repo.owner) {
+    options = { ...github.context.repo, ...options };
+  }
+
   // Get pages that have changed in the PR
-  const filenames = (
+  const files = (
     await octokit.paginate(
       octokit.rest.pulls.listFiles,
-      {
-        ...github.context.repo,
-        pull_number: options.pull_number,
-      },
-      (response) => response.data
+      options,
+      (response) => response.data,
     )
-  ).map((f) => f.filename);
+  ).map((f) => {
+    return {
+      filename: f.filename,
+      status: f.status,
+    };
+  });
 
   // Map those to URLs
   let urls = [];
-  for (let f of filenames) {
+  for (let file of files) {
     let urlsToAdd = [];
+
+    const f = file.filename;
 
     // If any data files have changed, we need to check a page that uses that
     // file to generate the side navigation. Let's use the index page
@@ -139,6 +149,7 @@ async function buildPrUrls(options) {
         {
           source: f,
           url: navToProductIndexUrl(f),
+          status: file.status,
         },
       ];
     }
@@ -149,6 +160,7 @@ async function buildPrUrls(options) {
         {
           source: f,
           url: `/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`,
+          status: file.status,
         },
       ];
     }
@@ -163,13 +175,14 @@ async function buildPrUrls(options) {
           url: `/${f
             .replace(/^app\/_hub\//, "hub/")
             .replace(/\/_.*\.md$/, "/")}`,
+          status: file.status,
         },
       ];
     }
 
     // Any changes in app/_src
     else if (f.startsWith("app/_src/")) {
-      urlsToAdd = await fileToUrls("*", f);
+      urlsToAdd = await fileToUrls("*", file);
     }
 
     // Add the URLs
@@ -200,3 +213,12 @@ async function buildPluginUrls(options) {
 
   return navEntries;
 }
+
+// If module main run directly, otherwise export for testing
+if (require.main === module) {
+  main();
+}
+
+module.exports = Object.assign(main, {
+  buildPrUrls,
+});

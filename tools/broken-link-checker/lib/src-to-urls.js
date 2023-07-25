@@ -16,8 +16,10 @@ async function loadNavEntries(pattern) {
 }
 
 // Take a file in src and output the URLs that it renders
-async function srcToUrls(pattern, src) {
+async function srcToUrls(pattern, file) {
   let urls = [];
+
+  const src = file.filename;
 
   const navEntries = await loadNavEntries(pattern);
 
@@ -39,8 +41,9 @@ async function srcToUrls(pattern, src) {
         return {
           source: src,
           url: `${prefix}${u.url}`,
+          status: file.status,
         };
-      })
+      }),
     );
   }
 
