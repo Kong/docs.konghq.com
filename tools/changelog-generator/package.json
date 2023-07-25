@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/rest": "^20.0.1",
-    "date-fns": "^2.30.0"
+    "date-fns": "^2.30.0",
+    "lodash.groupby": "^4.6.0"
   }
 }

@@ -1,9 +1,8 @@
 const fs = require("fs").promises;
-const { subDays, startOfDay } = require("date-fns");
+const { subDays, startOfDay, format } = require("date-fns");
+const groupBy = require("lodash.groupby");
 
 const { buildPrUrls } = require("../broken-link-checker/run");
-const { fileURLToPath } = require("url");
-const { cwd } = require("process");
 
 const now = startOfDay(new Date());
 const earliestDate = subDays(now, 7);
@@ -28,10 +27,12 @@ const earliestDate = subDays(now, 7);
     },
     (response, done) => {
       const validPulls = [];
-      let prDate;
+
       for (let pr of response.data) {
+        //console.log(JSON.stringify(pr));
+        //process.exit(0);
         prDate = new Date(pr.created_at);
-        if (prDate > earliestDate) {
+        if (prDate > earliestDate && pr.merged_at && pr.base.ref == "main") {
           validPulls.push(pr);
         }
       }
@@ -44,60 +45,104 @@ const earliestDate = subDays(now, 7);
     },
   );
 
-  //pulls = [pulls[0]];
+  let prsWithFiles = (
+    await Promise.all(
+      pulls.map(async (pr) => {
+        const created_at = new Date(pr.created_at);
+        return {
+          number: pr.number,
+          title: pr.title,
+          description: extractDescription(pr.body),
+          user: pr.user.login,
+          url: pr.html_url,
+          labels: pr.labels,
+          created_at,
+          week: format(created_at, "I"),
+          affected_files: (
+            await buildPrUrls({
+              owner,
+              repo,
+              pull_number: pr.number,
+            })
+          ).map((v) => {
+            return {
+              url: `https://docs.konghq.com${v.url}`,
+              status: v.status,
+            };
+          }),
+        };
+      }),
+    )
+  )
+    .filter((pr) => pr.affected_files.length > 0)
+    .filter((pr) => !pr.labels.includes("skip-changelog"));
 
-  const slimPrs = await Promise.all(
-    pulls.map(async (pr) => {
-      return {
-        number: pr.number,
-        title: pr.title,
-        user: pr.user.login,
-        url: pr.html_url,
-        created_at: new Date(pr.created_at),
-        affected_files: (
-          await buildPrUrls({
-            owner,
-            repo,
-            pull_number: pr.number,
-          })
-        ).map((v) => {
-          return {
-            url: `https://docs.konghq.com${v.url}`,
-            status: v.status,
-          };
-        }),
-      };
-    }),
-  );
+  prsWithFiles = groupBy(prsWithFiles, "week");
 
   // Write the changelog
   let changelogContent = `# Changelog\n\n`;
 
-  for (const pr of slimPrs) {
-    changelogContent += `### PR ${pr.number}: [${pr.title}](${
-      pr.url
-    }) (${pr.created_at.toISOString()})\n`;
+  for (let week of Object.keys(prsWithFiles).reverse()) {
+    changelogContent += `## Week ${week}\n\n`;
 
-    const addedFiles = pr.affected_files.filter((u) => u.status == "added");
-    if (addedFiles.length) {
-      changelogContent += `## Added\n\n`;
-      for (const file of addedFiles) {
-        changelogContent += `- ${file.url}\n`;
+    for (const pr of prsWithFiles[week]) {
+      changelogContent += `### [${pr.title}](${pr.url}) (${format(
+        pr.created_at,
+        "yyyy-MM-dd",
+      )})\n\n`;
+
+      changelogContent += `${pr.description}\n\n`;
+
+      const addedFiles = pr.affected_files.filter((u) => u.status == "added");
+      const changedFiles = pr.affected_files.filter(
+        (u) => u.status == "modified",
+      );
+
+      if (addedFiles.length) {
+        changelogContent += `## Added\n\n`;
+        for (const file of addedFiles) {
+          changelogContent += `- ${file.url}\n`;
+        }
       }
-    }
 
-    const changedFiles = pr.affected_files.filter(
-      (u) => u.status == "modified",
-    );
-    if (changedFiles.length) {
-      changelogContent += `## Modified\n\n`;
-      for (const file of changedFiles) {
-        changelogContent += `- ${file.url}\n`;
+      if (addedFiles.length && changedFiles.length) {
+        changelogContent += `\n`;
       }
-    }
 
-    changelogContent += `\n\n`;
+      if (changedFiles.length) {
+        changelogContent += `## Modified\n\n`;
+        for (const file of changedFiles) {
+          changelogContent += `- ${file.url}\n`;
+        }
+      }
+
+      changelogContent += `\n\n`;
+    }
   }
 
-  console.log(changelogContent);
+  changelogContent = changelogContent.trim();
+
+  // Prepend changelogContent to changelog.md
+  const changelogFile = __dirname + "/../../changelog.md";
+  let existingChangelog = "";
+
+  try {
+    existingChangelog = await fs.readFile("changelog.md", "utf8");
+  } catch (e) {
+    // No file to read
+  }
+
+  changelogContent = `${changelogContent}\n\n${existingChangelog.replace(
+    "# Changelog\n\n",
+    "",
+  )}`;
+  await fs.writeFile(changelogFile, changelogContent);
 })();
+
+function extractDescription(body) {
+  body = body || "";
+  return body
+    .split("### Testing instructions")[0]
+    .replace("### Description", "")
+    .trim();
+}
