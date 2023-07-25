@@ -64,7 +64,7 @@ $ helm repo add kong https://charts.konghq.com
 $ helm repo update
 
 # Helm 3
-$ helm install kong/kong --generate-name --set ingressController.installCRDs=false
+$ helm install kong/kong --generate-name
 ```
 
 *Note:* this process could take up to five minutes the first time.
