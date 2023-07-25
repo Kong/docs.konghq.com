@@ -5,6 +5,9 @@ Deploy the {{site.kic_product_name}} using `kubectl`:
 {% if_version gte:2.8.x %}
 ```bash
 $ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ include.version }}/deploy/single/all-in-one-dbless.yaml
+```
+The output is similar to:
+```bash
 namespace/kong created
 customresourcedefinition.apiextensions.k8s.io/ingressclassparameterses.configuration.konghq.com created
 customresourcedefinition.apiextensions.k8s.io/kongclusterplugins.configuration.konghq.com created
@@ -33,6 +36,9 @@ ingressclass.networking.k8s.io/kong created
 {% if_version lte:2.7.x %}
 ```bash
 $ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
+```
+The output is similar to:
+```bash
 namespace/kong created
 customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.konghq.com created
 customresourcedefinition.apiextensions.k8s.io/kongconsumers.configuration.konghq.com created
