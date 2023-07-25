@@ -1218,11 +1218,15 @@ Generic Styling for Desktop
     &.important,
     &.note,
     &.install-banner {
-      margin-bottom: 1em;
-      padding: 15px 18px;
+      margin-bottom: 1em;   
       opacity: 1;
       font-style: normal;
-      font-size: 16px;
+      font-size: 15px;
+      padding: 15px;
+
+      p {
+        margin-left: 24px;
+      }
     }
 
     &.warning {
@@ -1233,10 +1237,9 @@ Generic Styling for Desktop
         content: "\f057";
         font-family: "Font Awesome", FontAwesome;
         color: @red-500;
-        display: inline-block;
         font-weight: 600;
         font-size: 17px;
-        padding: 0 10px 0 0;
+        margin: 0;
         float: left;
       }
     }
@@ -1249,10 +1252,9 @@ Generic Styling for Desktop
         content: "\f071";
         font-family: "Font Awesome", FontAwesome;
         color: @yellow-400;
-        display: inline-block;
         font-weight: 600;
         font-size: 17px;
-        padding: 0 10px 0 0;
+        margin: 10px 12px;
         float: left;
       }
     }
@@ -1266,10 +1268,9 @@ Generic Styling for Desktop
         content: "\f05a";
         font-family: "Font Awesome", FontAwesome;
         color: @blue-400;
-        display: inline-block;
         font-weight: bold;
         font-size: 17px;
-        padding: 0 10px 0 0;
+        margin: 0;
         float: left;
       }
     }
@@ -1282,10 +1283,9 @@ Generic Styling for Desktop
         content: "\f019";
         font-family: "Font Awesome", FontAwesome;
         color: @blue-600;
-        display: inline-block;
         font-weight: bold;
         font-size: 20px;
-        padding: 0 10px 0 0;
+        margin: 0;
         float: left;
       }
 
