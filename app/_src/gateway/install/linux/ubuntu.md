@@ -70,7 +70,7 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
 {:.note .no-icon}
-> * We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal and Jammy. If you are using a different release, replace `$(lsb_release -sc)` with `jammy` in the commands below. To check your release name run `lsb_release -sc`.
+> * We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. If you are using a different release, replace `$(lsb_release -sc)` with `jammy` in the commands below. To check your release name, run `lsb_release -sc`.
 > * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}
