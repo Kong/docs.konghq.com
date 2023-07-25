@@ -4,6 +4,7 @@ on:
   workflow_dispatch: ~
   schedule:
     - cron: "0 0 * * 0"
+  push: ~
 
 jobs:
   build-changelog:
@@ -11,13 +12,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Install link checker deps (temporary until refactoring)
+        working-directory: tools/broken-link-checker
+        run: |
+          npm ci
       - name: Run changelog script
         working-directory: tools/changelog-generator
         run: |
           npm ci
           node changelog.js
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
