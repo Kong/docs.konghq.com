@@ -1,0 +1,22 @@
+- match: "3\\..*"
+  distros:
+    - ubuntu
+    - rhel
+    - amazon-linux
+    - debian
+  outputs:
+    enterprise: "Kong Enterprise {{ version }}"
+    oss: "{{ version }}"
+- match: "2\\..*"
+  distros:
+    - ubuntu
+    - rhel
+    - amazon-linux
+    - debian
+    - centos
+  skip:
+    - 2.8.x/centos/oss/package # No OSS package for 2.8
+    - 2.8.x/centos/oss/repository # No OSS package for 2.8
+  outputs:
+    enterprise: "Kong Enterprise {{ version }}"
+    oss: "{{ version }}"
