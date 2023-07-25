@@ -70,7 +70,7 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
 
 {:.note .no-icon}
-> * We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. If you are using a different release, replace `$(lsb_release -sc)` with `jammy` in the commands below. To check your release name, run `lsb_release -sc`.
+> * We currently package {{ site.base_gateway }} for Ubuntu Bionic and Focal. If you are using a different release, replace `$(lsb_release -sc)` with `focal` in the commands below. To check your release name run `lsb_release -sc`.
 > * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}
@@ -84,12 +84,12 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/bionic/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.amd64.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/bionic/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
+curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.versions.ce}}_amd64.deb"
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -132,15 +132,10 @@ sudo apt install -y ./kong-{{page.versions.ce}}.amd64.deb
 
 Install the APT repository from the command line.
 
-{% assign gpg_key = site.data.installation.gateway[page.major_minor_version].gpg_key  %}
-{% unless gpg_key %}
-{% assign gpg_key = site.data.installation.gateway.legacy.gpg_key  %}
-{% endunless %}
-
 1. Setup the Kong APT repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee /usr/share/keyrings/kong-gateway-{{ page.major_minor_version }}-archive-keyring.gpg > /dev/null
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.deb.txt?distro=ubuntu&codename=focal" | sudo tee /etc/apt/sources.list.d/kong-gateway-{{ page.major_minor_version }}.list > /dev/null
+    echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
+    default all" | sudo tee /etc/apt/sources.list.d/kong.list
     ```
 
 2. Update the repository:
@@ -154,12 +149,12 @@ Install the APT repository from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo apt-get install -y kong-enterprise-edition={{page.versions.ee}}
+sudo apt install -y kong-enterprise-edition={{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo apt-get install -y kong={{page.versions.ce}}
+apt install -y kong={{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
