@@ -547,7 +547,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
-  font-family: Roboto;
 
   .close-sidebar {
     position: absolute;
@@ -556,7 +555,7 @@
     top: 0;
     padding: 16px;
     color: rgba(0, 0, 0, 0.2);
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .collapse-toc,
@@ -582,7 +581,6 @@
   .docs-toc-title {
     margin-bottom: 4px;
     text-transform: uppercase;
-    font: normal 14px Roboto;
     display: flex;
     align-items: center;
     letter-spacing: 0.5px;
@@ -593,6 +591,7 @@
       color: @black-90;
       opacity: 1;
       transition: opacity 0.2s;
+      font-size: 15px;
 
       &:hover {
         opacity: 0.6;
@@ -659,9 +658,9 @@
           display: none;
         }
 
-        font-size: 14px;
+        font-size: 15px;
         line-height: 18px;
-        color: rgba(0, 0, 0, 0.8);
+        color: rgba(0, 0, 0, 0.60);
         opacity: 0.8;
         transition: opacity 0.2s;
 
