@@ -2,6 +2,7 @@ name: Sync Kuma submodule
 # Ensure that we only run 1 workflow per branch at a time (cancel if one is already running).
 concurrency:
   cancel-in-progress: true
+  group: ${{ github.workflow }}
 
 on:
   workflow_dispatch: 
