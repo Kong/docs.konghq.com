@@ -24,6 +24,7 @@ links:
   web: https://docs.konghq.com
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://download.konghq.com
+  cloudsmith: https://packages.konghq.com
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
