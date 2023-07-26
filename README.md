@@ -52,7 +52,7 @@ KONG_PRODUCTS=<product>:<version>;<version>,<product>:<version>;hub
 For example, running
 
 ```bash
-KONG_PRODUCTS=gateway:2.8.x;3.3.x,mesh:2.2.x;hub make run
+KONG_PRODUCTS=gateway:2.8.x;3.3.x,mesh:2.2.x,hub make run
 ```
 
 will generate the plugin hub, mesh version `2.2.x`, and gateway versions `2.8.x` and `3.3.x`.
