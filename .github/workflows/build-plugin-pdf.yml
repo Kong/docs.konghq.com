@@ -50,7 +50,7 @@ jobs:
       - name: Build Docs
         run: |
           npm ci
-          ./node_modules/.bin/gulp build
+          exe/build
 
       # Build the PDF
       - name: Generate PDF for Plugin "${{ github.event.inputs.plugin }}"
