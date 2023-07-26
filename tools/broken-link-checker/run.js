@@ -3,9 +3,9 @@ const github = require("@actions/github");
 const argv = require("minimist")(process.argv.slice(2));
 const fg = require("fast-glob");
 
-const navToProductIndexUrl = require("./lib/nav-to-url");
+const convertFilePathsToUrls = require("../_utilities/path-to-url");
 const checkUrls = require("./lib/check-url-list");
-const fileToUrls = require("./lib/src-to-urls");
+const srcToUrls = require("../_utilities/lib/src-to-urls");
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
@@ -122,74 +122,13 @@ async function buildPrUrls(options) {
   }
 
   // Get pages that have changed in the PR
-  const files = (
-    await octokit.paginate(
-      octokit.rest.pulls.listFiles,
-      options,
-      (response) => response.data,
-    )
-  ).map((f) => {
-    return {
-      filename: f.filename,
-      status: f.status,
-    };
-  });
+  const files = await octokit.paginate(
+    octokit.rest.pulls.listFiles,
+    options,
+    (response) => response.data,
+  );
 
-  // Map those to URLs
-  let urls = [];
-  for (let file of files) {
-    let urlsToAdd = [];
-
-    const f = file.filename;
-
-    // If any data files have changed, we need to check a page that uses that
-    // file to generate the side navigation. Let's use the index page
-    if (f.startsWith("app/_data/docs_nav_")) {
-      urlsToAdd = [
-        {
-          source: f,
-          url: navToProductIndexUrl(f),
-          status: file.status,
-        },
-      ];
-    }
-
-    // Handle any prose changes where file path == URL
-    else if (f.startsWith("app/") && !f.startsWith("app/_")) {
-      urlsToAdd = [
-        {
-          source: f,
-          url: `/${f.replace(/^app\//, "").replace(/(index)?\.md$/, "")}`,
-          status: file.status,
-        },
-      ];
-    }
-
-    // Handle plugins. This does _not_ handle non _index plugins
-    // as we'd need to read versions.yml and process the source key
-    // Given how few plugins use non-index files, we'll skip this for now
-    else if (f.startsWith("app/_hub/")) {
-      urlsToAdd = [
-        {
-          source: f,
-          url: `/${f
-            .replace(/^app\/_hub\//, "hub/")
-            .replace(/\/_.*\.md$/, "/")}`,
-          status: file.status,
-        },
-      ];
-    }
-
-    // Any changes in app/_src
-    else if (f.startsWith("app/_src/")) {
-      urlsToAdd = await fileToUrls("*", file);
-    }
-
-    // Add the URLs
-    urls = urls.concat(urlsToAdd);
-  }
-
-  return Array.from(new Set(urls));
+  return convertFilePathsToUrls(files);
 }
 
 async function buildProductUrls(options) {
@@ -197,7 +136,7 @@ async function buildProductUrls(options) {
     console.log("Provide a nav file e.g. 'gateway_3.0.x' using --nav");
     process.exit(1);
   }
-  return fileToUrls(options.nav);
+  return srcToUrls(options.nav);
 }
 
 async function buildPluginUrls(options) {

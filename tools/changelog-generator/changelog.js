@@ -2,8 +2,7 @@ const fs = require("fs").promises;
 const { subDays, startOfDay, format } = require("date-fns");
 const groupBy = require("lodash.groupby");
 
-const { buildPrUrls } = require("../broken-link-checker/run");
-
+const convertFilePathsToUrls = require("../_utilities/path-to-url");
 const now = startOfDay(new Date());
 const earliestDate = subDays(now, 7);
 
@@ -45,10 +44,34 @@ const earliestDate = subDays(now, 7);
     },
   );
 
+  pulls = pulls.slice(0, 1);
+
   let prsWithFiles = (
     await Promise.all(
       pulls.map(async (pr) => {
         const created_at = new Date(pr.created_at);
+
+        // Load the files for this PR using the API
+        const pr_files = await octokit.paginate(
+          octokit.rest.pulls.listFiles,
+          {
+            owner,
+            repo,
+            pull_number: pr.number,
+          },
+          (response) => response.data,
+        );
+
+        // Convert app, _src, /hub/ etc paths to URLs
+        affected_files = (
+          await convertFilePathsToUrls(pr_files, { skip_nav_files: true })
+        ).map((v) => {
+          return {
+            url: `https://docs.konghq.com${v.url}`,
+            status: v.status,
+          };
+        });
+
         return {
           number: pr.number,
           title: pr.title,
@@ -58,18 +81,7 @@ const earliestDate = subDays(now, 7);
           labels: pr.labels,
           created_at,
           week: format(created_at, "I"),
-          affected_files: (
-            await buildPrUrls({
-              owner,
-              repo,
-              pull_number: pr.number,
-            })
-          ).map((v) => {
-            return {
-              url: `https://docs.konghq.com${v.url}`,
-              status: v.status,
-            };
-          }),
+          affected_files,
         };
       }),
     )
