@@ -41,7 +41,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 - `Identity Management` - access to users, teams, system accounts, tokens, IdP configurations, and authentication settings.
 - `Audit Logs Setting` - access to configuring web-hooks to receive region-specific audit logs and to trigger audit logs replays.
 
-These roles provide finer control over administrative capabilities inline with least privilege principles.
+: These roles provide finer control over administrative capabilities inline with least privilege principles.
 
 ## June 2023
 
