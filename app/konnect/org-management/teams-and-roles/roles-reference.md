@@ -42,7 +42,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Role                        | Description  |
 |-----------------------------|--------------|
 | Identity Management | Access to users, teams, system accounts, tokens, IdP configurations, and authentication settings. |
-| Audit Logs Setup | Access to configuring web-hooks to receive region-specific audit logs and to trigger audit logs replays. |
+| Audit Logs Setup | Access to configuring webhooks to receive region-specific audit logs and to trigger audit log replays. |
 
 <!-- ## Organizations
 
