@@ -66,18 +66,18 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
 
 2. Assign a role to a team by issuing  a `POST` request:
     
-    The request must contain a `TEAM_ID` parameter in the URL. This request requires a JSON body that contains `role`, `entity_id`, `entity_type`, and `entity_region`. 
+    The request must contain a `TEAM_ID` parameter in the URL. This request requires a JSON body that contains `role_name`, `entity_id`, `entity_type_name`, and `entity_region`. 
 
         curl --request POST \
-        --url https://global.api.konghq.tech/v2/teams/TEAM_ID/assigned-roles \
-        --header 'Content-Type: application/json' \
-        --data '{
-        "role": "admin",
-        "entity_id": "e67490ce-44dc-4cbd-b65e-b52c746fc26a",
-        "entity_type": "runtime_groups",
-        "entity_region": "eu"
-        }'
-    If the information in the request was correct, the response will return a `200` and the `id` of the new assigned role. 
+             --url https://global.api.konghq.tech/v2/teams/TEAM_ID/assigned-roles \
+             --header 'Content-Type: application/json' \
+             --data '{
+             "role_name": "Admin",
+             "entity_id": "e67490ce-44dc-4cbd-b65e-b52c746fc26a",
+             "entity_type_name": "Runtime Groups",
+             "entity_region": "eu"
+             }'
+         If the information in the request was correct, the response will return a `200` and the `id` of the new assigned role. 
 
     {:.note}
     > `entity_id` can be found in the {{site.konnect_short_name}} in the **Runtime Instances** section. 

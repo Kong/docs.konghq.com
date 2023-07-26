@@ -69,7 +69,8 @@ module Jekyll
             </div>
             <div class="navtab-contents">
             <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
-              <div data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>" >
+              <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
+              <div data-panel="<%= slug %>" data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>" >
                 <%= value %>
               </div>
             <% end %>
