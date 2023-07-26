@@ -1,6 +1,5 @@
 ---
-title: OpenID Connect with Okta
-badge: enterprise
+nav_title: OpenID Connect with Okta
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using an Okta identity provider.

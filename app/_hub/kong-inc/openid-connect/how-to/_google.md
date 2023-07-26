@@ -1,6 +1,5 @@
 ---
-title: OpenID Connect with Google
-badge: enterprise
+nav_title: OpenID Connect with Google
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using Google's identity provider.

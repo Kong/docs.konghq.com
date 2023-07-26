@@ -1,6 +1,5 @@
 ---
-title: OpenID Connect with Amazon Cognito
-badge: enterprise
+nav_title: OpenID Connect with Amazon Cognito
 ---
 
 ## Amazon Cognito Configuration

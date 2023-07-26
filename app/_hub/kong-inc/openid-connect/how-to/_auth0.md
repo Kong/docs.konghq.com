@@ -1,6 +1,5 @@
 ---
-title: OpenID Connect with Auth0
-badge: enterprise
+nav_title: OpenID Connect with Auth0
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate headless service consumers using Auth0's identity provider.

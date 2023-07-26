@@ -1,6 +1,5 @@
 ---
-title: OpenID Connect with Curity
-badge: enterprise
+nav_title: OpenID Connect with Curity
 ---
 
 ## Phantom Token Integration

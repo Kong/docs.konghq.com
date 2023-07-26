@@ -1,6 +1,5 @@
 ---
-title: OpenID Connect with Azure AD
-badge: enterprise
+nav_title: OpenID Connect with Azure AD
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate
