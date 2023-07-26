@@ -37,7 +37,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
 
 **Identity Management and Audit Log Roles**
-: Introducing two new administrative roles in Konnect, `Identity Management` and `Audit Logs Setting`.
+: Introducing two new administrative roles in  {{site.konnect_short_name}}, `Identity Management` and `Audit Logs Setting`.
 - `Identity Management` - access to users, teams, system accounts, tokens, IdP configurations, and authentication settings.
 - `Audit Logs Setting` - access to configuring webhooks to receive region-specific audit logs and to trigger audit log replays.
 
