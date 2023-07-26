@@ -46,26 +46,26 @@ make run
 In order to speed up build times, it's possible to generate a specific subset of products and their corresponding versions by specifying the `KONG_PRODUCTS` env variable. It takes a comma-separated list of products and for each product, the list of versions the versions to be generated separated by semi-colons, in the following way.
 
 ```bash
-KONG_PRODUCTS=<product>:<version>;<version>,<product>:<version>;hub
+KONG_PRODUCTS='<product>:<version>;<version>,<product>:<version>;hub'
 ```
 
 For example, running
 
 ```bash
-KONG_PRODUCTS=gateway:2.8.x;3.3.x,mesh:2.2.x,hub make run
+KONG_PRODUCTS='gateway:2.8.x;3.3.x,mesh:2.2.x;hub' make run
 ```
 
 will generate the plugin hub, mesh version `2.2.x`, and gateway versions `2.8.x` and `3.3.x`.
 It also supports wildcard matching for both products and versions, i.e.
 
 ```bash
-KONG_PRODUCTS=gateway:3.*
+KONG_PRODUCTS='gateway:3.*'
 ```
 
 and 
 
 ```bash
-KONG_PRODUCTS=*:latest
+KONG_PRODUCTS='*:latest'
 ```
  are also possible.
 
