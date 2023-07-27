@@ -24,8 +24,7 @@ Kong is licensed under an
 
 ## Download and Install
 
-You can install {{site.base_gateway}} by downloading an installation package or
-using our YUM repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the YUM repository.
 
 {% navtabs %}
 {% navtab Package %}
