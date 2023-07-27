@@ -16,7 +16,7 @@ module Jekyll
         end
 
         def konnect?
-          @publisher == KONG_INC && !!@metadata['konnect']
+          !!@metadata['konnect']
         end
 
         def enterprise?
