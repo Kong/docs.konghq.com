@@ -68,4 +68,7 @@ jQuery(function () {
     toggleButtonClicked();
   });
 
+  $(".search-input-wrapper img").on("click", function(e) {
+    handleSearchClicked();
+  });
 });
