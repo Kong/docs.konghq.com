@@ -15,8 +15,8 @@ The FIPS-compliant Ubuntu 20.04 package can be installed using the package disti
 
 1. Set up the Kong APT repository:
     ```bash
-    echo "deb [trusted=yes] {{ site.links.download }}/gateway-3.x-ubuntu-$(lsb_release -sc)/ \
-    default all" | sudo tee /etc/apt/sources.list.d/kong.list
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/gpg.{{ gpg_key }}.key" |  gpg --dearmor >> /usr/share/keyrings/kong-gateway-{{ page.major_minor_version }}-archive-keyring.gpg
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.deb.txt?distro=ubuntu&codename=$(lsb_release -sc)" > /etc/apt/sources.list.d/kong-gateway-{{ page.major_minor_version }}.list
     ```
 
 2. Update the repository:
@@ -41,8 +41,7 @@ The FIPS-compliant Red Hat 8 package can be installed using the package distinct
 1. Download the FIPS package:
 
     ```sh
-    curl -Lo kong-enterprise-edition-fips-{{page.versions.ee}}.rpm \
-    $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-fips-{{page.versions.ee}}.rhel%{rhel}.amd64.rpm")
+    curl -Lo kong-enterprise-edition-fips-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-enterprise-edition-fips-{{page.versions.ee}}.el%{rhel}.x86_64.rpm)
     ```
 
 2. Install the {{site.base_gateway}} FIPS package:
@@ -56,7 +55,8 @@ The FIPS-compliant Red Hat 8 package can be installed using the package distinct
 1. Set up the Kong Yum repository:
 
     ```bash
-    curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
+    sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
 2. Install the {{site.base_gateway}} FIPS package:
