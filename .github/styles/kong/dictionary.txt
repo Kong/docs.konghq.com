@@ -12,6 +12,7 @@ Bitnami
 CAs
 CloudFormation
 Cloudformation
+Cloudsmith
 Cognito
 Curity
 CLIs
