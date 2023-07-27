@@ -2,6 +2,10 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+#3.4
+
+/gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
+
 #3.2
 
 /gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object

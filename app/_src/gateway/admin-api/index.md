@@ -2950,6 +2950,27 @@ has been configured on, the higher its priority.
 The complete order of precedence when a plugin has been configured multiple
 times is:
 
+{% if_version gte:3.4.x %}
+
+1. Plugins configured on a combination of: a Consumer, a Route, and a Service.
+    (Consumer means the request must be authenticated).
+2. Plugins configured on a combination of a ConsumerGroup, Service, and a Route.
+    (Consumer means the request must be authenticated).
+3. Plugins configured on a combination of a Consumer and a Route.
+    (Consumer means the request must be authenticated).
+4. Plugins configured on a combination of a Consumer and a Service.
+5. Plugins configured on a ConsumerGroup and Route.
+6. Plugins configured on a ConsumerGroup and Service.
+7. Plugins configured on a Route and Service.
+8. Plugins configured on a Consumer.
+9. Plugins Configured on a ConsumerGroup.
+10. Plugins configured on a route.
+11. Plugins configured on a Service. 
+12. Plugins configured globally. 
+
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
 1. Plugins configured on a combination of: a Route, a Service, and a Consumer.
     (Consumer means the request must be authenticated).
 2. Plugins configured on a combination of a Route and a Consumer.
@@ -2962,7 +2983,12 @@ times is:
 6. Plugins configured on a Route.
 7. Plugins configured on a Service.
 8. Plugins configured to run globally.
+
+{% endif_version %}
+
+
 {% endunless %}
+
 **Example**: if the `rate-limiting` plugin is applied twice (with different
 configurations): for a Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B

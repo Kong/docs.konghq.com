@@ -5,7 +5,7 @@ The Rate Limiting Advanced plugin offers more functionality than the Kong Gatewa
 * Support for Redis Sentinel, Redis cluster, and Redis SSL
 * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
 * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
-* Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
+* Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](/hub/kong-inc/rate-limiting-advanced/how-to/)
 * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
 
 ## Headers sent to the client
@@ -95,7 +95,7 @@ When the `redis` strategy is used and a {{site.base_gateway}} node is disconnect
 {{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
 
-{% if_plugin_version gte:2.7.x %}
+{% if_plugin_version gte:2.7.x lte:3.3.x %}
 ## Rate limiting for consumer groups
 
 You can use consumer groups to manage custom rate limiting configuration for

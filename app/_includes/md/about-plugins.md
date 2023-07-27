@@ -26,6 +26,44 @@ are fully compatible with each mode. See [Plugin Compatibility](/konnect/compati
 for a comparison.
 
 
+## Precendence 
+
+A plugin will always be run once and only once per request. But the
+configuration with which it will run depends on the entities it has been
+configured for.
+Plugins can be configured for various entities, combination of entities, or
+even globally. This is useful, for example, when you wish to configure a plugin
+a certain way for most requests, but make _authenticated requests_ behave
+slightly differently.
+
+Therefore, there exists an order of precedence for running a plugin when it has
+been applied to different entities with different configurations. The rule of
+thumb is: the more specific a plugin is with regards to how many entities it
+has been configured on, the higher its priority.
+
+The complete order of precedence when a plugin has been configured multiple
+times is:
+
+
+
+1. Plugins configured on a combination of: a Consumer, a Route, and a Service.
+    (Consumer means the request must be authenticated).
+2. Plugins configured on a combination of a ConsumerGroup, Service, and a Route.
+    (Consumer means the request must be authenticated).
+3. Plugins configured on a combination of a Consumer and a Route.
+    (Consumer means the request must be authenticated).
+4. Plugins configured on a combination of a Consumer and a Service.
+5. Plugins configured on a ConsumerGroup and Route.
+6. Plugins configured on a ConsumerGroup and Service.
+7. Plugins configured on a Route and Service.
+8. Plugins configured on a Consumer.
+9. Plugins Configured on a ConsumerGroup.
+10. Plugins configured on a route.
+11. Plugins configured on a Service. 
+12. Plugins configured globally. 
+
+
+
 ## Terminology
 **Plugin**
 : An extension to the {{site.base_gateway}}, written in Lua or Go.

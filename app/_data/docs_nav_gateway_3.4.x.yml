@@ -39,6 +39,9 @@ items:
             url: /key-concepts/upstreams
           - text: Plugins
             url: /key-concepts/plugins
+          - text: Consumer Groups
+            url: /key-concepts/consumer-groups
+            src: /gateway/kong-enterprise/consumer-groups/index
           # - text: Manage Kong Gateway with decK
           #   url: /key-concepts/manage-kong-with-deck
       - text: How Kong Works
