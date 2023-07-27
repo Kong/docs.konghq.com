@@ -1,12 +1,12 @@
 # Install Tester
 
-This is a tool that scrapes our installation documentation and uses `docker` to ensure that the packages install as expected.
+This is a tool that scrapes Kong's installation documentation and uses `docker` to ensure that the packages install as expected.
 
 ## Why does it exist?
 
-Our install docs should always work. That's where everyone starts on the docs.
+Kong's install docs should always work. That's where everyone starts on the docs.
 
-Why now? I needed to test the following matrix of combinations whilst moving to a new package hosting platform:
+Why now? A tool was needed to validate install docs while moving to a new package hosting platform (Pulp to Cloudsmith):
 
 (2.6, 2.7, 2.8, 3.0, 3.1, 3.2, 3.3) x (Ubuntu, Debian, RHEL, Amazon Linux, CentOS[2.x only]) x (OSS, EE) x (Package, Repository) = 140 combinations
 
@@ -15,7 +15,7 @@ Why now? I needed to test the following matrix of combinations whilst moving to 
 1. Read `kong_versions.yml` to build a list of versions to test
 2. Use `ce-version` and `ee-version` to set expected output (the test runs `kong version` to ensure the package installed correctly)
 3. For each version, loop through each OS
-4. Fetch the docs URL for that OS. Extract the codeblocks for (OSS, EE) x (Package, Repository)
+4. Fetch the docs URL for that OS. Extract the code blocks for (OSS, EE) x (Package, Repository)
 5. Create a docker container for each OS
 6. Set up the initial environment (install `sudo`, create a non-root user etc)
 7. Run the commands that were fetched earlier
