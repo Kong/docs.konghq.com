@@ -60,11 +60,12 @@ jQuery(function () {
     toggleSubmenuVisible(e.target);
   });
 
+  $(".search-input-wrapper img").on("click", function(e) {
+    handleSearchClicked();
+  });
+
   $("#navbar-menu-toggle-button").on("click", function(e) {
     toggleButtonClicked();
   });
 
-  $(".search-input-wrapper img").on("click", function(e) {
-    handleSearchClicked();
-  });
 });
