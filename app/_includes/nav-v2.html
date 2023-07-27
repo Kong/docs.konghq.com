@@ -76,8 +76,60 @@
               </div>
           </ul>
         </li>
-        <li role="menuitem" tabindex="0" id="plugin-link" class="main-menu-item">
-          <a href="/hub/" class="navbar-item">Plugin Hub</a>
+        <li
+          role="menuitem"
+          aria-haspopup="true"
+          class="navbar-item main-menu-item with-submenu navbar-item-hub"
+        >
+          <a href="/hub/" id="plugin-link">Plugin Hub</a>
+          <span class="caret"></span>
+          <ul class="navbar-item-submenu navbar-item-submenu__hub" role="menu" aria-hidden="true">
+            <div class="submenu-section submenu-section__hub">
+              <li role="menuitem" class="docs-dropdown-li docs-dropdown-li-hub" tabindex="-1">
+                <a href="/hub/" class="docs-dropdown-li__link">
+                  <div class="docs-dropdown-li__card">
+                    <span class="heading">Explore the Plugin Hub</span>
+                    <div class="docs-dropdown-li__card-link">
+                      <img src="/assets/images/landing-page/view-all-plugins.svg" alt="View all plugins">
+                      <span class="docs-dropdown-li__card-image">
+                        View all plugins
+                        <img src="/assets/images/landing-page/arrow-right.svg" alt="">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+
+              <li role="menuitem" class="docs-dropdown-li docs-dropdown-li-hub" tabindex="-1">
+                <div class="docs-dropdown-li__section">
+                  <div class="docs-dropdown-li__section-title heading">
+                    Functionality
+                  </div>
+
+                  <div class="docs-dropdown-li__section-items">
+                    <a class="item item-all" href="/hub/">
+                      <div class="item__description">
+                        <div class="item__description-title">View all plugins</div>
+                      </div>
+                    </a>
+
+                    {% for category in site.extensions.categories %}
+                      <a class="item" href="/hub?category={{ category.slug }}">
+                        <div>
+                          <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
+                        </div>
+                        <div class="item__description">
+                          <div class="item__description-title">{{ category.name }}</div>
+                          <div class="item__description-desc">{{ category.desc }}</div>
+                        </div>
+                      </a>
+                    {% endfor %}
+
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
         </li>
         <li role="menuitem" class="main-menu-item">
           <a href="https://support.konghq.com/" class="navbar-item">Support</a>

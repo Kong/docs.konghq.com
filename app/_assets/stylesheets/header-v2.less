@@ -48,6 +48,121 @@ header.navbar-v2 {
 
   .docs-dropdown-li {
     list-style-type: none;
+
+    &-hub {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      margin: 0;
+
+      &:last-child {
+        flex-grow: 2;
+      }
+    }
+  }
+
+  .docs-dropdown-li__link {
+    height: 100%;
+  }
+
+  .docs-dropdown-li__card {
+    @media (max-width: 1100px) {
+      display: none;
+    }
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    background: #F7F9FC;
+    padding: 0 42px 0 98px;
+
+    &-link {
+      display: flex;
+      border-radius: 4px;
+      flex-direction: column;
+      border: 1px solid #EBEBEB;
+      background: #FFF;
+
+      > img {
+        border-radius: 4px;
+      }
+    }
+
+    &-image {
+      display: flex;
+      border-top: 1px solid #EBEBEB;
+      align-items: center;
+      padding: 16px 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+      img {
+        height: 20px;
+      }
+    }
+  }
+
+  .docs-dropdown-li__section {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 1100px) {
+      padding: 40px;
+      gap: 32px;
+    }
+
+    &-items {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+      @media (min-width: 1100px) {
+        row-gap: 15px;
+        flex-direction: row;
+      }
+    }
+
+    .item {
+      display: flex;
+      padding: 15px;
+      width: 100%;
+      gap: 8px;
+
+      &-all {
+        @media (min-width: 1100px) {
+          display: none;
+        }
+      }
+
+      @media (min-width: 1100px) {
+        padding: 16px 64px 16px 16px;
+        width: 19%;
+      }
+
+      .item__description {
+        display: flex;
+        flex-direction: column;
+        text-wrap: balance;
+        color: #2E2E2E;
+
+        &-title {
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        &-desc {
+          @media (max-width: 1100px) {
+            display: none;
+          }
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
   }
 
   .main-menu-item {
@@ -59,7 +174,7 @@ header.navbar-v2 {
     margin: 0;
   }
 
-  #docs-link {
+  #docs-link, #plugin-link {
     padding-top: 35px;
   }
 
@@ -203,6 +318,18 @@ header.navbar-v2 {
         }
 
         .navbar-item-submenu {
+          &__hub {
+            width: 100vw;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            max-height: 0;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+          }
+
           position: absolute;
           left: -16px;
           top: 100%;
@@ -219,6 +346,29 @@ header.navbar-v2 {
             display: flex;
             flex-direction: column;
             padding-bottom: 8px;
+
+            &__hub {
+              display: flex;
+              align-items: center;
+              flex-direction: row;
+              height: 100%;
+              width: 100%;
+              padding: 0 !important;
+
+              @media (max-width: 1100px) {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+
+              .heading {
+                color: #494E50;
+                text-transform: uppercase;
+
+                @media (max-width: 1100px) {
+                  display: none;
+                }
+              }
+            }
 
             &:first-child {
               padding-top: 18px;
@@ -254,6 +404,10 @@ header.navbar-v2 {
 
           .navbar-item-submenu {
             max-height: 800px;
+          }
+
+          .navbar-item-submenu__hub {
+            max-height: 359px;
           }
         }
       }
@@ -423,6 +577,10 @@ header.navbar-v2 {
               }
             }
 
+            .navbar-item-hub.submenu-title {
+              transform: translate(calc(100% + 8px), -90px);
+            }
+
             .navbar-item-submenu {
               padding: 0 24px 24px;
               top: 100%;
@@ -437,7 +595,6 @@ header.navbar-v2 {
 
         .navbar-item {
           padding: 8px 24px;
-          margin-top: 12px;
           margin-right: 0;
           transition: transform 0.25s;
 
