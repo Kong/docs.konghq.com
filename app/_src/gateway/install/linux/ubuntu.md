@@ -13,7 +13,7 @@ Kong is licensed under an
 > 
 > &nbsp;
 > 
-> We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity
+> Kong recommends using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ Kong is licensed under an
 {:.note}
 > **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
-The quickest way to get started with {{ site.base_gateway }} is using our install script:
+The quickest way to get started with {{ site.base_gateway }} is using the install script:
 
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
@@ -67,10 +67,10 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 
 ### Package Install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 
 {:.note .no-icon}
-> * We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. If you are using a different release, replace `$(lsb_release -sc)` with `jammy` in the commands below. To check your release name, run `lsb_release -sc`.
+> * Kong currently packages {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. If you are using a different release, replace `$(lsb_release -sc)` with `jammy` in the commands below. To check your release name, run `lsb_release -sc`.
 > * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}

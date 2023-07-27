@@ -18,7 +18,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Download and install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 
 {% navtabs %}
 {% navtab Package %}
