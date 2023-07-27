@@ -18,6 +18,8 @@ distributions:
   - <<: *debian10
     eol: June 2024
   - *debian11
+  - <<: *ubuntu1804
+    eol: April 2023
   - *ubuntu2004
   - *ubuntu2204
 
