@@ -324,7 +324,6 @@ header.navbar-v2 {
             top: 60px;
             left: 0;
             max-height: 0;
-            height: 100%;
             padding: 0;
             display: flex;
             flex-direction: row;
@@ -351,7 +350,6 @@ header.navbar-v2 {
               display: flex;
               align-items: center;
               flex-direction: row;
-              height: 100%;
               width: 100%;
               padding: 0 !important;
 
@@ -407,7 +405,9 @@ header.navbar-v2 {
           }
 
           .navbar-item-submenu__hub {
-            max-height: 359px;
+            @media (min-width: 1100px) {
+              min-height: 359px;
+            }
           }
         }
       }
