@@ -2,5 +2,5 @@
 
 bundle install
 yarn --ignore-engines
-gulp clean
-gulp
+make clean
+make build
