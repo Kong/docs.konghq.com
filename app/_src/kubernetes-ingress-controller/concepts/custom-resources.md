@@ -19,6 +19,9 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 - [**KongPlugin**](#kongplugin)
 - [**KongClusterPlugin**](#kongclusterplugin)
 - [**KongConsumer**](#kongconsumer)
+{% if_version gte:2.11.x %}
+- [**KongConsumerGroup**](#kongconsumergroup)
+{% endif_version %}
 - [**TCPIngress**](#tcpingress)
 - [**UDPIngress**](#udpingress)
 
