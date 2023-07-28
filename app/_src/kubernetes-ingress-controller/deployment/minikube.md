@@ -30,7 +30,7 @@ Next, we will setup an environment variable with the IP address at which
 Kong is accessible. This will be used to actually send requests into the
 Kubernetes cluster.
 
-1. Get the IP address at which Kong is accessible:
+1. Get the IP address at which you can access {{site.base_gateway}}:
 ```bash
 $ minikube service -n kong kong-proxy --url | head -1
 # If installed by helm, service name would be "<release-name>-kong-proxy".
