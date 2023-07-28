@@ -48,6 +48,9 @@ enterprise: # true OR false
   # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
   # Set false if your plugin is open-source and works with open-source Kong Gateway.
 
+konnect: # true OR false
+   # (Required) Set true if compatible with Konnect. Set false if not.
+
 dbless_compatible:
   # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
   # One of the following values allowed: 'yes', 'no' or 'partially'.

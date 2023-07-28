@@ -3,7 +3,7 @@ title: Monitor License Usage
 badge: enterprise
 ---
 
-Obtain information about your {{site.base_gateway}} deployment, including license usage and deployment information using the **License Report** module. Share this information with Kong to perform a health-check analysis of product utilization and overall deployment performance to ensure your organization is optimized with the best license and deployment plan for your needs.
+Obtain information about your {{site.base_gateway}} database-backed deployment, including license usage and deployment information using the **License Report** module. Share this information with Kong to perform a health-check analysis of product utilization and overall deployment performance to ensure your organization is optimized with the best license and deployment plan for your needs.
 
 How the license report module works:
 *   The license report module manually generates a report containing usage and deployment data by sending a request to an endpoint, as defined below.
@@ -12,6 +12,9 @@ How the license report module works:
 What the license report module **does not** do:
 *   The license report module does not automatically generate a report or send any data to any Kong servers.
 *   The license report module does not track or generate any data other than the data that is returned in the response after you send a request to the endpoint.
+
+{:.important}
+> **Important:** The license report functionality cannot be used in a DB-less deployment.
 
 ## Generate a License Report
 Run the license report module and share the output information with your Kong representative for a deployment analysis.

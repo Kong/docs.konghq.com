@@ -205,6 +205,8 @@ items:
           - text: Customize Gateway Logs
             url: /production/logging/customize-gateway-logs
         url: /production/logging
+      - text: Configure a gRPC service
+        url: /production/configuring-a-grpc-service
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway 3.x.x
@@ -551,24 +553,12 @@ items:
              #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
               #- text: Configuring Fixed bucket
                # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
-      - text: Request Transformer
-        items:
-          - text: Add a Body Value
-            url: /kong-plugins/request-transformer/add-body-value
       - text: Plugin Queuing
         items:
           - text: Overview
             url: /kong-plugins/queue
           - text: Plugin Queuing Reference
             url: /kong-plugins/queue/reference
-      - text: GraphQL
-        url: /kong-plugins/graphql
-      - text: gRPC
-        items:
-        - text: gRPC Plugins
-          url: /kong-plugins/grpc
-        - text: Configure a gRPC service
-          url: /kong-plugins/configuring-a-grpc-service
 
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
