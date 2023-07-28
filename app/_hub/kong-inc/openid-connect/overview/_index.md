@@ -1,4 +1,4 @@
-OpenID Connect ([1.0][connect]) plugin allows for integration with a third party
+The OpenID Connect ([1.0][connect]) plugin (also known as OIDC) allows for integration with a third party
 identity provider (IdP) in a standardized way. This plugin can be used to implement
 Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
 Connect relying party (RP) between the client, and the upstream service.
@@ -68,9 +68,6 @@ want your provider to be tested and added to the list.
 
 Once applied, any user with a valid credential can access the service.
 
-This plugin can be used for authentication in conjunction with the
-[Application Registration](/hub/kong-inc/application-registration/) plugin.
-
 ## Important configuration parameters
 
 This plugin includes many configuration parameters that allow finely grained customization.
@@ -117,7 +114,7 @@ In summary, start with the following parameters:
 4. `config.audience_required` (if using a public identity provider)
 5. `config.session_secret` (if using Kong in DB-less mode)
 
-## Authentication
+## Authentication flows and grants
 
 We use [HTTPie](https://httpie.org/) to execute the examples. The output is stripped
 for a better readability. [httpbin.org](https://httpbin.org/) is used as an upstream service.
@@ -156,3 +153,55 @@ The OpenID Connect plugin has several features to do coarse grained authorizatio
 1. [Claims based authorization](/hub/kong-inc/openid-connect/how-to/authorization/claims/)
 2. [ACL plugin authorization](/hub/kong-inc/openid-connect/how-to/authorization/acl/)
 3. [Consumer authorization](/hub/kong-inc/openid-connect/how-to/authorization/consumer/)
+
+## Authentication in Kong Manager
+
+{{site.base_gateway}} can use OpenID Connect to secure Kong Manager.
+It offers the ability to bind authentication for Kong
+Manager admins to an organization's OpenID Connect Identity
+Provider, using the OpenID Connect plugin in the background.
+
+You don't need to set up the plugin directly. 
+Instead, {{site.base_gateway}} accesses the OIDC plugin through settings in `kong.conf`.
+
+To set up RBAC in Kong Manager with OIDC, see:
+
+* [Enable OIDC for Kong Manager](/gateway/latest/kong-manager/auth/oidc/configure/)
+* [OIDC Authenticated Group Mapping](/gateway/latest/kong-manager/auth/oidc/mapping/)
+
+## Authentication in Dev Portal
+
+The OpenID Connect plugin allows the Kong Dev Portal to hook into existing authentication 
+setups using third-party identity providers such as Google, Okta, Microsoft Azure AD, Curity,
+and so on.
+
+OIDC must be used with the `session` method, utilizing cookies for Dev Portal File API requests.
+
+You don't need to set up the plugin directly. 
+Instead, {{site.base_gateway}} accesses the OIDC plugin through settings in `kong.conf`, or from {{site.konnect_short_name}}.
+
+{{site.konnect_short_name}}:
+* [Configure Azure IdP for Dev Portal](/konnect/dev-portal/access-and-approval/azure/)
+* [Single sign-on](/konnect/dev-portal/customization/#single-sign-on)
+
+Self-managed {{site.base_gateway}}:
+* [Enable OpenID Connect in the Dev Portal](/gateway/latest/kong-enterprise/dev-portal/authentication/oidc/)
+* [OIDC with Curity for Dev Portal](/hub/kong-inc/openid-connect/how-to/third-party/curity/#kong-dev-portal-authentication)
+
+### Application registration
+
+You can also use OIDC for application registration in Dev Portal.
+
+Application registration in {{site.konnect_short_name}}:
+* [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/)
+* [Configure Curity for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/curity/)
+* [Configure Okta for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
+
+Application registration in self-managed {{site.base_gateway}}:
+* [Application Registration plugin](/hub/kong-inc/application-registration/)
+* [Third-party OAuth2 Support for Application Registration](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth/)
+* [External Portal Application Authentication with Azure AD and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/azure-oidc-config/)
+* [Set Up External Portal Application Authentication with Okta and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/okta-config/)
+
+
+
