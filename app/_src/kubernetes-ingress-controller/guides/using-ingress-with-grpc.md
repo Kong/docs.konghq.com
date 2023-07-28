@@ -181,7 +181,7 @@ kind: Ingress
 metadata:
   name: demo
   annotations:
-  kubernetes.io/ingress.class: kong
+    kubernetes.io/ingress.class: kong
 spec:
   rules:
   - http:

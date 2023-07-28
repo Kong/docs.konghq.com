@@ -296,25 +296,6 @@ By default, {{site.base_gateway}} handles proxy requests on port `8000`. The pro
 From a web browser, navigate to `http://<kong-gateway-host>:8000/mock/request`.
 
 {% endnavtab %}
-
-{% navtab Using the Admin API %}
-
-<!-- codeblock tabs -->
-{% navtabs codeblock %}
-{% navtab cURL %}
-```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
-```
-{% endnavtab %}
-{% navtab HTTPie %}
-```sh
-http http://<admin-hostname>:8000/mock/request
-```
-{% endnavtab %}
-{% endnavtabs %}
-<!-- end codeblock tabs -->
-
-{% endnavtab %}
 {% endnavtabs %}
 
 

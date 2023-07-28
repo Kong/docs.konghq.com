@@ -21,9 +21,10 @@ name: Kong Docs
 title: Kong Docs
 description: "Documentation for Kong, the Cloud Connectivity Company for APIs and Microservices."
 links:
-  web: http://localhost:3000
+  web: http://localhost:4000
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://download.konghq.com
+  cloudsmith: https://packages.konghq.com
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
@@ -88,6 +89,7 @@ plugins:
   - jekyll-include-cache
   - jekyll-generator-single-source
   - jekyll-kuma-plugins
+  - jekyll/vite
 
 defaults:
   - scope:
@@ -220,17 +222,22 @@ konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
 mesh_product_name: Kong Mesh
+# Mesh specific config
 mesh_namespace: kong-mesh-system
 mesh_cp_name: kong-mesh-control-plane
+mesh_ignored_links_regex:
+  - '\[.*\]\(https:\/\/github\.com\/[kK]ong\/kong-mesh.*\)'
+mesh_raw_generated_paths:
+  - app/mesh
+  - app/_src/.repos/kuma/app/docs
+# Helm commands
+set_flag_values_prefix: kuma.
+mesh_helm_repo: kong-mesh/kong-mesh
+mesh_helm_install_name: kong-mesh
+mesh_disabled_versions: [dev]
+# binary options
+mesh_install_archive_name: kong-mesh
 
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
-
-# Helm commands
-mesh_helm_repo: kong-mesh/kong-mesh
-mesh_helm_install_name: kong-mesh
-mesh_disabled_versions: [dev]
-
-# binary options
-mesh_install_archive_name: kong-mesh

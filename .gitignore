@@ -1,8 +1,5 @@
 .DS_Store
 
-# ignore binstubs
-bin
-
 # ignore local install file
 install
 # don't ignore the install folder
@@ -37,3 +34,11 @@ vendor
 
 # pdf generation
 pdf-generation/pdfs/*.pdf
+
+# Vite Ruby
+/public/vite*
+node_modules
+# Vite uses dotenv and suggests to ignore local-only env files. See
+# https://vitejs.dev/guide/env-and-mode.html#env-files
+*.local
+

@@ -412,7 +412,7 @@ spec:
 
 ### External service support
 
-To rate limit requests to [External Service](/mesh/{{page.kong_version}}/policies/external-services) you must deploy [ZoneEgress](/mesh/{{page.kong_version}}/explore/zoneegress). 
+To rate limit requests to [External Service](/mesh/{{page.kong_version}}/policies/external-services) you must deploy [ZoneEgress](/mesh/{{page.kong_version}}/production/cp-deployment/zoneegress/).
 
 After deploying Zone Egress, you must enable mTLS in your mesh and configure zone egress routing. Here's an example mesh configuration:
 
@@ -662,3 +662,6 @@ The following example shows how to deploy and test a sample `MeshGlobalRateLimit
     ```
 
     You can configure more with this demo, such as changing limits or trying out other examples from this documentation.
+## All policy options
+
+{% json_schema MeshGlobalRateLimits %}
