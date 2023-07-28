@@ -1,16 +1,26 @@
 ---
-title: deck file
+title: deck file render
 source_url: https://github.com/Kong/deck/tree/main/cmd
-content_type: reference
 ---
 
-Subcommand to host the decK file manipulation operations.
+Render the configuration as Kong declarative config.
+
+## Syntax
+
+```
+deck file render [command-specific flags] [global flags]
+```
 
 ## Flags
 
-`-h`, `--help`
-:  Help for file.
+`--format`
+:  Output file format: json or yaml. (Default: `"yaml"`)
 
+`-h`, `--help`
+:  Help for render. (Default: `false`)
+
+`-o`, `--output-file`
+:  File to which to write Kong's configuration. Use `-` to write to stdout. (Default: `"-"`)
 
 
 ## Global flags
@@ -106,12 +116,5 @@ Sets the verbosity level of log output (higher is more verbose). (Default: `0`)
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
-* [deck file add-plugins](/deck/{{page.kong_version}}/reference/deck_file_add-plugins)	 - Add plugins to objects in a decK file
-* [deck file add-tags](/deck/{{page.kong_version}}/reference/deck_file_add-tags)	 - Add tags to objects in a decK file
-* [deck file list-tags](/deck/{{page.kong_version}}/reference/deck_file_list-tags)	 - List current tags from objects in a decK file
-* [deck file merge](/deck/{{page.kong_version}}/reference/deck_file_merge)	 - Merge multiple decK files into one
-* [deck file openapi2kong](/deck/{{page.kong_version}}/reference/deck_file_openapi2kong)	 - Convert OpenAPI files to Kong's decK format
-* [deck file patch](/deck/{{page.kong_version}}/reference/deck_file_patch)	 - Apply patches on top of a decK file
-* [deck file remove-tags](/deck/{{page.kong_version}}/reference/deck_file_remove-tags)	 - Remove tags from objects in a decK file
+* [deck file](/deck/{{page.kong_version}}/reference/deck_file)	 - Subcommand to host the decK file manipulation operations
 
