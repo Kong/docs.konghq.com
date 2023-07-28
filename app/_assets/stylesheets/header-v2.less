@@ -115,6 +115,27 @@ header.navbar-v2 {
       gap: 32px;
     }
 
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @media (max-width: 1100px) {
+        display: none;
+      }
+
+      .view-all {
+        color: #494E50;
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+
+        img {
+          height: 25px;
+        }
+      }
+    }
+
     &-items {
       display: flex;
       flex-wrap: wrap;
@@ -361,10 +382,6 @@ header.navbar-v2 {
               .heading {
                 color: #494E50;
                 text-transform: uppercase;
-
-                @media (max-width: 1100px) {
-                  display: none;
-                }
               }
             }
 
