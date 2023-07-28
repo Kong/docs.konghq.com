@@ -3,7 +3,7 @@
 # More general/sweeping redirects should be at the bottom.
 
 #3.3
-/gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/production/breaking-changes/33x
+/gateway/3.3.x/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/3.3.x/breaking-changes/33x
 
 #3.2
 

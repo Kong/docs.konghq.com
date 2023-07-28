@@ -25,6 +25,18 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
+      - text: Breaking Changes
+        items:
+          - text: Kong Gateway 3.3.x
+            url: /breaking-changes/33x
+          - text: Kong Gateway 3.2.x
+            url: /breaking-changes/32x
+          - text: Kong Gateway 3.1.x
+            url: /breaking-changes/31x
+          - text: Kong Gateway 3.0.x
+            url: /breaking-changes/30x
+          - text: Kong Gateway 2.8.x or earlier
+            url: /breaking-changes/28x
       - text: Key Concepts
         items:
           - text: Services
@@ -214,18 +226,6 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
-          - text: Breaking Changes
-            items:
-              - text: Kong Gateway 3.3.x
-                url: /production/breaking-changes/33x
-              - text: Kong Gateway 3.2.x
-                url: /production/breaking-changes/32x
-              - text: Kong Gateway 3.1.x
-                url: /production/breaking-changes/31x
-              - text: Kong Gateway 3.0.x
-                url: /production/breaking-changes/30x
-              - text: Kong Gateway 2.8.x or earlier
-                url: /production/breaking-changes/28x
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
