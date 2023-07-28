@@ -40,7 +40,7 @@ The output is similar to:
 ```bash
 http://192.168.99.100:32728
 ```
-1. To set the environment variable, replace `<ip-address>` with the IP address at which Kong is accessible:
+1. Set the environment variable. Replace `<ip-address>` with the {{site.base_gateway}} IP address you just retrieved:
 ```bash
 export PROXY_IP=<ip-address>
 echo $PROXY_IP
