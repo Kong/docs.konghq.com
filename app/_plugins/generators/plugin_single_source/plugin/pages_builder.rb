@@ -3,6 +3,8 @@
 module PluginSingleSource
   module Plugin
     class PagesBuilder
+      include Jekyll::TitleizeFilter
+
       def initialize(release)
         @release = release
       end
@@ -45,8 +47,19 @@ module PluginSingleSource
         '/assets/images/icons/documentation/hub/icn-how-to.svg'
       end
 
-      def items_for(pages)
-        pages.flatten.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
+      def nested_items(prefix, pages) # rubocop:disable Metrics/MethodLength
+        pages
+          .group_by { |h| Pathname.new(h.file.gsub("#{prefix}/", '')).dirname.to_s }
+          .each_with_object([]) do |(folder, nested_pages), array|
+            if folder == '.'
+              nested_pages.map do |page|
+                array.push({ 'text' => page.nav_title, 'url' => page.permalink })
+              end
+            else
+              array.push({ 'text' => titleize(folder), 'url' => nil,
+                           'items' => nested_items("#{prefix}/#{folder}", nested_pages) })
+            end
+          end
       end
 
       def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
@@ -68,7 +81,11 @@ module PluginSingleSource
           if @release.vendor == 'kong-inc'
             items.push({
                          'title' => 'Using the plugin',
-                         'items' => items_for([@release.configuration_examples, @release.how_tos]),
+                         'items' => [
+                           { 'text' => @release.configuration_examples.nav_title,
+                             'url' => @release.configuration_examples.permalink },
+                           nested_items('how-to', @release.how_tos)
+                         ].flatten,
                          'icon' => icon
                        })
           else

@@ -1,4 +1,5 @@
 ---
+nav_title: Manage key signing
 ---
 ## Manage key signing
 

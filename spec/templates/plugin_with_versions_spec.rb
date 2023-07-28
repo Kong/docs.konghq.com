@@ -40,5 +40,19 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).not_to have_css('.old-version-banner')
     end
 
+    it 'renders the sidenav' do
+      expect(html).to have_css('.docs-sidebar .accordion-item:nth-of-type(2)', text: 'Overview')
+      expect(html).to have_css('.docs-sidebar .accordion-item:nth-of-type(3)', text: 'Configuration reference')
+      expect(html).to have_css('.docs-sidebar .accordion-item:nth-of-type(4)', text: 'Using the plugin')
+      expect(html).to have_css('.docs-sidebar .accordion-item:nth-of-type(5)', text: 'Changelog')
+
+      how_tos = html.find('.docs-sidebar .accordion-item:nth-of-type(4)', text: 'Using the plugin')
+      expect(how_tos).to have_css('.accordion-item:nth-of-type(1)', text: 'Basic config examples')
+      expect(how_tos).to have_css('.accordion-item:nth-of-type(2)', text: 'Manage key signing')
+      expect(how_tos).to have_css('.accordion-item:nth-of-type(3)', text: 'Nested')
+
+      nested_how_to = how_tos.find('.accordion-item:nth-of-type(3)')
+      expect(nested_how_to).to have_css('.accordion-item', text: 'Nested Tutorial Nav title')
+    end
   end
 end
