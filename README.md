@@ -46,7 +46,7 @@ make run
 In order to speed up build times, it's possible to generate a specific subset of products and their corresponding versions by specifying the `KONG_PRODUCTS` env variable. It takes a comma-separated list of products and for each product, the list of versions the versions to be generated separated by semi-colons, in the following way.
 
 ```bash
-KONG_PRODUCTS='<product>:<version>;<version>,<product>:<version>;hub'
+KONG_PRODUCTS='<product>:<version>;<version>,<product>:<version>,hub'
 ```
 
 For example, running
