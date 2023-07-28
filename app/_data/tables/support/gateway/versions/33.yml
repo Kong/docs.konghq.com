@@ -12,7 +12,7 @@ distributions:
     docker: true
     arm: true
     graviton: true
-  - <<: *amazonlinux2022
+  - <<: *amazonlinux2023
     docker: true
     arm: true
     graviton: true
@@ -24,8 +24,7 @@ distributions:
     docker: true
     fips: true
   - <<: *ubuntu1804
-    arm: false
-    docker: false
+    eol: April 2023
   - <<: *ubuntu2004
     arm: false
     docker: false

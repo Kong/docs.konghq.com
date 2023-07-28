@@ -10,11 +10,12 @@ distributions:
   - <<: *rhel8
     fips: true
   - *amazonlinux2
-  - *amazonlinux2022
+  - *amazonlinux2023
   - <<: *debian10
     docker: true
   - *debian11
-  - *ubuntu1804
+  - <<: *ubuntu1804
+    eol: April 2023
   - <<: *ubuntu2004
     fips: true
   - <<: *ubuntu2204
