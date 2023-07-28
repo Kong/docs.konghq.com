@@ -1,4 +1,5 @@
 ---
+title: OpenID Connect with Google
 nav_title: OpenID Connect with Google
 ---
 

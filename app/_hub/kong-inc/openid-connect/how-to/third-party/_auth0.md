@@ -1,4 +1,5 @@
 ---
+title: OpenID Connect with Auth0
 nav_title: OpenID Connect with Auth0
 ---
 

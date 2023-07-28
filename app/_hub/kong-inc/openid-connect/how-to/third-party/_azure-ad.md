@@ -1,4 +1,5 @@
 ---
+title: OpenID Connect with Azure AD
 nav_title: OpenID Connect with Azure AD
 ---
 

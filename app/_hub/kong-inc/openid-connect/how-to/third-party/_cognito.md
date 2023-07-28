@@ -1,4 +1,5 @@
 ---
+title: OpenID Connect with Amazon Cognito
 nav_title: OpenID Connect with Amazon Cognito
 ---
 

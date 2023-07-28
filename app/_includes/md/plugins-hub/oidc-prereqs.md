@@ -132,18 +132,20 @@ The examples in this guide use Keycloak as a sample IdP.
 Expand the following sections to configure Keycloak and Kong Gateway.
 
 <blockquote class="note no-icon"><details><summary>
-    <strong>Configure Keycloak > </strong>
+    <strong>Configure Keycloak &nbsp;<i class="fas fa-arrow-right"></i> </strong>
   </summary>
 
+<br>
 {{ prereqs_keycloak | markdownify }}
 
 </details>
 </blockquote>
 
 <blockquote class="note no-icon"><details><summary>
-   <strong> Configure {{site.base_gateway}} > </strong>
+   <strong> Configure {{site.base_gateway}} &nbsp;<i class="fas fa-arrow-right"></i> </strong>
   </summary>
 
+<br>
 {{ prereqs_kong | markdownify }}
 
 </details>

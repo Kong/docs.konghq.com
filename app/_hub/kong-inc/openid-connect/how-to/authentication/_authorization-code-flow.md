@@ -1,4 +1,5 @@
 ---
+title: Authorization code flow
 nav_title: Authorization code flow
 ---
 
@@ -6,7 +7,7 @@ nav_title: Authorization code flow
 
 {% include /md/plugins-hub/oidc-prereqs.md %}
 
-## Authorization Code Flow
+## Authorization code flow
 
 The authorization code flow is the three-legged OAuth/OpenID Connect flow.
 The sequence diagram below describes the participants and their interactions
@@ -17,9 +18,9 @@ for this usage scenario, including the use of session cookies:
 {:.note}
 > If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html). If it is not included, the PKCE `code_challenge` query parameter will not be sent.
 
-### Patch the Plugin
+### Patch the plugin
 
-Let's patch the plugin that we created in the [Kong configuration](#kong-configuration) step:
+Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step with the following changes:
 
 1. We want to only use the authorization code flow and the session authentication.
 2. We want to set the response mode to `form_post` so that authorization codes won't get logged to the access logs.
@@ -28,8 +29,6 @@ Let's patch the plugin that we created in the [Kong configuration](#kong-configu
    the `POST` request (because of `form_post`) is turned to the `GET` request, and the browser address bar is updated
    with the original request query arguments.
 4. We don't want to include any tokens in the browser address bar.
-
-[Reset the plugin configuration](#create-a-plugin) before patching.
 
 ```bash
 http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
@@ -62,9 +61,9 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Test the Authorization Code Flow
+### Test the authorization code flow
 
-1. Open the Service Page with some query arguments:
+1. Open the service page with some query arguments:
    ```bash
    open http://service.test:8000/?hello=world
    ```
@@ -75,10 +74,9 @@ HTTP/1.1 200 OK
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-2.png">
    <br>
    > You may examine the query arguments passed to Keycloak with the browser developer tools.
-3. And finally you will be presented a response from httpbin.org:
+3. And finally you will be presented a response from `httpbin.org`:
    <br><br>
    <img src="/assets/images/docs/openid-connect/authorization-code-flow-3.png">
-4. Done.
 
 It looks rather simple from the user point of view, but what really happened is
-described in [the diagram](#authorization-code-flow) above.
+described in the [diagram](#authorization-code-flow) above.

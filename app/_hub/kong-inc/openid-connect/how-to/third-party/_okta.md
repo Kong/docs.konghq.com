@@ -1,4 +1,5 @@
 ---
+title: OpenID Connect with Okta
 nav_title: OpenID Connect with Okta
 ---
 

@@ -1,4 +1,5 @@
 ---
+title: OpenID Connect with Curity
 nav_title: OpenID Connect with Curity
 ---
 
