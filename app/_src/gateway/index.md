@@ -115,7 +115,7 @@ See the [Konnect documentation](/konnect/) and the
 
 **{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
-with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
+with Kong's [Admin API](#kong-admin-api), [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/), or with [declarative configuration](#deck).
 
 **{{site.base_gateway}}** (available in
 [Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
