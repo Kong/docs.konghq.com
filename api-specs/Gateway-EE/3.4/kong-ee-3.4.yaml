@@ -171,6 +171,13 @@ components:
       schema:
         type: string
       description: The name or UUID of the consumer to remove.
+    consumer_group_name_or_id:
+      name: consumer_group_name_or_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The name or UUID of the consumer group to remove.
     consumer_username_or_id:
       name: consumer_username_or_id
       in: path
@@ -444,6 +451,13 @@ components:
         consumer:
           additionalProperties: false
           description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
+          properties:
+            id:
+              type: string
+          type: object
+        consumer_group:
+          additionalProperties: false
+          description: 'If set, the plugin will activate only for requests where the specified consumer group has been authenticated. (Note that some plugins can not be restricted to consumers groups this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer Groups'
           properties:
             id:
               type: string
@@ -2622,8 +2636,8 @@ components:
               protocol:
                 type: string
                 description: |-
-                  The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`" 
-                  , "`wss`" 
+                  The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`"
+                  , "`wss`"
                   . Default: "`http`".
                 default: http
                 enum:
@@ -7390,7 +7404,7 @@ paths:
       description: |
         List all consumer groups
 
-        Use consumer groups to manage custom rate limiting configuration for subsets of consumers. For more information read the [consumer group examples documentation](https://docs.konghq.com/gateway/3.2.x/kong-enterprise/consumer-groups/).
+        Use consumer groups to manage consumer affiliation.
     post:
       summary: Create a consumer group
       operationId: post-consumer_groups
@@ -7678,6 +7692,128 @@ paths:
             HTTP/1.1 204 No Content
       description: |
         Delete custom rate limiting settings for a consumer group.
+  '/consumer_groups/{consumer_username_or_id}/plugins':
+    get:
+      description: 'Retrieve a list of all plugins associated with a consumer group. '
+      parameters:
+        - $ref: '#/components/parameters/pagination-size'
+        - $ref: '#/components/parameters/pagination-offset'
+        - $ref: '#/components/parameters/pagination-tags-filter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Plugin'
+                    type: array
+                  offset:
+                    $ref: '#/components/schemas/pagination-offset-response'
+          description: A successful response listing plugins
+      summary: List all plugins associated with a consumer group
+      tags:
+        - Plugins
+    post:
+      description: Create a new plugin associated with a Consumer Group
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+          description: Successfully created plugin
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+      summary: Create a new plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: create-plugin-for-consumer-group
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+    parameters:
+      - $ref: '#/components/parameters/consumer_username_or_id'
+  '/consumer_groups/{consumer_group_name_or_id}/plugins/{plugin_id}':
+    delete:
+      description: Delete a plugin associated with a a consumer group using ID.
+      responses:
+        '204':
+          description: Successfully deleted plugin or the resource didn't exist
+      summary: Delete a plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: delete-plugin-for-consumer-group
+    get:
+      description: Get a plugin associated with a Consumer Group using ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    message: Not found
+                properties:
+                  message:
+                    type: string
+                    example: Not Found
+                    description: '404 Not Found '
+              examples:
+                Not Found:
+                  value:
+                    message: Not Found
+      summary: Fetch a plugin associated with a Consumer Group
+      tags:
+        - Plugins
+      operationId: fetch-plugin-with-consumer-group
+    patch:
+      description: Update a plugin associated with a consumer group using the consumergroup name or ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '404':
+          description: Resource does not exist
+      summary: Update a plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: update-plugin-with-consumer-group
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+    put:
+      description: Create or Update a plugin associated with a Consumer Group using ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+      summary: Upsert a plugin associated with a Consumer Group
+      tags:
+        - Plugins
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+      operationId: upsert-plugin-for-customer-group
+    parameters:
+      - $ref: '#/components/parameters/consumer_group_name_or_id'
+      - $ref: '#/components/parameters/plugin_id'
   /licenses:
     get:
       summary: List licenses
@@ -7800,7 +7936,7 @@ paths:
       description: |-
         Generate key material.
 
-        Kong supports rotating keys by allowing for multiple keys to exist on the keyring at the same time. This allows for data fields written by one key to be read back, while a fresher encryption key is used for write operations. Rotating keys is a matter of importing or generating a new key into the keyring, and marking it as active. 
+        Kong supports rotating keys by allowing for multiple keys to exist on the keyring at the same time. This allows for data fields written by one key to be read back, while a fresher encryption key is used for write operations. Rotating keys is a matter of importing or generating a new key into the keyring, and marking it as active.
       tags:
         - Keyring
       requestBody:
@@ -7896,7 +8032,7 @@ paths:
         The response contains a list of keys that were successfully recovered and that could not be recovered. The Kong error log will contain the detailed reason why the keys could not be recovered.
       requestBody:
         description: |-
-          The request body contains a single file named `recovery_private_key` that represents a private RSA key used for decrypting a keyring material stored in the database. 
+          The request body contains a single file named `recovery_private_key` that represents a private RSA key used for decrypting a keyring material stored in the database.
 
           The private key is uploaded in the PEM format, which is a binary format used for storing cryptographic keys and certificates. The contents of the file are encoded as a string using a specified encoding (such as base64) and included in the request body
         content:
