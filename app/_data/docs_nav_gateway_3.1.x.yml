@@ -496,28 +496,10 @@ items:
     items:
       - text: Overview
         url: /kong-plugins/
-      - text: Authentication
-        items:
-          - text: Open ID Connect Plugin
-            items:
-              - text: Overview
-                url: /kong-plugins/authentication/oidc/
-              - text: OpenID Connect with Curity
-                url: /kong-plugins/authentication/oidc/curity
-              - text: OpenID Connect with Azure AD
-                url: /kong-plugins/authentication/oidc/azure-ad
-              - text: OpenID Connect with Google
-                url: /kong-plugins/authentication/oidc/google
-              - text: OpenID Connect with Okta
-                url: /kong-plugins/authentication/oidc/okta
-              - text: OpenID Connect with Auth0
-                url: /kong-plugins/authentication/oidc/auth0
-              - text: OpenID Connect with Cognito
-                url: /kong-plugins/authentication/oidc/cognito
-          - text: Authentication Reference
-            url: /kong-plugins/authentication/reference
-          - text: Allow Multiple Authentication Plugins
-            url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
+      - text: Authentication Reference
+        url: /kong-plugins/authentication/reference
+      - text: Allow Multiple Authentication Plugins
+        url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
       - text: Rate Limiting Plugin
         url: /kong-plugins/rate-limiting/algorithms/rate-limiting
         #items:
@@ -603,7 +585,5 @@ items:
         url: /reference/performance-testing-framework
       - text: Router Expressions Language
         url: /reference/router-expressions-language
-      - text: Rate Limiting Library
-        url: /reference/rate-limiting/
       - text: FAQ
         url: /reference/faq
