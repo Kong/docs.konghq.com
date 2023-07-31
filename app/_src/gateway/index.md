@@ -89,7 +89,7 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 ## Packages and modes
 
 There are two ways to deploy {{site.base_gateway}}: cloud-hosted with {{ site.konnect_saas }}, and on-premises. If you're trying
-out {{site.base_gateway}} for the first time we, recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
+out {{site.base_gateway}} for the first time, Kong recommends starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
 ### Cloud-hosted with Konnect
 
@@ -115,7 +115,7 @@ See the [Konnect documentation](/konnect/) and the
 
 **{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
-with Kong's [Admin API](#kong-admin-api), [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/), or with [declarative configuration](#deck).
+with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/),{% endif_version %} or with [declarative configuration](#deck).
 
 **{{site.base_gateway}}** (available in
 [Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
