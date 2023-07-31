@@ -122,5 +122,14 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
 
   {% vite_client_tag %}
   {% vite_javascript_tag application %}
+
+  {% if layout.oas %}
+    {% vite_javascript_tag oas %}
+  {% endif %}
+
   {% vite_stylesheet_tag application.less %}
+
+  {% if layout.oas %}
+    {% vite_stylesheet_tag oas.less %}
+  {% endif %}
 </head>
