@@ -589,5 +589,4 @@ if you need to cycle the group for a new batch of users.
 
 ## More Information
 
-* [Consumer Groups API documentation](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
-
+* [Consumer Groups API documentation](/gateway/latest/admin-api/consumer-groups/reference/).
