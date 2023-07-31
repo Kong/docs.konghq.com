@@ -12,7 +12,6 @@ check the Splunk documentation for the appropriate method.
 
 You have a Splunk authorization token.
 
-{% if_plugin_version gte:3.0.x %}
 ## Send raw text to HEC
 
 To send raw text, use the [`/services/collector/raw`](https://docs.splunk.com/Documentation/Splunk/9.1.0/RESTREF/RESTinput#services.2Fcollector.2Fraw) Splunk endpoint.
@@ -44,7 +43,6 @@ formats:
 Based on this configuration, the HTTP Log plugin sends the logs to `https://example.splunkcloud.com:8088/services/collector/raw` with a secure token.
 
 Logs are sent as JSON objects. See the [Log Format](/hub/kong-inc/http-log/how-to/log-format/) reference for details.
-{% endif_plugin_version %}
 
 ## More information
 
