@@ -154,9 +154,9 @@ Parameter | Field name | Description
 `vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
 `vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
 `vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
-`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when cached.
-`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until neg_ttl is reached, after which Kong will attempt to refresh the secret again.
-`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (config.ttl is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. It is recommended to assign a sufficiently high value to this configuration option to ensure a seamless transition in cases of unexpected issues with the Vault.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when cached. The special value of 0 means "no rotation", and it is the default. When using non-zero values, it is recommended that they are at least 1 minute.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until neg_ttl is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0,
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (config.ttl is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. It is recommended to assign a sufficiently high value to this configuration option to ensure a seamless transition in cases of unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is roughly 3 years.
 
 
 {% if_version gte:3.1.x %}
