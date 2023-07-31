@@ -26,6 +26,12 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Yaml do
       it { expect(subject.type_field).to eq('consumer: CONSUMER_NAME|CONSUMER_ID') }
     end
 
+    context 'type consumer_group' do
+      let(:type) { 'consumer_group' }
+
+      it { expect(subject.type_field).to eq('consumer_group: CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID') }
+    end
+
     context 'type global' do
       let(:type) { 'global' }
 

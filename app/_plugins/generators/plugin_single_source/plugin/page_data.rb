@@ -69,7 +69,7 @@ module PluginSingleSource
         ::Jekyll::Drops::Plugins::HubExamples.new(
           schema: @release.schema,
           example: @release.schema.example,
-          targets: %i[consumer route global service],
+          targets: ::Jekyll::InlinePluginExample::Config::TARGETS,
           formats: %i[curl yaml kubernetes]
         )
       end

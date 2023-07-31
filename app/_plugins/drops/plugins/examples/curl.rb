@@ -7,6 +7,7 @@ module Jekyll
         class Curl < Base
           URLS = {
             'consumer' => 'http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins',
+            'consumer_group' => 'http://localhost:8001/consumer_groups/CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID/plugins',
             'global' => 'http://localhost:8001/plugins/',
             'route' => 'http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins',
             'service' => 'http://localhost:8001/services/SERVICE_NAME|SERVICE_ID/plugins'
