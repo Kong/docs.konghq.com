@@ -3,7 +3,7 @@ title: Consumer Groups
 badge: enterprise
 ---
 
-Consumer groups are a core Kong Gateway entity that run allow you to segment consumers (users or applications) into categories that can be associated with configuration parameters across plugins. 
+Consumer groups are a core {{site.base_gateway}} entity that run allow you to segment consumers (users or applications) into categories that can be associated with configuration parameters across plugins. 
 Consumer groups eliminate the need to manage consumers individually, providing a scalable approach to managing configurations. 
 
 {% if_version gte:3.4.x %}
@@ -30,4 +30,4 @@ Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and
 have a default behavior for consumers without groups.
 
-To learn how this works, follow our [rate-limiting guide](hub/kong-inc/rate-limiting-advanced/how-to/)
+To learn how this works, follow the [rate-limiting guide](hub/kong-inc/rate-limiting-advanced/how-to/)

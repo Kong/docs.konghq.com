@@ -26,7 +26,7 @@ are fully compatible with each mode. See [Plugin Compatibility](/konnect/compati
 for a comparison.
 
 
-## Precendence 
+## Precedence 
 
 A plugin will always be run once and only once per request. But the
 configuration with which it will run depends on the entities it has been

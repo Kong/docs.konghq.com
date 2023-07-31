@@ -30,7 +30,7 @@ the plugin accepts
 configuration
 {% endif_plugin_version %}
 
-## Create rate limting tiers
+## Create rate limiting tiers
 
 
 ### Set up consumer group
