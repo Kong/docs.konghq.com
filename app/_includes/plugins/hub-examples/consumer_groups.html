@@ -4,7 +4,7 @@
 {% if include.render_intro_text %}
 The following examples provide some typical configurations for enabling
 the <code>{{ hub_example.plugin_name }}</code> plugin on a
-[consumer](/gateway/latest/admin-api/#consumer-object).
+[consume group](gateway/latest/admin-api/consumer-groups/reference/).
 {% endif %}
 
 {% navtabs %}
@@ -15,7 +15,7 @@ Make the following request:
 
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
-Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+Replace `CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
 
 {% if page.service_id and page.route_id %}
 You can combine `consumer.id`, `service.id`, or `route.id`
@@ -35,13 +35,13 @@ resource:
 
 {% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
-Next, apply the `KongPlugin` resource to an ingress by annotating the `KongConsumer` object as follows:
+Next, apply the `KongPlugin` resource to an ingress by annotating the `KongConsumerGroup` object as follows:
 
 ```yaml
 kubectl annotate KongConsumer CONSUMER_NAME konghq.com/plugins={{ hub_example.kubernetes.plugin_name }}-example
 ```
 
-Replace `CONSUMER_NAME` with the name of the consumer that this plugin configuration will target.
+Replace `CONSUMER_GROUP_NAME` with the name of the consumer that this plugin configuration will target.
 You can see your available consumers by running `kubectl get KongConsumer`.
 
 To learn more about `KongConsumer` objects, see [Provisioning Consumers and Credentials
@@ -49,7 +49,7 @@ To learn more about `KongConsumer` objects, see [Provisioning Consumers and Cred
 
 <blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
-  and can be applied to any service, consumer, or route in the namespace. If you
+  and can be applied to any service, consumer group, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
 </blockquote>

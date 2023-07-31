@@ -49,7 +49,7 @@ times is:
 1. Plugins configured on a combination of: a Consumer, a Route, and a Service.
     (Consumer means the request must be authenticated).
 2. Plugins configured on a combination of a ConsumerGroup, Service, and a Route.
-    (Consumer means the request must be authenticated).
+    (ConsumerGroup means the request must be authenticated).
 3. Plugins configured on a combination of a Consumer and a Route.
     (Consumer means the request must be authenticated).
 4. Plugins configured on a combination of a Consumer and a Service.
@@ -58,9 +58,9 @@ times is:
 7. Plugins configured on a Route and Service.
 8. Plugins configured on a Consumer.
 9. Plugins Configured on a ConsumerGroup.
-10. Plugins configured on a route.
+10. Plugins configured on a Route.
 11. Plugins configured on a Service. 
-12. Plugins configured globally. 
+12. Plugins configured Globally. 
 
 
 
